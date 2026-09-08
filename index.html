@@ -341,6 +341,16 @@
   body.viewOnly #ctxMenu > *{display:none !important}
   body.viewOnly #ctxMenu > button[data-view]{display:flex !important}
   body.viewOnly #ctxMenu > .ctx-h[data-view]{display:block !important}
+  /* ───── v1.172: ลิงก์ดูอย่างเดียวเปิดบนมือถือ — เหลือเท่าที่นิ้วใช้จริง ───── */
+  body.viewOnly.mobileView{--sb:54px}
+  body.viewOnly.mobileView #list{display:none}
+  body.viewOnly.mobileView #statusbar{gap:10px;padding:0 12px;overflow:hidden}
+  body.viewOnly.mobileView #statusbar>*{display:none}
+  body.viewOnly.mobileView #statusbar>#doorOpenBtn{display:flex;padding:10px 14px;font-size:13px}
+  body.viewOnly.mobileView #statusbar>#expGrp{display:flex;flex:1;min-width:0;opacity:1}
+  body.viewOnly.mobileView #expRange{width:auto!important;flex:1 1 auto;min-width:70px;height:28px}
+  body.viewOnly.mobileView #expVal{min-width:34px;text-align:right}
+  body.viewOnly.mobileView #scanBar{top:calc(var(--tb) + 6px);max-width:96vw;font-size:12px;padding:7px 10px;gap:8px}
   /* v1.170: แถบบอกชิ้นที่สแกนมา — ขึ้นเฉพาะตอนเปิดด้วย ?view=…&p=…
      ไม่ผูกกับ body.viewOnly เพราะแถบนี้เป็นของโหมดสแกนโดยเฉพาะ ไม่ใช่ของโหมดดูอย่างเดียวทั้งหมด */
   #scanBar{position:fixed;left:50%;transform:translateX(-50%);top:8px;z-index:9000;
@@ -838,7 +848,7 @@
    ===================================================================== */
 /* ---- APP_META: แหล่งความจริงเดียวของเวอร์ชัน (ดูได้จาก console / คลิกชื่อแอป) ---- */
 const APP_META={
-  name:"StarNexus Cabinet", version:"1.171", build:"2026-09-02/matcache",
+  name:"StarNexus Cabinet", version:"1.173", build:"2026-09-07/cablink",
   file:"StarNexus.html", basedOn:"Furnitech_V3.html (v3.11)",
   /* ───────── เริ่มนับเวอร์ชันใหม่ที่ 1.001 (21/08/2026) ─────────
      ของเดิมนับมาถึง 42.1 แล้ววิ่งเป็นทศนิยมสองชั้นซึ่งอ่านลำดับยาก
@@ -846,6 +856,8 @@ const APP_META={
      ประวัติเก่าเก็บไว้ทั้งหมดตามเลขเดิม ไม่ไล่เขียนใหม่ เพราะเลขในนั้นถูกอ้างถึงไปแล้ว
      รายการที่อยู่ใต้ 1.001 ลงไปจึงเป็นเลขชุดเก่า อ่านต่อกันได้ตามวันที่ */
   changelog:[
+    ["1.173","2026-09-07","FEAT ส่งเข้า Supabase แล้วลิงก์ตู้ติดไปกับทุกชิ้นในช่อง CAB_URL ของแถว TYP3 — ชิ้นที่อยู่ตู้ใบเดียวกันได้ลิงก์ตัวเดียวกันเป๊ะ เพราะลิงก์ผูกกับ productId ของใบนั้น ไม่ได้ผูกกับชิ้น · ก่อนประกอบข้อมูลจะสร้างสแนปช็อตหนึ่งก้อนต่อตู้หนึ่งใบ ข้างในมีเฉพาะชิ้นของใบนั้น ลิงก์จึงเปิดมาเห็นใบเดียวจริง ๆ ไม่ได้อาศัยการซ่อนตู้อื่นตอนเปิดแบบ ?p= ของ v1.170 ซึ่งยังแบกทั้งออเดอร์มาแล้วค่อยซ่อน · ยิงเป็นคำขอเดียวด้วย body อาเรย์ ออเดอร์ 39 ตู้จึงเป็นหนึ่งคำขอไม่ใช่สามสิบเก้า · ตั้ง kind เป็น scan ตามที่คอลัมน์นั้นเขียนคำอธิบายไว้ตั้งแต่แรกแต่ยังไม่เคยมีใครเขียนค่าลงไป · สร้างลิงก์ล้มไม่ทำให้การส่งออกล้ม ของยังเข้าโรงงานตามปกติ แค่ช่องลิงก์ว่างและมีข้อความบอก · หมายเหตุที่ต้องรู้: ส่งออกซ้ำได้รหัสใหม่ทุกครั้ง เพราะ furnitech_share มี policy เฉพาะ INSERT ไม่มี UPDATE จึงอัปเดตทับรหัสเดิมไม่ได้ สติกเกอร์ที่พิมพ์รอบก่อนยังเปิดได้แต่เป็นข้อมูลรอบก่อน ถ้าวันไหนต้องการให้ลิงก์เดิมอัปเดตตาม ต้องเพิ่ม policy UPDATE ที่ฐานข้อมูลก่อน · FEAT+FIX เปิดลิงก์ที่มี ?view= ไม่ต้องล็อกอินอีกต่อไป — ของเดิม boot รอ sxGate ให้ผ่านก่อนเสมอ แล้ว openSharedIfAny อยู่ใน bindChrome ซึ่งอยู่หลัง ช่างที่สแกนสติกเกอร์จึงชนหน้าขอรหัสพนักงานทุกครั้งทั้งที่แค่มาดูว่าไม้แผ่นนี้อยู่ตู้ไหน · ตรวจที่ฐานข้อมูลแล้วว่า furnitech_share_get เป็น SECURITY DEFINER และ grant ให้ anon อยู่แล้ว จึงอ่านสแนปช็อตด้วย anon key ได้ตรง ๆ ไม่ได้เปิดสิทธิ์อะไรเพิ่ม · ไม่ล็อกอินคือระดับศูนย์ เขียนคลาวด์ไม่ได้เลยสักตาราง ตรงกับที่โหมดดูอย่างเดียวควรเป็น · ตั้ง VIEW_ONLY ตั้งแต่ต้น boot ปุ่มจึงไม่โผล่มาแวบหนึ่งแล้วค่อยหาย · FIX สีผิวจริงไม่ขึ้นสำหรับคนที่ไม่ได้ล็อกอิน — policy ของ app_settings เปิดให้ anon อ่านทุกคีย์ยกเว้น furnitech_settings ซึ่งเป็นที่เก็บ Element Part และคลังผิวทั้งหมด แต่การหาสีจริงต้องเดินผ่าน effLinks ไป resolveLink ไป surfDef ซึ่งพึ่งสามอย่างนั้นล้วน ๆ คนสแกนจึงเห็นตู้เป็นโทนไม้มาตรฐานทั้งใบ · แก้ด้วยการฝังสีที่ resolve เสร็จแล้วลงไปกับชิ้นตอนอัปโหลด ราวหกสิบไบต์ต่อชิ้น แล้วให้ surfSkin คืนค่าที่ฝังมาก่อนเป็นอันดับแรก ปลายทางจึงไม่ต้องอ่าน settings เลย · ฝังลงสำเนาของชิ้น ของใน state.boards ไม่ถูกแตะ · ลิงก์แชร์ทั้งออเดอร์ได้อานิสงส์ตัวนี้ด้วยเพราะใช้ทางเดียวกัน · ตรวจด้วยการโหลดสคริปต์หลักทั้งไฟล์เข้า vm แล้วเรียก pushCabShares กับ buildImosData จริงด้วยออเดอร์สองตู้ ได้ผลว่าคำขอเดียว สองแถว payload แต่ละแถวมีเฉพาะชิ้นของตู้ตัวเอง และแถวชิ้นทั้งสี่ได้ CAB_URL ถูกใบทุกแถว"],
+    ["1.172","2026-09-07","FEAT ลิงก์ดูอย่างเดียวเปิดบนมือถือแล้วได้หน้าตาของมือถือจริง ไม่ใช่หน้าจอคอมย่อส่วน — จอกว้าง 390 แต่แผงซ้ายรายการตู้กินไป 300 เหลือที่ให้ตัวตู้ 90 และแถบล่างมีรายการอยู่ 20 ตัว ซึ่งบนมือถือมีอยู่สองอันที่คนเปิดลิงก์กดจริง คือ เปิดบาน กับ แยกประกอบ ที่เหลือเป็นเครื่องมือของโหมดทำงานบนคอมทั้งหมด · ซ่อนแผงซ้าย และซ่อนทุกลูกของแถบล่างยกเว้นสองตัวนั้น แผงขวาไม่ต้องแตะเพราะ body.viewOnly ซ่อนให้อยู่แล้วตั้งแต่ v28.2 · แถบล่างสูงขึ้นเป็น 54 และปุ่มขยายให้นิ้วกดติด สไลเดอร์แยกประกอบยืดเต็มความกว้างที่เหลือ ซึ่งต้องใส่ width:auto!important เพราะ HTML เขียน style=width:96px ไว้ในบรรทัด ตัวในสไตล์ชีตแพ้ inline เสมอ · แถบบอกชิ้นที่สแกนมาเลื่อนลงมาใต้หัวโปรแกรม เดิม top:8px ทับหัวโปรแกรมพอดี · ผูกกับคลาส mobileView ที่ applyLockUI ติดให้เมื่ออยู่ในโหมดดูอย่างเดียวและหน้าต่างกว้างไม่เกิน 820 ไม่ได้ใช้ media query ล้วน เพราะคนที่ย่อหน้าต่างบนคอมขณะทำงานอยู่ต้องไม่โดนตัดปุ่มทิ้ง และคิดจากความกว้างจริงไม่ใช่ชนิดเครื่อง แท็บเล็ตแนวนอนจึงยังได้ของครบ · ฟังทั้ง resize และ orientationchange จึงสลับกลับไปกลับมาได้ระหว่างใช้งาน · ตรวจด้วยการโหลด style กับ footer จริงเข้า jsdom แล้วอ่าน getComputedStyle ทีละลูก ได้ผลว่าโหมดมือถือเหลือ doorOpenBtn กับ expGrp เท่านั้น ซ่อน 18 รายการ ส่วนโหมดคอมยังเห็นครบ 17 รายการเท่าเดิม"],
     ["1.171","2026-09-02","PERF แคช material ของรูตัน/รูขอบ/Pocket — สามจุดนี้สร้าง MeshStandardMaterial ใหม่ทุกจุดที่วาด ทั้งที่สีขึ้นกับ toneOf(b) ของแผ่นล้วน ๆ ไม่มีอะไรผูกกับตัวรู · ออร์เดอร์จริง 3 ตู้ 141 แผ่น สร้างทิ้ง 504 ตัวทุกครั้งที่ rebuild (รูขอบ+รูตัน 288 + Pocket 216) ที่ 70 ตู้จะเป็นราว 11,760 ตัว · ระบบแคช _matC มีอยู่แล้วตั้งแต่ solidMat/glassMat แค่สองฟังก์ชันนี้ไม่ได้ใช้ จึงเพิ่ม markMat(ti,kind) ที่ใช้ _matC ตัวเดียวกัน แยกคีย์ตาม โทน x ชนิด(edge/blind/drill/pocket) x ghost เหลือไม่กี่ตัวต่อโทน · ค่าสี roughness opacity side ทุกตัวยกมาตรงจากของเดิม ภาพที่เรนเดอร์ต้องเหมือนเดิมทุกพิกเซล · ตรวจแล้วว่าไม่มีโค้ดไหนแก้ .material ของ mesh กลุ่มนี้รายตัวภายหลัง (มี 4 จุดในไฟล์ เป็น floor grid measurement axis ทั้งหมด) แชร์ได้ปลอดภัย · หมายเหตุ: แก้นี้ลดเวลา rebuild กับหน่วยความจำ ไม่ได้ลด draw call ต่อเฟรม ตัวที่จะลด draw call คือ InstancedMesh ซึ่งยังไม่ได้ทำในรุ่นนี้"],
     ["1.170","2026-09-01","FEAT+FIX เปิดลิงก์ดูงานมาที่ชิ้นเดียวได้ด้วย ?view=<id>&p=<คีย์ชิ้น> ขั้นแรกของงานสแกน DataMatrix บนแผ่นไม้ · คีย์ชิ้นคือ รหัสตู้ ขีดล่าง ชื่อชิ้น เช่น WNT044_RightPanel ไม่ได้ใช้ id ของชิ้นตามที่ออกแบบไว้ตอนแรก เพราะ openSharedIfAny() แจก id ใหม่ให้ทุกชิ้นตอนโหลด (const nid=uid()) ของที่พิมพ์ลงสติกเกอร์แล้วต้องรอดจากการโหลดใหม่ ซึ่ง cab บวก name รอด ส่วน id ตายตั้งแต่วินาทีแรก · เทียบแบบตัดทุกอักขระที่ไม่ใช่ A-Z0-9 ออกทั้งสองฝั่ง เว้นวรรค ขีด ขีดล่าง ตัวพิมพ์เล็กใหญ่ จึงไม่มีผล และรับเลขใบต่อท้ายรหัสตู้ได้ด้วย WNT044-01_RightPanel เผื่อออเดอร์มีตู้รหัสเดียวกันหลายใบ ถ้าไม่ระบุใบจะได้ใบแรกพร้อมบอกว่าเข้าคีย์นี้กี่ใบ · ซ่อนตู้ใบอื่นด้วย state.hidden ตัวเดียวกับปุ่ม Isolate ใช้อยู่ ไม่ได้เขียนกลไกซ่อนใหม่ · แถบบนจอบอก รหัสตู้ ชื่อชิ้น ขนาด พร้อมปุ่ม ดูทั้งออเดอร์ เพื่อเลิกโฟกัส · FIX เปิดลิงก์แชร์แล้วขึ้น เปิดลิงก์ไม่สำเร็จ fitAll is not defined ทุกครั้ง — บรรทัดท้ายของ openSharedIfAny เรียก fitAll ซึ่งไม่มีฟังก์ชันชื่อนั้นอยู่ในไฟล์เลยสักตัว โยน ReferenceError แล้วถูก catch กลืนไว้ ฉากขึ้นได้เพราะ sync(1) ทำงานจบไปก่อนแล้ว แต่ applyLockUI กับข้อความบอกว่าเปิดสำเร็จไม่เคยได้ทำงาน · sync(1) เรียก render3D(true) ซึ่งจัดกล้องด้วย fitView ให้อยู่แล้ว บรรทัดนั้นจึงไม่จำเป็นตั้งแต่แรก เอาออก"],
     ["1.169","2026-09-01","CHORE ลดขนาดไฟล์ลง ~22% โดยไม่แตะโค้ดที่ทำงาน — ไฟล์โตขึ้นจนแก้ทีนึงต้องเลื่อนผ่านประวัติรุ่นเป็นพันบรรทัด และ 27% ของไฟล์เป็นบันทึกรุ่นล้วน ๆ ไม่ใช่โค้ด · (1) ย้ายประวัติสาย 2.x-42.x ทั้ง 699 รายการ ออกไปไฟล์ CHANGELOG-legacy.md ที่วางข้าง ๆ กัน ประวัติไม่หายสักบรรทัด แค่ไม่ต้องโหลดมากับหน้าเว็บ · showAppVersion() ยังทำงานเหมือนเดิม แสดงสาย 1.x ครบ 176 รายการ · (2) บล็อก manifest หัวไฟล์เก็บ CHANGELOG v2.11-v7.28 ไว้อีกชุดซ้ำกับที่อยู่ใน APP_META อยู่แล้ว 906 บรรทัด ตัดออกเหลือบรรทัดชี้ทาง · (3) ลบฟังก์ชันตาย 5 ตัว ยืนยันด้วยการ parse AST ทั้งไฟล์แล้วว่าไม่มีจุดเรียก: dedupeHoles ตัวบน (โค้ดตายที่คอมเมนต์ v37.8 ยอมรับไว้เอง และใช้ความละเอียดหยาบกว่าตัวจริง 0.25 มม. เทียบกับ 0.1 มม. ถ้าวันไหนสลับลำดับโค้ดจะได้ตัวผิด) · polyArea ตัวซ้ำ · groundHit ที่ถูก groundHitAt แทนตั้งแต่ v1.074 · varValue · woodTexture+texCache ที่เลิกใช้ตั้งแต่ v27.1 ยกไปใช้ทางของ Surface แทน · ไม่ลบ frameCutList แม้ AST บอกว่าไม่มีใครเรียก เพราะมันไม่ใช่โค้ดตาย แต่เป็นฟีเจอร์ BOM เส้นเฟรมของ v7.4 ที่ต่อสายไม่ครบ ลบทิ้งเท่ากับกลบบั๊ก"],
@@ -2070,6 +2082,11 @@ function _skinWarn(code,why,b,link){
     +(b&&b.part?(" · Part "+b.part):"")+" · ตอนนี้ใช้โทนไม้มาตรฐานแทน"); }
 function surfSkin(b){
   if(!b) return null;
+  /* v1.173: ชิ้นที่มาจากลิงก์แชร์พกสีจริงมาในตัวแล้ว (_skin) — ต้องคืนก่อนทุกทาง
+     เพราะการหาสีจริงต้องเดินผ่าน Part -> resolveLink -> คลังผิว ซึ่งทั้งสามอย่าง
+     อยู่ใน settings คีย์ furnitech_settings ที่ policy ห้าม anon อ่าน
+     คนสแกนที่ไม่ได้ล็อกอินจึงไม่มีทางหาสีเจอ และตกไปใช้โทนไม้มาตรฐานทั้งตู้ */
+  if(b._skin&&b._skin.base) return b._skin;
   const cands=[];
   try{ const L=effLinks(b); if(L){ cands.push(L.surfT, L.surfB); } }catch(e){}
   cands.push(b.surfT, b.surfB);            // ชิ้นที่ตั้งผิวไว้ตรง ๆ ไม่ผ่าน Part
@@ -27272,11 +27289,24 @@ const VIEW_KEEP=["doorOpenBtn","ghostBtn","expRange","expGrp","expVal","shadowBt
                  "toolSeg:select","toolSeg:measure","viewSeg"];
 function shareId(){ let s2=""; const A="abcdefghijkmnpqrstuvwxyz23456789";
   for(let i=0;i<10;i++) s2+=A[Math.floor(Math.random()*A.length)]; return s2; }
-function sharePayload(){
-  return { v:1, boards:state.boards, globalTone:state.globalTone,
+/* v1.173: ค่าประจำออเดอร์ที่ทุก payload ต้องมี — แยกออกมาเพื่อไม่ต้องปั้นบอร์ดทั้งออเดอร์
+   ซ้ำ 39 รอบตอนทำลิงก์รายตู้ */
+function sharePayloadBase(){
+  return { v:1, globalTone:state.globalTone,
            cabColors:state.cabColors, cabNums:state.cabNums, cabVarTxt:state.cabVarTxt,
            cabDX:state.cabDX, bcSeq:state.bcSeq, bcMax:state.bcMax, orderLines:state.orderLines, cabDP:state.cabDP,cabFrontEdge:state.cabFrontEdge,cabFrontDir:state.cabFrontDir };
 }
+/* v1.173: ฝังสีผิวจริงลงไปกับชิ้นตอนอัปโหลด ราว 60 ไบต์ต่อชิ้น
+   ปลายทางที่ไม่ได้ล็อกอินอ่าน settings ไม่ได้ ถ้าไม่ฝังไปด้วยจะเห็นตู้เป็นโทนไม้มาตรฐานทั้งใบ
+   คัดลอกชิ้นก่อนแปะ ของใน state.boards จึงไม่ถูกแตะ */
+function bakeSkins(list){
+  return (list||[]).map(b=>{ if(!b) return b;
+    let sk=null; try{ sk=surfSkin(b); }catch(e){}
+    return sk?Object.assign({},b,{_skin:sk}):b; });
+}
+function sharePayload(){ return Object.assign(sharePayloadBase(),{boards:bakeSkins(state.boards)}); }
+function cabSharePayload(g){ return Object.assign(sharePayloadBase(),{boards:bakeSkins(g&&g.boards)}); }
+function hasViewParam(){ try{ return !!new URLSearchParams(location.search).get("view"); }catch(e){ return false; } }
 async function shareLinkDialog(){
   if(VIEW_ONLY){ toast("ลิงก์ดูอย่างเดียว สร้างลิงก์ต่อไม่ได้"); return; }   // v27.3
   const n=(state.boards||[]).length;
@@ -27469,10 +27499,22 @@ function guardEdit(msg){
   toast(VIEW_ONLY?"ลิงก์นี้ดูได้อย่างเดียว แก้ไขไม่ได้":"ออเดอร์ถูกล็อกอยู่ — กดปลดล็อกก่อน"+(msg?(" ("+msg+")"):""));
   return true;
 }
+/* ───────── v1.172: จอแคบ + ลิงก์ดูอย่างเดียว = ตัด UI เหลือเท่าที่ใช้บนมือถือ ─────────
+   ตัดสินจากความกว้างหน้าต่างจริง ไม่ใช่ชนิดเครื่อง แท็บเล็ตแนวนอนจึงยังได้ของครบ
+   ประกาศเหนือ applyLockUI ที่เรียกใช้ (บทเรียน v7.26.1 — const อยู่ใน TDZ) */
+const MOBILE_MAX_W=820;
+function isMobileView(){ return VIEW_ONLY && innerWidth<=MOBILE_MAX_W; }
+function applyMobileView(){
+  document.body.classList.toggle("mobileView", isMobileView());
+  try{ invalidate(); }catch(e){}
+}
+addEventListener("resize",applyMobileView);
+addEventListener("orientationchange",()=>setTimeout(applyMobileView,150));
 function applyLockUI(){
   const on=isLocked();
   document.body.classList.toggle("lockedMode",on);
   document.body.classList.toggle("viewOnly",VIEW_ONLY);
+  applyMobileView();
   const b=$("lockBtn");
   if(b){ b.classList.toggle("sel",on);
     const t=b.querySelector(".lkT"); if(t) t.textContent=VIEW_ONLY?"ดูอย่างเดียว":(on?"ล็อกอยู่":"ล็อก"); }
@@ -27488,6 +27530,43 @@ function toggleLock(){
 const SB_URL_DEFAULT="https://auohdroxlhwwoljjwxxl.supabase.co";
 const SB_KEY_DEFAULT="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImF1b2hkcm94bGh3d29samp3eHhsIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzI1ODc5MTcsImV4cCI6MjA4ODE2MzkxN30.G350ZiXgzuKmCve7DAIMuB0G2s7ZfsgQcqqtmUPw6mg";
 function download(name,content,type){const a=document.createElement("a");a.href=URL.createObjectURL(new Blob([content],{type}));a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),2000);}
+/* ═════════ v1.173: ลิงก์ตู้รายใบ — สแกนชิ้นไหนก็เห็นเฉพาะตู้ใบนั้น ═════════
+   สแนปช็อตหนึ่งก้อนต่อตู้หนึ่งใบ ข้างในมีเฉพาะชิ้นของใบนั้น ลิงก์จึงเปิดมาเห็นใบเดียว
+   โดยไม่ต้องพึ่งกลไกซ่อนตู้อื่นตอนเปิด และทุกชิ้นในใบเดียวกันได้ลิงก์ตัวเดียวกันเป๊ะ
+   >>> ส่งออกซ้ำ = ได้รหัสใหม่ทุกครั้ง (ตาราง furnitech_share มี policy เฉพาะ INSERT ไม่มี UPDATE)
+       สติกเกอร์ที่พิมพ์จากรอบก่อนจะชี้ไปที่สแนปช็อตรอบก่อน ซึ่งยังเปิดได้แต่เป็นข้อมูลเก่า */
+let CAB_LINK={};                       // productId -> url · buildImosData อ่านตัวนี้
+function shareBaseUrl(){
+  if(location.protocol!=="file:") return location.origin+location.pathname;
+  let b=String(settings.shareBase||"").trim().replace(/[?#].*$/,"");
+  if(b && !/^https?:\/\//i.test(b)) b="https://"+b;
+  if(b && !/\.html?$/i.test(b)) b=b.replace(/\/+$/,"")+"/";
+  return b;
+}
+async function pushCabShares(days){
+  CAB_LINK={};
+  const gs=cabGroups().filter(g=>g&&g.boards&&g.boards.length);
+  if(!gs.length) return 0;
+  const base=shareBaseUrl();
+  if(!base) throw new Error("ยังไม่รู้ที่อยู่โปรแกรมบนเว็บ — กดปุ่มแชร์หนึ่งครั้งเพื่อตั้งที่อยู่ก่อน");
+  const db=await getDB();
+  const {data:ses}=await db.auth.getSession();
+  const tok=ses&&ses.session&&ses.session.access_token;
+  if(!tok) throw new Error("ยังไม่ได้เข้าสู่ระบบ");        // v34.1: ตารางนี้รับเฉพาะ JWT ของคนจริง ไม่ใช่ anon
+  const exp=(+days>0)?new Date(Date.now()+(+days)*86400000).toISOString():null;
+  const rows=gs.map(g=>({ id:shareId(), title:String(g.productId||g.cab||"StarNexus").slice(0,120),
+    payload:cabSharePayload(g), n_boards:g.boards.filter(b=>!isGuide(b)).length,
+    kind:"scan", expires_at:exp }));
+  /* PostgREST รับ body เป็นอาเรย์ = insert ทีเดียวจบ ไม่ใช่ยิง 39 คำขอ */
+  const r=await fetch(String(SB_URL_DEFAULT).replace(/\/+$/,"")+"/rest/v1/furnitech_share",{
+    method:"POST",
+    headers:{ "Content-Type":"application/json", apikey:SB_KEY_DEFAULT,
+              Authorization:"Bearer "+tok, Prefer:"return=minimal" },
+    body:JSON.stringify(rows) });
+  if(!r.ok) throw new Error("HTTP "+r.status+" "+(await r.text()).slice(0,160));
+  gs.forEach((g,i)=>{ CAB_LINK[g.productId]=base+"?view="+rows[i].id; });
+  return rows.length;
+}
 /* ---------- MPR drilling export (WoodWOP / Homag) ---------- */
 /* ความหนา "สุทธิ" มีทศนิยมได้ (16 + ผิว 0.1 x 2 = 16.2)
    ปัดเป็นจำนวนเต็มเมื่อไหร่ ผิวบางก็หายไปทั้งใบ — ทั้งบนจอและในไฟล์ที่ส่งเข้าโรงงาน
@@ -28608,7 +28687,9 @@ function buildImosData(){
         CNT:"1",ARTICLE_ID:matCodeForThick(resolveOut(el.mat,b),coreThickOf(b,_bd.T)),GROR:"",ORDER_ID:"",
         MATERIAL:matCodeForThick(resolveOut(el.mat,b),coreThickOf(b,_bd.T)), SURFACE_TOP:resolveOut(el.surfT,b), SURFACE_BOTTOM:resolveOut(el.surfB,b),
         BARCODE:bc1,BARCODE2:bc2,
-        INFO2:(backGrooveMacro(b,grp)||(b._hangNotch?"CNC":"")),INFO3:info3For(b),_e1:ec[0]||"",_e2:ec[1]||"",_e3:ec[2]||"",_e4:ec[3]||""});
+        INFO2:(backGrooveMacro(b,grp)||(b._hangNotch?"CNC":"")),INFO3:info3For(b),
+        CAB_URL:(CAB_LINK[grp.productId]||""),      /* v1.173: ลิงก์ตู้ใบนี้ — ทุกชิ้นในใบเดียวกันได้ตัวเดียวกัน */
+        _e1:ec[0]||"",_e2:ec[1]||"",_e3:ec[2]||"",_e4:ec[3]||""});
       // แถว TYP4 = วัสดุ (Purchase ID) → Production ต่อเป็น CutRiteMaterialCode = ART4+ART5+ART6
       const mCode=matCodeForThick(resolveOut(el.mat,b),coreThickOf(b,_bd.T));   // CutRite code ตามความหนาเนื้อไม้ (ไม่รวมผิว)
       const sTop=resolveOut(el.surfT,b), sBot=resolveOut(el.surfB,b);
@@ -28916,12 +28997,19 @@ async function sendSupabase(){
   try{
     await cutLookupReady();                                        // v13.5: รอรหัสท่อนที่ตัดให้ครบก่อน
     const db=await getDB();
+    /* v1.173: สร้างลิงก์ตู้ก่อน แล้ว buildImosData ค่อยอ่าน CAB_LINK ไปแปะทุกแถวชิ้น
+       ล้มตรงนี้ไม่ล้มทั้งการส่งออก — ของยังต้องเข้าโรงงาน แค่บอกว่าลิงก์ไม่ได้ไปด้วย */
+    let _nl=0;
+    try{ _nl=await pushCabShares(0); }
+    catch(e){ CAB_LINK={}; console.error("cabShare:",e);
+      toast("⚠ สร้างลิงก์ตู้ไม่สำเร็จ: "+sbErr(e)+" — ส่งข้อมูลต่อโดยไม่มีลิงก์"); }
     const data=buildImosData();
     const {error}=await db.from("imos_orders").upsert({order_id:data.orderID,data:data,loaded_at:new Date().toISOString()},{onConflict:"order_id"});
     if(error)throw error;
     if(data.itemIdSet){ const {error:e2}=await db.from("app_settings").upsert({key:"iids:"+data.orderID,value:data.itemIdSet},{onConflict:"key"}); if(e2)console.error("iids:",sbErr(e2)); }
     const nm=await registerFitMapping(data);                       // v12.8
     toast("ส่งเข้า Supabase สำเร็จ (IMOS): "+data.orderID+(data.itemIdSet?" · IID "+data.itemIdSet:"")
+      +(_nl>0?(" · ลิงก์ตู้ "+_nl+" ใบ"):"")
       +(nm>0?(" · ลงทะเบียนรหัสอุปกรณ์ใหม่ "+nm+" รหัส"):(nm<0?" · ⚠ ลงทะเบียนรหัสอุปกรณ์ไม่สำเร็จ":"")));
   }catch(e){ console.error("Supabase error:",e); toast("ส่ง Supabase ไม่สำเร็จ: "+sbErr(e)); }
 }
@@ -29974,7 +30062,13 @@ function boot(){ console.log("%c"+appVerStr(),"font-weight:700;color:#007aff");
   try{ document.querySelectorAll(".ver").forEach(e=>{ e.textContent="v"+APP_META.version; }); }catch(e){}
   try{ const _vb=$("appVerBadge"); if(_vb){ _vb.textContent="v"+APP_META.version; _vb.onclick=showAppVersion; } }catch(e){}
   (async function(){
-  try{ await sxGate(); sxBadge(); }catch(e){ console.error("auth:",e); }   // v34.0: ผ่านประตูก่อน ค่อยบูต
+  /* ───────── v1.173: ลิงก์ดูอย่างเดียวไม่ต้องผ่านประตู ─────────
+     ช่างที่สแกนสติกเกอร์ไม่มีบัญชี และไม่ควรต้องมี · furnitech_share_get เป็น SECURITY DEFINER
+     ที่ grant ให้ anon อยู่แล้ว จึงอ่านสแนปช็อตได้ด้วย anon key ตรง ๆ
+     ไม่ล็อกอิน = SX.lvl 0 = เขียนคลาวด์ไม่ได้เลยสักตาราง ซึ่งตรงกับที่โหมดนี้ควรเป็นอยู่แล้ว
+     ตั้ง VIEW_ONLY ตั้งแต่ตรงนี้ ปุ่มจึงหายไปก่อนวาดจอครั้งแรก ไม่ใช่โผล่มาแล้วค่อยหาย */
+  if(hasViewParam()){ VIEW_ONLY=true; try{ applyLockUI(); }catch(e){} }
+  else { try{ await sxGate(); sxBadge(); }catch(e){ console.error("auth:",e); } }   // v34.0: ผ่านประตูก่อน ค่อยบูต
   setTimeout(()=>{ try{ sxAutoOpenOrder(); }catch(e){} }, 400);            // v36.3: แท็บใหม่ไปดึงออเดอร์ของตัวเอง
   setTimeout(()=>{ try{ sxHealCurvedFaces(); }catch(e){} }, 900);          // v36.4: ซ่อมของที่พังไปแล้ว
   try{ state.eco = await lsGet("boardforge:eco", true); }catch(e){}
