@@ -856,7 +856,7 @@
    ===================================================================== */
 /* ---- APP_META: แหล่งความจริงเดียวของเวอร์ชัน (ดูได้จาก console / คลิกชื่อแอป) ---- */
 const APP_META={
-  name:"StarNexus Cabinet", version:"1.174", build:"2026-09-08/cablink-check",
+  name:"StarNexus Cabinet", version:"1.175", build:"2026-09-08/part-index",
   file:"StarNexus.html", basedOn:"Furnitech_V3.html (v3.11)",
   /* ───────── เริ่มนับเวอร์ชันใหม่ที่ 1.001 (21/08/2026) ─────────
      ของเดิมนับมาถึง 42.1 แล้ววิ่งเป็นทศนิยมสองชั้นซึ่งอ่านลำดับยาก
@@ -864,6 +864,7 @@ const APP_META={
      ประวัติเก่าเก็บไว้ทั้งหมดตามเลขเดิม ไม่ไล่เขียนใหม่ เพราะเลขในนั้นถูกอ้างถึงไปแล้ว
      รายการที่อยู่ใต้ 1.001 ลงไปจึงเป็นเลขชุดเก่า อ่านต่อกันได้ตามวันที่ */
   changelog:[
+    ["1.175","2026-09-08","FEAT ส่งเข้า Supabase แล้วเขียนตาราง part_index ให้ด้วย ยิงบาร์โค้ดหนึ่งครั้งได้ตู้ทันที — เดิมฝั่ง Production ต้องดึง imos_orders.data ทั้งก้อนมาแกะ JSON ไล่หาทีละชิ้นเพื่อจะรู้ว่าไม้แผ่นนี้อยู่ตู้ไหน ตารางนี้ตอบด้วยการค้นคีย์หลักครั้งเดียว และ policy เปิดให้อ่านได้แม้ไม่ล็อกอิน เครื่องสแกนหน้าไลน์จึงถามได้ตรง ๆ · เขียนหนึ่งแถวต่อหนึ่งบาร์โค้ดที่สแกนได้จริง ไม่ใช่หนึ่งแถวต่อชิ้น เพราะชิ้นที่เจาะสองหน้ามีบาร์โค้ดสองตัวที่ต่างกันตรงหลักฝั่ง และตารางมี index อยู่ที่ barcode ซึ่งเป็นคีย์หลักเท่านั้น ไม่มี index ที่ barcode2 ถ้าเขียนแถวเดียวแล้วให้ไปค้น barcode2 การสแกนครึ่งหนึ่งจะกลายเป็นการไล่อ่านทั้งตาราง · ช่อง barcode2 ยังเก็บบาร์โค้ดฝาแฝดไว้ให้อ้างอิงข้ามหน้าได้ · ชิ้นที่ไม่มีงานเจาะเลยไม่มีบาร์โค้ด ใช้รหัสชิ้นแทน ซึ่งเป็นตัวที่พิมพ์อยู่บนใบ Part List อยู่แล้ว · ช่อง share_id เก็บรหัสสแนปช็อตล้วน ไม่ใช่ลิงก์เต็ม ฝั่ง Production จะได้ประกอบ URL เองตามโดเมนที่ตัวเองใช้ · ก่อนเขียนจะลบแถวของออเดอร์นั้นทิ้งก่อนเสมอ เพราะส่งออกรอบใหม่ลำดับชิ้นเปลี่ยนได้ บาร์โค้ดเก่าที่ค้างอยู่จะชี้ไปที่ตู้ที่ไม่มีแล้ว ออเดอร์อื่นไม่ถูกแตะเพราะกรองด้วย order_id · ใช้ upsert ไม่ใช่ insert เผื่อออเดอร์คนละใบได้เลขนำหน้าสิบหลักซ้ำกัน จะได้ทับของเก่าแทนที่จะล้มทั้งชุด · เขียนหลัง imos_orders สำเร็จแล้วเท่านั้น และล้มก็ไม่ล้มการส่งออก เพราะดัชนีสร้างใหม่ได้ด้วยการกดส่งซ้ำ · แถวชิ้นใน buildImosData พก _cabInst กับ _bid ติดไปด้วย เป็นสองช่องที่ part_index มีอยู่แล้วแต่ไม่มีใครเติม ขีดล่างนำหน้าตามแบบเดียวกับ _tp และ _e1 คือไม่ใช่คอลัมน์ของ IMOS · ข้อความสรุปตอนส่งบอกจำนวนบาร์โค้ดที่เขียนลงดัชนีด้วย"],
     ["1.174","2026-09-08","FEAT ปุ่ม สร้าง/ตรวจลิงก์ตู้ ในหน้าส่งออก — เดิมลิงก์เกิดตอนกดส่งเข้า Supabase เท่านั้น หน้า Part List ที่เปิดดูก่อนส่งจึงไม่มีลิงก์ให้ตรวจเลย ต้องส่งไปก่อนแล้วค่อยรู้ว่าได้อะไร · ตอนนี้กดสร้างดูก่อนได้ เห็นครบทุกใบพร้อมจำนวนชิ้น กดเปิดทดลองทีละใบได้จริง คัดลอกทีละบรรทัดหรือคัดลอกทั้งตารางเป็น TSV ไปวางใน Excel ก็ได้ · หัวใจอยู่ที่การไม่สร้างซ้ำ ถ้าปล่อยให้กดตรวจหนึ่งครั้งแล้วกดส่งอีกครั้งสร้างใหม่ ฐานข้อมูลจะได้แถวสองชุดต่อการส่งหนึ่งรอบ และลิงก์ที่อุตส่าห์เปิดตรวจไปแล้วก็กลายเป็นของทิ้ง · จึงเก็บลายเซ็นของ payload แต่ละใบไว้ด้วย เป็น idHash ของ JSON ทั้งก้อน ตอนกดส่งจะเทียบลายเซ็นก่อน ใบไหนเนื้อในเหมือนเดิมใช้ลิงก์เดิมต่อ ใบไหนถูกแก้หลังตรวจได้ลิงก์ใหม่เฉพาะใบนั้น ใบอื่นไม่กระทบ · ในตารางมีป้ายบอกด้วยว่าใบไหนถูกแก้หลังสร้างลิงก์ไปแล้ว จะได้ไม่เผลอเอาลิงก์เก่าไปพิมพ์สติกเกอร์ · ปุ่ม สร้างใหม่ทั้งหมด มีไว้เมื่อจงใจอยากได้รหัสชุดใหม่ทั้งออเดอร์ · ข้อความสรุปตอนส่งบอกจำนวนที่ใช้ของเดิมด้วย จะได้รู้ว่ากลไกใช้ซ้ำทำงานอยู่จริง · pushCabShares เปลี่ยนจากคืนจำนวนเป็นคืน n/made/kept ตัวเรียกที่เดียวคือ sendSupabase แก้ตามแล้ว"],
     ["1.173","2026-09-07","FEAT ส่งเข้า Supabase แล้วลิงก์ตู้ติดไปกับทุกชิ้นในช่อง CAB_URL ของแถว TYP3 — ชิ้นที่อยู่ตู้ใบเดียวกันได้ลิงก์ตัวเดียวกันเป๊ะ เพราะลิงก์ผูกกับ productId ของใบนั้น ไม่ได้ผูกกับชิ้น · ก่อนประกอบข้อมูลจะสร้างสแนปช็อตหนึ่งก้อนต่อตู้หนึ่งใบ ข้างในมีเฉพาะชิ้นของใบนั้น ลิงก์จึงเปิดมาเห็นใบเดียวจริง ๆ ไม่ได้อาศัยการซ่อนตู้อื่นตอนเปิดแบบ ?p= ของ v1.170 ซึ่งยังแบกทั้งออเดอร์มาแล้วค่อยซ่อน · ยิงเป็นคำขอเดียวด้วย body อาเรย์ ออเดอร์ 39 ตู้จึงเป็นหนึ่งคำขอไม่ใช่สามสิบเก้า · ตั้ง kind เป็น scan ตามที่คอลัมน์นั้นเขียนคำอธิบายไว้ตั้งแต่แรกแต่ยังไม่เคยมีใครเขียนค่าลงไป · สร้างลิงก์ล้มไม่ทำให้การส่งออกล้ม ของยังเข้าโรงงานตามปกติ แค่ช่องลิงก์ว่างและมีข้อความบอก · หมายเหตุที่ต้องรู้: ส่งออกซ้ำได้รหัสใหม่ทุกครั้ง เพราะ furnitech_share มี policy เฉพาะ INSERT ไม่มี UPDATE จึงอัปเดตทับรหัสเดิมไม่ได้ สติกเกอร์ที่พิมพ์รอบก่อนยังเปิดได้แต่เป็นข้อมูลรอบก่อน ถ้าวันไหนต้องการให้ลิงก์เดิมอัปเดตตาม ต้องเพิ่ม policy UPDATE ที่ฐานข้อมูลก่อน · FEAT+FIX เปิดลิงก์ที่มี ?view= ไม่ต้องล็อกอินอีกต่อไป — ของเดิม boot รอ sxGate ให้ผ่านก่อนเสมอ แล้ว openSharedIfAny อยู่ใน bindChrome ซึ่งอยู่หลัง ช่างที่สแกนสติกเกอร์จึงชนหน้าขอรหัสพนักงานทุกครั้งทั้งที่แค่มาดูว่าไม้แผ่นนี้อยู่ตู้ไหน · ตรวจที่ฐานข้อมูลแล้วว่า furnitech_share_get เป็น SECURITY DEFINER และ grant ให้ anon อยู่แล้ว จึงอ่านสแนปช็อตด้วย anon key ได้ตรง ๆ ไม่ได้เปิดสิทธิ์อะไรเพิ่ม · ไม่ล็อกอินคือระดับศูนย์ เขียนคลาวด์ไม่ได้เลยสักตาราง ตรงกับที่โหมดดูอย่างเดียวควรเป็น · ตั้ง VIEW_ONLY ตั้งแต่ต้น boot ปุ่มจึงไม่โผล่มาแวบหนึ่งแล้วค่อยหาย · FIX สีผิวจริงไม่ขึ้นสำหรับคนที่ไม่ได้ล็อกอิน — policy ของ app_settings เปิดให้ anon อ่านทุกคีย์ยกเว้น furnitech_settings ซึ่งเป็นที่เก็บ Element Part และคลังผิวทั้งหมด แต่การหาสีจริงต้องเดินผ่าน effLinks ไป resolveLink ไป surfDef ซึ่งพึ่งสามอย่างนั้นล้วน ๆ คนสแกนจึงเห็นตู้เป็นโทนไม้มาตรฐานทั้งใบ · แก้ด้วยการฝังสีที่ resolve เสร็จแล้วลงไปกับชิ้นตอนอัปโหลด ราวหกสิบไบต์ต่อชิ้น แล้วให้ surfSkin คืนค่าที่ฝังมาก่อนเป็นอันดับแรก ปลายทางจึงไม่ต้องอ่าน settings เลย · ฝังลงสำเนาของชิ้น ของใน state.boards ไม่ถูกแตะ · ลิงก์แชร์ทั้งออเดอร์ได้อานิสงส์ตัวนี้ด้วยเพราะใช้ทางเดียวกัน · ตรวจด้วยการโหลดสคริปต์หลักทั้งไฟล์เข้า vm แล้วเรียก pushCabShares กับ buildImosData จริงด้วยออเดอร์สองตู้ ได้ผลว่าคำขอเดียว สองแถว payload แต่ละแถวมีเฉพาะชิ้นของตู้ตัวเอง และแถวชิ้นทั้งสี่ได้ CAB_URL ถูกใบทุกแถว"],
     ["1.172","2026-09-07","FEAT ลิงก์ดูอย่างเดียวเปิดบนมือถือแล้วได้หน้าตาของมือถือจริง ไม่ใช่หน้าจอคอมย่อส่วน — จอกว้าง 390 แต่แผงซ้ายรายการตู้กินไป 300 เหลือที่ให้ตัวตู้ 90 และแถบล่างมีรายการอยู่ 20 ตัว ซึ่งบนมือถือมีอยู่สองอันที่คนเปิดลิงก์กดจริง คือ เปิดบาน กับ แยกประกอบ ที่เหลือเป็นเครื่องมือของโหมดทำงานบนคอมทั้งหมด · ซ่อนแผงซ้าย และซ่อนทุกลูกของแถบล่างยกเว้นสองตัวนั้น แผงขวาไม่ต้องแตะเพราะ body.viewOnly ซ่อนให้อยู่แล้วตั้งแต่ v28.2 · แถบล่างสูงขึ้นเป็น 54 และปุ่มขยายให้นิ้วกดติด สไลเดอร์แยกประกอบยืดเต็มความกว้างที่เหลือ ซึ่งต้องใส่ width:auto!important เพราะ HTML เขียน style=width:96px ไว้ในบรรทัด ตัวในสไตล์ชีตแพ้ inline เสมอ · แถบบอกชิ้นที่สแกนมาเลื่อนลงมาใต้หัวโปรแกรม เดิม top:8px ทับหัวโปรแกรมพอดี · ผูกกับคลาส mobileView ที่ applyLockUI ติดให้เมื่ออยู่ในโหมดดูอย่างเดียวและหน้าต่างกว้างไม่เกิน 820 ไม่ได้ใช้ media query ล้วน เพราะคนที่ย่อหน้าต่างบนคอมขณะทำงานอยู่ต้องไม่โดนตัดปุ่มทิ้ง และคิดจากความกว้างจริงไม่ใช่ชนิดเครื่อง แท็บเล็ตแนวนอนจึงยังได้ของครบ · ฟังทั้ง resize และ orientationchange จึงสลับกลับไปกลับมาได้ระหว่างใช้งาน · ตรวจด้วยการโหลด style กับ footer จริงเข้า jsdom แล้วอ่าน getComputedStyle ทีละลูก ได้ผลว่าโหมดมือถือเหลือ doorOpenBtn กับ expGrp เท่านั้น ซ่อน 18 รายการ ส่วนโหมดคอมยังเห็นครบ 17 รายการเท่าเดิม"],
@@ -27549,6 +27550,9 @@ let CAB_LINK={};                       // productId -> url · buildImosData อ�
    กดตรวจลิงก์แล้วค่อยกดส่ง จะได้ใช้ชุดเดิม ไม่สร้างแถวซ้ำในฐานข้อมูล
    แต่ถ้าแก้ตู้ระหว่างนั้น ลายเซ็นเปลี่ยน ใบนั้นใบเดียวได้ลิงก์ใหม่ ใบอื่นคงเดิม */
 let CAB_SIG={};
+/* v1.175: รหัสสแนปช็อตล้วน ๆ ไม่มี URL ประกอบ · part_index เก็บช่อง share_id ไม่ใช่ลิงก์เต็ม
+   ฝั่ง Production จึงประกอบ URL เองได้ตามโดเมนที่ตัวเองใช้ */
+let CAB_SID={};
 function shareBaseUrl(){
   if(location.protocol!=="file:") return location.origin+location.pathname;
   let b=String(settings.shareBase||"").trim().replace(/[?#].*$/,"");
@@ -27558,15 +27562,16 @@ function shareBaseUrl(){
 }
 async function pushCabShares(days,force){
   const gs=cabGroups().filter(g=>g&&g.boards&&g.boards.length);
-  if(!gs.length){ CAB_LINK={}; CAB_SIG={}; return {n:0,made:0,kept:0}; }
+  if(!gs.length){ CAB_LINK={}; CAB_SIG={}; CAB_SID={}; return {n:0,made:0,kept:0}; }
   const base=shareBaseUrl();
   if(!base) throw new Error("ยังไม่รู้ที่อยู่โปรแกรมบนเว็บ — กดปุ่มแชร์หนึ่งครั้งเพื่อตั้งที่อยู่ก่อน");
   /* คัดว่าใบไหนต้องสร้างใหม่จริง ๆ · ใบที่เนื้อในไม่เปลี่ยนใช้ลิงก์เดิมต่อ
      ไม่งั้นกดตรวจหนึ่งครั้งแล้วกดส่งอีกครั้ง จะได้แถวในฐานข้อมูลสองชุดและลิงก์ที่ตรวจไปแล้วก็ทิ้ง */
-  const keep={},keepSig={},need=[];
+  const keep={},keepSig={},keepSid={},need=[];
   gs.forEach(g=>{ const pid=g.productId, pl=cabSharePayload(g);
     const sig=String(idHash(JSON.stringify(pl)));
-    if(!force && CAB_LINK[pid] && CAB_SIG[pid]===sig){ keep[pid]=CAB_LINK[pid]; keepSig[pid]=sig; return; }
+    if(!force && CAB_LINK[pid] && CAB_SIG[pid]===sig){
+      keep[pid]=CAB_LINK[pid]; keepSig[pid]=sig; keepSid[pid]=CAB_SID[pid]||""; return; }
     need.push({pid,g,pl,sig}); });
   if(need.length){
     const db=await getDB();
@@ -27584,9 +27589,9 @@ async function pushCabShares(days,force){
                 Authorization:"Bearer "+tok, Prefer:"return=minimal" },
       body:JSON.stringify(rows) });
     if(!r.ok) throw new Error("HTTP "+r.status+" "+(await r.text()).slice(0,160));
-    need.forEach((x,i)=>{ keep[x.pid]=base+"?view="+rows[i].id; keepSig[x.pid]=x.sig; });
+    need.forEach((x,i)=>{ keep[x.pid]=base+"?view="+rows[i].id; keepSig[x.pid]=x.sig; keepSid[x.pid]=rows[i].id; });
   }
-  CAB_LINK=keep; CAB_SIG=keepSig;
+  CAB_LINK=keep; CAB_SIG=keepSig; CAB_SID=keepSid;
   return { n:gs.length, made:need.length, kept:gs.length-need.length };
 }
 /* ───────── v1.174: หน้าตรวจลิงก์ตู้ ─────────
@@ -27646,6 +27651,49 @@ function cabLinksDialog(){
   if(VIEW_ONLY){ toast("ลิงก์ดูอย่างเดียว สร้างลิงก์ต่อไม่ได้"); return; }
   if(!(state.boards||[]).length){ toast("ยังไม่มีงานในฉาก"); return; }
   renderCabLinks(""); $("cabLinkModal").classList.add("show");
+}
+/* ═════════ v1.175: ดัชนีชิ้น part_index — ยิงบาร์โค้ดแล้วได้ตู้ทันที ═════════
+   ฝั่ง Production ไม่ต้องดึง imos_orders.data ทั้งก้อนมาแกะ JSON หาทีละชิ้นอีกต่อไป
+   ตารางนี้ policy อ่านได้ทุกคนแม้ไม่ล็อกอิน เครื่องสแกนหน้าไลน์จึงถามได้ตรง ๆ
+   >>> หนึ่งแถวต่อ "หนึ่งบาร์โค้ดที่สแกนได้จริง" ไม่ใช่หนึ่งแถวต่อชิ้น
+       เพราะชิ้นที่เจาะสองหน้ามีบาร์โค้ดสองตัว (ต่างกันที่หลักฝั่ง 1 กับ 2)
+       และตารางมี index อยู่ที่ barcode ซึ่งเป็น PK เท่านั้น ไม่มี index ที่ barcode2
+       ทำแบบนี้ทุกการสแกนจึงวิ่งเข้า PK ตรง ๆ · ช่อง barcode2 เก็บบาร์โค้ดฝาแฝดไว้อ้างอิง
+   >>> ชิ้นที่ไม่มีงานเจาะเลยไม่มีบาร์โค้ด ใช้รหัสชิ้น (NAME เช่น BND215-01-03) แทน
+       ซึ่งเป็นตัวที่พิมพ์อยู่บนใบ Part List อยู่แล้ว */
+function partIndexRows(data){
+  const oid=String((data&&data.orderID)||""); if(!oid) return [];
+  const out=[], seen={};
+  (data.groups||[]).forEach(g=>{ (g.rows||[]).forEach(r=>{
+    if(r._tp!==3) return;
+    const pid=String(r.PARENTID||"");
+    const base={ order_id:oid, cab_name:String(r.NAME2||""), part_name:String(r.ID_TEXT||""),
+      qty:1, product_id:pid, seq:(parseInt(String(r.ID||"").replace(/^P/,""),10)||null),
+      share_id:String(CAB_SID[pid]||""), cab_inst:String(r._cabInst||""), board_id:String(r._bid||"") };
+    const b1=String(r.BARCODE||""), b2=String(r.BARCODE2||"");
+    const codes=[b1,b2].filter(Boolean);
+    if(!codes.length){ const nm=String(r.NAME||""); if(nm) codes.push(nm); }
+    codes.forEach(c=>{ if(seen[c]) return; seen[c]=1;
+      out.push(Object.assign({barcode:c, barcode2:(c===b1?b2:(c===b2?b1:""))}, base)); });
+  }); });
+  return out;
+}
+async function pushPartIndex(data){
+  const rows=partIndexRows(data); const oid=String((data&&data.orderID)||"");
+  if(!oid) return 0;
+  const db=await getDB();
+  /* ล้างของออเดอร์นี้ก่อนเสมอ · ส่งออกรอบใหม่ ลำดับชิ้นเปลี่ยนได้ บาร์โค้ดเก่าจึงต้องไม่ค้าง
+     ชี้ไปที่ตู้ที่ไม่มีอยู่แล้ว · ออเดอร์อื่นไม่ถูกแตะเพราะกรองด้วย order_id */
+  const {error:e1}=await db.from("part_index").delete().eq("order_id",oid);
+  if(e1) throw e1;
+  if(!rows.length) return 0;
+  /* upsert ไม่ใช่ insert · เผื่อออเดอร์คนละใบบังเอิญได้เลขนำหน้าสิบหลักซ้ำกัน
+     จะได้ทับของเก่าแทนที่จะล้มทั้งชุด */
+  for(let i=0;i<rows.length;i+=500){
+    const {error:e2}=await db.from("part_index").upsert(rows.slice(i,i+500),{onConflict:"barcode"});
+    if(e2) throw e2;
+  }
+  return rows.length;
 }
 /* ---------- MPR drilling export (WoodWOP / Homag) ---------- */
 /* ความหนา "สุทธิ" มีทศนิยมได้ (16 + ผิว 0.1 x 2 = 16.2)
@@ -28769,6 +28817,7 @@ function buildImosData(){
         BARCODE:bc1,BARCODE2:bc2,
         INFO2:(backGrooveMacro(b,grp)||(b._hangNotch?"CNC":"")),INFO3:info3For(b),
         CAB_URL:(CAB_LINK[grp.productId]||""),      /* v1.173: ลิงก์ตู้ใบนี้ — ทุกชิ้นในใบเดียวกันได้ตัวเดียวกัน */
+        _cabInst:String(grp.key||""), _bid:String(b.id||""),   /* v1.175: ช่องของ part_index · ขีดล่างนำ = ไม่ใช่คอลัมน์ IMOS */
         _e1:ec[0]||"",_e2:ec[1]||"",_e3:ec[2]||"",_e4:ec[3]||""});
       // แถว TYP4 = วัสดุ (Purchase ID) → Production ต่อเป็น CutRiteMaterialCode = ART4+ART5+ART6
       const mCode=matCodeForThick(resolveOut(el.mat,b),coreThickOf(b,_bd.T));   // CutRite code ตามความหนาเนื้อไม้ (ไม่รวมผิว)
@@ -29087,9 +29136,15 @@ async function sendSupabase(){
     const {error}=await db.from("imos_orders").upsert({order_id:data.orderID,data:data,loaded_at:new Date().toISOString()},{onConflict:"order_id"});
     if(error)throw error;
     if(data.itemIdSet){ const {error:e2}=await db.from("app_settings").upsert({key:"iids:"+data.orderID,value:data.itemIdSet},{onConflict:"key"}); if(e2)console.error("iids:",sbErr(e2)); }
+    /* v1.175: ดัชนีชิ้น เขียนหลัง imos_orders สำเร็จแล้วเท่านั้น
+       ล้มก็ไม่ล้มการส่งออก ของหลักเข้าไปแล้ว ดัชนีสร้างใหม่ได้ด้วยการกดส่งซ้ำ */
+    let _pi=0;
+    try{ _pi=await pushPartIndex(data); }
+    catch(e){ console.error("partIndex:",e); toast("⚠ เขียนดัชนีชิ้น part_index ไม่สำเร็จ: "+sbErr(e)); }
     const nm=await registerFitMapping(data);                       // v12.8
     toast("ส่งเข้า Supabase สำเร็จ (IMOS): "+data.orderID+(data.itemIdSet?" · IID "+data.itemIdSet:"")
       +(_cl.n>0?(" · ลิงก์ตู้ "+_cl.n+" ใบ"+(_cl.kept?(" (ใช้ของเดิม "+_cl.kept+")"):"")):"")
+      +(_pi>0?(" · ดัชนีชิ้น "+_pi+" บาร์โค้ด"):"")
       +(nm>0?(" · ลงทะเบียนรหัสอุปกรณ์ใหม่ "+nm+" รหัส"):(nm<0?" · ⚠ ลงทะเบียนรหัสอุปกรณ์ไม่สำเร็จ":"")));
   }catch(e){ console.error("Supabase error:",e); toast("ส่ง Supabase ไม่สำเร็จ: "+sbErr(e)); }
 }
