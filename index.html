@@ -354,7 +354,7 @@
   /* v1.170: แถบบอกชิ้นที่สแกนมา — ขึ้นเฉพาะตอนเปิดด้วย ?view=…&p=…
      ไม่ผูกกับ body.viewOnly เพราะแถบนี้เป็นของโหมดสแกนโดยเฉพาะ ไม่ใช่ของโหมดดูอย่างเดียวทั้งหมด */
   #scanBar{position:fixed;left:50%;transform:translateX(-50%);top:8px;z-index:9000;
-    display:flex;align-items:center;gap:10px;max-width:94vw;
+    display:flex;align-items:center;gap:10px;max-width:94vw;flex-wrap:wrap;justify-content:center;
     padding:8px 12px;border-radius:10px;font-size:13px;line-height:1.35;
     background:rgba(20,20,22,.92);color:#fff;box-shadow:0 4px 16px rgba(0,0,0,.35)}
   #scanBar .sbD{opacity:.72}
@@ -856,7 +856,7 @@
    ===================================================================== */
 /* ---- APP_META: แหล่งความจริงเดียวของเวอร์ชัน (ดูได้จาก console / คลิกชื่อแอป) ---- */
 const APP_META={
-  name:"StarNexus Cabinet", version:"1.175", build:"2026-09-08/part-index",
+  name:"StarNexus Cabinet", version:"1.176", build:"2026-09-08/order-nav",
   file:"StarNexus.html", basedOn:"Furnitech_V3.html (v3.11)",
   /* ───────── เริ่มนับเวอร์ชันใหม่ที่ 1.001 (21/08/2026) ─────────
      ของเดิมนับมาถึง 42.1 แล้ววิ่งเป็นทศนิยมสองชั้นซึ่งอ่านลำดับยาก
@@ -864,6 +864,7 @@ const APP_META={
      ประวัติเก่าเก็บไว้ทั้งหมดตามเลขเดิม ไม่ไล่เขียนใหม่ เพราะเลขในนั้นถูกอ้างถึงไปแล้ว
      รายการที่อยู่ใต้ 1.001 ลงไปจึงเป็นเลขชุดเก่า อ่านต่อกันได้ตามวันที่ */
   changelog:[
+    ["1.176","2026-09-08","FEAT สแกนสติกเกอร์เข้ามาแล้วกดกลับไปดูได้ว่าตู้ใบนี้อยู่ตรงไหนในออเดอร์ โดยไม่ต้องมีลิงก์ตัวที่สองบนสติกเกอร์ — ตอนส่งออกสร้างสแนปช็อตทั้งออเดอร์เพิ่มอีกหนึ่งก้อน แล้วให้สแนปช็อตรู้จักกันเอง ตู้แต่ละใบฝังรหัสของสแนปช็อตออเดอร์ไว้ในตัว และสแนปช็อตออเดอร์ฝังแผนที่ รหัสตู้ ไป รหัสสแนปช็อตของใบนั้น เดินไป-กลับได้ทั้งสองทางจากลิงก์เดียวที่สแกนมา · ปุ่ม ดูทั้งออเดอร์ ในแถบบนจอเดิมแค่เลิกซ่อนตู้อื่น ซึ่งในสแนปช็อตของตู้ใบเดียวไม่มีอะไรให้โผล่เลย ตอนนี้พาไปที่ลิงก์ออเดอร์พร้อมบอกให้ไปไฮไลต์ตู้ใบไหนด้วยพารามิเตอร์ cab · ฝั่งออเดอร์ไม่ซ่อนตู้อื่น เพราะทั้งหมดของปุ่มนี้คือการเห็นว่าใบนี้อยู่ตรงไหนเทียบกับใบอื่น ใช้กรอบเลือกทั้งใบตัวเดียวกับที่คลิกในรายการซ้ายใช้ แล้วเลื่อนกล้องไปหา พร้อมปุ่มกลับไปดูตู้ใบเดียวและปุ่มเลิกไฮไลต์ · CHANGE ลายเซ็นสำหรับตัดสินว่าต้องสร้างลิงก์ใหม่ไหม ย้ายจากรายใบมาเป็นระดับออเดอร์ เพราะเมื่อสแนปช็อตอ้างถึงกัน การให้เฉพาะใบที่ถูกแก้ได้รหัสใหม่จะทำให้ใบที่ไม่ได้แก้ยังถือรหัสออเดอร์รอบก่อน ปุ่มดูทั้งออเดอร์ของใบนั้นจะพาไปดูงานรอบเก่าโดยไม่มีใครสังเกต · กติกาใหม่คือแก้อะไรก็ตามทำใหม่ทั้งชุดในคำขอเดียว ไม่แก้อะไรเลยไม่สร้างอะไรเลย ซึ่งยังรักษาเหตุผลเดิมของปุ่มตรวจลิงก์ไว้ครบ · FIX ไฮไลต์ชิ้นจากการสแกนของ v1.170 ไม่เคยทำงานเลยสักครั้ง scanBar เรียก esc ซึ่งไม่มีอยู่จริงในขอบเขตนั้น มีแต่ const esc ที่ประกาศไว้ในฟังก์ชันอื่นสองตัว จึงโยน ReferenceError ทุกครั้ง ตัวซ่อนตู้อื่นทำงานไปก่อนแล้วค่อยพังตรงแถบ อาการที่เห็นคือตู้ถูกโดดเดี่ยวแต่ไม่มีแถบบอกอะไรพร้อมข้อความว่าเปิดชิ้นที่สแกนไม่สำเร็จ เปลี่ยนไปใช้ escapeHtml ที่เป็นของกลางจริง · CHANGE ตัวค้นชิ้นจาก p รับชื่อชิ้นแบบที่ part_index เก็บด้วย ซึ่งเป็น ledNameOf ไม่ใช่ b.name ฝั่ง Production จึงต่อ p เป็น product_id ขีดล่าง part_name จากแถวที่ยิงบาร์โค้ดได้ตรง ๆ ไม่ต้องแปลงอะไรและไม่ต้องเพิ่มคอลัมน์ · แถบบนจอขึ้นบรรทัดใหม่ได้แล้วเมื่อปุ่มเยอะเกินความกว้างจอมือถือ"],
     ["1.175","2026-09-08","FEAT ส่งเข้า Supabase แล้วเขียนตาราง part_index ให้ด้วย ยิงบาร์โค้ดหนึ่งครั้งได้ตู้ทันที — เดิมฝั่ง Production ต้องดึง imos_orders.data ทั้งก้อนมาแกะ JSON ไล่หาทีละชิ้นเพื่อจะรู้ว่าไม้แผ่นนี้อยู่ตู้ไหน ตารางนี้ตอบด้วยการค้นคีย์หลักครั้งเดียว และ policy เปิดให้อ่านได้แม้ไม่ล็อกอิน เครื่องสแกนหน้าไลน์จึงถามได้ตรง ๆ · เขียนหนึ่งแถวต่อหนึ่งบาร์โค้ดที่สแกนได้จริง ไม่ใช่หนึ่งแถวต่อชิ้น เพราะชิ้นที่เจาะสองหน้ามีบาร์โค้ดสองตัวที่ต่างกันตรงหลักฝั่ง และตารางมี index อยู่ที่ barcode ซึ่งเป็นคีย์หลักเท่านั้น ไม่มี index ที่ barcode2 ถ้าเขียนแถวเดียวแล้วให้ไปค้น barcode2 การสแกนครึ่งหนึ่งจะกลายเป็นการไล่อ่านทั้งตาราง · ช่อง barcode2 ยังเก็บบาร์โค้ดฝาแฝดไว้ให้อ้างอิงข้ามหน้าได้ · ชิ้นที่ไม่มีงานเจาะเลยไม่มีบาร์โค้ด ใช้รหัสชิ้นแทน ซึ่งเป็นตัวที่พิมพ์อยู่บนใบ Part List อยู่แล้ว · ช่อง share_id เก็บรหัสสแนปช็อตล้วน ไม่ใช่ลิงก์เต็ม ฝั่ง Production จะได้ประกอบ URL เองตามโดเมนที่ตัวเองใช้ · ก่อนเขียนจะลบแถวของออเดอร์นั้นทิ้งก่อนเสมอ เพราะส่งออกรอบใหม่ลำดับชิ้นเปลี่ยนได้ บาร์โค้ดเก่าที่ค้างอยู่จะชี้ไปที่ตู้ที่ไม่มีแล้ว ออเดอร์อื่นไม่ถูกแตะเพราะกรองด้วย order_id · ใช้ upsert ไม่ใช่ insert เผื่อออเดอร์คนละใบได้เลขนำหน้าสิบหลักซ้ำกัน จะได้ทับของเก่าแทนที่จะล้มทั้งชุด · เขียนหลัง imos_orders สำเร็จแล้วเท่านั้น และล้มก็ไม่ล้มการส่งออก เพราะดัชนีสร้างใหม่ได้ด้วยการกดส่งซ้ำ · แถวชิ้นใน buildImosData พก _cabInst กับ _bid ติดไปด้วย เป็นสองช่องที่ part_index มีอยู่แล้วแต่ไม่มีใครเติม ขีดล่างนำหน้าตามแบบเดียวกับ _tp และ _e1 คือไม่ใช่คอลัมน์ของ IMOS · ข้อความสรุปตอนส่งบอกจำนวนบาร์โค้ดที่เขียนลงดัชนีด้วย"],
     ["1.174","2026-09-08","FEAT ปุ่ม สร้าง/ตรวจลิงก์ตู้ ในหน้าส่งออก — เดิมลิงก์เกิดตอนกดส่งเข้า Supabase เท่านั้น หน้า Part List ที่เปิดดูก่อนส่งจึงไม่มีลิงก์ให้ตรวจเลย ต้องส่งไปก่อนแล้วค่อยรู้ว่าได้อะไร · ตอนนี้กดสร้างดูก่อนได้ เห็นครบทุกใบพร้อมจำนวนชิ้น กดเปิดทดลองทีละใบได้จริง คัดลอกทีละบรรทัดหรือคัดลอกทั้งตารางเป็น TSV ไปวางใน Excel ก็ได้ · หัวใจอยู่ที่การไม่สร้างซ้ำ ถ้าปล่อยให้กดตรวจหนึ่งครั้งแล้วกดส่งอีกครั้งสร้างใหม่ ฐานข้อมูลจะได้แถวสองชุดต่อการส่งหนึ่งรอบ และลิงก์ที่อุตส่าห์เปิดตรวจไปแล้วก็กลายเป็นของทิ้ง · จึงเก็บลายเซ็นของ payload แต่ละใบไว้ด้วย เป็น idHash ของ JSON ทั้งก้อน ตอนกดส่งจะเทียบลายเซ็นก่อน ใบไหนเนื้อในเหมือนเดิมใช้ลิงก์เดิมต่อ ใบไหนถูกแก้หลังตรวจได้ลิงก์ใหม่เฉพาะใบนั้น ใบอื่นไม่กระทบ · ในตารางมีป้ายบอกด้วยว่าใบไหนถูกแก้หลังสร้างลิงก์ไปแล้ว จะได้ไม่เผลอเอาลิงก์เก่าไปพิมพ์สติกเกอร์ · ปุ่ม สร้างใหม่ทั้งหมด มีไว้เมื่อจงใจอยากได้รหัสชุดใหม่ทั้งออเดอร์ · ข้อความสรุปตอนส่งบอกจำนวนที่ใช้ของเดิมด้วย จะได้รู้ว่ากลไกใช้ซ้ำทำงานอยู่จริง · pushCabShares เปลี่ยนจากคืนจำนวนเป็นคืน n/made/kept ตัวเรียกที่เดียวคือ sendSupabase แก้ตามแล้ว"],
     ["1.173","2026-09-07","FEAT ส่งเข้า Supabase แล้วลิงก์ตู้ติดไปกับทุกชิ้นในช่อง CAB_URL ของแถว TYP3 — ชิ้นที่อยู่ตู้ใบเดียวกันได้ลิงก์ตัวเดียวกันเป๊ะ เพราะลิงก์ผูกกับ productId ของใบนั้น ไม่ได้ผูกกับชิ้น · ก่อนประกอบข้อมูลจะสร้างสแนปช็อตหนึ่งก้อนต่อตู้หนึ่งใบ ข้างในมีเฉพาะชิ้นของใบนั้น ลิงก์จึงเปิดมาเห็นใบเดียวจริง ๆ ไม่ได้อาศัยการซ่อนตู้อื่นตอนเปิดแบบ ?p= ของ v1.170 ซึ่งยังแบกทั้งออเดอร์มาแล้วค่อยซ่อน · ยิงเป็นคำขอเดียวด้วย body อาเรย์ ออเดอร์ 39 ตู้จึงเป็นหนึ่งคำขอไม่ใช่สามสิบเก้า · ตั้ง kind เป็น scan ตามที่คอลัมน์นั้นเขียนคำอธิบายไว้ตั้งแต่แรกแต่ยังไม่เคยมีใครเขียนค่าลงไป · สร้างลิงก์ล้มไม่ทำให้การส่งออกล้ม ของยังเข้าโรงงานตามปกติ แค่ช่องลิงก์ว่างและมีข้อความบอก · หมายเหตุที่ต้องรู้: ส่งออกซ้ำได้รหัสใหม่ทุกครั้ง เพราะ furnitech_share มี policy เฉพาะ INSERT ไม่มี UPDATE จึงอัปเดตทับรหัสเดิมไม่ได้ สติกเกอร์ที่พิมพ์รอบก่อนยังเปิดได้แต่เป็นข้อมูลรอบก่อน ถ้าวันไหนต้องการให้ลิงก์เดิมอัปเดตตาม ต้องเพิ่ม policy UPDATE ที่ฐานข้อมูลก่อน · FEAT+FIX เปิดลิงก์ที่มี ?view= ไม่ต้องล็อกอินอีกต่อไป — ของเดิม boot รอ sxGate ให้ผ่านก่อนเสมอ แล้ว openSharedIfAny อยู่ใน bindChrome ซึ่งอยู่หลัง ช่างที่สแกนสติกเกอร์จึงชนหน้าขอรหัสพนักงานทุกครั้งทั้งที่แค่มาดูว่าไม้แผ่นนี้อยู่ตู้ไหน · ตรวจที่ฐานข้อมูลแล้วว่า furnitech_share_get เป็น SECURITY DEFINER และ grant ให้ anon อยู่แล้ว จึงอ่านสแนปช็อตด้วย anon key ได้ตรง ๆ ไม่ได้เปิดสิทธิ์อะไรเพิ่ม · ไม่ล็อกอินคือระดับศูนย์ เขียนคลาวด์ไม่ได้เลยสักตาราง ตรงกับที่โหมดดูอย่างเดียวควรเป็น · ตั้ง VIEW_ONLY ตั้งแต่ต้น boot ปุ่มจึงไม่โผล่มาแวบหนึ่งแล้วค่อยหาย · FIX สีผิวจริงไม่ขึ้นสำหรับคนที่ไม่ได้ล็อกอิน — policy ของ app_settings เปิดให้ anon อ่านทุกคีย์ยกเว้น furnitech_settings ซึ่งเป็นที่เก็บ Element Part และคลังผิวทั้งหมด แต่การหาสีจริงต้องเดินผ่าน effLinks ไป resolveLink ไป surfDef ซึ่งพึ่งสามอย่างนั้นล้วน ๆ คนสแกนจึงเห็นตู้เป็นโทนไม้มาตรฐานทั้งใบ · แก้ด้วยการฝังสีที่ resolve เสร็จแล้วลงไปกับชิ้นตอนอัปโหลด ราวหกสิบไบต์ต่อชิ้น แล้วให้ surfSkin คืนค่าที่ฝังมาก่อนเป็นอันดับแรก ปลายทางจึงไม่ต้องอ่าน settings เลย · ฝังลงสำเนาของชิ้น ของใน state.boards ไม่ถูกแตะ · ลิงก์แชร์ทั้งออเดอร์ได้อานิสงส์ตัวนี้ด้วยเพราะใช้ทางเดียวกัน · ตรวจด้วยการโหลดสคริปต์หลักทั้งไฟล์เข้า vm แล้วเรียก pushCabShares กับ buildImosData จริงด้วยออเดอร์สองตู้ ได้ผลว่าคำขอเดียว สองแถว payload แต่ละแถวมีเฉพาะชิ้นของตู้ตัวเอง และแถวชิ้นทั้งสี่ได้ CAB_URL ถูกใบทุกแถว"],
@@ -27423,14 +27424,26 @@ async function shareLinkDialog(){
    เทียบแบบตัดทุกอักขระที่ไม่ใช่ A-Z0-9 ออกทั้งสองฝั่ง -> เว้นวรรค ขีด ขีดล่าง ตัวพิมพ์เล็กใหญ่ ไม่มีผล
    จึงรับได้ทั้ง WNT044_RightPanel · wnt044-rightpanel · WNT044 Right Panel
    และรับเลขใบต่อท้ายรหัสตู้ด้วย (WNT044-01_RightPanel) เผื่อออเดอร์มีตู้รหัสเดียวกันหลายใบ */
+/* ───────── v1.176: สแนปช็อตรู้จักกันเอง ไม่ต้องมีลิงก์เพิ่มบนสติกเกอร์ ─────────
+   ตู้แต่ละใบฝัง orderSid (รหัสสแนปช็อตทั้งออเดอร์) และสแนปช็อตออเดอร์ฝัง cabSids
+   (แผนที่ รหัสตู้ -> รหัสสแนปช็อตของใบนั้น) เดินไป-กลับได้ทั้งสองทางด้วยลิงก์เดียวที่สแกนมา */
+let SHARE_META={orderSid:"",cabSids:{},focusPid:"",orderId:""};
+function shareViewUrl(sid,cabPid){
+  if(!sid) return "";
+  const b=(location.protocol!=="file:")?(location.origin+location.pathname):shareBaseUrl();
+  return b+"?view="+encodeURIComponent(sid)+(cabPid?("&cab="+encodeURIComponent(cabPid)):"");
+}
 function scanKeyNorm(s){ return String(s==null?"":s).toUpperCase().replace(/[^A-Z0-9]/g,""); }
 function scanFindParts(pkey){
   const want=scanKeyNorm(pkey); if(!want) return [];
   const out=[];
   cabGroups().forEach(g=>g.boards.forEach(b=>{
     if(!b||isGuide(b)) return;
-    const nm=String(b.name||"");
-    if(scanKeyNorm(g.cab+nm)===want || scanKeyNorm(g.productId+nm)===want) out.push({g:g,b:b});
+    /* v1.176: รับชื่อชิ้นแบบที่ part_index เก็บด้วย (ช่อง part_name = ledNameOf ไม่ใช่ b.name)
+       ฝั่ง Production จึงต่อ &p=<product_id>_<part_name> จากแถวที่ยิงบาร์โค้ดได้เลย ไม่ต้องแปลงอะไร */
+    let nm2=""; try{ nm2=String(ledNameOf(b)||""); }catch(e){}
+    const nms=[String(b.name||""),nm2].filter(Boolean);
+    if(nms.some(nm=>scanKeyNorm(g.cab+nm)===want||scanKeyNorm(g.productId+nm)===want)) out.push({g:g,b:b});
   }));
   return out;
 }
@@ -27440,15 +27453,62 @@ function scanShowAll(){          // ปุ่ม "ดูทั้งออเด
   const el=document.getElementById("scanBar"); if(el) el.remove();
   toast("แสดงทุกตู้ในออเดอร์แล้ว");
 }
-function scanBar(g,b,nHit){      // แถบชื่อชิ้นด้านบน · ใช้ esc() ตัวเดิม ไม่นิยามใหม่
+/* v1.176 FIX: บรรทัดนี้เคยเรียก esc() ซึ่งไม่มีอยู่จริงในขอบเขตนี้ (มีแต่ const esc ในฟังก์ชันอื่น)
+   scanBar จึงโยน ReferenceError ทุกครั้ง แปลว่าไฮไลต์ชิ้นจากการสแกนของ v1.170 ไม่เคยทำงานเลย
+   ตัวซ่อนตู้อื่นทำงานไปก่อนแล้วค่อยพังตรงแถบ อาการที่เห็นคือตู้ถูกโดดเดี่ยวแต่ไม่มีแถบบอกอะไร
+   พร้อมข้อความ เปิดชิ้นที่สแกนไม่สำเร็จ · ใช้ escapeHtml ที่เป็นของกลางจริง ๆ แทน */
+function shareBar(html){
   let el=document.getElementById("scanBar");
   if(!el){ el=document.createElement("div"); el.id="scanBar"; document.body.appendChild(el); }
+  el.innerHTML=html; return el;
+}
+function scanBar(g,b,nHit){
+  const E=x=>escapeHtml(String(x==null?"":x));
   const dim=[b.L,b.W,b.T].map(v=>round(+v||0)).join(" × ");
-  el.innerHTML="<span><b>"+esc(g.productId||g.cab||"")+"</b> · "+esc(b.name||"ชิ้น")+
-    " <span class='sbD'>"+esc(dim)+" มม.</span>"+
+  const el=shareBar("<span><b>"+E(g.productId||g.cab||"")+"</b> · "+E(b.name||"ชิ้น")+
+    " <span class='sbD'>"+E(dim)+" มม.</span>"+
     (nHit>1?" <span class='sbW'>เข้าคีย์นี้ "+nHit+" ใบ · แสดงใบแรก</span>":"")+
-    "</span><button id='scanAll'>ดูทั้งออเดอร์</button>";
-  const bt=el.querySelector("#scanAll"); if(bt) bt.onclick=scanShowAll;
+    "</span>"+orderBtnHtml());
+  bindOrderBtn(el,g);
+}
+/* ───────── v1.176: ปุ่ม "ดูทั้งออเดอร์" ที่พาไปดูจริง ─────────
+   สแนปช็อตของตู้ใบเดียวมีแต่ชิ้นของใบนั้น ปุ่มเดิมที่แค่เลิกซ่อนจึงไม่มีอะไรให้โผล่
+   ถ้าสแนปช็อตนี้รู้จักรหัสของออเดอร์ (orderSid ที่ฝังมาตอนส่งออก) ให้พาไปที่ลิงก์ออเดอร์
+   พร้อมบอกด้วยว่าให้ไปไฮไลต์ตู้ใบไหน — ไม่ต้องมีลิงก์ตัวที่สองบนสติกเกอร์ */
+function orderBtnHtml(){
+  return SHARE_META.orderSid ? "<button id='sbOrder'>ดูทั้งออเดอร์ →</button>"
+                             : "<button id='scanAll'>ดูทั้งออเดอร์</button>";
+}
+function bindOrderBtn(el,g){
+  const b1=el.querySelector("#sbOrder");
+  if(b1) b1.onclick=()=>{ const pid=(g&&g.productId)||SHARE_META.focusPid||"";
+    location.href=shareViewUrl(SHARE_META.orderSid,pid); };
+  const b2=el.querySelector("#scanAll"); if(b2) b2.onclick=scanShowAll;
+}
+/* ไฮไลต์ว่าตู้ใบนี้อยู่ตรงไหนในออเดอร์ · ไม่ซ่อนตู้อื่น เพราะทั้งหมดของปุ่มนี้
+   คือการเห็นว่ามันอยู่ตรงไหนเทียบกับใบอื่น · ใช้กรอบเลือกทั้งใบตัวเดียวกับที่คลิกในรายการซ้ายใช้ */
+function cabFocus(pid){
+  const want=scanKeyNorm(pid); if(!want) return false;
+  const gs=cabGroups();
+  const g=gs.find(x=>scanKeyNorm(x.productId)===want)||gs.find(x=>scanKeyNorm(x.cab)===want);
+  if(!g){ toast("ไม่พบตู้ \""+pid+"\" ในออเดอร์นี้ — แสดงทั้งออเดอร์แทน"); return false; }
+  state.hidden=[]; state.selectedId=(g.boards[0]&&g.boards[0].id)||null;
+  try{ cabSelClear(); }catch(e){}
+  state.selectedCab=g.key;
+  try{ render3D(true); renderList(); updateSelBox(); focusCab(g); }catch(e){ console.error(e); }
+  const E=x=>escapeHtml(String(x==null?"":x));
+  const back=(SHARE_META.cabSids||{})[g.productId]||"";
+  const el=shareBar("<span>📍 ตู้ <b>"+E(g.productId||g.cab||"")+"</b> อยู่ตรงนี้ "
+    +"<span class='sbD'>"+g.boards.filter(b=>!isGuide(b)).length+" ชิ้น · จากทั้งหมด "+gs.length+" ใบ</span></span>"
+    +(back?"<button id='sbBack'>← กลับไปดูตู้ใบนี้</button>":"")
+    +"<button id='scanAll'>เลิกไฮไลต์</button>");
+  const bb=el.querySelector("#sbBack");
+  if(bb) bb.onclick=()=>{ location.href=shareViewUrl(back,""); };
+  const b2=el.querySelector("#scanAll");
+  if(b2) b2.onclick=()=>{ state.selectedCab=null; state.selectedId=null;
+    try{ render3D(true); renderList(); updateSelBox(); }catch(e){}
+    const x=document.getElementById("scanBar"); if(x) x.remove(); };
+  return true;
 }
 function scanFocus(pkey){
   const hit=scanFindParts(pkey);
@@ -27499,8 +27559,21 @@ async function openSharedIfAny(){
     /* v1.170: มาจากการสแกนสติกเกอร์ -> โฟกัสตู้ใบนั้นแล้วไฮไลต์ชิ้น
        วางไว้หลังข้อความเปิดลิงก์ เพื่อให้คนเห็นก่อนว่าเปิดงานไหน แล้วค่อยเห็นว่าชิ้นไหน
        หาไม่เจอก็ไม่พัง แค่แสดงทั้งออเดอร์ตามปกติ */
-    const pKey=new URLSearchParams(location.search).get("p");
+    /* v1.176: จำสายสัมพันธ์ที่ฝังมากับสแนปช็อต ปุ่มไป-กลับใช้ตรงนี้ทั้งหมด */
+    SHARE_META={ orderSid:String(o.orderSid||""), cabSids:(o.cabSids||{}),
+                 focusPid:String(o.focusPid||""), orderId:String(o.orderId||"") };
+    const _q=new URLSearchParams(location.search);
+    const pKey=_q.get("p"), cabQ=_q.get("cab");
     if(pKey){ try{ scanFocus(pKey); }catch(e){ console.error("scanFocus:",e); toast("เปิดชิ้นที่สแกนไม่สำเร็จ: "+e.message); } }
+    else if(cabQ){ try{ cabFocus(cabQ); }catch(e){ console.error("cabFocus:",e); } }
+    else if(SHARE_META.orderSid&&SHARE_META.focusPid){
+      /* สแนปช็อตของตู้ใบเดียว เปิดมาเฉย ๆ ไม่ได้ระบุชิ้น — ยังต้องมีทางกลับไปดูทั้งออเดอร์ */
+      try{ const g=cabGroups()[0];
+        const E=x=>escapeHtml(String(x==null?"":x));
+        const el=shareBar("<span>ตู้ <b>"+E(SHARE_META.focusPid)+"</b> "
+          +"<span class='sbD'>"+state.boards.filter(b=>!isGuide(b)).length+" ชิ้น</span></span>"+orderBtnHtml());
+        bindOrderBtn(el,g);
+      }catch(e){ console.error("shareBar:",e); } }
   }catch(e){ console.error("openShare:",e); toast("เปิดลิงก์ไม่สำเร็จ: "+e.message); }
 }
 function isLocked(){ return VIEW_ONLY || state.locked===true; }
@@ -27553,6 +27626,8 @@ let CAB_SIG={};
 /* v1.175: รหัสสแนปช็อตล้วน ๆ ไม่มี URL ประกอบ · part_index เก็บช่อง share_id ไม่ใช่ลิงก์เต็ม
    ฝั่ง Production จึงประกอบ URL เองได้ตามโดเมนที่ตัวเองใช้ */
 let CAB_SID={};
+/* v1.176: สแนปช็อตทั้งออเดอร์หนึ่งก้อน เป็นปลายทางของปุ่ม "ดูทั้งออเดอร์" บนสติกเกอร์ทุกใบ */
+let ORDER_SID="", ORDER_SIG="";
 function shareBaseUrl(){
   if(location.protocol!=="file:") return location.origin+location.pathname;
   let b=String(settings.shareBase||"").trim().replace(/[?#].*$/,"");
@@ -27562,37 +27637,52 @@ function shareBaseUrl(){
 }
 async function pushCabShares(days,force){
   const gs=cabGroups().filter(g=>g&&g.boards&&g.boards.length);
-  if(!gs.length){ CAB_LINK={}; CAB_SIG={}; CAB_SID={}; return {n:0,made:0,kept:0}; }
+  if(!gs.length){ CAB_LINK={}; CAB_SIG={}; CAB_SID={}; ORDER_SID=""; ORDER_SIG="";
+    return {n:0,made:0,kept:0,order:""}; }
   const base=shareBaseUrl();
   if(!base) throw new Error("ยังไม่รู้ที่อยู่โปรแกรมบนเว็บ — กดปุ่มแชร์หนึ่งครั้งเพื่อตั้งที่อยู่ก่อน");
-  /* คัดว่าใบไหนต้องสร้างใหม่จริง ๆ · ใบที่เนื้อในไม่เปลี่ยนใช้ลิงก์เดิมต่อ
-     ไม่งั้นกดตรวจหนึ่งครั้งแล้วกดส่งอีกครั้ง จะได้แถวในฐานข้อมูลสองชุดและลิงก์ที่ตรวจไปแล้วก็ทิ้ง */
-  const keep={},keepSig={},keepSid={},need=[];
-  gs.forEach(g=>{ const pid=g.productId, pl=cabSharePayload(g);
-    const sig=String(idHash(JSON.stringify(pl)));
-    if(!force && CAB_LINK[pid] && CAB_SIG[pid]===sig){
-      keep[pid]=CAB_LINK[pid]; keepSig[pid]=sig; keepSid[pid]=CAB_SID[pid]||""; return; }
-    need.push({pid,g,pl,sig}); });
-  if(need.length){
-    const db=await getDB();
-    const {data:ses}=await db.auth.getSession();
-    const tok=ses&&ses.session&&ses.session.access_token;
-    if(!tok) throw new Error("ยังไม่ได้เข้าสู่ระบบ");      // v34.1: ตารางนี้รับเฉพาะ JWT ของคนจริง ไม่ใช่ anon
-    const exp=(+days>0)?new Date(Date.now()+(+days)*86400000).toISOString():null;
-    const rows=need.map(x=>({ id:shareId(), title:String(x.pid||x.g.cab||"StarNexus").slice(0,120),
-      payload:x.pl, n_boards:x.g.boards.filter(b=>!isGuide(b)).length,
-      kind:"scan", expires_at:exp }));
-    /* PostgREST รับ body เป็นอาเรย์ = insert ทีเดียวจบ ไม่ใช่ยิง 39 คำขอ */
-    const r=await fetch(String(SB_URL_DEFAULT).replace(/\/+$/,"")+"/rest/v1/furnitech_share",{
-      method:"POST",
-      headers:{ "Content-Type":"application/json", apikey:SB_KEY_DEFAULT,
-                Authorization:"Bearer "+tok, Prefer:"return=minimal" },
-      body:JSON.stringify(rows) });
-    if(!r.ok) throw new Error("HTTP "+r.status+" "+(await r.text()).slice(0,160));
-    need.forEach((x,i)=>{ keep[x.pid]=base+"?view="+rows[i].id; keepSig[x.pid]=x.sig; keepSid[x.pid]=rows[i].id; });
-  }
-  CAB_LINK=keep; CAB_SIG=keepSig; CAB_SID=keepSid;
-  return { n:gs.length, made:need.length, kept:gs.length-need.length };
+  const sigOf=pl=>String(idHash(JSON.stringify(pl)));
+  const cabPl={}, cabSg={};
+  gs.forEach(g=>{ const pl=cabSharePayload(g); cabPl[g.productId]=pl; cabSg[g.productId]=sigOf(pl); });
+  const ordPl=sharePayload(), ordSg=sigOf(ordPl);
+  const oname=String(orderId()||"StarNexus");
+  /* ───────── v1.176: ลายเซ็นคิดที่ระดับออเดอร์ ไม่ใช่รายใบอีกแล้ว ─────────
+     v1.174 ให้เฉพาะใบที่ถูกแก้ได้รหัสใหม่ ซึ่งเลิกใช้ไม่ได้แล้วเมื่อสแนปช็อตอ้างถึงกัน
+     ตู้ทุกใบฝังรหัสของสแนปช็อตออเดอร์ไว้ · แก้ตู้ใบเดียว สแนปช็อตออเดอร์ก็ต้องทำใหม่
+     ถ้าใบที่ไม่ได้แก้ยังถือรหัสเก่า ปุ่มดูทั้งออเดอร์ของใบนั้นจะพาไปดูงานรอบก่อน
+     ผิดเงียบ ๆ แบบที่ไม่มีใครสังเกต · แก้อะไรก็ตาม = ทำใหม่ทั้งชุดในคำขอเดียว
+     ไม่แก้อะไรเลย = ไม่สร้างอะไรเลย ซึ่งเป็นเหตุผลที่ปุ่มตรวจลิงก์มีอยู่ตั้งแต่แรก */
+  if(!force && ORDER_SID && ORDER_SIG===ordSg
+     && gs.every(g=>CAB_LINK[g.productId]&&CAB_SID[g.productId]))
+    return {n:gs.length, made:0, kept:gs.length, order:ORDER_SID};
+  /* แจกรหัสให้ครบก่อน แล้วค่อยฝังอ้างอิงข้ามกัน ไม่งั้นวนเป็นงูกินหาง
+     ตู้ต้องรู้รหัสออเดอร์ และออเดอร์ต้องรู้รหัสตู้ทุกใบ */
+  const oid=shareId(), sid={};
+  gs.forEach(g=>{ sid[g.productId]=shareId(); });
+  const exp=(+days>0)?new Date(Date.now()+(+days)*86400000).toISOString():null;
+  const rows=[{ id:oid, title:oname.slice(0,120), kind:"scan", expires_at:exp,
+    n_boards:state.boards.filter(b=>!isGuide(b)).length,
+    payload:Object.assign({},ordPl,{orderId:oname,cabSids:sid}) }];
+  gs.forEach(g=>{ const pid=g.productId;
+    rows.push({ id:sid[pid], title:String(pid||g.cab||"StarNexus").slice(0,120), kind:"scan", expires_at:exp,
+      n_boards:g.boards.filter(b=>!isGuide(b)).length,
+      payload:Object.assign({},cabPl[pid],{orderId:oname,orderSid:oid,focusPid:pid}) }); });
+  const db=await getDB();
+  const {data:ses}=await db.auth.getSession();
+  const tok=ses&&ses.session&&ses.session.access_token;
+  if(!tok) throw new Error("ยังไม่ได้เข้าสู่ระบบ");        // v34.1: ตารางนี้รับเฉพาะ JWT ของคนจริง ไม่ใช่ anon
+  /* PostgREST รับ body เป็นอาเรย์ = insert ทีเดียวจบ ออเดอร์ 39 ตู้คือ 40 แถวในคำขอเดียว */
+  const r=await fetch(String(SB_URL_DEFAULT).replace(/\/+$/,"")+"/rest/v1/furnitech_share",{
+    method:"POST",
+    headers:{ "Content-Type":"application/json", apikey:SB_KEY_DEFAULT,
+              Authorization:"Bearer "+tok, Prefer:"return=minimal" },
+    body:JSON.stringify(rows) });
+  if(!r.ok) throw new Error("HTTP "+r.status+" "+(await r.text()).slice(0,160));
+  CAB_LINK={}; CAB_SIG={}; CAB_SID={};
+  gs.forEach(g=>{ const pid=g.productId;
+    CAB_SID[pid]=sid[pid]; CAB_LINK[pid]=base+"?view="+sid[pid]; CAB_SIG[pid]=cabSg[pid]; });
+  ORDER_SID=oid; ORDER_SIG=ordSg;
+  return { n:gs.length, made:gs.length, kept:0, order:oid };
 }
 /* ───────── v1.174: หน้าตรวจลิงก์ตู้ ─────────
    กดดูได้ก่อนส่ง เปิดทดลองได้ทีละใบ แล้วตอนกดส่งเข้า Supabase จะใช้ชุดเดียวกันนี้
@@ -27624,6 +27714,9 @@ function renderCabLinks(msg){
     +"ชุดนี้คือชุดเดียวกับที่จะติดไปในช่อง CAB_URL ตอนกดส่งเข้า Supabase — กดส่งแล้วไม่สร้างซ้ำ"
     +"</div>"
     +(msg?"<div style='margin-bottom:10px;padding:7px 10px;border-radius:8px;background:var(--accent);color:#fff;font-size:12.5px'>"+E(msg)+"</div>":"")
+    +(ORDER_SID?("<div style='margin-bottom:10px;font-size:12.5px'>ลิงก์ทั้งออเดอร์ (ปลายทางของปุ่ม ดูทั้งออเดอร์): "
+       +"<a href='"+E(shareViewUrl(ORDER_SID,""))+"' target='_blank' rel='noopener' style='color:var(--accent);word-break:break-all'>"
+       +E(shareViewUrl(ORDER_SID,""))+"</a></div>"):"")
     +"<div style='display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px'>"
     +"<button class='ibtn' id='clMake' style='background:var(--accent);color:#fff;border-color:transparent'>สร้างลิงก์ที่ยังไม่มี</button>"
     +"<button class='ibtn' id='clAll'>สร้างใหม่ทั้งหมด</button>"
@@ -29130,7 +29223,7 @@ async function sendSupabase(){
        ล้มตรงนี้ไม่ล้มทั้งการส่งออก — ของยังต้องเข้าโรงงาน แค่บอกว่าลิงก์ไม่ได้ไปด้วย */
     let _cl={n:0,made:0,kept:0};
     try{ _cl=await pushCabShares(0,false); }          /* v1.174: ใบที่ตรวจไว้แล้วและยังไม่ถูกแก้ ใช้ลิงก์เดิม */
-    catch(e){ CAB_LINK={}; CAB_SIG={}; console.error("cabShare:",e);
+    catch(e){ CAB_LINK={}; CAB_SIG={}; CAB_SID={}; ORDER_SID=""; ORDER_SIG=""; console.error("cabShare:",e);
       toast("⚠ สร้างลิงก์ตู้ไม่สำเร็จ: "+sbErr(e)+" — ส่งข้อมูลต่อโดยไม่มีลิงก์"); }
     const data=buildImosData();
     const {error}=await db.from("imos_orders").upsert({order_id:data.orderID,data:data,loaded_at:new Date().toISOString()},{onConflict:"order_id"});
@@ -29143,7 +29236,7 @@ async function sendSupabase(){
     catch(e){ console.error("partIndex:",e); toast("⚠ เขียนดัชนีชิ้น part_index ไม่สำเร็จ: "+sbErr(e)); }
     const nm=await registerFitMapping(data);                       // v12.8
     toast("ส่งเข้า Supabase สำเร็จ (IMOS): "+data.orderID+(data.itemIdSet?" · IID "+data.itemIdSet:"")
-      +(_cl.n>0?(" · ลิงก์ตู้ "+_cl.n+" ใบ"+(_cl.kept?(" (ใช้ของเดิม "+_cl.kept+")"):"")):"")
+      +(_cl.n>0?(" · ลิงก์ตู้ "+_cl.n+" ใบ"+(_cl.kept?" (ใช้ของเดิม)":" + ลิงก์ออเดอร์")):"")
       +(_pi>0?(" · ดัชนีชิ้น "+_pi+" บาร์โค้ด"):"")
       +(nm>0?(" · ลงทะเบียนรหัสอุปกรณ์ใหม่ "+nm+" รหัส"):(nm<0?" · ⚠ ลงทะเบียนรหัสอุปกรณ์ไม่สำเร็จ":"")));
   }catch(e){ console.error("Supabase error:",e); toast("ส่ง Supabase ไม่สำเร็จ: "+sbErr(e)); }
