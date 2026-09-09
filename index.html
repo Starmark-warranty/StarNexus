@@ -876,7 +876,7 @@
    ===================================================================== */
 /* ---- APP_META: แหล่งความจริงเดียวของเวอร์ชัน (ดูได้จาก console / คลิกชื่อแอป) ---- */
 const APP_META={
-  name:"StarNexus Cabinet", version:"1.185", build:"2026-09-09/edgesec-detail",
+  name:"StarNexus Cabinet", version:"1.186", build:"2026-09-09/cab-highlight",
   file:"StarNexus.html", basedOn:"Furnitech_V3.html (v3.11)",
   /* ───────── เริ่มนับเวอร์ชันใหม่ที่ 1.001 (21/08/2026) ─────────
      ของเดิมนับมาถึง 42.1 แล้ววิ่งเป็นทศนิยมสองชั้นซึ่งอ่านลำดับยาก
@@ -884,6 +884,7 @@ const APP_META={
      ประวัติเก่าเก็บไว้ทั้งหมดตามเลขเดิม ไม่ไล่เขียนใหม่ เพราะเลขในนั้นถูกอ้างถึงไปแล้ว
      รายการที่อยู่ใต้ 1.001 ลงไปจึงเป็นเลขชุดเก่า อ่านต่อกันได้ตามวันที่ */
   changelog:[
+    ["1.186","2026-09-09","FEAT แถบบนจอบอกขนาดตู้ที่ชิ้นนั้นอยู่ด้วย ทั้งกว้าง ลึก สูง — เดิมบอกแต่ขนาดชิ้น ซึ่งตอบไม่ได้ว่าไม้แผ่นในมือไปประกอบเป็นตู้ใบใหญ่แค่ไหน ดึงสูตรคิดขนาดตู้ออกมาเป็นตัวเดียวแล้วให้แผงขวาใช้ร่วม เลขสองที่จึงตรงกันเสมอ ไม่นับบานกับอุปกรณ์เหมือนเดิม เพราะบานยื่นพ้นโครงและกางได้ ขนาดตู้จะแกว่งตามสถานะการกางบาน · FEAT กดดูทั้งออเดอร์แล้วย้อมเขียวทั้งตู้ ไม่ใช่แค่ตีกรอบ กรอบเป็นเส้นบางที่มองไม่ออกเมื่อมีตู้สามสิบใบเรียงกัน ใช้วิธีเดียวกับที่ทำกับชิ้นเดียวคือย้อมทั้งใบ ค้างไว้จนกดชิ้นอื่นหรือกดเลิกไฮไลต์ · ตัวไฮไลต์เปลี่ยนจากเก็บ id เดียวเป็นเก็บได้ทั้งชุด ตัวเลือกสีกับกุญแจแคชรูปทรงเรียกผ่านตัวตัดสินตัวเดียวกัน จึงไม่มีทางที่สองที่หลุดกัน · FEAT กดกลับจากหน้าออเดอร์แล้วชิ้นเดิมยังเขียวอยู่ ของเดิมลิงก์กลับไม่ได้พาคีย์ชิ้นกลับไปด้วย กดกลับจึงได้ตู้เปล่าที่ลืมไปแล้วว่ามาจากชิ้นไหน ตอนนี้คีย์ชิ้นเดินทางไปกับลิงก์ทั้งขาไปและขากลับ · ลำดับการอ่านพารามิเตอร์สลับให้ตู้มาก่อนชิ้น เพราะลิงก์ดูทั้งออเดอร์มีทั้งสองตัว ถ้าปล่อยให้ชิ้นชนะ ตัวไฮไลต์ชิ้นจะซ่อนตู้อื่นทิ้ง ซึ่งตรงข้ามกับที่ปุ่มนั้นมีไว้ทำ · ปุ่มเปลี่ยนคำเป็น กลับไปดูชิ้นเดิม ให้ตรงกับสิ่งที่มันทำจริง"],
     ["1.185","2026-09-09","FEAT แบบผลิตวาดรูปหน้าตัดสันจริงลงในกล่องขยายแล้ว — ของเดิมผังหลักขีดเส้นเขียวกำกับว่าสันไหนและลึกเท่าไร ซึ่งบอกตำแหน่งได้แต่ไม่บอกรูป มือจับตัว J ลึกห้าสิบกับร่องเหลี่ยมลึกห้าสิบวาดออกมาหน้าตาเหมือนกันทุกประการ ช่างเลือกดอกกัดไม่ได้ถ้าไม่เห็นรูปหน้าตัด ต้องไปเปิดคลังหน้าตัดในโปรแกรมดูเอง ซึ่งหน้างานไม่มีเครื่อง · กล่องขยายใหม่วาดรูปพร้อมระยะสองแกน คือลึกเข้าบานและระยะตามความหนา บอกด้วยว่าเป็นสันด้านไหนและรหัสหน้าตัดตัวไหน · ใช้เส้นรูปที่ผ่านการหมุนและพลิกตามที่ตั้งไว้ที่ Part แล้ว ภาพในแบบจึงตรงกับที่กัดจริง ไม่ใช่รูปดิบในคลังที่อาจวางคนละท่า · FIX ชิ้นที่มีแต่หน้าตัดสันอย่างเดียวไม่เคยได้คอลัมน์รายละเอียดขยายเลย เพราะตัวนับกล่องนับแค่ร่อง หูแขวนกระจก และบานพับ บานมือจับตัว J ส่วนใหญ่เข้าข่ายนี้พอดี คือไม่มีร่อง ไม่มีหูแขวน และบานพับอยู่คนละแผ่น จึงไม่มีที่ให้วาดตั้งแต่แรก · หมายเหตุ หน้าตัดสันที่ใส่ในช่อง Shape ของ Part กับหน้าตัดเฟรมบานที่ใส่ในช่อง E1 ถึง E4 เป็นคนละเรื่องกัน ตัวหลังทำหน้ากระดาษของตัวเองอยู่แล้ว ส่วนตัวแรกจนถึงรุ่นนี้ยังไม่เคยมีรูปในแบบเลย"],
     ["1.184","2026-09-09","FEAT สแกนชิ้นแล้วกดดูแบบผลิตของชิ้นนั้นได้เลยจากแถบบนจอ — ของเดิมเปิดแบบผลิตมาจะตกที่หน้ารวมเสมอ แล้วต้องไล่หาในรายการที่ตู้ใหญ่ ๆ มีเป็นร้อยแผ่น ทั้งที่โปรแกรมรู้อยู่แล้วว่าสแกนชิ้นไหนมา · ตัวรวมแผ่นยุบชิ้นที่สเปคเหมือนกันเป๊ะให้เหลือแผ่นเดียวพร้อมจำนวน แต่เดิมเก็บไว้แค่ตัวแทน ถ้าสแกนแผ่นที่สองของคู่ที่เหมือนกันจะหาหน้าแบบไม่เจอ จึงให้จำ id ของสมาชิกทุกใบไว้ แล้วทำเป็นแผนที่ชิ้นไปหาหน้าแบบตอนสร้างชุดหน้า ครอบทั้งแผ่นทั่วไป หน้าตัดเฟรม และไม้เพาะโครง · ชิ้นที่ไม่มีหน้าแบบแยกจะตกไปหน้ารวมพร้อมบอกเหตุผล ไม่ใช่เปิดมาเจอหน้าว่าง · CHANGE แบบผลิตในลิงก์ดูอย่างเดียวตัดแผงซ้ายออกทั้งแผง ซึ่งมีแต่ปุ่มพิมพ์ ดาวน์โหลด SVG ดาวน์โหลด PNG และช่องแก้หัวกระดาษ ทั้งหมดเป็นของคนทำแบบไม่ใช่ของคนอ่านแบบ เหลือแต่ตัวแบบกับรายการแผ่น · บนมือถือซ่อนรายการแผ่นด้วยและย่อแบบให้เต็มความกว้างจอ เพราะเปิดมาจากการสแกนก็ได้แผ่นที่ต้องการอยู่แล้ว ไม่ต้องมีรายการให้เลื่อนหา"],
     ["1.183","2026-09-08","FEAT สแกนชิ้นที่อยู่ในตู้แล้วกางบานให้อัตโนมัติ — ชิ้นในตู้ถูกบานบังหมด เปิดลิงก์มาเห็นแต่หน้าบานทึบ ๆ ทั้งที่ย้อมเขียวไว้ให้แล้ว คนสแกนต้องไปหาปุ่มกางบานเองทั้งที่โปรแกรมรู้อยู่แล้วว่าชิ้นที่สแกนมาอยู่ข้างใน · กางเมื่อตู้ใบนั้นมีบานหรือหน้าลิ้นชักอยู่จริง และชิ้นที่สแกนไม่ใช่ตัวบานเอง · สแกนบานมาแล้วสั่งกาง บานจะหมุนออกไปจากมุมที่คุ้นตาทั้งที่มันโชว์อยู่แล้ว จึงปล่อยไว้ปิดตามเดิม · ตู้ที่ไม่มีบานสักใบก็ไม่ต้องทำอะไร · ใช้ตัวตัดสินว่าอะไรคือบานตัวเดียวกับที่ระบบมือจับใช้ ครอบทั้งบานเปิด หน้าลิ้นชัก และแผ่นเดี่ยวที่ตั้งค่าเป็นบานไว้เอง จึงไม่มีชุดกติกาที่สองให้เพี้ยนกันทีหลัง · ล้างที่เลือกและความคืบหน้าอนิเมชันก่อนเข้าโหมด และสั่งปุ่มกางบานให้ขึ้นสถานะด้วย คนดูจึงกดปุ่มนั้นปิดกลับได้ตามปกติ ไม่ใช่ค้างเปิดแล้วปุ่มบอกว่าปิด · ถ้าบานเปิดค้างอยู่แล้วไม่ไปยุ่ง · แถบบนจอบอกว่ากางบานให้แล้ว จะได้รู้ว่าภาพที่เห็นไม่ใช่สภาพตอนประกอบเสร็จ · ทั้งหมดเป็นมุมมองอย่างเดียว ไม่กระทบใบตัดหรือไฟล์เจาะเหมือนเดิม"],
@@ -2309,7 +2310,7 @@ function _bgKey(b){
      คืนวัสดุตัวเดิมกลับมา สีเขียวไม่เคยถูกสร้าง · ที่ต้องกดปุ่มโปร่งใสก่อนถึงจะติด
      ก็เพราะ state.ghost อยู่ในกุญแจ พอกดแล้วกุญแจเปลี่ยน ถึงได้ปั้นใหม่แล้วเจอเขียว
      เหตุเดียวกับที่ v39.3 เตือนไว้ว่ามีค่าที่กุญแจมองไม่เห็นต้องจัดการเอง */
-  let s=state.globalTone+"|"+(state.ghost?1:0)+"|"+((SCAN_HI&&b&&b.id===SCAN_HI)?"HI":"")+"|";
+  let s=state.globalTone+"|"+(state.ghost?1:0)+"|"+(isHiBoard(b)?"HI":"")+"|";
   for(const k in b){ if(_bgSkip[k]) continue; const v=b[k];
     s+=k+"="+((v!==null&&typeof v==="object")?JSON.stringify(v):v)+";"; }
   return s; }
@@ -2400,6 +2401,15 @@ const _matC={};
    จึงย้อมทั้งชิ้นเป็นเขียวเข้มไปเลย เห็นจากทุกมุมโดยไม่ต้องหาเส้นกรอบ
    เก็บเป็น id ไม่ใช่ตัวชิ้น เพราะ render3D สร้าง mesh ใหม่ทุกรอบ */
 let SCAN_HI="";
+/* v1.186: ไฮไลต์ระดับตู้ · กดดูทั้งออเดอร์แล้วต้องเห็นว่าตู้ใบไหนของเราจากอีกฝั่งห้อง
+   กรอบเลือกเป็นเส้นบาง ๆ ที่มองไม่ออกเมื่อมีตู้สามสิบใบเรียงกัน ย้อมทั้งใบไปเลยเหมือนที่ทำกับชิ้น
+   เก็บเป็นชุดของ id เพราะ render3D ปั้น mesh ใหม่ทุกรอบ ตัวชิ้นที่อ้างไว้กลายเป็นของเก่าทันที */
+let CAB_HI=null;
+function isHiBoard(b){
+  if(!b) return false;
+  if(SCAN_HI&&b.id===SCAN_HI) return true;
+  return !!(CAB_HI&&CAB_HI.has(b.id));
+}
 function scanHiMat(dbl){
   const k="scanhi|"+(state.ghost?1:0)+"|"+(dbl?1:0);
   if(_matC[k]) return _matC[k];
@@ -2412,7 +2422,7 @@ function scanHiMat(dbl){
 }
 /* v27.1: ชิ้นที่ผูก Surface ที่มีสีจริงไว้ ใช้สีนั้นแทนโทนไม้รวม */
 function boardMat(b,dbl){
-  if(b&&SCAN_HI&&b.id===SCAN_HI) return scanHiMat(!!dbl);      // v1.181: ชิ้นที่สแกนมา ชนะสีผิวจริง
+  if(isHiBoard(b)) return scanHiMat(!!dbl);      // v1.181/1.186: ชิ้นหรือตู้ที่ไฮไลต์อยู่ ชนะสีผิวจริง
   try{ const sk=surfSkin(b); if(sk) return skinMat(sk,!!dbl,b); }catch(e){}   // v28.5.4: ส่งชิ้นไปด้วย ลายจะได้หันตามชิ้น
   return solidMat(toneOf(b),dbl);
 }
@@ -11625,7 +11635,7 @@ function cabSelClear(){ state.selectedCabs=[]; }
 function select(id){
   /* v1.181: เขียวจากการสแกนอยู่จนกว่าจะกดชิ้นอื่นจริง ๆ · คลิกที่ว่างหรือหมุนจอไม่นับ
      ต้อง render3D(true) เพราะสีถูกเลือกตอนสร้าง mesh ไม่ใช่ตอนวาดแต่ละเฟรม */
-  if(id&&SCAN_HI&&SCAN_HI!==id){ SCAN_HI=""; try{ render3D(true); }catch(e){} }
+  if(id&&((SCAN_HI&&SCAN_HI!==id)||CAB_HI)){ SCAN_HI=""; CAB_HI=null; try{ render3D(true); }catch(e){} }
   state.selectedCab=null;cabSelClear();state.selectedId=id;
   if(_hingePin&&_hingePin.id!==id){_hingePin=null;try{clearHingeHL();}catch(e){}}   // v7.32: เปลี่ยนชิ้น = ถอนหมุดไฮไลต์บานพับ
   renderList();showInspector();updateSelBox();}
@@ -11741,12 +11751,21 @@ function duplicateCabinet(g){ const inst=uid(); const cur=sceneXRange(state.boar
 function escapeHtml(s){return s.replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));}
 
 /* ---------- UI: inspector ---------- */
+/* v1.186: ขนาดตู้คิดที่เดียว · แผงขวากับแถบสแกนต้องบอกเลขเดียวกันเสมอ
+   ไม่นับบานกับอุปกรณ์ เพราะบานยื่นพ้นโครงและกางได้ ขนาดตู้จะแกว่งตามสถานะการกางบาน */
+function cabWHD(g){
+  let mn=[1e9,1e9,1e9],mx=[-1e9,-1e9,-1e9];
+  ((g&&g.boards)||[]).filter(z=>z&&!z._door&&!z._virtual).forEach(bb=>{
+    const d=worldDims(bb),c=[bb.x,bb.y,bb.z];
+    for(let a=0;a<3;a++){ mn[a]=Math.min(mn[a],c[a]-d[a]/2); mx[a]=Math.max(mx[a],c[a]+d[a]/2); } });
+  if(mn[0]>1e8) return {W:0,H:0,D:0,mn:[0,0,0],mx:[0,0,0]};
+  return { W:Math.round(mx[0]-mn[0]), H:Math.round(mx[1]-mn[1]), D:Math.round(mx[2]-mn[2]), mn, mx };
+}
 function renderCabInspector(g,insp,body,rf){
   insp.classList.add("show"); if(rf)rf.style.display=noGL?"none":"block";
   $("inspId").textContent="ทั้งตู้";
-  let mn=[1e9,1e9,1e9],mx=[-1e9,-1e9,-1e9];
-  g.boards.filter(z=>!z._door&&!z._virtual).forEach(bb=>{const d=worldDims(bb),c=[bb.x,bb.y,bb.z];for(let a=0;a<3;a++){mn[a]=Math.min(mn[a],c[a]-d[a]/2);mx[a]=Math.max(mx[a],c[a]+d[a]/2);}});
-  const W=Math.round(mx[0]-mn[0]),H=Math.round(mx[1]-mn[1]),D=Math.round(mx[2]-mn[2]);
+  const _cw=cabWHD(g), mn=_cw.mn, mx=_cw.mx;
+  const W=_cw.W,H=_cw.H,D=_cw.D;
   const code=(g.boards[0]&&g.boards[0].cab)||"";
   body.innerHTML=`
     <div class="muted" style="font-size:11px;margin-bottom:8px;padding:6px 9px;background:rgba(0,122,255,.10);border-radius:8px;color:#0a5fd0">🗄️ เลือกทั้งตู้ <b>${escapeHtml(g.productId)}</b> · ${g.boards.filter(x=>!isGuide(x)).length} ชิ้น — ปรับค่าที่ใช้ร่วมกันทั้งตู้ได้ที่นี่ (คลิกชิ้นใน 3D เพื่อแก้รายชิ้น)${cabSelKeys().length>1?('<br><b>เลือกไว้ '+cabSelKeys().length+' ใบ</b> — ช่องแก้ค่าด้านล่างมีผลกับใบนี้ใบเดียว ส่วนปุ่มออกแบบผลิตใช้ทั้ง '+cabSelKeys().length+' ใบ'):""}</div>
@@ -27506,10 +27525,15 @@ async function shareLinkDialog(){
    ตู้แต่ละใบฝัง orderSid (รหัสสแนปช็อตทั้งออเดอร์) และสแนปช็อตออเดอร์ฝัง cabSids
    (แผนที่ รหัสตู้ -> รหัสสแนปช็อตของใบนั้น) เดินไป-กลับได้ทั้งสองทางด้วยลิงก์เดียวที่สแกนมา */
 let SHARE_META={orderSid:"",cabSids:{},focusPid:"",orderId:""};
-function shareViewUrl(sid,cabPid){
+/* v1.186: คีย์ชิ้นที่สแกนมา ต้องเดินทางไปกับปุ่มไป-กลับด้วย
+   ไม่งั้นกดไปดูทั้งออเดอร์แล้วกดกลับ จะได้ตู้เปล่า ๆ ที่ลืมไปแล้วว่าเรามาจากชิ้นไหน */
+let SCAN_KEY="";
+function shareViewUrl(sid,cabPid,pKey){
   if(!sid) return "";
   const b=(location.protocol!=="file:")?(location.origin+location.pathname):shareBaseUrl();
-  return b+"?view="+encodeURIComponent(sid)+(cabPid?("&cab="+encodeURIComponent(cabPid)):"");
+  return b+"?view="+encodeURIComponent(sid)
+    +(cabPid?("&cab="+encodeURIComponent(cabPid)):"")
+    +(pKey?("&p="+encodeURIComponent(pKey)):"");
 }
 function scanKeyNorm(s){ return String(s==null?"":s).toUpperCase().replace(/[^A-Z0-9]/g,""); }
 function scanFindParts(pkey){
@@ -27548,8 +27572,10 @@ function scanBar(g,b,nHit,opened){
   const E=x=>escapeHtml(String(x==null?"":x));
   const dim=[b.L,b.W,b.T].map(v=>round(+v||0)).join(" × ");
   const pTag=(b._pids&&b._pids.length)?("P"+b._pids[0]+" · "):"";     // v1.178
+  const cw=cabWHD(g);                                                // v1.186: ขนาดตู้ที่ชิ้นนี้อยู่
   const el=shareBar("<span><b>"+E(g.productId||g.cab||"")+"</b> · "+E(pTag+(b.name||"ชิ้น"))+
     " <span class='sbD'>"+E(dim)+" มม.</span>"+
+    (cw.W?" <span class='sbD'>· ตู้ ก "+cw.W+" × ล "+cw.D+" × ส "+cw.H+" มม.</span>":"")+
     (opened?" <span class='sbD'>· กางบานให้แล้ว</span>":"")+
     (nHit>1?" <span class='sbW'>เข้าคีย์นี้ "+nHit+" ใบ · แสดงใบแรก</span>":"")+
     "</span><button id='sbDwg'>แบบผลิตชิ้นนี้</button>"+orderBtnHtml());
@@ -27570,7 +27596,7 @@ function orderBtnHtml(){
 function bindOrderBtn(el,g){
   const b1=el.querySelector("#sbOrder");
   if(b1) b1.onclick=()=>{ const pid=(g&&g.productId)||SHARE_META.focusPid||"";
-    location.href=shareViewUrl(SHARE_META.orderSid,pid); };
+    location.href=shareViewUrl(SHARE_META.orderSid,pid,SCAN_KEY); };   // v1.186: พาคีย์ชิ้นไปด้วย
   const b2=el.querySelector("#scanAll"); if(b2) b2.onclick=scanShowAll;
 }
 /* ไฮไลต์ว่าตู้ใบนี้อยู่ตรงไหนในออเดอร์ · ไม่ซ่อนตู้อื่น เพราะทั้งหมดของปุ่มนี้
@@ -27583,17 +27609,20 @@ function cabFocus(pid){
   state.hidden=[]; state.selectedId=(g.boards[0]&&g.boards[0].id)||null;
   try{ cabSelClear(); }catch(e){}
   state.selectedCab=g.key;
+  SCAN_HI=""; CAB_HI=new Set(g.boards.map(x=>x&&x.id).filter(Boolean));   // v1.186: ย้อมเขียวทั้งใบ
   try{ render3D(true); renderList(); updateSelBox(); focusCab(g); }catch(e){ console.error(e); }
   const E=x=>escapeHtml(String(x==null?"":x));
   const back=(SHARE_META.cabSids||{})[g.productId]||"";
+  const cw=cabWHD(g);
   const el=shareBar("<span>📍 ตู้ <b>"+E(g.productId||g.cab||"")+"</b> อยู่ตรงนี้ "
-    +"<span class='sbD'>"+g.boards.filter(b=>!isGuide(b)).length+" ชิ้น · จากทั้งหมด "+gs.length+" ใบ</span></span>"
-    +(back?"<button id='sbBack'>← กลับไปดูตู้ใบนี้</button>":"")
+    +"<span class='sbD'>ก "+cw.W+" × ล "+cw.D+" × ส "+cw.H+" มม. · "
+    +g.boards.filter(b=>!isGuide(b)).length+" ชิ้น · จากทั้งหมด "+gs.length+" ใบ</span></span>"
+    +(back?"<button id='sbBack'>← กลับไปดูชิ้นเดิม</button>":"")
     +"<button id='scanAll'>เลิกไฮไลต์</button>");
   const bb=el.querySelector("#sbBack");
-  if(bb) bb.onclick=()=>{ location.href=shareViewUrl(back,""); };
+  if(bb) bb.onclick=()=>{ location.href=shareViewUrl(back,"",SCAN_KEY); };   // v1.186: พาคีย์ชิ้นกลับไปด้วย
   const b2=el.querySelector("#scanAll");
-  if(b2) b2.onclick=()=>{ state.selectedCab=null; state.selectedId=null;
+  if(b2) b2.onclick=()=>{ state.selectedCab=null; state.selectedId=null; CAB_HI=null;
     try{ render3D(true); renderList(); updateSelBox(); }catch(e){}
     const x=document.getElementById("scanBar"); if(x) x.remove(); };
   return true;
@@ -27616,6 +27645,7 @@ function scanAutoOpen(g,b){
   }catch(e){ console.error("autoOpen:",e); return false; }
 }
 function scanFocus(pkey){
+  SCAN_KEY=String(pkey||"");            // v1.186
   const hit=scanFindParts(pkey);
   if(!hit.length){ toast("ไม่พบชิ้น \""+pkey+"\" ในงานนี้ — แสดงทั้งออเดอร์แทน"); return false; }
   const g=hit[0].g, b=hit[0].b;
@@ -27671,8 +27701,11 @@ async function openSharedIfAny(){
                  focusPid:String(o.focusPid||""), orderId:String(o.orderId||"") };
     const _q=new URLSearchParams(location.search);
     const pKey=_q.get("p"), cabQ=_q.get("cab");
-    if(pKey){ try{ scanFocus(pKey); }catch(e){ console.error("scanFocus:",e); toast("เปิดชิ้นที่สแกนไม่สำเร็จ: "+e.message); } }
-    else if(cabQ){ try{ cabFocus(cabQ); }catch(e){ console.error("cabFocus:",e); } }
+    SCAN_KEY=String(pKey||"");
+    /* v1.186: ลิงก์ดูทั้งออเดอร์พกคีย์ชิ้นมาด้วย เพื่อให้ปุ่มกลับพากลับไปที่ชิ้นเดิมได้
+       ตู้จึงต้องมาก่อน ไม่งั้นตัวไฮไลต์ชิ้นจะซ่อนตู้อื่นทิ้ง ซึ่งตรงข้ามกับที่ปุ่มนี้มีไว้ทำ */
+    if(cabQ){ try{ cabFocus(cabQ); }catch(e){ console.error("cabFocus:",e); } }
+    else if(pKey){ try{ scanFocus(pKey); }catch(e){ console.error("scanFocus:",e); toast("เปิดชิ้นที่สแกนไม่สำเร็จ: "+e.message); } }
     else if(SHARE_META.orderSid&&SHARE_META.focusPid){
       /* สแนปช็อตของตู้ใบเดียว เปิดมาเฉย ๆ ไม่ได้ระบุชิ้น — ยังต้องมีทางกลับไปดูทั้งออเดอร์ */
       try{ const g=cabGroups()[0];
