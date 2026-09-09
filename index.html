@@ -885,7 +885,7 @@
    ===================================================================== */
 /* ---- APP_META: แหล่งความจริงเดียวของเวอร์ชัน (ดูได้จาก console / คลิกชื่อแอป) ---- */
 const APP_META={
-  name:"StarNexus Cabinet", version:"1.188", build:"2026-09-09/back-from",
+  name:"StarNexus Cabinet", version:"1.189", build:"2026-09-09/drill-ref",
   file:"StarNexus.html", basedOn:"Furnitech_V3.html (v3.11)",
   /* ───────── เริ่มนับเวอร์ชันใหม่ที่ 1.001 (21/08/2026) ─────────
      ของเดิมนับมาถึง 42.1 แล้ววิ่งเป็นทศนิยมสองชั้นซึ่งอ่านลำดับยาก
@@ -893,6 +893,7 @@ const APP_META={
      ประวัติเก่าเก็บไว้ทั้งหมดตามเลขเดิม ไม่ไล่เขียนใหม่ เพราะเลขในนั้นถูกอ้างถึงไปแล้ว
      รายการที่อยู่ใต้ 1.001 ลงไปจึงเป็นเลขชุดเก่า อ่านต่อกันได้ตามวันที่ */
   changelog:[
+    ["1.189","2026-09-09","FEAT กล่องเจาะรูใส่ตำแหน่งแบบเดียวกับกล่อง Pocket ได้แล้ว เลือกมุมอ้างอิงแล้ววัดระยะเข้ามาตรง ๆ พร้อมภาพตัวอย่างสดที่เห็นรูขยับตามที่พิมพ์ — ของเดิมมีทางเดียวคือระยะจากกึ่งกลาง ซึ่งต้องแปลงในหัวก่อนพิมพ์ทุกครั้งและพลาดง่ายมากตรงเครื่องหมายลบ ทั้งที่แบบที่ได้จากหน้างานบอกระยะจากขอบเสมอ · เส้นบอกระยะในภาพลากจากขอบที่อ้างถึงจริง จึงเห็นทันทีว่ากรอกจากขอบไหน และรูเดิมบนชิ้นวาดจาง ๆ ไว้ด้วย จะได้ไม่เจาะซ้อนกัน · โหมดอ้างขอบวัดถึงศูนย์รู ไม่ใช่ถึงขอบรูแบบ Pocket เพราะระยะเจาะในแบบงานไม้หมายถึงศูนย์รูเสมอ · รับสูตรตัวแปรของตู้ได้ทุกช่องเหมือน Pocket · โหมดกึ่งกลางยังรับอัตราส่วน a:b เหมือนเดิมทุกประการ และเป็นค่าตั้งต้น คนที่ใช้อยู่แล้วจึงไม่เจอพฤติกรรมเปลี่ยนโดยไม่ได้ขอ · จำมุมอ้างอิงที่เลือกไว้ข้ามการเปิดกล่อง เจาะหลายรูรวดจะได้ไม่ต้องเลือกซ้ำ · สลับจากกึ่งกลางไปอ้างขอบจะเซ็ตค่าตั้งต้นที่อ่านรู้เรื่องให้ ไม่งั้นค่าเดิมคือศูนย์กับหนึ่งต่อหนึ่งจะกลายเป็นรูที่มุมแผ่นพอดีซึ่งดูเหมือนพัง · เจาะเข้าสันยังใช้ช่องเดิม เพราะเป็นการวัดตามแนวสันกับแนวความหนา ไม่ใช่พิกัดบนหน้าแผ่น · CHANGE ตรรกะการอ้างมุมทั้งชุดยกออกจากกล่อง Pocket มาเป็นของกลาง ทั้งการตั้งชื่อขอบตามทิศจริงในตู้ รายการตัวเลือก ป้ายกำกับ การแปลงเป็นพิกัด และตัวอ่านสูตร กล่องทั้งสองจึงใช้สูตรชุดเดียวกัน ไม่มีทางที่สองให้เพี้ยนกันทีหลัง กล่อง Pocket ทำงานเหมือนเดิมทุกอย่าง"],
     ["1.188","2026-09-09","FIX ปุ่มกลับไปดูชิ้นเดิมพากลับไปแล้วชิ้นไม่เขียว — เปลี่ยนมาใช้วิธีที่ตรงกว่าคือพารหัสของหน้าที่เรามาจริง ๆ ไปกับลิงก์ตอนขาไป แล้วขากลับอ่านค่านั้นมาใช้ตรง ๆ · ของเดิมประกอบลิงก์กลับขึ้นมาใหม่จากแผนที่รหัสตู้ ซึ่งต้องเดาถูกสองชั้น คือรหัสตู้ที่คิดได้จากสแนปช็อตออเดอร์ต้องตรงกับคีย์ในแผนที่ และแผนที่ต้องเป็นของการส่งออกรอบเดียวกับหน้าที่เปิดอยู่ ผิดชั้นไหนก็ได้ปุ่มที่พาไปผิดที่ · ตอนขาไปเรารู้อยู่แล้วว่าตัวเองคือหน้าไหน ไม่มีเหตุผลต้องไปคำนวณย้อนกลับมาใหม่ · แผนที่เดิมเหลือไว้เป็นทางสำรองให้ลิงก์ที่สร้างก่อนรุ่นนี้ยังกดกลับได้ · FIX หาชิ้นไม่เจอแล้วเหลือจอเปล่าไม่มีปุ่มอะไรเลย ซึ่งเป็นทางตัน คนที่กดกลับมาเจอตู้เปล่าที่ดูเหมือนของเสียทั้งที่ตัวตู้ถูกต้องทุกอย่าง เกิดได้จริงเมื่อลิงก์ถูกสร้างก่อนรุ่นที่ฝังเลขชิ้นลงสแนปช็อต ชิ้นในนั้นจึงไม่มีเลขให้เทียบ · ตอนนี้ยังขึ้นแถบพร้อมปุ่มดูทั้งออเดอร์ และบอกสาเหตุตรง ๆ แยกเป็นสองกรณี คือสแนปช็อตไม่มีเลขชิ้นเลยซึ่งต้องส่งออกใหม่ กับมีเลขแต่ไม่มีตัวที่ตรงกับที่ขอมา"],
     ["1.187","2026-09-09","CHANGE มือถือแนวตั้ง ย้ายแถบบอกชิ้นที่สแกนไปไว้ด้านล่าง — แถบลอยอยู่ชั้นบนสุดจึงอยู่เหนือทุกอย่างรวมทั้งหน้าแบบผลิตที่เปิดเต็มจอ บนจอแนวตั้งกระดาษเป็นแนวนอนย่อลงมาอยู่ครึ่งบนของจอ หัวแบบกับมุมซ้ายบนซึ่งเป็นชื่อชิ้นและมาตราส่วนจึงถูกแถบทับพอดี ซึ่งเป็นส่วนที่ต้องอ่านก่อนอย่างอื่น · ครึ่งล่างของจอในแนวตั้งเป็นที่ว่างเปล่าอยู่แล้ว ย้ายลงไปจึงไม่บังอะไรเลย · ยกให้พ้นแถบล่างที่มีปุ่มเปิดบานและสไลเดอร์แยกประกอบ ไม่งั้นไปทับปุ่มที่ต้องกดจริง · แนวนอนไม่ย้าย เพราะที่ว่างด้านล่างแทบไม่มีและหัวแบบอยู่พ้นแถบอยู่แล้ว · ใช้เงื่อนไขทิศทางจอ ไม่ใช่ความกว้าง จึงสลับตามการหมุนเครื่องเองโดยไม่ต้องโหลดหน้าใหม่"],
     ["1.186","2026-09-09","FEAT แถบบนจอบอกขนาดตู้ที่ชิ้นนั้นอยู่ด้วย ทั้งกว้าง ลึก สูง — เดิมบอกแต่ขนาดชิ้น ซึ่งตอบไม่ได้ว่าไม้แผ่นในมือไปประกอบเป็นตู้ใบใหญ่แค่ไหน ดึงสูตรคิดขนาดตู้ออกมาเป็นตัวเดียวแล้วให้แผงขวาใช้ร่วม เลขสองที่จึงตรงกันเสมอ ไม่นับบานกับอุปกรณ์เหมือนเดิม เพราะบานยื่นพ้นโครงและกางได้ ขนาดตู้จะแกว่งตามสถานะการกางบาน · FEAT กดดูทั้งออเดอร์แล้วย้อมเขียวทั้งตู้ ไม่ใช่แค่ตีกรอบ กรอบเป็นเส้นบางที่มองไม่ออกเมื่อมีตู้สามสิบใบเรียงกัน ใช้วิธีเดียวกับที่ทำกับชิ้นเดียวคือย้อมทั้งใบ ค้างไว้จนกดชิ้นอื่นหรือกดเลิกไฮไลต์ · ตัวไฮไลต์เปลี่ยนจากเก็บ id เดียวเป็นเก็บได้ทั้งชุด ตัวเลือกสีกับกุญแจแคชรูปทรงเรียกผ่านตัวตัดสินตัวเดียวกัน จึงไม่มีทางที่สองที่หลุดกัน · FEAT กดกลับจากหน้าออเดอร์แล้วชิ้นเดิมยังเขียวอยู่ ของเดิมลิงก์กลับไม่ได้พาคีย์ชิ้นกลับไปด้วย กดกลับจึงได้ตู้เปล่าที่ลืมไปแล้วว่ามาจากชิ้นไหน ตอนนี้คีย์ชิ้นเดินทางไปกับลิงก์ทั้งขาไปและขากลับ · ลำดับการอ่านพารามิเตอร์สลับให้ตู้มาก่อนชิ้น เพราะลิงก์ดูทั้งออเดอร์มีทั้งสองตัว ถ้าปล่อยให้ชิ้นชนะ ตัวไฮไลต์ชิ้นจะซ่อนตู้อื่นทิ้ง ซึ่งตรงข้ามกับที่ปุ่มนั้นมีไว้ทำ · ปุ่มเปลี่ยนคำเป็น กลับไปดูชิ้นเดิม ให้ตรงกับสิ่งที่มันทำจริง"],
@@ -25995,33 +25996,80 @@ function parsePos(str,len){ str=String(str==null?"":str).trim();   // "a:b" rati
   if(m){ const a=+m[1],b=+m[2],f=(a+b)>0?a/(a+b):.5; return (f-0.5)*len; }
   const n=parseFloat(str.replace(/mm/gi,"")); return isFinite(n)?n:0;
 }
+/* v1.189: จำมุมอ้างอิงที่เลือกไว้ข้ามการเปิดกล่อง เจาะหลายรูรวดจะได้ไม่ต้องเลือกซ้ำทุกครั้ง
+   ตั้งต้นเป็นกึ่งกลางเหมือนเดิม คนที่ใช้อยู่แล้วจึงไม่เจอพฤติกรรมเปลี่ยนโดยไม่ได้ขอ */
+let _hlRef="center";
 function addHole(b){
   if(!b){toast("เลือกชิ้นก่อน");return;}
   const m=$("connModal"), body=m.querySelector("#connBody"), title=m.querySelector(".mh h3");
   if(title)title.textContent="เจาะรู (Drill)";
   const dirs=[["top","บน"],["bottom","ล่าง"],["left","สันซ้าย"],["right","สันขวา"],["front","สันหน้า"],["back","สันหลัง"]];
-  let dir="top", d=8, f1="0", f2="1:1", depth=0;
+  let dir="top", d=8, f1="0", f2="1:1", depth=0, ref=_hlRef;
+  const RN=refAxisNames(b);
+  const REFS=refOptions(RN);
+  /* ตำแหน่งศูนย์รูจากค่าที่กรอก · โหมดกึ่งกลางยังรับ a:b แบบเดิมทุกประการ
+     โหมดอ้างขอบส่งขนาด 0 เข้าไป เพราะระยะเจาะวัดถึงศูนย์รูเสมอ ไม่ใช่ถึงขอบรู */
+  function holeXY(){
+    if(ref==="center") return {cx:parsePos(f1,b.L), cy:parsePos(f2,b.W)};
+    return refToXY(b,ref,refNum(f1,b,0),refNum(f2,b,0),0,0);
+  }
+  function preview(){
+    const L=Math.max(b.L||1,1), W=Math.max(b.W||1,1);
+    const rnd1=v=>Math.round((+v||0)*10)/10;      // v1.189: rnd1 ตัวจริงอยู่ในโมดูลแบบผลิต เข้าไม่ถึงจากตรงนี้
+    const pad=16, sc=Math.min(230/L,150/W), pw=L*sc, ph=W*sc;
+    const sx=x=>rnd1(pad+(x+L/2)*sc), sy=y=>rnd1(pad+(W/2-y)*sc);
+    const c=holeXY(), r=Math.max(d/2*sc,2.5);
+    let g='<svg width="'+rnd1(pw+pad*2)+'" height="'+rnd1(ph+pad*2)+'" style="display:block;margin:0 auto">'
+      +'<rect x="'+pad+'" y="'+pad+'" width="'+rnd1(pw)+'" height="'+rnd1(ph)+'" fill="none" stroke="var(--ink-dim)" stroke-width="1"/>';
+    (b.holes||[]).forEach(h=>{ if(h.edge) return;
+      g+='<circle cx="'+sx(h.x||0)+'" cy="'+sy(h.y||0)+'" r="'+rnd1(Math.max((h.d||6)/2*sc,1.5))+'" fill="none" stroke="var(--ink-faint)" stroke-width="1"/>'; });
+    g+='<circle cx="'+sx(c.cx)+'" cy="'+sy(c.cy)+'" r="'+rnd1(r)+'" fill="#2e7ce6" fill-opacity=".35" stroke="#2e7ce6" stroke-width="1.4"/>';
+    /* เส้นบอกระยะลากจากขอบที่อ้างถึงจริง จะได้เห็นทันทีว่ากรอกจากขอบไหน */
+    const hf=REF_HALF[ref];
+    const useX=(ref!=="center")&&(!hf||hf.ax==="x"), useY=(ref!=="center")&&(!hf||hf.ax==="y");
+    const eX=(ref[1]==="L"||(hf&&hf.lo))?-L/2:L/2, eY=(ref[0]==="B"||(hf&&hf.lo))?-W/2:W/2;
+    if(useX) g+='<line x1="'+sx(eX)+'" y1="'+sy(c.cy)+'" x2="'+sx(c.cx)+'" y2="'+sy(c.cy)+'" stroke="#e5484d" stroke-width="1"/>'
+      +'<text x="'+((sx(eX)+sx(c.cx))/2)+'" y="'+(sy(c.cy)-5)+'" fill="#e5484d" font-size="10" text-anchor="middle">'+Math.round(refNum(f1,b,0))+'</text>';
+    if(useY) g+='<line x1="'+sx(c.cx)+'" y1="'+sy(eY)+'" x2="'+sx(c.cx)+'" y2="'+sy(c.cy)+'" stroke="#e5484d" stroke-width="1"/>'
+      +'<text x="'+(sx(c.cx)+5)+'" y="'+((sy(eY)+sy(c.cy))/2)+'" fill="#e5484d" font-size="10" text-anchor="start">'+Math.round(refNum(f2,b,0))+'</text>';
+    return g+'<text x="'+rnd1(pad+pw/2)+'" y="'+rnd1(ph+pad*2-3)+'" fill="var(--ink-faint)" font-size="10" text-anchor="middle">L '+Math.round(L)+' × W '+Math.round(W)+' มม.</text></svg>';
+  }
   function paint(){
     const edge=(dir!=="top"&&dir!=="bottom");
-    const l1=edge?"ระยะตามสัน (จากกึ่งกลาง · 1:1=กลาง)":"ตำแหน่ง X (จากกึ่งกลาง · 1:1=กลาง)";
-    const l2=edge?"แนวความหนา Z (1:1 = กลางความหนา)":"ตำแหน่ง Y (จากกึ่งกลาง · 1:1=กลาง)";
+    const lb=refLabels(ref,RN,"ถึงศูนย์รู");
+    const l1=edge?"ระยะตามสัน (จากกึ่งกลาง · 1:1=กลาง)":(ref==="center"?"ตำแหน่ง X (จากกึ่งกลาง · 1:1=กลาง)":lb[0]);
+    const l2=edge?"แนวความหนา Z (1:1 = กลางความหนา)":(ref==="center"?"ตำแหน่ง Y (จากกึ่งกลาง · 1:1=กลาง)":lb[1]);
+    const hf=REF_HALF[ref];
     body.innerHTML=`
       <div class="fld"><label>ด้านที่เจาะ</label>
         <div class="seg" style="display:flex;flex-wrap:wrap;gap:4px">${dirs.map(([k,t])=>`<button type="button" class="hlDir ${dir===k?"sel":""}" data-k="${k}">${t}</button>`).join("")}</div>
         <span style="font-size:11px;opacity:.6">บน/ล่าง = เจาะที่ผิว · สัน 4 ด้าน = เจาะเข้าขอบ (แนวนอน)</span></div>
       <div class="fld"><label>เส้นผ่านศูนย์กลาง Ø (มม.)</label><input type="number" id="hlD" class="nameinp" value="${d}" style="width:120px;font-family:var(--mono)"></div>
-      <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
-        <div class="fld" style="margin:0"><label>${l1}</label><input id="hlF1" class="nameinp" value="${escapeHtml(f1)}" style="width:100%;font-family:var(--mono)"></div>
-        <div class="fld" style="margin:0"><label>${l2}</label><input id="hlF2" class="nameinp" value="${escapeHtml(f2)}" style="width:100%;font-family:var(--mono)"></div>
+      ${edge?"":`<div class="fld"><label>อ้างอิงจาก</label>
+        <select id="hlRef" class="nameinp" style="width:100%">${REFS.map(r=>`<option value="${r[0]}"${ref===r[0]?" selected":""}>${escapeHtml(r[1])}</option>`).join("")}</select></div>`}
+      <div style="display:grid;grid-template-columns:${(!edge&&hf)?"1fr":"1fr 1fr"};gap:8px">
+        ${(!edge&&hf&&hf.ax==="y")?"":`<div class="fld" style="margin:0"><label>${l1}</label><input id="hlF1" class="nameinp" value="${escapeHtml(f1)}" style="width:100%;font-family:var(--mono)"></div>`}
+        ${(!edge&&hf&&hf.ax==="x")?"":`<div class="fld" style="margin:0"><label>${l2}</label><input id="hlF2" class="nameinp" value="${escapeHtml(f2)}" style="width:100%;font-family:var(--mono)"></div>`}
       </div>
+      ${edge?"":`<div id="hlPv" style="margin:6px 0 2px">${preview()}</div>`}
       <div class="fld"><label>ความลึก (มม. · ใส่ 0 = เจาะทะลุ)</label><input type="number" id="hlDep" class="nameinp" value="${depth}" style="width:140px;font-family:var(--mono)"></div>
-      <div style="font-size:11px;opacity:.6;margin-top:-2px">พิมพ์ตำแหน่งเป็นตัวเลข (มม. จากกึ่งกลาง) หรืออัตราส่วน a:b เช่น 1:1 = กึ่งกลาง, 1:3 = หนึ่งในสี่</div>`;
+      <div style="font-size:11px;opacity:.6;margin-top:-2px">${(edge||ref==="center")
+        ?"พิมพ์ตำแหน่งเป็นตัวเลข (มม. จากกึ่งกลาง) หรืออัตราส่วน a:b เช่น 1:1 = กึ่งกลาง, 1:3 = หนึ่งในสี่"
+        :"ระยะวัดจากขอบที่เลือกถึงศูนย์รู · ใส่สูตรตัวแปรของตู้ได้ เช่น <b>$D9</b>"+cabNumHint(b.cabInst)}</div>`;
     body.querySelectorAll(".hlDir").forEach(btn=>btn.onclick=()=>{ dir=btn.dataset.k; paint(); });
-    body.querySelector("#hlD").oninput=e=>d=parseFloat(e.target.value)||d;
-    body.querySelector("#hlF1").oninput=e=>f1=e.target.value;
-    body.querySelector("#hlF2").oninput=e=>f2=e.target.value;
+    body.querySelector("#hlD").oninput=e=>{ d=parseFloat(e.target.value)||d; redraw(); };
+    { const r=body.querySelector("#hlRef");
+      /* v1.189: สลับมุมอ้างอิงแล้วค่าที่กรอกไว้ความหมายเปลี่ยนทันที ตั้งค่าตั้งต้นที่อ่านรู้เรื่องให้
+         ของเดิมคือ 0 กับ 1:1 ซึ่งพอเปลี่ยนเป็นอ้างขอบจะกลายเป็นรูที่มุมแผ่นพอดี ดูเหมือนพัง */
+      if(r) r.onchange=e=>{ const was=ref; ref=_hlRef=e.target.value;
+        if(was==="center"&&ref!=="center"){ f1="50"; f2="50"; }
+        if(was!=="center"&&ref==="center"){ f1="0"; f2="1:1"; }
+        paint(); }; }
+    const i1=body.querySelector("#hlF1"); if(i1) i1.oninput=e=>{ f1=e.target.value; redraw(); };
+    const i2=body.querySelector("#hlF2"); if(i2) i2.oninput=e=>{ f2=e.target.value; redraw(); };
     body.querySelector("#hlDep").oninput=e=>depth=Math.max(parseFloat(e.target.value)||0,0);
   }
+  function redraw(){ const pv=body.querySelector("#hlPv"); if(pv) pv.innerHTML=preview(); }
   function close(){ m.classList.remove("show"); if(title)title.textContent="ใส่เดือย (Connector)"; m.querySelector("#connApply").onclick=m.querySelector("#connCancel").onclick=m.querySelector("#connX").onclick=null; }
   m.querySelector("#connCancel").onclick=close; m.querySelector("#connX").onclick=close;
   m.querySelector("#connApply").onclick=()=>{
@@ -26033,7 +26081,7 @@ function addHole(b){
       b.holes.push({d,edge:dir,pos:round(along),z:round(z),depth:thru?0:round(dep),through:thru,manual:true});
       toast("เจาะสัน"+({left:"ซ้าย",right:"ขวา",front:"หน้า",back:"หลัง"}[dir])+" Ø"+fmt(d)+(thru?" ทะลุ":" ลึก "+fmt(dep)));
     } else {
-      let hx=parsePos(f1,b.L), hy=parsePos(f2,b.W);
+      const _c=holeXY(); let hx=_c.cx, hy=_c.cy;                      // v1.189
       const r=d/2; if(!(b.profile&&b.profile.length>=3)){ const mx=Math.max(b.L/2-r-1,0),my=Math.max(b.W/2-r-1,0); hx=Math.max(-mx,Math.min(mx,hx)); hy=Math.max(-my,Math.min(my,hy)); }
       if(dep>0 && dep<T-0.3) b.holes.push({d,x:round(hx),y:round(hy),depth:round(dep),face:dir,manual:true});   // blind on chosen face
       else b.holes.push({d,x:round(hx),y:round(hy),manual:true});                                                // 0 or ≥thickness = through
@@ -26835,6 +26883,58 @@ function grooveLabel(b,g){
   };
 }
 function rnd1n(v){ return Math.round((+v||0)*10)/10; }
+/* ═════════ v1.189: วิธีบอกตำแหน่งแบบกล่อง Pocket ยกมาเป็นของกลาง ═════════
+   กล่อง Pocket มีวิธีกรอกที่คนใช้ได้จริง คือเลือกมุมอ้างอิงแล้ววัดระยะเข้ามาตรง ๆ
+   ไม่ต้องแปลงเป็นระยะจากกึ่งกลางในหัวก่อนพิมพ์ ซึ่งพลาดง่ายมากตรงเครื่องหมายลบ
+   ยกออกมาไว้ที่เดียว กล่องเจาะรูจะได้ใช้ตัวเดียวกัน ไม่ใช่มีสูตรชุดที่สองให้เพี้ยนกันทีหลัง
+   ชื่อขอบคิดจาก orientMatrix จริง ตู้ที่หมุนตามผังจึงไม่สลับด้าน (ตรรกะเดิมของ v7.56)
+   โหมดกลางแกนหนึ่งวัดจากขอบอีกแกน ยกมาทั้งชุดเหมือนกัน (v7.80) */
+const REF_HALF={ cLy_lo:{ax:"y",lo:true}, cLy_hi:{ax:"y",lo:false},
+                 cWx_lo:{ax:"x",lo:true}, cWx_hi:{ax:"x",lo:false} };
+function refAxisNames(b){
+  const _dir=(vx,vy)=>{ try{ return new THREE.Vector3(vx,vy,0).transformDirection(orientMatrix(b.orient,b.yaw)); }
+    catch(e){ return new THREE.Vector3(vx,vy,0); } };
+  const _nm=(v,pos)=>{ const a=[Math.abs(v.x),Math.abs(v.y),Math.abs(v.z)];
+    const i=a[0]>=a[1]&&a[0]>=a[2]?0:(a[1]>=a[2]?1:2);
+    const p=(([v.x,v.y,v.z][i]>=0)===!!pos);
+    return i===0?(p?"ขวา":"ซ้าย") : i===1?(p?"บน":"ล่าง") : (p?"หน้า":"หลัง"); };
+  const _ax=_dir(1,0), _ay=_dir(0,1);
+  return { xHi:_nm(_ax,true), xLo:_nm(_ax,false), yHi:_nm(_ay,true), yLo:_nm(_ay,false) };
+}
+function refOptions(n){
+  return [["center","กึ่งกลาง"],
+    ["cLy_lo","กลางตาม L · วัดจาก"+n.yLo],["cLy_hi","กลางตาม L · วัดจาก"+n.yHi],
+    ["cWx_lo","กลางตาม W · วัดจาก"+n.xLo],["cWx_hi","กลางตาม W · วัดจาก"+n.xHi],
+    ["BL","มุม"+n.yLo+"-"+n.xLo],["BR","มุม"+n.yLo+"-"+n.xHi],
+    ["TL","มุม"+n.yHi+"-"+n.xLo],["TR","มุม"+n.yHi+"-"+n.xHi]];
+}
+function refLabels(ref,n,toWhat){
+  const t=toWhat?(" "+toWhat):"";
+  if(ref==="center") return ["X จากกึ่งกลาง (+"+n.xHi+")","Y จากกึ่งกลาง (+"+n.yHi+")"];
+  const hf=REF_HALF[ref];
+  if(hf) return hf.ax==="y" ? ["","จาก"+(hf.lo?n.yLo:n.yHi)+" เข้ามา"+t+" (มม.)"]
+                            : ["จาก"+(hf.lo?n.xLo:n.xHi)+" เข้ามา"+t+" (มม.)",""];
+  const left=(ref[1]==="L"), bottom=(ref[0]==="B");
+  return ["จาก"+(left?n.xLo:n.xHi)+" เข้ามา"+t+" (มม.)","จาก"+(bottom?n.yLo:n.yHi)+" เข้ามา"+t+" (มม.)"];
+}
+/* w/h = ขนาดของสิ่งที่วาง · ใส่ 0 ได้เมื่อวัดถึงจุดศูนย์กลางเลย เช่น รูเจาะ */
+function refToXY(b,ref,dx,dy,w,h){
+  const L=Math.max(b.L||1,1), W=Math.max(b.W||1,1);
+  w=+w||0; h=+h||0;
+  if(ref==="center") return {cx:dx, cy:dy};
+  const hf=REF_HALF[ref];
+  if(hf) return hf.ax==="y" ? {cx:0, cy:(hf.lo?(-W/2+dy+h/2):(W/2-dy-h/2))}
+                            : {cx:(hf.lo?(-L/2+dx+w/2):(L/2-dx-w/2)), cy:0};
+  const left=(ref[1]==="L"), bottom=(ref[0]==="B");
+  return { cx: left?(-L/2+dx+w/2):(L/2-dx-w/2), cy: bottom?(-W/2+dy+h/2):(W/2-dy-h/2) };
+}
+/* ช่องตัวเลขรับสูตรตัวแปรของตู้ได้ทุกช่อง เช่น $D9 — ตรรกะเดิมของ v9.48 */
+function refNum(v,b,dv){
+  const t=String(v==null?"":v).trim(); if(!t) return (dv==null?0:dv);
+  const n=parseFloat(t); if(isFinite(n)&&/^[-+]?[\d.]+$/.test(t)) return n;
+  const r=evalCabExpr(t,b&&b.cabInst,null);
+  return (r==null||!isFinite(r))?(dv==null?0:dv):r;
+}
 function addPocket(b){   // เพิ่ม Pocket + 2D preview สด · อ้างอิงจากมุม/กึ่งกลาง → ออก MPR RechteckTasche
   if(!b){toast("เลือกชิ้นก่อน");return;}
   const L=Math.max(b.L||1,1), W=Math.max(b.W||1,1);
@@ -26846,40 +26946,15 @@ function addPocket(b){   // เพิ่ม Pocket + 2D preview สด · อ้
      แผ่นนอน (ทอป/ชั้น/พื้น) แกน W คือความลึก -> ต้องเป็น หน้า/หลัง
      แผ่นข้าง แกน L คือความสูง แกน W คือความลึก -> ล่าง/บน กับ หน้า/หลัง
      คำนวณจาก orientMatrix จริง ตู้ที่หมุนตามผังจึงไม่สลับด้าน */
-  const _dir=(vx,vy)=>{ try{ return new THREE.Vector3(vx,vy,0).transformDirection(orientMatrix(b.orient,b.yaw)); }
-    catch(e){ return new THREE.Vector3(vx,vy,0); } };
-  const _nm=(v,pos)=>{ const a=[Math.abs(v.x),Math.abs(v.y),Math.abs(v.z)];
-    const i=a[0]>=a[1]&&a[0]>=a[2]?0:(a[1]>=a[2]?1:2);
-    const p=(([v.x,v.y,v.z][i]>=0)===!!pos);
-    return i===0?(p?"ขวา":"ซ้าย") : i===1?(p?"บน":"ล่าง") : (p?"หน้า":"หลัง"); };
-  const _ax=_dir(1,0), _ay=_dir(0,1);
-  const xHi=_nm(_ax,true), xLo=_nm(_ax,false), yHi=_nm(_ay,true), yLo=_nm(_ay,false);
+  const _RN=refAxisNames(b);                                        // v1.189: ของกลาง
+  const xHi=_RN.xHi, xLo=_RN.xLo, yHi=_RN.yHi, yLo=_RN.yLo;
   /* v7.80: โหมด "กลางแกนหนึ่ง · วัดระยะจากขอบอีกแกน" — ไม่ต้องกรอก +/- จากกึ่งกลางออกไป
      เช่น ชั้นวางอยู่กลางตาม L แล้ววัดระยะจากขอบหลังเข้ามาตรง ๆ */
-  const HALF={ cLy_lo:{ax:"y",lo:true}, cLy_hi:{ax:"y",lo:false}, cWx_lo:{ax:"x",lo:true}, cWx_hi:{ax:"x",lo:false} };
-  const REFS=[["center","กึ่งกลาง"],
-    ["cLy_lo","กลางตาม L · วัดจาก"+yLo],["cLy_hi","กลางตาม L · วัดจาก"+yHi],
-    ["cWx_lo","กลางตาม W · วัดจาก"+xLo],["cWx_hi","กลางตาม W · วัดจาก"+xHi],
-    ["BL","มุม"+yLo+"-"+xLo],["BR","มุม"+yLo+"-"+xHi],["TL","มุม"+yHi+"-"+xLo],["TR","มุม"+yHi+"-"+xHi]];
+  const HALF=REF_HALF, REFS=refOptions(_RN);                        // v1.189
   const inp="width:100%;padding:6px 8px;border:1px solid var(--line);border-radius:6px;background:var(--solid);color:var(--ink);font-family:var(--font);font-size:13px;box-sizing:border-box";
   const lab="display:flex;flex-direction:column;gap:3px;font-size:11px;color:var(--ink-dim);flex:1";
-  function center(){
-    const w=PKW(),h=PKH(),dx=PKN(st.dx,0),dy=PKN(st.dy,0);   // v9.48: รับสูตรได้
-    if(st.ref==="center") return {cx:dx, cy:dy};
-    const hf=HALF[st.ref];
-    if(hf) return hf.ax==="y" ? {cx:0, cy:(hf.lo?(-W/2+dy+h/2):(W/2-dy-h/2))}
-                              : {cx:(hf.lo?(-L/2+dx+w/2):(L/2-dx-w/2)), cy:0};
-    const left=(st.ref[1]==="L"), bottom=(st.ref[0]==="B");
-    return { cx: left?(-L/2+dx+w/2):(L/2-dx-w/2), cy: bottom?(-W/2+dy+h/2):(W/2-dy-h/2) };
-  }
-  function labels(){
-    if(st.ref==="center") return ["X จากกึ่งกลาง (+"+xHi+")","Y จากกึ่งกลาง (+"+yHi+")"];
-    const hf=HALF[st.ref];
-    if(hf) return hf.ax==="y" ? ["","จาก"+(hf.lo?yLo:yHi)+" เข้ามา (มม.)"]
-                              : ["จาก"+(hf.lo?xLo:xHi)+" เข้ามา (มม.)",""];
-    const left=(st.ref[1]==="L"), bottom=(st.ref[0]==="B");
-    return ["จาก"+(left?xLo:xHi)+" เข้ามา (มม.)","จาก"+(bottom?yLo:yHi)+" เข้ามา (มม.)"];
-  }
+  function center(){ return refToXY(b,st.ref,PKN(st.dx,0),PKN(st.dy,0),PKW(),PKH()); }   // v1.189
+  function labels(){ return refLabels(st.ref,_RN); }                                      // v1.189
   function preview(){
     const pad=20, sc=Math.min(270/L, 200/W), pw=L*sc, ph=W*sc, VW=pw+pad*2, VH=ph+pad*2;
     const sx=x=>pad+(x+L/2)*sc, sy=y=>pad+(W/2-y)*sc;
@@ -26923,9 +26998,7 @@ function addPocket(b){   // เพิ่ม Pocket + 2D preview สด · อ้
   }
   /* v9.48: ทุกช่องตัวเลขของ Pocket รับสูตรตัวแปรของตู้ได้ ($D9 ระยะจากซ้าย · $D10 ระยะจากหลัง)
      อ่านไม่ออกก็คืน 0 เพื่อให้พรีวิววาดต่อได้ ส่วนตอนกดตกลงจะเช็คอีกทีแล้วเตือน */
-  const PKN=(v,dv)=>{ const t=String(v==null?"":v).trim(); if(!t) return (dv==null?0:dv);
-    const n=parseFloat(t); if(isFinite(n)&&/^[-+]?[\d.]+$/.test(t)) return n;
-    const r=evalCabExpr(t,b.cabInst,null); return (r==null||!isFinite(r))?(dv==null?0:dv):r; };
+  const PKN=(v,dv)=>refNum(v,b,dv);                                 // v1.189: ของกลาง
   const PKW=()=>st.shape==="circle"?Math.max(PKN(st.rad,30),1)*2:Math.max(PKN(st.w,60),1);
   const PKH=()=>st.shape==="circle"?Math.max(PKN(st.rad,30),1)*2:Math.max(PKN(st.h,60),1);
   const PKR=()=>st.shape==="circle"?Math.max(PKN(st.rad,30),1):Math.max(PKN(st.r,0),0);
