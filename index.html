@@ -353,10 +353,13 @@
   /* ───── v1.172: ลิงก์ดูอย่างเดียวเปิดบนมือถือ — เหลือเท่าที่นิ้วใช้จริง ───── */
   body.viewOnly.mobileView{--sb:54px}
   body.viewOnly.mobileView #list{display:none}
-  body.viewOnly.mobileView #statusbar{gap:10px;padding:0 12px;overflow:hidden}
+  /* v1.181: เพิ่มปุ่มโปร่งใส · สามอย่างบนจอ 390 ต้องไม่เบียดจนกดพลาด
+     เผื่อจอแคบกว่านั้นให้เลื่อนแนวนอนได้ ดีกว่าตัดปุ่มหายไปเงียบ ๆ */
+  body.viewOnly.mobileView #statusbar{gap:8px;padding:0 10px;overflow-x:auto;overflow-y:hidden}
   body.viewOnly.mobileView #statusbar>*{display:none}
-  body.viewOnly.mobileView #statusbar>#doorOpenBtn{display:flex;padding:10px 14px;font-size:13px}
-  body.viewOnly.mobileView #statusbar>#expGrp{display:flex;flex:1;min-width:0;opacity:1}
+  body.viewOnly.mobileView #statusbar>#ghostBtn,
+  body.viewOnly.mobileView #statusbar>#doorOpenBtn{display:flex;padding:10px 12px;font-size:13px;flex:0 0 auto}
+  body.viewOnly.mobileView #statusbar>#expGrp{display:flex;flex:1 1 auto;min-width:150px;opacity:1}
   body.viewOnly.mobileView #expRange{width:auto!important;flex:1 1 auto;min-width:70px;height:28px}
   body.viewOnly.mobileView #expVal{min-width:34px;text-align:right}
   body.viewOnly.mobileView #scanBar{top:calc(var(--tb) + 6px);max-width:96vw;font-size:12px;padding:7px 10px;gap:8px}
@@ -865,7 +868,7 @@
    ===================================================================== */
 /* ---- APP_META: แหล่งความจริงเดียวของเวอร์ชัน (ดูได้จาก console / คลิกชื่อแอป) ---- */
 const APP_META={
-  name:"StarNexus Cabinet", version:"1.180", build:"2026-09-08/viewonly-nosave",
+  name:"StarNexus Cabinet", version:"1.181", build:"2026-09-08/scan-highlight",
   file:"StarNexus.html", basedOn:"Furnitech_V3.html (v3.11)",
   /* ───────── เริ่มนับเวอร์ชันใหม่ที่ 1.001 (21/08/2026) ─────────
      ของเดิมนับมาถึง 42.1 แล้ววิ่งเป็นทศนิยมสองชั้นซึ่งอ่านลำดับยาก
@@ -873,6 +876,7 @@ const APP_META={
      ประวัติเก่าเก็บไว้ทั้งหมดตามเลขเดิม ไม่ไล่เขียนใหม่ เพราะเลขในนั้นถูกอ้างถึงไปแล้ว
      รายการที่อยู่ใต้ 1.001 ลงไปจึงเป็นเลขชุดเก่า อ่านต่อกันได้ตามวันที่ */
   changelog:[
+    ["1.181","2026-09-08","FEAT ชิ้นที่สแกนเข้ามาถูกย้อมเขียวเข้มทั้งแผ่นและค้างไว้จนกดชิ้นอื่น — ของเดิมบอกว่าเป็นชิ้นไหนด้วยกรอบเลือกอย่างเดียว ซึ่งเป็นเส้นบาง ๆ ที่คลาดสายตาทันทีที่หมุนจอ คนที่ยืนถือไม้อยู่หน้าเครื่องต้องการรู้แค่ว่าแผ่นในมือคือแผ่นไหนของตู้ ย้อมทั้งชิ้นไปเลยจึงเห็นจากทุกมุมโดยไม่ต้องมองหาเส้น · เก็บเป็น id ของชิ้นไม่ใช่ตัวชิ้น เพราะ render3D สร้าง mesh ใหม่ทุกรอบ ตัวชิ้นที่อ้างไว้จะกลายเป็นของเก่าทันที · สีถูกเลือกที่ boardMat ก่อนทางที่ไปหาสีผิวจริง เขียวจึงชนะทุกกรณีทั้งชิ้นที่มีผิวและชิ้นที่ใช้โทนไม้รวม · ยังไม่หายเมื่อหมุนจอหรือคลิกที่ว่าง เพราะไม่ได้ผูกกับการเลือกชิ้น จะคืนสีจริงเมื่อกดชิ้นอื่นจริง ๆ เท่านั้น ตอนคืนต้องสร้างฉากใหม่เพราะสีถูกกำหนดตอนสร้าง mesh ไม่ใช่ตอนวาดแต่ละเฟรม · โหมดโปร่งใสยังเห็นชิ้นนี้ชัดกว่าชิ้นอื่น ตั้งความทึบไว้เกือบเท่าตัวของชิ้นทั่วไป · FEAT เพิ่มปุ่มโปร่งใสในแถบล่างของมือถือ ใช้มองว่าชิ้นสีเขียวอยู่ลึกเข้าไปตรงไหนของตู้ ซึ่งเป็นเหตุผลเดียวกับที่ขอปุ่มนี้มา · สามปุ่มบนจอกว้าง 390 เบียดกันพอดี จึงลดระยะห่างและระยะขอบลง และเปิดให้แถบเลื่อนแนวนอนได้ถ้าจอแคบกว่านั้น ดีกว่าตัดปุ่มหายไปเงียบ ๆ"],
     ["1.180","2026-09-08","FIX เปิดลิงก์ดูอย่างเดียวในอีกแท็บ แล้วงานที่ทำค้างไว้ในแท็บหลักถูกเขียนทับหายทั้งออเดอร์ — คีย์ที่ใช้เซฟอัตโนมัติแยกตามแท็บก็ต่อเมื่อ URL มี tab ตามเลขที่ปุ่มแท็บใหม่ใส่ให้ ซึ่งเป็นสิ่งที่ v36.3 วางไว้กันสองแท็บทำงานทับกัน แต่ลิงก์แชร์มีแต่ view ไม่มี tab จึงใช้คีย์เดียวกับแท็บทำงานหลักเป๊ะ ๆ · ตัวเปิดลิงก์เรียก sync ซึ่งเซฟอัตโนมัติเป็นขั้นตอนปกติ ผลคือสแนปช็อตของตู้ใบเดียวถูกเขียนทับออเดอร์ทั้งใบในที่เก็บ · อาการจะไม่โผล่ทันที เพราะแท็บงานยังถืองานเต็มไว้ในหน่วยความจำ แต่พอรีเฟรชหรือเปิดโปรแกรมใหม่ งาน 37 ตู้จะเหลือตู้เดียว · เส้นทางที่จะเจอง่ายที่สุดคือหน้าตรวจลิงก์ตู้ที่เพิ่งทำใน v1.174 ซึ่งชวนให้กดลิงก์เปิดดูอยู่แล้ว · v36.3 คิดเผื่อสองแท็บทำงานไว้แล้ว แต่ลิงก์ดูอย่างเดียวเป็นกรณีที่สามที่ยังไม่มีใครกัน · ห้ามเซฟเมื่ออยู่ในโหมดดูอย่างเดียว เงื่อนไขเดียวข้างเงื่อนไขห้ามเซฟระหว่างแก้โมเดลที่มีอยู่แล้ว · โหมดนี้แก้อะไรไม่ได้อยู่แล้ว จึงไม่มีอะไรให้เก็บตั้งแต่แรก"],
     ["1.179","2026-09-08","CHANGE โปรแกรมเราต่อลิงก์ให้เสร็จเอง ปลายทางอ่านคอลัมน์เดียวจบ — ก่อนหน้านี้บอกให้ Production เอา share_id มาต่อกับ seq เองเพื่อให้ได้ลิงก์ระดับชิ้น ซึ่งไม่มีเหตุผลเลย เพราะลิงก์เกิดที่โปรแกรมนี้และเลข PartID ก็อยู่ในมือตอนวนแถวอยู่แล้ว การผลักงานต่อสตริงไปให้อีกระบบมีแต่จะทำให้รูปแบบลิงก์เพี้ยนกันคนละที่เวลาแก้ · แถวชิ้นในใบส่งออกได้ช่อง PART_URL เพิ่มมาข้าง CAB_URL เป็นลิงก์ที่ต่อ &p= เสร็จแล้ว เปิดปุ๊บเห็นตู้ใบนั้นและไฮไลต์ชิ้นนั้นทันที ส่วน CAB_URL ยังเป็นลิงก์ระดับตู้เหมือนเดิมทุกประการ ทุกชิ้นในใบเดียวกันได้ค่าเดียวกัน · ตาราง part_index ได้สองคอลัมน์ใหม่คือ part_url กับ cab_url เก็บลิงก์พร้อมใช้ทั้งสองระดับ ยิงบาร์โค้ดครั้งเดียวได้ทั้งลิงก์ชิ้นและลิงก์ตู้ ไม่ต้องประกอบอะไรต่อ · ต้องรัน ALTER TABLE เพิ่มสองคอลัมน์นี้ที่ Supabase ก่อน ถ้ายังไม่ได้ทำ ตัวเขียนดัชนีจะจับข้อผิดพลาดที่บอกว่าไม่รู้จักคอลัมน์แล้วส่งซ้ำโดยตัดสองช่องนั้นออก พร้อมข้อความเตือน เพราะดัชนีที่ไม่มีลิงก์ยังดีกว่าไม่มีดัชนีเลย และปลายทางยังประกอบเองได้จาก share_id กับ seq ระหว่างรอ · ตรวจแล้วทั้งสองทาง ทั้งกรณีมีคอลัมน์และกรณีที่ฐานข้อมูลปฏิเสธ"],
     ["1.178","2026-09-08","FEAT ลิงก์ต่อท้ายด้วย PartID ได้แล้ว สแกนชิ้นไหนก็ไฮไลต์ชิ้นนั้นตรงตัว — ของเดิมต่อท้ายได้แค่ รหัสตู้ ขีดล่าง ชื่อชิ้น ซึ่งชี้ไม่ตรงเมื่อชื่อซ้ำ ตู้ใบหนึ่งมี Shelf สามแผ่นชื่อเหมือนกันหมดเป็นเรื่องปกติ แถบบนจอจึงขึ้นว่าเข้าคีย์นี้สามใบแสดงใบแรก ซึ่งอาจไม่ใช่แผ่นที่ช่างถืออยู่ · PartID วิ่งต่อเนื่องทั้งออเดอร์และไม่ซ้ำกันเลย ใช้แล้วตรงตัวเสมอ · รับทั้งแบบมี P นำหน้าและตัวเลขเปล่า และฝั่ง Production ต่อจากช่อง seq ของแถว part_index ที่เพิ่งยิงบาร์โค้ดได้ตรง ๆ ไม่ต้องแปลงอะไร · ทำได้เพราะฝังเลข PartID ลงไปกับชิ้นตอนอัปโหลดสแนปช็อต เดินทางเดียวกับ buildImosData เป๊ะ ๆ คือ cabGroups แล้วตัดไกด์ แล้ว expandCoreBoards · ไม้เพาะโครงหนึ่งชิ้นแตกเป็นหลายแถวในใบส่งออก จึงเก็บเป็นลิสต์ของเลขไม่ใช่เลขเดียว สแกนแถวลูกแถวไหนก็เจอชิ้นแม่ · expandCoreBoards เป็น flatMap ตรง ๆ เรียกทีละชิ้นจึงได้ลำดับเดียวกับเรียกทั้งก้อน ตรวจแล้วว่าเลขที่ฝังตรงกับช่อง ID ในใบส่งออกทุกแถว · แผนที่คิดครั้งเดียวต่อการส่งออกหนึ่งรอบ ไม่ใช่คิดใหม่ทุกใบ 39 รอบ · แถบบนจอขึ้นเลข PartID นำหน้าชื่อชิ้นแล้ว จะได้เทียบกับใบ Part List ในมือได้ทันที · คีย์แบบชื่อชิ้นเดิมยังใช้ได้เหมือนเดิมทุกประการ ไม่ได้ถอดออก"],
@@ -2372,8 +2376,25 @@ function sectHexOf(p,b){
     v=String(got==null?"":got).trim(); }
   return normHex(v); }
 const _matC={};
+/* ───────── v1.181: ไฮไลต์ชิ้นที่สแกนมา ค้างไว้จนกดชิ้นอื่น ─────────
+   ของเดิมใช้แค่กรอบเลือก ซึ่งหายง่ายมาก หมุนจอทีหนึ่งก็คลาดสายตาแล้ว
+   คนที่ยืนถือไม้อยู่หน้าเครื่องต้องการรู้แค่ว่า "แผ่นในมือคือแผ่นไหนของตู้"
+   จึงย้อมทั้งชิ้นเป็นเขียวเข้มไปเลย เห็นจากทุกมุมโดยไม่ต้องหาเส้นกรอบ
+   เก็บเป็น id ไม่ใช่ตัวชิ้น เพราะ render3D สร้าง mesh ใหม่ทุกรอบ */
+let SCAN_HI="";
+function scanHiMat(dbl){
+  const k="scanhi|"+(state.ghost?1:0)+"|"+(dbl?1:0);
+  if(_matC[k]) return _matC[k];
+  const m=new THREE.MeshStandardMaterial({color:new THREE.Color(0x146b3a),roughness:.62,metalness:0,
+    emissive:new THREE.Color(0x0a3d20),emissiveIntensity:.5});
+  /* โหมดโปร่งใสยังต้องเห็นชิ้นนี้ชัดกว่าชิ้นอื่น ทึบกว่าปกติเกือบเท่าตัว */
+  if(state.ghost){m.transparent=true;m.opacity=.6;m.depthWrite=false;}
+  if(dbl)m.side=THREE.DoubleSide;
+  return (_matC[k]=m);
+}
 /* v27.1: ชิ้นที่ผูก Surface ที่มีสีจริงไว้ ใช้สีนั้นแทนโทนไม้รวม */
 function boardMat(b,dbl){
+  if(b&&SCAN_HI&&b.id===SCAN_HI) return scanHiMat(!!dbl);      // v1.181: ชิ้นที่สแกนมา ชนะสีผิวจริง
   try{ const sk=surfSkin(b); if(sk) return skinMat(sk,!!dbl,b); }catch(e){}   // v28.5.4: ส่งชิ้นไปด้วย ลายจะได้หันตามชิ้น
   return solidMat(toneOf(b),dbl);
 }
@@ -11583,7 +11604,11 @@ function cabSelKeys(){ return Array.isArray(state.selectedCabs)?state.selectedCa
 function cabSelHas(k){ return cabSelKeys().indexOf(String(k))>=0 || String(state.selectedCab||"")===String(k); }
 function cabSelSet(keys){ state.selectedCabs=[...new Set((keys||[]).map(String))]; }
 function cabSelClear(){ state.selectedCabs=[]; }
-function select(id){state.selectedCab=null;cabSelClear();state.selectedId=id;
+function select(id){
+  /* v1.181: เขียวจากการสแกนอยู่จนกว่าจะกดชิ้นอื่นจริง ๆ · คลิกที่ว่างหรือหมุนจอไม่นับ
+     ต้อง render3D(true) เพราะสีถูกเลือกตอนสร้าง mesh ไม่ใช่ตอนวาดแต่ละเฟรม */
+  if(id&&SCAN_HI&&SCAN_HI!==id){ SCAN_HI=""; try{ render3D(true); }catch(e){} }
+  state.selectedCab=null;cabSelClear();state.selectedId=id;
   if(_hingePin&&_hingePin.id!==id){_hingePin=null;try{clearHingeHL();}catch(e){}}   // v7.32: เปลี่ยนชิ้น = ถอนหมุดไฮไลต์บานพับ
   renderList();showInspector();updateSelBox();}
 function selectCab(g,ev){ if(!g)return;
@@ -27560,6 +27585,7 @@ function scanFocus(pkey){
   const keep=new Set(g.boards.map(x=>x.id));
   state.hidden=state.boards.filter(x=>!keep.has(x.id)).map(x=>x.id);
   state.selectedId=b.id; state.selectedCab=null;
+  SCAN_HI=b.id;                                   // v1.181: ย้อมเขียวค้างไว้ ไม่ผูกกับการเลือก
   try{ render3D(true); renderList(); }catch(e){ console.error(e); }
   try{ updateSelBox(); focusCab(g); }catch(e){ console.error(e); }
   scanBar(g,b,hit.length);
