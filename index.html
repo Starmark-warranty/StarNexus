@@ -915,7 +915,7 @@
    ===================================================================== */
 /* ---- APP_META: แหล่งความจริงเดียวของเวอร์ชัน (ดูได้จาก console / คลิกชื่อแอป) ---- */
 const APP_META={
-  name:"StarNexus Cabinet", version:"1.199", build:"2026-09-11/cv-pick",
+  name:"StarNexus Cabinet", version:"1.201", build:"2026-09-11/box-joint",
   file:"StarNexus.html", basedOn:"Furnitech_V3.html (v3.11)",
   /* ───────── เริ่มนับเวอร์ชันใหม่ที่ 1.001 (21/08/2026) ─────────
      ของเดิมนับมาถึง 42.1 แล้ววิ่งเป็นทศนิยมสองชั้นซึ่งอ่านลำดับยาก
@@ -923,6 +923,8 @@ const APP_META={
      ประวัติเก่าเก็บไว้ทั้งหมดตามเลขเดิม ไม่ไล่เขียนใหม่ เพราะเลขในนั้นถูกอ้างถึงไปแล้ว
      รายการที่อยู่ใต้ 1.001 ลงไปจึงเป็นเลขชุดเก่า อ่านต่อกันได้ตามวันที่ */
   changelog:[
+    ["1.201","2026-09-11","FEAT กล่องลิ้นชักไม้สี่ด้าน ได้เดือยกับสกรูที่รอยต่อแผ่นหน้าและแผ่นหลังแล้ว — กล่องไม้ประกอบแบบแผ่นข้างวิ่งยาวเต็มความลึก แล้วแผ่นหน้ากับหลังชนหน้าตัดเข้าผิวในของแผ่นข้าง รอยต่อสี่จุดนี้ไม่เคยมีอะไรยึดเลยสักตัว ทั้งที่เป็นจุดที่รับแรงดึงทุกครั้งที่เปิดลิ้นชัก ชิ้นกล่องออกจากระบบโดยไม่มีตัวเชื่อมและไม่มีรูสักรู · ตอนนี้ยึดสองอย่างตามที่โรงงานทำจริง เดือยจัดตำแหน่งและรับแรงเฉือน สกรูดึงให้แน่น · เดือยใส่เป็นตัวเชื่อมบนแผ่นหน้าและหลัง ขอบซ้ายกับขวา ไฟล์เจาะจึงออกรูหน้าตัดให้เองผ่านทางเดิมที่มีอยู่แล้ว ส่วนรูคู่ฝั่งแผ่นข้างเป็นรูตันบนผิวใน · สกรูเป็นรูทะลุบนแผ่นข้าง ยิงจากผิวนอกเข้าไปในหน้าตัดของแผ่นหน้าและหลัง ตรงตามด้านที่ไขควงเข้าถึงได้จริง ฝั่งที่ถูกยิงได้รูนำที่หน้าตัด · ไม่ได้ใช้ตัวเชื่อมชนิดสกรูที่มีอยู่ เพราะตัวนั้นออกแบบให้ยิงจากหน้าแผ่นลงไปหาชิ้นที่ซ้อนอยู่ใต้หน้าแผ่น พอลำแสงไปชนหน้าตัด ตัวเจาะรูคู่จะคิดผิวที่เจาะจากองค์ประกอบแกนหนาซึ่งเป็นศูนย์พอดีในกรณีนี้ รูจึงไปโผล่บนหน้าแผ่นชิดขอบแทนที่จะเป็นรูหน้าตัด · ระยะทุกจุดมาจากสูตรสองชุดที่นำเข้าจากไฟล์ของ imos คือ L_Dowel_Box กับ L_Screw_Box ไฟล์ต้นฉบับเขียนเงื่อนไขแบบเลขตัวเดียว ซึ่งตัวอ่านสูตรของที่นี่ตั้งช่วงไม่ได้และข้ามทิ้งเงียบ ๆ วัดแล้วอ่านได้สามช่วงจากสิบเอ็ด จึงกางเป็นช่วงเต็มไว้ในโค้ด ความหมายเท่าเดิมทุกบรรทัดรวมทั้งกรณีสูงพอดีเจ็ดสิบเจ็ดที่ต้นฉบับให้ค่าพิเศษ · ตำแหน่งคิดจากบทบาทของชิ้นกับมิติล้วน ไม่อ่านพิกัดโลกสักค่า ตู้ที่หมุนตามผังจึงไม่เพี้ยน และไม่ต้องยิงลำแสงหาเหมือนตัวเชื่อมเดือยปกติ · จุดที่ตกลงไปในร่องพื้นกล่องถูกข้ามพร้อมนับไว้ เจาะตรงนั้นดอกจะทะลุร่อง · ใส่ให้ทุกครั้งที่กล่องถูกคำนวณใหม่ ล้างของรอบก่อนเสมอจึงไม่ทบกัน และไม่แตะรูหรือตัวเชื่อมที่ผู้ใช้ใส่เอง · กล่องรางเหล็ก ALTO กับ Kitchen 4.0 ไม่ยุ่ง เพราะแผงข้างเป็นเหล็กสำเร็จ · สกรูเข้าใบอุปกรณ์ด้วย นับจากรูทะลุฝั่งแผ่นข้างอย่างเดียวกันนับซ้ำ · ปิดได้ที่ boxJointOn · ชุดทดสอบสามสิบห้าข้อรันกับกล่องจริงจากไฟล์งาน สูง 180 หนา 16 ลึก 367 ได้เดือยที่ 74 กับ 138 และสกรูที่ 42 กับ 170 จากก้นกล่อง ตรงกับสูตรต้นฉบับช่วง X ไม่เกิน 198"],
+    ["1.200","2026-09-11","FIX ลากย้ายชิ้นตอนเปิดบานค้างไว้ ชิ้นนิ่งสนิทจนกว่าจะปล่อยเมาส์ ระหว่างลากจึงไม่รู้ว่าชิ้นไปถึงไหนแล้ว — v7.28 ตัดพรีวิวทิ้งเมื่ออยู่โหมดเปิดบาน เพราะบานกับลิ้นชักถูกวาดเยื้องจากตำแหน่งจริง (บานกางออกตามองศา ลิ้นชักเลื่อนออกเจ็ดสิบเปอร์เซ็นต์ของความลึก) การเซ็ตตำแหน่งจริงลงไปตรง ๆ ระหว่างลากจะทำให้มันเด้งกลับไปท่าปิดกลางคัน · แต่เงื่อนไขที่เขียนไว้เหมารวมชิ้นทุกชนิด ชั้นและคานและรางซึ่งตำแหน่งวาดเท่ากับตำแหน่งจริงเป๊ะ จึงถูกตัดพรีวิวไปด้วยทั้งที่ไม่มีอะไรเยื้องเลย · กรอบเลือกก็ไม่ขยับตาม เพราะตัววาดกรอบอ่านพิกัดจากรูปที่วาดอยู่ ไม่ได้อ่านจากตัวเลขของชิ้น ตัวเลขระยะที่แถบล่างจึงเป็นอย่างเดียวที่ขยับ · เปลี่ยนมาเลื่อนรูปด้วยส่วนต่างจากจุดที่มันวาดอยู่ตอนเริ่มลาก แทนการเซ็ตเป็นตำแหน่งจริง จึงถูกทั้งชิ้นที่เยื้องและไม่เยื้อง และแก้โหมดแยกประกอบซึ่งเยื้องด้วยเหตุผลเดียวกันไปพร้อมกัน ทั้งลากทีละชิ้นและลากทั้งตู้ · ตำแหน่งจริงยังคิดใหม่ตอนปล่อยเหมือนเดิม ไม่ได้ไปแตะค่าที่บันทึก · ชิ้นที่กำลังถูกวาดในท่ากางหรือท่าแยก มีข้อความบอกตอนเริ่มลากว่ารูปที่เห็นไม่ใช่ที่ที่ชิ้นจะไปจอดจริง · ชุดทดสอบสิบสามข้อรันกับโค้ดเก่าตกสี่ข้อ ทั้งเปิดบาน แยกประกอบ และลากทั้งตู้ รันกับโค้ดใหม่ผ่านหมด"],
     ["1.199","2026-09-11","FIX หน้า Variables (ตู้นี้) เลือกรหัสอื่นไม่ได้ เพราะรายการถูกกรองด้วยค่าที่ค้างอยู่ในช่องเอง — v1.145 เปลี่ยนช่องพวกนี้จากดรอปดาวน์เป็นช่องพิมพ์ที่มีรายการเสนอ (datalist) เพื่อให้ค้นจากรหัสสองร้อยกว่าตัวได้ แต่รายการเสนอของเบราว์เซอร์กรองตามข้อความที่อยู่ในช่องเสมอ และทุกช่องมีค่าค้างอยู่แล้วเพราะออเดอร์กับตัวเติมค่าตั้งต้นใส่มาให้ครบ กางออกมาจึงเห็นแค่บรรทัดเดียวคือค่าของตัวเอง ดูเหมือน Family นั้นมีตัวเลือกอยู่ตัวเดียว ทั้งที่มีเป็นร้อย ต้องลบข้อความทิ้งก่อนถึงจะเห็นทั้งหมด ซึ่งไม่มีอะไรบอกไว้ · เพิ่มปุ่ม ▾ ข้างช่อง กางรายการเต็มของ Family นั้นเป็นหน้าต่างของแอปเอง ไม่ใช่ของเบราว์เซอร์ จึงไม่ถูกกรองด้วยค่าในช่อง · ในหน้าต่างมีช่องค้นแยกของตัวเอง พิมพ์กรองได้เหมือนเดิมโดยค่าที่ตั้งไว้ไม่ถูกแตะ กด Enter = เลือกตัวแรก กด Esc หรือคลิกข้างนอก = ปิด · ค่าที่ตู้ถืออยู่แต่ยังไม่ได้บันทึกเป็นตัวเลือกของ Family ก็อยู่บนสุดของรายการ ไม่หายไปเหมือนเดิม · เลือกตัวเดิมซ้ำไม่วาดหน้าใหม่ทั้งหน้า · ช่องพิมพ์กับรายการเสนอเดิมยังอยู่ครบ ใครพิมพ์เร็วกว่าก็พิมพ์ได้เหมือนเดิม · ตัวคัดรายการแยกเป็น cvPickList(ชื่อ Family, คำค้น) คืนรายการล้วนโดยไม่แตะหน้าจอ จึงเรียกตรวจได้ตรง ๆ"],
     ["1.198","2026-09-10","CHANGE ไฟล์เจาะของแผ่นข้าง หมุนแผ่น 180 องศาก่อนออก จุดศูนย์จึงไปอยู่ที่ขอบหน้าตู้แทนขอบหลัง — ของเดิมมุมอ้างอิงตกที่ขอบหลัง ซึ่งเป็นขอบที่ช่างมองไม่เห็นตอนวางแผ่นบนแท่น ทั้งที่ทุกอย่างบนแผ่นข้างอ้างจากขอบหน้าหมด ทั้งจานบานพับ แนวหน้าบาน และแนวประกอบ · เดินด้วยตัวหมุน 90 องศาที่มีอยู่แล้วสองครั้ง จึงได้การแมปครบทุกอย่างฟรี ทั้งรู ร่อง ช่องบาก เส้นรูปทรงที่วาดเอง ตัวเชื่อม และค่าลดรายด้าน ไม่ต้องเขียนตารางแมปชุดที่สองที่จะไปเพี้ยนกันทีหลัง · ย้ำว่าหมุนไม่ใช่พลิกกระจก มือซ้ายมือขวาของชิ้นไม่เปลี่ยน ผิวที่เครื่องกัดยังเป็นผิวเดิม ถ้าย้ายแกน Y ไปขอบหน้าเฉย ๆ โดยไม่หมุนแกน X ตามด้วย จะกลายเป็นพลิกกระจกแล้วรูทุกตัวไปผิดด้าน แผ่นเสียทั้งใบ · ความยาวกับความกว้างไม่สลับกัน หัวไฟล์และเส้นขอบจึงเท่าเดิมทุกตัว · มีผลเฉพาะแผ่นที่ตั้งเป็นแผ่นข้าง ชิ้นอื่นไม่กระทบ · แผ่นข้างที่กว้างกว่ายาวยังถูกหมุนวางนอนต่อจากนี้เหมือนเดิม สองการหมุนทำงานต่อกันได้เพราะ 180 องศาไม่เปลี่ยนความยาวความกว้าง ตัวตัดสินว่าต้องวางนอนไหมจึงได้คำตอบเดิม"],
     ["1.197","2026-09-10","FIX รางไฟที่สั่งให้วิ่งตามแนวกว้างของแผ่น วางขวางร่องแล้วยื่นพ้นแผ่นออกไป — ตัวสร้างรางเขียนไว้ตั้งแต่ v11.6 ว่ารางเส้นนี้วิ่งแกนไหน เก็บไว้ในตัวชิ้นเรียบร้อย แต่ไม่เคยมีโค้ดตรงไหนอ่านค่านั้นเลยแม้แต่ที่เดียว ตัวรีดหน้าตัดจึงรีดไปตามแกนยาวของชิ้นเสมอ · จุดกึ่งกลางของรางถูกต้องอยู่แล้วเพราะตัวสร้างคำนวณด้วยเวกเตอร์แยกต่างหากซึ่งรู้จักแกนถูก ผิดแค่ทิศที่รีดออกไป รางเลยพาดขวางร่องเป็นกากบาทและยาวล้นออกนอกแผ่น · แก้สามที่ที่ถือว่าความยาวรางอยู่บนแกนยาวของชิ้นเสมอ คือตัวรีดรูปทรง กล่องขอบเขตของชิ้น และตัวหาปลายรางที่ใช้จัดกลุ่มโซนไฟ · กล่องขอบเขตสำคัญกว่าที่คิด เพราะกรอบเลือก การคลิกเลือกชิ้น และตัวเกลี่ยดวงไฟตามความยาวราง อ่านค่าจากตัวเดียวกันหมด · ตัวหาปลายรางถ้าใช้แกนผิด รางสองเส้นที่ต่อกันจริงจะถูกคิดว่าปลายห่างกัน แล้วแยกเป็นคนละโซนไฟ ทำให้จำนวนหม้อแปลงที่คำนวณได้ผิดไปด้วย · ความยาวรางในใบอุปกรณ์ไม่กระทบ เพราะยังอ่านจากช่องเดิมเหมือนเดิม"],
@@ -1179,6 +1181,38 @@ const DEF_DOWEL_RULE=[
   "730-780 : 19 : 320 : 288 : 1",
   "780-830 : 19 : 320 : 320 : 1"
 ].join("\n");
+/* ═════════ v1.201: สูตรระยะเดือย/สกรูของกล่องลิ้นชักไม้ (แปลงจาก L_Dowel_Screw_drawer ของ imos) ═════════
+   ไฟล์ต้นฉบับเขียนเงื่อนไขแบบ "if X<=57mm" ซึ่งมีตัวเลขตัวเดียว ตัวอ่านสูตรของที่นี่ต้องการสองตัว
+   จึงตั้งช่วงไม่ได้และข้ามทิ้งเงียบ ๆ (ทดสอบแล้วอ่านได้ 3 ช่วงจาก 11) — กางเป็นช่วงเต็มไว้ตรงนี้
+   ความหมายเดียวกับต้นฉบับทุกบรรทัด เพราะ imos ไล่เงื่อนไขบนลงล่างแล้วหยุดที่ตัวแรกที่ผ่าน
+   ตัวเลขคือระยะสะสมจากขอบล่าง · "1" คั่นหน้า/หลัง · ค่าหลัง 1 วัดจากขอบบนเข้ามา
+   ต้นฉบับข้ามช่วง 65-66 ไว้ (เขียน if 66mm<X<=77mm ต่อจาก if 57<X<=65) ที่นี่ต่อให้ชนกัน
+   กล่องสูงพอดี 77 ต้องได้ค่าของบรรทัด if X<=77mm ไม่ใช่ของ if 57<X<77 จึงวางช่วง 77-77 ไว้ก่อน */
+const BOXJ_DOWEL_NAME="L_Dowel_Box", BOXJ_SCREW_NAME="L_Screw_Box";
+const DEF_BOX_DOWEL_RULE=[
+  "0-57 : 28 : 1",
+  "57-65 : 32 : 1",
+  "65-77 : 32 : 1",
+  "77-100 : 46 : 1",
+  "100-118 : 36 : 64 : 1",
+  "118-138 : 42 : 64 : 1",
+  "138-158 : 68 : 32 : 1",
+  "158-178 : 68 : 64 : 1",
+  "178-198 : 74 : 64 : 1",
+  "198-4000 : 36 : 1 : 20"
+].join("\n");
+const DEF_BOX_SCREW_RULE=[
+  "0-57 : 40 : 1",
+  "77-77 : 64 : 1",
+  "57-77 : 48 : 1",
+  "77-100 : 78 : 1",
+  "100-118 : 68 : 1",
+  "118-138 : 74 : 1",
+  "138-158 : 36 : 96 : 1",
+  "158-178 : 36 : 128 : 1",
+  "178-198 : 42 : 128 : 1",
+  "198-4000 : 68 : 1 : 52"
+].join("\n");
 /* ───────── v9.51: โมเดล 3D บานพับตัวแรก (จาก DXF ของ imos) ─────────
    ไฟล์ DXF เก็บรูปทรงเป็น ACIS ที่เข้ารหัสไว้ ถอดออกมาเป็นข้อความได้ (คีย์ XOR 0x5F)
    แต่เป็น B-rep เต็มรูป การแปลงเป็นชิ้นกล่องของโปรแกรมนี้ตรง ๆ ไม่คุ้มกับที่ได้
@@ -1202,7 +1236,12 @@ const DEF_SETTINGS={ frontSetMax:6, dowelD:8, dowelDepth:28, dowelMateDepth:12, 
   healOnVarChange:true,                           // v31.1: แก้ค่าตัวแปรของตู้แล้วเชื่อมเดือยใหม่ให้ตู้ใบนั้น
   kitField:"K_Fitting_Concept", kitPushMap:"B:top, W:bottom", xmlThinMin:1, xmlSkipNoModel:false, orderProgNo:"700", doorGapWarn:50, csNewGap:120, ledSets:[{id:"12V-COB", volt:12, wPerM:9.6,
     stripCode:"", psuMap:"30, 60, 100", psuCode:"", psuUse:80, maxRunM:5,
-    wireCode:"", wireMode:"ต่อเส้นไฟ", wireQty:1}], ledSetPerRun:false, cutSizeFmt:"{ชื่อ} ตัดขนาด {ยาว} mm.", cutLookupKey:"ตัดขนาด", cutLookupOn:true, glassBomOn:true, glassUnit:"EA", glassMatCodes:"FC,MC,FT,PT,FS,MT", glassKinds:"กระจกใส|กระจกเงา|กระจกฝ้า|กระจกใสชาดำ|กระจกใสชาทอง|กระจกเงาชาทอง|กระจกใส ลอนลูกฟูก", glassEdges:"ลบคมรอบ|ลบคมขัดมันรอบ|เจียรริมรอบ|เจียรริมขัดมันรอบ|เจียรริม 1 mm. ขัดมันรอบ", glassKind:"กระจกใส", glassEdge:"ลบคมรอบ", glassShelfKind:"กระจกใส", glassShelfEdge:"เจียรริมขัดมันรอบ", glassDoorT:5, pullXmlOn:true, pullField:"K_Pull", pullOriField:"K_Orientation", pullPosField:"K_Pull_Position", pullXField:"K_Pull_Coordinate_X", pullYField:"K_Pull_Coordinate_Y", pullNo:"nopull,none,-", pullName:"มือจับ", pull3D:true, dxNotchGap:0.5, railLikeMaxW:100, pullDefPos:"UpMiddle", pullDefOri:"H", pullDefX:35, pullDefY:0, legClipOn:true, legClipMap:"", legClipCode:"LEGCLIP", legClipName:"กิ๊ฟขาตู้ (ยึดแผ่นปิดขา)", doorSwing:true, shelfT:16, hangRailCode:"HANGRAIL", hangRailName:"ราวแขวนผ้า สแตนเลส C", glassHangerCode:"GLASSHANGER", glassHangerName:"หูแขวนกระจก", hangRailThruD:8, hangRailCsD:13, hangRailCsDepth:2, hangRailEndGap:25, hangRailMap:"", drawerSideT:16, drawerBotT:9, drawerBoxH:120, drawerBoxLift:20, screwD:5, screwMateDepth:28, screwInset:9, screwCode:"SCREW5", screwName:"สกรู Ø5", altoMapA:"350:552.35.362, 400:552.35.363, 450:552.35.364, 500:552.35.365", altoMapW:"350:552.35.762, 400:552.35.763, 450:552.35.764, 500:552.35.765",
+    wireCode:"", wireMode:"ต่อเส้นไฟ", wireQty:1}], ledSetPerRun:false, cutSizeFmt:"{ชื่อ} ตัดขนาด {ยาว} mm.", cutLookupKey:"ตัดขนาด", cutLookupOn:true, glassBomOn:true, glassUnit:"EA", glassMatCodes:"FC,MC,FT,PT,FS,MT", glassKinds:"กระจกใส|กระจกเงา|กระจกฝ้า|กระจกใสชาดำ|กระจกใสชาทอง|กระจกเงาชาทอง|กระจกใส ลอนลูกฟูก", glassEdges:"ลบคมรอบ|ลบคมขัดมันรอบ|เจียรริมรอบ|เจียรริมขัดมันรอบ|เจียรริม 1 mm. ขัดมันรอบ", glassKind:"กระจกใส", glassEdge:"ลบคมรอบ", glassShelfKind:"กระจกใส", glassShelfEdge:"เจียรริมขัดมันรอบ", glassDoorT:5, pullXmlOn:true, pullField:"K_Pull", pullOriField:"K_Orientation", pullPosField:"K_Pull_Position", pullXField:"K_Pull_Coordinate_X", pullYField:"K_Pull_Coordinate_Y", pullNo:"nopull,none,-", pullName:"มือจับ", pull3D:true, dxNotchGap:0.5, railLikeMaxW:100, pullDefPos:"UpMiddle", pullDefOri:"H", pullDefX:35, pullDefY:0, legClipOn:true, legClipMap:"", legClipCode:"LEGCLIP", legClipName:"กิ๊ฟขาตู้ (ยึดแผ่นปิดขา)", doorSwing:true, shelfT:16, hangRailCode:"HANGRAIL", hangRailName:"ราวแขวนผ้า สแตนเลส C", glassHangerCode:"GLASSHANGER", glassHangerName:"หูแขวนกระจก", hangRailThruD:8, hangRailCsD:13, hangRailCsDepth:2, hangRailEndGap:25, hangRailMap:"", drawerSideT:16, drawerBotT:9, drawerBoxH:120, drawerBoxLift:20, screwD:5, screwMateDepth:28, screwInset:9,
+  /* v1.201: รอยต่อกล่องลิ้นชักไม้ — แผ่นหน้า/หลังชนเข้าแผ่นข้าง ยึดด้วยเดือย + สกรูจากนอกแผ่นข้าง */
+  boxJointOn:true, boxDowelFormula:BOXJ_DOWEL_NAME, boxScrewFormula:BOXJ_SCREW_NAME,
+  boxJointDowelD:8, boxJointDowelDepth:24, boxJointMateD:8, boxJointMateDepth:12,
+  boxScrewD:5, boxScrewPilotD:3, boxScrewPilotDepth:30, boxJointGrooveGap:6,
+  boxScrewCode:"SCREW5", boxScrewName:"สกรูยึดกล่องลิ้นชัก Ø5", screwCode:"SCREW5", screwName:"สกรู Ø5", altoMapA:"350:552.35.362, 400:552.35.363, 450:552.35.364, 500:552.35.365", altoMapW:"350:552.35.762, 400:552.35.763, 450:552.35.764, 500:552.35.765",
   /* v7.88: ซีรีส์ราง Kitchen 4.0 — โครงเดียวกับ ALTO แต่มีสีเดียว (ไม่มีตัวเลือกสี) */
   k40Code:"KITCHEN40_H80", k40Name:"ราง Kitchen 4.0", k40SideH:80, k40BackH:63, k40PanelT:16,
   k40HMap:"63:KITCHEN40_H80, 148:KITCHEN40_H150", altoHMapA:"", altoHMapW:"",
@@ -4462,6 +4501,94 @@ function pickBoxDepth(avail,bp){
 }
 // แผ่นพื้นลิ้นชักทำงานเหมือนแผ่นหลัง: เซาะร่องเข้า 4 ด้านของกล่อง + ยกจากพื้น + ทื่มเข้าร่อง
 //   over=ทื่มเข้าด้านละ, clear=เผื่อ, ร่องลึก=over+clear, ร่องกว้าง=หนาพื้น+clear, lift=ยกจากขอบล่างกล่อง
+/* ═════════ v1.201: เดือย + สกรู ที่รอยต่อกล่องลิ้นชักไม้สี่ด้าน ═════════
+   กล่องไม้ประกอบแบบแผ่นข้างวิ่งยาวเต็มความลึก แล้วแผ่นหน้ากับหลังชนหน้าตัดเข้าผิวในของแผ่นข้าง
+   รอยต่อสี่จุดนี้เดิมไม่มีอะไรยึดเลยสักตัว ทั้งที่เป็นรอยต่อที่รับแรงดึงทุกครั้งที่เปิดลิ้นชัก
+   ยึดสองอย่างตามที่โรงงานทำจริง — เดือยจัดตำแหน่งและรับแรงเฉือน สกรูดึงให้แน่น
+     เดือย  : เป็นตัวเชื่อมบนแผ่นหน้า/หลัง ขอบซ้ายและขวา ระบบจึงออกรูหน้าตัดให้เองตอนส่งไฟล์เจาะ
+              รูคู่ฝั่งแผ่นข้างเป็นรูตันบนผิวใน คิดตำแหน่งเองจากมิติ ไม่ได้ยิงลำแสงหา
+     สกรู   : รูทะลุบนแผ่นข้าง ยิงจากผิวนอกเข้าไปในหน้าตัดของแผ่นหน้า/หลัง ตามที่หัวไขควงเข้าถึงได้จริง
+              ฝั่งที่ถูกยิงได้รูนำที่หน้าตัด (h.edge) ซึ่งเป็นรูปแบบที่ตัวเรนเดอร์กับไฟล์เจาะรองรับอยู่แล้ว
+   ทำไมไม่ใช้ตัวเชื่อมชนิด screw ที่มีอยู่: ตัวนั้นยิงจากหน้าแผ่นลงไปหาชิ้นที่ซ้อนอยู่ใต้หน้าแผ่น
+   พอลำแสงไปชนหน้าตัด drillMates จะคิดผิวที่เจาะจาก axM.z ซึ่งเป็นศูนย์พอดีในกรณีนี้
+   รูจึงไปโผล่บนหน้าแผ่นชิดขอบแทนที่จะเป็นรูหน้าตัด — คิดเองตรงนี้ทั้งคู่จึงถูกและตรวจง่ายกว่า
+   ตำแหน่งทุกจุดคิดจาก "บทบาทของชิ้น + มิติ" ล้วน ไม่อ่านพิกัดโลกสักค่า ตู้ที่หมุนตามผังจึงไม่เพี้ยน */
+function boxJointFormulas(){   // เติมสูตรสองชุดให้เครื่องนี้ครั้งเดียว ถ้ายังไม่มี
+  const fs=getFormulas(); let add=0;
+  [[BOXJ_DOWEL_NAME,DEF_BOX_DOWEL_RULE],[BOXJ_SCREW_NAME,DEF_BOX_SCREW_RULE]].forEach(pr=>{
+    if(!fs.some(f=>f&&f.name===pr[0])){ fs.push({name:pr[0],rule:pr[1]}); add++; } });
+  if(add){ settings.dowelFormulas=fs; try{ lsSet("furnitech:settings",settings); }catch(e){} }
+  return fs;
+}
+/* ช่วงความสูงที่ร่องพื้นกล่องกินไว้ (พิกัดเดียวกับตำแหน่งตามความสูงของจุดเจาะ)
+   เจาะลงไปตรงนั้นดอกจะทะลุร่อง เหลือเนื้อไม้ไม่พอ จึงต้องข้ามจุดนั้นไป */
+function boxJointGrooveBand(p){
+  const g=((p&&p.grooves)||[]).find(x=>x&&x.drawerBot); if(!g) return null;
+  const pad=Math.max(+settings.boxJointGrooveGap||0,0);
+  const half=Math.max((+g.width||0)/2,0)+pad;
+  return {lo:(+g.pos||0)-half, hi:(+g.pos||0)+half};
+}
+function boxJointPlan(parts){
+  const sideL=parts&&parts.sideL, sideR=parts&&parts.sideR, back=parts&&parts.back, subf=parts&&parts.subf;
+  if(!sideL||!sideR||!back||!subf) return {ok:false,why:"กล่องไม่ครบสี่ด้าน"};
+  if([sideL,sideR,back,subf].some(p=>p._alto||p._virtual)) return {ok:false,why:"กล่องรางเหล็ก ไม่ใช่กล่องไม้"};
+  const Tb=+back.T||0, boxH=+back.W||0, depth=+sideL.W||0;
+  if(Tb<11) return {ok:false,why:"ไม้กล่องหนา "+Math.round(Tb)+" มม. บางกว่า 11 เจาะเดือยไม่ได้"};
+  if(boxH<40||depth<40) return {ok:false,why:"กล่องเล็กเกินกว่าจะใส่รอยต่อ"};
+  boxJointFormulas();
+  const dD=Math.max(+settings.boxJointDowelD||8,1), dDep=Math.max(+settings.boxJointDowelDepth||24,6);
+  const mD=Math.max(+settings.boxJointMateD||8,1);
+  const mDep=Math.min(Math.max(+settings.boxJointMateDepth||12,1), Tb-0.5);
+  const sD=Math.max(+settings.boxScrewD||5,1), pD=Math.max(+settings.boxScrewPilotD||3,1);
+  const pDep=Math.max(+settings.boxScrewPilotDepth||30,6);
+  const dFor=settings.boxDowelFormula||BOXJ_DOWEL_NAME, sFor=settings.boxScrewFormula||BOXJ_SCREW_NAME;
+  const conn=edge=>({type:"dowel",edge,d:dD,depth:dDep,mateDepth:mDep,
+    formula:dFor,sizeRule:true,count:2,margin:32,_bj:true});
+  const band=boxJointGrooveBand(sideL)||boxJointGrooveBand(back);
+  const clear=a=>!band||a<band.lo||a>band.hi;
+  const dRaw=dowelAlong(conn("left"),boxH);
+  const sRaw=dowelAlong({sizeRule:true,formula:sFor,count:2,margin:40},boxH);
+  const dAt=dRaw.filter(clear), sAt=sRaw.filter(clear);
+  const skipped=(dRaw.length-dAt.length)+(sRaw.length-sAt.length);
+  const conns=[], holes=[];
+  [["back",back,-1],["subf",subf,1]].forEach(pp=>{
+    const role=pp[0], panel=pp[1], sgn=pp[2];
+    const ly=sgn*(depth/2-Tb/2);                       // ตำแหน่งตามความลึกบนแผ่นข้าง = กลางความหนาแผ่นนั้น
+    [["sideL","left","top","bottom"],["sideR","right","bottom","top"]].forEach(ss=>{
+      const sRole=ss[0], edge=ss[1], faceIn=ss[2], faceOut=ss[3];
+      conns.push({on:role, conn:conn(edge)});
+      dAt.forEach(a=>holes.push({on:sRole, h:{d:mD,x:round(a),y:round(ly),depth:round(mDep),
+        face:faceIn,dowel:true,_bj:true,src:panel.id}}));
+      sAt.forEach(a=>{
+        holes.push({on:sRole, h:{d:sD,x:round(a),y:round(ly),depth:round(Tb),through:true,
+          face:faceOut,screw:true,_bj:true,src:panel.id}});
+        holes.push({on:role, h:{edge,pos:round(a),z:0,d:pD,depth:round(pDep),
+          screw:true,_bj:true,src:panel.id}});
+      });
+    });
+  });
+  return {ok:true,Tb,boxH,depth,skipped,
+    dowel:{formula:dFor,at:dAt,d:dD,depth:dDep,mateD:mD,mateDepth:mDep},
+    screw:{formula:sFor,at:sAt,d:sD,pilotD:pD,pilotDepth:pDep},
+    conns,holes};
+}
+/* เขียนแผนลงชิ้นจริง — ล้างของรอบก่อนทิ้งเสมอ เรียกซ้ำกี่ครั้งผลก็เท่าเดิม
+   (refitDrawerBox ถูกเรียกทุกครั้งที่ขนาดกล่องขยับ ถ้าไม่ล้างรูจะทบกันไปเรื่อย ๆ) */
+function applyDrawerBoxJoints(parts){
+  const P=parts||{}; const byRole={sideL:P.sideL,sideR:P.sideR,back:P.back,subf:P.subf};
+  const all=[P.sideL,P.sideR,P.back,P.subf].filter(Boolean);
+  all.forEach(p=>{
+    if(p.holes&&p.holes.length) p.holes=p.holes.filter(h=>!(h&&h._bj));
+    if(p.connectors&&p.connectors.length) p.connectors=p.connectors.filter(c=>!(c&&c._bj)); });
+  if(settings.boxJointOn===false) return {ok:false,why:"ปิดไว้ในตั้งค่า",cleared:true};
+  const plan=boxJointPlan(P);
+  if(!plan.ok) return plan;
+  plan.conns.forEach(it=>{ const b=byRole[it.on]; if(!b)return;
+    if(!b.connectors)b.connectors=[]; b.connectors.push(Object.assign({},it.conn)); });
+  plan.holes.forEach(it=>{ const b=byRole[it.on]; if(!b)return;
+    if(!b.holes)b.holes=[]; b.holes.push(Object.assign({},it.h)); });
+  return plan;
+}
 function cutDrawerBottom(sideL,sideR,back,subf,bot){
   if(!bot||!(sideL||sideR))return;
   const over=settings.drawerBotOver??4.5, clear=settings.drawerBotClear??0.5, lift=settings.drawerBotLift??11;
@@ -4617,6 +4744,9 @@ function refitDrawerBox(grpBoards, carc){
   setB(subf,  spanW, boxH, Tb, cx, byc, zFront);
   setB(bot,   spanW, Math.max(boxDepth-2*Tb,20), Tbo, cx, yBot, boxCz);
   cutDrawerBottom(sideL,sideR,back,subf,bot);   // พื้นลิ้นชัก: เซาะร่อง 4 ด้าน + ยก + ทื่มเข้าร่อง
+  /* v1.201: เดือย + สกรูที่รอยต่อแผ่นหน้า/หลัง กับแผ่นข้าง — ต้องอยู่หลังเซาะร่องพื้น
+     เพราะตัววางจุดต้องรู้ว่าร่องกินความสูงช่วงไหน จะได้ไม่เจาะลงไปในร่อง */
+  try{ applyDrawerBoxJoints({sideL,sideR,back,subf}); }catch(e){ console.error("boxJoint:",e); }
   try{ drillDrawerSlides(grpBoards, carc); }catch(e){ console.error(e); }   // รางรับข้าง: เจาะรูนำสกรูบนแผ่นข้างตู้
 }
 // สูตรแบ่งแถว: "360,," หรือ "360, -, -" = ล่าง 360 ที่เหลือปล่อย · gN=ช่องไฟจุดนั้น · คั่นด้วยจุลภาค (ช่องเปล่า=ปล่อย)
@@ -10137,7 +10267,10 @@ function makeRenderer(){
   let r; try{ r=new THREE.WebGLRenderer({antialias:!state.eco,preserveDrawingBuffer:true,powerPreference:"high-performance"}); }catch(e){ return null; }
   if(!r||!r.getContext||!r.getContext()){ return null; }
   r.setSize(innerWidth,innerHeight); r.setPixelRatio(state.eco?1:perfDPR());
-  r.shadowMap.enabled=state.shadows; r.shadowMap.type=THREE.PCFSoftShadowMap; r.outputEncoding=THREE.sRGBEncoding;
+  r.shadowMap.enabled=state.shadows;
+  // Camera movement does not change lighting: reuse shadow maps until the model or lights change.
+  r.shadowMap.autoUpdate=false; r.shadowMap.needsUpdate=true;
+  r.shadowMap.type=THREE.PCFSoftShadowMap; r.outputEncoding=THREE.sRGBEncoding;
   return r;
 }
 let sceneFog=null;
@@ -10507,7 +10640,7 @@ function applySceneLight(){
   if(fillLight){ fillLight.color.setHex(P.fill[0]); fillLight.intensity=P.fill[1]; }
   if(rimLight){ rimLight.color.setHex(P.rim[0]); rimLight.intensity=P.rim[1]; }
   if(floor&&floor.material) floor.material.opacity=P.floor;
-  if(renderer) renderer.shadowMap.enabled=!!(state.shadows&&P.key[2]);
+  if(renderer) renderer.shadowMap.enabled=!!state.shadows; // LED occlusion also works indoors and at night.
   const b=$("lightModeBtn"); if(b){ b.classList.toggle("sel",sceneLightMode()!=="sun");
     const t=b.querySelector("span"); if(t) t.textContent=P.label; }
   try{ ledGlowUpdate(); }catch(e){}
@@ -10531,7 +10664,7 @@ function cycleSceneLight(){
    -> สร้างไว้ครบจำนวนตั้งแต่แรกแล้วไม่แตะอีกเลย ใช้ไม่ครบก็แค่หรี่เป็นศูนย์
       ตู้ที่ไม่มีรางไฟ = ทุกดวงหรี่เป็นศูนย์ จำนวนในฉากยังเท่าเดิม ไม่มีการคอมไพล์ใหม่
 
-   ดวงไฟพวกนี้ไม่ทำเงา เพราะเงาต่อดวงแพงมากและมองแทบไม่ออกในตู้
+   ไฟ LED ใช้ shadow map เพื่อให้ชั้นและผนังตู้บังแสงได้
    แสงจริงของรางเป็นแถบยาว ซึ่งต้องใช้ RectAreaLight ที่ r128 ต้องโหลดไฟล์เพิ่มจาก CDN
    ผิดกติกาไฟล์เดียว จึงใช้ดวงกลมเรียงถี่ ๆ ตามรางแทน ผลใกล้เคียงพอและไม่ต้องพึ่งอะไรเพิ่ม */
 let _ledPool=null, _ledWashTex=null;
@@ -10554,11 +10687,15 @@ function ledPoolSize(){ return Math.max(1,Math.min(+settings.ledGlowMax||+DEF_SE
 function ledPool(){
   const want=ledPoolSize();
   if(_ledPool && _ledPool.length===want) return _ledPool;
-  if(_ledPool) _ledPool.forEach(l=>{ if(l.parent) l.parent.remove(l); });
+  if(_ledPool) _ledPool.forEach(l=>{ if(l.parent) l.parent.remove(l); if(l.shadow.map) l.shadow.map.dispose(); });
   _ledPool=[];
   for(let i=0;i<want;i++){
     const l=new THREE.PointLight(0xffffff,0,1,2);
-    l.castShadow=false; l.visible=false; l.userData._ledGlow=true;
+    l.castShadow=true; l.visible=false; l.userData._ledGlow=true;
+    l.shadow.mapSize.set(512,512);
+    l.shadow.camera.near=0.5;
+    l.shadow.bias=-0.00005;
+    l.shadow.normalBias=0;
     scene.add(l); _ledPool.push(l);
   }
   return _ledPool;
@@ -10580,6 +10717,9 @@ function ledOutDir(part,owner){
 }
 function ledGlowUpdate(){
   if(noGL||!renderer||!scene) return 0;
+  renderer.shadowMap.enabled=!!state.shadows;
+  // render3D and lighting controls call this, including every door-animation frame.
+  renderer.shadowMap.needsUpdate=true;
   const pool=ledPool();
   pool.forEach(l=>{ l.intensity=0; l.visible=false; });
   /* ───────── v1.092: ต้องเก็บของเก่าทิ้งก่อนเสมอ ไม่ใช่แค่หรี่ดวงไฟ ─────────
@@ -10620,11 +10760,12 @@ function ledGlowUpdate(){
          ตรงใต้ดวงจึงสว่างจ้าและมืดลงฮวบภายในไม่กี่เซนติเมตร กลายเป็นวงสว่างเรียงกัน
          ถอยดวงไฟออกจากผิว 40 มม. แล้วลด decay เหลือ 1 วงแต่ละดวงจะกว้างขึ้นมาก
          จนซ้อนทับกันเป็นแถบเดียว ไม่ต้องเพิ่มจำนวนดวงให้เปลืองแรงเครื่อง */
-      const px=r.b.x+(r.ax===0?off:0)+r.out.x*40;
-      const py=r.b.y+(r.ax===1?off:0)+r.out.y*40;
-      const pz=r.b.z+(r.ax===2?off:0)+r.out.z*40;
+      const px=r.b.x+(r.ax===0?off:0)+r.out.x*(r.d[0]/2+2);
+      const py=r.b.y+(r.ax===1?off:0)+r.out.y*(r.d[1]/2+2);
+      const pz=r.b.z+(r.ax===2?off:0)+r.out.z*(r.d[2]/2+2);
       l.position.set(px,py,pz).add(root.position);
       l.color.copy(col); l.distance=dist; l.decay=1;
+      l.shadow.camera.far=dist; l.shadow.camera.updateProjectionMatrix();
       l.intensity=power*(r.len/Math.max(want,1))/260;           // รางยาวเท่ากันได้แสงรวมเท่ากัน ไม่ว่าจะใช้กี่ดวง
       l.visible=true;
     }
@@ -10635,7 +10776,7 @@ function ledGlowUpdate(){
   /* v1.090: ต้องแยก "เว้นว่าง" กับ "ใส่ 0" ให้ออก — ใช้ || เฉย ๆ จะทำให้ 0 ตกไปใช้ค่าตั้งต้น
      แล้วช่องที่เขียนว่า 0 = ปิด จะปิดไม่ได้จริง */
   const _wIn=settings.ledWash;
-  const wash=Math.max((_wIn==null||_wIn==="")?(+DEF_SETTINGS.ledWash||220):(+_wIn||0),0);
+  const wash=0; // Unshadowed additive planes leak through partitions; use the shadowed lights.
   /* v1.092: ม่านแสงเป็นการบวกแสงเข้าไป พอห้องมืดลงมันจึงกลบทุกอย่างจนขาวโพลนเป็นแผ่นทึบ
      ความสว่างของฉากยิ่งต่ำ ม่านยิ่งต้องเบา ไม่ใช่ยิ่งแรงตามแบบดวงไฟ */
   const _lp=(SCENE_LIGHTS[sceneLightMode()]||SCENE_LIGHTS.sun);
@@ -11186,9 +11327,15 @@ function startMove(id,e,hit){
   const b=state.boards.find(x=>x.id===id); if(!b)return;
   const g=groundHitAt(e,b.y,new THREE.Vector3(b.x,b.y,b.z))||new THREE.Vector3(b.x,b.y,b.z);   // v1.074
   moveSession={board:b,start:{x:b.x,y:b.y,z:b.z},preview:{x:b.x,y:b.y,z:b.z},axis:null,typed:"",grab:{x:g.x,z:g.z},grabY:null,dragged:false};
+  /* ───────── v1.200: จำ "ตำแหน่งที่ชิ้นถูกวาดอยู่จริง ๆ ตอนนี้" ไว้ ─────────
+     โหมดเปิดบานกับโหมดแยกประกอบวาดชิ้นเยื้องจากตำแหน่งจริง พรีวิวจึงต้องเลื่อน
+     จากจุดที่มันวาดอยู่ ไม่ใช่กระโดดไปตำแหน่งจริง (ดูเหตุผลเต็มที่ applyPreview) */
+  { const o=meshes.find(m=>m.id===b.id); moveSession.draw0=o?o.mesh.position.clone():null; }
   // โหมดทั้งตู้: เลือกทั้งตู้ไว้แล้วคลิกชิ้นในตู้ → ย้ายทุกชิ้นไปด้วยกัน (snap = มุมกรอบตู้ → มุมกรอบตู้อื่น)
   if(state.selectedCab && b.cabInst===state.selectedCab){
-    moveSession.members=state.boards.filter(x=>x.cabInst===b.cabInst).map(x=>({b:x,sx:x.x,sy:x.y,sz:x.z}));
+    moveSession.members=state.boards.filter(x=>x.cabInst===b.cabInst).map(x=>{
+      const o=meshes.find(q=>q.id===x.id);                       // v1.200: ตำแหน่งวาดตอนนี้ของชิ้นนั้น
+      return {b:x,sx:x.x,sy:x.y,sz:x.z,d0:o?o.mesh.position.clone():null}; });
     moveSession.inst=b.cabInst;
     // เลือกมุมจับ: คลิกใกล้มุมตู้ (≤35% ของด้านสั้น) = จับมุมนั้น → snap ด้วยมุมนี้มุมเดียว แม่นกว่า
     if(hit&&hit.point){
@@ -11202,6 +11349,11 @@ function startMove(id,e,hit){
     const hud=document.querySelector("#moveHud .mh-title"); if(hud)hud.dataset.cab="1";
     toast("ย้ายทั้งตู้ "+(b.cab||"")+(moveSession.grabCorner?" — จับมุม (จุดเขียว) ลากไป snap มุมตู้อื่น":" — ลากไป snap มุมตู้อื่นได้ · คลิกใกล้มุม = จับมุมนั้น")+" · Esc ยกเลิก");
   }
+  /* v1.200: ชิ้นที่ถูกวาดเยื้องจากตำแหน่งจริง (บานกาง · ลิ้นชักเลื่อนออก · โหมดแยกประกอบ)
+     ตอนนี้ลากเห็นแล้ว แต่ต้องบอกด้วยว่ารูปที่เห็นเป็นท่ากาง ไม่ใช่ที่ที่ชิ้นจะไปจอดจริง */
+  if(!moveSession.members&&moveSession.draw0){ const d0=moveSession.draw0;
+    if(Math.hypot(d0.x-b.x,d0.y-b.y,d0.z-b.z)>1)
+      toast("ชิ้นนี้กำลังถูกวาดในท่ากาง/แยกออก — ลากได้ตามปกติ แต่ตำแหน่งจริงจะคิดใหม่ตอนปล่อย"); }
   $("moveHud").classList.add("show"); updateHud(); updateAxisLine();
 }
 // จุดเขียวแสดงมุมจับตอนย้ายทั้งตู้
@@ -11302,12 +11454,23 @@ function updateMove(e){
 }
 function applyPreview(nx,ny,nz){
   const s=moveSession,b=s.board; s.preview={x:nx,y:ny,z:nz};
-  if(s.members){ const dx=nx-s.start.x,dy=ny-s.start.y,dz=nz-s.start.z;
+  /* ───────── v1.200: เลื่อนรูปที่วาดอยู่ด้วย "ส่วนต่าง" ไม่ใช่เซ็ตเป็นตำแหน่งจริง ─────────
+     v7.28 ตัดพรีวิวทิ้งทั้งดุ้นเมื่อเปิดบาน เพราะบานกับลิ้นชักถูกวาดเยื้องจากตำแหน่งจริง
+     เซ็ตตำแหน่งจริงลงไปตรง ๆ มันจะเด้งกลับไปท่าปิดกลางคัน
+     แต่การตัดทิ้งเหมารวมชิ้นทุกชนิด ชิ้นธรรมดาอย่างชั้นหรือคานซึ่งตำแหน่งวาดเท่าตำแหน่งจริง
+     จึงนิ่งสนิทระหว่างลากไปด้วย เห็นผลอีกทีตอนปล่อยเมาส์ ระหว่างนั้นไม่รู้ว่าชิ้นไปถึงไหนแล้ว
+     กรอบเลือกก็ไม่ขยับตาม เพราะ updateSelBox อ่านตำแหน่งจาก mesh ไม่ใช่จากตัวเลขของชิ้น
+     บวกส่วนต่างเข้ากับจุดที่มันวาดอยู่ตอนเริ่มลาก จึงถูกทั้งสองแบบ และแก้โหมดแยกประกอบ
+     ซึ่งเยื้องด้วยเหตุผลเดียวกันไปพร้อมกัน · ของจริงยังคิดใหม่ตอนปล่อยเหมือนเดิม */
+  const dx=nx-s.start.x, dy=ny-s.start.y, dz=nz-s.start.z;
+  const _put=(o,d0,fx,fy,fz)=>{ if(!o)return;
+    if(d0) o.mesh.position.set(d0.x+dx,d0.y+dy,d0.z+dz); else o.mesh.position.set(fx,fy,fz); };
+  if(s.members){
     s.members.forEach(m=>{ m.b.x=round(m.sx+dx); m.b.y=round(m.sy+dy); m.b.z=round(m.sz+dz);
-      const o=meshes.find(q=>q.id===m.b.id); if(o&&!state.doorOpen)o.mesh.position.set(m.b.x,m.b.y,m.b.z); });   // v7.28: โหมดเปิดบาน ตำแหน่งวาด≠ตำแหน่งจริง -> ไม่พรีวิวย้าย เดี๋ยว render3D วาดใหม่ตอนปล่อย
+      _put(meshes.find(q=>q.id===m.b.id), m.d0, m.b.x,m.b.y,m.b.z); });
     if(s.grabCorner) showGrabDot(new THREE.Vector3(s.grabCorner.x+dx+root.position.x, s.grabCorner.y+dy+root.position.y, s.grabCorner.z+dz+root.position.z));
   } else { b.x=nx;b.y=ny;b.z=nz;
-    const o=meshes.find(m=>m.id===b.id); if(o&&!state.doorOpen)o.mesh.position.set(nx,ny,nz); }
+    _put(meshes.find(m=>m.id===b.id), s.draw0, nx,ny,nz); }
   updateSelBox(); syncInspectorPos(b); updateHud(); autosave(); invalidate();
 }
 function applyTyped(){
@@ -28950,6 +29113,12 @@ function fittingAgg(boards){   // รวมเดือย + พินรอง�
     (b.holes||[]).forEach(h=>{ if(!h.shelfSup)return;               // v7.77: ตัวรับชั้นแบบสันข้าง = คนละรหัส
       const k=settings.shelfSupCode||"SHELFSUP5";
       (m[k]||(m[k]={art:k,dia:h.d||5,kind:"pin",name:settings.shelfSupName||"ตัวรับชั้นแบบเจาะสันข้าง",unit:"ตัว",count:0})).count+=1; });
+    /* v1.201: สกรูยึดรอยต่อกล่องลิ้นชัก — นับจากรูทะลุฝั่งแผ่นข้างอย่างเดียว
+       รูนำที่หน้าตัดของแผ่นหน้า/หลังเป็นปลายทางของสกรูตัวเดียวกัน นับด้วยจะได้สองเท่า
+       (เดือยของรอยต่อเดียวกันถูกนับไปแล้วทางตัวเชื่อม ไม่ต้องมานับซ้ำตรงนี้) */
+    (b.holes||[]).forEach(h=>{ if(!h||!h._bj||!h.screw||!h.through) return;
+      const k=settings.boxScrewCode||"SCREW5";
+      (m[k]||(m[k]={art:k,dia:h.d||5,kind:"screw",name:settings.boxScrewName||"สกรูยึดกล่องลิ้นชัก Ø5",unit:"ตัว",count:0})).count+=1; });
     (b.holes||[]).forEach(h=>{if(!h.pin||h.sys)return;const d=h.d||settings.pinD;
       /* v1.077: พินสามรหัส — ปกติ / อีกรหัส / กระจก · อ่านจากป้ายที่ติดไว้ตอนเจาะ */
       let k,nm;
