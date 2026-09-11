@@ -418,6 +418,20 @@
   #varCtx button:hover{background:var(--accent);color:#fff}
   #varCtx button.danger{color:var(--red)}
   #varCtx button.danger:hover{background:var(--red);color:#fff}
+  /* ───────── v1.199: รายการเลือกรหัสของหน้า Variables (ตู้นี้) ─────────
+     ลอยเหนือ modal (modal z-index 90) และมีช่องค้นของตัวเอง จึงไม่ติดกรองของช่องพิมพ์ */
+  #cvPick{position:fixed;z-index:210;width:320px;max-width:92vw;padding:8px;background:var(--solid);
+    border:.5px solid var(--line-strong);border-radius:10px;box-shadow:0 16px 44px rgba(0,0,0,.26);display:none}
+  #cvPick.show{display:block}
+  #cvPick .cvpQ{width:100%;padding:6px 9px;border:1px solid var(--line-strong);border-radius:7px;
+    background:var(--card);color:var(--ink);font:inherit;font-size:12.5px}
+  #cvPick .cvpN{font-size:11px;color:var(--muted);margin:5px 2px 3px}
+  #cvPick .cvpList{max-height:min(320px,46vh);overflow:auto}
+  #cvPick .cvpItem{display:block;width:100%;text-align:left;padding:6px 10px;border:none;background:none;
+    border-radius:7px;color:var(--ink);font-family:var(--mono);font-size:12.5px;cursor:pointer}
+  #cvPick .cvpItem:hover{background:var(--accent);color:#fff}
+  #cvPick .cvpItem.sel{background:var(--accent-soft);font-weight:600}
+  .cvPickBtn{flex:0 0 auto;padding:4px 9px;font-size:12px;line-height:1.35}
   .vname{display:flex;align-items:center;gap:2px;flex:1;min-width:0}
   .vrow .vk{flex:1;min-width:0}
   .vrow .vo{flex:1;min-width:0}
@@ -901,7 +915,7 @@
    ===================================================================== */
 /* ---- APP_META: แหล่งความจริงเดียวของเวอร์ชัน (ดูได้จาก console / คลิกชื่อแอป) ---- */
 const APP_META={
-  name:"StarNexus Cabinet", version:"1.198", build:"2026-09-10/side-origin",
+  name:"StarNexus Cabinet", version:"1.199", build:"2026-09-11/cv-pick",
   file:"StarNexus.html", basedOn:"Furnitech_V3.html (v3.11)",
   /* ───────── เริ่มนับเวอร์ชันใหม่ที่ 1.001 (21/08/2026) ─────────
      ของเดิมนับมาถึง 42.1 แล้ววิ่งเป็นทศนิยมสองชั้นซึ่งอ่านลำดับยาก
@@ -909,6 +923,7 @@ const APP_META={
      ประวัติเก่าเก็บไว้ทั้งหมดตามเลขเดิม ไม่ไล่เขียนใหม่ เพราะเลขในนั้นถูกอ้างถึงไปแล้ว
      รายการที่อยู่ใต้ 1.001 ลงไปจึงเป็นเลขชุดเก่า อ่านต่อกันได้ตามวันที่ */
   changelog:[
+    ["1.199","2026-09-11","FIX หน้า Variables (ตู้นี้) เลือกรหัสอื่นไม่ได้ เพราะรายการถูกกรองด้วยค่าที่ค้างอยู่ในช่องเอง — v1.145 เปลี่ยนช่องพวกนี้จากดรอปดาวน์เป็นช่องพิมพ์ที่มีรายการเสนอ (datalist) เพื่อให้ค้นจากรหัสสองร้อยกว่าตัวได้ แต่รายการเสนอของเบราว์เซอร์กรองตามข้อความที่อยู่ในช่องเสมอ และทุกช่องมีค่าค้างอยู่แล้วเพราะออเดอร์กับตัวเติมค่าตั้งต้นใส่มาให้ครบ กางออกมาจึงเห็นแค่บรรทัดเดียวคือค่าของตัวเอง ดูเหมือน Family นั้นมีตัวเลือกอยู่ตัวเดียว ทั้งที่มีเป็นร้อย ต้องลบข้อความทิ้งก่อนถึงจะเห็นทั้งหมด ซึ่งไม่มีอะไรบอกไว้ · เพิ่มปุ่ม ▾ ข้างช่อง กางรายการเต็มของ Family นั้นเป็นหน้าต่างของแอปเอง ไม่ใช่ของเบราว์เซอร์ จึงไม่ถูกกรองด้วยค่าในช่อง · ในหน้าต่างมีช่องค้นแยกของตัวเอง พิมพ์กรองได้เหมือนเดิมโดยค่าที่ตั้งไว้ไม่ถูกแตะ กด Enter = เลือกตัวแรก กด Esc หรือคลิกข้างนอก = ปิด · ค่าที่ตู้ถืออยู่แต่ยังไม่ได้บันทึกเป็นตัวเลือกของ Family ก็อยู่บนสุดของรายการ ไม่หายไปเหมือนเดิม · เลือกตัวเดิมซ้ำไม่วาดหน้าใหม่ทั้งหน้า · ช่องพิมพ์กับรายการเสนอเดิมยังอยู่ครบ ใครพิมพ์เร็วกว่าก็พิมพ์ได้เหมือนเดิม · ตัวคัดรายการแยกเป็น cvPickList(ชื่อ Family, คำค้น) คืนรายการล้วนโดยไม่แตะหน้าจอ จึงเรียกตรวจได้ตรง ๆ"],
     ["1.198","2026-09-10","CHANGE ไฟล์เจาะของแผ่นข้าง หมุนแผ่น 180 องศาก่อนออก จุดศูนย์จึงไปอยู่ที่ขอบหน้าตู้แทนขอบหลัง — ของเดิมมุมอ้างอิงตกที่ขอบหลัง ซึ่งเป็นขอบที่ช่างมองไม่เห็นตอนวางแผ่นบนแท่น ทั้งที่ทุกอย่างบนแผ่นข้างอ้างจากขอบหน้าหมด ทั้งจานบานพับ แนวหน้าบาน และแนวประกอบ · เดินด้วยตัวหมุน 90 องศาที่มีอยู่แล้วสองครั้ง จึงได้การแมปครบทุกอย่างฟรี ทั้งรู ร่อง ช่องบาก เส้นรูปทรงที่วาดเอง ตัวเชื่อม และค่าลดรายด้าน ไม่ต้องเขียนตารางแมปชุดที่สองที่จะไปเพี้ยนกันทีหลัง · ย้ำว่าหมุนไม่ใช่พลิกกระจก มือซ้ายมือขวาของชิ้นไม่เปลี่ยน ผิวที่เครื่องกัดยังเป็นผิวเดิม ถ้าย้ายแกน Y ไปขอบหน้าเฉย ๆ โดยไม่หมุนแกน X ตามด้วย จะกลายเป็นพลิกกระจกแล้วรูทุกตัวไปผิดด้าน แผ่นเสียทั้งใบ · ความยาวกับความกว้างไม่สลับกัน หัวไฟล์และเส้นขอบจึงเท่าเดิมทุกตัว · มีผลเฉพาะแผ่นที่ตั้งเป็นแผ่นข้าง ชิ้นอื่นไม่กระทบ · แผ่นข้างที่กว้างกว่ายาวยังถูกหมุนวางนอนต่อจากนี้เหมือนเดิม สองการหมุนทำงานต่อกันได้เพราะ 180 องศาไม่เปลี่ยนความยาวความกว้าง ตัวตัดสินว่าต้องวางนอนไหมจึงได้คำตอบเดิม"],
     ["1.197","2026-09-10","FIX รางไฟที่สั่งให้วิ่งตามแนวกว้างของแผ่น วางขวางร่องแล้วยื่นพ้นแผ่นออกไป — ตัวสร้างรางเขียนไว้ตั้งแต่ v11.6 ว่ารางเส้นนี้วิ่งแกนไหน เก็บไว้ในตัวชิ้นเรียบร้อย แต่ไม่เคยมีโค้ดตรงไหนอ่านค่านั้นเลยแม้แต่ที่เดียว ตัวรีดหน้าตัดจึงรีดไปตามแกนยาวของชิ้นเสมอ · จุดกึ่งกลางของรางถูกต้องอยู่แล้วเพราะตัวสร้างคำนวณด้วยเวกเตอร์แยกต่างหากซึ่งรู้จักแกนถูก ผิดแค่ทิศที่รีดออกไป รางเลยพาดขวางร่องเป็นกากบาทและยาวล้นออกนอกแผ่น · แก้สามที่ที่ถือว่าความยาวรางอยู่บนแกนยาวของชิ้นเสมอ คือตัวรีดรูปทรง กล่องขอบเขตของชิ้น และตัวหาปลายรางที่ใช้จัดกลุ่มโซนไฟ · กล่องขอบเขตสำคัญกว่าที่คิด เพราะกรอบเลือก การคลิกเลือกชิ้น และตัวเกลี่ยดวงไฟตามความยาวราง อ่านค่าจากตัวเดียวกันหมด · ตัวหาปลายรางถ้าใช้แกนผิด รางสองเส้นที่ต่อกันจริงจะถูกคิดว่าปลายห่างกัน แล้วแยกเป็นคนละโซนไฟ ทำให้จำนวนหม้อแปลงที่คำนวณได้ผิดไปด้วย · ความยาวรางในใบอุปกรณ์ไม่กระทบ เพราะยังอ่านจากช่องเดิมเหมือนเดิม"],
     ["1.196","2026-09-10","CHANGE ช่องตำแหน่งรูเจาะแบบอ้างกึ่งกลาง ตั้งต้นเป็นเลขมิลแทนอัตราส่วน — เดิมขึ้น 1:1 มาก่อน คนจึงเข้าใจว่าช่องนี้ต้องกรอกเป็นอัตราส่วนเท่านั้น แล้วไปพิมพ์ต่อท้ายของเดิมกลายเป็น 1:10mm · ที่จริงกรอกเป็นมิลได้อยู่แล้วตั้งแต่ต้น รวมทั้งค่าลบ · เปลี่ยนค่าตั้งต้นเป็นศูนย์ทั้งสองช่อง ซึ่งให้รูที่เดียวกับ 1:1 เป๊ะ แต่บอกตัวเองว่าช่องนี้เป็นมิล · ป้ายกำกับบอกทิศของค่าบวกด้วย เช่น บวกคือด้านขวา ตามทิศจริงของชิ้นในตู้ ไม่ใช่ทิศในไฟล์ · FIX ค่าที่พิมพ์ผิดถูกกลืนเป็นศูนย์เงียบ ๆ กลายเป็นรูกลางแผ่น ที่แย่กว่าคือบางแบบอ่านออกครึ่งเดียว เช่น 1:10mm ไม่เข้ารูปอัตราส่วนเพราะติดหน่วยต่อท้าย แล้วตกไปให้ตัวอ่านเลขทศนิยมอ่าน 1:10 ได้เลขหนึ่ง กลายเป็นรูที่หนึ่งมิลจากกึ่งกลาง ซึ่งดูเผิน ๆ เหมือนอยู่กลางแผ่น · ตอนนี้ช่องขึ้นกรอบแดงทันทีที่พิมพ์ค่าที่อ่านไม่ออก และกดตกลงไม่ผ่านพร้อมบอกว่าให้ใส่แบบไหน · ตัดหน่วย มม. หรือ mm ท้ายค่าทิ้งให้ก่อนอ่าน พิมพ์ติดมาก็ยังใช้ได้"],
@@ -17631,8 +17646,55 @@ let _cabNumShowGl=false;   // v7.86: หน้า Variables (ตู้นี้)
 // ---- Variables รอง: คลิกขวาที่ตู้ → แสดงเฉพาะ Family/ลูกที่ตู้นี้มี Part ลิงก์ไว้ เปลี่ยนสีได้ ----
 const _cvFix={}; let _cvFixN=0;   // v8.87: ปุ่มเติมลิงก์ที่ขาดของสีที่ตู้เลือก
 let _cvShowExtraDoors=false;   // v1.134: กางดูช่องของบานที่เกินจำนวนบานจริงอยู่หรือไม่
+/* ───────── v1.199: กดเลือกรหัสได้โดยไม่ติดกรองของช่องพิมพ์ ─────────
+   v1.145 เปลี่ยนช่องเลือกหน้านี้เป็น input+datalist เพื่อให้พิมพ์ค้นจากรหัสสองร้อยกว่าตัวได้
+   แต่ datalist กรองตามข้อความที่ "ค้างอยู่ในช่อง" เสมอ และทุกช่องมีค่าค้างอยู่แล้ว
+   เพราะออเดอร์กับตัวเติมค่าตั้งต้นใส่มาให้ครบ กางออกมาจึงเห็นแค่ตัวเดียวคือค่าของตัวเอง
+   เลือกตัวอื่นไม่ได้เลยจนกว่าจะลบข้อความทิ้งก่อน ซึ่งไม่มีอะไรบอกไว้และดูเหมือนรายการเสีย
+   -> ปุ่ม ▾ ข้างช่อง เปิดรายการเต็มของ Family นั้น มีช่องค้นแยกในตัว ไม่ยุ่งกับค่าในช่อง
+   ตัวคัดรายการแยกเป็นฟังก์ชันคืน array ล้วน ไม่แตะ DOM จึงทดสอบตรง ๆ ได้ */
+const _cvOpts=Object.create(null);   // ชื่อ Family -> รายการรหัสทั้งหมดที่หน้านี้ยื่นให้เลือก
+function cvPickList(fam,q){
+  const all=_cvOpts[fam]||[]; const s=String(q==null?"":q).trim().toLowerCase();
+  return s? all.filter(c=>String(c).toLowerCase().indexOf(s)>=0) : all.slice(); }
+function cvPickHide(){ const m=$("cvPick"); if(m){ m.classList.remove("show"); m._inp=null; } }
+function cvPickShow(inp){
+  const m=$("cvPick"); if(!m||!inp) return;
+  const fam=String(inp.dataset.fam||""), cur=String(inp.value||"").trim();
+  const q=m.querySelector(".cvpQ"), nEl=m.querySelector(".cvpN"), box=m.querySelector(".cvpList");
+  m._inp=inp;
+  const draw=()=>{ const list=cvPickList(fam,q.value), tot=(_cvOpts[fam]||[]).length;
+    nEl.textContent=(q.value.trim()? (list.length+" / "+tot+" รหัส") : (tot+" รหัส — กดเลือกได้เลย"));
+    box.innerHTML="";
+    if(!list.length){ box.innerHTML='<div class="muted" style="padding:8px 10px;font-size:12px">ไม่พบรหัสที่ตรงกับคำค้น</div>'; return; }
+    list.forEach(c=>{ const b=document.createElement("button"); b.type="button";
+      b.className="cvpItem"+(c===cur?" sel":""); b.textContent=c;
+      b.onmousedown=ev=>ev.preventDefault();
+      b.onclick=()=>{ cvPickHide(); if(String(inp.value||"")===c) return;   // เลือกตัวเดิม = ไม่ต้องวาดใหม่ทั้งหน้า
+        inp.value=c; inp.dispatchEvent(new Event("change")); }; box.appendChild(b); }); };
+  q.value=""; q.oninput=draw;
+  q.onkeydown=ev=>{ if(ev.key==="Escape"){ ev.stopPropagation(); cvPickHide(); inp.focus(); }
+    else if(ev.key==="Enter"){ const f=box.querySelector(".cvpItem"); if(f){ ev.preventDefault(); f.click(); } } };
+  draw();
+  m.classList.add("show");
+  /* วางใต้ช่อง แล้วดึงกลับเข้าจอ ถ้าล่างไม่พอก็พลิกขึ้นบน */
+  const r=inp.getBoundingClientRect(), w=m.offsetWidth||320, h=m.offsetHeight||260;
+  let top=r.bottom+4; if(top+h>innerHeight-8) top=Math.max(8,r.top-h-4);
+  m.style.left=Math.max(6,Math.min(r.left,innerWidth-w-8))+"px"; m.style.top=top+"px";
+  q.focus();
+  if(!m._bound){ m._bound=1;
+    document.addEventListener("mousedown",ev=>{ if(!m.classList.contains("show")) return;
+      if(m.contains(ev.target)) return;
+      if(m._inp&&(ev.target===m._inp||(ev.target.closest&&ev.target.closest(".cvPickBtn")))) return;
+      cvPickHide(); },true);
+    document.addEventListener("keydown",ev=>{ if(ev.key==="Escape"&&m.classList.contains("show")) cvPickHide(); },true);
+    /* popup เป็น fixed ถ้าเลื่อนหน้าแล้วปล่อยไว้ มันจะค้างคนละที่กับช่องที่มันสังกัด */
+    const sb=$("cabVarBody"); if(sb) sb.addEventListener("scroll",()=>{ if(m.classList.contains("show")) cvPickHide(); }); }
+}
 function openCabVars(board){
-  if(!board)return; Object.keys(_cvFix).forEach(k=>delete _cvFix[k]); const inst=board.cabInst; const boards=state.boards.filter(b=>b.cabInst===inst);
+  if(!board)return; Object.keys(_cvFix).forEach(k=>delete _cvFix[k]);
+  try{ Object.keys(_cvOpts).forEach(k=>delete _cvOpts[k]); cvPickHide(); }catch(e){}   // v1.199
+  const inst=board.cabInst; const boards=state.boards.filter(b=>b.cabInst===inst);
   const g=cabGroups().find(x=>x.boards.some(b=>b.cabInst===inst));
   // เก็บ link ที่ตู้นี้ใช้จริง
   const used=new Set(); boards.forEach(b=>{ ensurePartProps(b); const el=effLinks(b); [el.mat,el.surfT,el.surfB,...(el.edges||[])].forEach(l=>{ if(l)used.add(l); });
@@ -17736,12 +17798,18 @@ function openCabVars(board){
        พิมพ์บางส่วนแล้วเบราว์เซอร์กรองให้เอง · ค่าที่ไม่อยู่ในตัวเลือกก็ยังใส่ได้เหมือนเดิม
        ตัวจัดการเดิมอ่าน e.target.value กับ dataset.fam จึงใช้ได้ทั้งกับ input โดยไม่ต้องแก้ */
     const _cvDlId="cvdl"+(_cvDl++);
+    /* v1.199: รายการที่ปุ่ม ▾ จะกางให้ = ตัวเลือกของ Family + ค่าที่ตู้ถืออยู่ถ้ายังไม่ถูกบันทึกเป็นตัวเลือก */
+    _cvOpts[fam.name]=extra?[extra].concat(opts):opts.slice();
     html+=`<div class="sumh" style="display:flex;align-items:center;gap:10px;justify-content:space-between">
       <span>${escapeHtml(fam.name)} <span style="color:var(--muted);font-weight:400">(จาก XML / เลือกได้)</span></span>
       <span style="display:flex;flex-direction:column;align-items:flex-end;gap:2px">
-        <input class="nameinp cvColor" data-fam="${escapeHtml(fam.name)}" list="${_cvDlId}"
-          value="${escapeHtml(cur)}" placeholder="พิมพ์เพื่อค้น… (${opts.length} รหัส)" spellcheck="false"
-          style="width:240px;font-family:var(--mono)">
+        <span style="display:flex;align-items:center;gap:5px">
+          <input class="nameinp cvColor" data-fam="${escapeHtml(fam.name)}" list="${_cvDlId}"
+            value="${escapeHtml(cur)}" placeholder="พิมพ์เพื่อค้น… (${opts.length} รหัส)" spellcheck="false"
+            style="width:240px;font-family:var(--mono)">
+          <button class="ibtn cvPickBtn" data-fam="${escapeHtml(fam.name)}"
+            title="กางรายการทั้งหมด (${_cvOpts[fam.name].length} รหัส) — ไม่ถูกกรองด้วยค่าที่อยู่ในช่อง">▾</button>
+        </span>
         <datalist id="${_cvDlId}">${opts.map(c=>`<option value="${escapeHtml(c)}"></option>`).join("")}</datalist>
         ${extra?`<span class="muted" style="font-size:10.5px">ยังไม่ได้บันทึกเป็นตัวเลือกของ Family นี้</span>`:""}
       </span></div>`;
@@ -18069,6 +18137,12 @@ function openCabVars(board){
       toast("$"+k+(t===""?" กลับไปใช้ค่าตั้งต้น":" = "+t)+(v!=null?(" → "+round(v)+" มม."):" (คิดค่าไม่ได้)")
         +((_hr&&(_hr.added||_hr.killed||_hr.hinge.holes))
            ?(" · เชื่อมเดือยใหม่ "+_hr.added+" จุด"+(_hr.hinge.doors?(" · รูบานพับ "+_hr.hinge.holes):"")):"")); }; });
+  /* v1.199: ปุ่ม ▾ กางรายการเต็มของ Family นั้น — กดซ้ำที่ปุ่มเดิม = ปิด */
+  body.querySelectorAll(".cvPickBtn").forEach(btn=>btn.onclick=e=>{ e.preventDefault(); e.stopPropagation();
+    const inp=btn.parentElement.querySelector(".cvColor"); if(!inp) return;
+    const m=$("cvPick");
+    if(m&&m.classList.contains("show")&&m._inp===inp){ cvPickHide(); return; }
+    cvPickShow(inp); });
   body.querySelectorAll(".cvColor").forEach(sel=>sel.onchange=e=>{ const f=e.target.dataset.fam; state.cabColors[inst][f]=e.target.value;
     let nch=applyCabinetSkin(inst);   // เลือกสี → บวกผิว + ทอป/พื้นหดตามแผ่นข้าง (กว้างรวมตู้คงที่)
     /* v9.63: Family ที่รับช่อง K_Leg คือรุ่นขาของตู้ใบนี้ เปลี่ยนแล้วต้องจัดขาใหม่ทันที
@@ -33102,6 +33176,8 @@ const CurvedShelf = (function(){
 
 <!-- context menu -->
 <div id="varCtx"></div>
+<!-- v1.199: รายการเลือกรหัสแบบไม่ติดกรอง ของหน้า Variables (ตู้นี้) -->
+<div id="cvPick"><input class="cvpQ" type="text" spellcheck="false" placeholder="ค้นรหัส… (ว่าง = เห็นทั้งหมด)"><div class="cvpN"></div><div class="cvpList"></div></div>
 <div id="ctxMenu">
   <button data-act="edit"><span>✏ แก้ไขในแผงด้านขวา</span></button>
   <div class="ctx-sep"></div>
