@@ -420,17 +420,42 @@
   #varCtx button.danger:hover{background:var(--red);color:#fff}
   /* ───────── v1.199: รายการเลือกรหัสของหน้า Variables (ตู้นี้) ─────────
      ลอยเหนือ modal (modal z-index 90) และมีช่องค้นของตัวเอง จึงไม่ติดกรองของช่องพิมพ์ */
-  #cvPick{position:fixed;z-index:210;width:320px;max-width:92vw;padding:8px;background:var(--solid);
-    border:.5px solid var(--line-strong);border-radius:10px;box-shadow:0 16px 44px rgba(0,0,0,.26);display:none}
-  #cvPick.show{display:block}
-  #cvPick .cvpQ{width:100%;padding:6px 9px;border:1px solid var(--line-strong);border-radius:7px;
-    background:var(--card);color:var(--ink);font:inherit;font-size:12.5px}
-  #cvPick .cvpN{font-size:11px;color:var(--muted);margin:5px 2px 3px}
-  #cvPick .cvpList{max-height:min(320px,46vh);overflow:auto}
-  #cvPick .cvpItem{display:block;width:100%;text-align:left;padding:6px 10px;border:none;background:none;
-    border-radius:7px;color:var(--ink);font-family:var(--mono);font-size:12.5px;cursor:pointer}
-  #cvPick .cvpItem:hover{background:var(--accent);color:#fff}
-  #cvPick .cvpItem.sel{background:var(--accent-soft);font-weight:600}
+  /* v1.212: กว้างขึ้นเพราะรายการกางเป็นตารางหลายคอลัมน์แล้ว */
+  /* ───────── v1.213: ตัวเลือกรหัส — กล่องเดียวใช้ทุกที่ ─────────
+     ของเดิมเขียนสไตล์ไว้ใต้ #cvPick จึงมีผลเฉพาะกล่องของหน้า Variables ของตู้
+     กล่องที่หน้า Library เพิ่งได้ใน 1.212 เลยไม่ได้สไตล์อะไรเลย ปุ่มตกไปเป็น inline
+     รหัสจึงไหลต่อกันเป็นแถวแทนที่จะเรียงลงในคอลัมน์ อ่านไม่ออกว่าคอลัมน์ไหนถึงไหน
+     คราวนี้เขียนเป็นคลาสล้วน ไม่ผูกกับ id ของกล่องไหน กล่องเดียวจึงใช้ได้ทุกหน้า */
+  .pkPop{position:fixed;z-index:240;width:min(880px,94vw);display:none;flex-direction:column;
+    background:var(--solid);border:1px solid var(--line-strong);border-radius:14px;
+    box-shadow:0 20px 56px rgba(0,0,0,.30);overflow:hidden}
+  .pkPop.show{display:flex}
+  .pkHead{display:flex;align-items:baseline;gap:10px;padding:12px 14px 2px}
+  .pkTitle{font-size:13px;font-weight:650;color:var(--ink);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .pkCount{font-size:11px;color:var(--muted);margin-left:auto;flex:0 0 auto;font-variant-numeric:tabular-nums}
+  .pkQwrap{position:relative;padding:8px 14px 10px}
+  .pkQi{position:absolute;left:24px;top:calc(50% - 2px);transform:translateY(-50%);font-size:12px;color:var(--muted);pointer-events:none}
+  .pkQ{width:100%;padding:8px 10px 8px 30px;border:1px solid var(--line-strong);border-radius:9px;
+    background:var(--card);color:var(--ink);font:inherit;font-size:13px;font-family:var(--mono)}
+  .pkQ:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px var(--accent-soft)}
+  .pkList{flex:1 1 auto;overflow:auto;padding:2px 10px 8px;border-top:1px solid var(--line);
+    max-height:min(440px,58vh);scroll-padding-top:26px}
+  .pkGrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(158px,1fr));gap:0 14px;align-items:start}
+  .pkCol{min-width:0}
+  .pkLtr{font-size:10.5px;font-weight:700;color:var(--ink-faint);padding:10px 9px 3px;
+    position:sticky;top:0;background:var(--solid);z-index:1}
+  .pkLtr b{color:var(--ink-dim);font-weight:700}
+  .cvpItem{display:block;width:100%;text-align:left;border:0;background:none;border-radius:8px;
+    color:var(--ink);font-family:var(--mono);font-size:12.5px;line-height:1.5;padding:5px 9px;cursor:pointer;
+    white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .cvpItem:hover{background:rgba(127,127,127,.14)}
+  .cvpItem.sel{box-shadow:inset 2px 0 0 var(--accent);font-weight:650}
+  .cvpItem.on{background:var(--accent);color:#fff;box-shadow:none}
+  .pkEmpty{padding:22px 12px;font-size:12.5px;color:var(--ink-dim);text-align:center}
+  .pkFoot{display:flex;gap:16px;align-items:center;padding:8px 14px;border-top:1px solid var(--line);
+    font-size:11px;color:var(--muted);flex:0 0 auto}
+  .pkFoot kbd{font-family:var(--mono);font-size:10.5px;color:var(--ink-dim);
+    border:1px solid var(--line-strong);border-radius:5px;padding:1px 5px;margin-right:3px}
   .cvPickBtn{flex:0 0 auto;padding:4px 9px;font-size:12px;line-height:1.35}
   .vname{display:flex;align-items:center;gap:2px;flex:1;min-width:0}
   .vrow .vk{flex:1;min-width:0}
@@ -915,7 +940,7 @@
    ===================================================================== */
 /* ---- APP_META: แหล่งความจริงเดียวของเวอร์ชัน (ดูได้จาก console / คลิกชื่อแอป) ---- */
 const APP_META={
-  name:"StarNexus Cabinet", version:"1.211", build:"2026-09-11/leg-follows-mark",
+  name:"StarNexus Cabinet", version:"1.214", build:"2026-09-12/pick-commit",
   file:"StarNexus.html", basedOn:"Furnitech_V3.html (v3.11)",
   /* ───────── เริ่มนับเวอร์ชันใหม่ที่ 1.001 (21/08/2026) ─────────
      ของเดิมนับมาถึง 42.1 แล้ววิ่งเป็นทศนิยมสองชั้นซึ่งอ่านลำดับยาก
@@ -923,6 +948,9 @@ const APP_META={
      ประวัติเก่าเก็บไว้ทั้งหมดตามเลขเดิม ไม่ไล่เขียนใหม่ เพราะเลขในนั้นถูกอ้างถึงไปแล้ว
      รายการที่อยู่ใต้ 1.001 ลงไปจึงเป็นเลขชุดเก่า อ่านต่อกันได้ตามวันที่ */
   changelog:[
+    ["1.214","2026-09-12","FIX กดเลือกรหัสในกล่องที่หน้า Library แล้วไม่มีอะไรเกิดขึ้น — แถวในหน้านั้นเก็บค่าจริงตอน oninput ส่วน onchange ทำหน้าที่สั่งวาดตารางใหม่เท่านั้น ตัวกล่องยิงแต่ change ค่าจึงไม่เคยถูกบันทึก แล้วการวาดใหม่ก็เขียนทับช่องด้วยค่าเดิมทันที ผลที่เห็นคือเลือกแล้วเด้งกลับเหมือนไม่ได้กด · ปุ่มเปิดคลังอุปกรณ์ที่อยู่ข้างกันยิงทั้ง input และ change มาตั้งแต่แรกจึงไม่มีปัญหานี้ พลาดเฉพาะปุ่มใหม่ที่เพิ่งเพิ่มเข้าไป · ยิงทั้งคู่ตามลำดับเหมือนกันแล้วทั้งสองที่ ทั้งหน้า Library และหน้า Variables ของตู้ จะได้ไม่ต้องเดาว่าฝั่งไหนดักอันไหน · เพิ่มข้อทดสอบที่ตรวจถึงตัวข้อมูลจริง ไม่ใช่แค่ข้อความบนหน้าจอ เพราะเคสนี้ข้อความบนหน้าจอเปลี่ยนถูกแล้วชั่วครู่ก่อนถูกวาดทับ ทดสอบแบบเดิมจึงจับไม่ได้ · รวมเป็นสี่สิบสองข้อ"],
+    ["1.213","2026-09-12","FIX+UX กล่องเลือกรหัสของหน้า Library ไม่ได้สไตล์อะไรเลย รหัสไหลต่อกันเป็นแถวแทนที่จะเรียงลงในคอลัมน์ — สไตล์ของปุ่มรายการถูกเขียนไว้ใต้ไอดีของกล่องหน้า Variables ของตู้ จึงมีผลแค่กล่องนั้น กล่องที่หน้า Library เพิ่งได้ใน 1.212 เลยตกไปใช้ค่าเริ่มต้นของเบราว์เซอร์ซึ่งเป็น inline อ่านไม่ออกว่าคอลัมน์ไหนถึงไหน · เขียนสไตล์ใหม่เป็นคลาสล้วน ไม่ผูกกับไอดีของกล่องไหน · แล้วรวมสองกล่องที่ทำงานเหมือนกันเป๊ะให้เหลือตัวเดียว หน้าตาจึงเหมือนกันทั้งสองหน้าและแก้ที่เดียวจบ แทนที่จะรอให้เพี้ยนกันอีกรอบ · ออกแบบหน้าตาใหม่ตามที่ผู้ใช้ขอ คนที่ใช้เครื่องมือนี้อยู่กับรหัสวัสดุเป็นร้อยทั้งวัน สิ่งที่ทำให้เร็วขึ้นจริงคือสแกนตาเจอเร็วกับมือไม่ต้องออกจากคีย์บอร์ด ไม่ใช่เงาหรือลูกเล่น · หัวกล่องบอกว่ากำลังเลือกค่าของตัวไหนอยู่ ตัวนับด้านขวาบอกจำนวนและเปลี่ยนเป็นกี่รายการจากทั้งหมดเมื่อพิมพ์กรอง ช่องค้นมีไอคอนแว่นและขอบเรืองตอนโฟกัส หัวคอลัมน์ตัวอักษรค้างไว้ตอนเลื่อน ค่าที่ใช้อยู่มีขีดสีเข้มคาดข้างซ้ายแทนการถมพื้นทั้งแถบ แถบล่างบอกคีย์ลัดไว้ · เดินด้วยลูกศรได้ทั้งตาราง ลงขึ้นในคอลัมน์เดียวกัน ซ้ายขวาข้ามคอลัมน์ เดินชนขอบแล้วหยุดไม่หลุด ตัวที่กำลังเล็งเลื่อนเข้ามาในสายตาเอง กด Enter เลือก กด Esc ปิดแล้วโฟกัสกลับไปที่ปุ่มเดิม · เปิดมาเล็งที่ค่าปัจจุบันให้เลย พิมพ์กรองแล้วเล็งตัวแรกของผลลัพธ์ · กล่องว่างบอกทางแก้ว่าให้พิมพ์สั้นลง ไม่ใช่ปล่อยว่างเฉย ๆ · ชุดทดสอบสามสิบเก้าข้อรันโค้ดจริงบน jsdom รวมการเดินคีย์บอร์ดทุกทิศและการชนขอบ"],
+    ["1.212","2026-09-12","UX รายการรหัสทุกที่กางเป็นตาราง แยกคอลัมน์ตามตัวอักษรขึ้นต้น แทนแถวเดียวเรียงลงล่าง — รายการของที่นี่ยาวเป็นร้อยรหัส แต่กางออกมาใช้พื้นที่แค่แถบเดียว จอกว้างตั้งเยอะที่เหลือว่างเปล่า ต้องลากสกอร์ลยาว ๆ ทุกครั้งและมองไม่เห็นภาพรวมว่ามีอะไรอยู่บ้าง · ตอนนี้แยกกลุ่มตามตัวอักษรขึ้นต้นแล้ววางเรียงเป็นคอลัมน์ตามความกว้างที่มี จอกว้างได้ประมาณห้าคอลัมน์ จอแคบลดลงเอง ไม่มีเลขตายตัวให้พังตอนย่อหน้าต่าง หัวคอลัมน์บอกตัวอักษรกับจำนวนและค้างไว้ตอนเลื่อน · รหัสที่ขึ้นต้นด้วยตัวเลขรวมเป็นกลุ่มเดียว ตัวอักษรอื่นที่ไม่ใช่ A ถึง Z ไปอยู่ท้ายสุด ในกลุ่มเรียงตามตัวอักษรแบบไม่สนตัวพิมพ์ใหญ่เล็กและอ่านเลขเป็นเลข · ใช้ที่หน้า Variables ของตู้ ที่รายการคลัง Element และเพิ่มปุ่มกางให้ Family ในหน้า Library ซึ่งเดิมมีแต่รายการเสนอของเบราว์เซอร์ที่ถูกกรองด้วยข้อความค้างในช่องเสมอ · ตัวกางลอยแยกเป็นตัวเดียวที่รับปุ่มอ้างอิงกับรายการ ทั้งสองหน้าจึงหน้าตาเหมือนกันและแก้ที่เดียวจบ แทนที่จะก๊อปไปอีกชุดแล้วรอเพี้ยนกันทีหลัง · กล่องกว้างขึ้นเป็นแปดร้อยยี่สิบ ไม่หลุดขอบจอ ล่างไม่พอก็พลิกขึ้นบน กดปุ่มเดิมซ้ำคือปิด ช่องค้นยังอยู่และกรองแล้วยังเป็นตารางเหมือนเดิม · ตัวจัดกลุ่มแยกเป็นฟังก์ชันคืนรายการล้วนไม่แตะหน้าจอ ชุดทดสอบยี่สิบเจ็ดข้อรันโค้ดจริงบน jsdom ด้วยรายการชุดเดียวกับที่เห็นในหน้าจอ"],
     ["1.211","2026-09-11","FIX ขาตู้ในสามมิติไม่ขยับตามรูมาร์คที่หลบไปแล้ว และรูคู่ของขาตัวเดียวกันหลบกันคนละที · ตัววางขาคิดตำแหน่งจากสูตรเดียวกับตัวเจาะ แต่คิดใหม่อีกรอบที่ฝั่งตัวเอง ตราบใดที่ทั้งสองฝั่งเดินสูตรเดียวกันก็ตรงกันดี แต่พอ 1.209 ให้ตัวเจาะขยับรูหนีของที่ขวาง ฝั่งวางขาไม่รู้เรื่องด้วย ขาจึงยืนที่เดิมแล้วไม่ตรงรูที่ช่างจะเจอหน้างาน ซึ่งเป็นอาการคิดคนละที่แบบเดียวกับที่บันทึกก่อนหน้าเตือนไว้หลายรอบ · ตอนนี้ตัวเจาะจำจุดศูนย์ขาที่ได้จริงไว้กับแผ่นพื้น แล้วตัววางขาอ่านจากตรงนั้น ระบบจึงมีคำตอบเดียว · แผ่นพื้นที่ยังไม่มีจุดบันทึกไว้ เช่นไฟล์ที่บันทึกไว้ก่อนหน้านี้ ยังใช้สูตรเดิมได้ตามปกติ · อีกเรื่องคือการหลบเดิมทำทีละรู แต่ขาริมหนึ่งตัวใช้รูคู่ พอรูซ้ายชนแล้วขยับส่วนรูขวาไม่ชนจึงอยู่ที่เดิม คู่นั้นก็เยื้องกันแล้วขาวางไม่ลง ตอนนี้หลบเป็นรายขา ตรวจการชนของทั้งคู่พร้อมกันแล้วเลื่อนไปด้วยกัน · ตู้ที่หมุนตามผังยังไปตรงรูของตัวเอง ทดสอบครบทั้งเก้าสิบ หนึ่งร้อยแปดสิบ และสองร้อยเจ็ดสิบองศา · ชุดทดสอบรวมสามสิบห้าข้อในสองไฟล์ ยืนยันว่าขาหลังที่หลบไปสิบสี่จุดห้ามิลลิเมตร ขาไปยืนตรงจุดใหม่ ส่วนขากลางที่ไม่ได้ชนกับขาหน้าทั้งแถวไม่ขยับสักมิลลิเมตร"],
     ["1.210","2026-09-11","TWEAK ทิศที่รูมาร์คขาใช้หนีของที่ขวาง กำหนดชัดว่าขึ้นมาทางหน้าตู้ก่อน — 1.209 ลองทั้งสองทิศเท่ากันแล้วเลือกทางที่ขยับน้อยกว่า ซึ่งแปลว่าบางจุดถอยไปทางหลังโดยไม่มีเหตุผลอะไรนอกจากตัวเลขน้อยกว่าอยู่ครึ่งมิลลิเมตร · ทางหน้ามีที่ว่างมากกว่าจริงเพราะขอบหน้าแผ่นพื้นไม่มีอะไรมาชน ส่วนทางหลังไปเจอแนวแผ่นหลังเร็ว จึงให้ไล่หาทางหน้าก่อนจนถึงยี่สิบมิลลิเมตร ไม่พ้นจริง ๆ ค่อยถอยไปทางหลังได้อีกสิบ · ทิศหน้าอ่านจากตัวตู้เองเหมือนที่ตัววางรูมาร์คใช้อยู่แล้ว ตู้ที่หมุนตามผังจึงหนีไปทางหน้าของตัวเอง ไม่ใช่ทางแกนโลกตายตัว · ทั้งหมดนี้ทำงานเองตั้งแต่เปิดไฟล์ ไม่มีอะไรต้องไปกดเปิด และไม่ได้เพิ่มช่องในหน้าตั้งค่าเพราะไม่ใช่ค่าที่ต้องมานั่งปรับ · ชุดทดสอบเพิ่มเป็นยี่สิบเอ็ดข้อ ครอบกรณีทางหน้าตันจนต้องยอมถอยหลัง และตู้ที่ทิศหน้ากลับด้าน"],
     ["1.209","2026-09-11","FIX รูมาร์คขาตู้ทับรูคัมมินิฟิกบนแผ่นพื้น — คัมของมินิฟิกอยู่ผิวล่างของแผ่นพื้น ผิวเดียวกับรูมาร์คขาเป๊ะ และห่างจากขอบสามสิบสี่มิลลิเมตร ส่วนขาริมวางห่างขอบสามสิบสองแล้วแตกเป็นรูคู่ห่างกันสิบสอง จึงได้ยี่สิบหกกับสามสิบแปด · เคสจริง BAT070 ลึกห้าร้อยเจ็ดสิบ คัมอยู่ที่สี่ร้อยจุดแปด รูมาร์คอยู่ที่สามร้อยเก้าสิบหกจุดแปด ห่างกันสี่มิลลิเมตร ขณะที่รูแปดกับคัมสิบห้าต้องห่างกันอย่างน้อยสิบเอ็ดจุดห้าถึงจะไม่กินเนื้อกัน · ตัววางรูมาร์คไม่เคยมองว่าบนแผ่นมีอะไรอยู่แล้วบ้าง วางตามสูตรอย่างเดียวแล้วจบ ทางแก้จึงเป็นการให้มันรู้จักหลบ ไม่ใช่ไปผูกกับความลึกใดความลึกหนึ่ง ตู้ลึกอื่นที่บังเอิญชนก็รอดไปด้วยโดยไม่ต้องไล่เพิ่มเงื่อนไขทีละขนาด · รูคัมไม่ได้ถูกเก็บเป็นรูในตัวแผ่น มันถูกคิดจากตัวเชื่อมตอนวาดสามมิติและตอนออกไฟล์เจาะ จึงต้องคิดตำแหน่งเองจากตัวเชื่อมด้วยสูตรเดียวกับที่สามมิติใช้ · นับรูอื่นบนผิวล่างเป็นของที่ต้องหลบด้วย รวมถึงรูฝั่งตรงข้ามที่ลึกจนเนื้อไม้ระหว่างกันไม่เหลือ ส่วนรูที่ตื้นพอจะมีเนื้อคั่นไม่นับ · จุดที่ชนจะเลื่อนตามแนวลึกทีละครึ่งมิลลิเมตร ลองทั้งสองทิศแล้วเลือกทางที่ขยับน้อยกว่า หยุดทันทีที่พ้น ไม่เกินยี่สิบมิลลิเมตรและไม่หลุดขอบแผ่น หลบไม่พ้นก็อยู่ที่เดิมแทนที่จะไปโผล่ที่แปลก ๆ · จุดที่ไม่ชนไม่ขยับสักมิลลิเมตร และมีข้อความใน console บอกว่าขยับไปกี่รู · ของที่ต้องหลบอยู่ในลายเซ็นของรูมาร์คด้วย มินิฟิกขยับเมื่อไหร่รูมาร์คคิดใหม่ตาม · ปิดได้ที่ legMarkAvoid ระยะเผื่อและระยะหลบสูงสุดปรับได้ · ชุดทดสอบสิบเจ็ดข้อใช้แผ่นพื้นจริงของ BAT070 แปดร้อยหกสิบเก้าจุดหกคูณห้าร้อยเจ็ดสิบ"],
@@ -17911,7 +17939,12 @@ function renderVars(){
       const dl=`<datalist id="${dlId}">${opts.map(o=>`<option>${escapeHtml(o)}</option>`).join("")}</datalist>`;
       const dis=(topFam&&!topColor)?"disabled":"";
       const ph=(topFam&&!topColor)?"เลือกค่าหัวบนสุดก่อน":"เว้นว่าง = ใช้เป็นโฟลเดอร์จัดกลุ่ม · ใส่ค่าแล้วกด 💾 = เป็น Family มีสี/ค่า";
-      orderCell=dl+`<input class="nameinp vo" list="${dlId}" value="${escapeHtml(curVal)}" placeholder="${ph}" style="font-family:var(--mono)" ${dis}>`;
+      /* v1.212: ปุ่มกางรายการเต็มของ Family นี้ เป็นตารางแยกคอลัมน์ตามตัวอักษร
+         ช่องพิมพ์กับรายการเสนอของเบราว์เซอร์ยังอยู่ครบ ใครพิมพ์เร็วกว่าก็พิมพ์ได้เหมือนเดิม
+         แต่รายการเสนอนั้นถูกกรองด้วยข้อความที่ค้างอยู่ในช่องเสมอ กางเองจึงเห็นครบกว่า */
+      orderCell=dl+`<span style="display:flex;align-items:center;gap:4px;flex:1;min-width:0">
+        <input class="nameinp vo" list="${dlId}" value="${escapeHtml(curVal)}" placeholder="${ph}" style="flex:1;min-width:0;font-family:var(--mono)" ${dis}>
+        <button class="ibtn vfam" title="กางรายการทั้งหมดของ Family นี้ (${opts.length} ค่า) — แยกคอลัมน์ตามตัวอักษร" style="flex:0 0 auto;padding:4px 8px" ${dis}>▾</button></span>`;
     } else if(topFam){ mode="kid";                     // ลูกธรรมดา → โค้ดเก็บใน kids ของสีหัวบนสุด
       orderCell=`<input class="nameinp vo" ${la} value="${escapeHtml(curVal)}" placeholder="${topColor?("โค้ดสำหรับ "+escapeHtml(topColor)):"เลือกค่าหัวก่อน"}" style="font-family:var(--mono)" ${topColor?"":"disabled"}>`;
     } else { mode="solo"; orderCell=`<input class="nameinp vo" ${la} value="${escapeHtml(n.order||"")}" style="font-family:var(--mono)">`; }
@@ -17931,6 +17964,19 @@ function renderVars(){
       if(_vo&&_cv&&_cv[0]!=="$"&&_cv!=="No Edge"&&!elemOrPartByCode(_cv)){
         _vo.classList.add("vmiss");
         _vo.title="รหัส \u201c"+_cv+"\u201d ไม่มีในคลัง Element แล้ว — อาจถูกเปลี่ยนชื่อหรือลบไป"; } }
+    /* v1.212: ปุ่ม ▾ ของ Family — ใช้ตัวกางตัวเดียวกับหน้า Variables (ตู้นี้) */
+    { const fb=row.querySelector(".vfam");
+      if(fb) fb.onclick=e=>{ e.preventDefault(); e.stopPropagation();
+        const io=row.querySelector(".vo"); if(!io) return;
+        const list=famOpts(n).slice(); const cv=String(io.value||"").trim();
+        if(cv&&list.indexOf(cv)<0) list.unshift(cv);
+        codePickAt(fb,list,cv,"ตัวเลือกของ "+(n.name||"Family"),v=>{
+          /* v1.214: ตัวที่เก็บค่าจริงของแถวนี้คือ oninput ส่วน onchange แค่สั่งวาดตารางใหม่
+             ยิงแต่ change ค่าจึงไม่ถูกบันทึก แล้วการวาดใหม่ก็ทับด้วยค่าเดิมทันที
+             เหมือนกดเลือกแล้วไม่มีอะไรเกิดขึ้น · ยิงทั้งคู่ตามลำดับเหมือนปุ่มคลัง Element */
+          io.value=v;
+          io.dispatchEvent(new Event("input",{bubbles:true}));
+          io.dispatchEvent(new Event("change",{bubbles:true})); }); }; }
     { const pb=row.querySelector(".vpick");
       if(pb) pb.onclick=e=>{ e.stopPropagation();
         const inp=row.querySelector(".vo");
@@ -18096,42 +18142,137 @@ let _cvShowExtraDoors=false;   // v1.134: กางดูช่องของ�
    -> ปุ่ม ▾ ข้างช่อง เปิดรายการเต็มของ Family นั้น มีช่องค้นแยกในตัว ไม่ยุ่งกับค่าในช่อง
    ตัวคัดรายการแยกเป็นฟังก์ชันคืน array ล้วน ไม่แตะ DOM จึงทดสอบตรง ๆ ได้ */
 const _cvOpts=Object.create(null);   // ชื่อ Family -> รายการรหัสทั้งหมดที่หน้านี้ยื่นให้เลือก
+/* ───────── v1.212: กางรายการรหัสเป็นตาราง แยกคอลัมน์ตามตัวอักษรขึ้นต้น ─────────
+   รายการรหัสของที่นี่ยาวเป็นร้อย แต่กางออกมาเป็นแถวเดียวเรียงลงล่างเสมอ
+   จอกว้างตั้งเยอะแต่ใช้พื้นที่แค่แถบเดียว ที่เหลือว่างเปล่า ต้องลากสกอร์ลยาว ๆ ทุกครั้ง
+   และมองไม่เห็นภาพรวมว่ามีอะไรอยู่บ้าง ต้องค่อย ๆ ไถผ่านทีละบรรทัด
+   แยกเป็นกลุ่มตามตัวอักษรขึ้นต้นแล้ววางเรียงเป็นคอลัมน์ตามความกว้างที่มี
+   จอกว้างได้ห้าคอลัมน์ จอแคบลดลงเอง ไม่ต้องมีเลขตายตัวให้พังตอนย่อหน้าต่าง
+   ตัวเลขขึ้นต้นรวมเป็นกลุ่มเดียว ตัวอักษรอื่นที่ไม่ใช่ A-Z ไปอยู่ท้ายสุด
+   ตัวจัดกลุ่มแยกเป็นฟังก์ชันคืน array ล้วน ไม่แตะหน้าจอ จึงเรียกตรวจได้ตรง ๆ */
+function pickGroups(codes){
+  const g=new Map();
+  (codes||[]).forEach(c=>{ const s=String(c==null?"":c).trim(); if(!s) return;
+    const ch=s.charAt(0).toUpperCase();
+    const k=/[0-9]/.test(ch)?"0-9":(/[A-Z]/.test(ch)?ch:"อื่น ๆ");
+    if(!g.has(k)) g.set(k,[]); g.get(k).push(s); });
+  const rank=x=>x==="0-9"?1:(x==="อื่น ๆ"?2:0);
+  return [...g.entries()]
+    .sort((a,b)=>(rank(a[0])-rank(b[0]))||String(a[0]).localeCompare(String(b[0]),"en"))
+    .map(e=>({letter:e[0], items:e[1].sort((x,y)=>x.localeCompare(y,"en",{numeric:true,sensitivity:"base"}))}));
+}
+/* วาดลงกล่องที่ให้มา · onPick(code) เรียกเมื่อกดเลือก
+   คืนคอลัมน์ของปุ่มกลับไปด้วย ตัวเดินคีย์บอร์ดจะได้รู้ว่าอะไรอยู่ข้างอะไร */
+function pickGridInto(box,codes,cur,onPick,minW){
+  if(!box) return {n:0,cols:[]};
+  box.innerHTML="";
+  const groups=pickGroups(codes);
+  if(!groups.length){ box.innerHTML='<div class="pkEmpty">ไม่มีรหัสที่ตรงกับคำค้น — ลองพิมพ์สั้นลง</div>'; return {n:0,cols:[]}; }
+  const grid=document.createElement("div"); grid.className="pkGrid";
+  if(minW) grid.style.gridTemplateColumns="repeat(auto-fill,minmax("+minW+"px,1fr))";
+  const cols=[]; let n=0;
+  groups.forEach(g=>{
+    const col=document.createElement("div"); col.className="pkCol";
+    const h=document.createElement("div"); h.className="pkLtr";
+    h.innerHTML=escapeHtml(g.letter)+" <b>"+g.items.length+"</b>";
+    col.appendChild(h);
+    const cb=[];
+    g.items.forEach(c=>{ const b=document.createElement("button"); b.type="button";
+      b.className="cvpItem"+(c===cur?" sel":""); b.textContent=c; b.title=c;
+      b.onmousedown=ev=>ev.preventDefault();
+      b.onclick=()=>{ try{ onPick(c); }catch(e){ console.error("pick:",e); } };
+      col.appendChild(b); cb.push(b); n++; });
+    grid.appendChild(col); cols.push(cb); });
+  box.appendChild(grid);
+  return {n,cols};
+}
 function cvPickList(fam,q){
   const all=_cvOpts[fam]||[]; const s=String(q==null?"":q).trim().toLowerCase();
   return s? all.filter(c=>String(c).toLowerCase().indexOf(s)>=0) : all.slice(); }
-function cvPickHide(){ const m=$("cvPick"); if(m){ m.classList.remove("show"); m._inp=null; } }
-function cvPickShow(inp){
-  const m=$("cvPick"); if(!m||!inp) return;
-  const fam=String(inp.dataset.fam||""), cur=String(inp.value||"").trim();
-  const q=m.querySelector(".cvpQ"), nEl=m.querySelector(".cvpN"), box=m.querySelector(".cvpList");
-  m._inp=inp;
-  const draw=()=>{ const list=cvPickList(fam,q.value), tot=(_cvOpts[fam]||[]).length;
-    nEl.textContent=(q.value.trim()? (list.length+" / "+tot+" รหัส") : (tot+" รหัส — กดเลือกได้เลย"));
-    box.innerHTML="";
-    if(!list.length){ box.innerHTML='<div class="muted" style="padding:8px 10px;font-size:12px">ไม่พบรหัสที่ตรงกับคำค้น</div>'; return; }
-    list.forEach(c=>{ const b=document.createElement("button"); b.type="button";
-      b.className="cvpItem"+(c===cur?" sel":""); b.textContent=c;
-      b.onmousedown=ev=>ev.preventDefault();
-      b.onclick=()=>{ cvPickHide(); if(String(inp.value||"")===c) return;   // เลือกตัวเดิม = ไม่ต้องวาดใหม่ทั้งหน้า
-        inp.value=c; inp.dispatchEvent(new Event("change")); }; box.appendChild(b); }); };
+/* ───────── v1.213: กล่องเลือกรหัส — ตัวเดียวใช้ทุกหน้า ─────────
+   เดิมมีสองกล่องคนละที่ กล่องของหน้า Variables ของตู้กับกล่องของหน้า Library
+   เนื้อในทำงานเหมือนกันเป๊ะแต่เขียนแยกกัน สไตล์ก็เลยหลุดไปข้างหนึ่ง
+   รวมเป็นตัวเดียวที่รับปุ่มอ้างอิงกับรายการมา หน้าตาจึงเหมือนกันและแก้ที่เดียวจบ
+   คนที่ใช้เครื่องมือนี้ทั้งวันอยู่กับรหัสวัสดุเป็นร้อย สิ่งที่ทำให้เร็วขึ้นจริงคือ
+   สแกนตาเจอเร็วกับมือไม่ต้องออกจากคีย์บอร์ด จึงเดินด้วยลูกศรได้ทั้งตาราง
+   ลง-ขึ้นในคอลัมน์เดียว ซ้าย-ขวาข้ามคอลัมน์ กด Enter เลือก กด Esc ปิด
+   ตัวที่กำลังเล็งเลื่อนเข้ามาในสายตาเองเมื่อเดินไปถึงขอบ */
+let _pkPop=null, _pkNav=null;
+function pkPopEl(){
+  if(_pkPop) return _pkPop;
+  const ov=document.createElement("div"); ov.className="pkPop"; ov.id="codePick";
+  ov.innerHTML='<div class="pkHead"><span class="pkTitle"></span><span class="pkCount"></span></div>'
+    +'<div class="pkQwrap"><span class="pkQi">⌕</span>'
+    +'<input class="pkQ cvpQ" type="text" spellcheck="false" placeholder="พิมพ์เพื่อกรอง"></div>'
+    +'<div class="pkList cvpList"></div>'
+    +'<div class="pkFoot"><span><kbd>↑↓←→</kbd>เลื่อน</span><span><kbd>Enter</kbd>เลือก</span>'
+    +'<span><kbd>Esc</kbd>ปิด</span></div>';
+  document.body.appendChild(ov);
+  document.addEventListener("mousedown",ev=>{ if(!ov.classList.contains("show")) return;
+    if(ov.contains(ev.target)) return;
+    if(ov._anchor&&ov._anchor.contains&&ov._anchor.contains(ev.target)) return;
+    codePickHide(); },true);
+  _pkPop=ov; return ov;
+}
+function codePickHide(){ if(_pkPop){ _pkPop.classList.remove("show"); _pkPop._anchor=null; } _pkNav=null; }
+function codePickAt(anchor,codes,cur,title,onPick){
+  const ov=pkPopEl();
+  if(ov.classList.contains("show")&&ov._anchor===anchor){ codePickHide(); return; }   // กดปุ่มเดิมซ้ำ = ปิด
+  ov._anchor=anchor;
+  const all=(codes||[]).map(c=>String(c==null?"":c).trim()).filter(Boolean);
+  const q=ov.querySelector(".pkQ"), tEl=ov.querySelector(".pkTitle"),
+        nEl=ov.querySelector(".pkCount"), box=ov.querySelector(".pkList");
+  tEl.textContent=title||"เลือกรหัส";
+  const choose=c=>{ codePickHide(); try{ onPick(c); }catch(e){ console.error("codePick:",e); } };
+  const draw=()=>{ const s=String(q.value||"").trim().toLowerCase();
+    const list=s?all.filter(c=>c.toLowerCase().indexOf(s)>=0):all.slice();
+    nEl.textContent=s?(list.length+" จาก "+all.length):(all.length+" รายการ");
+    const r=pickGridInto(box,list,cur,choose);
+    _pkNav={cols:r.cols,c:0,r:0,on:null};
+    /* เล็งไว้ที่ค่าปัจจุบันก่อน ถ้าไม่มีในรายการก็เล็งตัวแรก */
+    r.cols.forEach((col,ci)=>col.forEach((b,ri)=>{ if(b.textContent===cur){ _pkNav.c=ci; _pkNav.r=ri; } }));
+    pkAim(0,0); };
   q.value=""; q.oninput=draw;
-  q.onkeydown=ev=>{ if(ev.key==="Escape"){ ev.stopPropagation(); cvPickHide(); inp.focus(); }
-    else if(ev.key==="Enter"){ const f=box.querySelector(".cvpItem"); if(f){ ev.preventDefault(); f.click(); } } };
+  q.onkeydown=ev=>{
+    if(ev.key==="Escape"){ ev.stopPropagation(); codePickHide(); try{ anchor.focus(); }catch(e){} return; }
+    if(ev.key==="Enter"){ ev.preventDefault(); const b=_pkNav&&_pkNav.on; if(b) b.click(); return; }
+    const d={ArrowDown:[0,1],ArrowUp:[0,-1],ArrowRight:[1,0],ArrowLeft:[-1,0]}[ev.key];
+    if(d){ ev.preventDefault(); pkAim(d[0],d[1]); } };
   draw();
-  m.classList.add("show");
-  /* วางใต้ช่อง แล้วดึงกลับเข้าจอ ถ้าล่างไม่พอก็พลิกขึ้นบน */
-  const r=inp.getBoundingClientRect(), w=m.offsetWidth||320, h=m.offsetHeight||260;
-  let top=r.bottom+4; if(top+h>innerHeight-8) top=Math.max(8,r.top-h-4);
-  m.style.left=Math.max(6,Math.min(r.left,innerWidth-w-8))+"px"; m.style.top=top+"px";
-  q.focus();
-  if(!m._bound){ m._bound=1;
-    document.addEventListener("mousedown",ev=>{ if(!m.classList.contains("show")) return;
-      if(m.contains(ev.target)) return;
-      if(m._inp&&(ev.target===m._inp||(ev.target.closest&&ev.target.closest(".cvPickBtn")))) return;
-      cvPickHide(); },true);
-    document.addEventListener("keydown",ev=>{ if(ev.key==="Escape"&&m.classList.contains("show")) cvPickHide(); },true);
-    /* popup เป็น fixed ถ้าเลื่อนหน้าแล้วปล่อยไว้ มันจะค้างคนละที่กับช่องที่มันสังกัด */
-    const sb=$("cabVarBody"); if(sb) sb.addEventListener("scroll",()=>{ if(m.classList.contains("show")) cvPickHide(); }); }
+  ov.classList.add("show");
+  /* วางใต้ปุ่ม ชิดขวาของปุ่ม แล้วดึงกลับเข้าจอ · ล่างไม่พอก็พลิกขึ้นบน */
+  const r0=anchor.getBoundingClientRect(), w=ov.offsetWidth||600, h=ov.offsetHeight||340;
+  let top=r0.bottom+6; if(top+h>innerHeight-8) top=Math.max(8,r0.top-h-6);
+  ov.style.left=Math.max(6,Math.min(r0.right-w,innerWidth-w-8))+"px";
+  ov.style.top=top+"px";
+  try{ q.focus(); }catch(e){}
+}
+/* เดินตัวเล็งไปตามตาราง · (0,0) = ยืนยันตำแหน่งปัจจุบันโดยไม่ขยับ */
+function pkAim(dc,dr){
+  const nv=_pkNav; if(!nv||!nv.cols.length) return;
+  if(nv.on){ nv.on.classList.remove("on"); nv.on=null; }
+  const clamp=(v,n)=>Math.max(0,Math.min(v,n-1));
+  if(dc){ let c=nv.c;
+    for(let i=0;i<nv.cols.length;i++){ c=clamp(c+dc,nv.cols.length); if(nv.cols[c].length) break; }
+    nv.c=c; nv.r=clamp(nv.r,nv.cols[c].length); }
+  else if(dr){ const col=nv.cols[nv.c]||[]; nv.r=clamp(nv.r+dr,col.length); }
+  nv.c=clamp(nv.c,nv.cols.length);
+  const col=nv.cols[nv.c]||[]; nv.r=clamp(nv.r,col.length);
+  const b=col[nv.r]; if(!b) return;
+  b.classList.add("on"); nv.on=b;
+  try{ b.scrollIntoView({block:"nearest",inline:"nearest"}); }catch(e){}
+}
+/* v1.213: หน้า Variables ของตู้ ใช้กล่องกลางตัวเดียวกับหน้า Library แล้ว
+   เดิมมีกล่องของตัวเองซึ่งเนื้อในทำงานเหมือนกันเป๊ะ ต่างแค่ที่อยู่ในไฟล์ */
+function cvPickHide(){ codePickHide(); }
+function cvPickShow(inp,btn){
+  if(!inp) return;
+  const fam=String(inp.dataset.fam||""), cur=String(inp.value||"").trim();
+  codePickAt(btn||inp, cvPickList(fam,""), cur, "ตัวเลือกของ "+(fam||"Family"), c=>{
+    if(String(inp.value||"")===c) return;                    // เลือกตัวเดิม = ไม่ต้องวาดใหม่ทั้งหน้า
+    inp.value=c;
+    inp.dispatchEvent(new Event("input",{bubbles:true}));    // v1.214: ยิงทั้งคู่ ไม่ต้องเดาว่าฝั่งไหนดักอันไหน
+    inp.dispatchEvent(new Event("change",{bubbles:true})); });
 }
 function openCabVars(board){
   if(!board)return; Object.keys(_cvFix).forEach(k=>delete _cvFix[k]);
@@ -18582,9 +18723,7 @@ function openCabVars(board){
   /* v1.199: ปุ่ม ▾ กางรายการเต็มของ Family นั้น — กดซ้ำที่ปุ่มเดิม = ปิด */
   body.querySelectorAll(".cvPickBtn").forEach(btn=>btn.onclick=e=>{ e.preventDefault(); e.stopPropagation();
     const inp=btn.parentElement.querySelector(".cvColor"); if(!inp) return;
-    const m=$("cvPick");
-    if(m&&m.classList.contains("show")&&m._inp===inp){ cvPickHide(); return; }
-    cvPickShow(inp); });
+    cvPickShow(inp,btn); });
   body.querySelectorAll(".cvColor").forEach(sel=>sel.onchange=e=>{ const f=e.target.dataset.fam; state.cabColors[inst][f]=e.target.value;
     let nch=applyCabinetSkin(inst);   // เลือกสี → บวกผิว + ทอป/พื้นหดตามแผ่นข้าง (กว้างรวมตู้คงที่)
     /* v9.63: Family ที่รับช่อง K_Leg คือรุ่นขาของตู้ใบนี้ เปลี่ยนแล้วต้องจัดขาใหม่ทันที
@@ -22990,7 +23129,7 @@ async function fitModelSaveAs(code){
 function elemPick(type,cur,onPick){
   const TH={materials:"Material",surfaces:"Surface",edges:"Edge",colors:"Color",parts:"Part",fittings:"Fitting"}[type]||type;
   const list=((settings.elements||{})[type]||[]).filter(x=>x&&x.code);
-  const _C=ovCard(560,88), ov=_C.ov;
+  const _C=ovCard(980,88), ov=_C.ov;    // v1.212: กว้างขึ้นเพราะกางเป็นตารางหลายคอลัมน์
   ov.innerHTML='<div style="'+_C.cardCSS+'">'
     +'<div style="padding:12px 16px;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:10px;flex:none">'
     +'<b style="font-size:14px">เลือกรหัส '+escapeHtml(TH)+'</b>'
@@ -23012,21 +23151,29 @@ function elemPick(type,cur,onPick){
       if(!grp[f]){ grp[f]=[]; ord.push(f); } grp[f].push(x); });
     L.innerHTML="";
     if(!hit.length){ L.innerHTML='<div style="padding:18px;color:var(--ink-dim);font-size:12.5px">ไม่พบรหัสที่ตรงกับที่พิมพ์</div>'; return; }
+    /* v1.212: กางเป็นตารางหลายคอลัมน์ โฟลเดอร์ละคอลัมน์ จอกว้างเห็นได้ทีเดียวหลายกลุ่ม
+       ของเดิมเรียงลงล่างแถวเดียว คลังที่มีเป็นร้อยรหัสต้องไถยาวมากกว่าจะเจอ */
+    const grid=document.createElement("div");
+    grid.style.cssText="display:grid;grid-template-columns:repeat(auto-fill,minmax(210px,1fr));gap:2px 12px;align-items:start";
     ord.forEach(f=>{
+      const col=document.createElement("div");
       const h=document.createElement("div");
-      h.style.cssText="font-size:11px;font-weight:700;color:var(--ink-faint);padding:9px 8px 3px";
-      h.textContent=f+" ("+grp[f].length+")"; L.appendChild(h);
+      h.style.cssText="font-size:11px;font-weight:700;color:var(--ink-faint);padding:9px 8px 3px;position:sticky;top:0;background:var(--solid)";
+      h.textContent=f+" ("+grp[f].length+")"; col.appendChild(h);
       grp[f].forEach(x=>{
         const b=document.createElement("button");
         b.style.cssText="display:block;width:100%;text-align:left;border:0;background:"
           +((x.code===cur)?"var(--accent);color:#fff":"transparent")
-          +";font:inherit;font-size:12.5px;font-family:var(--mono);padding:6px 9px;border-radius:7px;cursor:pointer";
+          +";font:inherit;font-size:12.5px;font-family:var(--mono);padding:6px 9px;border-radius:7px;cursor:pointer;"
+          +"white-space:nowrap;overflow:hidden;text-overflow:ellipsis";
         b.textContent=x.code+((x.desc1||x.desc)?("   "+(x.desc1||x.desc)):"");
+        b.title=x.code+((x.desc1||x.desc)?("  —  "+(x.desc1||x.desc)):"");
         b.onmouseenter=()=>{ if(x.code!==cur) b.style.background="rgba(127,127,127,.14)"; };
         b.onmouseleave=()=>{ if(x.code!==cur) b.style.background="transparent"; };
         b.onclick=()=>{ kill(); try{ onPick(x.code); }catch(e){ console.error(e); } };
-        L.appendChild(b); });
-    });
+        col.appendChild(b); });
+      grid.appendChild(col); });
+    L.appendChild(grid);
   };
   Q.oninput=draw; draw(); setTimeout(()=>{ try{ Q.focus(); }catch(e){} },30);
 }
@@ -33759,8 +33906,7 @@ const CurvedShelf = (function(){
 
 <!-- context menu -->
 <div id="varCtx"></div>
-<!-- v1.199: รายการเลือกรหัสแบบไม่ติดกรอง ของหน้า Variables (ตู้นี้) -->
-<div id="cvPick"><input class="cvpQ" type="text" spellcheck="false" placeholder="ค้นรหัส… (ว่าง = เห็นทั้งหมด)"><div class="cvpN"></div><div class="cvpList"></div></div>
+<!-- v1.213: กล่องเลือกรหัสถูกสร้างจาก JS แล้ว (ตัวเดียวใช้ทั้งหน้า Library และ Variables ของตู้) -->
 <div id="ctxMenu">
   <button data-act="edit"><span>✏ แก้ไขในแผงด้านขวา</span></button>
   <div class="ctx-sep"></div>
