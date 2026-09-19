@@ -940,7 +940,7 @@
    ===================================================================== */
 /* ---- APP_META: แหล่งความจริงเดียวของเวอร์ชัน (ดูได้จาก console / คลิกชื่อแอป) ---- */
 const APP_META={
-  name:"StarNexus Cabinet", version:"1.231", build:"2026-09-16/one-cab-vars",
+  name:"StarNexus Cabinet", version:"1.232", build:"2026-09-19/rail-rear-anchor",
   file:"StarNexus.html", basedOn:"Furnitech_V3.html (v3.11)",
   /* ───────── เริ่มนับเวอร์ชันใหม่ที่ 1.001 (21/08/2026) ─────────
      ของเดิมนับมาถึง 42.1 แล้ววิ่งเป็นทศนิยมสองชั้นซึ่งอ่านลำดับยาก
@@ -948,6 +948,7 @@ const APP_META={
      ประวัติเก่าเก็บไว้ทั้งหมดตามเลขเดิม ไม่ไล่เขียนใหม่ เพราะเลขในนั้นถูกอ้างถึงไปแล้ว
      รายการที่อยู่ใต้ 1.001 ลงไปจึงเป็นเลขชุดเก่า อ่านต่อกันได้ตามวันที่ */
   changelog:[
+    ["1.232","2026-09-19","FIX คานหลังไม่อยู่หลังตู้หลังปรับความลึก (ลึก 300 → 570 คานลอยออกมา 270 มม. ไปอยู่กลางตู้) — คานที่ตั้งตำแหน่งเอง (rule.manualPlacement) จำระยะแนวลึกจากผิวหน้าตู้อย่างเดียว แต่ตัวย่อขยายตรึงผิวหลังไว้แล้วดันผิวหน้าออก คานจึงถูกลากตามผิวหน้าไปเท่าส่วนต่างความลึก (ตัวสเกลวางคานไว้ถูกแล้ว ตัวที่ลากออกคือ reapplyRules รอบถัดมา) · ตอนนี้จำระยะจากผิวหลัง (zr) ไว้คู่กับผิวหน้า แล้วยึดผิวที่คานอยู่ใกล้กว่า (zf) ทั้งตอนลาก ตอนพิมพ์เลข x/y/z และตอนกรอกระยะร่นของคานในช่อง · คานเก่าที่ยังไม่มีค่าใหม่ ถ้ากฎตั้งไว้ว่าอ้างจากด้านหลัง (refD.from=หลัง หรือ behindBack) กลับเข้าที่ตามกฎเองในรอบคิดถัดไป"],
     ["1.231","2026-09-16","FIX ตู้ที่รวมตู้ในช่องเป็นตู้เดียว หน้าต่าง Variables ขึ้นหน้าบานไม่ครบ (5 บาน ขึ้น 2) และค่าของตู้แม่ไม่ไปถึงบานของตู้ในช่อง — นับบาน/ลิงก์จากชิ้นของตู้ตัวเองเท่านั้น และตู้ในช่องถือค่าตัวแปรชุดของตัวเอง (ว่าง) · ตู้ในช่องที่รวมกับตู้แม่ใช้ค่าตัวแปรชุดเดียวกับตู้แม่ (cabColors / cabNums / cabVarTxt ผูกเป็นก้อนเดียว แก้ที่ไหนก็เปลี่ยนทั้งคู่ · ค่าที่ตู้แม่ยังไม่มียกมาจากตู้ในช่องตอนผูกครั้งแรก · แยกกลับ = คัดลอกออกเป็นของตัวเอง) · หน้าต่าง Variables และตัวนับบาน (มือจับ XML) รวมชิ้นของตู้ในช่องที่รวมอยู่ · FIX หน้าต่าง Variables ซ่อนตัวแปรบานที่เลขเกินจำนวนบานจริง แม้ชิ้นในตู้ผูกเลขนั้นอยู่ (แผ่นหน้า Filler ผูก FrontShapeP3/P5 ไม่นับเป็นบาน) — นับเลขบานสูงสุดที่ชิ้นผูกไว้ด้วย · เปิด Variables จากชิ้นในตู้ในช่องที่รวมแล้ว = เปิดของตู้แม่"],
     ["1.230","2026-09-16","FEAT บันทึกตู้ประกอบเลือก เก็บเป็นตู้เดียว (ตั้งต้น) / เก็บแยกเป็นตู้ในช่อง / ไม่รวม — ตู้เดียว = ตู้ในช่องตั้งค่า รวมเป็นตู้เดียวกับตู้แม่ ไว้ โหลดกลับแล้วรายการตู้ขึ้นบรรทัดเดียว BOM/ส่งออกรหัสเดียว ส่วนการคิดขนาดยังแยกภายใน (รวมชิ้นตรง ๆ ทดสอบแล้วพัง: คานกระโดดไปบนตู้แม่ หน้าลิ้นชักกลายเป็นบานสูง 2277 Filler ยืด) · รายการตู้ใช้กลุ่มเดียวกับงานส่งออก ตู้ในช่องที่รวมแล้วไม่ขึ้นแยก · ทำสำเนาตู้แม่ = สำเนาตู้ในช่องที่รวมไปด้วยและยังผูกช่อง · ☁ ในรายการของตู้ที่มีตู้ในช่องรวมอยู่ → บันทึกแบบตู้ประกอบ · แก้โมเดลแยกแก้เฉพาะตู้แม่ · รหัสใหม่ไม่เติม -NEW ซ้ำ"],
     ["1.229","2026-09-16","FEAT บันทึกตู้ประกอบเป็นรหัสใหม่ รวมตู้ที่ใส่ในช่องไปด้วย (เลือกไม่รวมได้) — ตู้ในช่องเก็บเป็นกลุ่มย่อยของรหัสใหม่ (_asmSub) โหลดกลับ (คลังคลาวด์ · XML · ไฟล์ตู้ · แปะตู้ · ใส่ในช่อง) แยกเป็นตู้ในช่องตามเดิมพร้อมรหัสเดิม ไม่ถูกยืดรวมกับตู้แม่ตอนปรับตาม XML · FEAT ตู้ในช่องเลือกยึดแนวหน้าด้วย หน้าบาน (ตั้งต้น) หรือโครงตู้ — หน้าบานและแผ่นหน้า Filler เสมอหน้าชั้นเสมอ เปลี่ยนขนาดแล้วโครงหดเข้าใน · FIX ตู้ในช่องที่มี Filler โครงเลยแผ่นหลังตู้แม่ (ยึดหน้าด้วยแผ่นหน้า Filler แต่คิดความลึกที่โครง) · FIX เปิดไฟล์โปรเจกต์ / ออเดอร์ / ลิงก์แชร์ ตู้ในช่องหาช่องไม่เจอ — ตัวแปลง id ไม่แปลงรหัสชิ้นที่ _nest อ้าง"],
@@ -25980,12 +25981,34 @@ function rememberRailPlacement(b){
   withCabAxisAligned(b.cabInst,()=>{
     const f=cabFaces(b.cabInst);if(!f)return;
     b.rule.orient=b.orient==='front'?'ตั้ง':'นอน';b.rule.railW=b.W;b.rule.T=b.T;
-    b.rule.manualPlacement={x:round(b.x-(f.innerL+f.innerR)/2),y:round(b.y-f.botY),z:round(b.z-f.frontZ),trim:round(f.innerR-f.innerL-b.L)};
+    b.rule.manualPlacement=railManualZ({x:round(b.x-(f.innerL+f.innerR)/2),y:round(b.y-f.botY),trim:round(f.innerR-f.innerL-b.L)},f,b.z);
   });
+}
+/* ───────── v1.232: คานที่ตั้งตำแหน่งเอง ต้องจำว่าเกาะผิว "หน้า" หรือ "หลัง" ─────────
+   manualPlacement.z เดิมวัดจากผิวหน้าตู้อย่างเดียว ส่วนตัวย่อขยายตู้ตรึงผิวหลังไว้
+   แล้วดันผิวหน้าออกไป (scaleModelBoards ยึด mn[] เป็นจุดตั้งต้นทุกแกน)
+   พอ reapplyRules คิดคานใหม่ คานหลังจึงถูกลากตามผิวหน้า ลอยห่างจากหลังตู้
+   เท่ากับส่วนต่างความลึกเป๊ะ ๆ (เคสจริง: ลึก 300 → 570 คานหลังลอยออกมา 270 มม. ไปอยู่กลางตู้)
+   ตัวสเกลเองวางคานไว้ถูกแล้ว (ชิ้นบางตามแกนลึกตรึงระยะถึงขอบที่ใกล้สุด) ตัวที่ลากออกคือรอบคิดกฎ
+   จึงจำระยะจากผิวหลัง (zr) ไว้คู่กับระยะจากผิวหน้า (z) แล้วเลือกผิวที่คานอยู่ใกล้กว่า (zf) */
+function railManualZ(m,f,z){
+  m.z=round(z-f.frontZ); m.zr=round(z-f.rearZ);
+  m.zf=(Math.abs(z-f.rearZ)<=Math.abs(f.frontZ-z))?'R':'F';
+  return m;
+}
+/* ค่าที่บันทึกไว้ก่อน v1.232 ไม่มี zf/zr — ถ้ากฎของคานบอกว่าอ้างจากด้านหลัง ให้คืนระยะตามกฎ
+   (คานหลังที่ลอยไปแล้วกลับเข้าที่เอง) · คานในช่องไม่เข้าทางนี้ เพราะอ้างผิวของช่องไม่ใช่ผิวตู้ */
+function manualRailDepth(rule,f){
+  const m=rule.manualPlacement, d=(rule.orient==='ตั้ง'?+rule.T:+rule.railW)||0;
+  const legacy=(m.zf!=='R'&&m.zf!=='F');
+  if(legacy&&!rule.channelRail&&(rule.behindBack||((rule.refD&&rule.refD.from)==='หลัง')))
+    return round(f.rearZ+Math.max(+((rule.refD||{}).off)||0,0)+d/2);
+  if(!legacy&&m.zf==='R'&&Number.isFinite(+m.zr)) return round(f.rearZ+(+m.zr));
+  return round(f.frontZ+(+m.z||0));
 }
 function manualRailGeometry(rule,f){
   const m=rule.manualPlacement;return {orient:rule.orient==='ตั้ง'?'front':'flat',L:round(f.innerR-f.innerL-m.trim),W:+rule.railW,T:+rule.T,
-    x:round((f.innerL+f.innerR)/2+m.x),y:round(f.botY+m.y),z:round(f.frontZ+m.z)};
+    x:round((f.innerL+f.innerR)/2+m.x),y:round(f.botY+m.y),z:manualRailDepth(rule,f)};
 }
 function captureRailMove(s){
   if(!s||s.members||!isRail(s.board))return;
@@ -26058,10 +26081,10 @@ function editChannelRail(b,values){
       if(values.W!=null)rule.railW=+values.W;if(values.T!=null)rule.T=+values.T;
       if(values.L!=null)m.trim=f.innerR-f.innerL-(+values.L);
       if(values.x!=null)m.x=+values.x-(f.innerL+f.innerR)/2;
-      if(values.y!=null)m.y=+values.y-f.botY;if(values.z!=null)m.z=+values.z-f.frontZ;
+      if(values.y!=null)m.y=+values.y-f.botY;if(values.z!=null)railManualZ(m,f,+values.z);
       if(values.off!=null){const anchor=state.boards.find(x=>x.id===rule.refShelf&&x.cabInst===b.cabInst),ch=channelRailBounds(anchor,rule.channelRail.side);
         const d=rule.orient==='ตั้ง'?+rule.T:+rule.railW,from=values.from||channelRailDepth(rule).from;
-        rule.refD={from,off:+values.off};m.z=(from==='หลัง'?ch.rear+(+values.off)+d/2:ch.front-(+values.off)-d/2)-f.frontZ;
+        rule.refD={from,off:+values.off};railManualZ(m,f,(from==='หลัง'?ch.rear+(+values.off)+d/2:ch.front-(+values.off)-d/2));
       }
       const g=manualRailGeometry(rule,f);if(!Object.values(g).filter(x=>typeof x==='number').every(Number.isFinite)||Math.min(g.L,g.W,g.T)<=0)throw Error('ขนาดคานไม่ถูกต้อง');
       b.rule=rule;Object.assign(b,g);
