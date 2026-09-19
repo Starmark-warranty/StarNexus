@@ -940,7 +940,7 @@
    ===================================================================== */
 /* ---- APP_META: แหล่งความจริงเดียวของเวอร์ชัน (ดูได้จาก console / คลิกชื่อแอป) ---- */
 const APP_META={
-  name:"StarNexus Cabinet", version:"1.232", build:"2026-09-19/rail-rear-anchor",
+  name:"StarNexus Cabinet", version:"1.233", build:"2026-09-19/xml-find-replace",
   file:"StarNexus.html", basedOn:"Furnitech_V3.html (v3.11)",
   /* ───────── เริ่มนับเวอร์ชันใหม่ที่ 1.001 (21/08/2026) ─────────
      ของเดิมนับมาถึง 42.1 แล้ววิ่งเป็นทศนิยมสองชั้นซึ่งอ่านลำดับยาก
@@ -948,6 +948,7 @@ const APP_META={
      ประวัติเก่าเก็บไว้ทั้งหมดตามเลขเดิม ไม่ไล่เขียนใหม่ เพราะเลขในนั้นถูกอ้างถึงไปแล้ว
      รายการที่อยู่ใต้ 1.001 ลงไปจึงเป็นเลขชุดเก่า อ่านต่อกันได้ตามวันที่ */
   changelog:[
+    ["1.233","2026-09-19","FEAT หน้าตรวจ XML ก่อนโหลด กด Ctrl+F ค้นหาและแทนที่ค่าในตารางตู้ได้ (ปุ่ม 🔍 บนหัวหน้าต่างก็เปิดได้) — Ctrl+F ของเบราว์เซอร์ใช้กับหน้านี้ไม่ได้ เพราะค่าทุกช่องอยู่ใน value ของ input ซึ่งตัวค้นของเบราว์เซอร์มองไม่เห็นและแทนที่ไม่ได้ · เลือกขอบเขตได้: ทุกคอลัมน์หรือเจาะจงคอลัมน์ (รหัสตู้ ขนาด D1..Dn และทุกช่องที่ XML ส่งมา) · ตรงตัวพิมพ์ · ตรงทั้งช่อง (กันแทนที่โดนบางส่วนของรหัส) · เฉพาะแถวที่ติ๊กไว้ · Enter หรือ F3 ไปตัวถัดไป Shift+Enter ย้อนกลับ Esc ปิดแถบ (ไม่ปิดหน้าต่าง) · ค่าที่แทนที่เดินทางเดียวกับพิมพ์เอง เขียนลง PVarString ของแถวนั้น ติดธงแก้ไข และไปถึง Save As ไฟล์ใหม่ กับ เก็บเป็นออเดอร์แก้ไข ครบ ไฟล์ต้นฉบับไม่ถูกแตะ · แทนที่ทั้งหมดเช็คของในคลังรอบเดียวตอนจบ ไม่ใช่ทุกช่อง"],
     ["1.232","2026-09-19","FIX คานหลังไม่อยู่หลังตู้หลังปรับความลึก (ลึก 300 → 570 คานลอยออกมา 270 มม. ไปอยู่กลางตู้) — คานที่ตั้งตำแหน่งเอง (rule.manualPlacement) จำระยะแนวลึกจากผิวหน้าตู้อย่างเดียว แต่ตัวย่อขยายตรึงผิวหลังไว้แล้วดันผิวหน้าออก คานจึงถูกลากตามผิวหน้าไปเท่าส่วนต่างความลึก (ตัวสเกลวางคานไว้ถูกแล้ว ตัวที่ลากออกคือ reapplyRules รอบถัดมา) · ตอนนี้จำระยะจากผิวหลัง (zr) ไว้คู่กับผิวหน้า แล้วยึดผิวที่คานอยู่ใกล้กว่า (zf) ทั้งตอนลาก ตอนพิมพ์เลข x/y/z และตอนกรอกระยะร่นของคานในช่อง · คานเก่าที่ยังไม่มีค่าใหม่ ถ้ากฎตั้งไว้ว่าอ้างจากด้านหลัง (refD.from=หลัง หรือ behindBack) กลับเข้าที่ตามกฎเองในรอบคิดถัดไป"],
     ["1.231","2026-09-16","FIX ตู้ที่รวมตู้ในช่องเป็นตู้เดียว หน้าต่าง Variables ขึ้นหน้าบานไม่ครบ (5 บาน ขึ้น 2) และค่าของตู้แม่ไม่ไปถึงบานของตู้ในช่อง — นับบาน/ลิงก์จากชิ้นของตู้ตัวเองเท่านั้น และตู้ในช่องถือค่าตัวแปรชุดของตัวเอง (ว่าง) · ตู้ในช่องที่รวมกับตู้แม่ใช้ค่าตัวแปรชุดเดียวกับตู้แม่ (cabColors / cabNums / cabVarTxt ผูกเป็นก้อนเดียว แก้ที่ไหนก็เปลี่ยนทั้งคู่ · ค่าที่ตู้แม่ยังไม่มียกมาจากตู้ในช่องตอนผูกครั้งแรก · แยกกลับ = คัดลอกออกเป็นของตัวเอง) · หน้าต่าง Variables และตัวนับบาน (มือจับ XML) รวมชิ้นของตู้ในช่องที่รวมอยู่ · FIX หน้าต่าง Variables ซ่อนตัวแปรบานที่เลขเกินจำนวนบานจริง แม้ชิ้นในตู้ผูกเลขนั้นอยู่ (แผ่นหน้า Filler ผูก FrontShapeP3/P5 ไม่นับเป็นบาน) — นับเลขบานสูงสุดที่ชิ้นผูกไว้ด้วย · เปิด Variables จากชิ้นในตู้ในช่องที่รวมแล้ว = เปิดของตู้แม่"],
     ["1.230","2026-09-16","FEAT บันทึกตู้ประกอบเลือก เก็บเป็นตู้เดียว (ตั้งต้น) / เก็บแยกเป็นตู้ในช่อง / ไม่รวม — ตู้เดียว = ตู้ในช่องตั้งค่า รวมเป็นตู้เดียวกับตู้แม่ ไว้ โหลดกลับแล้วรายการตู้ขึ้นบรรทัดเดียว BOM/ส่งออกรหัสเดียว ส่วนการคิดขนาดยังแยกภายใน (รวมชิ้นตรง ๆ ทดสอบแล้วพัง: คานกระโดดไปบนตู้แม่ หน้าลิ้นชักกลายเป็นบานสูง 2277 Filler ยืด) · รายการตู้ใช้กลุ่มเดียวกับงานส่งออก ตู้ในช่องที่รวมแล้วไม่ขึ้นแยก · ทำสำเนาตู้แม่ = สำเนาตู้ในช่องที่รวมไปด้วยและยังผูกช่อง · ☁ ในรายการของตู้ที่มีตู้ในช่องรวมอยู่ → บันทึกแบบตู้ประกอบ · แก้โมเดลแยกแก้เฉพาะตู้แม่ · รหัสใหม่ไม่เติม -NEW ซ้ำ"],
@@ -21333,11 +21334,28 @@ function xmlPreviewDialog(orderNo,parsed,maps,doc,setEls){
         +'<span style="font-size:12px;color:var(--ink-dim)">'+parsed.length+' ตู้ · '+pvKeys.length+' ช่องข้อมูล'
           +(pvKeys.filter(k=>!mapped.has(k)).length?(' · <span style="color:#e58a24">'+pvKeys.filter(k=>!mapped.has(k)).length+' ช่องยังไม่จับคู่ (*)</span>'):'')+(nWarn?(' · <b style="color:#e5484d">'+nWarn+' แถวต้องดู</b>'):' · ค่าอ่านได้ครบทุกแถว')+'</span>'
         +'<span style="flex:1"></span>'
+        +'<button class="ibtn" id="xpFbtn" title="ค้นหาและแทนที่ค่าในตารางตู้ (Ctrl+F)">🔍 ค้นหา / แทนที่</button>'
         +'<button class="ibtn" id="xpAll">เลือกทั้งหมด</button><button class="ibtn" id="xpNone">ไม่เลือกเลย</button>'
         +'<button class="ibtn" id="xpWarn">เลือกเฉพาะที่ปกติ</button></div>'
       +'<div class="seg tabs" id="xpTabs" style="margin:8px 16px 0;flex:none">'
         +_xpTabs.map((t,i)=>'<button type="button" data-t="'+t[0]+'" class="'+(i===0?'sel':'')+'">'+escapeHtml(t[1])
           +(t[2]?(' <span style="opacity:.55;font-size:11px">'+escapeHtml(t[2])+'</span>'):'')+'</button>').join("")+'</div>'
+      /* v1.233: แถบค้นหา/แทนที่ — ซ่อนไว้ก่อน เปิดด้วย Ctrl+F หรือปุ่มบนหัวหน้าต่าง */
+      +'<div id="xpFind" style="display:none;margin:8px 16px 0;padding:6px 8px;border:1px solid var(--line);border-radius:9px;background:var(--panel-strong);align-items:center;gap:6px;flex:none;flex-wrap:wrap">'
+        +'<span style="font-size:12px;color:var(--ink-dim);white-space:nowrap">🔍 ค้นหา</span>'
+        +'<input id="xpFq" class="nameinp" placeholder="ค่าที่ต้องการหา" style="width:180px;font-family:var(--mono);font-size:12px">'
+        +'<span style="font-size:12px;color:var(--ink-dim);white-space:nowrap">แทนที่ด้วย</span>'
+        +'<input id="xpFr" class="nameinp" placeholder="ค่าใหม่ (เว้นว่าง = ลบค่าทิ้ง)" style="width:180px;font-family:var(--mono);font-size:12px">'
+        +'<select id="xpFcol" class="nameinp" style="width:150px;font-size:11.5px"></select>'
+        +'<label style="font-size:11.5px;display:flex;align-items:center;gap:4px;white-space:nowrap"><input type="checkbox" id="xpFcase"> ตรงตัวพิมพ์</label>'
+        +'<label style="font-size:11.5px;display:flex;align-items:center;gap:4px;white-space:nowrap"><input type="checkbox" id="xpFwhole"> ตรงทั้งช่อง</label>'
+        +'<label style="font-size:11.5px;display:flex;align-items:center;gap:4px;white-space:nowrap"><input type="checkbox" id="xpFonly" checked> เฉพาะแถวที่ติ๊ก</label>'
+        +'<span id="xpFn" style="font-size:11.5px;color:var(--ink-dim);min-width:58px;text-align:center;font-family:var(--mono)"></span>'
+        +'<button type="button" class="ibtn" id="xpFprev" title="ก่อนหน้า (Shift+Enter)" style="padding:3px 9px">↑</button>'
+        +'<button type="button" class="ibtn" id="xpFnext" title="ถัดไป (Enter หรือ F3)" style="padding:3px 9px">↓</button>'
+        +'<button type="button" class="ibtn" id="xpFrep" title="แทนที่ช่องที่ไฮไลต์อยู่ แล้วไปช่องถัดไป" style="padding:3px 9px">แทนที่</button>'
+        +'<button type="button" class="ibtn" id="xpFall" title="แทนที่ทุกช่องที่พบในขอบเขตที่ตั้งไว้" style="padding:3px 9px;font-weight:600">แทนที่ทั้งหมด</button>'
+        +'<button type="button" class="ibtn" id="xpFx" title="ปิดแถบค้นหา (Esc)" style="padding:3px 9px">✕</button></div>'
       +'<div id="xpPaneCab" style="flex:1;overflow:auto;padding:0 4px">'+'<table style="border-collapse:collapse;font-size:12px;width:100%">'
         +'<thead><tr>'+head.map(h=>{ const un=(pvKeys.indexOf(h)>=0&&!mapped.has(h));
             return '<th title="'+(un?'ยังไม่ได้จับคู่ในตั้งค่า XML':'')+'" style="position:sticky;top:0;background:var(--solid);padding:6px 7px;text-align:left;font-size:11px;color:'+(un?'#e58a24':'var(--ink-dim)')+';border-bottom:1px solid var(--line);white-space:nowrap">'+escapeHtml(h)+(un?' *':'')+'</th>'; }).join("")+'</tr></thead>'
@@ -21405,14 +21423,14 @@ function xmlPreviewDialog(orderNo,parsed,maps,doc,setEls){
       upd();
     });
     /* เขียนค่าที่แก้กลับลง pv ทันที · ค่าที่ใช้จริง (ขนาด ตัวแปร) คิดใหม่ตอนกดโหลด */
-    let _edited=0;
+    let _edited=0, _xpBulk=0;                 // v1.233: _xpBulk = กำลังแทนที่ทั้งหมด → เช็คคลังรอบเดียวตอนจบ ไม่ใช่ทุกช่อง
     ov.querySelectorAll(".xpF").forEach(el=>el.onchange=()=>{
       const i=+el.dataset.i, k=el.dataset.k, v=String(el.value||"").trim();
       const p=parsed[i]; if(!p) return; p.pv=p.pv||{};
       if(String(p.pv[k]||"")===v) return;
       p.pv[k]=v; p._dirty=true; _edited++;
       el.style.fontWeight="700"; el.title="แก้ไว้ในรอบนี้ (ไฟล์ต้นฉบับไม่ถูกแตะ)";
-      upd(); _libDraw(); });                    // v9.59: เช็คคลังใหม่ทันทีที่แก้ค่า
+      upd(); if(!_xpBulk) _libDraw(); });       // v9.59: เช็คคลังใหม่ทันทีที่แก้ค่า (v1.233: ระหว่างแทนที่ทั้งหมด รอเช็คทีเดียวตอนจบ)
     const _reparse=p=>{ if(!p._dirty) return p;
       const pv=p.pv||{};
       p.W=parseFloat(pv.ART_SIZEX)||p.W; p.D=parseFloat(pv.ART_SIZEY)||p.D;
@@ -21462,7 +21480,90 @@ function xmlPreviewDialog(orderNo,parsed,maps,doc,setEls){
             cab:parsed.filter((p2,i)=>keep[i]).length, xml:x});
         toast(ok?("เก็บออเดอร์แก้ไขขึ้นคลาวด์แล้ว: "+nm):"เก็บไม่สำเร็จ");
       }catch(e){ toast("เก็บไม่สำเร็จ: "+(e&&e.message||e)); } };
-    const done=v=>{ ov.remove(); res(v); };
+    /* ───────── v1.233: Ctrl+F ค้นหา / แทนที่ในตารางตู้ ─────────
+       ออเดอร์จริงมีสิบกว่าตู้คูณสามสิบกว่าช่อง รหัสสีที่ส่งมาผิดตัวเดียวต้องไล่พิมพ์ทับทีละช่อง
+       Ctrl+F ของเบราว์เซอร์ช่วยไม่ได้เลย เพราะค่าอยู่ใน value ของ input ซึ่งตัวค้นของเบราว์เซอร์มองไม่เห็น
+       ตัวนี้เดินบนช่องกรอกจริงในตาราง แล้วยิง event change ของเดิมให้ทำงาน
+       ค่าที่แทนที่จึงเข้าทางเดียวกับพิมพ์เอง (เขียนลง pv ติดธง _dirty ไปถึง Save As และเก็บขึ้นคลาวด์ครบ) */
+    const _fBar=ov.querySelector("#xpFind"), _fQ=ov.querySelector("#xpFq"), _fR=ov.querySelector("#xpFr"),
+          _fC=ov.querySelector("#xpFcol"), _fCase=ov.querySelector("#xpFcase"),
+          _fWhole=ov.querySelector("#xpFwhole"), _fOnly=ov.querySelector("#xpFonly");
+    _fC.innerHTML='<option value="">ทุกคอลัมน์</option><option value="__name">ชื่อรุ่น / รหัส</option>'
+      +["ART_SIZEX","ART_SIZEY","ART_SIZEZ","D1"].concat(dnames.filter(d=>d!=="D1")).concat(pvKeys)
+        .map(k=>'<option value="'+escapeHtml(k)+'">'+escapeHtml(k)+'</option>').join("");
+    let _fAt=-1, _fHl=null;
+    const _fCells=()=>{ const col=_fC.value, only=_fOnly.checked;
+      return [...ov.querySelectorAll("#xpPaneCab .xpF, #xpPaneCab .xpN")].filter(el=>{
+        if(only&&!keep[+el.dataset.i]) return false;
+        if(!col) return true;
+        return (col==="__name")?el.classList.contains("xpN"):(el.dataset.k===col); }); };
+    const _fHit=(v,q)=>{ const a=_fCase.checked?String(v):String(v).toLowerCase(),
+                               b=_fCase.checked?q:q.toLowerCase();
+      return _fWhole.checked?(a===b?0:-1):a.indexOf(b); };
+    const _fInfo=(a,b)=>{ const el=ov.querySelector("#xpFn");
+      if(el) el.textContent=b?(a+" / "+b):(String(_fQ.value||"")?"ไม่พบ":""); };
+    const _fMark=el=>{ if(_fHl){ _fHl.style.outline=""; _fHl.style.outlineOffset=""; }
+      _fHl=el||null;
+      if(el){ el.style.outline="2px solid var(--accent)"; el.style.outlineOffset="1px";
+        try{ el.scrollIntoView({block:"nearest",inline:"nearest"}); }catch(e){} } };
+    const _fGo=dir=>{
+      { const p=ov.querySelector("#xpPaneCab");                       // ค้นได้เฉพาะแท็บตู้ — อยู่แท็บอื่นก็พากลับมาให้
+        if(p&&p.style.display==="none"){ const tb=ov.querySelector('#xpTabs button[data-t="cab"]'); if(tb) tb.click(); } }
+      const q=String(_fQ.value||""), list=_fCells(), n=list.length;
+      if(!q||!n){ _fMark(null); _fInfo(0,0); return null; }
+      let hits=0; for(let k=0;k<n;k++) if(_fHit(list[k].value,q)>=0) hits++;
+      if(!hits){ _fMark(null); _fInfo(0,0); return null; }
+      let i=(_fAt<0)?(dir<0?0:-1):_fAt, found=-1;
+      for(let s=0;s<n;s++){ i=((i+dir)%n+n)%n; if(_fHit(list[i].value,q)>=0){ found=i; break; } }
+      if(found<0){ _fMark(null); _fInfo(0,0); return null; }
+      _fAt=found;
+      let ord=0; for(let k=0;k<=_fAt;k++) if(_fHit(list[k].value,q)>=0) ord++;
+      _fMark(list[_fAt]); _fInfo(ord,hits); return list[_fAt]; };
+    /* แทนที่ในช่องเดียว — ตรงทั้งช่อง = เขียนทับทั้งค่า · ไม่งั้นแทนทุกตำแหน่งที่เจอในช่องนั้น */
+    const _fPut=(el,q,rep)=>{ let v=String(el.value);
+      if(_fWhole.checked) v=rep;
+      else if(_fCase.checked) v=v.split(q).join(rep);
+      else { const low=v.toLowerCase(), lq=q.toLowerCase(); let out="",p=0,j;
+        while((j=low.indexOf(lq,p))>=0){ out+=v.slice(p,j)+rep; p=j+q.length; }
+        v=out+v.slice(p); }
+      if(v===String(el.value)) return false;
+      el.value=v; el.dispatchEvent(new Event("change")); return true; };
+    const _fRep=()=>{ const q=String(_fQ.value||""); if(!q) return;
+      const el=(_fHl&&_fHit(_fHl.value,q)>=0)?_fHl:_fGo(1);
+      if(!el) return;
+      _fPut(el,q,String(_fR.value||"")); _fGo(1); };
+    const _fAll=()=>{ const q=String(_fQ.value||"");
+      if(!q){ toast("ยังไม่ได้ใส่ค่าที่ต้องการหา"); return; }
+      const rep=String(_fR.value||""), list=_fCells(); let n=0;
+      _xpBulk=1;
+      try{ list.forEach(el=>{ if(_fHit(el.value,q)>=0&&_fPut(el,q,rep)) n++; }); }
+      finally{ _xpBulk=0; }
+      _libDraw(); _fAt=-1; _fMark(null); _fGo(1);
+      toast(n?("แทนที่แล้ว "+n+" ช่อง — ไฟล์ต้นฉบับไม่ถูกแตะ กด ยกเลิก แล้วโหลดใหม่ถ้าจะย้อน"):"ไม่พบค่าที่ค้นหาในขอบเขตที่ตั้งไว้"); };
+    const _fOpen=()=>{ const tb=ov.querySelector('#xpTabs button[data-t="cab"]');
+      if(tb&&!tb.classList.contains("sel")) tb.click();
+      _fBar.style.display="flex"; _fQ.focus(); _fQ.select(); };
+    const _fClose=()=>{ _fBar.style.display="none"; _fMark(null); _fAt=-1; };
+    ov.querySelector("#xpFbtn").onclick=_fOpen;
+    ov.querySelector("#xpFnext").onclick=()=>_fGo(1);
+    ov.querySelector("#xpFprev").onclick=()=>_fGo(-1);
+    ov.querySelector("#xpFrep").onclick=_fRep;
+    ov.querySelector("#xpFall").onclick=_fAll;
+    ov.querySelector("#xpFx").onclick=_fClose;
+    [_fC,_fCase,_fWhole,_fOnly].forEach(el=>el.onchange=()=>{ _fAt=-1; _fMark(null); _fGo(1); });
+    _fQ.oninput=()=>{ _fAt=-1; _fGo(1); };
+    _fQ.onkeydown=e=>{ if(e.key==="Enter"){ e.preventDefault(); _fGo(e.shiftKey?-1:1); } };
+    _fR.onkeydown=e=>{ if(e.key==="Enter"){ e.preventDefault(); _fRep(); } };
+    /* ดักที่ document เพราะตอนเพิ่งเปิดหน้าต่าง โฟกัสยังอยู่นอกกล่อง ดักที่ ov อย่างเดียวจะไม่ติด
+       ดูที่ e.code ไม่ใช่ e.key — แป้นภาษาไทย Ctrl+F ส่ง key เป็นตัวอักษรไทย แต่ code ยังเป็น KeyF */
+    const _onKey=e=>{
+      if(!document.body.contains(ov)) return;
+      const mod=e.ctrlKey||e.metaKey, open=(_fBar.style.display!=="none");
+      if(mod&&(e.code==="KeyF"||String(e.key||"").toLowerCase()==="f")){ e.preventDefault(); e.stopPropagation(); _fOpen(); return; }
+      if(e.key==="F3"){ e.preventDefault(); e.stopPropagation(); if(open) _fGo(e.shiftKey?-1:1); else _fOpen(); return; }
+      if(e.key==="Escape"&&open){ e.preventDefault(); e.stopPropagation(); _fClose(); return; } };
+    document.addEventListener("keydown",_onKey,true);
+    const done=v=>{ document.removeEventListener("keydown",_onKey,true); ov.remove(); res(v); };
     ov.querySelector("#xpCancel").onclick=()=>done(null);
     ov.querySelector("#xpOk").onclick=()=>{ const out=parsed.filter((p,i)=>keep[i]).map(_reparse);
       out.orderNo=_curName();                                   // v9.92: ส่งชื่อที่แก้กลับไปด้วย
