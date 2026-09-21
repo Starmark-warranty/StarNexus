@@ -940,7 +940,7 @@
    ===================================================================== */
 /* ---- APP_META: แหล่งความจริงเดียวของเวอร์ชัน (ดูได้จาก console / คลิกชื่อแอป) ---- */
 const APP_META={
-  name:"StarNexus Cabinet", version:"1.254", build:"2026-09-21/cover-screw-bom",
+  name:"StarNexus Cabinet", version:"1.256", build:"2026-09-21/iid-prefill",
   file:"StarNexus.html", basedOn:"Furnitech_V3.html (v3.11)",
   /* ───────── เริ่มนับเวอร์ชันใหม่ที่ 1.001 (21/08/2026) ─────────
      ของเดิมนับมาถึง 42.1 แล้ววิ่งเป็นทศนิยมสองชั้นซึ่งอ่านลำดับยาก
@@ -948,6 +948,8 @@ const APP_META={
      ประวัติเก่าเก็บไว้ทั้งหมดตามเลขเดิม ไม่ไล่เขียนใหม่ เพราะเลขในนั้นถูกอ้างถึงไปแล้ว
      รายการที่อยู่ใต้ 1.001 ลงไปจึงเป็นเลขชุดเก่า อ่านต่อกันได้ตามวันที่ */
   changelog:[
+    ["1.256","2026-09-21","UX Item Id Set ในหน้าส่งออกเติมให้เองตามที่เคยส่งของออเดอร์นั้น — ตอนส่งเข้า Supabase เขียนเลขไว้ที่ app_settings คีย์ iids:<ออเดอร์> อยู่แล้วแต่ไม่เคยอ่านกลับ เปิดออเดอร์เดิมมาส่งซ้ำช่องจึงว่าง ต้องไปหาเลขเดิมมาพิมพ์ใหม่ ลืมใส่ Production ก็ไม่ได้เลข · เปิดหน้าส่งออกหรือแก้ชื่อออเดอร์ หาในเครื่องก่อน ไม่เจอค่อยถามคลาวด์ · เติมเฉพาะเมื่อช่องว่าง หรือช่องยังเป็นเลขที่เติมให้ของออเดอร์อื่น ที่พิมพ์เองไม่ถูกแย่ง · เปลี่ยนไปออเดอร์ที่ไม่เคยใส่ ล้างเลขของใบก่อนทิ้ง ไม่ให้เลขข้ามออเดอร์ · ส่งสำเร็จแล้วจำในเครื่องด้วย คลาวด์ล่มก็ยังเติมได้"],
+    ["1.255","2026-09-21","UX ประวัติ XML (คลาวด์) เรียงตามที่เพิ่งใช้ — เดิมเรียงตามลำดับที่ถูกสร้างครั้งแรก กดโหลดหรือเก็บทับก็ไม่ขยับ ตัวที่เพิ่งโหลดจึงจมอยู่กลางรายการต้องเลื่อนหา · ตอนนี้ตัวที่โหลดจากประวัติ เก็บทับจากหน้าตรวจ หรือโหลดไฟล์จากเครื่องแล้วเก็บขึ้นคลาวด์ ขึ้นบนสุดเรียงจากใหม่ไปเก่า ตัวที่ไม่เคยใช้ในเครื่องนี้ต่อท้ายตามลำดับเดิม · ตัวล่าสุดมีแถบสีด้านซ้ายกับป้าย ล่าสุด และทุกตัวที่เคยใช้บอกเวลา เช่น 5 นาทีที่แล้ว · จำไว้ในเครื่อง ไม่แก้ตารางบนคลาวด์ ผูกทั้ง id และชื่อออเดอร์ เพราะเก็บขึ้นคลาวด์ครั้งแรกยังไม่รู้ id · ช่องค้นหาใช้ลำดับเดียวกัน"],
     ["1.254","2026-09-21","FEAT สกรูยึดแผ่นปิดออกใบอุปกรณ์แล้ว และตั้งค่าได้ใน Element — รูยิงสกรูของ v1.217 (คลิกขวา → รูยิงสกรูยึดแผ่นปิด) วางผังเจาะให้อย่างเดียว ไม่เคยออกใบอุปกรณ์เลย ฝ่ายจัดซื้อต้องไปนับรูเอาจากแบบ · ตอนนี้ 1 จุดยิง = สกรูตามจำนวนต่อจุด นับจากกฎรายชิ้นตัวเดียวกับที่สร้างรู ชิ้นยาวขึ้นจำนวนจุดเพิ่ม สกรูก็เพิ่มตามเอง · แถว COVERSCREW (สกรูยึดแผ่นปิด) ถูกเติมเข้า Element → Fittings ให้เอง ใส่ Purchase ID หน่วย และลูก (เช่นฝาครอบหัวสกรู) ได้ตามปกติ มีแถวรหัสนั้นอยู่แล้วไม่แตะ · ตั้งค่ากลางได้ในหน้าตั้งค่า (รหัส ชื่อ สกรูต่อจุด) · หน้าต่างรูยิงสกรูเพิ่มช่องรหัสสกรูกับสกรูต่อจุดรายชิ้น เช่น คานใช้ตัวหนึ่ง หน้าลิ้นชักใช้อีกตัว ชิ้นไหนไม่ต้องออกตั้งต่อจุด = 0 · ตรวจกับไฟล์จริง 10 ชิ้นที่มีรูยิง: ก่อนแก้ไม่มีแถวสกรูเลย หลังแก้ COVERSCREW ×28 ตรงกับจำนวนจุด 3+3+3+3+3+3+3+3+2+2"],
     ["1.253","2026-09-21","FIX แบบผลิตไม้เพาะโครงวาดเหล็กตัว T ยาว 150 ตายตัวทุกรุ่น — เคสจริง LTF006 ลึก 134 ใช้เหล็ก FITDG05550 ซึ่งยาว 100 แต่แบบวาดก้าน 150 (แถมเส้นวัดบอก 150 แต่ลากยาว 156 จากขอบหลัง) เหล็กจึงทะลุกรอบหน้าออกไปนอกแผ่น · เพิ่มช่อง coreTLen ใน Element → Fittings ของตัวยึดเพาะโครง = ยาวก้านวัดจากขอบหลังของแผ่นถึงปลาย แบบอ่านจากรุ่นเหล็กที่แผ่นนั้นหยิบใช้จริง (ตามช่วงความลึก หรือที่ตั้งทับรายชิ้น) ไม่ได้ตั้ง = 150 ตามเดิม · ก้านยาวเกินที่ลงได้ (ลึกแผ่น − กรอบหน้า) วาดเป็นสีแดง ไม่ตัดให้สั้นเงียบ ๆ · ตารางในแบบเพิ่มแถวยาวก้านเหล็ก บอกว่ายังไม่ได้ตั้งหรือเกิน · แผงขวาบอกยาวก้านข้างรหัสเหล็กพร้อมเตือนแบบเดียวกัน · ตรวจด้วยการเรียกตัววาดแบบจริงกับ LTF006: ยังไม่ตั้ง = 150 แดงห้าเส้น · ตั้ง 100 = น้ำเงินห้าเส้นจบก่อนกรอบหน้า · ตั้ง 130 = แดง พร้อมเตือนเกินที่ลงได้ 115"],
     ["1.252","2026-09-21","FIX ช่อง Part ของแผ่นผิว / ไม้ไส้ ในแผงไม้เพาะโครง กดแล้วไม่มี Part ขึ้นให้เลือก — ช่องเป็น input ผูก datalist ซึ่งเบราว์เซอร์กรองรายการด้วยข้อความที่อยู่ในช่อง ช่องมีค่า 0000_Mat09_PB อยู่แล้วและตรงกับตัวเลือกพอดี รายการจึงเหลือตัวเดียวหรือไม่ขึ้นเลย ดูเหมือนคลังว่าง · อาการเดียวกับหน้า Variables ที่แก้ไปใน v7.40.1 แต่ช่องนี้ไม่ได้ถูกแก้ตาม · ยกเป็นตัวกลาง dlPickAll() คลิกด้วยเมาส์ = ล้างช่องชั่วคราวแล้วเปิดรายการเต็ม ไม่ได้เลือกอะไรแล้วคลิกออก = คืนค่าเดิม เข้าด้วย Tab ยังแก้ข้อความเดิมได้ ใช้กับช่อง Part ของผิว ไม้ไส้ และรหัสเหล็กยึด · รายการแยกของผิวกับไม้ไส้ Part ที่หนาตรงกับที่ต้องใช้ขึ้นก่อน (ผิว 9 / ไส้ 19) และบอกความหนาข้างรหัส อ่านจากช่อง thick หรือจากชื่อ _Mat09 · เครื่องที่ยังไม่มี Part ในคลังเลยขึ้นเตือนให้ดึงคลาวด์ แทนที่จะเงียบ"],
@@ -1331,7 +1333,7 @@ const DEF_SETTINGS={ frontSetMax:6, dowelD:8, dowelDepth:28, dowelMateDepth:12, 
   dowelSizeMode:true, dowelBackRelease:0, dowelFlipFront:false, dowelSizeRule:DEF_DOWEL_RULE,
   dowelFormulas:[{name:"มาตรฐาน",rule:DEF_DOWEL_RULE}], dowelFormulaActive:"มาตรฐาน", mfFormulaActive:"มาตรฐาน", cloudAutoSave:true,
   backset:16, backGroove:true, backOver:4.5, backClear:0.5,
-  drawerBotThick:9, drawerBotLift:11, drawerBotOver:4.5, drawerBotClear:0.5, drawerBotPipeNotch:false, drawerBotPipeW:40, drawerBotPipeH:25,
+  drawerBotThick:9, drawerBotLift:11, drawerBotOver:4.5, drawerBotClear:0.5, drawerBotMacroOn:true, drawerBotPipeNotch:false, drawerBotPipeW:40, drawerBotPipeH:25,
   mfBoltD:8, mfBoltDepth:28, mfCamD:15, mfCamDepth:13, mfCamOffset:34, mfMateD:5, mfMateDepth:12, mfFixFromFace:8.1, mfCenterMax:16, mfName:"Minifix", mfCode:"MINIFIX",
   ledMinRun:60,         // v22.8: ท่อนรางที่สั้นกว่านี้ = เศษ ไม่ต้องออก
   hingeShelfClear:96,   // v7.29: ระยะปลอดภัย ศูนย์ถ้วยบานพับ -> ผิวชั้น (มม.)
@@ -28825,11 +28827,16 @@ async function renderXmlImport(){
   try{ const list=await cloudListXml();
     { const c=$("xiXmlCount"); if(c) c.textContent=list.length? ("ประวัติ XML (คลาวด์) · "+list.length+" รายการ") : "ประวัติ XML (คลาวด์)"; }
     if(!list.length){ xl.innerHTML='<div class="empty" style="padding:10px">คลาวด์ยังไม่มีประวัติ XML</div>'; return; }
+    /* v1.255: ที่เพิ่งโหลด/เก็บในเครื่องนี้ขึ้นก่อน (ใหม่สุดบนสุด) · ที่เหลือเรียงตามเดิม */
+    { const rm=await xmlRecentMap(); list.forEach((r,i)=>{ r._t=xmlRecentOf(rm,r); r._i=i; });
+      list.sort((a,c)=>(c._t-a._t)||(a._i-c._i)); }
+    const _topT=list.length?list[0]._t:0;
     const draw=(q)=>{ const f=(q||"").trim().toLowerCase();
       const fl=f?list.filter(r=>String((r.orderNo||r.filename||"")+" "+(r.cust||"")+" "+(r.retailer||"")).toLowerCase().includes(f)):list;
       xl.innerHTML=""; if(!fl.length){ xl.innerHTML='<div class="empty" style="padding:10px">ไม่พบ "'+escapeHtml(q)+'"</div>'; return; }
       fl.forEach(rec=>{ const row=document.createElement("div"); row.className="librow";
-        row.innerHTML=`<div style="flex:1;min-width:0"><b>${escapeHtml(rec.orderNo||rec.filename)}</b> <span class="muted" style="font-size:11px">· ${rec.cab||0} ตู้${rec.cust?(" · "+escapeHtml(rec.cust)):""}${rec.retailer?(" · "+escapeHtml(rec.retailer)):""}</span></div>
+        if(rec._t&&rec._t===_topT) row.style.boxShadow="inset 3px 0 0 var(--accent)";          // v1.255: ตัวล่าสุด
+        row.innerHTML=`<div style="flex:1;min-width:0"><b>${escapeHtml(rec.orderNo||rec.filename)}</b>${rec._t?` <span style="font-size:10.5px;color:var(--accent);font-weight:600">· ${(rec._t===_topT)?"ล่าสุด · ":""}${escapeHtml(sxWhen(rec._t))}</span>`:""} <span class="muted" style="font-size:11px">· ${rec.cab||0} ตู้${rec.cust?(" · "+escapeHtml(rec.cust)):""}${rec.retailer?(" · "+escapeHtml(rec.retailer)):""}</span></div>
           <button class="ibtn ld-open">โหลด</button>
           <button class="iact del xi-del" title="ลบประวัตินี้"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6"/></svg></button>`;
         row.querySelector(".ld-open").onclick=async()=>{ try{ if(await cloudLoadXmlRecord(rec.id))closeXmlImport(); }catch(e){ toast("โหลดไม่สำเร็จ: "+sbErr(e)); } };
@@ -31794,6 +31801,7 @@ function boardToMPR(b, side){   // side=1/2 → เอาเฉพาะรู�
        ไม่มีเครื่องไหนได้พิกัดร่องไปเลย — แผ่นข้างซ้ายขวาจึงออกจากโรงงานโดยไม่มีร่อง
        ร่อง CNC เดินทางเดียวกับร่องรางไฟ: <112 ตามหน้า ตามฝั่งไฟล์ หัวท้ายตาม off0/off1 */
     if(g.back && !g.cnc) return;                                       // ร่องวิ่งสุด: งานเลื่อย/มาโคร V ตามเดิม
+    if(drawerBotBySaw(b,g)) return;                                    // v1.257: ร่องพื้นลิ้นชักวิ่งสุด = มาโคร V เหมือนร่องแผ่นหลัง
     if(g.face==="edge"){ P('<101 \\Kommentar\\'); P('KM="EDGE GROOVE edge'+(g.edge||"?")+' w'+(g.width||0)+' d'+(g.depth||0)+' — manual"'); P(' '); return; }
     if(side!=null && g.face!==mFace) return;                           // ออกเฉพาะไฟล์ฝั่งหน้าที่กัดจริง
     const o0=Math.max(g.off0||0,0), o1=Math.max(g.off1||0,0);
@@ -32041,6 +32049,34 @@ function exportJSON(){
 function orderId(){ const v=($("exOrderId")||{}).value; return (v&&v.trim())||("BF_"+new Date().toISOString().slice(0,16).replace(/[-:T]/g,"")); }
 function cabOf(b){ return (b.cab&&String(b.cab).trim())||orderId(); }   // รหัสตู้ของชิ้นนี้ (ไม่มี = ใช้ Order ID = ตู้เดียว)
 function itemIdSet(){ const v=($("exItemIdSet")||{}).value; return (v&&v.trim())||""; }
+/* ───────── v1.256: Item Id Set เติมให้เองตามที่เคยส่งของออเดอร์นั้น ─────────
+   ตอนส่งเข้า Supabase เขียนไว้แล้วที่ app_settings คีย์ iids:<ออเดอร์> แต่ไม่เคยอ่านกลับ
+   เปิดออเดอร์เดิมมาส่งซ้ำ ช่องจึงว่าง ต้องไปหาเลขเดิมมาพิมพ์ใหม่ ลืมใส่ = Production ไม่ได้เลข
+   · เปิดหน้าส่งออก หรือแก้ชื่อออเดอร์ → หาในเครื่องก่อน ไม่เจอค่อยถามคลาวด์
+   · เติมเฉพาะเมื่อช่องว่าง หรือช่องยังเป็นเลขที่เติมให้ของออเดอร์อื่น (เปลี่ยนออเดอร์) — ที่พิมพ์เองไม่ถูกแย่ง
+   · เปลี่ยนไปออเดอร์ที่ไม่เคยใส่ ล้างเลขที่เติมให้ของออเดอร์ก่อนทิ้ง ไม่ให้เลขข้ามออเดอร์ */
+let _iidAuto={order:"",val:""};
+async function iidPrefill(){
+  const oe=$("exOrderId"), ie=$("exItemIdSet"); if(!oe||!ie) return;
+  const oid=String(oe.value||"").trim(); if(!oid) return;
+  const cur=String(ie.value||"").trim();
+  const mine=!!cur&&cur===_iidAuto.val;                       // ช่องยังเป็นเลขที่โปรแกรมเติมให้
+  if(cur&&!(mine&&_iidAuto.order!==oid)) return;
+  let v="";
+  try{ const loc=(await lsGet("boardforge:iids",{}))||{}; v=String(loc[oid]||"").trim(); }catch(e){}
+  if(!v){ try{ const db=await getDB();
+      const {data}=await db.from("app_settings").select("value").eq("key","iids:"+oid).maybeSingle();
+      if(data&&data.value!=null) v=String(data.value).trim(); }catch(e){} }
+  if(String(oe.value||"").trim()!==oid) return;                // เปลี่ยนออเดอร์ระหว่างรอคลาวด์
+  if(String(ie.value||"").trim()!==cur) return;                // พิมพ์เองระหว่างรอคลาวด์
+  if(v){ ie.value=v; _iidAuto={order:oid,val:v}; ie.title="เติมให้จากที่เคยส่งของออเดอร์นี้ — แก้ทับได้"; }
+  else if(mine){ ie.value=""; _iidAuto={order:oid,val:""}; ie.title=""; }
+}
+async function iidRemember(oid,v){ try{ const k=String(oid||"").trim(); if(!k) return;
+  const loc=(await lsGet("boardforge:iids",{}))||{}; const vv=String(v||"").trim();
+  if(vv) loc[k]=vv; else delete loc[k];
+  const ks=Object.keys(loc); if(ks.length>500) ks.slice(0,ks.length-400).forEach(x=>{ delete loc[x]; });
+  await lsSet("boardforge:iids",loc); }catch(e){} }
 // จัดกลุ่มชิ้นตามรหัสตู้ → [{cab, boards:[...]}] เรียงตามลำดับที่พบ
 /* ───────── v9.22: บาร์โค้ดที่ไม่เคลื่อนตอนแก้งาน ─────────
    เดิมทั้งเลขตู้และเลขชิ้นคิดจาก "ตำแหน่งในลิสต์" ทุกครั้งที่ส่งออก
@@ -32693,7 +32729,7 @@ function primarySideOf(b){
 // ฝั่งบาร์ที่มีรูเจาะจริง (ต้องออกไฟล์ MPR) → [1], [2], หรือ [1,2]
 function boardMprSides(b){ const s=new Set();
   (b.holes||[]).forEach(h=>{ if(h.edge)return; s.add(holeFaceSide(b,h)); });
-  (b.grooves||[]).forEach(g=>{ if(g.face==="edge"||(g.back&&!g.cnc))return; s.add(faceBarcodeSide(b,g.face)); });   // ร่องหน้า + ร่องหลัง CNC กำหนดฝั่งไฟล์ (ร่องหลังวิ่งสุด = เลื่อย ไม่นับ)
+  (b.grooves||[]).forEach(g=>{ if(g.face==="edge"||(g.back&&!g.cnc)||drawerBotBySaw(b,g))return; s.add(faceBarcodeSide(b,g.face)); });   // v1.257   // ร่องหน้า + ร่องหลัง CNC กำหนดฝั่งไฟล์ (ร่องหลังวิ่งสุด = เลื่อย ไม่นับ)
   (b.connectors||[]).forEach(c=>{ if(connCount(b,c)<=0)return; if(c.type==="minifix"||c.type==="hinge") s.add(connFaceSide(b,c)); });
   /* v11.1: งานกัด (Pocket · บาก · เว้ารูปแผ่น) เคยบังคับออกฝั่งบาร์ 1 เสมอ
      แผ่นที่งานเจาะอยู่ฝั่ง 2 (เช่นแผ่นข้างที่แคมมินิฟิกอยู่อีกหน้า) จึงได้ไฟล์กัดคนละใบกับไฟล์เจาะ
@@ -32757,6 +32793,40 @@ function backGrooveMacro(b, grp){
   if(backset > SX_BACKSET_MAX) return "CNC";
   return "V"+pad3((Math.floor(Tb)+1)*10)+pad3(backset*10)+pad3(depth*10);
 }
+/* ───────── v1.257: มาโครร่องรับพื้นลิ้นชัก — ใช้กติกาเดียวกับร่องรับแผ่นหลัง ─────────
+   ร่องพื้นลิ้นชักบนแผ่นกล่องทั้งสี่ (ข้างซ้าย ข้างขวา หลัง หน้าใน) วิ่งสุดความยาวแผ่นเหมือนร่องแผ่นหลัง
+   เป็นงานเลื่อยได้ แต่ของเดิมไม่มีมาโคร ช่อง Groove3 ว่าง และร่องไปออกเป็นงานกัด CNC ในไฟล์เจาะแทน
+   รูปแบบ V TTT BBB DDD เหมือนเดิมทุกหลัก
+     TTT = ช่วงความหนาแผ่นพื้นลิ้นชัก (9-9.9 = 100) · อ่านจากแผ่นพื้นของกล่องใบนั้น ไม่เจอถอดจากกว้างร่อง
+     BBB = ระยะจากขอบล่างของแผ่นกล่อง ถึงขอบล่างของร่อง ×10 (ยกพื้น 11 = 110)
+           วัดจากรูปจริง ห่างจากค่ายกพื้นที่ตั้งไว้ไม่เกิน 1 มม. ใช้ค่าที่ตั้ง (เศษจากเผื่อร่องไม่นับ)
+     DDD = ลึกร่อง ×10 (5 = 050)
+   กล่องมาตรฐาน พื้น 9 ยก 11 ลึก 5 → V100110050
+   ร่องไม่วิ่งสุด หรือระยะเกิน 30 → CNC (กัดในไฟล์เจาะตามเดิม) · พื้นหนา 12 ขึ้นไป = ไม่ทำร่อง ไม่มีมาโคร
+   ปิดได้ที่ settings.drawerBotMacroOn = false → กลับไปกัด CNC ทั้งหมดแบบเดิม */
+function drawerBotMacro(b,grp){
+  if(settings.drawerBotMacroOn===false) return "";
+  const gs=(b&&b.grooves||[]).filter(g=>g&&g.drawerBot); if(!gs.length) return "";
+  if(gs.some(g=>(+g.off0||0)>0.01||(+g.off1||0)>0.01||g.cnc)) return "CNC";
+  const g=gs[0];
+  let Tb=null;
+  try{ const pool=(grp&&grp.boards)||state.boards;
+    const bot=pool.find(z=>z&&z!==b&&z._box&&z._dg&&z._dg===b._dg&&z.orient==="flat"&&!z._virtual);
+    if(bot&&+bot.T>0) Tb=+bot.T; }catch(e){}
+  if(!(Tb>0)) Tb=Math.max((+g.width||0)-(settings.drawerBotClear??0.5),1);
+  if(Tb>=SX_BACK_GROOVE_MAX_T) return "";
+  const lift=+(settings.drawerBotLift??11);
+  let bs=lift;
+  try{ const H=worldDims(b)[1], v=H/2+(+g.pos||0)-(+g.width||0)/2;
+    if(isFinite(v)&&v>=0) bs=(Math.abs(v-lift)<=1)?lift:(Math.round(v*2)/2); }catch(e){}
+  if(bs>SX_BACKSET_MAX) return "CNC";
+  const pad3=v=>String(Math.max(Math.round(v),0)).padStart(3,"0");
+  return "V"+pad3((Math.floor(Tb)+1)*10)+pad3(bs*10)+pad3((+g.depth||0)*10);
+}
+/* ร่องพื้นลิ้นชักเส้นนี้ไปทางมาโคร (เลื่อย) — ไฟล์เจาะไม่ต้องกัดซ้ำ */
+function drawerBotBySaw(b,g){ return !!(g&&g.drawerBot&&/^V/.test(drawerBotMacro(b)||"")); }
+/* ช่อง Groove3 (INFO2) ของชิ้น — ร่องแผ่นหลังก่อน แล้วร่องพื้นลิ้นชัก แล้วบากหูแขวน */
+function groove3Of(b,grp){ return backGrooveMacro(b,grp)||drawerBotMacro(b,grp)||(b&&b._hangNotch?"CNC":""); }
 function buildImosData(){
   const oid=orderId(), oPfx=orderBarcodePrefix(), groups=[]; let pid=0;   // running PartID across whole order (unique)
   orderGroups().forEach(grp=>{
@@ -32811,7 +32881,7 @@ function buildImosData(){
         CNT:"1",ARTICLE_ID:matCodeForThick(resolveOut(el.mat,b),coreThickOf(b,_bd.T)),GROR:"",ORDER_ID:"",
         MATERIAL:matCodeForThick(resolveOut(el.mat,b),coreThickOf(b,_bd.T)), SURFACE_TOP:resolveOut(el.surfT,b), SURFACE_BOTTOM:resolveOut(el.surfB,b),
         BARCODE:bc1,BARCODE2:bc2,
-        INFO2:(backGrooveMacro(b,grp)||(b._hangNotch?"CNC":"")),INFO3:info3For(b),
+        INFO2:groove3Of(b,grp),INFO3:info3For(b),   // v1.257: + มาโครร่องพื้นลิ้นชัก
         CAB_URL:(CAB_LINK[grp.productId]||""),      /* v1.173: ลิงก์ตู้ใบนี้ — ทุกชิ้นในใบเดียวกันได้ตัวเดียวกัน */
         /* v1.179: ลิงก์ของชิ้นนี้โดยเฉพาะ ต่อ &p= ให้เสร็จตั้งแต่ตรงนี้
            pid อยู่ในมือแล้วในลูปนี้ ไม่มีเหตุผลให้ปลายทางไปต่อสตริงเอง */
@@ -33135,6 +33205,7 @@ async function sendSupabase(){
     const {error}=await db.from("imos_orders").upsert({order_id:data.orderID,data:data,loaded_at:new Date().toISOString()},{onConflict:"order_id"});
     if(error)throw error;
     if(data.itemIdSet){ const {error:e2}=await db.from("app_settings").upsert({key:"iids:"+data.orderID,value:data.itemIdSet},{onConflict:"key"}); if(e2)console.error("iids:",sbErr(e2)); }
+    if(data.itemIdSet) await iidRemember(data.orderID,data.itemIdSet);            // v1.256: เปิดมาส่งซ้ำเติมให้เอง
     /* v1.175: ดัชนีชิ้น เขียนหลัง imos_orders สำเร็จแล้วเท่านั้น
        ล้มก็ไม่ล้มการส่งออก ของหลักเข้าไปแล้ว ดัชนีสร้างใหม่ได้ด้วยการกดส่งซ้ำ */
     let _pi=0;
@@ -33187,6 +33258,17 @@ async function cloudLoadSettings(silent){ try{ const db=await getDB();
     try{ const nAdd=ensureLineRules(); if(nAdd&&!silent) toast("ใส่กฎรายการเส้นตั้งต้นคืนให้แล้ว "+nAdd+" กฎ"); }catch(e){}
     if(!silent)toast("ดึง Variables/Element จากคลาวด์แล้ว"); return true;
   }catch(e){ if(!silent){ console.error(e); toast("ดึงคลาวด์ไม่สำเร็จ: "+sbErr(e)); } return false; } }
+/* ───────── v1.255: ประวัติ XML เรียงตามที่เพิ่งใช้ ─────────
+   เดิมเรียงตามลำดับที่ถูกสร้างครั้งแรก (id) กดโหลดหรือเก็บทับก็ไม่ขยับ ตัวที่เพิ่งใช้จึงจมอยู่กลางรายการ
+   จำเวลาที่โหลด/เก็บไว้ในเครื่อง (ไม่แก้ตารางบนคลาวด์) ผูกทั้ง id และชื่อออเดอร์
+   — โหลดไฟล์จากเครื่องแล้วเก็บขึ้นคลาวด์ครั้งแรกยังไม่รู้ id จึงผูกด้วยชื่อ */
+let _xmlRecent=null;
+async function xmlRecentMap(){ if(_xmlRecent) return _xmlRecent; _xmlRecent=(await lsGet("boardforge:xmlRecent",{}))||{}; return _xmlRecent; }
+async function xmlRecentTouch(id,orderNo){ try{ const m=await xmlRecentMap(), t=Date.now();
+    if(id!=null) m["id:"+id]=t; const no=String(orderNo||"").trim(); if(no) m["no:"+no]=t;
+    const ks=Object.keys(m); if(ks.length>400) ks.sort((a,c)=>m[a]-m[c]).slice(0,ks.length-300).forEach(k=>{ delete m[k]; });
+    await lsSet("boardforge:xmlRecent",m); }catch(e){} }
+function xmlRecentOf(m,rec){ return Math.max(+((m||{})["id:"+rec.id]||0), +((m||{})["no:"+String(rec.orderNo||"").trim()]||0)); }
 async function cloudSaveXml(o){ // o={orderNo,filename,cust,retailer,cab,xml} — บันทึกไฟล์ที่โหลดเข้า xml_history (best-effort)
   try{ const db=await getDB();
     const row={order_no:o.orderNo||"",filename:o.filename||"",cust_name:o.cust||"",retailer:o.retailer||"",cab_count:o.cab||0,xml_content:o.xml||""};
@@ -33194,6 +33276,7 @@ async function cloudSaveXml(o){ // o={orderNo,filename,cust,retailer,cab,xml} �
     if(o.orderNo){ const {data}=await db.from("xml_history").select("id").eq("order_no",o.orderNo).order("id",{ascending:false}).limit(1).maybeSingle(); if(data)existingId=data.id; }
     if(existingId!=null){ const {error}=await db.from("xml_history").update(row).eq("id",existingId); if(error)throw error; }
     else { const {error}=await db.from("xml_history").insert(row); if(error)throw error; }
+    await xmlRecentTouch(existingId,o.orderNo);                                  // v1.255
     return true;
   }catch(e){ console.error("cloudSaveXml:",e); toast("เก็บประวัติ XML ขึ้นคลาวด์ไม่สำเร็จ: "+sbErr(e)); return false; } }
 async function cloudDeleteXml(id){ const db=await getDB(); const {error}=await db.from("xml_history").delete().eq("id",id); if(error)throw error; }
@@ -33203,6 +33286,7 @@ async function cloudListXml(){ const db=await getDB();
 async function cloudLoadXmlRecord(id){ const db=await getDB();
   const {data,error}=await db.from("xml_history").select("order_no,xml_content").eq("id",id).maybeSingle(); if(error)throw error;
   if(!data||!data.xml_content){ toast("ระเบียนนี้ไม่มี xml_content"); return false; }
+  await xmlRecentTouch(id,data.order_no);                                        // v1.255: ขึ้นบนสุดในรายการครั้งหน้า
   await processXmlText(data.xml_content,{orderNo:data.order_no||""}); return true; }   // v1.236: ส่งชื่อที่บันทึกไว้ไปด้วย
 
 /* v9.87: บานเฟรม "ต้องออกในใบไม้" ถึงจะไม่ใช่ไม้ก็ตาม
@@ -33272,7 +33356,7 @@ function renderCutList(){
     html+=`<div class="sumh">📦 ${escapeHtml(g.productId)} · ${escapeHtml(g.cab)} <span style="color:var(--muted);font-weight:400">(${bl.length} ชิ้น)</span></div>`;
     html+='<div style="overflow-x:auto"><table class="sumtbl plist"><thead><tr><th>PartID</th><th>ชิ้น</th><th>ย×ก×น สำเร็จ (mm)</th><th>ขนาดตัด (Cut/Prepare)</th><th>วัสดุ</th><th>ผิวบน</th><th>ผิวล่าง</th><th>ขอบ1</th><th>ขอบ2</th><th>ขอบ3</th><th>ขอบ4</th><th>Groove3 (ร่องหลัง)</th><th>Info3 / FrontStyle</th></tr></thead><tbody>';
     bl.forEach(b=>{ ensurePartProps(b); pid++; totN++; const el=effLinks(b); const ec=(el.edges||[]);
-      const g3=backGrooveMacro(b,g)||(b._hangNotch?"CNC":"");
+      const g3=groove3Of(b,g);   // v1.257
       if(g3 && /^V/.test(g3)) macroN++;
       const g3cell=`<td style="font-family:var(--mono);font-size:11px${g3?";color:#5856d6;font-weight:600":";color:var(--muted)"}">${g3?escapeHtml(g3):"—"}</td>`;
       html+=`<tr><td>P${pid}</td><td class="nm">${escapeHtml(b.name)}${b.part?` <span class="muted" style="font-size:10px">[${escapeHtml(b.part)}]</span>`:""}</td><td>${(()=>{const d=blankDims(b); return d.curved
@@ -33457,7 +33541,8 @@ function bindChrome(){
   $("undoBtn").onclick=undo;
   $("redoBtn").onclick=redo;
   // export
-  $("exportBtn").onclick=()=>$("expModal").classList.add("show");
+  $("exportBtn").onclick=()=>{ $("expModal").classList.add("show"); iidPrefill(); };   // v1.256
+  { const oe=$("exOrderId"); if(oe) oe.addEventListener("change",()=>iidPrefill()); }
   $("exJson").onclick=exportJSON;
   $("exCsv").onclick=exportCSV;
   { bind("exMprZip",exportAllMPR); }
