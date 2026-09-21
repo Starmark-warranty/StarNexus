@@ -940,7 +940,7 @@
    ===================================================================== */
 /* ---- APP_META: แหล่งความจริงเดียวของเวอร์ชัน (ดูได้จาก console / คลิกชื่อแอป) ---- */
 const APP_META={
-  name:"StarNexus Cabinet", version:"1.258", build:"2026-09-21/drawer-group-unique",
+  name:"StarNexus Cabinet", version:"1.259", build:"2026-09-21/xml-history-order",
   file:"StarNexus.html", basedOn:"Furnitech_V3.html (v3.11)",
   /* ───────── เริ่มนับเวอร์ชันใหม่ที่ 1.001 (21/08/2026) ─────────
      ของเดิมนับมาถึง 42.1 แล้ววิ่งเป็นทศนิยมสองชั้นซึ่งอ่านลำดับยาก
@@ -948,6 +948,7 @@ const APP_META={
      ประวัติเก่าเก็บไว้ทั้งหมดตามเลขเดิม ไม่ไล่เขียนใหม่ เพราะเลขในนั้นถูกอ้างถึงไปแล้ว
      รายการที่อยู่ใต้ 1.001 ลงไปจึงเป็นเลขชุดเก่า อ่านต่อกันได้ตามวันที่ */
   changelog:[
+    ["1.259","2026-09-21","UX ประวัติ XML (คลาวด์) เรียงตามเลขออเดอร์ ใหม่สุดบนสุด เห็นลำดับเดียวกันทุกเครื่อง — v1.255 เรียงตามที่เครื่องนั้นเพิ่งใช้ ซึ่งจำไว้ในเครื่อง เปิดจากเครื่องอื่นลำดับจึงไม่ตรงกัน · เลขออเดอร์ขึ้นต้นด้วย ปีเดือนวัน+ลำดับ (2609170001) เรียงแล้วได้ลำดับเวลาจริง ตัว _EDIT อยู่ติดตัวต้นฉบับ · เรียงตั้งแต่คลาวด์ (order_no แล้วต่อด้วย id) และเพิ่มเพดานเป็น 300 รายการ ออเดอร์ที่ถูกสร้างนานแล้วแต่เลขใหม่จึงไม่หลุดจากรายการ · ตัวเลือกบนหัวรายการสลับไปเรียงแบบใช้ล่าสุด (เฉพาะเครื่องนี้) ได้ จำตัวเลือกไว้ · ป้าย ล่าสุด กับเวลาที่ใช้ยังขึ้นทั้งสองแบบ"],
     ["1.258","2026-09-21","FIX กล่องลิ้นชักของตู้ LTD002 ใบหนึ่งไม่มีรูสกรูยิงยึดกล่อง — ออเดอร์มี LTD002 สองใบจากโมเดลเดียวกัน กล่องทั้งสองใบได้รหัสชุดลิ้นชัก (_dg) ตัวเดียวกัน เพราะรหัสชุดสร้างจาก uid() ไม่ใช่ id ของชิ้นไหน จึงไม่เคยอยู่ใน idMap ตอนโหลดโมเดล ผ่านไปทั้งค่าเดิมทุกครั้ง · ตัวเจาะเดือย/สกรูรอยต่อกล่อง (boxJointsAll) จับกลุ่มตามรหัสชุดอย่างเดียวทั้งฉาก ได้กองเดียว 12 ชิ้น หยิบได้แค่ใบแรก ใบที่สองจึงเหลือแต่รูเดือยจากตัวเชื่อม ไม่มีรูสกรูแผ่นข้างและรูนำหน้าตัดเลย ใบอุปกรณ์สกรูขาดไปสี่ตัว · (1) remapBoardRefs แจกรหัสชุดใหม่เมื่อค่าไม่อยู่ใน idMap ใช้ค่าเดียวกันทั้งชุดที่ส่งเข้ามา โหลดโมเดลซ้ำกี่ใบก็ได้รหัสไม่ชนกัน ชิ้นในกล่องเดียวกันยังอยู่ด้วยกัน (2) healDrawerGroups แยกรหัสที่ถูกใช้ข้ามตู้ให้ตู้ละรหัส ทุกรอบ reslideAll ไฟล์เก่าที่ชนไปแล้วจึงหายเองตอนเปิด (3) boxJointsAll จับกลุ่มต่อตู้ด้วย · ตรวจกับไฟล์จริง: ก่อนแก้ LTD002 ใบแรกรูสกรูแผ่นข้าง 0 รูนำ 0 ใบอุปกรณ์ SCREW5 ×12 · หลังแก้ทั้งสองใบ 4 + 4 SCREW5 ×16"],
     ["1.257","2026-09-21","FEAT มาโครร่องรับพื้นลิ้นชักบนแผ่นกล่องทั้งสี่ (ข้างซ้าย ข้างขวา หลัง หน้าใน) ออกช่อง Groove3 แล้ว — ร่องพื้นวิ่งสุดความยาวแผ่นเหมือนร่องแผ่นหลัง เป็นงานเลื่อยได้ แต่ของเดิมไม่มีมาโคร ช่องว่าง และร่องไปออกเป็นงานกัด CNC ในไฟล์เจาะแทน · รูปแบบ V TTT BBB DDD เหมือนมาโครแผ่นหลังทุกหลัก TTT = ช่วงความหนาแผ่นพื้นลิ้นชัก (อ่านจากแผ่นพื้นของกล่องใบนั้น) BBB = ขอบล่างแผ่นกล่องถึงขอบล่างร่อง ×10 (ห่างค่ายกพื้นที่ตั้งไม่เกิน 1 มม. ใช้ค่าที่ตั้ง) DDD = ลึกร่อง ×10 · กล่องมาตรฐาน พื้น 9 ยก 11 ลึก 5 = V100110050 ตรงกับที่ใช้จริง · ร่องที่ไปทางมาโครไม่ถูกกัดซ้ำในไฟล์เจาะ และไม่บังคับฝั่งบาร์โค้ด เหมือนร่องแผ่นหลังวิ่งสุด · ร่องไม่วิ่งสุด หรือระยะเกิน 30 ออก CNC กัดตามเดิม พื้นหนา 12 ขึ้นไปไม่มีมาโคร · ตัดสินจากชิ้นจริงก่อนหมุนออกไฟล์ เพราะแผ่นข้างถูกหมุน 180/90 องศาตอนออกไฟล์เจาะ ถ้าวัดบนสำเนาที่หมุนแล้วความสูงกลายเป็นความลึก จะตกเป็น CNC ร่องจึงหลุดกลับเข้าไฟล์ (เจอระหว่างทดสอบ) · ปิดได้ที่ drawerBotMacroOn = false กลับไปกัด CNC แบบเดิม · หน้ารายการชิ้นกับใบส่งออกใช้ตัวเดียวกัน groove3Of()"],
     ["1.256","2026-09-21","UX Item Id Set ในหน้าส่งออกเติมให้เองตามที่เคยส่งของออเดอร์นั้น — ตอนส่งเข้า Supabase เขียนเลขไว้ที่ app_settings คีย์ iids:<ออเดอร์> อยู่แล้วแต่ไม่เคยอ่านกลับ เปิดออเดอร์เดิมมาส่งซ้ำช่องจึงว่าง ต้องไปหาเลขเดิมมาพิมพ์ใหม่ ลืมใส่ Production ก็ไม่ได้เลข · เปิดหน้าส่งออกหรือแก้ชื่อออเดอร์ หาในเครื่องก่อน ไม่เจอค่อยถามคลาวด์ · เติมเฉพาะเมื่อช่องว่าง หรือช่องยังเป็นเลขที่เติมให้ของออเดอร์อื่น ที่พิมพ์เองไม่ถูกแย่ง · เปลี่ยนไปออเดอร์ที่ไม่เคยใส่ ล้างเลขของใบก่อนทิ้ง ไม่ให้เลขข้ามออเดอร์ · ส่งสำเร็จแล้วจำในเครื่องด้วย คลาวด์ล่มก็ยังเติมได้"],
@@ -28832,6 +28833,8 @@ async function renderXmlImport(){
       </div>
       <div class="xi-col">
         <div class="xi-head"><span class="sumh" id="xiXmlCount" style="margin:0">ประวัติ XML (คลาวด์)</span>
+          <select id="xiSort" class="xi-q" style="flex:0 0 auto;width:auto;max-width:170px" title="เลขออเดอร์ = เห็นเหมือนกันทุกเครื่อง · ใช้ล่าสุด = ตามที่เครื่องนี้โหลด/เก็บ">
+            <option value="order">เรียง: เลขออเดอร์</option><option value="recent">เรียง: ใช้ล่าสุด (เครื่องนี้)</option></select>
           <input id="xiSearch" class="xi-q" placeholder="🔍 ค้นหา XML…" autocomplete="off"></div>
         <div class="xi-scroll"><div id="xiXml"><div class="empty" style="padding:10px">กำลังโหลด…</div></div></div>
       </div>
@@ -28846,10 +28849,15 @@ async function renderXmlImport(){
   try{ const list=await cloudListXml();
     { const c=$("xiXmlCount"); if(c) c.textContent=list.length? ("ประวัติ XML (คลาวด์) · "+list.length+" รายการ") : "ประวัติ XML (คลาวด์)"; }
     if(!list.length){ xl.innerHTML='<div class="empty" style="padding:10px">คลาวด์ยังไม่มีประวัติ XML</div>'; return; }
-    /* v1.255: ที่เพิ่งโหลด/เก็บในเครื่องนี้ขึ้นก่อน (ใหม่สุดบนสุด) · ที่เหลือเรียงตามเดิม */
-    { const rm=await xmlRecentMap(); list.forEach((r,i)=>{ r._t=xmlRecentOf(rm,r); r._i=i; });
-      list.sort((a,c)=>(c._t-a._t)||(a._i-c._i)); }
-    const _topT=list.length?list[0]._t:0;
+    /* v1.259: ตั้งต้นเรียงตามเลขออเดอร์ ใหม่สุดบนสุด — เห็นลำดับเดียวกันทุกเครื่อง
+       สลับเป็น "ใช้ล่าสุด" (ของ v1.255 · จำเฉพาะเครื่องนี้) ได้จากตัวเลือกบนหัวรายการ จำตัวเลือกไว้
+       ป้าย "ล่าสุด · x นาทีที่แล้ว" ยังขึ้นทั้งสองแบบ จะได้เห็นว่าตัวไหนเพิ่งใช้ */
+    { const rm=await xmlRecentMap(); list.forEach(r=>{ r._t=xmlRecentOf(rm,r); }); }
+    const _byOrder=(a,c)=>String(c.orderNo||c.filename||"").localeCompare(String(a.orderNo||a.filename||""),undefined,{numeric:true,sensitivity:"base"})||((+c.id||0)-(+a.id||0));
+    const _sortBy=m=>{ if(m==="recent") list.sort((a,c)=>(c._t-a._t)||_byOrder(a,c)); else list.sort(_byOrder); };
+    let _mode="order"; try{ _mode=(await lsGet("boardforge:xmlSort","order"))==="recent"?"recent":"order"; }catch(e){}
+    _sortBy(_mode);
+    const _topT=list.reduce((m,r)=>Math.max(m,r._t||0),0);
     const draw=(q)=>{ const f=(q||"").trim().toLowerCase();
       const fl=f?list.filter(r=>String((r.orderNo||r.filename||"")+" "+(r.cust||"")+" "+(r.retailer||"")).toLowerCase().includes(f)):list;
       xl.innerHTML=""; if(!fl.length){ xl.innerHTML='<div class="empty" style="padding:10px">ไม่พบ "'+escapeHtml(q)+'"</div>'; return; }
@@ -28863,6 +28871,9 @@ async function renderXmlImport(){
         xl.appendChild(row); }); };
     draw("");
     const se=body.querySelector("#xiSearch"); if(se)se.oninput=()=>draw(se.value);
+    { const so=body.querySelector("#xiSort"); if(so){ so.value=_mode;                              // v1.259
+        so.onchange=()=>{ _mode=(so.value==="recent")?"recent":"order"; try{ lsSet("boardforge:xmlSort",_mode); }catch(e){}
+          _sortBy(_mode); draw(se?se.value:""); }; } }
   }catch(e){ xl.innerHTML='<div class="empty">ต่อคลาวด์ไม่ได้: '+escapeHtml(sbErr(e))+'</div>'; }
 }
 
@@ -33303,7 +33314,10 @@ async function cloudSaveXml(o){ // o={orderNo,filename,cust,retailer,cab,xml} �
   }catch(e){ console.error("cloudSaveXml:",e); toast("เก็บประวัติ XML ขึ้นคลาวด์ไม่สำเร็จ: "+sbErr(e)); return false; } }
 async function cloudDeleteXml(id){ const db=await getDB(); const {error}=await db.from("xml_history").delete().eq("id",id); if(error)throw error; }
 async function cloudListXml(){ const db=await getDB();
-  const {data,error}=await db.from("xml_history").select("id,order_no,filename,cust_name,retailer,cab_count").order("id",{ascending:false}).limit(200); if(error)throw error;
+  /* v1.259: เรียงตามเลขออเดอร์ตั้งแต่ต้นทาง (ใหม่สุดก่อน) — เดิมเรียงตามลำดับที่ถูกสร้าง (id)
+     และตัดที่ 200 ตามลำดับนั้น · เลขออเดอร์ขึ้นต้นด้วย ปีเดือนวัน+ลำดับ (2609170001) เรียงเป็นข้อความก็ได้ลำดับเวลา */
+  const {data,error}=await db.from("xml_history").select("id,order_no,filename,cust_name,retailer,cab_count")
+    .order("order_no",{ascending:false}).order("id",{ascending:false}).limit(300); if(error)throw error;
   return (data||[]).map(r=>({id:r.id,orderNo:r.order_no||"",filename:r.filename||"",cust:r.cust_name||"",retailer:r.retailer||"",cab:r.cab_count||0})); }
 async function cloudLoadXmlRecord(id){ const db=await getDB();
   const {data,error}=await db.from("xml_history").select("order_no,xml_content").eq("id",id).maybeSingle(); if(error)throw error;
