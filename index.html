@@ -940,7 +940,7 @@
    ===================================================================== */
 /* ---- APP_META: แหล่งความจริงเดียวของเวอร์ชัน (ดูได้จาก console / คลิกชื่อแอป) ---- */
 const APP_META={
-  name:"StarNexus Cabinet", version:"1.260", build:"2026-09-21/lrt005-hinge-legs-pulls",
+  name:"StarNexus Cabinet", version:"1.261", build:"2026-09-21/pull-hinge-guard",
   file:"StarNexus.html", basedOn:"Furnitech_V3.html (v3.11)",
   /* ───────── เริ่มนับเวอร์ชันใหม่ที่ 1.001 (21/08/2026) ─────────
      ของเดิมนับมาถึง 42.1 แล้ววิ่งเป็นทศนิยมสองชั้นซึ่งอ่านลำดับยาก
@@ -948,6 +948,7 @@ const APP_META={
      ประวัติเก่าเก็บไว้ทั้งหมดตามเลขเดิม ไม่ไล่เขียนใหม่ เพราะเลขในนั้นถูกอ้างถึงไปแล้ว
      รายการที่อยู่ใต้ 1.001 ลงไปจึงเป็นเลขชุดเก่า อ่านต่อกันได้ตามวันที่ */
   changelog:[
+    ["1.261","2026-09-21","FEAT กันมือจับไปอยู่ฝั่งบานพับ — บางออเดอร์ XML ส่งตำแหน่งมือจับกลับด้านมา เช่น บาน 1 (บานพับซ้าย) ได้ LeftDown บาน 2 (บานพับขวา) ได้ RightDown มือจับจึงไปอยู่ขอบเดียวกับบานพับทั้งสองบาน · โหลด XML เสร็จ (หลังฉากคิดครบ บานพับอยู่ขอบไหนเป็นค่าสุดท้ายแล้ว) ตรวจทุกบานที่มีทั้งบานพับและมือจับ ฝั่งมือจับตรงกับขอบที่มีบานพับ กลับด้านเฉพาะแกนนั้น บานพับข้างสลับ Left ↔ Right บานยก/บานพับล่างสลับ Up ↔ Down ตำแหน่งกลางแกนไม่ชนไม่แตะ · เขียนกลับทั้งค่าที่มือจับจำไว้ ตัวแปรที่ช่องตำแหน่งผูกอยู่ และค่าดิบในชื่อช่อง หน้า Variables (ตู้นี้) จึงเห็นค่าที่แก้แล้ว · ข้อความตอนโหลดเสร็จบอกจำนวนและตัวอย่าง รายการเต็มใน console · รันซ้ำไม่แก้ซ้ำ · ปิดได้ที่ ตั้งค่า → มือจับจากช่อง K_Pull ใน XML · ตรวจกับตู้ LRT005 สองใบ ป้อนตำแหน่งกลับด้านแบบในรูป: ก่อนกันมือจับอยู่ขอบบานพับทั้ง 4 บาน · หลังกันบาน 1 = RightDown บาน 2 = LeftDown ตรงข้ามบานพับครบ"],
     ["1.260","2026-09-21","FIX สามเรื่องจากตู้ LRT005 · (1) บานพับชนชั้นปรับถูกดันลงแทนขึ้น — ตัวหลบไล่ทีละก้าวสลับ ขึ้น 96 → ลง 96 → ขึ้น 192 บานพับกลางขึ้น 96 ยังใกล้ชั้นเกินจึงถูกดันลงทันที ทั้งที่ขึ้น 192 พ้น · ตอนนี้ลองขึ้นให้สุด 1-3 ก้าวก่อนแล้วค่อยลองลง ห้ามไปซ้อนบานพับตัวอื่นในบานเดียวกัน และระยะหลบที่ระบบเคยใส่ไว้ (ไม่ใช่ที่ตั้งเอง) คิดใหม่จากตำแหน่งฐานทุกรอบ บานที่เคยถูกดันลงจึงขึ้นเองตอนเปิด เทียบก่อนหลังก่อนเจาะ ไม่เปลี่ยนก็ไม่แตะ · (2) ขาตู้เด้งออกนอกตู้ทั้งหน้าหลัง และขากลางไปซ้อนขาริม 6 ขาเหลือ 4 จุด — โมเดลถูกยืดจากตู้ลึกลงมาเหลือลึก 200 ซึ่งแคบเกินกว่าจะเจาะรูมาร์คขา ตัวเจาะออกไปโดยไม่ล้างจุดศูนย์ขาที่จำไว้ (_legPts) ของขนาดเก่า ตัววางขาอ่านจุดค้างชุดนั้นต่อ · ล้างจุดเมื่อไม่เจาะ และตัววางขาไม่ใช้จุดที่อยู่นอกแผ่นพื้น ถอยไปคิดจากสูตรร่นขอบ · (3) มือจับบานขวาอยู่ฝั่งเดียวกับบานพับ ทั้งที่ XML ส่ง K_Pull_Position2 = LeftUp มาถูก — บานทั้งสองผูก Part ลิงก์ FrontShapeP1 ตัวเดียวกัน ได้เลขบาน 1 ทั้งคู่ จึงหยิบชุดมือจับชุดที่ 1 (RightUp) ไปทั้งสองบาน · เลขบานจาก Part ใช้เฉพาะตอนไม่ซ้ำกัน ซ้ำหรือขาดให้เรียงตามตำแหน่งทั้งตู้ และวัดซ้ายขวาในแกนของตู้เอง (ตู้หมุน 90/270 บานเรียงตามแกน z ไม่ใช่ x ของเดิมเรียงด้วย x โลกจึงได้ลำดับตามไฟล์) · ตรวจกับไฟล์จริงสองตู้: บานพับกลางจาก 453.6 (ลง) เป็น 741.6 (ขึ้น) · ขาทั้งหกอยู่ในตู้ · มือจับบานขวาได้ชุดที่ 2 LeftUp อยู่ตรงข้ามบานพับทุกบาน"],
     ["1.259","2026-09-21","UX ประวัติ XML (คลาวด์) เรียงตามเลขออเดอร์ ใหม่สุดบนสุด เห็นลำดับเดียวกันทุกเครื่อง — v1.255 เรียงตามที่เครื่องนั้นเพิ่งใช้ ซึ่งจำไว้ในเครื่อง เปิดจากเครื่องอื่นลำดับจึงไม่ตรงกัน · เลขออเดอร์ขึ้นต้นด้วย ปีเดือนวัน+ลำดับ (2609170001) เรียงแล้วได้ลำดับเวลาจริง ตัว _EDIT อยู่ติดตัวต้นฉบับ · เรียงตั้งแต่คลาวด์ (order_no แล้วต่อด้วย id) และเพิ่มเพดานเป็น 300 รายการ ออเดอร์ที่ถูกสร้างนานแล้วแต่เลขใหม่จึงไม่หลุดจากรายการ · ตัวเลือกบนหัวรายการสลับไปเรียงแบบใช้ล่าสุด (เฉพาะเครื่องนี้) ได้ จำตัวเลือกไว้ · ป้าย ล่าสุด กับเวลาที่ใช้ยังขึ้นทั้งสองแบบ"],
     ["1.258","2026-09-21","FIX กล่องลิ้นชักของตู้ LTD002 ใบหนึ่งไม่มีรูสกรูยิงยึดกล่อง — ออเดอร์มี LTD002 สองใบจากโมเดลเดียวกัน กล่องทั้งสองใบได้รหัสชุดลิ้นชัก (_dg) ตัวเดียวกัน เพราะรหัสชุดสร้างจาก uid() ไม่ใช่ id ของชิ้นไหน จึงไม่เคยอยู่ใน idMap ตอนโหลดโมเดล ผ่านไปทั้งค่าเดิมทุกครั้ง · ตัวเจาะเดือย/สกรูรอยต่อกล่อง (boxJointsAll) จับกลุ่มตามรหัสชุดอย่างเดียวทั้งฉาก ได้กองเดียว 12 ชิ้น หยิบได้แค่ใบแรก ใบที่สองจึงเหลือแต่รูเดือยจากตัวเชื่อม ไม่มีรูสกรูแผ่นข้างและรูนำหน้าตัดเลย ใบอุปกรณ์สกรูขาดไปสี่ตัว · (1) remapBoardRefs แจกรหัสชุดใหม่เมื่อค่าไม่อยู่ใน idMap ใช้ค่าเดียวกันทั้งชุดที่ส่งเข้ามา โหลดโมเดลซ้ำกี่ใบก็ได้รหัสไม่ชนกัน ชิ้นในกล่องเดียวกันยังอยู่ด้วยกัน (2) healDrawerGroups แยกรหัสที่ถูกใช้ข้ามตู้ให้ตู้ละรหัส ทุกรอบ reslideAll ไฟล์เก่าที่ชนไปแล้วจึงหายเองตอนเปิด (3) boxJointsAll จับกลุ่มต่อตู้ด้วย · ตรวจกับไฟล์จริง: ก่อนแก้ LTD002 ใบแรกรูสกรูแผ่นข้าง 0 รูนำ 0 ใบอุปกรณ์ SCREW5 ×12 · หลังแก้ทั้งสองใบ 4 + 4 SCREW5 ×16"],
@@ -1321,7 +1322,7 @@ const DEF_SETTINGS={ frontSetMax:6, dowelD:8, dowelDepth:28, dowelMateDepth:12, 
   healOnVarChange:true,                           // v31.1: แก้ค่าตัวแปรของตู้แล้วเชื่อมเดือยใหม่ให้ตู้ใบนั้น
   kitField:"K_Fitting_Concept", kitPushMap:"B:top, W:bottom", xmlThinMin:1, xmlSkipNoModel:false, orderProgNo:"700", doorGapWarn:50, csNewGap:120, ledSets:[{id:"12V-COB", volt:12, wPerM:9.6,
     stripCode:"", psuMap:"30, 60, 100", psuCode:"", psuUse:80, maxRunM:5,
-    wireCode:"", wireMode:"ต่อเส้นไฟ", wireQty:1}], ledSetPerRun:false, cutSizeFmt:"{ชื่อ} ตัดขนาด {ยาว} mm.", cutLookupKey:"ตัดขนาด", cutLookupOn:true, glassBomOn:true, glassUnit:"EA", glassMatCodes:"FC,MC,FT,PT,FS,MT", glassKinds:"กระจกใส|กระจกเงา|กระจกฝ้า|กระจกใสชาดำ|กระจกใสชาทอง|กระจกเงาชาทอง|กระจกใส ลอนลูกฟูก", glassEdges:"ลบคมรอบ|ลบคมขัดมันรอบ|เจียรริมรอบ|เจียรริมขัดมันรอบ|เจียรริม 1 mm. ขัดมันรอบ", glassKind:"กระจกใส", glassEdge:"ลบคมรอบ", glassShelfKind:"กระจกใส", glassShelfEdge:"เจียรริมขัดมันรอบ", glassDoorT:5, pullXmlOn:true, pullField:"K_Pull", pullOriField:"K_Orientation", pullPosField:"K_Pull_Position", pullXField:"K_Pull_Coordinate_X", pullYField:"K_Pull_Coordinate_Y", pullNo:"nopull,none,-", pullName:"มือจับ", pull3D:true, dxNotchGap:0.5, railLikeMaxW:100, pullDefPos:"UpMiddle", pullDefOri:"H", pullDefX:35, pullDefY:0, legClipOn:true, legClipMap:"", legClipCode:"LEGCLIP", legClipName:"กิ๊ฟขาตู้ (ยึดแผ่นปิดขา)", doorSwing:true, doorRelief3D:true, doorReliefMap:"MCxx35 = 0:3, 3:0, 55:0, 58:3, 60:6, 95:6, 110:2, 110:0 | ตั้งทะลุ 55-60", shelfT:16, hangRailCode:"HANGRAIL", hangRailName:"ราวแขวนผ้า สแตนเลส C", glassHangerCode:"GLASSHANGER", glassHangerName:"หูแขวนกระจก", coverScrewCode:"COVERSCREW", coverScrewName:"สกรูยึดแผ่นปิด", coverScrewPer:1, hangRailThruD:8, hangRailCsD:13, hangRailCsDepth:2, hangRailEndGap:25, hangRailBarH:25, hangRailMap:"", drawerSideT:16, drawerBotT:9, drawerBoxH:120, drawerBoxLift:20, screwD:5, screwMateDepth:28, screwInset:9,
+    wireCode:"", wireMode:"ต่อเส้นไฟ", wireQty:1}], ledSetPerRun:false, cutSizeFmt:"{ชื่อ} ตัดขนาด {ยาว} mm.", cutLookupKey:"ตัดขนาด", cutLookupOn:true, glassBomOn:true, glassUnit:"EA", glassMatCodes:"FC,MC,FT,PT,FS,MT", glassKinds:"กระจกใส|กระจกเงา|กระจกฝ้า|กระจกใสชาดำ|กระจกใสชาทอง|กระจกเงาชาทอง|กระจกใส ลอนลูกฟูก", glassEdges:"ลบคมรอบ|ลบคมขัดมันรอบ|เจียรริมรอบ|เจียรริมขัดมันรอบ|เจียรริม 1 mm. ขัดมันรอบ", glassKind:"กระจกใส", glassEdge:"ลบคมรอบ", glassShelfKind:"กระจกใส", glassShelfEdge:"เจียรริมขัดมันรอบ", glassDoorT:5, pullXmlOn:true, pullHingeGuard:true, pullField:"K_Pull", pullOriField:"K_Orientation", pullPosField:"K_Pull_Position", pullXField:"K_Pull_Coordinate_X", pullYField:"K_Pull_Coordinate_Y", pullNo:"nopull,none,-", pullName:"มือจับ", pull3D:true, dxNotchGap:0.5, railLikeMaxW:100, pullDefPos:"UpMiddle", pullDefOri:"H", pullDefX:35, pullDefY:0, legClipOn:true, legClipMap:"", legClipCode:"LEGCLIP", legClipName:"กิ๊ฟขาตู้ (ยึดแผ่นปิดขา)", doorSwing:true, doorRelief3D:true, doorReliefMap:"MCxx35 = 0:3, 3:0, 55:0, 58:3, 60:6, 95:6, 110:2, 110:0 | ตั้งทะลุ 55-60", shelfT:16, hangRailCode:"HANGRAIL", hangRailName:"ราวแขวนผ้า สแตนเลส C", glassHangerCode:"GLASSHANGER", glassHangerName:"หูแขวนกระจก", coverScrewCode:"COVERSCREW", coverScrewName:"สกรูยึดแผ่นปิด", coverScrewPer:1, hangRailThruD:8, hangRailCsD:13, hangRailCsDepth:2, hangRailEndGap:25, hangRailBarH:25, hangRailMap:"", drawerSideT:16, drawerBotT:9, drawerBoxH:120, drawerBoxLift:20, screwD:5, screwMateDepth:28, screwInset:9,
   /* v1.201: รอยต่อกล่องลิ้นชักไม้ — แผ่นหน้า/หลังชนเข้าแผ่นข้าง ยึดด้วยเดือย + สกรูจากนอกแผ่นข้าง */
   boxJointOn:true, boxDowelFormula:BOXJ_DOWEL_NAME, boxScrewFormula:BOXJ_SCREW_NAME,
   boxJointDowelD:8, boxJointDowelDepth:24, boxJointMateD:8, boxJointMateDepth:12,
@@ -22467,6 +22468,8 @@ async function buildFromXmlOrder(){
     made++; _did++; } }
   if(_bz){ try{ _bz.step("จัดฉากและคิดชิ้นงาน",100); await _bz.tick(); }catch(e){} }
   buildGTones(); state.selectedId=null; sync(1);
+  /* v1.261: ตรวจมือจับฝั่งบานพับ — ทำหลังฉากคิดเสร็จ บานพับอยู่ขอบไหนจึงเป็นค่าสุดท้ายแล้ว (รวมค่าปรับบานจาก XML) */
+  let _pg=[]; try{ _pg=pullHingeGuard(); if(_pg.length){ console.table(_pg); sync(0); } }catch(e){ console.error("pullHingeGuard:",e); }
   /* ───────── v31.0: เชื่อมเดือยใหม่และเจาะรูฐานบานพับใหม่ ทันทีที่โหลดเสร็จ ─────────
      โมเดลที่ดึงจากคลังถูกย่อ/ขยายให้ตรงขนาดที่ออเดอร์สั่ง ชิ้นจึงย้ายที่กันหมด
      แต่รูที่ติดมากับโมเดลยังนอนอยู่พิกัดเดิมของขนาดเดิม กลายเป็นรูค้างกลางแผ่นทันทีที่โหลด
@@ -22484,6 +22487,7 @@ async function buildFromXmlOrder(){
     +(legOn?(" · ใส่ขาตู้ "+legOn+" ใบ"):"")+(legOff?(" · ไม่เอาขา "+legOff+" ใบ"):"")
     +(Object.keys(legBad).length?(" · ⚠ อ่านรุ่นขาไม่ออก: "+Object.keys(legBad).join(", ")+" — ไปเพิ่มในตารางจับคู่ที่ ตั้งค่า → นำเข้า XML"):"")
     +(pullOn?(" · ใส่มือจับ "+pullOn+" บาน"):"")
+    +(_pg.length?(" · ⚠ มือจับที่ XML ส่งมาอยู่ฝั่งบานพับ กลับด้านให้ "+_pg.length+" บาน ("+_pg.slice(0,3).map(x=>x.ตู้+" "+x.จาก+"→"+x.เป็น).join(", ")+(_pg.length>3?" …":"")+") — รายการเต็มใน console"):"")
     +(dpOn?(" · ปรับบานตามค่าที่ส่งมา "+dpOn+" ใบ"):"")
     +(_stDone?(" · สลับโครงสร้าง "+_stDone+" ใบ"):"")
     +(Object.keys(_stMiss).length?(" · ⚠ ไม่ได้สลับโครงสร้าง เพราะยังไม่มี Part: "+Object.keys(_stMiss).join(", ")+" — เพิ่มที่ Element → Parts"):"")
@@ -23048,6 +23052,7 @@ function renderSettings(){
       ตั้ง Variable เมื่ออยากให้ <b>ผู้ใช้เปลี่ยนเองได้หลังโหลด</b> · ค่าจะกลายเป็นค่าประจำตู้ใบนั้น เลือก <code>noLeg</code> แล้วขาถอดออกทันที · ค่าที่เลือกเองชนะค่าใน XML และถูกบันทึกไปกับออเดอร์ (โหลดกลับมาก็ยังอยู่)</div>
     <div class="sumh" style="margin-top:12px">มือจับจากช่อง K_Pull ใน XML</div>
     <label style="display:flex;align-items:center;gap:8px;font-size:13px;cursor:pointer"><input type="checkbox" id="setPullXmlOn" ${settings.pullXmlOn!==false?"checked":""}> ใส่มือจับให้อัตโนมัติตามที่ XML ส่งมารายบาน</label>
+    <label style="display:flex;align-items:center;gap:8px;font-size:13px;cursor:pointer;margin-top:4px"><input type="checkbox" id="setPullHingeGuard" ${settings.pullHingeGuard!==false?"checked":""}> <span>กันมือจับไปอยู่ฝั่งบานพับ — โหลด XML เสร็จแล้วตรวจทุกบาน ถ้าตำแหน่งที่ส่งมาอยู่ขอบเดียวกับบานพับ กลับด้านให้ (LeftDown ↔ RightDown · บานยก Up ↔ Down) แล้วแจ้งรายการ</span></label>
     <div style="font-size:11px;opacity:.62;margin:2px 0 6px;line-height:1.6">อ่าน 5 ช่องต่อบาน โดยเติมเลขบาน 1/2/3 ต่อท้ายชื่อช่อง — รหัสรุ่น · แนวรู H/V · ตำแหน่ง 9 แบบ · ระยะแนวตั้ง · ระยะแนวนอน<br>
       บานที่ส่ง <code>NoPull</code> มา หรือไม่ส่งรหัสมาเลย = ไม่มีมือจับ · ระยะทั้งสองวัดถึง <b>ศูนย์กลางกลุ่มรู</b> จึงใช้ได้ทั้งมือจับหลายรูและปุ่มรูเดียว<br>
       รหัสที่ยังไม่มีในคลังจะถูกสร้างเป็นแถวเปล่าใน <b>Element → Fittings</b> (kind = มือจับ) ให้ไปกรอกสเปครู · ยังไม่กรอก = ยังไม่เจาะรูให้ และจะขึ้นเตือนตอนโหลดเสร็จ<br>
@@ -23263,6 +23268,7 @@ function renderSettings(){
     { const hv=body.querySelector("#setHealVar"); if(hv)settings.healOnVarChange=hv.checked; }           // v31.1
     { const hn=body.querySelector("#setHealNow"); if(hn) hn.onclick=()=>{ try{ healDrills(false); }catch(e){ console.error(e); toast("ซ่อมไม่สำเร็จ — ดู console"); } }; }
     { const cl=body.querySelector("#setCutLookupOn"); if(cl)settings.cutLookupOn=cl.checked; }  // v13.0
+    { const pg=body.querySelector("#setPullHingeGuard"); if(pg)settings.pullHingeGuard=pg.checked; }   // v1.261
     { const px=body.querySelector("#setPullXmlOn"); if(px)settings.pullXmlOn=px.checked;        // v9.71
       const p3=body.querySelector("#setPull3D"); if(p3)settings.pull3D=p3.checked; }
     { const lc=body.querySelector("#setLegClipOn"); if(lc)settings.legClipOn=lc.checked; }      // v9.64
@@ -26328,6 +26334,44 @@ function cabDoorIndex(inst){
   const byPart=doors.map(d=>{ const m=String(d.part||"").match(/(\d+)\s*$/); return m?parseInt(m[1],10):null; });
   const partOk=byPart.every(v=>v!=null)&&(new Set(byPart)).size===byPart.length;
   return doors.map((d,k)=>({d:d, i:(partOk?byPart[k]:(ord.indexOf(d)+1))}));
+}
+/* ───────── v1.261: กันมือจับไปอยู่ฝั่งบานพับ ─────────
+   ตำแหน่งมือจับมาจาก XML รายบาน บางออเดอร์ส่งกลับด้านมา เช่น บาน 1 (บานพับซ้าย) ได้ LeftDown
+   มือจับจึงไปอยู่ฝั่งเดียวกับบานพับ เปิดบานไม่ได้ — ต้องเป็น RightDown
+   ตรวจทุกบานที่มีทั้งบานพับและมือจับ ถ้าฝั่งมือจับตรงกับขอบที่มีบานพับ กลับด้านเฉพาะแกนนั้น
+     บานพับซ้าย/ขวา → สลับ Left ↔ Right (ขึ้น/ลง/กลาง คงเดิม)
+     บานพับบน/ล่าง (บานยก/บานพับล่าง) → สลับ Up ↔ Down
+     ตำแหน่งกลางแกนนั้น (UpMiddle · Center · DownMiddle กับบานพับข้าง) ไม่ชน ไม่แตะ
+   เขียนกลับทั้งค่าที่มือจับจำไว้ และตัวแปรของตู้ที่ช่องตำแหน่งผูกอยู่ (ถ้าผูก) หน้า Variables (ตู้นี้) จึงเห็นค่าที่แก้แล้ว
+   คืนรายการที่แก้ ไว้แจ้งตอนโหลดเสร็จ · ปิดได้ที่ settings.pullHingeGuard = false */
+function _flipWord(pos,re,map){ return String(pos||"").replace(re,m=>{ const r=map[m.toLowerCase()]||m;
+  return (m[0]===m[0].toUpperCase())?(r[0].toUpperCase()+r.slice(1)):r; }); }
+function pullHingeGuard(insts){
+  if(settings.pullHingeGuard===false) return [];
+  const F=k=>String(settings[k]||DEF_SETTINGS[k]).trim();
+  const out=[];
+  state.boards.forEach(d=>{
+    if(!d||!d._door||d._box||d._virtual||!(d._pulls||[]).length) return;
+    if(insts&&insts.indexOf(d.cabInst)<0) return;
+    const hs=new Set((d.connectors||[]).filter(c=>c&&c.type==="hinge").map(c=>String(c.edge||"").toLowerCase()));
+    if(!hs.size) return;
+    d._pulls.forEach(pu=>{ if(!pu) return;
+      let lv=null; try{ lv=pullLive(d,pu); }catch(e){ return; }
+      if(!lv||pullIsNo(lv.code)) return;
+      const p=parsePullPos(lv.pos), cur=String(lv.pos||"");
+      let np=null;
+      if((p.h==="left"&&hs.has("left"))||(p.h==="right"&&hs.has("right"))) np=_flipWord(cur,/left|right/i,{left:"right",right:"left"});
+      else if((p.v==="top"&&hs.has("top"))||(p.v==="bottom"&&hs.has("bottom"))) np=_flipWord(cur,/up|down|top|bottom/i,{up:"down",down:"up",top:"bottom",bottom:"top"});
+      if(!np||np===cur) return;
+      const i=+pu.xi||0;
+      if(i){ const fld=F("pullPosField")+i, fam=xmlFamOf(fld);
+        state.cabColors=state.cabColors||{}; const cc=(state.cabColors[d.cabInst]=state.cabColors[d.cabInst]||{});
+        if(fam) cc[fam]=np;
+        if(Object.prototype.hasOwnProperty.call(cc,fld)) cc[fld]=np; }                      // ค่าดิบจาก XML ที่เก็บไว้ในชื่อช่อง — หน้า Variables จะได้ไม่โชว์ค่าผิด
+      pu.pos=np;
+      out.push({ตู้:d.cab||"",บาน:d.name||d.id,ชุด:i||"-",บานพับ:[...hs].join("/"),จาก:cur,เป็น:np}); });
+  });
+  return out;
 }
 function applyXmlPulls(inst,pv){
   if(settings.pullXmlOn===false) return null;
