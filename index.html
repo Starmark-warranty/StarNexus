@@ -940,7 +940,7 @@
    ===================================================================== */
 /* ---- APP_META: แหล่งความจริงเดียวของเวอร์ชัน (ดูได้จาก console / คลิกชื่อแอป) ---- */
 const APP_META={
-  name:"StarNexus Cabinet", version:"1.253", build:"2026-09-21/core-steel-length",
+  name:"StarNexus Cabinet", version:"1.254", build:"2026-09-21/cover-screw-bom",
   file:"StarNexus.html", basedOn:"Furnitech_V3.html (v3.11)",
   /* ───────── เริ่มนับเวอร์ชันใหม่ที่ 1.001 (21/08/2026) ─────────
      ของเดิมนับมาถึง 42.1 แล้ววิ่งเป็นทศนิยมสองชั้นซึ่งอ่านลำดับยาก
@@ -948,6 +948,7 @@ const APP_META={
      ประวัติเก่าเก็บไว้ทั้งหมดตามเลขเดิม ไม่ไล่เขียนใหม่ เพราะเลขในนั้นถูกอ้างถึงไปแล้ว
      รายการที่อยู่ใต้ 1.001 ลงไปจึงเป็นเลขชุดเก่า อ่านต่อกันได้ตามวันที่ */
   changelog:[
+    ["1.254","2026-09-21","FEAT สกรูยึดแผ่นปิดออกใบอุปกรณ์แล้ว และตั้งค่าได้ใน Element — รูยิงสกรูของ v1.217 (คลิกขวา → รูยิงสกรูยึดแผ่นปิด) วางผังเจาะให้อย่างเดียว ไม่เคยออกใบอุปกรณ์เลย ฝ่ายจัดซื้อต้องไปนับรูเอาจากแบบ · ตอนนี้ 1 จุดยิง = สกรูตามจำนวนต่อจุด นับจากกฎรายชิ้นตัวเดียวกับที่สร้างรู ชิ้นยาวขึ้นจำนวนจุดเพิ่ม สกรูก็เพิ่มตามเอง · แถว COVERSCREW (สกรูยึดแผ่นปิด) ถูกเติมเข้า Element → Fittings ให้เอง ใส่ Purchase ID หน่วย และลูก (เช่นฝาครอบหัวสกรู) ได้ตามปกติ มีแถวรหัสนั้นอยู่แล้วไม่แตะ · ตั้งค่ากลางได้ในหน้าตั้งค่า (รหัส ชื่อ สกรูต่อจุด) · หน้าต่างรูยิงสกรูเพิ่มช่องรหัสสกรูกับสกรูต่อจุดรายชิ้น เช่น คานใช้ตัวหนึ่ง หน้าลิ้นชักใช้อีกตัว ชิ้นไหนไม่ต้องออกตั้งต่อจุด = 0 · ตรวจกับไฟล์จริง 10 ชิ้นที่มีรูยิง: ก่อนแก้ไม่มีแถวสกรูเลย หลังแก้ COVERSCREW ×28 ตรงกับจำนวนจุด 3+3+3+3+3+3+3+3+2+2"],
     ["1.253","2026-09-21","FIX แบบผลิตไม้เพาะโครงวาดเหล็กตัว T ยาว 150 ตายตัวทุกรุ่น — เคสจริง LTF006 ลึก 134 ใช้เหล็ก FITDG05550 ซึ่งยาว 100 แต่แบบวาดก้าน 150 (แถมเส้นวัดบอก 150 แต่ลากยาว 156 จากขอบหลัง) เหล็กจึงทะลุกรอบหน้าออกไปนอกแผ่น · เพิ่มช่อง coreTLen ใน Element → Fittings ของตัวยึดเพาะโครง = ยาวก้านวัดจากขอบหลังของแผ่นถึงปลาย แบบอ่านจากรุ่นเหล็กที่แผ่นนั้นหยิบใช้จริง (ตามช่วงความลึก หรือที่ตั้งทับรายชิ้น) ไม่ได้ตั้ง = 150 ตามเดิม · ก้านยาวเกินที่ลงได้ (ลึกแผ่น − กรอบหน้า) วาดเป็นสีแดง ไม่ตัดให้สั้นเงียบ ๆ · ตารางในแบบเพิ่มแถวยาวก้านเหล็ก บอกว่ายังไม่ได้ตั้งหรือเกิน · แผงขวาบอกยาวก้านข้างรหัสเหล็กพร้อมเตือนแบบเดียวกัน · ตรวจด้วยการเรียกตัววาดแบบจริงกับ LTF006: ยังไม่ตั้ง = 150 แดงห้าเส้น · ตั้ง 100 = น้ำเงินห้าเส้นจบก่อนกรอบหน้า · ตั้ง 130 = แดง พร้อมเตือนเกินที่ลงได้ 115"],
     ["1.252","2026-09-21","FIX ช่อง Part ของแผ่นผิว / ไม้ไส้ ในแผงไม้เพาะโครง กดแล้วไม่มี Part ขึ้นให้เลือก — ช่องเป็น input ผูก datalist ซึ่งเบราว์เซอร์กรองรายการด้วยข้อความที่อยู่ในช่อง ช่องมีค่า 0000_Mat09_PB อยู่แล้วและตรงกับตัวเลือกพอดี รายการจึงเหลือตัวเดียวหรือไม่ขึ้นเลย ดูเหมือนคลังว่าง · อาการเดียวกับหน้า Variables ที่แก้ไปใน v7.40.1 แต่ช่องนี้ไม่ได้ถูกแก้ตาม · ยกเป็นตัวกลาง dlPickAll() คลิกด้วยเมาส์ = ล้างช่องชั่วคราวแล้วเปิดรายการเต็ม ไม่ได้เลือกอะไรแล้วคลิกออก = คืนค่าเดิม เข้าด้วย Tab ยังแก้ข้อความเดิมได้ ใช้กับช่อง Part ของผิว ไม้ไส้ และรหัสเหล็กยึด · รายการแยกของผิวกับไม้ไส้ Part ที่หนาตรงกับที่ต้องใช้ขึ้นก่อน (ผิว 9 / ไส้ 19) และบอกความหนาข้างรหัส อ่านจากช่อง thick หรือจากชื่อ _Mat09 · เครื่องที่ยังไม่มี Part ในคลังเลยขึ้นเตือนให้ดึงคลาวด์ แทนที่จะเงียบ"],
     ["1.251","2026-09-21","FIX ราวแขวนไม่ยาวตามตู้ที่ XML สั่ง แต่รูเจาะบนทอปกลับเป็นของราวที่ถูก — เคสจริง MWA053 ตู้กว้าง 1000 ราวออกมายาว 800 และเยื้องซ้าย 50 ส่วนรูอยู่ที่ ±437.7 ซึ่งเป็นรูของราว 900 · โมเดลในคลังเก็บไว้ตอนตู้กว้าง 900 ตัวโหลด XML ยืดแผ่นตามขนาดที่สั่ง รูบนทอปอยู่ใกล้ขอบจึงถูกยืดตามขอบไปตกตรงตำแหน่งของราว 900 พอดี แต่ตัวราวไม่เคยถูกจัดใหม่ ยังยาวเท่าเดิมและอยู่ตำแหน่งเดิม · ตัวจัดราว relayHangRails() มีแค่ในปุ่มปรับขนาดตู้กับการสลับโครงสร้าง ตัวโหลด XML ไม่ได้เรียก · ตอนนี้โหลด XML แล้วจัดราวใหม่ทุกตู้ ด้วยตัวเดียวกับปุ่มปรับขนาดตู้ ราวกับรูจึงคิดจากที่เดียวกัน และเปิดออเดอร์ที่เซฟไว้ก็จัดให้ด้วย (คลายหมุนก่อน เพราะตัวจัดอ่านแนวกว้างจากแกน x) ออเดอร์เก่าที่ค้างราวผิดจึงถูกซ่อมตอนเปิด · ตรวจด้วยการรันตัวโหลดจริงกับโมเดลกว้าง 900 ที่สั่ง 1000: ก่อนแก้ราว 800 เยื้อง 50 · หลังแก้ราว 900 กลางตู้ รูตกกลางแขนราวทั้งสองข้าง ตู้ที่หมุน 90 องศาในผังก็ได้ผลเดียวกัน ตู้ที่ถูกอยู่แล้ว (MWA026 กว้าง 500 ราว 400) ไม่เปลี่ยน"],
@@ -1314,7 +1315,7 @@ const DEF_SETTINGS={ frontSetMax:6, dowelD:8, dowelDepth:28, dowelMateDepth:12, 
   healOnVarChange:true,                           // v31.1: แก้ค่าตัวแปรของตู้แล้วเชื่อมเดือยใหม่ให้ตู้ใบนั้น
   kitField:"K_Fitting_Concept", kitPushMap:"B:top, W:bottom", xmlThinMin:1, xmlSkipNoModel:false, orderProgNo:"700", doorGapWarn:50, csNewGap:120, ledSets:[{id:"12V-COB", volt:12, wPerM:9.6,
     stripCode:"", psuMap:"30, 60, 100", psuCode:"", psuUse:80, maxRunM:5,
-    wireCode:"", wireMode:"ต่อเส้นไฟ", wireQty:1}], ledSetPerRun:false, cutSizeFmt:"{ชื่อ} ตัดขนาด {ยาว} mm.", cutLookupKey:"ตัดขนาด", cutLookupOn:true, glassBomOn:true, glassUnit:"EA", glassMatCodes:"FC,MC,FT,PT,FS,MT", glassKinds:"กระจกใส|กระจกเงา|กระจกฝ้า|กระจกใสชาดำ|กระจกใสชาทอง|กระจกเงาชาทอง|กระจกใส ลอนลูกฟูก", glassEdges:"ลบคมรอบ|ลบคมขัดมันรอบ|เจียรริมรอบ|เจียรริมขัดมันรอบ|เจียรริม 1 mm. ขัดมันรอบ", glassKind:"กระจกใส", glassEdge:"ลบคมรอบ", glassShelfKind:"กระจกใส", glassShelfEdge:"เจียรริมขัดมันรอบ", glassDoorT:5, pullXmlOn:true, pullField:"K_Pull", pullOriField:"K_Orientation", pullPosField:"K_Pull_Position", pullXField:"K_Pull_Coordinate_X", pullYField:"K_Pull_Coordinate_Y", pullNo:"nopull,none,-", pullName:"มือจับ", pull3D:true, dxNotchGap:0.5, railLikeMaxW:100, pullDefPos:"UpMiddle", pullDefOri:"H", pullDefX:35, pullDefY:0, legClipOn:true, legClipMap:"", legClipCode:"LEGCLIP", legClipName:"กิ๊ฟขาตู้ (ยึดแผ่นปิดขา)", doorSwing:true, doorRelief3D:true, doorReliefMap:"MCxx35 = 0:3, 3:0, 55:0, 58:3, 60:6, 95:6, 110:2, 110:0 | ตั้งทะลุ 55-60", shelfT:16, hangRailCode:"HANGRAIL", hangRailName:"ราวแขวนผ้า สแตนเลส C", glassHangerCode:"GLASSHANGER", glassHangerName:"หูแขวนกระจก", hangRailThruD:8, hangRailCsD:13, hangRailCsDepth:2, hangRailEndGap:25, hangRailBarH:25, hangRailMap:"", drawerSideT:16, drawerBotT:9, drawerBoxH:120, drawerBoxLift:20, screwD:5, screwMateDepth:28, screwInset:9,
+    wireCode:"", wireMode:"ต่อเส้นไฟ", wireQty:1}], ledSetPerRun:false, cutSizeFmt:"{ชื่อ} ตัดขนาด {ยาว} mm.", cutLookupKey:"ตัดขนาด", cutLookupOn:true, glassBomOn:true, glassUnit:"EA", glassMatCodes:"FC,MC,FT,PT,FS,MT", glassKinds:"กระจกใส|กระจกเงา|กระจกฝ้า|กระจกใสชาดำ|กระจกใสชาทอง|กระจกเงาชาทอง|กระจกใส ลอนลูกฟูก", glassEdges:"ลบคมรอบ|ลบคมขัดมันรอบ|เจียรริมรอบ|เจียรริมขัดมันรอบ|เจียรริม 1 mm. ขัดมันรอบ", glassKind:"กระจกใส", glassEdge:"ลบคมรอบ", glassShelfKind:"กระจกใส", glassShelfEdge:"เจียรริมขัดมันรอบ", glassDoorT:5, pullXmlOn:true, pullField:"K_Pull", pullOriField:"K_Orientation", pullPosField:"K_Pull_Position", pullXField:"K_Pull_Coordinate_X", pullYField:"K_Pull_Coordinate_Y", pullNo:"nopull,none,-", pullName:"มือจับ", pull3D:true, dxNotchGap:0.5, railLikeMaxW:100, pullDefPos:"UpMiddle", pullDefOri:"H", pullDefX:35, pullDefY:0, legClipOn:true, legClipMap:"", legClipCode:"LEGCLIP", legClipName:"กิ๊ฟขาตู้ (ยึดแผ่นปิดขา)", doorSwing:true, doorRelief3D:true, doorReliefMap:"MCxx35 = 0:3, 3:0, 55:0, 58:3, 60:6, 95:6, 110:2, 110:0 | ตั้งทะลุ 55-60", shelfT:16, hangRailCode:"HANGRAIL", hangRailName:"ราวแขวนผ้า สแตนเลส C", glassHangerCode:"GLASSHANGER", glassHangerName:"หูแขวนกระจก", coverScrewCode:"COVERSCREW", coverScrewName:"สกรูยึดแผ่นปิด", coverScrewPer:1, hangRailThruD:8, hangRailCsD:13, hangRailCsDepth:2, hangRailEndGap:25, hangRailBarH:25, hangRailMap:"", drawerSideT:16, drawerBotT:9, drawerBoxH:120, drawerBoxLift:20, screwD:5, screwMateDepth:28, screwInset:9,
   /* v1.201: รอยต่อกล่องลิ้นชักไม้ — แผ่นหน้า/หลังชนเข้าแผ่นข้าง ยึดด้วยเดือย + สกรูจากนอกแผ่นข้าง */
   boxJointOn:true, boxDowelFormula:BOXJ_DOWEL_NAME, boxScrewFormula:BOXJ_SCREW_NAME,
   boxJointDowelD:8, boxJointDowelDepth:24, boxJointMateD:8, boxJointMateDepth:12,
@@ -10562,6 +10563,17 @@ function ensureSampleSlide(){   // ซีรีส์รางลิ้นชั
     return true;
   }catch(e){ console.error(e); return false; }
 }
+/* v1.254: แถวสกรูยึดแผ่นปิดใน Element → Fittings — ไว้ใส่ Purchase ID / ลูก / หน่วย ได้ตามปกติ
+   มีแถวรหัสนี้อยู่แล้ว (ผู้ใช้สร้างเอง) ไม่แตะ */
+function ensureCoverScrew(){
+  try{ settings.elements=settings.elements||{}; settings.elements.fittings=settings.elements.fittings||[];
+    const code=String(settings.coverScrewCode||"COVERSCREW").trim(); if(!code) return false;
+    if(settings.elements.fittings.some(f=>f&&String(f.code||"").trim()===code)) return false;
+    settings.elements.fittings.push({code:code,desc:settings.coverScrewName||"สกรูยึดแผ่นปิด",dia:"",unit:"ตัว",itemId:"",asSet:""});
+    try{ lsSet("furnitech:settings",settings); }catch(e){}
+    return true;
+  }catch(e){ console.error(e); return false; }
+}
 function ensureSampleHangRail(){   // ซีรีส์ราวแขวนตัวอย่าง (code = settings.hangRailCode) พร้อม lenMap ตัวอย่าง
   try{ settings.elements=settings.elements||{}; settings.elements.fittings=settings.elements.fittings||[];
     const code=settings.hangRailCode||"HANGRAIL";
@@ -18179,7 +18191,10 @@ async function screwRuleDialog(b){
     {key:"step",label:"เกณฑ์ความยาว (มม.)",value:R.step,showIf:x=>x.act!=="ถอดออก"},
     {key:"nLo",label:"จำนวนจุด เมื่อยาวไม่เกินเกณฑ์",value:R.nLo,showIf:x=>x.act!=="ถอดออก"},
     {key:"nHi",label:"จำนวนจุด เมื่อยาวเกินเกณฑ์",value:R.nHi,showIf:x=>x.act!=="ถอดออก"},
-    {key:"yOff",label:"เยื้องจากกลางความกว้างชิ้น (มม. · 0 = กลาง)",value:R.yOff,showIf:x=>x.act!=="ถอดออก"}]);
+    {key:"yOff",label:"เยื้องจากกลางความกว้างชิ้น (มม. · 0 = กลาง)",value:R.yOff,showIf:x=>x.act!=="ถอดออก"},
+    /* v1.254: สกรูที่ออกใบอุปกรณ์ */
+    {key:"code",type:"text",label:"รหัสสกรู (Element → Fittings) · เว้นว่าง = ใช้รหัสกลาง "+(settings.coverScrewCode||"COVERSCREW"),value:String(R.code||""),showIf:x=>x.act!=="ถอดออก"},
+    {key:"per",label:"สกรูต่อจุด (ตัว · เว้นว่าง = ค่ากลาง "+(settings.coverScrewPer!=null?settings.coverScrewPer:1)+")",value:(R.per!=null?R.per:""),showIf:x=>x.act!=="ถอดออก"}]);
   if(!v) return;
   const targets=String(v.scope).indexOf("ชิ้นที่เลือก")===0?state.boards.filter(x=>sel.includes(x.id))
     :String(v.scope).indexOf("คานนอนบน")===0?topRails:[b];
@@ -18187,6 +18202,8 @@ async function screwRuleDialog(b){
   const num=k=>{ const n=+v[k]; if(!Number.isFinite(n)||n<0) throw Error("ค่า "+k+" ต้องเป็นตัวเลขไม่ติดลบ"); return n; };
   const rule={d1:num("d1"),dep1:num("dep1"),d2:num("d2"),face:v.face==="บน"?"top":"bottom",margin:num("margin"),step:num("step"),
     nLo:Math.round(num("nLo")),nHi:Math.round(num("nHi")),yOff:+v.yOff||0};
+  { const cd=String(v.code||"").trim(); if(cd) rule.code=cd;                                   // v1.254
+    const pr=String(v.per==null?"":v.per).trim(); if(pr!==""){ const pn=+pr; if(!Number.isFinite(pn)||pn<0) throw Error("สกรูต่อจุดต้องเป็นตัวเลขไม่ติดลบ"); rule.per=pn; } }
   if(!(rule.d1>0)&&!(rule.d2>0)) throw Error("ต้องมีดอกอย่างน้อยหนึ่งขนาด");
   if(rule.d1>0&&!(rule.dep1>0)) throw Error("ดอกใหญ่ต้องลึกมากกว่า 0");
   if(rule.d1>0&&rule.d2>rule.d1) throw Error("ดอกเล็กใหญ่กว่าดอกใหญ่");
@@ -22585,6 +22602,7 @@ async function loadSettings(){ const s=await lsGet("furnitech:settings",null);
   ensureSamplePull();     // v9.71: ตัวอย่างมือจับ ไว้ให้เห็นรูปแบบสเปครู
   ensureSampleSection();  // v9.83: ตัวอย่างหน้าตัดกล่องอลู ไว้ลองบานเฟรม
   ensureSampleHangRail(); // ซีรีส์ราวแขวนตัวอย่าง (lenMap ตามยาว)
+  ensureCoverScrew();     // v1.254: แถวสกรูยึดแผ่นปิด
   ensureSampleSlide();    // ซีรีส์รางลิ้นชักตัวอย่าง (lenMap/boxToRail/drillMap)
   ensureSampleAlto();     // ซีรีส์ราง Alto + default รูเจาะข้าง/หน้าบาน
   ensureSampleK40();      // ซีรีส์ราง Kitchen 4.0 (สีเดียว)
@@ -23114,6 +23132,9 @@ function renderSettings(){
     <div class="sumh" style="margin-top:12px">หูแขวนกระจก</div>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">${pick("glassHangerCode","รหัส Fitting (Element → Fittings) — ใส่ Purchase ID ที่แถวนี้","fittings")}${txt("glassHangerName","ชื่อในใบอุปกรณ์ (ใช้เมื่อยังไม่มีแถวใน Element)")}</div>
     <div style="font-size:11px;opacity:.62;margin:2px 0 4px">1 จุด = 1 ตัว นับจากรู Ø15 ที่ผังวางไว้ (บาก 45×18 กับ 20×8 ที่ซ้อนพิกัดเดียวกันเป็นของตัวเดียวกัน ไม่นับซ้ำ) · เว้นรหัสว่าง = ไม่ออกในใบอุปกรณ์</div>
+    <div class="sumh" style="margin-top:12px">สกรูยึดแผ่นปิด (รูยิงสกรู)</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px">${pick("coverScrewCode","รหัสกลาง (Element → Fittings) — ใส่ Purchase ID ที่แถวนี้","fittings")}${txt("coverScrewName","ชื่อในใบอุปกรณ์ (ใช้เมื่อยังไม่มีแถวใน Element)")}${num("coverScrewPer","สกรูต่อจุด (ตัว)")}</div>
+    <div style="font-size:11px;opacity:.62;margin:2px 0 4px">นับจากรูยิงสกรูที่ใส่ด้วยคลิกขวา → รูยิงสกรูยึดแผ่นปิด · 1 จุด = สกรูตามจำนวนต่อจุด · ตั้งรหัสแยกรายชิ้นได้ในหน้าต่างนั้น · ชิ้นไหนไม่ต้องออกสกรู ตั้ง "สกรูต่อจุด" = 0 ในหน้าต่างของชิ้นนั้น</div>
     <div class="sumh" style="margin-top:12px">คาน DX (บานล้วง)</div>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">${num("dxHTop","สูงคาน DX บน/ล่างสุด (มม.)")}${num("dxHMid","สูงคาน DX กลาง ระหว่างบาน (มม.)")}</div>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">${num("dxHI","DX I: สูงคานตั้งต้น (มม.)")}${num("dxTI","DX I: หนาแผ่นตั้งต้น (มม.)")}</div>
@@ -32407,6 +32428,22 @@ function fittingAgg(boards){   // รวมเดือย + พินรอง�
       if(ng>0){ const elg=(((settings.elements||{}).fittings)||[]).find(x=>x.code===gk);
         (m[gk]||(m[gk]={art:gk,dia:"",kind:"hanger",name:(elg&&elg.desc)||settings.glassHangerName||DEF_SETTINGS.glassHangerName,
           unit:(elg&&elg.unit)||"ตัว",count:0,_pidList:fitPidList(gk)})).count+=ng; } } }
+  /* ───────── v1.254: สกรูยึดแผ่นปิด — 1 จุดยิง = สกรู "ต่อจุด" ตัว ─────────
+     รูยิงสกรูของ v1.217 วางผังเจาะให้อย่างเดียว ไม่เคยออกใบอุปกรณ์ ฝ่ายจัดซื้อต้องไปนับรูเอาจากแบบ
+     นับจากกฎรายชิ้นตัวเดียวกับที่สร้างรู (จำนวนจุดตามความยาว) ชิ้นยาวขึ้นสกรูเพิ่มตามเอง
+     รหัสตั้งรายชิ้นได้ในหน้าต่างรูยิงสกรู (เช่น คานใช้ตัวหนึ่ง หน้าลิ้นชักใช้อีกตัว) · ไม่ตั้ง = รหัสกลางในตั้งค่า
+     ลูก (เช่น ฝาครอบหัวสกรู) ใส่ที่แถวรหัสนั้นใน Element → Fittings ได้ตามปกติ */
+  (boards||[]).forEach(b=>{ if(!b||!b.screwRule||b._virtual) return;
+    const R=Object.assign({},SCREW_RULE_DEF,b.screwRule);
+    if(!(+R.d1>0)&&!(+R.d2>0)) return;
+    const Lb=+b.L||0; if(!(Lb>=20)) return;
+    const np=Math.max(0,Math.round(screwRuleCount(Lb,R))||0); if(!np) return;
+    const k=String(R.code||settings.coverScrewCode||DEF_SETTINGS.coverScrewCode||"").trim(); if(!k) return;
+    const pv=(R.per!=null&&String(R.per).trim()!=="")?+R.per:(settings.coverScrewPer!=null&&String(settings.coverScrewPer).trim()!==""?+settings.coverScrewPer:1);
+    const per=Math.max(0,Number.isFinite(pv)?pv:1); if(!per) return;
+    const elc=(((settings.elements||{}).fittings)||[]).find(x=>x&&x.code===k);
+    (m[k]||(m[k]={art:k,dia:"",kind:"screw",name:(elc&&elc.desc)||settings.coverScrewName||DEF_SETTINGS.coverScrewName,
+      unit:(elc&&elc.unit)||"ตัว",count:0,_pidList:fitPidList(k)})).count+=np*per; });
   // รางลิ้นชัก: 1 ลูก = 1 ชุด · เลือกรหัสตามความลึกกล่องจาก "ซีรีส์ราง" ใน Element → Fittings (settings.slideCode ชี้ตัวที่ใช้)
   // ตาราง lenMap อยู่ในตัว Element → Save As ได้ทั้งซีรีส์ · ไม่มีใน Element ค่อย fallback settings.slideMap
   { const fitDefs0=(settings.elements&&settings.elements.fittings)||[];
@@ -34214,7 +34251,7 @@ function boot(){ console.log("%c"+appVerStr(),"font-weight:700;color:#007aff");
      ถ้ามันมาถึงทีหลัง syncFitModels โมเดลที่เพิ่งดึงมาจะถูกกลบหายทันที */
   Promise.race([cloudLoadSettings(true), new Promise(r=>setTimeout(()=>r(false),5000))])
     .catch(()=>false)
-    .then(ok=>{ ensureSampleHanger(); ensureHangerH1(); ensureSampleZBracket(); ensureAngle3(); ensureSampleLeg(); ensureSampleHangRail(); ensureSampleSlide(); ensureSampleAlto();
+    .then(ok=>{ ensureSampleHanger(); ensureHangerH1(); ensureSampleZBracket(); ensureAngle3(); ensureSampleLeg(); ensureSampleHangRail(); ensureCoverScrew(); ensureSampleSlide(); ensureSampleAlto();
       if(ok)toast("ซิงค์ Variables/Element จากคลาวด์แล้ว");
       return syncFitModelsFromCloud(false); })
     .then(n=>{ if(n>0) toast("☁ โหลดอุปกรณ์ Fitting 3D จากคลาวด์ "+n+" ตัว");
