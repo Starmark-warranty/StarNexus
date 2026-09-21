@@ -940,7 +940,7 @@
    ===================================================================== */
 /* ---- APP_META: แหล่งความจริงเดียวของเวอร์ชัน (ดูได้จาก console / คลิกชื่อแอป) ---- */
 const APP_META={
-  name:"StarNexus Cabinet", version:"1.251", build:"2026-09-21/xml-hangrail-relay",
+  name:"StarNexus Cabinet", version:"1.252", build:"2026-09-21/core-part-picker",
   file:"StarNexus.html", basedOn:"Furnitech_V3.html (v3.11)",
   /* ───────── เริ่มนับเวอร์ชันใหม่ที่ 1.001 (21/08/2026) ─────────
      ของเดิมนับมาถึง 42.1 แล้ววิ่งเป็นทศนิยมสองชั้นซึ่งอ่านลำดับยาก
@@ -948,6 +948,7 @@ const APP_META={
      ประวัติเก่าเก็บไว้ทั้งหมดตามเลขเดิม ไม่ไล่เขียนใหม่ เพราะเลขในนั้นถูกอ้างถึงไปแล้ว
      รายการที่อยู่ใต้ 1.001 ลงไปจึงเป็นเลขชุดเก่า อ่านต่อกันได้ตามวันที่ */
   changelog:[
+    ["1.252","2026-09-21","FIX ช่อง Part ของแผ่นผิว / ไม้ไส้ ในแผงไม้เพาะโครง กดแล้วไม่มี Part ขึ้นให้เลือก — ช่องเป็น input ผูก datalist ซึ่งเบราว์เซอร์กรองรายการด้วยข้อความที่อยู่ในช่อง ช่องมีค่า 0000_Mat09_PB อยู่แล้วและตรงกับตัวเลือกพอดี รายการจึงเหลือตัวเดียวหรือไม่ขึ้นเลย ดูเหมือนคลังว่าง · อาการเดียวกับหน้า Variables ที่แก้ไปใน v7.40.1 แต่ช่องนี้ไม่ได้ถูกแก้ตาม · ยกเป็นตัวกลาง dlPickAll() คลิกด้วยเมาส์ = ล้างช่องชั่วคราวแล้วเปิดรายการเต็ม ไม่ได้เลือกอะไรแล้วคลิกออก = คืนค่าเดิม เข้าด้วย Tab ยังแก้ข้อความเดิมได้ ใช้กับช่อง Part ของผิว ไม้ไส้ และรหัสเหล็กยึด · รายการแยกของผิวกับไม้ไส้ Part ที่หนาตรงกับที่ต้องใช้ขึ้นก่อน (ผิว 9 / ไส้ 19) และบอกความหนาข้างรหัส อ่านจากช่อง thick หรือจากชื่อ _Mat09 · เครื่องที่ยังไม่มี Part ในคลังเลยขึ้นเตือนให้ดึงคลาวด์ แทนที่จะเงียบ"],
     ["1.251","2026-09-21","FIX ราวแขวนไม่ยาวตามตู้ที่ XML สั่ง แต่รูเจาะบนทอปกลับเป็นของราวที่ถูก — เคสจริง MWA053 ตู้กว้าง 1000 ราวออกมายาว 800 และเยื้องซ้าย 50 ส่วนรูอยู่ที่ ±437.7 ซึ่งเป็นรูของราว 900 · โมเดลในคลังเก็บไว้ตอนตู้กว้าง 900 ตัวโหลด XML ยืดแผ่นตามขนาดที่สั่ง รูบนทอปอยู่ใกล้ขอบจึงถูกยืดตามขอบไปตกตรงตำแหน่งของราว 900 พอดี แต่ตัวราวไม่เคยถูกจัดใหม่ ยังยาวเท่าเดิมและอยู่ตำแหน่งเดิม · ตัวจัดราว relayHangRails() มีแค่ในปุ่มปรับขนาดตู้กับการสลับโครงสร้าง ตัวโหลด XML ไม่ได้เรียก · ตอนนี้โหลด XML แล้วจัดราวใหม่ทุกตู้ ด้วยตัวเดียวกับปุ่มปรับขนาดตู้ ราวกับรูจึงคิดจากที่เดียวกัน และเปิดออเดอร์ที่เซฟไว้ก็จัดให้ด้วย (คลายหมุนก่อน เพราะตัวจัดอ่านแนวกว้างจากแกน x) ออเดอร์เก่าที่ค้างราวผิดจึงถูกซ่อมตอนเปิด · ตรวจด้วยการรันตัวโหลดจริงกับโมเดลกว้าง 900 ที่สั่ง 1000: ก่อนแก้ราว 800 เยื้อง 50 · หลังแก้ราว 900 กลางตู้ รูตกกลางแขนราวทั้งสองข้าง ตู้ที่หมุน 90 องศาในผังก็ได้ผลเดียวกัน ตู้ที่ถูกอยู่แล้ว (MWA026 กว้าง 500 ราว 400) ไม่เปลี่ยน"],
     ["1.250","2026-09-21","FIX ไม้เพาะโครงไม่ออกแถบขอบเลยสักแถว — เคสจริง LTF006 ก้อนหนา 38.6 ใช้ Part 0111_Mat38 ซึ่งปิดขอบสามด้าน แต่ใบไม้ได้ Top Skin กับ Bottom Skin ที่ขอบว่างทั้งสี่ด้าน และไม่มีแถว TYP7 สักแถว · ตอนแตกก้อน ลูกถูกเปลี่ยนไปใช้ Part ของผิวเอง (0000_Mat09_PB ไม่มีขอบ) ตั้งแต่ v1.113 แล้วยกไปแค่ช่อง edges ดิบของแม่ ซึ่งเป็น No Edge เพราะขอบจริงมาจาก Part ของก้อน ไม่ได้ตั้งรายชิ้น ขอบของก้อนจึงหายเกลี้ยง · ตอนนี้ผิวรับขอบที่ใช้จริงของก้อน (effLinks) แล้วแปลงลิงก์ $ เป็นรหัสจริงด้วยตู้ของแม่ ไม่งั้น Part ของผิวชนะลิงก์อีกรอบ · และแถบขอบกว้าง 45/55 ปิดหน้าตัดทั้งก้อนเส้นเดียว ผิวทั้งสองแผ่นยังถือขอบไว้ (ขนาดตัดหักขอบเท่ากัน) แต่แถวขอบ TYP7 นับจากผิวบนแผ่นเดียว ไม่งั้นใบขอบสั่งเป็นสองเท่า · ตรวจด้วย buildImosData จริงกับตู้ในไฟล์: ก่อนแก้ไม่มีแถวขอบ หลังแก้ได้ K_88845297 สามแถว 134 + 2000 + 134 จากผิวบนแผ่นเดียว"],
     ["1.249","2026-09-21","FEAT ลายหน้าบาน 3D ให้ร่องขอบข้างวิ่งตรงตลอดความสูงบานได้ (ตั้งยาว คานสั้นชนเข้า) ตามแบบหน้า MCxx35 — v1.247 เข้ามุม 45 ทุกด้าน ร่องข้างจึงเลี้ยวเข้าร่องบนที่มุม ไม่ตรงกับแบบ · ต่อท้ายลายด้วย | ตั้งทะลุ a-b = ช่วงนั้นของขอบซ้าย/ขวาวิ่งตรงถึงขอบบน-ล่าง · | นอนทะลุ a-b = ขอบบน/ล่างวิ่งตรงตลอดความกว้าง · ไม่ใส่ = เข้ามุม 45 เหมือนเดิม · เปลี่ยนตัวปั้นจากรีดหน้าตัดสี่ด้าน เป็นพื้นผิวที่ความลึก = มากสุดของ ลายเข้ามุม กับ ช่วงทะลุ เส้นตารางวางตรงจุดหักของลายทุกจุด ช่องบนแนวทแยงแบ่งตามแนวมุม 45 เส้นหักจึงคมตรงตำแหน่ง บานละ 572-716 สามเหลี่ยม · ค่าตั้งต้น MCxx35 เติม | ตั้งทะลุ 55-60 · เครื่องที่ยังใช้ค่าตั้งต้นของ v1.247 ถูกเติมให้เอง ที่แก้เองแล้วไม่แตะ · ตรวจด้วยการยิงลำแสง: ร่องตั้งลึก 3 ตลอดจากขอบบนถึงล่าง คานบนมีร่องเฉพาะช่วง 55-60 ผิวหน้า หลัง และผนังรอบบานหันถูกด้านครบ"],
@@ -1649,6 +1650,15 @@ function expandCoreBoards(list){
    groupOf()/selBoard()/wd()/faceOf()/pull()  แทน inline ที่เขียนซ้ำหลายจุด
    ===================================================================== */
 function $(id){ return document.getElementById(id); }
+/* v1.252: ช่องเลือกจากรายการ (input + datalist) ที่มีค่าอยู่แล้ว เบราว์เซอร์จะกรองรายการด้วยข้อความในช่อง
+   ค่าตรงกับตัวเลือกพอดี = เหลือตัวเดียวหรือไม่ขึ้นเลย ดูเหมือน "ไม่มีให้เลือก" (หน้า Variables เจอมาแล้ว v7.40.1)
+   คลิกด้วยเมาส์ = ล้างช่องชั่วคราวแล้วเปิดรายการเต็ม · ไม่ได้เลือกอะไรแล้วคลิกออก = คืนค่าเดิม
+   เข้าด้วยแป้น Tab ยังแก้ข้อความเดิมได้ตามปกติ · พิมพ์ = กรองตามปกติ */
+function dlPickAll(el){ if(!el||el._dlp) return el; el._dlp=1;
+  el.addEventListener("mousedown",()=>{ if(el.value!=="") el.dataset.prev=el.value; el.value="";
+    setTimeout(()=>{ try{ if(el.showPicker) el.showPicker(); }catch(e){} },0); });
+  el.addEventListener("blur",()=>{ if(!String(el.value||"").trim()) el.value=el.dataset.prev||""; });
+  return el; }
 function $$(sel,root){ return Array.prototype.slice.call((root||document).querySelectorAll(sel)); }
 function bind(id,fn,ev){ const e=(typeof id==="string")?$(id):id; if(e) e[ev||"onclick"]=fn; return e; }
 /* sync(rebuild, save, cm) — ส่ง 0 เพื่อ "ข้าม" ขั้นนั้น
@@ -13539,14 +13549,23 @@ function showInspector(){
             +`<div class="num"><span>แถบขอบ</span><input type="number" value="${coreBandW(b.T)}" disabled title="ความกว้างแถบขอบที่จะแทน xx ในรหัส"></div>`
             +`</div>`;
           { const _cc=(b.core||{});
-            const _dl="dlCoreP"+Math.random().toString(36).slice(2,7);
-            const _pl2=((settings.elements||{}).parts||[]).map(x=>x&&x.code).filter(Boolean);
-            const _row=(id,val,lb,ph)=>`<div style="margin-top:6px"><label class="muted" style="font-size:11px">${lb}</label>`
-              +`<input class="nameinp" id="${id}" list="${_dl}" value="${escapeHtml(String(val||""))}" placeholder="${ph}"`
+            const _dk=Math.random().toString(36).slice(2,7);
+            /* v1.252: รายการ Part แยกของผิวกับไม้ไส้ · Part ที่หนาตรงกับที่ต้องใช้ขึ้นก่อน · บอกความหนาไว้ข้างรหัส
+               ความหนาของ Part: ช่อง thick ถ้าตั้งไว้ ไม่งั้นอ่านจากชื่อ (_Mat09 → 9) */
+            const _pAll=((settings.elements||{}).parts||[]).filter(x=>x&&x.code);
+            const _pT=x=>{ const t=parseFloat(x.thick); if(t>0) return t; const m=String(x.code).match(/_Mat(\d{2})(?!\d)/); return m?+m[1]:0; };
+            const _list=(id,want)=>`<datalist id="${id}">`+_pAll.slice().sort((a2,b3)=>{
+                const da=Math.abs(Math.round(_pT(a2))-Math.round(want)), db=Math.abs(Math.round(_pT(b3))-Math.round(want));
+                return (da===db)?String(a2.code).localeCompare(String(b3.code)):(da-db); })
+              .map(x=>{ const t=_pT(x); return `<option value="${escapeHtml(x.code)}">${escapeHtml((t?("หนา "+fmt(t)):"หนา ?")+(x.desc?(" · "+x.desc):""))}</option>`; }).join("")+`</datalist>`;
+            const _row=(id,dl,val,lb,ph)=>`<div style="margin-top:6px"><label class="muted" style="font-size:11px">${lb}</label>`
+              +`<input class="nameinp" id="${id}" list="${dl}" value="${escapeHtml(String(val||""))}" placeholder="${ph}"`
+              +` title="คลิกเพื่อเปิดรายการ Part ทั้งหมด (ที่หนาตรงขึ้นก่อน) · พิมพ์เพื่อกรอง"`
               +` style="width:100%;margin-top:2px;font-family:var(--mono);font-size:11px"></div>`;
-            h+=`<datalist id="${_dl}">${_pl2.map(c2=>`<option>${escapeHtml(c2)}</option>`).join("")}</datalist>`
-              +_row("f_coreSkinPart",_cc.skinPart,"Part ของแผ่นผิว","ไม้หนา "+fmt(_sp.skinT)+" — เว้นว่าง = ใช้ Part ของก้อน")
-              +_row("f_coreRibPart",_cc.ribPart,"Part ของไม้ไส้","ไม้หนา "+fmt(_sp.ribT)+" ตั้งขึ้น — เว้นว่าง = ใช้ Part ของก้อน");
+            h+=_list("dlCoreS"+_dk,_sp.skinT)+_list("dlCoreR"+_dk,_sp.ribT)
+              +_row("f_coreSkinPart","dlCoreS"+_dk,_cc.skinPart,"Part ของแผ่นผิว","ไม้หนา "+fmt(_sp.skinT)+" — เว้นว่าง = ใช้ Part ของก้อน")
+              +_row("f_coreRibPart","dlCoreR"+_dk,_cc.ribPart,"Part ของไม้ไส้","ไม้หนา "+fmt(_sp.ribT)+" ตั้งขึ้น — เว้นว่าง = ใช้ Part ของก้อน");
+            if(!_pAll.length) h+=`<div style="font-size:10.5px;margin-top:3px;color:#e0853b;line-height:1.5">⚠ เครื่องนี้ยังไม่มี Part ในคลังเลย รายการจึงว่าง — กด ⬇ ดึงคลาวด์ ในหน้า Variables หรือ Element ก่อน</div>`;
             /* ก้อนหนากับผิวบางเป็นไม้คนละแผ่นเสมอ ไม่ตั้ง = เบิกไม้ผิดความหนาเงียบ ๆ */
             if(!String(_cc.skinPart||"").trim()||!String(_cc.ribPart||"").trim())
               h+=`<div style="font-size:10.5px;margin-top:3px;color:#e0853b;line-height:1.5">`
@@ -14099,6 +14118,7 @@ function showInspector(){
       if(e.target.checked){ b2.core=Object.assign({},CORE_DEF,b2.core||{},{on:true}); }
       else if(b2.core){ b2.core.on=false; }
       sync(1); toast(e.target.checked?"ตั้งเป็นไม้เพาะโครงแล้ว":"กลับเป็นแผ่นธรรมดาแล้ว"); };
+    ["f_coreSkinPart","f_coreRibPart","f_coreFit"].forEach(id=>dlPickAll($(id)));   // v1.252: คลิกแล้วเห็นรายการเต็ม
     { const skp=$("f_coreSkinPart");
       if(skp) skp.onchange=e=>{ const b2=selBoard(); if(!b2||!b2.core)return;
         b2.core.skinPart=String(e.target.value||"").trim(); sync(1); }; }
