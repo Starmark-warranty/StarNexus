@@ -940,7 +940,7 @@
    ===================================================================== */
 /* ---- APP_META: แหล่งความจริงเดียวของเวอร์ชัน (ดูได้จาก console / คลิกชื่อแอป) ---- */
 const APP_META={
-  name:"StarNexus Cabinet", version:"1.261", build:"2026-09-21/pull-hinge-guard",
+  name:"StarNexus Cabinet", version:"1.263", build:"2026-09-21/frontlayout-rotated-divider",
   file:"StarNexus.html", basedOn:"Furnitech_V3.html (v3.11)",
   /* ───────── เริ่มนับเวอร์ชันใหม่ที่ 1.001 (21/08/2026) ─────────
      ของเดิมนับมาถึง 42.1 แล้ววิ่งเป็นทศนิยมสองชั้นซึ่งอ่านลำดับยาก
@@ -948,6 +948,8 @@ const APP_META={
      ประวัติเก่าเก็บไว้ทั้งหมดตามเลขเดิม ไม่ไล่เขียนใหม่ เพราะเลขในนั้นถูกอ้างถึงไปแล้ว
      รายการที่อยู่ใต้ 1.001 ลงไปจึงเป็นเลขชุดเก่า อ่านต่อกันได้ตามวันที่ */
   changelog:[
+    ["1.263","2026-09-21","FIX สองเรื่องจาก LRT005 (ตู้หมุน 90 องศาในผัง) · (1) กดจัดหน้าบานแล้วบานเด้งออกนอกตู้ — v1.161 คลายหมุนตู้ก่อนเปิดหน้านี้แล้วตั้งใจหมุนกลับตอนปิด ผ่าน try{ await frontLayoutDialog() } finally{ หมุนกลับ } แต่ตัวในแค่เปิดกล่องแล้วคืนค่าทันที ไม่ได้รอผู้ใช้ finally จึงหมุนตู้กลับตั้งแต่วินาทีที่กล่องขึ้น กรอบ ผัง และช่องไฟในหน้านี้ถูกจับไว้ตอนตู้ยังไม่หมุน กดตกลงก็เขียนตำแหน่งแกนตู้ลงชิ้นที่หมุนกลับไปแล้ว บานจึงกระโดดไปอยู่แนวลึก (ห่างหน้าตู้ราว 1 เมตร) แล้วเก็บสเปคจากตำแหน่งผิดนั้นต่อ ตู้ไม่หมุนไม่เห็นอาการ · ตอนนี้หน้านี้คืน promise ที่จบเมื่อกล่องปิดจริงเท่านั้น ไม่ว่าปิดด้วยตกลง ยกเลิก กากบาท หรือ Esc (เฝ้าคลาส show ของกล่องด้วย เพราะ Esc ปิดจากตัวจัดการกลาง) · (2) ลบเสาแบ่งกลางแล้วบานทั้งสองใบขยายเต็มตู้ทับกันสนิท — ชิ้นอ้างอิงที่หายไปถูกซ่อมทีละใบ ได้ขอบข้างซ้าย→ข้างขวาคนละใบ n=1 ทั้งคู่ ช่องไฟระหว่างบานในหน้าจัดหน้าบานจึงวัดได้ −1130.9 · ตอนนี้ถ้าชิ้นที่หายเป็นขอบขวาของฝั่งหนึ่งและขอบซ้ายของอีกฝั่งในแถวเดียวกัน = รวมเป็นช่องเดียว ขอบนอกยืมของแต่ละฝั่ง ลำดับซ้ายไปขวา ช่องไฟเดิมในแต่ละฝั่งคงไว้ รอยต่อตรงที่เสาเคยอยู่ 2 มม. · ตรวจด้วยตัวจริง: ลบเสา+ชั้นของ LRT005 ก่อนแก้ได้บาน 1138.9 สองใบทับกัน หลังแก้ได้ 572.5 สองใบเรียงกันช่องไฟ 2 · เปิดหน้าจัดหน้าบานบนตู้หมุน ก่อนแก้ระหว่างกล่องเปิดตู้กลับไปหมุน 90 แล้วกดตกลงบานไปอยู่ x −809 / −235 นอกตู้ หลังแก้ตู้คลายหมุนตลอดที่กล่องเปิด กดตกลงแล้วหมุนกลับ บานอยู่หน้าตู้ครบ"],
+    ["1.262","2026-09-21","PERF กดบันทึกค่า / ☁ เก็บคลาวด์ ไม่ส่งของที่ไม่ได้แก้ขึ้นไปซ้ำ — เดิมหนึ่งครั้ง = ส่งตั้งค่าทั้งก้อน (ซึ่งพ่วงโมเดล Fitting 3D กับหน้าตัดทุกตัวไว้ข้างใน) แล้วส่งโมเดลทุกตัวกับหน้าตัดทุกตัวขึ้นแถวของตัวเองอีกรอบทีละตัว แม้ไม่ได้แตะเลย บวกบันทึกประวัติการเขียนอีกหนึ่งครั้งต่อการเขียนแต่ละครั้ง และเสี่ยงเอาของเก่าในเครื่องไปทับของใหม่ที่เครื่องอื่นเพิ่งส่ง · (1) ก้อนตั้งค่าไม่พ่วงโมเดลกับหน้าตัดแล้ว ทั้งสองมีแถวของตัวเองบนคลาวด์ ทุกเครื่องดึงจากแถวนั้นตอนเปิดอยู่แล้ว ตัวดึงก้อนตั้งค่าเก็บของในเครื่องไว้เมื่อก้อนไม่มีมา ของจึงไม่หายทั้งเครื่องรุ่นใหม่และรุ่นเก่า (2) จำลายนิ้วมือเนื้อหาของโมเดล/หน้าตัดที่เครื่องนี้ส่งล่าสุด ส่งเฉพาะตัวที่เปลี่ยน ส่งผ่านปุ่มบันทึกใน Studio ก็จำ ครั้งแรกหลังอัปเดตยังส่งครบหนึ่งรอบ · ข้อความบอกว่าส่งกี่ตัว ข้ามกี่ตัว · วัดด้วยคลาวด์จำลอง อุปกรณ์ 3D 100 หน้าตัด 200: เดิมทุกครั้ง 301 คำขอเขียน + log 301 รวม 314 KB · ใหม่ไม่ได้แก้ 1 คำขอ 13 KB แก้หนึ่งตัว 2 คำขอ · เครื่องรุ่นเก่าดึงก้อนใหม่แล้วโมเดลในเครื่องยังอยู่ครบ เครื่องใหม่เอี่ยมได้โมเดลครบจากแถวของมัน"],
     ["1.261","2026-09-21","FEAT กันมือจับไปอยู่ฝั่งบานพับ — บางออเดอร์ XML ส่งตำแหน่งมือจับกลับด้านมา เช่น บาน 1 (บานพับซ้าย) ได้ LeftDown บาน 2 (บานพับขวา) ได้ RightDown มือจับจึงไปอยู่ขอบเดียวกับบานพับทั้งสองบาน · โหลด XML เสร็จ (หลังฉากคิดครบ บานพับอยู่ขอบไหนเป็นค่าสุดท้ายแล้ว) ตรวจทุกบานที่มีทั้งบานพับและมือจับ ฝั่งมือจับตรงกับขอบที่มีบานพับ กลับด้านเฉพาะแกนนั้น บานพับข้างสลับ Left ↔ Right บานยก/บานพับล่างสลับ Up ↔ Down ตำแหน่งกลางแกนไม่ชนไม่แตะ · เขียนกลับทั้งค่าที่มือจับจำไว้ ตัวแปรที่ช่องตำแหน่งผูกอยู่ และค่าดิบในชื่อช่อง หน้า Variables (ตู้นี้) จึงเห็นค่าที่แก้แล้ว · ข้อความตอนโหลดเสร็จบอกจำนวนและตัวอย่าง รายการเต็มใน console · รันซ้ำไม่แก้ซ้ำ · ปิดได้ที่ ตั้งค่า → มือจับจากช่อง K_Pull ใน XML · ตรวจกับตู้ LRT005 สองใบ ป้อนตำแหน่งกลับด้านแบบในรูป: ก่อนกันมือจับอยู่ขอบบานพับทั้ง 4 บาน · หลังกันบาน 1 = RightDown บาน 2 = LeftDown ตรงข้ามบานพับครบ"],
     ["1.260","2026-09-21","FIX สามเรื่องจากตู้ LRT005 · (1) บานพับชนชั้นปรับถูกดันลงแทนขึ้น — ตัวหลบไล่ทีละก้าวสลับ ขึ้น 96 → ลง 96 → ขึ้น 192 บานพับกลางขึ้น 96 ยังใกล้ชั้นเกินจึงถูกดันลงทันที ทั้งที่ขึ้น 192 พ้น · ตอนนี้ลองขึ้นให้สุด 1-3 ก้าวก่อนแล้วค่อยลองลง ห้ามไปซ้อนบานพับตัวอื่นในบานเดียวกัน และระยะหลบที่ระบบเคยใส่ไว้ (ไม่ใช่ที่ตั้งเอง) คิดใหม่จากตำแหน่งฐานทุกรอบ บานที่เคยถูกดันลงจึงขึ้นเองตอนเปิด เทียบก่อนหลังก่อนเจาะ ไม่เปลี่ยนก็ไม่แตะ · (2) ขาตู้เด้งออกนอกตู้ทั้งหน้าหลัง และขากลางไปซ้อนขาริม 6 ขาเหลือ 4 จุด — โมเดลถูกยืดจากตู้ลึกลงมาเหลือลึก 200 ซึ่งแคบเกินกว่าจะเจาะรูมาร์คขา ตัวเจาะออกไปโดยไม่ล้างจุดศูนย์ขาที่จำไว้ (_legPts) ของขนาดเก่า ตัววางขาอ่านจุดค้างชุดนั้นต่อ · ล้างจุดเมื่อไม่เจาะ และตัววางขาไม่ใช้จุดที่อยู่นอกแผ่นพื้น ถอยไปคิดจากสูตรร่นขอบ · (3) มือจับบานขวาอยู่ฝั่งเดียวกับบานพับ ทั้งที่ XML ส่ง K_Pull_Position2 = LeftUp มาถูก — บานทั้งสองผูก Part ลิงก์ FrontShapeP1 ตัวเดียวกัน ได้เลขบาน 1 ทั้งคู่ จึงหยิบชุดมือจับชุดที่ 1 (RightUp) ไปทั้งสองบาน · เลขบานจาก Part ใช้เฉพาะตอนไม่ซ้ำกัน ซ้ำหรือขาดให้เรียงตามตำแหน่งทั้งตู้ และวัดซ้ายขวาในแกนของตู้เอง (ตู้หมุน 90/270 บานเรียงตามแกน z ไม่ใช่ x ของเดิมเรียงด้วย x โลกจึงได้ลำดับตามไฟล์) · ตรวจกับไฟล์จริงสองตู้: บานพับกลางจาก 453.6 (ลง) เป็น 741.6 (ขึ้น) · ขาทั้งหกอยู่ในตู้ · มือจับบานขวาได้ชุดที่ 2 LeftUp อยู่ตรงข้ามบานพับทุกบาน"],
     ["1.259","2026-09-21","UX ประวัติ XML (คลาวด์) เรียงตามเลขออเดอร์ ใหม่สุดบนสุด เห็นลำดับเดียวกันทุกเครื่อง — v1.255 เรียงตามที่เครื่องนั้นเพิ่งใช้ ซึ่งจำไว้ในเครื่อง เปิดจากเครื่องอื่นลำดับจึงไม่ตรงกัน · เลขออเดอร์ขึ้นต้นด้วย ปีเดือนวัน+ลำดับ (2609170001) เรียงแล้วได้ลำดับเวลาจริง ตัว _EDIT อยู่ติดตัวต้นฉบับ · เรียงตั้งแต่คลาวด์ (order_no แล้วต่อด้วย id) และเพิ่มเพดานเป็น 300 รายการ ออเดอร์ที่ถูกสร้างนานแล้วแต่เลขใหม่จึงไม่หลุดจากรายการ · ตัวเลือกบนหัวรายการสลับไปเรียงแบบใช้ล่าสุด (เฉพาะเครื่องนี้) ได้ จำตัวเลือกไว้ · ป้าย ล่าสุด กับเวลาที่ใช้ยังขึ้นทั้งสองแบบ"],
@@ -5878,6 +5880,32 @@ function applyDoorSpecs(inst){
   const carc=_deCarcOf(inst), drs=_deDoorsOf(inst).filter(b=>b._de);
   if(!carc.length||!drs.length) return 0;
   const byId=id=>carc.find(x=>x.id===id)||null;
+  /* ───────── v1.263: เสาแบ่งระหว่างบานถูกลบ → สองช่องกลายเป็นช่องเดียว ─────────
+     บานซ้ายเสาอ้างขอบขวาที่เสา · บานขวาเสาอ้างขอบซ้ายที่เสา · ลบเสาแล้วชิ้นอ้างอิงนั้นหายไปพร้อมกันทั้งสองฝั่ง
+     ตัวซ่อมเดิมซ่อมทีละใบจากตำแหน่งของใบนั้นเอง หาชิ้นอ้างอิงใหม่ได้แผ่นข้างอีกฝั่งของตู้
+     บานทั้งสองใบจึงได้ขอบ ข้างซ้าย→ข้างขวา กันคนละใบ n=1 ทั้งคู่ = กว้างเต็มตู้และทับกันสนิท (LRT005)
+     จับคู่ตรงนี้ก่อน: ชิ้นที่หายไปถูกใช้เป็นขอบขวาของฝั่งหนึ่งและขอบซ้ายของอีกฝั่งในแถวเดียวกัน
+     = รวมเป็นช่องเดียว ขอบนอกยืมของแต่ละฝั่งมา ลำดับเรียงซ้ายไปขวา ช่องไฟเดิมภายในแต่ละฝั่งคงไว้
+     รอยต่อตรงที่เสาเคยอยู่ใช้ 2 มม. (ค่าตั้งต้นระหว่างบาน) */
+  try{ _deRows(drs).forEach(row=>{
+    const miss={};
+    row.items.forEach(b=>{ const sp=b._de; if(!sp) return;
+      if(sp.R&&sp.R.ref&&!byId(sp.R.ref)) (miss[sp.R.ref]=miss[sp.R.ref]||{l:[],r:[]}).l.push(b);
+      if(sp.L&&sp.L.ref&&!byId(sp.L.ref)) (miss[sp.L.ref]=miss[sp.L.ref]||{l:[],r:[]}).r.push(b); });
+    Object.keys(miss).forEach(X=>{ const mm=miss[X]; if(!mm.l.length||!mm.r.length) return;
+      const oL=(mm.l.map(b=>b._de.L).find(e=>e&&e.ref&&byId(e.ref)));
+      const oR=(mm.r.map(b=>b._de.R).find(e=>e&&e.ref&&byId(e.ref)));
+      if(!oL||!oR) return;
+      const lg=mm.l.slice().sort((a,c)=>a.x-c.x), rg=mm.r.slice().sort((a,c)=>a.x-c.x);
+      const gOf=g=>{ const sp=g[0]._de, o=Array.isArray(sp.gaps)?sp.gaps:[]; const out=[];
+        for(let j=0;j<g.length-1;j++) out.push(Math.max(+(o[j]!=null?o[j]:(sp.gap||0))||0,0)); return out; };
+      const gaps=gOf(lg).concat([2]).concat(gOf(rg)), all=lg.concat(rg);
+      all.forEach((b,j)=>{ const sp=b._de;
+        sp.L=Object.assign({},oL); sp.R=Object.assign({},oR);
+        sp.n=all.length; sp.i=j; sp.gaps=gaps.slice(); sp.gap=gaps[0];
+        b._zx=Object.assign({},b._zx||{},{l:oL.ref,r:oR.ref}); });
+      console.log("🚪 ตัวคั่นระหว่างบานถูกลบ — รวม "+lg.length+"+"+rg.length+" บานเป็นช่องเดียว");
+    }); }); }catch(e){ console.error("deMerge:",e); }
   /* v8.56: สเปคขอบเก็บ "id ของชิ้นอ้างอิง" ไว้ ถ้าตู้ถูกสร้างใหม่/นำเข้าใหม่ id จะเปลี่ยน
      ของเดิมจะชี้ไปยังชิ้นที่ไม่มีในตู้นี้แล้ว -> คำนวณไม่ได้ บานเลยค้างขนาดเดิมตอนย่อ/ขยาย
      (ตู้ขยายเป็น 650 แต่บานยังกว้าง 197.2 เท่าตอนตู้ 400) -> หาชิ้นอ้างอิงใหม่จากตำแหน่งบานปัจจุบันแล้วเขียนกลับ */
@@ -6584,6 +6612,10 @@ async function frontLayoutDialog(b){
   const gxArr=[]; { const r0=grid.reduce((a,r)=>r.items.length>a.items.length?r:a,grid[0]);
     for(let i=0;i<r0.items.length-1;i++) gxArr.push(Math.round(((r0.items[i+1].x-worldDims(r0.items[i+1])[0]/2)-(r0.items[i].x+worldDims(r0.items[i])[0]/2))*10)/10); }
   const gyArr=[]; for(let i=0;i<grid.length-1;i++) gyArr.push(Math.round((grid[i].lo-grid[i+1].hi)*10)/10);   // บน->ล่าง
+  /* v1.263: บานที่ทับกันอยู่ (ช่องไฟติดลบ เช่น −1130.9 หลังลบเสาแบ่ง) ไม่ใช่ช่องไฟที่ตั้งใจ — ขึ้นค่าตั้งต้น 2 แทน
+     ตัวคิดผังข้ามค่าติดลบอยู่แล้ว แต่ช่องที่โชว์เลขมั่วทำให้เข้าใจผิดว่าระบบจะเอาค่านั้นไปใช้ */
+  for(let i=0;i<gxArr.length;i++) if(!(gxArr[i]>=0)) gxArr[i]=2;
+  for(let i=0;i<gyArr.length;i++) if(!(gyArr[i]>=0)) gyArr[i]=2;
   let lx=Infinity,rx=-Infinity; grid.forEach(r=>r.items.forEach(x=>{ const d=worldDims(x);
     lx=Math.min(lx,x.x-d[0]/2); rx=Math.max(rx,x.x+d[0]/2); }));
   const r1=v=>Math.round(v*10)/10;
@@ -7320,7 +7352,20 @@ async function frontLayoutDialog(b){
     }
   }catch(e){ console.error("flRatio:",e); } }
   paint(); m.classList.add("show");
-  const close=()=>m.classList.remove("show");
+  /* ───────── v1.263: ตัวห่อที่คลายหมุนตู้ต้องรอ "จนหน้านี้ปิด" จริง ─────────
+     v1.161 คลายหมุนตู้ก่อนเปิดหน้านี้ แล้วตั้งใจหมุนกลับตอนปิด ผ่าน try{ await frontLayoutDialog() } finally{ หมุนกลับ }
+     แต่ตัวในแค่เปิดกล่องแล้วคืนค่าทันที ไม่ได้รอผู้ใช้ — finally จึงหมุนตู้กลับตั้งแต่วินาทีที่กล่องขึ้น
+     กรอบ ผัง และช่องไฟในหน้านี้ถูกจับไว้ตอนตู้ยังไม่หมุน พอกดตกลงก็เขียนตำแหน่งแกนตู้ตรงลงชิ้นที่หมุนกลับไปแล้ว
+     บานจึงกระโดดไปอยู่แนวลึกของตู้ (เด้งออกนอกตู้) แล้วเก็บสเปคจากตำแหน่งที่ผิดนั้นต่อ รอบหน้าก็ยังผิด
+     ตู้ไม่หมุนไม่เห็นอาการ เพราะไม่มีอะไรต้องหมุนกลับ
+     ตอนนี้คืน promise ที่จบเมื่อกล่องปิดเท่านั้น ไม่ว่าปิดด้วย ตกลง ยกเลิก กากบาท หรือปุ่ม Esc
+     (Esc ปิดกล่องจากตัวจัดการกลาง ไม่ผ่าน close() ของหน้านี้ จึงเฝ้าคลาส show ของกล่องไว้ด้วย) */
+  let _doneRes=null, _mo=null;
+  const _done=new Promise(r=>{ _doneRes=r; });
+  const _fin=()=>{ if(!_doneRes) return; const r=_doneRes; _doneRes=null; try{ if(_mo) _mo.disconnect(); }catch(e){} r(); };
+  try{ if(typeof MutationObserver!=="undefined"){ _mo=new MutationObserver(()=>{ if(!m.classList.contains("show")) _fin(); });
+    _mo.observe(m,{attributes:true,attributeFilter:["class"]}); } }catch(e){}
+  const close=()=>{ m.classList.remove("show"); _fin(); };
   const cancel=()=>{ close(); if(DPON){ try{ sync(0,0,0); render3D(false); }catch(e){ console.error(e); } } };   // v1.218: ยกเลิก = คืนผลหลังคำสั่ง (ไม่นับเป็นขั้น undo)
   m.querySelector("#flX").onclick=cancel; m.querySelector("#flCancel").onclick=cancel;
   m.querySelector("#flOk").onclick=()=>{
@@ -7398,6 +7443,7 @@ async function frontLayoutDialog(b){
     close(); sync(0);
     toast("จัดหน้าบานแล้ว "+n+" บาน"+(nDel?(" · ลิ้นชักในไม่เอาหน้าบาน "+nDel+" ลูก (ไม่ออกรายการตัด/ไฟล์ส่งออก)"):"")+(BVTOUCH?(" · ตั้งเพ "+(BVSIDE?(BVSIDE==="-"?"ไม่เพ":BVSIDE):"ตาม Part")+" ให้ "+((BVSCOPE==="all")?"ทุกบาน":"บานที่เลือก")):"")+" — จำเป็นสเปคขอบไว้ ตู้เปลี่ยนขนาดจะคิดคืนให้เอง");
   };
+  return _done;                                                        // v1.263: ผู้เรียกรอได้จนกล่องปิด
 }
 async function adjustDoorEdges(b){
   if(!b||!b._door){ toast("ใช้ได้กับหน้าบาน/ลิ้นชัก — เลือกบานก่อน"); return; }
@@ -23858,10 +23904,23 @@ async function renderCloudOrders(){
      · นำเข้าแล้วไม่มีอะไรดันขึ้นคลาวด์ เครื่องอื่นไม่เห็น
      · cloudLoadSettings ทับ settings ทั้งก้อน หน้าตัดที่เพิ่งนำเข้าจึงหายเมื่อดึงคลาวด์
    แก้ด้วยวิธีเดียวกัน: เก็บแยกเป็นแถว SECT::<รหัส> แล้วรวมโดยดูเวลา ตัวไหนใหม่กว่าชนะ */
+/* ───────── v1.262: จำว่าโมเดล Fitting 3D / หน้าตัด ตัวไหนส่งขึ้นคลาวด์ไปแล้วด้วยหน้าตาไหน ─────────
+   เก็บเป็นลายนิ้วมือของเนื้อหา (ความยาว + FNV-1a) รายเครื่อง ไม่ได้อยู่ในก้อนตั้งค่า
+   ส่งผ่านทางไหนก็จำ (ปุ่มบันทึกใน Studio หรือกดบันทึกค่า) — รอบหน้าไม่ต้องส่งตัวเดิมซ้ำ */
+let _pushSig=null;
+async function _pushSigLoad(){ if(_pushSig) return _pushSig;
+  try{ _pushSig=(await lsGet("boardforge:pushSig",{}))||{}; }catch(e){ _pushSig={}; }
+  _pushSig.fit=_pushSig.fit||{}; _pushSig.sect=_pushSig.sect||{}; return _pushSig; }
+function _objSig(o){ const s=JSON.stringify(o==null?null:o); let h=0x811c9dc5;
+  for(let i=0;i<s.length;i++){ h^=s.charCodeAt(i); h=Math.imul(h,0x01000193)>>>0; }
+  return s.length+":"+h.toString(16); }
+async function _pushSigMark(kind,code,obj){ try{ const ps=await _pushSigLoad(); ps[kind][code]=_objSig(obj);
+  await lsSet("boardforge:pushSig",ps); }catch(e){} }
 async function cloudSaveSection(code,sec){
   if(VIEW_ONLY){ toast("ลิงก์ดูอย่างเดียว — บันทึกขึ้นคลาวด์ไม่ได้"); return; }   // v27.3
  const db=await getDB(); const id="SECT::"+code;
-  const r=await db.from("furnitech_cabinets").upsert({id,name:id,part_count:(sec.loops||[]).length,data:{section:sec},updated_at:new Date().toISOString()},{onConflict:"id"}); if(r.error)throw r.error; }
+  const r=await db.from("furnitech_cabinets").upsert({id,name:id,part_count:(sec.loops||[]).length,data:{section:sec},updated_at:new Date().toISOString()},{onConflict:"id"}); if(r.error)throw r.error;
+  await _pushSigMark("sect",code,sec); }                                          // v1.262
 async function cloudListSections(){ const db=await getDB(); const r=await db.from("furnitech_cabinets").select("id,data,updated_at").like("id","SECT::%").limit(500); if(r.error)throw r.error; return r.data||[]; }
 /* ───────── v10.6: ลบบนคลาวด์ให้ติดจริง ─────────
    คำสั่งลบถูกส่งไปทุกครั้ง แต่ถ้าสิทธิ์บนคลาวด์ไม่อนุญาตลบ มันจะ "ลบศูนย์แถวแล้วตอบว่าสำเร็จ"
@@ -23903,7 +23962,8 @@ async function syncSectionsFromCloud(force){
 async function cloudSaveFitModel(code,mdl){
   if(VIEW_ONLY){ toast("ลิงก์ดูอย่างเดียว — บันทึกขึ้นคลาวด์ไม่ได้"); return; }   // v27.3
  const db=await getDB(); const id="FIT3D::"+code;
-  const r=await db.from("furnitech_cabinets").upsert({id,name:id,part_count:(mdl.parts||[]).length,data:{fitModel:mdl},updated_at:new Date().toISOString()},{onConflict:"id"}); if(r.error)throw r.error; }
+  const r=await db.from("furnitech_cabinets").upsert({id,name:id,part_count:(mdl.parts||[]).length,data:{fitModel:mdl},updated_at:new Date().toISOString()},{onConflict:"id"}); if(r.error)throw r.error;
+  await _pushSigMark("fit",code,mdl); }                                          // v1.262
 async function cloudListFitModels(){ const db=await getDB(); const r=await db.from("furnitech_cabinets").select("id,data,updated_at").like("id","FIT3D::%").limit(500); if(r.error)throw r.error; return r.data||[]; }
 async function cloudDeleteFitModel(code){
   return _cloudKill("FIT3D::"+code,{data:{fitModel:null,deleted:true,_ts:new Date().toISOString()}}); }   // v10.6
@@ -33326,21 +33386,31 @@ async function sendSupabase(){
 async function cloudSaveSettings(){
   if(VIEW_ONLY){ toast("ลิงก์ดูอย่างเดียว — บันทึกขึ้นคลาวด์ไม่ได้"); return; }   // v27.3
  try{ const db=await getDB();
-    const {error}=await db.from("app_settings").upsert({key:"furnitech_settings",value:JSON.stringify(settings)},{onConflict:"key"}); if(error)throw error;
-    /* v7.34: ดันโมเดล Fitting 3D ขึ้นแถว FIT3D:: ด้วย — ก่อนหน้านี้ขึ้นเฉพาะตอนกดบันทึกใน Studio
-       เครื่องที่ไม่เคยกดบันทึกใหม่จึงมีแต่ของเก่าฝังใน settings และไปทับของใหม่บนเครื่องอื่น */
+    /* ───────── v1.262: บันทึกค่าไม่ส่งของที่ไม่ได้แก้ขึ้นไปซ้ำ ─────────
+       เดิมกดบันทึกค่าครั้งเดียว = ส่งตั้งค่าทั้งก้อน (ซึ่งพ่วงโมเดล Fitting 3D กับหน้าตัดทุกตัวไว้ข้างใน)
+       แล้วส่งโมเดลทุกตัวกับหน้าตัดทุกตัวขึ้นแถวของมันเองอีกรอบทีละตัว แม้ไม่ได้แตะเลย
+       บวกบันทึกประวัติการเขียน (sx_log) อีกหนึ่งครั้งต่อการเขียนแต่ละครั้ง — 100 โมเดล 200 หน้าตัด ≈ 600 คำขอ/ครั้ง
+       และยังเสี่ยงเอาของเก่าในเครื่องนี้ไปทับของใหม่ที่เครื่องอื่นเพิ่งส่งขึ้นไป
+       ตอนนี้ (1) ก้อนตั้งค่าไม่พ่วงโมเดลกับหน้าตัด — ทั้งสองมีแถวของตัวเองบนคลาวด์ และทุกเครื่องดึงจากแถวนั้นตอนเปิดอยู่แล้ว
+       ตัวดึงก้อนตั้งค่ารวมแบบเก็บของในเครื่องไว้เมื่อก้อนไม่มีมา ของจึงไม่หาย ทั้งเครื่องรุ่นใหม่และรุ่นเก่า
+       (2) ส่งเฉพาะโมเดล/หน้าตัดที่เนื้อหาเปลี่ยนจากครั้งล่าสุดที่เครื่องนี้ส่ง ครั้งแรกหลังอัปเดตยังส่งครบหนึ่งรอบ */
+    const _blob=Object.assign({},settings); delete _blob.fitModels; delete _blob.sections;
+    const {error}=await db.from("app_settings").upsert({key:"furnitech_settings",value:JSON.stringify(_blob)},{onConflict:"key"}); if(error)throw error;
+    const ps=await _pushSigLoad();
     const fm=settings.fitModels||{}, cds=Object.keys(fm);
-    if(cds.length){ let up=0;
-      for(const cd of cds){ try{ if(!fm[cd]._ts) fm[cd]._ts=new Date().toISOString();
-        await cloudSaveFitModel(cd,fm[cd]); up++; }catch(e){ console.error("fit push",cd,e); } }
-      if(up) toast("☁ อัปโหลดอุปกรณ์ Fitting 3D "+up+" ตัว"); }
-    /* v10.2: หน้าตัดก็ดันขึ้นแถว SECT:: ด้วยเหตุผลเดียวกับโมเดล Fitting */
+    let up=0, same=0;
+    for(const cd of cds){ try{ if(!fm[cd]) continue; if(!fm[cd]._ts) fm[cd]._ts=new Date().toISOString();
+      if(ps.fit[cd]===_objSig(fm[cd])){ same++; continue; }
+      await cloudSaveFitModel(cd,fm[cd]); up++; }catch(e){ console.error("fit push",cd,e); } }
     const sc=settings.sections||{}, scs=Object.keys(sc);
-    if(scs.length){ let u2=0;
-      for(const cd of scs){ try{ if(!sc[cd]._ts) sc[cd]._ts=new Date().toISOString();
-        await cloudSaveSection(cd,sc[cd]); u2++; }catch(e){ console.error("sect push",cd,e); } }
-      if(u2) toast("☁ อัปโหลดหน้าตัด "+u2+" ตัว"); }
-    toast("เก็บ Variables/Element ขึ้นคลาวด์แล้ว"); return true;
+    let u2=0, same2=0;
+    for(const cd of scs){ try{ if(!sc[cd]) continue; if(!sc[cd]._ts) sc[cd]._ts=new Date().toISOString();
+      if(ps.sect[cd]===_objSig(sc[cd])){ same2++; continue; }
+      await cloudSaveSection(cd,sc[cd]); u2++; }catch(e){ console.error("sect push",cd,e); } }
+    toast("เก็บ Variables/Element ขึ้นคลาวด์แล้ว"
+      +((up||u2)?(" · ส่งที่แก้: อุปกรณ์ 3D "+up+" · หน้าตัด "+u2):"")
+      +((same||same2)?(" · ไม่ได้แก้ ข้าม "+(same+same2)+" ตัว"):""));
+    return true;
   }catch(e){ console.error(e); toast("เก็บคลาวด์ไม่สำเร็จ: "+sbErr(e)); return false; } }
 function _sbVal(v){ if(v==null)return null; if(typeof v==="string"){ try{return JSON.parse(v);}catch(_){return v;} } return v; }
 async function cloudLoadSettings(silent){ try{ const db=await getDB();
