@@ -940,7 +940,7 @@
    ===================================================================== */
 /* ---- APP_META: แหล่งความจริงเดียวของเวอร์ชัน (ดูได้จาก console / คลิกชื่อแอป) ---- */
 const APP_META={
-  name:"StarNexus Cabinet", version:"1.235", build:"2026-09-19/hangrail-ctx",
+  name:"StarNexus Cabinet", version:"1.249", build:"2026-09-21/door-relief-stile",
   file:"StarNexus.html", basedOn:"Furnitech_V3.html (v3.11)",
   /* ───────── เริ่มนับเวอร์ชันใหม่ที่ 1.001 (21/08/2026) ─────────
      ของเดิมนับมาถึง 42.1 แล้ววิ่งเป็นทศนิยมสองชั้นซึ่งอ่านลำดับยาก
@@ -948,6 +948,20 @@ const APP_META={
      ประวัติเก่าเก็บไว้ทั้งหมดตามเลขเดิม ไม่ไล่เขียนใหม่ เพราะเลขในนั้นถูกอ้างถึงไปแล้ว
      รายการที่อยู่ใต้ 1.001 ลงไปจึงเป็นเลขชุดเก่า อ่านต่อกันได้ตามวันที่ */
   changelog:[
+    ["1.249","2026-09-21","FEAT ลายหน้าบาน 3D ให้ร่องขอบข้างวิ่งตรงตลอดความสูงบานได้ (ตั้งยาว คานสั้นชนเข้า) ตามแบบหน้า MCxx35 — v1.247 เข้ามุม 45 ทุกด้าน ร่องข้างจึงเลี้ยวเข้าร่องบนที่มุม ไม่ตรงกับแบบ · ต่อท้ายลายด้วย | ตั้งทะลุ a-b = ช่วงนั้นของขอบซ้าย/ขวาวิ่งตรงถึงขอบบน-ล่าง · | นอนทะลุ a-b = ขอบบน/ล่างวิ่งตรงตลอดความกว้าง · ไม่ใส่ = เข้ามุม 45 เหมือนเดิม · เปลี่ยนตัวปั้นจากรีดหน้าตัดสี่ด้าน เป็นพื้นผิวที่ความลึก = มากสุดของ ลายเข้ามุม กับ ช่วงทะลุ เส้นตารางวางตรงจุดหักของลายทุกจุด ช่องบนแนวทแยงแบ่งตามแนวมุม 45 เส้นหักจึงคมตรงตำแหน่ง บานละ 572-716 สามเหลี่ยม · ค่าตั้งต้น MCxx35 เติม | ตั้งทะลุ 55-60 · เครื่องที่ยังใช้ค่าตั้งต้นของ v1.247 ถูกเติมให้เอง ที่แก้เองแล้วไม่แตะ · ตรวจด้วยการยิงลำแสง: ร่องตั้งลึก 3 ตลอดจากขอบบนถึงล่าง คานบนมีร่องเฉพาะช่วง 55-60 ผิวหน้า หลัง และผนังรอบบานหันถูกด้านครบ"],
+    ["1.248","2026-09-21","FIX บานที่ 4 ยังใช้ Part ของบาน 1 (FrontShapeP4 = Front1_ECxx01) ทั้งที่ตั้ง Front4_ECxx01 ไว้ในคลังแล้ว — ต้นเหตุอยู่ที่ตัวกระจายชุดเลข: ตัวแปรเลื่อนเลขให้ (แบบอัตโนมัติ เลื่อนเมื่อ Part ปลายทางมีอยู่แล้ว) แต่ค่าสีใน Element → Colors → kids ถูกก๊อปตรงตัวไม่เลื่อนเลขเลย และบานที่สร้าง Part ทีหลังก็ค้างค่าเดิมไว้ · (1) ปุ่มใหม่ในหน้า Variables 🔧 ซ่อม Part ของบาน ไล่ทุกลิงก์ชนิด Part ที่ชื่อลงท้ายด้วยเลขบาน ทั้งในค่าสีทุกแบบและค่าตั้งต้นของตัวแปร ลองแทนเลขในค่าด้วยเลขบาน เอาเฉพาะตัวที่มีอยู่จริงใน Element → Parts ตัวไหนไม่มีข้าม เจอหลายตัวก็ข้าม · เลขในรหัสแบบ (ECxx02) ไม่ถูกนับเป็นเลขบาน และต้องยังเป็นแบบเดิม จึงไม่ไปได้ Front1_ECxx04 ที่เป็นคนละแบบ · แตะเฉพาะลิงก์ชนิด Part วัสดุ ผิว ขอบ ไม่โดน · โชว์รายการก่อนกดยืนยัน ย้อนได้ · ซ่อมแล้วบวกผิวทุกตู้ให้ตาม Part ใหม่ · (2) ตัวกระจายชุดเลข ค่าสีเลื่อนเลขด้วยกติกาเดียวกับตัวแปรแล้ว และกระจายเสร็จซ่อมลิงก์ให้ต่อในรอบเดียว"],
+    ["1.247","2026-09-21","FEAT ลายหน้าบาน 3D แบบนูน-ลึก โชว์อย่างเดียว (เริ่มจาก MCxx35 บาน CNC เมมเบรน) — บานในโปรแกรมเป็นแผ่นเรียบ 19 มม. ตัวนี้ปั้นกรอบ ร่อง ทางลาด และลูกฟัก เฉพาะตอนวาดบนจอ ข้อมูลบาน ใบไม้ ไฟล์เจาะ CNC และ BOM ไม่ถูกแตะเลย · รหัสแบบบานอ่านจาก FrontShape ของบานใบนั้นตามที่ XML ส่งมา (Part ลิงก์ FrontShapeP1 → Family FrontShape1 → MCxx35) · ลายเก็บเป็นตัวเลขในตั้งค่า doorReliefMap บรรทัดละแบบ รหัส = ระยะจากขอบ:ความลึก เพิ่มแบบใหม่ได้เองไม่ต้องแก้โค้ด ค่าตั้งต้น MCxx35 = 0:3, 3:0, 55:0, 58:3, 60:6, 95:6, 110:2, 110:0 ตามแบบ · หน้าตัดรีดรอบสี่ด้านเข้ามุม 45 องศา บวกลูกฟักกลาง หลังบานเรียบ บานละ 92 สามเหลี่ยม เบากว่าแผ่นที่เจาะรูบานพับเสียอีก · โหมดประหยัด = แผ่นเรียบเหมือนเดิม กดสลับแล้ววาดใหม่ทันที · บานที่เล็กกว่าลาย (หน้าลิ้นชักเตี้ยกว่า 230) หรือรหัสที่ไม่มีในตาราง = แผ่นเรียบ · บานที่มีลายไม่วาดเส้นลายไม้แบน เพราะจะลอยเหนือร่อง · ตรวจด้วยการยิงลำแสงใส่รูปทรงจริง: ความลึกทุกจุดตรงตัวเลขในตั้งค่า มุม 45 องศาเข้ากันพอดี หันผิวถูกด้านครบ 4278 จุด หลังบานเรียบทุกจุด"],
+    ["1.246","2026-09-21","FIX (1) ลากยืดคานด้วยเครื่องมือ ยืด/หด แล้วคานหดกลับเมื่อตู้ถูกคิดใหม่ — คานเก็บขนาดสองที่ คือ b.W กับ rule.railW ช่องพิมพ์ในแผงขวาจำลงกฎให้ผ่าน rememberRailPlacement() แต่ finalizeStretch() ไม่เคยเรียก คานที่ลากเป็น 100 จึงเหลือกฎ 70 พอเปลี่ยนสี สลับโครงสร้าง ปรับขนาด หรือโหลดโมเดลเข้า XML ก็หดกลับ ถ้าไม่ได้ติ๊กล็อกกว้างไว้ · ปล่อยเมาส์แล้วจำลงกฎด้วยตัวเดียวกับช่องพิมพ์ ตรวจแล้วคาน 100 ไม่ล็อกอยู่รอดทั้งการคิดตู้ใหม่ และบันทึกโมเดลแล้วโหลด XML ใหม่ · (2) หน้าตรวจ XML ปุ่ม เก็บเป็นออเดอร์แก้ไข เปลี่ยนเป็น เก็บทับออเดอร์นี้ — เขียนทับประวัติ XML ชื่อเดียวกับช่องออเดอร์บนหัวหน้าต่าง ไม่เติม _EDIT แล้ว เพราะต้นฉบับยังอยู่ที่ไฟล์ในเครื่อง ประวัติบนคลาวด์ไม่ต้องมีสองชุด (แก้ชื่อในช่องก่อนกด = เก็บเป็นชื่อใหม่) · ปุ่ม Save As ไฟล์ใหม่ ที่ดาวน์โหลดลงเครื่องยังเติม _EDIT เหมือนเดิม"],
+    ["1.245","2026-09-21","FIX เดือยรอยต่อกล่องลิ้นชักทะลุขอบบนของกล่อง — เคสจริง กล่องสูง 102.6 ตกช่วง 100-118 ของสูตร L_Dowel_Box ได้ 36 : 64 เดือยตัวบนห่างขอบล่าง 100 เหลือจากขอบบน 2.6 ทั้งที่รูกว้าง 8 ใส่ไม่ได้ · ช่วงนี้ของสูตรพังกับทุกกล่องที่เตี้ยกว่า ~109 ส่วนช่วงอื่นทุกช่วงผ่าน · โหมดสูตรตั้งไว้ตามสูตรเป๊ะ ซึ่งถูกกับแผ่นโครงทั่วไป แต่รูทะลุขอบไม่ใช่เรื่องที่เลือกได้ · เพิ่มระยะขั้นต่ำจากขอบกล่องถึงศูนย์รู boxJointEdgeMin (ตั้งต้น 9) ใช้ทั้งเดือยและสกรู · เลื่อนทั้งชุดก่อน ระยะห่างระหว่างเดือยจึงยัง 64 เท่าสูตร (หัวเจาะ 32 ลงทีเดียวได้) · เลื่อนทั้งชุดไม่ลงหรือไปทับร่องพื้นค่อยดึงเฉพาะตัวที่ล้ำ · ทับร่องหรือชนตัวอื่นถึงจะข้าม · ผล: 102.6 ได้ 29.6 / 93.6 ห่างขอบบน 9 ห่างร่องพื้น 5 · และรูหน้าตัดของแผ่นหน้า/หลังกล่องมาจากตัวเชื่อม ซึ่งเดิมคิดจากสูตรเองทุกครั้ง ถ้าขยับแค่รูแผ่นข้าง สองฝั่งจะไม่ตรงกัน — ตัวเชื่อมพกตำแหน่งที่ขยับแล้ว (at + atLen) dowelAlong() ใช้ตามนั้นตรง ๆ ถ้าความยาวขอบตรงกัน รูแผ่นข้าง 3D ไฟล์เจาะ และแบบผลิตจึงออกตำแหน่งเดียวกัน · ล้างรูคู่ค้างของรอยต่อเดียวกันที่ไม่มีป้าย _bj (ตู้ใบที่สองในไฟล์มีรูเก่าค้างอยู่ที่ 36)"],
+    ["1.244","2026-09-21","FEAT เหล็กฉาก 3 ขา วาดจริงตามแบบและอยู่ในตู้ · ใส่หูแขวนข้างเดียวได้ · รหัสเปลี่ยนตามความลึกตู้ — (1) เดิมเป็นกล่องมาร์กเกอร์ 75×75×15 ที่ไปแปะหลังคาน จึงโผล่ออกนอกหลังตู้ 15–19 มม. ย้ายทั้งตู้แล้วตัวดูดขอบจับผิวเหล็กที่โผล่ ตู้เลยถูกดันเลยไปเท่านั้น · ตอนนี้ปั้นจากเหล็กฉาก 25×3 ตามแบบ 65×350×65 (แขนยาว + ขาขวาง 65 + ขาลง 65 แยกซ้ายขวา) มุมเหล็กชนมุมในจริง ผิวหลังเสมอหลังตู้ ผิวบนชนใต้แผ่นบน/คาน ผิวข้างชนผิวในแผ่นข้างจริง (เดิมใช้ 16 ตายตัว ตู้ 19 จึงเหลื่อม) · แขนยาวไม่ถูกตัดให้พอดีตู้ ยาวเกินก็โผล่ให้เห็น · รูเป็นของ 3D อย่างเดียว ไม่เจาะแผ่น ไม่ออกไฟล์เจาะ โผล่เฉพาะด้านในตู้ ด้านที่แนบไม้/ผนังจมกว่าผิวเหล็ก จึงไม่ล้นกรอบตู้ · (2) เมนูคลิกขวา → หูแขวน เลือกได้ ทั้งสองข้าง / ซ้ายอย่างเดียว / ขวาอย่างเดียว (มองจากหน้าตู้) ใช้ได้กับหูแขวนทุกแบบ บากแผ่นหลังหรือร่อง H1 เฉพาะมุมที่มีหูจริง · BOM นับตามตัวที่วางจริง ถ้า Element ตั้งเป็นชุด (นับ 1 ต่อตู้) แล้วใส่ข้างเดียว ตัวชุดยังเบิก 1 แต่ลูกเบิกครึ่งเดียว ปัดขึ้น (สกรู 6 → 3) · (3) Element → Fittings เพิ่มช่อง hgArm (ยาวแขนตั้งต้น ANGLE3 = 350 ตามแบบ เติมให้เฉพาะตัวที่ยังไม่มี) · hgDepMap ตารางความลึกนอกของโครงตู้ → ยาวแขน:รหัส เช่น 320-370:300:ANGLE3-300 · แยกซ้ายขวาด้วย / · hgLR รหัสแยกซ้าย/ขวาเมื่อไม่ตรงช่วง · รหัสตามความลึกที่ไม่มีแถวของตัวเอง ใช้ชื่อ หน่วย ชุด และลูก จากแถวซีรีส์ (_kidsFrom แบบเดียวกับราง)"],
+    ["1.243","2026-09-21","FIX สลับโครงสร้าง 16 → 19 แล้วคานหลังที่ล็อกกว้างไว้ 100 หดกลับเป็น 70 — เคสจริงรันซ้ำได้ตรงกับไฟล์ที่ส่งมาทุกตัวเลข (W 100 → 70 · z 4917.6 → 4902.6) · ความกว้างคานเก็บสองที่ คือ b.W กับ rule.railW แต่ reapplyRules() อ่าน rule.railW อย่างเดียวแล้วเขียนทับ b.W ไม่ดูล็อก fixDim.W เลย คานนี้ล็อกไว้ 100 แต่กฎยังจำ 70 จึงหดทุกครั้งที่ตู้ถูกคิดใหม่ ไม่ใช่เฉพาะตอนสลับโครงสร้าง (เปลี่ยนสี ปรับขนาด ก็เป็น) · ตอนนี้ล็อกอยู่ = เอาค่าที่ล็อกไปใส่กฎก่อนคิด ขนาดกับตำแหน่งลึกจึงออกมาตรงกัน ยกเว้นกฎที่เป็นสูตร $D ซึ่งเป็นเจตนาที่ชัดกว่า · และอีกสองจุดที่เจอในตู้เดียวกัน (1) แผ่นหลังที่ฝังใต้คานหลังไม่ขยับตามเมื่อคานหนาขึ้น เพราะตัวขยับแผ่นหลังกันคานออกจากรายการแผ่นรับ ฝังเข้าคานจาก 5 กลายเป็น 8.2 · นับคานนอน/คานข้างเป็นแผ่นรับแล้ว (2) กล่องลิ้นชักไม่ถูกคิดใหม่ ช่องรางข้างละ 13 เหลือ 9.9 ใส่รางไม่ได้ · refitDrawerBox() วัดช่องรางจากตำแหน่งข้างกล่องปัจจุบันเทียบผิวในตู้ ซึ่งขยับไปก่อนแล้ว จึงถือว่า 9.9 คือช่องราง · จำช่องรางไว้ก่อนบวกผิว วางข้างกล่องกลับที่ช่องเดิม แล้วให้ตัวคิดกล่องทำส่วนที่เหลือ ได้ช่องราง 13 เท่าเดิม กล่องแคบลงตามช่องใน"],
+    ["1.242","2026-09-21","FIX หน้าตรวจ XML ขึ้นแดงว่าไม่มีโมเดลตู้ ทั้งที่มีอยู่ในคลัง — เคสจริง 17 ตู้ แดง 16 เหลือ MWA053 ตัวเดียว ขณะที่คอลัมน์โครงสร้างของ MWA026 กับ MWA018 อ่านโมเดลเจอแล้วด้วยซ้ำ · สาเหตุสองชั้น (1) ตอนเปิดหน้าตรวจ รายชื่อตู้ _cabNames มีแต่ของในเครื่อง รายชื่อบนคลาวด์ถูกดึงแบบรอแล้วสั่งวาดตารางใหม่ด้วย draw() ซึ่งไม่มีอยู่ในหน้านั้น เกิด ReferenceError เงียบ ๆ ตารางจึงไม่เคยถูกวาดใหม่ เครื่องหมายแดงค้างจากรายชื่อที่ไม่ครบ (2) ต่อให้ดึงสำเร็จ cloudListCabs() ก็ได้แค่ 300 ตัวที่แก้ล่าสุด ตู้ที่ไม่ได้แตะนานหลุดรายชื่อไปเอง · แก้ด้วยการถามคลาวด์เฉพาะรหัสที่อยู่ในออเดอร์ cabModelIdsExist() เทียบตรงตัวแบบเดียวกับ fetchCabModel() ที่ตัวโหลดใช้จริง แดงจึงแปลว่าโหลดไปได้กล่องเปล่าจริง ๆ ไม่ใช่เดา · ตอนวาดครั้งแรกยังไม่ตัดสิน รอคำตอบก่อน ต่อคลาวด์ไม่ได้ก็ไม่ทาอะไร ดีกว่าทาแดงผิด · ตัวที่ไม่มีจริง หารหัสในคลังที่ขึ้นต้นเหมือนกัน (ไม่สนตัวพิมพ์) บอกไว้ในป้ายเมื่อชี้ เช่น ไม่มี MWD001 แต่มี MWD001-A ขึ้นเป็น ⚠? · พิมพ์รหัสใหม่ในช่องก็ถามคลาวด์ให้ทันที · ตัวเลือกตามโมเดลแยกบอก ไม่มีโมเดล กับ ไม่มี _Mat ออกจากกัน (เดิมขึ้น — เหมือนกันทั้งสองกรณี) · และตัวโหลดตัดสินข้ามรุ่นที่ไม่มีโมเดลจากการดึงโมเดลจริงแทนรายชื่อ ถ้าเปิดสวิตช์นี้ไว้ ตู้ที่มีจริงแต่หลุดรายชื่อจะไม่ถูกข้ามทิ้งอีก"],
+    ["1.241","2026-09-21","FEAT ตัวสลับโครงสร้าง 19 ↔ 16 มม. อยู่ในแผงทั้งตู้แล้ว ใต้ช่องขนาดตู้ — v1.240 ใส่ไว้ในเมนูคลิกขวากับหน้าตรวจ XML เท่านั้น เปิดตู้มาหน้าเปล่าจากคลังแล้วมองไม่เห็นว่ามีให้กด · คลิกชื่อตู้ในรายการซ้าย แผงขวาขึ้นปุ่ม 19 มม. / 16 มม. ตัวที่เป็นอยู่ตอนนี้ถูกไฮไลต์ · เลือกไว้หลายใบ (Shift/Ctrl+คลิก) กดทีเดียวทำทุกใบ ใบที่เป็นเลขนั้นอยู่แล้วข้ามให้และบอกจำนวน · ตู้ที่แผ่นข้างไม่มี Part แบบ _MatNN ขึ้นข้อความบอกเหตุผลแทนปุ่ม จะได้รู้ว่าทำไมกดไม่ได้ ไม่ใช่ปุ่มหายไปเฉย ๆ · ใช้ structSwap() ตัวเดียวกับทางคลิกขวา ผลเหมือนกันทุกอย่าง"],
+    ["1.240","2026-09-21","FEAT สลับโครงสร้างตู้ 19 ↔ 16 มม. โดยขนาดนอกคงเดิม — งานบางประเภทใช้รหัสตู้เดียวกันแต่โครงหนาไม่เท่ากัน ของเดิมต้องแก้ Part ทีละแผ่นแล้วขยับชิ้นเอง · โครงสร้างจับจาก Part ที่ลงท้าย _MatNN (เลขเดียวกับแผ่นข้าง) ไม่เดาจากความหนา ไม่นับหน้าบาน กล่องลิ้นชัก ชิ้นเสมือน แผ่นหลัง และคานที่อยู่หลังแผ่นหลัง · เปลี่ยนแค่เลขท้าย Part วัสดุตามมาเองเพราะ Part ถือวัสดุ ความหนาตามมาเองเพราะ deriveThick() อ่านจาก Part แล้ว applyCabinetSkin() จัดตู้ด้วยกติกาเดิม ผนังนอกคงผิวนอกโตเข้าใน ชิ้นในคงผิวที่ล็อกไว้ คานคิดใหม่จากกฎ · แผ่นหลังที่ฝังร่องอยู่ขยับขอบตามผิวในของแผ่นที่รับร่อง ความลึกที่ฝังจึงเท่าเดิม ไม่งั้นเหลือเนื้อในร่อง 1.2 จาก 4.2 · ราวแขวนขึ้นตามผิวใต้ชั้นที่บางลง (ยกบล็อกจัดราวใน _resizeCabinetToCore ออกมาเป็น relayHangRails() ใช้ร่วมกัน พฤติกรรมเดิมทุกบรรทัด) · ทุกชิ้นที่เปลี่ยนติดป้าย _mat0 เก็บ Part และความหนาเดิม กดกลับคือคืนจากป้าย ไม่เดาย้อน · Part ปลายทางไม่มีในคลังแม้ตัวเดียว = ไม่แตะอะไรเลยแล้วบอกชื่อที่ขาด · ใช้ได้สองทาง: คลิกขวาที่ชิ้นในตู้ (ป้ายบอกเลขจริงของตู้ใบนั้น) และคอลัมน์โครงสร้างในหน้าตรวจ XML เลือกรายตู้หรือทั้งออเดอร์ เลขในวงเล็บของตัวเลือกตามโมเดลอ่านจากโมเดลในคลังให้เอง · ตรวจด้วยการรันโค้ดจริงของแอปกับตู้ที่ส่งมา: กรอบนอก 500×2300×580 เท่าเดิม กว้างใน 461.6 → 467.6 แผ่นหลัง 470×2270 → 476×2276 ฝังข้างละ 4.2 เท่าเดิม กลับ 19 ได้ของเดิมทุกค่า ตู้หมุน 90 องศาก็ได้กรอบเดิม"],
+    ["1.239","2026-09-21","FEAT ราวแขวนผ้าถูกวาดเป็นตัว C จริงใน 3D และแบบผลิตมีระยะราวแขวนวัดจากขอบหลังของแผ่นให้แล้ว — (1) ของเดิมราววาดเป็นกล่องทึบ ยาว×85×12 ซึ่งคือกรอบนอกของราว ไม่ใช่ตัวราว มองในฉากจึงเหมือนแผ่นบางแปะอยู่ใต้ชั้น ไม่เห็นว่าเป็นราวแขวน · ของจริงเป็นสแตนเลสกล่อง 1/2 นิ้ว x 1 นิ้ว หนา 1.2 ดัดเป็นตัว C ปากหงายขึ้น ปั้นจากสามกล่อง แขนตั้งสองข้างกว้างเท่า endGap (25) ซึ่งทำให้รูยึดตกกลางแขนพอดี 12.5 จากปลาย และคานล่างสูง hangRailBarH (25) ช่องเปิดบนจึงเท่ากับ ยาว−50 ลึก 85−25 = 60 ตรงกับแบบโรงงานทุกตัวเลข · ตู้ที่ผูกโมเดลจาก Fitting Studio ไว้แล้วไม่ถูกแตะ ยังใช้โมเดลของตัวเองเหมือนเดิม · (2) แบบผลิตมีแถวระยะของตัวเองสำหรับราวแขวน วัดจากขอบหลังของแผ่นถึงศูนย์รู เลขนี้อยู่ในโซ่ระยะรวมอยู่แล้วแต่ปนกับอีกสิบช่องและไม่มีอะไรบอกว่าวัดจากขอบไหน · ขอบหลังคิดจากทิศจริงในตู้ผ่าน orientMatrix ไม่ได้เดาจากเครื่องหมายของพิกัด แผ่นที่ถูกหมุนวางนอนในแบบจึงยังวางแถวถูกแกน · เคสจริง ชั้นตายที่ขอบหลังชนแผ่นหลังพอดีได้ 260 ตรงตามที่ตั้งไว้ ส่วนแผ่นทอปที่ยาวไปจนสุดหลังตู้ได้ 285.2 คือ 260 บวกความหนาแผ่นหลัง 9.2 บวกระยะร่น 16"],
+    ["1.238","2026-09-21","FIX ราวแขวนที่สั่งไว้ 260 มม. จากหน้าแผ่นหลัง ออกมาจริง 251 และชั้นที่เพิ่มใหม่ลึกเกินจนกินเข้าไปในแผ่นหลัง — ทั้งสองจุดหาแผ่นหลังด้วยวิธีเดียวกัน คือเรียงชิ้น orient front ตาม z แล้วหยิบตัวหลังสุด ตู้ที่มีคานพาดอยู่หลังแผ่นหลัง (Back Rail Upright) คานจึงชนะทุกครั้ง ระยะเลยถูกวัดจากหน้าคานแทนหน้าแผ่นหลัง เคสจริงต่างกัน 9 มม. พอดีตามความหนาคานกับระยะร่น · รวมเป็นตัวเดียว backFaceZOf() ข้ามคาน ไม่มีแผ่นหลังจริงค่อยถอยไปใช้คานเหมือนเดิม ใช้ทั้ง addHangRail() รอบ sync และ addShelf() · และ addShelf() ยังหยิบแผ่นข้างของ Filler เป็นแผ่นข้างตู้อยู่ แบบเดียวกับที่แก้ addBackPanel ไปใน v1.237 ชั้นจึงยาวเกินและรูพินไปโผล่บนชิ้นของ Filler — กรองผ่าน fzStrip() แล้ว · และ _hrShelf (ราวแขวนชี้ไปที่แผ่นที่มันแขวนอยู่) ไม่เคยอยู่ในรายการที่ remapBoardRefs() แปลง id ให้ เปิดไฟล์ทีไรลิงก์ขาดทุกครั้ง ปุ่มเอาราวแขวนออกจึงหาไม่เจอและบอกว่าชิ้นนี้ยังไม่มีราวแขวน — เติมเข้ารายการ และให้รอบ sync ผูก id คืนให้ไฟล์เก่าที่ขาดไปแล้ว"],
+    ["1.237","2026-09-21","FIX ตู้ที่มี Filler ใส่แผ่นหลังแล้วได้แผ่นกว้างเกินจริง และร่อง 4 ด้านไปลงผิดแผ่น — เคสจริง ตู้กว้างใน 567.6 ได้แผ่นหลัง 609 ซึ่งกว้างกว่าตัวตู้ทั้งใบ (600) ร่องไปเซาะที่ Filler Side L/R ซึ่งอยู่ด้านหน้าตู้ ส่วนแผ่นข้างจริงไม่ได้ร่องสักเส้น แผ่นหลังจึงไม่มีอะไรจับ · addBackPanel() กรอง carc ผ่าน fzStrip() ไว้แล้วตั้งแต่ v1.219 แต่ sidesV ยังอ่าน grp.boards ตรง ๆ ตัวนอกสุดจึงเป็นแผ่นข้างของ Filler ทุกครั้ง — ย้ายมาอ่านต่อจาก carc · และอีกตัวที่โผล่มาด้วยกัน แผ่นพื้นได้ร่องแผ่นหลังที่ผิวล่างเกินมาหนึ่งเส้น เพราะ horizRefsOf() สร้างเพดานเสมือน _refTop ด้วย Object.assign ซึ่งเป็นการก๊อปตื้น grooves ของเพดานเสมือนจึงเป็นอาร์เรย์ตัวเดียวกับแผ่นพื้น ร่องที่ push ใส่ระนาบอ้างอิงเลยไปโผล่เป็นร่องจริงบนแผ่นพื้นและเดินต่อไปถึงไฟล์ CNC — ให้ _refTop มี grooves/holes/connectors ของตัวเอง และ gv() ข้ามชิ้นที่ติด _refOnly"],
+    ["1.236","2026-09-21","FIX โหลดออเดอร์จากประวัติ XML แล้วช่อง ออเดอร์ บนหัวหน้าต่างตรวจ กลับไปเป็นชื่อที่ฝังอยู่ในไฟล์ ไม่ใช่ชื่อที่ตั้งไว้ตอนบันทึก — เคสจริง บันทึกไว้ชื่อ 2609170001_FOREST_J_BED2 พอกดโหลดกลับมาขึ้นเป็น 2609170002_DESIGNER_1 · cloudLoadXmlRecord() ดึง order_no มาจากตารางอยู่แล้ว แต่ส่งให้ processXmlText() แต่ตัว xml_content ชื่อจึงถูกคิดใหม่จาก Order@No หรือ ARTICLENO ทุกครั้ง ชื่อที่ตั้งเองหายทุกรอบ · ส่ง order_no ไปด้วย และให้ชื่อที่ส่งมาชนะชื่อในไฟล์ · ชื่อนี้เดินต่อครบทางเหมือนพิมพ์เอง ทั้งช่องบนหัวหน้าต่างตรวจ ช่องเลขที่ออเดอร์ในหน้าส่งออก ข้อความแจ้ง และชื่อตั้งต้นของปุ่ม เก็บเป็นออเดอร์แก้ไข"],
     ["1.235","2026-09-19","FEAT ใส่ราวแขวนผ้าจากเมนูคลิกขวาได้แล้ว และติดใต้ทอปบนสุดได้ — เดิมปุ่มอยู่ในแผงขวาที่เดียว และอยู่ในบล็อกที่เปิดด้วย isShelfBoard() ซึ่งดูจากชื่อชิ้น (shelf/ชั้น/guide) แผ่นทอปชื่อ Top จึงไม่เข้าเงื่อนไข ปุ่มไม่เคยขึ้นให้เลย ทั้งที่ตู้เสื้อผ้าส่วนใหญ่ราวอยู่ใต้ทอปไม่ใช่ใต้ชั้น · คลิกขวาที่แผ่นนอนใดก็ได้ = แขวนใต้แผ่นนั้น · คลิกชิ้นอื่นในตู้ (แผ่นข้าง แผ่นหลัง) = แขวนใต้แผ่นนอนบนสุดให้เอง ป้ายในเมนูบอกชื่อชิ้นที่จะไปแขวนจริง · เพิ่มคำสั่ง เอาราวแขวนผ้าออก ด้วย ลบตัวราวพร้อมล้างรู Ø8 ทะลุและ Ø13 เคาน์เตอร์ที่ฝากไว้บนแผ่นให้ครบ · หัวกล่องตั้งค่าบอกชื่อแผ่นที่กำลังจะติด แทนคำว่า ใต้ชั้นตาย ตายตัว"],
     ["1.234","2026-09-19","FIX ตู้ทุกใบในออเดอร์ได้ขาตู้เหมือนกันหมด ทั้งที่ XML ส่งช่อง K_Leg มาไม่กี่ใบ (เคสจริง 17 ใบ ได้ Screw_90_119 ครบทุกใบ) — varFallback() กัน Family ของขา/มือจับไว้แล้ว แต่ตัวเติมค่าตั้งต้นรายตู้เอา def ของตัวแปรมาก่อนเสมอ ซึ่งไม่เคยถูกกรอง · ปุ่ม ตั้งค่าตั้งต้นให้หัว Family ในหน้า Variables เขียน def ให้ทุกตัวรวดเดียว รวมตัวที่รับช่อง K_Leg ด้วย ตู้ที่ออเดอร์ไม่ได้สั่งขาจึงได้ขาไปด้วยแบบเงียบ ๆ · ตอนนี้ไม่ส่งค่ามา = ไม่ใส่ขา/มือจับให้ (ส่งมาจริง หรือเลือกเองที่ Variables ตู้นี้ ยังทำงานเหมือนเดิม) และปุ่มตั้งค่าตั้งต้นข้ามช่องระบบให้ พร้อมบอกว่าข้ามไปกี่ตัว · ไฟล์งานเก่าที่ค่าค้างอยู่แล้ว ให้โหลดออเดอร์ใหม่ หรือคลิกขวาที่ตู้ เลือก ไม่เอาขา รายใบ"],
     ["1.234","2026-09-19","FEAT เหล็กฉาก 3 ขา (ANGLE3) — ขึ้นทะเบียนให้แล้วใน Element → Fittings และอยู่ในเมนูคลิกขวา → ใส่หูแขวน · บากมุมบนแผ่นหลังเป็นรูปตัว L ตามแบบ ขาบนกินตามขอบบน 75 ลึก 15 · ขาข้างกินตามขอบข้าง 15 ลึก 75 (สองมุม ซ้าย–ขวา) · ตัวบากมุมของหูแขวนรองรับตัว L แล้วทุกแบบ ผ่านช่องใหม่ nW2 (ขาที่สองกว้างจากขอบข้าง) และ nH2 (ลึกจากขอบบน) ที่ Element → Fittings · เว้นว่าง/0 = บากสี่เหลี่ยมเหมือนเดิม ของเก่าไม่เปลี่ยน · ปากบากออก MPR เป็น pocket ทะลุ 2 ก้อนต่อมุม (ขาบน + ส่วนที่เลยลงไป) ไม่ซ้อนกันเอง · เมนูคลิกขวาบอกปากบากที่จะได้จริงของแต่ละแบบ (สี่เหลี่ยม / ตัว L / ร่อง) แทนที่จะพิมพ์ nH×nW ตายตัว"],
@@ -1296,11 +1310,11 @@ const DEF_SETTINGS={ frontSetMax:6, dowelD:8, dowelDepth:28, dowelMateDepth:12, 
   healOnVarChange:true,                           // v31.1: แก้ค่าตัวแปรของตู้แล้วเชื่อมเดือยใหม่ให้ตู้ใบนั้น
   kitField:"K_Fitting_Concept", kitPushMap:"B:top, W:bottom", xmlThinMin:1, xmlSkipNoModel:false, orderProgNo:"700", doorGapWarn:50, csNewGap:120, ledSets:[{id:"12V-COB", volt:12, wPerM:9.6,
     stripCode:"", psuMap:"30, 60, 100", psuCode:"", psuUse:80, maxRunM:5,
-    wireCode:"", wireMode:"ต่อเส้นไฟ", wireQty:1}], ledSetPerRun:false, cutSizeFmt:"{ชื่อ} ตัดขนาด {ยาว} mm.", cutLookupKey:"ตัดขนาด", cutLookupOn:true, glassBomOn:true, glassUnit:"EA", glassMatCodes:"FC,MC,FT,PT,FS,MT", glassKinds:"กระจกใส|กระจกเงา|กระจกฝ้า|กระจกใสชาดำ|กระจกใสชาทอง|กระจกเงาชาทอง|กระจกใส ลอนลูกฟูก", glassEdges:"ลบคมรอบ|ลบคมขัดมันรอบ|เจียรริมรอบ|เจียรริมขัดมันรอบ|เจียรริม 1 mm. ขัดมันรอบ", glassKind:"กระจกใส", glassEdge:"ลบคมรอบ", glassShelfKind:"กระจกใส", glassShelfEdge:"เจียรริมขัดมันรอบ", glassDoorT:5, pullXmlOn:true, pullField:"K_Pull", pullOriField:"K_Orientation", pullPosField:"K_Pull_Position", pullXField:"K_Pull_Coordinate_X", pullYField:"K_Pull_Coordinate_Y", pullNo:"nopull,none,-", pullName:"มือจับ", pull3D:true, dxNotchGap:0.5, railLikeMaxW:100, pullDefPos:"UpMiddle", pullDefOri:"H", pullDefX:35, pullDefY:0, legClipOn:true, legClipMap:"", legClipCode:"LEGCLIP", legClipName:"กิ๊ฟขาตู้ (ยึดแผ่นปิดขา)", doorSwing:true, shelfT:16, hangRailCode:"HANGRAIL", hangRailName:"ราวแขวนผ้า สแตนเลส C", glassHangerCode:"GLASSHANGER", glassHangerName:"หูแขวนกระจก", hangRailThruD:8, hangRailCsD:13, hangRailCsDepth:2, hangRailEndGap:25, hangRailMap:"", drawerSideT:16, drawerBotT:9, drawerBoxH:120, drawerBoxLift:20, screwD:5, screwMateDepth:28, screwInset:9,
+    wireCode:"", wireMode:"ต่อเส้นไฟ", wireQty:1}], ledSetPerRun:false, cutSizeFmt:"{ชื่อ} ตัดขนาด {ยาว} mm.", cutLookupKey:"ตัดขนาด", cutLookupOn:true, glassBomOn:true, glassUnit:"EA", glassMatCodes:"FC,MC,FT,PT,FS,MT", glassKinds:"กระจกใส|กระจกเงา|กระจกฝ้า|กระจกใสชาดำ|กระจกใสชาทอง|กระจกเงาชาทอง|กระจกใส ลอนลูกฟูก", glassEdges:"ลบคมรอบ|ลบคมขัดมันรอบ|เจียรริมรอบ|เจียรริมขัดมันรอบ|เจียรริม 1 mm. ขัดมันรอบ", glassKind:"กระจกใส", glassEdge:"ลบคมรอบ", glassShelfKind:"กระจกใส", glassShelfEdge:"เจียรริมขัดมันรอบ", glassDoorT:5, pullXmlOn:true, pullField:"K_Pull", pullOriField:"K_Orientation", pullPosField:"K_Pull_Position", pullXField:"K_Pull_Coordinate_X", pullYField:"K_Pull_Coordinate_Y", pullNo:"nopull,none,-", pullName:"มือจับ", pull3D:true, dxNotchGap:0.5, railLikeMaxW:100, pullDefPos:"UpMiddle", pullDefOri:"H", pullDefX:35, pullDefY:0, legClipOn:true, legClipMap:"", legClipCode:"LEGCLIP", legClipName:"กิ๊ฟขาตู้ (ยึดแผ่นปิดขา)", doorSwing:true, doorRelief3D:true, doorReliefMap:"MCxx35 = 0:3, 3:0, 55:0, 58:3, 60:6, 95:6, 110:2, 110:0 | ตั้งทะลุ 55-60", shelfT:16, hangRailCode:"HANGRAIL", hangRailName:"ราวแขวนผ้า สแตนเลส C", glassHangerCode:"GLASSHANGER", glassHangerName:"หูแขวนกระจก", hangRailThruD:8, hangRailCsD:13, hangRailCsDepth:2, hangRailEndGap:25, hangRailBarH:25, hangRailMap:"", drawerSideT:16, drawerBotT:9, drawerBoxH:120, drawerBoxLift:20, screwD:5, screwMateDepth:28, screwInset:9,
   /* v1.201: รอยต่อกล่องลิ้นชักไม้ — แผ่นหน้า/หลังชนเข้าแผ่นข้าง ยึดด้วยเดือย + สกรูจากนอกแผ่นข้าง */
   boxJointOn:true, boxDowelFormula:BOXJ_DOWEL_NAME, boxScrewFormula:BOXJ_SCREW_NAME,
   boxJointDowelD:8, boxJointDowelDepth:24, boxJointMateD:8, boxJointMateDepth:12,
-  boxScrewD:5, boxScrewPilotD:3, boxScrewPilotDepth:30, boxJointGrooveGap:6,
+  boxScrewD:5, boxScrewPilotD:3, boxScrewPilotDepth:30, boxJointGrooveGap:6, boxJointEdgeMin:9,
   boxScrewCode:"SCREW5", boxScrewName:"สกรูยึดกล่องลิ้นชัก Ø5", screwCode:"SCREW5", screwName:"สกรู Ø5", altoMapA:"350:552.35.362, 400:552.35.363, 450:552.35.364, 500:552.35.365", altoMapW:"350:552.35.762, 400:552.35.763, 450:552.35.764, 500:552.35.765",
   /* v7.88: ซีรีส์ราง Kitchen 4.0 — โครงเดียวกับ ALTO แต่มีสีเดียว (ไม่มีตัวเลือกสี) */
   k40Code:"KITCHEN40_H80", k40Name:"ราง Kitchen 4.0", k40SideH:80, k40BackH:63, k40PanelT:16,
@@ -2053,7 +2067,7 @@ function remapBoardRefs(boards,idMap){
     if(b._zx){ ["l","r"].forEach(k=>{ if(b._zx[k]!=null){ const v=M(b._zx[k]); if(v!==b._zx[k]){ b._zx[k]=v; n++; } } });
       ["oL","oR"].forEach(k=>{ const e=b._zx[k];
         if(e&&e.ref!=null){ const v=M(e.ref); if(v!==e.ref){ e.ref=v; n++; } } }); }
-    ["_frameOwner","_ledOwner","_pullOwner","_dxOwner","_dg","_sinkOwner"].forEach(k=>{
+    ["_frameOwner","_ledOwner","_pullOwner","_dxOwner","_dg","_sinkOwner","_hrShelf"].forEach(k=>{   // v1.238: _hrShelf ตกหล่นมาตั้งแต่ v1.228
       if(b[k]!=null){ const v=M(b[k]); if(v!==b[k]){ b[k]=v; n++; } } });
     (b.connectors||[]).forEach(c=>{ if(c&&c.src!=null){ const v=M(c.src); if(v!==c.src){ c.src=v; n++; } } });
     (b.pockets||[]).forEach(q=>{ if(q&&q.src!=null){ const v=M(q.src); if(v!==q.src){ q.src=v; n++; } } });
@@ -2554,6 +2568,114 @@ function _bgTrim(){
   const ks=[]; for(const k of _bgC.keys()){ ks.push(k); if(ks.length>=250) break; }
   ks.forEach(k=>{ const o=_bgC.get(k); _bgC.delete(k); _bgDrop(o); }); }
 let _bmHit=0,_bmMiss=0,_bmMs=0;
+/* ───────── v1.247: ลายหน้าบานแบบนูน-ลึก (โชว์ใน 3D อย่างเดียว) ─────────
+   บาน CNC เมมเบรนอย่าง MCxx35 มีกรอบ ร่อง ทางลาด และลูกฟัก แต่ในโปรแกรมบานคือแผ่นเรียบ 19 มม.
+   ตัวนี้ปั้นรูปทรงนูน-ลึกเฉพาะตอนวาดบนจอ ข้อมูลบาน ใบไม้ ไฟล์เจาะ CNC และ BOM ไม่ถูกแตะเลย
+   · ลายเก็บเป็นตัวเลขในตั้งค่า (doorReliefMap) บรรทัดละแบบ: รหัส = ระยะจากขอบ:ความลึก, ...
+     เพิ่มแบบใหม่ได้เองโดยไม่ต้องแก้โค้ด · รหัสแบบบานอ่านจาก FrontShape ของบานใบนั้น (ค่าที่ XML ส่งมา)
+   · หน้าตัดรีดรอบสี่ด้านเข้ามุม 45° + ลูกฟักกลาง · หลังบานเรียบ
+   · โหมดประหยัด = แผ่นเรียบเหมือนเดิม · บานเล็กเกินกว่าลายจะลง (เช่นหน้าลิ้นชักเตี้ย) = แผ่นเรียบ */
+let _drParse={src:null,map:{}};
+/* v1.249: ต่อท้ายด้วย | ได้ — "ตั้งทะลุ 55-60" = ช่วงนั้นของขอบซ้าย/ขวาวิ่งตรงตลอดความสูงบาน (แบบตั้งยาว คานสั้นชนเข้า)
+   "นอนทะลุ a-b" = กลับกัน ขอบบน/ล่างวิ่งตรงตลอดความกว้าง · ไม่ใส่ = เข้ามุม 45 ทุกด้านแบบเดิม */
+function doorReliefProfiles(){
+  const src=String(settings.doorReliefMap==null?"":settings.doorReliefMap);
+  if(_drParse.src===src) return _drParse.map;
+  const map={};
+  src.split(/\n+/).forEach(line=>{ const i=line.indexOf("="); if(i<0) return;
+    const code=line.slice(0,i).trim().toUpperCase(); if(!code) return;
+    const body=line.slice(i+1).split("|"), pts=[];
+    body[0].split(/[,;]+/).forEach(tok=>{
+      const m=String(tok).trim().match(/^(\d+(?:\.\d+)?)\s*:\s*(\d+(?:\.\d+)?)$/); if(m) pts.push([+m[1],+m[2]]); });
+    if(pts.length<2) return;
+    if(!pts.every((q,k)=>k===0||q[0]>=pts[k-1][0]-1e-9)) return;             // ระยะจากขอบต้องไม่ถอยหลัง
+    let thrV=null, thrH=null;
+    body.slice(1).join("|").split(/[|,;]+/).forEach(op=>{
+      const m=String(op).trim().match(/^(ตั้งทะลุ|ตั้ง|stile|v)\s*(\d+(?:\.\d+)?)\s*[-–]\s*(\d+(?:\.\d+)?)$/i)
+            ||String(op).trim().match(/^(นอนทะลุ|นอน|rail|h)\s*(\d+(?:\.\d+)?)\s*[-–]\s*(\d+(?:\.\d+)?)$/i);
+      if(!m) return; const a=Math.min(+m[2],+m[3]), b=Math.max(+m[2],+m[3]); if(!(b>a)) return;
+      if(/^(ตั้ง|stile|v)/i.test(m[1])) thrV=[a,b]; else thrH=[a,b]; });
+    map[code]={pts, thrV, thrH, D:pts[pts.length-1][0], maxDep:Math.max.apply(null,pts.map(q=>q[1])),
+      key:code+":"+pts.join(";")+"|"+(thrV||"")+"|"+(thrH||"")}; });
+  _drParse={src,map}; return map;
+}
+/* รหัสแบบบานของบานใบนี้ = ค่าของ Family ที่ Part ลิงก์ของบานอยู่ข้างใต้ (FrontShapeP1 → FrontShape1 → MCxx35) */
+function doorShapeCode(b){
+  try{ const pl=String((b&&b.part)||"").trim(); if(!pl) return "";
+    const info=nodePathFams(pl);
+    if(info&&info.fams&&info.fams.length) return String(famChainValue(info.fams,b)||"").trim();
+    const m=pl.match(/FrontShapeP?(\d+)/i);                                   // สำรอง: อ่านเลขบานจากชื่อ Part
+    if(m){ const cc=(state.cabColors||{})[b.cabInst]||{}; return String(cc["FrontShape"+m[1]]||"").trim(); }
+  }catch(e){}
+  return "";
+}
+const _reliefC=new Map();
+/* v1.249: ปั้นเป็นพื้นผิวที่ความลึกขึ้นกับระยะจากขอบ แทนการรีดหน้าตัดสี่ด้าน
+   ลึก(x,y) = มากสุดของ { ลายเข้ามุม P(ระยะถึงขอบที่ใกล้สุด) · ช่วงตั้งทะลุ P(ระยะถึงขอบซ้าย/ขวา) · ช่วงนอนทะลุ P(ระยะถึงขอบบน/ล่าง) }
+   ทำให้ร่องของขอบข้างวิ่งตรงขึ้นไปถึงขอบบนได้ (แบบ MCxx35) ส่วนแบบที่ไม่ใส่ทะลุได้รูปเข้ามุม 45 เหมือนเดิมเป๊ะ
+   เส้นตารางวางตรงจุดหักของลายทุกจุดทั้งสองแกน ช่องบนแนวทแยงแบ่งตามแนวมุม 45 เส้นหักจึงคมตรงตำแหน่ง */
+function doorReliefGeo(L,W,T,prof,orient,yaw){
+  const key=[L,W,T,orient,yaw||0,prof.key].join("|");
+  const hit=_reliefC.get(key); if(hit) return hit;
+  const EPS=0.02;
+  const pts=[]; prof.pts.forEach(q=>{ let d=q[0]; if(pts.length&&d<=pts[pts.length-1][0]+1e-9) d=pts[pts.length-1][0]+EPS; pts.push([d,q[1]]); });   // ผนังตั้ง = เอียงนิดเดียว
+  const P=d=>{ if(d<=pts[0][0]) return pts[0][1]; for(let k=1;k<pts.length;k++){ const a=pts[k-1], b=pts[k];
+      if(d<=b[0]){ const t=(b[0]-a[0])>1e-9?(d-a[0])/(b[0]-a[0]):1; return a[1]+(b[1]-a[1])*t; } } return pts[pts.length-1][1]; };
+  const band=(r,d)=>(r&&d>=r[0]-1e-9&&d<=r[1]+1e-9)?P(d):0;
+  const dep=(x,y)=>{ const dx=Math.min(x+L/2,L/2-x), dy=Math.min(y+W/2,W/2-y);
+    return Math.max(P(Math.min(dx,dy)), band(prof.thrV,dx), band(prof.thrH,dy)); };
+  const bp=new Set(pts.map(q=>q[0]));
+  [prof.thrV,prof.thrH].forEach(r=>{ if(r){ bp.add(r[0]); bp.add(r[1]); bp.add(r[1]+EPS); } });
+  const axis=S=>{ const a=new Set([-S/2,S/2]); bp.forEach(d=>{ if(d>0&&d<S/2-0.01){ a.add(+(-S/2+d).toFixed(4)); a.add(+(S/2-d).toFixed(4)); } });
+    return [...a].sort((p,q)=>p-q); };
+  const X=axis(L), Y=axis(W);
+  const pos=[], uv=[];
+  const tri=(A,B,C,want)=>{ const n=new THREE.Vector3().subVectors(B,A).cross(new THREE.Vector3().subVectors(C,A));
+    if(n.lengthSq()<1e-12) return; if(n.dot(want)<0){ const t=B; B=C; C=t; }
+    [A,B,C].forEach(v=>{ pos.push(v.x,v.y,v.z); uv.push(v.x,v.y); }); };
+  const Vt=(x,y)=>new THREE.Vector3(x,y,T/2-dep(x,y));
+  const Z=new THREE.Vector3(0,0,1);
+  for(let i=0;i<X.length-1;i++) for(let j=0;j<Y.length-1;j++){
+    const x0=X[i],x1=X[i+1],y0=Y[j],y1=Y[j+1];
+    const a=Vt(x0,y0), b=Vt(x1,y0), c=Vt(x1,y1), d=Vt(x0,y1);
+    /* แบ่งช่องตามแนวทแยงที่ระยะถึงขอบทั้งสองแกนเท่ากัน (แนวมุม 45) ถ้ามี · ไม่มีก็แบ่งตามปกติ */
+    const dd=(x,y)=>Math.min(x+L/2,L/2-x)-Math.min(y+W/2,W/2-y);
+    if(Math.abs(dd(x0,y1))<1e-6&&Math.abs(dd(x1,y0))<1e-6){ tri(a,b,d,Z); tri(b,c,d,Z); }
+    else { tri(a,b,c,Z); tri(a,c,d,Z); } }
+  /* ผนังรอบบานตามความลึกที่ขอบ + หลังบานเรียบ */
+  const wall=(p0,p1,out)=>{ const A=new THREE.Vector3(p0[0],p0[1],-T/2), B=new THREE.Vector3(p1[0],p1[1],-T/2), C=Vt(p1[0],p1[1]), D=Vt(p0[0],p0[1]);
+    tri(A,B,C,out); tri(A,C,D,out); };
+  for(let i=0;i<X.length-1;i++){ wall([X[i],-W/2],[X[i+1],-W/2],new THREE.Vector3(0,-1,0)); wall([X[i],W/2],[X[i+1],W/2],new THREE.Vector3(0,1,0)); }
+  for(let j=0;j<Y.length-1;j++){ wall([-L/2,Y[j]],[-L/2,Y[j+1]],new THREE.Vector3(-1,0,0)); wall([L/2,Y[j]],[L/2,Y[j+1]],new THREE.Vector3(1,0,0)); }
+  { const zb=-T/2, nb=new THREE.Vector3(0,0,-1);
+    const p=[[-L/2,-W/2],[L/2,-W/2],[L/2,W/2],[-L/2,W/2]].map(q=>new THREE.Vector3(q[0],q[1],zb));
+    tri(p[0],p[1],p[2],nb); tri(p[0],p[2],p[3],nb); }
+  const g=new THREE.BufferGeometry();
+  g.setAttribute("position",new THREE.Float32BufferAttribute(pos,3));
+  g.setAttribute("uv",new THREE.Float32BufferAttribute(uv,2));
+  g.computeVertexNormals();                                                   // ไม่มี index = ได้ normal ต่อหน้า (ผิวเหลี่ยมคม)
+  g.applyMatrix4(orientMatrix(orient,yaw));
+  g.userData={_keep:true};
+  const eg=new THREE.EdgesGeometry(g,25); eg.userData={_keep:true}; g.userData.edges=eg;
+  if(_reliefC.size>400){ _reliefC.forEach(v=>{ try{ v.dispose(); if(v.userData&&v.userData.edges) v.userData.edges.dispose(); }catch(e){} }); _reliefC.clear(); }
+  _reliefC.set(key,g);
+  return g;
+}
+/* คืนรูปทรงลายหน้าบานถ้าบานใบนี้มีลายและลงได้ · ไม่มี = null (วาดแผ่นเรียบตามเดิม) */
+function doorReliefFor(b){
+  try{
+    /* v1.249: ค่าตั้งต้นของ v1.247 ที่ยังไม่ได้แก้เอง → เติมตั้งทะลุตามแบบให้ (ที่แก้เองแล้วไม่แตะ) */
+    if(String(settings.doorReliefMap||"").trim()==="MCxx35 = 0:3, 3:0, 55:0, 58:3, 60:6, 95:6, 110:2, 110:0")
+      settings.doorReliefMap="MCxx35 = 0:3, 3:0, 55:0, 58:3, 60:6, 95:6, 110:2, 110:0 | ตั้งทะลุ 55-60";
+    if(state.eco||settings.doorRelief3D===false) return null;
+    if(!b||!b._door||b._box||b._glass||b._frameDoor||b._noPanel||b.orient!=="front") return null;
+    const code=doorShapeCode(b); if(!code) return null;
+    const prof=doorReliefProfiles()[code.toUpperCase()]; if(!prof) return null;
+    const L=+b.L||0, W=+b.W||0, T=+b.T||0;
+    if(L-2*prof.D<10||W-2*prof.D<10||prof.maxDep>=T-0.5) return null;       // ลายลงไม่ได้ = แผ่นเรียบ
+    return doorReliefGeo(L,W,T,prof,b.orient,b.yaw);
+  }catch(e){ console.error("doorRelief:",e); return null; }
+}
 function buildBoardMesh(b){
   let key=null; try{ key=_bgKey(b); }catch(e){ key=null; }
   if(key){ const hit=_bgC.get(key);
@@ -3519,6 +3641,11 @@ function dowelRuleFor(X,name){ for(const r of rulesFromText(formulaRuleText(name
    ใช้กับบานพับที่ต้องหลบชั้น — ตำแหน่งฐานยังมาจากสูตรเดิม แค่บวกส่วนต่างทีหลัง
    จึงยังเปลี่ยนสูตร/จำนวนได้ตามปกติ และ render + MPR + เจาะฐานใช้ค่าเดียวกันหมด */
 function dowelAlong(c,len){
+  /* v1.245: ตัวเชื่อมที่พกตำแหน่งที่คิดไว้แล้ว (รอยต่อกล่องลิ้นชัก) — ใช้ตามนั้นตรง ๆ
+     รูฝั่งแผ่นข้างเขียนจากตำแหน่งชุดนี้ ส่วนรูหน้าตัดของแผ่นหน้า/หลังมาจากตัวเชื่อม
+     ถ้าตัวเชื่อมกลับไปคิดจากสูตรเอง สองฝั่งจะไม่ตรงกันทันทีที่มีการขยับให้พ้นขอบ
+     ผูกไว้กับความยาวขอบที่ใช้คิด — ขนาดเปลี่ยนแล้วยังไม่ถูกคิดใหม่ ก็ถอยไปใช้สูตรตามเดิม */
+  if(c&&Array.isArray(c.at)&&c.at.length&&Math.abs((+c.atLen||0)-len)<0.05) return c.at.slice();
   const out=dowelAlong0(c,len);
   const sh=c&&c.shift; if(!Array.isArray(sh)||!sh.length) return out;
   const half=len/2, lim=Math.max(half-12,1);
@@ -4731,15 +4858,43 @@ function boxJointPlan(parts){
   const clear=a=>!band||a<band.lo||a>band.hi;
   const dRaw=dowelAlong(conn("left"),boxH);
   const sRaw=dowelAlong({sizeRule:true,formula:sFor,count:2,margin:40},boxH);
-  const dAt=dRaw.filter(clear), sAt=sRaw.filter(clear);
+  /* ───────── v1.245: รูต้องไม่ทิ่มขอบบน/ล่างของกล่อง ─────────
+     สูตรแบ่งตามช่วงความสูง แต่ในช่วงเดียวกัน กล่องเตี้ยสุดของช่วงอาจรับตำแหน่งนั้นไม่ได้
+     เคสจริง: กล่องสูง 102.6 ตกช่วง 100-118 ได้ "36 : 64" = เดือยตัวบนห่างขอบล่าง 100
+     เหลือจากขอบบนแค่ 2.6 ทั้งที่รูกว้าง 8 → เดือยทะลุขอบบน ใส่ไม่ได้ (ช่วงนี้พังทุกกล่องที่เตี้ยกว่า ~109)
+     โหมดสูตรตั้งไว้ "ตามสูตรเป๊ะ" ซึ่งถูกกับแผ่นโครงทั่วไป แต่รูทะลุขอบไม่ใช่เรื่องที่เลือกได้
+     วิธี: ระยะจากขอบถึงศูนย์รูต้องไม่น้อยกว่า boxJointEdgeMin (ตั้งต้น 9)
+       1) เลื่อนทั้งชุดก่อน ระยะห่างระหว่างเดือยจึงยังเท่าสูตร (64 = หัวเจาะ 32 มม. ลงทีเดียวได้)
+       2) เลื่อนทั้งชุดไม่ลง หรือเลื่อนแล้วไปทับร่องพื้น ค่อยดึงเฉพาะตัวที่ล้ำ
+       3) ดึงแล้วทับร่องหรือชนตัวอื่น ถึงจะข้ามตัวนั้น (นับเข้า skipped เหมือนเดิม) */
+  const eMin=Math.max(+settings.boxJointEdgeMin||9,0);
+  const fitEdge=(arr,r)=>{
+    if(!arr.length) return {at:arr,moved:0};
+    const m=Math.max(eMin,r+1), lo=-boxH/2+m, hi=boxH/2-m;
+    const src=arr.slice().sort((a,b)=>a-b), mn=src[0], mx=src[src.length-1];
+    if(mn>=lo-0.01&&mx<=hi+0.01) return {at:src,moved:0};
+    if(mx-mn<=hi-lo+0.01){ const d=(mn<lo)?(lo-mn):(hi-mx), sh=src.map(a=>a+d);
+      if(sh.every(clear)) return {at:sh,moved:src.length}; }
+    let moved=0; const out=[];
+    src.forEach(a=>{ const c=Math.min(Math.max(a,lo),hi);
+      if(Math.abs(c-a)>0.01){ if(!clear(c)) return; moved++; }
+      if(out.some(o=>Math.abs(o-c)<2*r+3)) return;
+      out.push(c); });
+    return {at:out,moved};
+  };
+  const rD=Math.max(dD,mD)/2, rS=Math.max(sD,pD)/2;
+  const dF=fitEdge(dRaw,rD), sF=fitEdge(sRaw,rS);
+  const dAt=dF.at.filter(clear);
+  const sAt=sF.at.filter(clear).filter(a=>dAt.every(d=>Math.abs(a-d)>=rD+rS+3));   // ดึงเข้ามาแล้วห้ามชนเดือย
   const skipped=(dRaw.length-dAt.length)+(sRaw.length-sAt.length);
+  const moved=dF.moved+sF.moved;
   const conns=[], holes=[];
   [["back",back,-1],["subf",subf,1]].forEach(pp=>{
     const role=pp[0], panel=pp[1], sgn=pp[2];
     const ly=sgn*(depth/2-Tb/2);                       // ตำแหน่งตามความลึกบนแผ่นข้าง = กลางความหนาแผ่นนั้น
     [["sideL","left","top","bottom"],["sideR","right","bottom","top"]].forEach(ss=>{
       const sRole=ss[0], edge=ss[1], faceIn=ss[2], faceOut=ss[3];
-      conns.push({on:role, conn:conn(edge)});
+      conns.push({on:role, conn:Object.assign(conn(edge),{at:dAt.map(round),atLen:boxH})});   // v1.245: รูหน้าตัดตรงกับรูแผ่นข้างเสมอ
       dAt.forEach(a=>holes.push({on:sRole, h:{d:mD,x:round(a),y:round(ly),depth:round(mDep),
         face:faceIn,dowel:true,_bj:true,src:panel.id}}));
       sAt.forEach(a=>{
@@ -4750,7 +4905,7 @@ function boxJointPlan(parts){
       });
     });
   });
-  return {ok:true,Tb,boxH,depth,skipped,
+  return {ok:true,Tb,boxH,depth,skipped,moved,edgeMin:eMin,
     dowel:{formula:dFor,at:dAt,d:dD,depth:dDep,mateD:mD,mateDepth:mDep},
     screw:{formula:sFor,at:sAt,d:sD,pilotD:pD,pilotDepth:pDep},
     conns,holes};
@@ -4779,6 +4934,11 @@ function applyDrawerBoxJoints(parts){
       if(p.holes&&p.holes.length) p.holes=p.holes.filter(h=>!(h&&h._bj));
       if(p.connectors&&p.connectors.length) p.connectors=p.connectors.filter(c=>!(c&&c._bj)); });
     if(!pre.ok){ all.forEach(p=>{ delete p._bjSig; }); return pre; }
+    /* v1.245: รูคู่ที่ตัวเชื่อมเดือยเจาะไว้บนแผ่นข้างกล่องจากรอยต่อเดียวกันนี้ (src = แผ่นหน้า/หลัง) แต่ไม่มีป้าย _bj
+       เป็นของค้างจากรอบก่อน อยู่ตำแหน่งเก่า — ปล่อยไว้จะได้รูซ้อนห่างกันไม่กี่มิล ชุดที่เขียนข้างล่างคือตัวจริง */
+    { const ids=new Set([P.back&&P.back.id,P.subf&&P.subf.id].filter(Boolean));
+      [P.sideL,P.sideR].forEach(sd=>{ if(!sd||!sd.holes) return;
+        sd.holes=sd.holes.filter(h=>!(h&&!h._bj&&!h.manual&&ids.has(h.src)&&(h.dowel||h.screw))); }); }
     pre.conns.forEach(it=>{ const b=byRole[it.on]; if(!b)return;
       if(!b.connectors)b.connectors=[]; b.connectors.push(Object.assign({},it.conn)); });
     pre.holes.forEach(it=>{ const b=byRole[it.on]; if(!b)return;
@@ -7554,7 +7714,11 @@ function horizRefsOf(grp,toCabTop,zone){
     const d=worldDims(b), lo=b.y-d[1]/2;
     if(lo>floorTop+20 && lo<ceil) ceil=lo; });
   if(ceil-floorTop<40) return real;
-  return real.concat([Object.assign({},base,{id:"_refTop", y:round(ceil+0.05), T:0.1, _refOnly:true})]);
+  /* v1.237: Object.assign เป็นการก๊อปตื้น — grooves/holes/connectors ของเพดานเสมือน
+     จึงเป็นอาร์เรย์ตัวเดียวกับแผ่นพื้น ใครเผลอ push ใส่ระนาบอ้างอิง จะไปโผล่เป็นร่อง/รูจริง
+     บนแผ่นพื้น (เจอมาแล้วที่ addBackPanel — แผ่นพื้นได้ร่องแผ่นหลังที่ผิวล่างเกินมาหนึ่งเส้น) */
+  return real.concat([Object.assign({},base,{id:"_refTop", y:round(ceil+0.05), T:0.1, _refOnly:true,
+    grooves:[], holes:[], connectors:[]})]);
 }
 /* ───────── v9.02: เส้นแบ่งที่ "วิ่งตามตัวแปร" ─────────
    เดิม ปุ่ม วาง คำนวณตำแหน่งครั้งเดียวแล้วจบ พอ XML ส่งค่า $D7 ใหม่มาให้ตู้ใบนั้น เส้นแบ่งไม่ขยับตาม
@@ -7760,16 +7924,23 @@ async function addShelf(){
   if(!grp){toast("ไม่พบตู้ของชิ้นนี้");return;}
   const horiz=horizRefsOf(grp);
   if(horiz.length<2){toast("ตู้นี้ยังไม่มีแผ่นพื้น (วางราบ) ให้อ้างอิงระยะ");return;}
-  const sides=grp.boards.filter(b=>b.orient==="side"&&!b._door&&!b._virtual&&!isRail(b)&&b.zoneLo==null);
+  /* v1.238: แผ่นข้างของ Filler ไม่ใช่แผ่นข้างตู้ — อาการเดียวกับ addBackPanel ที่แก้ไปใน v1.237
+     ตู้ที่มี Filler จะได้ชั้นยาวเกินจริง และรูพินไปโผล่บนแผ่นข้างของ Filler แทนแผ่นข้างตู้ */
+  const carcS=fzStrip(grp.boards.filter(b=>!b._door&&!b._virtual));
+  const sides=carcS.filter(b=>b.orient==="side"&&!isRail(b)&&b.zoneLo==null);
   const bottom=horiz[0], top=horiz[horiz.length-1];
   const interiorBottom=bottom.y+bottom.T/2, interiorTop=top.y-top.T/2;
   const comps=[]; for(let i=0;i<horiz.length-1;i++){ comps.push({lo:horiz[i].y+horiz[i].T/2, hi:horiz[i+1].y-horiz[i+1].T/2}); }
-  const sidesV=grp.boards.filter(b=>b.orient==="side"&&!b._door&&!b._virtual&&!isRail(b)&&b.zoneLo==null);
+  const sidesV=sides;   // v1.238: เงื่อนไขเดียวกับ sides เป๊ะ ใช้ตัวเดียวกัน ไม่ต้องกรองซ้ำ (และไม่มีใครแก้อาร์เรย์นี้)
   let maxVC=1; comps.forEach(c=>{ const midY=(c.lo+c.hi)/2; const vp=sidesV.filter(s=>{const d=worldDims(s);return (s.y-d[1]/2)<=midY+1 && (s.y+d[1]/2)>=midY-1;}); maxVC=Math.max(maxVC, Math.max(vp.length-1,1)); });
   const zoneXOpts=["ทั้งกว้าง"].concat(Array.from({length:maxVC},(_,i)=>"ช่องกว้าง "+(i+1)));
   const tmpl = horiz.find(b=>b!==bottom&&b!==top) || bottom;
   let shFrontZ=-Infinity; grp.boards.filter(b=>!b._door&&!b._virtual).forEach(b=>{shFrontZ=Math.max(shFrontZ,b.z+worldDims(b)[2]/2);});
-  const shBk=grp.boards.filter(b=>b.orient==="front"&&!b._door&&!b._virtual&&!b._dx&&!b._dwall).sort((a,b)=>a.z-b.z)[0];
+  /* v1.238: คานที่พาดอยู่ "หลัง" แผ่นหลัง ไม่ใช่ผิวอ้างอิงความลึกชั้น (กติกาเดียวกับ backFaceZOf)
+     เดิมคานชนะทุกครั้งเพราะอยู่หลังสุด ชั้นที่ได้จึงลึกเกินจนกินเข้าไปในแผ่นหลัง
+     ไม่มีแผ่นหลังจริงสักแผ่น ค่อยยอมถอยไปใช้คานเหมือนเดิม */
+  const shFr=grp.boards.filter(b=>b.orient==="front"&&!b._door&&!b._virtual&&!b._dx&&!b._dwall);
+  const shBk=shFr.filter(b=>!isRail(b)).sort((a,b)=>a.z-b.z)[0] || shFr.slice().sort((a,b)=>a.z-b.z)[0];
   let shBackFront = shBk? shBk.z+worldDims(shBk)[2]/2 : tmpl.z-worldDims(tmpl)[2]/2;
   if(settings.backGroove!==false && shBk){ let cabRear=Infinity; grp.boards.filter(b=>!b._door&&!b._virtual).forEach(b=>{cabRear=Math.min(cabRear,b.z-worldDims(b)[2]/2);});
     if(isFinite(cabRear)) shBackFront=cabRear+Math.ceil((shBackFront-cabRear)+(settings.backClear||0)); }   // ปัดให้เป็นเลขเต็ม + เผื่อ
@@ -7892,7 +8063,10 @@ async function addBackPanel(){
   const bottom=horiz[0], top=horiz[horiz.length-1];
   const comps=[]; for(let i=0;i<horiz.length-1;i++){ comps.push({lo:horiz[i].y+horiz[i].T/2, hi:horiz[i+1].y-horiz[i+1].T/2, loB:horiz[i], hiB:horiz[i+1]}); }
   // แผ่นตั้ง (ข้าง/เสา/ตั้ง) → ช่องแนวกว้าง
-  const sidesV=grp.boards.filter(b=>b.orient==="side"&&!b._door&&!b._virtual&&!isRail(b)&&b.zoneLo==null);
+  /* v1.237: แผ่นข้างของ Filler ไม่ใช่แผ่นข้างตู้ — อ่านจาก carc ซึ่งผ่าน fzStrip มาแล้ว
+     เดิมอ่าน grp.boards ตรง ๆ ตัวนอกสุดจึงเป็น Filler Side แผ่นหลังกว้างเกินจริง
+     และร่อง 4 ด้านไปลงที่ Filler แทนแผ่นข้างตู้ (v1.219 แก้ทางบาน/กล่อง/ราง ไว้แล้ว ตกตัวนี้ไป) */
+  const sidesV=carc.filter(b=>b.orient==="side"&&!isRail(b)&&b.zoneLo==null);
   let maxVC=1; comps.forEach(c=>{ const midY=(c.lo+c.hi)/2; const vp=sidesV.filter(s=>{const d=worldDims(s);return (s.y-d[1]/2)<=midY+1 && (s.y+d[1]/2)>=midY-1;}); maxVC=Math.max(maxVC, Math.max(vp.length-1,1)); });
   const compOpts=["ทั้งสูง"].concat(comps.map((c,i)=>"ช่องสูง "+(i+1)));
   const zoneXOpts=["ทั้งกว้าง"].concat(Array.from({length:maxVC},(_,i)=>"ช่องกว้าง "+(i+1)));
@@ -7946,7 +8120,7 @@ async function addBackPanel(){
   // ── เซาะร่องเข้าแผ่นรับ 4 ด้าน (เฉพาะฝังใน) — convention เดียวกับ openBackGrooveModal ──
   if(inset){
     const gWc=round(gW), gDc=round(gD);
-    const gv=(p,face,pos)=>{ if(!p)return; if(!p.grooves)p.grooves=[]; p.grooves.push({axis:"len",face,pos:round(pos),width:gWc,depth:gDc,back:true,backThk:round(Tb),backset:bs}); };
+    const gv=(p,face,pos)=>{ if(!p||p._refOnly)return; /* v1.237: _refTop เป็นระนาบอ้างอิง ไม่ใช่แผ่นจริง ไม่มีอะไรให้เซาะ */ if(!p.grooves)p.grooves=[]; p.grooves.push({axis:"len",face,pos:round(pos),width:gWc,depth:gDc,back:true,backThk:round(Tb),backset:bs}); };
     if(leftB  && leftB.orient==="side")  gv(leftB,  leftB.x<cx?"top":"bottom",  targetZ-leftB.z);   // side: worldZ = panel.z + posLocalW
     if(rightB && rightB.orient==="side") gv(rightB, rightB.x<cx?"top":"bottom", targetZ-rightB.z);
     if(loB    && loB.orient==="flat")    gv(loB, loB.y<cy?"top":"bottom", loB.z-targetZ);            // flat: worldZ = panel.z - posLocalW
@@ -9425,6 +9599,151 @@ function setShelfSetback(b,setback){
    ปุ่มใส่ราวอยู่ในแผงขวาที่เดียว และอยู่ในบล็อกที่เปิดด้วย isShelfBoard() ซึ่งดูจาก "ชื่อชิ้น" (shelf/ชั้น/guide)
    แผ่นทอปชื่อ Top จึงไม่เข้าเงื่อนไข ปุ่มไม่เคยขึ้นให้เลย ทั้งที่ตู้เสื้อผ้าส่วนใหญ่ราวอยู่ใต้ทอป ไม่ใช่ใต้ชั้น
    ตัวนี้แปลงชิ้นที่คลิกเป็น "แผ่นนอนที่จะแขวนใต้" — แผ่นนอนก็ใช้ตัวมันเอง · ชิ้นอื่นในตู้ใช้แผ่นนอนบนสุด */
+/* ───────── v1.238: ผิวหน้าแผ่นหลังของตู้ — คิดที่เดียว ─────────
+   ของเดิมหา "แผ่นหลัง" ด้วยการเรียงชิ้น orient front ตาม z แล้วหยิบตัวหลังสุด
+   ตู้ที่มีคานพาดอยู่ "หลัง" แผ่นหลัง (Back Rail Upright) คานจึงชนะทุกครั้ง
+   ราวแขวนที่สั่ง 260 จากหน้าแผ่นหลัง เลยออกมา 251 เพราะไปวัดจากหน้าคานแทน
+   ไม่มีแผ่นหลังจริงสักแผ่น ค่อยถอยไปใช้คาน แล้วค่อยถอยไปใช้ค่าสำรอง */
+function backFaceZOf(bs,fallback){
+  const fr=(bs||[]).filter(x=>x&&x.orient==="front"&&!x._door&&!x._virtual&&!x._dx&&!x._dwall);
+  const rear=arr=>arr.slice().sort((a,c)=>a.z-c.z)[0];
+  const bk=rear(fr.filter(x=>!isRail(x)))||rear(fr);
+  return bk? bk.z+worldDims(bk)[2]/2 : fallback;
+}
+/* v1.240: จัดราวแขวนของตู้ใหม่ทั้งชุด — ยกมาจาก _resizeCabinetToCore ทุกบรรทัด ไม่เปลี่ยนพฤติกรรม
+   ยกออกมาเพราะการสลับโครงสร้างตู้ก็ทำให้ผิวใต้ชั้น/ทอปขยับเหมือนกัน (ชั้นบางลง 3 มม. ราวต้องขึ้นตาม) */
+function relayHangRails(inst){
+  // ราวแขวน: เกาะใต้ชั้นเดิม · ยาวอัตโนมัติคิดใหม่ตามกว้างนอกตู้ · เจาะรูใหม่ · (รหัสจริง map ตามยาวใน fittingAgg)
+  state.boards.filter(x=>x.cabInst===inst&&x._hangRail).forEach(rail=>{
+    const shelf=state.boards.find(x=>x.id===rail._hrShelf) || state.boards.filter(x=>x.cabInst===inst&&x.orient==="flat"&&!x._door&&!x._virtual&&!isRail(x)).sort((a,b2)=>Math.abs(a.y-rail.y)-Math.abs(b2.y-rail.y))[0];
+    if(!shelf)return;
+    const sd=state.boards.filter(x=>x.cabInst===inst&&x.orient==="side"&&!x._door&&!x._virtual&&!isRail(x)&&x.zoneLo==null);
+    let inL=-1e9,inR=1e9,oL=-1e9,oR=1e9; if(sd.length){ const l=sd.reduce((a,c)=>a.x<c.x?a:c),r=sd.reduce((a,c)=>a.x>c.x?a:c); inL=l.x+worldDims(l)[0]/2; inR=r.x-worldDims(r)[0]/2; oL=l.x-worldDims(l)[0]/2; oR=r.x+worldDims(r)[0]/2; }
+    const backFaceZ=backFaceZOf(state.boards.filter(x=>x.cabInst===inst), shelf.z-worldDims(shelf)[2]/2);   // v1.238
+    rail._hrShelf=shelf.id;   // v1.238: ผูกคืนให้ไฟล์เก่าที่ลิงก์ขาด (id ถูกแจกใหม่ตอนเปิดไฟล์ แต่ _hrShelf ไม่เคยถูกแปลง)
+    if(rail._hrAuto !== false){ rail.L=round(Math.max(oR-oL,120)-100); rail._hrLen=rail.L; } else { rail.L=round(rail._hrLen||rail.L); }
+    rail.x=round((inL+inR)/2); rail.z=round(backFaceZ+(rail._hrSetb||260));
+    rail.y=round(shelf.y-(shelf.T||16)/2-(rail.W||85)/2-1);
+    drillHangRail(shelf,rail);
+  });
+}
+/* ───────── v1.240: สลับโครงสร้างตู้ 19 ↔ 16 มม. — ขนาดนอกคงเดิม ─────────
+   งานบางประเภทใช้รหัสตู้เดียวกันแต่โครงหนาไม่เท่ากัน ของเดิมต้องไปแก้ Part ทีละแผ่น
+   แล้วขยับแผ่นข้างเข้าออกเอง ทอป/พื้น/ชั้น/แผ่นหลังก็ต้องยืดตามทีละชิ้น
+   · โครงสร้าง = ชิ้นที่ Part ลงท้ายด้วย _MatNN (เลขเดียวกับแผ่นข้าง) ไม่ต้องเดาจากความหนา
+     ไม่นับ: หน้าบาน/กล่องลิ้นชัก (_door) · ชิ้นเสมือน · แผ่นหลัง · คานที่อยู่หลังแผ่นหลัง
+   · เปลี่ยนแค่เลขท้ายของ Part (1111_Mat19 → 1111_Mat16) วัสดุตามมาเองเพราะ Part เป็นคนถือวัสดุ
+     ความหนาก็ตามมาเองเพราะ deriveThick() อ่านจาก Part แล้ว applyCabinetSkin() จัดตู้ให้
+     ด้วยกติกาเดิม: ผนังนอกคงผิวนอก โตเข้าใน · ชิ้นข้างในโตออกสองด้าน · คานคิดใหม่จากกฎ
+   · ทุกชิ้นที่ถูกเปลี่ยนติดป้าย _mat0 เก็บ Part และความหนาเดิม — กดกลับคือคืนค่าจากป้าย
+     ไม่ใช่เดาย้อน ชิ้นที่ไม่เคยถูกเปลี่ยน (เช่นคาน Mat16 หลังแผ่นหลัง) ไม่มีป้าย จึงไม่ถูกแตะตอนกลับ
+   · แผ่นหลังไม่ใช่โครงสร้าง แต่ฝังร่องอยู่ในโครง พอผิวในขยับ ขอบแผ่นหลังต้องขยับตามเท่ากัน
+     ไม่งั้นเหลือเนื้อในร่องแค่ 1.2 จาก 4.2 */
+const STRUCT_RX=/_Mat(\d{2})(?!\d)/;
+function structNumOf(b){ const m=String((b&&b.part)||"").match(STRUCT_RX); return m?+m[1]:null; }
+function structOfBoards(bs){
+  const cnt={}; (bs||[]).forEach(b=>{ if(!b||b.orient!=="side"||b._door||b._virtual||b._fixZone||isRail(b)||b.zoneLo!=null) return;
+    const n=structNumOf(b); if(n!=null) cnt[n]=(cnt[n]||0)+1; });
+  let best=null,bc=0; Object.keys(cnt).forEach(k=>{ if(cnt[k]>bc){ bc=cnt[k]; best=+k; } }); return best; }
+function structOf(inst){ return structOfBoards(fzStrip(state.boards.filter(b=>b&&b.cabInst===inst))); }
+/* ผิวทั้งสองด้านตามแกนความหนาของแผ่นข้าง/แผ่นนอน — ใช้เทียบก่อน-หลัง เพื่อขยับขอบแผ่นหลังที่ฝังอยู่ */
+function _structFaces(inst){ const m={};
+  /* v1.243: คานก็รับขอบแผ่นหลังได้ (ตู้ที่ไม่มีทอป แผ่นหลังขึ้นไปฝังใต้คานหลัง) — เดิมกันคานออก
+     คานหนาขึ้น 3.2 ขอบแผ่นหลังจึงไม่ขยับตาม ฝังเข้าคานจาก 5 กลายเป็น 8.2 */
+  state.boards.forEach(b=>{ if(!b||b.cabInst!==inst||b._door||b._virtual) return;
+    if(b.orient!=="side"&&b.orient!=="flat") return;
+    const ax=(b.orient==="side")?"x":"y", t=worldDims(b)[ax==="x"?0:1];
+    m[b.id]={ax, lo:b[ax]-t/2, hi:b[ax]+t/2}; }); return m; }
+function _structGrowBacks(inst,F0,F1){
+  const tol=12; let n=0;
+  const byId=id=>state.boards.find(x=>x.id===id);
+  const backs=state.boards.filter(b=>b&&b.cabInst===inst&&b.orient==="front"&&!b._door&&!b._virtual&&!b._dx&&!b._dwall&&!isRail(b));
+  backs.forEach(p=>{ const d=worldDims(p);
+    let l=p.x-d[0]/2, r=p.x+d[0]/2, lo=p.y-d[1]/2, hi=p.y+d[1]/2; let ch=false;
+    /* หาแผ่นที่ขอบนี้ฝังอยู่: แกนเดียวกัน · ขอบอยู่ในเนื้อหรือชิดผิวใน · ช่วงอีกแกนทับกัน · คร่อมแนวลึกของแผ่นหลัง */
+    const hit=(ax,edge,side)=>{ let best=null,bd=1e9;
+      Object.keys(F0).forEach(id=>{ const f=F0[id]; if(f.ax!==ax||!F1[id]) return; const b=byId(id); if(!b) return;
+        const q=worldDims(b);
+        if(Math.abs(p.z-b.z)>q[2]/2+1) return;                                   // ไม่คร่อมแนวลึกของแผ่นหลัง = ไม่ได้รับร่อง
+        if(ax==="x"){ if(Math.min(hi,b.y+q[1]/2)-Math.max(lo,b.y-q[1]/2)<=1) return; }
+        else        { if(Math.min(r, b.x+q[0]/2)-Math.max(l, b.x-q[0]/2)<=1) return; }
+        const face=(side==="A")?f.hi:f.lo;                                       // A = แผ่นรับอยู่ฝั่งต่ำ ผิวในคือ hi
+        if(edge<f.lo-tol||edge>f.hi+tol) return;
+        const e=Math.abs(edge-face); if(e<bd){ bd=e; best=id; } });
+      if(!best) return 0; const f0=F0[best], f1=F1[best];
+      return (side==="A")?(f1.hi-f0.hi):(f1.lo-f0.lo); };
+    const dl=hit("x",l,"A"), dr=hit("x",r,"B"), db=hit("y",lo,"A"), dt=hit("y",hi,"B");
+    if(Math.abs(dl)>0.01){ l+=dl; ch=true; } if(Math.abs(dr)>0.01){ r+=dr; ch=true; }
+    if(Math.abs(db)>0.01){ lo+=db; ch=true; } if(Math.abs(dt)>0.01){ hi+=dt; ch=true; }
+    if(!ch) return;
+    p.L=round(r-l); p.W=round(hi-lo); p.x=round((l+r)/2); p.y=round((lo+hi)/2); n++; });
+  return n;
+}
+/* opts.build = เรียกจากตัวโหลด XML — ข้ามการเชื่อมเดือยใหม่ เพราะตัวโหลดทำให้ทั้งออเดอร์ตอนจบอยู่แล้ว */
+function structSwap(inst,to,opts){
+  opts=opts||{};
+  const from=structOf(inst);
+  if(from==null) return {n:0,why:"แผ่นข้างของตู้นี้ไม่มี Part แบบ _MatNN — บอกโครงสร้างไม่ได้"};
+  if(from===to) return {n:0,from,to,why:"โครงสร้างเป็น "+to+" มม. อยู่แล้ว"};
+  const bs=state.boards.filter(b=>b&&b.cabInst===inst);
+  const bf=backFaceZOf(bs,-Infinity);
+  const isStruct=b=>!b._door&&!b._virtual&&!b._dx
+    &&!(b.orient==="front"&&!isRail(b)&&!b._dwall)                              // แผ่นหลัง
+    &&!(isRail(b)&&(b.z+worldDims(b)[2]/2)<=bf+0.5);                            // คานที่อยู่หลังแผ่นหลัง
+  const tag=String(to).padStart(2,"0");
+  const plan=[];
+  bs.forEach(b=>{
+    if(b._mat0&&structNumOf({part:b._mat0.part})===to&&structNumOf(b)===from){ plan.push({b,part:b._mat0.part,back:true}); return; }
+    if(!isStruct(b)||structNumOf(b)!==from) return;
+    plan.push({b,part:String(b.part).replace(STRUCT_RX,"_Mat"+tag),back:false}); });
+  if(!plan.length) return {n:0,from,to,why:"ไม่มีชิ้นโครงสร้าง "+from+" มม. ให้เปลี่ยน"};
+  const miss=[...new Set(plan.map(q=>q.part).filter(c=>!partDef(c)))];
+  if(miss.length) return {n:0,from,to,miss};                                    // ไม่มี Part ปลายทาง = ไม่แตะอะไรเลย
+  let nb=0;
+  withCabAxisAligned(inst,()=>{
+    const F0=_structFaces(inst);
+    /* v1.243: จำช่องรางของกล่องลิ้นชักไว้ก่อน — ระยะจากผิวในแผ่นข้างตู้ถึงผิวนอกข้างกล่อง
+       refitDrawerBox() คิดช่องรางจากตำแหน่งข้างกล่อง "ปัจจุบัน" เทียบผิวในตู้ พอผิวในขยับไปก่อนแล้ว
+       มันจึงวัดได้ช่องที่แคบลง (13 → 9.9) แล้วถือว่านั่นคือช่องราง กล่องไม่ขยับ ใส่รางไม่ได้ */
+    const _dgap=[];
+    state.boards.forEach(d=>{ if(!d||d.cabInst!==inst||!d._box||d.orient!=="side") return;
+      const q=worldDims(d); let best=null,bd=1e9;
+      Object.keys(F0).forEach(id=>{ const f=F0[id]; if(f.ax!=="x") return; const s2=state.boards.find(x=>x.id===id); if(!s2||s2.orient!=="side") return;
+        const w=worldDims(s2); if(Math.min(d.y+q[1]/2,s2.y+w[1]/2)-Math.max(d.y-q[1]/2,s2.y-w[1]/2)<=1) return;
+        const face=(s2.x<d.x)?f.hi:f.lo, e=Math.abs(d.x-face); if(e<bd){ bd=e; best={id,side:(s2.x<d.x)?"hi":"lo"}; } });
+      if(best){ const f=F0[best.id], face=f[best.side];
+        _dgap.push({d, id:best.id, side:best.side, gap:(best.side==="hi")?((d.x-(d.T||0)/2)-face):(face-(d.x+(d.T||0)/2))}); } });
+    plan.forEach(q=>{ const b=q.b;
+      if(q.back) delete b._mat0; else if(!b._mat0) b._mat0={part:b.part,T:b.T};
+      b.part=q.part; });
+    applyCabinetSkin(inst);
+    nb=_structGrowBacks(inst,F0,_structFaces(inst));
+    try{ relayHangRails(inst); }catch(e){ console.error("relayHangRails:",e); }
+    /* v1.243: ผิวในตู้ขยับข้างละ 3 — กล่องลิ้นชักต้องคิดใหม่ ไม่งั้นช่องรางเหลือ 9.9 จาก 13 (16→19) ใส่รางไม่ได้
+       ใช้ขบวนเดียวกับ _resizeCabinetToCore · ชิ้นกล่องไม่ถูกเปลี่ยน Part (ไม่ใช่โครงสร้าง) แค่ขนาด/ตำแหน่งตามช่อง */
+    { const F2=_structFaces(inst);
+      _dgap.forEach(g=>{ const f=F2[g.id]; if(!f) return; const face=f[g.side], t=(g.d.T||0)/2;
+        g.d.x=round((g.side==="hi")?(face+g.gap+t):(face-g.gap-t)); });   // วางข้างกล่องกลับที่ช่องรางเดิม แล้วให้ตัวคิดกล่องทำที่เหลือ
+      const carcNew=state.boards.filter(x=>x.cabInst===inst&&!x._door&&!x._virtual);
+      const dgs={}; state.boards.filter(x=>x.cabInst===inst&&x._dg).forEach(x=>{ (dgs[x._dg]=dgs[x._dg]||[]).push(x); });
+      Object.values(dgs).forEach(gb=>{ try{ refitDrawerBox(gb,carcNew); }catch(e){ console.error("refitDrawerBox:",e); } }); }
+  });
+  if(!opts.build){ try{ healDrillsFor(inst,true); }catch(e){ console.error("healDrillsFor:",e); } }
+  return {n:plan.length,from,to,backs:nb};
+}
+function structSwapUI(bIn){
+  const b=bIn||selBoard();
+  if(!b||!b.cabInst){ toast("คลิกชิ้นในตู้ที่ต้องการก่อน"); return; }
+  if(typeof isLocked==="function"&&isLocked()){ guardEdit("เปลี่ยนโครงสร้างตู้"); return; }
+  const cur=structOf(b.cabInst);
+  if(cur!==16&&cur!==19){ toast(cur==null?"แผ่นข้างของตู้นี้ไม่มี Part แบบ _MatNN — บอกโครงสร้างไม่ได้":("โครงสร้าง "+cur+" มม. — ตอนนี้สลับได้เฉพาะ 16 ↔ 19")); return; }
+  const to=(cur===19)?16:19;
+  const r=structSwap(b.cabInst,to);
+  if(r.miss&&r.miss.length){ toast("ยังไม่มี Part ปลายทางในคลัง: "+r.miss.join(", ")+" — เพิ่มที่ Element → Parts ก่อน (ยังไม่ได้แตะอะไร)"); return; }
+  if(!r.n){ toast(r.why||"ไม่มีชิ้นให้เปลี่ยน"); return; }
+  autosave(); commit();
+  toast("🧱 โครงสร้าง "+cur+" → "+to+" มม. · เปลี่ยน "+r.n+" ชิ้น"+(r.backs?(" · ขยับแผ่นหลัง "+r.backs+" แผ่น"):"")+" · ขนาดนอกคงเดิม (Ctrl+Z ย้อนได้)");
+}
 function hangRailHost(b){
   if(!b||b._door||b._virtual) return null;
   if(b.orient==="flat") return b;
@@ -9468,9 +9787,8 @@ async function addHangRail(bIn){
   const code=String(v.code||"HANGRAIL").trim();
   const thruD=Math.max(+v.thruD||8,1), csD=Math.max(+v.csD||13,1), csDep=Math.max(+v.csDep||2,0.5), endGap=Math.max(+v.endGap||25,0);
   const isAuto=(Math.abs(railLen-autoLen0)<=1);
-  // ผิวในแผ่นหลัง
-  const bk=grp.boards.filter(x=>x.orient==="front"&&!x._door&&!x._virtual).sort((a,c)=>a.z-c.z)[0];
-  let backFaceZ=bk? bk.z+worldDims(bk)[2]/2 : (b.z-worldDims(b)[2]/2);
+  // ผิวหน้าแผ่นหลัง (v1.238: ข้ามคานที่อยู่หลังแผ่นหลัง)
+  const backFaceZ=backFaceZOf(grp.boards, b.z-worldDims(b)[2]/2);
   const railZ=round(backFaceZ+setb);                          // ศูนย์ราวจากผิวหลังเข้ามา setb
   const cx=round((inL+inR)/2);
   const railH=85;                                              // ความสูงราว C (แกนดิ่ง)
@@ -9944,7 +10262,25 @@ function parseFitDef(el){   // แปลง 1 Element fitting → นิยา�
           nH2:num0(el.nH2,0), nW2:num0(el.nW2,0),
           /* v7.27: ร่องบากกลางแผ่นหลัง (แบบ H1) — ใส่ sW/sH แล้วจะใช้แทนบากมุม nH/nW */
           sW:num0(el.sW,0), sH:num0(el.sH,0), sR:num0(el.sR,0),
-          sTop:num0(el.sTop,0), sSide:num0(el.sSide,0), sRef:String(el.sRef||"")};
+          sTop:num0(el.sTop,0), sSide:num0(el.sSide,0), sRef:String(el.sRef||""),
+          /* v1.244: เหล็กฉาก 3 ขา — ยาวแขน (0 = ไม่ใช่เหล็กฉาก วาดกล่องแบบเดิม) · ตารางความลึกตู้ → ยาวแขน:รหัส · รหัสแยกซ้าย/ขวา */
+          arm:num0(el.hgArm,0), depMap:parseHgDepMap(el.hgDepMap), lr:parseHgLR(el.hgLR)};
+}
+/* v1.244: "320-370:300:ANGLE3-300, 371-420:350:ANG350L/ANG350R" → [{lo,hi,arm,codes:[..]}]
+   ความลึก = ลึกนอกของโครงตู้ (ไม่รวมหน้าบาน) · รหัสเดียว = ใช้ได้ทั้งซ้ายขวา · สองรหัส (คั่น /) = ซ้าย/ขวา */
+function parseHgDepMap(sv){ const out=[];
+  String(sv||"").split(/[,;\n]+/).forEach(tok=>{ const t=String(tok||"").trim(); if(!t) return;
+    const pp=t.split(":").map(x=>x.trim()); if(pp.length<2) return;
+    const m=pp[0].match(/^(\d+(?:\.\d+)?)\s*[-–]\s*(\d+(?:\.\d+)?)$/); if(!m) return;
+    const arm=parseFloat(pp[1]); if(!(arm>0)) return;
+    out.push({lo:Math.min(+m[1],+m[2]), hi:Math.max(+m[1],+m[2]), arm, codes:parseHgLR(pp[2]||"")}); });
+  return out; }
+function parseHgLR(sv){ return String(sv||"").split("/").map(x=>x.trim()).filter(Boolean).slice(0,2); }
+/* ตู้ลึก D → ยาวแขน + รหัส (ไม่ตรงช่วงไหน = ยาวแขนตั้งต้น + รหัสซ้าย/ขวา หรือรหัสของ Element เอง) */
+function hangerResolve(def,D){
+  const hit=(def.depMap||[]).find(r=>D>=r.lo-0.5&&D<=r.hi+0.5);
+  const codes=(hit&&hit.codes.length)?hit.codes:((def.lr&&def.lr.length)?def.lr:[def.code]);
+  return {arm:hit?hit.arm:def.arm, codes, hit:!!hit};
 }
 /* ───────── v1.046: ตะแกรงที่ผูกรหัสไว้แล้วแต่ยังไม่ครบ ต้องบอกว่าขาดอะไร ─────────
    ตัวแปลงนิยามคืน null เงียบ ๆ เมื่อขนาดตะแกรงไม่ครบ กว้าง สูง ลึก ต้องมีครบสามตัว
@@ -10045,8 +10381,10 @@ function ensureAngle3(){
       nW:"75", nH:"15", nW2:"15", nH2:"75", hgInset:"0",
       sW:"0", sH:"0", sR:"0", sTop:"0", sSide:"0", sRef:"", _a3v:V};
     const cur=settings.elements.fittings.find(f=>f&&String(f.code||"").trim()===code);
+    /* v1.244: แขนยาวตามแบบ 65×350×65 — เติมให้เฉพาะตัวที่ยังไม่มีช่องนี้ ค่าที่แก้ไว้แล้วไม่ถูกทับ */
+    if(cur && cur.hgArm==null){ cur.hgArm="350"; try{ lsSet("furnitech:settings",settings); }catch(e){} }
     if(cur){ if(String(cur._a3v||"")===V) return false; Object.assign(cur,spec); }   // ของเก่าที่ค่าคลาดไป -> อัปเดตให้
-    else settings.elements.fittings.push(Object.assign({dia:"",itemId:"",asSet:""},spec));
+    else settings.elements.fittings.push(Object.assign({dia:"",itemId:"",asSet:"",hgArm:"350",hgDepMap:"",hgLR:""},spec));
     try{ lsSet("furnitech:settings",settings); }catch(e){}
     return true;
   }catch(e){ console.error(e); return false; }
@@ -10238,24 +10576,62 @@ function _hangerBoards(cx,cy,cz,bw,bh,bd,cabRaw,cabInst,code,fid){
    ขาแรก  = ตามขอบบน  กว้าง nW  ลึกจากขอบบน nH
    ขาที่สอง = ตามขอบข้าง กว้าง nW2 ลึกจากขอบบน nH2   (nW2 เว้นว่าง/0 = สี่เหลี่ยมแบบเดิม)
    ปากบากออก MPR เป็น pocket ทะลุสองก้อนต่อมุม (ขาบน + ส่วนที่เลยลงไป) จึงไม่ซ้อนกันเอง */
-function _notchBack(bk,nH,nW,nH2,nW2){   // บากมุมบนซ้าย/ขวาแผ่นหลัง (profile = พิกัดกึ่งกลาง [x ตาม L, y ตาม W]) + pockets ออก MPR
+/* v1.244: sides = {L,R} บากเฉพาะมุมที่มีหูแขวนจริง (ใส่ข้างเดียว = บากมุมเดียว) · ไม่ส่ง = สองมุมเหมือนเดิม
+   ซ้าย = ด้าน x น้อย เมื่อยืนหน้าตู้ (ตู้ถูกคลายหมุนมาก่อนแล้วใน _fitAligned) */
+function _notchBack(bk,nH,nW,nH2,nW2,sides){   // บากมุมบนซ้าย/ขวาแผ่นหลัง (profile = พิกัดกึ่งกลาง [x ตาม L, y ตาม W]) + pockets ออก MPR
   const L=bk.L, W=bk.W; const hw=Math.max(Math.min(nW,L/2-2),1), hh=Math.max(Math.min(nH,W-2),1);
   let w2=Math.max(+nW2||0,0), h2=Math.min(Math.max(+nH2||0,0),W-2);
   const Lsh=(w2>0.05 && w2<hw-0.05 && h2>hh+0.05);                  // เป็นตัว L จริงเมื่อขาที่สอง "แคบกว่าและลึกกว่า" ขาบน
   if(!Lsh){ w2=0; h2=hh; }
-  bk.profile = Lsh
-    ? [[-L/2,-W/2],[L/2,-W/2],
-       [L/2,W/2-h2],[L/2-w2,W/2-h2],[L/2-w2,W/2-hh],[L/2-hw,W/2-hh],[L/2-hw,W/2],
-       [-L/2+hw,W/2],[-L/2+hw,W/2-hh],[-L/2+w2,W/2-hh],[-L/2+w2,W/2-h2],[-L/2,W/2-h2]]
-    : [[-L/2,-W/2],[L/2,-W/2],[L/2,W/2-hh],[L/2-hw,W/2-hh],[L/2-hw,W/2],[-L/2+hw,W/2],[-L/2+hw,W/2-hh],[-L/2,W/2-hh]];
-  bk._hangNotch={nH:hh,nW:hw,nH2:(Lsh?h2:0),nW2:(Lsh?w2:0)};
+  const sL=!sides||sides.L!==false, sR=!sides||sides.R!==false;
+  if(!sL&&!sR) return;
+  const cR=Lsh ? [[L/2,W/2-h2],[L/2-w2,W/2-h2],[L/2-w2,W/2-hh],[L/2-hw,W/2-hh],[L/2-hw,W/2]]
+               : [[L/2,W/2-hh],[L/2-hw,W/2-hh],[L/2-hw,W/2]];
+  const cL=Lsh ? [[-L/2+hw,W/2],[-L/2+hw,W/2-hh],[-L/2+w2,W/2-hh],[-L/2+w2,W/2-h2],[-L/2,W/2-h2]]
+               : [[-L/2+hw,W/2],[-L/2+hw,W/2-hh],[-L/2,W/2-hh]];
+  bk.profile=[[-L/2,-W/2],[L/2,-W/2]].concat(sR?cR:[[L/2,W/2]]).concat(sL?cL:[[-L/2,W/2]]);
+  bk._hangNotch={nH:hh,nW:hw,nH2:(Lsh?h2:0),nW2:(Lsh?w2:0),L:sL,R:sR};
   bk._flatPart=true;                    // ประกาศชัด: แผ่นแบนมีบาก ไม่ใช่แผ่นดัด (กัน devLength เข้าใจผิด)
-  bk.pockets=(bk.pockets||[]).filter(p=>!p._notch);                 // ล้างบากเก่า แล้วใส่ 2 มุมบน (ทะลุ)
-  bk.pockets.push({x:-L/2+hw/2, y:W/2-hh/2, w:hw, h:hh, depth:0, r:0, face:"through", _notch:true});
-  bk.pockets.push({x: L/2-hw/2, y:W/2-hh/2, w:hw, h:hh, depth:0, r:0, face:"through", _notch:true});
+  bk.pockets=(bk.pockets||[]).filter(p=>!p._notch);                 // ล้างบากเก่า แล้วใส่มุมบน (ทะลุ)
+  if(sL) bk.pockets.push({x:-L/2+hw/2, y:W/2-hh/2, w:hw, h:hh, depth:0, r:0, face:"through", _notch:true});
+  if(sR) bk.pockets.push({x: L/2-hw/2, y:W/2-hh/2, w:hw, h:hh, depth:0, r:0, face:"through", _notch:true});
   if(Lsh){ const hb=h2-hh;                                          // ขาที่สอง เฉพาะส่วนที่เลยขาบนลงไป
-    bk.pockets.push({x:-L/2+w2/2, y:W/2-hh-hb/2, w:w2, h:hb, depth:0, r:0, face:"through", _notch:true});
-    bk.pockets.push({x: L/2-w2/2, y:W/2-hh-hb/2, w:w2, h:hb, depth:0, r:0, face:"through", _notch:true}); }
+    if(sL) bk.pockets.push({x:-L/2+w2/2, y:W/2-hh-hb/2, w:w2, h:hb, depth:0, r:0, face:"through", _notch:true});
+    if(sR) bk.pockets.push({x: L/2-w2/2, y:W/2-hh-hb/2, w:w2, h:hb, depth:0, r:0, face:"through", _notch:true}); }
+}
+/* ───────── v1.244: เหล็กฉาก 3 ขา วาดจริงตามแบบ และอยู่ "ในตู้" ─────────
+   แบบ: เหล็กฉาก 1"×1" (25) หนา 3 · ขาขวาง 65 ตามขอบบนหลัง · ขาลง 65 ตามขอบข้างหลัง · แขนยาวตามความลึกตู้
+   เดิมเป็นกล่องมาร์กเกอร์ 75×75×15 ที่ไปแปะหลังคาน = โผล่ออกนอกหลังตู้ 15–19 มม.
+   ย้ายทั้งตู้แล้วตัวดูดขอบไปจับผิวเหล็กที่โผล่ ตู้จึงถูกดันเลยไปเท่านั้น
+   ตอนนี้มุมเหล็กชนมุมในจริง: ผิวหลังเสมอหลังตู้ · ผิวบนชนใต้แผ่นบน/คาน · ผิวข้างชนผิวในแผ่นข้าง
+   แขนยาวไม่ถูกตัดให้พอดีตู้ — ยาวเกินตู้ก็โผล่ให้เห็น ตามที่ต้องใช้ดู
+   รูเป็นของ 3D อย่างเดียว (ช่างเจาะตามรูเหล็กเอง) — ไม่มีรูบนแผ่น ไม่ออกไฟล์เจาะ
+   รูแขน: ห่างปลายแขน 30 และห่างมุม 60 (แขน 350 = ห่างกัน 260 ตามแบบ) · รูมุม: ห่างขอบนอก 25 และ 40 กลางปีก 12.5 */
+function _angle3Boards(side,xIn,yTop,zR,arm,cabRaw,cabInst,code,series,fid,half){
+  const s=(side==="L")?1:-1, t=3, a=25, g=65;
+  const base=()=>({id:uid(),cab:cabRaw||undefined,cabInst,orient:"front",yaw:0,tone:null,r:0,holes:[],grooves:[],connectors:[],
+    mat:"",surfT:"",surfB:"",edges:["No Edge","No Edge","No Edge","No Edge"],
+    _virtual:true,_fitPart:true,_autoFit:true,_hanger:true,_fit:code,_fitSeries:series,_fitId:fid,_fitSide:side,
+    _fitArm:round(arm),_fitHalf:half?true:undefined,_hex:"#c3c8d0"});
+  const X=d=>xIn+s*d;
+  const bx=(nm,xA,xB,yA,yB,zA,zB)=>Object.assign(base(),{name:code+" · "+side+" · "+nm,
+    L:round(Math.max(Math.abs(xB-xA),0.5)),W:round(Math.max(Math.abs(yB-yA),0.5)),T:round(Math.max(Math.abs(zB-zA),0.5)),
+    x:round((xA+xB)/2),y:round((yA+yB)/2),z:round((zA+zB)/2)});
+  /* รูโผล่ออกเฉพาะด้านในตู้ 0.5 ให้มองเห็น — ด้านที่แนบไม้/ผนังจมกว่าผิวเหล็ก 0.1 จะได้ไม่ล้นกรอบตู้ (ตัวดูดขอบไม่จับ) */
+  const hL=t+0.5, hC=0.1+hL/2;
+  const hole=(cx,cy,cz,ax)=>Object.assign(base(),{name:code+" · "+side+" · รู Ø5",_shape:"cyl",_hex:"#1c1e24",
+    orient:(ax==="z")?"front":((ax==="y")?"flat":"side"),L:5,W:5,T:hL,x:round(cx*100)/100,y:round(cy*100)/100,z:round(cz*100)/100});
+  const out=[
+    bx("แขนยาว ปีกบน",  X(0),X(a), yTop-t,yTop, zR,zR+arm),
+    bx("แขนยาว ปีกข้าง", X(0),X(t), yTop-a,yTop, zR,zR+arm),
+    bx("ขาขวาง ปีกบน",  X(0),X(g), yTop-t,yTop, zR,zR+a),
+    bx("ขาขวาง ปีกหลัง", X(0),X(g), yTop-a,yTop, zR,zR+t),
+    bx("ขาลง ปีกข้าง",   X(0),X(t), yTop-g,yTop, zR,zR+a),
+    bx("ขาลง ปีกหลัง",   X(0),X(a), yTop-g,yTop, zR,zR+t) ];
+  const zs=[zR+arm-30]; if(arm-30-60>20) zs.push(zR+60);
+  zs.forEach(z=>{ out.push(hole(X(12.5),yTop-hC,z,"y")); out.push(hole(X(hC),yTop-12.5,z,"x")); });
+  [25,40].forEach(d=>{ out.push(hole(X(d),yTop-12.5,zR+hC,"z")); out.push(hole(X(12.5),yTop-d,zR+hC,"z")); });
+  return out;
 }
 /* v7.27.2: ร่องบากกลางแผ่นหลัง (แบบ H1) — 2 ร่อง ซ้าย/ขวา ทะลุความหนา
    ทุกระยะวัดจาก "ขอบไม้แผ่นหลังจริง" ไม่ใช่ผิวในแผ่นข้าง/ร่องของชิ้นอื่น
@@ -10289,7 +10665,8 @@ function _slotBack(bk,def){
   if(clamped) try{ toast("⚠ ร่องหูแขวนล้นขอบแผ่นหลัง — ดึงกลับเข้าในแผ่นให้แล้ว (เช็ค sTop/sSide/sRef ที่ Element → "+def.code+")"); }catch(e){}
   return out;
 }
-function _placeHangers(all,carc,cabRaw,cabInstVal,def,add){
+function _placeHangers(all,carc,cabRaw,cabInstVal,def,add,sideOpt){
+  const sides={L:sideOpt!=="R", R:sideOpt!=="L"};                    // v1.244: "L" / "R" = ข้างเดียว · อื่น ๆ = สองข้าง
   let x0=Infinity,x1=-Infinity,yTop=-Infinity,zBack=Infinity,zFront=-Infinity;   // v7.74: ต้องรู้หน้าตู้ด้วย เพื่อแยกคานหน้า/คานหลัง
   carc.forEach(b=>{const d=worldDims(b);x0=Math.min(x0,b.x-d[0]/2);x1=Math.max(x1,b.x+d[0]/2);yTop=Math.max(yTop,b.y+d[1]/2);zBack=Math.min(zBack,b.z-d[2]/2);zFront=Math.max(zFront,b.z+d[2]/2);});
   /* v7.13: "แผ่นหลัง" ต้องไม่ใช่คาน — คานก็ orient front และมัก z ต่ำกว่าแผ่นหลัง
@@ -10300,6 +10677,20 @@ function _placeHangers(all,carc,cabRaw,cabInstVal,def,add){
   const flats=all.filter(b=>!b._door&&!b._virtual&&b.orient==="flat");
   let topBot=yTop; if(flats.length){ const tp=flats.reduce((a,b)=>b.y>a.y?b:a); topBot=tp.y-worldDims(tp)[1]/2; }   // ใต้ท็อป
   const sideT=16, bw=def.bw,bh=def.bh,bd=def.bd, inset=def.hgInset||0;
+  /* v1.244: เหล็กฉาก 3 ขา — วางมุมในจริง ใช้ผิวในแผ่นข้างจริง (ไม่ใช่ 16 ตายตัว) รหัส/ยาวแขนตามความลึกตู้ */
+  if(def.arm>0){
+    const sd=fzStrip(all.filter(b=>b.orient==="side"&&!b._door&&!b._virtual&&!isRail(b)&&b.zoneLo==null)).sort((p,q)=>p.x-q.x);
+    const xInL=sd.length?(sd[0].x+worldDims(sd[0])[0]/2):(x0+sideT);
+    const xInR=sd.length?(sd[sd.length-1].x-worldDims(sd[sd.length-1])[0]/2):(x1-sideT);
+    const rs=hangerResolve(def, zFront-zBack);
+    const one=(sides.L!==sides.R);
+    ["L","R"].forEach(sn=>{ if(!sides[sn]) return;
+      const code=(rs.codes.length>1)?(sn==="L"?rs.codes[0]:rs.codes[1]):rs.codes[0];
+      _angle3Boards(sn, sn==="L"?xInL:xInR, topBot, zBack, rs.arm, cabRaw, cabInstVal, code, def.code, uid(), one&&rs.codes.length<2)
+        .forEach(b=>add.push(b)); });
+    if(bk && def.nH>0 && def.nW>0) _notchBack(bk,def.nH,def.nW,def.nH2,def.nW2,sides);
+    return;
+  }
   /* v7.12: หูแขวนอยู่ "ชิดหลังตู้" เสมอ — วัดจากผิวหลังสุดของโครง ไม่ใช่หน้าแผ่นหลัง
      (เดิมวางไว้หน้าแผ่นหลัง แล้วต้องบากแผ่นหลังให้ตัวเกี่ยวลอดออกไป
       แต่แป้นสับยึดกับคานที่อยู่หลังแผ่นหลังอยู่แล้ว ไม่ต้องลอดอะไร) */
@@ -10326,12 +10717,16 @@ function _placeHangers(all,carc,cabRaw,cabInstVal,def,add){
   const ctrs = slotMode ? _slotBack(bk,def) : [];
   const pts = (slotMode && ctrs.length===2)
     ? ctrs.map(c=>({x:c.x, y:c.y}))                                   // ตัวหูไปนั่งตรงศูนย์ร่องพอดี (x และ y)
-    : [ {x:x0+sideT+inset+bw/2, y:cyH}, {x:x1-sideT-inset-bw/2, y:cyH} ];
+    : [ {x:x0+sideT+inset+bw/2, y:cyH, sn:"L"}, {x:x1-sideT-inset-bw/2, y:cyH, sn:"R"} ];
+  if(slotMode && pts.length===2){ pts[0].sn=(pts[0].x<=pts[1].x)?"L":"R"; pts[1].sn=(pts[0].sn==="L")?"R":"L"; }
+  if(slotMode && bk && sides.L!==sides.R){ const keepL=sides.L;
+    bk.cuts=(bk.cuts||[]).filter(c=>!c._hang||(keepL?c.x<0:c.x>0));
+    bk.pockets=(bk.pockets||[]).filter(q=>!q._notch||(keepL?q.x<0:q.x>0)); }
   /* v7.27.4: โหมดร่อง — หูอยู่ที่แผ่นหลัง (ร่องอยู่ตรงนั้น) ไม่ใช่แปะคานหน้า */
   const czU = (slotMode && bk) ? (bk.z+worldDims(bk)[2]/2+bd/2) : czH;
-  pts.forEach(pt=>{ const fid=uid();    // 2 หู ซ้าย/ขวา
-    _hangerBoards(pt.x,pt.y,czU,bw,bh,bd,cabRaw,cabInstVal,def.code,fid).forEach(b=>add.push(b)); });
-  if(bk && !slotMode && def.nH>0 && def.nW>0) _notchBack(bk,def.nH,def.nW,def.nH2,def.nW2);
+  pts.forEach(pt=>{ if(pt.sn&&!sides[pt.sn]) return; const fid=uid();    // 2 หู ซ้าย/ขวา · v1.244: เลือกข้างเดียวได้
+    _hangerBoards(pt.x,pt.y,czU,bw,bh,bd,cabRaw,cabInstVal,def.code,fid).forEach(b=>{ b._fitSide=pt.sn; if(sides.L!==sides.R) b._fitHalf=true; add.push(b); }); });
+  if(bk && !slotMode && def.nH>0 && def.nW>0) _notchBack(bk,def.nH,def.nW,def.nH2,def.nW2,sides);
   try{ _hangerSideHoles(all,topBot,def); }catch(e){ console.error(e); }    // v7.85/8.50: รูยึดที่แผ่นข้าง (เฉพาะรุ่นที่กำหนด)
 }
 /* v7.85: รูยึดหูแขวนบน "แผ่นข้าง" (ผิวใน)
@@ -10383,12 +10778,20 @@ function addHangerMenu(b,x,y){   // เมนูเลือกแบบหู�
   const defs=hangerDefs();
   if(!defs.length){ toast("ยังไม่มีแบบหูแขวนใน Element — สร้างที่ Element → Fittings แล้วตั้ง kind = หูแขวน"); return; }
   const curCode=(carc.find(z=>z._hangerCode)||{})._hangerCode||"";
-  const setCode=code=>{ carc.forEach(z=>{ delete z._hangerCode; }); if(code) host._hangerCode=code; _reapplyFits(); };   // แหล่งเดียว
+  const curSide=(carc.find(z=>z._hangerCode)||{})._hangerSide||"";   // v1.244: "" = สองข้าง · "L" · "R"
+  const setCode=code=>{ carc.forEach(z=>{ delete z._hangerCode; delete z._hangerSide; });
+    if(code){ host._hangerCode=code; if(curSide) host._hangerSide=curSide; } _reapplyFits(); };   // แหล่งเดียว · เปลี่ยนแบบแล้วข้างที่เลือกไว้ยังอยู่
+  const setSide=sd=>{ const hb=carc.find(z=>z._hangerCode); if(!hb) return;
+    if(sd) hb._hangerSide=sd; else delete hb._hangerSide; _reapplyFits(); };
   /* v1.234: ป้ายบอก "ปากบากที่จะได้จริง" — เดิมพิมพ์ nH×nW ตายตัว ซึ่งผิดทั้งกับแบบร่อง (H1) และแบบตัว L */
   const _ntTxt=d=>(d.sW>0&&d.sH>0)?("ร่อง "+d.sW+"×"+d.sH)
     :((d.nH>0&&d.nW>0)?("บาก "+d.nW+"×"+d.nH+((d.nW2>0&&d.nH2>d.nH)?(" + "+d.nW2+"×"+d.nH2+" ตัว L"):"")):"ไม่บาก");
   const items=defs.map(d=>({label:(curCode===d.code?"● ":"○ ")+(d.desc||d.code)+"  ("+d.bw+"×"+d.bh+"×"+d.bd+")"+(bk?(" · "+_ntTxt(d)):" · ไม่มีแผ่นหลัง=ไม่บาก"),
     fn:()=>{ setCode(d.code); toast("ใส่หูแขวน "+(d.desc||d.code)+(bk?(" ("+_ntTxt(d)+")"):" (ตู้ไม่มีแผ่นหลัง — เฉพาะหู ไม่บาก)")); }}));
+  /* v1.244: ใส่ข้างเดียวได้ — ซ้าย = ด้านซ้ายเมื่อยืนหน้าตู้ · บากแผ่นหลังเฉพาะมุมนั้น · BOM นับตามตัวที่วางจริง */
+  if(curCode){ items.push({label:"──────────", fn:()=>{}});
+    [["","ทั้งสองข้าง"],["L","ซ้ายอย่างเดียว (มองจากหน้าตู้)"],["R","ขวาอย่างเดียว (มองจากหน้าตู้)"]].forEach(o=>{
+      items.push({label:(curSide===o[0]?"● ":"○ ")+o[1], fn:()=>{ setSide(o[0]); toast("หูแขวน: "+o[1]); }}); }); }
   if(curCode) items.push({label:"✕ เอาหูแขวนออก",danger:true,fn:()=>{ setCode(""); toast("เอาหูแขวนออกแล้ว"); }});
   /* v37.0: หูแขวนกระจกอยู่หมวดเดียวกับหูแขวนตู้ลอย คนหาจากที่เดียว
      ของเดิมไปแปะเป็นปุ่มในแผงขวาซึ่งเป็นคนละที่กับหูแขวนอื่นทั้งหมด */
@@ -10646,7 +11049,7 @@ function applyCabFittings(){
     const def=hangerDefByCode(hostB._hangerCode); if(!def) return;
     const cabRaw=(all.find(b=>b.cab)||{}).cab, cabInstVal=all[0].cabInst||null;
     _fitAligned(all,()=>{ const out=[];
-      _placeHangers(all,carc,cabRaw,cabInstVal,def,out);              // _placeHangers จะบากเฉพาะถ้ามีแผ่นหลัง
+      _placeHangers(all,carc,cabRaw,cabInstVal,def,out,hostB._hangerSide);   // _placeHangers จะบากเฉพาะถ้ามีแผ่นหลัง · v1.244: ข้างที่เลือก
       return out; }).forEach(b=>add.push(b));
   });
   state.boards=keep.concat(add);
@@ -10662,13 +11065,15 @@ function cabFitSig(){   // ลายเซ็น — เปลี่ยนเม
            String(settings.sinkTraySide||""),String(settings.sinkTrayH||""),String(settings.sinkTrayKeyword||"")];
   cabDefaultFits().forEach(x=>p.push(x.code,x.cabs.join(","),x.bw,x.bh,x.bd,x.dx,x.dy,x.dz,x.fromBot==null?"-":x.fromBot));
   cabDefaultFits().forEach(d=>p.push("B",d.code,d.cabs.join("|"),JSON.stringify(d.cabQty||{}),d.bw,d.bh,d.bd,d.fromBot,d.bQty,d.bPitch,d.dx,d.dy,d.dz));   // v7.39: จำนวน/ระยะซ้อน (รวมจำนวนรายรหัสตู้)
-  p.push("H"); hangerDefs().forEach(x=>p.push(x.code,x.bw,x.bh,x.bd,x.nH,x.nW,x.hgInset,x.sW,x.sH,x.sR,x.sTop,x.sSide,x.sRef));
+  p.push("H"); hangerDefs().forEach(x=>p.push(x.code,x.bw,x.bh,x.bd,x.nH,x.nW,x.hgInset,x.sW,x.sH,x.sR,x.sTop,x.sSide,x.sRef,
+    x.nH2,x.nW2,x.arm,JSON.stringify(x.depMap||[]),(x.lr||[]).join("/")));   // v1.244: เหล็กฉาก 3 ขา
   const units=_cabUnits(); p.push("#");
   Object.keys(units).sort().forEach(inst=>{ const all=units[inst]; const cab=String((all.find(b=>b.cab)||{}).cab||"").toUpperCase();
     const A=_cabAnchor(all); if(!A)return;
     const carc2=all.filter(b=>!b._door&&!b._virtual);
     const bk=carc2.filter(b=>b.orient==="front").sort((a,b)=>a.z-b.z)[0];
-    const hc=(carc2.find(z=>z._hangerCode)||{})._hangerCode||"-";
+    const _hb=carc2.find(z=>z._hangerCode)||{};
+    const hc=(_hb._hangerCode||"-")+"/"+(_hb._hangerSide||"LR");   // v1.244: เปลี่ยนข้างก็ต้องคิดใหม่
     p.push(inst,cab,Math.round(A.cx),Math.round(A.cy),Math.round(A.frontZ),Math.round(A.botTop!=null?A.botTop:0),bk?Math.round(bk.L):0,bk?Math.round(bk.W):0,hc);
     /* v22.1: ขนาดถาดมาจาก "ช่องจริงในตู้" ซึ่งถูกบีบด้วยเสาแบ่งกับผนังกั้น
        ลายเซ็นเดิมรู้แค่กรอบนอกกับแผ่นหลัง เสาเลื่อนตามค่า D จึงไม่มีอะไรเปลี่ยน
@@ -10975,7 +11380,9 @@ function applyEco(){
   const eb=$("ecoBtn"); if(eb)eb.classList.toggle("sel",state.eco);
   invalidate();
 }
-function setEco(on){ state.eco=on; applyEco(); lsSet("boardforge:eco",on); toast(on?"โหมดประหยัด: เปิด":"โหมดประหยัด: ปิด (ภาพคมขึ้น)"); }
+function setEco(on){ state.eco=on; applyEco(); lsSet("boardforge:eco",on);
+  try{ render3D(false); }catch(e){ console.error(e); }                  // v1.247: ลายหน้าบานเปิด/ปิดตามโหมด
+  toast(on?"โหมดประหยัด: เปิด (หน้าบานเรียบ)":"โหมดประหยัด: ปิด (ภาพคมขึ้น · ลายหน้าบาน 3D)"); }
 function onResize(){ if(noGL||!renderer)return; camera.aspect=innerWidth/innerHeight;camera.updateProjectionMatrix();renderer.setSize(innerWidth,innerHeight);invalidate();}
 
 /* v20.1: ป้ายเลขชิ้นเคยวาด canvas + อัปโหลด texture ขึ้นการ์ดจอใหม่ทุกใบทุกเฟรม
@@ -11507,6 +11914,32 @@ function render3D(refit){
           if(state.showLabels){const s2=numberSprite(String(i+1));s2.position.set(b.x,b.y+d[1]/2+labelScale*.7,b.z);s2.scale.set(labelScale,labelScale,1);s2.userData.label=true;root.add(s2);}
           return;
         }catch(e){ console.error(e); } }
+        /* ───────── v1.239: ราวแขวนผ้าตัว C — วาดเป็นตัว C จริง ไม่ใช่แผ่นทึบ ─────────
+           เดิมวาดกล่องทึบ ยาว×85×12 ซึ่งคือ "กรอบนอก" ของราว ไม่ใช่ตัวราว
+           ของจริงเป็นสแตนเลสกล่อง 1/2"x1" หนา 1.2 ดัดเป็นตัว C ปากหงายขึ้น
+           แขนตั้งสองข้างกว้าง 25 (= endGap · รูยึดอยู่กลางแขนพอดี 12.5 จากปลาย)
+           คานล่างสูง 25 · ช่องเปิดบนจึงเท่ากับ ยาว−50 และลึก 85−25 = 60
+           ตรงกับแบบ 0900 ราวแขวนผ้าสแตนเลสกล่อง ขนาด 12×85×900 ทุกตัวเลข */
+        if(b._hangRail && !b._shape){ try{
+          const _L2=Math.max(+b.L||2,2), _W2=Math.max(+b.W||2,2), _T2=Math.max(+b.T||2,2);
+          const _eg=+(b._hrEndGap!=null?b._hrEndGap:(settings.hangRailEndGap||25))||25;
+          const aw=Math.min(Math.max(_eg,2), _L2/2-1);
+          const bh=Math.min(Math.max(+settings.hangRailBarH||25,2), _W2);
+          const M3=orientMatrix(b.orient,b.yaw);
+          const solid3=(b.tone!=null);
+          const mat3=solid3?solidMat(b.tone):new THREE.MeshBasicMaterial({color:0x12b886,transparent:true,opacity:.3,depthWrite:false});
+          [[aw,_W2,_T2,-_L2/2+aw/2,0],[aw,_W2,_T2,_L2/2-aw/2,0],
+           [Math.max(_L2-2*aw,1),bh,_T2,0,-_W2/2+bh/2]].forEach(pp3=>{
+            const g3=new THREE.BoxGeometry(pp3[0],pp3[1],pp3[2]);
+            const rel3=new THREE.Vector3(pp3[3],pp3[4],0).applyMatrix4(M3);
+            const m3=new THREE.Mesh(g3,mat3);
+            m3.quaternion.setFromRotationMatrix(M3);
+            m3.position.set(round(b.x+rel3.x),round(b.y+rel3.y),round(b.z+rel3.z));
+            m3.userData.id=b.id; if(!solid3)m3.renderOrder=2;
+            root.add(m3); meshes.push({mesh:m3,id:b.id,d}); addEdges(m3,g3); });
+          if(state.showLabels){const s3=numberSprite(String(i+1));s3.position.set(b.x,b.y+d[1]/2+labelScale*.7,b.z);s3.scale.set(labelScale,labelScale,1);s3.userData.label=true;root.add(s3);}
+          return;
+        }catch(e){ console.error("hangRail3D:",e); } }
         let vg=null; if(b._shape){ try{ vg=shapeLocalGeo(b); vg.applyMatrix4(orientMatrix(b.orient,b.yaw)); }catch(e){ vg=null; } }
         /* v9.75: กล่องของอุปกรณ์ (ชิ้น _virtual ที่ไม่มีรูปทรงของตัวเอง) เคยวาดเป็นกล่องขนานแกนโลกล้วน ๆ
            worldDims สลับแกนให้เฉพาะ yaw 90/270 มุมอื่นจึงไม่หมุนตามเลย
@@ -11518,7 +11951,9 @@ function render3D(refit){
         const gm=new THREE.Mesh(vg||new THREE.BoxGeometry(Math.max(d[0],2),Math.max(d[1],2),Math.max(d[2],2)),
           b._hex?hexMat(b._hex):((b.tone!=null)?solidMat(b.tone):new THREE.MeshBasicMaterial({color:0x12b886,transparent:true,opacity:.22,depthWrite:false}))); gm.position.set(b.x,b.y,b.z); gm.userData.id=b.id; gm.renderOrder=2; root.add(gm); meshes.push({mesh:gm,id:b.id,d}); addEdges(gm,gm.geometry); if(state.showLabels){const s=numberSprite(String(i+1));s.position.set(b.x,b.y+d[1]/2+labelScale*.7,b.z);s.scale.set(labelScale,labelScale,1);s.userData.label=true;root.add(s);} return; }
       const bm=buildBoardMesh(b); const d=bm.d;
-      const mesh=new THREE.Mesh(bm.geo,bm.mats);
+      const _rlg=doorReliefFor(b);                                  // v1.247: ลายหน้าบาน (โชว์อย่างเดียว · ปิดในโหมดประหยัด)
+      const _rlm=_rlg?(Array.isArray(bm.mats)?(bm.mats[1]||bm.mats[0]):bm.mats):null;
+      const mesh=new THREE.Mesh(_rlg||bm.geo,_rlm||bm.mats);
       mesh.castShadow=mesh.receiveShadow=true; mesh.position.set(b.x,b.y,b.z); mesh.userData.id=b.id;
       /* ───────── v1.079: ธงนี้แปลว่า "คลิกทะลุได้" ไม่ใช่ "เป็นกระจก" ─────────
          เดิมติดให้ทุกชิ้นที่ _glass แล้วตัวเลือกชิ้นก็กรองทิ้งทั้งหมด ซึ่งถูกกับกระจกบานเฟรม
@@ -11526,7 +11961,7 @@ function render3D(refit){
          แต่ชั้นกระจกเป็นชิ้นจริงที่ต้องคลิกเข้าไปแก้ ตั้งค่าร่น เปลี่ยนชนิด กดแล้วต้องติด
          จำกัดให้เหลือเฉพาะกระจกเสมือน/กระจกในบานเฟรมเท่านั้น */
       mesh.userData.thru=!!(b._glass&&(b._virtual||b._framePart));
-      addEdges(mesh,bm.geo);
+      addEdges(mesh,_rlg||bm.geo);
       root.add(mesh); meshes.push({mesh,id:b.id,d});
       { const fb=buildFrontEdgeBand(b); if(fb) root.add(fb); }   // v1.141: แถบขอบหน้าตู้ (โชว์อย่างเดียว)
       if(state.overlapIds&&state.overlapIds.includes(b.id)){ const hl=new THREE.Mesh(new THREE.BoxGeometry(d[0],d[1],d[2]), new THREE.MeshBasicMaterial({color:0xe5484d,transparent:true,opacity:.45,depthWrite:false})); hl.position.set(b.x,b.y,b.z); hl.renderOrder=3; hl.userData.id=b.id; root.add(hl); }
@@ -11535,7 +11970,7 @@ function render3D(refit){
       buildConnectorMeshes(b).forEach(cm=>{root.add(cm);meshes.push({mesh:cm,id:b.id,d,connector:true});});
       buildBlindHoleMeshes(b).forEach(hm=>root.add(hm));   // รูตัน (โชว์อย่างเดียว ไม่ raycast)
       buildPocketMeshes(b).forEach(pm=>root.add(pm));      // Pocket (โชว์อย่างเดียว)
-    { const gl=buildGrainMesh(b); if(gl){ gl.userData.id=b.id; root.add(gl); } }   // v1.133: ติดรหัสชิ้น -> ลายไม้ตามบานไปตอนกาง      // ลายไม้ (โชว์อย่างเดียว ไม่ raycast)
+    { const gl=_rlg?null:buildGrainMesh(b); if(gl){ gl.userData.id=b.id; root.add(gl); } }   // v1.247: บานมีลาย = เส้นลายไม้แบนจะลอยเหนือร่อง ไม่วาด   // v1.133: ติดรหัสชิ้น -> ลายไม้ตามบานไปตอนกาง      // ลายไม้ (โชว์อย่างเดียว ไม่ raycast)
       if(state.showLabels){const s=numberSprite(String(i+1));s.position.set(b.x,b.y+d[1]/2+labelScale*.7,b.z);s.scale.set(labelScale,labelScale,1);s.userData.label=true;root.add(s);}
       // เส้นสัญลักษณ์ทิศเปิดบาน (V จากมุมฝั่งบานพับ → กลางขอบฝั่งเปิด) — เฉพาะบานเปิด ไม่รวมหน้าลิ้นชัก
       if(settings.doorSwing!==false && b._door && !b._dg && !b._box && !b._panel && !b._dummy){
@@ -12423,6 +12858,10 @@ function finalizeStretch(){ if(!stretchSession)return;
                  refName:((state.boards.find(z=>z.id===r.refId)||{}).name||undefined)};
     toast("📌 ตรึงไว้กับผิวของ “"+(r.name||"ชิ้นที่ดูดติด")+"” แล้ว — ปรับขนาดตู้ก็ไม่หลุด (ปลดได้ที่แผงขวา)");
   }
+  /* v1.246: คานเก็บขนาดสองที่ (b.W กับ rule.railW) — พิมพ์ในแผงขวาจำลงกฎให้ แต่ลากยืดไม่เคยจำ
+     คานที่ลากเป็น 100 จึงเหลือกฎ 70 พอตู้ถูกคิดใหม่ (เปลี่ยนสี สลับโครงสร้าง ปรับขนาด โหลดโมเดล) ก็หดกลับ
+     ถ้าไม่ได้ติ๊กล็อกกว้างไว้ · ใช้ตัวเดียวกับช่องพิมพ์ในแผงขวา ผลจึงเหมือนพิมพ์เองทุกอย่าง */
+  try{ if(isRail(s.board)) rememberRailPlacement(s.board); }catch(e){ console.error("rememberRailPlacement:",e); }
   stretchSession=null; $("moveHud").classList.remove("show"); sync(0); }
 function cancelStretch(){ if(!stretchSession)return; const s=stretchSession,b=s.board; b[s.dim]=s.startDim; b.x=s.startPos.x;b.y=s.startPos.y;b.z=s.startPos.z; stretchSession=null; $("moveHud").classList.remove("show"); sync(0,1,0); }
 function updateHud(){ const s=moveSession; if(!s)return;
@@ -12728,6 +13167,17 @@ function renderCabInspector(g,insp,body,rf){
         <div class="num"><span>สูง</span><input type="number" id="cab_H" value="${H}"></div>
         <div class="num"><span>ลึก</span><input type="number" id="cab_D" value="${D}"></div></div></div>
     <div class="ibtns" style="margin-top:4px"><button class="ibtn" id="cab_resize" style="background:var(--accent);color:#fff;border-color:transparent;flex:1">📐 ปรับขนาดตู้ (รีฟิตชั้น/บาน/ลิ้นชัก)</button></div>
+    ${(()=>{ /* v1.241: ตัวสลับโครงสร้างอยู่ใต้ขนาดตู้ — เปิดตู้มาหน้าเปล่าก็กดได้เลย ไม่ต้องรู้ว่ามีในเมนูคลิกขวา */
+      let st=null; try{ st=structOf(g.key); }catch(e){}
+      const nSel=cabSelKeys().length;
+      return '<div class="fld" style="margin-top:8px"><label>โครงสร้างตู้ — ขนาดนอกคงเดิม'+(nSel>1?(' · ใช้กับ '+nSel+' ใบที่เลือก'):'')+'</label>'
+        +((st===16||st===19)
+          ? '<div class="seg" id="cab_struct">'+[19,16].map(t=>'<button type="button" data-t="'+t+'" class="'+(st===t?'sel':'')+'">'+t+' มม.</button>').join("")+'</div>'
+            +'<div class="muted" style="font-size:11px;margin-top:3px;line-height:1.5">เปลี่ยนเลขท้าย Part _Mat'+st+' → _Mat'+(st===19?16:19)+' · วัสดุ/ความหนาตาม Part · แผ่นหลังกับราวแขวนขยับตาม · กดกลับได้ของเดิมทุกค่า</div>'
+          : '<div class="muted" style="font-size:11px;line-height:1.5">'+(st==null
+              ?'แผ่นข้างของตู้นี้ไม่มี Part แบบ _MatNN (เช่น 1111_Mat19) — ผูก Part ก่อนถึงจะสลับได้'
+              :('โครงสร้าง '+st+' มม. — ตอนนี้สลับได้เฉพาะ 16 ↔ 19'))+'</div>')
+        +'</div>'; })()}
     <div class="ibtns" style="margin-top:4px"><button class="ibtn" id="cab_shop" style="flex:1;background:var(--accent);color:#fff;border-color:transparent">🗎 ออกแบบผลิต${cabSelKeys().length>1?(" ("+cabSelKeys().length+" ใบที่เลือก)"):" (ตู้นี้)"}</button></div>
     <div class="ibtns" style="margin-top:4px"><button class="ibtn" id="cab_isolate" style="flex:1">${(state.hidden&&state.hidden.length)?"👁 แสดงทุกตู้ (เลิกโฟกัส)":("🔍 แสดงเฉพาะ"+(cabSelKeys().length>1?(cabSelKeys().length+" ใบที่เลือก"):"ตู้นี้")+" (Isolate)")}</button></div>
     <div class="ibtns" style="margin-top:4px"><button class="ibtn" id="cab_export" style="flex:1">📦 ส่งออกตู้เป็นไฟล์ (.json)</button><button class="ibtn" id="cab_attach" style="flex:1">📎 แปะตู้จากรหัส (ปิดข้าง/หน้า)</button></div>
@@ -12746,6 +13196,24 @@ function renderCabInspector(g,insp,body,rf){
   const doResize=()=>{ resizeCabinetTo(g.key, +body.querySelector("#cab_W").value, +body.querySelector("#cab_H").value, +body.querySelector("#cab_D").value); };
   ["cab_W","cab_H","cab_D"].forEach(id=>{ const el=body.querySelector("#"+id); el.onkeydown=e=>{ if(e.key==="Enter"){e.preventDefault();doResize();} }; });
   body.querySelector("#cab_resize").onclick=()=>resizeCabinet();
+  /* v1.241: สลับโครงสร้างจากแผงทั้งตู้ — เลือกไว้หลายใบก็ทำทุกใบที่เลือกในทีเดียว */
+  { const sg=body.querySelector("#cab_struct");
+    if(sg) sg.querySelectorAll("button").forEach(bt=>bt.onclick=()=>{
+      const to=+bt.dataset.t;
+      if(typeof isLocked==="function"&&isLocked()){ guardEdit("เปลี่ยนโครงสร้างตู้"); return; }
+      const keys=cabSelKeys();
+      const insts=(keys.length>1)? cabGroups().filter(x=>keys.indexOf(String(x.key))>=0).map(x=>x.key) : [g.key];
+      let done=0, skip=0, nb=0; const miss={};
+      insts.forEach(k=>{ let r=null; try{ r=structSwap(k,to); }catch(e){ console.error("structSwap:",e); }
+        if(r&&r.miss&&r.miss.length) r.miss.forEach(c=>{ miss[c]=1; });
+        else if(r&&r.n){ done++; nb+=(r.backs||0); } else skip++; });
+      const ms=Object.keys(miss);
+      if(done){ autosave(); commit(); }
+      toast(done
+        ? ("🧱 โครงสร้าง → "+to+" มม. · "+done+" ใบ"+(nb?(" · ขยับแผ่นหลัง "+nb+" แผ่น"):"")+(skip?(" · ข้าม "+skip+" ใบ (เป็น "+to+" อยู่แล้ว/ไม่มี _MatNN)"):"")+" · ขนาดนอกคงเดิม (Ctrl+Z ย้อนได้)")
+        : (ms.length?"":("ไม่มีตู้ที่ต้องเปลี่ยน — เป็น "+to+" มม. อยู่แล้ว")));
+      if(ms.length) toast("ยังไม่มี Part ปลายทางในคลัง: "+ms.join(", ")+" — เพิ่มที่ Element → Parts ก่อน (ตู้ที่ขาด Part ยังไม่ถูกแตะ)");
+      try{ showInspector(); }catch(e){} }); }
   { const ib=body.querySelector("#cab_isolate"); if(ib)ib.onclick=()=>{        // v7.67: โฟกัสทั้งตู้
       if(state.hidden&&state.hidden.length){ state.hidden=[]; render3D(true); renderList(); toast("แสดงทุกตู้แล้ว"); return; }
       /* v40.3: เลือกไว้กี่ใบ ก็โฟกัสเท่านั้นใบ — ของเดิมอ่านจากตู้ที่โฟกัสอยู่ใบเดียว
@@ -18473,6 +18941,7 @@ function renderVars(){
       <button class="ibtn" id="varCloudLoad" title="ดึง Variables + Element จากคลาวด์">⬇ ดึงคลาวด์</button>
       <button class="ibtn" id="varLockDef" title="จำค่าหัว Family ที่เห็นอยู่ตอนนี้เป็นค่าตั้งต้น — โหลดออเดอร์ใหม่แล้วหน้านี้จะกลับมาที่ค่านี้เสมอ">🔒 ตั้งค่าที่เห็นเป็นค่าตั้งต้น</button>
       <button class="ibtn" id="varSpread" title="ตั้งบานเดียวให้เสร็จ แล้วกระจายไปบานอื่นทั้ง Part · ตัวแปร · ค่าสี">⇊ กระจายชุดเลข</button>
+      <button class="ibtn" id="varShapeFix" title="ลิงก์ Part ของบาน (FrontShapeP1..) ที่ยังชี้ Part ของบานอื่น — แก้ให้ชี้ Part เลขบานตัวเอง ตัวไหนไม่มีในคลังข้าม">🔧 ซ่อม Part ของบาน</button>
       <button class="ibtn" id="varXmlMap" title="ตั้งค่าจับคู่ค่าจาก XML → Variable">⚙ จับคู่ XML</button>
       <button class="ibtn" id="varOrphan" title="ตรวจว่ามีค่าไหนชี้ไปรหัสที่ไม่มีในคลัง Element แล้ว">🔎 ตรวจลิงก์กำพร้า</button>
       <span class="muted" style="font-size:11px">หัว <b>Family</b> เลือกค่าได้เฉพาะที่บันทึกไว้ · กด <b>💾</b> เพื่อเพิ่มตัวเลือก · <b>คลิกขวา</b>=เพิ่ม/ลบ/Save As · ลาก <b>⠿</b> ย้าย</span>
@@ -18530,6 +18999,7 @@ function renderVars(){
         toast((n?("ตั้งค่าตั้งต้นให้หัว Family "+n+" ตัวแล้ว — โหลดออเดอร์ใหม่ก็ไม่โดนทับ"):"หัว Family ทุกตัวมีค่าตั้งต้นตรงกับที่เห็นอยู่แล้ว")
           +(skip?(" · ข้ามช่องระบบ "+skip+" ตัว (ขา/มือจับ — ออเดอร์ไม่ส่งมา = ไม่ใส่ให้)"):"")); }; }
     { const sp=body.querySelector("#varSpread"); if(sp)sp.onclick=()=>numSpreadDialog("1"); }
+    { const sf=body.querySelector("#varShapeFix"); if(sf)sf.onclick=()=>shapeLinkRepairDialog(); }   // v1.248
     const ab=body.querySelector("#varAddFam"); if(ab)ab.onclick=()=>{ pushVarsUndo(); settings.vars=settings.vars||[]; settings.vars.push(newVarNode("Family")); lsSet("furnitech:settings",settings); renderVars(); };
     const cs=body.querySelector("#varCloudSave"); if(cs)cs.onclick=()=>cloudSaveSettings();
     { const ob=body.querySelector("#varOrphan"); if(ob) ob.onclick=()=>{
@@ -19622,6 +20092,9 @@ const ELEM_FORM={
              ["nW2","หูแขวน — บากตัว L: ขาที่สองกว้างจากขอบข้าง (มม. · เว้นว่าง/0 = บากสี่เหลี่ยมแบบเดิม · ต้องแคบกว่าช่อง “บากกว้าง” ด้านบน)"],
              ["nH2","หูแขวน — บากตัว L: ขาที่สองลึกจากขอบบน (มม. · ต้องลึกกว่าช่อง “บากสูง” ด้านบน) เช่น เหล็กฉาก 3 ขา = บากกว้าง 75 สูง 15 · ขาที่สอง 15 ลึก 75"],
              ["hgInset","หูแขวน — ร่นหูจากขอบข้างใน (มม. · default 0)"],
+             ["hgArm","หูแขวน — เหล็กฉาก 3 ขา: ยาวแขนที่วิ่งตามความลึกตู้ (มม.) ใช้เมื่อความลึกตู้ไม่ตรงช่วงไหนในตารางข้างล่าง · เว้นว่าง/0 = ไม่ใช่เหล็กฉาก (วาดกล่องแบบเดิม)"],
+             ["hgDepMap","หูแขวน — ตารางความลึกตู้ → ยาวแขน : รหัส (คั่นช่วงด้วย , ) เช่น 320-370:300:ANGLE3-300, 371-420:350:ANGLE3-350 · แยกซ้าย/ขวาใส่ / เช่น 371-420:350:ANG350L/ANG350R · ความลึก = ลึกนอกของโครงตู้ ไม่รวมหน้าบาน · รหัสที่ไม่มีแถวใน Fittings ใช้เป็น Purchase ID ตรง ๆ และเบิกลูกของแถวนี้"],
+             ["hgLR","หูแขวน — รหัสแยกซ้าย/ขวา เมื่อไม่ตรงช่วงในตาราง เช่น ANGLE3-L/ANGLE3-R · เว้นว่าง = ใช้รหัสนี้ทั้งสองข้าง (ตัวเดียวหมุนใช้ได้ทั้งซ้ายขวา)"],
              ["sW","หูแขวน — ร่องบาก: กว้าง ตามแนวนอนของแผ่นหลัง (มม. · เว้นว่าง/0 = ใช้บากมุมตาม nH/nW แทน)"],
              ["sH","หูแขวน — ร่องบาก: สูง ตามแนวตั้งของแผ่นหลัง (มม. · ร่องแนวตั้ง = ใส่ sH มากกว่า sW)"],
              ["sR","หูแขวน — ร่องบาก: R ปลายร่อง (มม. · 0 = เหลี่ยม)"],
@@ -19781,7 +20254,9 @@ function _numSpreadApply(plan,oldS,newS,overwrite){
     ["type","order","def","article","cat","comment"].forEach(k=>{ if(v.src[k]===undefined) return;
       t[k]=(k==="order"||k==="def")?_spreadVal(v.src[k],oldS,newS,plan._swapVal||"auto",pend):v.src[k]; });
     if(Array.isArray(v.src.options)) t.options=v.src.options.slice(); n++; });
-  plan.colors.forEach(c=>{ if(c.exists&&!overwrite) return; setColorKid(c.color,c.key,c.val); n++; });
+  /* v1.248: ค่าสีต้องเลื่อนเลขด้วยกติกาเดียวกับตัวแปร (อัตโนมัติ = เลื่อนเมื่อตัวที่เลื่อนแล้วมีอยู่จริง)
+     เดิมก๊อปตรงตัว FrontShapeP4 ของสี ECxx01 จึงได้ Front1_ECxx01 ทุกครั้ง */
+  plan.colors.forEach(c=>{ if(c.exists&&!overwrite) return; setColorKid(c.color,c.key,_spreadVal(c.val,oldS,newS,plan._swapVal||"auto",pend)); n++; });
   return n;
 }
 /* ═════════ v1.153: ค่าตั้งต้นของช่องปลายทาง = ทุกชุดที่ระบบรองรับ ═════════
@@ -19803,6 +20278,74 @@ function spreadDefaultTargets(oldS){
   const n=parseInt(oldS,10), mx=frontSetMax(), out=[];
   for(let k=1;k<=mx;k++) if(k!==n) out.push(k);
   return _rangeText(out);
+}
+/* ───────── v1.248: ซ่อมลิงก์ Part ของบานที่ชี้เลขบานผิด ─────────
+   ตัวกระจายชุดเลขก๊อป "ค่าสี" (Element → Colors → kids) ไปแบบตรงตัว ไม่เลื่อนเลขตาม
+   ECxx01 จึงได้ FrontShapeP4 = Front1_ECxx01 ทั้งที่มี Front4_ECxx01 อยู่ในคลังแล้ว บาน 4 ไปใช้ Part ของบาน 1
+   (ตัวแปรเองเลื่อนเลขให้ แต่เลื่อนก็ต่อเมื่อ Part ปลายทางมีอยู่แล้วตอนกด — สร้าง Part ทีหลังก็ค้างค่าเดิม)
+   ตัวนี้ไล่ทุกลิงก์ชนิด Part ที่ชื่อลงท้ายด้วยเลขบาน (FrontShapeP4 → 4)
+     · ค่าที่ชี้อยู่มีเลขบานตรงแล้ว และมีอยู่ในคลัง = ข้าม
+     · ลองแทนเลขในค่าทีละกลุ่มด้วยเลขบาน เอาเฉพาะตัวที่มีอยู่จริงใน Element → Parts
+     · ต้องยังมีรหัสแบบ (ECxx01) อยู่ในชื่อ — กันไปได้ Front1_ECxx04 ซึ่งเป็นคนละแบบ
+     · หาไม่เจอ หรือเจอมากกว่าหนึ่งตัว = ไม่แตะ (บอกไว้ในรายการ)
+   แตะเฉพาะลิงก์ชนิด Part — วัสดุ ผิว ขอบ ไม่โดน */
+function shapeLinkRepairPlan(){
+  const parts=new Set(((settings.elements&&settings.elements.parts)||[]).map(x=>x&&String(x.code||"").trim()).filter(Boolean));
+  const out={fix:[],ok:0,miss:[]};
+  const fixVal=(link,val,keepTok)=>{
+    const vn=findVar(link); if(!vn||vn.type!=="Part") return null;
+    const m=/(\d+)$/.exec(String(link)); if(!m) return null; const N=m[1];
+    const v=String(val==null?"":val).trim(); if(!v||v.charAt(0)==="$") return null;
+    /* เลขในรหัสแบบ (ECxx02) ไม่ใช่เลขบาน — ตัดออกก่อนดู ไม่งั้น Front1_ECxx02 ถูกนับว่าเป็นของบาน 2 */
+    const tok=(keepTok&&v.indexOf(keepTok)>=0)?keepTok:"";
+    const segs=tok?v.split(tok):[v];
+    const runs=[...new Set([].concat.apply([],segs.map(_numRuns)))];
+    if(runs.some(r=>parseInt(r,10)===parseInt(N,10))&&parts.has(v)){ out.ok++; return null; }
+    let cands=[];
+    runs.forEach(r=>{ if(parseInt(r,10)===parseInt(N,10)) return;
+      const nn=(r.length>N.length)?N.padStart(r.length,"0"):N;
+      const c=segs.map(sg=>sg.replace(/\d+/g,g=>g===r?nn:g)).join(tok);
+      if(c!==v&&parts.has(c)) cands.push(c); });
+    cands=[...new Set(cands)];
+    if(cands.length===1) return cands[0];
+    out.miss.push({link,val:v,why:cands.length?("มีได้หลายตัว: "+cands.join(", ")):"ไม่มี Part เลขบาน "+N+" ในคลัง"});
+    return null; };
+  ((settings.elements&&settings.elements.colors)||[]).forEach(c=>{ if(!c||!c.code) return;
+    const km=colorKidsMap(c.code);
+    Object.keys(km).forEach(k=>{ const nv=fixVal(k,km[k],c.code);
+      if(nv) out.fix.push({kind:"color",color:c.code,link:k,from:km[k],to:nv}); }); });
+  const walk=(arr,par)=>{ (arr||[]).forEach(nd=>{ if(!nd) return;
+    if(nd.type==="Part"){ const tok=par&&par.type==="Family"?String(par.order||par.def||"").trim():"";
+      ["def","order"].forEach(f=>{ const v0=nd[f]; if(v0==null||String(v0).trim()==="") return;
+        const nv=fixVal(nd.name,v0,tok); if(nv) out.fix.push({kind:"var",node:nd,field:f,link:nd.name,from:String(v0),to:nv}); }); }
+    if(nd.children&&nd.children.length) walk(nd.children,nd); }); };
+  walk(settings.vars,null);
+  return out;
+}
+function shapeLinkRepairApply(plan){
+  let n=0; (plan&&plan.fix||[]).forEach(f=>{
+    if(f.kind==="color"){ setColorKid(f.color,f.link,f.to); n++; }
+    else if(f.kind==="var"&&f.node){ f.node[f.field]=f.to; n++; } });
+  return n;
+}
+async function shapeLinkRepairDialog(){
+  const pl=shapeLinkRepairPlan();
+  if(!pl.fix.length){ toast(pl.miss.length?("ไม่มีตัวที่ซ่อมได้ — ข้าม "+pl.miss.length+" ตัว (ไม่มี Part ปลายทางในคลัง)"):"ลิงก์ Part ของทุกบานชี้เลขบานถูกอยู่แล้ว"); return; }
+  const lines=pl.fix.slice(0,40).map(f=>"&nbsp;&nbsp;"+(f.kind==="color"?("สี "+escapeHtml(f.color)):"ค่าตั้งต้น")+" · <b>"+escapeHtml(f.link)+"</b> : "+escapeHtml(f.from)+" → <b>"+escapeHtml(f.to)+"</b>");
+  if(pl.fix.length>40) lines.push("&nbsp;&nbsp;… อีก "+(pl.fix.length-40)+" รายการ");
+  if(pl.miss.length) lines.push("<span style='opacity:.7'>ข้าม "+pl.miss.length+" ตัว (ไม่มี Part ปลายทางในคลัง หรือเลือกไม่ได้ชัด) — ดูรายชื่อใน console</span>");
+  const ok=await promptFields("ซ่อมลิงก์ Part ของบาน — แก้ "+pl.fix.length+" ตัว",[{key:"__p",label:lines.join("<br>"),type:"note"}]);
+  if(!ok) return;
+  try{ if(typeof pushVarsUndo==="function") pushVarsUndo(); }catch(e){}
+  const n=shapeLinkRepairApply(pl);
+  if(pl.miss.length) console.table(pl.miss);
+  try{ lsSet("furnitech:settings",settings); }catch(e){ console.error(e); }
+  /* Part ของบานเปลี่ยน = ความหนา วัสดุ เฟรม อาจเปลี่ยนตาม — บวกผิวทุกตู้แบบเดียวกับตอนกดบันทึกใน Element */
+  try{ [...new Set(state.boards.map(b=>b.cabInst).filter(x=>x!=null))].forEach(i=>{ try{ applyCabinetSkin(i); }catch(e){ console.error(e); } }); }catch(e){}
+  try{ if($("varModal")&&$("varModal").classList.contains("show")) renderVars(); }catch(e){}
+  try{ if($("elemModal")&&$("elemModal").classList.contains("show")) renderElements(); }catch(e){}
+  try{ renderInspectorIfOpen(); }catch(e){} sync(0); autosave(); commit();
+  toast("ซ่อมลิงก์ Part ของบานแล้ว "+n+" ตัว"+(pl.miss.length?(" · ข้าม "+pl.miss.length):"")+" — อย่าลืม ☁ เก็บคลาวด์ ถ้าใช้หลายเครื่อง");
 }
 async function numSpreadDialog(defOld){
   const v=await promptFields("กระจายชุดเลข — ตั้งบานเดียว ให้ครบทุกบาน",[
@@ -19850,11 +20393,12 @@ async function numSpreadDialog(defOld){
     [{key:"__p",label:lines.join("<br>"),type:"note"}]);
   if(!ok) return;
   let n=0; plans.forEach(pp=>{ n+=_numSpreadApply(pp.plan,oldS,pp.t,overwrite); });
+  let _nFix=0; try{ _nFix=shapeLinkRepairApply(shapeLinkRepairPlan()); n+=_nFix; }catch(e){ console.error("shapeLinkRepair:",e); }   // v1.248
   try{ lsSet("furnitech:settings",settings); }catch(e){ console.error(e); }
   try{ if($("varModal")&&$("varModal").classList.contains("show")) renderVars(); }catch(e){}
   try{ if($("elemModal")&&$("elemModal").classList.contains("show")) renderElements(); }catch(e){}
   renderInspectorIfOpen(); sync(0);
-  toast("กระจายชุดเลข "+oldS+" → "+uniq.join(", ")+" แล้ว "+n+" รายการ");
+  toast("กระจายชุดเลข "+oldS+" → "+uniq.join(", ")+" แล้ว "+n+" รายการ"+(_nFix?(" · ผูก Part ตามเลขบานให้ "+_nFix+" ตัว"):""));
 }
 async function elemDupNumber(tab){
   const list=(settings.elements&&settings.elements[tab])||[];
@@ -21221,7 +21765,7 @@ function xmlPreviewDialog(orderNo,parsed,maps,doc,setEls){
     const ov=document.createElement("div");
     ov.style.cssText="position:fixed;inset:0;z-index:400;background:rgba(0,0,0,.45);display:flex;align-items:center;justify-content:center;padding:2vh 2vw";
     const nWarn=parsed.filter(p=>warnOf(p).length).length;
-    const head=["","No","ชื่อรุ่น / รหัส","จำนวน","กว้าง X","ลึก Y","สูง Z","หนา D1"]
+    const head=["","No","ชื่อรุ่น / รหัส","จำนวน","โครงสร้าง","กว้าง X","ลึก Y","สูง Z","หนา D1"]   // v1.240: โครงสร้าง
       .concat(dnames.filter(d=>d!=="D1")).concat(pvKeys).concat(["ตำแหน่ง","หมุน","หมายเหตุ"]);
     /* v9.57: แก้ค่าได้ก่อนโหลด — ช่องขนาด ช่อง D และทุกช่องที่ XML ส่งมา พิมพ์ทับได้เลย
        ที่แก้จะถูกเขียนกลับลง PVarString ของแถวนั้น แล้วคิดค่าที่ใช้จริงใหม่ทั้งแถวตอนกดโหลด
@@ -21241,7 +21785,7 @@ function xmlPreviewDialog(orderNo,parsed,maps,doc,setEls){
        -> ทำเครื่องหมายที่ช่องนั้นเลย ทั้งพื้นสีและเส้นใต้ พร้อมบอกเมื่อชี้ค้างว่าต้องไปเพิ่มที่ไหน */
     /* v15.4: ดึงรายชื่อตู้จากคลาวด์ทีเดียวตอนเปิดหน้าตรวจ แล้ววาดตารางใหม่เมื่อได้ผล
        ไม่บล็อกหน้าจอ เพราะตารางแสดงได้เลย แค่เครื่องหมายเตือนมาช้ากว่านิดเดียว */
-    try{ if(!_cabNames.size) cabLibSync().then(n=>{ if(n) draw(); }); }catch(e){}
+    try{ if(!_cabNames.size) cabLibSync().catch(()=>{}); }catch(e){}   // v1.242: เดิม .then(draw()) — ไม่มี draw ในหน้านี้ วาดใหม่ไม่เคยเกิด · เครื่องหมายแดงตัดสินจาก cabModelIdsExist() แทนแล้ว
     const _missSet=(()=>{
       const out={};
       try{
@@ -21295,7 +21839,10 @@ function xmlPreviewDialog(orderNo,parsed,maps,doc,setEls){
     /* v15.2: รหัสตู้ที่ยังไม่มีโมเดลในคลัง — โหลดไปก็ได้ตู้เปล่า ต้องเห็นตั้งแต่ตรงนี้
        ดูทั้งคลังในเครื่องและรายชื่อที่ดึงมาจากคลาวด์ ชื่อตรงตัวหรือขึ้นต้นตรงกันก็ถือว่ามี */
     try{ cabLibRemember([]); }catch(e){}                      // v15.4: อ่านคลังในเครื่องทันที
-    const _noModel=nm=>!cabLibHas(nm);
+    /* v1.242: ยังไม่ตัดสินตอนวาดครั้งแรก — ตัดสินจากคำตอบของคลาวด์ (_markName) เท่านั้น
+       เดิมวาดแดงจากรายชื่อที่ไม่ครบไปก่อน แล้วไม่เคยถูกแก้ ตู้ที่มีจริงจึงขึ้นว่าไม่มี */
+    const _nmState={};                                       // ชื่อ → true มี / false ไม่มี / ไม่มีคีย์ = ยังไม่รู้
+    const _noModel=nm=>_nmState[String(nm||"").trim()]===false;
     /* ───────── v26.4: แก้รหัสตู้ได้ตั้งแต่หน้าตรวจ ก่อนโหลดจริง ─────────
        ออเดอร์ที่ส่งรหัสมาผิด หรือรหัสที่ยังไม่มีโมเดลในคลัง เดิมต้องโหลดเข้าไปก่อนแล้วค่อยแก้
        ซึ่งได้ตู้เปล่ามากองในฉาก แล้วต้องลบทิ้งเริ่มใหม่
@@ -21317,6 +21864,9 @@ function xmlPreviewDialog(orderNo,parsed,maps,doc,setEls){
       const w=warnOf(p);
       const cells=['<input type="checkbox" class="xpChk" data-i="'+i+'" checked>',
         String(i+1), _nameCell(p,i), String(p.count),
+        /* v1.240: เลือกโครงสร้างรายตู้ — ว่าง = ตามโมเดลในคลัง (เลขในวงเล็บเติมให้ทีหลังเมื่ออ่านโมเดลเสร็จ) */
+        '<select class="xpStr" data-i="'+i+'" data-cab="'+escapeHtml(String(p.name||""))+'" title="โครงสร้างตู้ใบนี้ — เปลี่ยนแค่เลขท้าย Part _Mat19 ↔ _Mat16 ขนาดนอกคงเดิม" style="font-size:11.5px;padding:1px 3px;border-radius:6px;border:1px solid var(--line);background:var(--solid);color:var(--ink)">'
+          +'<option value="">ตามโมเดล</option><option value="19"'+(p._struct===19?' selected':'')+'>19 มม.</option><option value="16"'+(p._struct===16?' selected':'')+'>16 มม.</option></select>',
         cin(i,"ART_SIZEX",(p.pv||{}).ART_SIZEX!=null?p.pv.ART_SIZEX:p.W),
         cin(i,"ART_SIZEY",(p.pv||{}).ART_SIZEY!=null?p.pv.ART_SIZEY:p.D),
         cin(i,"ART_SIZEZ",(p.pv||{}).ART_SIZEZ!=null?p.pv.ART_SIZEZ:p.H),
@@ -21418,7 +21968,9 @@ function xmlPreviewDialog(orderNo,parsed,maps,doc,setEls){
         +'<span style="flex:1"></span>'
         +'<button class="ibtn" id="xpFbtn" title="ค้นหาและแทนที่ค่าในตารางตู้ (Ctrl+F)">🔍 ค้นหา / แทนที่</button>'
         +'<button class="ibtn" id="xpAll">เลือกทั้งหมด</button><button class="ibtn" id="xpNone">ไม่เลือกเลย</button>'
-        +'<button class="ibtn" id="xpWarn">เลือกเฉพาะที่ปกติ</button></div>'
+        +'<button class="ibtn" id="xpWarn">เลือกเฉพาะที่ปกติ</button>'
+        /* v1.240: ตั้งโครงสร้างทีเดียวทั้งออเดอร์ แล้วค่อยไปแก้รายตู้ในคอลัมน์ได้ */
+        +'<select id="xpStrAll" class="nameinp" title="ตั้งโครงสร้างให้ทุกตู้ในออเดอร์" style="width:auto;font-size:12px"><option value="-">🧱 โครงสร้างทั้งออเดอร์…</option><option value="">ตามโมเดล</option><option value="19">ทั้งหมด 19 มม.</option><option value="16">ทั้งหมด 16 มม.</option></select></div>'
       +'<div class="seg tabs" id="xpTabs" style="margin:8px 16px 0;flex:none">'
         +_xpTabs.map((t,i)=>'<button type="button" data-t="'+t[0]+'" class="'+(i===0?'sel':'')+'">'+escapeHtml(t[1])
           +(t[2]?(' <span style="opacity:.55;font-size:11px">'+escapeHtml(t[2])+'</span>'):'')+'</button>').join("")+'</div>'
@@ -21448,7 +22000,7 @@ function xmlPreviewDialog(orderNo,parsed,maps,doc,setEls){
       +'<div style="padding:10px 16px;border-top:1px solid var(--line);display:flex;gap:10px;align-items:center">'
         +'<span id="xpCount" style="font-size:12px;color:var(--ink-dim)"></span><span style="flex:1"></span>'
         +'<button class="ibtn" id="xpSaveAs" title="เขียนค่าที่แก้ลงไฟล์ใหม่ ไฟล์เดิมไม่ถูกแตะ">💾 Save As ไฟล์ใหม่</button>'
-        +'<button class="ibtn" id="xpSaveCloud" title="เก็บเป็นออเดอร์แก้ไขบนคลาวด์ แยกกลุ่มจากตัวดั้งเดิม">☁ เก็บเป็นออเดอร์แก้ไข</button>'
+        +'<button class="ibtn" id="xpSaveCloud" title="เขียนค่าที่แก้ทับประวัติ XML ชื่อเดียวกันบนคลาวด์ — ไฟล์ต้นฉบับในเครื่องไม่ถูกแตะ">☁ เก็บทับออเดอร์นี้</button>'
         +'<button class="ibtn" id="xpCancel">ยกเลิก</button>'
         +'<button class="ibtn" id="xpOk" style="background:var(--accent);color:#fff;border-color:transparent">โหลดเข้าโปรแกรม</button></div></div>';
     document.body.appendChild(ov);
@@ -21479,6 +22031,19 @@ function xmlPreviewDialog(orderNo,parsed,maps,doc,setEls){
       const ok=ov.querySelector("#xpOk"); if(ok)ok.disabled=!n; };
     ov.querySelectorAll(".xpChk").forEach(c=>c.onchange=()=>{ keep[+c.dataset.i]=c.checked; upd(); });
     /* v26.4: แก้รหัสตู้ — เขียนกลับทั้งชื่อและช่องชื่อรุ่นใน pv แล้วเช็คคลังใหม่ทันที */
+    /* v1.242: ทาสีช่องรหัสตู้ตามคำตอบจากคลาวด์ · has: true มี / false ไม่มี / undefined ยังไม่รู้ (ไม่ทาอะไร) */
+    const _markName=(i,has,near)=>{ const el=ov.querySelector('.xpN[data-i="'+i+'"]'); if(!el) return;
+      const bad=(has===false);
+      el.classList.toggle("xpNbad",bad);
+      el.style.borderColor=bad?"rgba(229,72,77,.45)":"transparent";
+      el.style.background=bad?"rgba(229,72,77,.10)":"transparent";
+      el.style.color=bad?"#e5484d":"var(--ink)";
+      el.style.fontWeight=bad?"700":"";
+      el.title=bad?("ไม่มีโมเดลรหัสนี้ในคลัง (เทียบตรงตัวแบบเดียวกับตอนโหลด) — โหลดไปจะได้กล่องเปล่า"
+                    +(near&&near.length?(" · ในคลังมีที่ใกล้เคียง: "+near.join(", ")+" — พิมพ์รหัสนั้นทับได้เลย"):""))
+              :(has===true?"มีโมเดลในคลังแล้ว · พิมพ์รหัสใหม่ทับได้ถ้าต้องการ":"กำลังตรวจกับคลังบนคลาวด์…");
+      const w=ov.querySelector('.xpNw[data-i="'+i+'"]');
+      if(w){ w.textContent=bad?(near&&near.length?" ⚠?":" ⚠"):""; w.title=el.title; } };
     ov.querySelectorAll(".xpN").forEach(el=>el.onchange=()=>{
       const i=+el.dataset.i, p=parsed[i]; if(!p) return;
       const v=String(el.value||"").trim();
@@ -21494,16 +22059,33 @@ function xmlPreviewDialog(orderNo,parsed,maps,doc,setEls){
       if(p.pv.___MODEL_NAME!=null) p.pv.___MODEL_NAME=v;
       if(p.pv.ART_NAME!=null) p.pv.ART_NAME=v;
       p._dirty=true; p._nameEdited=true;
-      const bad=_noModel(v);
-      el.classList.toggle("xpNbad",bad);
-      el.style.borderColor=bad?"rgba(229,72,77,.45)":"transparent";
-      el.style.background=bad?"rgba(229,72,77,.10)":"transparent";
-      el.style.color=bad?"#e5484d":"var(--ink)";
-      el.style.fontWeight=bad?"700":"";
-      el.title=bad?"ยังไม่มีโมเดลตู้รุ่นนี้ในคลัง — โหลดไปจะได้กล่องเปล่า":"มีโมเดลในคลังแล้ว";
-      const w=ov.querySelector('.xpNw[data-i="'+i+'"]'); if(w) w.textContent=bad?" ⚠":"";
+      _markName(i,_nmState[v]);                              // v1.242: รู้แล้วทาเลย ยังไม่รู้ก็ถามคลาวด์
+      { const sl=ov.querySelector('.xpStr[data-i="'+i+'"]'); if(sl){ sl.dataset.cab=v; const o0=sl.querySelector('option[value=""]'); if(o0) o0.textContent="ตามโมเดล"; } }
+      if(_nmState[v]===undefined) cabModelIdsExist([v]).then(h=>{ _nmState[v]=h.has(v); if(document.body.contains(ov)) _markName(i,_nmState[v]); }).catch(()=>{});
       upd();
     });
+    /* ───────── v1.242: ตรวจรหัสตู้กับคลังบนคลาวด์ แล้วค่อยทาสี ─────────
+       ถามทีเดียวทั้งออเดอร์ด้วยการเทียบตรงตัว (วิธีเดียวกับตอนโหลดจริง) · ตัวที่ไม่มี หาที่ใกล้เคียงให้
+       แล้วอ่านโมเดลเฉพาะตัวที่มีจริง เพื่อเติมเลขโครงสร้างลงตัวเลือก "ตามโมเดล" (v1.240)
+       ไม่ขวางการกดโหลด · ต่อคลาวด์ไม่ได้ก็ปล่อยไม่ทาอะไร ดีกว่าทาแดงผิด ๆ */
+    (async()=>{ try{
+      const names=[...new Set(parsed.map(p2=>String(p2.name||"").trim()).filter(Boolean))];
+      const have=await cabModelIdsExist(names);
+      if(!document.body.contains(ov)) return;
+      names.forEach(n=>{ _nmState[n]=have.has(n); });
+      try{ cabLibRemember([...have]); }catch(e){}
+      let near={}; try{ near=await cabModelNear(names.filter(n=>!have.has(n))); }catch(e){}
+      if(!document.body.contains(ov)) return;
+      parsed.forEach((p2,i)=>{ const nm=String(p2.name||"").trim(); if(nm) _markName(i,_nmState[nm],near[nm]); });
+      const got={};
+      await Promise.all(names.filter(n=>have.has(n)).map(async nm=>{ try{ const md=await fetchCabModel(nm); got[nm]=md?structOfBoards(md.boards):null; }catch(e){} }));
+      if(!document.body.contains(ov)) return;
+      ov.querySelectorAll(".xpStr").forEach(sl=>{ const nm=String(sl.dataset.cab||"").trim(); const o0=sl.querySelector('option[value=""]');
+        if(!o0||_nmState[nm]===undefined) return;
+        if(!_nmState[nm]) o0.textContent="ตามโมเดล (ไม่มีโมเดล)";
+        else if(got[nm]!=null){ o0.textContent="ตามโมเดล ("+got[nm]+")"; sl.dataset.model=String(got[nm]); }
+        else o0.textContent="ตามโมเดล (ไม่มี _Mat)"; });
+    }catch(e){ console.error("xpModelCheck:",e); } })();
     /* เขียนค่าที่แก้กลับลง pv ทันที · ค่าที่ใช้จริง (ขนาด ตัวแปร) คิดใหม่ตอนกดโหลด */
     let _edited=0, _xpBulk=0;                 // v1.233: _xpBulk = กำลังแทนที่ทั้งหมด → เช็คคลังรอบเดียวตอนจบ ไม่ใช่ทุกช่อง
     ov.querySelectorAll(".xpF").forEach(el=>el.onchange=()=>{
@@ -21527,6 +22109,14 @@ function xmlPreviewDialog(orderNo,parsed,maps,doc,setEls){
     ov.querySelector("#xpAll").onclick=()=>setAll(()=>true);
     ov.querySelector("#xpNone").onclick=()=>setAll(()=>false);
     ov.querySelector("#xpWarn").onclick=()=>setAll(i=>!warnOf(parsed[i]).length);
+    /* ───────── v1.240: โครงสร้างรายตู้ ─────────
+       เก็บลงแถวเป็น p._struct แล้วเดินไปถึง buildFromXmlOrder ในชุดเดียวกับค่าอื่นของแถว
+       ไม่เลือก = ตามโมเดล ไม่แตะอะไรเลย */
+    ov.querySelectorAll(".xpStr").forEach(sl=>sl.onchange=()=>{ const i=+sl.dataset.i; const v=sl.value;
+      if(parsed[i]) parsed[i]._struct=v?(+v):null; });
+    { const sa=ov.querySelector("#xpStrAll"); if(sa) sa.onchange=()=>{ const v=sa.value; if(v==="-") return;
+        ov.querySelectorAll(".xpStr").forEach(sl=>{ sl.value=v; const i=+sl.dataset.i; if(parsed[i]) parsed[i]._struct=v?(+v):null; });
+        sa.value="-"; }; }
     /* v9.58: เขียนค่าที่แก้กลับเป็นไฟล์ XML ใหม่
        สร้างจากเอกสารต้นฉบับที่ก๊อปมา แล้วทับเฉพาะ PVarString ของแถวที่แก้
        แถวที่ไม่ได้ติ๊กเลือกจะถูกตัดออกจากไฟล์ด้วย ไฟล์ใหม่จึงตรงกับที่จะโหลดเข้าจริง
@@ -21557,10 +22147,12 @@ function xmlPreviewDialog(orderNo,parsed,maps,doc,setEls){
       toast("บันทึกไฟล์ใหม่แล้ว — ไฟล์เดิมไม่ถูกแตะ"); };
     ov.querySelector("#xpSaveCloud").onclick=async()=>{
       const x=_buildXml(); if(!x){ toast("สร้างไฟล์ไม่สำเร็จ"); return; }
-      const nm=_editName();
+      /* v1.246: ทับชื่อเดิม ไม่เติม _EDIT แล้ว — ต้นฉบับยังอยู่ที่ไฟล์ XML ในเครื่อง ประวัติบนคลาวด์ไม่ต้องมีสองชุด
+         ชื่อที่ใช้ = ช่องออเดอร์บนหัวหน้าต่าง (แก้ชื่อก่อนกด = เก็บเป็นชื่อใหม่) · cloudSaveXml หาแถวจากชื่อแล้วเขียนทับ */
+      const nm=_curName()||"order";
       try{ const ok=await cloudSaveXml({orderNo:nm, filename:nm+".xml", cust:"", retailer:"",
             cab:parsed.filter((p2,i)=>keep[i]).length, xml:x});
-        toast(ok?("เก็บออเดอร์แก้ไขขึ้นคลาวด์แล้ว: "+nm):"เก็บไม่สำเร็จ");
+        toast(ok?("เก็บทับประวัติ XML “"+nm+"” แล้ว"):"เก็บไม่สำเร็จ");
       }catch(e){ toast("เก็บไม่สำเร็จ: "+(e&&e.message||e)); } };
     /* ───────── v1.233: Ctrl+F ค้นหา / แทนที่ในตารางตู้ ─────────
        ออเดอร์จริงมีสิบกว่าตู้คูณสามสิบกว่าช่อง รหัสสีที่ส่งมาผิดตัวเดียวต้องไล่พิมพ์ทับทีละช่อง
@@ -21662,6 +22254,7 @@ async function buildFromXmlOrder(){
   let pullOn=0; const pullNoSpec={};        // v9.71: สรุปมือจับ
   let dpOn=0; const dpBad={};               // v30.4: สรุปค่าปรับบาน
   let _skipNoModel=0;
+  let _stDone=0; const _stMiss={};         // v1.240: สรุปการสลับโครงสร้างไว้ต่อท้าย toast
   /* v30.2: กล่องรอ — นับจากจำนวนใบทั้งหมด ไม่ใช่จำนวนรายการ เพราะรายการหนึ่งมีได้หลายใบ */
   const _tot=o.sets.reduce((a,x)=>a+Math.max(1,(x.count||1)),0);
   let _did=0, _bz=null;
@@ -21672,7 +22265,10 @@ async function buildFromXmlOrder(){
     /* v15.4: รุ่นที่ยังไม่มีโมเดลในคลัง ปกติโปรแกรมวาดกล่องเปล่าจากขนาดที่ส่งมาให้
        ซึ่งบางงานไม่ต้องการ เพราะได้ตู้ที่ไม่มีชิ้นส่วนจริงปนมาในออเดอร์
        เปิดสวิตช์แล้วข้ามไปเลย พร้อมบอกว่าข้ามไปกี่ใบ จะได้ไม่หายเงียบ */
-    if(settings.xmlSkipNoModel===true&&!cabLibHas(s.name)){ _skipNoModel++; continue; }
+    /* v1.242: ตัดสิน "ไม่มีโมเดล" จากการดึงโมเดลจริง ไม่ใช่จากรายชื่อ _cabNames ที่อาจไม่ครบ
+       เดิมถ้าเปิดสวิตช์ข้ามรุ่นที่ไม่มีโมเดล ตู้ที่มีโมเดลจริงแต่หลุดจากรายชื่อ 300 ตัวล่าสุด จะถูกข้ามทิ้งเงียบ ๆ */
+    let model=null; try{ model=await fetchCabModel(s.name); }catch(e){ model=null; }
+    if(settings.xmlSkipNoModel===true&&!model){ _skipNoModel++; continue; }
     const inst=uid();
     state.cabColors[inst]=Object.assign({}, s.vars||{});
     try{ applyVarFallbackToCab(inst); }catch(e){ console.error(e); }   // v7.79: ฟิลด์ที่ Set นี้ไม่ได้ส่งมา -> ค่าตั้งต้น (ไม่ไปหยิบค่ากลางของตู้ใบอื่น)
@@ -21684,8 +22280,7 @@ async function buildFromXmlOrder(){
       nm2.CAB_W=s.W; nm2.CAB_H=s.H; nm2.CAB_D=s.D;
       Object.keys(s.numv||{}).forEach(k=>{ nm2[k]=s.numv[k]; });        // v7.66: ค่าที่จับคู่ไว้ ทับชื่อฟิลด์ดิบ
       state.cabNums=state.cabNums||{}; state.cabNums[inst]=nm2; }
-    let model=null; try{ model=await fetchCabModel(s.name); }catch(e){ model=null; }
-    if(model){ // วางโมเดลจากคลาวด์ ปรับขนาดตาม XML (เคารพ lock + สวิตช์ปรับขนาด)
+    if(model){ // วางโมเดลจากคลาวด์ (v1.242: ดึงไว้แล้วข้างบน ตอนตัดสินว่าจะข้ามไหม) ปรับขนาดตาม XML (เคารพ lock + สวิตช์ปรับขนาด)
       /* ───────── v1.162: บานต้องได้สเปคขอบจากต้นแบบ "ก่อนสเกล" ─────────
          ทางนี้สเกลทุกชิ้นตามสัดส่วนแล้วจบ ไม่ผ่านตัวปรับขนาดตู้ (resizeCabinetTo) ที่จับสเปคขอบก่อน
          แล้วคิดบานใหม่หลังสเกล บานจึงถูกยืดตามสัดส่วนแล้วปัดเศษ ต้นแบบ 900 บาน 447/447 ช่องไฟ 1.5/3/1.5
@@ -21719,6 +22314,11 @@ async function buildFromXmlOrder(){
       /* v7.18: XML ส่งสีมาให้แล้ว (state.cabColors ตั้งไว้ข้างบน) ต้องบวกผิวตั้งแต่ตอนนี้
          ไม่งั้นชิ้นค้างที่ความหนา core อย่างเดียว และทอป/ชั้นไม่ได้หดตามแผ่นข้างที่หนาขึ้น
          applyCabinetSkin จบด้วย refitInterior อยู่แล้ว แต่เรียกซ้ำได้ไม่เสียหาย */
+      /* v1.240: โครงสร้างที่เลือกในหน้าตรวจ — ทำก่อนบวกผิว ให้ทั้งขบวนข้างล่างคิดจากความหนาใหม่
+         เชื่อมเดือยใหม่ไม่ต้องทำตรงนี้ ตัวโหลดทำให้ทั้งออเดอร์ตอนจบอยู่แล้ว */
+      if(s._struct===16||s._struct===19){ try{ const _sr=structSwap(inst,s._struct,{build:true});
+          if(_sr&&_sr.miss&&_sr.miss.length) _sr.miss.forEach(c=>{ _stMiss[c]=1; });
+          else if(_sr&&_sr.n) _stDone++; }catch(e){ console.error("structSwap:",e); } }
       try{ applyCabinetSkin(inst); }catch(e){ console.error("applyCabinetSkin:",e); }
       refitInterior(state.boards.filter(x=>x.cabInst===inst));
       reapplyRules(inst);
@@ -21776,6 +22376,8 @@ async function buildFromXmlOrder(){
     +(Object.keys(legBad).length?(" · ⚠ อ่านรุ่นขาไม่ออก: "+Object.keys(legBad).join(", ")+" — ไปเพิ่มในตารางจับคู่ที่ ตั้งค่า → นำเข้า XML"):"")
     +(pullOn?(" · ใส่มือจับ "+pullOn+" บาน"):"")
     +(dpOn?(" · ปรับบานตามค่าที่ส่งมา "+dpOn+" ใบ"):"")
+    +(_stDone?(" · สลับโครงสร้าง "+_stDone+" ใบ"):"")
+    +(Object.keys(_stMiss).length?(" · ⚠ ไม่ได้สลับโครงสร้าง เพราะยังไม่มี Part: "+Object.keys(_stMiss).join(", ")+" — เพิ่มที่ Element → Parts"):"")
     /* v32.5: เดิมถ้าเชื่อมได้ 0 จุด ข้อความก็ดูเหมือนไม่ได้ทำอะไรเลย แยกไม่ออกจาก "ไม่ได้รัน"
        ตอนนี้บอกทุกครั้งว่ารันหรือไม่รัน และรันแล้วได้เท่าไหร่ */
     +(settings.xmlAutoHeal===false ? " · ⚠ ไม่ได้เชื่อมเดือยใหม่ (ปิดไว้ในตั้งค่า)"
@@ -21800,7 +22402,10 @@ async function processXmlText(text,opts){ opts=opts||{}; try{
     const sets=[...doc.querySelectorAll("Set")];
     if(sets.length){
       const orderEl=doc.querySelector("Order");
-      let orderNo=(orderEl&&orderEl.getAttribute("No"))||xText(doc,"ARTICLENO")||"";   // v9.92: แก้ชื่อในหน้าตรวจได้
+      /* v1.236: ชื่อที่ตั้งไว้ตอนเก็บขึ้นคลาวด์ ชนะชื่อที่ฝังมาในไฟล์ XML
+         โหลดจากประวัติ XML เคยส่งมาแต่เนื้อไฟล์ ชื่อที่ตั้งเองจึงหายทุกครั้งที่โหลดกลับ */
+      let orderNo=String(opts.orderNo||"").trim()
+        ||(orderEl&&orderEl.getAttribute("No"))||xText(doc,"ARTICLENO")||"";   // v9.92: แก้ชื่อในหน้าตรวจได้
       const maps=(settings.xmlMap||[]).filter(m=>m.field&&m.target);
       const fieldSet=new Set(), valsByTarget={}, sample={}; const parsed=[];
       maps.forEach(m=>valsByTarget[m.target]=valsByTarget[m.target]||new Set());
@@ -22432,6 +23037,9 @@ function renderSettings(){
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">${txt("legClipCode","รหัสกลางของกิ๊ฟ (ใช้เมื่อไม่เข้าข้อ 1 และ 2)")}${txt("legClipName","ชื่อที่ใช้ในใบอุปกรณ์ ถ้าไม่มีใน Element")}</div>
     <div class="sumh" style="margin-top:12px">ตรวจชิ้นซ้อนกัน (Overlap)</div>
     <label style="display:flex;align-items:center;gap:8px;font-size:13px;cursor:pointer"><input type="checkbox" id="setDoorSwing" ${settings.doorSwing!==false?"checked":""}> เส้นสัญลักษณ์ทิศเปิดบาน (V จากฝั่งบานพับ) บนหน้าบานใน 3D</label>
+    <label style="display:flex;align-items:center;gap:8px;font-size:13px;cursor:pointer;margin-top:6px"><input type="checkbox" id="setDoorRelief" ${settings.doorRelief3D!==false?"checked":""}> ลายหน้าบาน 3D (โชว์อย่างเดียว · ไม่ออก CNC/ใบไม้ · ปิดเองในโหมดประหยัด)</label>
+    <textarea id="setDoorReliefMap" class="nameinp" rows="3" style="width:100%;font-family:var(--mono);font-size:12px;margin-top:4px" placeholder="MCxx35 = 0:3, 3:0, 55:0, 58:3, 60:6, 95:6, 110:2, 110:0">${escapeHtml(String(settings.doorReliefMap==null?"":settings.doorReliefMap))}</textarea>
+    <div style="font-size:11px;opacity:.62;margin:2px 0 6px">บรรทัดละแบบ: <code>รหัสแบบบาน (FrontShape) = ระยะจากขอบ:ความลึก, …</code> ไล่จากขอบบานเข้าไป จุดสุดท้ายคือขอบลูกฟักกลาง · ความลึกวัดจากผิวหน้าบาน · หลังบานเรียบ · ปกติทุกด้านเข้ามุม 45 · ต่อท้าย <code>| ตั้งทะลุ 55-60</code> = ช่วงนั้นของขอบซ้าย/ขวาวิ่งตรงตลอดความสูงบาน (ตั้งยาว คานสั้นชนเข้า) · <code>| นอนทะลุ a-b</code> = ขอบบน/ล่างวิ่งตรงตลอดความกว้าง · บานที่เล็กกว่าลาย (เช่นหน้าลิ้นชักเตี้ย) วาดเป็นแผ่นเรียบ</div>
     <label style="display:flex;align-items:center;gap:8px;font-size:13px;cursor:pointer"><input type="checkbox" id="setOverlap" ${settings.overlapWarn?"checked":""}> เปิดแจ้งเตือนเมื่อมีชิ้นซ้อนกัน (v1.152: ข้ามรอยต่อที่เข้าร่องพอดี เช่นแผ่นหลังเสียบร่อง จึงไม่ฟ้องรัวอีก)</label>
     <div style="display:flex;gap:8px;margin-top:6px"><button class="ibtn" id="setOverlapNow">🔍 ตรวจชิ้นซ้อนเดี๋ยวนี้</button><button class="ibtn" id="setOverlapClear">ล้างไฮไลต์แดง</button></div>
     <label style="display:flex;align-items:center;gap:8px;font-size:13px;cursor:pointer;margin-top:8px"><input type="checkbox" id="setMateSpan" ${settings.dowelMateSpan!==false?"checked":""}> เดือย/มินิฟิก คิดจากช่วงที่มีชิ้นประกบจริง (ไม่ใช่ความยาวขอบทั้งเส้น)</label>
@@ -22552,6 +23160,8 @@ function renderSettings(){
     { const hr=body.querySelector("#setHingeRail"); if(hr) settings.hingeAvoidRail=hr.checked; }   // v22.3
     { const sb=body.querySelector("#setShelfBack"); if(sb) settings.shelfBackFlush=sb.checked; }   // v23.1
     const os=body.querySelector("#setOverlap"); if(os){ const dsw=body.querySelector("#setDoorSwing"); if(dsw) settings.doorSwing=dsw.checked; }
+    { const dr=body.querySelector("#setDoorRelief"); if(dr) settings.doorRelief3D=dr.checked;           // v1.247
+      const dm=body.querySelector("#setDoorReliefMap"); if(dm) settings.doorReliefMap=String(dm.value||""); }
     settings.overlapWarn=os.checked;
     /* v1.039: ตารางแปลรหัสตู้ — เว้นว่างทั้งช่อง = กลับไปใช้ตารางตั้งต้น
        บรรทัดที่ไม่มีเครื่องหมายเท่ากับถูกข้าม จะได้พิมพ์หมายเหตุแทรกไว้ได้ */
@@ -22877,6 +23487,35 @@ function cabLibRemember(names){
   try{ Object.keys(lsGet("boardforge:cabinets",{})||{}).forEach(k=>_cabNames.add(String(k).trim().toUpperCase())); }catch(e){}
   try{ Object.keys(lsGet("boardforge:lib",{})||{}).forEach(k=>_cabNames.add(String(k).trim().toUpperCase())); }catch(e){}
   return _cabNames.size;
+}
+/* ───────── v1.242: ถามคลาวด์ตรง ๆ ว่ารหัสในออเดอร์ไหนมีโมเดลจริง ─────────
+   หน้าตรวจ XML เคยตัดสิน "ไม่มีตู้" จาก _cabNames ซึ่งตอนเปิดหน้าครั้งแรกมีแต่รายชื่อในเครื่อง
+   (รายชื่อบนคลาวด์ดึงแบบรอ แล้วสั่งวาดใหม่ด้วย draw() ที่ไม่มีอยู่ในหน้านั้น — วาดใหม่ไม่เคยเกิด)
+   และต่อให้ดึงสำเร็จ ก็ได้แค่ 300 ตัวที่แก้ล่าสุด ตู้ที่ไม่ได้แตะนานหลุดรายชื่อไปเอง
+   ตัวนี้ถามเฉพาะรหัสที่อยู่ในออเดอร์ ด้วยการเทียบตรงตัว ซึ่งคือวิธีเดียวกับที่ fetchCabModel() ใช้ตอนโหลดจริง
+   ผลจึงตรงกับสิ่งที่จะเกิดตอนกดโหลดเสมอ: แดง = โหลดไปได้กล่องเปล่าจริง ๆ */
+async function cabModelIdsExist(names){
+  const want=[...new Set((names||[]).map(n=>String(n||"").trim()).filter(Boolean))];
+  const have=new Set(); if(!want.length) return have;
+  const db=await getDB();
+  for(let i=0;i<want.length;i+=100){
+    const {data,error}=await db.from("furnitech_cabinets").select("id").in("id",want.slice(i,i+100));
+    if(error) throw error; (data||[]).forEach(r=>{ if(r&&r.id!=null) have.add(String(r.id)); }); }
+  return have;
+}
+/* รหัสที่ไม่มีแบบตรงตัว — หารหัสในคลังที่ขึ้นต้นเหมือนกัน (ไม่สนตัวพิมพ์) ไว้บอกเป็นตัวเลือก
+   เช่น ออเดอร์ส่ง MWD001 แต่คลังเก็บเป็น MWD001-A หรือ mwd001 · เอาเฉพาะรหัสที่เป็นตัวอักษร/ตัวเลข/ขีด */
+async function cabModelNear(names){
+  const out={}; const safe=[...new Set((names||[]).map(n=>String(n||"").trim()))].filter(n=>/^[A-Za-z0-9_\-]{2,}$/.test(n));
+  if(!safe.length) return out;
+  const db=await getDB();
+  const {data,error}=await db.from("furnitech_cabinets").select("id")
+    .or(safe.map(n=>"id.ilike."+n+"*").join(",")).not("id","like","ORD::%").limit(200);
+  if(error) throw error;
+  safe.forEach(n=>{ const u=n.toUpperCase();
+    const c=(data||[]).map(r=>String(r.id)).filter(id=>id.toUpperCase().indexOf(u)===0&&id!==n).slice(0,4);
+    if(c.length) out[n]=c; });
+  return out;
 }
 async function cabLibSync(){
   try{ const rows=await cloudListCabs();
@@ -23903,6 +24542,14 @@ function reapplyRules(inst){
   if(cabYawOf(inst)) return withCabAxisAligned(inst,()=>reapplyRules(inst));
   const f=cabFaces(inst); if(!f) return;
   state.boards.forEach(b=>{ if(b.cabInst!==inst||!isRail(b)) return;
+    /* ───────── v1.243: หน้ากว้างคานที่ล็อกไว้ (🔒 กว้าง) ต้องชนะกฎ ─────────
+       ความกว้างคานเก็บสองที่ คือ b.W กับ rule.railW แต่ตรงนี้อ่าน rule.railW อย่างเดียวแล้วเขียนทับ b.W
+       คานที่ล็อกกว้างไว้ 100 แต่กฎยังจำ 70 จึงหดกลับเป็น 70 ทุกครั้งที่ตู้ถูกคิดใหม่
+       (สลับโครงสร้าง เปลี่ยนสี ปรับขนาด) และตำแหน่งลึกก็เลื่อนตาม เพราะกฎคิดศูนย์คานจาก railW
+       ล็อกอยู่ = เอาค่าที่ล็อกไปใส่กฎก่อนคิด ทั้งขนาดและตำแหน่งจึงออกมาตรงกัน
+       ยกเว้นกฎที่เป็นสูตร ($D7 ฯลฯ) — สูตรเป็นเจตนาที่ชัดกว่า ไม่เขียนทับ */
+    if(b.fixDim&&b.fixDim.W&&(+b.W>0)&&b.rule&&!/\$/.test(String(b.rule.railW==null?"":b.rule.railW))
+       &&Math.abs((+b.rule.railW||0)-(+b.W))>0.05) b.rule.railW=round(+b.W);
     let g; try{ g=deriveRail(b.rule,f,inst); delete b._channelRailError; }catch(e){ if(!b.rule.channelRail) throw e; b._channelRailError=e.message; return; } b.orient=g.orient; b.L=g.L; b.W=g.W; b.T=g.T; b.x=g.x; b.y=g.y; b.z=g.z; });
   // ขาตู้: เกาะมุม/กึ่งกลางโครงด้วยกฎ (ร่นจากขอบคงที่ · ใต้พื้นตู้เสมอ) — ปรับขนาด/heal แล้วตามเป๊ะ
   const carc=state.boards.filter(b=>b.cabInst===inst&&!b._door&&!b._virtual&&!isRail(b)&&(b.T>0));
@@ -27562,19 +28209,7 @@ function _resizeCabinetToCore(inst, W, H, D, lock){
       const newLo=floor? round(floor.y+worldDims(floor)[1]/2) : round(innerBot);
       inner.forEach(b=>{ if(b._iy!=null) b.y=round(newLo+b._iy); b.zoneLo=newLo; delete b._iy; }); } }
   reapplyLegs(inst);
-  // ราวแขวน: เกาะใต้ชั้นเดิม · ยาวอัตโนมัติคิดใหม่ตามกว้างนอกตู้ · เจาะรูใหม่ · (รหัสจริง map ตามยาวใน fittingAgg)
-  state.boards.filter(x=>x.cabInst===inst&&x._hangRail).forEach(rail=>{
-    const shelf=state.boards.find(x=>x.id===rail._hrShelf) || state.boards.filter(x=>x.cabInst===inst&&x.orient==="flat"&&!x._door&&!x._virtual&&!isRail(x)).sort((a,b2)=>Math.abs(a.y-rail.y)-Math.abs(b2.y-rail.y))[0];
-    if(!shelf)return;
-    const sd=state.boards.filter(x=>x.cabInst===inst&&x.orient==="side"&&!x._door&&!x._virtual&&!isRail(x)&&x.zoneLo==null);
-    let inL=-1e9,inR=1e9,oL=-1e9,oR=1e9; if(sd.length){ const l=sd.reduce((a,c)=>a.x<c.x?a:c),r=sd.reduce((a,c)=>a.x>c.x?a:c); inL=l.x+worldDims(l)[0]/2; inR=r.x-worldDims(r)[0]/2; oL=l.x-worldDims(l)[0]/2; oR=r.x+worldDims(r)[0]/2; }
-    const bk=state.boards.filter(x=>x.cabInst===inst&&x.orient==="front"&&!x._door&&!x._virtual).sort((a,c)=>a.z-c.z)[0];
-    const backFaceZ=bk? bk.z+worldDims(bk)[2]/2 : (shelf.z-worldDims(shelf)[2]/2);
-    if(rail._hrAuto !== false){ rail.L=round(Math.max(oR-oL,120)-100); rail._hrLen=rail.L; } else { rail.L=round(rail._hrLen||rail.L); }
-    rail.x=round((inL+inR)/2); rail.z=round(backFaceZ+(rail._hrSetb||260));
-    rail.y=round(shelf.y-(shelf.T||16)/2-(rail.W||85)/2-1);
-    drillHangRail(shelf,rail);
-  });
+  relayHangRails(inst);   // v1.240: ยกบล็อกเดิมไปเป็นฟังก์ชัน — การสลับโครงสร้างตู้ต้องเรียกใช้ด้วย
   void 0; // คาน: คำนวณใหม่จากกฎ (อ้างผิวโครงใหม่) → ไม่โดนสเกล ไม่ตกเศษ
   // ชั้นที่ตรึง: รูที่ฝากบนแผ่นข้าง (เดือย/พิน) ถูก remap สัดส่วนไปแล้ว → ล้างของชั้นนี้แล้วเจาะใหม่ที่ระดับจริง
   Object.keys(lockY).forEach(id=>{ const f=state.boards.find(x=>x.id===id); if(!f)return;
@@ -28619,6 +29254,11 @@ function showCtx(x,y,id){ctxTarget=id;ctxX=x;ctxY=y;const m=$("ctxMenu");
       if(e4&&host) e4.textContent="🧷 ใส่ราวแขวนผ้าใต้"+((host===tb)?"ชิ้นนี้":(" "+(host.name||"ทอปบนสุด")))+" (Ø8 ทะลุ + Ø13×2)…";
       const e5=m.querySelector("#ctxHangRailDel span");
       if(e5&&cur.length) e5.textContent="✕ เอาราวแขวนผ้าใต้"+((host===tb)?"ชิ้นนี้":(" "+(host.name||"แผ่นนี้")))+" ออก ("+cur.length+")"; }
+    /* v1.240: สลับโครงสร้าง — ป้ายบอกเลขจริงของตู้ใบนี้ จะได้รู้ก่อนกดว่ากำลังจะไปทางไหน */
+    { let st=null; try{ st=(tb&&tb.cabInst)?structOf(tb.cabInst):null; }catch(e){}
+      show("#ctxStruct", st===16||st===19);
+      const e6=m.querySelector("#ctxStruct span");
+      if(e6&&(st===16||st===19)) e6.textContent="🧱 โครงสร้าง "+st+" → "+(st===19?16:19)+" มม. (ขนาดนอกคงเดิม)"; }
     show('[data-act="leg"]', tb&&!tb._door&&!tb._virtual&&!tb._fitPart);
     show('[data-act="dooredge"]', tb&&!!tb._door&&!tb._box);
     show("#ctxFrontLayout", tb&&!!tb._door&&!tb._box);
@@ -28861,11 +29501,12 @@ function part2DSvg(b,o){
      ผลคือบางแผ่นเห็นแถวเดียว บางแผ่นเห็นคนละแกน แล้วแต่ว่าอันไหนหลุด
      กันที่ไว้ตามจำนวนแถวจริง แถวละ 52 ทั้งซ้ายและล่าง */
   const _ghOn=(b.holes||[]).some(h=>{ try{ return isGlassHangerHole(h); }catch(e){ return false; } });
+  const _hrOn=(b.holes||[]).some(h=>h&&h.hangRail&&!h.edge);   // v1.239: แถวระยะราวแขวน
   /* v23.4: จดไว้ว่ารูปนี้วาดอะไรไปบ้างจริง ๆ แล้วให้คำอธิบายสร้างจากรายการนี้
      ถ้าเดาจากข้อมูลชิ้นงานเอง วันหลังแก้เงื่อนไขการวาดตรงไหน คำอธิบายจะหลุดจากรูปทันที
      จดตรงจุดที่วาดจริงจึงไม่มีทางไม่ตรงกัน */
   const USED={};
-  const _rowN=SHOWDIM?((_hgOn?1:0)+(_ghOn?1:0)):0;
+  const _rowN=SHOWDIM?((_hgOn?1:0)+(_ghOn?1:0)+(_hrOn?1:0)):0;   // v1.239
   /* v40.6: ที่ว่างด้านบนต้องพอสำหรับหัวแบบสามบรรทัดที่โตตามตัวอักษร ไม่งั้นบรรทัดบนสุดหลุดออกนอกกรอบ */
   const pad=Math.max(G(120+_rowN*52), FS(21)*3+G(40)), vw=DL+pad*2, vh=DW+pad*2;
   const _rowY=k=>pad+DW+G(46+52*k), _rowX=k=>pad-G(46+52*k);      // แถวที่ k (1 = ถัดจากโซ่หลัก)
@@ -29324,6 +29965,38 @@ function part2DSvg(b,o){
           s+=`<text x="${xL3-G(8)}" y="${Sy((ys3[k]+ys3[k+1])/2)+4}" text-anchor="end" font-size="${FS(14)}" font-weight="600" fill="${gc}">${dfmt(g)}</text>`; } }
       USED.ghrow=1;
     }
+    /* ───────── v1.239: ระยะราวแขวน วัดจากขอบหลังของแผ่น ─────────
+       เลขนี้คือสิ่งที่ช่างใช้จริงตอนวางเจาะ และเป็นเลขที่สเปคเขียนไว้ตรง ๆ
+       ชั้นตายที่ขอบหลังชนแผ่นหลังพอดี จะได้เท่ากับค่าที่ตั้งไว้ (260)
+       ส่วนแผ่นทอปที่ยาวเลยไปจนสุดหลังตู้ จะได้ 260 + ความหนาแผ่นหลัง + ระยะร่น
+       โซ่ระยะรวมมีตัวเลขนี้อยู่แล้ว แต่ปนกับอีกสิบช่องและไม่มีอะไรบอกว่าวัดจากขอบไหน
+       ขอบ "หลัง" คิดจากทิศจริงในตู้ ไม่ใช่เดาจากเครื่องหมายของพิกัด แผ่นที่ถูกหมุนจึงยังถูก */
+    if(_hrOn){
+      const rc2="#0f7b8a";
+      let rs=1; try{ const _M3=orientMatrix(b.orient,b.yaw);
+        const _v3=new THREE.Vector3(0,1,0).transformDirection(_M3); rs=(_v3.z<0)?1:-1; }catch(e){}
+      const rearY=rs*W/2;
+      const vals=[...new Set((b.holes||[]).filter(h=>h&&h.hangRail&&!h.edge).map(h=>rr(h.y||0)))];
+      const _k2=(_hgOn?1:0)+(_ghOn?1:0)+1;
+      const onX=!!rot;                                  // แผ่นที่วางนอน แกนลึกกลายเป็นแกนนอนของรูป
+      const P=v=> onX? Sx(tx(0,v)) : Sy(ty(0,v));
+      const A0=P(rearY);
+      vals.forEach(v=>{ const A1=P(v), dv=rr(Math.abs(rearY-v));
+        if(onX){ const yB=_rowY(_k2);
+          s+=`<line x1="${A0}" y1="${yB}" x2="${A1}" y2="${yB}" stroke="${rc2}" stroke-width="${SW(1)}"/>`
+            +[A0,A1].map(X=>`<line x1="${X}" y1="${yB-5}" x2="${X}" y2="${yB+5}" stroke="${rc2}" stroke-width="${SW(1.4)}"/>`).join("")
+            +`<line x1="${A1}" y1="${pad+DW}" x2="${A1}" y2="${yB-5}" stroke="${rc2}" stroke-width="${SW(.5)}" stroke-dasharray="${SW(2)} ${SW(4)}" opacity=".55"/>`
+            +`<text x="${(A0+A1)/2}" y="${yB-G(8)}" text-anchor="middle" font-size="${FS(14)}" font-weight="600" fill="${rc2}">${dfmt(dv)}</text>`
+            +`<text x="${Math.min(A0,A1)-10}" y="${yB+5}" text-anchor="end" font-size="${FS(13)}" fill="${rc2}">ราวแขวน · จากขอบหลัง</text>`;
+        } else { const xL=_rowX(_k2);
+          s+=`<line x1="${xL}" y1="${A0}" x2="${xL}" y2="${A1}" stroke="${rc2}" stroke-width="${SW(1)}"/>`
+            +[A0,A1].map(Y=>`<line x1="${xL-5}" y1="${Y}" x2="${xL+5}" y2="${Y}" stroke="${rc2}" stroke-width="${SW(1.4)}"/>`).join("")
+            +`<line x1="${xL+5}" y1="${A1}" x2="${pad}" y2="${A1}" stroke="${rc2}" stroke-width="${SW(.5)}" stroke-dasharray="${SW(2)} ${SW(4)}" opacity=".55"/>`
+            +`<text x="${xL-G(8)}" y="${(A0+A1)/2+4}" text-anchor="end" font-size="${FS(14)}" font-weight="600" fill="${rc2}">${dfmt(dv)}</text>`
+            +`<text x="${xL}" y="${Math.max(A0,A1)+G(18)}" text-anchor="middle" font-size="${FS(13)}" fill="${rc2}">ราวแขวน · จากขอบหลัง</text>`;
+        } });
+      USED.hrrow=1;
+    }
   }
   s+=`</svg>`;
   part2DSvg.lastUsed=USED;                    // v23.4: ให้ผู้เรียกเอาไปทำคำอธิบายตามของที่มีจริง
@@ -29406,6 +30079,7 @@ function open2D(b){
             ["pin","#888","● รูพิน"],["edge","#b3299a","○ เจาะสัน"],["dowel","#c0392b","● เดือย"],
             ["mf","#0c7a5a","■ มินิฟิก (+ถ้วยแคม)"],["hinge","#6f3df0","○ บานพับ Ø35"],
             ["hrow","#6f3df0","├─┤ แถวระยะบานพับ (ม่วง · แถวล่างสุด)"],
+            ["hrrow","#0f7b8a","├─┤ ระยะราวแขวน วัดจากขอบหลังของแผ่น"],
             ["pocket","#a0522d","▭ ช่องบาก/Pocket"],["groove","#a0522d","▬ ร่อง"],
             ["bevel","#7a5cff","┄ เพ (รูปทรง · ไม่ออกไฟล์เจาะ)"],
             ["edgesec","#0c7a5a","┄ สันเป็นหน้าตัด (รูปทรง · ไม่ออกไฟล์เจาะ)"]];
@@ -30146,6 +30820,7 @@ function bindCtx(){
     else if(a==="hanger"){ try{addHangerMenu(b,ctxX,ctxY);}catch(err){ console.error(err); toast("เปิดเมนูหูแขวนไม่สำเร็จ: "+err.message); } }
     else if(a==="hangrail"){ addHangRail(b).catch(err=>{ console.error(err); toast("ใส่ราวแขวนไม่สำเร็จ: "+err.message); }); }   // v1.235
     else if(a==="hangraildel"){ try{ removeHangRail(b); }catch(err){ console.error(err); toast("เอาราวแขวนออกไม่สำเร็จ: "+err.message); } }
+    else if(a==="struct"){ try{ structSwapUI(b); }catch(err){ console.error(err); toast("เปลี่ยนโครงสร้างไม่สำเร็จ: "+err.message); } }   // v1.240
     else if(a==="leg"){ try{legMenu(b,ctxX,ctxY);}catch(err){ console.error(err); toast("เปิดเมนูขาตู้ไม่สำเร็จ: "+err.message); } }
     else if(a==="mate")connectMate(b);
     else if(a==="cabrot"){ try{ rotateCabQuick(b, ctxShift?-90:90); }catch(err){ console.error(err); toast("หมุนตู้ไม่สำเร็จ: "+err.message); } }
@@ -31545,12 +32220,23 @@ function fittingAgg(boards){   // รวมเดือย + พินรอง�
       (m[k]||(m[k]={art:k,dia:d,kind:"pin",name:nm,unit:"ตัว",count:0})).count+=1;});
   });
   // อุปกรณ์ 3D ที่วางจาก Fitting Studio: 1 ชุดที่วาง = 1 fitting (รหัส = ชื่อโมเดล · ผูก Purchase ID ที่ Element)
-  { const seen=new Set(); boards.forEach(b=>{ if(!b._fit||!b._fitId)return;
-      const k=b._fit, el2=(((settings.elements||{}).fittings)||[]).find(x=>x.code===k);
+  { const seen=new Set(); const _fl=(((settings.elements||{}).fittings)||[]);
+    boards.forEach(b=>{ if(!b._fit||!b._fitId)return;
+      /* v1.244: เหล็กฉาก 3 ขา — รหัสที่วางอาจเป็นรหัสตามความลึก/ข้าง (ANGLE3-300 · ANG350L)
+         ถ้ารหัสนั้นไม่มีแถวใน Fittings ให้ใช้แถวของซีรีส์ (ANGLE3) เป็นชื่อ หน่วย ชุด และลูก */
+      const k=b._fit, ser=b._fitSeries||k;
+      const own=_fl.find(x=>x.code===k), el2=own||_fl.find(x=>x.code===ser);
       const asSet=el2&&/^(1|ชุด|set|y|yes|true|✓)$/i.test(String(el2.asSet||"").trim());
       const key=asSet?("S|"+k+"|"+(b.cabInst||"")):("I|"+b._fitId);   // ชุด → นับ 1 ต่อตู้ · ไม่ใช่ → นับตาม fitId (เช่น 2 หู = 2)
       if(seen.has(key))return; seen.add(key);
-      (m[k]||(m[k]={art:k,dia:"",kind:"fit3d",name:(el2&&el2.desc)||k,unit:(el2&&el2.unit)||"ชุด",count:0})).count+=1; }); }
+      const e=(m[k]||(m[k]={art:k,dia:"",kind:"fit3d",
+        name:(own&&own.desc)||(((el2&&el2.desc)||k)+(b._fitArm&&k!==ser?(" ยาว "+b._fitArm):"")),
+        unit:(el2&&el2.unit)||"ชุด",count:0,_kidsFrom:(!own&&k!==ser)?ser:undefined}));
+      e.count+=1;
+      /* v1.244: ชุดที่นับ 1 ต่อตู้ (คู่ซ้าย+ขวา) แต่ตู้นี้ใส่ข้างเดียว — ตัวชุดยังเบิก 1 แต่ลูกเบิกครึ่งเดียว (สกรู 6 → 3)
+         ไม่ใช่ชุด = นับตามตัวที่วางจริงอยู่แล้ว ข้างเดียวก็ได้ 1 ตัว ลูกตามจำนวนตัวเอง ไม่ต้องหารอีก */
+      if(asSet){ e._kidN=(e._kidN!=null?e._kidN:(e.count-1))+(b._fitHalf?0.5:1); }
+      else if(e._kidN!=null) e._kidN+=1; }); }
   // ราวแขวนผ้า: 1 ราว = 1 ตัว · รหัสจริง/Purchase ID map ตามความยาวจากซีรีส์ใน Element → Fittings (lenMap) เหมือนราง Drawer
   { const fd=(settings.elements&&settings.elements.fittings)||[];
     boards.forEach(b=>{ if(!b._hangRail)return; const series=b._hrCode||settings.hangRailCode||"HANGRAIL";
@@ -31824,7 +32510,7 @@ function expandFitKids(parents){
           unit:(cd&&cd.unit)||(cut?"เส้น":"ตัว"),
           /* v28.0: ลูกที่ไม่มี Element รองรับ = พิมพ์รหัสสั่งซื้อลงไปตรง ๆ ใช้รหัสนั้นเป็น Purchase ID ได้เลย */
           _rawPid:!cd||undefined,
-          count:f.count*q, qtyPer:q, _cut:cut||undefined,
+          count:(f._kidN!=null?Math.ceil(f._kidN*q-1e-9):f.count*q), qtyPer:q, _cut:cut||undefined,   // v1.244: ครึ่งชุด = ลูกครึ่งเดียว (ปัดขึ้น)
           purchase:pids[0], _pidList:pids, _pidSrcInfo:psi }); }); }   // v28.7: ลูกก็มีรหัสเก่า/ใหม่ของตัวเอง
   });
   /* v28.7: v28.6 แตกรหัสสำรองเป็นคนละบรรทัด ซึ่งผิด — ถอนออกแล้ว
@@ -32423,7 +33109,7 @@ async function cloudListXml(){ const db=await getDB();
 async function cloudLoadXmlRecord(id){ const db=await getDB();
   const {data,error}=await db.from("xml_history").select("order_no,xml_content").eq("id",id).maybeSingle(); if(error)throw error;
   if(!data||!data.xml_content){ toast("ระเบียนนี้ไม่มี xml_content"); return false; }
-  await processXmlText(data.xml_content); return true; }
+  await processXmlText(data.xml_content,{orderNo:data.order_no||""}); return true; }   // v1.236: ส่งชื่อที่บันทึกไว้ไปด้วย
 
 /* v9.87: บานเฟรม "ต้องออกในใบไม้" ถึงจะไม่ใช่ไม้ก็ตาม
    ฝั่ง Production อ่านแถวของบานนี้แล้วเอา FrontStyle + รหัสขอบ (e1..e4) ไปหาเส้นเฟรม
@@ -35874,6 +36560,7 @@ const CurvedShelf = (function(){
   <button data-act="hanger"><span>🪝 ใส่หูแขวน (ตู้ลอย)…</span></button>
   <button data-act="hangrail" id="ctxHangRail"><span>🧷 ใส่ราวแขวนผ้าใต้ชิ้นนี้…</span></button>
   <button data-act="hangraildel" id="ctxHangRailDel"><span>✕ เอาราวแขวนผ้าออก</span></button>
+  <button data-act="struct" id="ctxStruct"><span>🧱 เปลี่ยนโครงสร้างตู้…</span></button>
   <button data-act="leg"><span>🦵 ใส่ขาตู้ (เลือกรุ่น)…</span></button>
   <button data-act="2d"><span>🗎 Preview 2D…</span></button>
   <button data-act="shoppaper"><span>🗐 แบบผลิต (ทั้งฉาก / ตู้นี้)…</span></button>
