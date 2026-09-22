@@ -940,7 +940,7 @@
    ===================================================================== */
 /* ---- APP_META: แหล่งความจริงเดียวของเวอร์ชัน (ดูได้จาก console / คลิกชื่อแอป) ---- */
 const APP_META={
-  name:"StarNexus Cabinet", version:"1.281", build:"2026-09-22/hangrail-follow-shelf",
+  name:"StarNexus Cabinet", version:"1.282", build:"2026-09-22/adj-shelf-depth-lock",
   file:"StarNexus.html", basedOn:"Furnitech_V3.html (v3.11)",
   /* ───────── เริ่มนับเวอร์ชันใหม่ที่ 1.001 (21/08/2026) ─────────
      ของเดิมนับมาถึง 42.1 แล้ววิ่งเป็นทศนิยมสองชั้นซึ่งอ่านลำดับยาก
@@ -948,6 +948,7 @@ const APP_META={
      ประวัติเก่าเก็บไว้ทั้งหมดตามเลขเดิม ไม่ไล่เขียนใหม่ เพราะเลขในนั้นถูกอ้างถึงไปแล้ว
      รายการที่อยู่ใต้ 1.001 ลงไปจึงเป็นเลขชุดเก่า อ่านต่อกันได้ตามวันที่ */
   changelog:[
+    ["1.282","2026-09-22","FEAT ชั้นปรับล็อคความลึกได้ — เดิมช่อง 🔒 ล็อคลึก มีแค่ชั้นตาย ชั้นปรับลึกเสมอ = ผิวหน้าแผ่นหลัง ถึง หน้าตู้ − ร่นหน้า จึงยืดตามตู้ทุกครั้ง · แผงชั้นปรับมีช่อง ล็อคลึก ใต้ช่องร่น กด “ใช้” ปุ่มเดิม · วัดจากผิวหน้าแผ่นหลังในตู้ (+ ร่นหลัง) ออกมาเท่านี้เสมอ ร่นหน้าไม่ใช้ · ปรับขนาดตู้ลึกขึ้น/ตื้นลงแล้วชั้นยังลึกเท่าเดิม · ตู้ตื้นกว่าค่าที่ล็อก = ชั้นชนหน้าตู้พอดี ไม่ทะลุ และแจ้งว่าได้เท่าที่มี · รูพินเจาะตามความลึกใหม่ (ห่างขอบหน้า/หลังชั้น 50 เท่าเดิม) · แปลงชั้นตาย ↔ ชั้นปรับ ค่าล็อกเดิมยังอยู่ · ใส่ 0 = ปลดล็อก กลับไปร่นหน้าเหมือนเดิม · ตรวจกับตู้ WNR042 ไฟล์ 52 ผ่านแผงจริง: ล็อก 450 → ตู้ลึก 700 ชั้น 450 · ตู้ 400 ชั้น 375.4 ชนหน้าพอดี · ปลดล็อกกลับเป็นร่นหน้า 15"],
     ["1.281","2026-09-22","FIX ราวแขวนลอยห่างใต้ชั้น — MWA026 ชั้น 2 ล็อกระยะไว้ 1000 จากพื้นตู้ (ผิวบนที่ 1100) แต่ราวของมันค้างอยู่ใต้ตำแหน่งชั้นเดิม ห่างใต้ชั้น 174 มม. · ตัวจัดราว (relayHangRails) ทำงานแค่ตอนปรับขนาดตู้ สลับโครงสร้าง โหลด XML และเปิดออเดอร์คลาวด์ ส่วนชั้นที่ล็อกระยะถูกวางใหม่ทุกรอบคิดฉาก (และตอนเปิดออเดอร์ ราวถูกจัดก่อนชั้นจะถูกวางตามระยะล็อก) · ตอนนี้ทุกรอบคิดฉาก ราวเกาะใต้แผ่นที่มันแขวน (ช่องว่าง 1 มม. เท่ากับตอนใส่ราว) ต่อจากขั้นล็อกระยะและตรึงผิว · แก้แค่ความสูง รูบนชั้นอยู่ในพิกัดของชั้นจึงไม่เปลี่ยน ใบอุปกรณ์และแบบผลิตเท่าเดิม · ลองย้ายชั้นไป 1200 ราวตามขึ้นไปทันที"],
     ["1.280","2026-09-22","FIX ลิ้นชัก K40 หลังเตี้ย (63) ได้ระบบราง SLIDE ของกล่องไม้แทน K40-63 — ค่าตั้งกล่องของลูกเหล่านี้ไม่มีชนิดรางติดมา ตัวเลือกระบบรางจึงถือเป็นรางรับข้าง · ผล: ความยาวรางเลือกจาก 250–500 ของ SLIDE (กล่องพังจึงได้ 250 → ใบอุปกรณ์ออก KITCHEN40_H80 ที่ไม่มีรหัส ×2 — คือลูกเตี้ยสองลูกของ BND214 ไม่ใช่ลูกสูง) · รูรางแผ่นข้าง 37·101·261 แทน 37·165·261 · หน้าต่างปรับลิ้นชักขึ้นชนิดราง SLIDE · ตอนนี้ชิ้นกล่องแผงเหล็กใช้ระบบแผงเหล็กตามซีรีส์และความสูงแผ่นหลังจริงเสมอ (ลูกเตี้ย = K40-63 · ลูกสูง = K40-148) ใบอุปกรณ์ BND123/214: FITDW00366 ×2 + KITCHEN40_H150 (Purchase FITDW00366) ×2 + FITDW00367 ×2 · FIX เส้นเฟรมที่ยังไม่มี Element (007 · 021) ไม่ออกรหัสท่อน — ไม่มี Purchase ID จึงค้นด้วยรหัสขึ้นต้น “007” ซึ่งไม่มีในคลัง · ตอนนี้ค้นจากชื่อรุ่นในชื่อสินค้าแทน (…-007 + ตัดขนาด 595 + สีเฟรม + ปลาย 45°) ตัดค่าจ้าง/ค่าทำสีทิ้ง ได้ 007: 595 = 406AL30110310076 · 1118 = 406AL30110310116 · 021 1118 ตัด 45 ยังไม่มีในคลังจริง บอกเหตุตรง ๆ · มี Element + Purchase ID แล้วใช้ทางเดิม · CHANGE กระจกตามออเดอร์: รหัส (FT05007) ใช้บอกชนิดเท่านั้น แล้วค้นด้วยชื่อชนิด + หนา + ขนาด + ขอบ ทั้งคลัง — กระจกใสชาทองมี 19 ตระกูลรหัส ขนาด 406x545 อยู่ใต้ 407FT05… ไม่ใช่ FT05007… · ค้นคลังครั้งเดียวต่อรายการต่อรอบเปิดโปรแกรม (งานทั้งไฟล์ 53 ยิง 25 ครั้ง คิดใบซ้ำไม่ยิงเพิ่ม)"],
     ["1.279","2026-09-22","FIX กล่องลิ้นชักตู้ที่วางหมุนในผังพัง (BND123 · BND214 — พื้น K40 กว้าง 25 ลึก 235 รางสั้นสุด แผงเหล็กลอยนอกตู้ รูหน้าบานหุบเข้ากลาง) — ตัวคิดกล่องอ่านแกน X เป็นแนวกว้างตู้เสมอ ตู้หมุน 90° แผ่นข้างสองแผ่นมี x เท่ากันจึงได้ช่องกว้าง 0 · ทางที่ห่อคลายหมุนไว้ (ปรับขนาดตู้ สลับโครงสร้าง) ไม่เป็น แต่ปุ่มบันทึกในหน้าตั้งค่าคิดกล่องทุกตู้ใหม่โดยไม่คลายหมุน (เปลี่ยนโหมดไฟแล้วกดบันทึกก็พัง) รวมถึงจัดหน้าบาน ปรับลิ้นชักทั้งชุด ร่นช่องภายใน · ตอนนี้ตัวคิดกล่องคลายหมุนเองทุกครั้ง (ผลตรงกับคลายหมุนด้วยมือทุกค่า) · ไฟล์ที่เซฟกล่องพังค้างไว้ ซ่อมเองตอนเปิดครั้งแรก (ชิ้นกล่องที่หลุดนอกโครงตู้ = คิดใหม่ครั้งเดียว) · FIX แผ่นข้างตู้ที่หมุนอยู่ไม่มีรูรางลิ้นชักเลย — ตัวเจาะล้างรูเก่าแล้วหาแผ่นข้างตามแกน X ไม่เจอจึงหยุด ตอนนี้เจาะในเฟรมของตู้ (BND214 ได้ข้างละ 6 รู · BND123 ข้างละ 2) · เจาะซ้ำทุกเฟรมแล้วพิกัดไม่เลื่อน · FEAT กระจกตามออเดอร์ — ช่อง K_Front_Glass1..6 (xxAG207_FT05007) เก็บติดตู้ตอนโหลด XML เองไม่ต้องจับคู่ · บานเลข n อ่านช่องเลข n ท่อนหลัง _ คือรหัสกระจก ค้นคลังด้วยรหัสขึ้นต้น FT05007 + ขนาด · ชนิดกระจก (กระจกใสชาทอง) อ่านจากชื่อสินค้าของรหัสนั้น · ความหนาจากรหัส (FT05 = 5) · ขนาดยังไม่มีในคลังได้ชื่อชนิดถูกไว้ขอเปิดรหัส · หน้าดูชิ้นบอกกระจกที่สั่งและค่าที่ออเดอร์ส่งมา · FEAT แบบบานเฟรม: บอกขนาดกระจกที่จะได้ใต้ช่องซ้อนเข้าในเฟรม และเตือนเมื่อค่าซ้อนไม่ตรงกับร่องจริงของเส้น (xxAG ซ้อน 2.5 ได้บาน − 35 = 560 · ร่อง 007 ลึก 18.5 ควรซ้อน 17.5 = บาน − 5 = 590 × 1113) พร้อมปุ่มแก้ตัวนี้ หรือทุกแบบบานที่ซ้อนค่าเดียวกันและควรแก้เป็นค่าเดียวกัน (Front1..6 × xxAG207/208/281) ในคลิกเดียว · ตัวหาร่องใหม่รองรับร่องที่เปิดด้านหนึ่ง (ช่องกระจก 007 มีปีกด้านหน้า) · ป้ายช่องบอกชัดว่าวัดจากขอบในของเส้น"],
@@ -9865,16 +9866,23 @@ function applyAdjShelf(b,opts){
   // เลื่อนชั้นตามจำนวนรู (รูละ pinPitch มม. · บวก=ขึ้น ลบ=ลง) — ชั้นย้ายจริง แล้วรูพินเจาะใหม่ที่ระดับใหม่ด้านล่าง
   if(opts.moveRows){ const step=settings.pinPitch||32; b.y=round(b.y+opts.moveRows*step); }
   const front=Math.max(opts.front||0,0), back=Math.max(opts.back||0,0), left=Math.max(opts.left||0,0), right=Math.max(opts.right||0,0);
-  const frontZ=info.cabFront-front, backZ=info.backZ+back;
+  /* ───────── v1.282: ชั้นปรับล็อคความลึกได้ ─────────
+     เดิมมีแค่ชั้นตาย · ชั้นปรับลึกเสมอ = ผิวหน้าแผ่นหลัง ถึง หน้าตู้ − ร่นหน้า จึงยืดตามตู้ทุกครั้งที่ตู้ลึกขึ้น
+     ล็อคลึก = วัดจากผิวหน้าแผ่นหลัง (+ ร่นหลัง) ออกมาเท่านี้เสมอ ร่นหน้าไม่ใช้ · ตู้ตื้นกว่าที่ล็อก = ชนหน้าตู้พอดี ไม่ทะลุ
+     ไม่ส่งค่ามา (เช่นตอนแปลงชั้นตาย → ชั้นปรับ) = คงค่าล็อกเดิมไว้ · ส่ง 0 = ปลดล็อก */
+  const dfx=Math.max((opts.depthFix!=null)?(+opts.depthFix||0):(+((b.shelfInset||{}).depthFix)||0),0);
+  const backZ=info.backZ+back;
+  let frontZ=info.cabFront-front;
+  if(dfx>0) frontZ=Math.min(backZ+dfx, info.cabFront);
   b.W=Math.max(round(frontZ-backZ),20); b.z=round((frontZ+backZ)/2);
   if(isFinite(info.innerL)&&isFinite(info.innerR)){ const lx=info.innerL+left, rx=info.innerR-right; b.L=Math.max(round(rx-lx),20); b.x=round((lx+rx)/2); }
-  b.setback=front; b.shelfInset={front,back,left,right};
+  b.setback=front; b.shelfInset={front,back,left,right}; if(dfx>0) b.shelfInset.depthFix=round(dfx);
   if(opts.extra!=null) b.pinExtra=Math.max(0,Math.round(opts.extra));
   state.boards.forEach(o=>{ if(o.id===b.id||!o.holes)return; o.holes=o.holes.filter(h=>h.src!==b.id); });
   render3D(false); const n=shelfDrillPins(b,info.sides)+((b._shelfSup==="edge")?(drillShelfEdgeSup(b)||0):0);
   sync(0);
   const lv=1+2*(b.pinExtra!=null?b.pinExtra:(settings.pinExtra||1));
-  toast("ชั้นปรับ: ร่นหน้า"+front+" หลัง"+back+" ซ้าย"+left+" ขวา"+right+" · "+lv+" ระดับ · รูพิน "+n);
+  toast("ชั้นปรับ: "+(dfx>0?("🔒 ลึก "+round(b.W)+" จากผิวแผ่นหลัง"+(back?(" (ร่นหลัง "+back+")"):"")+((b.W<dfx-0.5)?(" — ตู้ตื้นกว่า "+round(dfx)+" จึงได้เท่าที่มี"):"")):("ร่นหน้า"+front+" หลัง"+back))+" ซ้าย"+left+" ขวา"+right+" · "+lv+" ระดับ · รูพิน "+n);
 }
 function isInnerDivider(b){
   if(!b||b.orient!=="side"||b._door||b._virtual||isRail(b)||!(b.T>0))return false;
@@ -14278,6 +14286,8 @@ function showInspector(){
           <div class="fld" style="margin:0"><label>ร่นซ้าย (มม.)</label><input type="number" id="f_inL" class="nameinp" value="${Math.round(ins.left??1)}" style="width:100%;font-family:var(--mono)"></div>
           <div class="fld" style="margin:0"><label>ร่นขวา (มม.)</label><input type="number" id="f_inR" class="nameinp" value="${Math.round(ins.right??1)}" style="width:100%;font-family:var(--mono)"></div>
         </div>
+        <div style="display:flex;gap:6px;align-items:center;margin-top:6px"><span style="font-size:12px;opacity:.85;min-width:62px">🔒 ล็อคลึก</span><input type="number" id="f_inD" class="nameinp" value="${Math.round(ins.depthFix||0)}" style="width:90px;font-family:var(--mono)"><span style="font-size:11px;opacity:.6">มม. · 0=ปลด</span></div>
+        <div style="font-size:11px;opacity:.6;margin-top:2px;line-height:1.5">วัดจากผิวหน้าแผ่นหลังในตู้ (+ ร่นหลัง) ออกมาเท่านี้เสมอ ไม่ยืดตามตู้ · ล็อกแล้วไม่ใช้ร่นหน้า · กด “ใช้” ด้านล่าง</div>
         <div style="display:flex;gap:6px;align-items:center;margin-top:6px"><span style="font-size:12px;opacity:.85">ระดับปรับ</span>
           <select id="f_pinLevels" class="nameinp" style="flex:1;padding:6px 8px"><option value="0" ${ex===0?"selected":""}>1 ระดับ</option><option value="1" ${ex===1?"selected":""}>3 ระดับ</option><option value="2" ${ex===2?"selected":""}>5 ระดับ</option></select>
           <button class="ibtn" id="f_adjApply" style="background:var(--accent);color:#fff;border-color:transparent">ใช้</button></div>
@@ -14731,7 +14741,7 @@ function showInspector(){
     if(aA)aA.onclick=()=>{ const g=id=>{const el=body.querySelector(id);return el?Math.max(0,parseFloat(el.value)||0):0;};
       const lv=body.querySelector("#f_pinLevels");
       const mvEl=body.querySelector("#f_shelfMove"); const mv=mvEl?(parseInt(mvEl.value)||0):0;
-      applyAdjShelf(b,{front:g("#f_inF"),back:g("#f_inB"),left:g("#f_inL"),right:g("#f_inR"),extra:(lv?parseInt(lv.value)||0:undefined),moveRows:mv}); }; }
+      applyAdjShelf(b,{front:g("#f_inF"),back:g("#f_inB"),left:g("#f_inL"),right:g("#f_inR"),depthFix:g("#f_inD"),extra:(lv?parseInt(lv.value)||0:undefined),moveRows:mv}); }; }
   { const dv=body.querySelector("#f_div"); if(dv)dv.onclick=()=>{try{addDivider();}catch(e){console.error(e);}}; }
   { const dw=body.querySelector("#f_dwall"); if(dw)dw.onclick=()=>{try{addDepthWall();}catch(e){console.error(e);}}; }
   { const bk=body.querySelector("#f_back"); if(bk)bk.onclick=()=>{try{addBackPanel();}catch(e){console.error(e);}}; }
@@ -28548,7 +28558,9 @@ function refitInterior(boards){
   const depthOf=f=>{ const ins=f.shelfInset||{};
     const [zLo,zHi]=zoneOf(f);
     if(f.depthFix>0){ if(f.depthRef==="front"){ return [round(f.depthFix), round(zHi-f.depthFix/2)]; } return [round(f.depthFix), round(zLo+f.depthFix/2)]; }   // เสาล็อคลึก วัดจากหน้า/หลัง
-    if(ins.depthFix>0){ const bz2=zLo+Math.max(ins.back||0,0); return [round(ins.depthFix), round(bz2+ins.depthFix/2)]; }   // ล็อคลึก อิงหลัง
+    if(ins.depthFix>0){ const bz2=zLo+Math.max(ins.back||0,0);
+      const dd=isAdjShelf(f)?Math.max(Math.min(ins.depthFix,zHi-bz2),20):ins.depthFix;     // v1.282: ชั้นปรับล็อกลึก ตู้ตื้นลง = ชนหน้าตู้ ไม่ทะลุ
+      return [round(dd), round(bz2+dd/2)]; }   // ล็อคลึก อิงหลัง
     const fz=zHi-Math.max(ins.front!=null?ins.front:(f.setback||0),0), bz=zLo+Math.max(ins.back||0,0);
     return [round(Math.max(fz-bz,20)), round((fz+bz)/2)]; };
   /* ───────── v25.7: เสาที่ตั้งใจให้สูงเต็มตู้ ต้องไม่ถูกหดลงมาระหว่างชั้น ─────────
