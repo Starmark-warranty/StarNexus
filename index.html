@@ -940,7 +940,7 @@
    ===================================================================== */
 /* ---- APP_META: แหล่งความจริงเดียวของเวอร์ชัน (ดูได้จาก console / คลิกชื่อแอป) ---- */
 const APP_META={
-  name:"StarNexus Cabinet", version:"1.277", build:"2026-09-22/frame-cut-color",
+  name:"StarNexus Cabinet", version:"1.278", build:"2026-09-22/custom-order-glass",
   file:"StarNexus.html", basedOn:"Furnitech_V3.html (v3.11)",
   /* ───────── เริ่มนับเวอร์ชันใหม่ที่ 1.001 (21/08/2026) ─────────
      ของเดิมนับมาถึง 42.1 แล้ววิ่งเป็นทศนิยมสองชั้นซึ่งอ่านลำดับยาก
@@ -948,6 +948,7 @@ const APP_META={
      ประวัติเก่าเก็บไว้ทั้งหมดตามเลขเดิม ไม่ไล่เขียนใหม่ เพราะเลขในนั้นถูกอ้างถึงไปแล้ว
      รายการที่อยู่ใต้ 1.001 ลงไปจึงเป็นเลขชุดเก่า อ่านต่อกันได้ตามวันที่ */
   changelog:[
+    ["1.278","2026-09-22","FIX แบบผลิตรวมบานเฟรมซ้ายกับขวาเป็นใบเดียว \"Door L ×2\" — WNL059 (xxAG207 เส้น 021 ด้านขวา) กับ WNR059 (xxAG208 เส้น 021 ด้านซ้าย) ขนาดเท่ากันเป๊ะ และบานออเดอร์ถือชื่อลิงก์เดียวกัน (FrontShapeP1) ตัวรวมกลุ่มดูแค่ชื่อลิงก์กับขนาดจึงยุบเป็นใบเดียว ช่างได้แบบบานซ้ายไปทำทั้งคู่ · ตอนนี้รวมกลุ่มด้วยแบบบานจริงหลังแปลงลิงก์ + หน้าตัดรายด้าน + ด้านบานพับ + สีเฟรม + ขนาด ได้ Door L ×1 กับ Door R ×1 · หัวรองของหน้าเฟรมบอกแบบบานจริงและสีเฟรมด้วย (FrontShapeP1 → Front1_xxAG207 · สีเฟรม AL618MH) · FEAT หน้าแบบกระจกตามแบบที่โรงงานใช้ — รูปด้านหน้า (ด้านยาวนอน) พร้อมระยะและลายกระจก รูปสันบอกความหนา ชื่อสินค้าตัวใหญ่ใต้รูป (ชื่อตามคลังถ้าค้นเจอ) ขอบแบบเจียรมีกล่อง \"แบบขยายลบมุม\" (1~1.5) กับ \"ขยายเจียรโดยรอบ\" แบบลบคมไม่มีกล่องขยาย · ครอบกระจกชั้นปรับ กระจกบานเฟรม บานที่ตั้งขอบวางกระจก และชิ้นที่วัสดุเป็นกระจก รวมกลุ่มตาม ชนิด หนา ขนาด ขอบ แยกกระจกชั้นกับกระจกบาน · ขนาดมาจากตัวเดียวกับใบ Fitting (แยก glassSpecOfBoard ออกจาก glassBOM ใบอุปกรณ์ได้ค่าเดิมทุกบรรทัด) · ชั้นกระจกที่ไม่มีงานเจาะไม่มีหน้าแผ่นซ้ำแล้ว สแกนชิ้นกระจกเปิดหน้าแบบกระจกตรง · CHANGE ปุ่ม \"พิมพ์เฉพาะ → หน้าตัดเฟรม\" เปลี่ยนเป็น \"งานสั่งทำ\" มีแบบเฟรมหน้าบาน ตามด้วยแบบกระจก เดินเลขหน้าในชุด รายการทางขวาจัดกระจกไว้ใต้หัว กระจกชั้น / กระจกบาน"],
     ["1.277","2026-09-22","FIX เฟรมอลูไม่ออกรหัสท่อนตัดในใบ Fitting (xxAG207/208 · AL618MH) — สี่สาเหตุซ้อนกัน: (1) ความยาวตัดใช้ขนาดก่อนค่าปรับของ Part ได้ 597/1117 ทั้งที่บานจริงและ 3D คือ 595×1118 (ค่าปรับ xxAG ซ้ายขวา −1 บนล่าง +0.5 มีไว้ให้ได้ขนาดนี้) · ตอนนี้บานเฟรมอลูใช้ขนาดบานหลังปรับ บานไม้ (เส้นหุ้มนอกแผ่นที่ถูกลด เช่น xCAx129 −3) ยังใช้ขนาดก่อนปรับเหมือนเดิม (2) ไม่รู้สีเฟรม — ตอนนี้ใช้รหัสสีของแบบบาน หรือถ้าไม่ได้ตั้ง ใช้สีหน้าบานชุดเดียวกันของตู้ (FrontColor1 ← K_Front_Color1 ในออเดอร์) แล้วกรองชื่อสินค้าในคลังด้วยสีนั้นแบบตรงทั้งคำ ใส่ Purchase ID ของเส้นเป็นรหัสตระกูล (007 = 406AL3011 · 021 = 406AL3012) ครั้งเดียวใช้ได้ทุกสี (3) ท่อนเดียวกันมีทั้งตัดตรงและ \"ตัด 45/2ด้าน\" เดิมหยิบตัวแรกตามรหัสจึงได้ตัดตรงเสมอ ตอนนี้เลือกตามปลายเส้นที่ตั้งไว้ที่แบบบาน (เข้ามุม 45° = ตัด 45/2ด้าน) ไม่มีแบบที่ต้องการก็บอกว่าขาดท่อนแบบไหน (4) บานที่ขอบหนึ่งเป็นอีกหน้าตัด (007 สามด้าน + 021) เส้น 021 ได้รหัสจากตารางสีของ 007 ไปด้วย ตอนนี้แต่ละเส้นใช้ตารางสีของหน้าตัดตัวเอง · สีกับปลายตัดแยกบรรทัดในใบ · FEAT ชุดไฟในใบอุปกรณ์เพิ่มโหมด \"ไม่ออกราง\" — ไม่ออกตัวราง พลาสติกปิดราง ฝาปิดปลาย แต่เส้นไฟ หม้อแปลง สายต่อยังออก (ที่หัวใบอุปกรณ์ และในตั้งค่า → ไฟ LED)"],
     ["1.276","2026-09-22","FIX บานพับไม่ออกตามรหัสที่ตั้งในชุดอุปกรณ์ (KIT) — ช่อง \"บานพับ\" ของชุดอุปกรณ์มีมาตั้งแต่ v15.1 แต่ไม่มีจุดไหนอ่านค่า ทุกบานจึงออกรหัสกลาง HINGE ทั้งที่ KIT03 ตั้ง HINGE_ALU ไว้ (ตู้ WNL059/WNR059 บานอลูได้บานพับไม้ในใบเบิก) · ตอนนี้ลำดับคือ แบบบาน (Part) → ชุดอุปกรณ์ของตู้ใบนั้น (ช่อง K_Fitting_Concept) → ค่ากลาง · ใส่ได้ทั้งชื่อรุ่นบานพับ (ระยะเจาะตามรุ่น) หรือรหัส Element จากแท็บ Fittings · ใบเบิกได้ HINGE_ALU พร้อมลูก FITHG00228 · ชุดที่ตั้งเท่าค่ากลาง (KIT01 = HINGE) ผลเหมือนเดิมทุกค่า · ใช้ตัวเดียวกันทั้งใบเบิก 3D แบบผลิต และไฟล์เจาะ"],
     ["1.275","2026-09-22","FIX กล่องโค้งจาก XML ครีบเหลือตัวเดียว (ควรได้ 4) — โมเดล BNF065 วาดกล่องนอนยาว 380 ตามแกน x เพื่อให้ครีบวิ่งตามขอบยาว 2+2 แต่ XML ส่งกว้าง 150 (x) ลึก 380 (z) สลับแกนกัน v1.273 เอากว้าง 150 ไปใส่ความยาวกล่อง ครีบจึงลงได้ตัวเดียว · ตอนนี้ดูว่าขนาดโมเดลเข้ากับ XML แบบตรงหรือสลับแกน ถ้าสลับ: ความยาวกล่องรับลึก XML ความลึกกล่องรับกว้าง XML สร้างตามแบบที่วาด (ครีบ 4 · ชั้น 352×138) แล้วหมุน 90° ให้ปลายโค้งอยู่หน้า แผ่นปิดอยู่หลัง ขนาดรวมตรง XML · R ตามส่วนตรงได้ทั้งแนวยาวและแนวลึก (ใช้ R ที่ตัวสร้างใช้จริงหลังบีบ ไม่ใช่เลขที่พิมพ์) — ต้นแบบกว้าง 150 R นอก 120 → ฐาน 130 ได้ R นอก 100 · FIX กลับตู้ซ้าย⇄ขวากับกล่องโค้งพัง — ตัวกลับกลับรูปทรงแต่ไม่กลับค่าที่ตัวสร้างจำไว้ (_csP) ตัวซ่อม v1.271 เลยดึงแผ่นชั้นกลับเป็นโค้งเดิม และลากครีบตามแผ่นปิดจนหลุดนอกแผ่นชั้น · ตอนนี้กลับ _csP ด้วย (ปลายโค้งซ้าย/ขวา หรือขอบหน้า/หลังสำหรับกล่องที่หมุนอยู่ พร้อมป้ายแถวครีบ) ทั้งกลับทีละตู้และกลับทั้งออเดอร์ — ใช้ทำ BNF066 จาก BNF065 ได้"],
@@ -16348,39 +16349,56 @@ function doorGlassSpec(b){
           kind:lk(p2.glassKind)||glassKindFor(b),
           edge:lk(p2.glassEdgeStyle)||glassEdgeFor(b)};
 }
+/* ───────── v1.278: สเปคกระจกของชิ้นเดียว — แยกออกมาจาก glassBOM ─────────
+   ใบ Fitting กับหน้าแบบผลิตกระจก (ShopPaper) ต้องได้ขนาด ชนิด ขอบ ชุดเดียวกันเป๊ะ
+   ถ้าต่างคนต่างคิด วันหนึ่งแบบบอก 268×461 แต่ใบสั่งออก 268×460 แล้วไม่มีใครรู้ว่าอันไหนถูก
+   ตัวนี้คือเนื้อในของ glassBOM เดิมทุกบรรทัด ย้ายมาเป็นฟังก์ชันให้สองที่เรียกร่วมกัน
+   คืน {sp, src, owner} หรือ null (ไม่ใช่กระจก)
+     src: "door"  = บานที่ตั้งขอบวางกระจก (ขนาดคิดจากบาน) · "frame" = แผ่นกลางบานเฟรม
+          "shelf" = ชั้นปรับกระจก · "mat" = ชิ้นที่วัสดุเป็นกระจก
+     owner = บานเจ้าของกระจก (door/frame) */
+function glassSpecOfBoard(b,boards){
+  if(!b) return null;
+  const _fgP=!!(b._framePart&&b._glass);
+  let own=null;
+  /* บานที่ตั้งขอบวางกระจกไว้ ให้บานเป็นคนออกแถวเอง แผ่นกลางของบานใบนั้นจึงต้องเงียบ */
+  if(_fgP&&b._frameOwner){ own=(boards||[]).find(x=>x&&x.id===b._frameOwner)||null;
+    if(own&&doorGlassSpec(own)) return null; }
+  const _dg=_fgP?null:doorGlassSpec(b);
+  if(!_fgP && !_dg && isGuide(b)) return null;
+  let sp=null, src="";
+  if(_dg){
+    sp={kind:_dg.kind, th:_dg.T, w:cutLen(Math.min(_dg.L,_dg.W)), l:cutLen(Math.max(_dg.L,_dg.W)), edge:_dg.edge};
+    src="door"; own=b;
+  }else if(_fgP){
+    const bd=blankDims(b);
+    let kind="", edge="";
+    try{ const p3=own?partDef(own.part,own):null;
+      if(p3){ const lk=v=>{ let t=String(v||"").trim(); if(t&&t[0]==="$"){ try{ t=resolveLink(t,own)||t; }catch(e){} } return t; };
+        kind=lk(p3.glassKind); edge=lk(p3.glassEdgeStyle); } }catch(e){}
+    sp={kind:kind||glassKindFor(b), th:round(bd.T),
+        w:cutLen(Math.min(bd.L,bd.W)), l:cutLen(Math.max(bd.L,bd.W)), edge:edge||glassEdgeFor(b)};
+    src="frame";
+  }else{
+    let mc="", bd=null;
+    try{ const el=effLinks(b); bd=blankDims(b);
+      mc=matCodeForThick(resolveOut(el.mat,b),coreThickOf(b,bd.T)); }catch(e){ return null; }
+    const gm=isGlassMat(mc);
+    if(!gm && !b._glassShelf) return null;            // ไม่ใช่กระจก
+    sp={kind:glassKindFor(b), th:round(gm?gm.th:bd.T),
+        w:cutLen(Math.min(bd.L,bd.W)), l:cutLen(Math.max(bd.L,bd.W)), edge:glassEdgeFor(b)};
+    src=b._glassShelf?"shelf":"mat";
+  }
+  if(!(sp.w>0&&sp.l>0&&sp.th>0)) return null;
+  return {sp, src, owner:own};
+}
 /* รวมกระจกทั้งงานเข้าตาราง Fitting — คนละขนาด/ชนิด/ขอบ = คนละบรรทัด */
 function glassBOM(m,boards){
   if(settings.glassBomOn===false) return 0;
   let n=0;
   (boards||[]).forEach(b=>{
-    if(!b) return;
-    const _fgP=!!(b._framePart&&b._glass);
-    /* บานที่ตั้งขอบวางกระจกไว้ ให้บานเป็นคนออกแถวเอง แผ่นกลางของบานใบนั้นจึงต้องเงียบ */
-    if(_fgP&&b._frameOwner){ const _own=(boards||[]).find(x=>x&&x.id===b._frameOwner);
-      if(_own&&doorGlassSpec(_own)) return; }
-    const _dg=_fgP?null:doorGlassSpec(b);
-    if(!_fgP && !_dg && isGuide(b)) return;
-    let sp=null;
-    if(_dg){
-      sp={kind:_dg.kind, th:_dg.T, w:cutLen(Math.min(_dg.L,_dg.W)), l:cutLen(Math.max(_dg.L,_dg.W)), edge:_dg.edge};
-    }else if(_fgP){
-      const bd=blankDims(b);
-      let kind="", edge="";
-      try{ const own=(boards||[]).find(x=>x&&x.id===b._frameOwner); const p3=own?partDef(own.part,own):null;
-        if(p3){ const lk=v=>{ let t=String(v||"").trim(); if(t&&t[0]==="$"){ try{ t=resolveLink(t,own)||t; }catch(e){} } return t; };
-          kind=lk(p3.glassKind); edge=lk(p3.glassEdgeStyle); } }catch(e){}
-      sp={kind:kind||glassKindFor(b), th:round(bd.T),
-          w:cutLen(Math.min(bd.L,bd.W)), l:cutLen(Math.max(bd.L,bd.W)), edge:edge||glassEdgeFor(b)};
-    }else{
-      let mc="", bd=null;
-      try{ const el=effLinks(b); bd=blankDims(b);
-        mc=matCodeForThick(resolveOut(el.mat,b),coreThickOf(b,bd.T)); }catch(e){ return; }
-      const gm=isGlassMat(mc);
-      if(!gm && !b._glassShelf) return;                 // ไม่ใช่กระจก
-      sp={kind:glassKindFor(b), th:round(gm?gm.th:bd.T),
-          w:cutLen(Math.min(bd.L,bd.W)), l:cutLen(Math.max(bd.L,bd.W)), edge:glassEdgeFor(b)};
-    }
-    if(!(sp.w>0&&sp.l>0&&sp.th>0)) return;
+    const g=glassSpecOfBoard(b,boards); if(!g) return;
+    const sp=g.sp;
     const key="GLASS|"+glassKey(sp);
     (m[key]||(m[key]={art:sp.kind+" "+sp.th+" มม.",dia:"",kind:"glass",
       name:glassNameOf(sp),unit:String(settings.glassUnit||"EA"),count:0,
@@ -35685,9 +35703,17 @@ const ShopPaper = (function(){
           if(!bx) return;
           secs.push({dir:i, side:pr[1], code, ls, bx}); });
       if(!secs.length) return;
-      const k=String(b.part||"")+"|"+rnd(b.L)+"x"+rnd(b.W)+"x"+rnd(b.T);
+      /* ───────── v1.278: บานซ้าย-ขวาต้องเป็นคนละแบบ ─────────
+         เดิมรวมกลุ่มด้วยชื่อ Part ที่ชิ้นถือ + ขนาด · บานออเดอร์ถือชื่อลิงก์เดียวกันหมด (FrontShapeP1)
+         แล้วค่อยไปแปลงเป็นแบบบานจริงตามตู้ WNL059 = xxAG207 (021 ด้านขวา) · WNR059 = xxAG208 (021 ด้านซ้าย)
+         สองใบนี้ขนาดเท่ากันเป๊ะ จึงถูกยุบเป็น "Door L ×2" ช่างได้แบบบานซ้ายไปทำทั้งคู่ เส้น 021 อยู่ผิดข้างไปหนึ่งใบ
+         กุญแจใหม่ใช้ของที่ทำให้บานต่างกันจริง: แบบบานหลังแปลงลิงก์ · หน้าตัดรายด้าน · ด้านบานพับ · สีเฟรม · ขนาด */
+      const _hE=(function(){ try{ return hingeMainEdge(b)||""; }catch(e){ return ""; } })();
+      const _tk=(function(){ try{ return frameColorTokOf(b,String(p2.frameSecColorKey||"").trim())||""; }catch(e){ return ""; } })();
+      const k=[String(p2.code||b.part||""), secs.map(z=>z.dir+":"+z.code).join(","), _hE, _tk,
+               rnd(b.L)+"x"+rnd(b.W)+"x"+rnd(b.T)].join("|");
       if(seen.has(k)){ const g=seen.get(k); g.qty++; g.ids.push(b.id); return; }
-      const o={b, p2, secs, qty:1, key:k, ids:[b.id]}; seen.set(k,o); out.push(o);
+      const o={b, p2, secs, qty:1, key:k, ids:[b.id], tok:_tk}; seen.set(k,o); out.push(o);
     });
     return out;
   }
@@ -35720,7 +35746,9 @@ const ShopPaper = (function(){
     const _sizeTxt=(FL!==rnd(b.L)||FW!==rnd(b.W))
       ? (`บานสำเร็จ ${FL} × ${FW} (${p2.frameWood?"แผ่นไม้":"แผ่นบาน"} ${rnd(b.L)} × ${rnd(b.W)})`)
       : (`บานสำเร็จ ${rnd(b.L)} × ${rnd(b.W)}`);
-    s+=`<text x="34" y="82" font-family="'Sarabun',sans-serif" font-size="15" fill="${THIN}">แบบบาน ${esc(String(b.part||"-"))} · ${_sizeTxt} × หนา ${rnd(T)} มม. · จำนวน ${fd.qty} ใบ${p2.frameWood?" · บานไม้ (เส้นเป็นมือจับโปรไฟล์)":" · บานเฟรม"}</text>`;
+    /* v1.278: ชื่อลิงก์ (FrontShapeP1) บอกช่างไม่ได้ว่าเป็นบานไหน — ต่อด้วยแบบบานจริงหลังแปลง และสีเฟรม */
+    const _pTxt=String(b.part||"-")+((p2.code&&String(p2.code)!==String(b.part||""))?(" → "+p2.code):"")+(fd.tok?(" · สีเฟรม "+fd.tok):"");
+    s+=`<text x="34" y="82" font-family="'Sarabun',sans-serif" font-size="15" fill="${THIN}">แบบบาน ${esc(_pTxt)} · ${_sizeTxt} × หนา ${rnd(T)} มม. · จำนวน ${fd.qty} ใบ${p2.frameWood?" · บานไม้ (เส้นเป็นมือจับโปรไฟล์)":" · บานเฟรม"}</text>`;
 
     /* ───────── v23.7: รูปด้านหน้าบานกินพื้นที่ส่วนใหญ่ · หน้าตัดย่อลงไปเรียงชิดขวา ─────────
        บานสูง ๆ เมื่อวางตั้งจะโดนบีบจนเล็กกว่ารูปหน้าตัดที่อยู่ข้าง ๆ เสียอีก
@@ -35904,6 +35932,140 @@ const ShopPaper = (function(){
        แบบบานใบเดียวจึงขึ้นขนาดตู้ทั้งจ็อบ ช่างอ่านแล้วเอาไปเทียบอะไรไม่ได้เลย
        หน้านี้เป็นแบบของบาน ช่องนี้จึงต้องเป็น กว้าง × หนา × สูง ของบานสำเร็จ */
     s+=tb(P,page,pages,"FRAME SECTION",{dx:FL, dz:T, dy:FW});
+    return s+`</svg>`;
+  }
+
+  /* ═════════ v1.278: หน้าแบบผลิต "แบบกระจก" ═════════
+     กระจกเป็นของสั่งร้านข้างนอก ร้านต้องการแบบใบเดียวต่อหนึ่งขนาด ไม่ใช่หน้าแผ่นไม้ที่เต็มไปด้วยรูเจาะ
+     วาดตามแบบที่โรงงานใช้อยู่: รูปด้านหน้า (ด้านยาวนอน) มีระยะ + ลายกระจกสามเส้น · รูปสันบอกความหนา
+     ชื่อสินค้าตัวใหญ่ใต้รูป (ชื่อตามคลังถ้าค้นเจอ) · ขอบแบบเจียรมีกล่องขยาย "ลบมุม" กับ "เจียรโดยรอบ"
+     แบบลบคมไม่มีกล่องขยาย (ตามตัวอย่างกระจกบาน)
+     ขนาด ชนิด ขอบ มาจาก glassSpecOfBoard ตัวเดียวกับใบ Fitting เลขในแบบจึงตรงกับใบสั่งเสมอ
+     รวมกลุ่มตามสเปค (ชนิด หนา ขนาด ขอบ) แยกกระจกชั้นกับกระจกบานออกจากกัน แม้ขนาดจะบังเอิญเท่ากัน */
+  function glassSheetList(bs){
+    const all=state.boards||[];
+    const hid=new Set((state.hidden||[]).map(String));
+    const inScope=new Set((bs||[]).map(b=>b&&String(b.id)));
+    /* กระจกกลางบานเฟรมเป็นชิ้นเสมือน getBoards() จึงไม่ส่งมา — เก็บเองจากบานที่อยู่ในขอบเขต */
+    const cand=(bs||[]).concat(all.filter(b=>b&&b._virtual&&b._framePart&&b._glass
+      &&inScope.has(String(b._frameOwner))&&!hid.has(String(b.id))));
+    const out=[], seen=new Map();
+    cand.forEach(b=>{
+      if(!b) return;
+      let g=null; try{ g=glassSpecOfBoard(b,all); }catch(e){ return; }
+      if(!g) return;
+      const grp=(g.src==="door"||g.src==="frame")?"door":((b._glassShelf||b.orient==="flat")?"shelf":"panel");
+      const k=grp+"|"+glassKey(g.sp);
+      const own=g.owner||b, cab=String(own.cab||own.cabInst||"");
+      let o=seen.get(k);
+      if(!o){ o={sp:g.sp, grp, src:g.src, b, own, qty:0, ids:[], cabs:[], key:k}; seen.set(k,o); out.push(o); }
+      o.qty++; o.ids.push(String(b.id));
+      if(cab&&o.cabs.indexOf(cab)<0) o.cabs.push(cab);
+    });
+    const rk={shelf:0,panel:1,door:2};
+    return out.map((o,i)=>({o,i})).sort((a,c)=>(rk[a.o.grp]-rk[c.o.grp])||(a.i-c.i)).map(x=>x.o);
+  }
+  /* ค้นรหัสกระจกในคลังให้หน้าแบบ (ครั้งเดียวต่อสเปค) ค้นเสร็จแล้ววาดหน้าใหม่ ถ้าหน้าต่างแบบผลิตยังเปิดอยู่ */
+  function glassSheetKick(gls){
+    if(settings.cutLookupOn===false) return;
+    const ps=(gls||[]).filter(o=>_fgCut[glassKey(o.sp)]===undefined)
+      .map(o=>Promise.resolve(glassLookup(o.sp)).catch(()=>null));
+    if(!ps.length) return;
+    Promise.all(ps).then(()=>{ try{ const m=$("spModal"); if(m&&m.classList.contains("show")) refresh(); }catch(e){} });
+  }
+  const GL_GRP={shelf:"กระจกชั้น", panel:"กระจกแผ่น", door:"กระจกบาน"};
+  function glassSrcTxt(gd){
+    if(gd.src==="frame") return "กระจกบานเฟรม";
+    if(gd.src==="door")  return "กระจกบาน (ขอบวางกระจก)";
+    if(gd.src==="shelf") return "กระจกชั้นปรับ";
+    return (gd.grp==="shelf")?"กระจกชั้น (วัสดุกระจก)":"กระจกแผ่น (วัสดุกระจก)";
+  }
+  function sheetGlass(P,gd,page,pages){
+    const sp=gd.sp, T=Math.max(+sp.th||0,0.1);
+    const Ls=Math.max(+sp.w,+sp.l), Ss=Math.min(+sp.w,+sp.l);              // ด้านยาววางนอนตามแบบตัวอย่าง
+    const gk=glassKey(sp), hit=_fgCut[gk]||null, ms=_fgMiss[gk]||null;
+    const code=(hit&&hit.code)?String(hit.code):String((gd.b&&gd.b._frameGlass)||"").trim();
+    const pname=(hit&&hit.name)?String(hit.name):glassNameOf(sp);
+    const grind=/เจียร/.test(String(sp.edge||""));
+    let s=`<svg class="sp-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${SW} ${SH}" width="${SW}" height="${SH}"><rect width="${SW}" height="${SH}" fill="#fff"/>`+frame();
+    s+=`<defs><pattern id="glHatch" width="7" height="7" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">`
+      +`<line x1="0" y1="0" x2="0" y2="7" stroke="${INK}" stroke-width="1.2"/></pattern></defs>`;
+    s+=`<text x="34" y="56" font-family="'Sarabun',sans-serif" font-size="25" font-weight="800" fill="${INK}">แบบกระจก · ${esc(glassSrcTxt(gd))}</text>`;
+    const cabTxt=gd.cabs.length?(gd.cabs.slice(0,8).join(", ")+(gd.cabs.length>8?(" และอีก "+(gd.cabs.length-8)+" ตู้"):"")):"-";
+    s+=`<text x="34" y="82" font-family="'Sarabun',sans-serif" font-size="15" fill="${THIN}">${esc(Ss+" × "+Ls+" × หนา "+rnd1(T)+" มม. · "+(sp.edge||"ขอบไม่ระบุ")+" · จำนวน "+gd.qty+" แผ่น · ใช้กับ "+cabTxt)}</text>`;
+
+    /* ── รูปด้านหน้า + รูปสัน ── */
+    const top0=150, hMax=grind?300:430, wMax=820;
+    const sc=Math.min(wMax/Math.max(Ls,1), hMax/Math.max(Ss,1), 1.6);
+    const FW=Ls*sc, FH=Ss*sc, tw=Math.max(T*sc,4), GAP=96;
+    const total=FW+GAP+tw+110;
+    const fx=Math.max(60,(SW-total)/2), fy=top0+70;
+    const ex=fx+FW+GAP;                                                   // สันกระจก
+    const ext=(x1,y1,x2,y2)=>`<line x1="${rnd1(x1)}" y1="${rnd1(y1)}" x2="${rnd1(x2)}" y2="${rnd1(y2)}" stroke="${DIM}" stroke-width=".7"/>`;
+    s+=`<rect x="${rnd1(fx)}" y="${rnd1(fy)}" width="${rnd1(FW)}" height="${rnd1(FH)}" fill="#f7fbfd" stroke="${INK}" stroke-width="1.6"/>`;
+    /* ลายกระจก: สามเส้นขีดยาว-สั้น ทแยงกลางแผ่น */
+    { const ang=60*Math.PI/180, ux=Math.cos(ang), uy=Math.sin(ang), px=-uy, py=ux;
+      const Lh=Math.max(30,Math.min(FH*0.42,FW*0.4,150)), cx=fx+FW/2, cy=fy+FH/2;
+      [[-15,0.8],[0,1],[15,0.8]].forEach(q=>{ const ox=cx+px*q[0], oy=cy+py*q[0], hl=Lh*q[1]/2;
+        s+=`<line x1="${rnd1(ox-ux*hl)}" y1="${rnd1(oy-uy*hl)}" x2="${rnd1(ox+ux*hl)}" y2="${rnd1(oy+uy*hl)}" stroke="${INK}" stroke-width="1" stroke-dasharray="24 6 5 6"/>`; }); }
+    s+=`<rect x="${rnd1(ex)}" y="${rnd1(fy)}" width="${rnd1(tw)}" height="${rnd1(FH)}" fill="#e3eef4" stroke="${INK}" stroke-width="1.3"/>`;
+    /* ระยะ: ยาวบนรูปหน้า · หนาบนรูปสัน · สั้นข้างรูปสัน */
+    const dY=fy-40;
+    s+=ext(fx,fy-4,fx,dY-6)+ext(fx+FW,fy-4,fx+FW,dY-6)+dimH(rnd1(fx),rnd1(fx+FW),rnd1(dY),String(rnd1(Ls)));
+    s+=ext(ex,fy-4,ex,dY-6)+ext(ex+tw,fy-4,ex+tw,dY-6)+dimH(rnd1(ex),rnd1(ex+tw),rnd1(dY),String(rnd1(T)));
+    const dX=ex+tw+60;
+    s+=ext(ex+tw+4,fy,dX+6,fy)+ext(ex+tw+4,fy+FH,dX+6,fy+FH)+dimV(rnd1(fy),rnd1(fy+FH),rnd1(dX),String(rnd1(Ss)));
+    s+=`<text x="${rnd1(fx)}" y="${rnd1(fy+FH+24)}" font-family="'Sarabun',sans-serif" font-size="13" fill="${THIN}">รูปด้านหน้า</text>`;
+    s+=`<text x="${rnd1(ex+tw/2)}" y="${rnd1(fy+FH+24)}" text-anchor="middle" font-family="'Sarabun',sans-serif" font-size="13" fill="${THIN}">สัน</text>`;
+    if(grind){                                                            // วงขยายที่สัน + ป้ายชี้
+      const cr=24, ccx=ex+tw/2, ccy=fy+Math.min(FH*0.2,48);
+      s+=`<circle cx="${rnd1(ccx)}" cy="${rnd1(ccy)}" r="${cr}" fill="none" stroke="${INK}" stroke-width="1" stroke-dasharray="14 4 3 4"/>`;
+      const lx=ex-46, ly=dY-44;
+      s+=`<line x1="${rnd1(lx)}" y1="${rnd1(ly+6)}" x2="${rnd1(ccx-cr*0.72)}" y2="${rnd1(ccy-cr*0.72)}" stroke="${INK}" stroke-width="1"/>`;
+      s+=`<text x="${rnd1(lx)}" y="${rnd1(ly)}" text-anchor="end" font-family="'Sarabun',sans-serif" font-size="22" font-weight="600" fill="${INK}" text-decoration="underline">ดูแบบขยาย</text>`;
+    }
+    /* ── ชื่อสินค้า ── */
+    const nY=fy+FH+86;
+    s+=`<text x="${SW/2}" y="${rnd1(nY)}" text-anchor="middle" font-family="'Sarabun',sans-serif" font-size="30" font-weight="600" fill="${INK}">${esc(pname)}</text>`;
+    if(hit&&hit.alt) s+=`<text x="${SW/2}" y="${rnd1(nY+24)}" text-anchor="middle" font-family="'Sarabun',sans-serif" font-size="13" fill="#b26a00">⚠ ในคลังไม่มีขอบ “${esc(sp.edge)}” พอดี — ชื่อข้างบนคือตัวที่ใกล้ที่สุด</text>`;
+
+    /* ── กล่องขยาย (เฉพาะขอบเจียร) ── */
+    if(grind){
+      const bw=330, bh=220, by=nY+44, g=60, b1=SW/2-bw-g/2, b2=SW/2+g/2;
+      const box=x=>`<rect x="${rnd1(x)}" y="${rnd1(by)}" width="${bw}" height="${bh}" fill="none" stroke="${INK}" stroke-width="1" stroke-dasharray="22 6 4 6"/>`;
+      const mm=String(sp.edge||"").match(/เจียรริม\s*([\d.]+)\s*mm/i);
+      const ch=mm?mm[1]:"1~1.5";
+      /* ลบมุม — มุมกระจกมองจากหน้าแผ่น เส้นหยักคือแนวตัดภาพ */
+      { s+=box(b1);
+        const C0x=b1+124, C0y=by+128, c=22;
+        s+=`<path d="M ${rnd1(C0x)} ${rnd1(C0y-100)} L ${rnd1(C0x)} ${rnd1(C0y-c)} L ${rnd1(C0x+c)} ${rnd1(C0y)} L ${rnd1(C0x+122)} ${rnd1(C0y)} `
+          +`C ${rnd1(C0x+70)} ${rnd1(C0y-20)}, ${rnd1(C0x+62)} ${rnd1(C0y-90)}, ${rnd1(C0x)} ${rnd1(C0y-100)} Z" fill="url(#glHatch)" stroke="${INK}" stroke-width="1.3"/>`;
+        const k=(x1,y1,x2,y2,w2)=>`<line x1="${rnd1(x1)}" y1="${rnd1(y1)}" x2="${rnd1(x2)}" y2="${rnd1(y2)}" stroke="${INK}" stroke-width="${w2||0.8}"/>`;
+        const vx=C0x-26;                                                  // ระยะตามตั้ง
+        s+=k(C0x-3,C0y-c,vx-5,C0y-c)+k(C0x-3,C0y,vx-5,C0y)+k(vx,C0y-c-8,vx,C0y+8);
+        s+=`<text x="${rnd1(vx-9)}" y="${rnd1(C0y-c/2)}" text-anchor="middle" font-family="monospace" font-size="13" fill="${INK}" transform="rotate(-90 ${rnd1(vx-9)} ${rnd1(C0y-c/2)})">${esc(ch)}</text>`;
+        const hy=C0y+24;                                                  // ระยะตามนอน
+        s+=k(C0x,C0y+3,C0x,hy+5)+k(C0x+c,C0y+3,C0x+c,hy+5)+k(C0x-8,hy,C0x+c+8,hy);
+        s+=`<text x="${rnd1(C0x+c/2)}" y="${rnd1(hy+17)}" text-anchor="middle" font-family="monospace" font-size="13" fill="${INK}">${esc(ch)}</text>`;
+        s+=`<text x="${rnd1(b1+bw/2)}" y="${rnd1(by+bh-16)}" text-anchor="middle" font-family="'Sarabun',sans-serif" font-size="17" fill="${INK}">แบบขยายลบมุม</text>`; }
+      /* เจียรโดยรอบ — หน้าตัดที่สันกระจก ลบคมบน-ล่าง */
+      { s+=box(b2);
+        const t=46, L2=150, e=11, x0=b2+(bw-L2)/2-6, y0=by+72;
+        s+=`<path d="M ${rnd1(x0)} ${rnd1(y0+e)} L ${rnd1(x0+e)} ${rnd1(y0)} L ${rnd1(x0+L2)} ${rnd1(y0)} `
+          +`C ${rnd1(x0+L2-16)} ${rnd1(y0+t*0.35)}, ${rnd1(x0+L2+16)} ${rnd1(y0+t*0.65)}, ${rnd1(x0+L2)} ${rnd1(y0+t)} `
+          +`L ${rnd1(x0+e)} ${rnd1(y0+t)} L ${rnd1(x0)} ${rnd1(y0+t-e)} Z" fill="url(#glHatch)" stroke="${INK}" stroke-width="1.3"/>`;
+        s+=`<text x="${rnd1(b2+bw/2)}" y="${rnd1(by+bh-16)}" text-anchor="middle" font-family="'Sarabun',sans-serif" font-size="17" fill="${INK}">ขยายเจียรโดยรอบ</text>`; }
+    }
+    /* ── ตารางสเปค มุมล่างซ้าย ── */
+    const miss=ms&&ms.why?("ไม่พบในคลัง — "+ms.why):((settings.cutLookupOn===false)?"ปิดการค้นคลังอยู่":"กำลังค้น…");
+    const rows=[["ชนิด",sp.kind||"-"],["หนา",rnd1(T)+" มม."],["ขนาด",Ss+" × "+Ls+" มม."],["ขอบ",sp.edge||"-"],
+      ["จำนวน",gd.qty+" แผ่น"],["ใช้กับตู้",gd.cabs.join(", ")||"-"],["รหัสในคลัง",code||miss]];
+    s+=SVGKit.kvTable(40, SH-40-(28+rows.length*24), 400, rows, "สเปคกระจก · "+(GL_GRP[gd.grp]||"กระจก"), {rh:24,lw:110,fs:12});
+    s+=SVGKit.titleBlock([
+      ["PROJECT",P.project||"-","TYPE",P.type||"-"],
+      ["CODE",code||"-","UNIT","MM"],
+      ["SIZE",Ss+" × "+Ls+" × "+rnd1(T),"QTY",gd.qty+" แผ่น"],
+      ["DRAWN BY",P.by||"-","EDGE",sp.edge||"-"]],page,pages,"GLASS · "+(GL_GRP[gd.grp]||"กระจก"));
     return s+`</svg>`;
   }
   /* v39.4: หนึ่งกล่อง = หนึ่งร่อง — ตัดขวางแผ่นตรงแนวร่อง
@@ -36478,19 +36640,32 @@ const ShopPaper = (function(){
     const bs=getBoards(); if(!bs.length) return null;
     const bb=sceneBBox(bs), P=readTitle();
     let frms=[]; try{ frms=frameDoorList(bs); }catch(e){ console.error("frameSec:",e); }
+    let gls=[]; try{ gls=glassSheetList(bs); }catch(e){ console.error("glassSheet:",e); }   // v1.278
+    try{ glassSheetKick(gls); }catch(e){}
+    const _gTitle=g=>"กระจก · "+Math.min(g.sp.w,g.sp.l)+"×"+Math.max(g.sp.w,g.sp.l)+"×"+g.sp.th+" ×"+g.qty;
+    const _gSheet=(g,pg,n)=>{ try{ return sheetGlass({...P},g,pg,n); }catch(e){ console.error("sheetGlass:",e); return ""; } };
     /* ───────── v38.7: พิมพ์เฉพาะหน้าตัดเฟรม ─────────
        งานจริงเอาชุดนี้ไปให้ฝ่ายตัดอลูอย่างเดียว ไม่ได้เอาหน้าแผ่นไม้ไปด้วย
        เดิมต้องพิมพ์ทั้งจ็อบแล้วไปเลือกหน้าเอาที่เครื่องพิมพ์ ซึ่งหน้าเรียงปนกันทั้งเล่ม
        สร้างเฉพาะชุดที่จะพิมพ์จริง แล้วเดินเลขหน้าใหม่ในชุดนั้น
        ไม่ใช่แค่ซ่อน — ไม่งั้นได้หัวกระดาษเขียนว่า หน้า 12/40 ทั้งที่พิมพ์ออกมา 3 แผ่น */
+    /* ───────── v1.278: ปุ่มนี้เปลี่ยนชื่อเป็น "งานสั่งทำ" — ของที่ส่งทำข้างนอก ─────────
+       แบบเฟรมหน้าบาน (ไปฝ่ายตัดอลู) ตามด้วยแบบกระจก (ไปร้านกระจก) เดินเลขหน้าต่อกันในชุดนี้
+       รายการทางขวา: เฟรมอยู่ใต้ชื่อตู้เหมือนเดิม · กระจกรวมไว้ใต้หัว กระจกชั้น / กระจกบาน */
     if(S.only==="frm"){
-      const out={}, titles={}, cabOf={};
+      const out={}, titles={}, cabOf={}, order=[], bkey={};
+      const n=frms.length+gls.length;
       frms.forEach((fd,i)=>{ const k="frm"+i;
-        out[k]=sheetFrameSec({...P},fd,i+1,frms.length,bb);
-        titles[k]="หน้าตัดเฟรม · "+((fd.b.name||"บาน")+" ×"+fd.qty);
-        cabOf[k]=String((fd.b&&(fd.b.cab||fd.b.cabInst))||""); });
-      out._cab=cabOf; out._titles=titles; out._order=frms.map((f,i)=>"frm"+i);
-      out._empty=!frms.length;
+        out[k]=sheetFrameSec({...P},fd,i+1,n,bb);
+        titles[k]="เฟรมหน้าบาน · "+((fd.b.name||"บาน")+" ×"+fd.qty);
+        cabOf[k]=String((fd.b&&(fd.b.cab||fd.b.cabInst))||""); order.push(k);
+        (fd.ids||[]).forEach(id=>{ bkey[String(id)]=k; }); });
+      gls.forEach((g,i)=>{ const k="gls"+i;
+        out[k]=_gSheet(g,frms.length+i+1,n);
+        titles[k]=_gTitle(g); cabOf[k]=GL_GRP[g.grp]||"กระจก"; order.push(k);
+        (g.ids||[]).forEach(id=>{ if(!bkey[id]) bkey[id]=k; }); });
+      out._cab=cabOf; out._titles=titles; out._order=order; out._bkey=bkey;
+      out._empty=!n;
       return out;
     }
     /* v23.5: บานที่มีหน้า "หน้าตัดเฟรมบาน" แล้ว ไม่ต้องมีหน้าแผ่นธรรมดาซ้ำอีก
@@ -36519,8 +36694,16 @@ const ShopPaper = (function(){
        จึงตัดหน้าแผ่นทั่วไปทิ้ง วิธีเดียวกับที่ v23.5 ทำกับบานเฟรม */
     let cores=[]; try{ cores=coreList(bs); }catch(e){ console.error("coreList:",e); }
     bs.forEach(b=>{ if(isCoreBoard(b)) _fSkip.add(b.id); });
+    /* v1.278: ชั้นกระจก/แผ่นกระจกที่ไม่มีงานเจาะ มีหน้า "แบบกระจก" แล้ว ไม่ต้องมีหน้าแผ่นซ้ำ (เหตุผลเดียวกับ v23.5)
+       กระจกที่มีรู ร่อง หรือบาก ยังคงหน้าแผ่นไว้ — หน้านั้นบอกตำแหน่งงานเจาะ ซึ่งหน้ากระจกไม่มี
+       บานที่ตั้งขอบวางกระจก ตัวบานเป็นแผ่นไม้จริง หน้าแผ่นของมันอยู่ครบ */
+    { const byId=new Map(bs.map(b=>[String(b&&b.id),b]));
+      gls.forEach(g=>{ if(g.src==="door") return;
+        (g.ids||[]).forEach(id=>{ const b=byId.get(id); if(!b) return;
+          if((b.holes||[]).length||(b.grooves||[]).length||(b.pockets||[]).length) return;
+          _fSkip.add(b.id); }); }); }
     const parts=uniqueParts(bs.filter(b=>!(b&&_fSkip.has(b.id))));
-    const pages=1+nCs+parts.length+frms.length+cores.length;
+    const pages=1+nCs+parts.length+frms.length+gls.length+cores.length;
     const out={ summary:sheetSummary({...P},bs,bb,grab3D(),pages), flat:sheetFlatten({...P},bs,bb) };
     const titles={ summary:"หน้ารวม (Plan+Front+Side+3D)" };
     let csOrder=[];
@@ -36530,9 +36713,11 @@ const ShopPaper = (function(){
     parts.forEach(p=> titles["part"+p.n]=(p.name||("แผ่น #"+p.n))+" ×"+(p.qty||1));
     /* v22.3: หน้าหน้าตัดเฟรมบาน — ต่อท้ายชุดเดิม ไม่แตะหน้าที่มีอยู่ */
     frms.forEach((fd,i)=> out["frm"+i]=sheetFrameSec({...P},fd,2+csOrder.length+parts.length+i,pages,bb));
-    frms.forEach((fd,i)=> titles["frm"+i]="หน้าตัดเฟรม · "+((fd.b.name||"บาน")+" ×"+fd.qty));
+    frms.forEach((fd,i)=> titles["frm"+i]="เฟรมหน้าบาน · "+((fd.b.name||"บาน")+" ×"+fd.qty));
+    /* v1.278: หน้าแบบกระจก — ต่อจากเฟรม */
+    gls.forEach((g,i)=>{ out["gls"+i]=_gSheet(g,2+csOrder.length+parts.length+frms.length+i,pages); titles["gls"+i]=_gTitle(g); });
     cores.forEach((cd,i)=>{ const k="core"+i;
-      try{ out[k]=sheetCore({...P},cd,2+csOrder.length+parts.length+frms.length+i,pages,bb); }
+      try{ out[k]=sheetCore({...P},cd,2+csOrder.length+parts.length+frms.length+gls.length+i,pages,bb); }
       catch(e){ console.error("sheetCore:",e); }
       titles[k]="ไม้เพาะโครง · "+((cd.b.name||"แผ่น")+" ×"+cd.qty); });
     /* v5.6: ตัดหน้ากางแผ่นรวมออก — ข้อมูลซ้ำกับหน้าแผ่นแยกชิ้นที่ละเอียดกว่า */
@@ -36541,14 +36726,17 @@ const ShopPaper = (function(){
     const _nm=z=>String((z&&(z.cab||z.cabInst))||"");
     parts.forEach(p=>{ cabOf["part"+p.n]=_nm(p.board); });
     frms.forEach((f,i)=>{ cabOf["frm"+i]=_nm(f.b); });
+    gls.forEach((g,i)=>{ cabOf["gls"+i]=GL_GRP[g.grp]||"กระจก"; });
     cores.forEach((c,i)=>{ cabOf["core"+i]=_nm(c.b); });
     out._cab=cabOf;
     out._order=["summary"].concat(csOrder).concat(parts.map(p=>"part"+p.n))
-      .concat(frms.map((f,i)=>"frm"+i)).concat(cores.map((c,i)=>"core"+i));
+      .concat(frms.map((f,i)=>"frm"+i)).concat(gls.map((g,i)=>"gls"+i)).concat(cores.map((c,i)=>"core"+i));
     /* v1.184: ชิ้นไหนอยู่หน้าแบบไหน · ใช้ตอนสแกนแล้วกดดูแบบของชิ้นนั้นโดยตรง */
     const bkey={};
     parts.forEach(p=>(p.ids||[]).forEach(id=>{ bkey[id]="part"+p.n; }));
-    frms.forEach((f,i)=>{ const b=f&&f.b; if(b&&b.id) bkey[String(b.id)]="frm"+i; });
+    frms.forEach((f,i)=>{ const b=f&&f.b; if(b&&b.id) bkey[String(b.id)]="frm"+i;
+      (f.ids||[]).forEach(id=>{ bkey[String(id)]="frm"+i; }); });                  // v1.278: ทุกใบในกลุ่ม ไม่ใช่แค่ตัวแทน
+    gls.forEach((g,i)=>(g.ids||[]).forEach(id=>{ if(!bkey[id]) bkey[id]="gls"+i; }));   // v1.278: กระจก (ชั้นที่ไม่มีหน้าแผ่น)
     cores.forEach((c,i)=>{ const b=c&&c.b; if(b&&b.id) bkey[String(b.id)]="core"+i; });
     out._bkey=bkey;
     out._titles=titles;
@@ -36562,7 +36750,7 @@ const ShopPaper = (function(){
     /* โชว์ให้ครบเท่าที่จะพิมพ์จริง — เดิมมีแค่ 2 แท็บ แต่พิมพ์ออกมา 6 หน้า */
     const ord=(sh._order||["summary","flat"]).filter(k=>sh[k]);
     if(!ord.length){
-      v.innerHTML='<div style="color:var(--ink-faint);padding:40px;line-height:1.7">ไม่มีหน้าตัดเฟรมในขอบเขตที่เลือก<br><span style="font-size:12px">บานจะมีหน้านี้ก็ต่อเมื่อแบบบานของมันใส่รหัส Section ไว้อย่างน้อยหนึ่งด้าน</span></div>';
+      v.innerHTML='<div style="color:var(--ink-faint);padding:40px;line-height:1.7">ไม่มีงานสั่งทำในขอบเขตที่เลือก<br><span style="font-size:12px">แบบเฟรมหน้าบาน — บานที่แบบบานใส่รหัส Section ไว้อย่างน้อยหนึ่งด้าน<br>แบบกระจก — ชั้นปรับกระจก · กระจกบานเฟรม · บานที่ตั้งขอบวางกระจก · ชิ้นที่วัสดุเป็นกระจก</span></div>';
       const lb0=$("spList"); if(lb0) lb0.innerHTML=""; return; }
     /* v38.7: เปลี่ยนชุดกรองแล้วหน้าที่ค้างอยู่อาจไม่มีในชุดใหม่ — เดิมตกไปที่ sh.summary ซึ่งชุดกรองไม่มี จอจึงว่าง */
     /* v1.184: เปิดตรงไปที่แผ่นของชิ้นที่สแกนมา ทำหลัง build เพราะแผนที่เกิดตอน build */
@@ -37921,7 +38109,7 @@ const CurvedShelf = (function(){
       <div class="cb-fld"><label>พิมพ์เฉพาะ</label></div>
       <div class="sp-seg">
         <button class="sp-only on" data-only="all">ทุกหน้า</button>
-        <button class="sp-only" data-only="frm">หน้าตัดเฟรม</button>
+        <button class="sp-only" data-only="frm" title="แบบที่ส่งทำข้างนอก — แบบเฟรมหน้าบาน และแบบกระจก">งานสั่งทำ</button>
       </div>
       <button class="ibtn" id="spRefreshBtn" style="width:100%;justify-content:center;margin-bottom:12px">🔄 อัปเดตแบบจากฉาก</button>
       <div style="font-size:11px;font-weight:600;color:var(--ink-faint);margin-bottom:7px">หัวกระดาษ (Title Block)</div>
