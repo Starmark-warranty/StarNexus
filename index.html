@@ -940,7 +940,7 @@
    ===================================================================== */
 /* ---- APP_META: แหล่งความจริงเดียวของเวอร์ชัน (ดูได้จาก console / คลิกชื่อแอป) ---- */
 const APP_META={
-  name:"StarNexus Cabinet", version:"1.271", build:"2026-09-22/curved-box-keep-shape",
+  name:"StarNexus Cabinet", version:"1.272", build:"2026-09-22/find-replace-where",
   file:"StarNexus.html", basedOn:"Furnitech_V3.html (v3.11)",
   /* ───────── เริ่มนับเวอร์ชันใหม่ที่ 1.001 (21/08/2026) ─────────
      ของเดิมนับมาถึง 42.1 แล้ววิ่งเป็นทศนิยมสองชั้นซึ่งอ่านลำดับยาก
@@ -948,6 +948,7 @@ const APP_META={
      ประวัติเก่าเก็บไว้ทั้งหมดตามเลขเดิม ไม่ไล่เขียนใหม่ เพราะเลขในนั้นถูกอ้างถึงไปแล้ว
      รายการที่อยู่ใต้ 1.001 ลงไปจึงเป็นเลขชุดเก่า อ่านต่อกันได้ตามวันที่ */
   changelog:[
+    ["1.272","2026-09-22","FEAT ค้นหา/แทนที่ในหน้าตรวจ XML ตั้งเงื่อนไขจากคอลัมน์อื่นในแถวเดียวกันได้ — ช่อง \"เฉพาะแถวที่ [คอลัมน์] = [ค่า]\" เช่น เปลี่ยน K_Front_Color1 เป็น N03P0057N_N01M0029N เฉพาะตู้ที่ K_Front_Shape1 = MCWx58 (ตู้ Exxx02 ที่สีเดียวกันไม่โดน) · เทียบตรงทั้งช่อง หลายค่าคั่นด้วย , ใช้ * แทนอะไรก็ได้ (MCW*) · อ่านค่าจากตารางตอนนี้ ค่าที่เพิ่งแก้ก็นับ · ช่องค้นหาเว้นว่าง + เลือกคอลัมน์ = เขียนทับทุกช่องที่มีค่าในคอลัมน์นั้น (ช่องว่างไม่แตะ บานที่ไม่มีจริงจึงไม่โดนเติมสี) · ทุกคอลัมน์ + ช่องค้นหาว่าง ยังไม่ทำอะไรเหมือนเดิม · แจ้งผลว่ากี่ช่องกี่ตู้ · FIX ช่องแดง (ไม่มีในคลัง) ไม่อัปเดตหลังแก้ค่า — เดิมตรวจครั้งเดียวตอนเปิดหน้าต่าง แทนที่ AL618MH เป็นรหัสที่มีแล้วยังแดงค้าง แก้เป็นรหัสที่ไม่มีก็ไม่แดง ตอนนี้ตรวจค่าใหม่ทันทีด้วยกติกาเดิม · FIX ลายหน้าบาน 3D ไม่ขึ้นบนบานตู้ Hood (WAL119) — บานผูก Part \"Front1\" ตรง ๆ ไม่ใช่ลิงก์ FrontShapeP1 ตัวหารหัสแบบบานจึงได้ค่าว่าง ตอนนี้อ่านจากตัว Part: วัสดุ $FrontMat1 อยู่ใต้ Family FrontShape1 → ได้ PCWx50 ของตู้ใบนั้น (ใบตัด/ป้ายถูกอยู่แล้ว ผิดแค่ภาพ)"],
     ["1.271","2026-09-22","FIX กล่องโค้ง: แผ่นชั้นเลื่อนออกทางหน้า 8 มม. และหดลึกจาก 138 เหลือ 122 (เป็นมานาน) — ตัวดันก้นชั้นชนแผ่นหลัง (applyShelfBackFlush) หยิบ \"ครีบแถวหลัง\" (วางแนวหน้าเหมือนแผ่นหลัง) มาเป็นแผ่นหลังของกล่อง แล้วตัดชั้นให้ก้นมาชนผิวครีบทุกครั้งที่คิดฉาก ชั้นจึงหดเท่าความหนาครีบและเลื่อนออกครึ่งหนึ่ง พอเปลี่ยน Part ความหนาครีบเปลี่ยน ชั้นก็ขยับตามอีก · ตอนนี้ตัวดันชั้น/ฟิลเลอร์ชนแผ่นหลังข้ามกล่องโค้ง · ซ่อมตอนเปิดงานและทุกครั้งที่ความหนาเปลี่ยน: คิดรูปทรงกล่องใหม่จากค่าที่ตัวสร้างเก็บไว้ (_csP) ด้วยความหนาจริงของชั้น/ครีบ/แผ่นปิด แล้วเขียนตำแหน่ง ขนาด โปรไฟล์ และรอยบากกลับลงชิ้นเดิม (Part/สีที่ตั้งไว้ไม่หาย) · ครีบยึดผิวนอกของกล่อง หนาขึ้นแล้วโตเข้าใน รอยบากบนชั้นตามความหนาครีบ · ขนาดรวมกล่อง (โหมดขนาดสำเร็จ) คงเดิม · FIX ลายหน้าบาน 3D ไม่ขึ้นบนหน้าลิ้นชักเตี้ย ทั้งที่ลายลงได้ — เดิมต้องเหลือลูกฟักกลางอย่างน้อย 10 มม. หน้าลิ้นชักสูง 188 กับลาย PCWx50 (ลึกจากขอบ 90) เหลือ 8 จึงไม่ขึ้น ตอนนี้เหลือ 2 มม. ก็วาด"],
     ["1.270","2026-09-22","FEAT ขาตู้ตื้นไม่ชนกัน — ตู้ลึกไม่เกิน 200 มม. ที่ยังใช้ขา 2 แถว (ขาหน้า/ขาหลังห่างกันแค่ 50 จากศูนย์ ฐานขาชนกัน) ขาหลังเหลือแค่ 2 มุม และขยับเข้าหากลางตู้ 100 มม. · ขากลางเหลือแถวหน้าแถวเดียว (ตู้ 6 ขา → 5 ขา · 8 ขา → 6 ขา) · ตั้งค่าได้: legShallowD (เกณฑ์ความลึก) · legShallowBackIn (ระยะขยับขาหลังเข้าใน) · ตู้ตื้นกว่าเกณฑ์ขาแถวเดียว (legNarrowW 180) ยังเป็นแถวเดียวกลางความลึกเหมือนเดิม · รูมาร์คใต้แผ่นพื้น (ถ้าแผ่นใหญ่พอให้เจาะ) ตามผังใหม่ด้วย · คิดความลึกในแกนของตู้เอง ตู้ที่หมุนตามผังใช้ได้"],
     ["1.269","2026-09-22","FIX ซูมเข้าไปดูใกล้ ๆ ไม่ได้ ติดที่ระยะหนึ่ง — ระยะกล้องต่ำสุดเดิม = modelRadius × 0.2 ซึ่งคิดจากขนาดทั้งออเดอร์ (ออเดอร์กว้าง 4 เมตร เข้าใกล้ได้แค่ ~590 มม.) และซูมเข้าหาจุดหมุนกลางฉาก ไม่ใช่จุดที่เมาส์ชี้ · ตอนนี้ใกล้สุด 40 มม. · ล้อเมาส์ซูมเข้าหาชิ้นที่เมาส์ชี้ (จุดนั้นอยู่ที่เดิมบนจอ) · ก้าวซูมเป็นสัดส่วนของระยะ ไกลเร็ว ใกล้ละเอียด · ปุ่ม + − ยังซูมเข้าหากลางจอ · FEAT จัดชั้นปรับที่ใส่ไว้แล้วให้ห่างเท่ากัน ไม่ต้องลบแล้วใส่ใหม่ — คลิกขวาที่ชั้นปรับ หรือปุ่มในแผงขวา จัดทุกชั้นปรับในช่องเดียวกัน (ระหว่างแผ่นที่ไม่ใช่ชั้นปรับ เช่น พื้น ฝาบน ชั้นตาย · ช่องกว้างเดียวกัน) เลือกวัดถึง กึ่งกลางชั้น (ศูนย์ถึงศูนย์เท่ากัน) หรือ ผิวชั้น (ช่องใสเท่ากัน) · เลือกลงระยะรูระบบ 32 ได้ · เจาะรูพินใหม่ · ราวแขวนใต้ชั้นตามไป · ใช้กับตู้ที่หมุนในผังได้"],
@@ -2675,6 +2676,25 @@ function doorShapeCode(b){
     if(info&&info.fams&&info.fams.length) return String(famChainValue(info.fams,b)||"").trim();
     const m=pl.match(/FrontShapeP?(\d+)/i);                                   // สำรอง: อ่านเลขบานจากชื่อ Part
     if(m){ const cc=(state.cabColors||{})[b.cabInst]||{}; return String(cc["FrontShape"+m[1]]||"").trim(); }
+    /* ───────── v1.272: บานที่ผูก Part ตรง ๆ ไม่ผ่านลิงก์ FrontShapeP# ─────────
+       ตู้ Hood WAL119 บานผูก Part "Front1" ตรง ๆ — ไม่ใช่ลิงก์ใน Variables จึงไม่มีโซ่ Family ให้ไล่
+       และชื่อไม่มีคำว่า FrontShape ตัวสำรองข้างบนเลยได้ค่าว่าง บานใบเดียวของตู้นั้นจึงเป็นแผ่นเรียบ
+       ทั้งที่ตัว Part บอกอยู่แล้วว่าเป็นบานชุดไหน: วัสดุ $FrontMat1 อยู่ใต้ Family FrontShape1
+       (และ info3 เขียน FrontShape:{FrontShape1}) · ใบตัด/ป้ายอ่านทางนั้นอยู่แล้ว ได้ PCWx50 ถูกมาตลอด ผิดแค่ภาพ 3D
+       ดูลิงก์ในตัว Part ก่อน (ตรงตามนิยาม) · ไม่เจอค่อยอ่านเลขชุดจากข้อความในตัว Part */
+    const pd=partDef(pl,b);
+    if(pd){
+      for(const k of ["mat","surfT","surfB","e1","e2","e3","e4"]){
+        const ln=String(pd[k]||"").trim(); if(!ln) continue;
+        const inf=nodePathFams(ln); if(!inf||!inf.fams||!inf.fams.length) continue;
+        const fi=inf.fams.findIndex(f=>/FrontShape/i.test(String((f&&f.name)||"")));
+        if(fi<0) continue;
+        const v=String(famChainValue(inf.fams.slice(0,fi+1),b)||"").trim(); if(v) return v; }
+      const txt=Object.keys(pd).map(k=>(typeof pd[k]==="string")?pd[k]:"").join(" ");
+      const m2=txt.match(/FrontShapeP?(\d+)/i)||String(pd.code||"").match(/^Front(\d+)$/i);
+      if(m2){ const fam=findVar("FrontShape"+m2[1]);
+        const v=String((fam?familyOption(fam,b):((state.cabColors||{})[b.cabInst]||{})["FrontShape"+m2[1]])||"").trim(); if(v) return v; }
+    }
   }catch(e){}
   return "";
 }
@@ -22113,12 +22133,13 @@ function xmlPreviewDialog(orderNo,parsed,maps,doc,setEls){
     /* v15.4: ดึงรายชื่อตู้จากคลาวด์ทีเดียวตอนเปิดหน้าตรวจ แล้ววาดตารางใหม่เมื่อได้ผล
        ไม่บล็อกหน้าจอ เพราะตารางแสดงได้เลย แค่เครื่องหมายเตือนมาช้ากว่านิดเดียว */
     try{ if(!_cabNames.size) cabLibSync().catch(()=>{}); }catch(e){}   // v1.242: เดิม .then(draw()) — ไม่มี draw ในหน้านี้ วาดใหม่ไม่เคยเกิด · เครื่องหมายแดงตัดสินจาก cabModelIdsExist() แทนแล้ว
-    const _missSet=(()=>{
-      const out={};
-      try{
+    /* ───────── v1.272: ตัวตรวจคลังแยกออกมาเป็นรายช่อง ─────────
+       เดิมตรวจครั้งเดียวตอนเปิดหน้าต่าง เฉพาะค่าที่มากับไฟล์ แล้วทาแดงค้างไว้ตามนั้น
+       พอแทนที่ค่า (พิมพ์เองหรือ ค้นหา/แทนที่) ช่องยังแดงอยู่ทั้งที่แก้เป็นรหัสที่มีแล้ว
+       หรือแก้เป็นรหัสที่ไม่มีในคลังก็ไม่แดง — ตอนนี้ค่าใหม่ถูกตรวจทันทีด้วยกติกาชุดเดียวกัน */
+    const _missCtx=(()=>{ try{
         const mp=maps.filter(m=>m&&m.field&&m.target&&!isNumVarName(m.target));
         const colArr=((settings.elements&&settings.elements.colors)||[]);
-        const cols=colArr.map(c=>String(c.code||"").trim());
         const colObj={}; colArr.forEach(c=>{ const k=String(c.code||"").trim(); if(k) colObj[k]=c; });
         /* รายการสีที่ยังไม่ได้ผูกอะไรเลย = ระบบเติมให้ตอนอ่านไฟล์ แต่คนยังไม่ได้เข้าไปตั้ง */
         const _colBlank=c=>{ if(!c) return true;
@@ -22127,42 +22148,58 @@ function xmlPreviewDialog(orderNo,parsed,maps,doc,setEls){
           return /^\(from xml\)$/i.test(String(c.desc||"").trim())||!String(c.desc||"").trim(); };
         const legFld=String(settings.legXmlField||"K_Leg").trim().toLowerCase();
         const kitFld=String(settings.kitField||DEF_SETTINGS.kitField).trim().toLowerCase();   // v28.5.2
-        mp.forEach(m=>{
-          if(isPullField(m.field)) return;                       // มือจับมีตารางสรุปของตัวเอง
-          const fam=findVar(m.target), opts=(fam&&fam.options)||[];
-          const isLeg=(String(m.field||"").trim().toLowerCase()===legFld);
-          const seen=new Set();
-          parsed.forEach(p=>{ const v=String((p.pv||{})[m.field]||"").trim(); if(!v||seen.has(v))return; seen.add(v);
-            if(isLeg){ let sp=null; try{ sp=parseLegXmlVal(v); }catch(e){}
-              if(!sp) out[m.field+"|"+v]="รุ่นขานี้ยังไม่มีใน Element → Fittings (ขาตู้) หรือตารางจับคู่ในตั้งค่า";
-              return; }
-            /* v28.5.2: รหัสชุดอุปกรณ์อยู่ที่ Element → ชุดอุปกรณ์ KIT ไม่ใช่คลังสี — ถามให้ถูกคลัง */
-            if(String(m.field||"").trim().toLowerCase()===kitFld){
-              let k=null; try{ k=kitOf(v); }catch(e){}
-              if(!k) out[m.field+"|"+v]="รหัสชุดนี้ยังไม่มีใน Element → ชุดอุปกรณ์ KIT — โหลดไปตู้ใบนี้จะไม่ได้อุปกรณ์ของชุด";
-              return; }
+        return {mp,colObj,_colBlank,legFld,kitFld};
+      }catch(e){ console.error("missSet:",e); return null; } })();
+    /* ข้อความเตือนของค่า v ในช่องที่จับคู่ด้วย m · "" = ไม่มีอะไรต้องเตือน */
+    const _missCalc=(m,v)=>{ const X=_missCtx; if(!X||!m||!v) return "";
+      try{
+        if(isPullField(m.field)) return "";                      // มือจับมีตารางสรุปของตัวเอง
+        const fam=findVar(m.target), opts=(fam&&fam.options)||[];
+        const {colObj,_colBlank}=X;
+        if(String(m.field||"").trim().toLowerCase()===X.legFld){ let sp=null; try{ sp=parseLegXmlVal(v); }catch(e){}
+          return sp?"":"รุ่นขานี้ยังไม่มีใน Element → Fittings (ขาตู้) หรือตารางจับคู่ในตั้งค่า"; }
+        /* v28.5.2: รหัสชุดอุปกรณ์อยู่ที่ Element → ชุดอุปกรณ์ KIT ไม่ใช่คลังสี — ถามให้ถูกคลัง */
+        if(String(m.field||"").trim().toLowerCase()===X.kitFld){
+          let k=null; try{ k=kitOf(v); }catch(e){}
+          return k?"":"รหัสชุดนี้ยังไม่มีใน Element → ชุดอุปกรณ์ KIT — โหลดไปตู้ใบนี้จะไม่ได้อุปกรณ์ของชุด"; }
             /* v14.9: ไม่ใช่ทุกช่องที่เป็นสี — รูปทรงหน้าบาน แนวลาย หรือชนิดอุปกรณ์ ก็ส่งมาในช่องแบบเดียวกัน
                เช็คทุกช่องกับตารางสีจึงเตือนมั่วไปหมด ดูจากตัวแปรที่จับคู่ไว้แทน
                v15.2: ตอนอ่านไฟล์ ระบบเติมสีที่ยังไม่มีเข้าคลังให้เองเป็น "รายการเปล่า"
                ตัวตรวจจึงเห็นว่ามีในคลังแล้วทุกตัวและขึ้นว่าครบตลอด ทั้งที่รายการนั้นยังไม่ได้ผูกวัสดุอะไรเลย
                โหลดไปก็ได้ตู้ที่ไม่มีวัสดุจริง ต้องดูด้วยว่ารายการนั้น "ตั้งเสร็จหรือยัง" ไม่ใช่แค่ "มีหรือไม่มี" */
-            const inFam=opts.indexOf(v)>=0;
-            const ce=colObj[v];
-            const inCol=!!ce, colBlank=ce?_colBlank(ce):false;
-            const famIsColor=opts.some(o=>colObj[String(o||"").trim()])
-              ||/color|colour|สี/i.test(String(m.target||""))||/color|colour|สี/i.test(String(m.field||""));
-            if(!inFam||(famIsColor&&(!inCol||colBlank))){
-              const what=[]; if(!inFam) what.push("ยังไม่มีในตัวเลือกของ "+m.target);
-              if(famIsColor&&!inCol) what.push("ยังไม่มีใน Element → Colors");
-              else if(famIsColor&&colBlank) what.push("มีใน Element → Colors แต่ยังไม่ได้ผูกวัสดุ/ผิว/ขอบ");
-              out[m.field+"|"+v]=what.join(" · ")+" — โหลดไปตู้ใบนี้จะถอยไปใช้ค่ากลาง";
-            }
-          });
-        });
-      }catch(e){ console.error("missSet:",e); }
-      return out;
-    })();
-    const _missOf=(k,v)=>{ const t=String(v==null?"":v).trim(); return t?(_missSet[k+"|"+t]||""):""; };
+        const inFam=opts.indexOf(v)>=0;
+        const ce=colObj[v];
+        const inCol=!!ce, colBlank=ce?_colBlank(ce):false;
+        const famIsColor=opts.some(o=>colObj[String(o||"").trim()])
+          ||/color|colour|สี/i.test(String(m.target||""))||/color|colour|สี/i.test(String(m.field||""));
+        if(!inFam||(famIsColor&&(!inCol||colBlank))){
+          const what=[]; if(!inFam) what.push("ยังไม่มีในตัวเลือกของ "+m.target);
+          if(famIsColor&&!inCol) what.push("ยังไม่มีใน Element → Colors");
+          else if(famIsColor&&colBlank) what.push("มีใน Element → Colors แต่ยังไม่ได้ผูกวัสดุ/ผิว/ขอบ");
+          return what.join(" · ")+" — โหลดไปตู้ใบนี้จะถอยไปใช้ค่ากลาง";
+        }
+        return "";
+      }catch(e){ console.error("missSet:",e); return ""; } };
+    /* ค่าที่มากับไฟล์ — ใช้นับบนหัวแท็บ "ตรวจของในคลัง" เหมือนเดิม */
+    const _missSet=(()=>{ const out={}; if(!_missCtx) return out;
+      _missCtx.mp.forEach(m=>{ const seen=new Set();
+        parsed.forEach(p=>{ const v=String((p.pv||{})[m.field]||"").trim(); if(!v||seen.has(v))return; seen.add(v);
+          const r=_missCalc(m,v); if(r) out[m.field+"|"+v]=r; }); });
+      return out; })();
+    const _missMemo={};
+    const _missOf=(k,v)=>{ const t=String(v==null?"":v).trim(); if(!t) return "";
+      const key=k+"|"+t;
+      if(key in _missSet) return _missSet[key];
+      if(key in _missMemo) return _missMemo[key];
+      let r=""; if(_missCtx) _missCtx.mp.forEach(m=>{ if(!r&&m.field===k) r=_missCalc(m,t); });
+      return (_missMemo[key]=r); };
+    /* ทาสีช่องตามผลตรวจ — ใช้ทั้งตอนวาดครั้งแรก (cin) และหลังแก้ค่า */
+    const _missPaint=(el,ms)=>{ if(!el) return;
+      el.classList.toggle("xpMiss",!!ms);
+      el.style.border="1px solid "+(ms?"rgba(229,72,77,.45)":"transparent");
+      el.style.background=ms?"rgba(229,72,77,.10)":"transparent";
+      el.style.color=ms?"#e5484d":"var(--ink)";
+      el.onblur=()=>{ el.style.borderColor=ms?"rgba(229,138,36,.55)":"transparent"; el.style.background=ms?"rgba(229,138,36,.14)":"transparent"; }; };
     /* v15.2: รหัสตู้ที่ยังไม่มีโมเดลในคลัง — โหลดไปก็ได้ตู้เปล่า ต้องเห็นตั้งแต่ตรงนี้
        ดูทั้งคลังในเครื่องและรายชื่อที่ดึงมาจากคลาวด์ ชื่อตรงตัวหรือขึ้นต้นตรงกันก็ถือว่ามี */
     try{ cabLibRemember([]); }catch(e){}                      // v15.4: อ่านคลังในเครื่องทันที
@@ -22304,10 +22341,15 @@ function xmlPreviewDialog(orderNo,parsed,maps,doc,setEls){
       /* v1.233: แถบค้นหา/แทนที่ — ซ่อนไว้ก่อน เปิดด้วย Ctrl+F หรือปุ่มบนหัวหน้าต่าง */
       +'<div id="xpFind" style="display:none;margin:8px 16px 0;padding:6px 8px;border:1px solid var(--line);border-radius:9px;background:var(--panel-strong);align-items:center;gap:6px;flex:none;flex-wrap:wrap">'
         +'<span style="font-size:12px;color:var(--ink-dim);white-space:nowrap">🔍 ค้นหา</span>'
-        +'<input id="xpFq" class="nameinp" placeholder="ค่าที่ต้องการหา" style="width:180px;font-family:var(--mono);font-size:12px">'
+        +'<input id="xpFq" class="nameinp" placeholder="ค่าที่หา (ว่าง = ทุกช่องในคอลัมน์)" title="เว้นว่างแล้วเลือกคอลัมน์ = เขียนทับทุกช่องที่มีค่าในคอลัมน์นั้น (ในแถวที่ผ่านเงื่อนไข)" style="width:180px;font-family:var(--mono);font-size:12px">'
         +'<span style="font-size:12px;color:var(--ink-dim);white-space:nowrap">แทนที่ด้วย</span>'
         +'<input id="xpFr" class="nameinp" placeholder="ค่าใหม่ (เว้นว่าง = ลบค่าทิ้ง)" style="width:180px;font-family:var(--mono);font-size:12px">'
-        +'<select id="xpFcol" class="nameinp" style="width:150px;font-size:11.5px"></select>'
+        +'<select id="xpFcol" class="nameinp" title="แทนที่ในคอลัมน์ไหน" style="width:150px;font-size:11.5px"></select>'
+        /* v1.272: เงื่อนไขจากคอลัมน์อื่นในแถวเดียวกัน เช่น เปลี่ยน K_Front_Color1 เฉพาะตู้ที่ K_Front_Shape1 = MCWx58 */
+        +'<span style="font-size:12px;color:var(--ink-dim);white-space:nowrap">เฉพาะแถวที่</span>'
+        +'<select id="xpFwk" class="nameinp" title="เงื่อนไข — ดูค่าในคอลัมน์นี้ของแถวเดียวกัน" style="width:150px;font-size:11.5px"></select>'
+        +'<span style="font-size:12px;color:var(--ink-dim)">=</span>'
+        +'<input id="xpFwv" class="nameinp" placeholder="เช่น MCWx58" title="ตรงทั้งช่อง · หลายค่าคั่นด้วย , · ใช้ * แทนอะไรก็ได้ เช่น MCW*" style="width:130px;font-family:var(--mono);font-size:12px">'
         +'<label style="font-size:11.5px;display:flex;align-items:center;gap:4px;white-space:nowrap"><input type="checkbox" id="xpFcase"> ตรงตัวพิมพ์</label>'
         +'<label style="font-size:11.5px;display:flex;align-items:center;gap:4px;white-space:nowrap"><input type="checkbox" id="xpFwhole"> ตรงทั้งช่อง</label>'
         +'<label style="font-size:11.5px;display:flex;align-items:center;gap:4px;white-space:nowrap"><input type="checkbox" id="xpFonly" checked> เฉพาะแถวที่ติ๊ก</label>'
@@ -22420,7 +22462,8 @@ function xmlPreviewDialog(orderNo,parsed,maps,doc,setEls){
       const p=parsed[i]; if(!p) return; p.pv=p.pv||{};
       if(String(p.pv[k]||"")===v) return;
       p.pv[k]=v; p._dirty=true; _edited++;
-      el.style.fontWeight="700"; el.title="แก้ไว้ในรอบนี้ (ไฟล์ต้นฉบับไม่ถูกแตะ)";
+      const _ms=_missOf(k,v); _missPaint(el,_ms);               // v1.272: ตรวจค่าใหม่กับคลังทันที ไม่ค้างสีของค่าเดิม
+      el.style.fontWeight="700"; el.title=(_ms?("⚠ "+_ms+" · "):"")+"แก้ไว้ในรอบนี้ (ไฟล์ต้นฉบับไม่ถูกแตะ)";
       upd(); if(!_xpBulk) _libDraw(); });       // v9.59: เช็คคลังใหม่ทันทีที่แก้ค่า (v1.233: ระหว่างแทนที่ทั้งหมด รอเช็คทีเดียวตอนจบ)
     const _reparse=p=>{ if(!p._dirty) return p;
       const pv=p.pv||{};
@@ -22488,21 +22531,45 @@ function xmlPreviewDialog(orderNo,parsed,maps,doc,setEls){
        ค่าที่แทนที่จึงเข้าทางเดียวกับพิมพ์เอง (เขียนลง pv ติดธง _dirty ไปถึง Save As และเก็บขึ้นคลาวด์ครบ) */
     const _fBar=ov.querySelector("#xpFind"), _fQ=ov.querySelector("#xpFq"), _fR=ov.querySelector("#xpFr"),
           _fC=ov.querySelector("#xpFcol"), _fCase=ov.querySelector("#xpFcase"),
-          _fWhole=ov.querySelector("#xpFwhole"), _fOnly=ov.querySelector("#xpFonly");
-    _fC.innerHTML='<option value="">ทุกคอลัมน์</option><option value="__name">ชื่อรุ่น / รหัส</option>'
-      +["ART_SIZEX","ART_SIZEY","ART_SIZEZ","D1"].concat(dnames.filter(d=>d!=="D1")).concat(pvKeys)
-        .map(k=>'<option value="'+escapeHtml(k)+'">'+escapeHtml(k)+'</option>').join("");
+          _fWhole=ov.querySelector("#xpFwhole"), _fOnly=ov.querySelector("#xpFonly"),
+          _fWk=ov.querySelector("#xpFwk"), _fWv=ov.querySelector("#xpFwv");        // v1.272: เงื่อนไข
+    { const _fColOpts='<option value="__name">ชื่อรุ่น / รหัส</option>'
+        +["ART_SIZEX","ART_SIZEY","ART_SIZEZ","D1"].concat(dnames.filter(d=>d!=="D1")).concat(pvKeys)
+          .map(k=>'<option value="'+escapeHtml(k)+'">'+escapeHtml(k)+'</option>').join("");
+      _fC.innerHTML='<option value="">ทุกคอลัมน์</option>'+_fColOpts;
+      _fWk.innerHTML='<option value="">(ไม่มีเงื่อนไข)</option>'+_fColOpts; }
     let _fAt=-1, _fHl=null;
-    const _fCells=()=>{ const col=_fC.value, only=_fOnly.checked;
+    /* ───────── v1.272: ค้นหา/แทนที่ แบบมีเงื่อนไข ─────────
+       ออเดอร์เดียวกันมีสีเดียวกันอยู่หลายตู้ แต่ต้องเปลี่ยนเฉพาะตู้ที่หน้าบานเป็นแบบหนึ่ง
+       (ตัวอย่างจริง: N03P0057N อยู่ทั้งตู้ MCWx58 และ Exxx02 — ต้องการเปลี่ยนเฉพาะ MCWx58)
+       เดิมต้องไล่ติ๊กออกทีละแถวแล้วใช้ "เฉพาะแถวที่ติ๊ก" ซึ่งพลาดง่ายและต้องติ๊กคืนเองอีกรอบ
+       ตอนนี้ตั้งเงื่อนไขจากคอลัมน์อื่นในแถวเดียวกันได้ · เทียบตรงทั้งช่อง หลายค่าคั่นด้วย , ใช้ * แทนอะไรก็ได้
+       อ่านค่าจากช่องในตารางตอนนี้ (ไม่ใช่ค่าตอนเปิดไฟล์) ค่าที่เพิ่งแก้จึงถูกนับด้วย */
+    const _fWhere=()=>{ const k=_fWk.value, raw=String(_fWv.value||"").trim();
+      if(!k||!raw) return null;                                   // ไม่ตั้งเงื่อนไข = ทุกแถว
+      const fl=_fCase.checked?"":"i";
+      const res=raw.split(",").map(s=>s.trim()).filter(Boolean).map(s=>
+        new RegExp("^"+s.split("*").map(x=>x.replace(/[.*+?^${}()|[\]\\]/g,"\\$&")).join(".*")+"$",fl));
+      const ok=new Set();
+      ov.querySelectorAll(k==="__name"?"#xpPaneCab .xpN":"#xpPaneCab .xpF").forEach(el=>{
+        if(k!=="__name"&&el.dataset.k!==k) return;
+        const v=String(el.value||"").trim();
+        if(res.some(re=>re.test(v))) ok.add(+el.dataset.i); });
+      return ok; };
+    const _fCells=()=>{ const col=_fC.value, only=_fOnly.checked, wh=_fWhere();
       return [...ov.querySelectorAll("#xpPaneCab .xpF, #xpPaneCab .xpN")].filter(el=>{
         if(only&&!keep[+el.dataset.i]) return false;
+        if(wh&&!wh.has(+el.dataset.i)) return false;
         if(!col) return true;
         return (col==="__name")?el.classList.contains("xpN"):(el.dataset.k===col); }); };
-    const _fHit=(v,q)=>{ const a=_fCase.checked?String(v):String(v).toLowerCase(),
-                               b=_fCase.checked?q:q.toLowerCase();
+    /* ช่องค้นหาว่าง + เลือกคอลัมน์แล้ว = ทุกช่องที่มีค่าในคอลัมน์นั้น (ช่องว่างไม่แตะ — บานที่ไม่มีจริงจะไม่โดนเติมสี) */
+    const _fAny=()=>!String(_fQ.value||"")&&!!_fC.value;
+    const _fHit=(v,q)=>{ if(!q) return (_fC.value&&String(v).trim())?0:-1;
+      const a=_fCase.checked?String(v):String(v).toLowerCase(),
+            b=_fCase.checked?q:q.toLowerCase();
       return _fWhole.checked?(a===b?0:-1):a.indexOf(b); };
     const _fInfo=(a,b)=>{ const el=ov.querySelector("#xpFn");
-      if(el) el.textContent=b?(a+" / "+b):(String(_fQ.value||"")?"ไม่พบ":""); };
+      if(el) el.textContent=b?(a+" / "+b):((String(_fQ.value||"")||_fAny())?"ไม่พบ":""); };
     const _fMark=el=>{ if(_fHl){ _fHl.style.outline=""; _fHl.style.outlineOffset=""; }
       _fHl=el||null;
       if(el){ el.style.outline="2px solid var(--accent)"; el.style.outlineOffset="1px";
@@ -22511,7 +22578,7 @@ function xmlPreviewDialog(orderNo,parsed,maps,doc,setEls){
       { const p=ov.querySelector("#xpPaneCab");                       // ค้นได้เฉพาะแท็บตู้ — อยู่แท็บอื่นก็พากลับมาให้
         if(p&&p.style.display==="none"){ const tb=ov.querySelector('#xpTabs button[data-t="cab"]'); if(tb) tb.click(); } }
       const q=String(_fQ.value||""), list=_fCells(), n=list.length;
-      if(!q||!n){ _fMark(null); _fInfo(0,0); return null; }
+      if((!q&&!_fAny())||!n){ _fMark(null); _fInfo(0,0); return null; }
       let hits=0; for(let k=0;k<n;k++) if(_fHit(list[k].value,q)>=0) hits++;
       if(!hits){ _fMark(null); _fInfo(0,0); return null; }
       let i=(_fAt<0)?(dir<0?0:-1):_fAt, found=-1;
@@ -22522,25 +22589,29 @@ function xmlPreviewDialog(orderNo,parsed,maps,doc,setEls){
       _fMark(list[_fAt]); _fInfo(ord,hits); return list[_fAt]; };
     /* แทนที่ในช่องเดียว — ตรงทั้งช่อง = เขียนทับทั้งค่า · ไม่งั้นแทนทุกตำแหน่งที่เจอในช่องนั้น */
     const _fPut=(el,q,rep)=>{ let v=String(el.value);
-      if(_fWhole.checked) v=rep;
+      if(_fWhole.checked||!q) v=rep;                             // v1.272: ช่องค้นหาว่าง = เขียนทับทั้งช่อง
       else if(_fCase.checked) v=v.split(q).join(rep);
       else { const low=v.toLowerCase(), lq=q.toLowerCase(); let out="",p=0,j;
         while((j=low.indexOf(lq,p))>=0){ out+=v.slice(p,j)+rep; p=j+q.length; }
         v=out+v.slice(p); }
       if(v===String(el.value)) return false;
       el.value=v; el.dispatchEvent(new Event("change")); return true; };
-    const _fRep=()=>{ const q=String(_fQ.value||""); if(!q) return;
+    const _fRep=()=>{ const q=String(_fQ.value||""); if(!q&&!_fAny()) return;
       const el=(_fHl&&_fHit(_fHl.value,q)>=0)?_fHl:_fGo(1);
       if(!el) return;
       _fPut(el,q,String(_fR.value||"")); _fGo(1); };
     const _fAll=()=>{ const q=String(_fQ.value||"");
-      if(!q){ toast("ยังไม่ได้ใส่ค่าที่ต้องการหา"); return; }
-      const rep=String(_fR.value||""), list=_fCells(); let n=0;
+      if(!q&&!_fAny()){ toast("ยังไม่ได้ใส่ค่าที่ต้องการหา — หรือเลือกคอลัมน์ ถ้าจะเขียนทับทุกช่องในคอลัมน์นั้น"); return; }
+      const rep=String(_fR.value||""), list=_fCells(); let n=0;   // เงื่อนไขอ่านครั้งเดียวก่อนเริ่ม — แทนที่คอลัมน์เงื่อนไขเองก็ไม่ไล่ตามกัน
+      const rows=new Set();
       _xpBulk=1;
-      try{ list.forEach(el=>{ if(_fHit(el.value,q)>=0&&_fPut(el,q,rep)) n++; }); }
+      try{ list.forEach(el=>{ if(_fHit(el.value,q)>=0&&_fPut(el,q,rep)){ n++; rows.add(+el.dataset.i); } }); }
       finally{ _xpBulk=0; }
       _libDraw(); _fAt=-1; _fMark(null); _fGo(1);
-      toast(n?("แทนที่แล้ว "+n+" ช่อง — ไฟล์ต้นฉบับไม่ถูกแตะ กด ยกเลิก แล้วโหลดใหม่ถ้าจะย้อน"):"ไม่พบค่าที่ค้นหาในขอบเขตที่ตั้งไว้"); };
+      const _wk=_fWk.value, _wv=String(_fWv.value||"").trim();
+      const _cond=(_wk&&_wv)?(" · เฉพาะแถวที่ "+(_wk==="__name"?"ชื่อรุ่น":_wk)+" = "+_wv):"";
+      toast(n?("แทนที่แล้ว "+n+" ช่อง ใน "+rows.size+" ตู้"+_cond+" — ไฟล์ต้นฉบับไม่ถูกแตะ กด ยกเลิก แล้วโหลดใหม่ถ้าจะย้อน")
+             :("ไม่พบค่าที่ค้นหาในขอบเขตที่ตั้งไว้"+_cond)); };
     const _fOpen=()=>{ const tb=ov.querySelector('#xpTabs button[data-t="cab"]');
       if(tb&&!tb.classList.contains("sel")) tb.click();
       _fBar.style.display="flex"; _fQ.focus(); _fQ.select(); };
@@ -22551,9 +22622,11 @@ function xmlPreviewDialog(orderNo,parsed,maps,doc,setEls){
     ov.querySelector("#xpFrep").onclick=_fRep;
     ov.querySelector("#xpFall").onclick=_fAll;
     ov.querySelector("#xpFx").onclick=_fClose;
-    [_fC,_fCase,_fWhole,_fOnly].forEach(el=>el.onchange=()=>{ _fAt=-1; _fMark(null); _fGo(1); });
+    [_fC,_fCase,_fWhole,_fOnly,_fWk].forEach(el=>el.onchange=()=>{ _fAt=-1; _fMark(null); _fGo(1); });
     _fQ.oninput=()=>{ _fAt=-1; _fGo(1); };
+    _fWv.oninput=()=>{ _fAt=-1; _fMark(null); _fGo(1); };        // v1.272
     _fQ.onkeydown=e=>{ if(e.key==="Enter"){ e.preventDefault(); _fGo(e.shiftKey?-1:1); } };
+    _fWv.onkeydown=e=>{ if(e.key==="Enter"){ e.preventDefault(); _fGo(e.shiftKey?-1:1); } };
     _fR.onkeydown=e=>{ if(e.key==="Enter"){ e.preventDefault(); _fRep(); } };
     /* ดักที่ document เพราะตอนเพิ่งเปิดหน้าต่าง โฟกัสยังอยู่นอกกล่อง ดักที่ ov อย่างเดียวจะไม่ติด
        ดูที่ e.code ไม่ใช่ e.key — แป้นภาษาไทย Ctrl+F ส่ง key เป็นตัวอักษรไทย แต่ code ยังเป็น KeyF */
