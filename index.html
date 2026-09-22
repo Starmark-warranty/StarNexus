@@ -940,7 +940,7 @@
    ===================================================================== */
 /* ---- APP_META: แหล่งความจริงเดียวของเวอร์ชัน (ดูได้จาก console / คลิกชื่อแอป) ---- */
 const APP_META={
-  name:"StarNexus Cabinet", version:"1.279", build:"2026-09-22/drawer-axis-glass-xml",
+  name:"StarNexus Cabinet", version:"1.280", build:"2026-09-22/k40-rail-frame-name-glass-kind",
   file:"StarNexus.html", basedOn:"Furnitech_V3.html (v3.11)",
   /* ───────── เริ่มนับเวอร์ชันใหม่ที่ 1.001 (21/08/2026) ─────────
      ของเดิมนับมาถึง 42.1 แล้ววิ่งเป็นทศนิยมสองชั้นซึ่งอ่านลำดับยาก
@@ -948,6 +948,7 @@ const APP_META={
      ประวัติเก่าเก็บไว้ทั้งหมดตามเลขเดิม ไม่ไล่เขียนใหม่ เพราะเลขในนั้นถูกอ้างถึงไปแล้ว
      รายการที่อยู่ใต้ 1.001 ลงไปจึงเป็นเลขชุดเก่า อ่านต่อกันได้ตามวันที่ */
   changelog:[
+    ["1.280","2026-09-22","FIX ลิ้นชัก K40 หลังเตี้ย (63) ได้ระบบราง SLIDE ของกล่องไม้แทน K40-63 — ค่าตั้งกล่องของลูกเหล่านี้ไม่มีชนิดรางติดมา ตัวเลือกระบบรางจึงถือเป็นรางรับข้าง · ผล: ความยาวรางเลือกจาก 250–500 ของ SLIDE (กล่องพังจึงได้ 250 → ใบอุปกรณ์ออก KITCHEN40_H80 ที่ไม่มีรหัส ×2 — คือลูกเตี้ยสองลูกของ BND214 ไม่ใช่ลูกสูง) · รูรางแผ่นข้าง 37·101·261 แทน 37·165·261 · หน้าต่างปรับลิ้นชักขึ้นชนิดราง SLIDE · ตอนนี้ชิ้นกล่องแผงเหล็กใช้ระบบแผงเหล็กตามซีรีส์และความสูงแผ่นหลังจริงเสมอ (ลูกเตี้ย = K40-63 · ลูกสูง = K40-148) ใบอุปกรณ์ BND123/214: FITDW00366 ×2 + KITCHEN40_H150 (Purchase FITDW00366) ×2 + FITDW00367 ×2 · FIX เส้นเฟรมที่ยังไม่มี Element (007 · 021) ไม่ออกรหัสท่อน — ไม่มี Purchase ID จึงค้นด้วยรหัสขึ้นต้น “007” ซึ่งไม่มีในคลัง · ตอนนี้ค้นจากชื่อรุ่นในชื่อสินค้าแทน (…-007 + ตัดขนาด 595 + สีเฟรม + ปลาย 45°) ตัดค่าจ้าง/ค่าทำสีทิ้ง ได้ 007: 595 = 406AL30110310076 · 1118 = 406AL30110310116 · 021 1118 ตัด 45 ยังไม่มีในคลังจริง บอกเหตุตรง ๆ · มี Element + Purchase ID แล้วใช้ทางเดิม · CHANGE กระจกตามออเดอร์: รหัส (FT05007) ใช้บอกชนิดเท่านั้น แล้วค้นด้วยชื่อชนิด + หนา + ขนาด + ขอบ ทั้งคลัง — กระจกใสชาทองมี 19 ตระกูลรหัส ขนาด 406x545 อยู่ใต้ 407FT05… ไม่ใช่ FT05007… · ค้นคลังครั้งเดียวต่อรายการต่อรอบเปิดโปรแกรม (งานทั้งไฟล์ 53 ยิง 25 ครั้ง คิดใบซ้ำไม่ยิงเพิ่ม)"],
     ["1.279","2026-09-22","FIX กล่องลิ้นชักตู้ที่วางหมุนในผังพัง (BND123 · BND214 — พื้น K40 กว้าง 25 ลึก 235 รางสั้นสุด แผงเหล็กลอยนอกตู้ รูหน้าบานหุบเข้ากลาง) — ตัวคิดกล่องอ่านแกน X เป็นแนวกว้างตู้เสมอ ตู้หมุน 90° แผ่นข้างสองแผ่นมี x เท่ากันจึงได้ช่องกว้าง 0 · ทางที่ห่อคลายหมุนไว้ (ปรับขนาดตู้ สลับโครงสร้าง) ไม่เป็น แต่ปุ่มบันทึกในหน้าตั้งค่าคิดกล่องทุกตู้ใหม่โดยไม่คลายหมุน (เปลี่ยนโหมดไฟแล้วกดบันทึกก็พัง) รวมถึงจัดหน้าบาน ปรับลิ้นชักทั้งชุด ร่นช่องภายใน · ตอนนี้ตัวคิดกล่องคลายหมุนเองทุกครั้ง (ผลตรงกับคลายหมุนด้วยมือทุกค่า) · ไฟล์ที่เซฟกล่องพังค้างไว้ ซ่อมเองตอนเปิดครั้งแรก (ชิ้นกล่องที่หลุดนอกโครงตู้ = คิดใหม่ครั้งเดียว) · FIX แผ่นข้างตู้ที่หมุนอยู่ไม่มีรูรางลิ้นชักเลย — ตัวเจาะล้างรูเก่าแล้วหาแผ่นข้างตามแกน X ไม่เจอจึงหยุด ตอนนี้เจาะในเฟรมของตู้ (BND214 ได้ข้างละ 6 รู · BND123 ข้างละ 2) · เจาะซ้ำทุกเฟรมแล้วพิกัดไม่เลื่อน · FEAT กระจกตามออเดอร์ — ช่อง K_Front_Glass1..6 (xxAG207_FT05007) เก็บติดตู้ตอนโหลด XML เองไม่ต้องจับคู่ · บานเลข n อ่านช่องเลข n ท่อนหลัง _ คือรหัสกระจก ค้นคลังด้วยรหัสขึ้นต้น FT05007 + ขนาด · ชนิดกระจก (กระจกใสชาทอง) อ่านจากชื่อสินค้าของรหัสนั้น · ความหนาจากรหัส (FT05 = 5) · ขนาดยังไม่มีในคลังได้ชื่อชนิดถูกไว้ขอเปิดรหัส · หน้าดูชิ้นบอกกระจกที่สั่งและค่าที่ออเดอร์ส่งมา · FEAT แบบบานเฟรม: บอกขนาดกระจกที่จะได้ใต้ช่องซ้อนเข้าในเฟรม และเตือนเมื่อค่าซ้อนไม่ตรงกับร่องจริงของเส้น (xxAG ซ้อน 2.5 ได้บาน − 35 = 560 · ร่อง 007 ลึก 18.5 ควรซ้อน 17.5 = บาน − 5 = 590 × 1113) พร้อมปุ่มแก้ตัวนี้ หรือทุกแบบบานที่ซ้อนค่าเดียวกันและควรแก้เป็นค่าเดียวกัน (Front1..6 × xxAG207/208/281) ในคลิกเดียว · ตัวหาร่องใหม่รองรับร่องที่เปิดด้านหนึ่ง (ช่องกระจก 007 มีปีกด้านหน้า) · ป้ายช่องบอกชัดว่าวัดจากขอบในของเส้น"],
     ["1.278","2026-09-22","FIX แบบผลิตรวมบานเฟรมซ้ายกับขวาเป็นใบเดียว \"Door L ×2\" — WNL059 (xxAG207 เส้น 021 ด้านขวา) กับ WNR059 (xxAG208 เส้น 021 ด้านซ้าย) ขนาดเท่ากันเป๊ะ และบานออเดอร์ถือชื่อลิงก์เดียวกัน (FrontShapeP1) ตัวรวมกลุ่มดูแค่ชื่อลิงก์กับขนาดจึงยุบเป็นใบเดียว ช่างได้แบบบานซ้ายไปทำทั้งคู่ · ตอนนี้รวมกลุ่มด้วยแบบบานจริงหลังแปลงลิงก์ + หน้าตัดรายด้าน + ด้านบานพับ + สีเฟรม + ขนาด ได้ Door L ×1 กับ Door R ×1 · หัวรองของหน้าเฟรมบอกแบบบานจริงและสีเฟรมด้วย (FrontShapeP1 → Front1_xxAG207 · สีเฟรม AL618MH) · FEAT หน้าแบบกระจกตามแบบที่โรงงานใช้ — รูปด้านหน้า (ด้านยาวนอน) พร้อมระยะและลายกระจก รูปสันบอกความหนา ชื่อสินค้าตัวใหญ่ใต้รูป (ชื่อตามคลังถ้าค้นเจอ) ขอบแบบเจียรมีกล่อง \"แบบขยายลบมุม\" (1~1.5) กับ \"ขยายเจียรโดยรอบ\" แบบลบคมไม่มีกล่องขยาย · ครอบกระจกชั้นปรับ กระจกบานเฟรม บานที่ตั้งขอบวางกระจก และชิ้นที่วัสดุเป็นกระจก รวมกลุ่มตาม ชนิด หนา ขนาด ขอบ แยกกระจกชั้นกับกระจกบาน · ขนาดมาจากตัวเดียวกับใบ Fitting (แยก glassSpecOfBoard ออกจาก glassBOM ใบอุปกรณ์ได้ค่าเดิมทุกบรรทัด) · ชั้นกระจกที่ไม่มีงานเจาะไม่มีหน้าแผ่นซ้ำแล้ว สแกนชิ้นกระจกเปิดหน้าแบบกระจกตรง · CHANGE ปุ่ม \"พิมพ์เฉพาะ → หน้าตัดเฟรม\" เปลี่ยนเป็น \"งานสั่งทำ\" มีแบบเฟรมหน้าบาน ตามด้วยแบบกระจก เดินเลขหน้าในชุด รายการทางขวาจัดกระจกไว้ใต้หัว กระจกชั้น / กระจกบาน"],
     ["1.277","2026-09-22","FIX เฟรมอลูไม่ออกรหัสท่อนตัดในใบ Fitting (xxAG207/208 · AL618MH) — สี่สาเหตุซ้อนกัน: (1) ความยาวตัดใช้ขนาดก่อนค่าปรับของ Part ได้ 597/1117 ทั้งที่บานจริงและ 3D คือ 595×1118 (ค่าปรับ xxAG ซ้ายขวา −1 บนล่าง +0.5 มีไว้ให้ได้ขนาดนี้) · ตอนนี้บานเฟรมอลูใช้ขนาดบานหลังปรับ บานไม้ (เส้นหุ้มนอกแผ่นที่ถูกลด เช่น xCAx129 −3) ยังใช้ขนาดก่อนปรับเหมือนเดิม (2) ไม่รู้สีเฟรม — ตอนนี้ใช้รหัสสีของแบบบาน หรือถ้าไม่ได้ตั้ง ใช้สีหน้าบานชุดเดียวกันของตู้ (FrontColor1 ← K_Front_Color1 ในออเดอร์) แล้วกรองชื่อสินค้าในคลังด้วยสีนั้นแบบตรงทั้งคำ ใส่ Purchase ID ของเส้นเป็นรหัสตระกูล (007 = 406AL3011 · 021 = 406AL3012) ครั้งเดียวใช้ได้ทุกสี (3) ท่อนเดียวกันมีทั้งตัดตรงและ \"ตัด 45/2ด้าน\" เดิมหยิบตัวแรกตามรหัสจึงได้ตัดตรงเสมอ ตอนนี้เลือกตามปลายเส้นที่ตั้งไว้ที่แบบบาน (เข้ามุม 45° = ตัด 45/2ด้าน) ไม่มีแบบที่ต้องการก็บอกว่าขาดท่อนแบบไหน (4) บานที่ขอบหนึ่งเป็นอีกหน้าตัด (007 สามด้าน + 021) เส้น 021 ได้รหัสจากตารางสีของ 007 ไปด้วย ตอนนี้แต่ละเส้นใช้ตารางสีของหน้าตัดตัวเอง · สีกับปลายตัดแยกบรรทัดในใบ · FEAT ชุดไฟในใบอุปกรณ์เพิ่มโหมด \"ไม่ออกราง\" — ไม่ออกตัวราง พลาสติกปิดราง ฝาปิดปลาย แต่เส้นไฟ หม้อแปลง สายต่อยังออก (ที่หัวใบอุปกรณ์ และในตั้งค่า → ไฟ LED)"],
@@ -16157,6 +16158,30 @@ function cutMissOf(f){
   for(const c of codes){ const m=_fgMiss[cutKey(c,f._cut,cutVarOf(f))]; if(m) return m; }
   return null;
 }
+async function cutLookupByModel(sb,sec,L,tok,mit){
+  const kw=(String(settings.cutLookupKey||DEF_SETTINGS.cutLookupKey||"ตัดขนาด")).trim();
+  let qb=sb.from("fitting_global").select("item_number,product_name,unit")
+    .ilike("product_name","%-"+sec+" %").ilike("product_name","%"+kw+" "+L+"%");
+  if(tok) qb=qb.ilike("product_name","%"+tok+"%");
+  const q=await qb.limit(200);
+  if(q.error) return {why:"ถามคลังไม่ผ่าน: "+(q.error.message||q.error)};
+  const nm=x=>String(x.product_name||"").replace(/^"+/,"").trim();
+  const _e=t=>String(t).replace(/[.*+?^${}()|[\]\\]/g,"\\$&");
+  const modelRe=new RegExp("[A-Za-z]{1,4}\\d{2,6}-"+_e(sec)+"(?![0-9A-Za-z])");
+  const cutRe=new RegExp(_e(kw)+"\\s*"+L+"(?![0-9])");
+  let rows=(q.data||[]).filter(x=>!/^\s*\(?ยกเลิก/.test(nm(x))&&!/^ค่า/.test(nm(x))&&modelRe.test(nm(x))&&cutRe.test(nm(x)));
+  if(!rows.length) return {why:"ยังไม่ได้ผูก Purchase ID ให้เส้น "+sec+" และค้นจากชื่อรุ่น (…-"+sec+" "+kw+" "+L+(tok?(" "+tok):"")+") ไม่เจอ — ยังไม่มีท่อนนี้ในคลัง"};
+  if(tok){ const tRe=new RegExp("(^|[^A-Za-z0-9])"+_e(tok)+"([^A-Za-z0-9]|$)","i");
+    rows=rows.filter(x=>tRe.test(nm(x)));
+    if(!rows.length) return {why:"มีเส้น "+sec+" ยาว "+L+" มม. ในคลัง แต่ไม่มีสี "+tok+" พอดีคำ"}; }
+  if(mit!=null){ const is45=x=>/45\s*(\/|°|องศา)/.test(nm(x)); const r2=rows.filter(x=>mit?is45(x):!is45(x));
+    if(!r2.length) return {why:"มีเส้น "+sec+" ยาว "+L+" มม."+(tok?(" สี "+tok):"")+" แต่ยังไม่มีแบบ"+(mit?"ตัด 45/2ด้าน":"ตัดตรง")+" — เพิ่มท่อนนี้ในคลัง",n:rows.length};
+    rows=r2; }
+  /* ชื่อที่ขึ้นต้นด้วยคำว่าเฟรมก่อน (ตัวสินค้า ไม่ใช่งานบริการ) แล้วรหัสยาว (ท่อนตัด) ก่อนรหัสสั้น */
+  rows.sort((a,b)=>((/^เฟรม/.test(nm(b))?1:0)-(/^เฟรม/.test(nm(a))?1:0))||(String(b.item_number).length-String(a.item_number).length)||String(a.item_number).localeCompare(String(b.item_number)));
+  const pk=rows[0];
+  return {code:String(pk.item_number||"").trim(),name:nm(pk),unit:String(pk.unit||""),byModel:true};
+}
 async function cutLookup(code,len,hint,v){
   const k=cutKey(code,len,v); if(_fgCut[k]!==undefined) return _fgCut[k];
   const _vp=String(v||"").split("/"), _tok=String(_vp[0]||"").trim(), _mit=(_vp[1]==="45")?true:(_vp[1]==="90")?false:null;   // v1.277
@@ -16184,6 +16209,14 @@ async function cutLookup(code,len,hint,v){
         if(any&&_tok){ const q3=await sb.from("fitting_global").select("item_number").ilike("item_number",pre+"%").ilike("product_name","%"+_tok+"%").limit(1);
           anyTok=(!q3.error&&q3.data)?q3.data.length:0; } }catch(e){}
       if(any&&_tok&&!anyTok) return miss("มีรหัสรุ่นนี้ในคลัง แต่ไม่มีสี "+_tok+" เลย — เช็คสีเฟรมที่ออเดอร์ส่งมา หรือเพิ่มสีนี้ในคลัง");
+      /* v1.280: เส้นเฟรมที่ยังไม่ได้ทำ Element (ไม่มี Purchase ID) รหัสที่ถืออยู่คือชื่อหน้าตัดเปล่า ๆ เช่น 007
+         ไม่มีรหัสสินค้าไหนขึ้นต้นด้วย 007 จึงไม่เคยเจอ ทั้งที่คลังมี "เฟรมอลูมิเนียม AL5806-007 … ตัดขนาด 595 mm. ตัด 45/2ด้าน" อยู่
+         ค้นจากชื่อรุ่นแทน: ชื่อมี "-007" + ตัดขนาด 595 + สีเฟรม แล้วกรองปลาย 45°/ตรงแบบเดิม · ตัดค่าจ้าง/ค่าทำสีทิ้ง */
+      if(!any&&v&&/^[A-Za-z0-9]{2,8}$/.test(pre)){
+        const hit=await cutLookupByModel(sb,pre,L,_tok,_mit);
+        if(hit&&hit.code){ _fgCut[k]=hit; return hit; }
+        if(hit&&hit.why) return miss(hit.why,hit.n||0);
+      }
       return miss(any? ("มีรหัสรุ่นนี้ในคลัง"+(_tok?(" สี "+_tok):"")+" แต่ยังไม่มีท่อนยาว "+L+" มม.") : ("ไม่มีรหัสไหนขึ้นต้นด้วย "+pre+" ในคลัง — เช็ค Purchase ID"));
     }
     const kw=(String(settings.cutLookupKey||DEF_SETTINGS.cutLookupKey||"ตัดขนาด")).trim();
@@ -16416,8 +16449,30 @@ async function glassLookup(sp){
     return _fgCut[k];
   }catch(e){ console.error("glassLookup:",e); return miss("ผิดพลาด: "+(e&&e.message||e)); }
 }
-/* v1.279: ค้นด้วยรหัสขึ้นต้นจากออเดอร์ (FT05007…) + ขนาด แล้วเลือกขอบ · เรียนชนิดกระจกจากชื่อสินค้าของรหัสนั้นไว้ด้วย */
+/* v1.279: ค้นด้วยรหัสขึ้นต้นจากออเดอร์ (FT05007…) + ขนาด แล้วเลือกขอบ · เรียนชนิดกระจกจากชื่อสินค้าของรหัสนั้นไว้ด้วย
+   v1.280: รหัสจากออเดอร์ใช้บอก "ชนิด" เท่านั้น (FT05007 = กระจกใสชาทอง) — ของขนาดเดียวกันอยู่คนละตระกูลรหัสได้
+     กระจกใสชาทอง หนา 05 mm. ขนาด 406x545 มีแต่ใต้ 407FT05… ไม่มีใต้ FT05007… (ชาทองในคลังมี 19 ตระกูลรหัส)
+     จึงเรียนชนิดจากรหัส แล้วค้นด้วยชื่อชนิด + หนา + ขนาด + ขอบ ทั้งคลังเหมือนกระจกทั่วไป
+     เรียนชนิดไม่ได้ (รหัสไม่มีในคลัง) ค่อยถอยไปค้นตามรหัสขึ้นต้นแบบเดิม */
 async function glassLookupPre(sp,k,miss){
+  const _sb0=await getDB(); if(!_sb0) return miss("ต่อคลังอุปกรณ์ไม่ได้");
+  if(_glassKindByPre[sp.pre]===undefined){
+    _glassKindByPre[sp.pre]="";
+    try{ const r=await _sb0.from("fitting_global").select("item_number,product_name").ilike("item_number",sp.pre+"%").limit(30);
+      const cnt={}; ((r&&!r.error&&r.data)||[]).forEach(x=>{ const nm0=String(x.product_name||"").replace(/^"+/,"").trim();
+        if(/^\s*\(?ยกเลิก/.test(nm0)) return; const kd=glassKindFromName(nm0); if(kd) cnt[kd]=(cnt[kd]||0)+1; });
+      const best=Object.keys(cnt).sort((a,c)=>cnt[c]-cnt[a])[0]; if(best) _glassKindByPre[sp.pre]=best; }catch(e){}
+  }
+  const kind=_glassKindByPre[sp.pre];
+  if(kind){ sp.kind=kind;
+    const sp2=Object.assign({},sp); delete sp2.pre;                        // ค้นแบบชื่อ (กุญแจแคชของแบบชื่อแยกต่างหาก)
+    const r=await glassLookup(sp2), k2=glassKey(sp2);
+    if(r&&r.code){ _fgCut[k]=Object.assign({},r); return _fgCut[k]; }
+    const m2=_fgMiss[k2]; _fgMiss[k]=m2?Object.assign({},m2,{why:"("+sp.pre+" = "+kind+") "+m2.why}):undefined;
+    return null; }
+  return glassLookupPreCode(sp,k,miss);
+}
+async function glassLookupPreCode(sp,k,miss){
   const sb=await getDB(); if(!sb) return miss("ต่อคลังอุปกรณ์ไม่ได้");
   const nm=x=>String(x.product_name||"").replace(/^"+/,"").trim();
   const live=x=>!/^\s*\(?ยกเลิก\)?/.test(nm(x));
@@ -18580,8 +18635,24 @@ function drsLens(e){ if(!e) return [];
 function drsExtras(e){ const out=[]; if(!e) return out;
   String(e.extras||"").split(/[,\n;]+/).forEach(t=>{ const m=String(t).split(":"); const c=String(m[0]||"").trim(); const q=parseFloat(m[1]); if(c) out.push({code:c, qty:(isFinite(q)&&q>0)?q:1}); });
   return out; }
+/* ───────── v1.280: กล่องแผงเหล็กต้องได้ระบบรางแผงเหล็ก ─────────
+   ค่าตั้งกล่อง (_bp) ของลิ้นชักรุ่นเก่า/ลูกเตี้ย ไม่มี slideType ติดมา · drsOfBp ถือว่าไม่ระบุ = "รางรับข้าง"
+   ลูก K40 หลังเตี้ย 63 ของ BND214 จึงได้ระบบ SLIDE (รางลูกปืนรับข้างของกล่องไม้) แทน K40-63
+     · ความยาวรางเลือกจาก 250–500 ของ SLIDE — ตอนกล่องพังได้ 250 ซึ่งไม่มีใน K40 → ใบอุปกรณ์ออก KITCHEN40_H80 ที่ไม่มีรหัส
+     · รูรางแผ่นข้างใช้ผังของ SLIDE (37·101·261) แทนของ K40 (37·165·261)
+     · หน้าต่างปรับลิ้นชักขึ้นชนิดรางเป็น SLIDE กดตกลงซ้ำ = ลิ้นชักถูกเปลี่ยนเป็นกล่องไม้
+   ชิ้นกล่องที่เป็นแผงเหล็ก (_alto) บอกชนิดอยู่แล้ว — ใช้ระบบแผงเหล็กตามซีรีส์ (K40/ALTO) กับความสูงแผ่นหลังจริงของกล่อง */
+function drsBpOfAlto(bp,alto,backH){
+  bp=bp||{};
+  if(!alto||!alto._alto||bp.railCode||String(bp.slideType||"")==="alto") return bp;
+  const h=+bp.altoBackH||+backH||0;
+  return Object.assign({},bp,{slideType:"alto",railSys:(alto._altoSys==="K40")?"K40":"ALTO"},h?{altoBackH:h}:{});
+}
 function drsOfBoxes(boxes){ const b=(boxes||[]).find(x=>x&&x._bp); if(!b) return null;
   const col=((boxes||[]).find(x=>x&&x._altoColor)||{})._altoColor||"";
+  const al=(boxes||[]).find(x=>x&&x._alto);
+  if(al){ const bk=(boxes||[]).find(x=>x&&x._alto&&RX_RAILPART("Back").test(x.name||""));
+    return drsOfBp(drsBpOfAlto(b._bp,al,bk?Math.round(+bk.W||0):0),col); }
   return drsOfBp(b._bp,col); }
 /* งานเจาะเฉพาะราง — คิดใหม่ทุกรอบพร้อมรูประจำ Part (ธง _partDrill/_partPk ถูกล้างก่อนเสมอ)
    แผ่นหลัง: บากมุมล่างสองข้าง + รูเกี่ยวรางจากผิวในกล่อง (ผิว +z ของแผ่น)
@@ -33406,7 +33477,8 @@ function fittingAgg(boards){   // รวมเดือย + พินรอง�
     boards.forEach(b=>{ if(!(b._box&&b._dg))return; const o=byDg[b._dg]||(byDg[b._dg]={depth:0});
       if(b._alto){ o.alto=b._alto; o.sys=(b._altoSys==="K40")?"K40":"ALTO"; o.color=b._altoColor||"Anthracite";
         if(b._bp&&+b._bp.altoBackH>0) o.backH=+b._bp.altoBackH;       // v17.0: ความสูงแผ่นหลังของกล่องนี้
-        if(b._bp&&!o.rsSteel){ const e=drsOfBp(b._bp,o.color); if(e&&drsIsSteel(e)) o.rsSteel=String(e.code).trim(); } }   // v1.225
+        if(b._bp&&!o.rsSteel){ let bh0=0; try{ bh0=railSysCfg(o.sys,b._bp).backH; }catch(e){}           // v1.280: แผงเหล็กที่ไม่ระบุชนิดราง
+          const e=drsOfBp(drsBpOfAlto(b._bp,b,bh0),o.color); if(e&&drsIsSteel(e)) o.rsSteel=String(e.code).trim(); } }   // v1.225
       if(b._bp&&b._bp.boxOff!=null&&!b._alto) o.boxOff=(+b._bp.boxOff||0);
       if(b._bp&&!b._alto&&!o.rs){ const e=drsOfBp(b._bp); if(e) o.rs=String(e.code).trim(); }   // v1.221
       if(b.orient!=="front"&&!b._virtual) o.depth=Math.max(o.depth,b.W||0); });
