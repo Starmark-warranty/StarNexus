@@ -940,7 +940,7 @@
    ===================================================================== */
 /* ---- APP_META: แหล่งความจริงเดียวของเวอร์ชัน (ดูได้จาก console / คลิกชื่อแอป) ---- */
 const APP_META={
-  name:"StarNexus Cabinet", version:"1.263", build:"2026-09-21/frontlayout-rotated-divider",
+  name:"StarNexus Cabinet", version:"1.265", build:"2026-09-22/rotated-cab-tools",
   file:"StarNexus.html", basedOn:"Furnitech_V3.html (v3.11)",
   /* ───────── เริ่มนับเวอร์ชันใหม่ที่ 1.001 (21/08/2026) ─────────
      ของเดิมนับมาถึง 42.1 แล้ววิ่งเป็นทศนิยมสองชั้นซึ่งอ่านลำดับยาก
@@ -948,6 +948,8 @@ const APP_META={
      ประวัติเก่าเก็บไว้ทั้งหมดตามเลขเดิม ไม่ไล่เขียนใหม่ เพราะเลขในนั้นถูกอ้างถึงไปแล้ว
      รายการที่อยู่ใต้ 1.001 ลงไปจึงเป็นเลขชุดเก่า อ่านต่อกันได้ตามวันที่ */
   changelog:[
+    ["1.265","2026-09-22","FIX เครื่องมือเพิ่มชิ้นใช้กับตู้ที่หมุนในผัง (yaw 90/270 = ตู้ส่วนใหญ่ที่มาจาก XML) ไม่ได้ — เพิ่มชั้น เพิ่มแผ่นหลัง เพิ่มทอป เพิ่มเสาแบ่ง ผนังกั้นแนวลึก ราวแขวน เพิ่มหน้าบาน อ่านแกน X เป็นแนวกว้างตู้ตรง ๆ ชิ้นที่ได้จึงเป็นก้อน 20×20 หรือหันผิดแกน (ชั้นปรับ 3 ชั้นของ LRT005 ลึก 200 ได้ 20×20 yaw 0) · ตอนนี้ทุกตัวคลายหมุนตู้ก่อน ทำงานในแกนตรง แล้วหมุนกลับพร้อมชิ้นที่สร้างใหม่ (runCabAligned) · FIX กดปรับขนาดตู้แล้วชั้นหมุนขวางตู้และขาตู้กระจายออก — ต้นเหตุคือชั้นที่หันผิดแกนจากข้อบน ตัวปรับขนาดคิดขนาดชั้นถูกแต่ชั้นยังหัน 0 องศา · ซ่อมตอนเปิดงานให้เอง: ชั้นที่หัน 0 องศาในตู้ที่หมุน หันตามตู้ แล้วฟิตขนาดในช่องใหม่ + เจาะรูพินใหม่ (healStrayShelves) · FIX ย้อนกลับหลังจัดหน้าบานของตู้ที่หมุน กดครั้งเดียวได้ตู้ที่คลายหมุนค้าง — ช่วงที่คลายหมุนอยู่ commit/autosave/undo รอจนหมุนกลับ (_alignHold) · คำสั่งแก้ชั้นในแผงขวา (แปลงชั้นปรับ/ชั้นตาย · ร่นขอบ 4 ด้าน · ร่นจากหน้า · ล็อคลึก) คิดในแกนตรงของตู้เหมือนกัน (runCabAlignedSync) เดิมกดแล้วชั้นกลายเป็น 20×20 หรือลึก 615 · รูพินชั้น (shelfDrillPins) คลายหมุนเองถ้าตู้หมุนอยู่ ปุ่มเจาะรูพินใหม่ในแผงขวาจึงใช้กับตู้หมุนได้"],
+    ["1.264","2026-09-22","หน้าจัดหน้าบาน/หน้าลิ้นชัก เปิดมาช่องไฟขึ้นค่าตั้งต้น 1.5 รอบนอก (บน ล่าง ซ้าย ขวา) · 3 ระหว่างบาน (ทั้งแนวตั้งและแนวนอน) แทนค่าที่วัดได้จากบานที่วางอยู่ (เช่น 1.9/1.1/1.2/1.9 · 2 ที่เป็นเศษของ XML) · โหมดขอบ ทับ/กลาง/ใน ยังอ่านจากของจริง · ช่องที่วัดได้ห่างเกิน 10 มม. (เว้นคาน · ช่องโล่ง) หรือติดลบ (บานเลยขอบตั้งใจ เช่น −14.5) ถือว่าตั้งใจ คงค่าเดิม · สัดส่วนแถวยังคิดจากความสูงบานจริงก่อนเปลี่ยนช่องไฟ · ตู้ที่เปิดมาในโหมดบานที่เลือก (มีบานล็อกสูตร) ไม่แตะค่าของบาน ใส่ค่าตั้งต้นให้โหมดทั้งตู้อย่างเดียว · ปุ่มใหม่ ↺ ค่าที่วัดได้ คืนตัวเลขเดิม · ตั้งค่าใหม่ flDefOuter / flDefBetween / flOpenDef (ตั้งค่า → หน้าต่างจัดหน้าบาน) · ช่องที่ว่างหรือติดลบ และรอยต่อตอนเสาแบ่งถูกลบ ใช้ค่าระหว่างบานเดียวกัน (เดิม 2)"],
     ["1.263","2026-09-21","FIX สองเรื่องจาก LRT005 (ตู้หมุน 90 องศาในผัง) · (1) กดจัดหน้าบานแล้วบานเด้งออกนอกตู้ — v1.161 คลายหมุนตู้ก่อนเปิดหน้านี้แล้วตั้งใจหมุนกลับตอนปิด ผ่าน try{ await frontLayoutDialog() } finally{ หมุนกลับ } แต่ตัวในแค่เปิดกล่องแล้วคืนค่าทันที ไม่ได้รอผู้ใช้ finally จึงหมุนตู้กลับตั้งแต่วินาทีที่กล่องขึ้น กรอบ ผัง และช่องไฟในหน้านี้ถูกจับไว้ตอนตู้ยังไม่หมุน กดตกลงก็เขียนตำแหน่งแกนตู้ลงชิ้นที่หมุนกลับไปแล้ว บานจึงกระโดดไปอยู่แนวลึก (ห่างหน้าตู้ราว 1 เมตร) แล้วเก็บสเปคจากตำแหน่งผิดนั้นต่อ ตู้ไม่หมุนไม่เห็นอาการ · ตอนนี้หน้านี้คืน promise ที่จบเมื่อกล่องปิดจริงเท่านั้น ไม่ว่าปิดด้วยตกลง ยกเลิก กากบาท หรือ Esc (เฝ้าคลาส show ของกล่องด้วย เพราะ Esc ปิดจากตัวจัดการกลาง) · (2) ลบเสาแบ่งกลางแล้วบานทั้งสองใบขยายเต็มตู้ทับกันสนิท — ชิ้นอ้างอิงที่หายไปถูกซ่อมทีละใบ ได้ขอบข้างซ้าย→ข้างขวาคนละใบ n=1 ทั้งคู่ ช่องไฟระหว่างบานในหน้าจัดหน้าบานจึงวัดได้ −1130.9 · ตอนนี้ถ้าชิ้นที่หายเป็นขอบขวาของฝั่งหนึ่งและขอบซ้ายของอีกฝั่งในแถวเดียวกัน = รวมเป็นช่องเดียว ขอบนอกยืมของแต่ละฝั่ง ลำดับซ้ายไปขวา ช่องไฟเดิมในแต่ละฝั่งคงไว้ รอยต่อตรงที่เสาเคยอยู่ 2 มม. · ตรวจด้วยตัวจริง: ลบเสา+ชั้นของ LRT005 ก่อนแก้ได้บาน 1138.9 สองใบทับกัน หลังแก้ได้ 572.5 สองใบเรียงกันช่องไฟ 2 · เปิดหน้าจัดหน้าบานบนตู้หมุน ก่อนแก้ระหว่างกล่องเปิดตู้กลับไปหมุน 90 แล้วกดตกลงบานไปอยู่ x −809 / −235 นอกตู้ หลังแก้ตู้คลายหมุนตลอดที่กล่องเปิด กดตกลงแล้วหมุนกลับ บานอยู่หน้าตู้ครบ"],
     ["1.262","2026-09-21","PERF กดบันทึกค่า / ☁ เก็บคลาวด์ ไม่ส่งของที่ไม่ได้แก้ขึ้นไปซ้ำ — เดิมหนึ่งครั้ง = ส่งตั้งค่าทั้งก้อน (ซึ่งพ่วงโมเดล Fitting 3D กับหน้าตัดทุกตัวไว้ข้างใน) แล้วส่งโมเดลทุกตัวกับหน้าตัดทุกตัวขึ้นแถวของตัวเองอีกรอบทีละตัว แม้ไม่ได้แตะเลย บวกบันทึกประวัติการเขียนอีกหนึ่งครั้งต่อการเขียนแต่ละครั้ง และเสี่ยงเอาของเก่าในเครื่องไปทับของใหม่ที่เครื่องอื่นเพิ่งส่ง · (1) ก้อนตั้งค่าไม่พ่วงโมเดลกับหน้าตัดแล้ว ทั้งสองมีแถวของตัวเองบนคลาวด์ ทุกเครื่องดึงจากแถวนั้นตอนเปิดอยู่แล้ว ตัวดึงก้อนตั้งค่าเก็บของในเครื่องไว้เมื่อก้อนไม่มีมา ของจึงไม่หายทั้งเครื่องรุ่นใหม่และรุ่นเก่า (2) จำลายนิ้วมือเนื้อหาของโมเดล/หน้าตัดที่เครื่องนี้ส่งล่าสุด ส่งเฉพาะตัวที่เปลี่ยน ส่งผ่านปุ่มบันทึกใน Studio ก็จำ ครั้งแรกหลังอัปเดตยังส่งครบหนึ่งรอบ · ข้อความบอกว่าส่งกี่ตัว ข้ามกี่ตัว · วัดด้วยคลาวด์จำลอง อุปกรณ์ 3D 100 หน้าตัด 200: เดิมทุกครั้ง 301 คำขอเขียน + log 301 รวม 314 KB · ใหม่ไม่ได้แก้ 1 คำขอ 13 KB แก้หนึ่งตัว 2 คำขอ · เครื่องรุ่นเก่าดึงก้อนใหม่แล้วโมเดลในเครื่องยังอยู่ครบ เครื่องใหม่เอี่ยมได้โมเดลครบจากแถวของมัน"],
     ["1.261","2026-09-21","FEAT กันมือจับไปอยู่ฝั่งบานพับ — บางออเดอร์ XML ส่งตำแหน่งมือจับกลับด้านมา เช่น บาน 1 (บานพับซ้าย) ได้ LeftDown บาน 2 (บานพับขวา) ได้ RightDown มือจับจึงไปอยู่ขอบเดียวกับบานพับทั้งสองบาน · โหลด XML เสร็จ (หลังฉากคิดครบ บานพับอยู่ขอบไหนเป็นค่าสุดท้ายแล้ว) ตรวจทุกบานที่มีทั้งบานพับและมือจับ ฝั่งมือจับตรงกับขอบที่มีบานพับ กลับด้านเฉพาะแกนนั้น บานพับข้างสลับ Left ↔ Right บานยก/บานพับล่างสลับ Up ↔ Down ตำแหน่งกลางแกนไม่ชนไม่แตะ · เขียนกลับทั้งค่าที่มือจับจำไว้ ตัวแปรที่ช่องตำแหน่งผูกอยู่ และค่าดิบในชื่อช่อง หน้า Variables (ตู้นี้) จึงเห็นค่าที่แก้แล้ว · ข้อความตอนโหลดเสร็จบอกจำนวนและตัวอย่าง รายการเต็มใน console · รันซ้ำไม่แก้ซ้ำ · ปิดได้ที่ ตั้งค่า → มือจับจากช่อง K_Pull ใน XML · ตรวจกับตู้ LRT005 สองใบ ป้อนตำแหน่งกลับด้านแบบในรูป: ก่อนกันมือจับอยู่ขอบบานพับทั้ง 4 บาน · หลังกันบาน 1 = RightDown บาน 2 = LeftDown ตรงข้ามบานพับครบ"],
@@ -1361,6 +1363,7 @@ const DEF_SETTINGS={ frontSetMax:6, dowelD:8, dowelDepth:28, dowelMateDepth:12, 
   hangSideCodes:"HANGER_STD",   // v8.50: รุ่นหูแขวนที่ต้องเจาะรูยึดแผ่นข้าง (คั่นด้วยจุลภาค)
   legMarkOn:true, legMarkD:8, legMarkDepth:5,      // v7.44: รูมาร์คขาตู้ใต้แผ่นพื้น
   /* v8.19: กล่องไม้หลบสิ่งกีดขวางเอง — คาน/ชั้นตาย/แผ่นพื้นในช่องของลิ้นชักลูกนั้น */
+  flOpenDef:true, flDefOuter:1.5, flDefBetween:3,   /* v1.264: ค่าตั้งต้นช่องไฟหน้าจัดหน้าบาน */
   boxAutoFit:true, boxClearTop:10, boxClearBot:2, boxMaxH:240, boxMinusTop:20, boxStepH:10,
   boxEqualH:true,   // v8.35: หน้าบานสูงเท่ากัน -> กล่องสูงเท่ากัน (ยึดลูกที่ช่องเหลือน้อยสุด)
   elemFolders:{},   // v8.79: โฟลเดอร์ของรายการ Element (เก็บไว้เพื่อให้โฟลเดอร์เปล่าไม่หาย)
@@ -1684,7 +1687,13 @@ function bind(id,fn,ev){ const e=(typeof id==="string")?$(id):id; if(e) e[ev||"o
 /* sync(rebuild, save, cm) — ส่ง 0 เพื่อ "ข้าม" ขั้นนั้น
    sync(1)      = rebuild + autosave + commit      sync(0)      = ไม่ rebuild + autosave + commit
    sync(1,1,0)  = ไม่ commit                        sync(1,0,0)  = ไม่ autosave/commit           */
+/* ───────── v1.265: ช่วงที่ตู้ถูก "คลายหมุนค้างไว้" ระหว่างรอผู้ใช้ ─────────
+   หน้าต่างที่ต้องทำงานในแกนตรงของตู้ (จัดหน้าบาน · เพิ่มชั้น · เพิ่มแผ่นหลัง ฯลฯ) คลายหมุนตู้ก่อนเปิด แล้วหมุนกลับตอนปิด
+   ระหว่างนั้นถ้ามีคน commit/autosave ภาพที่ถูกเก็บคือตู้ที่คลายหมุนอยู่
+   ย้อนกลับครั้งเดียวจึงได้ตู้ที่หันผิดทิศค้างอยู่กลางห้อง · ตัวนับนี้ทำให้ทั้งสองอย่างรอจนหมุนกลับ แล้ว sync(1) ค่อยเก็บครั้งเดียว */
+let _alignHold=0;
 function sync(rebuild,save,cm){
+  try{ healStrayShelves(); }catch(e){ console.error("healShelf:",e); }   // v1.265: ชั้นที่หันผิดแกนในตู้ที่หมุน (ซ่อมครั้งเดียว ไม่เจอก็ไม่ทำอะไร)
   const channelInsts=[...new Set(state.boards.filter(b=>b.rule&&b.rule.channelRail).map(b=>b.cabInst))];
   channelInsts.forEach(inst=>withCabAxisAligned(inst,()=>{ state.boards.filter(b=>b.cabInst===inst&&b.rule&&b.rule.channelRail).forEach(refitChannelRail); }));
   const _tSy0=performance.now();
@@ -2244,7 +2253,8 @@ function sanityFixBoards(){
   });
   return bad;
 }
-function commit(){ if(VIEW_ONLY){ try{ render3D(true); }catch(e){} return; }   // v27.1: ลิงก์ดูอย่างเดียว ไม่บันทึกทับอะไร
+function commit(){ if(_alignHold>0) return;   /* v1.265: ตู้ยังคลายหมุนค้างอยู่ — รอหมุนกลับแล้ว sync(1) ค่อยเก็บ */
+  if(VIEW_ONLY){ try{ render3D(true); }catch(e){} return; }   // v27.1: ลิงก์ดูอย่างเดียว ไม่บันทึกทับอะไร
   try{ cleanHardwareMateHoles(); }catch(e){ console.error(e); }   // v41.4
   cleanOrphanSrcHoles();
   /* v9.94: รูซ้อนกันเป๊ะไม่มีทางถูกต้อง เก็บกวาดให้ทุกครั้งโดยไม่ต้องสั่ง
@@ -2325,8 +2335,8 @@ function runOverlapCheck(){
 }
 function clearOverlapHL(){ if(state.overlapIds&&state.overlapIds.length){ state.overlapIds=[]; render3D(false); } }
 function restoreSnap(str){ const o=JSON.parse(str); state.boards=o.boards; state.globalTone=o.globalTone; if(!selBoard())state.selectedId=null; buildGTones(); sync(0,1,0); }
-function undo(){ if(moveSession)cancelMove(); if(!undoStack.length)return; redoStack.push(snap()); const prev=undoStack.pop(); restoreSnap(prev); lastSnap=prev; refreshUndoUI(); toast("ย้อนกลับ"); }
-function redo(){ if(!redoStack.length)return; undoStack.push(snap()); const nxt=redoStack.pop(); restoreSnap(nxt); lastSnap=nxt; refreshUndoUI(); toast("ทำซ้ำ"); }
+function undo(){ if(_alignHold>0) return; if(moveSession)cancelMove(); if(!undoStack.length)return; redoStack.push(snap()); const prev=undoStack.pop(); restoreSnap(prev); lastSnap=prev; refreshUndoUI(); toast("ย้อนกลับ"); }
+function redo(){ if(_alignHold>0) return; if(!redoStack.length)return; undoStack.push(snap()); const nxt=redoStack.pop(); restoreSnap(nxt); lastSnap=nxt; refreshUndoUI(); toast("ทำซ้ำ"); }
 function refreshUndoUI(){ const u=$("undoBtn"),r=$("redoBtn"); if(u)u.disabled=!undoStack.length; if(r)r.disabled=!redoStack.length; }
 
 let uidc=1; const uid=()=>"b"+(uidc++);
@@ -5212,6 +5222,7 @@ function parseRowsSpec(txt){
 async function addDoor(preset){
   const sel=selBoard();
   if(!sel){toast("เลือกชิ้นในตู้ที่จะใส่หน้าบานก่อน");return;}
+  if(sel.cabInst&&cabYawOf(sel.cabInst)) return runCabAligned(sel.cabInst,()=>addDoor(preset));   // v1.265: ตู้หมุน = ทำในแกนตรง
   syncUid();   // กัน id ของบาน/ลิ้นชักใหม่ชนกับชิ้นที่มีอยู่ (โดยเฉพาะหลังโหลดฉาก)
   const grp=groupOf(sel);
   if(!grp){toast("ไม่พบตู้ของชิ้นนี้");return;}
@@ -5886,7 +5897,8 @@ function applyDoorSpecs(inst){
      บานทั้งสองใบจึงได้ขอบ ข้างซ้าย→ข้างขวา กันคนละใบ n=1 ทั้งคู่ = กว้างเต็มตู้และทับกันสนิท (LRT005)
      จับคู่ตรงนี้ก่อน: ชิ้นที่หายไปถูกใช้เป็นขอบขวาของฝั่งหนึ่งและขอบซ้ายของอีกฝั่งในแถวเดียวกัน
      = รวมเป็นช่องเดียว ขอบนอกยืมของแต่ละฝั่งมา ลำดับเรียงซ้ายไปขวา ช่องไฟเดิมภายในแต่ละฝั่งคงไว้
-     รอยต่อตรงที่เสาเคยอยู่ใช้ 2 มม. (ค่าตั้งต้นระหว่างบาน) */
+     รอยต่อตรงที่เสาเคยอยู่ใช้ 2 มม. (ค่าตั้งต้นระหว่างบาน)
+     v1.264: ใช้ค่าตั้งต้นระหว่างบานจากตั้งค่า (flDefBetween · 3 มม.) ตัวเดียวกับหน้าจัดหน้าบาน */
   try{ _deRows(drs).forEach(row=>{
     const miss={};
     row.items.forEach(b=>{ const sp=b._de; if(!sp) return;
@@ -5899,7 +5911,7 @@ function applyDoorSpecs(inst){
       const lg=mm.l.slice().sort((a,c)=>a.x-c.x), rg=mm.r.slice().sort((a,c)=>a.x-c.x);
       const gOf=g=>{ const sp=g[0]._de, o=Array.isArray(sp.gaps)?sp.gaps:[]; const out=[];
         for(let j=0;j<g.length-1;j++) out.push(Math.max(+(o[j]!=null?o[j]:(sp.gap||0))||0,0)); return out; };
-      const gaps=gOf(lg).concat([2]).concat(gOf(rg)), all=lg.concat(rg);
+      const gaps=gOf(lg).concat([flGapDefaults().mid]).concat(gOf(rg)), all=lg.concat(rg);
       all.forEach((b,j)=>{ const sp=b._de;
         sp.L=Object.assign({},oL); sp.R=Object.assign({},oR);
         sp.n=all.length; sp.i=j; sp.gaps=gaps.slice(); sp.gap=gaps[0];
@@ -6545,6 +6557,14 @@ function _pvSize(){                                   // v8.39: พื้นท�
   const h=Math.max(220,Math.min(560,Math.round(vh*0.94-260)));
   return {w,h};
 }
+/* ───────── v1.264: ค่าตั้งต้นช่องไฟของหน้าจัดหน้าบาน — ที่เดียว ─────────
+   out = รอบนอก (บน ล่าง ซ้าย ขวา) · mid = ระหว่างบาน (แนวตั้งและแนวนอน)
+   keep = ช่องที่วัดได้ห่างเกินนี้ถือว่าตั้งใจ (เว้นคาน · ช่องโล่ง) หน้าจัดหน้าบานคงค่าเดิมไว้
+   ใช้ทั้งหน้าจัดหน้าบาน และตัวรวมช่องตอนเสาแบ่งถูกลบใน applyDoorSpecs */
+function flGapDefaults(){
+  const n=(v,d)=>{ const x=parseFloat(v); return (isFinite(x)&&x>=0)?x:d; };
+  return { out:n(settings.flDefOuter,1.5), mid:n(settings.flDefBetween,3), keep:10 };
+}
 async function frontLayoutDialog(b){
   const inst=b&&b.cabInst; if(!inst){ toast("เลือกชิ้นในตู้ก่อน"); return; }
   /* ───────── v1.161: ทั้งหน้านี้อ่านแกน X เป็น "แนวกว้างตู้" ตั้งแต่ต้นจนจบ ─────────
@@ -6557,15 +6577,9 @@ async function frontLayoutDialog(b){
      หน้านี้เป็นกล่องทึบเต็มจอ ฉากข้างหลังจึงไม่มีใครเห็นระหว่างนั้น
      · ชิ้นที่ถูกสร้างใหม่ระหว่างเปิดหน้านี้ก็ถูกหมุนกลับด้วย เพราะกรองจากฉากใหม่ตอนปิด */
   const _fy=cabYawOf(inst);
-  if(_fy){
-    const _mine=()=>state.boards.filter(x=>x.cabInst===inst);
-    const ref=state.boards.filter(x=>x.cabInst===inst&&!x._door&&!x._virtual);
-    let px=Infinity,pz=Infinity;
-    (ref.length?ref:_mine()).forEach(x=>{ const d=worldDims(x); px=Math.min(px,x.x-d[0]/2); pz=Math.min(pz,x.z-d[2]/2); });
-    rotateCabBoards(_mine(),-_fy,px,pz);
-    try{ return await frontLayoutDialog(b); }
-    finally{ rotateCabBoards(_mine(),_fy,px,pz); try{ sync(1); }catch(e){} }
-  }
+  /* v1.265: ใช้ตัวห่อกลาง — ระหว่างหน้านี้เปิด commit/autosave/undo รอจนหมุนกลับ
+     เดิมกดตกลงแล้ว sync(0) เก็บภาพตู้ที่คลายหมุนอยู่ลงสแตกย้อนกลับ กดย้อนครั้งเดียวได้ตู้หันผิดทิศ */
+  if(_fy) return runCabAligned(inst,()=>frontLayoutDialog(b));
   /* v8.63: คลิกขวาที่หน้าบานในช่องภายใน = จัดผังของช่องนั้น · คลิกที่บานนอก = จัดผังชั้นนอก */
   const ZONE=(b&&b.zoneLo!=null)?b.zoneLo:null;
   /* ───────── v1.218: ตู้ที่มี Design Parameter — หน้านี้ทำงานกับ "ฐาน" ─────────
@@ -6609,13 +6623,14 @@ async function frontLayoutDialog(b){
   // ค่าเริ่มต้น = อ่านจากของจริงที่วางอยู่ตอนนี้
   const first=grid[0].items[0], fd=worldDims(first);
   const topY=grid[0].hi, botY=grid[grid.length-1].lo;
+  const _flD=flGapDefaults();                          // v1.264: ประกาศก่อนตัวแก้ช่องไฟติดลบข้างล่าง (กัน TDZ)
   const gxArr=[]; { const r0=grid.reduce((a,r)=>r.items.length>a.items.length?r:a,grid[0]);
     for(let i=0;i<r0.items.length-1;i++) gxArr.push(Math.round(((r0.items[i+1].x-worldDims(r0.items[i+1])[0]/2)-(r0.items[i].x+worldDims(r0.items[i])[0]/2))*10)/10); }
   const gyArr=[]; for(let i=0;i<grid.length-1;i++) gyArr.push(Math.round((grid[i].lo-grid[i+1].hi)*10)/10);   // บน->ล่าง
   /* v1.263: บานที่ทับกันอยู่ (ช่องไฟติดลบ เช่น −1130.9 หลังลบเสาแบ่ง) ไม่ใช่ช่องไฟที่ตั้งใจ — ขึ้นค่าตั้งต้น 2 แทน
      ตัวคิดผังข้ามค่าติดลบอยู่แล้ว แต่ช่องที่โชว์เลขมั่วทำให้เข้าใจผิดว่าระบบจะเอาค่านั้นไปใช้ */
-  for(let i=0;i<gxArr.length;i++) if(!(gxArr[i]>=0)) gxArr[i]=2;
-  for(let i=0;i<gyArr.length;i++) if(!(gyArr[i]>=0)) gyArr[i]=2;
+  for(let i=0;i<gxArr.length;i++) if(!(gxArr[i]>=0)) gxArr[i]=_flD.mid;   // v1.264: ค่าตั้งต้นระหว่างบาน (เดิม 2)
+  for(let i=0;i<gyArr.length;i++) if(!(gyArr[i]>=0)) gyArr[i]=_flD.mid;
   let lx=Infinity,rx=-Infinity; grid.forEach(r=>r.items.forEach(x=>{ const d=worldDims(x);
     lx=Math.min(lx,x.x-d[0]/2); rx=Math.max(rx,x.x+d[0]/2); }));
   const r1=v=>Math.round(v*10)/10;
@@ -6673,7 +6688,7 @@ async function frontLayoutDialog(b){
         _dL=_fmDetect(F.Lf,lx,+1),     _dR=_fmDetect(F.Rf,rx,-1);
   const st={ mT:_dT.m, mB:_dB.m, mL:_dL.m, mR:_dR.m,
              gT:_dT.v, gB:_dB.v, gL:_dL.v, gR:_dR.v,
-             gX:(gxArr.length?gxArr.join(", "):"2"), gY:(gyArr.length?gyArr.join(", "):"2"),
+             gX:(gxArr.length?gxArr.join(", "):String(_flD.mid)), gY:(gyArr.length?gyArr.join(", "):String(_flD.mid)),
              ratio:_deSnapRatio(grid.map(r=>r.hi-r.lo)).map(v=>Math.round(v*100)/100).join(":") };
   /* v8.46: จำสิ่งที่ผู้ใช้พิมพ์ไว้ (เช่น 150mm:150mm:2) แทนการเดาย้อนจากความสูงจริง
      เดาย้อนจาก 152.1:152.1:278.8 จะได้ 6:6:11 ซึ่งถูกทางคณิตศาสตร์ แต่ไม่ใช่สิ่งที่พิมพ์ไว้ */
@@ -6716,7 +6731,7 @@ async function frontLayoutDialog(b){
   const loadBox=dg=>{ BOX0=Object.assign({},baseOf(dg));
     BOX=DRAFT[dg]||Object.assign({},BOX0); DRAFT[dg]=BOX; };   // ผูก DRAFT ไว้ทันที ทุกตัวอักษรที่พิมพ์จึงถูกจำ
   if(hasBox) loadBox(BOXDG);
-  const DEF={mT:"ทับ",mB:"ทับ",mL:"ทับ",mR:"ทับ",gT:1.5,gB:1.5,gL:1.5,gR:1.5,gX:"2",gY:"2"};
+  const DEF={mT:"ทับ",mB:"ทับ",mL:"ทับ",mR:"ทับ",gT:_flD.out,gB:_flD.out,gL:_flD.out,gR:_flD.out,gX:String(_flD.mid),gY:String(_flD.mid)};   // v1.264: จากตั้งค่า (1.5 · 3)
   /* v8.40: แยกค่าของโหมด "ทั้งตู้" กับ "รายบาน" ออกจากกัน
      เดิมใช้ก้อนเดียว สลับไปดูรายบานแล้วกลับมา ค่าของบานนั้นค้างอยู่ในโหมดทั้งตู้ (ช่องไฟล่างกลายเป็น 555) */
   const EK=["mT","gT","mB","gB","mL","gL","mR","gR"];
@@ -6726,6 +6741,7 @@ async function frontLayoutDialog(b){
   /* v7.94: ช่องไฟระหว่างบานตั้งทีละรอยต่อได้ — พิมพ์ "3, 30" = รอยแรก 3 รอยถัดไป 30
      ใส่ตัวเดียว = ใช้ค่านั้นทุกรอย · เรียงจากบนลงล่าง (แนวตั้ง) และซ้ายไปขวา (แนวนอน) */
   ST_ALL=_snapE();                                   // ค่าเริ่มต้นของโหมดทั้งตู้ (ตอนเปิดกล่อง)
+  const MEAS=Object.assign({},ST_ALL,{gX:st.gX,gY:st.gY});   // v1.264: ค่าที่วัดได้จริงตอนเปิด (ปุ่ม ↺ ค่าที่วัดได้)
   const gList=(txt,n,def)=>{ const a=String(txt==null?"":txt).split(/[,;\s]+/).map(parseFloat).filter(v=>isFinite(v)&&v>=0);
     const out=[]; for(let i=0;i<n;i++) out.push(a.length?(a[i]!=null?a[i]:a[a.length-1]):def);
     return out; };
@@ -6755,7 +6771,7 @@ async function frontLayoutDialog(b){
                       yB:_fmFace(ff.Bf,dv.mB)+(+dv.gB||0), yT:_fmFace(ff.Tf,dv.mT)-(+dv.gT||0)}; })})));
     }
     const hr=ratios();
-    const gy=gList(st.gY,Math.max(grid.length-1,0),2);
+    const gy=gList(st.gY,Math.max(grid.length-1,0),_flD.mid);
     const top=_fmFace(F.Tf,st.mT)-(+st.gT||0), bot=_fmFace(F.Bf,st.mB)+(+st.gB||0);
     const usableY=(top-bot)-gy.reduce((a,v)=>a+v,0);
     const fixSum=hr.reduce((a,o)=>a+(o.fix||0),0);
@@ -6787,7 +6803,7 @@ async function frontLayoutDialog(b){
       else { h=_r1((hr[i].fix!=null)?hr[i].fix:(rest*hr[i].r/rSum));
         yT=_r1(top-acc); yB=_r1(yT-h);
         acc=_r1(acc+h+(gy[i]||0)); }
-      const k=r.items.length, gx=gList(st.gX,Math.max(k-1,0),2);
+      const k=r.items.length, gx=gList(st.gX,Math.max(k-1,0),_flD.mid);
       const usableX=(right-left)-gx.reduce((a,v)=>a+v,0), w=_r1(usableX/k);
       let ax=0;
       const items=r.items.map((bb,j)=>{ const xL=_r1(left+ax), o={ b:bb,
@@ -7233,11 +7249,16 @@ async function frontLayoutDialog(b){
               +'</div>'; })()
         +'<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">'
           +((grid.length>1&&EDGESCOPE==="all")?fl("gY","ระหว่างบาน แนวตั้ง (บน→ล่าง · ใส่ทีละรอยได้ เช่น 3, 30)"):'<div></div>')
-          +((nAll>grid.length&&EDGESCOPE==="all")?fl("gX","ระหว่างบาน แนวนอน (ซ้าย→ขวา · เช่น 2, 2)"):'<div></div>')+'</div>'
+          +((nAll>grid.length&&EDGESCOPE==="all")?fl("gX","ระหว่างบาน แนวนอน (ซ้าย→ขวา · เช่น 3, 3)"):'<div></div>')+'</div>'
         +((grid.length>1&&EDGESCOPE==="all")?('<label style="'+lab+'">สัดส่วน/ความสูงแต่ละแถว (บน→ล่าง) · 1:1:2 = สัดส่วน · ใส่ มม. ตายตัว เช่น 150mm:2 · ใส่ตัวแปรตู้ได้ เช่น $D3:1<input type="text" id="fl_ratio" value="'+escapeHtml(st.ratio)+'" style="'+inp+'"></label>'
           +(DPON?'<label style="display:flex;gap:6px;align-items:flex-start;font-size:12px;margin:4px 0"><input type="checkbox" id="fl_eqdp"'+(EQDP?' checked':'')+'><span><b>เท่ากันหลังคำสั่ง</b> — ชดเชยส่วนที่ '+escapeHtml(_dpVal)+' ตัด/เพิ่ม สัดส่วนจึงเป็นของบานจริง</span></label>':'')
           +'<label style="display:flex;gap:6px;align-items:flex-start;font-size:12px;margin:4px 0 6px"><input type="checkbox" id="fl_int"'+(INTH?' checked':'')+'><span><b>ความสูงเลขเต็ม (ไม่ตกเศษ)</b> — ปัดลงเป็นมิลลิเมตรเต็ม เศษรวมไปอยู่ช่องไฟบนสุด</span></label>'):"")
-        +'<div style="display:flex;gap:8px;flex-wrap:wrap"><button class="ibtn" id="fl_def">↺ ค่าเริ่มต้น (1.5 รอบนอก · 2 ระหว่างบาน)</button><button class="ibtn" id="fl_eq">= แถวสูงเท่ากัน</button>'
+        +'<div style="display:flex;gap:8px;flex-wrap:wrap"><button class="ibtn" id="fl_def">↺ ค่าเริ่มต้น ('+fmt(_flD.out)+' รอบนอก · '+fmt(_flD.mid)+' ระหว่างบาน)</button>'
+          +(()=>{ const mid=[grid.length>1?MEAS.gY:null, nAll>grid.length?MEAS.gX:null].filter(v=>v!=null&&String(v).trim()!=="");   // v1.264
+              return '<button class="ibtn" id="fl_meas" title="คืนตัวเลขที่วัดได้จากบานที่วางอยู่ตอนเปิดหน้านี้">↺ ค่าที่วัดได้ ('
+                +(EDGESCOPE==="all"?('บน '+fmt(+MEAS.gT||0)+' · ล่าง '+fmt(+MEAS.gB||0)+' · ซ้าย '+fmt(+MEAS.gL||0)+' · ขวา '+fmt(+MEAS.gR||0)
+                  +(mid.length?' · ระหว่าง '+escapeHtml(mid.join(" / ")):'')):'บานที่เลือก')+')</button>'; })()
+          +'<button class="ibtn" id="fl_eq">= แถวสูงเท่ากัน</button>'
           +'</div>'
         +(!hasBox?'':('<div style="font-weight:700;font-size:12px;margin-top:8px;padding-top:8px;border-top:1px solid var(--line)">กล่องลิ้นชัก / ราง</div>'
           +'<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">'
@@ -7337,6 +7358,9 @@ async function frontLayoutDialog(b){
     { const el=body.querySelector("#fl_bvSide"); if(el)el.onchange=e=>{ BVSIDE=e.target.value; BVTOUCH=true; paint(); }; }
     { const el=body.querySelector("#fl_bvLand"); if(el)el.oninput=e=>{ BVLAND=e.target.value; BVTOUCH=true; paint(); }; }
     { const el=body.querySelector("#fl_def"); if(el)el.onclick=()=>{ Object.assign(st,DEF); _syncE(); paint(); }; }
+    { const el=body.querySelector("#fl_meas"); if(el)el.onclick=()=>{                     // v1.264: คืนค่าที่วัดได้
+        if(EDGESCOPE==="all") Object.assign(st,MEAS); else _putE(_edgeVals(EDGEID));
+        _syncE(); paint(); }; }
     { const el=body.querySelector("#fl_eq"); if(el)el.onclick=()=>{ st.ratio=grid.map(()=>1).join(":"); _syncE&&0; paint(); }; }
   }
   /* v1.218: สัดส่วนที่จำไว้ (_flRatio) หรือที่ปัดจากความสูง ต้องให้ผลเท่าบานที่มีอยู่จริง
@@ -7351,6 +7375,25 @@ async function frontLayoutDialog(b){
       if(!fits()) st.ratio=r0;                                  // คิดยังไงก็ไม่ตรง (เช่นมีช่องที่ล็อก) คืนของเดิม
     }
   }catch(e){ console.error("flRatio:",e); } }
+  /* ───────── v1.264: เปิดหน้ามา ช่องไฟขึ้นค่าตั้งต้น ไม่ใช่ค่าที่วัดได้ ─────────
+     บานที่มาจาก XML วัดได้ 1.9 / 1.1 / 1.2 / 1.9 ระหว่างบาน 2 ซึ่งเป็นเศษของการวาง ไม่ใช่ค่าที่ตั้งใจ
+     ตอนนี้ขึ้น 1.5 รอบนอก · 3 ระหว่างบาน (ตั้งค่า → หน้าต่างจัดหน้าบาน) · โหมดขอบ ทับ/กลาง/ใน ยังอ่านจากของจริง
+     ช่องที่วัดได้ห่างเกิน 10 มม. ถือว่าตั้งใจ (เว้นคาน · ช่องโล่งใต้บาน) คงค่าเดิม ไม่ดึงบานไปปิดช่องนั้น
+     ค่าติดลบ (บานเลยขอบอ้างอิงออกไป เช่น ลิ้นชัก LTD002 ปิดแผ่นข้างตู้ข้าง −14.5) ก็ตั้งใจเหมือนกัน คงค่าเดิม
+     ตรวจสัดส่วนข้างบนต้องทำด้วยค่าที่วัดได้ก่อน สัดส่วนจึงเป็นของบานจริง แล้วค่อยเปลี่ยนช่องไฟตรงนี้
+     ตู้ที่เปิดมาในโหมด "บานที่เลือกเท่านั้น" (มีบานล็อกสูตร) ไม่แตะค่าของบาน ใส่ค่าตั้งต้นให้โหมดทั้งตู้อย่างเดียว
+     ปุ่ม "↺ ค่าที่วัดได้" คืนตัวเลขเดิม */
+  if(settings.flOpenDef!==false){ try{
+    const near=v=>(v>=0&&v<=_flD.keep);                 // 0–10 = ช่องไฟปกติ (เศษจาก XML) · ติดลบ = บานเลยขอบตั้งใจ (เช่นปิดแผ่นข้างตู้ข้าง −14.5)
+    const pickO=v=>near(+v||0)?_flD.out:(+v||0);
+    const E={gT:pickO(MEAS.gT), gB:pickO(MEAS.gB), gL:pickO(MEAS.gL), gR:pickO(MEAS.gR)};
+    const jl=t=>String(t==null?"":t).split(/[,;\s]+/).map(parseFloat).filter(v=>isFinite(v))
+                 .map(v=>near(v)?_flD.mid:v);
+    const js=a=>!a.length?String(_flD.mid):(a.every(v=>v===a[0])?String(a[0]):a.join(", "));
+    st.gX=js(jl(MEAS.gX)); st.gY=js(jl(MEAS.gY));
+    if(EDGESCOPE==="all"){ Object.assign(st,E); ST_ALL=_snapE(); }
+    else ST_ALL=Object.assign({},ST_ALL,E);
+  }catch(e){ console.error("flDef:",e); } }
   paint(); m.classList.add("show");
   /* ───────── v1.263: ตัวห่อที่คลายหมุนตู้ต้องรอ "จนหน้านี้ปิด" จริง ─────────
      v1.161 คลายหมุนตู้ก่อนเปิดหน้านี้ แล้วตั้งใจหมุนกลับตอนปิด ผ่าน try{ await frontLayoutDialog() } finally{ หมุนกลับ }
@@ -7397,9 +7440,9 @@ async function frontLayoutDialog(b){
         if((useEq||INTH)&&Array.isArray(sp.hrs)&&sp.hrs.length===hrTB.length){
           const hasFix=hrTB.some(o=>o.fix!=null);
           if(!hasFix) sp.hrs=hrTB.map(o=>+o.r).reverse();
-          else if(useEq){ const cTB=dpRowCompTB(_dpList,hrTB.length,gList(st.gY,Math.max(hrTB.length-1,0),2));
+          else if(useEq){ const cTB=dpRowCompTB(_dpList,hrTB.length,gList(st.gY,Math.max(hrTB.length-1,0),_flD.mid));
             const top=_fmFace(F.Tf,st.mT)-(+st.gT||0), bot=_fmFace(F.Bf,st.mB)+(+st.gB||0);
-            const us=(top-bot)-gList(st.gY,Math.max(hrTB.length-1,0),2).reduce((a,v)=>a+v,0);
+            const us=(top-bot)-gList(st.gY,Math.max(hrTB.length-1,0),_flD.mid).reduce((a,v)=>a+v,0);
             const bTB=deRowHeightsTB(us,hrTB,cTB,true,false);
             sp.hrs=bTB.map((v,k)=>v+cTB[k]).reverse(); }
         }
@@ -7407,7 +7450,7 @@ async function frontLayoutDialog(b){
           if(sp.T&&sp.T.m===st.mT) sp.T.v=+st.gT||0;
           if(sp.B&&sp.B.m===st.mB) sp.B.v=+st.gB||0;
           if(Array.isArray(sp.vgaps)&&sp.vgaps.length===hrTB.length-1){
-            sp.vgaps=gList(st.gY,hrTB.length-1,2).slice().reverse(); sp.vgap=sp.vgaps.length?sp.vgaps[0]:0; } }
+            sp.vgaps=gList(st.gY,hrTB.length-1,_flD.mid).slice().reverse(); sp.vgap=sp.vgaps.length?sp.vgaps[0]:0; } }
       });
     }catch(e){ console.error("eqInt:",e); } }
     /* v8.17: กดตกลง = เขียนค่าที่แก้ค้างไว้ทุกลูกลงจริง
@@ -8026,6 +8069,7 @@ function _guideDatumsOn(inst){
 async function addShelf(){
   const sel=selBoard();
   if(!sel){toast("เลือกชิ้นในตู้ที่ต้องการก่อน");return;}
+  if(sel.cabInst&&cabYawOf(sel.cabInst)) return runCabAligned(sel.cabInst,()=>addShelf());   // v1.265: เดิมได้ชั้น 20×20 yaw 0
   const grp=groupOf(sel);
   if(!grp){toast("ไม่พบตู้ของชิ้นนี้");return;}
   const horiz=horizRefsOf(grp);
@@ -8160,6 +8204,7 @@ async function addShelf(){
 async function addBackPanel(){
   const sel=selBoard();
   if(!sel){toast("เลือกชิ้นในตู้ที่ต้องการก่อน");return;}
+  if(sel.cabInst&&cabYawOf(sel.cabInst)) return runCabAligned(sel.cabInst,()=>addBackPanel());   // v1.265
   const grp=groupOf(sel);
   if(!grp){toast("ไม่พบตู้ของชิ้นนี้");return;}
   const carc=fzStrip(grp.boards.filter(b=>!b._door&&!b._virtual));   // v1.219
@@ -8246,6 +8291,7 @@ async function addBackPanel(){
 async function addTopPanel(){
   const sel=selBoard();
   if(!sel){ toast("เลือกชิ้นในตู้ที่ต้องการก่อน"); return; }
+  if(sel.cabInst&&cabYawOf(sel.cabInst)) return runCabAligned(sel.cabInst,()=>addTopPanel());   // v1.265: เดิมปฏิเสธตู้ที่หมุน
   const grp=groupOf(sel);
   if(!grp){ toast("ไม่พบตู้ของชิ้นนี้"); return; }
   const carc=grp.boards.filter(b=>!b._door&&!b._virtual&&!b._fitPart&&!isRail(b)&&!isGuide(b));
@@ -8458,6 +8504,9 @@ function shelfPinKind(b){
   return (b._shelfSup==="pin2")?"alt":"";
 }
 function shelfDrillPins(b,sides,dia,inset){   // pins from the INNER face of each side · blind · with level-adjust rows ±pinPitch
+  /* v1.265: ตัวนี้เทียบ sd.x กับ b.x และวางแถวพินตามแกน Z ตรง ๆ = ถูกเฉพาะตู้ที่ไม่หมุน
+     ตู้หมุนอยู่ให้คลายหมุนก่อน (พอคลายแล้ว cabYawOf = 0 จึงไม่วนซ้ำ) · รูเก็บเป็นพิกัดของแผ่นข้างเอง หมุนกลับแล้วยังถูก */
+  if(b&&b.cabInst&&cabYawOf(b.cabInst)) return withCabAxisAligned(b.cabInst,()=>shelfDrillPins(b,sides,dia,inset));
   dia=Math.max(dia||settings.pinD||5,2); inset=Math.max(inset||settings.pinInset||37,5);
   const dep=Math.max(settings.pinDepth||8,1), pitch=Math.max((b&&b.pinPitch)||settings.pinPitch||64,8), extra=Math.max(0,Math.round(b.pinExtra!=null?b.pinExtra:(settings.pinExtra!=null?settings.pinExtra:1)));
   const zoff=Math.max((b.W||300)/2-inset,5), baseY=b.y-(b.T||18)/2;
@@ -9616,6 +9665,7 @@ function setShelfGlass(b,on){
   return true;
 }
 function convertShelf(b,toAdj){
+  if(b&&b.cabInst&&cabYawOf(b.cabInst)) return runCabAlignedSync(b.cabInst,()=>convertShelf(b,toAdj));   // v1.265: ตู้หมุน = คิดในแกนตรง
   const info=shelfCabInfo(b); if(!info){toast("ไม่พบตู้ของชั้นนี้");return;}
   state.boards.forEach(o=>{ if(o.id===b.id||!o.holes)return; o.holes=o.holes.filter(h=>h.src!==b.id); });   // ล้างรู/พินที่ชั้นนี้เคยเจาะแผ่นข้าง
   if(toAdj){
@@ -9637,6 +9687,7 @@ function convertShelf(b,toAdj){
 }
 // ปรับชั้นปรับ: ร่นแต่ละด้าน (หน้า/หลัง/ซ้าย/ขวา) + เลือกจำนวนระดับพิน แล้วเจาะรูพินใหม่
 function applyAdjShelf(b,opts){
+  if(b&&b.cabInst&&cabYawOf(b.cabInst)) return runCabAlignedSync(b.cabInst,()=>applyAdjShelf(b,opts));   // v1.265: เดิมได้ชั้น 20×20
   opts=opts||{}; const info=shelfCabInfo(b); if(!info){toast("ไม่พบตู้ของชั้นนี้");return;}
   // เลื่อนชั้นตามจำนวนรู (รูละ pinPitch มม. · บวก=ขึ้น ลบ=ลง) — ชั้นย้ายจริง แล้วรูพินเจาะใหม่ที่ระดับใหม่ด้านล่าง
   if(opts.moveRows){ const step=settings.pinPitch||32; b.y=round(b.y+opts.moveRows*step); }
@@ -9692,6 +9743,7 @@ function setDividerDepthFix(b,n,fromFront){
   toast(n>0?("\ud83d\udd12 \u0e25\u0e47\u0e2d\u0e04\u0e25\u0e36\u0e01\u0e40\u0e2a\u0e32 "+n+" \u0e21\u0e21. ("+(fromFront?("\u0e2d\u0e49\u0e32\u0e07\u0e2b\u0e19\u0e49\u0e32 \u0e23\u0e48\u0e19 "+off):"\u0e2d\u0e49\u0e32\u0e07\u0e2b\u0e25\u0e31\u0e07")+")"+info2):"\u0e1b\u0e25\u0e14\u0e25\u0e47\u0e2d\u0e04\u0e25\u0e36\u0e01\u0e40\u0e2a\u0e32\u0e41\u0e25\u0e49\u0e27");
 }
 function setShelfDepthFix(b,n){
+  if(b&&b.cabInst&&cabYawOf(b.cabInst)) return runCabAlignedSync(b.cabInst,()=>setShelfDepthFix(b,n));   // v1.265
   n=Math.max(round(n||0),0);
   const back=b.z-(b.W||0)/2;                                   // ขอบหลังคงที่
   if(n>0){ b.W=n; b.z=round(back+n/2); b.shelfInset=Object.assign({},b.shelfInset,{depthFix:n}); b.setback=null; }
@@ -9704,6 +9756,7 @@ function setShelfDepthFix(b,n){
   toast(n>0?("🔒 ล็อคลึกชั้น "+n+" มม. (อิงหลัง · คงเดิมตอนปรับขนาดตู้)"+info2):"ปลดล็อคลึกชั้นแล้ว");
 }
 function setShelfSetback(b,setback){
+  if(b&&b.cabInst&&cabYawOf(b.cabInst)) return runCabAlignedSync(b.cabInst,()=>setShelfSetback(b,setback));   // v1.265
   const info=shelfCabInfo(b); if(!info){toast("ไม่พบตู้ของชั้นนี้");return;}
   setback=Math.max(setback||0,0);
   const back=b.z-(b.W||0)/2, newFront=info.cabFront-setback, newW=Math.max(round(newFront-back),20);
@@ -9889,6 +9942,7 @@ function removeHangRail(bIn){
 async function addHangRail(bIn){
   const b=hangRailHost(bIn||selBoard());
   if(!b){ toast("คลิกแผ่นนอน (ชั้นหรือทอป) หรือชิ้นในตู้ที่มีแผ่นนอน แล้วค่อยใส่ราวแขวน"); return; }
+  if(b.cabInst&&cabYawOf(b.cabInst)) return runCabAligned(b.cabInst,()=>addHangRail(b));   // v1.265
   const grp=groupOf(b); if(!grp){toast("ไม่พบตู้");return;}
   const sides=grp.boards.filter(x=>x.orient==="side"&&!x._door&&!x._virtual&&!isRail(x)&&x.zoneLo==null);
   let inL=-1e9,inR=1e9,outL2=-1e9,outR2=1e9; if(sides.length){ const l=sides.reduce((a,c)=>a.x<c.x?a:c),r=sides.reduce((a,c)=>a.x>c.x?a:c);
@@ -11220,6 +11274,7 @@ function cabFitSig(){   // ลายเซ็น — เปลี่ยนเม
    และต่างจากแผ่นหลังตรงที่วางกลางความลึกได้ ไม่ผูกกับร่องหลัง */
 async function addDepthWall(){
   const sel=selBoard(); if(!sel){toast("เลือกชิ้นในตู้ก่อน");return;}
+  if(sel.cabInst&&cabYawOf(sel.cabInst)) return runCabAligned(sel.cabInst,()=>addDepthWall());   // v1.265
   const grp=groupOf(sel); if(!grp){toast("ไม่พบตู้ของชิ้นนี้");return;}
   const inst=sel.cabInst;
   const sides=grp.boards.filter(b=>b.orient==="side"&&!b._door&&!b._virtual&&!b._dx&&!isRail(b)&&b.zoneLo==null).sort((a,b)=>a.x-b.x);
@@ -11273,6 +11328,7 @@ async function addDepthWall(){
 async function addDivider(){
   const sel=selBoard();
   if(!sel){toast("เลือกชิ้นในตู้ที่ต้องการก่อน");return;}
+  if(sel.cabInst&&cabYawOf(sel.cabInst)) return runCabAligned(sel.cabInst,()=>addDivider());   // v1.265
   const grp=groupOf(sel);
   if(!grp){toast("ไม่พบตู้ของชิ้นนี้");return;}
   const sides=grp.boards.filter(b=>b.orient==="side"&&!b._door&&!b._virtual&&!isRail(b)&&b.zoneLo==null);
@@ -14940,7 +14996,7 @@ const SCENE_KEY="boardforge:v1"+(SX_TAB?(":"+SX_TAB):"");
    openSharedIfAny เรียก sync(1) ซึ่งเซฟอัตโนมัติ = สแนปช็อตตู้ใบเดียวทับออเดอร์ทั้งใบ
    เปิดลิงก์เช็คจากหน้าตรวจลิงก์ทีหนึ่ง แล้วรีเฟรชแท็บงาน งาน 37 ตู้เหลือตู้เดียว
    v36.3 คิดเผื่อกรณีสองแท็บทำงานไว้แล้ว แต่ลิงก์ดูอย่างเดียวเป็นกรณีที่สามที่ยังไม่มีใครกัน */
-async function autosave(){ if(state.editing||VIEW_ONLY)return; try{ await store.set(SCENE_KEY,JSON.stringify({boards:state.boards,globalTone:state.globalTone,cabColors:state.cabColors,cabNums:state.cabNums,cabVarTxt:state.cabVarTxt,cabDX:state.cabDX,bcSeq:state.bcSeq,bcMax:state.bcMax,orderLines:state.orderLines,cabDP:state.cabDP,cabFrontEdge:state.cabFrontEdge,cabFrontDir:state.cabFrontDir})); }catch(e){} }
+async function autosave(){ if(state.editing||VIEW_ONLY||_alignHold>0)return;   /* v1.265 */ try{ await store.set(SCENE_KEY,JSON.stringify({boards:state.boards,globalTone:state.globalTone,cabColors:state.cabColors,cabNums:state.cabNums,cabVarTxt:state.cabVarTxt,cabDX:state.cabDX,bcSeq:state.bcSeq,bcMax:state.bcMax,orderLines:state.orderLines,cabDP:state.cabDP,cabFrontEdge:state.cabFrontEdge,cabFrontDir:state.cabFrontDir})); }catch(e){} }
 /* ───────── v1.127: การบันทึกอัตโนมัติกินเวลาเกือบครึ่งของรอบคิดฉาก ─────────
    ตัวบันทึกแปลงข้อมูลทั้งฉากเป็นข้อความใหม่ทุกครั้งที่คิดฉาก ทั้งชิ้น รู ร่อง อุปกรณ์
    ออเดอร์ร้อยสามสิบห้าชิ้นจึงกินสองวินาทีต่อรอบ วัดได้จริงในงานจริง
@@ -22862,6 +22918,12 @@ function renderSettings(){
       ${num("hingeDowelDepth","ลึกเดือยยึด (มม.) เช่น 12")}${num("hingeDowelSpacing","ระยะห่างเดือยยึด 2 รู (มม.) เช่น 45")}
       ${num("hingeDowelOffset","เยื้องเดือยยึดเข้าด้านใน จากศูนย์ถ้วย (มม.) เช่น 0")}
     </div>
+    <div class="sumh" style="margin-top:12px">หน้าต่างจัดหน้าบาน / หน้าลิ้นชัก — ช่องไฟตั้งต้น</div>
+    <label style="display:flex;align-items:center;gap:8px;font-size:13px;cursor:pointer"><input type="checkbox" id="setFlOpenDef" ${settings.flOpenDef!==false?"checked":""}> เปิดหน้าต่างมาใช้ช่องไฟตั้งต้นด้านล่าง (ไม่ติ๊ก = ขึ้นค่าที่วัดได้จากบานที่วางอยู่)</label>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:6px">
+      ${num("flDefOuter","ช่องไฟรอบนอก บน ล่าง ซ้าย ขวา (มม.) เช่น 1.5",0.1)}${num("flDefBetween","ช่องไฟระหว่างบาน (มม.) เช่น 3",0.1)}
+    </div>
+    <div style="font-size:11px;opacity:.62;margin-top:2px">ช่องที่วัดได้ห่างเกิน 10 มม. (เว้นคาน · ช่องโล่ง) หรือติดลบ (บานเลยขอบตั้งใจ) หน้าต่างคงค่าเดิมไว้ · ในหน้าต่างมีปุ่ม ↺ ค่าที่วัดได้ ไว้คืนตัวเลขเดิม</div>
     <div class="sumh" style="margin-top:12px">กล่องลิ้นชักไม้ — หลบสิ่งกีดขวางอัตโนมัติ</div>
     <label style="display:flex;align-items:center;gap:8px;font-size:13px;cursor:pointer"><input type="checkbox" id="setBoxAutoFit" ${settings.boxAutoFit!==false?"checked":""}> ให้กล่องไม้หาช่องว่างจริงของลิ้นชักลูกนั้นเอง (คาน · ชั้นตาย · แผ่นพื้น)</label>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:6px">
@@ -23350,6 +23412,7 @@ function renderSettings(){
     const me=body.querySelector("#setMillEntry"); if(me)settings.millEntryOn=me.checked;
     const hs=body.querySelector("#setHangSide"); if(hs)settings.hangSideOn=hs.checked;
     const baf=body.querySelector("#setBoxAutoFit"); if(baf)settings.boxAutoFit=baf.checked;
+    { const fod=body.querySelector("#setFlOpenDef"); if(fod)settings.flOpenDef=fod.checked; }   // v1.264
     const beq=body.querySelector("#setBoxEqualH"); if(beq)settings.boxEqualH=beq.checked;
     const dks=body.querySelector("#setDoorSpec"); if(dks)settings.doorKeepSpec=dks.checked;
     const drs2=body.querySelector("#setDoorRatioSnap"); if(drs2)settings.doorRatioSnap=drs2.checked;
@@ -24426,6 +24489,62 @@ function rotateCabQuick(b,deg){
 function rotateCabBoards(boards,deg,px,pz){ if(!deg)return; const r=deg*Math.PI/180,cs=Math.cos(r),sn=Math.sin(r);
   boards.forEach(b=>{ const dx=b.x-px,dz=b.z-pz; b.x=round(px+dx*cs+dz*sn); b.z=round(pz-dx*sn+dz*cs); b.yaw=(((b.yaw||0)+deg)%360+360)%360; }); }
 let _inAxisAlign=0;   // v7.62.1: ระหว่างคลายหมุนตู้ ห้ามชิ้นไหนถูกปรับค่า เพราะพิกัดยังอยู่คนละเฟรม
+/* ───────── v1.265: ตัวห่อแบบรอได้ สำหรับเครื่องมือที่เปิดหน้าต่างถามก่อนสร้างชิ้น ─────────
+   withCabAxisAligned ด้านล่างใช้กับงานที่จบในจังหวะเดียว เครื่องมือที่ต้อง await หน้าต่างใช้ไม่ได้
+   เพิ่มชั้น / แผ่นหลัง / ทอป / เสาแบ่ง / ผนังกั้นแนวลึก / ราวแขวน / หน้าบาน ทุกตัวอ่านแกน X เป็นแนวกว้างตู้ตรง ๆ
+   ตู้ที่มาจาก XML ส่วนใหญ่หมุน 90/270 ในผัง ชิ้นที่ได้จึงเป็นก้อน 20×20 หรือหันผิดแกน (yaw 0)
+   คลายหมุนก่อนเรียก → รอจนเครื่องมือจบ → หมุนกลับรวมชิ้นที่เพิ่งสร้าง (กรองจากฉากตอนจบ) → sync(1) เก็บครั้งเดียว
+   ระหว่างนั้น _alignHold กัน commit/autosave/undo ไม่ให้เก็บภาพตู้ที่คลายหมุนอยู่
+   เครื่องมือเรียกซ้ำตัวเองผ่านตัวนี้ได้เลย เพราะพอคลายหมุนแล้ว cabYawOf() = 0 จึงไม่วนซ้ำ */
+async function runCabAligned(inst,fn){
+  const yaw=inst?cabYawOf(inst):0;
+  if(!yaw) return await fn();
+  const mine=()=>state.boards.filter(x=>x.cabInst===inst);
+  const ref=state.boards.filter(x=>x.cabInst===inst&&!x._door&&!x._virtual);
+  let px=Infinity,pz=Infinity;
+  (ref.length?ref:mine()).forEach(x=>{ const d=worldDims(x); px=Math.min(px,x.x-d[0]/2); pz=Math.min(pz,x.z-d[2]/2); });
+  rotateCabBoards(mine(),-yaw,px,pz);
+  _alignHold++;
+  try{ return await fn(); }
+  finally{ _alignHold=Math.max(_alignHold-1,0); rotateCabBoards(mine(),yaw,px,pz); try{ sync(1); }catch(e){ console.error(e); } }
+}
+/* v1.265: แบบจังหวะเดียว สำหรับคำสั่งแก้ชั้นในแผงขวา (แปลงชั้น · ร่นขอบ · ร่นหน้า · ล็อคลึก)
+   ตัวเหล่านั้น sync() เองข้างใน จึงต้องกัน commit ไว้จนหมุนกลับเหมือนกัน */
+function runCabAlignedSync(inst,fn){
+  if(!inst||!cabYawOf(inst)) return fn();
+  _alignHold++; let out;
+  try{ out=withCabAxisAligned(inst,fn); }
+  finally{ _alignHold=Math.max(_alignHold-1,0); try{ sync(1); }catch(e){ console.error(e); } }
+  return out;
+}
+/* ───────── v1.265: ซ่อมชั้นที่หันผิดแกนในตู้ที่หมุน (ของที่ addShelf ก่อน v1.265 สร้างไว้) ─────────
+   อาการ: ชั้นปรับเป็นก้อน 20×20 yaw 0 ในตู้ yaw 90 · กดปรับขนาดตู้ ชั้นได้ขนาดถูกแต่ยังหัน 0 องศา
+   จึงวิ่งขวางตู้ออกไปด้านข้าง และกรอบตู้ที่กางออกทำให้ขาตู้กระจายตามไปด้วย
+   จับเฉพาะ: แผ่นนอนชื่อ Shelf ที่หัน 0 องศาในตู้ที่หมุนอยู่ (ตู้หมุน ชิ้นทุกชิ้นหมุนไปด้วยกันเสมอ ชั้นที่ 0 องศาคือหลุดแกน)
+   ซ่อม: หันตามตู้ → refitInterior ฟิตกว้าง/ลึกในช่อง → ชั้นปรับเจาะรูพินใหม่ · ซ่อมแล้วไม่เข้าเงื่อนไขอีก ทำครั้งเดียว */
+function healStrayShelves(){
+  if(_alignHold>0||_inAxisAlign>0) return 0;
+  const cnt={};
+  state.boards.forEach(b=>{ if(!b||!b.cabInst||b._door||b._virtual) return;
+    const y=(((b.yaw||0)%360)+360)%360, c=(cnt[b.cabInst]=cnt[b.cabInst]||{}); c[y]=(c[y]||0)+1; });
+  let n=0;
+  Object.keys(cnt).forEach(inst=>{
+    let Y=0,m=-1; Object.keys(cnt[inst]).forEach(k=>{ if(cnt[inst][k]>m){ m=cnt[inst][k]; Y=+k; } });
+    if(!Y||!cnt[inst][0]) return;
+    const bad=state.boards.filter(b=>b&&b.cabInst===inst&&b.orient==="flat"&&!b._door&&!b._virtual&&!b._dx&&!isRail(b)
+      &&/shelf/i.test(b.name||"")&&((((b.yaw||0)%360)+360)%360)===0);
+    if(!bad.length) return;
+    bad.forEach(b=>{ b.yaw=Y; });
+    try{ refitInterior(state.boards.filter(x=>x.cabInst===inst)); }catch(e){ console.error("healShelf refit:",e); }
+    try{ withCabAxisAligned(inst,()=>{ bad.filter(b=>isAdjShelf(b)).forEach(b=>{
+        const inf=shelfCabInfo(b); if(!inf||!inf.sides||!inf.sides.length) return;
+        state.boards.forEach(o=>{ if(o.holes) o.holes=o.holes.filter(h=>!(h&&h.pin&&h.src===b.id)); });
+        shelfDrillPins(b,inf.sides); }); }); }catch(e){ console.error("healShelf pins:",e); }
+    n+=bad.length;
+    console.log("🧰 ซ่อมชั้นที่หันผิดแกนในตู้ที่หมุน",inst,bad.map(b=>b.name).join(", "));
+  });
+  return n;
+}
 function withCabAxisAligned(inst,fn){ const yaw=cabYawOf(inst); if(!yaw) return fn();
   const ref=state.boards.filter(b=>b.cabInst===inst&&!b._door&&!b._virtual);
   let px=Infinity,pz=Infinity; ref.forEach(b=>{ const d=worldDims(b); px=Math.min(px,b.x-d[0]/2); pz=Math.min(pz,b.z-d[2]/2); });
