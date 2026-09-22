@@ -940,7 +940,7 @@
    ===================================================================== */
 /* ---- APP_META: แหล่งความจริงเดียวของเวอร์ชัน (ดูได้จาก console / คลิกชื่อแอป) ---- */
 const APP_META={
-  name:"StarNexus Cabinet", version:"1.270", build:"2026-09-22/shallow-cab-legs",
+  name:"StarNexus Cabinet", version:"1.271", build:"2026-09-22/curved-box-keep-shape",
   file:"StarNexus.html", basedOn:"Furnitech_V3.html (v3.11)",
   /* ───────── เริ่มนับเวอร์ชันใหม่ที่ 1.001 (21/08/2026) ─────────
      ของเดิมนับมาถึง 42.1 แล้ววิ่งเป็นทศนิยมสองชั้นซึ่งอ่านลำดับยาก
@@ -948,6 +948,7 @@ const APP_META={
      ประวัติเก่าเก็บไว้ทั้งหมดตามเลขเดิม ไม่ไล่เขียนใหม่ เพราะเลขในนั้นถูกอ้างถึงไปแล้ว
      รายการที่อยู่ใต้ 1.001 ลงไปจึงเป็นเลขชุดเก่า อ่านต่อกันได้ตามวันที่ */
   changelog:[
+    ["1.271","2026-09-22","FIX กล่องโค้ง: แผ่นชั้นเลื่อนออกทางหน้า 8 มม. และหดลึกจาก 138 เหลือ 122 (เป็นมานาน) — ตัวดันก้นชั้นชนแผ่นหลัง (applyShelfBackFlush) หยิบ \"ครีบแถวหลัง\" (วางแนวหน้าเหมือนแผ่นหลัง) มาเป็นแผ่นหลังของกล่อง แล้วตัดชั้นให้ก้นมาชนผิวครีบทุกครั้งที่คิดฉาก ชั้นจึงหดเท่าความหนาครีบและเลื่อนออกครึ่งหนึ่ง พอเปลี่ยน Part ความหนาครีบเปลี่ยน ชั้นก็ขยับตามอีก · ตอนนี้ตัวดันชั้น/ฟิลเลอร์ชนแผ่นหลังข้ามกล่องโค้ง · ซ่อมตอนเปิดงานและทุกครั้งที่ความหนาเปลี่ยน: คิดรูปทรงกล่องใหม่จากค่าที่ตัวสร้างเก็บไว้ (_csP) ด้วยความหนาจริงของชั้น/ครีบ/แผ่นปิด แล้วเขียนตำแหน่ง ขนาด โปรไฟล์ และรอยบากกลับลงชิ้นเดิม (Part/สีที่ตั้งไว้ไม่หาย) · ครีบยึดผิวนอกของกล่อง หนาขึ้นแล้วโตเข้าใน รอยบากบนชั้นตามความหนาครีบ · ขนาดรวมกล่อง (โหมดขนาดสำเร็จ) คงเดิม · FIX ลายหน้าบาน 3D ไม่ขึ้นบนหน้าลิ้นชักเตี้ย ทั้งที่ลายลงได้ — เดิมต้องเหลือลูกฟักกลางอย่างน้อย 10 มม. หน้าลิ้นชักสูง 188 กับลาย PCWx50 (ลึกจากขอบ 90) เหลือ 8 จึงไม่ขึ้น ตอนนี้เหลือ 2 มม. ก็วาด"],
     ["1.270","2026-09-22","FEAT ขาตู้ตื้นไม่ชนกัน — ตู้ลึกไม่เกิน 200 มม. ที่ยังใช้ขา 2 แถว (ขาหน้า/ขาหลังห่างกันแค่ 50 จากศูนย์ ฐานขาชนกัน) ขาหลังเหลือแค่ 2 มุม และขยับเข้าหากลางตู้ 100 มม. · ขากลางเหลือแถวหน้าแถวเดียว (ตู้ 6 ขา → 5 ขา · 8 ขา → 6 ขา) · ตั้งค่าได้: legShallowD (เกณฑ์ความลึก) · legShallowBackIn (ระยะขยับขาหลังเข้าใน) · ตู้ตื้นกว่าเกณฑ์ขาแถวเดียว (legNarrowW 180) ยังเป็นแถวเดียวกลางความลึกเหมือนเดิม · รูมาร์คใต้แผ่นพื้น (ถ้าแผ่นใหญ่พอให้เจาะ) ตามผังใหม่ด้วย · คิดความลึกในแกนของตู้เอง ตู้ที่หมุนตามผังใช้ได้"],
     ["1.269","2026-09-22","FIX ซูมเข้าไปดูใกล้ ๆ ไม่ได้ ติดที่ระยะหนึ่ง — ระยะกล้องต่ำสุดเดิม = modelRadius × 0.2 ซึ่งคิดจากขนาดทั้งออเดอร์ (ออเดอร์กว้าง 4 เมตร เข้าใกล้ได้แค่ ~590 มม.) และซูมเข้าหาจุดหมุนกลางฉาก ไม่ใช่จุดที่เมาส์ชี้ · ตอนนี้ใกล้สุด 40 มม. · ล้อเมาส์ซูมเข้าหาชิ้นที่เมาส์ชี้ (จุดนั้นอยู่ที่เดิมบนจอ) · ก้าวซูมเป็นสัดส่วนของระยะ ไกลเร็ว ใกล้ละเอียด · ปุ่ม + − ยังซูมเข้าหากลางจอ · FEAT จัดชั้นปรับที่ใส่ไว้แล้วให้ห่างเท่ากัน ไม่ต้องลบแล้วใส่ใหม่ — คลิกขวาที่ชั้นปรับ หรือปุ่มในแผงขวา จัดทุกชั้นปรับในช่องเดียวกัน (ระหว่างแผ่นที่ไม่ใช่ชั้นปรับ เช่น พื้น ฝาบน ชั้นตาย · ช่องกว้างเดียวกัน) เลือกวัดถึง กึ่งกลางชั้น (ศูนย์ถึงศูนย์เท่ากัน) หรือ ผิวชั้น (ช่องใสเท่ากัน) · เลือกลงระยะรูระบบ 32 ได้ · เจาะรูพินใหม่ · ราวแขวนใต้ชั้นตามไป · ใช้กับตู้ที่หมุนในผังได้"],
     ["1.268","2026-09-22","FEAT เพิ่มชั้น โหมด แบ่งเท่ากันในช่อง เลือกได้ว่าจะวัดระยะแบ่งถึง กึ่งกลางชั้น (ศูนย์ชั้นห่างเท่ากัน · แบบเดิม ช่องบนสุด/ล่างสุดจะใสกว่าช่องกลางครึ่งความหนาชั้น) หรือ ผิวชั้น (ช่องใสระหว่างผิวไม้เท่ากันทุกช่อง) · จำตัวเลือกล่าสุดไว้ในรอบทำงานนั้น · แจ้งช่องใสจริงที่ได้ในข้อความหลังเพิ่มชั้น (ชั้นปรับระดับยังสแนประยะ 32 มม. ช่องใสจึงอาจต่างกันไม่เกินขั้นพิน)"],
@@ -1796,7 +1797,8 @@ function sync(rebuild,save,cm){
   try{ applyPartDrills(); }catch(e){ console.error(e); }
   try{ applyKitPush(); }catch(e){ console.error(e); }        // v15.1: กดกระเด้งจากชุดอุปกรณ์
   try{ applyFillerDepth(); }catch(e){ console.error("filler:",e); }   // v22.9: ฟิลเลอร์ห้ามทะลุแผ่นหลัง
-  try{ applyShelfBackFlush(); }catch(e){ console.error("shelfBack:",e); }   // v23.1: ชั้นชนผิวหน้าแผ่นหลัง
+  try{ applyShelfBackFlush(); }catch(e){ console.error("shelfBack:",e); }
+  try{ csHealGeometry(); }catch(e){ console.error("csHeal:",e); }   // v1.271: กล่องโค้งคืนรูปทรงตามตัวสร้าง (ความหนาจริง)   // v23.1: ชั้นชนผิวหน้าแผ่นหลัง
   /* v39.2: ธง CNC กับหัวท้ายร่องรับแผ่นหลัง ต้องสดเสมอ — เดิมคิดเฉพาะตอนกดใช้งานในกล่องแผ่นหลัง
      ตู้ที่สร้างจากตัวสร้างตู้ หรือแผ่นหลังที่ถูกย่อ/แบ่งทีหลัง จึงถือธงเก่าไปออกไฟล์ */
   try{ const _bi={}; (state.boards||[]).forEach(b=>{ if(b&&b.cabInst&&(b.grooves||[]).some(g=>g&&g.back)) (_bi[b.cabInst]=_bi[b.cabInst]||1); });
@@ -2739,7 +2741,7 @@ function doorReliefFor(b){
     const code=doorShapeCode(b); if(!code) return null;
     const prof=doorReliefProfiles()[code.toUpperCase()]; if(!prof) return null;
     const L=+b.L||0, W=+b.W||0, T=+b.T||0;
-    if(L-2*prof.D<10||W-2*prof.D<10||prof.maxDep>=T-0.5) return null;       // ลายลงไม่ได้ = แผ่นเรียบ
+    if(L-2*prof.D<2||W-2*prof.D<2||prof.maxDep>=T-0.5) return null;         // ลายลงไม่ได้ = แผ่นเรียบ · v1.271: ลูกฟักกลางเหลือ 2 มม. ก็วาด (เดิม 10 — หน้าลิ้นชัก 188 กับลายลึก 90 เลยไม่ขึ้น)
     return doorReliefGeo(L,W,T,prof,b.orient,b.yaw);
   }catch(e){ console.error("doorRelief:",e); return null; }
 }
@@ -17152,6 +17154,7 @@ function applyShelfBackFlush(){
   state.boards.forEach(b=>{ if(b&&b.cabInst) (byInst[b.cabInst]=byInst[b.cabInst]||[]).push(b); });
   Object.keys(byInst).forEach(inst=>{
     const all=byInst[inst];
+    if(all.some(x=>x&&x._csP)) return;                 // v1.271: กล่องโค้ง — ครีบแถวหลังไม่ใช่แผ่นหลัง รูปทรงเป็นของตัวสร้าง
     const _fz=(all.some(x=>x&&(x._fixZone||/Filler/i.test(x.name||"")))&&fixZoneOf(inst,false))||null;   // v1.216: Filler Front ของโซนไม่ใช่แผ่นหลัง (ตู้หมุน 90 เคยหยิบมันแล้วดันพื้นลึก 584)
     const bk=all.filter(x=>x&&x.orient==="front"&&!x._door&&!x._virtual&&!isRail(x)&&!(_fz&&_fz.has(x)))
                 .sort((a,c)=>a.z-c.z)[0];
@@ -17186,6 +17189,7 @@ function applyFillerDepth(){
   state.boards.forEach(b=>{ if(b&&b.cabInst) (byInst[b.cabInst]=byInst[b.cabInst]||[]).push(b); });
   Object.keys(byInst).forEach(inst=>{
     const all=byInst[inst];
+    if(all.some(x=>x&&x._csP)) return;                 // v1.271: กล่องโค้ง — ครีบแถวหลังไม่ใช่แผ่นหลัง รูปทรงเป็นของตัวสร้าง
     const _fz=(all.some(x=>x&&(x._fixZone||/Filler/i.test(x.name||"")))&&fixZoneOf(inst,false))||null;   // v1.216: Filler Front ของโซนไม่ใช่แผ่นหลัง (ตู้หมุน 90 เคยหยิบมันแล้วดันพื้นลึก 584)
     const bk=all.filter(x=>x&&x.orient==="front"&&!x._door&&!x._virtual&&!isRail(x)&&!(_fz&&_fz.has(x)))
                 .sort((a,c)=>a.z-c.z)[0];
@@ -19033,7 +19037,7 @@ function applyCabinetSkin(inst){
      ผังชั้น ระยะบาก และแผ่นดัด ถูกคิดมาจากตัวสร้างเป็นชุดเดียวกัน
      ให้เปลี่ยนวัสดุได้ตามปกติ แต่ปล่อยตำแหน่งไว้ ไม่ให้ตัวจัดตู้มาดันชิ้นจนไม่สนิท */
   if(cb.some(b=>b&&b._csP)){ let m=0; cb.forEach(b=>{ if(applyThick(b))m++; });
-    if(m) try{ m+=sxRelayoutCurvedShelves(cb); }catch(e){ console.error("csRelayout:",e); }
+    try{ m+=csHealGeometry(); }catch(e){ console.error("csHeal:",e); }   // v1.271: แทน sxRelayoutCurvedShelves — คิดทั้งกล่องจากตัวสร้าง ไม่ใช่แค่เรียงชั้น
     return m; }
   if(cb.length<2){ let m=0; cb.forEach(b=>{ if(applyThick(b))m++; }); return m; }   // ตู้ชิ้นเดียว/ไม่ครบ → แค่บวกหนา
   /* v7.19: กติกาการโต
@@ -24674,6 +24678,7 @@ function healStrayShelves(){
   let n=0;
   Object.keys(by).forEach(inst=>{
     const bs=by[inst];
+    if(bs.some(b=>b&&b._csP)) return;                  // v1.271: กล่องโค้งมีตัวซ่อมของตัวเอง (csHealGeometry)
     const shelves=bs.filter(b=>b.orient==="flat"&&!b._door&&!b._virtual&&!b._dx&&!isRail(b)&&/shelf/i.test(b.name||""));
     if(!shelves.length) return;
     const Y=_majorYawOf(bs);
@@ -34777,6 +34782,70 @@ function sxRelayoutCurvedShelves(cb){
     cb.forEach(b=>{ if(b&&b._csP&&Math.abs((+b._csP.T||0)-tOut)>0.005) b._csP.T=tOut; });
   return n; }
 
+/* ───────── v1.271: กล่องโค้งต้องเป็นรูปทรงเดียวกับที่ตัวสร้างวาด เสมอ ─────────
+   ชิ้นกล่องโค้งไม่ใช่ตู้สี่เหลี่ยม แต่ตัวจัดตู้อัตโนมัติหลายตัววิ่งผ่านมันทุกรอบคิดฉาก
+   ตัวที่ทำพังคือ applyShelfBackFlush: หยิบครีบแถวหลัง (orient front) มาเป็นแผ่นหลัง แล้วตัดชั้นให้ก้นชนผิวครีบ
+   ชั้นลึก 138 เหลือ 122 และเลื่อนออกทางหน้า 8 มม. ทุกกล่องที่เคยคิดฉาก · เปลี่ยน Part → ครีบหนาเปลี่ยน → ชั้นขยับอีก
+   ตัวนี้คิดกล่องใหม่จาก _csP (ค่าที่ตัวสร้างเก็บไว้) ด้วยความหนาจริงของ ชั้น / ครีบ / แผ่นปิด
+   แล้วเขียนตำแหน่ง ขนาด โปรไฟล์ รอยบาก กลับลงชิ้นเดิม · id Part สี ขอบ ไม่ถูกแตะ
+   ตำแหน่งวางของกล่องทั้งชุด (ย้ายไปไว้ไหนก็ตาม) อ่านจากแผ่นปิด → ครีบ → แผ่นดัด ซึ่งไม่มีตัวจัดตู้ตัวไหนไปขยับ
+   โหมด "ขนาดสำเร็จ" หักความหนาแผ่นปิดใหม่ ขนาดรวมกล่องจึงคงเดิม · กล่องที่หมุนอยู่ข้าม (ยังไม่รองรับ)
+   ลายเซ็นของกลุ่มไม่เปลี่ยน = ไม่คิดซ้ำ */
+const _csHealSig=new Map();
+function csHealGeometry(){
+  if(typeof CurvedShelf==="undefined"||!CurvedShelf||typeof CurvedShelf.geom!=="function") return 0;
+  if(_alignHold>0||_inAxisAlign>0) return 0;
+  const groups={};
+  state.boards.forEach(b=>{ if(b&&b._csGroup&&b._csP) (groups[b._csGroup]=groups[b._csGroup]||[]).push(b); });
+  const sigOf=bs=>bs.map(b=>[b.id,b.T,b.x,b.y,b.z,b.L,b.W].join(",")).join("|")+"#"+JSON.stringify(bs[0]._csP);
+  const numOf=b=>{ const m=String(b.name||"").match(/(\d+)\s*$/); return m?+m[1]:0; };
+  let total=0;
+  Object.keys(groups).forEach(gid=>{ const bs=groups[gid];
+    try{
+      if(bs.some(b=>((((+b.yaw||0)%360)+360)%360)!==0)) return;
+      const sig=sigOf(bs); if(_csHealSig.get(gid)===sig) return;
+      const P0=bs[0]._csP;
+      const sh=bs.filter(b=>b._csType==="shelf").sort((a,c)=>a.y-c.y);
+      const fins=bs.filter(b=>b._csType==="fin").sort((a,c)=>numOf(a)-numOf(c));
+      const faces=bs.filter(b=>/^face/.test(b._csType||"")).sort((a,c)=>(a._csType>c._csType)?1:-1);
+      const end=bs.find(b=>b._csType==="end");
+      const P=JSON.parse(JSON.stringify(P0));
+      if(sh.length&&+sh[0].T>0) P.T=+sh[0].T;
+      if(fins.length&&+fins[0].T>0) P.finT=+fins[0].T;
+      if(end&&+end.T>0) P.endT=+end.T;
+      if(P.sizeMode==="total"&&P._rawL!=null&&P._rawD!=null){
+        const faceOn=!!P.face&&P.rSide!=="none", fT=(faceOn&&+P.faceT>0.5)?+P.faceT:0;
+        const eT=(P.endOn!==false&&+P.endT>0.5)?+P.endT:0, runFull=(P.faceRun==="full")&&fT>0;
+        P.L=Math.max(+P._rawL-fT-eT,20); P.D=Math.max(+P._rawD-(runFull?fT:0),20); }
+      const G0=CurvedShelf.geom(P0), G=CurvedShelf.geom(P);
+      /* ตำแหน่งวางของกล่อง = ชิ้นจริง − ชิ้นที่ตัวสร้างวาด (ด้วยค่าเดิม) ของชิ้นที่ไม่มีใครไปขยับ */
+      let off=null;
+      if(end&&G0.endPanel) off={x:end.x-G0.endPanel.cx, y:end.y-(G0.endPanel.H/2), z:end.z-0};
+      else if(fins.length&&G0.notches.length){ const f=fins[0], o=G0.notches[Math.max(numOf(f)-1,0)]||G0.notches[0];
+        const zc=(o.edge==="B")?(-P0.D/2+P0.finT/2):(P0.D/2-P0.finT/2); off={x:f.x-o.cx, y:f.y-(P0.finH/2), z:f.z-zc}; }
+      else if(faces.length&&(G0.faces||[]).length){ const F0=G0.faces[0]; off={x:faces[0].x-F0.cx, y:faces[0].y-(F0.H/2), z:faces[0].z+F0.cy}; }
+      if(!off){ _csHealSig.set(gid,sig); return; }
+      let n=0;
+      const put=(b,o)=>{ let ch=false; Object.keys(o).forEach(k=>{ const v=round(o[k]); if(Math.abs((+b[k]||0)-v)>0.05){ b[k]=v; ch=true; } }); if(ch) n++; };
+      const sameProf=(a,c)=>Array.isArray(a)&&a.length===c.length&&a.every((p,i)=>Math.abs(p[0]-c[i][0])<0.05&&Math.abs(p[1]-c[i][1])<0.05);
+      if(sh.length===G.levels.length) sh.forEach((b,i)=>{
+        put(b,{x:0+off.x, y:G.levels[i]+off.y, z:0+off.z, L:P.L, W:P.D});
+        if(!sameProf(b.profile,G.prof)){ b.profile=G.prof.map(p=>p.slice()); n++; }
+        if(!G.rectilinear) b.pockets=G.pockets.map(o=>Object.assign({},o)); else if(b.pockets&&G0.rectilinear) delete b.pockets; });
+      if(fins.length===G.notches.length) fins.forEach((b,i)=>{ const o=G.notches[i];
+        const zc=(o.edge==="B")?(-P.D/2+P.finT/2):(P.D/2-P.finT/2);
+        put(b,{x:o.cx+off.x, y:P.finH/2+off.y, z:zc+off.z, L:P.finW, W:P.finH}); b._csEdge=o.edge; });
+      if(faces.length===(G.faces||[]).length) faces.forEach((b,i)=>{ const F=G.faces[i];
+        put(b,{x:F.cx+off.x, y:F.H/2+off.y, z:-F.cy+off.z, L:F.w, W:F.h, T:F.H});
+        if(!sameProf(b.profile,F.prof)){ b.profile=F.prof.map(p=>p.slice()); n++; } });
+      if(end&&G.endPanel){ const E=G.endPanel; put(end,{x:E.cx+off.x, y:E.H/2+off.y, z:0+off.z, L:E.H, W:E.D}); }
+      if(JSON.stringify(P)!==JSON.stringify(P0)){ const PP=JSON.parse(JSON.stringify(P)); bs.forEach(b=>{ b._csP=PP; }); n++; }
+      if(n){ total+=n; console.log("🧰 กล่องโค้ง: คืนรูปทรงตามตัวสร้าง",gid,n,"จุด (ชั้นลึก "+round(P.D)+" · หนาชั้น "+P.T+" · ครีบ "+P.finT+" · แผ่นปิด "+P.endT+")"); }
+      _csHealSig.set(gid,sigOf(bs));
+    }catch(e){ console.error("csHeal "+gid+":",e); }
+  });
+  return total;
+}
 /* v36.4: ซ่อมไฟล์ที่โดนเขียนทับไปแล้ว — คืนความสูงแผ่นดัดจาก _csP
    ชิ้นที่ T เท่ากับความหนาไม้ (แทนที่จะเป็นความสูง) คือชิ้นที่โดนทับ */
 function sxHealCurvedFaces(){
