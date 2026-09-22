@@ -940,7 +940,7 @@
    ===================================================================== */
 /* ---- APP_META: แหล่งความจริงเดียวของเวอร์ชัน (ดูได้จาก console / คลิกชื่อแอป) ---- */
 const APP_META={
-  name:"StarNexus Cabinet", version:"1.278", build:"2026-09-22/custom-order-glass",
+  name:"StarNexus Cabinet", version:"1.279", build:"2026-09-22/drawer-axis-glass-xml",
   file:"StarNexus.html", basedOn:"Furnitech_V3.html (v3.11)",
   /* ───────── เริ่มนับเวอร์ชันใหม่ที่ 1.001 (21/08/2026) ─────────
      ของเดิมนับมาถึง 42.1 แล้ววิ่งเป็นทศนิยมสองชั้นซึ่งอ่านลำดับยาก
@@ -948,6 +948,7 @@ const APP_META={
      ประวัติเก่าเก็บไว้ทั้งหมดตามเลขเดิม ไม่ไล่เขียนใหม่ เพราะเลขในนั้นถูกอ้างถึงไปแล้ว
      รายการที่อยู่ใต้ 1.001 ลงไปจึงเป็นเลขชุดเก่า อ่านต่อกันได้ตามวันที่ */
   changelog:[
+    ["1.279","2026-09-22","FIX กล่องลิ้นชักตู้ที่วางหมุนในผังพัง (BND123 · BND214 — พื้น K40 กว้าง 25 ลึก 235 รางสั้นสุด แผงเหล็กลอยนอกตู้ รูหน้าบานหุบเข้ากลาง) — ตัวคิดกล่องอ่านแกน X เป็นแนวกว้างตู้เสมอ ตู้หมุน 90° แผ่นข้างสองแผ่นมี x เท่ากันจึงได้ช่องกว้าง 0 · ทางที่ห่อคลายหมุนไว้ (ปรับขนาดตู้ สลับโครงสร้าง) ไม่เป็น แต่ปุ่มบันทึกในหน้าตั้งค่าคิดกล่องทุกตู้ใหม่โดยไม่คลายหมุน (เปลี่ยนโหมดไฟแล้วกดบันทึกก็พัง) รวมถึงจัดหน้าบาน ปรับลิ้นชักทั้งชุด ร่นช่องภายใน · ตอนนี้ตัวคิดกล่องคลายหมุนเองทุกครั้ง (ผลตรงกับคลายหมุนด้วยมือทุกค่า) · ไฟล์ที่เซฟกล่องพังค้างไว้ ซ่อมเองตอนเปิดครั้งแรก (ชิ้นกล่องที่หลุดนอกโครงตู้ = คิดใหม่ครั้งเดียว) · FIX แผ่นข้างตู้ที่หมุนอยู่ไม่มีรูรางลิ้นชักเลย — ตัวเจาะล้างรูเก่าแล้วหาแผ่นข้างตามแกน X ไม่เจอจึงหยุด ตอนนี้เจาะในเฟรมของตู้ (BND214 ได้ข้างละ 6 รู · BND123 ข้างละ 2) · เจาะซ้ำทุกเฟรมแล้วพิกัดไม่เลื่อน · FEAT กระจกตามออเดอร์ — ช่อง K_Front_Glass1..6 (xxAG207_FT05007) เก็บติดตู้ตอนโหลด XML เองไม่ต้องจับคู่ · บานเลข n อ่านช่องเลข n ท่อนหลัง _ คือรหัสกระจก ค้นคลังด้วยรหัสขึ้นต้น FT05007 + ขนาด · ชนิดกระจก (กระจกใสชาทอง) อ่านจากชื่อสินค้าของรหัสนั้น · ความหนาจากรหัส (FT05 = 5) · ขนาดยังไม่มีในคลังได้ชื่อชนิดถูกไว้ขอเปิดรหัส · หน้าดูชิ้นบอกกระจกที่สั่งและค่าที่ออเดอร์ส่งมา · FEAT แบบบานเฟรม: บอกขนาดกระจกที่จะได้ใต้ช่องซ้อนเข้าในเฟรม และเตือนเมื่อค่าซ้อนไม่ตรงกับร่องจริงของเส้น (xxAG ซ้อน 2.5 ได้บาน − 35 = 560 · ร่อง 007 ลึก 18.5 ควรซ้อน 17.5 = บาน − 5 = 590 × 1113) พร้อมปุ่มแก้ตัวนี้ หรือทุกแบบบานที่ซ้อนค่าเดียวกันและควรแก้เป็นค่าเดียวกัน (Front1..6 × xxAG207/208/281) ในคลิกเดียว · ตัวหาร่องใหม่รองรับร่องที่เปิดด้านหนึ่ง (ช่องกระจก 007 มีปีกด้านหน้า) · ป้ายช่องบอกชัดว่าวัดจากขอบในของเส้น"],
     ["1.278","2026-09-22","FIX แบบผลิตรวมบานเฟรมซ้ายกับขวาเป็นใบเดียว \"Door L ×2\" — WNL059 (xxAG207 เส้น 021 ด้านขวา) กับ WNR059 (xxAG208 เส้น 021 ด้านซ้าย) ขนาดเท่ากันเป๊ะ และบานออเดอร์ถือชื่อลิงก์เดียวกัน (FrontShapeP1) ตัวรวมกลุ่มดูแค่ชื่อลิงก์กับขนาดจึงยุบเป็นใบเดียว ช่างได้แบบบานซ้ายไปทำทั้งคู่ · ตอนนี้รวมกลุ่มด้วยแบบบานจริงหลังแปลงลิงก์ + หน้าตัดรายด้าน + ด้านบานพับ + สีเฟรม + ขนาด ได้ Door L ×1 กับ Door R ×1 · หัวรองของหน้าเฟรมบอกแบบบานจริงและสีเฟรมด้วย (FrontShapeP1 → Front1_xxAG207 · สีเฟรม AL618MH) · FEAT หน้าแบบกระจกตามแบบที่โรงงานใช้ — รูปด้านหน้า (ด้านยาวนอน) พร้อมระยะและลายกระจก รูปสันบอกความหนา ชื่อสินค้าตัวใหญ่ใต้รูป (ชื่อตามคลังถ้าค้นเจอ) ขอบแบบเจียรมีกล่อง \"แบบขยายลบมุม\" (1~1.5) กับ \"ขยายเจียรโดยรอบ\" แบบลบคมไม่มีกล่องขยาย · ครอบกระจกชั้นปรับ กระจกบานเฟรม บานที่ตั้งขอบวางกระจก และชิ้นที่วัสดุเป็นกระจก รวมกลุ่มตาม ชนิด หนา ขนาด ขอบ แยกกระจกชั้นกับกระจกบาน · ขนาดมาจากตัวเดียวกับใบ Fitting (แยก glassSpecOfBoard ออกจาก glassBOM ใบอุปกรณ์ได้ค่าเดิมทุกบรรทัด) · ชั้นกระจกที่ไม่มีงานเจาะไม่มีหน้าแผ่นซ้ำแล้ว สแกนชิ้นกระจกเปิดหน้าแบบกระจกตรง · CHANGE ปุ่ม \"พิมพ์เฉพาะ → หน้าตัดเฟรม\" เปลี่ยนเป็น \"งานสั่งทำ\" มีแบบเฟรมหน้าบาน ตามด้วยแบบกระจก เดินเลขหน้าในชุด รายการทางขวาจัดกระจกไว้ใต้หัว กระจกชั้น / กระจกบาน"],
     ["1.277","2026-09-22","FIX เฟรมอลูไม่ออกรหัสท่อนตัดในใบ Fitting (xxAG207/208 · AL618MH) — สี่สาเหตุซ้อนกัน: (1) ความยาวตัดใช้ขนาดก่อนค่าปรับของ Part ได้ 597/1117 ทั้งที่บานจริงและ 3D คือ 595×1118 (ค่าปรับ xxAG ซ้ายขวา −1 บนล่าง +0.5 มีไว้ให้ได้ขนาดนี้) · ตอนนี้บานเฟรมอลูใช้ขนาดบานหลังปรับ บานไม้ (เส้นหุ้มนอกแผ่นที่ถูกลด เช่น xCAx129 −3) ยังใช้ขนาดก่อนปรับเหมือนเดิม (2) ไม่รู้สีเฟรม — ตอนนี้ใช้รหัสสีของแบบบาน หรือถ้าไม่ได้ตั้ง ใช้สีหน้าบานชุดเดียวกันของตู้ (FrontColor1 ← K_Front_Color1 ในออเดอร์) แล้วกรองชื่อสินค้าในคลังด้วยสีนั้นแบบตรงทั้งคำ ใส่ Purchase ID ของเส้นเป็นรหัสตระกูล (007 = 406AL3011 · 021 = 406AL3012) ครั้งเดียวใช้ได้ทุกสี (3) ท่อนเดียวกันมีทั้งตัดตรงและ \"ตัด 45/2ด้าน\" เดิมหยิบตัวแรกตามรหัสจึงได้ตัดตรงเสมอ ตอนนี้เลือกตามปลายเส้นที่ตั้งไว้ที่แบบบาน (เข้ามุม 45° = ตัด 45/2ด้าน) ไม่มีแบบที่ต้องการก็บอกว่าขาดท่อนแบบไหน (4) บานที่ขอบหนึ่งเป็นอีกหน้าตัด (007 สามด้าน + 021) เส้น 021 ได้รหัสจากตารางสีของ 007 ไปด้วย ตอนนี้แต่ละเส้นใช้ตารางสีของหน้าตัดตัวเอง · สีกับปลายตัดแยกบรรทัดในใบ · FEAT ชุดไฟในใบอุปกรณ์เพิ่มโหมด \"ไม่ออกราง\" — ไม่ออกตัวราง พลาสติกปิดราง ฝาปิดปลาย แต่เส้นไฟ หม้อแปลง สายต่อยังออก (ที่หัวใบอุปกรณ์ และในตั้งค่า → ไฟ LED)"],
     ["1.276","2026-09-22","FIX บานพับไม่ออกตามรหัสที่ตั้งในชุดอุปกรณ์ (KIT) — ช่อง \"บานพับ\" ของชุดอุปกรณ์มีมาตั้งแต่ v15.1 แต่ไม่มีจุดไหนอ่านค่า ทุกบานจึงออกรหัสกลาง HINGE ทั้งที่ KIT03 ตั้ง HINGE_ALU ไว้ (ตู้ WNL059/WNR059 บานอลูได้บานพับไม้ในใบเบิก) · ตอนนี้ลำดับคือ แบบบาน (Part) → ชุดอุปกรณ์ของตู้ใบนั้น (ช่อง K_Fitting_Concept) → ค่ากลาง · ใส่ได้ทั้งชื่อรุ่นบานพับ (ระยะเจาะตามรุ่น) หรือรหัส Element จากแท็บ Fittings · ใบเบิกได้ HINGE_ALU พร้อมลูก FITHG00228 · ชุดที่ตั้งเท่าค่ากลาง (KIT01 = HINGE) ผลเหมือนเดิมทุกค่า · ใช้ตัวเดียวกันทั้งใบเบิก 3D แบบผลิต และไฟล์เจาะ"],
@@ -1339,7 +1340,7 @@ const DEF_SETTINGS={ frontSetMax:6, dowelD:8, dowelDepth:28, dowelMateDepth:12, 
   healOnVarChange:true,                           // v31.1: แก้ค่าตัวแปรของตู้แล้วเชื่อมเดือยใหม่ให้ตู้ใบนั้น
   kitField:"K_Fitting_Concept", kitPushMap:"B:top, W:bottom", xmlThinMin:1, xmlSkipNoModel:false, orderProgNo:"700", doorGapWarn:50, csNewGap:120, ledSets:[{id:"12V-COB", volt:12, wPerM:9.6,
     stripCode:"", psuMap:"30, 60, 100", psuCode:"", psuUse:80, maxRunM:5,
-    wireCode:"", wireMode:"ต่อเส้นไฟ", wireQty:1}], ledSetPerRun:false, cutSizeFmt:"{ชื่อ} ตัดขนาด {ยาว} mm.", cutLookupKey:"ตัดขนาด", cutLookupOn:true, glassBomOn:true, glassUnit:"EA", glassMatCodes:"FC,MC,FT,PT,FS,MT", glassKinds:"กระจกใส|กระจกเงา|กระจกฝ้า|กระจกใสชาดำ|กระจกใสชาทอง|กระจกเงาชาทอง|กระจกใส ลอนลูกฟูก", glassEdges:"ลบคมรอบ|ลบคมขัดมันรอบ|เจียรริมรอบ|เจียรริมขัดมันรอบ|เจียรริม 1 mm. ขัดมันรอบ", glassKind:"กระจกใส", glassEdge:"ลบคมรอบ", glassShelfKind:"กระจกใส", glassShelfEdge:"เจียรริมขัดมันรอบ", glassDoorT:5, pullXmlOn:true, pullHingeGuard:true, pullField:"K_Pull", pullOriField:"K_Orientation", pullPosField:"K_Pull_Position", pullXField:"K_Pull_Coordinate_X", pullYField:"K_Pull_Coordinate_Y", pullNo:"nopull,none,-", pullName:"มือจับ", pull3D:true, dxNotchGap:0.5, railLikeMaxW:100, pullDefPos:"UpMiddle", pullDefOri:"H", pullDefX:35, pullDefY:0, legClipOn:true, legClipMap:"", legClipCode:"LEGCLIP", legClipName:"กิ๊ฟขาตู้ (ยึดแผ่นปิดขา)", doorSwing:true, doorRelief3D:true, doorReliefMap:"MCxx35 = 0:3, 3:0, 55:0, 58:3, 60:6, 95:6, 110:2, 110:0 | ตั้งทะลุ 55-60", shelfT:16, hangRailCode:"HANGRAIL", hangRailName:"ราวแขวนผ้า สแตนเลส C", glassHangerCode:"GLASSHANGER", glassHangerName:"หูแขวนกระจก", coverScrewCode:"COVERSCREW", coverScrewName:"สกรูยึดแผ่นปิด", coverScrewPer:1, hangRailThruD:8, hangRailCsD:13, hangRailCsDepth:2, hangRailEndGap:25, hangRailBarH:25, hangRailMap:"", drawerSideT:16, drawerBotT:9, drawerBoxH:120, drawerBoxLift:20, screwD:5, screwMateDepth:28, screwInset:9,
+    wireCode:"", wireMode:"ต่อเส้นไฟ", wireQty:1}], ledSetPerRun:false, cutSizeFmt:"{ชื่อ} ตัดขนาด {ยาว} mm.", cutLookupKey:"ตัดขนาด", cutLookupOn:true, glassBomOn:true, glassUnit:"EA", glassMatCodes:"FC,MC,FT,PT,FS,MT", glassKinds:"กระจกใส|กระจกเงา|กระจกฝ้า|กระจกใสชาดำ|กระจกใสชาทอง|กระจกเงาชาทอง|กระจกใส ลอนลูกฟูก", glassEdges:"ลบคมรอบ|ลบคมขัดมันรอบ|เจียรริมรอบ|เจียรริมขัดมันรอบ|เจียรริม 1 mm. ขัดมันรอบ", glassKind:"กระจกใส", glassEdge:"ลบคมรอบ", glassXmlField:"K_Front_Glass", glassShelfKind:"กระจกใส", glassShelfEdge:"เจียรริมขัดมันรอบ", glassDoorT:5, pullXmlOn:true, pullHingeGuard:true, pullField:"K_Pull", pullOriField:"K_Orientation", pullPosField:"K_Pull_Position", pullXField:"K_Pull_Coordinate_X", pullYField:"K_Pull_Coordinate_Y", pullNo:"nopull,none,-", pullName:"มือจับ", pull3D:true, dxNotchGap:0.5, railLikeMaxW:100, pullDefPos:"UpMiddle", pullDefOri:"H", pullDefX:35, pullDefY:0, legClipOn:true, legClipMap:"", legClipCode:"LEGCLIP", legClipName:"กิ๊ฟขาตู้ (ยึดแผ่นปิดขา)", doorSwing:true, doorRelief3D:true, doorReliefMap:"MCxx35 = 0:3, 3:0, 55:0, 58:3, 60:6, 95:6, 110:2, 110:0 | ตั้งทะลุ 55-60", shelfT:16, hangRailCode:"HANGRAIL", hangRailName:"ราวแขวนผ้า สแตนเลส C", glassHangerCode:"GLASSHANGER", glassHangerName:"หูแขวนกระจก", coverScrewCode:"COVERSCREW", coverScrewName:"สกรูยึดแผ่นปิด", coverScrewPer:1, hangRailThruD:8, hangRailCsD:13, hangRailCsDepth:2, hangRailEndGap:25, hangRailBarH:25, hangRailMap:"", drawerSideT:16, drawerBotT:9, drawerBoxH:120, drawerBoxLift:20, screwD:5, screwMateDepth:28, screwInset:9,
   /* v1.201: รอยต่อกล่องลิ้นชักไม้ — แผ่นหน้า/หลังชนเข้าแผ่นข้าง ยึดด้วยเดือย + สกรูจากนอกแผ่นข้าง */
   boxJointOn:true, boxDowelFormula:BOXJ_DOWEL_NAME, boxScrewFormula:BOXJ_SCREW_NAME,
   boxJointDowelD:8, boxJointDowelDepth:24, boxJointMateD:8, boxJointMateDepth:12,
@@ -5157,6 +5158,16 @@ function boxClearRange(carc,front,inX0,inX1,zF,zB){
 function refitDrawerBox(grpBoards, carc){
   const front=grpBoards.find(b=>!b._box); const boxes=grpBoards.filter(b=>b._box);
   if(!front||!boxes.length)return;
+  /* ───────── v1.279: ตู้ที่หมุนอยู่ในผัง ต้องคลายหมุนก่อนคิดกล่อง ─────────
+     ตัวคิดกล่องอ่านแกน X เป็นแนวกว้างตู้ และแกน Z เป็นแนวลึกเสมอ ซึ่งจริงเฉพาะตู้ที่หันหน้าตรง
+     ตู้ที่วางหมุน 90° (BND123 · BND214) แผ่นข้างสองแผ่นมี x เท่ากัน ช่องกว้างจึงเหลือ 0 → ปัดเป็น 60
+     ได้พื้นกล่อง K40 กว้าง 25 ลึก 235 รางสั้นสุด และกล่องไปลอยนอกตู้ทางด้านข้าง
+     ผู้เรียกบางทางห่อ withCabAxisAligned ไว้แล้ว (ปรับขนาดตู้ · สลับโครงสร้าง) แต่หลายทางไม่ได้ห่อ
+     ตัวที่เจอคือปุ่ม "บันทึก" ในหน้าตั้งค่า → refitAllDrawers() คิดกล่องทุกตู้ในฉากใหม่ทันที
+     (เปลี่ยนโหมดไฟ LED ในตั้งค่าแล้วกดบันทึก ลิ้นชักตู้ที่หมุนอยู่พังหมด) รวมถึงจัดหน้าบาน ปรับลิ้นชักทั้งชุด ร่นช่องภายใน
+     ห่อที่ตัวคิดกล่องเองจุดเดียวจึงครอบทุกทาง · ตู้ที่คลายหมุนอยู่แล้ว มุมหมุนเป็น 0 ก็ทำงานตรง ๆ เหมือนเดิม */
+  { let _yw=0; try{ _yw=(front.cabInst!=null)?cabYawOf(front.cabInst):0; }catch(e){ _yw=0; }
+    if(_yw) return withCabAxisAligned(front.cabInst,()=>refitDrawerBox(grpBoards,carc)); }
   carc=fzStrip(carc||[]);                                  // v1.219: Filler Front ไม่ใช่แผ่นหลัง · แผ่นข้าง Filler ไม่ใช่แผ่นข้างตู้
   const sides=carc.filter(b=>b.orient==="side"); let inX0=-1e9, inX1=1e9;
   if(sides.length){
@@ -10364,6 +10375,7 @@ function unifyBoxHeights(){
   }catch(e){ console.error(e); } });
   return todo.length;
 }
+const _boxHealTried=new Set();   // v1.279: ชุดลิ้นชักที่ลองซ่อมไปแล้วในรอบเปิดโปรแกรมนี้ (ประกาศก่อน reslideAll — กัน TDZ)
 function reslideAll(){   // เจาะรางรับข้างให้ทุกลิ้นชักในฉาก (เรียกอัตโนมัติตอนโหลด/ย้าย/รีไซซ์)
   try{ if(healDrawerGroups(state.boards)) _slideSig=""; }catch(e){ console.error("healDrawerGroups:",e); }   // v1.258
   try{ const _live=new Set(); state.boards.forEach(b=>{ if(b._dg) _live.add(b._dg); });   // GC: รูราง/รูหน้าบานที่เจ้าของ (_dg) ถูกลบไปแล้ว → ล้างทิ้ง (กันรูค้างบนแผ่นข้างตู้)
@@ -10372,14 +10384,39 @@ function reslideAll(){   // เจาะรางรับข้างให้�
   }catch(e){ console.error(e); }
   try{ const byInst={};
     state.boards.forEach(b=>{ const k=b.cabInst||"_"; (byInst[k]=byInst[k]||[]).push(b); });
-    Object.values(byInst).forEach(all=>{ const carc=all.filter(x=>!x._door&&!x._virtual); const dgs={};   // ไม่เอาชิ้น virtual (ขา/หู/ตะแกรง)
+    Object.keys(byInst).forEach(ik=>{ const all=byInst[ik];
+      if(!all.some(x=>x&&x._dg)) return;                                   // v1.279: ตู้ที่ไม่มีลิ้นชัก ไม่มีอะไรต้องเจาะ
+      const run=()=>{ const carc=all.filter(x=>!x._door&&!x._virtual); const dgs={};   // ไม่เอาชิ้น virtual (ขา/หู/ตะแกรง)
       all.forEach(x=>{ if(x._dg){ (dgs[x._dg]=dgs[x._dg]||[]).push(x); } });
       // กู้หน้าบานที่ไม่มี _dg (ไฟล์เก่า) → จับเข้ากลุ่มกล่องที่ตรงตำแหน่ง ไม่งั้น drillDrawerSlides หา front ไม่เจอ → ไม่เจาะ
       Object.keys(dgs).forEach(dg=>{ const g=dgs[dg]; if(g.some(b=>!b._box)) return; const bx=g.filter(b=>b._box); if(!bx.length) return;
         const minX=Math.min.apply(null,bx.map(b=>b.x)), maxX=Math.max.apply(null,bx.map(b=>b.x)), cy=bx.reduce((s,b)=>s+b.y,0)/bx.length;
         const fr=all.find(b=>!b._box&&!b._dg&&b.orient==="front"&&(b._door||/Front|Door/i.test(b.name||""))&&b.x>=minX-60&&b.x<=maxX+60&&Math.abs(b.y-cy)<260);
         if(fr){ fr._dg=dg; g.push(fr); } });
-      Object.values(dgs).forEach(gb=>{ try{ drillDrawerSlides(gb,carc); }catch(e){ console.error(e); } });
+      Object.values(dgs).forEach(gb=>{ try{ drillDrawerSlides(gb,carc); }catch(e){ console.error(e); } }); };
+      /* ───────── v1.279: เจาะรูรางในเฟรมของตู้ ไม่ใช่เฟรมของผัง ─────────
+         ตัวเจาะหาแผ่นข้างซ้าย-ขวาจากแกน X · ตู้ที่หมุน 90° แผ่นข้างสองแผ่นมี x เท่ากัน จึงหยุดกลางทาง
+         แต่หยุดหลังจากล้างรูเก่าของชุดนั้นไปแล้ว → แผ่นข้างตู้ที่หมุนอยู่ไม่มีรูรางลิ้นชักเลยสักรู
+         (BND123 · BND214 ในไฟล์ 48–53 แผ่นข้าง 0 รู · คลายหมุนแล้วเจาะได้ข้างละ 6 รู)
+         และรูยึดหน้าบานคิดความกว้างช่องจากพื้นกล่องแทน กล่องพังเมื่อไหร่ รูหน้าบานก็พังตาม
+         ตู้ที่หมุนอยู่ → คลายหมุนทั้งใบ เจาะ แล้วหมุนกลับ (ครั้งเดียวต่อตู้ ไม่ใช่ต่อลิ้นชัก) */
+      let yw=0; try{ yw=(ik!=="_")?cabYawOf(ik):0; }catch(e){ yw=0; }
+      /* ───────── v1.279: ซ่อมกล่องลิ้นชักที่พังค้างมาในไฟล์ ─────────
+         ไฟล์ที่เคยกดบันทึกตั้งค่าตอนรุ่นก่อน กล่องของตู้ที่หมุนอยู่ถูกคิดผิดแกนแล้วเซฟค้างไว้
+         (พื้น K40 กว้าง 25 · แผงเหล็กไปลอยนอกตู้ด้านข้าง) ตัวคิดกล่องแก้แล้วก็จริง แต่ไม่มีอะไรสั่งให้คิดใหม่
+         ชิ้นกล่องที่จุดกึ่งกลางหลุดนอกกรอบโครงตู้ = พังแน่ (กล่องจริงอยู่ในตู้เสมอ ลิ้นชักในก็อยู่ในตู้)
+         คิดกล่องชุดนั้นใหม่ครั้งเดียวก่อนเจาะ แล้วจำไว้ว่าลองแล้ว จะได้ไม่วนคิดทุกเฟรมถ้ายังหลุดด้วยเหตุอื่น */
+      if(ik!=="_") try{
+        const carcR=all.filter(x=>x&&!x._door&&!x._virtual&&!isRail(x)&&(+x.T>0));
+        if(carcR.filter(x=>x.orient==="side").length>=2){ const bb=cabBBox(carcR), M=30;   // ตัวคิดกล่องต้องมีแผ่นข้างให้อ้าง ไม่มีก็ไม่แตะ
+          const out=b=>(b.x<bb.xmin-M||b.x>bb.xmax+M||b.z<bb.zmin-M||b.z>bb.zmax+M||b.y<bb.ymin-M||b.y>bb.ymax+M);
+          const gs={}; all.forEach(x=>{ if(x&&x._dg) (gs[x._dg]=gs[x._dg]||[]).push(x); });
+          Object.keys(gs).forEach(dg=>{ const gb=gs[dg];
+            if(!gb.some(x=>!x._box)||!gb.some(x=>x._box&&out(x))) return;
+            const key=ik+"|"+dg; if(_boxHealTried.has(key)) return; _boxHealTried.add(key);
+            try{ refitDrawerBox(gb,carcR); console.log("🧰 ซ่อมกล่องลิ้นชักที่หลุดนอกตู้",(gb[0]&&gb[0].cab)||ik,"·",(gb.find(x=>!x._box)||{}).name||dg); }
+            catch(e){ console.error("boxHeal:",e); } }); } }catch(e){ console.error("boxHeal:",e); }
+      if(yw) withCabAxisAligned(ik,run); else run();
     });
   }catch(e){ console.error(e); }
   try{ if(!_uniBusy && unifyBoxHeights()){ _uniBusy=1; try{ reslideAll(); } finally { _uniBusy=0; } } }catch(e){ console.error(e); }   // v8.35: ความสูงเปลี่ยน -> เจาะรางใหม่ (กันวนซ้ำ)
@@ -15664,6 +15701,29 @@ function sectGroove(ls){
   return { y0:round(best.y0), y1:round(best.y1), cy:round(best.cy),
            w:round(best.w), depth:round(best.depth), inner:round(best.inner), H:round(bb.h) };
 }
+/* ───────── v1.279: กระจกบานเฟรมของแบบบานนี้ — เส้นลึกเท่าไหร่ ซ้อนเท่าไหร่ และควรซ้อนเท่าไหร่ตามร่องจริงของเส้น ─────────
+   ร่องกระจกของจริงเปิดด้านหนึ่ง (ช่องกระจก 007 มีปีกกั้นอยู่ด้านหน้า) ตัวหาร่องแบบปิดสองข้าง (sectGroove) จึงไม่เจอ
+   หาแบบนี้แทน: เลื่อนหน้าต่างสูงเท่าความหนากระจกไล่ตามแนวหนา ตำแหน่งที่กระจกทั้งแผ่นเข้าได้ลึกสุด = ก้นร่อง
+   หลายหน้าตัด = เอาตัวที่ตื้นสุด (กระจกแผ่นเดียวต้องเข้าได้ทุกด้าน) · เผื่อ 1 มม. จากก้นร่อง
+   คืน null = ไม่ใช่บานเฟรมอลูที่มีกระจก */
+function partGlassFit(p){
+  if(!p||p.frameWood||!((+p.frameGlassT||0)>0)) return null;
+  const secs=[1,2,3,4].map(k=>String(p["frameSec"+k]||"").trim()).filter(Boolean); if(!secs.length) return null;
+  const oX=parseFloat(p.frameOffX)||0, gt0=Math.max(+p.frameGlassT||5,1);
+  let inMax=0, inset=null, sec="", deep=0;
+  secs.forEach(c3=>{ try{ const l0=sectLoops(c3); if(!l0) return; const ls=sectXform(l0,p), bb=sectBoxOf(ls); if(!bb||!(bb.h>0)) return;
+    inMax=Math.max(inMax,bb.w+oX);
+    const N=240, xs=[]; for(let i=1;i<N;i++){ const x=_sectXmaxAt(ls,bb.y0+bb.h*i/N); if(x==null) return; xs.push(x); }
+    const dp=Math.max.apply(null,xs), win=Math.max(1,Math.ceil(gt0/(bb.h/N)));
+    let best=null; for(let i=0;i+win<=xs.length;i++){ let mx=-Infinity; for(let k=i;k<i+win;k++) mx=Math.max(mx,xs[k]);
+      if(mx<=dp-1.0&&(best==null||mx<best)) best=mx; }
+    if(best==null) return;
+    const ins2=(best-bb.x0)+oX+1;
+    if(inset==null||ins2>inset){ inset=ins2; sec=c3; deep=bb.x1-best; } }catch(e){} });
+  if(!(inMax>0)) return null;
+  const lapTxt=String(p.frameGlassLap??"").trim(), lap=lapTxt!==""?(+lapTxt||0):6;
+  return { inMax, lapTxt, lap, inset, sec, deep, sug:(inset!=null)?Math.max(round(inMax-inset),0):null };
+}
 /* v38.5: ก็อปแบบบานไม้ให้เป็นเวอร์ชันเฟรมอลู + กระจก ในคลิกเดียว
    บานสองแบบนี้เป็นบานเดียวกันในสายตาคนออกแบบ ต่างกันแค่ตรงกลางเป็นไม้หรือกระจก
    แต่ในโปรแกรมต่างกันหลายช่อง และช่องที่ต้อง "เอาออก" คือช่องที่พลาดง่ายที่สุด
@@ -16268,13 +16328,54 @@ function isGlassBoard(b,matCode){
     return !!isGlassMat(mc);
   }catch(e){ return false; }
 }
-function glassKey(sp){ return "G|"+sp.kind+"|"+sp.th+"|"+sp.w+"x"+sp.l+"|"+sp.edge; }
+/* ═════════ v1.279: กระจกตามที่ออเดอร์สั่ง — ช่อง K_Front_Glass{n} ═════════
+   ออเดอร์ส่งกระจกของบานมาในช่อง K_Front_Glass1..6 รูป "แบบบาน_รหัสกระจก" เช่น xxAG207_FT05007
+   ท่อนหลังคือรหัสกระจกในคลัง (FT05007 = FT หนา 05 · ตัวที่ 007) รหัสสินค้าทุกขนาดขึ้นต้นด้วยท่อนนี้
+     FT05007D00462 "กระจกใสชาทอง หนา 5 mm. ขนาด 323x590 mm. ลบคมรอบ"
+   เดิมไม่มีใครอ่านช่องนี้ ชนิดกระจกจึงมาจากค่ากลาง (กระจกใส) ทั้งที่ออเดอร์สั่งใสชาทอง
+   ตอนนี้: โหลด XML → เก็บค่าดิบติดตู้ไว้ในชื่อช่อง (ไม่ต้องตั้งจับคู่) → บานเลข n อ่านช่องเลข n
+     · ค้นคลังด้วย "รหัสขึ้นต้น FT05007 + ขนาด" แทนการเดาจากชื่อชนิด
+     · ชนิดกระจก (กระจกใสชาทอง) อ่านจากชื่อสินค้าในคลังที่ขึ้นต้นด้วยรหัสนั้น ไม่ต้องพิมพ์เองที่แบบบาน
+     · ความหนาจากรหัส (FT05 = 5 มม.) · ขนาดยังไม่มีในคลัง ก็ได้ชื่อที่ถูกชนิดไว้ขอเปิดรหัส
+   ถ้าจับคู่ช่องนี้ไว้ที่หน้าจับคู่ XML เองด้วย ก็อ่านจากชื่อที่จับคู่ไว้ได้เหมือนกัน */
+function glassXmlField(){ return String(settings.glassXmlField==null?DEF_SETTINGS.glassXmlField:settings.glassXmlField).trim()||"K_Front_Glass"; }
+function xmlGlassCapture(inst,pv){
+  if(!inst||!pv) return 0;
+  const pre=glassXmlField(), rx=new RegExp("^"+_rx(pre)+"(\\d+)$","i"); let n=0;
+  state.cabColors=state.cabColors||{};
+  const cc=state.cabColors[inst]=state.cabColors[inst]||{};
+  Object.keys(pv).forEach(k=>{ const m=k.match(rx); if(!m) return;
+    const v=String(pv[k]==null?"":pv[k]).trim(); if(!v) return;
+    cc[pre+m[1]]=v; n++; });
+  return n;
+}
+function doorGlassXmlOf(b){
+  try{
+    if(!b) return null;
+    const cc=((state.cabColors||{})[b.cabInst])||{};
+    const m=String(b.part||"").match(/FrontShapeP?(\d+)|Front(\d+)/i);
+    const n=m?(m[1]||m[2]):"1";
+    const fld=glassXmlField()+n;
+    let raw=String(cc[fld]==null?"":cc[fld]).trim();
+    if(!raw){ const mp=(settings.xmlMap||[]).find(x=>x&&String(x.field||"").trim().toLowerCase()===fld.toLowerCase()&&x.target);
+      if(mp){ const t=String(mp.target).replace(/^\$/,""); raw=String(cc[t]==null?"":cc[t]).trim(); } }
+    if(!raw) return null;
+    const segs=raw.split(/[_\s]+/).filter(Boolean);
+    for(let i=segs.length-1;i>=0;i--){ const g=isGlassMat(segs[i]); if(g) return {raw, field:fld, code:segs[i].toUpperCase(), th:g.th}; }
+    return {raw, field:fld, code:"", th:0};
+  }catch(e){ return null; }
+}
+const _glassKindByPre={};                  // "FT05007" -> "กระจกใสชาทอง" (อ่านจากชื่อสินค้าในคลัง) · "" = หาไม่เจอ
+function glassKindFromName(nm){ const m=String(nm||"").replace(/^"+/,"").trim().match(/^(.+?)\s*หนา\s*\d/); return m?m[1].trim():""; }
+function glassKey(sp){ if(sp&&sp.pre) return "G|@"+sp.pre+"|"+sp.th+"|"+sp.w+"x"+sp.l+"|"+sp.edge;   // v1.279: ชนิดมาทีหลังได้ กุญแจจึงไม่ผูกชนิด
+  return "G|"+sp.kind+"|"+sp.th+"|"+sp.w+"x"+sp.l+"|"+sp.edge; }
 async function glassLookup(sp){
   const k=glassKey(sp); if(_fgCut[k]!==undefined) return _fgCut[k];
   _fgCut[k]=null;
   const phrase=glassNameOf(sp);
   const miss=(why,n)=>{ _fgMiss[k]={pre:sp.kind,L:sp.w+"x"+sp.l,why:why,n:n||0,phrase:phrase}; return null; };
   try{
+    if(sp.pre) return await glassLookupPre(sp,k,miss);                     // v1.279: รหัสกระจกจากออเดอร์
     if(!sp.kind) return miss("ยังไม่ได้ตั้งชนิดกระจกให้แบบบานนี้");
     if(!(sp.th>0)) return miss("ยังไม่ได้ตั้งความหนากระจกให้แบบบานนี้");
     const sb=await getDB(); if(!sb) return miss("ต่อคลังอุปกรณ์ไม่ได้");
@@ -16314,6 +16415,40 @@ async function glassLookup(sp){
     _fgCut[k]={code:String(pk.item_number||"").trim(),name:nm(pk),unit:String(pk.unit||""),alt:alt||undefined};
     return _fgCut[k];
   }catch(e){ console.error("glassLookup:",e); return miss("ผิดพลาด: "+(e&&e.message||e)); }
+}
+/* v1.279: ค้นด้วยรหัสขึ้นต้นจากออเดอร์ (FT05007…) + ขนาด แล้วเลือกขอบ · เรียนชนิดกระจกจากชื่อสินค้าของรหัสนั้นไว้ด้วย */
+async function glassLookupPre(sp,k,miss){
+  const sb=await getDB(); if(!sb) return miss("ต่อคลังอุปกรณ์ไม่ได้");
+  const nm=x=>String(x.product_name||"").replace(/^"+/,"").trim();
+  const live=x=>!/^\s*\(?ยกเลิก\)?/.test(nm(x));
+  if(_glassKindByPre[sp.pre]===undefined){
+    _glassKindByPre[sp.pre]="";
+    try{ const r=await sb.from("fitting_global").select("item_number,product_name,unit").ilike("item_number",sp.pre+"%").limit(30);
+      const cnt={}; ((r&&!r.error&&r.data)||[]).filter(live).forEach(x=>{ const kd=glassKindFromName(nm(x)); if(kd) cnt[kd]=(cnt[kd]||0)+1; });
+      const best=Object.keys(cnt).sort((a,c)=>cnt[c]-cnt[a])[0]; if(best){ _glassKindByPre[sp.pre]=best; sp.kind=best; } }catch(e){}
+  } else if(_glassKindByPre[sp.pre]) sp.kind=_glassKindByPre[sp.pre];
+  const grab=async(a,b2)=>{ const r=await sb.from("fitting_global")
+      .select("item_number,product_name,unit")
+      .ilike("item_number",sp.pre+"%")
+      .ilike("product_name","%"+a+"x"+b2+"%").limit(200);
+    return (r&&!r.error&&r.data)?r.data:[]; };
+  let rows=await grab(sp.w,sp.l);
+  if(sp.l!==sp.w){ const more=await grab(sp.l,sp.w);
+    const seen=new Set(rows.map(x=>x.item_number)); more.forEach(x=>{ if(!seen.has(x.item_number)) rows.push(x); }); }
+  const sizeRx=new RegExp("ขนาด\\s*(?:"+sp.w+"\\s*[xX×]\\s*"+sp.l+"|"+sp.l+"\\s*[xX×]\\s*"+sp.w+")(?![0-9])");
+  let hit=rows.filter(live).filter(x=>sizeRx.test(nm(x)));
+  _fgMiss[k]=undefined;
+  if(!hit.length){ _fgMiss[k]={pre:sp.pre,L:sp.w+"x"+sp.l,why:"คลังยังไม่มีรหัส "+sp.pre+"… ขนาด "+sp.w+"x"+sp.l+" — ใช้ชื่อในบรรทัดนี้ขอเปิดรหัสได้เลย",n:0,phrase:glassNameOf(sp)}; return null; }
+  let alt=false;
+  if(sp.edge){
+    const eRx=new RegExp(_rx(sp.edge)+"\\s*$");
+    const exact=hit.filter(x=>eRx.test(nm(x))), loose=hit.filter(x=>nm(x).indexOf(sp.edge)>=0);
+    if(exact.length) hit=exact; else if(loose.length) hit=loose; else alt=true;
+  }
+  hit.sort((a,b2)=>(nm(a).length-nm(b2).length)||String(a.item_number).localeCompare(String(b2.item_number)));
+  const pk=hit[0];
+  _fgCut[k]={code:String(pk.item_number||"").trim(),name:nm(pk),unit:String(pk.unit||""),alt:alt||undefined};
+  return _fgCut[k];
 }
 function glassCodeOf(f){ const g=f&&f._gcut; if(!g) return null;
   const hit=_fgCut[glassKey(g)]; return (hit&&hit.code)?hit:null; }
@@ -16389,6 +16524,10 @@ function glassSpecOfBoard(b,boards){
         w:cutLen(Math.min(bd.L,bd.W)), l:cutLen(Math.max(bd.L,bd.W)), edge:glassEdgeFor(b)};
     src=b._glassShelf?"shelf":"mat";
   }
+  /* v1.279: บานที่ออเดอร์ระบุกระจกมา (K_Front_Glass) — รหัสขึ้นต้น ความหนา และชนิดตามรหัสนั้น */
+  if(own&&(src==="door"||src==="frame")){ const gx=doorGlassXmlOf(own);
+    if(gx&&gx.code){ sp.pre=gx.code; sp.xml=gx.raw; if(gx.th>0) sp.th=gx.th;
+      const kd=_glassKindByPre[gx.code]; if(kd) sp.kind=kd; } }
   if(!(sp.w>0&&sp.l>0&&sp.th>0)) return null;
   return {sp, src, owner:own};
 }
@@ -21501,12 +21640,48 @@ function renderElements(){
             +(any?'':'<br><span style="color:var(--ink-dim)">ยังไม่ได้ใส่รหัส Section สักด้าน</span>');
           d.appendChild(st); }
         const g3=document.createElement("div"); g3.style.cssText="display:grid;grid-template-columns:repeat(2,1fr);gap:6px;margin-top:8px";
-        [["frameGlassLap","ซ้อนเข้าในเฟรม (มม. · ว่าง = 6)","number"],["frameGlassZ","อยู่ที่ระยะ วัดจากผิวหลังบาน (ว่าง = กึ่งกลาง)","number"]].forEach(pr=>{
+        [["frameGlassLap","ซ้อนเข้าในเฟรม วัดจากขอบในของเส้น (มม. · ว่าง = 6)","number"],["frameGlassZ","อยู่ที่ระยะ วัดจากผิวหลังบาน (ว่าง = กึ่งกลาง)","number"]].forEach(pr=>{
           const w=document.createElement("div");
           w.innerHTML='<div style="font-size:10.5px;color:var(--ink-dim);margin-bottom:2px">'+pr[1]+'</div>'
             +'<input class="nameinp" type="'+pr[2]+'" value="'+escapeHtml(String(cur[pr[0]]??""))+'" style="width:100%;font-family:var(--mono);font-size:11px">';
-          w.querySelector("input").oninput=e=>cur[pr[0]]=e.target.value; g3.appendChild(w); });
+          w.querySelector("input").oninput=e=>cur[pr[0]]=e.target.value;
+          w.querySelector("input").onchange=()=>{ renderElements(); sync(1); };   // v1.279: บรรทัดขนาดกระจกข้างล่างอัปเดตตาม
+          g3.appendChild(w); });
         d.appendChild(g3);
+        /* ───────── v1.279: บอกขนาดกระจกที่จะได้จริง + เตือนเมื่อค่าซ้อนไม่ตรงกับร่องของเส้น ─────────
+           กระจกบานเฟรม = บาน − 2 × (ความลึกเส้น − ค่าซ้อน) · ค่าซ้อนวัดจาก "ขอบในของเส้น" ออกไปหาขอบบาน
+           xxAG207/208 ตั้งซ้อน 2.5 (น่าจะตั้งใจว่า "ห่างขอบบาน 2.5") ได้ 595 − 2×(20 − 2.5) = 560 ทั้งที่ของจริง 590
+           ร่องของเส้น 007 ลึก 18.5 จากขอบใน (ก้นร่องห่างขอบบาน 1.5) เผื่อ 1 = ซ้อน 17.5 → 595 − 5 = 590 ตรงของจริง
+           ช่องนี้ไม่มีอะไรบอกเลยว่าได้กระจกเท่าไหร่ ตั้งผิดก็ไม่รู้จนของมาไม่พอดี จึงเขียนผลให้เห็นตรงนี้
+           และมีปุ่มแก้ให้ทั้งตัวนี้และแบบบานพี่น้องที่ใช้เส้นชุดเดียวกัน (Front1..6 × xxAG207/208/281 ฯลฯ) ในคลิกเดียว */
+        try{ const fit=partGlassFit(cur);
+          if(fit){ const inMax=fit.inMax, lapTxt=fit.lapTxt, lap=fit.lap, sug=fit.sug;
+            const hz=document.createElement("div"); hz.style.cssText="font-size:11px;margin-top:4px;line-height:1.65";
+            const ins=round(inMax-lap);
+            let html='กระจกเล็กกว่าบานสำเร็จ <b>ข้างละ '+ins+'</b> (เส้นลึก '+round(inMax)+' − ซ้อน '+lap+') · ตัวอย่างบาน 595 × 1118 → กระจก <b>'
+              +round(595-2*ins)+' × '+round(1118-2*ins)+'</b>';
+            if(parseFloat(cur.glassRest)>0) html+='<br><span style="color:var(--ink-dim)">ตั้ง "ขอบวางกระจก" ไว้ — ใบสั่งกระจกใช้ขนาดจากช่องนั้นแทนบรรทัดนี้</span>';
+            const bad=(sug!=null&&Math.abs(sug-lap)>0.6);
+            if(bad) html+='<br><span style="color:#b26a00">⚠ ร่องรับกระจกของเส้น '+escapeHtml(fit.sec)+' ลึก '+round(fit.deep)+' จากขอบใน (ก้นร่องห่างขอบบาน '+round(fit.inset-1)
+              +') · เผื่อ 1 มม. ควรซ้อน <b>'+sug+'</b> → กระจก = บาน − '+round(2*(inMax-sug))+'</span>';
+            hz.innerHTML=html; d.appendChild(hz);
+            if(bad){
+              /* แบบบานพี่น้อง = ตั้งซ้อนไว้ค่าเดียวกัน และเส้นของมันให้ค่าที่ควรซ้อนเท่ากัน (Front1..6 × xxAG207/208/281 ฯลฯ) */
+              const peers=((settings.elements&&settings.elements.parts)||[]).filter(p=>{ if(!p||p===cur) return false;
+                const f2=partGlassFit(p); return !!f2 && f2.lapTxt===lapTxt && f2.sug===sug; });
+              const bar=document.createElement("div"); bar.style.cssText="display:flex;gap:6px;flex-wrap:wrap;margin-top:4px";
+              const mk=(txt,fn)=>{ const bt=document.createElement("button"); bt.className="ibtn"; bt.style.cssText="font-size:11px;padding:4px 10px"; bt.textContent=txt; bt.onclick=fn; bar.appendChild(bt); };
+              const put=list=>{ list.forEach(p=>{ p.frameGlassLap=String(sug); }); lsSet("furnitech:settings",settings);
+                renderElements(); sync(1); toast("ตั้งซ้อน "+sug+" ให้ "+list.length+" แบบบาน · บันทึกแล้ว (กระจก = บาน − "+round(2*(inMax-sug))+")"); };
+              mk("ใช้ซ้อน "+sug+" กับแบบบานนี้",()=>put([cur]));
+              if(peers.length) mk("ใช้กับแบบบานนี้ + อีก "+peers.length+" ตัวที่ซ้อน "+(lapTxt||"ว่าง")+" อยู่และควรเป็น "+sug+" เหมือนกัน",async()=>{
+                const ok=await dialog({title:"ตั้งซ้อนกระจก "+sug+" ให้ "+(peers.length+1)+" แบบบาน",
+                  html:'<div style="font-size:12px;line-height:1.7;color:var(--ink-dim)">ซ้อนเดิม '+escapeHtml(lapTxt||"ว่าง")+' → <b>'+sug+'</b> (กระจก = บาน − '+round(2*(inMax-sug))+')<br>'
+                    +'<span style="font-family:var(--mono)">'+escapeHtml([cur].concat(peers).map(p=>p.code).join(" · "))+'</span></div>',ok:"ตั้งให้ทั้งหมด"});
+                if(ok) put([cur].concat(peers)); });
+              d.appendChild(bar);
+            }
+          } }catch(e){ console.error("glassLapHint:",e); }
         /* ───────── v1.085: ขนาดกระจกจากขนาดบานจริง ───────── */
         { const g3b=document.createElement("div"); g3b.style.cssText="display:grid;grid-template-columns:1fr 1fr 1fr 2fr;gap:6px;margin-top:6px;align-items:end";
           [["frameGlassT","<b>หนากระจก (มม.)</b> ของแบบบานนี้ · 0 = ไม่ใส่กระจก","number"],
@@ -22796,6 +22971,7 @@ async function buildFromXmlOrder(){
     if(settings.xmlSkipNoModel===true&&!model){ _skipNoModel++; continue; }
     const inst=uid();
     state.cabColors[inst]=Object.assign({}, s.vars||{});
+    try{ xmlGlassCapture(inst, s.pv); }catch(e){ console.error("xmlGlass:",e); }   // v1.279: K_Front_Glass1..6 ติดตู้ไว้ (ไม่ต้องจับคู่)
     try{ applyVarFallbackToCab(inst); }catch(e){ console.error(e); }   // v7.79: ฟิลด์ที่ Set นี้ไม่ได้ส่งมา -> ค่าตั้งต้น (ไม่ไปหยิบค่ากลางของตู้ใบอื่น)
     /* v7.58: ค่าตัวเลขจาก XML (D1 D4 D5 D6 · ART_SIZEX/Y/Z ฯลฯ) เก็บรายตู้
        เดิมเก็บเฉพาะฟิลด์ที่จับคู่ไว้ใน mapping ตัวเลขพวกนี้จึงหายไปทั้งหมด
@@ -30847,6 +31023,12 @@ function p2dInfoHtml(b){
   if(b._glass) R1.push(["ชนิดชิ้น","กระจก"]);
   else if(b._framePart) R1.push(["ชนิดชิ้น","แผ่นกลางของบานเฟรม"]);
   if(b._frameGlass) R1.push(["รหัสกระจก", b._frameGlass]);
+  /* v1.279: กระจกที่ออกใบสั่ง (ขนาด ชนิด ขอบ) และค่าที่ออเดอร์ส่งมา — ดูได้ที่ชิ้นเลย ไม่ต้องเปิดใบ Fitting */
+  try{ const g=glassSpecOfBoard(b,state.boards);
+    if(g){ const hit=_fgCut[glassKey(g.sp)];
+      R1.push(["กระจกที่สั่ง", (hit&&hit.name)?hit.name:glassNameOf(g.sp)]);
+      if(hit&&hit.code) R1.push(["รหัสกระจกในคลัง", hit.code]);
+      if(g.sp.xml) R1.push(["กระจกจากออเดอร์", g.sp.xml+" → "+g.sp.pre]); } }catch(e){}
 
   /* วัสดุ / สี — ฟังก์ชันเดียวกับแบบผลิต */
   let R2=[]; try{ R2=skinRows(b,1)||[]; }catch(e){ R2=[]; }
