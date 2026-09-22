@@ -940,7 +940,7 @@
    ===================================================================== */
 /* ---- APP_META: แหล่งความจริงเดียวของเวอร์ชัน (ดูได้จาก console / คลิกชื่อแอป) ---- */
 const APP_META={
-  name:"StarNexus Cabinet", version:"1.272", build:"2026-09-22/find-replace-where",
+  name:"StarNexus Cabinet", version:"1.273", build:"2026-09-22/curved-box-by-size",
   file:"StarNexus.html", basedOn:"Furnitech_V3.html (v3.11)",
   /* ───────── เริ่มนับเวอร์ชันใหม่ที่ 1.001 (21/08/2026) ─────────
      ของเดิมนับมาถึง 42.1 แล้ววิ่งเป็นทศนิยมสองชั้นซึ่งอ่านลำดับยาก
@@ -948,6 +948,7 @@ const APP_META={
      ประวัติเก่าเก็บไว้ทั้งหมดตามเลขเดิม ไม่ไล่เขียนใหม่ เพราะเลขในนั้นถูกอ้างถึงไปแล้ว
      รายการที่อยู่ใต้ 1.001 ลงไปจึงเป็นเลขชุดเก่า อ่านต่อกันได้ตามวันที่ */
   changelog:[
+    ["1.273","2026-09-22","FEAT กล่องโค้งรหัสเดียวหลายขนาดจาก XML — BNF065 มาเป็นกล่อง 150×380×780 กับฐาน 130×380×100 ในออเดอร์เดียว เดิมตัวสเกลยืดชิ้นตามสัดส่วน R กลายเป็นวงรี แล้วตัวซ่อม (v1.271) ดึงกลับเป็นขนาดโมเดล ฐานเลยสูง 913 มี 4 ชั้น R เท่ากล่องบน · ตอนนี้ตอนโหลด XML ถ้าโมเดลเป็นกล่องโค้งล้วน โปรแกรมคิดกล่องใหม่จากค่าของโมเดล (_csP) แล้วปั้นชิ้นด้วยตัวเดียวกับปุ่มสร้าง: ส่วนต่างกว้าง/ลึกลงที่แผ่นชั้น · สูงเปลี่ยน ครีบ แผ่นดัด แผ่นปิดสูงตาม จำนวนชั้นคิดจากระยะห่างชั้นของโมเดล (ฐาน 100 ได้ชั้นบน-ล่าง 2 แผ่น) · R ตามช่องใหม่ \"R เมื่อโหลด XML ขนาดอื่น\" (อัตโนมัติ / คงช่วงตรง / R คงที่) — คงช่วงตรง: ต้นแบบ 150 R นอก 120 → 130 ได้ R นอก 100 · อัตโนมัติ = ปลายเดียวที่ส่วนตรงสั้นกว่า R ใช้คงช่วงตรง นอกนั้น R คงที่ · Part วัสดุ ขอบ ยกจากโมเดล · มุมล่างหลังซ้ายที่เดิม วางตามผังเหมือนเดิม · ขนาดตรงโมเดล = ใช้ชิ้นเดิม · FIX กล่องโค้งหลายใบจากโมเดลเดียวใช้รหัสชุดร่วมกัน ตัวซ่อม/แก้กล่องจึงเห็นเป็นกล่องเดียว — ตอนนี้โหลดแล้วได้รหัสชุดของตัวเองทุกใบ · ปุ่มสร้างกล่องโค้งแยกตัวปั้นชิ้นออกมาเป็น CurvedShelf.makeBoards (ชิ้นที่ได้เหมือนเดิมทุกค่า) · ปรับขนาดตู้ด้วยกล่องปรับขนาดยังเป็นทางเดิม"],
     ["1.272","2026-09-22","FEAT ค้นหา/แทนที่ในหน้าตรวจ XML ตั้งเงื่อนไขจากคอลัมน์อื่นในแถวเดียวกันได้ — ช่อง \"เฉพาะแถวที่ [คอลัมน์] = [ค่า]\" เช่น เปลี่ยน K_Front_Color1 เป็น N03P0057N_N01M0029N เฉพาะตู้ที่ K_Front_Shape1 = MCWx58 (ตู้ Exxx02 ที่สีเดียวกันไม่โดน) · เทียบตรงทั้งช่อง หลายค่าคั่นด้วย , ใช้ * แทนอะไรก็ได้ (MCW*) · อ่านค่าจากตารางตอนนี้ ค่าที่เพิ่งแก้ก็นับ · ช่องค้นหาเว้นว่าง + เลือกคอลัมน์ = เขียนทับทุกช่องที่มีค่าในคอลัมน์นั้น (ช่องว่างไม่แตะ บานที่ไม่มีจริงจึงไม่โดนเติมสี) · ทุกคอลัมน์ + ช่องค้นหาว่าง ยังไม่ทำอะไรเหมือนเดิม · แจ้งผลว่ากี่ช่องกี่ตู้ · FIX ช่องแดง (ไม่มีในคลัง) ไม่อัปเดตหลังแก้ค่า — เดิมตรวจครั้งเดียวตอนเปิดหน้าต่าง แทนที่ AL618MH เป็นรหัสที่มีแล้วยังแดงค้าง แก้เป็นรหัสที่ไม่มีก็ไม่แดง ตอนนี้ตรวจค่าใหม่ทันทีด้วยกติกาเดิม · FIX ลายหน้าบาน 3D ไม่ขึ้นบนบานตู้ Hood (WAL119) — บานผูก Part \"Front1\" ตรง ๆ ไม่ใช่ลิงก์ FrontShapeP1 ตัวหารหัสแบบบานจึงได้ค่าว่าง ตอนนี้อ่านจากตัว Part: วัสดุ $FrontMat1 อยู่ใต้ Family FrontShape1 → ได้ PCWx50 ของตู้ใบนั้น (ใบตัด/ป้ายถูกอยู่แล้ว ผิดแค่ภาพ)"],
     ["1.271","2026-09-22","FIX กล่องโค้ง: แผ่นชั้นเลื่อนออกทางหน้า 8 มม. และหดลึกจาก 138 เหลือ 122 (เป็นมานาน) — ตัวดันก้นชั้นชนแผ่นหลัง (applyShelfBackFlush) หยิบ \"ครีบแถวหลัง\" (วางแนวหน้าเหมือนแผ่นหลัง) มาเป็นแผ่นหลังของกล่อง แล้วตัดชั้นให้ก้นมาชนผิวครีบทุกครั้งที่คิดฉาก ชั้นจึงหดเท่าความหนาครีบและเลื่อนออกครึ่งหนึ่ง พอเปลี่ยน Part ความหนาครีบเปลี่ยน ชั้นก็ขยับตามอีก · ตอนนี้ตัวดันชั้น/ฟิลเลอร์ชนแผ่นหลังข้ามกล่องโค้ง · ซ่อมตอนเปิดงานและทุกครั้งที่ความหนาเปลี่ยน: คิดรูปทรงกล่องใหม่จากค่าที่ตัวสร้างเก็บไว้ (_csP) ด้วยความหนาจริงของชั้น/ครีบ/แผ่นปิด แล้วเขียนตำแหน่ง ขนาด โปรไฟล์ และรอยบากกลับลงชิ้นเดิม (Part/สีที่ตั้งไว้ไม่หาย) · ครีบยึดผิวนอกของกล่อง หนาขึ้นแล้วโตเข้าใน รอยบากบนชั้นตามความหนาครีบ · ขนาดรวมกล่อง (โหมดขนาดสำเร็จ) คงเดิม · FIX ลายหน้าบาน 3D ไม่ขึ้นบนหน้าลิ้นชักเตี้ย ทั้งที่ลายลงได้ — เดิมต้องเหลือลูกฟักกลางอย่างน้อย 10 มม. หน้าลิ้นชักสูง 188 กับลาย PCWx50 (ลึกจากขอบ 90) เหลือ 8 จึงไม่ขึ้น ตอนนี้เหลือ 2 มม. ก็วาด"],
     ["1.270","2026-09-22","FEAT ขาตู้ตื้นไม่ชนกัน — ตู้ลึกไม่เกิน 200 มม. ที่ยังใช้ขา 2 แถว (ขาหน้า/ขาหลังห่างกันแค่ 50 จากศูนย์ ฐานขาชนกัน) ขาหลังเหลือแค่ 2 มุม และขยับเข้าหากลางตู้ 100 มม. · ขากลางเหลือแถวหน้าแถวเดียว (ตู้ 6 ขา → 5 ขา · 8 ขา → 6 ขา) · ตั้งค่าได้: legShallowD (เกณฑ์ความลึก) · legShallowBackIn (ระยะขยับขาหลังเข้าใน) · ตู้ตื้นกว่าเกณฑ์ขาแถวเดียว (legNarrowW 180) ยังเป็นแถวเดียวกลางความลึกเหมือนเดิม · รูมาร์คใต้แผ่นพื้น (ถ้าแผ่นใหญ่พอให้เจาะ) ตามผังใหม่ด้วย · คิดความลึกในแกนของตู้เอง ตู้ที่หมุนตามผังใช้ได้"],
@@ -22698,13 +22699,16 @@ async function buildFromXmlOrder(){
         finally{ state.boards=keep; }
       }
       const _mainB=model.boards.filter(b=>!(+b._asmSub>0)), _subB=model.boards.filter(b=>+b._asmSub>0).map(b=>JSON.parse(JSON.stringify(b)));   // v1.229
-      const scaled=((settings.xmlScale===false)?_mainB.map(b=>JSON.parse(JSON.stringify(b))):scaleModelBoards(_mainB,[s.W,s.H,s.D],model.lock,{refSide:true})).concat(_subB);   // v9.65: ค่าจาก XML = ขนาดตัวตู้ (วัดที่แผ่นข้าง) ไม่ใช่กรอบรวมที่มีชิ้นยื่น
+      const scaled=((settings.xmlScale===false)?_mainB.map(b=>JSON.parse(JSON.stringify(b))):scaleModelBoards(_mainB,[s.W,s.H,s.D],model.lock,{refSide:true,csRebuild:true})).concat(_subB);   // v9.65: ค่าจาก XML = ขนาดตัวตู้ (วัดที่แผ่นข้าง) ไม่ใช่กรอบรวมที่มีชิ้นยื่น
       const idMap={};
       const boards=scaled.map(b=>{ const nid=uid(); idMap[b.id]=nid;
         const o=Object.assign({yaw:0,tone:null,r:0},b,{id:nid,cab:s.name,cabInst:inst});
         const sp=_mSpec&&_mSpec[b.id];                                        // v1.162: สเปคจากต้นแบบ (ref ยัง id เก่า → remapRuleRefs จัดการ)
         if(sp){ o._de=JSON.parse(JSON.stringify(sp._de)); if(sp._zx) o._zx=JSON.parse(JSON.stringify(sp._zx)); }
         return o; });
+      /* v1.272: กล่องโค้งแต่ละใบต้องได้รหัสชุดของตัวเอง — เดิมทุกใบที่โหลดจากโมเดลเดียวกันใช้รหัสชุดของโมเดลร่วมกัน
+         ตัวซ่อม/ตัวแก้กล่องโค้งจับชิ้นตามรหัสชุด สองใบในฉากเดียวจึงถูกนับเป็นกล่องเดียว */
+      { const _gm={}; boards.forEach(b=>{ if(b&&b._csGroup) b._csGroup=_gm[b._csGroup]||(_gm[b._csGroup]="CS"+uid()); }); }
       remapRuleRefs(boards,idMap); remapHoleSrc(boards,idMap); healHoleSrc(boards);   // ลิงก์รูตาม id ใหม่ · master เก่าที่ลิงก์ขาด → เก็บรูไว้ ถอดป้าย
       const _asmX=asmSplit(boards,inst);                                   // v1.229
       state.boards=state.boards.concat(boards); fromLib++;
@@ -24449,6 +24453,7 @@ function _scaleModelBoardsOnce(src,target,lock,byS){
 /* v1.216: ชุดอาร์เรย์ที่มีโซน Filler (XML / แปะจากคลาวด์) — สเกลโครงล้วน แล้ววางโซนตาม */
 function scaleModelBoards(src,target,lock,opts){
   src=src||[];
+  if(opts&&opts.csRebuild){ try{ const r=csRebuildForSize(src,target,lock); if(r) return r; }catch(e){ console.error("csRebuild:",e); } }   // v1.272: กล่องโค้งสร้างใหม่ตามขนาด ไม่ยืด
   const y0=b=>((Math.round(+b.yaw||0)%360)+360)%360===0;
   if(!_fzDepth&&!(lock&&lock.w)&&src.length&&src.every(y0)&&!src.some(b=>b._fixZoneOff)){
     let bs=src;
@@ -34864,6 +34869,86 @@ function sxRelayoutCurvedShelves(cb){
    ตำแหน่งวางของกล่องทั้งชุด (ย้ายไปไว้ไหนก็ตาม) อ่านจากแผ่นปิด → ครีบ → แผ่นดัด ซึ่งไม่มีตัวจัดตู้ตัวไหนไปขยับ
    โหมด "ขนาดสำเร็จ" หักความหนาแผ่นปิดใหม่ ขนาดรวมกล่องจึงคงเดิม · กล่องที่หมุนอยู่ข้าม (ยังไม่รองรับ)
    ลายเซ็นของกลุ่มไม่เปลี่ยน = ไม่คิดซ้ำ */
+/* ───────── v1.272: โหลดกล่องโค้งจาก XML ที่ขนาดไม่ตรงโมเดล = สร้างกล่องใหม่ ไม่ยืด ─────────
+   รหัสเดียวถูกสั่งหลายขนาด — BNF065 มาเป็นกล่อง 150×380×780 และฐานใต้กล่อง 130×380×100 ในออเดอร์เดียวกัน
+   เดิมตัวสเกลยืดชิ้นตามสัดส่วน เส้นขอบแผ่นชั้นกับแผ่นดัดเป็นโพลิกอนคงที่ R จึงกลายเป็นวงรี บากหลุดจากครีบ
+   ตอนนี้คิดค่ากล่องใหม่จาก _csP ของโมเดล แล้วปั้นชิ้นด้วยตัวเดียวกับปุ่มสร้าง (CurvedShelf.makeBoards)
+     · ส่วนต่างของกว้าง/ลึกลงที่แผ่นชั้น (แผ่นดัด แผ่นปิด ครีบ หนาเท่าเดิม) · สูงเปลี่ยน ครีบ แผ่นดัด แผ่นปิด สูงตาม
+     · R ตามช่อง "R เมื่อโหลด XML ขนาดอื่น" — คงช่วงตรง: ต้นแบบ 150 R นอก 120 → 130 ได้ R นอก 100
+       อัตโนมัติ: ปลายเดียวที่ส่วนตรงสั้นกว่า R (กล่องหัวท้ายแบบ BNF065) คงช่วงตรง · นอกนั้น R คงที่
+     · สูงเปลี่ยน → จำนวนชั้นคิดจากระยะห่างชั้นของโมเดล (ห่างไม่เกินเดิม) ฐาน 100 ได้ชั้นบน-ล่าง
+     · Part วัสดุ ขอบ ของชิ้นแต่ละชนิดยกมาจากโมเดล · มุมล่างหลังซ้ายของกล่องอยู่ที่เดิม ตัววางตามผังจึงวางเหมือนเดิม
+   ใช้เฉพาะโมเดลที่เป็นกล่องโค้งล้วนชุดเดียว (ปนชิ้นอื่น/หมุนอยู่ = ทางเดิม) และเฉพาะตอนโหลด XML */
+function csRebuildForSize(src,target,lock){
+  if(typeof CurvedShelf==="undefined"||!CurvedShelf||typeof CurvedShelf.makeBoards!=="function") return null;
+  const all=(src||[]).filter(Boolean);
+  if(!all.length||!all.every(b=>b._csP&&b._csGroup&&!b._virtual)) return null;
+  if(new Set(all.map(b=>b._csGroup)).size!==1) return null;
+  if(!all.every(b=>((((+b.yaw||0)%360)+360)%360)===0)) return null;
+  const box=bs=>{ const mn=[Infinity,Infinity,Infinity], mx=[-Infinity,-Infinity,-Infinity];
+    bs.forEach(b=>{ const d=worldDims(b), c=[+b.x||0,+b.y||0,+b.z||0];
+      for(let a=0;a<3;a++){ mn[a]=Math.min(mn[a],c[a]-d[a]/2); mx[a]=Math.max(mx[a],c[a]+d[a]/2); } });
+    return {mn,mx,size:[0,1,2].map(a=>mx[a]-mn[a])}; };
+  const B0=box(all);
+  const lk=[!!(lock&&lock.w),!!(lock&&lock.h),!!(lock&&lock.d)];
+  const tg=[0,1,2].map(a=>(lk[a]||!(+(target||[])[a]>0))?B0.size[a]:+target[a]);
+  const dW=tg[0]-B0.size[0], dH=tg[1]-B0.size[1], dD=tg[2]-B0.size[2];
+  const gid="CS"+uid();
+  if(Math.abs(dW)<0.5&&Math.abs(dH)<0.5&&Math.abs(dD)<0.5)             // ขนาดตรงโมเดล: ใช้ชิ้นเดิม แค่ให้รหัสชุดใหม่
+    return all.map(b=>{ const c=JSON.parse(JSON.stringify(b)); c._csGroup=gid; return c; });
+  const byT=t=>all.filter(b=>b._csType===t);
+  const P0=all[0]._csP, P=JSON.parse(JSON.stringify(P0));
+  const sh=byT("shelf"), fins=byT("fin"), end=all.find(b=>b._csType==="end");
+  if(sh.length&&+sh[0].T>0) P.T=+sh[0].T;
+  if(fins.length&&+fins[0].T>0) P.finT=+fins[0].T;
+  if(end&&+end.T>0) P.endT=+end.T;
+  const faceOn=!!P.face&&P.rSide!=="none", fT=(faceOn&&+P.faceT>0.5)?+P.faceT:0;
+  const eT=(P.endOn!==false&&+P.endT>0.5)?+P.endT:0, runFull=(P.faceRun==="full")&&fT>0;
+  const L0=(sh.length&&+sh[0].L>0)?+sh[0].L:+P0.L, R0=+P0.R||0;
+  /* กว้าง ลึก — ส่วนต่างลงที่แผ่นชั้นทั้งหมด */
+  if(P.sizeMode==="total"&&P._rawL!=null&&P._rawD!=null){
+    P._rawL=round(+P._rawL+dW); P._rawD=round(+P._rawD+dD);
+    P.L=Math.max(+P._rawL-fT-eT,20); P.D=Math.max(+P._rawD-(runFull?fT:0),20);
+  } else {
+    P.L=Math.max(L0+dW,20); P.D=Math.max(((sh.length&&+sh[0].W>0)?+sh[0].W:+P0.D)+dD,20);
+  }
+  /* R — ปลายเดียวเท่านั้น (สองปลายคง R ไว้ ส่วนต่างไปลงช่วงกลาง) */
+  const rf=P.rFit||"auto", single=(P.rSide==="left"||P.rSide==="right");
+  if(single&&R0>0.5&&Math.abs(dW)>=0.5&&rf!=="fixed"){
+    const straight0=L0+eT-R0;                                           // ส่วนตรงก่อนเข้าโค้ง (รวมแผ่นปิด) — BNF065: 30
+    if(rf==="follow"||straight0<R0+fT) P.R=round(Math.max(1,R0+dW)); }
+  /* สูง — จำนวนชั้นคิดจากระยะห่างชั้นของโมเดล */
+  if(Math.abs(dH)>=0.5){
+    const H0=+P0.finH||B0.size[1], H1=Math.max(H0+dH,20);
+    P.finH=round(H1);
+    if(+P.faceH>1) P.faceH=round(Math.max(+P.faceH+dH,1));
+    if(+P.endH>1) P.endH=round(Math.max(+P.endH+dH,1));
+    const T=+P.T||16, lo=Math.max(+P.base||0,0), hi=Math.max(+P.topGap||0,0);
+    const N0=sh.length||Math.max(1,Math.round(+P0.N||1));
+    P.levels="";                                                        // ระดับที่พิมพ์เองอ้างความสูงเดิม ใช้ต่อไม่ได้
+    if(N0>=2){ const g0=(H0-lo-hi-N0*T)/(N0-1), av=H1-lo-hi;
+      P.N=(g0>0)? ((av<2*T+1)? 1 : Math.max(2,Math.min(40,Math.ceil((av+g0)/(g0+T)-0.02)))) : N0; }
+    else P.N=N0;
+  }
+  const G=CurvedShelf.geom(P);
+  const made=CurvedShelf.makeBoards(P,G,gid);
+  if(!made.length) return null;
+  /* Part วัสดุ ขอบ ฯลฯ ของแต่ละชนิดชิ้น — ยกจากชิ้นในโมเดลที่ตั้งค่าไว้ครบที่สุดของชนิดนั้น */
+  const SKIP=new Set(["id","x","y","z","L","W","T","orient","yaw","profile","pockets","holes","grooves","connectors","name",
+    "_csP","_csR","_csGroup","_csType","_csEdge","_csSide","_cbDev","_cbR","_cbSpan","_cbSpans","_pkGeo","_pdone","_adjApplied"]);
+  const tpl={};
+  all.forEach(b=>{ const t=b._csType, n=Object.keys(b).filter(k=>!SKIP.has(k)&&b[k]!=null).length;
+    if(!tpl[t]||n>tpl[t].n) tpl[t]={b,n}; });
+  made.forEach(nb=>{ const o=tpl[nb._csType]; if(!o) return;
+    Object.keys(o.b).forEach(k=>{ if(SKIP.has(k)) return;
+      if(nb[k]===undefined||nb[k]===null) nb[k]=JSON.parse(JSON.stringify(o.b[k])); }); });
+  /* มุมล่างหลังซ้ายเท่าเดิม */
+  const B1=box(made);
+  made.forEach(b=>{ b.x=round(b.x+(B0.mn[0]-B1.mn[0])); b.y=round(b.y+(B0.mn[1]-B1.mn[1])); b.z=round(b.z+(B0.mn[2]-B1.mn[2])); });
+  console.log("🧰 กล่องโค้ง: สร้างใหม่ตามขนาด XML",B0.size.map(v=>round(v)).join("×"),"→",tg.map(v=>round(v)).join("×"),
+    "· R",R0,"→",P.R,"· ชั้น",(sh.length||P0.N),"→",G.levels.length,"· ครีบ",fins.length,"→",G.notches.length);
+  return made;
+}
 const _csHealSig=new Map();
 function csHealGeometry(){
   if(typeof CurvedShelf==="undefined"||!CurvedShelf||typeof CurvedShelf.geom!=="function") return 0;
@@ -36538,6 +36623,7 @@ const CurvedShelf = (function(){
       fit:n("csFit",0), margin:n("csMargin",0),
       rSide:v("csRSide","right"), rEdge:v("csREdge","back"), R:n("csR",108), clr:n("csClr",20),
       R2:n("csR2",108), clr2:n("csClr2",20),
+      rFit:v("csRFit","auto"),                                        // v1.272: R เมื่อโหลด XML ขนาดอื่น
       base:n("csBase",0), topGap:n("csTop",0), levels:v("csLevels",""),
       face:(v("csFace","on")==="on"), faceT:n("csFaceT",12), faceTail:n("csFaceTail",20), faceH:n("csFaceH",0),
       faceRun:v("csFaceRun","full"),
@@ -36742,41 +36828,7 @@ const CurvedShelf = (function(){
     S.groupId="CS"+uid(); S.params=P; S.geo=G;
     const _inst=asNew? ("cs"+uid()) : (_keepInst||("cs"+uid()));
     const _dx=asNew? _csFreeX(P.L) : 0;   // ชุดใหม่วางถัดจากของเดิม ชุดที่แก้อยู่ที่เดิม
-    const PP=JSON.parse(JSON.stringify(P));   // ติดค่าที่พิมพ์ไว้กับชิ้นงาน -> เซฟ/เปิดใหม่แล้ววาดแบบเดิมได้เป๊ะ
-    const made=[];
-    G.levels.forEach((yc,i)=>{
-      const b={ id:uid(), name:"Shelf "+(i+1), L:rnd1(P.L), W:rnd1(P.D), T:rnd1(P.T),
-        x:0, y:rnd1(yc), z:0, orient:"flat", yaw:0, tone:null, r:0,
-        holes:[], grooves:[], connectors:[],
-        profile:G.prof.map(p=>p.slice()),
-        _csGroup:S.groupId, _csType:"shelf", _flatPart:true, _csR:G.R, _csP:PP };
-      if(!G.rectilinear) b.pockets=G.pockets.map(o=>Object.assign({},o));   // มี R → profile ไม่ใช่มุมฉาก อ่านบากเองไม่ได้ ต้องแนบไป
-      made.push(b);
-    });
-    G.notches.forEach((o,i)=>{
-      const zc=(o.edge==="B")? (-P.D/2+P.finT/2) : (P.D/2-P.finT/2);   // อ้างผิวนอกเป็นหลัก เผื่อบากไปเหลือด้านใน
-      made.push({ id:uid(), name:"Fin "+(i+1), L:rnd1(P.finW), W:rnd1(P.finH), T:rnd1(P.finT),
-        x:o.cx, y:rnd1(P.finH/2), z:rnd1(zc), orient:"front", yaw:0, tone:null, r:0,
-        holes:[], grooves:[], connectors:[], _csGroup:S.groupId, _csType:"fin", _csEdge:o.edge, _csP:PP });
-    });
-    (G.faces||[]).forEach((F,i)=>{
-      const nm=(G.faces.length>1)? ("Bent Face "+F.side) : "Bent Face";   // ชื่อชิ้นอังกฤษล้วน — ไปบนสติกเกอร์และ Supabase
-      made.push({ id:uid(), name:nm,
-        L:F.w, W:F.h, T:rnd1(F.H),
-        x:F.cx, y:rnd1(F.H/2), z:rnd1(-F.cy),
-        orient:"flat", yaw:0, tone:null, r:0, holes:[], grooves:[], connectors:[],
-        profile:F.prof.map(p=>p.slice()),
-        _csGroup:S.groupId, _csType:(i?"face2":"face"), _csSide:F.side, _csP:PP,
-        _cbDev:rnd1(F.dev), _cbR:rnd1(F.Rin),
-        _cbSpan:{from:rnd1(F.arc0), to:rnd1(F.arc1)},
-        _cbSpans:(F.spans||[{from:F.arc0,to:F.arc1}]).map(z=>({from:rnd1(z.from),to:rnd1(z.to)})) });
-    });
-    if(G.endPanel){
-      const E=G.endPanel;
-      made.push({ id:uid(), name:"End Panel", L:rnd1(E.H), W:rnd1(E.D), T:rnd1(E.T),
-        x:E.cx, y:rnd1(E.H/2), z:0, orient:"side", yaw:0, tone:null, r:0,
-        holes:[], grooves:[], connectors:[], _csGroup:S.groupId, _csType:"end", _flatPart:true, _csP:PP });
-    }
+    const made=makeBoards(P,G,S.groupId);  // v1.272: แยกตัวปั้นชิ้นออกมา ใช้ร่วมกับตอนโหลด XML ขนาดอื่น
     if(_dx) made.forEach(b=>{ b.x=rnd1((+b.x||0)+_dx); });
     made.forEach(b=>{ b.cabInst=_inst; });      // v20.0: ผูกทุกชิ้นเข้าตู้ใบเดียวกัน
     made.forEach(b=>state.boards.push(b));
@@ -36790,6 +36842,47 @@ const CurvedShelf = (function(){
           " · รวม "+rnd(G.totW)+"×"+rnd(G.totD)+"×"+rnd(P.finH)+
           (G.hasR? (" · R"+rnd(G.R)+" นำ "+rnd(G.lead)) : ""));
     refreshPaper(); readout();
+  }
+  /* ───────── v1.272: ปั้นชิ้นกล่องโค้งจากค่า P ล้วน ๆ ─────────
+     ไม่อ่านช่องในหน้าต่าง ไม่แตะฉาก คืนรายการชิ้นอย่างเดียว (ยังไม่มี cabInst)
+     ปุ่มสร้างใช้ตัวนี้ และตอนโหลด XML ที่ขนาดไม่ตรงโมเดลก็ใช้ตัวนี้ — ได้ชิ้นแบบเดียวกันเป๊ะ */
+  function makeBoards(P,G,gid){
+    const PP=JSON.parse(JSON.stringify(P));   // ติดค่าที่พิมพ์ไว้กับชิ้นงาน -> เซฟ/เปิดใหม่แล้ววาดแบบเดิมได้เป๊ะ
+    const made=[];
+    G.levels.forEach((yc,i)=>{
+      const b={ id:uid(), name:"Shelf "+(i+1), L:rnd1(P.L), W:rnd1(P.D), T:rnd1(P.T),
+        x:0, y:rnd1(yc), z:0, orient:"flat", yaw:0, tone:null, r:0,
+        holes:[], grooves:[], connectors:[],
+        profile:G.prof.map(p=>p.slice()),
+        _csGroup:gid, _csType:"shelf", _flatPart:true, _csR:G.R, _csP:PP };
+      if(!G.rectilinear) b.pockets=G.pockets.map(o=>Object.assign({},o));   // มี R → profile ไม่ใช่มุมฉาก อ่านบากเองไม่ได้ ต้องแนบไป
+      made.push(b);
+    });
+    G.notches.forEach((o,i)=>{
+      const zc=(o.edge==="B")? (-P.D/2+P.finT/2) : (P.D/2-P.finT/2);   // อ้างผิวนอกเป็นหลัก เผื่อบากไปเหลือด้านใน
+      made.push({ id:uid(), name:"Fin "+(i+1), L:rnd1(P.finW), W:rnd1(P.finH), T:rnd1(P.finT),
+        x:o.cx, y:rnd1(P.finH/2), z:rnd1(zc), orient:"front", yaw:0, tone:null, r:0,
+        holes:[], grooves:[], connectors:[], _csGroup:gid, _csType:"fin", _csEdge:o.edge, _csP:PP });
+    });
+    (G.faces||[]).forEach((F,i)=>{
+      const nm=(G.faces.length>1)? ("Bent Face "+F.side) : "Bent Face";   // ชื่อชิ้นอังกฤษล้วน — ไปบนสติกเกอร์และ Supabase
+      made.push({ id:uid(), name:nm,
+        L:F.w, W:F.h, T:rnd1(F.H),
+        x:F.cx, y:rnd1(F.H/2), z:rnd1(-F.cy),
+        orient:"flat", yaw:0, tone:null, r:0, holes:[], grooves:[], connectors:[],
+        profile:F.prof.map(p=>p.slice()),
+        _csGroup:gid, _csType:(i?"face2":"face"), _csSide:F.side, _csP:PP,
+        _cbDev:rnd1(F.dev), _cbR:rnd1(F.Rin),
+        _cbSpan:{from:rnd1(F.arc0), to:rnd1(F.arc1)},
+        _cbSpans:(F.spans||[{from:F.arc0,to:F.arc1}]).map(z=>({from:rnd1(z.from),to:rnd1(z.to)})) });
+    });
+    if(G.endPanel){
+      const E=G.endPanel;
+      made.push({ id:uid(), name:"End Panel", L:rnd1(E.H), W:rnd1(E.D), T:rnd1(E.T),
+        x:E.cx, y:rnd1(E.H/2), z:0, orient:"side", yaw:0, tone:null, r:0,
+        holes:[], grooves:[], connectors:[], _csGroup:gid, _csType:"end", _flatPart:true, _csP:PP });
+    }
+    return made;
   }
 
   /* ---------- readout ในแผงซ้าย ---------- */
@@ -37179,6 +37272,7 @@ const CurvedShelf = (function(){
     const setSel=(id,v)=>{ const e=$(id); if(e) e.value=v; };
     setSel("csRSide",P2.rSide); setSel("csREdge",P2.rEdge);
     setSel("csFace",P2.face?"on":"off"); setSel("csFaceRun",P2.faceRun); setSel("csEnd",P2.endOn?"on":"off");
+    setSel("csRFit",P2.rFit||"auto");                                 // v1.272: กล่องเก่าไม่มีค่านี้ = อัตโนมัติ
     setSel("csSizeMode",P2.sizeMode||"part");
     const eL=$("csL"), eD=$("csD");
     if(eL) eL.value=(P2._rawL!=null? P2._rawL : P2.L);
@@ -37201,6 +37295,7 @@ const CurvedShelf = (function(){
     const setSel=(id,val)=>{ const e=$(id); if(e) e.value=val; };
     setSel("csRSide",r.P.rSide); setSel("csREdge",r.P.rEdge); rSideUI();
     setSel("csFace",r.P.face?"on":"off"); setSel("csFaceRun",r.P.faceRun); setSel("csEnd",r.P.endOn?"on":"off");
+    setSel("csRFit",r.P.rFit||"auto");                                // v1.272
     /* ไฟล์เก่า (ก่อน v6.6) ไม่มี sizeMode — ค่าที่เก็บไว้คือขนาดแผ่น ต้องเปิดเป็นโหมดแผ่น ไม่งั้นอ่านเป็นขนาดรวม */
     S.sizeMode = r.P.sizeMode || "part";
     setSel("csSizeMode", S.sizeMode);
@@ -37261,13 +37356,13 @@ const CurvedShelf = (function(){
      "csR","csClr","csR2","csClr2","csBase","csTop","csLevels","csFaceT","csFaceTail","csFaceH","csEndT","csEndH","csProject","csType","csBy"]
       .forEach(id=>{ bind(id,()=>{ readout(); if(S.params){ S.params=readParams(); S.geo=geom(S.params); refreshPaper(); } live(); },"oninput");
                      bind(id,liveCommit,"onchange"); });
-    ["csRSide","csREdge","csFace","csFaceRun","csEnd","csSizeMode2"].forEach(id=>bind(id,()=>{ rSideUI(); readout(); if(S.params){ S.params=readParams(); S.geo=geom(S.params); refreshPaper(); } live(); liveCommit(); },"onchange"));
+    ["csRSide","csREdge","csFace","csFaceRun","csEnd","csSizeMode2","csRFit"].forEach(id=>bind(id,()=>{ rSideUI(); readout(); if(S.params){ S.params=readParams(); S.geo=geom(S.params); refreshPaper(); } live(); liveCommit(); },"onchange"));
     bind("csLive",()=>{ live(); },"onchange");
     rSideUI();
     S.sizeMode=(($("csSizeMode")||{}).value)||"total"; sizeLabels();
     bind("csSizeMode",onSizeMode,"onchange");
   }
-  return { init, generate, geom, readParams, sheets:buildSheets, sheetsFrom, sceneCount, fromBoards, editBoard };
+  return { init, generate, geom, readParams, makeBoards, sheets:buildSheets, sheetsFrom, sceneCount, fromBoards, editBoard };
 })();
 
 </script>
@@ -37576,7 +37671,12 @@ const CurvedShelf = (function(){
         <div class="cb-fld"><label>รัศมี R ปลายซ้าย (มม.)</label><input type="number" id="csR2" value="108"></div>
         <div class="cb-fld"><label>เผื่อ ปลายซ้าย</label><input type="number" id="csClr2" value="20"></div>
       </div>
-      <div class="cb-note">ช่วงวางบากฝั่ง R = L − (R + เผื่อ) · เส้นตรงนำก่อนเข้าโค้งโปรแกรมคำนวณให้เอง (= D − R − ลึกบาก)</div>
+      <div class="cb-fld"><label>R เมื่อโหลด XML ขนาดอื่น</label>
+        <select id="csRFit"><option value="auto">อัตโนมัติ</option><option value="follow">คงช่วงตรง — R ตามความยาว</option><option value="fixed">R คงที่</option></select></div>
+      <div class="cb-note">ช่วงวางบากฝั่ง R = L − (R + เผื่อ) · เส้นตรงนำก่อนเข้าโค้งโปรแกรมคำนวณให้เอง (= D − R − ลึกบาก)<br>
+        <b>R เมื่อโหลด XML ขนาดอื่น</b> — รหัสเดียวกันแต่ XML ส่งขนาดไม่เท่าโมเดล โปรแกรมสร้างกล่องใหม่ตามขนาดนั้น (ไม่ยืด R เป็นวงรี)
+        · <b>คงช่วงตรง</b> = ส่วนตรงก่อนเข้าโค้งยาวเท่าต้นแบบ เช่น ต้นแบบ 150 R นอก 120 → สั่ง 130 ได้ R นอก 100
+        · <b>อัตโนมัติ</b> = ปลายเดียวที่ส่วนตรงสั้นกว่า R ใช้คงช่วงตรง นอกนั้น R คงที่</div>
       <div class="cb-sep"></div>
       <div style="font-size:11px;font-weight:700;color:var(--ink-faint);margin-bottom:7px">ระดับชั้น</div>
       <div class="cb-grid2">
