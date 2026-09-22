@@ -940,7 +940,7 @@
    ===================================================================== */
 /* ---- APP_META: แหล่งความจริงเดียวของเวอร์ชัน (ดูได้จาก console / คลิกชื่อแอป) ---- */
 const APP_META={
-  name:"StarNexus Cabinet", version:"1.268", build:"2026-09-22/shelf-divide-ref",
+  name:"StarNexus Cabinet", version:"1.269", build:"2026-09-22/zoom-close-shelf-equalize",
   file:"StarNexus.html", basedOn:"Furnitech_V3.html (v3.11)",
   /* ───────── เริ่มนับเวอร์ชันใหม่ที่ 1.001 (21/08/2026) ─────────
      ของเดิมนับมาถึง 42.1 แล้ววิ่งเป็นทศนิยมสองชั้นซึ่งอ่านลำดับยาก
@@ -948,6 +948,7 @@ const APP_META={
      ประวัติเก่าเก็บไว้ทั้งหมดตามเลขเดิม ไม่ไล่เขียนใหม่ เพราะเลขในนั้นถูกอ้างถึงไปแล้ว
      รายการที่อยู่ใต้ 1.001 ลงไปจึงเป็นเลขชุดเก่า อ่านต่อกันได้ตามวันที่ */
   changelog:[
+    ["1.269","2026-09-22","FIX ซูมเข้าไปดูใกล้ ๆ ไม่ได้ ติดที่ระยะหนึ่ง — ระยะกล้องต่ำสุดเดิม = modelRadius × 0.2 ซึ่งคิดจากขนาดทั้งออเดอร์ (ออเดอร์กว้าง 4 เมตร เข้าใกล้ได้แค่ ~590 มม.) และซูมเข้าหาจุดหมุนกลางฉาก ไม่ใช่จุดที่เมาส์ชี้ · ตอนนี้ใกล้สุด 40 มม. · ล้อเมาส์ซูมเข้าหาชิ้นที่เมาส์ชี้ (จุดนั้นอยู่ที่เดิมบนจอ) · ก้าวซูมเป็นสัดส่วนของระยะ ไกลเร็ว ใกล้ละเอียด · ปุ่ม + − ยังซูมเข้าหากลางจอ · FEAT จัดชั้นปรับที่ใส่ไว้แล้วให้ห่างเท่ากัน ไม่ต้องลบแล้วใส่ใหม่ — คลิกขวาที่ชั้นปรับ หรือปุ่มในแผงขวา จัดทุกชั้นปรับในช่องเดียวกัน (ระหว่างแผ่นที่ไม่ใช่ชั้นปรับ เช่น พื้น ฝาบน ชั้นตาย · ช่องกว้างเดียวกัน) เลือกวัดถึง กึ่งกลางชั้น (ศูนย์ถึงศูนย์เท่ากัน) หรือ ผิวชั้น (ช่องใสเท่ากัน) · เลือกลงระยะรูระบบ 32 ได้ · เจาะรูพินใหม่ · ราวแขวนใต้ชั้นตามไป · ใช้กับตู้ที่หมุนในผังได้"],
     ["1.268","2026-09-22","FEAT เพิ่มชั้น โหมด แบ่งเท่ากันในช่อง เลือกได้ว่าจะวัดระยะแบ่งถึง กึ่งกลางชั้น (ศูนย์ชั้นห่างเท่ากัน · แบบเดิม ช่องบนสุด/ล่างสุดจะใสกว่าช่องกลางครึ่งความหนาชั้น) หรือ ผิวชั้น (ช่องใสระหว่างผิวไม้เท่ากันทุกช่อง) · จำตัวเลือกล่าสุดไว้ในรอบทำงานนั้น · แจ้งช่องใสจริงที่ได้ในข้อความหลังเพิ่มชั้น (ชั้นปรับระดับยังสแนประยะ 32 มม. ช่องใสจึงอาจต่างกันไม่เกินขั้นพิน)"],
     ["1.267","2026-09-22","FIX รูพินชั้นค้างของขนาดเก่าบนแผ่นข้าง (LRT005: ชั้น 2–3 รูอยู่ที่ 483.9 = นอกแผ่นกว้าง 200 และแถว −24.8 ผิดที่) — v1.266 เจาะรูใหม่ให้เฉพาะตอนตัวซ่อมเป็นคนจับได้ว่าชั้นยื่นเกิน แต่ทาง \"ทำงานต่อจาก autosave\" และเปิดออเดอร์จากคลาวด์ เรียก refitInterior ก่อน sync ขนาดชั้นจึงถูกแก้ไปก่อนเงียบ ๆ พอตัวซ่อมมาถึงก็ไม่เห็นอะไรผิด รูพินเลยไม่ถูกเจาะใหม่ · ตอนนี้ตัวซ่อมตรวจ \"รูพิน\" ตรง ๆ ทุกครั้ง ไม่ขึ้นกับว่าใครแก้ขนาดชั้น: รูพินของชั้นปรับที่อยู่นอกแผ่นของตัวเอง หรือไม่อยู่ในช่วงลึกของชั้น หรือห่างจากใต้ชั้นเกินระยะระดับพิน = ค้าง ล้างแล้วเจาะใหม่ทั้งชั้น · รูพินที่ถูกต้อง (รวมรูจาก XML) ไม่แตะ"],
     ["1.266","2026-09-22","FIX ชั้นปรับลึกทะลุหน้าตู้ไป 400+ มม. และขาตู้หน้ากระโดดออกไปตาม (LRT005 ลึก 200 ได้ชั้นลึก 608.7 · ขา 622.4) — ตัวฟิตชั้น (refitInterior · shelfCabInfo · addShelf) หา \"หน้าตู้\" จากชิ้นที่ยื่นไปหน้าสุด ซึ่งรวมชั้นอื่นในตู้เดียวกันด้วย ชั้นใบไหนยื่นออกไปครั้งเดียว ใบอื่นก็ยื่นตาม แล้วมันก็อ้างกันเองไปเรื่อย ๆ (623.7 → 608.7 → 593.7 ทุกครั้งที่คิดใหม่) ครั้งนี้จุดชนวนคือชั้นที่หัน 0° จาก v1.264 ยังอยู่ในฉากตอนคิดใหม่ ความยาว 1117.6 จึงถูกนับเป็นความลึก · ตอนนี้หน้าตู้คิดจากโครง (แผ่นข้างนอก · บน · ล่าง · แผ่นหลัง) ไม่นับชั้น เสาแบ่ง และผนังกั้นแนวลึกที่ตัวฟิตเป็นคนขยับเอง (_cabFrontOf) · ตัวฟิตชั้นแก้ชั้นที่หันผิดแกน 90° ก่อนคิดทุกครั้ง ไม่ว่าจะถูกเรียกจากทางไหน · ซ่อมตอนเปิดงาน: ชั้นที่ยื่นพ้นแผ่นข้างเกิน 5 มม. ฟิตใหม่ + เจาะรูพินใหม่ ขาตู้กลับเข้าที่เอง · ชั้นที่หันผิดแกนตรวจทั้ง 90° และ 270° จากตู้ ไม่ใช่แค่ 0°"],
@@ -8215,9 +8216,69 @@ async function addShelf(){
   if(_divBox&&created.length){ try{ const ys=created.map(o=>o.b).slice().sort((a,c)=>a.y-c.y);
       const g=[]; let prev=_divBox.lo; ys.forEach(sb=>{ const t=+sb.T||0; g.push(round((sb.y-t/2)-prev)); prev=sb.y+t/2; }); g.push(round(_divBox.hi-prev));
       _gapTxt=" · ช่องใส (ล่าง→บน) "+g.map(x=>fmt(x)).join(" / ")+" มม."; }catch(e){} }
-  toast("เพิ่ม "+created.length+" ชั้น"+(dril?(" · เดือยเจาะเข้าข้าง "+dril+" จุด"):"")+(pin?(" · รูพิน "+pin+" จุด"):"")+_gapTxt);
+  { const _msg="เพิ่ม "+created.length+" ชั้น"+(dril?(" · เดือยเจาะเข้าข้าง "+dril+" จุด"):"")+(pin?(" · รูพิน "+pin+" จุด"):"")+_gapTxt;
+    if(_gapTxt) setTimeout(()=>toast(_msg),0); else toast(_msg); }   // v1.269: ช่องใสต้องไม่ถูกข้อความบานพับทับ
 }
 
+/* ───────── v1.269: จัดชั้นปรับที่ใส่ไว้แล้วให้ห่างเท่ากัน ─────────
+   เดิมต้องลบชั้นทั้งหมดแล้วเพิ่มใหม่แบบ "แบ่งเท่ากันในช่อง" ทุกครั้ง
+   ตัวนี้จับชั้นปรับทุกใบที่อยู่ช่องเดียวกับชั้นที่เลือก = เรียงแนวสูงติดกันโดยไม่มีแผ่นอื่นคั่น
+   และอยู่ช่องกว้างเดียวกัน (ซ้อนกันแนวกว้างเกินครึ่ง) · ขอบช่อง = แผ่นนอนที่ไม่ใช่ชั้นปรับ (พื้น ฝาบน ชั้นตาย)
+   วัดถึง กึ่งกลางชั้น = ศูนย์ห่างเท่ากัน (ช่องบน/ล่างสุดใสกว่าครึ่งความหนา) · ผิวชั้น = ช่องใสเท่ากันทุกช่อง
+   ย้ายแล้วเจาะรูพินใหม่ ราวแขวนใต้ชั้นตามไป · ตู้หมุนคิดในแกนตรงผ่าน runCabAligned */
+let _shelfEqRef="กึ่งกลางชั้น";
+async function spaceShelvesEqual(b){
+  if(!b||b.orient!=="flat"||b._door||b._virtual||!isAdjShelf(b)){ toast("คลิกเลือกชั้นปรับก่อน"); return; }
+  if(isLocked()){ guardEdit("จัดชั้น"); return; }
+  const inst=b.cabInst; if(!inst){ toast("ไม่พบตู้ของชั้นนี้"); return; }
+  if(cabYawOf(inst)) return runCabAligned(inst,()=>spaceShelvesEqual(b));
+  const carc=state.boards.filter(x=>x.cabInst===inst&&!x._door&&!x._virtual&&!x._dx&&!isRail(x));
+  const bd=worldDims(b), bx0=b.x-bd[0]/2, bx1=b.x+bd[0]/2, bz0=b.z-bd[2]/2, bz1=b.z+bd[2]/2;
+  const sameCol=x=>{ const d=worldDims(x);
+    const ox=Math.min(x.x+d[0]/2,bx1)-Math.max(x.x-d[0]/2,bx0), oz=Math.min(x.z+d[2]/2,bz1)-Math.max(x.z-d[2]/2,bz0);
+    return ox>Math.min(bd[0],d[0])*0.5 && oz>Math.min(bd[2],d[2])*0.3; };
+  const flats=carc.filter(x=>x.orient==="flat"&&(+x.T||0)>0&&sameCol(x)).sort((a,c)=>a.y-c.y);
+  const i0=flats.indexOf(b); if(i0<0){ toast("หาช่องของชั้นนี้ไม่เจอ"); return; }
+  let lo=i0, hi=i0;
+  while(lo-1>=0&&isAdjShelf(flats[lo-1])) lo--;
+  while(hi+1<flats.length&&isAdjShelf(flats[hi+1])) hi++;
+  const below=flats[lo-1], above=flats[hi+1];
+  if(!below||!above){ toast("หาแผ่นพื้น/แผ่นบนของช่องนี้ไม่เจอ — ต้องมีแผ่นนอนที่ไม่ใช่ชั้นปรับทั้งบนและล่าง"); return; }
+  const grp=flats.slice(lo,hi+1);
+  const cLo=below.y+worldDims(below)[1]/2, cHi=above.y-worldDims(above)[1]/2, H=cHi-cLo;
+  const Ts=grp.map(x=>+x.T||0), sumT=Ts.reduce((a,v)=>a+v,0);
+  if(!(H>sumT+10)){ toast("ช่องสูง "+fmt(H)+" มม. ไม่พอให้ชั้น "+grp.length+" แผ่น"); return; }
+  const v=await promptFields("จัดชั้นปรับให้ห่างเท่ากัน — "+grp.length+" ชั้น · ช่องสูง "+fmt(H)+" มม. (ใต้ "+(above.name||"แผ่นบน")+" ถึงบน "+(below.name||"แผ่นล่าง")+")",[
+    {key:"ref",label:"วัดระยะถึง",type:"toggle",options:["กึ่งกลางชั้น","ผิวชั้น (ช่องใสเท่ากัน)"],value:_shelfEqRef},
+    {key:"snap",label:"ลงระยะรูระบบ 32 มม.",type:"toggle",options:["ไม่ (เท่ากันเป๊ะ)","ใช่ (ตามรู 32 จากพื้นตู้)"],value:"ไม่ (เท่ากันเป๊ะ)"}]);
+  if(!v) return;
+  _shelfEqRef=String(v.ref||_shelfEqRef);
+  const byFace=/^ผิว/.test(_shelfEqRef), n=grp.length;
+  let ys=[];
+  if(byFace){ const g=(H-sumT)/(n+1); let acc=cLo; grp.forEach((x,k)=>{ acc+=g; ys.push(acc+Ts[k]/2); acc+=Ts[k]; }); }
+  else ys=grp.map((x,k)=>cLo+H*(k+1)/(n+1));
+  if(/^ใช่/.test(String(v.snap||""))){
+    const hz=horizRefsOf(groupOf(b)); const base=hz.length?(hz[0].y+(hz[0].T||18)/2):cLo;
+    ys=ys.map((y,k)=>{ const t=Ts[k]; let yb=base+Math.round((y-t/2-base)/32)*32;
+      yb=Math.max(cLo,Math.min(cHi-t,yb)); return yb+t/2; }); }
+  let moved=0, unlocked=0;
+  grp.forEach((x,k)=>{ const ny=round(ys[k]);
+    if(Math.abs(ny-x.y)<0.05) return;
+    x.y=ny; moved++;
+    if(x._datum){ delete x._datum; unlocked++; }                       // ล็อกระยะอ้างอิงจะดึงชั้นกลับที่เดิม
+    const inf=shelfCabInfo(x);
+    state.boards.forEach(o=>{ if(o.holes) o.holes=o.holes.filter(h=>!(h&&h.pin&&h.src===x.id)); });
+    if(inf&&inf.sides&&inf.sides.length) shelfDrillPins(x,inf.sides); });
+  try{ relayHangRails(inst); }catch(e){ console.error("relayHangRails:",e); }
+  sync(0);
+  const gaps=[]; { let prev=cLo; grp.forEach(x=>{ const t=+x.T||0; gaps.push(round((x.y-t/2)-prev)); prev=x.y+t/2; }); gaps.push(round(cHi-prev)); }
+  const cc=[]; { let prev=cLo; grp.forEach(x=>{ cc.push(round(x.y-prev)); prev=x.y; }); cc.push(round(cHi-prev)); }
+  const _msg=(moved?("จัดชั้นปรับ "+n+" ชั้นแล้ว"):"ชั้นอยู่ห่างเท่ากันอยู่แล้ว")
+    +" · ศูนย์ชั้น (ล่าง→บน) "+cc.map(x=>fmt(x)).join(" / ")
+    +" · ช่องใส "+gaps.map(x=>fmt(x)).join(" / ")+" มม."
+    +(unlocked?(" · ปลดล็อกระยะอ้างอิง "+unlocked+" ชั้น"):"");
+  setTimeout(()=>toast(_msg),0);   // หลัง commit (บานพับหลบชั้นขึ้นข้อความของมันก่อน ข้อความนี้จึงไม่ถูกทับ · ทั้งคู่อยู่ในบันทึกแจ้งเตือน)
+}
 // เพิ่มแผ่นหลังในช่องที่เลือก — แบ่งช่องด้วยชั้น(แนวสูง)/เสา-ตั้ง(แนวกว้าง)ก่อน แล้วเลือกช่องวางแผ่นหลังพอดีช่อง
 // ตู้ที่มีตั้งกลาง/หลายช่อง → ใส่แผ่นหลังแยกต่อช่องได้ · ฝังใน=เซาะร่อง 4 ด้าน (ใช้ convention เดียวกับ openBackGrooveModal)
 async function addBackPanel(){
@@ -11496,7 +11557,13 @@ function bindFaceHints(root,b){
 }
 const MAX_DPR=1.25;                      // cap device pixel ratio (perf on weak GPUs)
 function perfDPR(){return Math.min(devicePixelRatio||1, MAX_DPR);}
-const orbit={target:new THREE.Vector3(),theta:.85,phi:1.0,radius:1800,dTheta:0,dPhi:0,dRadius:0};
+const orbit={target:new THREE.Vector3(),theta:.85,phi:1.0,radius:1800,dTheta:0,dPhi:0,dRadius:0,zAnchor:null};
+/* ───────── v1.269: ซูมเข้าไปดูใกล้ ๆ ได้จริง ─────────
+   เดิมระยะกล้องต่ำสุด = modelRadius × 0.2 ซึ่งคิดจากขนาด "ทั้งออเดอร์" ออเดอร์กว้าง 4 เมตรจึงเข้าใกล้ได้แค่ ~590 มม.
+   แล้วยังซูมเข้าหา "จุดหมุน" (กลางฉาก) ไม่ใช่จุดที่เมาส์ชี้ ตู้ที่ไม่ได้อยู่กลางฉากจึงเข้าไปไม่ถึงเลย
+   ตอนนี้: ใกล้สุด 40 มม. คงที่ · ล้อเมาส์ซูมเข้าหาจุดใต้เมาส์ (ชิ้นที่ชี้อยู่ หรือระนาบจุดหมุนถ้าชี้ที่ว่าง)
+   · ก้าวซูมเป็นสัดส่วนของระยะ ไกลก้าวใหญ่ ใกล้ก้าวเล็ก ไม่กระโดดทะลุชิ้นงาน */
+const ZOOM_MIN_R=40;
 const ray=new THREE.Raycaster(), ndc=new THREE.Vector2();
 
 let _rendererAA=true, noGL=false;
@@ -12477,9 +12544,16 @@ function bindPointer(dom){
     if(pMode==="rot"){orbit.dTheta-=dx*.005;orbit.dPhi-=dy*.005;}
     else if(pMode==="pan"){if(Math.abs(dx)+Math.abs(dy)>2)pPan=true;panCam(dx,dy);}
   });
-  dom.addEventListener("wheel",e=>{e.preventDefault();orbit.dRadius+=e.deltaY*.6;},{passive:false});
+  dom.addEventListener("wheel",e=>{e.preventDefault();
+    /* v1.269: จุดยึดซูม = จุดใต้เมาส์ (คิดใหม่เมื่อเมาส์ขยับหรือเว้นจังหวะ ไม่ยิงเรย์ทุกเหตุการณ์ของทัชแพด) */
+    try{ const now=performance.now();
+      if(!orbit._zaT||now-orbit._zaT>140||Math.abs(e.clientX-(orbit._zaX||0))+Math.abs(e.clientY-(orbit._zaY||0))>4){
+        orbit._zaT=now; orbit._zaX=e.clientX; orbit._zaY=e.clientY; orbit.zAnchor=zoomAnchorAt(e); } }catch(err){ orbit.zAnchor=null; }
+    const dy=Math.max(-240,Math.min(240,(e.deltaMode===1)?e.deltaY*33:e.deltaY));
+    orbit.dRadius+=dy*0.00025*Math.max(orbit.radius,ZOOM_MIN_R); invalidate();
+  },{passive:false});
   let pd=0;
-  dom.addEventListener("touchmove",e=>{if(e.touches.length===2){const a=e.touches[0],b=e.touches[1];const d=Math.hypot(a.clientX-b.clientX,a.clientY-b.clientY);if(pd)orbit.dRadius+=(pd-d)*1.2;pd=d;e.preventDefault();}},{passive:false});
+  dom.addEventListener("touchmove",e=>{if(e.touches.length===2){const a=e.touches[0],b=e.touches[1];const d=Math.hypot(a.clientX-b.clientX,a.clientY-b.clientY);if(pd){ orbit.zAnchor=null; orbit.dRadius+=(pd-d)*0.0008*Math.max(orbit.radius,ZOOM_MIN_R); }pd=d;e.preventDefault();}},{passive:false});
   dom.addEventListener("touchend",()=>pd=0);
 }
 function bindPointerWindow(){
@@ -12490,6 +12564,16 @@ function bindPointerWindow(){
   });
 }
 function panCam(dx,dy){const f=orbit.radius*.0016;const r=new THREE.Vector3(),dir=new THREE.Vector3();camera.getWorldDirection(dir);r.crossVectors(dir,new THREE.Vector3(0,1,0)).normalize();const u=new THREE.Vector3().crossVectors(r,dir).normalize();orbit.target.addScaledVector(r,-dx*f);orbit.target.addScaledVector(u,dy*f);invalidate();}
+/* v1.269: จุดใต้เมาส์สำหรับซูม — ชิ้นที่ชี้อยู่ก่อน ไม่โดนชิ้นไหนใช้ระนาบที่ผ่านจุดหมุนตั้งฉากกับทิศกล้อง */
+function zoomAnchorAt(e){
+  const rc=rayFrom(e);
+  const list=(meshes||[]).map(m=>m&&m.mesh).filter(m=>m&&m.visible!==false);
+  const h=rc.intersectObjects(list,false).find(x=>x&&x.object&&x.object.visible!==false);
+  if(h&&h.point) return h.point.clone();
+  const n=new THREE.Vector3(); camera.getWorldDirection(n);
+  const pl=new THREE.Plane().setFromNormalAndCoplanarPoint(n,orbit.target), p=new THREE.Vector3();
+  return rc.ray.intersectPlane(pl,p)?p:null;
+}
 
 /* ---------- Move tool (SketchUp-style) ---------- */
 function rayFrom(e){ndc.x=(e.clientX/innerWidth)*2-1;ndc.y=-(e.clientY/innerHeight)*2+1;ray.setFromCamera(ndc,camera);return ray;}
@@ -13093,11 +13177,15 @@ function setShadows(on){ state.shadows=on;
   $("shadowBtn").classList.toggle("sel",on); invalidate(); }
 function animate(){requestAnimationFrame(animate);
   const moving=Math.abs(orbit.dTheta)+Math.abs(orbit.dPhi)+Math.abs(orbit.dRadius)>0.0003;
-  if(moving){ orbit.theta+=orbit.dTheta;orbit.phi+=orbit.dPhi;orbit.radius+=orbit.dRadius;
+  if(moving){ const _r0=orbit.radius; orbit.theta+=orbit.dTheta;orbit.phi+=orbit.dPhi;orbit.radius+=orbit.dRadius;
+    orbit.radius=Math.max(ZOOM_MIN_R,Math.min(modelRadius*22,orbit.radius));
+    /* v1.269: ซูมเข้าหาจุดใต้เมาส์ — ย่อ/ขยายทั้งกล้องและจุดหมุนรอบจุดนั้นด้วยอัตราเดียวกัน จุดนั้นจึงอยู่ที่เดิมบนจอ */
+    if(orbit.zAnchor&&_r0>0&&Math.abs(orbit.radius-_r0)>1e-6){ const k=orbit.radius/_r0;
+      orbit.target.sub(orbit.zAnchor).multiplyScalar(k).add(orbit.zAnchor); }
     orbit.dTheta*=.8;orbit.dPhi*=.8;orbit.dRadius*=.8; }
   else { orbit.dTheta=orbit.dPhi=orbit.dRadius=0; }
   if(!(moving||_dirty)){ _ft=performance.now(); _fc=0; return; }   // idle → skip GPU work
-  orbit.phi=Math.max(.12,Math.min(Math.PI-.12,orbit.phi)); orbit.radius=Math.max(modelRadius*.2,Math.min(modelRadius*22,orbit.radius));
+  orbit.phi=Math.max(.12,Math.min(Math.PI-.12,orbit.phi)); orbit.radius=Math.max(ZOOM_MIN_R,Math.min(modelRadius*22,orbit.radius));   // v1.269: เดิม modelRadius×0.2
   const r=orbit.radius;
   camera.position.set(orbit.target.x+r*Math.sin(orbit.phi)*Math.sin(orbit.theta),orbit.target.y+r*Math.cos(orbit.phi),orbit.target.z+r*Math.sin(orbit.phi)*Math.cos(orbit.theta));
   camera.lookAt(orbit.target);
@@ -14060,6 +14148,7 @@ function showInspector(){
           <select id="f_pinLevels" class="nameinp" style="flex:1;padding:6px 8px"><option value="0" ${ex===0?"selected":""}>1 ระดับ</option><option value="1" ${ex===1?"selected":""}>3 ระดับ</option><option value="2" ${ex===2?"selected":""}>5 ระดับ</option></select>
           <button class="ibtn" id="f_adjApply" style="background:var(--accent);color:#fff;border-color:transparent">ใช้</button></div>
         <div class="num" style="margin-top:6px"><span>เลื่อนชั้น (รู)</span><input type="number" id="f_shelfMove" value="0" step="1"></div>
+        <button class="ibtn" id="f_shelfEq" style="width:100%;margin-top:6px">↕ จัดชั้นปรับในช่องนี้ให้ห่างเท่ากัน…</button>
         <div style="font-size:11px;opacity:.6;margin-top:4px">ชั้นปรับ — ร่นแต่ละด้าน + ระดับรู + เลื่อนชั้นเป็นจำนวนรู (บวก=ขึ้น ลบ=ลง · รูละ ${settings.pinPitch||32} มม.) แล้วกด "ใช้" → ชั้นย้าย + เจาะรูพินใหม่ตามตำแหน่งใหม่</div>`; })()
       :`<div style="display:flex;gap:6px;align-items:center"><span style="font-size:12px;opacity:.85;min-width:62px">ร่นจากหน้า</span><input type="number" id="f_setback" class="nameinp" value="${Math.round(b.setback||0)}" style="width:90px;font-family:var(--mono)"><span style="font-size:11px;opacity:.6">มม.</span><button class="ibtn" id="f_setbackApply" style="margin-left:auto;background:var(--accent);color:#fff;border-color:transparent">ใช้</button></div>
       <div style="display:flex;gap:6px;align-items:center;margin-top:6px"><span style="font-size:12px;opacity:.85;min-width:62px">🔒 ล็อคลึก</span><input type="number" id="f_depthFix" class="nameinp" value="${Math.round((b.shelfInset&&b.shelfInset.depthFix)||0)}" style="width:90px;font-family:var(--mono)"><span style="font-size:11px;opacity:.6">มม. · 0=ปลด</span><button class="ibtn" id="f_depthFixApply" style="margin-left:auto">ใช้</button></div>
@@ -14503,6 +14592,7 @@ function showInspector(){
       setShelfGlass(b,true); convertShelf(b,true); };
     const sb=body.querySelector("#f_setback"), sbA=body.querySelector("#f_setbackApply");
     if(sbA&&sb)sbA.onclick=()=>setShelfSetback(b, Math.max(0,parseFloat(sb.value)||0));
+    { const eq=body.querySelector("#f_shelfEq"); if(eq)eq.onclick=()=>{ spaceShelvesEqual(b).catch(err=>{ console.error(err); toast("จัดชั้นไม่สำเร็จ: "+err.message); }); }; }   // v1.269
     const aA=body.querySelector("#f_adjApply");
     if(aA)aA.onclick=()=>{ const g=id=>{const el=body.querySelector(id);return el?Math.max(0,parseFloat(el.value)||0):0;};
       const lv=body.querySelector("#f_pinLevels");
@@ -29693,6 +29783,7 @@ function showCtx(x,y,id){ctxTarget=id;ctxX=x;ctxY=y;const m=$("ctxMenu");
       const cur=host?hangRailsOf(host):[];
       show("#ctxHangRail", !!host);
       show("#ctxHangRailDel", cur.length>0);
+      show("#ctxShelfEq", !!(tb&&tb.orient==="flat"&&!tb._door&&!tb._virtual&&isAdjShelf(tb)));   // v1.269
       const e4=m.querySelector("#ctxHangRail span");
       if(e4&&host) e4.textContent="🧷 ใส่ราวแขวนผ้าใต้"+((host===tb)?"ชิ้นนี้":(" "+(host.name||"ทอปบนสุด")))+" (Ø8 ทะลุ + Ø13×2)…";
       const e5=m.querySelector("#ctxHangRailDel span");
@@ -31263,6 +31354,7 @@ function bindCtx(){
     else if(a==="hanger"){ try{addHangerMenu(b,ctxX,ctxY);}catch(err){ console.error(err); toast("เปิดเมนูหูแขวนไม่สำเร็จ: "+err.message); } }
     else if(a==="hangrail"){ addHangRail(b).catch(err=>{ console.error(err); toast("ใส่ราวแขวนไม่สำเร็จ: "+err.message); }); }   // v1.235
     else if(a==="hangraildel"){ try{ removeHangRail(b); }catch(err){ console.error(err); toast("เอาราวแขวนออกไม่สำเร็จ: "+err.message); } }
+    else if(a==="shelfeq"){ spaceShelvesEqual(b).catch(err=>{ console.error(err); toast("จัดชั้นไม่สำเร็จ: "+err.message); }); }   // v1.269
     else if(a==="struct"){ try{ structSwapUI(b); }catch(err){ console.error(err); toast("เปลี่ยนโครงสร้างไม่สำเร็จ: "+err.message); } }   // v1.240
     else if(a==="leg"){ try{legMenu(b,ctxX,ctxY);}catch(err){ console.error(err); toast("เปิดเมนูขาตู้ไม่สำเร็จ: "+err.message); } }
     else if(a==="mate")connectMate(b);
@@ -33892,7 +33984,7 @@ function bindChrome(){
   $("ghostBtn").onclick=function(){state.ghost=!state.ghost;this.classList.toggle("sel",state.ghost);render3D(false);};
   /* v1.191: ซูมด้วยปุ่ม · ใช้ทางเดียวกับล้อเมาส์คือบวกเข้า orbit.dRadius แล้วให้ตัวหน่วงกลืนเอง
      ก้าวเป็นสัดส่วนของระยะปัจจุบัน ซูมเข้าไปใกล้แล้วก้าวจะเล็กลงเอง ไม่กระโดดทะลุชิ้นงาน */
-  { const _zoom=sg=>{ try{ orbit.dRadius+=sg*Math.max(orbit.radius*0.22,40); invalidate(); }catch(e){} };
+  { const _zoom=sg=>{ try{ orbit.zAnchor=null; orbit.dRadius+=sg*Math.max(orbit.radius*0.22,40); invalidate(); }catch(e){} };   // v1.269: ปุ่มซูมเข้าหากลางจอ
     const zi=$("zoomIn"), zo=$("zoomOut");
     if(zi) zi.onclick=()=>_zoom(-1);
     if(zo) zo.onclick=()=>_zoom(1); }
@@ -37117,6 +37209,7 @@ const CurvedShelf = (function(){
   <button data-act="hanger"><span>🪝 ใส่หูแขวน (ตู้ลอย)…</span></button>
   <button data-act="hangrail" id="ctxHangRail"><span>🧷 ใส่ราวแขวนผ้าใต้ชิ้นนี้…</span></button>
   <button data-act="hangraildel" id="ctxHangRailDel"><span>✕ เอาราวแขวนผ้าออก</span></button>
+  <button data-act="shelfeq" id="ctxShelfEq"><span>↕ จัดชั้นปรับในช่องนี้ให้ห่างเท่ากัน…</span></button>
   <button data-act="struct" id="ctxStruct"><span>🧱 เปลี่ยนโครงสร้างตู้…</span></button>
   <button data-act="leg"><span>🦵 ใส่ขาตู้ (เลือกรุ่น)…</span></button>
   <button data-act="2d"><span>🗎 Preview 2D…</span></button>
