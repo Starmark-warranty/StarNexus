@@ -940,7 +940,7 @@
    ===================================================================== */
 /* ---- APP_META: แหล่งความจริงเดียวของเวอร์ชัน (ดูได้จาก console / คลิกชื่อแอป) ---- */
 const APP_META={
-  name:"StarNexus Cabinet", version:"1.274", build:"2026-09-22/shallow-leg-marks",
+  name:"StarNexus Cabinet", version:"1.275", build:"2026-09-22/curved-box-lengthwise",
   file:"StarNexus.html", basedOn:"Furnitech_V3.html (v3.11)",
   /* ───────── เริ่มนับเวอร์ชันใหม่ที่ 1.001 (21/08/2026) ─────────
      ของเดิมนับมาถึง 42.1 แล้ววิ่งเป็นทศนิยมสองชั้นซึ่งอ่านลำดับยาก
@@ -948,6 +948,7 @@ const APP_META={
      ประวัติเก่าเก็บไว้ทั้งหมดตามเลขเดิม ไม่ไล่เขียนใหม่ เพราะเลขในนั้นถูกอ้างถึงไปแล้ว
      รายการที่อยู่ใต้ 1.001 ลงไปจึงเป็นเลขชุดเก่า อ่านต่อกันได้ตามวันที่ */
   changelog:[
+    ["1.275","2026-09-22","FIX กล่องโค้งจาก XML ครีบเหลือตัวเดียว (ควรได้ 4) — โมเดล BNF065 วาดกล่องนอนยาว 380 ตามแกน x เพื่อให้ครีบวิ่งตามขอบยาว 2+2 แต่ XML ส่งกว้าง 150 (x) ลึก 380 (z) สลับแกนกัน v1.273 เอากว้าง 150 ไปใส่ความยาวกล่อง ครีบจึงลงได้ตัวเดียว · ตอนนี้ดูว่าขนาดโมเดลเข้ากับ XML แบบตรงหรือสลับแกน ถ้าสลับ: ความยาวกล่องรับลึก XML ความลึกกล่องรับกว้าง XML สร้างตามแบบที่วาด (ครีบ 4 · ชั้น 352×138) แล้วหมุน 90° ให้ปลายโค้งอยู่หน้า แผ่นปิดอยู่หลัง ขนาดรวมตรง XML · R ตามส่วนตรงได้ทั้งแนวยาวและแนวลึก (ใช้ R ที่ตัวสร้างใช้จริงหลังบีบ ไม่ใช่เลขที่พิมพ์) — ต้นแบบกว้าง 150 R นอก 120 → ฐาน 130 ได้ R นอก 100 · FIX กลับตู้ซ้าย⇄ขวากับกล่องโค้งพัง — ตัวกลับกลับรูปทรงแต่ไม่กลับค่าที่ตัวสร้างจำไว้ (_csP) ตัวซ่อม v1.271 เลยดึงแผ่นชั้นกลับเป็นโค้งเดิม และลากครีบตามแผ่นปิดจนหลุดนอกแผ่นชั้น · ตอนนี้กลับ _csP ด้วย (ปลายโค้งซ้าย/ขวา หรือขอบหน้า/หลังสำหรับกล่องที่หมุนอยู่ พร้อมป้ายแถวครีบ) ทั้งกลับทีละตู้และกลับทั้งออเดอร์ — ใช้ทำ BNF066 จาก BNF065 ได้"],
     ["1.274","2026-09-22","FIX รูมาร์คขาตู้หายในตู้ตื้น (เคสจริง LRT005 ลึก 200 ขา 5 ตัวแต่แผ่นพื้นไม่มีรูมาร์คสักรู) — สูตรวางแถวหน้า 75 จากหน้า แถวหลัง 143 จากหลัง ตัวกันแผ่นเล็กเลยข้ามทุกแผ่นที่ลึกไม่ถึง 228 · ตอนนี้ตู้ที่ขาไม่ชนกันอยู่แล้ว คือตู้ตื้นสองแถวสลับ (v1.270) และตู้แถวเดียว ใช้ระยะแถวหลังเท่าแถวหน้า (75) — ลึก 200 ได้ 9 รู (แถวหน้า 3 จุด แถวหลัง 2 มุมที่ขยับเข้าใน 100) ขายืนตรงรูเหมือนตู้ใบอื่น · ตู้แถวเดียว (ลึกไม่ถึง legNarrowW) ได้รูแถวเดียวกลางแผ่นตามที่ v37.9 ตั้งใจไว้แต่ไม่เคยได้เจาะจริง · ตัวคิดตำแหน่งขาจากสูตร (legAnchorsFromMarks) ใช้ระยะเดียวกัน · ตู้ลึกปกติไม่เปลี่ยน (เทียบไฟล์ 19 36 40 42 43 45-49 รูและขาเหมือนเดิมทุกตู้ ยกเว้น LRT005 ลึก 200)"],
     ["1.273","2026-09-22","FEAT กล่องโค้งรหัสเดียวหลายขนาดจาก XML — BNF065 มาเป็นกล่อง 150×380×780 กับฐาน 130×380×100 ในออเดอร์เดียว เดิมตัวสเกลยืดชิ้นตามสัดส่วน R กลายเป็นวงรี แล้วตัวซ่อม (v1.271) ดึงกลับเป็นขนาดโมเดล ฐานเลยสูง 913 มี 4 ชั้น R เท่ากล่องบน · ตอนนี้ตอนโหลด XML ถ้าโมเดลเป็นกล่องโค้งล้วน โปรแกรมคิดกล่องใหม่จากค่าของโมเดล (_csP) แล้วปั้นชิ้นด้วยตัวเดียวกับปุ่มสร้าง: ส่วนต่างกว้าง/ลึกลงที่แผ่นชั้น · สูงเปลี่ยน ครีบ แผ่นดัด แผ่นปิดสูงตาม จำนวนชั้นคิดจากระยะห่างชั้นของโมเดล (ฐาน 100 ได้ชั้นบน-ล่าง 2 แผ่น) · R ตามช่องใหม่ \"R เมื่อโหลด XML ขนาดอื่น\" (อัตโนมัติ / คงช่วงตรง / R คงที่) — คงช่วงตรง: ต้นแบบ 150 R นอก 120 → 130 ได้ R นอก 100 · อัตโนมัติ = ปลายเดียวที่ส่วนตรงสั้นกว่า R ใช้คงช่วงตรง นอกนั้น R คงที่ · Part วัสดุ ขอบ ยกจากโมเดล · มุมล่างหลังซ้ายที่เดิม วางตามผังเหมือนเดิม · ขนาดตรงโมเดล = ใช้ชิ้นเดิม · FIX กล่องโค้งหลายใบจากโมเดลเดียวใช้รหัสชุดร่วมกัน ตัวซ่อม/แก้กล่องจึงเห็นเป็นกล่องเดียว — ตอนนี้โหลดแล้วได้รหัสชุดของตัวเองทุกใบ · ปุ่มสร้างกล่องโค้งแยกตัวปั้นชิ้นออกมาเป็น CurvedShelf.makeBoards (ชิ้นที่ได้เหมือนเดิมทุกค่า) · ปรับขนาดตู้ด้วยกล่องปรับขนาดยังเป็นทางเดิม"],
     ["1.272","2026-09-22","FEAT ค้นหา/แทนที่ในหน้าตรวจ XML ตั้งเงื่อนไขจากคอลัมน์อื่นในแถวเดียวกันได้ — ช่อง \"เฉพาะแถวที่ [คอลัมน์] = [ค่า]\" เช่น เปลี่ยน K_Front_Color1 เป็น N03P0057N_N01M0029N เฉพาะตู้ที่ K_Front_Shape1 = MCWx58 (ตู้ Exxx02 ที่สีเดียวกันไม่โดน) · เทียบตรงทั้งช่อง หลายค่าคั่นด้วย , ใช้ * แทนอะไรก็ได้ (MCW*) · อ่านค่าจากตารางตอนนี้ ค่าที่เพิ่งแก้ก็นับ · ช่องค้นหาเว้นว่าง + เลือกคอลัมน์ = เขียนทับทุกช่องที่มีค่าในคอลัมน์นั้น (ช่องว่างไม่แตะ บานที่ไม่มีจริงจึงไม่โดนเติมสี) · ทุกคอลัมน์ + ช่องค้นหาว่าง ยังไม่ทำอะไรเหมือนเดิม · แจ้งผลว่ากี่ช่องกี่ตู้ · FIX ช่องแดง (ไม่มีในคลัง) ไม่อัปเดตหลังแก้ค่า — เดิมตรวจครั้งเดียวตอนเปิดหน้าต่าง แทนที่ AL618MH เป็นรหัสที่มีแล้วยังแดงค้าง แก้เป็นรหัสที่ไม่มีก็ไม่แดง ตอนนี้ตรวจค่าใหม่ทันทีด้วยกติกาเดิม · FIX ลายหน้าบาน 3D ไม่ขึ้นบนบานตู้ Hood (WAL119) — บานผูก Part \"Front1\" ตรง ๆ ไม่ใช่ลิงก์ FrontShapeP1 ตัวหารหัสแบบบานจึงได้ค่าว่าง ตอนนี้อ่านจากตัว Part: วัสดุ $FrontMat1 อยู่ใต้ Family FrontShape1 → ได้ PCWx50 ของตู้ใบนั้น (ใบตัด/ป้ายถูกอยู่แล้ว ผิดแค่ภาพ)"],
@@ -24652,6 +24653,7 @@ function mirrorOrder(){
     const y=(((+b.yaw||0)%360)+360)%360; if(y) b.yaw=(360-y)%360;
     _mirrorBoard(b);                                       // กลับข้างในชิ้น รู ร่อง บานพับ สเปคขอบ
   });
+  try{ csMirrorParams(all); }catch(e){ console.error("csMirror:",e); }   // v1.275
   let nRen=0; all.forEach(b=>{ const nn=_flipNameAuto(b.name); if(nn&&nn!==b.name){ b.name=nn; nRen++; } });
   /* รหัสตู้: ทำทีเดียวทั้งฉาก คู่ซ้าย-ขวาจึงสลับรหัสกันเอง
      ตัวตนของตู้ผูกกับ cabInst ไม่ใช่รหัส จึงไม่ปนกันแม้รหัสจะไปชนกับอีกใบ */
@@ -24666,6 +24668,32 @@ function mirrorOrder(){
     +(nCab?(" · รหัสตู้ "+nCab+" รหัส"):" · รหัสตู้ไม่มีตัวบอกด้านที่ตำแหน่งที่ 3 จึงไม่เปลี่ยนให้"));
   return solid.length;
 }
+/* ───────── v1.275: กลับตู้ซ้าย⇄ขวา — ค่าที่ตัวสร้างกล่องโค้งจำไว้ (_csP) ต้องกลับตามรูปทรงด้วย ─────────
+   ตัวกลับตู้กลับพิกัด โปรไฟล์ และรู ของทุกชิ้น แต่ _csP ยังบอกว่าโค้ง "ปลายขวา" เหมือนเดิม
+   ตัวซ่อมกล่องโค้ง (v1.271) คิดรูปทรงใหม่จาก _csP ทุกรอบ จึงดึงแผ่นชั้นกลับเป็นโค้งขวา
+   ขณะที่แผ่นปิดย้ายไปอยู่ขวาแล้ว ครีบถูกเลื่อนตามแผ่นปิดจนหลุดออกนอกแผ่นชั้น — กล่องพังทันทีที่กด
+   และตัวโหลด XML ขนาดอื่น (v1.273) ก็สร้างกล่องจาก _csP เช่นกัน รหัสที่ได้จากการกลับ (BNF066) จะออกมาเป็นด้านเดิม
+   ความยาวกล่องวิ่งซ้ายขวา = ปลายโค้งสลับข้าง · วิ่งหน้า-หลัง (กล่องที่หมุนอยู่) = ขอบที่โค้งเข้าหาสลับหน้า/หลัง */
+function csMirrorParams(boards){
+  const groups={};
+  (boards||[]).forEach(b=>{ if(b&&b._csGroup&&b._csP) (groups[b._csGroup]=groups[b._csGroup]||[]).push(b); });
+  let n=0;
+  Object.keys(groups).forEach(g=>{ const bs=groups[g];
+    const ref=bs.find(b=>b._csType==="shelf")||bs.find(b=>b._csType==="fin")||bs[0];
+    let ax="x"; try{ ax=localAxis(ref,"L"); }catch(e){}
+    const P=JSON.parse(JSON.stringify(bs[0]._csP));
+    if(ax==="x"){
+      if(P.rSide==="right") P.rSide="left"; else if(P.rSide==="left") P.rSide="right";
+      else if(P.rSide==="both"){ const r=P.R; P.R=P.R2; P.R2=r; const c=P.clr; P.clr=P.clr2; P.clr2=c; }
+      bs.forEach(b=>{ if(b._csSide==="R") b._csSide="L"; else if(b._csSide==="L") b._csSide="R"; });
+    } else {
+      P.rEdge=(P.rEdge==="front")?"back":"front";
+      { const t=P.nB; P.nB=P.nF; P.nF=t; }                                 // ครีบแต่ละแถวยังเท่าเดิมตามตำแหน่งจริง
+      bs.forEach(b=>{ if(b._csEdge==="B") b._csEdge="F"; else if(b._csEdge==="F") b._csEdge="B"; });
+    }
+    bs.forEach(b=>{ b._csP=JSON.parse(JSON.stringify(P)); }); n++; });
+  return n;
+}
 function mirrorCabinet(inst){
   const all=state.boards.filter(b=>b&&b.cabInst===inst);
   if(!all.length){ toast("ไม่พบชิ้นในตู้นี้"); return 0; }
@@ -24677,6 +24705,7 @@ function mirrorCabinet(inst){
   if(!isFinite(mn)){ toast("วัดขนาดตู้ไม่ได้"); return 0; }
   const cx=(mn+mx)/2;
   all.forEach(b=>{ b.x=round(2*cx-b.x); _mirrorBoard(b); });
+  try{ csMirrorParams(all); }catch(e){ console.error("csMirror:",e); }   // v1.275: กล่องโค้งกลับค่าตัวสร้างด้วย
   /* ชื่อชิ้น: สลับตัวบอกด้านของทุกชิ้นที่มี ชิ้นที่ไม่ได้บอกด้าน (เช่น Bottom) ไม่ถูกแตะ */
   let nRen=0;
   all.forEach(b=>{ const nn=_flipNameAuto(b.name); if(nn&&nn!==b.name){ b.name=nn; nRen++; } });
@@ -34910,12 +34939,30 @@ function csRebuildForSize(src,target,lock){
       for(let a=0;a<3;a++){ mn[a]=Math.min(mn[a],c[a]-d[a]/2); mx[a]=Math.max(mx[a],c[a]+d[a]/2); } });
     return {mn,mx,size:[0,1,2].map(a=>mx[a]-mn[a])}; };
   const B0=box(all);
-  const lk=[!!(lock&&lock.w),!!(lock&&lock.h),!!(lock&&lock.d)];
-  const tg=[0,1,2].map(a=>(lk[a]||!(+(target||[])[a]>0))?B0.size[a]:+target[a]);
+  /* ───────── v1.275: โมเดลที่วาดกล่องนอนตามแนวลึก ─────────
+     กล่องหัวท้ายแบบ BNF065 ครีบต้องวิ่งตามขอบยาว 380 (แนวลึกของตู้) ตัวสร้างวางครีบตามขอบ L เสมอ
+     คนจึงวาดกล่องยาว 380 ตามแกน x ในโมเดล ส่วน XML ส่งกว้าง 150 (x) ลึก 380 (z) — สลับแกนกัน
+     v1.273 เอากว้าง XML ไปใส่ความยาวกล่องตรง ๆ กล่องจึงยาว 150 ครีบลงได้ตัวเดียว (ควรได้ 4)
+     ตอนนี้ดูว่าขนาดโมเดลเข้ากับ XML แบบไหน ถ้าสลับแกนเข้ากันกว่า: ความยาวกล่องรับลึก XML ความลึกกล่องรับกว้าง XML
+     สร้างตามแบบที่วาด แล้วหมุน 90° ให้ปลายโค้งอยู่ด้านหน้าตู้ แผ่นปิดอยู่ด้านหลัง (ชนผนัง) */
+  const tgRaw=[0,1,2].map(a=>(+(target||[])[a]>0)?+target[a]:0);
+  const errS=(tgRaw[0]?Math.abs(B0.size[0]-tgRaw[0]):0)+(tgRaw[2]?Math.abs(B0.size[2]-tgRaw[2]):0);
+  const errX=(tgRaw[2]?Math.abs(B0.size[0]-tgRaw[2]):0)+(tgRaw[0]?Math.abs(B0.size[2]-tgRaw[0]):0);
+  const swap=!!(tgRaw[0]&&tgRaw[2])&&(errX+1<errS);
+  const lk0=[!!(lock&&lock.w),!!(lock&&lock.h),!!(lock&&lock.d)];
+  const lk=swap?[lk0[2],lk0[1],lk0[0]]:lk0, tgm=swap?[tgRaw[2],tgRaw[1],tgRaw[0]]:tgRaw;
+  const tg=[0,1,2].map(a=>(lk[a]||!(tgm[a]>0))?B0.size[a]:tgm[a]);
   const dW=tg[0]-B0.size[0], dH=tg[1]-B0.size[1], dD=tg[2]-B0.size[2];
   const gid="CS"+uid();
+  /* หมุนกล่องที่สร้างในแกนโมเดลให้เข้าแกน XML: ปลายโค้งไปด้านหน้า (+z) · มุมล่างหลังซ้ายที่เดิม */
+  const turn=bs=>{ if(!swap) return bs;
+    const P1=(bs[0]&&bs[0]._csP)||{};
+    rotateCabBoards(bs,(P1.rSide==="left")?90:270,B0.mn[0],B0.mn[2]);
+    const B2=box(bs);
+    bs.forEach(b=>{ b.x=round(b.x+(B0.mn[0]-B2.mn[0])); b.z=round(b.z+(B0.mn[2]-B2.mn[2])); });
+    return bs; };
   if(Math.abs(dW)<0.5&&Math.abs(dH)<0.5&&Math.abs(dD)<0.5)             // ขนาดตรงโมเดล: ใช้ชิ้นเดิม แค่ให้รหัสชุดใหม่
-    return all.map(b=>{ const c=JSON.parse(JSON.stringify(b)); c._csGroup=gid; return c; });
+    return turn(all.map(b=>{ const c=JSON.parse(JSON.stringify(b)); c._csGroup=gid; return c; }));
   const byT=t=>all.filter(b=>b._csType===t);
   const P0=all[0]._csP, P=JSON.parse(JSON.stringify(P0));
   const sh=byT("shelf"), fins=byT("fin"), end=all.find(b=>b._csType==="end");
@@ -34924,7 +34971,9 @@ function csRebuildForSize(src,target,lock){
   if(end&&+end.T>0) P.endT=+end.T;
   const faceOn=!!P.face&&P.rSide!=="none", fT=(faceOn&&+P.faceT>0.5)?+P.faceT:0;
   const eT=(P.endOn!==false&&+P.endT>0.5)?+P.endT:0, runFull=(P.faceRun==="full")&&fT>0;
-  const L0=(sh.length&&+sh[0].L>0)?+sh[0].L:+P0.L, R0=+P0.R||0;
+  const L0=(sh.length&&+sh[0].L>0)?+sh[0].L:+P0.L, D0=(sh.length&&+sh[0].W>0)?+sh[0].W:+P0.D;
+  /* R ที่ใช้จริงในโมเดล (ตัวสร้างบีบ R ไม่ให้เกินความลึก/ความยาวแผ่น) — คิดช่วงตรงจากค่านี้ ไม่ใช่เลขที่พิมพ์ */
+  let R0=+P0.R||0; try{ const G0=CurvedShelf.geom(Object.assign({},P0,{T:P.T,finT:P.finT,endT:P.endT})); R0=+(G0.Rr||G0.Rl||R0)||R0; }catch(e){}
   /* กว้าง ลึก — ส่วนต่างลงที่แผ่นชั้นทั้งหมด */
   if(P.sizeMode==="total"&&P._rawL!=null&&P._rawD!=null){
     P._rawL=round(+P._rawL+dW); P._rawD=round(+P._rawD+dD);
@@ -34933,10 +34982,15 @@ function csRebuildForSize(src,target,lock){
     P.L=Math.max(L0+dW,20); P.D=Math.max(((sh.length&&+sh[0].W>0)?+sh[0].W:+P0.D)+dD,20);
   }
   /* R — ปลายเดียวเท่านั้น (สองปลายคง R ไว้ ส่วนต่างไปลงช่วงกลาง) */
+  /* v1.275: ส่วนตรงคิดได้สองแนว — ตามความยาว (ปลายโค้งกินเกือบทั้งความยาว) หรือตามความลึก (กล่องนอนตามแนวลึก)
+     แนวที่ขนาดเปลี่ยนและส่วนตรงสั้นกว่า R คือแนวที่ R ต้องตาม · ต้นแบบกว้าง 150 R นอก 120 → 130 ได้ R นอก 100 ทั้งสองแบบ */
   const rf=P.rFit||"auto", single=(P.rSide==="left"||P.rSide==="right");
-  if(single&&R0>0.5&&Math.abs(dW)>=0.5&&rf!=="fixed"){
-    const straight0=L0+eT-R0;                                           // ส่วนตรงก่อนเข้าโค้ง (รวมแผ่นปิด) — BNF065: 30
-    if(rf==="follow"||straight0<R0+fT) P.R=round(Math.max(1,R0+dW)); }
+  if(single&&R0>0.5&&rf!=="fixed"){
+    const cand=[];
+    if(Math.abs(dW)>=0.5) cand.push({st:L0+eT-R0, d:dW});               // ส่วนตรงตามความยาว (รวมแผ่นปิด) — BNF065 แบบยาว 150: 30
+    if(Math.abs(dD)>=0.5) cand.push({st:D0-R0, d:dD});                  // ส่วนตรงตามความลึก — BNF065 แบบนอน กว้าง 150: 138-108 = 30
+    const use=cand.filter(c=>rf==="follow"||c.st<R0+fT).sort((a,b)=>a.st-b.st)[0];
+    if(use) P.R=round(Math.max(1,R0+use.d)); }
   /* สูง — จำนวนชั้นคิดจากระยะห่างชั้นของโมเดล */
   if(Math.abs(dH)>=0.5){
     const H0=+P0.finH||B0.size[1], H1=Math.max(H0+dH,20);
@@ -34965,7 +35019,8 @@ function csRebuildForSize(src,target,lock){
   /* มุมล่างหลังซ้ายเท่าเดิม */
   const B1=box(made);
   made.forEach(b=>{ b.x=round(b.x+(B0.mn[0]-B1.mn[0])); b.y=round(b.y+(B0.mn[1]-B1.mn[1])); b.z=round(b.z+(B0.mn[2]-B1.mn[2])); });
-  console.log("🧰 กล่องโค้ง: สร้างใหม่ตามขนาด XML",B0.size.map(v=>round(v)).join("×"),"→",tg.map(v=>round(v)).join("×"),
+  turn(made);
+  console.log("🧰 กล่องโค้ง: สร้างใหม่ตามขนาด XML"+(swap?" (โมเดลวาดนอนตามแนวลึก — หมุนเข้าแกน XML)":""),B0.size.map(v=>round(v)).join("×"),"→",tg.map(v=>round(v)).join("×"),
     "· R",R0,"→",P.R,"· ชั้น",(sh.length||P0.N),"→",G.levels.length,"· ครีบ",fins.length,"→",G.notches.length);
   return made;
 }
