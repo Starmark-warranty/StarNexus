@@ -940,7 +940,7 @@
    ===================================================================== */
 /* ---- APP_META: แหล่งความจริงเดียวของเวอร์ชัน (ดูได้จาก console / คลิกชื่อแอป) ---- */
 const APP_META={
-  name:"StarNexus Cabinet", version:"1.269", build:"2026-09-22/zoom-close-shelf-equalize",
+  name:"StarNexus Cabinet", version:"1.270", build:"2026-09-22/shallow-cab-legs",
   file:"StarNexus.html", basedOn:"Furnitech_V3.html (v3.11)",
   /* ───────── เริ่มนับเวอร์ชันใหม่ที่ 1.001 (21/08/2026) ─────────
      ของเดิมนับมาถึง 42.1 แล้ววิ่งเป็นทศนิยมสองชั้นซึ่งอ่านลำดับยาก
@@ -948,6 +948,7 @@ const APP_META={
      ประวัติเก่าเก็บไว้ทั้งหมดตามเลขเดิม ไม่ไล่เขียนใหม่ เพราะเลขในนั้นถูกอ้างถึงไปแล้ว
      รายการที่อยู่ใต้ 1.001 ลงไปจึงเป็นเลขชุดเก่า อ่านต่อกันได้ตามวันที่ */
   changelog:[
+    ["1.270","2026-09-22","FEAT ขาตู้ตื้นไม่ชนกัน — ตู้ลึกไม่เกิน 200 มม. ที่ยังใช้ขา 2 แถว (ขาหน้า/ขาหลังห่างกันแค่ 50 จากศูนย์ ฐานขาชนกัน) ขาหลังเหลือแค่ 2 มุม และขยับเข้าหากลางตู้ 100 มม. · ขากลางเหลือแถวหน้าแถวเดียว (ตู้ 6 ขา → 5 ขา · 8 ขา → 6 ขา) · ตั้งค่าได้: legShallowD (เกณฑ์ความลึก) · legShallowBackIn (ระยะขยับขาหลังเข้าใน) · ตู้ตื้นกว่าเกณฑ์ขาแถวเดียว (legNarrowW 180) ยังเป็นแถวเดียวกลางความลึกเหมือนเดิม · รูมาร์คใต้แผ่นพื้น (ถ้าแผ่นใหญ่พอให้เจาะ) ตามผังใหม่ด้วย · คิดความลึกในแกนของตู้เอง ตู้ที่หมุนตามผังใช้ได้"],
     ["1.269","2026-09-22","FIX ซูมเข้าไปดูใกล้ ๆ ไม่ได้ ติดที่ระยะหนึ่ง — ระยะกล้องต่ำสุดเดิม = modelRadius × 0.2 ซึ่งคิดจากขนาดทั้งออเดอร์ (ออเดอร์กว้าง 4 เมตร เข้าใกล้ได้แค่ ~590 มม.) และซูมเข้าหาจุดหมุนกลางฉาก ไม่ใช่จุดที่เมาส์ชี้ · ตอนนี้ใกล้สุด 40 มม. · ล้อเมาส์ซูมเข้าหาชิ้นที่เมาส์ชี้ (จุดนั้นอยู่ที่เดิมบนจอ) · ก้าวซูมเป็นสัดส่วนของระยะ ไกลเร็ว ใกล้ละเอียด · ปุ่ม + − ยังซูมเข้าหากลางจอ · FEAT จัดชั้นปรับที่ใส่ไว้แล้วให้ห่างเท่ากัน ไม่ต้องลบแล้วใส่ใหม่ — คลิกขวาที่ชั้นปรับ หรือปุ่มในแผงขวา จัดทุกชั้นปรับในช่องเดียวกัน (ระหว่างแผ่นที่ไม่ใช่ชั้นปรับ เช่น พื้น ฝาบน ชั้นตาย · ช่องกว้างเดียวกัน) เลือกวัดถึง กึ่งกลางชั้น (ศูนย์ถึงศูนย์เท่ากัน) หรือ ผิวชั้น (ช่องใสเท่ากัน) · เลือกลงระยะรูระบบ 32 ได้ · เจาะรูพินใหม่ · ราวแขวนใต้ชั้นตามไป · ใช้กับตู้ที่หมุนในผังได้"],
     ["1.268","2026-09-22","FEAT เพิ่มชั้น โหมด แบ่งเท่ากันในช่อง เลือกได้ว่าจะวัดระยะแบ่งถึง กึ่งกลางชั้น (ศูนย์ชั้นห่างเท่ากัน · แบบเดิม ช่องบนสุด/ล่างสุดจะใสกว่าช่องกลางครึ่งความหนาชั้น) หรือ ผิวชั้น (ช่องใสระหว่างผิวไม้เท่ากันทุกช่อง) · จำตัวเลือกล่าสุดไว้ในรอบทำงานนั้น · แจ้งช่องใสจริงที่ได้ในข้อความหลังเพิ่มชั้น (ชั้นปรับระดับยังสแนประยะ 32 มม. ช่องใสจึงอาจต่างกันไม่เกินขั้นพิน)"],
     ["1.267","2026-09-22","FIX รูพินชั้นค้างของขนาดเก่าบนแผ่นข้าง (LRT005: ชั้น 2–3 รูอยู่ที่ 483.9 = นอกแผ่นกว้าง 200 และแถว −24.8 ผิดที่) — v1.266 เจาะรูใหม่ให้เฉพาะตอนตัวซ่อมเป็นคนจับได้ว่าชั้นยื่นเกิน แต่ทาง \"ทำงานต่อจาก autosave\" และเปิดออเดอร์จากคลาวด์ เรียก refitInterior ก่อน sync ขนาดชั้นจึงถูกแก้ไปก่อนเงียบ ๆ พอตัวซ่อมมาถึงก็ไม่เห็นอะไรผิด รูพินเลยไม่ถูกเจาะใหม่ · ตอนนี้ตัวซ่อมตรวจ \"รูพิน\" ตรง ๆ ทุกครั้ง ไม่ขึ้นกับว่าใครแก้ขนาดชั้น: รูพินของชั้นปรับที่อยู่นอกแผ่นของตัวเอง หรือไม่อยู่ในช่วงลึกของชั้น หรือห่างจากใต้ชั้นเกินระยะระดับพิน = ค้าง ล้างแล้วเจาะใหม่ทั้งชั้น · รูพินที่ถูกต้อง (รวมรูจาก XML) ไม่แตะ"],
@@ -1323,7 +1324,7 @@ const HINGE3D_DEFAULT={
     {name:"สกรูรองยึด R", _shape:"cyl", L:6,   W:6,  T:5,    orient:"front", x:16,   y:0,   z:47.5}
   ], _ts:1 }
 };
-const DEF_SETTINGS={ frontSetMax:6, dowelD:8, dowelDepth:28, dowelMateDepth:12, dowelMateD:8, dowelPitch:170, dowelMargin:32, pinD:5, pinInset:37, pinDepth:8, pinPitch:64, pinExtra:1, pinName:"Shelf pin Ø5", dowelName:"เดือยไม้ Ø8", dowelCode:"DOWEL8", pinCode:"PIN5", pin2Code:"PIN5B", pin2Name:"พินรองรับชั้น (รหัสที่ 2)", glassPinCode:"GLASSPIN", glassPinName:"พินรองรับชั้นกระจก", glassShelfT:5, glassShelfPart:"", shelfSupD:5, shelfSupDepth:12, shelfSupFront:15, shelfSupBack:15, shelfSupAuto:true, shelfSupW:200, shelfSupFrontL:50, shelfSupBackL:50, shelfSupCode:"SHELFSUP5", shelfSupName:"ตัวรับชั้นแบบเจาะสันข้าง Ø5", xmlScale:true, overlapWarn:false, slideName:"รางลิ้นชัก", slideCode:"SLIDE", slideDrillD:5, slideDrillDepth:3, slideRailFromBot:0, slideOffBlum:10, slideOffHafele:-17, underSideInner:21, altoSideH:80, altoBackH:63, altoBotMinusW:35, altoBackMinusW:38, altoBotMinusD:10, altoCodeA:"ALTO_S_H80_A", altoCodeW:"ALTO_S_H80_W", altoDrillRear:41, altoDrillH:37, altoPanelT:16, altoFrontDrill:"37,32,5,12 ; -37,32,5,12", legCode:"LEG", legName:"ขาตู้ปรับระดับ", legXmlOn:true, legXmlField:"K_Leg", legXmlMap:"", legXmlNo:"none,ไม่มี,ไม่เอา,-", legXmlD:50, legXmlInset:50, legXmlFitGap:true, legCountMap:"800:6, 1250:8", legNarrowW:180, sceneFog:true, legMarkMidSingle:true, dxJoinGap:0, ledGrooveW:19, ledGrooveD:8, ledMaxLen:3000, ledSplit:"เต็มท่อนก่อน", ledCapCode:"LED_CAP", ledCornerCode:"", led3D:true, ledGlow:true, ledGlowMax:12, ledGlowColor:"#ffd9a0", ledGlowPower:1.15, ledGlowDist:620, ledWash:220, uiScale:100, uiTheme:"light", ledLift:2.5, ledNameTag:"LED", ledBomMode:"all",
+const DEF_SETTINGS={ frontSetMax:6, dowelD:8, dowelDepth:28, dowelMateDepth:12, dowelMateD:8, dowelPitch:170, dowelMargin:32, pinD:5, pinInset:37, pinDepth:8, pinPitch:64, pinExtra:1, pinName:"Shelf pin Ø5", dowelName:"เดือยไม้ Ø8", dowelCode:"DOWEL8", pinCode:"PIN5", pin2Code:"PIN5B", pin2Name:"พินรองรับชั้น (รหัสที่ 2)", glassPinCode:"GLASSPIN", glassPinName:"พินรองรับชั้นกระจก", glassShelfT:5, glassShelfPart:"", shelfSupD:5, shelfSupDepth:12, shelfSupFront:15, shelfSupBack:15, shelfSupAuto:true, shelfSupW:200, shelfSupFrontL:50, shelfSupBackL:50, shelfSupCode:"SHELFSUP5", shelfSupName:"ตัวรับชั้นแบบเจาะสันข้าง Ø5", xmlScale:true, overlapWarn:false, slideName:"รางลิ้นชัก", slideCode:"SLIDE", slideDrillD:5, slideDrillDepth:3, slideRailFromBot:0, slideOffBlum:10, slideOffHafele:-17, underSideInner:21, altoSideH:80, altoBackH:63, altoBotMinusW:35, altoBackMinusW:38, altoBotMinusD:10, altoCodeA:"ALTO_S_H80_A", altoCodeW:"ALTO_S_H80_W", altoDrillRear:41, altoDrillH:37, altoPanelT:16, altoFrontDrill:"37,32,5,12 ; -37,32,5,12", legCode:"LEG", legName:"ขาตู้ปรับระดับ", legXmlOn:true, legXmlField:"K_Leg", legXmlMap:"", legXmlNo:"none,ไม่มี,ไม่เอา,-", legXmlD:50, legXmlInset:50, legXmlFitGap:true, legCountMap:"800:6, 1250:8", legNarrowW:180, legShallowD:200, legShallowBackIn:100, sceneFog:true, legMarkMidSingle:true, dxJoinGap:0, ledGrooveW:19, ledGrooveD:8, ledMaxLen:3000, ledSplit:"เต็มท่อนก่อน", ledCapCode:"LED_CAP", ledCornerCode:"", led3D:true, ledGlow:true, ledGlowMax:12, ledGlowColor:"#ffd9a0", ledGlowPower:1.15, ledGlowDist:620, ledWash:220, uiScale:100, uiTheme:"light", ledLift:2.5, ledNameTag:"LED", ledBomMode:"all",
   ledSet:"", ledZoneGap:800, ledShelfClear:1.5,
   dpField:"K_DesignParameter", designParams:[],   // v30.4
   xmlAutoHeal:true,                               // v31.0: โหลดออเดอร์เสร็จแล้วเชื่อมเดือย+รูบานพับใหม่ให้เอง
@@ -9329,7 +9330,7 @@ function legMarkDodge(cy,cxs,blk,mD,W,toFront){
   return cy;                                          // หลบไม่พ้นในระยะที่ให้ ก็อยู่ที่เดิม
 }
 function _legMarkSigOf(bp,c,yd){
-  return [bp.L,bp.W,c.ex,c.fr,c.bk,c.pitch,c.D,c.dep,c.midOver,yd,(c.mid1?1:0),(legOneRow(bp.cabInst)?1:0)].map(v=>Math.round(v*10)).join(",")
+  return [bp.L,bp.W,c.ex,c.fr,c.bk,c.pitch,c.D,c.dep,c.midOver,yd,(c.mid1?1:0),(legOneRow(bp.cabInst)?1:0),legStaggerOf(bp.cabInst)].map(v=>Math.round(v*10)).join(",")
     +"|"+_legFxOf(bp.cabInst).map(f=>Math.round(f*1000)).join(".")
     /* v1.209: ของที่ต้องหลบอยู่ในลายเซ็นด้วย มินิฟิกขยับเมื่อไหร่รูมาร์คต้องคิดใหม่ */
     +"|"+(settings.legMarkAvoid===false?"-":legMarkBlockers(bp).map(b=>Math.round(b.x)+"_"+Math.round(b.y)+"_"+Math.round(b.d)).join("."));
@@ -9372,11 +9373,15 @@ function drillLegMarks(bp){
   const blk=(settings.legMarkAvoid===false)?[]:legMarkBlockers(bp);
   const front0=(yRows.length>1)?((yToFront>0)?Math.max.apply(null,yRows):Math.min.apply(null,yRows)):null;
   const pts=[]; let moved=0;
-  xs.forEach((cx,i)=>{
+  const stgM=(yRows.length>1)?legStaggerOf(bp.cabInst):0;   // v1.270: ตู้ตื้นสองแถว — แถวหลังเหลือสองมุม ขยับเข้าใน
+  xs.forEach((cx0,i)=>{
     const isEnd=(i===0||i===xs.length-1);
     const offs=(c.mid1&&!isEnd)?[0]:[-c.pitch/2, c.pitch/2];
-    const pxs=offs.map(dx=>round(cx+dx));
     yRows.forEach(cy=>{
+      const isBack=(front0!=null)&&(Math.abs(cy-front0)>=0.01);
+      if(stgM>0&&isBack&&!isEnd) return;
+      const cx=(stgM>0&&isBack)?(cx0+(cx0<0?1:-1)*Math.min(stgM,Math.max(Math.abs(cx0)-c.pitch,0))):cx0;
+      const pxs=offs.map(dx=>round(cx+dx));
       const py=legMarkDodge(cy,pxs,blk,c.D,W,yToFront);
       if(Math.abs(py-cy)>0.01) moved++;
       pts.push({fx:(fxs[i]!=null?fxs[i]:(xs.length>1?i/(xs.length-1):0)),
@@ -9417,7 +9422,8 @@ function autoLegMarks(){
       /* v9.68: ขาริม 2 จุด จุดละคู่ · ขากลางที่เหลือจุดละรูเดียว · คูณสองแถว (หน้า+หลัง) */
       const np=Math.max(_legFxOf(inst).length,2);
       const nRow=legOneRow(inst)?1:2;                 // v37.9: ตู้ตื้น = แถวเดียว จำนวนรูที่ต้องมีก็ครึ่งเดียว
-      const need=nRow*(c.mid1 ? (4+(np-2)) : np*2);
+      const _row=(c.mid1 ? (4+(np-2)) : np*2);
+      const need=(nRow>1&&legStaggerOf(inst)>0)?(_row+4):nRow*_row;   // v1.270: ตู้ตื้น แถวหลังเหลือสองมุม (มุมละคู่)
       const have=(bp.holes||[]).filter(h=>h.legMark).length;
       if(bp._legMarkSig===sig && have===need) return;   // เหมือนเดิมและครบ -> ไม่แตะ
       if(drillLegMarks(bp)) n++; });
@@ -23410,6 +23416,8 @@ function renderSettings(){
     <div style="font-size:11px;opacity:.62;margin-bottom:6px">ถ้วย Ø35 + แขน + ฐานบนแผ่นข้าง กินที่รอบศูนย์ถ้วย · ชั้นที่อยู่ระดับเดียวกันจะประกอบไม่ได้/บานปิดไม่ลง · วัดจากศูนย์ถ้วยถึงกึ่งกลางชั้น (ไม่นับทอป/พื้นตู้)</div>
     ${num("frameRotOver","แบบผลิต หน้าหน้าตัดเฟรม — บานสูงเกินนี้ วางนอน (มม. · ตั้งต้น 1000)")}
     ${num("legNarrowW","ขาตู้ — ตู้แคบกว่านี้ ใส่ขาหน้า 1 หลัง 1 วางกลาง (มม. · ตั้งต้น 180 · 0 = ปิด)")}
+    ${num("legShallowD","ขาตู้ — ตู้ลึกไม่เกินนี้ ขาหลังเหลือ 2 มุม ขากลางเหลือแถวหน้า (มม. · ตั้งต้น 200)")}
+    ${num("legShallowBackIn","ขาตู้ตื้น — ขยับขาหลังเข้าหากลางตู้ (มม. · ตั้งต้น 100)")}
     ${num("ledMinRun","รางไฟ — ท่อนที่สั้นกว่านี้ถือเป็นเศษ ไม่ต้องออก (มม. · ตั้งต้น 60)")}
     <label style="display:flex;align-items:center;gap:8px;font-size:13px;cursor:pointer;margin-top:6px"><input type="checkbox" id="setShelfBack" ${settings.shelfBackFlush!==false?"checked":""}> <span><b>ชั้นชนผิวหน้าแผ่นหลัง</b> — ดันก้นชั้นมาชิดแผ่นหลังให้อัตโนมัติ · แตะเฉพาะชั้นที่ก้นอยู่ใกล้แผ่นหลังไม่เกิน ${settings.shelfBackSnap||30} มม. ชั้นตื้นที่ตั้งใจให้สั้นไม่ถูกแตะ</span></label>
     ${num("shelfBackSnap","ระยะที่ถือว่า “ตั้งใจให้ถึงแผ่นหลัง” (มม. · ตั้งต้น 30)")}
@@ -24937,7 +24945,10 @@ function legAnchorsFromMarks(inst){
   const swapZ=(w(0,yF).z < w(0,yB).z);
   const AZ={F:swapZ?yB:yF, B:swapZ?yF:yB, C:(yF+yB)/2};
   /* v9.64: ขากลางมีได้หลายตัวแล้ว จึงต้องชี้ด้วยสัดส่วน ไม่ใช่แค่ ซ้าย/กลาง/ขวา */
-  return (a,b,fx)=>w((fx!=null&&isFinite(fx))?(AXL+fx*(AXR-AXL)):(AX[a]!=null?AX[a]:0), AZ[b]!=null?AZ[b]:0);
+  const stgA=legStaggerOf(inst);                       // v1.270: ตู้ตื้นสองแถว ขาหลังขยับเข้าใน (เข้าหาศูนย์แผ่น)
+  return (a,b,fx)=>{ let lx=(fx!=null&&isFinite(fx))?(AXL+fx*(AXR-AXL)):(AX[a]!=null?AX[a]:0);
+    if(stgA>0&&b==="B"&&Math.abs(lx)>1) lx+=(lx<0?1:-1)*Math.min(stgA,Math.abs(lx));
+    return w(lx, AZ[b]!=null?AZ[b]:0); };
 }
 /* ───────── v9.69: จำนวนขาต้องตามความกว้าง "ล่าสุด" ไม่ใช่ตัดสินครั้งเดียวตอนใส่ ─────────
    reapplyLegs/reapplyRules เดิมทำแค่ย้ายขาที่มีอยู่ให้เกาะโครงใหม่ ไม่เคยเพิ่มหรือลดจำนวน
@@ -24964,6 +24975,31 @@ function legOneRow(inst){
   return D0>0 && D0<nd-0.5;
 }
 function legRowsFor(inst){ return legOneRow(inst)?["C"]:["F","B"]; }
+/* ───────── v1.270: ตู้ตื้นสองแถว ขาหน้า-หลังชนกัน ─────────
+   ตู้ลึก 200 ขาหน้าอยู่ 75 จากหน้า ขาหลังอยู่ 75 จากหลัง ศูนย์ห่างกันแค่ 50 = เท่ากับ Ø ขา ฐานขาจึงชนกันเต็ม ๆ
+   ตู้ลึกไม่เกินเกณฑ์ (legShallowD · ตั้งต้น 200) ที่ยังเป็นสองแถว: ขาหลังเหลือแค่สองมุม ขยับเข้าหากลางตู้ (legShallowBackIn · 100)
+   ขากลางเหลือแถวหน้าแถวเดียว · คืนระยะขยับ (มม.) ของขาหลัง · 0 = ไม่เข้าเงื่อนไข
+   วัดความลึกในแกนของตู้เองเหมือน legOneRow ตู้ที่หมุนตามผังจึงไม่ตัดสินผิด */
+function legStaggerOf(inst){
+  const sd=+settings.legShallowD; const lim=(settings.legShallowD==null)?200:(isFinite(sd)?sd:200);
+  if(!(lim>0)||legOneRow(inst)) return 0;
+  const carc=state.boards.filter(b=>b.cabInst===inst&&!b._door&&!b._virtual&&!isRail(b)&&(b.T>0));
+  if(!carc.length) return 0;
+  const sw=cabSwapXZ(inst);
+  let a=Infinity,z=-Infinity;
+  carc.forEach(b=>{ const d=worldDims(b); const c=sw?b.x:b.z, e=sw?d[0]:d[2]; a=Math.min(a,c-e/2); z=Math.max(z,c+e/2); });
+  const D0=(isFinite(a)&&z>a)?(z-a):0;
+  if(!(D0>0&&D0<=lim+0.5)) return 0;
+  const v=+settings.legShallowBackIn; return Math.max((settings.legShallowBackIn==null||!isFinite(v))?100:v,0);
+}
+/* ผังขาที่ต้องเป็น [{az,fx}] — แหล่งเดียวที่ syncLegCount ใช้ทั้งสร้างและตรวจ */
+function legPlanFor(inst,fxs){
+  const rows=legRowsFor(inst), stg=(rows.length>1)?legStaggerOf(inst):0, out=[];
+  rows.forEach(az=>fxs.forEach(fx=>{
+    if(stg>0&&az==="B"&&fx>0.0001&&fx<0.9999) return;      // ตู้ตื้น: ขากลางเหลือแถวหน้า
+    out.push({az,fx}); }));
+  return out;
+}
 let _inLegCount=false;
 function syncLegCount(inst,W){
   if(_inLegCount||!(W>1)) return 0;
@@ -24973,22 +25009,24 @@ function syncLegCount(inst,W){
   let want=legCountFor(W);
   if(t.midMode==="ไม่ใส่") want=Math.min(want,4);      // v25.3: ตู้ที่ย่อจนแคบ ต้องลงเหลือ 2 ขาได้
   else if(t.midMode==="ใส่"&&want<6) want=6;
-  const rows=legRowsFor(inst), fxs=legFxList(want);
-  const total=rows.length*fxs.length;                  // แถวเดียว = ครึ่งหนึ่งของตาราง (ตารางนับเป็นสองแถวเสมอ)
+  const fxs=legFxList(want), plan=legPlanFor(inst,fxs);   // v1.270: ผังจากตัวเดียว (ตู้ตื้นสองแถว ขาหลังเหลือสองมุม)
+  const total=plan.length;                             // แถวเดียว = ครึ่งหนึ่งของตาราง (ตารางนับเป็นสองแถวเสมอ)
   /* v37.9: ต้องดูผังแถวด้วย ไม่ใช่ดูแต่จำนวน — ไฟล์ที่ขาเพี้ยนไปแล้วจะได้ซ่อมตัวเองตอนเปิด
      ตู้ลึก 70 ที่ค้างเป็น F/B อยู่ 4 ขา นับจำนวนแล้วตรง เลยไม่มีอะไรมาแตะมันเลยตลอดกาล */
-  const azNow=[...new Set(legs.map(b=>String((b.rule||{}).az||"")))].sort().join(",");
-  const azWant=rows.slice().sort().join(",");
-  if(total===legs.length && azNow===azWant) return 0;
+  /* v1.270: เทียบทั้งผัง (แถว + ตำแหน่งแนวกว้าง) ไม่ใช่แค่ชื่อแถว ตู้ที่เพิ่งเข้าเกณฑ์ตู้ตื้นจึงถูกจัดใหม่เอง */
+  const keyOf=(az,fx)=>String(az||"")+":"+Math.round((+fx||0)*1000);
+  const layNow=legs.map(b=>keyOf((b.rule||{}).az,legFxOfRule(b.rule))).sort().join(",");
+  const layWant=plan.map(p=>keyOf(p.az,p.fx)).sort().join(",");
+  if(total===legs.length && layNow===layWant) return 0;
   _inLegCount=true;
   try{
     const cab=legs[0].cab;
     state.boards=state.boards.filter(b=>!(b.cabInst===inst&&b.rule&&b.rule.kind==="leg"));
     let n=0;
-    rows.forEach(az=>fxs.forEach(fx=>{ n++;
+    plan.forEach(({az,fx})=>{ n++;
       state.boards.push({ id:uid(), name:"Leg "+n, cab:cab, cabInst:inst,
         rule:Object.assign({},t,{ax:(fx<=0.0001?"L":fx>=0.9999?"R":"C"),az:az,fx:fx}),
-        L:10,W:10,T:10,x:0,y:0,z:0,orient:"side",yaw:0,tone:null,r:0,holes:[],grooves:[],connectors:[],_virtual:true,_leg:true }); }));
+        L:10,W:10,T:10,x:0,y:0,z:0,orient:"side",yaw:0,tone:null,r:0,holes:[],grooves:[],connectors:[],_virtual:true,_leg:true }); });
     return total;
   } finally{ _inLegCount=false; }
 }
@@ -25000,11 +25038,14 @@ function reapplyLegs(inst){   // จัดเฉพาะขาตู้เก�
     mnz=Math.min(mnz,b.z-d[2]/2); mxz=Math.max(mxz,b.z+d[2]/2); mny=Math.min(mny,b.y-d[1]/2); });
   syncLegCount(inst,mxx-mnx);                          // v9.69: กว้างเปลี่ยน -> จำนวนขาเปลี่ยนตาม
   const anc=legAnchorsFromMarks(inst);                 // v7.44.2: มีรูมาร์ค -> ยืนตรงรู
+  const stg=legStaggerOf(inst);                        // v1.270: ตู้ตื้นสองแถว ขาหลังขยับเข้าใน
   state.boards.forEach(b=>{ const r=b.rule; if(b.cabInst!==inst||!r||r.kind!=="leg") return;
     const ins=r.inset||50, dd=r.d||50, hh=r.h||100;
     const fx=legFxOfRule(r), x0=mnx+ins+dd/2, x1=mxx-ins-dd/2;   // v9.64: fx = สัดส่วนจากขาริมซ้ายถึงขาริมขวา
     const p=anc?anc(r.ax,r.az,fx):null;
-    b.x=p?p.x:round(x0+fx*(x1-x0));
+    let sx=0;
+    if(!p&&stg>0&&r.az==="B"){ const s=Math.min(stg,Math.max((x1-x0)/2-dd,0)); sx=(fx<0.5)?s:(fx>0.5?-s:0); }
+    b.x=p?p.x:round(x0+fx*(x1-x0)+sx);
     b.z=p?p.z:round(r.az==="F"?(mxz-ins-dd/2):r.az==="B"?(mnz+ins+dd/2):(mnz+mxz)/2);
     b.y=round(mny-hh/2); b.L=round(hh); b.W=round(dd); b.T=round(dd); b.orient="side"; }); }
 function reapplyRules(inst){
