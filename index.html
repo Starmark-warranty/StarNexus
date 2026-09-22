@@ -940,7 +940,7 @@
    ===================================================================== */
 /* ---- APP_META: แหล่งความจริงเดียวของเวอร์ชัน (ดูได้จาก console / คลิกชื่อแอป) ---- */
 const APP_META={
-  name:"StarNexus Cabinet", version:"1.265", build:"2026-09-22/rotated-cab-tools",
+  name:"StarNexus Cabinet", version:"1.266", build:"2026-09-22/shelf-depth-feedback",
   file:"StarNexus.html", basedOn:"Furnitech_V3.html (v3.11)",
   /* ───────── เริ่มนับเวอร์ชันใหม่ที่ 1.001 (21/08/2026) ─────────
      ของเดิมนับมาถึง 42.1 แล้ววิ่งเป็นทศนิยมสองชั้นซึ่งอ่านลำดับยาก
@@ -948,6 +948,7 @@ const APP_META={
      ประวัติเก่าเก็บไว้ทั้งหมดตามเลขเดิม ไม่ไล่เขียนใหม่ เพราะเลขในนั้นถูกอ้างถึงไปแล้ว
      รายการที่อยู่ใต้ 1.001 ลงไปจึงเป็นเลขชุดเก่า อ่านต่อกันได้ตามวันที่ */
   changelog:[
+    ["1.266","2026-09-22","FIX ชั้นปรับลึกทะลุหน้าตู้ไป 400+ มม. และขาตู้หน้ากระโดดออกไปตาม (LRT005 ลึก 200 ได้ชั้นลึก 608.7 · ขา 622.4) — ตัวฟิตชั้น (refitInterior · shelfCabInfo · addShelf) หา \"หน้าตู้\" จากชิ้นที่ยื่นไปหน้าสุด ซึ่งรวมชั้นอื่นในตู้เดียวกันด้วย ชั้นใบไหนยื่นออกไปครั้งเดียว ใบอื่นก็ยื่นตาม แล้วมันก็อ้างกันเองไปเรื่อย ๆ (623.7 → 608.7 → 593.7 ทุกครั้งที่คิดใหม่) ครั้งนี้จุดชนวนคือชั้นที่หัน 0° จาก v1.264 ยังอยู่ในฉากตอนคิดใหม่ ความยาว 1117.6 จึงถูกนับเป็นความลึก · ตอนนี้หน้าตู้คิดจากโครง (แผ่นข้างนอก · บน · ล่าง · แผ่นหลัง) ไม่นับชั้น เสาแบ่ง และผนังกั้นแนวลึกที่ตัวฟิตเป็นคนขยับเอง (_cabFrontOf) · ตัวฟิตชั้นแก้ชั้นที่หันผิดแกน 90° ก่อนคิดทุกครั้ง ไม่ว่าจะถูกเรียกจากทางไหน · ซ่อมตอนเปิดงาน: ชั้นที่ยื่นพ้นแผ่นข้างเกิน 5 มม. ฟิตใหม่ + เจาะรูพินใหม่ ขาตู้กลับเข้าที่เอง · ชั้นที่หันผิดแกนตรวจทั้ง 90° และ 270° จากตู้ ไม่ใช่แค่ 0°"],
     ["1.265","2026-09-22","FIX เครื่องมือเพิ่มชิ้นใช้กับตู้ที่หมุนในผัง (yaw 90/270 = ตู้ส่วนใหญ่ที่มาจาก XML) ไม่ได้ — เพิ่มชั้น เพิ่มแผ่นหลัง เพิ่มทอป เพิ่มเสาแบ่ง ผนังกั้นแนวลึก ราวแขวน เพิ่มหน้าบาน อ่านแกน X เป็นแนวกว้างตู้ตรง ๆ ชิ้นที่ได้จึงเป็นก้อน 20×20 หรือหันผิดแกน (ชั้นปรับ 3 ชั้นของ LRT005 ลึก 200 ได้ 20×20 yaw 0) · ตอนนี้ทุกตัวคลายหมุนตู้ก่อน ทำงานในแกนตรง แล้วหมุนกลับพร้อมชิ้นที่สร้างใหม่ (runCabAligned) · FIX กดปรับขนาดตู้แล้วชั้นหมุนขวางตู้และขาตู้กระจายออก — ต้นเหตุคือชั้นที่หันผิดแกนจากข้อบน ตัวปรับขนาดคิดขนาดชั้นถูกแต่ชั้นยังหัน 0 องศา · ซ่อมตอนเปิดงานให้เอง: ชั้นที่หัน 0 องศาในตู้ที่หมุน หันตามตู้ แล้วฟิตขนาดในช่องใหม่ + เจาะรูพินใหม่ (healStrayShelves) · FIX ย้อนกลับหลังจัดหน้าบานของตู้ที่หมุน กดครั้งเดียวได้ตู้ที่คลายหมุนค้าง — ช่วงที่คลายหมุนอยู่ commit/autosave/undo รอจนหมุนกลับ (_alignHold) · คำสั่งแก้ชั้นในแผงขวา (แปลงชั้นปรับ/ชั้นตาย · ร่นขอบ 4 ด้าน · ร่นจากหน้า · ล็อคลึก) คิดในแกนตรงของตู้เหมือนกัน (runCabAlignedSync) เดิมกดแล้วชั้นกลายเป็น 20×20 หรือลึก 615 · รูพินชั้น (shelfDrillPins) คลายหมุนเองถ้าตู้หมุนอยู่ ปุ่มเจาะรูพินใหม่ในแผงขวาจึงใช้กับตู้หมุนได้"],
     ["1.264","2026-09-22","หน้าจัดหน้าบาน/หน้าลิ้นชัก เปิดมาช่องไฟขึ้นค่าตั้งต้น 1.5 รอบนอก (บน ล่าง ซ้าย ขวา) · 3 ระหว่างบาน (ทั้งแนวตั้งและแนวนอน) แทนค่าที่วัดได้จากบานที่วางอยู่ (เช่น 1.9/1.1/1.2/1.9 · 2 ที่เป็นเศษของ XML) · โหมดขอบ ทับ/กลาง/ใน ยังอ่านจากของจริง · ช่องที่วัดได้ห่างเกิน 10 มม. (เว้นคาน · ช่องโล่ง) หรือติดลบ (บานเลยขอบตั้งใจ เช่น −14.5) ถือว่าตั้งใจ คงค่าเดิม · สัดส่วนแถวยังคิดจากความสูงบานจริงก่อนเปลี่ยนช่องไฟ · ตู้ที่เปิดมาในโหมดบานที่เลือก (มีบานล็อกสูตร) ไม่แตะค่าของบาน ใส่ค่าตั้งต้นให้โหมดทั้งตู้อย่างเดียว · ปุ่มใหม่ ↺ ค่าที่วัดได้ คืนตัวเลขเดิม · ตั้งค่าใหม่ flDefOuter / flDefBetween / flOpenDef (ตั้งค่า → หน้าต่างจัดหน้าบาน) · ช่องที่ว่างหรือติดลบ และรอยต่อตอนเสาแบ่งถูกลบ ใช้ค่าระหว่างบานเดียวกัน (เดิม 2)"],
     ["1.263","2026-09-21","FIX สองเรื่องจาก LRT005 (ตู้หมุน 90 องศาในผัง) · (1) กดจัดหน้าบานแล้วบานเด้งออกนอกตู้ — v1.161 คลายหมุนตู้ก่อนเปิดหน้านี้แล้วตั้งใจหมุนกลับตอนปิด ผ่าน try{ await frontLayoutDialog() } finally{ หมุนกลับ } แต่ตัวในแค่เปิดกล่องแล้วคืนค่าทันที ไม่ได้รอผู้ใช้ finally จึงหมุนตู้กลับตั้งแต่วินาทีที่กล่องขึ้น กรอบ ผัง และช่องไฟในหน้านี้ถูกจับไว้ตอนตู้ยังไม่หมุน กดตกลงก็เขียนตำแหน่งแกนตู้ลงชิ้นที่หมุนกลับไปแล้ว บานจึงกระโดดไปอยู่แนวลึก (ห่างหน้าตู้ราว 1 เมตร) แล้วเก็บสเปคจากตำแหน่งผิดนั้นต่อ ตู้ไม่หมุนไม่เห็นอาการ · ตอนนี้หน้านี้คืน promise ที่จบเมื่อกล่องปิดจริงเท่านั้น ไม่ว่าปิดด้วยตกลง ยกเลิก กากบาท หรือ Esc (เฝ้าคลาส show ของกล่องด้วย เพราะ Esc ปิดจากตัวจัดการกลาง) · (2) ลบเสาแบ่งกลางแล้วบานทั้งสองใบขยายเต็มตู้ทับกันสนิท — ชิ้นอ้างอิงที่หายไปถูกซ่อมทีละใบ ได้ขอบข้างซ้าย→ข้างขวาคนละใบ n=1 ทั้งคู่ ช่องไฟระหว่างบานในหน้าจัดหน้าบานจึงวัดได้ −1130.9 · ตอนนี้ถ้าชิ้นที่หายเป็นขอบขวาของฝั่งหนึ่งและขอบซ้ายของอีกฝั่งในแถวเดียวกัน = รวมเป็นช่องเดียว ขอบนอกยืมของแต่ละฝั่ง ลำดับซ้ายไปขวา ช่องไฟเดิมในแต่ละฝั่งคงไว้ รอยต่อตรงที่เสาเคยอยู่ 2 มม. · ตรวจด้วยตัวจริง: ลบเสา+ชั้นของ LRT005 ก่อนแก้ได้บาน 1138.9 สองใบทับกัน หลังแก้ได้ 572.5 สองใบเรียงกันช่องไฟ 2 · เปิดหน้าจัดหน้าบานบนตู้หมุน ก่อนแก้ระหว่างกล่องเปิดตู้กลับไปหมุน 90 แล้วกดตกลงบานไปอยู่ x −809 / −235 นอกตู้ หลังแก้ตู้คลายหมุนตลอดที่กล่องเปิด กดตกลงแล้วหมุนกลับ บานอยู่หน้าตู้ครบ"],
@@ -8085,7 +8086,7 @@ async function addShelf(){
   let maxVC=1; comps.forEach(c=>{ const midY=(c.lo+c.hi)/2; const vp=sidesV.filter(s=>{const d=worldDims(s);return (s.y-d[1]/2)<=midY+1 && (s.y+d[1]/2)>=midY-1;}); maxVC=Math.max(maxVC, Math.max(vp.length-1,1)); });
   const zoneXOpts=["ทั้งกว้าง"].concat(Array.from({length:maxVC},(_,i)=>"ช่องกว้าง "+(i+1)));
   const tmpl = horiz.find(b=>b!==bottom&&b!==top) || bottom;
-  let shFrontZ=-Infinity; grp.boards.filter(b=>!b._door&&!b._virtual).forEach(b=>{shFrontZ=Math.max(shFrontZ,b.z+worldDims(b)[2]/2);});
+  let shFrontZ=_cabFrontOf(grp.boards.filter(b=>!b._door&&!b._virtual));   // v1.266: ไม่นับชั้นที่มีอยู่แล้ว (เคยอ้างกันเอง)
   /* v1.238: คานที่พาดอยู่ "หลัง" แผ่นหลัง ไม่ใช่ผิวอ้างอิงความลึกชั้น (กติกาเดียวกับ backFaceZOf)
      เดิมคานชนะทุกครั้งเพราะอยู่หลังสุด ชั้นที่ได้จึงลึกเกินจนกินเข้าไปในแผ่นหลัง
      ไม่มีแผ่นหลังจริงสักแผ่น ค่อยยอมถอยไปใช้คานเหมือนเดิม */
@@ -8409,7 +8410,7 @@ function shelfCabInfo(b){
   const grp=groupOf(b); if(!grp)return null;
   const carc=grp.boards.filter(x=>!x._door&&!x._virtual);
   const sides=carc.filter(x=>x.orient==="side"&&!isRail(x));
-  let cabFront=-Infinity; carc.forEach(x=>{ if(x===b)return; cabFront=Math.max(cabFront, x.z+worldDims(x)[2]/2); });
+  let cabFront=_cabFrontOf(carc.filter(x=>x!==b));   // v1.266: ไม่นับชั้น/เสาแบ่งใบอื่น (เคยอ้างกันเองจนชั้นทะลุหน้าตู้)
   if(!isFinite(cabFront)) cabFront=b.z+worldDims(b)[2]/2;
   // แผ่นหลัง: orient front ที่ไม่ใช่คาน → ถ้าไม่เจอ หาเชิงเรขาคณิต → ไม่เจอจริงค่อยใช้หลังตู้
   const backs=grp.boards.filter(x=>x.orient==="front"&&!x._door&&!x._virtual&&!x._dx&&!x._dwall&&!isRail(x));   // v7.27.4: กันหูแขวน/ตะแกรง (orient front เหมือนกัน) ถูกอ่านเป็นแผ่นหลัง
@@ -24517,31 +24518,66 @@ function runCabAlignedSync(inst,fn){
   finally{ _alignHold=Math.max(_alignHold-1,0); try{ sync(1); }catch(e){ console.error(e); } }
   return out;
 }
-/* ───────── v1.265: ซ่อมชั้นที่หันผิดแกนในตู้ที่หมุน (ของที่ addShelf ก่อน v1.265 สร้างไว้) ─────────
-   อาการ: ชั้นปรับเป็นก้อน 20×20 yaw 0 ในตู้ yaw 90 · กดปรับขนาดตู้ ชั้นได้ขนาดถูกแต่ยังหัน 0 องศา
-   จึงวิ่งขวางตู้ออกไปด้านข้าง และกรอบตู้ที่กางออกทำให้ขาตู้กระจายตามไปด้วย
-   จับเฉพาะ: แผ่นนอนชื่อ Shelf ที่หัน 0 องศาในตู้ที่หมุนอยู่ (ตู้หมุน ชิ้นทุกชิ้นหมุนไปด้วยกันเสมอ ชั้นที่ 0 องศาคือหลุดแกน)
-   ซ่อม: หันตามตู้ → refitInterior ฟิตกว้าง/ลึกในช่อง → ชั้นปรับเจาะรูพินใหม่ · ซ่อมแล้วไม่เข้าเงื่อนไขอีก ทำครั้งเดียว */
+/* ───────── v1.266: หน้าตู้ของตัวฟิตชั้น ต้องไม่นับชิ้นที่ตัวฟิตเป็นคนขยับเอง ─────────
+   ของเดิมเอา "ชิ้นที่ยื่นไปหน้าสุด" ทั้งตู้ ซึ่งรวมชั้นใบอื่น เสาแบ่ง และผนังกั้นแนวลึกด้วย
+   ชั้นใบไหนยื่นเกินไปครั้งเดียว ใบอื่นก็ถูกยืดตามไปหน้าตู้ใหม่นั้น แล้วอ้างกันเองไปทุกรอบ
+   เคสจริง LRT005 ลึก 200: ชั้น 159.8 → 623.7 → 608.7 → 593.7 · ขาตู้หน้าย้ายตามไป 622.4
+   กติกาเดียวกับ cabFaces (v7.47) ที่เจอโรคนี้มาแล้ว: หน้าตู้มาจากโครง ไม่ใช่ของที่อยู่ข้างใน
+   ตัดออก = แผ่นนอนที่อยู่ระหว่างล่างสุดกับบนสุด · แผ่นตั้งที่อยู่ระหว่างซ้ายสุดกับขวาสุด · ผนังกั้นแนวลึก
+   (ต้องเรียกในแกนตรงของตู้ ทุกจุดที่เรียกอยู่ในแกนตรงแล้ว) · ไม่เหลืออะไรเลย ถอยไปใช้แบบเดิม */
+function _cabFrontOf(list){
+  const L=(list||[]).filter(x=>x&&!x._door&&!x._virtual);
+  if(!L.length) return -Infinity;
+  const fl=L.filter(x=>x.orient==="flat"&&!isRail(x)&&!x._dx).sort((a,c)=>a.y-c.y);
+  const sd=L.filter(x=>x.orient==="side"&&!isRail(x)&&x.zoneLo==null).sort((a,c)=>a.x-c.x);
+  const skip=new Set(); fl.slice(1,-1).forEach(x=>skip.add(x)); sd.slice(1,-1).forEach(x=>skip.add(x));
+  L.forEach(x=>{ if(x._dwall) skip.add(x); });
+  let f=-Infinity; L.forEach(x=>{ if(skip.has(x)) return; f=Math.max(f,x.z+worldDims(x)[2]/2); });
+  if(!isFinite(f)) L.forEach(x=>{ f=Math.max(f,x.z+worldDims(x)[2]/2); });
+  return f;
+}
+/* v1.266: ชั้นที่หันผิดแกน 90°/270° จากตู้ = หลุดแกน (ตู้หมุน ชิ้นทุกชิ้นหมุนไปด้วยกันเสมอ)
+   หันให้ตรงตู้ก่อนคิดอะไรต่อ · ต่าง 180° ไม่แตะ เพราะรูปทรงเหมือนเดิม แต่ขอบหน้า-หลังจะสลับ */
+function _isStrayShelfYaw(b,Y){
+  if(!b||b.orient!=="flat"||b._door||b._virtual||b._dx||isRail(b)||!/shelf/i.test(b.name||"")) return false;
+  const d=((((b.yaw||0)-Y)%360)+360)%360; return d===90||d===270;
+}
+function _majorYawOf(list){ const c={}; (list||[]).forEach(b=>{ if(!b||b._door||b._virtual) return;
+    const y=(((b.yaw||0)%360)+360)%360; c[y]=(c[y]||0)+1; });
+  let Y=0,m=-1; Object.keys(c).forEach(k=>{ if(c[k]>m){ m=c[k]; Y=+k; } }); return Y; }
+function _fixStrayShelfYaw(list){ const Y=_majorYawOf(list); let n=0;
+  (list||[]).forEach(b=>{ if(_isStrayShelfYaw(b,Y)){ b.yaw=Y; n++; } }); return n; }
+/* ───────── v1.265 · v1.266: ซ่อมชั้นที่เพี้ยนตอนเปิดงาน (ทำครั้งเดียว ไม่เจอก็ไม่ทำอะไร) ─────────
+   ก) ชั้นหันผิดแกน 90° จากตู้ (ของที่ addShelf ก่อน v1.265 สร้างไว้ในตู้ที่หมุน)
+   ข) ชั้นยื่นพ้นแผ่นข้างเกิน 5 มม. ในแนวลึก (ผลของตัวฟิตที่อ้างกันเองก่อน v1.266)
+   ซ่อม: หันตามตู้ → refitInterior ฟิตกว้าง/ลึกในช่อง → ชั้นปรับเจาะรูพินใหม่ · ขาตู้ตามเองตอน commit */
 function healStrayShelves(){
   if(_alignHold>0||_inAxisAlign>0) return 0;
-  const cnt={};
-  state.boards.forEach(b=>{ if(!b||!b.cabInst||b._door||b._virtual) return;
-    const y=(((b.yaw||0)%360)+360)%360, c=(cnt[b.cabInst]=cnt[b.cabInst]||{}); c[y]=(c[y]||0)+1; });
+  const by={};
+  state.boards.forEach(b=>{ if(b&&b.cabInst) (by[b.cabInst]=by[b.cabInst]||[]).push(b); });
   let n=0;
-  Object.keys(cnt).forEach(inst=>{
-    let Y=0,m=-1; Object.keys(cnt[inst]).forEach(k=>{ if(cnt[inst][k]>m){ m=cnt[inst][k]; Y=+k; } });
-    if(!Y||!cnt[inst][0]) return;
-    const bad=state.boards.filter(b=>b&&b.cabInst===inst&&b.orient==="flat"&&!b._door&&!b._virtual&&!b._dx&&!isRail(b)
-      &&/shelf/i.test(b.name||"")&&((((b.yaw||0)%360)+360)%360)===0);
+  Object.keys(by).forEach(inst=>{
+    const bs=by[inst];
+    const shelves=bs.filter(b=>b.orient==="flat"&&!b._door&&!b._virtual&&!b._dx&&!isRail(b)&&/shelf/i.test(b.name||""));
+    if(!shelves.length) return;
+    const Y=_majorYawOf(bs);
+    const bad=shelves.filter(b=>_isStrayShelfYaw(b,Y));
+    /* ข) แนวลึกของตู้ในแกนโลก: หัน 0/180 = แกน Z · หัน 90/270 = แกน X · เทียบกับแผ่นข้าง (ไม่ต้องคลายหมุน) */
+    const ax=(Y===90||Y===270)?0:2;
+    const sd=bs.filter(b=>b.orient==="side"&&!b._door&&!b._virtual&&!isRail(b)&&b.zoneLo==null);
+    if(sd.length){ let lo=Infinity,hi=-Infinity;
+      sd.forEach(x=>{ const d=worldDims(x), c=ax?x.z:x.x; lo=Math.min(lo,c-d[ax]/2); hi=Math.max(hi,c+d[ax]/2); });
+      shelves.forEach(b=>{ if(bad.includes(b)) return; const d=worldDims(b), c=ax?b.z:b.x;
+        if(c-d[ax]/2<lo-5||c+d[ax]/2>hi+5) bad.push(b); }); }
     if(!bad.length) return;
-    bad.forEach(b=>{ b.yaw=Y; });
+    bad.forEach(b=>{ if(_isStrayShelfYaw(b,Y)) b.yaw=Y; });
     try{ refitInterior(state.boards.filter(x=>x.cabInst===inst)); }catch(e){ console.error("healShelf refit:",e); }
     try{ withCabAxisAligned(inst,()=>{ bad.filter(b=>isAdjShelf(b)).forEach(b=>{
         const inf=shelfCabInfo(b); if(!inf||!inf.sides||!inf.sides.length) return;
         state.boards.forEach(o=>{ if(o.holes) o.holes=o.holes.filter(h=>!(h&&h.pin&&h.src===b.id)); });
         shelfDrillPins(b,inf.sides); }); }); }catch(e){ console.error("healShelf pins:",e); }
     n+=bad.length;
-    console.log("🧰 ซ่อมชั้นที่หันผิดแกนในตู้ที่หมุน",inst,bad.map(b=>b.name).join(", "));
+    console.log("🧰 ซ่อมชั้นที่เพี้ยนในตู้",inst,bad.map(b=>b.name).join(", "));
   });
   return n;
 }
@@ -27758,6 +27794,7 @@ function refitInterior(boards){
      เคสจริง WNO077: ชั้นลึก 281 (สเกลมาจากโมเดล 534) ทั้งที่ควรเป็น 264
      -> ทะลุแผ่นหลัง 17 มม. และชนคาน 7 มม.
      คลายหมุนก่อน -> ทำ -> หมุนกลับ (ได้ 264 ตรงเป๊ะ) */
+  try{ _fixStrayShelfYaw(boards); }catch(e){}   // v1.266: ชั้นหันผิดแกน 90° ต้องหันตามตู้ก่อน ไม่งั้นความยาวถูกนับเป็นความลึก
   const _y=_unitYaw(boards);
   if(_y){
     let px=Infinity,pz=Infinity;
@@ -27788,7 +27825,7 @@ function refitInterior(boards){
   const outL=lsAll[0], outR=lsAll[lsAll.length-1], botF=ftAll[0], topF=ftAll[ftAll.length-1];
   // ความลึกภายใน: หน้าตู้ ↔ หน้าแผ่นหลัง
   const carc=boards.filter(b=>!b._door&&!b._virtual&&!b._dx&&!b._dwall&&!isRail(b));   // v7.27.4/7.43.1: ไม่เอา virtual (ขา/หู/ตะแกรง) และคาน DX มาเป็นแผ่นหลัง
-  let frontZ=-Infinity; carc.forEach(b=>{frontZ=Math.max(frontZ,b.z+worldDims(b)[2]/2);});
+  let frontZ=_cabFrontOf(carc);   // v1.266: หน้าตู้จากโครง ไม่นับชั้น/เสาแบ่ง/ผนังกั้นที่ฟังก์ชันนี้ขยับเอง
   const bkAll=carc.filter(b=>b.orient==="front");
   const bk=bkAll.slice().sort((a,b)=>a.z-b.z)[0] || findBackPanelGeom(carc);
   const backFront = bk? bk.z+worldDims(bk)[2]/2 : (()=>{let m=Infinity;carc.forEach(b=>{m=Math.min(m,b.z-worldDims(b)[2]/2);});return m;})();
