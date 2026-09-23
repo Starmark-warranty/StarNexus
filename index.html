@@ -940,7 +940,7 @@
    ===================================================================== */
 /* ---- APP_META: แหล่งความจริงเดียวของเวอร์ชัน (ดูได้จาก console / คลิกชื่อแอป) ---- */
 const APP_META={
-  name:"StarNexus Cabinet", version:"1.283", build:"2026-09-22/glass-door-relief",
+  name:"StarNexus Cabinet", version:"1.284", build:"2026-09-23/frame-cut-miter-opt",
   file:"StarNexus.html", basedOn:"Furnitech_V3.html (v3.11)",
   /* ───────── เริ่มนับเวอร์ชันใหม่ที่ 1.001 (21/08/2026) ─────────
      ของเดิมนับมาถึง 42.1 แล้ววิ่งเป็นทศนิยมสองชั้นซึ่งอ่านลำดับยาก
@@ -948,6 +948,7 @@ const APP_META={
      ประวัติเก่าเก็บไว้ทั้งหมดตามเลขเดิม ไม่ไล่เขียนใหม่ เพราะเลขในนั้นถูกอ้างถึงไปแล้ว
      รายการที่อยู่ใต้ 1.001 ลงไปจึงเป็นเลขชุดเก่า อ่านต่อกันได้ตามวันที่ */
   changelog:[
+    ["1.284","2026-09-23","FIX เส้นเฟรม 007/021 ไม่ต้องรอท่อน “ตัด 45/2ด้าน” ในคลังอีกแล้ว — คลังมีเส้น 021 ยาว 1118 สี AL618MH อยู่จริง (406AL30120240093) แต่เป็นท่อนตัดตรง ตัวค้นบังคับให้ต้องเป็นแบบตัด 45 ตามที่แบบบานตั้งไว้ จึงขึ้นว่า “ยังไม่มีแบบตัด 45/2ด้าน” ทั้งที่หน้างานตัดมุม 45 เองอยู่แล้ว · ตอนนี้มีรายการ “เส้นเฟรมที่ไม่บังคับแบบตัด 45” ในตั้งค่า → BOM Fitting (ตั้งต้น 007, 021) เส้นที่อยู่ในรายการนี้ยังเลือกท่อนที่ปลายตัดตรงกับแบบบานก่อนเสมอ ไม่มีค่อยใช้อีกแบบ แล้วขึ้นหมายเหตุสีส้มในใบว่า “คลังไม่มีแบบตัด 45/2ด้าน — ใช้ท่อนตัดตรงแทน (ตัดมุมหน้างาน)” · เส้นที่ไม่ได้อยู่ในรายการยังเข้มเหมือนเดิม ไม่มีแบบที่ตั้งไว้ = บอกว่าขาดท่อนแบบไหน · รหัสหน้าตัดถูกส่งไปถึงตัวค้นแล้ว (bomCutRow → _cutSec → cutVarOf) ทั้งทางที่มี Purchase ID และทางที่ค้นจากชื่อรุ่น · ทดสอบกับชื่อสินค้าจริงจากคลัง: 021/1118 ได้ 406AL30120240093 (หมายเหตุตัดมุมเอง) · 007/595 ยังได้ 406AL30110310076 แบบตัด 45 ไม่ใช่ ...061 ที่ตัดตรง · 007/1118 ได้ 406AL30110310116 · เส้นที่ไม่อยู่ในรายการยังขึ้นว่าขาดท่อนเหมือนเดิม · BOM 3 ไฟล์ + หน้าแบบผลิต ตรงกับ 1.283 ทุกแถว"],
     ["1.283","2026-09-22","FEAT บานไม้กัดทะลุใส่กระจก (MCWG20) เห็นทะลุ + มีกระจกทั้งสองโหมด — โหมดประหยัดเห็นช่องทะลุเพราะแผ่นถูกเจาะตาม Part (กัดทะลุ/บ่า) แต่ปิดโหมดประหยัดแล้วลายหน้าบาน 3D (doorReliefGeo) สร้างรูปทรงใหม่ทั้งแผ่นทับของเดิม ช่องทะลุกับบ่าจึงหายเป็นแผ่นทึบ และทั้งสองโหมดไม่มีกระจกเลยเพราะกระจกบานนี้มีแค่ในรายการสั่ง (doorGlassSpec) ไม่มีชิ้นในฉาก · (1) doorReliefCutOf(b) อ่านช่องทะลุ/บ่าจาก Part ผ่าน woodFrameCuts ตัวเดียวกับที่เจาะแผ่น · doorReliefGeo รับ cut เพิ่ม: ผิวหน้าปั้นลายเฉพาะวงเฟรม เว้นช่องกลาง · หลังบานจมเป็นบ่าลึกตามค่า · มีผนังบ่ากับผนังช่องทะลุสูงถึงผิวลายตรงขอบช่อง · ใช้เส้นตารางชุดเดียวกันทั้งหน้า-หลัง-ผนัง รูปทรงปิดสนิท (ตรวจแล้วขอบเปิด 0 ปริมาตรตรงกับที่คำนวณมือ) · ลายที่เลยขอบช่อง (67.5:14) ตกในช่องโล่งจึงไม่มีผล และเช็คความลึกนับแค่ถึงขอบช่อง · บ่าหลัง: ลายด้านหน้าห้ามลึกจนทะลุบ่า · ไม่มี cut = รูปทรงเดิมทุกจุด (เทียบ position ทุก vertex กับ 1.282 แล้วตรง) (2) buildDoorGlassMesh วาดกระจกในบานกัดทะลุที่ตั้งกระจกไว้ (ขอบวางกระจก หรือ กระจกหนา) ทั้งโหมดประหยัดและไม่ประหยัด · ขนาด = กระจกที่สั่งจริง (บาน 497×1897 ขอบวาง 57.5 Gap 2 → 380×1780) · นั่งชนบ่าจากด้านหลัง ความหนาตามออเดอร์ K_Front_Glass/Part · สีตามชนิด ใส/ชา-ชาทอง/เทา-ดำ/เขียว/ฟ้า/ฝ้า/เงา ขอบกระจกเข้มกว่าหน้าแบบกระจกจริง + แสงสะท้อนเฉียงจาง ๆ บนหน้ากระจก (ยกเว้นฝ้า) · โชว์อย่างเดียว ไม่เข้า state.boards ไม่แตะ BOM/ใบผลิต/MPR · คลิกทะลุไปเลือกของในตู้ได้ · ติดรหัสบานไว้ กางบานแล้วกระจกหมุนตาม · บานไม้ที่มีแผ่นกลางจากเส้นเฟรมอยู่แล้วไม่วาดซ้อน (3) เส้นลายไม้ไม่ลากลอยข้ามช่องกระจก/บ่าอีก · ทดสอบ: render3D จริงบนฉากจำลอง บาน 497×1897 ได้ลาย 1080 สามเหลี่ยม+กระจก 380×1780×5 ทั้งสองโหมด ยิงเส้นผ่านกลางบานไม่ชนเนื้อไม้ · BOM 6 ไฟล์ + หน้าแบบผลิต 4 ไฟล์ ตรงกับ 1.282 ทุกแถว · จำนวนวัตถุในฉากไฟล์เดิมเท่าเดิม · เปิดแอปจริงใน Chromium (WebGL) ถ่ายภาพทั้งสองโหมด + กางบาน กระจกหมุนตามบาน"],
     ["1.282","2026-09-22","FEAT ชั้นปรับล็อคความลึกได้ — เดิมช่อง 🔒 ล็อคลึก มีแค่ชั้นตาย ชั้นปรับลึกเสมอ = ผิวหน้าแผ่นหลัง ถึง หน้าตู้ − ร่นหน้า จึงยืดตามตู้ทุกครั้ง · แผงชั้นปรับมีช่อง ล็อคลึก ใต้ช่องร่น กด “ใช้” ปุ่มเดิม · วัดจากผิวหน้าแผ่นหลังในตู้ (+ ร่นหลัง) ออกมาเท่านี้เสมอ ร่นหน้าไม่ใช้ · ปรับขนาดตู้ลึกขึ้น/ตื้นลงแล้วชั้นยังลึกเท่าเดิม · ตู้ตื้นกว่าค่าที่ล็อก = ชั้นชนหน้าตู้พอดี ไม่ทะลุ และแจ้งว่าได้เท่าที่มี · รูพินเจาะตามความลึกใหม่ (ห่างขอบหน้า/หลังชั้น 50 เท่าเดิม) · แปลงชั้นตาย ↔ ชั้นปรับ ค่าล็อกเดิมยังอยู่ · ใส่ 0 = ปลดล็อก กลับไปร่นหน้าเหมือนเดิม · ตรวจกับตู้ WNR042 ไฟล์ 52 ผ่านแผงจริง: ล็อก 450 → ตู้ลึก 700 ชั้น 450 · ตู้ 400 ชั้น 375.4 ชนหน้าพอดี · ปลดล็อกกลับเป็นร่นหน้า 15"],
     ["1.281","2026-09-22","FIX ราวแขวนลอยห่างใต้ชั้น — MWA026 ชั้น 2 ล็อกระยะไว้ 1000 จากพื้นตู้ (ผิวบนที่ 1100) แต่ราวของมันค้างอยู่ใต้ตำแหน่งชั้นเดิม ห่างใต้ชั้น 174 มม. · ตัวจัดราว (relayHangRails) ทำงานแค่ตอนปรับขนาดตู้ สลับโครงสร้าง โหลด XML และเปิดออเดอร์คลาวด์ ส่วนชั้นที่ล็อกระยะถูกวางใหม่ทุกรอบคิดฉาก (และตอนเปิดออเดอร์ ราวถูกจัดก่อนชั้นจะถูกวางตามระยะล็อก) · ตอนนี้ทุกรอบคิดฉาก ราวเกาะใต้แผ่นที่มันแขวน (ช่องว่าง 1 มม. เท่ากับตอนใส่ราว) ต่อจากขั้นล็อกระยะและตรึงผิว · แก้แค่ความสูง รูบนชั้นอยู่ในพิกัดของชั้นจึงไม่เปลี่ยน ใบอุปกรณ์และแบบผลิตเท่าเดิม · ลองย้ายชั้นไป 1200 ราวตามขึ้นไปทันที"],
@@ -1344,7 +1345,7 @@ const DEF_SETTINGS={ frontSetMax:6, dowelD:8, dowelDepth:28, dowelMateDepth:12, 
   healOnVarChange:true,                           // v31.1: แก้ค่าตัวแปรของตู้แล้วเชื่อมเดือยใหม่ให้ตู้ใบนั้น
   kitField:"K_Fitting_Concept", kitPushMap:"B:top, W:bottom", xmlThinMin:1, xmlSkipNoModel:false, orderProgNo:"700", doorGapWarn:50, csNewGap:120, ledSets:[{id:"12V-COB", volt:12, wPerM:9.6,
     stripCode:"", psuMap:"30, 60, 100", psuCode:"", psuUse:80, maxRunM:5,
-    wireCode:"", wireMode:"ต่อเส้นไฟ", wireQty:1}], ledSetPerRun:false, cutSizeFmt:"{ชื่อ} ตัดขนาด {ยาว} mm.", cutLookupKey:"ตัดขนาด", cutLookupOn:true, glassBomOn:true, glassUnit:"EA", glassMatCodes:"FC,MC,FT,PT,FS,MT", glassKinds:"กระจกใส|กระจกเงา|กระจกฝ้า|กระจกใสชาดำ|กระจกใสชาทอง|กระจกเงาชาทอง|กระจกใส ลอนลูกฟูก", glassEdges:"ลบคมรอบ|ลบคมขัดมันรอบ|เจียรริมรอบ|เจียรริมขัดมันรอบ|เจียรริม 1 mm. ขัดมันรอบ", glassKind:"กระจกใส", glassEdge:"ลบคมรอบ", glassXmlField:"K_Front_Glass", glassShelfKind:"กระจกใส", glassShelfEdge:"เจียรริมขัดมันรอบ", glassDoorT:5, pullXmlOn:true, pullHingeGuard:true, pullField:"K_Pull", pullOriField:"K_Orientation", pullPosField:"K_Pull_Position", pullXField:"K_Pull_Coordinate_X", pullYField:"K_Pull_Coordinate_Y", pullNo:"nopull,none,-", pullName:"มือจับ", pull3D:true, dxNotchGap:0.5, railLikeMaxW:100, pullDefPos:"UpMiddle", pullDefOri:"H", pullDefX:35, pullDefY:0, legClipOn:true, legClipMap:"", legClipCode:"LEGCLIP", legClipName:"กิ๊ฟขาตู้ (ยึดแผ่นปิดขา)", doorSwing:true, doorRelief3D:true, doorReliefMap:"MCxx35 = 0:3, 3:0, 55:0, 58:3, 60:6, 95:6, 110:2, 110:0 | ตั้งทะลุ 55-60", shelfT:16, hangRailCode:"HANGRAIL", hangRailName:"ราวแขวนผ้า สแตนเลส C", glassHangerCode:"GLASSHANGER", glassHangerName:"หูแขวนกระจก", coverScrewCode:"COVERSCREW", coverScrewName:"สกรูยึดแผ่นปิด", coverScrewPer:1, hangRailThruD:8, hangRailCsD:13, hangRailCsDepth:2, hangRailEndGap:25, hangRailBarH:25, hangRailMap:"", drawerSideT:16, drawerBotT:9, drawerBoxH:120, drawerBoxLift:20, screwD:5, screwMateDepth:28, screwInset:9,
+    wireCode:"", wireMode:"ต่อเส้นไฟ", wireQty:1}], ledSetPerRun:false, cutSizeFmt:"{ชื่อ} ตัดขนาด {ยาว} mm.", cutLookupKey:"ตัดขนาด", cutMiterOptSec:"007, 021", cutLookupOn:true, glassBomOn:true, glassUnit:"EA", glassMatCodes:"FC,MC,FT,PT,FS,MT", glassKinds:"กระจกใส|กระจกเงา|กระจกฝ้า|กระจกใสชาดำ|กระจกใสชาทอง|กระจกเงาชาทอง|กระจกใส ลอนลูกฟูก", glassEdges:"ลบคมรอบ|ลบคมขัดมันรอบ|เจียรริมรอบ|เจียรริมขัดมันรอบ|เจียรริม 1 mm. ขัดมันรอบ", glassKind:"กระจกใส", glassEdge:"ลบคมรอบ", glassXmlField:"K_Front_Glass", glassShelfKind:"กระจกใส", glassShelfEdge:"เจียรริมขัดมันรอบ", glassDoorT:5, pullXmlOn:true, pullHingeGuard:true, pullField:"K_Pull", pullOriField:"K_Orientation", pullPosField:"K_Pull_Position", pullXField:"K_Pull_Coordinate_X", pullYField:"K_Pull_Coordinate_Y", pullNo:"nopull,none,-", pullName:"มือจับ", pull3D:true, dxNotchGap:0.5, railLikeMaxW:100, pullDefPos:"UpMiddle", pullDefOri:"H", pullDefX:35, pullDefY:0, legClipOn:true, legClipMap:"", legClipCode:"LEGCLIP", legClipName:"กิ๊ฟขาตู้ (ยึดแผ่นปิดขา)", doorSwing:true, doorRelief3D:true, doorReliefMap:"MCxx35 = 0:3, 3:0, 55:0, 58:3, 60:6, 95:6, 110:2, 110:0 | ตั้งทะลุ 55-60", shelfT:16, hangRailCode:"HANGRAIL", hangRailName:"ราวแขวนผ้า สแตนเลส C", glassHangerCode:"GLASSHANGER", glassHangerName:"หูแขวนกระจก", coverScrewCode:"COVERSCREW", coverScrewName:"สกรูยึดแผ่นปิด", coverScrewPer:1, hangRailThruD:8, hangRailCsD:13, hangRailCsDepth:2, hangRailEndGap:25, hangRailBarH:25, hangRailMap:"", drawerSideT:16, drawerBotT:9, drawerBoxH:120, drawerBoxLift:20, screwD:5, screwMateDepth:28, screwInset:9,
   /* v1.201: รอยต่อกล่องลิ้นชักไม้ — แผ่นหน้า/หลังชนเข้าแผ่นข้าง ยึดด้วยเดือย + สกรูจากนอกแผ่นข้าง */
   boxJointOn:true, boxDowelFormula:BOXJ_DOWEL_NAME, boxScrewFormula:BOXJ_SCREW_NAME,
   boxJointDowelD:8, boxJointDowelDepth:24, boxJointMateD:8, boxJointMateDepth:12,
@@ -16343,10 +16344,22 @@ const _fgCut={};                        // cache: "รหัสต้นทา�
    ก็จะยังขึ้นว่าไม่เจอเหมือนเดิมจนกว่าจะปิดเปิดใหม่ ซึ่งไม่มีอะไรบอกไว้เลย */
 const _fgMiss={};                       // "รหัส|ยาว" -> {pre,L,why,n}
 function cutKey(code,len,v){ return String(code||"")+"|"+cutLen(len)+(v?("|"+v):""); }
-/* v1.277: ตัวแปรของการค้น — สีที่ต้องมีในชื่อสินค้า และปลายตัด 45°/ตรง · ว่าง = ค้นแบบเดิม */
+/* v1.277: ตัวแปรของการค้น — สีที่ต้องมีในชื่อสินค้า และปลายตัด 45°/ตรง · ว่าง = ค้นแบบเดิม
+   v1.284: พ่วงรหัสหน้าตัด (007 · 021) ไปด้วย เพื่อรู้ว่าเส้นนี้บังคับแบบปลายตัดไหม */
 function cutVarOf(f){ if(!f) return "";
   const t=String(f._cutTok||"").trim(), m=(f._cutMiter===true)?"45":(f._cutMiter===false)?"90":"";
-  return (t||m)?(t+"/"+m):""; }
+  const sc=String(f._cutSec||"").trim();
+  return (t||m||sc)?(t+"/"+m+(sc?("/"+sc):"")):""; }
+/* ───────── v1.284: เส้นเฟรมที่ไม่ต้องได้ท่อน "ตัด 45/2ด้าน" จากคลัง ─────────
+   ของจริงที่หน้างาน เส้นเฟรมถูกตัด 45 เองอยู่แล้ว ท่อนที่สั่งจึงเป็นท่อนตรงก็ได้
+   คลังมีบางเส้นเฉพาะแบบตัดตรง (เช่น 021 ยาว 1118 สี AL618MH) เดิมจึงขึ้นว่าค้นไม่เจอทั้งที่ของมีอยู่
+   ใส่รหัสหน้าตัดที่ไม่บังคับไว้ในตั้งค่า (ตั้งต้น 007 · 021) — ยังเลือกแบบที่ตรงก่อนเสมอ ไม่มีค่อยใช้อีกแบบ */
+function cutMiterOpt(sec){
+  const v=String(sec||"").trim().toLowerCase(); if(!v) return false;
+  const src=(settings.cutMiterOptSec!=null&&String(settings.cutMiterOptSec).trim()!=="")
+    ?settings.cutMiterOptSec : DEF_SETTINGS.cutMiterOptSec;
+  return String(src||"").split(/[,\s|]+/).map(x=>String(x).trim().toLowerCase()).filter(Boolean).indexOf(v)>=0;
+}
 function cutCacheClear(){ Object.keys(_fgCut).forEach(k=>delete _fgCut[k]); Object.keys(_fgMiss).forEach(k=>delete _fgMiss[k]); }
 function cutMissOf(f){
   const codes=cutSrcList(f); if(!(+f._cut>0)||!codes.length) return null;
@@ -16369,17 +16382,21 @@ async function cutLookupByModel(sb,sec,L,tok,mit){
   if(tok){ const tRe=new RegExp("(^|[^A-Za-z0-9])"+_e(tok)+"([^A-Za-z0-9]|$)","i");
     rows=rows.filter(x=>tRe.test(nm(x)));
     if(!rows.length) return {why:"มีเส้น "+sec+" ยาว "+L+" มม. ในคลัง แต่ไม่มีสี "+tok+" พอดีคำ"}; }
+  let mitAlt="";
   if(mit!=null){ const is45=x=>/45\s*(\/|°|องศา)/.test(nm(x)); const r2=rows.filter(x=>mit?is45(x):!is45(x));
-    if(!r2.length) return {why:"มีเส้น "+sec+" ยาว "+L+" มม."+(tok?(" สี "+tok):"")+" แต่ยังไม่มีแบบ"+(mit?"ตัด 45/2ด้าน":"ตัดตรง")+" — เพิ่มท่อนนี้ในคลัง",n:rows.length};
-    rows=r2; }
+    if(!r2.length){
+      if(!cutMiterOpt(sec)) return {why:"มีเส้น "+sec+" ยาว "+L+" มม."+(tok?(" สี "+tok):"")+" แต่ยังไม่มีแบบ"+(mit?"ตัด 45/2ด้าน":"ตัดตรง")+" — เพิ่มท่อนนี้ในคลัง",n:rows.length};
+      mitAlt=mit?"45":"90";                                      // v1.284: เส้นนี้ตัดเองหน้างาน ใช้ท่อนอีกแบบได้
+    } else rows=r2; }
   /* ชื่อที่ขึ้นต้นด้วยคำว่าเฟรมก่อน (ตัวสินค้า ไม่ใช่งานบริการ) แล้วรหัสยาว (ท่อนตัด) ก่อนรหัสสั้น */
   rows.sort((a,b)=>((/^เฟรม/.test(nm(b))?1:0)-(/^เฟรม/.test(nm(a))?1:0))||(String(b.item_number).length-String(a.item_number).length)||String(a.item_number).localeCompare(String(b.item_number)));
   const pk=rows[0];
-  return {code:String(pk.item_number||"").trim(),name:nm(pk),unit:String(pk.unit||""),byModel:true};
+  return {code:String(pk.item_number||"").trim(),name:nm(pk),unit:String(pk.unit||""),byModel:true,mitAlt:mitAlt||undefined};
 }
 async function cutLookup(code,len,hint,v){
   const k=cutKey(code,len,v); if(_fgCut[k]!==undefined) return _fgCut[k];
   const _vp=String(v||"").split("/"), _tok=String(_vp[0]||"").trim(), _mit=(_vp[1]==="45")?true:(_vp[1]==="90")?false:null;   // v1.277
+  const _sec=String(_vp[2]||"").trim();                                     // v1.284: รหัสหน้าตัดของเส้นนี้ (007 · 021)
   _fgCut[k]=null;
   const L0=cutLen(len), pre0=String(code||"").trim();
   const miss=(why,n)=>{ _fgMiss[k]={pre:pre0,L:L0,why:why,n:n||0}; return null; };
@@ -16407,7 +16424,7 @@ async function cutLookup(code,len,hint,v){
       /* v1.280: เส้นเฟรมที่ยังไม่ได้ทำ Element (ไม่มี Purchase ID) รหัสที่ถืออยู่คือชื่อหน้าตัดเปล่า ๆ เช่น 007
          ไม่มีรหัสสินค้าไหนขึ้นต้นด้วย 007 จึงไม่เคยเจอ ทั้งที่คลังมี "เฟรมอลูมิเนียม AL5806-007 … ตัดขนาด 595 mm. ตัด 45/2ด้าน" อยู่
          ค้นจากชื่อรุ่นแทน: ชื่อมี "-007" + ตัดขนาด 595 + สีเฟรม แล้วกรองปลาย 45°/ตรงแบบเดิม · ตัดค่าจ้าง/ค่าทำสีทิ้ง */
-      if(!any&&v&&/^[A-Za-z0-9]{2,8}$/.test(pre)){
+      if(!any&&(_tok||_mit!=null||_sec)&&/^[A-Za-z0-9]{2,8}$/.test(pre)){
         const hit=await cutLookupByModel(sb,pre,L,_tok,_mit);
         if(hit&&hit.code){ _fgCut[k]=hit; return hit; }
         if(hit&&hit.why) return miss(hit.why,hit.n||0);
@@ -16428,13 +16445,17 @@ async function cutLookup(code,len,hint,v){
     if(_tok){ const tRe=new RegExp("(^|[^A-Za-z0-9])"+_tok.replace(/[.*+?^${}()|[\]\\]/g,"\\$&")+"([^A-Za-z0-9]|$)","i");
       rows=rows.filter(x=>tRe.test(String(x.product_name||"")));
       if(!rows.length) return miss("มีท่อนยาว "+L+" มม. แต่ไม่มีตัวที่เป็นสี "+_tok+" พอดีคำ"); }
+    let _mitAlt="";
     if(_mit!=null){ const is45=x=>/45\s*(\/|°|องศา)/.test(String(x.product_name||""));
       const r2=rows.filter(x=>_mit?is45(x):!is45(x));
-      if(!r2.length) return miss("มีท่อนยาว "+L+" มม."+(_tok?(" สี "+_tok):"")+" แต่ยังไม่มีแบบ"+(_mit?"ตัด 45/2ด้าน":"ตัดตรง")+" — เพิ่มท่อนนี้ในคลัง",rows.length);
-      rows=r2; }
+      if(!r2.length){
+        /* v1.284: เส้นที่ตั้งไว้ว่าไม่บังคับแบบปลายตัด (หน้างานตัด 45 เอง) ใช้ท่อนอีกแบบได้ ไม่ต้องขึ้นว่าค้นไม่เจอ */
+        if(!cutMiterOpt(_sec||pre)) return miss("มีท่อนยาว "+L+" มม."+(_tok?(" สี "+_tok):"")+" แต่ยังไม่มีแบบ"+(_mit?"ตัด 45/2ด้าน":"ตัดตรง")+" — เพิ่มท่อนนี้ในคลัง",rows.length);
+        _mitAlt=_mit?"45":"90";
+      } else rows=r2; }
     rows.sort((a,b)=>String(a.item_number||"").localeCompare(String(b.item_number||"")));
     const pick=rows[0];
-    _fgCut[k]={code:String(pick.item_number||"").trim(),name:String(pick.product_name||""),unit:String(pick.unit||"")};
+    _fgCut[k]={code:String(pick.item_number||"").trim(),name:String(pick.product_name||""),unit:String(pick.unit||""),mitAlt:_mitAlt||undefined};
     return _fgCut[k];
   }catch(e){ console.error("cutLookup:",e); return miss("ผิดพลาด: "+(e&&e.message||e)); }
 }
@@ -16800,10 +16821,11 @@ function bomCutRow(m,code,desc,unit,len,kind,vx){
   const L=cutLen(len); if(!(L>0)) return;
   /* v1.277: เส้นเฟรม — สีกับปลาย 45° เป็นคนละรหัสสั่งซื้อ จึงแยกบรรทัดด้วย (vx ไม่ส่งมา = เหมือนเดิมทุกค่า) */
   const tok=(vx&&vx.tok)?String(vx.tok).trim():"", mit=(vx&&vx.miter!=null)?!!vx.miter:null;
+  const vsec=(vx&&vx.sec)?String(vx.sec).trim():"";                          // v1.284: รหัสหน้าตัด ใช้ตัดสินว่าบังคับแบบปลายตัดไหม
   const k=code+"@"+L+(tok?("#"+tok):"")+(mit==null?"":(mit?"#45":"#90"));   // คนละความยาว = คนละบรรทัด
   const nm=cutSizeName(tok?(desc+" "+tok):desc,L)+(mit?" ตัด 45/2ด้าน":"");
   (m[k]||(m[k]={art:code,dia:"",kind:kind||"len",name:nm,unit:unit||"เส้น",count:0,_cut:L,
-    _cutTok:tok||undefined, _cutMiter:(mit==null?undefined:mit)})).count+=1;
+    _cutTok:tok||undefined, _cutMiter:(mit==null?undefined:mit), _cutSec:vsec||undefined})).count+=1;
   /* v13.1: ชื่อจากคลังจะถูกเติมทีหลังตอนรู้ Purchase ID แล้ว (ดู fittingAgg) เพราะรหัสในคลังผูกกับ Purchase ID ไม่ใช่รหัสภายใน */
 }
 /* ═════════ v14.0: รายการไฟ — เส้นไฟ · หม้อแปลง · สายต่อ ═════════
@@ -23967,6 +23989,7 @@ function renderSettings(){
     <label style="display:flex;gap:8px;align-items:flex-start;font-size:12px;line-height:1.5;margin-top:6px"><input type="checkbox" id="setCutLookupOn" ${settings.cutLookupOn!==false?"checked":""} style="margin-top:2px">
       <span><b>ค้นรหัสท่อนที่ตัดจากคลังอุปกรณ์เอง</b> — ทำแบบเดียวกับถาดฟรอยด์ ค้นคลังตัวเดียวกับที่ปลายทางใช้แล้วส่งรหัสจริงออกไปเลย ไม่ต้องให้ใครไปจับคู่ต่อ · ไม่เจอก็ส่งรหัสตั้งต้นพร้อมความยาวไปก่อน แล้วขึ้นเตือนให้ไปเพิ่มในคลัง</span></label>
     ${txt("cutLookupKey","คำที่ใช้ค้นในชื่อสินค้า (ตั้งต้น ตัดขนาด) — ระบบค้นคำนี้ตามด้วยความยาว")}
+    ${txt("cutMiterOptSec","เส้นเฟรมที่ไม่บังคับแบบ “ตัด 45/2ด้าน” (คั่นด้วยจุลภาค) — คลังมีแต่ท่อนตัดตรงก็ใช้ได้ เพราะหน้างานตัดมุมเอง")}
     <div style="font-size:11px;opacity:.62;margin:2px 0 6px;line-height:1.6">ปิดสวิตช์ = ส่งรหัสที่ตั้งไว้พร้อมความยาวในช่อง LENGTH ให้ปลายทางจับคู่เอง</div>
     <div style="font-size:11px;opacity:.62;margin:2px 0 6px;line-height:1.6"><b>คนละความยาว = คนละบรรทัดในใบอุปกรณ์</b> เพราะสั่งซื้อเป็นท่อนตามที่ตัดจริง · เศษทศนิยมปัดลงเสมอ 867.5 จึงออกเป็น 867<br>
       รูปแบบชื่อตั้งต้นเขียนว่า <span style="font-family:var(--mono)">ตัดขนาด 867 mm.</span> ซึ่งเป็นรูปแบบที่ระบบผลิตค้นหาขนาดเจอ แก้ได้ถ้าปลายทางใช้คำอื่น</div>
@@ -33610,7 +33633,7 @@ function fittingAgg(boards){   // รวมเดือย + พินรอง�
     const len=+b._cutLen||+b.L||0;
     /* v1.277: สีเฟรมใช้กรองเฉพาะเส้นที่ไม่มีรหัสจากตารางสี (รหัสจากตารางสีเจาะจงสีอยู่แล้ว) · ปลาย 45° ตามที่ตั้งไว้ที่แบบบาน */
     bomCutRow(m,k,((el9&&el9.desc)||sc.desc||("เส้นเฟรม "+k)),((el9&&el9.unit)||sc.unit||"เส้น"),len,"frameSec",
-      {tok:(b._secItem?"":String(b._secTok||"").trim()), miter:(b._sectMiter!==false)}); });
+      {tok:(b._secItem?"":String(b._secTok||"").trim()), miter:(b._sectMiter!==false), sec:String(b._frameSec||"").trim()}); });
   boards.forEach(b=>{ const ff=b&&b._frameFit; if(!ff||!ff.corners)return;
     const put=(code,qty,nm,un)=>{ const k=String(code||"").trim(); if(!k||!(qty>0))return;
       const el6=(((settings.elements||{}).fittings)||[]).find(x=>x.code===k);
@@ -34207,6 +34230,8 @@ function renderSummary(){
               return '<div style="font-size:10px;color:#b0322b">ค้นรหัสท่อนไม่เจอ — '+escapeHtml(String(ms.why||""))+'</div>'; })())
           /* v1.081: ได้ขนาดตรงแต่วิธีเก็บริมไม่ตรงแม่แบบ ต้องเห็น ไม่ใช่ผ่านไปเงียบ ๆ */
           +((f._fg&&f._fg.alt&&f._gcut)?'<div style="font-size:10px;color:#b26a00">ชนิดกับขนาดตรง แต่ลักษณะขอบไม่ตรง — ตรวจก่อนสั่ง</div>':"")
+          /* v1.284: ได้ท่อนที่ปลายตัดคนละแบบกับที่แบบบานตั้งไว้ — ของถูกต้น ถูกสี ถูกความยาว แต่ต้องตัดมุมเอง */
+          +((f._fg&&f._fg.mitAlt)?('<div style="font-size:10px;color:#b26a00">คลังไม่มีแบบ'+(f._fg.mitAlt==="45"?"ตัด 45/2ด้าน":"ตัดตรง")+' — ใช้ท่อน'+(f._fg.mitAlt==="45"?"ตัดตรง":"ตัด 45/2ด้าน")+' แทน (ตัดมุมหน้างาน)</div>'):"")
           /* v1.080: กระจกค้นไม่เจอ ต้องบอกในใบเหมือนกัน */
           +((()=>{ if(f._fg||!f._gcut) return "";
               let ms=null; try{ ms=glassMissOf(f); }catch(e){}
