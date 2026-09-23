@@ -940,7 +940,7 @@
    ===================================================================== */
 /* ---- APP_META: แหล่งความจริงเดียวของเวอร์ชัน (ดูได้จาก console / คลิกชื่อแอป) ---- */
 const APP_META={
-  name:"StarNexus Cabinet", version:"1.282", build:"2026-09-22/adj-shelf-depth-lock",
+  name:"StarNexus Cabinet", version:"1.283", build:"2026-09-22/glass-door-relief",
   file:"StarNexus.html", basedOn:"Furnitech_V3.html (v3.11)",
   /* ───────── เริ่มนับเวอร์ชันใหม่ที่ 1.001 (21/08/2026) ─────────
      ของเดิมนับมาถึง 42.1 แล้ววิ่งเป็นทศนิยมสองชั้นซึ่งอ่านลำดับยาก
@@ -948,6 +948,7 @@ const APP_META={
      ประวัติเก่าเก็บไว้ทั้งหมดตามเลขเดิม ไม่ไล่เขียนใหม่ เพราะเลขในนั้นถูกอ้างถึงไปแล้ว
      รายการที่อยู่ใต้ 1.001 ลงไปจึงเป็นเลขชุดเก่า อ่านต่อกันได้ตามวันที่ */
   changelog:[
+    ["1.283","2026-09-22","FEAT บานไม้กัดทะลุใส่กระจก (MCWG20) เห็นทะลุ + มีกระจกทั้งสองโหมด — โหมดประหยัดเห็นช่องทะลุเพราะแผ่นถูกเจาะตาม Part (กัดทะลุ/บ่า) แต่ปิดโหมดประหยัดแล้วลายหน้าบาน 3D (doorReliefGeo) สร้างรูปทรงใหม่ทั้งแผ่นทับของเดิม ช่องทะลุกับบ่าจึงหายเป็นแผ่นทึบ และทั้งสองโหมดไม่มีกระจกเลยเพราะกระจกบานนี้มีแค่ในรายการสั่ง (doorGlassSpec) ไม่มีชิ้นในฉาก · (1) doorReliefCutOf(b) อ่านช่องทะลุ/บ่าจาก Part ผ่าน woodFrameCuts ตัวเดียวกับที่เจาะแผ่น · doorReliefGeo รับ cut เพิ่ม: ผิวหน้าปั้นลายเฉพาะวงเฟรม เว้นช่องกลาง · หลังบานจมเป็นบ่าลึกตามค่า · มีผนังบ่ากับผนังช่องทะลุสูงถึงผิวลายตรงขอบช่อง · ใช้เส้นตารางชุดเดียวกันทั้งหน้า-หลัง-ผนัง รูปทรงปิดสนิท (ตรวจแล้วขอบเปิด 0 ปริมาตรตรงกับที่คำนวณมือ) · ลายที่เลยขอบช่อง (67.5:14) ตกในช่องโล่งจึงไม่มีผล และเช็คความลึกนับแค่ถึงขอบช่อง · บ่าหลัง: ลายด้านหน้าห้ามลึกจนทะลุบ่า · ไม่มี cut = รูปทรงเดิมทุกจุด (เทียบ position ทุก vertex กับ 1.282 แล้วตรง) (2) buildDoorGlassMesh วาดกระจกในบานกัดทะลุที่ตั้งกระจกไว้ (ขอบวางกระจก หรือ กระจกหนา) ทั้งโหมดประหยัดและไม่ประหยัด · ขนาด = กระจกที่สั่งจริง (บาน 497×1897 ขอบวาง 57.5 Gap 2 → 380×1780) · นั่งชนบ่าจากด้านหลัง ความหนาตามออเดอร์ K_Front_Glass/Part · สีตามชนิด ใส/ชา-ชาทอง/เทา-ดำ/เขียว/ฟ้า/ฝ้า/เงา ขอบกระจกเข้มกว่าหน้าแบบกระจกจริง + แสงสะท้อนเฉียงจาง ๆ บนหน้ากระจก (ยกเว้นฝ้า) · โชว์อย่างเดียว ไม่เข้า state.boards ไม่แตะ BOM/ใบผลิต/MPR · คลิกทะลุไปเลือกของในตู้ได้ · ติดรหัสบานไว้ กางบานแล้วกระจกหมุนตาม · บานไม้ที่มีแผ่นกลางจากเส้นเฟรมอยู่แล้วไม่วาดซ้อน (3) เส้นลายไม้ไม่ลากลอยข้ามช่องกระจก/บ่าอีก · ทดสอบ: render3D จริงบนฉากจำลอง บาน 497×1897 ได้ลาย 1080 สามเหลี่ยม+กระจก 380×1780×5 ทั้งสองโหมด ยิงเส้นผ่านกลางบานไม่ชนเนื้อไม้ · BOM 6 ไฟล์ + หน้าแบบผลิต 4 ไฟล์ ตรงกับ 1.282 ทุกแถว · จำนวนวัตถุในฉากไฟล์เดิมเท่าเดิม · เปิดแอปจริงใน Chromium (WebGL) ถ่ายภาพทั้งสองโหมด + กางบาน กระจกหมุนตามบาน"],
     ["1.282","2026-09-22","FEAT ชั้นปรับล็อคความลึกได้ — เดิมช่อง 🔒 ล็อคลึก มีแค่ชั้นตาย ชั้นปรับลึกเสมอ = ผิวหน้าแผ่นหลัง ถึง หน้าตู้ − ร่นหน้า จึงยืดตามตู้ทุกครั้ง · แผงชั้นปรับมีช่อง ล็อคลึก ใต้ช่องร่น กด “ใช้” ปุ่มเดิม · วัดจากผิวหน้าแผ่นหลังในตู้ (+ ร่นหลัง) ออกมาเท่านี้เสมอ ร่นหน้าไม่ใช้ · ปรับขนาดตู้ลึกขึ้น/ตื้นลงแล้วชั้นยังลึกเท่าเดิม · ตู้ตื้นกว่าค่าที่ล็อก = ชั้นชนหน้าตู้พอดี ไม่ทะลุ และแจ้งว่าได้เท่าที่มี · รูพินเจาะตามความลึกใหม่ (ห่างขอบหน้า/หลังชั้น 50 เท่าเดิม) · แปลงชั้นตาย ↔ ชั้นปรับ ค่าล็อกเดิมยังอยู่ · ใส่ 0 = ปลดล็อก กลับไปร่นหน้าเหมือนเดิม · ตรวจกับตู้ WNR042 ไฟล์ 52 ผ่านแผงจริง: ล็อก 450 → ตู้ลึก 700 ชั้น 450 · ตู้ 400 ชั้น 375.4 ชนหน้าพอดี · ปลดล็อกกลับเป็นร่นหน้า 15"],
     ["1.281","2026-09-22","FIX ราวแขวนลอยห่างใต้ชั้น — MWA026 ชั้น 2 ล็อกระยะไว้ 1000 จากพื้นตู้ (ผิวบนที่ 1100) แต่ราวของมันค้างอยู่ใต้ตำแหน่งชั้นเดิม ห่างใต้ชั้น 174 มม. · ตัวจัดราว (relayHangRails) ทำงานแค่ตอนปรับขนาดตู้ สลับโครงสร้าง โหลด XML และเปิดออเดอร์คลาวด์ ส่วนชั้นที่ล็อกระยะถูกวางใหม่ทุกรอบคิดฉาก (และตอนเปิดออเดอร์ ราวถูกจัดก่อนชั้นจะถูกวางตามระยะล็อก) · ตอนนี้ทุกรอบคิดฉาก ราวเกาะใต้แผ่นที่มันแขวน (ช่องว่าง 1 มม. เท่ากับตอนใส่ราว) ต่อจากขั้นล็อกระยะและตรึงผิว · แก้แค่ความสูง รูบนชั้นอยู่ในพิกัดของชั้นจึงไม่เปลี่ยน ใบอุปกรณ์และแบบผลิตเท่าเดิม · ลองย้ายชั้นไป 1200 ราวตามขึ้นไปทันที"],
     ["1.280","2026-09-22","FIX ลิ้นชัก K40 หลังเตี้ย (63) ได้ระบบราง SLIDE ของกล่องไม้แทน K40-63 — ค่าตั้งกล่องของลูกเหล่านี้ไม่มีชนิดรางติดมา ตัวเลือกระบบรางจึงถือเป็นรางรับข้าง · ผล: ความยาวรางเลือกจาก 250–500 ของ SLIDE (กล่องพังจึงได้ 250 → ใบอุปกรณ์ออก KITCHEN40_H80 ที่ไม่มีรหัส ×2 — คือลูกเตี้ยสองลูกของ BND214 ไม่ใช่ลูกสูง) · รูรางแผ่นข้าง 37·101·261 แทน 37·165·261 · หน้าต่างปรับลิ้นชักขึ้นชนิดราง SLIDE · ตอนนี้ชิ้นกล่องแผงเหล็กใช้ระบบแผงเหล็กตามซีรีส์และความสูงแผ่นหลังจริงเสมอ (ลูกเตี้ย = K40-63 · ลูกสูง = K40-148) ใบอุปกรณ์ BND123/214: FITDW00366 ×2 + KITCHEN40_H150 (Purchase FITDW00366) ×2 + FITDW00367 ×2 · FIX เส้นเฟรมที่ยังไม่มี Element (007 · 021) ไม่ออกรหัสท่อน — ไม่มี Purchase ID จึงค้นด้วยรหัสขึ้นต้น “007” ซึ่งไม่มีในคลัง · ตอนนี้ค้นจากชื่อรุ่นในชื่อสินค้าแทน (…-007 + ตัดขนาด 595 + สีเฟรม + ปลาย 45°) ตัดค่าจ้าง/ค่าทำสีทิ้ง ได้ 007: 595 = 406AL30110310076 · 1118 = 406AL30110310116 · 021 1118 ตัด 45 ยังไม่มีในคลังจริง บอกเหตุตรง ๆ · มี Element + Purchase ID แล้วใช้ทางเดิม · CHANGE กระจกตามออเดอร์: รหัส (FT05007) ใช้บอกชนิดเท่านั้น แล้วค้นด้วยชื่อชนิด + หนา + ขนาด + ขอบ ทั้งคลัง — กระจกใสชาทองมี 19 ตระกูลรหัส ขนาด 406x545 อยู่ใต้ 407FT05… ไม่ใช่ FT05007… · ค้นคลังครั้งเดียวต่อรายการต่อรอบเปิดโปรแกรม (งานทั้งไฟล์ 53 ยิง 25 ครั้ง คิดใบซ้ำไม่ยิงเพิ่ม)"],
@@ -2714,18 +2715,40 @@ const _reliefC=new Map();
    ลึก(x,y) = มากสุดของ { ลายเข้ามุม P(ระยะถึงขอบที่ใกล้สุด) · ช่วงตั้งทะลุ P(ระยะถึงขอบซ้าย/ขวา) · ช่วงนอนทะลุ P(ระยะถึงขอบบน/ล่าง) }
    ทำให้ร่องของขอบข้างวิ่งตรงขึ้นไปถึงขอบบนได้ (แบบ MCxx35) ส่วนแบบที่ไม่ใส่ทะลุได้รูปเข้ามุม 45 เหมือนเดิมเป๊ะ
    เส้นตารางวางตรงจุดหักของลายทุกจุดทั้งสองแกน ช่องบนแนวทแยงแบ่งตามแนวมุม 45 เส้นหักจึงคมตรงตำแหน่ง */
-function doorReliefGeo(L,W,T,prof,orient,yaw){
-  const key=[L,W,T,orient,yaw||0,prof.key].join("|");
+/* ───────── v1.283: บานกัดทะลุใส่กระจก — ลายหน้าบานต้องเจาะช่องกลางด้วย ─────────
+   เดิมรูปทรงลายหน้าบานทับรูปทรงแผ่นทั้งแผ่น ช่องทะลุกับบ่ารับกระจก (Part: กัดทะลุ/บ่า) ที่โหมดประหยัดเห็น
+   จึงกลายเป็นแผ่นทึบทันทีที่ปิดโหมดประหยัด · ส่ง cut มาด้วย = ปั้นลายเฉพาะวงเฟรม เว้นช่องกลางโล่ง
+   cut = {cf: เหลือเฟรม (ด้านในจากนี้ทะลุ), rf: ขอบบ่า, rd: ลึกบ่า, back: บ่าอยู่หลังบาน} · ไม่ส่ง = แบบเดิมทุกประการ
+   ลายที่ยาวเกินขอบช่อง (เช่น 67.5:14) ตกไปอยู่ในช่องโล่ง จึงไม่มีผล · ผนังช่องทะลุสูงถึงผิวลายตรงขอบช่องพอดี */
+function doorReliefCutOf(b){
+  try{ const p=partDef(b&&b.part,b); if(!p) return null;
+    const L=+b.L||0, W=+b.W||0, T=+b.T||0;
+    const cs=woodFrameCuts(p,L,W,T), c=cs.find(x=>x&&x._woodCut); if(!c) return null;
+    const cf=round((L-c.w)/2); if(!(cf>0)) return null;
+    const r=cs.find(x=>x&&x._woodReb);
+    let rf=0, rd=0, back=true;
+    if(r){ rf=round((L-r.w)/2); rd=+r.depth||0; back=(r.face!=="top"); if(!(rf>0&&rf<cf-0.05&&rd>0)){ rf=0; rd=0; } }
+    return {cf, rf, rd, back};
+  }catch(e){ return null; }
+}
+function doorReliefGeo(L,W,T,prof,orient,yaw,cut){
+  const key=[L,W,T,orient,yaw||0,prof.key,cut?[cut.cf,cut.rf,cut.rd,cut.back?1:0].join(","):""].join("|");
   const hit=_reliefC.get(key); if(hit) return hit;
   const EPS=0.02;
   const pts=[]; prof.pts.forEach(q=>{ let d=q[0]; if(pts.length&&d<=pts[pts.length-1][0]+1e-9) d=pts[pts.length-1][0]+EPS; pts.push([d,q[1]]); });   // ผนังตั้ง = เอียงนิดเดียว
   const P=d=>{ if(d<=pts[0][0]) return pts[0][1]; for(let k=1;k<pts.length;k++){ const a=pts[k-1], b=pts[k];
       if(d<=b[0]){ const t=(b[0]-a[0])>1e-9?(d-a[0])/(b[0]-a[0]):1; return a[1]+(b[1]-a[1])*t; } } return pts[pts.length-1][1]; };
   const band=(r,d)=>(r&&d>=r[0]-1e-9&&d<=r[1]+1e-9)?P(d):0;
+  const hasReb=!!(cut&&cut.rd>0&&cut.rf>0&&cut.rf<cut.cf);
   const dep=(x,y)=>{ const dx=Math.min(x+L/2,L/2-x), dy=Math.min(y+W/2,W/2-y);
-    return Math.max(P(Math.min(dx,dy)), band(prof.thrV,dx), band(prof.thrH,dy)); };
+    let v=Math.max(P(Math.min(dx,dy)), band(prof.thrV,dx), band(prof.thrH,dy));
+    if(hasReb){ const m=Math.min(dx,dy);
+      if(!cut.back&&m>cut.rf+EPS/2) v=Math.max(v,cut.rd);                          // บ่าหน้า: ผิวหน้าจมลงเป็นบ่า
+      if(cut.back&&m>=cut.rf-1e-9) v=Math.min(v,Math.max(T-cut.rd-0.3,0)); }      // บ่าหลัง: ลายห้ามลึกจนทะลุบ่า
+    return v; };
   const bp=new Set(pts.map(q=>q[0]));
   [prof.thrV,prof.thrH].forEach(r=>{ if(r){ bp.add(r[0]); bp.add(r[1]); bp.add(r[1]+EPS); } });
+  if(cut){ bp.add(cut.cf); if(hasReb){ bp.add(cut.rf); if(!cut.back) bp.add(cut.rf+EPS); } }
   const axis=S=>{ const a=new Set([-S/2,S/2]); bp.forEach(d=>{ if(d>0&&d<S/2-0.01){ a.add(+(-S/2+d).toFixed(4)); a.add(+(S/2-d).toFixed(4)); } });
     return [...a].sort((p,q)=>p-q); };
   const X=axis(L), Y=axis(W);
@@ -2735,8 +2758,10 @@ function doorReliefGeo(L,W,T,prof,orient,yaw){
     [A,B,C].forEach(v=>{ pos.push(v.x,v.y,v.z); uv.push(v.x,v.y); }); };
   const Vt=(x,y)=>new THREE.Vector3(x,y,T/2-dep(x,y));
   const Z=new THREE.Vector3(0,0,1);
+  const mOf=(x,y)=>Math.min(Math.min(x+L/2,L/2-x),Math.min(y+W/2,W/2-y));   // ระยะถึงขอบที่ใกล้สุด
   for(let i=0;i<X.length-1;i++) for(let j=0;j<Y.length-1;j++){
     const x0=X[i],x1=X[i+1],y0=Y[j],y1=Y[j+1];
+    if(cut&&mOf((x0+x1)/2,(y0+y1)/2)>=cut.cf) continue;                       // v1.283: ช่องทะลุ = ไม่มีผิวหน้า
     const a=Vt(x0,y0), b=Vt(x1,y0), c=Vt(x1,y1), d=Vt(x0,y1);
     /* แบ่งช่องตามแนวทแยงที่ระยะถึงขอบทั้งสองแกนเท่ากัน (แนวมุม 45) ถ้ามี · ไม่มีก็แบ่งตามปกติ */
     const dd=(x,y)=>Math.min(x+L/2,L/2-x)-Math.min(y+W/2,W/2-y);
@@ -2747,9 +2772,35 @@ function doorReliefGeo(L,W,T,prof,orient,yaw){
     tri(A,B,C,out); tri(A,C,D,out); };
   for(let i=0;i<X.length-1;i++){ wall([X[i],-W/2],[X[i+1],-W/2],new THREE.Vector3(0,-1,0)); wall([X[i],W/2],[X[i+1],W/2],new THREE.Vector3(0,1,0)); }
   for(let j=0;j<Y.length-1;j++){ wall([-L/2,Y[j]],[-L/2,Y[j+1]],new THREE.Vector3(-1,0,0)); wall([L/2,Y[j]],[L/2,Y[j+1]],new THREE.Vector3(1,0,0)); }
-  { const zb=-T/2, nb=new THREE.Vector3(0,0,-1);
+  if(!cut){ const zb=-T/2, nb=new THREE.Vector3(0,0,-1);
     const p=[[-L/2,-W/2],[L/2,-W/2],[L/2,W/2],[-L/2,W/2]].map(q=>new THREE.Vector3(q[0],q[1],zb));
     tri(p[0],p[1],p[2],nb); tri(p[0],p[2],p[3],nb); }
+  else {
+    /* v1.283: หลังบานเว้นช่องทะลุ · บ่าหลังจมลง rd · ผนังบ่า + ผนังช่องทะลุ (หันเข้าหากลางบาน) */
+    /* ใช้เส้นตารางชุดเดียวกับด้านหน้า (มีเส้นที่ขอบช่องกับขอบบ่าอยู่แล้ว) ขอบทุกเส้นจึงชนกันพอดี ไม่มีรอยต่อรูปตัว T */
+    const cf=cut.cf, bR=hasReb&&cut.back, rf=cut.rf, zr=-T/2+(bR?cut.rd:0), nb=new THREE.Vector3(0,0,-1);
+    for(let i=0;i<X.length-1;i++) for(let j=0;j<Y.length-1;j++){
+      const m=mOf((X[i]+X[i+1])/2,(Y[j]+Y[j+1])/2); if(m>=cf) continue;
+      const z=(bR&&m>=rf)?zr:-T/2;
+      const p=[[X[i],Y[j]],[X[i+1],Y[j]],[X[i+1],Y[j+1]],[X[i],Y[j+1]]].map(q=>new THREE.Vector3(q[0],q[1],z));
+      tri(p[0],p[1],p[2],nb); tri(p[0],p[2],p[3],nb); }
+    const quad=(A,B,C,D,n)=>{ tri(A,B,C,n); tri(A,C,D,n); };
+    const near=(A,v)=>{ let bst=v, dd=1e9; A.forEach(t=>{ const e=Math.abs(t-v); if(e<dd){ dd=e; bst=t; } }); return bst; };
+    const V=(x,y,z)=>new THREE.Vector3(x,y,z);
+    /* ผนังรอบกรอบสี่เหลี่ยมที่ระยะ f จากขอบ แบ่งช่วงตามเส้นตาราง · top(x,y) = จุดบนของผนัง */
+    const ring=(f,zb,top)=>{
+      const x0=near(X,-L/2+f), x1=near(X,L/2-f), y0=near(Y,-W/2+f), y1=near(Y,W/2-f);
+      const Xs=X.filter(v=>v>=x0-1e-6&&v<=x1+1e-6), Ys=Y.filter(v=>v>=y0-1e-6&&v<=y1+1e-6);
+      for(let i=0;i<Xs.length-1;i++){
+        quad(V(Xs[i],y0,zb),V(Xs[i+1],y0,zb),top(Xs[i+1],y0),top(Xs[i],y0),new THREE.Vector3(0,1,0));
+        quad(V(Xs[i],y1,zb),V(Xs[i+1],y1,zb),top(Xs[i+1],y1),top(Xs[i],y1),new THREE.Vector3(0,-1,0)); }
+      for(let j=0;j<Ys.length-1;j++){
+        quad(V(x0,Ys[j],zb),V(x0,Ys[j+1],zb),top(x0,Ys[j+1]),top(x0,Ys[j]),new THREE.Vector3(1,0,0));
+        quad(V(x1,Ys[j],zb),V(x1,Ys[j+1],zb),top(x1,Ys[j+1]),top(x1,Ys[j]),new THREE.Vector3(-1,0,0)); } };
+    if(bR) ring(rf,-T/2,(x,y)=>V(x,y,zr));                                    // ผนังบ่าหลัง: ผิวหลัง → พื้นบ่า
+    /* ผนังช่องทะลุ: ล่าง = ผิวหลัง (หรือพื้นบ่า) · บน = ผิวลายด้านหน้าตรงขอบช่อง */
+    ring(cf,zr,Vt);
+  }
   const g=new THREE.BufferGeometry();
   g.setAttribute("position",new THREE.Float32BufferAttribute(pos,3));
   g.setAttribute("uv",new THREE.Float32BufferAttribute(uv,2));
@@ -2772,8 +2823,17 @@ function doorReliefFor(b){
     const code=doorShapeCode(b); if(!code) return null;
     const prof=doorReliefProfiles()[code.toUpperCase()]; if(!prof) return null;
     const L=+b.L||0, W=+b.W||0, T=+b.T||0;
-    if(L-2*prof.D<2||W-2*prof.D<2||prof.maxDep>=T-0.5) return null;         // ลายลงไม่ได้ = แผ่นเรียบ · v1.271: ลูกฟักกลางเหลือ 2 มม. ก็วาด (เดิม 10 — หน้าลิ้นชัก 188 กับลายลึก 90 เลยไม่ขึ้น)
-    return doorReliefGeo(L,W,T,prof,b.orient,b.yaw);
+    /* v1.283: บานกัดทะลุ — นับลายแค่ถึงขอบช่อง (ในช่องโล่งอยู่แล้ว ลึกเท่าไหร่ก็ไม่มีเนื้อไม้ให้ลง) */
+    const cut=doorReliefCutOf(b);
+    let D=prof.D, mx=prof.maxDep;
+    if(cut){ D=Math.min(D,cut.cf); let v=0; const ps=prof.pts;
+      for(let k=0;k<ps.length;k++){
+        if(ps[k][0]<cut.cf-1e-9){ v=Math.max(v,ps[k][1]); continue; }
+        const a=ps[k-1]||ps[k], q=ps[k], t=(q[0]-a[0])>1e-9?Math.max(0,Math.min(1,(cut.cf-a[0])/(q[0]-a[0]))):1;
+        v=Math.max(v,a[1]+(q[1]-a[1])*t); break; }
+      mx=v; }
+    if(L-2*D<2||W-2*D<2||mx>=T-0.5) return null;         // ลายลงไม่ได้ = แผ่นเรียบ · v1.271: ลูกฟักกลางเหลือ 2 มม. ก็วาด (เดิม 10 — หน้าลิ้นชัก 188 กับลายลึก 90 เลยไม่ขึ้น)
+    return doorReliefGeo(L,W,T,prof,b.orient,b.yaw,cut);
   }catch(e){ console.error("doorRelief:",e); return null; }
 }
 function buildBoardMesh(b){
@@ -2880,6 +2940,100 @@ function glassMat(dbl){
   const m=new THREE.MeshStandardMaterial({color:new THREE.Color(0x9fc7d8),roughness:.08,metalness:0,transparent:true,opacity:state.ghost?.18:.34,depthWrite:false});
   if(dbl)m.side=THREE.DoubleSide;
   return (_matC[k]=m); }
+/* ───────── v1.283: กระจกในบานไม้กัดทะลุ (โชว์อย่างเดียว) ─────────
+   บานแบบ MCWG20 = แผ่นไม้กัดทะลุกลาง + บ่ารับกระจกด้านหลัง (Part: กัดทะลุ/บ่า/ขอบวางกระจก)
+   กระจกบานนี้มีแค่ในรายการสั่ง (doorGlassSpec) ไม่มีชิ้นในฉาก 3D จึงเห็นเป็นช่องโล่ง
+   ตัวนี้วาดแผ่นกระจกให้เห็นเฉย ๆ ไม่ใช่ชิ้นงาน — ไม่เข้า state.boards ไม่แตะ BOM / ใบผลิต / MPR / เลือกคลิกไม่ได้ (คลิกทะลุไปของข้างใน)
+   ขนาด = กระจกที่สั่งจริง (ขนาดบาน − ขอบวางกระจกสองข้าง − Gap) · ไม่ตั้งขอบวาง = เต็มบ่า − เผื่อกระจก
+   ตำแหน่ง = นั่งชนบ่าจากด้านหลัง (ผิวหน้ากระจกแตะบ่า) · ความหนาตามออเดอร์/Part
+   สีกระจกตามชนิด: ใส · ชา/ชาทอง · เทา/ดำ · เขียว · ฟ้า · ฝ้า · เงา — ขอบกระจกเข้มกว่าหน้าแบบกระจกจริง */
+function doorGlassTint(kind){
+  const k=String(kind||"");
+  if(/กระจกเงา|mirror|^\s*เงา/i.test(k)) return "mirror";
+  if(/ฝ้า|frost|sand|พ่นทราย/i.test(k)) return "frost";
+  if(/ชา|ทอง|bronze/i.test(k)) return "bronze";
+  if(/เทา|ดำ|grey|gray|smoke|dark/i.test(k)) return "grey";
+  if(/เขียว|green/i.test(k)) return "green";
+  if(/ฟ้า|น้ำเงิน|blue/i.test(k)) return "blue";
+  return "clear"; }
+const DOOR_GLASS_TINT={
+  clear :{face:0xcfe4ea, op:.24, edge:0x6fae9c, eop:.78, rough:.04, metal:.1},
+  bronze:{face:0xa9804f, op:.40, edge:0x7a5a36, eop:.85, rough:.05, metal:.1},
+  grey  :{face:0x4b5257, op:.52, edge:0x353b40, eop:.88, rough:.05, metal:.1},
+  green :{face:0x86c29c, op:.28, edge:0x4f9a70, eop:.85, rough:.05, metal:.1},
+  blue  :{face:0x8ab6d8, op:.28, edge:0x4f86b0, eop:.85, rough:.05, metal:.1},
+  frost :{face:0xeef3f4, op:.74, edge:0xc4d9d4, eop:.88, rough:.55, metal:0},
+  mirror:{face:0xd3d8db, op:1,   edge:0x6fae9c, eop:.9,  rough:.06, metal:.9} };
+function doorGlassMats(tint){
+  const k="dglass|"+tint+"|"+(state.ghost?1:0);
+  if(_matC[k]) return _matC[k];
+  const t=DOOR_GLASS_TINT[tint]||DOOR_GLASS_TINT.clear, gh=state.ghost?.5:1;
+  const mk=(c,op)=>{ const m=new THREE.MeshStandardMaterial({color:new THREE.Color(c),roughness:t.rough,metalness:t.metal});
+    const o=op*gh; if(o<0.999){ m.transparent=true; m.opacity=o; m.depthWrite=false; }
+    m.side=THREE.DoubleSide; return m; };
+  const e=mk(t.edge,t.eop), f=mk(t.face,t.op);
+  return (_matC[k]=[e,e,e,e,f,f]); }                                     // BoxGeometry: ±x ±y = ขอบกระจก · ±z = หน้ากระจก
+/* คืน {L,W,T,zc,kind} ของกระจกในบานใบนี้ · ไม่ใช่บานกัดทะลุใส่กระจก = null */
+function doorGlassPaneOf(b){
+  try{
+    if(!b||b._virtual||b._framePart||b._frameDoor||b._noPanel||b._glass) return null;
+    if(!isFrontPanel(b)) return null;
+    const p=partDef(b.part,b); if(!p) return null;
+    const cut=doorReliefCutOf(b); if(!cut) return null;
+    const sp=doorGlassSpec(b), gT0=parseFloat(p.frameGlassT);
+    if(!sp&&!(gT0>0)) return null;                                       // ไม่ได้ตั้งกระจก = บานโปร่ง ไม่ใส่
+    const L=+b.L||0, W=+b.W||0, T=Math.max(+b.T||0,0.4);
+    let kind="", gT=sp?sp.T:gT0;
+    try{ const gs=glassSpecOfBoard(b,state.boards); if(gs&&gs.sp){ kind=String(gs.sp.kind||""); if(gs.sp.th>0) gT=gs.sp.th; } }catch(e){}
+    if(!kind&&sp) kind=String(sp.kind||"");
+    gT=Math.max(+gT||5,1);
+    const reb=cut.rd>0&&cut.rf>0;
+    const clr=(p.woodGlassClr!=null&&String(p.woodGlassClr).trim()!=="")?Math.max(+p.woodGlassClr||0,0):1;
+    let gl, gw, zc;
+    if(reb){
+      const oL=L-2*cut.rf, oW=W-2*cut.rf;                                 // ช่องบ่า = ที่กระจกนั่ง
+      gl=sp?Math.min(sp.L,oL-0.2):oL-2*clr; gw=sp?Math.min(sp.W,oW-0.2):oW-2*clr;
+      zc=cut.back?(-T/2+cut.rd-gT/2):(T/2-cut.rd+gT/2);                   // ผิวกระจกชนบ่า
+    } else {
+      const oL=L-2*cut.cf, oW=W-2*cut.cf;                                 // ไม่มีบ่า = กระจกทาบหลังบาน ทับช่องเข้าไปในเนื้อไม้
+      gl=sp?sp.L:oL+20; gw=sp?sp.W:oW+20;
+      zc=-T/2-gT/2;
+    }
+    if(!(gl>2&&gw>2)) return null;
+    return {L:round(gl), W:round(gw), T:round(gT), zc:round(zc), kind};
+  }catch(e){ return null; }
+}
+/* แสงสะท้อนเฉียงสองเส้นบนหน้ากระจก — ตัวบอกตาว่า "นี่คือกระจก" ไม่ใช่ช่องโล่ง (วาดครั้งเดียวใช้ทุกบาน) */
+let _glassStreakTex;
+function glassStreakMat(){
+  const k="dglassStreak|"+(state.ghost?1:0);
+  if(_matC[k]!==undefined) return _matC[k];
+  let m=null;
+  try{
+    if(_glassStreakTex===undefined){ _glassStreakTex=null;
+      const c=document.createElement("canvas"); c.width=c.height=256; const x=c.getContext("2d");
+      if(x&&typeof x.createLinearGradient==="function"&&typeof x.fillRect==="function"){
+        const g=x.createLinearGradient(0,0,256,256);
+        [[0,0],[.30,0],[.355,.55],[.41,0],[.50,0],[.525,.32],[.55,0],[1,0]].forEach(q=>g.addColorStop(q[0],"rgba(255,255,255,"+q[1]+")"));
+        x.fillStyle=g; x.fillRect(0,0,256,256);
+        _glassStreakTex=new THREE.CanvasTexture(c); } }
+    if(_glassStreakTex) m=new THREE.MeshBasicMaterial({map:_glassStreakTex,transparent:true,opacity:state.ghost?.2:.45,depthWrite:false});
+  }catch(e){ m=null; }
+  return (_matC[k]=m); }
+function buildDoorGlassMesh(b){
+  const g0=doorGlassPaneOf(b); if(!g0) return null;
+  const M=orientMatrix(b.orient||"front",b.yaw||0), tint=doorGlassTint(g0.kind);
+  const geo=new THREE.BoxGeometry(g0.L,g0.W,g0.T);
+  geo.translate(0,0,g0.zc); geo.applyMatrix4(M);
+  const mesh=new THREE.Mesh(geo,doorGlassMats(tint));
+  if(tint!=="frost"){ const sm=glassStreakMat();                          // กระจกฝ้าไม่มีเงาสะท้อนเป็นเส้น
+    if(sm){ const pg=new THREE.PlaneGeometry(g0.L,g0.W); pg.translate(0,0,g0.zc+g0.T/2+0.05); pg.applyMatrix4(M);
+      const st=new THREE.Mesh(pg,sm); st.renderOrder=3; st.raycast=function(){}; mesh.add(st); } }   // ลูกของแผ่นกระจก = ขยับตามกันเสมอ
+  mesh.position.set(b.x,b.y,b.z);
+  mesh.userData.id=b.id;                                                  // ติดรหัสบาน → กางบานแล้วกระจกหมุนตามไปด้วย
+  mesh.userData.doorGlass=true;
+  mesh.renderOrder=2; mesh.raycast=function(){};                          // คลิกทะลุกระจกไปเลือกของในตู้ได้
+  return mesh; }
 /* v1.171: material ของรูตัน/รูขอบ/Pocket เคยสร้างใหม่ทุกจุด ทั้งที่สีขึ้นกับโทนของแผ่นล้วน ๆ
    ออร์เดอร์จริง 3 ตู้ 141 แผ่น สร้างทิ้ง 504 ตัวทุก rebuild · ที่ 70 ตู้จะเป็นราว 11,760 ตัว
    ยกมาใช้ _matC ตัวเดียวกับที่ solidMat/glassMat ใช้อยู่แล้ว เหลือไม่กี่ตัวต่อโทน
@@ -3120,11 +3274,22 @@ function buildGrainMesh(b){
   const L=Math.max((_cross?b.W:b.L)||0,1), W=Math.max((_cross?b.L:b.W)||0,1), T=Math.max(b.T||0,1);
   const n=Math.max(3,Math.min(9,Math.round(W/28)));          // จำนวนเส้น ตามความกว้างชิ้น
   const pts=[], half=L/2*0.94;
+  /* v1.283: บานกัดทะลุ — เส้นลายไม่ลากลอยข้ามช่องกระจก (และข้ามบ่าที่จมลงไปของหน้านั้น) */
+  let _cut=null; try{ _cut=doorReliefCutOf(b); }catch(e){ _cut=null; }
+  const _hole=sideT=>{ if(!_cut) return null;
+    const onReb=_cut.rd>0&&_cut.rf>0&&((sideT<0)===!!_cut.back);
+    const f=onReb?_cut.rf:_cut.cf, hL=Math.max(((_cross?b.W:b.L)||0)/2-f,0), hW=Math.max(((_cross?b.L:b.W)||0)/2-f,0);
+    return (hL>0&&hW>0)?{hL,hW}:null; };
   [1,-1].forEach(sideT=>{                                     // วาดทั้งสองหน้าใหญ่
+    const hl=_hole(sideT);
     for(let i=0;i<n;i++){
       const w=(-W/2)+W*(i+0.5)/n;
       const o=new THREE.Vector3(b.x,b.y,b.z)
         .addScaledVector(uW,w).addScaledVector(uT,sideT*(T/2+0.35));
+      if(hl&&Math.abs(w)<hl.hW){ if(half>hl.hL){
+          pts.push(o.clone().addScaledVector(uL,-half), o.clone().addScaledVector(uL,-hl.hL));
+          pts.push(o.clone().addScaledVector(uL,hl.hL), o.clone().addScaledVector(uL,half)); }
+        continue; }
       pts.push(o.clone().addScaledVector(uL,-half), o.clone().addScaledVector(uL,half));
     } });
   const g=new THREE.BufferGeometry().setFromPoints(pts);
@@ -12299,6 +12464,8 @@ function render3D(refit){
       const lg=new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(P.x,P.y-hh,P.z),new THREE.Vector3(P.x,P.y+hh,P.z)]);
       const ln=new THREE.Line(lg,new THREE.LineBasicMaterial({color:0xe6a44b,transparent:true,opacity:.9}));
       ln.renderOrder=6; root.add(ln); });
+    /* v1.283: บานที่มีแผ่นกลาง/กระจกเป็นชิ้นจริงในฉากอยู่แล้ว (บานไม้+เส้นเฟรม) ไม่ต้องวาดกระจกซ้อนอีกแผ่น */
+    const _gFillOwn=new Set((state.boards||[]).filter(x=>x&&x._framePart&&!x._frameSec&&x._frameOwner).map(x=>x._frameOwner));
     _vb.forEach((b,i)=>{
       if(state.hidden&&state.hidden.includes(b.id))return;   // ชิ้นที่ซ่อน
       if(b._noPanel||b._frameDoor)return;                    // v9.83: บานเฟรม = ไม่มีแผ่นบานจริง · v8.93: ลิ้นชักในที่สั่งไม่เอาหน้าบาน — เก็บชิ้นไว้เป็นตัวอ้างอิงผัง แต่ไม่วาด ไม่ผลิต
@@ -12387,6 +12554,7 @@ function render3D(refit){
       buildConnectorMeshes(b).forEach(cm=>{root.add(cm);meshes.push({mesh:cm,id:b.id,d,connector:true});});
       buildBlindHoleMeshes(b).forEach(hm=>root.add(hm));   // รูตัน (โชว์อย่างเดียว ไม่ raycast)
       buildPocketMeshes(b).forEach(pm=>root.add(pm));      // Pocket (โชว์อย่างเดียว)
+      if(!_gFillOwn.has(b.id)){ try{ const gm2=buildDoorGlassMesh(b); if(gm2) root.add(gm2); }catch(e){ console.error("doorGlass3D:",e); } }   // v1.283: กระจกในบานกัดทะลุ (ทั้งโหมดประหยัดและไม่ประหยัด)
     { const gl=_rlg?null:buildGrainMesh(b); if(gl){ gl.userData.id=b.id; root.add(gl); } }   // v1.247: บานมีลาย = เส้นลายไม้แบนจะลอยเหนือร่อง ไม่วาด   // v1.133: ติดรหัสชิ้น -> ลายไม้ตามบานไปตอนกาง      // ลายไม้ (โชว์อย่างเดียว ไม่ raycast)
       if(state.showLabels){const s=numberSprite(String(i+1));s.position.set(b.x,b.y+d[1]/2+labelScale*.7,b.z);s.scale.set(labelScale,labelScale,1);s.userData.label=true;root.add(s);}
       // เส้นสัญลักษณ์ทิศเปิดบาน (V จากมุมฝั่งบานพับ → กลางขอบฝั่งเปิด) — เฉพาะบานเปิด ไม่รวมหน้าลิ้นชัก
