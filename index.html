@@ -940,7 +940,7 @@
    ===================================================================== */
 /* ---- APP_META: แหล่งความจริงเดียวของเวอร์ชัน (ดูได้จาก console / คลิกชื่อแอป) ---- */
 const APP_META={
-  name:"StarNexus Cabinet", version:"1.290", build:"2026-09-23/datum-shelf-below",
+  name:"StarNexus Cabinet", version:"1.292", build:"2026-09-23/auto-rails",
   file:"StarNexus.html", basedOn:"Furnitech_V3.html (v3.11)",
   /* ───────── เริ่มนับเวอร์ชันใหม่ที่ 1.001 (21/08/2026) ─────────
      ของเดิมนับมาถึง 42.1 แล้ววิ่งเป็นทศนิยมสองชั้นซึ่งอ่านลำดับยาก
@@ -948,6 +948,8 @@ const APP_META={
      ประวัติเก่าเก็บไว้ทั้งหมดตามเลขเดิม ไม่ไล่เขียนใหม่ เพราะเลขในนั้นถูกอ้างถึงไปแล้ว
      รายการที่อยู่ใต้ 1.001 ลงไปจึงเป็นเลขชุดเก่า อ่านต่อกันได้ตามวันที่ */
   changelog:[
+    ["1.292","2026-09-23","FEAT ปุ่มจัดคานขวางในโครงให้อัตโนมัติ — โครงผนัง/แผงกรุที่มาจากคลังเก็บคานไว้ 3 เส้นตายตัว ล่าง–กลาง–บน ไม่ว่าโมเดลจะถูกยืดสูงเท่าไร ช่องระหว่างคานจึงโตตามความสูงไปเรื่อย ๆ เคสจริงในไฟล์ที่ส่งมา สูง 700 ได้ช่องละ 299 · สูง 1200 ได้ช่องละ 549 · สูง 2000 ได้ช่องละ 949 ซึ่งของจริงรับไม่ไหว ต้องมานั่งก๊อปคานแล้วไล่คำนวณระยะเองทีละใบ · ปุ่มใหม่ดูจากระยะห่างไม่เกินที่ตั้งไว้ (ตั้งต้น 500 มม. แก้ได้ในช่องข้างปุ่ม จำค่าล่าสุดไว้) แล้วเติม/ถอดคานกลางให้ระยะเท่ากันหมด span หารระยะสูงสุดปัดขึ้น = จำนวนช่อง คาน = ช่อง+1 · ผลกับไฟล์ที่ส่งมา สูง 700 คงเดิม 3 เส้น · สูง 1200 เป็น 4 เส้น ช่องละ 366 · สูง 2000 เป็น 5 เส้น ช่องละ 474 ตรงกับที่ขอมาพอดี · แผงขวาบอกสถานะก่อนกดว่าตอนนี้กี่คานช่องละเท่าไร และจะกลายเป็นเท่าไร · เลือกหลายใบแล้วกดทีเดียวได้ ใช้ชุดตู้ที่เลือกเดียวกับปุ่มอื่น (cabSelKeys) · ตั้งใจกันไม่ให้ไปพันกับส่วนอื่น: แตะเฉพาะคานที่เหมือนกันทุกอย่างยกเว้นความสูงตั้งแต่ 2 เส้นขึ้นไป (คานหน้า/คานหลังลิ้นชักที่อยู่ระดับเดียวกันแต่คนละแนวลึกหรือคนละหน้ากว้าง เป็นคนละชุด ไม่ถูกแตะ) · คานล่างสุดกับบนสุดไม่ขยับเลยสักมิล เพราะสองเส้นนั้นล็อก floorTop/topUnder ไว้ เปลี่ยนแค่คานกลาง · คานกลางที่ปั้นใหม่ถอดล็อกระยะ _datum ออก เพราะ centerZone จะดึงทุกเส้นไปกองกลางช่องเดียวกัน แต่ถ้าผลลัพธ์เหลือเส้นกลางเส้นเดียวก็คืน centerZone ให้เหมือนเดิม ตู้เตี้ยจึงไม่มีอะไรเปลี่ยนแม้แต่ค่าเดียว · ไม่แตะ reapplyRules refitInterior หรือตัวคิดฉากเลย แค่เพิ่ม-ลบชิ้นแล้ว sync ตามปกติ ทางเดียวกับปุ่มเพิ่มคานเดิม · คานใหม่ก๊อปจากคานกลางเดิมทั้งดุ้น ทั้ง Part วัสดุ ผิว ขอบ และชุดเดือย/มินิฟิก จึงได้ของเหมือนกันทุกเส้น ล้างรูเก่ากับเลขชิ้นให้ ไม่ให้เลขซ้ำ · Ctrl+Z ย้อนได้"],
+    ["1.291","2026-09-23","FEAT เลื่อนตู้ด้วย “ระยะที่ต้องการขยับ” และทำหลายใบพร้อมกันในคำสั่งเดียว — เคสจริงคือย้ายตู้แขวนทั้งแถวลง 200 มม. ซึ่งของเดิมทำได้สองทางและแย่ทั้งคู่ · ทางแรกลากใน 3D แล้วรอให้สแนปจับมุมให้ตรง ซึ่งต้องเล็งนานและไม่มีอะไรรับประกันว่าได้ระยะเป๊ะ · ทางที่สองคือช่องตำแหน่งตู้ในแผงขวา ซึ่งรับพิกัดสัมบูรณ์ของมุมหลังซ้ายล่าง และมีผลกับตู้ใบเดียว ย้ายสามใบจึงต้องเปิดทีละใบ จดเลขเดิม ลบ 200 เอง แล้วพิมพ์กลับเข้าไป ผิดใบเดียวคือแถวเบี้ยวทั้งแถว · เพิ่มช่องระยะสัมพัทธ์สามแกนใต้ช่องตำแหน่ง ใส่ค่าลบได้ ช่องที่เป็น 0 ไม่ขยับ พิมพ์แล้วกด Enter ได้เลย ป้ายบอกทิศบวกลบของแต่ละแกนไว้ในช่อง (ซ้าย−/ขวา+ · ลง−/ขึ้น+ · หลัง−/หน้า+) · เลือกตู้ไว้กี่ใบก็ขยับเท่ากันหมดในคำสั่งเดียว ใช้ชุดตู้ที่เลือกเดียวกับที่ปุ่มโครงสร้าง ออกแบบผลิต และ Isolate ใช้อยู่แล้ว (cabSelKeys) ไม่ได้สร้างวิธีเลือกใหม่ · ตู้ที่ใส่ไว้ในช่องของตู้ที่เลือกเลื่อนไปด้วย ไม่ต้องรอรอบจัดช่อง · ชิ้นในตู้ขยับพร้อมกันทุกชิ้นรวมบานกับอุปกรณ์ ระยะภายในตู้จึงไม่เปลี่ยนสักมิลลิเมตร · ล็อกไฟล์อยู่ก็ถูกกันไว้ตามปกติ · Ctrl+Z ย้อนได้ · UX ป้ายหัวแผงบอกให้ตรงแล้วว่าอะไรทำกับทุกใบที่เลือก อะไรทำกับใบเดียว ของเดิมเขียนว่าช่องแก้ค่าด้านล่างมีผลกับใบนี้ใบเดียว ซึ่งไม่จริงมาตั้งแต่ v1.241 ที่ปุ่มโครงสร้างทำทุกใบที่เลือก"],
     ["1.290","2026-09-23","FEAT วางตามระยะอ้างอิง เพิ่มจุดอ้างอิงจาก “ชั้นที่อยู่ข้างล่าง” สามแบบ ผิวบน · กึ่งกลาง · ผิวล่าง ของชั้นนั้น — ของเดิมเจ็ดตัวเลือกอ้างอิงจากตัวตู้ทั้งหมด (แผ่นพื้นบน/ล่าง · ล่างสุด/บนสุดของตู้ · ใต้ฝาบน · กึ่งกลางตู้ · กึ่งกลางช่อง) ไม่มีตัวไหนอ้างจากชั้นข้างเคียงเลย · งานจริงบอกระยะเป็น ห่างจากชั้นล่าง N กันเป็นปกติ โดยเฉพาะช่องที่มีชั้นหลายระดับ ของเดิมต้องมานั่งบวกความหนาชั้นกับระยะสะสมเองทุกครั้ง แล้วพอชั้นล่างขยับก็ต้องคิดใหม่ทั้งตับ · นิยาม “ชั้นที่อยู่ข้างล่าง” ใช้ตัวเดียวกับโหมดกึ่งกลางช่องที่อยู่ (zoneY) ทุกบรรทัด คือแผ่นนอน/คาน/เส้นแบ่ง ที่ซ้อนกับชิ้นนี้ในผังจริงทั้งแนวกว้างและแนวลึก และอยู่ต่ำกว่า เอาตัวที่ใกล้ที่สุด — ชั้นของช่องอื่นหรือคานที่อยู่หลังแผ่นหลังจึงไม่ถูกนับ · ไม่เจอสักตัวก็ถอยไปใช้แผ่นพื้นตู้ ซึ่งเป็นชั้นล่างสุดของทุกตู้อยู่แล้ว · ใช้ร่วมกับปุ่ม วัดถึง ผิวใกล้/กึ่งกลางชิ้น/ผิวไกล ได้ตามปกติ และใส่สูตรอย่าง $D4+$D5 ได้เหมือนโหมดอื่น · ผูกแล้วคิดใหม่ทุกรอบคิดฉากเหมือนโหมดเดิม ชั้นล่างขยับเมื่อไหร่ชิ้นนี้ตามไปเอง และค้นหาใหม่ทุกครั้งจากตำแหน่งปัจจุบัน ย้ายชิ้นข้ามช่องก็เกาะชั้นล่างของช่องใหม่ · มีทั้งในแผงไม้จริงและแผงเส้นแบ่ง ใช้รายการชื่อโหมดชุดเดียวกัน (DATUM_LABEL) ตามที่ v33.8 วางไว้ จึงไม่ต้องไล่แก้หลายจุด · ตู้ที่หมุนตามผังใช้ได้เหมือนกัน เพราะเดินผ่านตัวคลายหมุนเดิมของ guideDatumPlace (v1.165)"],
     ["1.289","2026-09-23","FIX แผ่นกล่องลิ้นชักที่ใช้สีลายไม้ ได้ลายตั้งบ้างนอนบ้างแบบสุ่ม ตอนนี้ลายนอนเสมอตามที่ของจริงต้องเป็น — กล่องลิ้นชักเป็นไม้เส้นยาวเตี้ย สูงแค่ 100–150 มม. แต่ยาวตามความลึกตู้ ลายต้องวิ่งตามความยาวอย่างเดียว ตั้งลายขวางบนชิ้นเตี้ยแบบนั้นไม่มีใครทำ ทั้งเปลืองแผ่นและไม้แตกง่ายตามแนวเสี้ยน · ของเดิมบทบาท box ไม่เข้าทั้งกลุ่มลายตั้ง (แผ่นข้าง/แผ่นหลัง/หน้าบาน) และกลุ่มลายนอน (คาน/คาน DX) grainWantVertical() จึงคืน null แปลว่า ไม่แตะเลย ปล่อยให้ลายวิ่งตามด้านยาว L ของชิ้น · ฟังดูถูก แต่ไม่ถูกกับแผ่นข้างกล่อง เพราะตัวสร้างกล่องเก็บ L ของแผ่นข้างเป็นความสูงกล่อง ไม่ใช่ความลึก mk(\"Drawer Side L 1\", สูง, ลึก, T, \"side\") ลายตามยาวจึงกลายเป็นลายตั้งบนชิ้นสูง 100 · และเพราะไม่แตะเลย ค่า grainCross ที่ค้างมาจากตอนไหนก็ไม่มีใครล้าง เคสจริงในออเดอร์ที่ส่งมา BND123 พื้น/หลังกล่องลายนอน ส่วน BND214 ที่อยู่ติดกันลายตั้ง ทั้งที่เป็นกล่อง K40 แบบเดียวกันทุกอย่าง · ย้ายบทบาท box ไปอยู่กลุ่มเดียวกับคาน: ลายนอนเสมอ และไม่รับคำสั่งแนวลายจากท้ายรหัสสี X/Y เหมือนคาน (แผลเดียวกับ v42.0 แผ่นนอน และ v1.002 คาน แค่คนละบทบาท) · แผ่นพื้นกล่องเป็นแผ่นนอน ไม่มีคำว่าลายตั้งอยู่แล้ว จึงไม่แตะ ปล่อยตามกติกาแผ่นนอนของ v42.0 (บังคับด้วยจะไปล้าง grainCross ที่ทำให้ลายวิ่งตามด้านยาวของแผ่นพื้นบางใบ แล้วใบตัดสลับ ยาว/กว้าง) · ปิดทั้งระบบได้ที่ grainAuto = false ตามเดิม และกด 🔒 ล็อคลาย รายชิ้นได้เหมือนเดิม · ไม่แตะข้อมูลชิ้น ขนาด ไฟล์เจาะ หรือ BOM — แนวลายมีผลกับภาพ 3D กับขีดบอกแนวในแบบผลิต และช่อง GROR ตอนส่งออก"],
     ["1.288","2026-09-23","FIX ทอปกับแผ่นพื้นของตู้ที่หมุนตามผัง ออกช่อง Groove3 เป็น CNC ทั้งที่ BackSet 16 ต้องออกมาโคร V ตามปกติ — และที่หนักกว่านั้นคือร่องหายไปเฉย ๆ ไม่มีใครทำเลยสักทาง · เคสจริงจากออเดอร์ที่ส่งมา 37 ชิ้นที่มีร่องรับแผ่นหลัง ตก CNC ไป 11 ชิ้น (BAT070 BNT028×2 WNL059 WNR059 WNR042 WNT043 ทั้งทอปและพื้น) · สาเหตุสองชั้น (1) v41.7 ให้ \"รูปทรงที่วัดได้\" ชนะ \"ค่าที่ตั้งไว้\" เสมอ ซึ่งกลับหัวกลับหาง BackSet 16 คือเจตนาของคนออกแบบ ร่องที่วัดได้ไม่ตรงแปลว่าชิ้นเคลื่อนไปหลังเซาะร่อง ไม่ใช่เจตนาเปลี่ยน · ตอนนี้ค่าที่ตั้งไว้ชนะตราบใดที่ยังเป็นค่าที่เลื่อยได้ (ไม่เกิน 30) ไปวัดจากรูปเฉพาะตอนค่าที่เก็บใช้เลื่อยไม่ได้ ซึ่งคือเคสที่ v41.7 ตั้งใจแก้พอดี (แผ่นร่นเข้ามาเอง ค่าที่เก็บเป็นระยะจากหลังตู้ 66 ส่วนของแผ่นเองคือ 16) · (2) ตัววัดเองก็ผิดกรอบ pos ของร่องเป็นระยะในแกนของชิ้น ตัวเซาะร่องทั้งสามที่เขียนกำกับตรงกันว่า แผ่นตั้ง worldZ = p.z + pos · แผ่นนอน worldZ = p.z − pos ซึ่งจริงเฉพาะตอนตู้หัน 0° แต่ v41.7 เอาไปลบกับกรอบโลก worldDims(b)[2] พอตู้หมุน 90/180/270 ตามผัง แกนลึกของแผ่นย้ายไปอยู่บนแกน x แล้ว worldDims(b)[2] กลายเป็นความกว้างแผ่น ค่าที่ได้จึงไม่ใช่ระยะอะไรเลย ทอปตู้ลอยลึก 350 วัดได้ 124.75 และ 274.75 เกิน 30 ก็ตกไปออก CNC · แผ่นข้างรอดมาได้เพราะค่าที่วัดออกมาติดลบ แล้วโค้ดมีเงื่อนไข v>=0 กันไว้ จึงถอยไปใช้ค่าที่ตั้ง ไม่ใช่เพราะคิดถูก · แก้เป็นวัดในแกนของแผ่นเอง แกนลึกคือ b.W ทั้งแผ่นตั้งและแผ่นนอน จึงไม่ต้องรู้ว่าตู้หันทางไหน เคส v41.7 ที่ตู้หมุนก็เพิ่งจะทำงานได้จริงรอบนี้ · ผลข้างเคียงที่เงียบกว่าและอันตรายกว่า: แผ่นพื้นบางใบวัดได้ 24.75 กับ 14.8 ซึ่งไม่เกิน 30 จึงออกมาโครไปเลยด้วยเลขผิด V100250050 และ V100150045 ทั้งที่แผ่นข้างใบเดียวกันออก V100160050 — ของพวกนี้ไม่มีอะไรฟ้อง ต้องไปเจอที่หน้างาน · หลังแก้ ทั้ง 37 ชิ้นออก V100160050/V100160045 ตรงกับแผ่นข้างของตู้ใบเดียวกันทุกใบ และไฟล์เจาะไม่เปลี่ยนสักบรรทัด (ตรวจ 160 ชิ้น) · FIX ร่องรับแผ่นหลังหายไปทั้งสองทาง — ไฟล์เจาะตัดสินจากธง g.cnc ส่วนช่อง Groove3 ตัดสินจากมาโคร คนละเกณฑ์กัน ร่องที่ธงไม่ได้ติดแต่มาโครออกเป็น CNC จึงไม่ถูกกัดในไฟล์ และไม่ได้ไปเลื่อยด้วย ใบอุปกรณ์เขียนคำว่า CNC ไว้ลอย ๆ แผ่นออกจากโรงงานโดยไม่มีร่อง · ตอนนี้ยึดเกณฑ์เดียว ได้มาโคร V = งานเลื่อยไม่ต้องกัด นอกนั้นกัดในไฟล์ทั้งหมด (เกณฑ์เดียวกับร่องพื้นลิ้นชัก v1.257) · และ backGrooveMacro() หาแผ่นหลังจากฉากด้วย cabInst ได้เองเมื่อไม่ได้ส่งกลุ่มมา ใบอุปกรณ์กับไฟล์เจาะจึงตัดสินจากความหนาแผ่นหลังตัวเดียวกันเสมอ"],
@@ -1367,6 +1369,7 @@ const DEF_SETTINGS={ frontSetMax:6, dowelD:8, dowelDepth:28, dowelMateDepth:12, 
   dowelSizeMode:true, dowelBackRelease:0, dowelFlipFront:false, dowelSizeRule:DEF_DOWEL_RULE,
   dowelFormulas:[{name:"มาตรฐาน",rule:DEF_DOWEL_RULE}], dowelFormulaActive:"มาตรฐาน", mfFormulaActive:"มาตรฐาน", cloudAutoSave:true,
   backset:16, backGroove:true, backOver:4.5, backClear:0.5,
+  railAutoGap:500,   // v1.292: คานขวางในโครง ห่างกันไม่เกินกี่ มม. ก่อนต้องเพิ่มคาน
   drawerBotThick:9, drawerBotLift:11, drawerBotOver:4.5, drawerBotClear:0.5, drawerBotMacroOn:true, drawerBotPipeNotch:false, drawerBotPipeW:40, drawerBotPipeH:25,
   mfBoltD:8, mfBoltDepth:28, mfCamD:15, mfCamDepth:13, mfCamOffset:34, mfMateD:5, mfMateDepth:12, mfFixFromFace:8.1, mfCenterMax:16, mfName:"Minifix", mfCode:"MINIFIX",
   ledMinRun:60,         // v22.8: ท่อนรางที่สั้นกว่านี้ = เศษ ไม่ต้องออก
@@ -13957,7 +13960,7 @@ function renderCabInspector(g,insp,body,rf){
   const W=_cw.W,H=_cw.H,D=_cw.D;
   const code=(g.boards[0]&&g.boards[0].cab)||"";
   body.innerHTML=`
-    <div class="muted" style="font-size:11px;margin-bottom:8px;padding:6px 9px;background:rgba(0,122,255,.10);border-radius:8px;color:#0a5fd0">🗄️ เลือกทั้งตู้ <b>${escapeHtml(g.productId)}</b> · ${g.boards.filter(x=>!isGuide(x)).length} ชิ้น — ปรับค่าที่ใช้ร่วมกันทั้งตู้ได้ที่นี่ (คลิกชิ้นใน 3D เพื่อแก้รายชิ้น)${cabSelKeys().length>1?('<br><b>เลือกไว้ '+cabSelKeys().length+' ใบ</b> — ช่องแก้ค่าด้านล่างมีผลกับใบนี้ใบเดียว ส่วนปุ่มออกแบบผลิตใช้ทั้ง '+cabSelKeys().length+' ใบ'):""}</div>
+    <div class="muted" style="font-size:11px;margin-bottom:8px;padding:6px 9px;background:rgba(0,122,255,.10);border-radius:8px;color:#0a5fd0">🗄️ เลือกทั้งตู้ <b>${escapeHtml(g.productId)}</b> · ${g.boards.filter(x=>!isGuide(x)).length} ชิ้น — ปรับค่าที่ใช้ร่วมกันทั้งตู้ได้ที่นี่ (คลิกชิ้นใน 3D เพื่อแก้รายชิ้น)${cabSelKeys().length>1?('<br><b>เลือกไว้ '+cabSelKeys().length+' ใบ</b> — ใช้ทั้ง '+cabSelKeys().length+' ใบ: <b>เลื่อนตู้</b> · โครงสร้าง · ออกแบบผลิต · Isolate · ส่วนช่องอื่น (รหัส ขนาด ตำแหน่ง หมุน) มีผลกับใบนี้ใบเดียว'):""}</div>
     <div class="fld"><label>รหัสตู้ (Cabinet Code) — เปลี่ยนทั้งตู้</label><input class="nameinp" id="cab_code" value="${escapeHtml(code)}" placeholder="เช่น BND001" style="width:100%">
       <div class="muted" style="font-size:11px;margin-top:3px;line-height:1.5">ช่องนี้เปลี่ยนแต่ป้ายที่ติดอยู่ ชิ้นข้างในยังเป็นของเดิม — อยากได้รูปแบบตู้ของอีกรหัสจริง ๆ ใช้ปุ่มข้างล่าง</div></div>
     <div class="ibtns" style="margin-top:4px"><button class="ibtn" id="cab_swap" style="flex:1">🔁 เปลี่ยนรุ่นตู้ (โหลดรหัสอื่นมาแทน · ใช้ Variables เดิม)</button></div>
@@ -13978,6 +13981,21 @@ function renderCabInspector(g,insp,body,rf){
               ?'แผ่นข้างของตู้นี้ไม่มี Part แบบ _MatNN (เช่น 1111_Mat19) — ผูก Part ก่อนถึงจะสลับได้'
               :('โครงสร้าง '+st+' มม. — ตอนนี้สลับได้เฉพาะ 16 ↔ 19'))+'</div>')
         +'</div>'; })()}
+    ${(()=>{ /* v1.292: จัดคานขวางอัตโนมัติ — โชว์เฉพาะตู้ที่มีคานเป็นชุดจริง ๆ */
+      const _gp=Math.max(+settings.railAutoGap||0,50)||500;
+      let inf=[]; try{ inf=railAutoInfo(g.key,_gp); }catch(e){}
+      if(!inf.length) return "";
+      const nSel=cabSelKeys().length;
+      const line=inf.map(p=>"ตอนนี้ <b>"+p.have+" คาน</b> ช่องละ "+Math.round(p.span/(p.have-1))+" มม."
+        +(p.want!==p.have?(" → จะเป็น <b>"+p.want+" คาน</b> ช่องละ "+p.pitch+" มม. ("+(p.want>p.have?("เพิ่ม "+(p.want-p.have)):("ถอด "+(p.have-p.want)))+")")
+                         :" — พอดีแล้ว ไม่ต้องเพิ่ม")).join("<br>");
+      return '<div class="fld" style="margin-top:8px"><label>คานขวางในโครง — จัดระยะอัตโนมัติ'+(nSel>1?(" · ทำกับ "+nSel+" ใบที่เลือก"):"")+'</label>'
+        +'<div class="ibtns" style="gap:6px;align-items:center">'
+        +'<span style="font-size:12px;opacity:.85;white-space:nowrap">ห่างไม่เกิน (มม.)</span>'
+        +'<input class="nameinp" type="number" id="cab_railGap" value="'+_gp+'" style="flex:1;min-width:0;font-family:var(--mono)">'
+        +'<button class="ibtn" id="cab_railAuto" style="flex:none;padding:5px 16px;background:var(--accent);color:#fff;border-color:transparent">🪜 จัดคาน</button></div>'
+        +'<div class="muted" style="font-size:11px;margin-top:3px;line-height:1.55">'+line
+        +'<br>คานล่างสุดกับบนสุดอยู่ที่เดิม เปลี่ยนเฉพาะคานกลาง · คานชุดอื่น (คานหน้า/หลังลิ้นชัก) ไม่ถูกแตะ · Ctrl+Z ย้อนได้</div></div>'; })()}
     <div class="ibtns" style="margin-top:4px"><button class="ibtn" id="cab_shop" style="flex:1;background:var(--accent);color:#fff;border-color:transparent">🗎 ออกแบบผลิต${cabSelKeys().length>1?(" ("+cabSelKeys().length+" ใบที่เลือก)"):" (ตู้นี้)"}</button></div>
     <div class="ibtns" style="margin-top:4px"><button class="ibtn" id="cab_isolate" style="flex:1">${(state.hidden&&state.hidden.length)?"👁 แสดงทุกตู้ (เลิกโฟกัส)":("🔍 แสดงเฉพาะ"+(cabSelKeys().length>1?(cabSelKeys().length+" ใบที่เลือก"):"ตู้นี้")+" (Isolate)")}</button></div>
     <div class="ibtns" style="margin-top:4px"><button class="ibtn" id="cab_export" style="flex:1">📦 ส่งออกตู้เป็นไฟล์ (.json)</button><button class="ibtn" id="cab_attach" style="flex:1">📎 แปะตู้จากรหัส (ปิดข้าง/หน้า)</button></div>
@@ -13986,6 +14004,17 @@ function renderCabInspector(g,insp,body,rf){
         <div class="num"><span>X</span><input type="number" id="cab_px" value="${Math.round(mn[0])}"></div>
         <div class="num"><span>สูงพื้น</span><input type="number" id="cab_py" value="${Math.round(mn[1])}"></div>
         <div class="num"><span>Z</span><input type="number" id="cab_pz" value="${Math.round(mn[2])}"></div></div></div>
+    ${/* v1.291: เลื่อนด้วย "ระยะที่อยากขยับ" ไม่ใช่พิกัดปลายทาง — และทำหลายใบพร้อมกัน
+          ช่องตำแหน่งข้างบนรับพิกัดสัมบูรณ์ของใบเดียว ย้ายทั้งแถวจึงต้องเปิดทีละใบ
+          จดเลขเดิม บวกลบเอง แล้วพิมพ์กลับเข้าไป ผิดใบเดียวคือแถวเบี้ยวทั้งแถว
+          ตรงนี้ใส่ส่วนต่างตรง ๆ ใส่ค่าลบได้ ทุกใบที่เลือกไว้ขยับเท่ากันเป๊ะในคำสั่งเดียว */""}
+    <div class="fld"><label>เลื่อนตู้ (ระยะที่ต้องการขยับ · ใส่ค่าลบได้)${cabSelKeys().length>1?(" — ทำกับ "+cabSelKeys().length+" ใบที่เลือกพร้อมกัน"):""}</label>
+      <div class="grid3">
+        <div class="num"><span>ซ้าย − / ขวา +</span><input type="number" id="cab_dx" value="0"></div>
+        <div class="num"><span>ลง − / ขึ้น +</span><input type="number" id="cab_dy" value="0"></div>
+        <div class="num"><span>หลัง − / หน้า +</span><input type="number" id="cab_dz" value="0"></div></div>
+      <div class="ibtns" style="margin-top:4px"><button class="ibtn" id="cab_nudge" style="flex:1;background:var(--accent);color:#fff;border-color:transparent">⇄ เลื่อน${cabSelKeys().length>1?(" "+cabSelKeys().length+" ใบที่เลือก"):"ตู้นี้"}</button></div>
+      <div class="muted" style="font-size:11px;margin-top:3px;line-height:1.5">พิมพ์แล้วกด Enter ได้เลย · ช่องที่ไม่ได้ใส่ (0) ไม่ขยับ · ตู้ในช่องของตู้ที่เลือกไปด้วย · Ctrl+Z ย้อนได้</div></div>
     <div class="fld"><label>หมุนตู้ (รอบแกนตั้ง · หมุนรอบมุมตู้)</label>
       <div class="seg" id="cab_rot">${[0,90,180,270].map(a=>`<button type="button" data-deg="${a}" class="${cabYawOf(g.key)===a?'sel':''}">${a}°</button>`).join("")}</div></div>
     <div class="ibtns" style="margin-top:8px"><button class="ibtn" id="cab_door" style="flex:1">🚪 เพิ่มหน้าบาน / ลิ้นชัก</button></div>
@@ -14029,6 +14058,26 @@ function renderCabInspector(g,insp,body,rf){
       render3D(true); renderList(); showInspector();
       toast(insts.size>1 ? ("แสดงเฉพาะ "+insts.size+" ตู้ที่เลือก · "+keep.length+" ชิ้น")
                          : ("แสดงเฉพาะตู้ "+(g.cab||"")+" · "+keep.length+" ชิ้น")); }; }
+  /* v1.292: จัดคานขวางอัตโนมัติ — ทำได้ทีละหลายใบเหมือนปุ่มอื่นที่ใช้ชุดตู้ที่เลือก */
+  { const rb=body.querySelector("#cab_railAuto");
+    if(rb) rb.onclick=()=>{
+      if(typeof isLocked==="function"&&isLocked()){ guardEdit("จัดคาน"); return; }
+      const gi=body.querySelector("#cab_railGap");
+      const gap=Math.max(+((gi&&gi.value)||0),50);
+      if(!isFinite(gap)){ toast("ระยะห่างต้องเป็นตัวเลข"); return; }
+      settings.railAutoGap=gap; try{ lsSet("furnitech:settings",settings); }catch(e){}
+      const keys=cabSelKeys();
+      const insts=(keys.length>1)? cabGroups().filter(x=>keys.indexOf(String(x.key))>=0).map(x=>String(x.key)) : [String(g.key)];
+      let add=0, rem=0, same=0, cabs=0, miss=0; const pit=[];
+      insts.forEach(k=>{ let r=null; try{ r=autoRailsInCab(k,gap); }catch(e){ console.error("autoRails:",e); return; }
+        if(!r||!r.stacks){ miss++; return; }
+        cabs++; add+=r.added; rem+=r.removed; same+=r.same; r.pitch.forEach(v=>pit.push(v)); });
+      if(!cabs){ toast("ตู้ที่เลือกไม่มีคานที่จัดเป็นชุดได้ (ต้องมีคานแนวเดียวกันตั้งแต่ 2 เส้น)"); return; }
+      if(!add&&!rem){ toast("คานพอดีอยู่แล้วทุกใบ — ระยะไม่เกิน "+gap+" มม. ("+cabs+" ใบ)"); return; }
+      state.selectedId=null; sync(1); try{ showInspector(); }catch(e){}
+      toast("🪜 จัดคาน "+cabs+" ใบ · เพิ่ม "+add+" เส้น"+(rem?(" · ถอดคานกลางเดิม "+rem+" เส้น"):"")
+        +" · ช่องละ "+[...new Set(pit)].join(" / ")+" มม. (ไม่เกิน "+gap+")"
+        +(same?(" · พอดีอยู่แล้ว "+same+" ชุด"):"")+(miss?(" · ไม่มีคานให้จัด "+miss+" ใบ"):"")+" (Ctrl+Z ย้อนได้)"); }; }
   { const ex=body.querySelector("#cab_export"); if(ex)ex.onclick=()=>exportCabinetFile(g); }
   { const at=body.querySelector("#cab_attach"); if(at)at.onclick=()=>attachCabinetByCode(); }
   /* v1.287: เปลี่ยนรูปแบบตู้ทั้งใบ โดย Variables/ตำแหน่ง/มุมหัน ของตู้ใบนี้อยู่ครบ */
@@ -14041,6 +14090,34 @@ function renderCabInspector(g,insp,body,rf){
     g.boards.forEach(b=>{ b.x=round(b.x+dx); b.y=round(b.y+dy); b.z=round(b.z+dz); });
     sync(0); toast("ย้ายตู้ "+g.productId+" → ("+tx+", "+ty+", "+tz+")"); };
   ["cab_px","cab_py","cab_pz"].forEach(id=>{ const el=body.querySelector("#"+id); el.onkeydown=e=>{ if(e.key==="Enter"){e.preventDefault();doMove();} }; });
+  /* ───────── v1.291: เลื่อนตู้ด้วยระยะสัมพัทธ์ · หลายใบพร้อมกัน ─────────
+     ของเดิมมีแต่ช่องพิกัดสัมบูรณ์ของใบเดียว ย้ายทั้งแถวต้องเปิดทีละใบแล้วบวกลบเอง
+     หรือไม่ก็ลากใน 3D แล้วรอให้สแนปจับมุมให้ตรง ซึ่งเล็งยากและไม่มีอะไรรับประกันว่าได้ระยะเป๊ะ
+     ใส่ส่วนต่างตรง ๆ จึงแม่นเสมอ ไม่ต้องพึ่งสแนป และทำทุกใบที่เลือกไว้ในคำสั่งเดียว
+     ใช้ชุดตู้ที่เลือกเดียวกับที่ปุ่มโครงสร้าง/ออกแบบผลิต/Isolate ใช้ (cabSelKeys) */
+  { const doNudge=()=>{
+      if(typeof isLocked==="function"&&isLocked()){ guardEdit("เลื่อนตู้"); return; }
+      const gv=id=>{ const el=body.querySelector("#"+id); return el?(+el.value||0):0; };
+      const dx=gv("cab_dx"), dy=gv("cab_dy"), dz=gv("cab_dz");
+      if(![dx,dy,dz].every(isFinite)){ toast("ระยะต้องเป็นตัวเลข"); return; }
+      if(!dx&&!dy&&!dz){ toast("ยังไม่ได้ใส่ระยะที่จะเลื่อน"); return; }
+      const keys=cabSelKeys();
+      const insts=(keys.length>1)? cabGroups().filter(x=>keys.indexOf(String(x.key))>=0).map(x=>String(x.key)) : [String(g.key)];
+      const set=new Set(insts);
+      /* ตู้ที่ใส่ไว้ในช่องของตู้ที่เลือก ต้องไปด้วย ไม่งั้นมันค้างอยู่ที่เดิมจนกว่าจะถึงรอบจัดช่อง */
+      state.boards.forEach(b=>{ if(b&&b._nest&&b._nest.host!=null&&set.has(String(b._nest.host))&&b.cabInst!=null) set.add(String(b.cabInst)); });
+      let n=0; const cabs=new Set();
+      state.boards.forEach(b=>{ if(!b) return;
+        const k=String((b.cabInst!=null)?b.cabInst:("c:"+cabOf(b)));
+        if(!set.has(k)) return;
+        b.x=round(b.x+dx); b.y=round(b.y+dy); b.z=round(b.z+dz); n++; cabs.add(k); });
+      if(!n){ toast("ไม่พบชิ้นของตู้ที่เลือก"); return; }
+      sync(0); try{ showInspector(); }catch(e){}
+      const part=[dx?("แนวกว้าง "+(dx>0?"+":"")+dx):"", dy?("แนวสูง "+(dy>0?"+":"")+dy):"", dz?("แนวลึก "+(dz>0?"+":"")+dz):""].filter(Boolean).join(" · ");
+      toast("⇄ เลื่อน "+cabs.size+" ใบ · "+n+" ชิ้น · "+part+" มม. (Ctrl+Z ย้อนได้)"); };
+    const nb=body.querySelector("#cab_nudge"); if(nb) nb.onclick=doNudge;
+    ["cab_dx","cab_dy","cab_dz"].forEach(id=>{ const el=body.querySelector("#"+id);
+      if(el) el.onkeydown=e=>{ if(e.key==="Enter"){ e.preventDefault(); doNudge(); } }; }); }
   // หมุนตู้: หมุนส่วนต่างจากมุมปัจจุบัน รอบมุมหลังซ้ายของโครง (ใช้ rotateCabBoards ชุดเดียวกับวางผัง XML)
   body.querySelectorAll("#cab_rot [data-deg]").forEach(bt=>bt.onclick=()=>{ const target=+bt.dataset.deg, cur=cabYawOf(g.key);
     const d=((target-cur)%360+360)%360; if(!d)return;
@@ -28885,6 +28962,74 @@ async function addChannelRails(clicked){
   }
 }
 
+/* ═════════ v1.292: จัดคานขวางในโครงให้อัตโนมัติ ═════════
+   โครงผนัง/แผงกรุที่มาจากคลัง (MWD011 · MWD009 ฯลฯ) เก็บคานขวางไว้ 3 เส้นตายตัว
+   คือ ล่าง–กลาง–บน ไม่ว่าโมเดลนั้นจะถูกยืดสูงเท่าไร ช่องระหว่างคานจึงโตตามความสูงไปเรื่อย ๆ
+     สูง 700 ได้ช่องละ 299   ·   สูง 1200 ได้ช่องละ 549   ·   สูง 2000 ได้ช่องละ 949
+   ของจริงรับไม่ไหว ต้องมานั่งก๊อปคานแล้วไล่คำนวณระยะเองทีละใบ
+   ตัวนี้ดูจาก "ระยะห่างไม่เกินที่ตั้งไว้" (ตั้งต้น 500) แล้วเติม/ถอดคานกลางให้ระยะเท่ากันหมด
+     span/500 ปัดขึ้น = จำนวนช่อง · คาน = ช่อง+1   →  700 คงเดิม 3 เส้น · 1200 เป็น 4 · 2000 เป็น 5
+
+   กันไม่ให้ไปพันกับส่วนอื่น (ตั้งใจแคบไว้):
+     · แตะเฉพาะคานที่ "เหมือนกันทุกอย่างยกเว้นความสูง" ตั้งแต่ 2 เส้นขึ้นไป = คานชุดเดียวกันจริง ๆ
+       คานหน้า/คานหลังของลิ้นชักที่อยู่ระดับเดียวกันแต่คนละแนวลึก/คนละหน้ากว้าง จึงเป็นคนละชุด ไม่ถูกแตะ
+     · คานล่างสุดกับบนสุดไม่ขยับเลยสักมิล (สองเส้นนั้นมักล็อก floorTop / topUnder ไว้) เปลี่ยนแค่คานกลาง
+     · คานกลางที่ปั้นใหม่ถอดล็อกระยะ (_datum) ออก เพราะ centerZone จะดึงทุกเส้นไปกองกลางช่องเดียวกัน
+       เหลือเส้นกลางเส้นเดียวเมื่อไหร่ คืน centerZone ให้เหมือนเดิม (ตู้เตี้ยจึงไม่มีอะไรเปลี่ยนเลย)
+     · ไม่แตะ reapplyRules / refitInterior / ตัวคิดฉาก — แค่เพิ่ม-ลบชิ้นแล้ว sync ตามปกติ เหมือนปุ่มเพิ่มคานเดิม */
+function railStacksOf(inst){
+  const rs=state.boards.filter(b=>b&&b.cabInst===inst&&isRail(b)&&!b._virtual&&!b._door);
+  /* จับกลุ่มด้วยค่าใกล้เคียง ไม่ใช่เทียบตรงตัว — คานชุดเดียวกันยาวไม่เท่ากันเป๊ะได้
+     เคสจริง MWD011 สูง 700 คานล่างยาว 968 อีกสองเส้น 967.6 (เศษจากค่าลดของ Part)
+     เทียบตรงตัวจะแยกคานล่างออกไปเป็นคนละชุด เหลือชุดละสองเส้น แล้วไปเติมคานให้ตู้ที่พอดีอยู่แล้ว
+     หน้ากว้าง (W) กับความหนาเทียบละเอียด เพราะคานหน้า/คานหลังของลิ้นชักต่างกันที่ค่านี้ ต้องแยกให้ออก */
+  const near=(a,b,t)=>Math.abs((+a||0)-(+b||0))<=t;
+  const gs=[];
+  rs.forEach(b=>{
+    const g=gs.find(q=>{ const r=q[0];
+      return String(r.orient||"")===String(b.orient||"")
+        && near(r.x,b.x,2) && near(r.z,b.z,2)
+        && near(r.W,b.W,0.6) && near(r.T,b.T,0.6) && near(r.L,b.L,5); });
+    if(g) g.push(b); else gs.push([b]);
+  });
+  return gs.map(a=>a.slice().sort((p,q)=>p.y-q.y)).filter(a=>a.length>=2);
+}
+function railAutoPlan(stack,gap){
+  const lo=stack[0].y, hi=stack[stack.length-1].y, span=hi-lo;
+  if(!(span>1)) return null;
+  const g=Math.max(+gap||0,50);
+  const bays=Math.max(2,Math.ceil(span/g-1e-6));
+  return {lo:lo,hi:hi,span:span,bays:bays,want:bays+1,have:stack.length,pitch:round(span/bays)};
+}
+/* สรุปสถานะไว้โชว์ในแผงขวา — ไม่แตะอะไรทั้งนั้น */
+function railAutoInfo(inst,gap){
+  return railStacksOf(inst).map(st=>railAutoPlan(st,gap)).filter(Boolean);
+}
+function autoRailsInCab(inst,gap){
+  const out={stacks:0,added:0,removed:0,same:0,pitch:[]};
+  railStacksOf(inst).forEach(st=>{
+    const p=railAutoPlan(st,gap); if(!p) return;
+    out.stacks++; out.pitch.push(p.pitch);
+    if(p.want===p.have){ out.same++; return; }
+    const last=st[st.length-1], mids=st.slice(1,-1), tpl=mids[0]||last;
+    const kill=new Set(mids.map(b=>b.id));
+    if(kill.size){ state.boards=state.boards.filter(b=>!(b&&kill.has(b.id))); out.removed+=kill.size; }
+    syncUid();
+    const add=[];
+    for(let i=1;i<p.bays;i++){
+      const c=JSON.parse(JSON.stringify(tpl));
+      c.id=uid(); c.y=round(p.lo+p.span*i/p.bays);
+      c.holes=[]; delete c._bc; delete c._pdone; delete c._pkGeo;
+      /* เส้นกลางเส้นเดียว = คืนล็อกกึ่งกลางช่องให้เหมือนต้นแบบ · หลายเส้น = ตรึงด้วยพิกัดล้วน */
+      if(p.bays===2 && tpl._datum && tpl._datum.m==="centerZone") c._datum=JSON.parse(JSON.stringify(tpl._datum));
+      else delete c._datum;
+      if(c.rule){ delete c.rule.refShelf; delete c.rule.spanShelf; delete c.rule.refDShelf; }
+      add.push(c);
+    }
+    if(add.length){ state.boards=state.boards.concat(add); out.added+=add.length; }
+  });
+  return out;
+}
 async function addRail(){
   const sel=selBoard(); if(!sel){toast("เลือกชิ้นในตู้ก่อน");return;}
   const inst=sel.cabInst, f=cabFaces(inst); if(!f){toast("ไม่พบโครงตู้");return;}
