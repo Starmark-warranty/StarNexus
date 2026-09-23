@@ -940,7 +940,7 @@
    ===================================================================== */
 /* ---- APP_META: แหล่งความจริงเดียวของเวอร์ชัน (ดูได้จาก console / คลิกชื่อแอป) ---- */
 const APP_META={
-  name:"StarNexus Cabinet", version:"1.292", build:"2026-09-23/auto-rails",
+  name:"StarNexus Cabinet", version:"1.294", build:"2026-09-23/led-strip-run",
   file:"StarNexus.html", basedOn:"Furnitech_V3.html (v3.11)",
   /* ───────── เริ่มนับเวอร์ชันใหม่ที่ 1.001 (21/08/2026) ─────────
      ของเดิมนับมาถึง 42.1 แล้ววิ่งเป็นทศนิยมสองชั้นซึ่งอ่านลำดับยาก
@@ -948,6 +948,8 @@ const APP_META={
      ประวัติเก่าเก็บไว้ทั้งหมดตามเลขเดิม ไม่ไล่เขียนใหม่ เพราะเลขในนั้นถูกอ้างถึงไปแล้ว
      รายการที่อยู่ใต้ 1.001 ลงไปจึงเป็นเลขชุดเก่า อ่านต่อกันได้ตามวันที่ */
   changelog:[
+    ["1.294","2026-09-23","FIX เส้นไฟ LED ออกใบอุปกรณ์เป็นท่อน ๆ ตามท่อนราง ทั้งที่ของจริงเดินยาวเส้นเดียว — รางอลูมิเนียมบนแผ่นข้างถูกชั้นตายตัดเป็นท่อนจริง ท่อนละชิ้น สั่งแยกกัน ตรงนั้นถูกแล้ว แต่เส้นไฟเป็นเส้นอ่อน วิ่งผ่านรอยต่อไปได้ทีเดียวตลอดแนว · เคสจริง LTO002 แผ่นข้างละ 5 ท่อน (430 · 300 · 440 · 340 · 309.4) สองด้าน ของเดิมออกเส้นไฟ 10 เส้น ทั้งที่ต้องเป็นเส้นยาว 1886.1 สองเส้น · ตัวรวมรางเดิม _ledJoinRuns (v16.4) รวมเฉพาะท่อนที่ปลายชนกันสนิทห่างไม่เกิน 0.05 มม. ซึ่งถูกสำหรับราง เพราะชั้นหนา 16.6 คั่นอยู่จริง เส้นไฟจึงต้องมีตัวรวมของตัวเอง · เพิ่ม ledStripRuns() จับท่อนที่อยู่แนวเดียวกันเป๊ะ (แกนเดียวกัน ระยะตั้งฉากเท่ากัน หน้าตัดเดียวกัน) แล้วต่อเป็นเส้นเดียวเมื่อช่องที่คั่นไม่เกิน 40 มม. (ตั้งได้ที่ ledStripGapMax หรือรายชุดไฟที่ stripGap) ความหนาชั้น 16-36 จึงข้ามได้ ส่วนช่วงที่ห่างกันจริงยังแยกเส้นตามเดิม · ความยาวที่สั่ง = ช่วงเต็มจากต้นท่อนแรกถึงปลายท่อนสุดท้าย รวมช่องที่ชั้นคั่น (1819.4 เป็น 1886.1) เพราะไฟต้องวิ่งผ่านช่องนั้นไปด้วย ไม่ใช่ผลบวกของท่อน · ยาวเกินม้วนซอยเท่า ๆ กันให้สั่งได้ (stripMaxL ตั้งต้น 5000 · 0 = ไม่จำกัด) · สายเชื่อมที่นับ ตามเส้นไฟ นับตามเส้นไฟจริงแล้ว ไม่ใช่ตามท่อนราง · หน้ารายการไฟบอกจำนวนเส้นไฟต่อโซนและทั้งงาน จะได้เทียบกับจำนวนท่อนรางได้ · ความยาวที่ใช้เลือกหม้อแปลงคิดจากเส้นจริงชุดเดียวกัน หน้ารายการไฟกับใบอุปกรณ์จึงบอกเลขเดียวกันเสมอ · ราง พลาสติกปิดราง ฝาปิดปลาย ไม่ถูกแตะเลย ยังออกท่อนละชิ้นเหมือนเดิม · อยากได้แบบเดิมตั้ง stripJoin = ตัดตามท่อนราง ที่ Element → ชุดไฟ LED"],
+    ["1.293","2026-09-23","FEAT ใบอุปกรณ์รวบ “ของที่ยังไม่มีรหัสในคลัง” ไว้ก้อนเดียว พร้อมชื่อสินค้าที่เอาไปขอเปิดรหัสได้เลย คัดลอกทั้งหมดในปุ่มเดียว — เดิมของที่ค้นรหัสไม่เจอขึ้นเป็นบรรทัดแดงเล็ก ๆ กระจายอยู่ในตาราง ต้องไล่อ่านทีละแถวเองว่าขาดอะไรบ้าง ออเดอร์หนึ่งมีของตัดตามยาวหลายสิบบรรทัด กว่าจะรู้ว่าต้องขอเปิดรหัสกี่ตัวก็เลื่อนจนตาลาย · เคสจริงที่เจอ รางไฟ PROFILE 1103 ในออเดอร์ใช้ 6 ความยาว คลังมีแค่ 300 ขาด 310 340 430 440 1235 · และข้อความเดิมบอกได้แค่ ยังไม่มีท่อนยาว 1235 มม. ไม่ได้บอกว่าต้องขอเปิดรหัสด้วยชื่ออะไร ต้องไปเปิดคลังหาชื่อรุ่นเต็มมาพิมพ์เองทุกครั้ง · คลังตั้งชื่อท่อนตัดเป็น ชื่อรุ่นเต็ม + ตัดขนาด N mm. อยู่แล้ว จึงหยิบชื่อของท่อนอื่นในรุ่นเดียวกันที่มีอยู่จริงมาเปลี่ยนเฉพาะตัวเลขความยาว ได้ชื่อถูกทั้งบรรทัดโดยไม่ต้องเดา (cutPhraseFrom) · ยกวิธีมาจากฝั่งกระจกที่ทำแบบนี้ตั้งแต่ v1.080 แล้ว ฝั่งของตัดตามยาว (ราง · เส้นเฟรม) เพิ่งมามีรอบนี้ · กล่องสรุปอยู่บนหัวใบอุปกรณ์ บอกจำนวนรายการที่ค้าง แต่ละบรรทัดมีชื่อของ ความยาว จำนวน และชื่อเต็มที่ใช้ขอเปิดรหัส กดคัดลอกทีละบรรทัดหรือคัดลอกทั้งหมดก็ได้ · รวมของตัดตามยาวกับกระจกไว้ด้วยกัน เพราะสองอย่างนี้ค้างรหัสด้วยเหตุผลเดียวกัน · แถวที่ขอรหัสตัวเดียวกันถูกยุบรวมพร้อมบวกจำนวนให้ · ในตารางก็เพิ่มบรรทัดชื่อที่ใช้ขอเปิดรหัสใต้ข้อความค้นไม่เจอ ให้เหมือนฝั่งกระจก · เดินรายการชุดเดียวกับที่ตารางใช้ (fitBomRows) ไม่ได้คิดใหม่ซ้ำ ตัวเลขจึงตรงกับที่เห็นในใบเสมอ · ไม่แตะตัวค้นรหัสหรือไฟล์ที่ส่งออกเลย เพิ่มแค่ช่อง phrase ที่ผลค้นไม่เจอ"],
     ["1.292","2026-09-23","FEAT ปุ่มจัดคานขวางในโครงให้อัตโนมัติ — โครงผนัง/แผงกรุที่มาจากคลังเก็บคานไว้ 3 เส้นตายตัว ล่าง–กลาง–บน ไม่ว่าโมเดลจะถูกยืดสูงเท่าไร ช่องระหว่างคานจึงโตตามความสูงไปเรื่อย ๆ เคสจริงในไฟล์ที่ส่งมา สูง 700 ได้ช่องละ 299 · สูง 1200 ได้ช่องละ 549 · สูง 2000 ได้ช่องละ 949 ซึ่งของจริงรับไม่ไหว ต้องมานั่งก๊อปคานแล้วไล่คำนวณระยะเองทีละใบ · ปุ่มใหม่ดูจากระยะห่างไม่เกินที่ตั้งไว้ (ตั้งต้น 500 มม. แก้ได้ในช่องข้างปุ่ม จำค่าล่าสุดไว้) แล้วเติม/ถอดคานกลางให้ระยะเท่ากันหมด span หารระยะสูงสุดปัดขึ้น = จำนวนช่อง คาน = ช่อง+1 · ผลกับไฟล์ที่ส่งมา สูง 700 คงเดิม 3 เส้น · สูง 1200 เป็น 4 เส้น ช่องละ 366 · สูง 2000 เป็น 5 เส้น ช่องละ 474 ตรงกับที่ขอมาพอดี · แผงขวาบอกสถานะก่อนกดว่าตอนนี้กี่คานช่องละเท่าไร และจะกลายเป็นเท่าไร · เลือกหลายใบแล้วกดทีเดียวได้ ใช้ชุดตู้ที่เลือกเดียวกับปุ่มอื่น (cabSelKeys) · ตั้งใจกันไม่ให้ไปพันกับส่วนอื่น: แตะเฉพาะคานที่เหมือนกันทุกอย่างยกเว้นความสูงตั้งแต่ 2 เส้นขึ้นไป (คานหน้า/คานหลังลิ้นชักที่อยู่ระดับเดียวกันแต่คนละแนวลึกหรือคนละหน้ากว้าง เป็นคนละชุด ไม่ถูกแตะ) · คานล่างสุดกับบนสุดไม่ขยับเลยสักมิล เพราะสองเส้นนั้นล็อก floorTop/topUnder ไว้ เปลี่ยนแค่คานกลาง · คานกลางที่ปั้นใหม่ถอดล็อกระยะ _datum ออก เพราะ centerZone จะดึงทุกเส้นไปกองกลางช่องเดียวกัน แต่ถ้าผลลัพธ์เหลือเส้นกลางเส้นเดียวก็คืน centerZone ให้เหมือนเดิม ตู้เตี้ยจึงไม่มีอะไรเปลี่ยนแม้แต่ค่าเดียว · ไม่แตะ reapplyRules refitInterior หรือตัวคิดฉากเลย แค่เพิ่ม-ลบชิ้นแล้ว sync ตามปกติ ทางเดียวกับปุ่มเพิ่มคานเดิม · คานใหม่ก๊อปจากคานกลางเดิมทั้งดุ้น ทั้ง Part วัสดุ ผิว ขอบ และชุดเดือย/มินิฟิก จึงได้ของเหมือนกันทุกเส้น ล้างรูเก่ากับเลขชิ้นให้ ไม่ให้เลขซ้ำ · Ctrl+Z ย้อนได้"],
     ["1.291","2026-09-23","FEAT เลื่อนตู้ด้วย “ระยะที่ต้องการขยับ” และทำหลายใบพร้อมกันในคำสั่งเดียว — เคสจริงคือย้ายตู้แขวนทั้งแถวลง 200 มม. ซึ่งของเดิมทำได้สองทางและแย่ทั้งคู่ · ทางแรกลากใน 3D แล้วรอให้สแนปจับมุมให้ตรง ซึ่งต้องเล็งนานและไม่มีอะไรรับประกันว่าได้ระยะเป๊ะ · ทางที่สองคือช่องตำแหน่งตู้ในแผงขวา ซึ่งรับพิกัดสัมบูรณ์ของมุมหลังซ้ายล่าง และมีผลกับตู้ใบเดียว ย้ายสามใบจึงต้องเปิดทีละใบ จดเลขเดิม ลบ 200 เอง แล้วพิมพ์กลับเข้าไป ผิดใบเดียวคือแถวเบี้ยวทั้งแถว · เพิ่มช่องระยะสัมพัทธ์สามแกนใต้ช่องตำแหน่ง ใส่ค่าลบได้ ช่องที่เป็น 0 ไม่ขยับ พิมพ์แล้วกด Enter ได้เลย ป้ายบอกทิศบวกลบของแต่ละแกนไว้ในช่อง (ซ้าย−/ขวา+ · ลง−/ขึ้น+ · หลัง−/หน้า+) · เลือกตู้ไว้กี่ใบก็ขยับเท่ากันหมดในคำสั่งเดียว ใช้ชุดตู้ที่เลือกเดียวกับที่ปุ่มโครงสร้าง ออกแบบผลิต และ Isolate ใช้อยู่แล้ว (cabSelKeys) ไม่ได้สร้างวิธีเลือกใหม่ · ตู้ที่ใส่ไว้ในช่องของตู้ที่เลือกเลื่อนไปด้วย ไม่ต้องรอรอบจัดช่อง · ชิ้นในตู้ขยับพร้อมกันทุกชิ้นรวมบานกับอุปกรณ์ ระยะภายในตู้จึงไม่เปลี่ยนสักมิลลิเมตร · ล็อกไฟล์อยู่ก็ถูกกันไว้ตามปกติ · Ctrl+Z ย้อนได้ · UX ป้ายหัวแผงบอกให้ตรงแล้วว่าอะไรทำกับทุกใบที่เลือก อะไรทำกับใบเดียว ของเดิมเขียนว่าช่องแก้ค่าด้านล่างมีผลกับใบนี้ใบเดียว ซึ่งไม่จริงมาตั้งแต่ v1.241 ที่ปุ่มโครงสร้างทำทุกใบที่เลือก"],
     ["1.290","2026-09-23","FEAT วางตามระยะอ้างอิง เพิ่มจุดอ้างอิงจาก “ชั้นที่อยู่ข้างล่าง” สามแบบ ผิวบน · กึ่งกลาง · ผิวล่าง ของชั้นนั้น — ของเดิมเจ็ดตัวเลือกอ้างอิงจากตัวตู้ทั้งหมด (แผ่นพื้นบน/ล่าง · ล่างสุด/บนสุดของตู้ · ใต้ฝาบน · กึ่งกลางตู้ · กึ่งกลางช่อง) ไม่มีตัวไหนอ้างจากชั้นข้างเคียงเลย · งานจริงบอกระยะเป็น ห่างจากชั้นล่าง N กันเป็นปกติ โดยเฉพาะช่องที่มีชั้นหลายระดับ ของเดิมต้องมานั่งบวกความหนาชั้นกับระยะสะสมเองทุกครั้ง แล้วพอชั้นล่างขยับก็ต้องคิดใหม่ทั้งตับ · นิยาม “ชั้นที่อยู่ข้างล่าง” ใช้ตัวเดียวกับโหมดกึ่งกลางช่องที่อยู่ (zoneY) ทุกบรรทัด คือแผ่นนอน/คาน/เส้นแบ่ง ที่ซ้อนกับชิ้นนี้ในผังจริงทั้งแนวกว้างและแนวลึก และอยู่ต่ำกว่า เอาตัวที่ใกล้ที่สุด — ชั้นของช่องอื่นหรือคานที่อยู่หลังแผ่นหลังจึงไม่ถูกนับ · ไม่เจอสักตัวก็ถอยไปใช้แผ่นพื้นตู้ ซึ่งเป็นชั้นล่างสุดของทุกตู้อยู่แล้ว · ใช้ร่วมกับปุ่ม วัดถึง ผิวใกล้/กึ่งกลางชิ้น/ผิวไกล ได้ตามปกติ และใส่สูตรอย่าง $D4+$D5 ได้เหมือนโหมดอื่น · ผูกแล้วคิดใหม่ทุกรอบคิดฉากเหมือนโหมดเดิม ชั้นล่างขยับเมื่อไหร่ชิ้นนี้ตามไปเอง และค้นหาใหม่ทุกครั้งจากตำแหน่งปัจจุบัน ย้ายชิ้นข้ามช่องก็เกาะชั้นล่างของช่องใหม่ · มีทั้งในแผงไม้จริงและแผงเส้นแบ่ง ใช้รายการชื่อโหมดชุดเดียวกัน (DATUM_LABEL) ตามที่ v33.8 วางไว้ จึงไม่ต้องไล่แก้หลายจุด · ตู้ที่หมุนตามผังใช้ได้เหมือนกัน เพราะเดินผ่านตัวคลายหมุนเดิมของ guideDatumPlace (v1.165)"],
@@ -1370,6 +1372,7 @@ const DEF_SETTINGS={ frontSetMax:6, dowelD:8, dowelDepth:28, dowelMateDepth:12, 
   dowelFormulas:[{name:"มาตรฐาน",rule:DEF_DOWEL_RULE}], dowelFormulaActive:"มาตรฐาน", mfFormulaActive:"มาตรฐาน", cloudAutoSave:true,
   backset:16, backGroove:true, backOver:4.5, backClear:0.5,
   railAutoGap:500,   // v1.292: คานขวางในโครง ห่างกันไม่เกินกี่ มม. ก่อนต้องเพิ่มคาน
+  ledStripGapMax:40, ledStripMaxL:5000,   // v1.294: เส้นไฟข้ามรอยที่ชั้นตัดรางได้ไม่เกินกี่ มม. · ยาวสุดต่อเส้น (ม้วน)
   drawerBotThick:9, drawerBotLift:11, drawerBotOver:4.5, drawerBotClear:0.5, drawerBotMacroOn:true, drawerBotPipeNotch:false, drawerBotPipeW:40, drawerBotPipeH:25,
   mfBoltD:8, mfBoltDepth:28, mfCamD:15, mfCamDepth:13, mfCamOffset:34, mfMateD:5, mfMateDepth:12, mfFixFromFace:8.1, mfCenterMax:16, mfName:"Minifix", mfCode:"MINIFIX",
   ledMinRun:60,         // v22.8: ท่อนรางที่สั้นกว่านี้ = เศษ ไม่ต้องออก
@@ -16672,7 +16675,9 @@ async function cutLookup(code,len,hint,v){
   const _sec=String(_vp[2]||"").trim();                                     // v1.284: รหัสหน้าตัดของเส้นนี้ (007 · 021)
   _fgCut[k]=null;
   const L0=cutLen(len), pre0=String(code||"").trim();
-  const miss=(why,n)=>{ _fgMiss[k]={pre:pre0,L:L0,why:why,n:n||0}; return null; };
+  /* v1.293: sample = ชื่อท่อนอื่นในรุ่นเดียวกันที่คลังมีอยู่จริง ใช้ปั้นชื่อที่เอาไปขอเปิดรหัสได้ */
+  const miss=(why,n,sample)=>{ _fgMiss[k]={pre:pre0,L:L0,why:why,n:n||0,
+    phrase:(sample?cutPhraseFrom(sample,L0):"")}; return null; };
   try{
     const sb=await getDB(); if(!sb) return miss("ต่อคลังอุปกรณ์ไม่ได้");
     const L=cutLen(len), pre=String(code||"").trim();
@@ -16689,11 +16694,16 @@ async function cutLookup(code,len,hint,v){
     if(q.error){ console.error("cutLookup:",q.error); return miss("ถามคลังไม่ผ่าน: "+(q.error.message||q.error)); }
     if(!q.data||!q.data.length){
       /* แยกให้ออกว่ารหัสรุ่นมีอยู่ในคลังไหม — ผูก Purchase ID ผิด กับ ยังไม่มีท่อนความยาวนี้ แก้คนละทางกัน */
-      let any=0, anyTok=0; try{ const q2=await sb.from("fitting_global").select("item_number").ilike("item_number",pre+"%").limit(1);
+      let any=0, anyTok=0, anySample=""; try{
+        const _kw0=(String(settings.cutLookupKey||DEF_SETTINGS.cutLookupKey||"ตัดขนาด")).trim();
+        const q2=await sb.from("fitting_global").select("item_number,product_name").ilike("item_number",pre+"%").ilike("product_name","%"+_kw0+"%").limit(1);
         any=(!q2.error&&q2.data)?q2.data.length:0;
+        if(any) anySample=String(q2.data[0].product_name||"");
+        if(!any){ const q2b=await sb.from("fitting_global").select("item_number,product_name").ilike("item_number",pre+"%").limit(1);   // รุ่นที่ยังไม่เคยมีท่อนตัดสักท่อน
+          any=(!q2b.error&&q2b.data)?q2b.data.length:0; if(any) anySample=String(q2b.data[0].product_name||""); }
         if(any&&_tok){ const q3=await sb.from("fitting_global").select("item_number").ilike("item_number",pre+"%").ilike("product_name","%"+_tok+"%").limit(1);
           anyTok=(!q3.error&&q3.data)?q3.data.length:0; } }catch(e){}
-      if(any&&_tok&&!anyTok) return miss("มีรหัสรุ่นนี้ในคลัง แต่ไม่มีสี "+_tok+" เลย — เช็คสีเฟรมที่ออเดอร์ส่งมา หรือเพิ่มสีนี้ในคลัง");
+      if(any&&_tok&&!anyTok) return miss("มีรหัสรุ่นนี้ในคลัง แต่ไม่มีสี "+_tok+" เลย — เช็คสีเฟรมที่ออเดอร์ส่งมา หรือเพิ่มสีนี้ในคลัง",0,anySample);
       /* v1.280: เส้นเฟรมที่ยังไม่ได้ทำ Element (ไม่มี Purchase ID) รหัสที่ถืออยู่คือชื่อหน้าตัดเปล่า ๆ เช่น 007
          ไม่มีรหัสสินค้าไหนขึ้นต้นด้วย 007 จึงไม่เคยเจอ ทั้งที่คลังมี "เฟรมอลูมิเนียม AL5806-007 … ตัดขนาด 595 mm. ตัด 45/2ด้าน" อยู่
          ค้นจากชื่อรุ่นแทน: ชื่อมี "-007" + ตัดขนาด 595 + สีเฟรม แล้วกรองปลาย 45°/ตรงแบบเดิม · ตัดค่าจ้าง/ค่าทำสีทิ้ง */
@@ -16702,7 +16712,7 @@ async function cutLookup(code,len,hint,v){
         if(hit&&hit.code){ _fgCut[k]=hit; return hit; }
         if(hit&&hit.why) return miss(hit.why,hit.n||0);
       }
-      return miss(any? ("มีรหัสรุ่นนี้ในคลัง"+(_tok?(" สี "+_tok):"")+" แต่ยังไม่มีท่อนยาว "+L+" มม.") : ("ไม่มีรหัสไหนขึ้นต้นด้วย "+pre+" ในคลัง — เช็ค Purchase ID"));
+      return miss(any? ("มีรหัสรุ่นนี้ในคลัง"+(_tok?(" สี "+_tok):"")+" แต่ยังไม่มีท่อนยาว "+L+" มม.") : ("ไม่มีรหัสไหนขึ้นต้นด้วย "+pre+" ในคลัง — เช็ค Purchase ID"),0,(any?anySample:""));
     }
     const kw=(String(settings.cutLookupKey||DEF_SETTINGS.cutLookupKey||"ตัดขนาด")).trim();
     /* ความยาวต้องตรงตัว ไม่ใช่เป็นส่วนหนึ่งของเลขอื่น (371 ต้องไม่ไปเจอ 1371 หรือ 3710) */
@@ -16711,19 +16721,19 @@ async function cutLookup(code,len,hint,v){
     const cutRe=new RegExp(kw.replace(/[.*+?^${}()|[\]\\]/g,"\\$&")+"\\s*"+L+"(?![0-9])");
     let rows=q.data.filter(x=>cutRe.test(String(x.product_name||"")));
     if(!rows.length) rows=q.data.filter(x=>exact.test(String(x.product_name||"")));
-    if(!rows.length) return miss("เจอ "+q.data.length+" รหัสที่มีเลข "+L+" อยู่ในชื่อ แต่ไม่มีตัวไหนเขียนว่า “"+kw+" "+L+"”",q.data.length);
+    if(!rows.length) return miss("เจอ "+q.data.length+" รหัสที่มีเลข "+L+" อยู่ในชื่อ แต่ไม่มีตัวไหนเขียนว่า “"+kw+" "+L+"”",q.data.length,String(q.data[0].product_name||""));
     /* ───────── v1.277: สีต้องตรงทั้งคำ · ปลายตัด 45° กับตัดตรงเป็นคนละรหัส ─────────
        AL618MH ต้องไม่ไปเจอ AL618M · ท่อนเดียวกันมีทั้ง "ตัดขนาด 595 mm." และ "... ตัด 45/2ด้าน"
        เดิมเรียงตามรหัสแล้วหยิบตัวแรก จึงได้แบบตัดตรงเสมอ ทั้งที่บานเฟรมเข้ามุม 45° */
     if(_tok){ const tRe=new RegExp("(^|[^A-Za-z0-9])"+_tok.replace(/[.*+?^${}()|[\]\\]/g,"\\$&")+"([^A-Za-z0-9]|$)","i");
       rows=rows.filter(x=>tRe.test(String(x.product_name||"")));
-      if(!rows.length) return miss("มีท่อนยาว "+L+" มม. แต่ไม่มีตัวที่เป็นสี "+_tok+" พอดีคำ"); }
+      if(!rows.length) return miss("มีท่อนยาว "+L+" มม. แต่ไม่มีตัวที่เป็นสี "+_tok+" พอดีคำ",0,String(q.data[0].product_name||"")); }
     let _mitAlt="";
     if(_mit!=null){ const is45=x=>/45\s*(\/|°|องศา)/.test(String(x.product_name||""));
       const r2=rows.filter(x=>_mit?is45(x):!is45(x));
       if(!r2.length){
         /* v1.284: เส้นที่ตั้งไว้ว่าไม่บังคับแบบปลายตัด (หน้างานตัด 45 เอง) ใช้ท่อนอีกแบบได้ ไม่ต้องขึ้นว่าค้นไม่เจอ */
-        if(!cutMiterOpt(_sec||pre)) return miss("มีท่อนยาว "+L+" มม."+(_tok?(" สี "+_tok):"")+" แต่ยังไม่มีแบบ"+(_mit?"ตัด 45/2ด้าน":"ตัดตรง")+" — เพิ่มท่อนนี้ในคลัง",rows.length);
+        if(!cutMiterOpt(_sec||pre)) return miss("มีท่อนยาว "+L+" มม."+(_tok?(" สี "+_tok):"")+" แต่ยังไม่มีแบบ"+(_mit?"ตัด 45/2ด้าน":"ตัดตรง")+" — เพิ่มท่อนนี้ในคลัง",rows.length,String((rows[0]&&rows[0].product_name)||""));
         _mitAlt=_mit?"45":"90";
       } else rows=r2; }
     rows.sort((a,b)=>String(a.item_number||"").localeCompare(String(b.item_number||"")));
@@ -16759,6 +16769,20 @@ async function cutLookupSeq(codes,len,hint,v){
     if(r&&r.code){ _fgCut[k]=Object.assign({},r,{src:c}); return _fgCut[k]; }
   }
   return null;
+}
+/* ───────── v1.293: ชื่อสินค้าที่เอาไปขอเปิดรหัสได้เลย ─────────
+   ฝั่งกระจกมีมาตั้งแต่ v1.080 (glassNameOf) เวลาค้นไม่เจอจะเขียนประโยคที่ใช้ค้นไว้ให้
+   ฝั่งของตัดตามยาว (ราง · เส้นเฟรม) ไม่มี บอกได้แค่ "ยังไม่มีท่อนยาว 1235 มม."
+   แล้วต้องไปเปิดคลังหาชื่อรุ่นเต็ม ๆ มาพิมพ์เองทุกครั้ง
+   คลังตั้งชื่อท่อนตัดเป็น "<ชื่อรุ่นเต็ม> ตัดขนาด <ยาว> mm." อยู่แล้ว
+   จึงหยิบชื่อของท่อนอื่นในรุ่นเดียวกันที่มีอยู่จริง มาเปลี่ยนเฉพาะตัวเลขความยาว
+   ได้ชื่อที่ถูกต้องทั้งบรรทัดโดยไม่ต้องเดา · ไม่มีคำว่า ตัดขนาด ในชื่อก็ต่อท้ายให้ */
+function cutPhraseFrom(sample,L,kw){
+  const nm=String(sample||"").replace(/^"+/,"").trim(); if(!nm) return "";
+  const key=String(kw||settings.cutLookupKey||DEF_SETTINGS.cutLookupKey||"ตัดขนาด").trim();
+  const e=t=>String(t).replace(/[.*+?^${}()|[\]\\]/g,"\\$&");
+  const re=new RegExp(e(key)+"\\s*[0-9]+(?:\\.[0-9]+)?\\s*(?:mm\\.?|มม\\.?)?","i");
+  return re.test(nm) ? nm.replace(re,key+" "+L+" mm.") : (nm+" "+key+" "+L+" mm.");
 }
 let _cutPending=[];
 function cutLookupAll(list){
@@ -17366,6 +17390,62 @@ function ledSetOf(id){ const a=ledSetsAll(); const k=String(id||settings.ledSet|
    ปัดขึ้นเป็นค่าตั้งต้น เพราะไฟสั้นกว่ารางจะเหลือช่วงมืดที่ปลาย ซึ่งแก้ทีหลังไม่ได้
    ส่วนไฟยาวเกินนิดหน่อยพับเก็บหรือตัดทิ้งที่หน้างานได้
    ราง 867 จึงสั่งไฟ 900 · ราง 825 สั่ง 850 */
+/* ═════════ v1.294: เส้นไฟเดินยาวต่อเนื่อง แม้รางจะถูกชั้นตัดเป็นท่อน ═════════
+   รางอลูมิเนียมบนแผ่นข้างถูกชั้นตายตัดเป็นท่อน ๆ ซึ่งถูกแล้ว ท่อนละชิ้น สั่งแยกกัน
+   แต่เส้นไฟเป็นเส้นอ่อน วิ่งผ่านรอยต่อไปได้ทีเดียวตลอดแนว ของจริงจึงเป็นเส้นเดียว
+   ของเดิมออกเส้นไฟ "หนึ่งแถวต่อหนึ่งท่อนราง" — เคสจริง LTO002 แผ่นข้างละ 5 ท่อน
+   ได้เส้นไฟ 10 เส้น (430 · 300 · 440 · 340 · 309.4 สองด้าน) ทั้งที่ของจริงคือเส้นยาว 1886 สองเส้น
+   ตัวรวมรางเดิม (_ledJoinRuns v16.4) รวมเฉพาะท่อนที่ปลายชนกันสนิท (ห่างไม่เกิน 0.05)
+   ซึ่งถูกสำหรับราง เพราะชั้นหนา 16.6 คั่นอยู่จริง ๆ เส้นไฟจึงต้องมีตัวรวมของตัวเอง
+   ที่ยอมข้ามช่องขนาดความหนาชั้นได้ (ledStripGapMax ตั้งต้น 40 มม. · ตั้งรายชุดไฟได้ที่ stripGap)
+   ความยาวที่สั่ง = ช่วงเต็มจากต้นท่อนแรกถึงปลายท่อนสุดท้าย รวมช่องที่ชั้นคั่นด้วย
+   เพราะไฟต้องวิ่งผ่านช่องนั้นไป ไม่ใช่ผลบวกของท่อน (1819.4 → 1886.1)
+   ยาวเกินม้วนก็ซอยเท่า ๆ กันให้สั่งได้ (ledStripMaxL ตั้งต้น 5000 · รายชุดไฟที่ stripMaxL · 0 = ไม่จำกัด)
+   อยากได้แบบเดิมตั้ง stripJoin = ตัดตามท่อนราง ที่ Element → ชุดไฟ LED */
+function ledStripRuns(parts,st){
+  const list=(parts||[]).filter(p=>p&&(+p.L>0));
+  if(!list.length) return [];
+  if(String((st&&st.stripJoin)||"").trim()==="ตัดตามท่อนราง")
+    return list.map(p=>({len:round(+p.L||0),n:1,parts:[p]}));
+  const gapMax=Math.max(+((st&&st.stripGap))||0,0)
+             ||Math.max(+settings.ledStripGapMax||0,0)||DEF_SETTINGS.ledStripGapMax||40;
+  const dot=(a,b)=>a.x*b.x+a.y*b.y+a.z*b.z;
+  const groups={}, order=[];
+  list.forEach(p=>{
+    let ax,uy,uz;
+    try{ const M=orientMatrix(p.orient,p.yaw);
+      ax=new THREE.Vector3(1,0,0).transformDirection(M);
+      uy=new THREE.Vector3(0,1,0).transformDirection(M);
+      uz=new THREE.Vector3(0,0,1).transformDirection(M); }
+    catch(e){ const kk="x"+order.length; order.push(kk); groups[kk]={items:[{p:p,t:0,len:+p.L||0}]}; return; }
+    const P={x:+p.x||0,y:+p.y||0,z:+p.z||0};
+    const k=[String(p._ledSec||""),Math.round(ax.x*100),Math.round(ax.y*100),Math.round(ax.z*100),
+      Math.round(dot(P,uy)*10),Math.round(dot(P,uz)*10)].join("|");
+    if(!groups[k]){ groups[k]={items:[]}; order.push(k); }
+    groups[k].items.push({p:p,t:dot(P,ax),len:Math.max(+p.L||0,0)});
+  });
+  const out=[];
+  order.forEach(k=>{
+    const its=((groups[k]||{}).items||[]).slice().sort((a,b)=>a.t-b.t); if(!its.length) return;
+    let cur=[its[0]];
+    const flush=()=>{ const lo=cur[0].t-cur[0].len/2, e=cur[cur.length-1];
+      out.push({len:round((e.t+e.len/2)-lo), n:cur.length, parts:cur.map(x=>x.p)}); };
+    for(let i=1;i<its.length;i++){
+      const prev=cur[cur.length-1];
+      const gap=(its[i].t-its[i].len/2)-(prev.t+prev.len/2);
+      if(gap<=gapMax+0.05) cur.push(its[i]); else { flush(); cur=[its[i]]; }
+    }
+    flush();
+  });
+  const cap=Math.max(+((st&&st.stripMaxL))||0,0)
+          ||Math.max(+settings.ledStripMaxL||0,0)||DEF_SETTINGS.ledStripMaxL||0;
+  if(!(cap>0)) return out;
+  const res=[];
+  out.forEach(r=>{ if(r.len<=cap+0.05){ res.push(r); return; }
+    const n=Math.ceil(r.len/cap-1e-9), each=round(r.len/n);
+    for(let i=0;i<n;i++) res.push({len:each,n:r.n,parts:r.parts,split:n}); });
+  return res;
+}
 function ledStripLen(mm,st){
   const L=Math.max(+mm||0,0);
   const step=Math.max(+((st&&st.stripStep))||0,0);
@@ -17439,15 +17519,20 @@ function ledPowerPlan(setId,list){
   /* v14.2: กำลังไฟคิดจากความยาวเส้นไฟจริงหลังปัดเข้าจุดตัด ไม่ใช่ความยาวราง
      ไฟที่ยาวขึ้นกินไฟมากขึ้นจริง เลือกหม้อแปลงจากความยาวรางจึงเสี่ยงเลือกตัวเล็กไป */
   const rows=zones.map(z=>{
-    const smm=z.parts.reduce((a,b)=>a+ledStripLen(+b.L||0,st),0);
-    const z2=Object.assign({},z,{smm:round(smm), sm:round(smm/1000)});
+    /* v1.294: ความยาวเส้นไฟคิดจาก "เส้นจริง" ที่วิ่งข้ามรอยชั้นได้ ไม่ใช่ผลบวกของท่อนราง
+       หน้ารายการไฟกับใบอุปกรณ์จึงบอกเลขเดียวกันเสมอ */
+    let _sr=[]; try{ _sr=ledStripRuns(z.parts,st); }catch(e){ console.error("stripRuns:",e); }
+    if(!_sr.length) _sr=z.parts.map(b=>({len:+b.L||0,n:1}));
+    const smm=_sr.reduce((a,r)=>a+ledStripLen(r.len,st),0);
+    const z2=Object.assign({},z,{smm:round(smm), sm:round(smm/1000), sruns:_sr.length});
     return Object.assign(z2,{psu:ledPsuFor(z2,st)});
   });
   return {set:st, zones:rows,
     mm:round(rows.reduce((a,z)=>a+z.mm,0)),
     smm:round(rows.reduce((a,z)=>a+z.smm,0)),
     psuN:rows.reduce((a,z)=>a+z.psu.n,0),
-    runs:rows.reduce((a,z)=>a+z.parts.length,0)};
+    runs:rows.reduce((a,z)=>a+z.parts.length,0),
+    sruns:rows.reduce((a,z)=>a+(z.sruns||z.parts.length),0)};   // v1.294: จำนวน "เส้นไฟ" จริง
 }
 /* ───────── v1.078: เลือกได้ว่าของไฟออกใบอุปกรณ์แค่ไหน ─────────
    บางงานสั่งรางไปแล้วรอบก่อน · บางงานลูกค้าซื้อเส้นไฟกับหม้อแปลงเอง เหลือแต่ให้เราเซาะร่องกับใส่ราง
@@ -17475,9 +17560,10 @@ function applyLedPowerBOM(m,boards){
   const _pw=(_lm==="all"||_lm==="notrack");                           // v1.277: โหมดที่ออกของไฟ (เส้นไฟ หม้อแปลง สายต่อ)
   const sc=_pw?String(st.stripCode||"").trim():"";                     // v1.078: โหมด track ไม่ออกเส้นไฟ
   if(sc){ const el=(((settings.elements||{}).fittings)||[]).find(x=>x.code===sc);
-    boards.filter(b=>b&&b._ledPart).forEach(b=>
+    /* v1.294: หนึ่งแถวต่อ "หนึ่งเส้นไฟจริง" ไม่ใช่ต่อหนึ่งท่อนราง — ราง 5 ท่อนที่ชั้นคั่น = ไฟเส้นเดียว */
+    ledStripRuns(boards.filter(b=>b&&b._ledPart),st).forEach(r=>
       bomCutRow(m,sc,(el&&el.desc)||("เส้นไฟ "+String(st.id||"")),(el&&el.unit)||"เส้น",
-        ledStripLen(+b.L||0,st),"led")); }                     // v14.2: ปัดเข้าจุดตัดของเส้นไฟ
+        ledStripLen(r.len,st),"led")); }                       // v14.2: ปัดเข้าจุดตัดของเส้นไฟ
   /* ───────── v27.2: ตัวรางกับพลาสติกปิดราง ต้องออกในใบอุปกรณ์ด้วย ─────────
      เดิมออกแค่เส้นไฟ หม้อแปลง และสายต่อ ตัวรางอลูมิเนียมไม่เคยออกเลย
      เพราะรางอ้างด้วยรหัสหน้าตัด ซึ่งเป็นรูปทรง ไม่ใช่รหัสสั่งซื้อ
@@ -17512,7 +17598,7 @@ function applyLedPowerBOM(m,boards){
      จึงนับตามจำนวนเส้นไฟเป็นค่าตั้งต้น เลือกให้นับตามหม้อแปลงได้ถ้าเดินสายแบบนั้นจริง */
   const wc=_pw?String(st.wireCode||"").trim():"";                      // v1.078 · v1.277
   if(wc){ const q=Math.max(+st.wireQty||1,0);
-    const n=(String(st.wireMode||"").indexOf("หม้อแปลง")>=0)?plan.psuN:plan.runs;
+    const n=(String(st.wireMode||"").indexOf("หม้อแปลง")>=0)?plan.psuN:(plan.sruns||plan.runs);   // v1.294: ตามเส้นไฟจริง
     const cnt=Math.round(n*q);
     if(cnt>0){ const el=(((settings.elements||{}).fittings)||[]).find(x=>x.code===wc);
       (m[wc]||(m[wc]={art:wc,dia:"",kind:"led",name:(el&&el.desc)||"สายต่อไฟ LED",unit:(el&&el.unit)||"เส้น",count:0})).count+=cnt; } }
@@ -18266,6 +18352,7 @@ function ledPowerDialog(){
       +'<td style="padding:6px 8px;border-bottom:1px solid var(--line)">'+z.parts.length+' ท่อน</td>'
       +'<td style="padding:6px 8px;border-bottom:1px solid var(--line);font-family:var(--mono)">'+z.m+' ม.</td>'
       +'<td style="padding:6px 8px;border-bottom:1px solid var(--line);font-family:var(--mono)">'+((z.sm!=null)?z.sm:z.m)+' ม.'
+        +(z.sruns?('<div style="font-size:10px;color:var(--ink-dim)">'+z.sruns+' เส้น</div>'):'')
         +(((z.sm!=null)&&Math.abs(z.sm-z.m)>0.001)?('<div style="font-size:10px;color:var(--ink-dim)">ปัดขึ้น +'+round(z.smm-z.mm)+' มม.</div>'):'')+'</td>'
       +'<td style="padding:6px 8px;border-bottom:1px solid var(--line);font-family:var(--mono)">'+p.watt+' W</td>'
       +'<td style="padding:6px 8px;border-bottom:1px solid var(--line)"><b>'+p.n+' ตัว</b>'
@@ -18290,10 +18377,11 @@ function ledPowerDialog(){
     +'</tr></thead><tbody>'+rows+'</tbody></table>'
     +'<div style="margin-top:12px;padding:10px 12px;background:var(--bg);border-radius:10px;font-size:12.5px">'
     +'รวมทั้งงาน · ราง '+round(plan.mm/1000)+' ม. จาก '+plan.runs+' ท่อน · เส้นไฟ <b>'+round((plan.smm||plan.mm)/1000)+' ม.</b>'
+    +(plan.sruns?(' <span style="opacity:.6">('+plan.sruns+' เส้น)</span>'):'')
     +(st.stripStep?(' <span style="opacity:.6">(ตัดทุก '+st.stripStep+' มม.)</span>'):'')
     +' · หม้อแปลง <b>'+plan.psuN+' ตัว</b> · '+plan.zones.length+' โซน'
     +(String(st.wireCode||"").trim()
-      ? (' · สายเชื่อม <b>'+Math.round(((String(st.wireMode||"").indexOf("หม้อแปลง")>=0)?plan.psuN:plan.runs)*Math.max(+st.wireQty||1,0))+' ชุด</b>'
+      ? (' · สายเชื่อม <b>'+Math.round(((String(st.wireMode||"").indexOf("หม้อแปลง")>=0)?plan.psuN:(plan.sruns||plan.runs))*Math.max(+st.wireQty||1,0))+' ชุด</b>'
          +'<span style="opacity:.6"> ('+((String(st.wireMode||"").indexOf("หม้อแปลง")>=0)?"ตามหม้อแปลง":"ตามเส้นไฟ")+')</span>')
       : '')
     +'</div>'
@@ -21227,6 +21315,9 @@ const ELEM_FORM={
              ["stripCode","เส้นไฟ — ใส่ \"รหัส Element\" ของเส้นไฟ (ไม่ใช่ Purchase ID) เช่น LEDSTRIP_12V"],
              ["stripStep","เส้นไฟตัดได้ทุกกี่ มม. (จุดตัดของเส้นไฟ · เช่น 50 หรือ 100 · เว้นว่าง = ตัดได้ทุกระยะ)"],
              ["stripRound","ปัดความยาวไฟ: ขึ้น (ตั้งต้น · กันปลายมืด) / ลง / ใกล้สุด"],
+             ["stripJoin","เส้นไฟเดินยาวข้ามรอยที่ชั้นตัดราง — เว้นว่าง = เดินยาวต่อเนื่อง (ตั้งต้น · ราง 5 ท่อนที่ชั้นคั่น = ไฟเส้นเดียว) · พิมพ์ ตัดตามท่อนราง = ออกเส้นไฟท่อนละเส้นแบบเดิม"],
+             ["stripGap","ช่องที่เส้นไฟข้ามได้ ไม่เกินกี่ มม. (เว้นว่าง = 40 · ความหนาชั้นทั่วไป 16-36 จึงข้ามได้ ส่วนช่วงที่ห่างกันจริงยังแยกเส้น)"],
+             ["stripMaxL","เส้นไฟยาวได้ไม่เกินกี่ มม. ต่อเส้น (เว้นว่าง = 5000 ตามม้วน · เกินแล้วซอยเท่า ๆ กัน · 0 = ไม่จำกัด)"],
              ["psuCode","หม้อแปลง — รหัส Element (ใช้เมื่อทุกพิกัดเป็นรหัสเดียว · ถ้าแยกรหัสตามพิกัด ใส่ในช่องถัดไปแทน)"],
              ["psuMap","พิกัดหม้อแปลงที่มี (W) — แยกรหัสได้: PSU_12V_30:30, PSU_12V_60:60, PSU_12V_100:100 · หรือใส่แค่ตัวเลข 30, 60, 100 ถ้าใช้รหัสเดียวจากช่องบน"],
              ["wireCode","สายต่อ — รหัส Element เช่น WIRE_LED"],
@@ -34672,6 +34763,32 @@ function fitBomRows(){
       name:"ขอบ "+(e.tag||e.out), unit:"ม.", count:Math.round(e.mm/10)/100}); }); }catch(e){ console.error(e); }
   return rows;
 }
+/* ───────── v1.293: รวบ "ของที่ยังไม่มีรหัสในคลัง" ของทั้งออเดอร์ไว้ที่เดียว ─────────
+   เดิมขึ้นเป็นบรรทัดแดงเล็ก ๆ กระจายอยู่ในตาราง ต้องไล่อ่านทีละแถวเองว่าขาดอะไรบ้าง
+   ออเดอร์หนึ่งมีของตัดตามยาวหลายสิบบรรทัด กว่าจะรู้ว่าต้องไปขอเปิดรหัสกี่ตัวก็เลื่อนจนตาลาย
+   เดินรายการชุดเดียวกับที่ตารางใช้ หยิบเฉพาะแถวที่ค้นรหัสไม่เจอ (ทั้งของตัดตามยาวและกระจก)
+   แล้วยุบแถวที่ขอรหัสตัวเดียวกันเข้าด้วยกัน พร้อมรวมจำนวน */
+function cutMissReport(rows){
+  const out=[], seen={};
+  let list=rows;
+  if(!Array.isArray(list)){ try{ list=fitBomRows(); }catch(e){ return out; } }
+  (list||[]).forEach(f=>{
+    if(!f||f._fg) return;
+    let ms=null;
+    try{ if(+f._cut>0) ms=cutMissOf(f); else if(f._gcut) ms=glassMissOf(f); }catch(e){}
+    if(!ms) return;
+    const phrase=String(ms.phrase||"").trim();
+    const key=phrase||((ms.pre||f.art||"")+"|"+(ms.L||""));
+    if(seen[key]){ seen[key].count+=(+f.count||0); return; }
+    const o={art:String(f.art||""),name:String(f.name||""),pre:String(ms.pre||""),
+      len:String(ms.L||""),unit:String(f.unit||""),why:String(ms.why||""),
+      phrase:phrase,count:(+f.count||0)};
+    seen[key]=o; out.push(o); });
+  return out;
+}
+function cutMissText(rows){
+  return cutMissReport(rows).map(m=>m.phrase||((m.name||m.art)+(m.len?(" ตัดขนาด "+m.len+" mm."):""))).join("\n");
+}
 function renderSummary(){
   const body=$("sumBody"); if(!body) return;
   const rows=fitBomRows();
@@ -34683,6 +34800,23 @@ function renderSummary(){
        เดิมต้องปิดเปิดโปรแกรมใหม่ถึงจะรู้ และไม่มีอะไรบอกไว้ */
     +'<div style="margin:6px 0 6px"><button class="ibtn" id="sumRecut">🔄 ค้นรหัสท่อนใหม่</button>'
     +'<span style="font-size:11px;color:var(--ink-dim);margin-left:8px">เพิ่งเพิ่มรหัสท่อนในคลังอุปกรณ์ ให้กดปุ่มนี้ — ผลค้นถูกจำไว้ ไม่งั้นต้องปิดเปิดโปรแกรมใหม่</span></div>'
+    /* v1.293: ของที่ยังไม่มีรหัสในคลัง รวมไว้ก้อนเดียว คัดลอกส่งจัดซื้อได้ทันที */
+    +(function(){ let ms=[]; try{ ms=cutMissReport(rows); }catch(e){ console.error("missRep:",e); }
+       if(!ms.length) return "";
+       const head=m=>[String(m.name||m.art||""),(m.len?("ยาว "+m.len):""),(m.count?("×"+(Math.round(m.count*100)/100)):"")].filter(Boolean).join(" · ");
+       return '<div style="margin:0 0 10px;padding:8px 10px;border-radius:8px;background:rgba(176,50,43,.08);border:1px solid rgba(176,50,43,.25)">'
+         +'<div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:6px">'
+         +'<b style="color:#b0322b;font-size:12.5px">⚠ ยังไม่มีรหัสในคลัง '+ms.length+' รายการ</b>'
+         +'<button class="ibtn" id="sumMissCopy" style="padding:3px 10px">📋 คัดลอกทั้งหมด</button>'
+         +'<span style="font-size:11px;color:var(--ink-dim)">ส่งให้จัดซื้อเปิดรหัส แล้วกลับมากด 🔄 ค้นรหัสท่อนใหม่</span></div>'
+         +ms.map(m=>'<div style="font-size:11.5px;line-height:1.75;display:flex;gap:8px;align-items:baseline;flex-wrap:wrap">'
+             +'<span style="min-width:170px;flex:none;font-weight:600">'+escapeHtml(head(m))+'</span>'
+             +(m.phrase
+                ? ('<span style="font-family:var(--mono);flex:1;min-width:200px;word-break:break-all">'+escapeHtml(m.phrase)+'</span>'
+                   +'<button class="ibtn sumMiss1" data-t="'+escapeHtml(m.phrase)+'" style="padding:1px 8px;font-size:11px;flex:none">คัดลอก</button>')
+                : ('<span style="flex:1;color:var(--ink-dim)">'+escapeHtml(m.why)+'</span>'))
+             +'</div>').join("")
+         +'</div>'; })()
     /* v1.078: ปิด/เปิดของไฟในใบอุปกรณ์ได้จากตรงนี้เลย มีผลกับไฟล์ที่ส่งออกด้วย */
     +(function(){ const lm=ledBomMode();
       const has=(state.boards||[]).some(b=>b&&b._ledPart);
@@ -34725,7 +34859,8 @@ function renderSummary(){
           +((()=>{ if(f._fg||!(+f._cut>0)) return "";
               let ms=null; try{ ms=cutMissOf(f); }catch(e){}
               if(!ms) return "";
-              return '<div style="font-size:10px;color:#b0322b">ค้นรหัสท่อนไม่เจอ — '+escapeHtml(String(ms.why||""))+'</div>'; })())
+              return '<div style="font-size:10px;color:#b0322b">ค้นรหัสท่อนไม่เจอ — '+escapeHtml(String(ms.why||""))
+                +(ms.phrase?('<br>ชื่อที่ใช้ขอเปิดรหัส: <span style="font-family:var(--mono)">'+escapeHtml(ms.phrase)+'</span>'):"")+'</div>'; })())
           /* v1.081: ได้ขนาดตรงแต่วิธีเก็บริมไม่ตรงแม่แบบ ต้องเห็น ไม่ใช่ผ่านไปเงียบ ๆ */
           +((f._fg&&f._fg.alt&&f._gcut)?'<div style="font-size:10px;color:#b26a00">ชนิดกับขนาดตรง แต่ลักษณะขอบไม่ตรง — ตรวจก่อนสั่ง</div>':"")
           /* v1.284: ได้ท่อนที่ปลายตัดคนละแบบกับที่แบบบานตั้งไว้ — ของถูกต้น ถูกสี ถูกความยาว แต่ต้องตัดมุมเอง */
@@ -34751,6 +34886,13 @@ function renderSummary(){
     +'รายการเจาะกับพิกัดรูย้ายไปอยู่ที่ไฟล์เจาะ MPR และปุ่มดาวน์โหลด CSV แทน หน้านี้เหลือเฉพาะของที่ต้องเบิก · '
     +'แก้ว่ารหัสชุดไหนออกอะไรได้ที่ Element → Fittings → ออกใบสั่งซื้อแบบ</div>';
   body.innerHTML=h;
+  /* v1.293: คัดลอกรายการที่ยังไม่มีรหัส */
+  { const mc=body.querySelector("#sumMissCopy");
+    if(mc) mc.onclick=()=>{ let t=""; try{ t=cutMissText(rows); }catch(e){ console.error(e); }
+      if(!t){ toast("ไม่มีรายการที่ค้างรหัส"); return; }
+      try{ navigator.clipboard.writeText(t); toast("คัดลอกแล้ว "+t.split("\n").length+" บรรทัด — ส่งให้จัดซื้อเปิดรหัสได้เลย"); }
+      catch(e){ toast("คัดลอกไม่ได้ — เลือกข้อความแล้วคัดลอกเอง"); } };
+    body.querySelectorAll(".sumMiss1").forEach(b=>b.onclick=()=>{ try{ copyText(b.getAttribute("data-t")||""); }catch(e){} }); }
   /* v1.078 */
   body.querySelectorAll(".sumLedMode").forEach(el=>el.onclick=()=>{
     const v=el.dataset.v; settings.ledBomMode=v;
