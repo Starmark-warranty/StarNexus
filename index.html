@@ -940,7 +940,7 @@
    ===================================================================== */
 /* ---- APP_META: แหล่งความจริงเดียวของเวอร์ชัน (ดูได้จาก console / คลิกชื่อแอป) ---- */
 const APP_META={
-  name:"StarNexus Cabinet", version:"1.285", build:"2026-09-23/hanger-bays",
+  name:"StarNexus Cabinet", version:"1.288", build:"2026-09-23/back-groove-macro-yaw",
   file:"StarNexus.html", basedOn:"Furnitech_V3.html (v3.11)",
   /* ───────── เริ่มนับเวอร์ชันใหม่ที่ 1.001 (21/08/2026) ─────────
      ของเดิมนับมาถึง 42.1 แล้ววิ่งเป็นทศนิยมสองชั้นซึ่งอ่านลำดับยาก
@@ -948,6 +948,9 @@ const APP_META={
      ประวัติเก่าเก็บไว้ทั้งหมดตามเลขเดิม ไม่ไล่เขียนใหม่ เพราะเลขในนั้นถูกอ้างถึงไปแล้ว
      รายการที่อยู่ใต้ 1.001 ลงไปจึงเป็นเลขชุดเก่า อ่านต่อกันได้ตามวันที่ */
   changelog:[
+    ["1.288","2026-09-23","FIX ทอปกับแผ่นพื้นของตู้ที่หมุนตามผัง ออกช่อง Groove3 เป็น CNC ทั้งที่ BackSet 16 ต้องออกมาโคร V ตามปกติ — และที่หนักกว่านั้นคือร่องหายไปเฉย ๆ ไม่มีใครทำเลยสักทาง · เคสจริงจากออเดอร์ที่ส่งมา 37 ชิ้นที่มีร่องรับแผ่นหลัง ตก CNC ไป 11 ชิ้น (BAT070 BNT028×2 WNL059 WNR059 WNR042 WNT043 ทั้งทอปและพื้น) · สาเหตุสองชั้น (1) v41.7 ให้ \"รูปทรงที่วัดได้\" ชนะ \"ค่าที่ตั้งไว้\" เสมอ ซึ่งกลับหัวกลับหาง BackSet 16 คือเจตนาของคนออกแบบ ร่องที่วัดได้ไม่ตรงแปลว่าชิ้นเคลื่อนไปหลังเซาะร่อง ไม่ใช่เจตนาเปลี่ยน · ตอนนี้ค่าที่ตั้งไว้ชนะตราบใดที่ยังเป็นค่าที่เลื่อยได้ (ไม่เกิน 30) ไปวัดจากรูปเฉพาะตอนค่าที่เก็บใช้เลื่อยไม่ได้ ซึ่งคือเคสที่ v41.7 ตั้งใจแก้พอดี (แผ่นร่นเข้ามาเอง ค่าที่เก็บเป็นระยะจากหลังตู้ 66 ส่วนของแผ่นเองคือ 16) · (2) ตัววัดเองก็ผิดกรอบ pos ของร่องเป็นระยะในแกนของชิ้น ตัวเซาะร่องทั้งสามที่เขียนกำกับตรงกันว่า แผ่นตั้ง worldZ = p.z + pos · แผ่นนอน worldZ = p.z − pos ซึ่งจริงเฉพาะตอนตู้หัน 0° แต่ v41.7 เอาไปลบกับกรอบโลก worldDims(b)[2] พอตู้หมุน 90/180/270 ตามผัง แกนลึกของแผ่นย้ายไปอยู่บนแกน x แล้ว worldDims(b)[2] กลายเป็นความกว้างแผ่น ค่าที่ได้จึงไม่ใช่ระยะอะไรเลย ทอปตู้ลอยลึก 350 วัดได้ 124.75 และ 274.75 เกิน 30 ก็ตกไปออก CNC · แผ่นข้างรอดมาได้เพราะค่าที่วัดออกมาติดลบ แล้วโค้ดมีเงื่อนไข v>=0 กันไว้ จึงถอยไปใช้ค่าที่ตั้ง ไม่ใช่เพราะคิดถูก · แก้เป็นวัดในแกนของแผ่นเอง แกนลึกคือ b.W ทั้งแผ่นตั้งและแผ่นนอน จึงไม่ต้องรู้ว่าตู้หันทางไหน เคส v41.7 ที่ตู้หมุนก็เพิ่งจะทำงานได้จริงรอบนี้ · ผลข้างเคียงที่เงียบกว่าและอันตรายกว่า: แผ่นพื้นบางใบวัดได้ 24.75 กับ 14.8 ซึ่งไม่เกิน 30 จึงออกมาโครไปเลยด้วยเลขผิด V100250050 และ V100150045 ทั้งที่แผ่นข้างใบเดียวกันออก V100160050 — ของพวกนี้ไม่มีอะไรฟ้อง ต้องไปเจอที่หน้างาน · หลังแก้ ทั้ง 37 ชิ้นออก V100160050/V100160045 ตรงกับแผ่นข้างของตู้ใบเดียวกันทุกใบ และไฟล์เจาะไม่เปลี่ยนสักบรรทัด (ตรวจ 160 ชิ้น) · FIX ร่องรับแผ่นหลังหายไปทั้งสองทาง — ไฟล์เจาะตัดสินจากธง g.cnc ส่วนช่อง Groove3 ตัดสินจากมาโคร คนละเกณฑ์กัน ร่องที่ธงไม่ได้ติดแต่มาโครออกเป็น CNC จึงไม่ถูกกัดในไฟล์ และไม่ได้ไปเลื่อยด้วย ใบอุปกรณ์เขียนคำว่า CNC ไว้ลอย ๆ แผ่นออกจากโรงงานโดยไม่มีร่อง · ตอนนี้ยึดเกณฑ์เดียว ได้มาโคร V = งานเลื่อยไม่ต้องกัด นอกนั้นกัดในไฟล์ทั้งหมด (เกณฑ์เดียวกับร่องพื้นลิ้นชัก v1.257) · และ backGrooveMacro() หาแผ่นหลังจากฉากด้วย cabInst ได้เองเมื่อไม่ได้ส่งกลุ่มมา ใบอุปกรณ์กับไฟล์เจาะจึงตัดสินจากความหนาแผ่นหลังตัวเดียวกันเสมอ"],
+    ["1.287","2026-09-23","FEAT เปลี่ยน “รูปแบบตู้” ของตู้ที่โหลดมาแล้ว ไปเป็นอีกรหัสหนึ่ง โดย Variables ของตู้ใบนั้นใช้ต่อทั้งหมด — งานจริงคืออยากเปลี่ยน Detail ชั้นข้างใน แต่สี ขนาด ตำแหน่ง และค่าที่ออเดอร์ส่งมา ต้องเป็นของเดิม · ของเดิมช่อง “รหัสตู้ (Cabinet Code)” เปลี่ยนแค่ป้ายที่ติดอยู่ ชิ้นข้างในยังเป็นของเดิมทุกแผ่น (ใบเดิมที่เปลี่ยนเป็น MWA030 จึงได้แต่ชื่อ) ทางเดียวที่ทำได้คือลบทิ้งแล้วโหลดใหม่ ซึ่งเสีย Variables ตำแหน่ง และมุมหันในผังไปทั้งหมด · ตัวใหม่ยึดของเดิมไว้สามอย่าง (1) cabInst เท่าเดิม Variables (state.cabColors) เลขจาก XML (state.cabNums) ค่าปรับบาน (state.cabDP) และกระจกที่จับไว้ ติดมากับตู้ใบใหม่ครบ ไม่ต้องกรอกใหม่ · ฟิลด์ที่โมเดลใหม่ใช้แต่ตู้เดิมไม่เคยมี เติมค่าตั้งต้นให้ด้วย applyVarFallbackToCab ของเดิมไม่ถูกทับ (2) ขนาดนอกเท่าตู้เดิมในฉาก วัดด้วย cabRefBox ตัวเดียวกับที่ตัวสเกลใช้เป็นไม้บรรทัด เป้ากับผลจึงเทียบกันได้ตรง ๆ (เลือกเอาขนาดตามโมเดลก็ได้) ตู้ที่หมุนตามผังคลายหมุนก่อนวัด กว้างกับลึกจึงไม่สลับกัน (3) ตำแหน่งกับมุมหันอยู่ที่เดิมเป๊ะ ใช้ _restoreCabPose ตัวเดียวกับปุ่มปรับขนาดตู้ มุมหลังซ้ายล่างทับจุดเดิม · หน้าบาน/ลิ้นชักเอาตามโมเดลใหม่ทั้งหมด และคิดขอบใหม่จากสเปคของต้นแบบเหมือนตอนโหลดออเดอร์ · ของที่ใส่เพิ่มเองในตู้เก่า (หูแขวน ราวแขวนผ้า ขาตู้ ตู้ในช่อง) ผูกกับชิ้นของตู้เก่าโดยตรง จึงหายไปพร้อมกัน — บอกไว้ในหน้าต่างก่อนกดตกลงว่าจะหายอะไรบ้าง · พังกลางทางเมื่อไหร่คืนฉากเดิมทั้งชุด ไม่ทิ้งตู้ครึ่งใบไว้ · เข้าได้สองทาง ปุ่มใต้ช่องรหัสในแผงทั้งตู้ และเมนูคลิกขวา · CHORE ยกบล็อกปั้นตู้จากโมเดลใน buildFromXmlOrder ออกมาเป็น placeCabModel() ของกลาง ยกมาทุกบรรทัดไม่เปลี่ยนตรรกะ ตัวโหลดออเดอร์กับตัวเปลี่ยนรุ่นจึงเดินทางเดียวกันเสมอ (ตรวจแล้วว่าโหลด p55/p56 ได้ชิ้นเท่าเดิม พิกัดเท่าเดิมทุกชิ้น)"],
+    ["1.286","2026-09-23","FIX ตรึงผิวเลือกผิวเองได้ + หมุดไม่ดึงชิ้นกลับอีกแล้ว (สามอาการในเรื่องเดียวกัน) — (1) กดตรึงแล้วโปรแกรมเดาผิวให้ตัวเดียว เรียงลำดับด้วย ยาว>กว้าง>หนา แผ่นตั้งกลางที่ยืดไปชนขอบหลังแผ่นพื้น จึงได้ “ตรึงความยาวกับผิวบนแผ่นพื้น” แทน ความลึกเลยไม่มีหมุด · ตอนนี้ขึ้นเมนูให้เลือกทุกผิวที่ชนกันอยู่ บอกชัดว่าผิวไหนของชิ้นนี้ ไปชนผิวไหนของชิ้นไหน และยืดด้านไหน (คำว่า หน้า/หลัง/ซ้าย/ขวา อิงตัวตู้ ไม่ใช่แกนโลก ตู้หมุนแล้วยังอ่านถูก) · มีผิวเดียวก็ตรึงให้เลยเหมือนเดิม (2) รับผิวแบบ “เสมอขอบ” ด้วย — เดิมตัดทิ้งหมดเพราะเดาให้ผิวเดียวจึงต้องเดาให้แม่น (v18.4) เคสแผ่นตั้งกลางที่อยากให้ขอบหลังเสมอกับขอบหลังแผ่นพื้นจึงไม่เคยมีตัวเลือก · ตอนนี้อยู่ท้ายรายการในชื่อ เสมอขอบ (3) FIX ตัวใหญ่: หมุดที่สร้างจากปุ่มตรึงและจากการลากยืดดูดผิว เก็บ “ทิศในโลก” แต่ applyPins คูณทิศของแกนเข้าไปอีกชั้น (v1.155) ชิ้นในตู้ที่หมุน 180 องศา (ออเดอร์ส่วนใหญ่) จึงถูกยืดไปหาผิวตรงข้ามของชิ้นอ้างอิง — ทดสอบแล้วชั้นตาย 450 หดเหลือ 3 มม. ทันทีที่ sync · ตอนนี้แปลงทิศก่อนบันทึกด้วย pinSideLocal ทั้งสองทาง และ _rebindPin อ่านด้านแบบเดียวกัน ของเก่าในไฟล์ไม่ถูกแตะ (เทียบรูปทรงหลังเปิดไฟล์ 8 ไฟล์ ตรงกันทุกชิ้น) (4) หมุดวนกัน (A ตรึงกับ B และ B ตรึงกลับมาที่ A แกนเดียวกัน — ไฟล์ 56 มีจริงที่แผ่นตั้งกลางสองใบ) ไม่มีใครเป็นตัวตั้ง ต่างคนต่างยืดใส่กัน ชิ้นที่เพิ่งลากจึงเด้งกลับทุกครั้ง · ตอนนี้ข้ามทั้งคู่ ใช้ขนาดที่ตั้งไว้ แล้วเตือนให้ปลดข้างหนึ่งไปตรึงใหม่ · FEAT หูแขวนตู้หลายช่อง: เมนูมี “เอาหูแขวนออก — เฉพาะช่องที่คลิก” แยกจาก “ทั้งตู้” (เดิมมีปุ่มเดียว กดแล้วหายหมดทุกช่อง) · BOM 3 ไฟล์ + หน้าแบบผลิต ตรงกับ 1.285"],
     ["1.285","2026-09-23","FIX ตู้ลอยยาวที่แบ่งหลายช่อง ใส่หูแขวนได้ทุกช่อง (เดิมลงได้ช่องเดียว) — ตู้ลอย LTF004 1.8 ม. มีเสาแบ่ง 2 ต้น แผ่นหลังจึงแยกเป็น 3 แผ่น แต่ตัวใส่หูแขวนเลือกแผ่นหลังมาแค่แผ่นเดียว (แผ่นที่หน้าตัดใหญ่สุด) แล้วเจาะร่อง/บากลงแผ่นนั้นแผ่นเดียว หู 2 ตัวจึงไปกองอยู่ช่องเดียวกัน ช่องแรกกดยังไงก็ไม่ลง เพราะโปรแกรมไม่เคยมองแผ่นหลังของช่องนั้น · ตอนนี้ _hangBacks() หาแผ่นหลังแนวหลังสุดทุกแผ่น เรียงซ้าย→ขวา (แผ่นที่ซ้อนช่วงกัน เช่นแบ่งบน-ล่าง ไม่นับเป็นช่อง) แล้ววางหูรายช่อง: แบบร่อง (H1) เจาะร่องของช่องนั้น 2 ร่องแล้วหูไปนั่งตรงร่อง · แบบแป้น หูชิดขอบช่องนั้นเอง + บากมุมแผ่นหลังของช่อง · เหล็กฉาก 3 ขา เกาะขอบในของช่อง · เมนูคลิกขวา → หูแขวน มีหัวข้อ “ช่องที่ใส่หูแขวน” ติ๊กเลือกได้ว่าช่องไหนบ้าง (ทุกช่อง = ค่าตั้งต้น · เหลืออย่างน้อยหนึ่งช่อง) เก็บเป็น _hangerBays ที่แผ่นเดียวกับ _hangerCode และเข้าลายเซ็น cabFitSig แล้ว เปลี่ยนช่องจึงคิดใหม่ทันที · ตู้แผ่นหลังแผ่นเดียว (ส่วนใหญ่) ไม่แตะทางนี้เลย — ทดสอบวางหูทั้ง H1 และแบบแป้นกับตู้ 4 ใบในไฟล์จริง ได้ตำแหน่งและบากเท่าเดิมทุกค่า · ไฟล์ 55: H1 ทุกช่อง = 6 ตัว (ช่องละ 2) · ติ๊กเอาช่อง 2 ออกเหลือ 4 ตัว ใบอุปกรณ์ออก H1 ×4 ตามจริง · BOM 4 ไฟล์ + หน้าแบบผลิต ตรงกับ 1.284"],
     ["1.284","2026-09-23","FIX เส้นเฟรม 007/021 ไม่ต้องรอท่อน “ตัด 45/2ด้าน” ในคลังอีกแล้ว — คลังมีเส้น 021 ยาว 1118 สี AL618MH อยู่จริง (406AL30120240093) แต่เป็นท่อนตัดตรง ตัวค้นบังคับให้ต้องเป็นแบบตัด 45 ตามที่แบบบานตั้งไว้ จึงขึ้นว่า “ยังไม่มีแบบตัด 45/2ด้าน” ทั้งที่หน้างานตัดมุม 45 เองอยู่แล้ว · ตอนนี้มีรายการ “เส้นเฟรมที่ไม่บังคับแบบตัด 45” ในตั้งค่า → BOM Fitting (ตั้งต้น 007, 021) เส้นที่อยู่ในรายการนี้ยังเลือกท่อนที่ปลายตัดตรงกับแบบบานก่อนเสมอ ไม่มีค่อยใช้อีกแบบ แล้วขึ้นหมายเหตุสีส้มในใบว่า “คลังไม่มีแบบตัด 45/2ด้าน — ใช้ท่อนตัดตรงแทน (ตัดมุมหน้างาน)” · เส้นที่ไม่ได้อยู่ในรายการยังเข้มเหมือนเดิม ไม่มีแบบที่ตั้งไว้ = บอกว่าขาดท่อนแบบไหน · รหัสหน้าตัดถูกส่งไปถึงตัวค้นแล้ว (bomCutRow → _cutSec → cutVarOf) ทั้งทางที่มี Purchase ID และทางที่ค้นจากชื่อรุ่น · ทดสอบกับชื่อสินค้าจริงจากคลัง: 021/1118 ได้ 406AL30120240093 (หมายเหตุตัดมุมเอง) · 007/595 ยังได้ 406AL30110310076 แบบตัด 45 ไม่ใช่ ...061 ที่ตัดตรง · 007/1118 ได้ 406AL30110310116 · เส้นที่ไม่อยู่ในรายการยังขึ้นว่าขาดท่อนเหมือนเดิม · BOM 3 ไฟล์ + หน้าแบบผลิต ตรงกับ 1.283 ทุกแถว"],
     ["1.283","2026-09-22","FEAT บานไม้กัดทะลุใส่กระจก (MCWG20) เห็นทะลุ + มีกระจกทั้งสองโหมด — โหมดประหยัดเห็นช่องทะลุเพราะแผ่นถูกเจาะตาม Part (กัดทะลุ/บ่า) แต่ปิดโหมดประหยัดแล้วลายหน้าบาน 3D (doorReliefGeo) สร้างรูปทรงใหม่ทั้งแผ่นทับของเดิม ช่องทะลุกับบ่าจึงหายเป็นแผ่นทึบ และทั้งสองโหมดไม่มีกระจกเลยเพราะกระจกบานนี้มีแค่ในรายการสั่ง (doorGlassSpec) ไม่มีชิ้นในฉาก · (1) doorReliefCutOf(b) อ่านช่องทะลุ/บ่าจาก Part ผ่าน woodFrameCuts ตัวเดียวกับที่เจาะแผ่น · doorReliefGeo รับ cut เพิ่ม: ผิวหน้าปั้นลายเฉพาะวงเฟรม เว้นช่องกลาง · หลังบานจมเป็นบ่าลึกตามค่า · มีผนังบ่ากับผนังช่องทะลุสูงถึงผิวลายตรงขอบช่อง · ใช้เส้นตารางชุดเดียวกันทั้งหน้า-หลัง-ผนัง รูปทรงปิดสนิท (ตรวจแล้วขอบเปิด 0 ปริมาตรตรงกับที่คำนวณมือ) · ลายที่เลยขอบช่อง (67.5:14) ตกในช่องโล่งจึงไม่มีผล และเช็คความลึกนับแค่ถึงขอบช่อง · บ่าหลัง: ลายด้านหน้าห้ามลึกจนทะลุบ่า · ไม่มี cut = รูปทรงเดิมทุกจุด (เทียบ position ทุก vertex กับ 1.282 แล้วตรง) (2) buildDoorGlassMesh วาดกระจกในบานกัดทะลุที่ตั้งกระจกไว้ (ขอบวางกระจก หรือ กระจกหนา) ทั้งโหมดประหยัดและไม่ประหยัด · ขนาด = กระจกที่สั่งจริง (บาน 497×1897 ขอบวาง 57.5 Gap 2 → 380×1780) · นั่งชนบ่าจากด้านหลัง ความหนาตามออเดอร์ K_Front_Glass/Part · สีตามชนิด ใส/ชา-ชาทอง/เทา-ดำ/เขียว/ฟ้า/ฝ้า/เงา ขอบกระจกเข้มกว่าหน้าแบบกระจกจริง + แสงสะท้อนเฉียงจาง ๆ บนหน้ากระจก (ยกเว้นฝ้า) · โชว์อย่างเดียว ไม่เข้า state.boards ไม่แตะ BOM/ใบผลิต/MPR · คลิกทะลุไปเลือกของในตู้ได้ · ติดรหัสบานไว้ กางบานแล้วกระจกหมุนตาม · บานไม้ที่มีแผ่นกลางจากเส้นเฟรมอยู่แล้วไม่วาดซ้อน (3) เส้นลายไม้ไม่ลากลอยข้ามช่องกระจก/บ่าอีก · ทดสอบ: render3D จริงบนฉากจำลอง บาน 497×1897 ได้ลาย 1080 สามเหลี่ยม+กระจก 380×1780×5 ทั้งสองโหมด ยิงเส้นผ่านกลางบานไม่ชนเนื้อไม้ · BOM 6 ไฟล์ + หน้าแบบผลิต 4 ไฟล์ ตรงกับ 1.282 ทุกแถว · จำนวนวัตถุในฉากไฟล์เดิมเท่าเดิม · เปิดแอปจริงใน Chromium (WebGL) ถ่ายภาพทั้งสองโหมด + กางบาน กระจกหมุนตามบาน"],
@@ -11414,8 +11417,14 @@ function addHangerMenu(b,x,y){   // เมนูเลือกแบบหู�
   const curSide=(carc.find(z=>z._hangerCode)||{})._hangerSide||"";   // v1.244: "" = สองข้าง · "L" · "R"
   const curBays=(carc.find(z=>z._hangerCode)||{})._hangerBays||"";   // v1.285: "" = ทุกช่อง · "1,3" = เฉพาะช่องนั้น
   /* v1.285: ตู้ที่แบ่งหลายช่อง — นับช่องจากแผ่นหลังตอนตู้ขนานแกน (ตู้จากออเดอร์หมุนอยู่) */
-  let bayN=0, bayW=[];
-  try{ _fitAligned(all,()=>{ const bb=_hangBacks(all); bayN=bb.length; bayW=bb.map(p=>Math.round(+p.L||0)); return []; }); }catch(e){ console.error("hangBays:",e); }
+  let bayN=0, bayW=[], curBay=0;
+  try{ _fitAligned(all,()=>{ const bb=_hangBacks(all); bayN=bb.length; bayW=bb.map(p=>Math.round(+p.L||0));
+    if(bayN>1){                                                       // v1.286: ชิ้นที่คลิกอยู่ช่องไหน — ไว้เอาหูออกเฉพาะช่องนั้น
+      if(b&&b._fitBay) curBay=+b._fitBay||0;
+      if(!curBay){ const k=bb.indexOf(b); if(k>=0) curBay=k+1; }
+      if(!curBay&&b){ bb.forEach((p,k)=>{ const pl=p.x-Math.max(+p.L||0,1)/2, pr=p.x+Math.max(+p.L||0,1)/2;
+        if(b.x>=pl-1&&b.x<=pr+1) curBay=k+1; }); } }
+    return []; }); }catch(e){ console.error("hangBays:",e); }
   const setCode=code=>{ carc.forEach(z=>{ delete z._hangerCode; delete z._hangerSide; delete z._hangerBays; });
     if(code){ host._hangerCode=code; if(curSide) host._hangerSide=curSide; if(curBays) host._hangerBays=curBays; } _reapplyFits(); };   // แหล่งเดียว · เปลี่ยนแบบแล้วข้าง/ช่องที่เลือกไว้ยังอยู่
   const setBays=v=>{ const hb=carc.find(z=>z._hangerCode); if(!hb) return;
@@ -11441,7 +11450,13 @@ function addHangerMenu(b,x,y){   // เมนูเลือกแบบหู�
         if(!arr.length){ toast("ต้องเหลืออย่างน้อยหนึ่งช่อง"); return; }
         setBays(arr.length===bayN?"":arr.join(","));
         toast("หูแขวน: ช่อง "+arr.join(", ")); }}); } }
-  if(curCode) items.push({label:"✕ เอาหูแขวนออก",danger:true,fn:()=>{ setCode(""); toast("เอาหูแขวนออกแล้ว"); }});
+  /* v1.286: ตู้หลายช่อง — ปุ่มเดิมล้างทั้งตู้ (หายหมดทุกช่อง) เพิ่มตัวที่เอาออกเฉพาะช่องที่คลิกอยู่ */
+  if(curCode&&bayN>1&&curBay) items.push({label:"✕ เอาหูแขวนออก — เฉพาะช่อง "+curBay,danger:true,fn:()=>{
+    const arr=_hangBayPick(curBays,bayN).filter(k=>k!==curBay);
+    if(!arr.length){ setCode(""); toast("ช่องสุดท้ายแล้ว — เอาหูแขวนออกทั้งตู้"); return; }
+    setBays(arr.length===bayN?"":arr.join(","));
+    toast("เอาหูแขวนออกจากช่อง "+curBay+" แล้ว · เหลือช่อง "+arr.join(", ")); }});
+  if(curCode) items.push({label:"✕ เอาหูแขวนออก"+((bayN>1)?(" — ทั้งตู้ ("+bayN+" ช่อง)"):""),danger:true,fn:()=>{ setCode(""); toast("เอาหูแขวนออกแล้ว"); }});
   /* v37.0: หูแขวนกระจกอยู่หมวดเดียวกับหูแขวนตู้ลอย คนหาจากที่เดียว
      ของเดิมไปแปะเป็นปุ่มในแผงขวาซึ่งเป็นคนละที่กับหูแขวนอื่นทั้งหมด */
   const hasGH=((b.holes||[]).some(isGlassHangerHole));
@@ -13366,12 +13381,14 @@ function _rebindPin(b,all){
   const ax=localAxis(b,p.dim), i={x:0,y:1,z:2}[ax];
   const pool=all.filter(x=>x!==b&&x.id!==b.id&&!x._virtual&&!x._door&&(x.cabInst||null)===(b.cabInst||null));
   if(p.refName){ const byName=pool.find(x=>x.name===p.refName); if(byName){ p.refId=byName.id; return byName; } }
-  const d=worldDims(b), sgn=(p.side==="hi")?1:-1;
+  /* v1.286: ด้านที่เก็บไว้เป็น "ตามแกนของชิ้น" ต้องคูณทิศแกนก่อนเทียบกับพิกัดโลก (เหมือน applyPins) */
+  const _s=(function(){ try{ return localAxisSign(b,p.dim).s||1; }catch(e){ return 1; } })();
+  const d=worldDims(b), sgn=((p.side==="hi")?1:-1)*_s;
   const want=(b[ax]+sgn*d[i]/2)-sgn*(+p.off||0);            // ผิวอ้างอิงที่ควรจะเป็น จากรูปทรงตอนนี้
   let best=null,bd=Infinity;
   pool.forEach(x=>{ const xd=worldDims(x);
-    [["lo",x[ax]-xd[i]/2],["hi",x[ax]+xd[i]/2]].forEach(([sd2,f])=>{
-      const dd=Math.abs(f-want); if(dd<bd&&dd<1.01){ bd=dd; best={b:x,side:sd2}; } }); });
+    [[-1,x[ax]-xd[i]/2],[1,x[ax]+xd[i]/2]].forEach(pr=>{
+      const dd=Math.abs(pr[1]-want); if(dd<bd&&dd<1.01){ bd=dd; best={b:x,side:((pr[0]*_s)>0)?"hi":"lo"}; } }); });
   if(!best) return null;
   p.refId=best.b.id; p.refSide=best.side; p.refName=best.b.name; return best.b;
 }
@@ -13379,46 +13396,100 @@ function _rebindPin(b,all){
    ชิ้นที่ยืดไว้ก่อนหน้านี้ หรือชิ้นที่ปรับขนาดด้วยการพิมพ์ตัวเลข ไม่มีการตรึงติดมาด้วย
    ต้องลากยืดใหม่ให้ดูดติดถึงจะได้ ซึ่งเสี่ยงทำขนาดเพี้ยนโดยไม่จำเป็น
    ตัวนี้หาชิ้นที่ผิวชนกันพอดีอยู่แล้ว แล้วตรึงให้เลย ขนาดปัจจุบันไม่ถูกแตะ */
-function pinToTouching(b){
-  if(!b||b._virtual){ toast("เลือกชิ้นไม้ก่อน"); return null; }
+/* ───────── v1.286: หมุดเก็บ "ด้านตามแกนของชิ้น" ไม่ใช่ทิศในโลก ─────────
+   applyPins คูณทิศของแกน (localAxisSign.s) เข้าไปเองอยู่แล้ว (v1.155)
+   แต่ตัวที่ไปหาผิวที่ชนกันทำงานบนแกนโลกล้วน ๆ ถ้าบันทึกทิศโลกลงไปตรง ๆ จะถูกคูณซ้ำ
+   ชิ้นในตู้ที่หมุน 180 (s = -1 ซึ่งคือออเดอร์ส่วนใหญ่) จึงยืดไปหา "ผิวตรงข้าม" ของชิ้นอ้างอิง
+   ผลคือชั้นที่เพิ่งกดตรึง หดเหลือ 3 มม. หรือเด้งกลับทุกครั้งที่เปิดไฟล์ · แปลงก่อนบันทึกเสมอ */
+function pinSideLocal(b,dim,worldSgn){
+  let s=1; try{ s=localAxisSign(b,dim).s||1; }catch(e){ s=1; }
+  return ((worldSgn*s)>0)?"hi":"lo";
+}
+/* v1.286: ชื่อผิวเป็นคำที่คนอ่านรู้เรื่อง — ผิวไหนของชิ้นนี้ ไปชนผิวไหนของอีกชิ้น */
+const PIN_DIMW={L:"ความยาว",W:"ความกว้าง",T:"ความหนา"};
+function _pinFaceWord(b,ax,sgn){
+  if(ax==="y") return sgn>0?"บน":"ล่าง";
+  /* ตู้จากออเดอร์หมุนได้ทุกมุม — คำว่า หน้า/หลัง/ซ้าย/ขวา ต้องอิง "ตู้ใบนั้น" ไม่ใช่แกนโลก */
+  try{
+    const M=orientMatrix("front",(typeof cabYawOf==="function"?(cabYawOf(b&&b.cabInst)||0):0));
+    const fz=new THREE.Vector3(0,0,1).transformDirection(M), fx=new THREE.Vector3(1,0,0).transformDirection(M);
+    const v=new THREE.Vector3((ax==="x")?sgn:0,0,(ax==="z")?sgn:0);
+    const dz=v.dot(fz), dx=v.dot(fx);
+    if(Math.abs(dz)>=Math.abs(dx)) return (dz>0)?"หน้า":"หลัง";
+    return (dx>0)?"ขวา":"ซ้าย";
+  }catch(e){ return ({x:(sgn>0?"ขวา":"ซ้าย"), z:(sgn>0?"หน้า":"หลัง")})[ax]||""; }
+}
+/* ───────── v1.286: หมุดวนกัน — A ตรึงกับ B และ B ตรึงกลับมาที่ A ด้วยแกนเดียวกัน ─────────
+   ไม่มีใครเป็นตัวตั้ง ต่างคนต่างยืดใส่กัน ชิ้นที่เพิ่งลากไว้จึงเด้งกลับทุกครั้งที่เปิดไฟล์
+   เจอเมื่อไหร่ข้ามทั้งคู่ ปล่อยขนาดตามที่ตั้งไว้ แล้วบอกให้ไปปลดข้างหนึ่งแล้วตรึงใหม่ */
+const _pinLoopSeen=new Set();
+function _pinLoopWarn(b,rb){
+  const k=[b.id,rb.id].sort().join("|"); if(_pinLoopSeen.has(k)) return;
+  _pinLoopSeen.add(k);
+  try{ console.warn("📌 หมุดวนกัน: “"+(b.name||b.id)+"” ตรึงกับ “"+(rb.name||rb.id)+"” และอีกฝั่งตรึงกลับมา — ข้ามทั้งคู่"); }catch(e){}
+  try{ toast("📌 “"+(b.name||"ชิ้นนี้")+"” กับ “"+(rb.name||"อีกชิ้น")+"” ตรึงวนใส่กันเอง — ใช้ขนาดที่ตั้งไว้ · ปลดหมุดข้างหนึ่ง แล้วตรึงใหม่ให้ชนผิวที่ต้องการ"); }catch(e){}
+}
+/* ───────── v1.286: เก็บ "ทุกผิวที่ชนกันอยู่" ไม่ใช่เดาให้ผิวเดียว ─────────
+   ชิ้นเดียวชนหลายอย่างพร้อมกันเป็นเรื่องปกติ — แผ่นตั้งกลางชนทั้งแผ่นพื้น (ขอบล่าง) และแผ่นหลัง (ขอบหลัง)
+   ของเดิมจัดอันดับด้วย ยาว > กว้าง > หนา แล้วหยิบตัวเดียว จึงได้ "ตรึงความยาวกับแผ่นพื้น"
+   ทั้งที่คนกดตั้งใจตรึงความลึกไว้กับขอบหลัง · ความลึกเลยไม่มีหมุด แล้วเด้งกลับทีหลัง
+   ตอนนี้คืนทุกผิว เรียงตัวที่น่าจะใช่ไว้บนสุด (ซ้อนทับกันเยอะ = แผ่นที่กินทั้งตู้ มาก่อนชิ้นพี่น้องที่ขอบบังเอิญเสมอกัน) */
+function pinTouchCands(b){
+  if(!b||b._virtual) return [];
   const all=state.boards.filter(x=>x&&x.cabInst===b.cabInst&&!x._virtual&&x!==b&&(x.T>0));
-  if(!all.length){ toast("ไม่พบชิ้นอื่นในตู้นี้"); return null; }
-  const bd=worldDims(b), bc=[b.x,b.y,b.z];
-  const TOL=1.2;
-  let best=null;
+  if(!all.length) return [];
+  const bd=worldDims(b), bc=[b.x,b.y,b.z], TOL=1.2, out=[], seen={};
   ["L","W","T"].forEach(dim=>{
-    const ax=localAxis(b,dim), i={x:0,y:1,z:2}[ax];
+    const _A=localAxisSign(b,dim), ax=_A.ax, i={x:0,y:1,z:2}[ax];
     const perp=[0,1,2].filter(k=>k!==i);
     [-1,1].forEach(sgn=>{
       const myFace=bc[i]+sgn*bd[i]/2;
       all.forEach(o=>{
         const oc=[o.x,o.y,o.z], od=worldDims(o);
-        let ov=true; perp.forEach(k=>{ const lo=Math.max(bc[k]-bd[k]/2,oc[k]-od[k]/2), hi=Math.min(bc[k]+bd[k]/2,oc[k]+od[k]/2);
-          if(hi-lo<-20) ov=false; });
+        let ov=true, area=1;
+        perp.forEach(k=>{ const lo=Math.max(bc[k]-bd[k]/2,oc[k]-od[k]/2), hi=Math.min(bc[k]+bd[k]/2,oc[k]+od[k]/2);
+          if(hi-lo<-20) ov=false; area*=Math.max(hi-lo,1); });
         if(!ov) return;
-        /* แกนที่สองชิ้นซ้อนกันอยู่ ไม่ใช่แกนที่ผิวชนกัน — ขอบบังเอิญเสมอกันเฉย ๆ
-           เช่นชั้นกับเสาสูงเท่ากัน ขอบบนล่างตรงกันพอดีทั้งคู่ แต่ที่ชนจริงคือด้านข้าง
-           ตรึงผิดแกนแล้วชิ้นจะยืดผิดทาง จึงรับเฉพาะแกนที่ไม่ซ้อนกัน */
+        /* v18.4 ตัด "ขอบบังเอิญเสมอกัน" ทิ้งทั้งหมด เพราะเดาให้ผิวเดียวจึงต้องเดาให้แม่น
+           v1.286: ตอนนี้ให้เลือกเองได้แล้ว จึงเก็บไว้เป็นตัวเลือกท้าย ๆ ในชื่อ "เสมอขอบ"
+           (แผ่นตั้งกลางที่อยากให้ขอบหลังเสมอกับขอบหลังแผ่นพื้น = เคสนี้ตรง ๆ) */
         const ovI=Math.min(bc[i]+bd[i]/2,oc[i]+od[i]/2)-Math.max(bc[i]-bd[i]/2,oc[i]-od[i]/2);
-        if(ovI>TOL) return;
-        [[-1,"lo"],[1,"hi"]].forEach(([rs,name])=>{
-          const rFace=oc[i]+rs*od[i]/2, gap=Math.abs(myFace-rFace);
+        const flush=(ovI>TOL);
+        [[-1,"lo"],[1,"hi"]].forEach(pr=>{
+          const rFace=oc[i]+pr[0]*od[i]/2, gap=Math.abs(myFace-rFace);
           if(gap>TOL) return;
-          /* ชิ้นเดียวอาจชนของหลายอย่างพร้อมกัน เช่นชั้นชนทั้งผนังด้านหลังและเสากลาง
-             ที่คนตั้งใจตรึงมักเป็นด้านที่ยาวที่สุด เพราะเป็นด้านที่ต้องยืดไปชน
-             ระยะห่างเท่ากันเมื่อไหร่ จึงเลือกความยาวก่อน แล้วค่อยกว้าง แล้วค่อยหนา */
-          const rank={L:0,W:1,T:2}[dim];
-          if(!best||gap<best.gap-0.05||(Math.abs(gap-best.gap)<=0.05&&rank<best.rank))
-            best={gap:gap,rank:rank,dim:dim,side:(sgn>0?"hi":"lo"),refId:o.id,refSide:name,refName:o.name};
+          const key=dim+"|"+(sgn>0?"hi":"lo")+"|"+o.id+"|"+pr[1]; if(seen[key]) return; seen[key]=1;
+          out.push({gap:gap, ov:area, rank:{L:0,W:1,T:2}[dim], dim:dim,
+            side:pinSideLocal(b,dim,sgn), refSide:pinSideLocal(b,dim,pr[0]),
+            refId:o.id, refName:o.name, flush:flush,
+            myFace:_pinFaceWord(b,ax,sgn), refFace:_pinFaceWord(b,ax,pr[0]),
+            circ:!!(o.pin&&o.pin.refId===b.id)});
         });
       });
     });
   });
-  if(!best){ toast("ยังไม่มีผิวไหนชนกันพอดี — ใช้เครื่องมือ ยืด/หด ลากไปชนก่อน แล้วมันจะดูดผิวและตรึงให้เอง"); return null; }
-  b.pin={dim:best.dim,side:best.side,refId:best.refId,refSide:best.refSide,off:0,refName:best.refName};
-  sync(0);
-  toast("📌 ตรึง "+({L:"ความยาว",W:"ความกว้าง",T:"ความหนา"}[best.dim])+" ไว้กับผิวของ “"+(best.refName||"ชิ้นที่ชนอยู่")+"” แล้ว — ชิ้นนั้นขยับเมื่อไหร่ ชิ้นนี้ยืดตาม (ปลดได้ที่แผงขวา)");
-  return best;
+  out.sort((a,c)=>((a.circ?1:0)-(c.circ?1:0)) || ((a.flush?1:0)-(c.flush?1:0))
+    || ((a.gap-c.gap>0.05)?1:((c.gap-a.gap>0.05)?-1:0))
+    || (c.ov-a.ov) || (a.rank-c.rank));
+  return out;
+}
+function pinToTouching(b,mx,my){
+  if(!b||b._virtual){ toast("เลือกชิ้นไม้ก่อน"); return null; }
+  const cands=pinTouchCands(b);
+  if(!cands.length){ toast("ยังไม่มีผิวไหนชนกันพอดี — ใช้เครื่องมือ ยืด/หด ลากไปชนก่อน แล้วมันจะดูดผิวและตรึงให้เอง"); return null; }
+  const put=c=>{ b.pin={dim:c.dim,side:c.side,refId:c.refId,refSide:c.refSide,off:0,refName:c.refName};
+    sync(0);
+    toast("📌 ตรึงผิว"+c.myFace+"ของชิ้นนี้ ไว้กับผิว"+c.refFace+"ของ “"+(c.refName||"ชิ้นที่ชนอยู่")+"” — ชิ้นนั้นขยับเมื่อไหร่ "+PIN_DIMW[c.dim]+"ยืดตาม (ปลดได้ที่แผงขวา)");
+    return c; };
+  if(cands.length<2) return put(cands[0]);
+  let shown=false;
+  try{ if(typeof varCtxShow==="function"&&$("varCtx")){
+    varCtxShow((mx==null?innerWidth/2:mx),(my==null?innerHeight/2:my),
+      cands.slice(0,10).map((c,i)=>({label:(i?"○ ":"● ")+(c.flush?"เสมอขอบ ":"ชนผิว ")+"ผิว"+c.myFace+" → ผิว"+c.refFace+"ของ “"+(c.refName||"?")+"”  ("+PIN_DIMW[c.dim]+(c.circ?" ⚠ อีกฝั่งตรึงกลับมา":"")+")",
+        fn:()=>put(c)})));
+    shown=true; } }catch(e){ console.error("pinMenu:",e); }
+  if(!shown) return put(cands[0]);
+  return null;
 }
 function applyPins(list){
   const all=list||state.boards;
@@ -13427,8 +13498,12 @@ function applyPins(list){
     let rb=all.find(x=>x.id===p.refId);
     if(!rb){ rb=_rebindPin(b,all); if(!rb) return; }           // ชิ้นอ้างอิงหาย -> ลองผูกใหม่ก่อน
     if(!p.refName) p.refName=rb.name;                          // จำชื่อไว้ คราวหน้ากู้ได้ทันที
+    /* v1.286: อีกฝั่งตรึงกลับมาที่ชิ้นนี้ด้วยแกนเดียวกัน = วนกัน ไม่มีใครเป็นตัวตั้ง → ข้ามทั้งคู่ */
+    { const rp=rb&&rb.pin;
+      if(rp&&rp.refId===b.id&&String(rp.dim)===String(p.dim)){ _pinLoopWarn(b,rb); return; } }
     /* v1.155: คูณ "ทิศจริงในโลก" เข้าไปด้วย ไม่งั้นตู้ที่หมุนจะยืดกลับทาง
-       ชิ้นอ้างอิงอยู่ตู้เดียวกันจึงหมุนเท่ากัน ใช้ทิศตัวเดียวกันได้ */
+       ชิ้นอ้างอิงอยู่ตู้เดียวกันจึงหมุนเท่ากัน ใช้ทิศตัวเดียวกันได้
+       v1.286: หมุดจึงเก็บด้านเป็น "ตามแกนของชิ้น" ไม่ใช่ทิศโลก — ตัวสร้างหมุดต้องแปลงก่อนบันทึก (ดู pinSideLocal) */
     const _A=localAxisSign(b,p.dim), ax=_A.ax, i={x:0,y:1,z:2}[ax];
     const d=worldDims(b), rd=worldDims(rb);
     const sgn=((p.side==="hi")?1:-1)*_A.s;
@@ -13531,7 +13606,9 @@ function applyStretchTyped(){ const s=stretchSession; if(!s)return; const v=pars
 function finalizeStretch(){ if(!stretchSession)return;
   const s=stretchSession, r=s.snapRef;
   if(r&&r.refId){    /* ดูดติดผิวไหน = ตรึงไว้กับผิวนั้นเลย ปรับขนาดตู้ทีหลังก็ไม่หลุด */
-    s.board.pin={dim:r.dim,side:r.side,refId:r.refId,refSide:r.refSide,off:0,
+    /* v1.286: r.side/r.refSide มาจากแกนโลก — แปลงเป็นด้านตามแกนชิ้นก่อนบันทึก (ดู pinSideLocal) */
+    s.board.pin={dim:r.dim, side:pinSideLocal(s.board,r.dim,(r.side==="hi")?1:-1),
+                 refId:r.refId, refSide:pinSideLocal(s.board,r.dim,(r.refSide==="hi")?1:-1), off:0,
                  refName:((state.boards.find(z=>z.id===r.refId)||{}).name||undefined)};
     toast("📌 ตรึงไว้กับผิวของ “"+(r.name||"ชิ้นที่ดูดติด")+"” แล้ว — ปรับขนาดตู้ก็ไม่หลุด (ปลดได้ที่แผงขวา)");
   }
@@ -13841,7 +13918,9 @@ function renderCabInspector(g,insp,body,rf){
   const code=(g.boards[0]&&g.boards[0].cab)||"";
   body.innerHTML=`
     <div class="muted" style="font-size:11px;margin-bottom:8px;padding:6px 9px;background:rgba(0,122,255,.10);border-radius:8px;color:#0a5fd0">🗄️ เลือกทั้งตู้ <b>${escapeHtml(g.productId)}</b> · ${g.boards.filter(x=>!isGuide(x)).length} ชิ้น — ปรับค่าที่ใช้ร่วมกันทั้งตู้ได้ที่นี่ (คลิกชิ้นใน 3D เพื่อแก้รายชิ้น)${cabSelKeys().length>1?('<br><b>เลือกไว้ '+cabSelKeys().length+' ใบ</b> — ช่องแก้ค่าด้านล่างมีผลกับใบนี้ใบเดียว ส่วนปุ่มออกแบบผลิตใช้ทั้ง '+cabSelKeys().length+' ใบ'):""}</div>
-    <div class="fld"><label>รหัสตู้ (Cabinet Code) — เปลี่ยนทั้งตู้</label><input class="nameinp" id="cab_code" value="${escapeHtml(code)}" placeholder="เช่น BND001" style="width:100%"></div>
+    <div class="fld"><label>รหัสตู้ (Cabinet Code) — เปลี่ยนทั้งตู้</label><input class="nameinp" id="cab_code" value="${escapeHtml(code)}" placeholder="เช่น BND001" style="width:100%">
+      <div class="muted" style="font-size:11px;margin-top:3px;line-height:1.5">ช่องนี้เปลี่ยนแต่ป้ายที่ติดอยู่ ชิ้นข้างในยังเป็นของเดิม — อยากได้รูปแบบตู้ของอีกรหัสจริง ๆ ใช้ปุ่มข้างล่าง</div></div>
+    <div class="ibtns" style="margin-top:4px"><button class="ibtn" id="cab_swap" style="flex:1">🔁 เปลี่ยนรุ่นตู้ (โหลดรหัสอื่นมาแทน · ใช้ Variables เดิม)</button></div>
     <div class="fld"><label>ขนาดตู้ปัจจุบัน (มม.)</label>
       <div class="grid3">
         <div class="num"><span>กว้าง</span><input type="number" id="cab_W" value="${W}"></div>
@@ -13912,6 +13991,9 @@ function renderCabInspector(g,insp,body,rf){
                          : ("แสดงเฉพาะตู้ "+(g.cab||"")+" · "+keep.length+" ชิ้น")); }; }
   { const ex=body.querySelector("#cab_export"); if(ex)ex.onclick=()=>exportCabinetFile(g); }
   { const at=body.querySelector("#cab_attach"); if(at)at.onclick=()=>attachCabinetByCode(); }
+  /* v1.287: เปลี่ยนรูปแบบตู้ทั้งใบ โดย Variables/ตำแหน่ง/มุมหัน ของตู้ใบนี้อยู่ครบ */
+  { const sw=body.querySelector("#cab_swap");
+    if(sw) sw.onclick=()=>{ cabSwapModelDialog(g.key).catch(err=>{ console.error(err); toast("เปลี่ยนรุ่นตู้ไม่สำเร็จ: "+err.message); }); }; }
   // ย้ายตู้: เลื่อนทุกชิ้น (รวมบาน) เท่ากับส่วนต่างของมุมอ้างอิง
   const doMove=()=>{ const tx=+body.querySelector("#cab_px").value, ty=+body.querySelector("#cab_py").value, tz=+body.querySelector("#cab_pz").value;
     if(![tx,ty,tz].every(isFinite))return;
@@ -23309,6 +23391,144 @@ function xmlPreviewDialog(orderNo,parsed,maps,doc,setEls){
     upd(); _libDraw();
   });
 }
+/* ───────── v1.287: ปั้นตู้จากโมเดลในคลังลงฉาก — ตัวเดียวใช้ทั้ง "โหลดออเดอร์" และ "เปลี่ยนรุ่นตู้" ─────────
+   ยกมาจาก buildFromXmlOrder ทุกบรรทัด ไม่เปลี่ยนตรรกะเดิมสักข้อ
+     · จับสเปคขอบบานจากต้นแบบก่อนสเกล (v1.162) จากสำเนาชั่วคราวในฉาก แล้วเอาออกทันที
+     · ชิ้นของตู้ประกอบ (_asmSub) ไม่ถูกสเกล แยกไปแปะกลับตอนท้าย (v1.229)
+     · กล่องโค้งได้รหัสชุดของตัวเองทุกใบ (v1.272)
+   target=[กว้าง,สูง,ลึก] ของตัวตู้ (วัดที่แผ่นข้าง) · opt.scale=false = วางตามขนาดโมเดลเดิม
+   คืน {boards,spec,asm} — spec=true แปลว่าจับสเปคขอบไว้แล้ว ผู้เรียกต้องสั่งคิดบานใหม่เองตอนตู้ยังตรงแกน */
+function placeCabModel(model,code,inst,target,opt){
+  opt=opt||{}; const doScale=(opt.scale!==false);
+  let _mSpec=null;
+  if(doScale && settings.doorKeepSpec!==false
+     && (model.boards||[]).some(b=>b&&b._door) && !(model.boards||[]).some(b=>b&&b._door&&b._de)){
+    const tmpInst="__spec_"+inst;
+    const tmp=model.boards.map(b=>Object.assign(JSON.parse(JSON.stringify(b)),{cabInst:tmpInst}));
+    const keep=state.boards; state.boards=keep.concat(tmp);
+    try{ captureDoorSpecs(tmpInst,true); _mSpec={}; tmp.forEach(b=>{ if(b&&b._de) _mSpec[b.id]={_de:b._de,_zx:b._zx||null}; }); }
+    catch(e){ console.error("modelSpec:",e); _mSpec=null; }
+    finally{ state.boards=keep; }
+  }
+  const _mainB=model.boards.filter(b=>!(+b._asmSub>0)), _subB=model.boards.filter(b=>+b._asmSub>0).map(b=>JSON.parse(JSON.stringify(b)));   // v1.229
+  const scaled=(!doScale?_mainB.map(b=>JSON.parse(JSON.stringify(b))):scaleModelBoards(_mainB,target,model.lock,{refSide:true,csRebuild:true})).concat(_subB);   // v9.65: เป้า = ขนาดตัวตู้ ไม่ใช่กรอบรวมที่มีชิ้นยื่น
+  const idMap={};
+  const boards=scaled.map(b=>{ const nid=uid(); idMap[b.id]=nid;
+    const o=Object.assign({yaw:0,tone:null,r:0},b,{id:nid,cab:code,cabInst:inst});
+    const sp=_mSpec&&_mSpec[b.id];                                          // v1.162: สเปคจากต้นแบบ (ref ยัง id เก่า → remapRuleRefs จัดการ)
+    if(sp){ o._de=JSON.parse(JSON.stringify(sp._de)); if(sp._zx) o._zx=JSON.parse(JSON.stringify(sp._zx)); }
+    return o; });
+  { const _gm={}; boards.forEach(b=>{ if(b&&b._csGroup) b._csGroup=_gm[b._csGroup]||(_gm[b._csGroup]="CS"+uid()); }); }
+  remapRuleRefs(boards,idMap); remapHoleSrc(boards,idMap); healHoleSrc(boards);   // ลิงก์รูตาม id ใหม่ · master เก่าที่ลิงก์ขาด → เก็บรูไว้ ถอดป้าย
+  const _asm=asmSplit(boards,inst);                                         // v1.229
+  state.boards=state.boards.concat(boards);
+  asmFitSubs(_asm);
+  return {boards:boards, spec:!!_mSpec, asm:_asm};
+}
+/* ───────── v1.287: ขนาดนอกของตู้ในแกนของตู้เอง [กว้าง,สูง,ลึก] ─────────
+   วัดด้วย cabRefBox ตัวเดียวกับที่ตัวสเกลใช้เป็นไม้บรรทัด (refSide) เป้ากับผลจึงเทียบกันได้ตรง ๆ
+   ไม่นับบาน ชิ้นเสมือน (ขา · หูแขวน) และไม่นับแกนที่ถูกพินให้ยื่นออกไป
+   ตู้ที่หมุนตามผัง คลายหมุนก่อนวัด ไม่งั้นกว้างกับลึกสลับกัน */
+function cabOuterLocal(inst){
+  const pick=()=>state.boards.filter(b=>b&&b.cabInst===inst);
+  if(!pick().length) return null;
+  return withCabAxisAligned(inst,()=>cabRefBox(pick())).map(v=>Math.round(v));
+}
+/* ───────── v1.287: เปลี่ยน "รูปแบบตู้" ทั้งใบ โดยใช้ Variables ของตู้ใบเดิมต่อ ─────────
+   งานจริง: ตู้ในออเดอร์ที่โหลดมาแล้ว อยากเปลี่ยนรายละเอียดข้างใน (ชั้น/ช่อง) ไปเป็นอีกรหัสหนึ่ง
+   ของเดิมมีแต่ช่อง "รหัสตู้" ซึ่งเปลี่ยนแค่ป้ายที่ติดอยู่ ชิ้นข้างในยังเป็นของเดิมทุกแผ่น
+   ต้องลบตู้ทิ้งแล้วโหลดใหม่ ซึ่งเสีย Variables ตำแหน่ง และมุมหันที่จัดไว้ในผังไปทั้งหมด
+   ตัวนี้เอาโมเดลรหัสใหม่มาแทนชิ้นทั้งใบ โดยยึดของเดิมไว้สามอย่าง
+     · cabInst เท่าเดิม → Variables (state.cabColors) · เลขจาก XML (state.cabNums)
+       · ค่าปรับบาน (state.cabDP) · กระจกที่จับไว้ ติดมากับตู้ใบใหม่ครบ ไม่ต้องกรอกใหม่
+     · ขนาดนอกเท่าตู้เดิมในฉาก — ยืดโมเดลใหม่ให้พอดี (opt.keepSize=false = เอาขนาดตามโมเดล)
+     · ตำแหน่งกับมุมหันอยู่ที่เดิมเป๊ะ ใช้ _restoreCabPose ตัวเดียวกับปุ่มปรับขนาดตู้
+   ของที่ "ใส่เพิ่มเองทีหลัง" (หูแขวน ราวแขวนผ้า ขาตู้ ตู้ในช่อง) ผูกกับชิ้นของตู้เก่าโดยตรง
+   จึงหายไปพร้อมตู้เก่า ใส่ใหม่ได้จากเมนูเดิมหลังเปลี่ยนเสร็จ
+   พังกลางทางเมื่อไหร่คืนฉากเดิมทั้งชุด ไม่ทิ้งตู้ครึ่งใบไว้ */
+async function cabSwapModel(inst,code,opt){
+  opt=opt||{};
+  const own=state.boards.filter(b=>b&&b.cabInst===inst);
+  if(!own.length) throw Error("ไม่พบตู้ใบนี้ในฉาก");
+  const oldCode=String((own.find(b=>b&&b.cab)||{}).cab||"");
+  const yaw0=cabYawOf(inst), m0=_cabMinLocal(inst,yaw0), size=cabOuterLocal(inst);
+  const model=await fetchCabModel(code);
+  if(!model||!model.boards||!model.boards.length) throw Error("ไม่พบโมเดล \u201C"+code+"\u201D ในคลัง");
+  syncUid();
+  const kids=[...new Set(state.boards.filter(x=>x&&x._nest&&x._nest.host===inst).map(x=>x.cabInst))];
+  const nKid=state.boards.filter(x=>x&&kids.indexOf(x.cabInst)>=0).length;
+  const back=state.boards.slice();
+  let out=null;
+  try{
+    state.boards=state.boards.filter(x=>x&&x.cabInst!==inst&&kids.indexOf(x.cabInst)<0);
+    out=placeCabModel(model,code,inst,size,{scale:opt.keepSize!==false});
+    /* ขบวนเดียวกับตอนโหลดออเดอร์ — ทำตอนตู้ยังตรงแกน เพราะรีฟิต/คาน/เจาะ อ้างแกนตรง */
+    try{ applyVarFallbackToCab(inst); }catch(e){ console.error("varFallback:",e); }       // ฟิลด์ที่โมเดลใหม่ใช้แต่ตู้เดิมไม่มี → ค่าตั้งต้น (ของเดิมไม่ถูกทับ)
+    try{ applyDefaultParts(out.boards,false); }catch(e){ console.error("applyDefaultParts:",e); }
+    try{ applyCabinetSkin(inst); }catch(e){ console.error("applyCabinetSkin:",e); }
+    try{ refitInterior(state.boards.filter(x=>x.cabInst===inst)); }catch(e){ console.error("refitInterior:",e); }
+    try{ reapplyRules(inst); }catch(e){ console.error("reapplyRules:",e); }
+    try{ relayHangRails(inst); }catch(e){ console.error("relayHangRails:",e); }
+    if(out.spec){ try{ ensureFrontZones(inst); applyDoorSpecs(inst); }catch(e){ console.error("doorSpec:",e); } }
+    state.boards.filter(x=>x.cabInst===inst&&x._door&&(x.connectors||[]).some(k=>k.type==="hinge"&&k.plate!==false))
+      .forEach(d=>{ try{ drillHingePlateHoles(d); }catch(e){ console.error("hingePlate:",e); } });
+    _restoreCabPose(inst,yaw0,m0);                        // หันเท่าเดิม · มุมหลังซ้ายล่างทับจุดเดิม
+  }catch(e){ state.boards=back; throw e; }
+  /* นับจากฉากจริง ไม่ใช่จำนวนที่ปั้นมา — ชิ้นของตู้ประกอบ (_asmSub) ถูก asmSplit แยกไปเป็นใบลูกแล้ว */
+  return {n:state.boards.filter(x=>x&&x.cabInst===inst).length, nAsm:(out.asm||[]).length,
+          old:own.length, oldCode:oldCode, kids:kids.length, nKid:nKid,
+          size:size, got:cabOuterLocal(inst)};
+}
+/* v1.287: หน้าต่างเลือกรหัสใหม่ — เลือกจากคลัง หรือพิมพ์เอง · บอกล่วงหน้าว่าอะไรจะหายไป */
+async function cabSwapModelDialog(instIn){
+  let inst=instIn||((selBoard()||{}).cabInst);
+  if(!inst){ toast("คลิกชิ้นในตู้ หรือเลือกทั้งตู้ก่อน"); return; }
+  if(typeof isLocked==="function"&&isLocked()){ guardEdit("เปลี่ยนรุ่นตู้"); return; }
+  if(String(inst).indexOf("c:")===0){                     // ตู้เก่าที่ยังไม่มีรหัสใบ — ปั๊มให้ก่อน จะได้มีที่เก็บ Variables
+    const cd=String(inst).slice(2), nid=uid();
+    state.boards.forEach(b=>{ if(b&&!b.cabInst&&cabOf(b)===cd) b.cabInst=nid; });
+    inst=nid;
+  }
+  const own=state.boards.filter(b=>b&&b.cabInst===inst);
+  if(!own.length){ toast("ไม่พบตู้ใบนี้"); return; }
+  const cur=String((own.find(b=>b&&b.cab)||{}).cab||""), size=cabOuterLocal(inst)||[0,0,0];
+  let list=[]; try{ list=await cloudListCabs(); }catch(e){ console.error("cloudListCabs:",e); }
+  const opts=[{value:"",label:"— พิมพ์รหัสเองในช่องล่าง —"}].concat(
+    [...new Set((list||[]).map(r=>String((r&&r.id)||"").trim()).filter(Boolean))].sort()
+      .map(x=>({value:x,label:x+(cabDescGet(x)?("  ·  "+cabDescGet(x)):"")})));
+  const nHang=own.filter(b=>b&&b._hanger).length, nRail=own.filter(b=>b&&b._hangRail).length,
+        nLeg=own.filter(b=>b&&b._leg).length,
+        nKid=state.boards.filter(x=>x&&x._nest&&x._nest.host===inst).length;
+  const lose=[nHang?"หูแขวน":"",nRail?"ราวแขวนผ้า":"",nLeg?"ขาตู้":"",nKid?"ตู้ในช่อง":""].filter(Boolean);
+  const v=await promptFields("🔁 เปลี่ยนรุ่นตู้ — ใช้ Variables ของตู้ใบนี้ต่อ",[
+    {type:"note",label:"ตู้ใบนี้ตอนนี้ <b>"+escapeHtml(cur||"(ไม่มีรหัส)")+"</b> · "+own.length+" ชิ้น · ขนาดนอก "
+      +size[0]+" × "+size[1]+" × "+size[2]+" มม."
+      +"<br>สี/ตัวแปรของตู้ · ค่าจาก XML · ค่าปรับบาน · กระจกที่จับไว้ ติดไปกับตู้ใบใหม่ทั้งหมด และตู้ยังอยู่ที่เดิมในผัง"
+      +(lose.length?("<br><b style=\"color:#b26a00\">ของที่ใส่เพิ่มเองจะหายไปกับตู้เก่า: "+lose.join(" · ")+"</b> — ใส่ใหม่ได้หลังเปลี่ยนเสร็จ"):"")},
+    {key:"pick",type:"select",label:"เลือกรหัสจากคลัง ("+Math.max(opts.length-1,0)+" รุ่นที่แก้ล่าสุด)",options:opts,value:""},
+    {key:"code",type:"text",label:"หรือพิมพ์รหัสเอง (ช่องนี้มีค่า ใช้ช่องนี้ก่อน)",value:"",placeholder:"เช่น MWA030"},
+    {key:"size",type:"toggle",label:"ขนาดนอกของตู้ใบใหม่",options:["เท่าตู้เดิมในฉาก","ตามโมเดลในคลัง"],value:"เท่าตู้เดิมในฉาก"}]);
+  if(!v) return;
+  const code=String(v.code||v.pick||"").trim();
+  if(!code){ toast("ยังไม่ได้เลือกรหัสตู้"); return; }
+  if(code===cur && !(await dialog({title:"รหัสเดียวกับตู้ใบนี้ — โหลดต้นแบบ “"+code+"” มาทับของที่แก้ไว้?",ok:"โหลดทับ"}))) return;
+  toast("กำลังดึง "+code+" จากคลัง…");
+  let r=null;
+  try{ r=await cabSwapModel(inst,code,{keepSize:v.size!=="ตามโมเดลในคลัง"}); }
+  catch(e){ console.error("cabSwapModel:",e); toast("เปลี่ยนรุ่นตู้ไม่สำเร็จ: "+((e&&e.message)||e)); return; }
+  state.selectedId=null; buildGTones(); sync(1);
+  /* นับชิ้นกับวัดขนาดหลังคิดฉากเสร็จ — ชิ้นที่งอกจากอุปกรณ์ (มือจับ/หูแขวน) ถูกสร้างใหม่ตอน sync
+     ถ้าไปนับก่อน ตัวเลขในข้อความจะไม่ตรงกับที่เห็นในรายการ */
+  const nNow=state.boards.filter(x=>x&&x.cabInst===inst).length;
+  const g=cabOuterLocal(inst)||r.got||[0,0,0], w=r.size||[0,0,0];
+  const off=(v.size!=="ตามโมเดลในคลัง")&&[0,1,2].some(i=>Math.abs(g[i]-w[i])>1);
+  toast("🔁 เปลี่ยนรุ่นตู้ "+(r.oldCode||"(ไม่มีรหัส)")+" → "+code+" · "+r.old+" ชิ้น → "+nNow+" ชิ้น"
+    +" · ขนาดนอก "+g[0]+" × "+g[1]+" × "+g[2]+" มม."
+    +(off?(" ⚠ ตั้งไว้ "+w[0]+" × "+w[1]+" × "+w[2]+" — โมเดลนี้ยืดตามไม่ได้ทุกแกน ตรวจก่อนสั่งผลิต"):" (เท่าเดิม)")
+    +(r.nAsm?(" · แยกเป็นตู้ประกอบอีก "+r.nAsm+" ใบ"):"")
+    +(r.nKid?(" · เอาตู้ในช่องของตู้เก่าออก "+r.nKid+" ชิ้น"):"")
+    +" · Variables ของตู้ใบนี้ใช้ต่อทั้งหมด (Ctrl+Z ย้อนได้)");
+}
 async function buildFromXmlOrder(){
   const o=window._xmlOrder; if(!o||!o.sets.length){toast("ยังไม่มีข้อมูล XML");return;}
   let left = state.boards.length? sceneXRange(state.boards)[1]+80 : 0; let made=0, fromLib=0, placed=0, _specFixed=0;   // v1.162
@@ -23350,31 +23570,10 @@ async function buildFromXmlOrder(){
          ออเดอร์ 850 ได้ 423/422 ช่องไฟ 1/2/2 และไม่มีสเปคขอบติดตัว ไม่มีขั้นตอนไหนแก้ให้อีกเลย
          ต้นแบบที่มีสเปคขอบอยู่แล้วไม่ต้องทำ เพราะสเปคถูก remap มากับชิ้นอยู่แล้ว
          จับจากสำเนาต้นแบบชั่วคราวในฉาก แล้วเอาออกทันที ไม่มีอะไรค้าง */
-      let _mSpec=null;
-      if(settings.xmlScale!==false && settings.doorKeepSpec!==false
-         && (model.boards||[]).some(b=>b&&b._door) && !(model.boards||[]).some(b=>b&&b._door&&b._de)){
-        const tmpInst="__spec_"+inst;
-        const tmp=model.boards.map(b=>Object.assign(JSON.parse(JSON.stringify(b)),{cabInst:tmpInst}));
-        const keep=state.boards; state.boards=keep.concat(tmp);
-        try{ captureDoorSpecs(tmpInst,true); _mSpec={}; tmp.forEach(b=>{ if(b&&b._de) _mSpec[b.id]={_de:b._de,_zx:b._zx||null}; }); }
-        catch(e){ console.error("modelSpec:",e); _mSpec=null; }
-        finally{ state.boards=keep; }
-      }
-      const _mainB=model.boards.filter(b=>!(+b._asmSub>0)), _subB=model.boards.filter(b=>+b._asmSub>0).map(b=>JSON.parse(JSON.stringify(b)));   // v1.229
-      const scaled=((settings.xmlScale===false)?_mainB.map(b=>JSON.parse(JSON.stringify(b))):scaleModelBoards(_mainB,[s.W,s.H,s.D],model.lock,{refSide:true,csRebuild:true})).concat(_subB);   // v9.65: ค่าจาก XML = ขนาดตัวตู้ (วัดที่แผ่นข้าง) ไม่ใช่กรอบรวมที่มีชิ้นยื่น
-      const idMap={};
-      const boards=scaled.map(b=>{ const nid=uid(); idMap[b.id]=nid;
-        const o=Object.assign({yaw:0,tone:null,r:0},b,{id:nid,cab:s.name,cabInst:inst});
-        const sp=_mSpec&&_mSpec[b.id];                                        // v1.162: สเปคจากต้นแบบ (ref ยัง id เก่า → remapRuleRefs จัดการ)
-        if(sp){ o._de=JSON.parse(JSON.stringify(sp._de)); if(sp._zx) o._zx=JSON.parse(JSON.stringify(sp._zx)); }
-        return o; });
-      /* v1.272: กล่องโค้งแต่ละใบต้องได้รหัสชุดของตัวเอง — เดิมทุกใบที่โหลดจากโมเดลเดียวกันใช้รหัสชุดของโมเดลร่วมกัน
-         ตัวซ่อม/ตัวแก้กล่องโค้งจับชิ้นตามรหัสชุด สองใบในฉากเดียวจึงถูกนับเป็นกล่องเดียว */
-      { const _gm={}; boards.forEach(b=>{ if(b&&b._csGroup) b._csGroup=_gm[b._csGroup]||(_gm[b._csGroup]="CS"+uid()); }); }
-      remapRuleRefs(boards,idMap); remapHoleSrc(boards,idMap); healHoleSrc(boards);   // ลิงก์รูตาม id ใหม่ · master เก่าที่ลิงก์ขาด → เก็บรูไว้ ถอดป้าย
-      const _asmX=asmSplit(boards,inst);                                   // v1.229
-      state.boards=state.boards.concat(boards); fromLib++;
-      asmFitSubs(_asmX);
+      /* v1.287: ยกทั้งก้อนออกไปเป็น placeCabModel() ตัวเดียว ให้ "เปลี่ยนรุ่นตู้" ใช้ทางเดียวกันได้
+         ทุกบรรทัดยังเป็นของเดิม (v1.162 สเปคขอบบาน · v1.229 ตู้ประกอบ · v1.272 รหัสชุดกล่องโค้ง) */
+      const _mp=placeCabModel(model,s.name,inst,[s.W,s.H,s.D],{scale:settings.xmlScale!==false});
+      const boards=_mp.boards, _mSpec=_mp.spec; fromLib++;
       try{ applyDefaultParts(boards,false); }catch(e){ console.error(e); }   // v8.77: ตู้จากออเดอร์ก็ต้องได้ Part ตั้งต้น (ชิ้นที่ผูกมาแล้วไม่ถูกแตะ)
       // ครบ chain เดียวกับปุ่มปรับขนาดตู้ — ทำตอนตู้ยังขนานแกน (ก่อนหมุนตามผัง) เพราะ refit/คาน/เจาะ อ้างแกนตรง
       /* v7.18: XML ส่งสีมาให้แล้ว (state.cabColors ตั้งไว้ข้างบน) ต้องบวกผิวตั้งแต่ตอนนี้
@@ -32133,7 +32332,7 @@ function bindCtx(){
     if(a==="channelrails"){ addChannelRails(b).catch(err=>{ console.error(err); toast(err.message); }); return; }
     if(a==="csedit"){ try{ CurvedShelf.editBoard(b); }catch(err){ console.error(err); toast("เปิดกล่องโค้งไม่สำเร็จ"); } return; }
     if(a==="adddoor"){ try{ addDoor(); }catch(err){ console.error(err); toast("เพิ่มหน้าบานไม่สำเร็จ: "+err.message); } return; }
-    if(a==="pintouch"){ try{ pinToTouching(b); }catch(err){ console.error(err); toast("ตรึงไม่สำเร็จ: "+err.message); } return; }
+    if(a==="pintouch"){ try{ pinToTouching(b,(ev&&ev.clientX)||null,(ev&&ev.clientY)||null); }catch(err){ console.error(err); toast("ตรึงไม่สำเร็จ: "+err.message); } return; }
     if(a==="mkbox"){ try{ plainFrontToDrawer(b); }catch(err){ console.error(err); toast("ใส่กล่องไม่สำเร็จ — ดู console"); } return; }
     if(a==="unbox"){ try{ drawerToPlainFront(b); }catch(err){ console.error(err); toast("ถอดกล่องไม่สำเร็จ — ดู console"); } return; }
     if(a==="rackfront"){ try{ const r=makeRackFront(b);
@@ -32185,6 +32384,7 @@ function bindCtx(){
     else if(a==="mate")connectMate(b);
     else if(a==="cabrot"){ try{ rotateCabQuick(b, ctxShift?-90:90); }catch(err){ console.error(err); toast("หมุนตู้ไม่สำเร็จ: "+err.message); } }
     else if(a==="cabmirror"){ try{ if(b&&b.cabInst) mirrorCabinet(b.cabInst); else toast("เลือกชิ้นในตู้ก่อน"); }catch(err){ console.error(err); toast("กลับด้านไม่สำเร็จ: "+err.message); } }
+    else if(a==="cabswap"){ cabSwapModelDialog((b&&b.cabInst)||((groupOf(b)||{}).key)).catch(err=>{ console.error(err); toast("เปลี่ยนรุ่นตู้ไม่สำเร็จ: "+err.message); }); }   // v1.287
     else if(a==="ordmirror"){ try{ mirrorOrder(); }catch(err){ console.error(err); toast("กลับด้านทั้งออเดอร์ไม่สำเร็จ: "+err.message); } }
     else if(a==="ledpower"){ try{ ledPowerDialog(); }catch(err){ console.error(err); toast("เปิดรายการไฟไม่สำเร็จ: "+err.message); } }
     else if(a==="ledadd"){ try{ ledDialog(b); }catch(err){ console.error(err); toast("เปิดหน้าต่างรางไฟไม่สำเร็จ: "+err.message); } }
@@ -32886,6 +33086,13 @@ function boardToMPR(b, side){   // side=1/2 → เอาเฉพาะรู�
   /* v1.257: ตัดสินร่องพื้นลิ้นชักจากชิ้นจริงก่อนถูกหมุน — ข้างล่างหมุนแผ่นข้าง 180/90 องศาเพื่อออกไฟล์
      ถ้าไปวัดบนสำเนาที่หมุนแล้ว ความสูงกลายเป็นความลึก ระยะเพี้ยนเกิน 30 แล้วตกเป็น CNC ร่องจึงหลุดกลับเข้าไฟล์ */
   const _dbSaw=/^V/.test(drawerBotMacro(b)||"");
+  /* ───────── v1.288: ร่องรับแผ่นหลังที่ไม่ได้ไปเลื่อย ต้องถูกกัดในไฟล์นี้ ─────────
+     ของเดิมตัดสินจากธง g.cnc อย่างเดียว ส่วนช่อง Groove3 ตัดสินจากมาโคร คนละเกณฑ์กัน
+     ร่องที่ธงไม่ได้ติด แต่มาโครออกเป็น CNC (เช่น BackSet เกิน 30) จึงไม่มีใครทำเลยสักทาง
+     ใบอุปกรณ์เขียนคำว่า CNC ไว้ลอย ๆ และไฟล์เจาะก็ข้ามไป — แผ่นออกจากโรงงานโดยไม่มีร่อง
+     ตอนนี้ยึดเกณฑ์เดียว: ได้มาโคร V = งานเลื่อย ไม่ต้องกัด · นอกนั้นกัดในไฟล์ทั้งหมด
+     (เกณฑ์เดียวกับร่องพื้นลิ้นชัก v1.257 ที่ใช้ _dbSaw อยู่แล้ว) */
+  const _bgSaw=/^V/.test(backGrooveMacro(b)||"");
   /* แผ่นดัดโค้ง: เข้าเครื่องเป็น "แผ่นแบน" ความยาวกางออก (ไม่ใช่คอร์ด) แล้วค่อยเซาะร่อง+ดัด
      จึงตัด profile ทิ้ง ไม่งั้น profilePockets() จะสั่งกัดรูปโค้งลงบนแผ่นแบน = ผิด */
   const _bd=blankDims(b), _kp=_bd.curved?kerfPlan(b):null;
@@ -33078,7 +33285,7 @@ function boardToMPR(b, side){   // side=1/2 → เอาเฉพาะรู�
        แต่ร่องที่วิ่งไม่สุด เลื่อยทำไม่ได้ ช่อง Groove3 ก็ได้แค่คำว่า CNC ลอย ๆ
        ไม่มีเครื่องไหนได้พิกัดร่องไปเลย — แผ่นข้างซ้ายขวาจึงออกจากโรงงานโดยไม่มีร่อง
        ร่อง CNC เดินทางเดียวกับร่องรางไฟ: <112 ตามหน้า ตามฝั่งไฟล์ หัวท้ายตาม off0/off1 */
-    if(g.back && !g.cnc) return;                                       // ร่องวิ่งสุด: งานเลื่อย/มาโคร V ตามเดิม
+    if(g.back && !g.cnc && _bgSaw) return;                             // ร่องวิ่งสุดที่ได้มาโคร V: งานเลื่อย ไม่ต้องกัด (v1.288)
     if(g.drawerBot&&_dbSaw) return;                                    // v1.257: ร่องพื้นลิ้นชักวิ่งสุด = มาโคร V เหมือนร่องแผ่นหลัง
     if(g.face==="edge"){ P('<101 \\Kommentar\\'); P('KM="EDGE GROOVE edge'+(g.edge||"?")+' w'+(g.width||0)+' d'+(g.depth||0)+' — manual"'); P(' '); return; }
     if(side!=null && g.face!==mFace) return;                           // ออกเฉพาะไฟล์ฝั่งหน้าที่กัดจริง
@@ -34039,9 +34246,12 @@ function backGrooveMacro(b, grp){
   if(bgs.some(g=>g.cnc)) return "CNC";
   const bg=bgs[0];
   let Tb = bg.backThk;                                              // หนาแผ่นหลัง (เก็บไว้ตอนเซาะ)
-  if(Tb==null && grp){                                             // ตู้เก่าที่ยังไม่เก็บค่า → หาแผ่นหลังจริงในตู้
-    const bk = grp.boards.find(z=>z.orient==="front" && !z._door && !z._virtual && !z._dx && !z._dwall && !isRail(z))
-            || (typeof findBackPanelGeom==="function" ? findBackPanelGeom(grp.boards.filter(z=>!z._door&&!z._virtual)) : null);
+  if(Tb==null){                                                    // ตู้เก่าที่ยังไม่เก็บค่า → หาแผ่นหลังจริงในตู้
+    /* v1.288: ไม่ได้ส่งกลุ่มมาก็หาจากฉากด้วย cabInst ได้ — ไฟล์เจาะเรียกตัวนี้โดยไม่มีกลุ่มในมือ
+       ถ้าปล่อยให้ถอดจากความกว้างร่องแทน สองทางอาจตัดสินคนละอย่าง แล้วร่องถูกกัดซ้ำ หรือไม่มีใครทำเลย */
+    const pool=(grp&&grp.boards)||state.boards.filter(z=>z&&b&&z.cabInst===b.cabInst);
+    const bk = pool.find(z=>z.orient==="front" && !z._door && !z._virtual && !z._dx && !z._dwall && !isRail(z))
+            || (typeof findBackPanelGeom==="function" ? findBackPanelGeom(pool.filter(z=>!z._door&&!z._virtual)) : null);
     if(bk) Tb = bk.T;
   }
   if(Tb==null) Tb = Math.max((bg.width||0) - (settings.backClear||0.5), 1);   // สำรองสุดท้าย: ถอดจากกว้างร่อง
@@ -34053,15 +34263,44 @@ function backGrooveMacro(b, grp){
      พอ 66 เกินเพดาน 30 ก็ตกไปออก CNC ทั้งที่เป็นงานเลื่อยธรรมดา
      คิดจากรูปเรขาคณิตจริง = ขอบหลังแผ่น ถึง ขอบร่องด้านหลัง */
   let backset = (bg.backset!=null) ? bg.backset : (settings.backset||16);
-  try{ const d=worldDims(b);
-    const gz=(b.orient==="side")?(b.z+(+bg.pos||0)):(b.z-(+bg.pos||0));
-    const v=(gz-(+bg.width||0)/2)-(b.z-d[2]/2);
-    /* ค่าที่วัดได้ติดเศษครึ่งความกว้างร่องเผื่อไว้ (เช่น 15.95) ถ้าห่างจากค่าที่ตั้งไว้ไม่เกิน 1 มม.
-       ให้ใช้ค่าที่ตั้งไว้ เพราะนั่นคือเลขที่คนกรอก ไม่ใช่เศษจากการเผื่อร่อง
-       ต่างกันมากกว่านั้นแปลว่าคนละจุดอ้างอิงจริง ๆ ค่อยใช้ค่าที่วัดได้ ปัดครึ่งมิล
-       ค่าติดลบ = ร่องหลุดออกนอกแผ่นไปแล้ว (ชิ้นถูกย่อทีหลัง) ไม่เชื่อ ใช้ค่าที่ตั้งไว้ */
-    if(isFinite(v)&&v>=0) backset=(Math.abs(v-backset)<=1)?backset:(Math.round(v*2)/2);
-  }catch(e){}
+  /* ───────── v1.288: วัดในแกนของแผ่นเอง ไม่ใช่พิกัดโลก ─────────
+     pos ของร่องเป็นระยะ "ในแกนของชิ้น" ตามที่ตัวเซาะร่องทั้งสามที่เขียนกำกับไว้ตรงกัน
+       แผ่นตั้ง (side) : worldZ = p.z + pos      แผ่นนอน (flat) : worldZ = p.z - pos
+     สองสูตรนั้นเป็นจริงเฉพาะตอนตู้หัน 0° เท่านั้น
+     v41.7 เอาไปเทียบกับกรอบโลก worldDims(b)[2] ซึ่งกับตู้ที่หมุนตามผัง 90/180/270
+     แกนลึกของแผ่นย้ายไปนอนบนแกน x แล้ว worldDims(b)[2] จึงกลายเป็น "ความกว้างแผ่น"
+     ค่าที่ได้ไม่ใช่ระยะอะไรทั้งนั้น — เคสจริง ทอปตู้ลอยลึก 350 วัดได้ 124.75 และ 274.75
+     เกิน 30 ก็ตกไปออก CNC ทั้งที่เป็นร่องวิ่งสุดงานเลื่อยธรรมดา
+     และแผ่นพื้นบางใบวัดได้ 24.75 / 14.8 ซึ่งไม่เกิน 30 จึงออกมาโครที่ BackSet ผิดแบบเงียบ ๆ
+     (V100250050 · V100150045 ทั้งที่แผ่นข้างใบเดียวกันออก V100160050)
+     แกนลึกของแผ่นคือ b.W ทั้งแผ่นตั้งและแผ่นนอน คิดตรงนั้นจึงไม่ต้องรู้ว่าตู้หันทางไหน
+     วางแบบอื่น (front) ไม่มีร่องรับแผ่นหลัง ไม่วัด ใช้ค่าที่เก็บไว้ */
+  /* ───────── v1.288: ค่าที่คนตั้งไว้ชนะ ตราบใดที่มันยังเป็นค่าที่เลื่อยได้ ─────────
+     v41.7 ให้รูปทรงชนะค่าที่ตั้งเสมอ ซึ่งกลับหัวกลับหาง
+     BackSet ที่ตั้งไว้ 16 คือเจตนาของคนออกแบบ ร่องที่วัดได้ไม่ตรงแปลว่า "ชิ้นเคลื่อนไปหลังเซาะร่อง"
+     (เคสจริง แผ่นหลังที่เคยมีหูแขวน พอเอาหูออกแล้วเสาแบ่งถูกร่นมาอยู่หน้าแผ่นหลัง แต่ร่องยังติดมา)
+     ไม่ใช่ว่าเจตนาเปลี่ยน — เอารูปที่เพี้ยนไปเขียนทับเลขที่ตั้งไว้ จึงได้มาโครที่ไม่มีใครสั่ง
+     ไปวัดจากรูปจริงเฉพาะตอนค่าที่เก็บไว้ "ใช้เลื่อยไม่ได้" (เกิน 30) เท่านั้น
+     ซึ่งคือเคสที่ v41.7 ตั้งใจแก้พอดี: แผ่นที่ร่นเข้ามาเอง ค่าที่เก็บเป็นระยะจากหลังตู้ (66)
+     ส่วนที่วัดจากขอบของแผ่นเองคือ 16 — ตรงนั้นค่าที่เก็บใช้ไม่ได้จริง ๆ ต้องเชื่อรูป */
+  if(backset > SX_BACKSET_MAX){
+    /* ───────── วัดในแกนของแผ่นเอง ไม่ใช่พิกัดโลก ─────────
+       pos ของร่องเป็นระยะ "ในแกนของชิ้น" ตามที่ตัวเซาะร่องทั้งสามที่เขียนกำกับไว้ตรงกัน
+         แผ่นตั้ง (side) : worldZ = p.z + pos      แผ่นนอน (flat) : worldZ = p.z - pos
+       สองสูตรนั้นเป็นจริงเฉพาะตอนตู้หัน 0° เท่านั้น
+       ของเดิมเอาไปเทียบกับกรอบโลก worldDims(b)[2] ซึ่งกับตู้ที่หมุนตามผัง 90/180/270
+       แกนลึกของแผ่นย้ายไปนอนบนแกน x แล้ว worldDims(b)[2] จึงกลายเป็น "ความกว้างแผ่น"
+       ค่าที่ได้ไม่ใช่ระยะอะไรทั้งนั้น (เคสจริง ทอปตู้ลอยลึก 350 วัดได้ 124.75 และ 274.75)
+       แกนลึกของแผ่นคือ b.W ทั้งแผ่นตั้งและแผ่นนอน คิดตรงนั้นจึงไม่ต้องรู้ว่าตู้หันทางไหน
+       วางแบบอื่น (front) ไม่มีร่องรับแผ่นหลัง ไม่ต้องวัด */
+    const _bgO=String((b&&b.orient)||"flat");
+    if(_bgO==="side"||_bgO==="flat"){ try{
+      const v=(+b.W||0)/2-(+bg.width||0)/2+((_bgO==="side")?(+bg.pos||0):-(+bg.pos||0));
+      /* ค่าที่วัดได้ติดเศษครึ่งความกว้างร่องเผื่อไว้ (เช่น 15.95) ปัดครึ่งมิล
+         ค่าติดลบ = ร่องหลุดออกนอกแผ่นไปแล้ว ไม่เชื่อ ใช้ค่าที่ตั้งไว้ (แล้วตกไปออก CNC ตามเดิม) */
+      if(isFinite(v)&&v>=0) backset=Math.round(v*2)/2;
+    }catch(e){} }
+  }
   const depth   = bg.depth||0;
   const pad3=v=>String(Math.max(Math.round(v),0)).padStart(3,"0");
   /* ───────── v35.0: แก้รูปแบบมาโครให้ตรงของจริง ─────────
@@ -38420,6 +38659,7 @@ const CurvedShelf = (function(){
   <div class="ctx-sep"></div>
   <button data-act="cabrot"><span>↻ หมุนตู้ 90° (ทวนกลับด้วย Shift)</span></button>
   <button data-act="cabmirror"><span>⇋ กลับตู้ซ้าย ⇄ ขวา (Mirror ทั้งใบ)</span></button>
+  <button data-act="cabswap"><span>🔁 เปลี่ยนรุ่นตู้ (ใช้ Variables เดิม)…</span></button>
   <button data-act="ordmirror"><span>⇔ กลับด้านทั้งออเดอร์ (ตู้สลับที่ด้วย)</span></button>
   <div class="ctx-sep"></div>
   <div class="ctx-h" data-view>มุมมอง</div>
