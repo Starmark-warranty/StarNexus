@@ -940,7 +940,7 @@
    ===================================================================== */
 /* ---- APP_META: แหล่งความจริงเดียวของเวอร์ชัน (ดูได้จาก console / คลิกชื่อแอป) ---- */
 const APP_META={
-  name:"StarNexus Cabinet", version:"1.284", build:"2026-09-23/frame-cut-miter-opt",
+  name:"StarNexus Cabinet", version:"1.285", build:"2026-09-23/hanger-bays",
   file:"StarNexus.html", basedOn:"Furnitech_V3.html (v3.11)",
   /* ───────── เริ่มนับเวอร์ชันใหม่ที่ 1.001 (21/08/2026) ─────────
      ของเดิมนับมาถึง 42.1 แล้ววิ่งเป็นทศนิยมสองชั้นซึ่งอ่านลำดับยาก
@@ -948,6 +948,7 @@ const APP_META={
      ประวัติเก่าเก็บไว้ทั้งหมดตามเลขเดิม ไม่ไล่เขียนใหม่ เพราะเลขในนั้นถูกอ้างถึงไปแล้ว
      รายการที่อยู่ใต้ 1.001 ลงไปจึงเป็นเลขชุดเก่า อ่านต่อกันได้ตามวันที่ */
   changelog:[
+    ["1.285","2026-09-23","FIX ตู้ลอยยาวที่แบ่งหลายช่อง ใส่หูแขวนได้ทุกช่อง (เดิมลงได้ช่องเดียว) — ตู้ลอย LTF004 1.8 ม. มีเสาแบ่ง 2 ต้น แผ่นหลังจึงแยกเป็น 3 แผ่น แต่ตัวใส่หูแขวนเลือกแผ่นหลังมาแค่แผ่นเดียว (แผ่นที่หน้าตัดใหญ่สุด) แล้วเจาะร่อง/บากลงแผ่นนั้นแผ่นเดียว หู 2 ตัวจึงไปกองอยู่ช่องเดียวกัน ช่องแรกกดยังไงก็ไม่ลง เพราะโปรแกรมไม่เคยมองแผ่นหลังของช่องนั้น · ตอนนี้ _hangBacks() หาแผ่นหลังแนวหลังสุดทุกแผ่น เรียงซ้าย→ขวา (แผ่นที่ซ้อนช่วงกัน เช่นแบ่งบน-ล่าง ไม่นับเป็นช่อง) แล้ววางหูรายช่อง: แบบร่อง (H1) เจาะร่องของช่องนั้น 2 ร่องแล้วหูไปนั่งตรงร่อง · แบบแป้น หูชิดขอบช่องนั้นเอง + บากมุมแผ่นหลังของช่อง · เหล็กฉาก 3 ขา เกาะขอบในของช่อง · เมนูคลิกขวา → หูแขวน มีหัวข้อ “ช่องที่ใส่หูแขวน” ติ๊กเลือกได้ว่าช่องไหนบ้าง (ทุกช่อง = ค่าตั้งต้น · เหลืออย่างน้อยหนึ่งช่อง) เก็บเป็น _hangerBays ที่แผ่นเดียวกับ _hangerCode และเข้าลายเซ็น cabFitSig แล้ว เปลี่ยนช่องจึงคิดใหม่ทันที · ตู้แผ่นหลังแผ่นเดียว (ส่วนใหญ่) ไม่แตะทางนี้เลย — ทดสอบวางหูทั้ง H1 และแบบแป้นกับตู้ 4 ใบในไฟล์จริง ได้ตำแหน่งและบากเท่าเดิมทุกค่า · ไฟล์ 55: H1 ทุกช่อง = 6 ตัว (ช่องละ 2) · ติ๊กเอาช่อง 2 ออกเหลือ 4 ตัว ใบอุปกรณ์ออก H1 ×4 ตามจริง · BOM 4 ไฟล์ + หน้าแบบผลิต ตรงกับ 1.284"],
     ["1.284","2026-09-23","FIX เส้นเฟรม 007/021 ไม่ต้องรอท่อน “ตัด 45/2ด้าน” ในคลังอีกแล้ว — คลังมีเส้น 021 ยาว 1118 สี AL618MH อยู่จริง (406AL30120240093) แต่เป็นท่อนตัดตรง ตัวค้นบังคับให้ต้องเป็นแบบตัด 45 ตามที่แบบบานตั้งไว้ จึงขึ้นว่า “ยังไม่มีแบบตัด 45/2ด้าน” ทั้งที่หน้างานตัดมุม 45 เองอยู่แล้ว · ตอนนี้มีรายการ “เส้นเฟรมที่ไม่บังคับแบบตัด 45” ในตั้งค่า → BOM Fitting (ตั้งต้น 007, 021) เส้นที่อยู่ในรายการนี้ยังเลือกท่อนที่ปลายตัดตรงกับแบบบานก่อนเสมอ ไม่มีค่อยใช้อีกแบบ แล้วขึ้นหมายเหตุสีส้มในใบว่า “คลังไม่มีแบบตัด 45/2ด้าน — ใช้ท่อนตัดตรงแทน (ตัดมุมหน้างาน)” · เส้นที่ไม่ได้อยู่ในรายการยังเข้มเหมือนเดิม ไม่มีแบบที่ตั้งไว้ = บอกว่าขาดท่อนแบบไหน · รหัสหน้าตัดถูกส่งไปถึงตัวค้นแล้ว (bomCutRow → _cutSec → cutVarOf) ทั้งทางที่มี Purchase ID และทางที่ค้นจากชื่อรุ่น · ทดสอบกับชื่อสินค้าจริงจากคลัง: 021/1118 ได้ 406AL30120240093 (หมายเหตุตัดมุมเอง) · 007/595 ยังได้ 406AL30110310076 แบบตัด 45 ไม่ใช่ ...061 ที่ตัดตรง · 007/1118 ได้ 406AL30110310116 · เส้นที่ไม่อยู่ในรายการยังขึ้นว่าขาดท่อนเหมือนเดิม · BOM 3 ไฟล์ + หน้าแบบผลิต ตรงกับ 1.283 ทุกแถว"],
     ["1.283","2026-09-22","FEAT บานไม้กัดทะลุใส่กระจก (MCWG20) เห็นทะลุ + มีกระจกทั้งสองโหมด — โหมดประหยัดเห็นช่องทะลุเพราะแผ่นถูกเจาะตาม Part (กัดทะลุ/บ่า) แต่ปิดโหมดประหยัดแล้วลายหน้าบาน 3D (doorReliefGeo) สร้างรูปทรงใหม่ทั้งแผ่นทับของเดิม ช่องทะลุกับบ่าจึงหายเป็นแผ่นทึบ และทั้งสองโหมดไม่มีกระจกเลยเพราะกระจกบานนี้มีแค่ในรายการสั่ง (doorGlassSpec) ไม่มีชิ้นในฉาก · (1) doorReliefCutOf(b) อ่านช่องทะลุ/บ่าจาก Part ผ่าน woodFrameCuts ตัวเดียวกับที่เจาะแผ่น · doorReliefGeo รับ cut เพิ่ม: ผิวหน้าปั้นลายเฉพาะวงเฟรม เว้นช่องกลาง · หลังบานจมเป็นบ่าลึกตามค่า · มีผนังบ่ากับผนังช่องทะลุสูงถึงผิวลายตรงขอบช่อง · ใช้เส้นตารางชุดเดียวกันทั้งหน้า-หลัง-ผนัง รูปทรงปิดสนิท (ตรวจแล้วขอบเปิด 0 ปริมาตรตรงกับที่คำนวณมือ) · ลายที่เลยขอบช่อง (67.5:14) ตกในช่องโล่งจึงไม่มีผล และเช็คความลึกนับแค่ถึงขอบช่อง · บ่าหลัง: ลายด้านหน้าห้ามลึกจนทะลุบ่า · ไม่มี cut = รูปทรงเดิมทุกจุด (เทียบ position ทุก vertex กับ 1.282 แล้วตรง) (2) buildDoorGlassMesh วาดกระจกในบานกัดทะลุที่ตั้งกระจกไว้ (ขอบวางกระจก หรือ กระจกหนา) ทั้งโหมดประหยัดและไม่ประหยัด · ขนาด = กระจกที่สั่งจริง (บาน 497×1897 ขอบวาง 57.5 Gap 2 → 380×1780) · นั่งชนบ่าจากด้านหลัง ความหนาตามออเดอร์ K_Front_Glass/Part · สีตามชนิด ใส/ชา-ชาทอง/เทา-ดำ/เขียว/ฟ้า/ฝ้า/เงา ขอบกระจกเข้มกว่าหน้าแบบกระจกจริง + แสงสะท้อนเฉียงจาง ๆ บนหน้ากระจก (ยกเว้นฝ้า) · โชว์อย่างเดียว ไม่เข้า state.boards ไม่แตะ BOM/ใบผลิต/MPR · คลิกทะลุไปเลือกของในตู้ได้ · ติดรหัสบานไว้ กางบานแล้วกระจกหมุนตาม · บานไม้ที่มีแผ่นกลางจากเส้นเฟรมอยู่แล้วไม่วาดซ้อน (3) เส้นลายไม้ไม่ลากลอยข้ามช่องกระจก/บ่าอีก · ทดสอบ: render3D จริงบนฉากจำลอง บาน 497×1897 ได้ลาย 1080 สามเหลี่ยม+กระจก 380×1780×5 ทั้งสองโหมด ยิงเส้นผ่านกลางบานไม่ชนเนื้อไม้ · BOM 6 ไฟล์ + หน้าแบบผลิต 4 ไฟล์ ตรงกับ 1.282 ทุกแถว · จำนวนวัตถุในฉากไฟล์เดิมเท่าเดิม · เปิดแอปจริงใน Chromium (WebGL) ถ่ายภาพทั้งสองโหมด + กางบาน กระจกหมุนตามบาน"],
     ["1.282","2026-09-22","FEAT ชั้นปรับล็อคความลึกได้ — เดิมช่อง 🔒 ล็อคลึก มีแค่ชั้นตาย ชั้นปรับลึกเสมอ = ผิวหน้าแผ่นหลัง ถึง หน้าตู้ − ร่นหน้า จึงยืดตามตู้ทุกครั้ง · แผงชั้นปรับมีช่อง ล็อคลึก ใต้ช่องร่น กด “ใช้” ปุ่มเดิม · วัดจากผิวหน้าแผ่นหลังในตู้ (+ ร่นหลัง) ออกมาเท่านี้เสมอ ร่นหน้าไม่ใช้ · ปรับขนาดตู้ลึกขึ้น/ตื้นลงแล้วชั้นยังลึกเท่าเดิม · ตู้ตื้นกว่าค่าที่ล็อก = ชั้นชนหน้าตู้พอดี ไม่ทะลุ และแจ้งว่าได้เท่าที่มี · รูพินเจาะตามความลึกใหม่ (ห่างขอบหน้า/หลังชั้น 50 เท่าเดิม) · แปลงชั้นตาย ↔ ชั้นปรับ ค่าล็อกเดิมยังอยู่ · ใส่ 0 = ปลดล็อก กลับไปร่นหน้าเหมือนเดิม · ตรวจกับตู้ WNR042 ไฟล์ 52 ผ่านแผงจริง: ล็อก 450 → ตู้ลึก 700 ชั้น 450 · ตู้ 400 ชั้น 375.4 ชนหน้าพอดี · ปลดล็อกกลับเป็นร่นหน้า 15"],
@@ -11240,7 +11241,33 @@ function _slotBack(bk,def){
   if(clamped) try{ toast("⚠ ร่องหูแขวนล้นขอบแผ่นหลัง — ดึงกลับเข้าในแผ่นให้แล้ว (เช็ค sTop/sSide/sRef ที่ Element → "+def.code+")"); }catch(e){}
   return out;
 }
-function _placeHangers(all,carc,cabRaw,cabInstVal,def,add,sideOpt){
+/* ───────── v1.285: ตู้ลอยยาวที่ถูกแบ่งเป็นหลายช่อง — แผ่นหลังแยกแผ่นต่อช่อง ─────────
+   ตัวใส่หูแขวนเดิมเลือกแผ่นหลังมาแผ่นเดียว (หน้าตัดใหญ่สุด) แล้วเจาะร่อง/บากในแผ่นนั้นแผ่นเดียว
+   ตู้ลอย 1.8 ม. ที่มีเสาแบ่ง 2 ต้น (แผ่นหลัง 3 แผ่น) หูจึงไปกองอยู่ช่องเดียว ช่องอื่นใส่ไม่ได้เลย
+   ตัวนี้คืนแผ่นหลัง "แนวหลังสุด" ทุกแผ่น เรียงจากซ้ายไปขวา (ต้องเรียกตอนตู้ขนานแกนแล้ว)
+   แผ่นหลังที่ซ้อนช่วงกัน (แบ่งบน-ล่าง ไม่ใช่แบ่งซ้าย-ขวา) ไม่นับเป็นช่อง — คืนแผ่นเดียวให้ใช้ทางเดิม */
+function _hangBacks(all){
+  const bs=(all||[]).filter(b=>b&&!b._door&&!b._virtual&&!b._dwall&&!b._dx&&!isRail(b)&&b.orient==="front"&&(+b.L||0)>60);
+  if(bs.length<2) return bs;
+  let zb=Infinity; bs.forEach(b=>{ zb=Math.min(zb,b.z-worldDims(b)[2]/2); });
+  const back=bs.filter(b=>(b.z-worldDims(b)[2]/2)<=zb+12);                 // เฉพาะแนวหลังสุดจริง ๆ
+  if(back.length<2) return back;
+  const vx=v=>Math.max.apply(null,back.map(b=>b[v]))-Math.min.apply(null,back.map(b=>b[v]));
+  const ax=(vx("z")>vx("x"))?"z":"x", ai=(ax==="z")?2:0;                   // เรียงตามแกนที่กระจายตัวจริง
+  const arr=back.map(b=>{ const d=worldDims(b); return {b:b, lo:b[ax]-d[ai]/2, hi:b[ax]+d[ai]/2}; })
+                .sort((p,q)=>p.lo-q.lo);
+  for(let i=1;i<arr.length;i++) if(arr[i].lo<arr[i-1].hi-20) return [arr[0].b];   // ซ้อนช่วงกัน = ไม่ใช่ช่องเรียงกัน
+  return arr.map(o=>o.b);
+}
+/* รายการช่องที่จะใส่หู — ว่าง = ทุกช่อง · "1,3" = เฉพาะช่อง 1 กับ 3 (นับจากซ้าย) */
+function _hangBayPick(opt,n){
+  const t=String(opt==null?"":opt).trim(), out=[];
+  if(t&&!/^(all|ทุก)/i.test(t)) t.split(/[,\s|]+/).forEach(v=>{ const k=Math.round(+v);
+    if(k>=1&&k<=n&&out.indexOf(k)<0) out.push(k); });
+  if(!out.length) for(let i=1;i<=n;i++) out.push(i);
+  return out.sort((a,b)=>a-b);
+}
+function _placeHangers(all,carc,cabRaw,cabInstVal,def,add,sideOpt,bayOpt){
   const sides={L:sideOpt!=="R", R:sideOpt!=="L"};                    // v1.244: "L" / "R" = ข้างเดียว · อื่น ๆ = สองข้าง
   let x0=Infinity,x1=-Infinity,yTop=-Infinity,zBack=Infinity,zFront=-Infinity;   // v7.74: ต้องรู้หน้าตู้ด้วย เพื่อแยกคานหน้า/คานหลัง
   carc.forEach(b=>{const d=worldDims(b);x0=Math.min(x0,b.x-d[0]/2);x1=Math.max(x1,b.x+d[0]/2);yTop=Math.max(yTop,b.y+d[1]/2);zBack=Math.min(zBack,b.z-d[2]/2);zFront=Math.max(zFront,b.z+d[2]/2);});
@@ -11252,6 +11279,58 @@ function _placeHangers(all,carc,cabRaw,cabInstVal,def,add,sideOpt){
   const flats=all.filter(b=>!b._door&&!b._virtual&&b.orient==="flat");
   let topBot=yTop; if(flats.length){ const tp=flats.reduce((a,b)=>b.y>a.y?b:a); topBot=tp.y-worldDims(tp)[1]/2; }   // ใต้ท็อป
   const sideT=16, bw=def.bw,bh=def.bh,bd=def.bd, inset=def.hgInset||0;
+  /* v7.12: หูแขวนอยู่ "ชิดหลังตู้" เสมอ — วัดจากผิวหลังสุดของโครง ไม่ใช่หน้าแผ่นหลัง
+     v7.13: มีคานหลังให้แปะกับคาน · v7.74: เลือกคานหลังบนสุดเท่านั้น (v1.285: ยกมาคิดก่อน เพราะทางตู้หลายช่องใช้ด้วย) */
+  const zMid=(zBack+zFront)/2, zone=Math.max(+settings.hangRailZone||200,20);
+  const rails=all.filter(b=>!b._door&&!b._virtual&&isRail(b)&&!(b.rule&&b.rule.noHanger))
+    .filter(b=>{ const d=worldDims(b);
+      return (b.z<=zMid+1) && ((topBot-(b.y+d[1]/2))<=zone); });      // หลัง + ใกล้ใต้ท็อป
+  const rail=rails.length? rails.reduce((a,b)=>{                       // ใกล้ใต้ท็อปสุด ถ้าเท่ากันเอาที่หลังสุด
+      const da=topBot-(a.y+worldDims(a)[1]/2), db=topBot-(b.y+worldDims(b)[1]/2);
+      return (Math.abs(db-da)>1) ? (db<da?b:a) : (b.z<a.z?b:a); }) : null;
+  let cyH, czH;
+  if(rail){ const rd=worldDims(rail);
+    cyH=Math.min(rail.y+rd[1]/2, topBot)-bh/2;      // ขอบบนแป้น = ขอบบนคาน (ไม่เกินใต้ท็อป)
+    czH=(rail.z-rd[2]/2)-bd/2;                      // แป้นอยู่หลังคาน แนบผิวหลังคาน
+  } else { cyH=topBot-bh/2; czH=zBack+bd/2; }       // ไม่มีคาน -> ชิดหลังตู้
+  /* ───────── v1.285: ตู้ที่แบ่งเป็นหลายช่อง — ใส่หูรายช่อง (เลือกช่องได้จากเมนูคลิกขวา) ─────────
+     แต่ละช่องใช้แผ่นหลังของตัวเอง: ร่อง/บากลงแผ่นนั้น และหูไปนั่งตรงร่องของช่องนั้น
+     ตู้แผ่นหลังแผ่นเดียว (ส่วนใหญ่) ไม่เข้าทางนี้เลย พฤติกรรมเดิมทุกอย่าง */
+  const _bays=_hangBacks(all);
+  if(_bays.length>1){
+    const pick=_hangBayPick(bayOpt,_bays.length);
+    const one=(sides.L!==sides.R);
+    _bays.forEach((pn,bi)=>{ if(pick.indexOf(bi+1)<0) return;
+      const pL=pn.x-Math.max(+pn.L||0,1)/2, pR=pn.x+Math.max(+pn.L||0,1)/2;
+      if(def.arm>0){                                                   // เหล็กฉาก 3 ขา: เกาะขอบในของช่องนั้น
+        const rs=hangerResolve(def, zFront-zBack);
+        ["L","R"].forEach(sn=>{ if(!sides[sn]) return;
+          const code=(rs.codes.length>1)?(sn==="L"?rs.codes[0]:rs.codes[1]):rs.codes[0];
+          _angle3Boards(sn, sn==="L"?pL:pR, topBot, zBack, rs.arm, cabRaw, cabInstVal, code, def.code, uid(), one&&rs.codes.length<2)
+            .forEach(b=>{ b._fitBay=bi+1; add.push(b); }); });
+        if(def.nH>0&&def.nW>0) _notchBack(pn,def.nH,def.nW,def.nH2,def.nW2,sides);
+        return;
+      }
+      if(def.sW>0&&def.sH>0){                                          // แบบร่อง (H1): 2 ร่องของช่องนั้น
+        const cs=_slotBack(pn,def)||[];
+        const czB=pn.z+worldDims(pn)[2]/2+bd/2;
+        if(cs.length===2&&one){ const keepL=sides.L;
+          pn.cuts=(pn.cuts||[]).filter(c=>!c._hang||(keepL?c.x<0:c.x>0));
+          pn.pockets=(pn.pockets||[]).filter(q=>!q._notch||(keepL?q.x<0:q.x>0)); }
+        cs.forEach((c,k)=>{ const sn=(cs.length===2&&k===1)?"R":"L"; if(!sides[sn]) return; const fid=uid();
+          _hangerBoards(c.x,c.y,czB,bw,bh,bd,cabRaw,cabInstVal,def.code,fid)
+            .forEach(b=>{ b._fitSide=sn; b._fitBay=bi+1; if(one) b._fitHalf=true; add.push(b); }); });
+        return;
+      }
+      [{x:pL+inset+bw/2,sn:"L"},{x:pR-inset-bw/2,sn:"R"}].forEach(pt=>{   // แบบแป้น: ชิดขอบช่องนั้นเอง
+        if(!sides[pt.sn]) return; const fid=uid();
+        _hangerBoards(pt.x,cyH,czH,bw,bh,bd,cabRaw,cabInstVal,def.code,fid)
+          .forEach(b=>{ b._fitSide=pt.sn; b._fitBay=bi+1; if(one) b._fitHalf=true; add.push(b); }); });
+      if(def.nH>0&&def.nW>0) _notchBack(pn,def.nH,def.nW,def.nH2,def.nW2,sides);
+    });
+    try{ _hangerSideHoles(all,topBot,def); }catch(e){ console.error(e); }
+    return;
+  }
   /* v1.244: เหล็กฉาก 3 ขา — วางมุมในจริง ใช้ผิวในแผ่นข้างจริง (ไม่ใช่ 16 ตายตัว) รหัส/ยาวแขนตามความลึกตู้ */
   if(def.arm>0){
     const sd=fzStrip(all.filter(b=>b.orient==="side"&&!b._door&&!b._virtual&&!isRail(b)&&b.zoneLo==null)).sort((p,q)=>p.x-q.x);
@@ -11266,27 +11345,6 @@ function _placeHangers(all,carc,cabRaw,cabInstVal,def,add,sideOpt){
     if(bk && def.nH>0 && def.nW>0) _notchBack(bk,def.nH,def.nW,def.nH2,def.nW2,sides);
     return;
   }
-  /* v7.12: หูแขวนอยู่ "ชิดหลังตู้" เสมอ — วัดจากผิวหลังสุดของโครง ไม่ใช่หน้าแผ่นหลัง
-     (เดิมวางไว้หน้าแผ่นหลัง แล้วต้องบากแผ่นหลังให้ตัวเกี่ยวลอดออกไป
-      แต่แป้นสับยึดกับคานที่อยู่หลังแผ่นหลังอยู่แล้ว ไม่ต้องลอดอะไร) */
-  /* v7.13: ถ้าตู้มีคานหลัง ให้ "แปะกับคาน" ตรง ๆ — ผิวที่แนบคานชนผิวหลังของคาน
-     ขอบบนของแป้นเสมอกับขอบบนคาน · ไม่มีคานค่อยถอยไปใช้ผิวหลังตู้ */
-  /* v7.74: เลือกเฉพาะ "คานหลังบนสุด" เท่านั้นเป็นที่ยึดหูแขวน
-     เดิมเอาคานที่ z น้อยสุดอย่างเดียว ตู้ที่มีคานกลาง/คานหน้าเตี้ย ๆ หูเลยไปเกาะผิดตัว
-     เงื่อนไข: ต้องอยู่ครึ่งหลังของตู้ และขอบบนอยู่ใกล้ใต้ท็อปไม่เกิน hangRailZone (ตั้งต้น 200)
-     ตั้ง rule.noHanger = true ที่คานตัวไหน ก็กันไม่ให้ใช้ตัวนั้นได้ */
-  const zMid=(zBack+zFront)/2, zone=Math.max(+settings.hangRailZone||200,20);
-  const rails=all.filter(b=>!b._door&&!b._virtual&&isRail(b)&&!(b.rule&&b.rule.noHanger))
-    .filter(b=>{ const d=worldDims(b);
-      return (b.z<=zMid+1) && ((topBot-(b.y+d[1]/2))<=zone); });      // หลัง + ใกล้ใต้ท็อป
-  const rail=rails.length? rails.reduce((a,b)=>{                       // ใกล้ใต้ท็อปสุด ถ้าเท่ากันเอาที่หลังสุด
-      const da=topBot-(a.y+worldDims(a)[1]/2), db=topBot-(b.y+worldDims(b)[1]/2);
-      return (Math.abs(db-da)>1) ? (db<da?b:a) : (b.z<a.z?b:a); }) : null;
-  let cyH, czH;
-  if(rail){ const rd=worldDims(rail);
-    cyH=Math.min(rail.y+rd[1]/2, topBot)-bh/2;      // ขอบบนแป้น = ขอบบนคาน (ไม่เกินใต้ท็อป)
-    czH=(rail.z-rd[2]/2)-bd/2;                      // แป้นอยู่หลังคาน แนบผิวหลังคาน
-  } else { cyH=topBot-bh/2; czH=zBack+bd/2; }       // ไม่มีคาน -> ชิดหลังตู้
   /* v7.27.1: มี sW/sH -> ร่องกลางแผ่น (H1) วัดจากขอบแผ่นหลังเอง · ไม่มี -> บากมุมแบบเดิม (nH/nW · 0 = ไม่บาก) */
   const slotMode = !!(bk && def.sW>0 && def.sH>0);
   const ctrs = slotMode ? _slotBack(bk,def) : [];
@@ -11354,8 +11412,14 @@ function addHangerMenu(b,x,y){   // เมนูเลือกแบบหู�
   if(!defs.length){ toast("ยังไม่มีแบบหูแขวนใน Element — สร้างที่ Element → Fittings แล้วตั้ง kind = หูแขวน"); return; }
   const curCode=(carc.find(z=>z._hangerCode)||{})._hangerCode||"";
   const curSide=(carc.find(z=>z._hangerCode)||{})._hangerSide||"";   // v1.244: "" = สองข้าง · "L" · "R"
-  const setCode=code=>{ carc.forEach(z=>{ delete z._hangerCode; delete z._hangerSide; });
-    if(code){ host._hangerCode=code; if(curSide) host._hangerSide=curSide; } _reapplyFits(); };   // แหล่งเดียว · เปลี่ยนแบบแล้วข้างที่เลือกไว้ยังอยู่
+  const curBays=(carc.find(z=>z._hangerCode)||{})._hangerBays||"";   // v1.285: "" = ทุกช่อง · "1,3" = เฉพาะช่องนั้น
+  /* v1.285: ตู้ที่แบ่งหลายช่อง — นับช่องจากแผ่นหลังตอนตู้ขนานแกน (ตู้จากออเดอร์หมุนอยู่) */
+  let bayN=0, bayW=[];
+  try{ _fitAligned(all,()=>{ const bb=_hangBacks(all); bayN=bb.length; bayW=bb.map(p=>Math.round(+p.L||0)); return []; }); }catch(e){ console.error("hangBays:",e); }
+  const setCode=code=>{ carc.forEach(z=>{ delete z._hangerCode; delete z._hangerSide; delete z._hangerBays; });
+    if(code){ host._hangerCode=code; if(curSide) host._hangerSide=curSide; if(curBays) host._hangerBays=curBays; } _reapplyFits(); };   // แหล่งเดียว · เปลี่ยนแบบแล้วข้าง/ช่องที่เลือกไว้ยังอยู่
+  const setBays=v=>{ const hb=carc.find(z=>z._hangerCode); if(!hb) return;
+    if(v) hb._hangerBays=v; else delete hb._hangerBays; _reapplyFits(); };
   const setSide=sd=>{ const hb=carc.find(z=>z._hangerCode); if(!hb) return;
     if(sd) hb._hangerSide=sd; else delete hb._hangerSide; _reapplyFits(); };
   /* v1.234: ป้ายบอก "ปากบากที่จะได้จริง" — เดิมพิมพ์ nH×nW ตายตัว ซึ่งผิดทั้งกับแบบร่อง (H1) และแบบตัว L */
@@ -11367,6 +11431,16 @@ function addHangerMenu(b,x,y){   // เมนูเลือกแบบหู�
   if(curCode){ items.push({label:"──────────", fn:()=>{}});
     [["","ทั้งสองข้าง"],["L","ซ้ายอย่างเดียว (มองจากหน้าตู้)"],["R","ขวาอย่างเดียว (มองจากหน้าตู้)"]].forEach(o=>{
       items.push({label:(curSide===o[0]?"● ":"○ ")+o[1], fn:()=>{ setSide(o[0]); toast("หูแขวน: "+o[1]); }}); }); }
+  /* v1.285: ตู้ลอยยาวที่แบ่งหลายช่อง — ติ๊กเลือกช่องที่จะใส่หู (เดิมลงได้ช่องเดียวตายตัว) */
+  if(curCode&&bayN>1){ const now=_hangBayPick(curBays,bayN);
+    items.push({label:"────── ช่องที่ใส่หูแขวน ("+bayN+" ช่อง) ──────", fn:()=>{}});
+    items.push({label:(curBays?"○ ":"● ")+"ทุกช่อง", fn:()=>{ setBays(""); toast("หูแขวน: ทุกช่อง"); }});
+    for(let i=1;i<=bayN;i++){ const on=now.indexOf(i)>=0;
+      items.push({label:(on?"☑ ":"☐ ")+"ช่อง "+i+" (กว้าง "+bayW[i-1]+" มม.)", fn:()=>{
+        const arr=now.filter(k=>k!==i); if(!on) arr.push(i); arr.sort((a,b)=>a-b);
+        if(!arr.length){ toast("ต้องเหลืออย่างน้อยหนึ่งช่อง"); return; }
+        setBays(arr.length===bayN?"":arr.join(","));
+        toast("หูแขวน: ช่อง "+arr.join(", ")); }}); } }
   if(curCode) items.push({label:"✕ เอาหูแขวนออก",danger:true,fn:()=>{ setCode(""); toast("เอาหูแขวนออกแล้ว"); }});
   /* v37.0: หูแขวนกระจกอยู่หมวดเดียวกับหูแขวนตู้ลอย คนหาจากที่เดียว
      ของเดิมไปแปะเป็นปุ่มในแผงขวาซึ่งเป็นคนละที่กับหูแขวนอื่นทั้งหมด */
@@ -11624,7 +11698,7 @@ function applyCabFittings(){
     const def=hangerDefByCode(hostB._hangerCode); if(!def) return;
     const cabRaw=(all.find(b=>b.cab)||{}).cab, cabInstVal=all[0].cabInst||null;
     _fitAligned(all,()=>{ const out=[];
-      _placeHangers(all,carc,cabRaw,cabInstVal,def,out,hostB._hangerSide);   // _placeHangers จะบากเฉพาะถ้ามีแผ่นหลัง · v1.244: ข้างที่เลือก
+      _placeHangers(all,carc,cabRaw,cabInstVal,def,out,hostB._hangerSide,hostB._hangerBays);   // _placeHangers จะบากเฉพาะถ้ามีแผ่นหลัง · v1.244: ข้างที่เลือก · v1.285: ช่องที่เลือก
       return out; }).forEach(b=>add.push(b));
   });
   state.boards=keep.concat(add);
@@ -11648,7 +11722,7 @@ function cabFitSig(){   // ลายเซ็น — เปลี่ยนเม
     const carc2=all.filter(b=>!b._door&&!b._virtual);
     const bk=carc2.filter(b=>b.orient==="front").sort((a,b)=>a.z-b.z)[0];
     const _hb=carc2.find(z=>z._hangerCode)||{};
-    const hc=(_hb._hangerCode||"-")+"/"+(_hb._hangerSide||"LR");   // v1.244: เปลี่ยนข้างก็ต้องคิดใหม่
+    const hc=(_hb._hangerCode||"-")+"/"+(_hb._hangerSide||"LR")+"/"+(_hb._hangerBays||"all");   // v1.244: เปลี่ยนข้าง · v1.285: เปลี่ยนช่อง ก็ต้องคิดใหม่
     p.push(inst,cab,Math.round(A.cx),Math.round(A.cy),Math.round(A.frontZ),Math.round(A.botTop!=null?A.botTop:0),bk?Math.round(bk.L):0,bk?Math.round(bk.W):0,hc);
     /* v22.1: ขนาดถาดมาจาก "ช่องจริงในตู้" ซึ่งถูกบีบด้วยเสาแบ่งกับผนังกั้น
        ลายเซ็นเดิมรู้แค่กรอบนอกกับแผ่นหลัง เสาเลื่อนตามค่า D จึงไม่มีอะไรเปลี่ยน
