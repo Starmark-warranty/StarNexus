@@ -947,7 +947,7 @@
    ===================================================================== */
 /* ---- APP_META: แหล่งความจริงเดียวของเวอร์ชัน (ดูได้จาก console / คลิกชื่อแอป) ---- */
 const APP_META={
-  name:"StarNexus Cabinet", version:"1.296", build:"2026-09-23/scale-grid",
+  name:"StarNexus Cabinet", version:"1.299", build:"2026-09-24/unique-pid",
   file:"StarNexus.html", basedOn:"Furnitech_V3.html (v3.11)",
   /* ───────── เริ่มนับเวอร์ชันใหม่ที่ 1.001 (21/08/2026) ─────────
      ของเดิมนับมาถึง 42.1 แล้ววิ่งเป็นทศนิยมสองชั้นซึ่งอ่านลำดับยาก
@@ -955,6 +955,9 @@ const APP_META={
      ประวัติเก่าเก็บไว้ทั้งหมดตามเลขเดิม ไม่ไล่เขียนใหม่ เพราะเลขในนั้นถูกอ้างถึงไปแล้ว
      รายการที่อยู่ใต้ 1.001 ลงไปจึงเป็นเลขชุดเก่า อ่านต่อกันได้ตามวันที่ */
   changelog:[
+    ["1.299","2026-09-24","FIX สร้างลิงก์ตู้ไม่ได้ HTTP 409 duplicate key furnitech_share_pkey — สาเหตุคือมีตู้สองใบได้เลขตู้ (productId) ตัวเดียวกัน · รหัสลิงก์แจกตามเลขตู้ สองใบชื่อเดียวกันจึงได้รหัสลิงก์ตัวเดียวกันสองแถวในคำขอเดียว ฐานข้อมูลปัดทั้งชุด ไม่มีใบไหนได้ลิงก์ · ที่มาของเลขซ้ำ เลขตู้จำไว้ต่อ cabInst แล้วประกอบกับรหัสตู้ เปลี่ยนรหัสตู้ในแผงหรือ 🔁 เปลี่ยนรุ่นตู้ ตู้ใบนั้นพาเลขเดิมไปด้วย ถ้ารหัสใหม่มีใบที่ใช้เลขนั้นแล้วก็ชนกัน (จำลองได้ตรง BEF159-01 เปลี่ยนรหัสเป็น MWA107 ได้ MWA107-01 ซ้ำกับใบเดิม แล้วกดสร้างลิงก์ได้ 409 ข้อความเดียวกับที่เจอ) · ที่แย่กว่าลิงก์คือบาร์โค้ดและชื่อในไฟล์ส่งออกซ้ำกันสองใบ · แก้สามชั้น (1) เปลี่ยนรหัสตู้/เปลี่ยนรุ่นตู้แล้วเลขชน ใบที่เปลี่ยนรับเลขถัดไป ใบที่อยู่มาก่อนไม่ถูกแตะ (bcRenumberIfTaken) (2) cabGroups หาเลขสูงสุดของทุกรหัสก่อนแจก เดิมอัปเดตระหว่างวน ใบใหม่ที่วนถึงก่อนจึงอาจได้เลขชนใบที่ยังไม่ถึง (3) ยังซ้ำอยู่ (ไฟล์ที่ซ้ำไปแล้ว) ใบที่วนถึงทีหลังได้เลขถัดไป จำไว้ถาวร และขึ้นแจ้งเตือนว่าเปลี่ยนจากเลขไหนเป็นเลขไหน · ไฟล์ที่ไม่มีเลขซ้ำ เลขตู้ทุกใบเหมือนเดิม"],
+    ["1.298","2026-09-24","FIX คานกลางที่ปุ่มจัดคาน (v1.292) เติมให้ หายไปกองบนสุดของตู้ + FEAT รหัสท่อนตัดใช้ท่อนใกล้เคียงไม่เกิน 1 มม. — (1) เคสจริง MWD011-01 สูง 1200 คานกลาง 2 เส้น และ MWD009-01 สูง 2000 คานกลาง 3 เส้น ไปกองอยู่ที่ 1930–2000 ทับแผ่นบนและทับกันเอง ช่องกลางโล่งไม่มีคานเลย · สาเหตุ v1.292 ถอดล็อกระยะ (_datum) ของคานใหม่ออกแล้ววางด้วยพิกัดตรง ๆ แต่คานที่ก๊อปมามีกฎ refV จากบน ร่น 0 ติดมาด้วย พอมีรอบคิดกฎคาน (reapplyRules) ทุกเส้นเด้งไปชิดบนสุด · ตอนนี้คานใหม่ทุกเส้นได้ล็อก จากบนแผ่นพื้น ด้วยระยะจริงของตัวเอง (หาระยะด้วย guideDatumPlace ตัวเดียวกับที่ sync ใช้ จึงได้ที่เดิมเป๊ะ) คงอยู่ทุกรอบคิดใหม่เหมือนคานล่าง/คานบน · เส้นกลางเส้นเดียวยังได้ centerZone เหมือนเดิม · ไฟล์ที่โดนไปแล้ว เลือกตู้แล้วกด 🪜 จัดคาน อีกครั้งจะซ่อมให้: ชุดคานเรียงหัวท้ายตามล็อก floorTop/topUnder ไม่ใช่ตามความสูง คานที่เด้งขึ้นไปจึงไม่ถูกนับเป็นคานบน และจำนวนพอดีแต่คานกลางไม่มีล็อกถือว่าต้องทำใหม่ · (2) เคสจริง รางไฟ PROFILE 1103 ยาวจริง 309.4 ปัดลงเป็น 309 คลังเปิดรหัส ตัดขนาด 310 mm. ไว้แล้วแต่ไม่มี 309 จึงขึ้นค้นไม่เจอ · cutLookupSeq ค้นตรงตัวไม่เจอ ค้นต่อที่ความยาวห่างไม่เกิน cutNearTol (ตั้งต้น 1 มม. ตั้งที่ ตั้งค่า ใต้ช่องคำที่ใช้ค้น · 0 = ต้องตรงเท่านั้น) เลือกตัวที่ใกล้ความยาวจริงที่สุด เท่ากันเลือกท่อนยาวกว่า · ใช้เฉพาะของที่ไม่มีเงื่อนไขหน้าตัด เส้นเฟรมบานที่ผูกสี/ปลายตัด/หน้าตัดยังต้องยาวตรงเหมือนเดิม · ใบอุปกรณ์มีบรรทัดส้มบอกว่าใช้ท่อนไหนแทน และไม่ขึ้นในกล่องของที่ยังไม่มีรหัสแล้ว"],
+    ["1.297","2026-09-23","FEAT คัดลอกคุณสมบัติตู้ → วางใส่หลายตู้ในคำสั่งเดียว — งานจริง ตู้รุ่นเดียวกันหลายใบในออเดอร์ แก้สี เปลี่ยน Part ติ๊กล็อกในใบแรกเสร็จ ต้องไล่ทำซ้ำทุกใบทีละช่อง · คลิกขวาที่ตู้ต้นแบบ → 📋 คัดลอกคุณสมบัติตู้ (หรือปุ่มในแผงตู้ ใต้ปุ่มเปลี่ยนรุ่นตู้) แล้ว Ctrl+คลิกเลือกตู้ปลายทางกี่ใบก็ได้ → 📌 วางคุณสมบัติตู้ · มีช่องให้ติ๊กว่าจะวางกลุ่มไหน จำค่าที่เลือกล่าสุดไว้: 🎨 สี/Variables (cabColors + ขอบหน้าตู้ + ทิศหน้าตู้ · รวมค่าเข้าไป ค่าที่ปลายทางมีแต่ต้นแบบไม่มีคงไว้ · เปลี่ยน Family ขาแล้วจัดขาใหม่ให้เหมือนช่อง Variables) · 🧩 Part รายชิ้น (part mat surfT surfB edges · เปลี่ยน Part แล้วปรับหนาผ่าน applyThick ทางเดียวกับช่อง Part ในแผงขวา) · ☑ ติ๊ก/ล็อกรายชิ้น (fixW fixH fixY fixDim core grain grainCross _grainLock _shelfSup pinPitch คานไม่แขวน) · 🚪 ค่าปรับบาน + ตำแหน่งมือจับ (cabDP cabVarTxt) · ชิ้นในตู้จับคู่ด้วยชื่อ + ลำดับชื่อซ้ำ ปลายทางมีชื่อซ้ำมากกว่าต้นแบบใช้ค่าตัวสุดท้าย · ชิ้นที่ชื่อไม่ตรงข้าม ไม่เดา และบอกชื่อในแจ้งเตือน · ตู้ต่างรุ่นวางได้ เฉพาะชิ้นที่ชื่อตรง หน้าต่างบอกล่วงหน้าว่ามีต่างรุ่นกี่ใบ · ไม่แตะขนาด ตำแหน่ง เลขจาก XML (cabNums) สเปคบาน (_de) · ชิ้นที่ระบบปั้นใหม่ทุกรอบ (ขา เฟรม กระจก ราง LED อุปกรณ์) ไม่นับ · ล็อกไฟล์อยู่ถูกกันไว้ · Ctrl+Z ย้อนได้ทั้งชุด — snap()/restoreSnap() เก็บค่าประจำตู้ด้วยแล้ว (cabColors cabDP cabVarTxt cabFrontEdge cabFrontDir) ของเดิมเก็บแต่ชิ้น เปลี่ยนสีในช่อง Variables แล้วกด Ctrl+Z ชิ้นย้อนแต่สีค้างของใหม่ ตอนนี้ย้อนด้วยกัน"],
     ["1.296","2026-09-23","FIX ตู้ที่ XML สั่งลึก 400 ออกมาเป็น 399 — เคสจริงในออเดอร์ที่ส่งมา 7 ใบ MWA077-01/02/03 กับ MWA158-01/02/03/04 แผ่นข้าง·บน·ล่าง ออกใบตัด 399 ทั้งที่ CAB_D ที่ XML ส่งมาคือ 400 เต็ม · ต้นเหตุอยู่ที่ตัวยืดขนาดโมเดล _scaleModelBoardsOnce กิ่ง แผ่นหนา ปัดขอบนอกเป็นจำนวนเต็มเสมอ (snap) แต่กิ่ง แผ่นบาง กับ ล็อกด้าน/อุปกรณ์ เกาะมุมกรอบดิบ ไม่ปัด · โมเดลที่มุมกรอบตกเศษครึ่งมิล (MWA077 หลังสุด -2087.5 · MWA158 -3563.5) แผ่นข้างจึงถูกดันไป -2087 ส่วนคานหลังค้างที่ -2087.5 ห่างกัน 0.5 มม. · กรอบจึงวัดได้ 400.5 ทั้งที่แผ่นข้างกว้าง 400 พอดี ลูปไล่เข้าเป้าเห็นคลาด 0.5 ซึ่งเกิน 0.4 เลยสั่งย่อซ้ำ 400 → 399.5 → 399 แล้วคืนรอบสุดท้ายออกไป ทั้งที่รอบแรกถูกแล้ว · แก้สองจุด (1) ทุกกิ่งใช้ฐานจำนวนเต็มตัวเดียวกัน แล้วเลื่อนทั้งตู้กลับมุมเดิม ขนาดชิ้นเป็นเลขกลมเหมือนเดิม ชิ้นที่เคยเสมอกันก็ยังเสมอ และตำแหน่งตู้ไม่ขยับสักมิล (2) ลูปไล่เข้าเป้าเก็บรอบที่ใกล้เป้าที่สุดไว้ รอบไหนแย่ลงไม่ทับ ของเดิมเอารอบสุดท้ายเสมอแม้จะแย่กว่า · สอบกับของจริง แผ่นข้าง MWA077 เป็น 400 · ชั้นปรับจาก 309 เป็น 311 · สั่งลึก 350/600/450 ก็ตรงทุกค่า · โมเดลที่มุมกรอบเป็นจำนวนเต็มอยู่แล้ว (ส่วนใหญ่ของคลัง) ออกเท่าเดิมทุกชิ้นไม่ขยับเลย (ทดสอบเทียบก่อน-หลังแล้ว เหมือนกันทุกตัวอักษร) · ไฟล์งานที่บันทึกไว้แล้วเปิดขึ้นมาเหมือเดิมทุกชิ้น เพราะของที่ปั้นไว้แล้วไม่ถูกสเกลใหม่ ต้องโหลดออเดอร์ XML ใหม่ถึงจะได้เลขที่แก้แล้ว · โมเดลในคลังที่เข้าเงื่อนไขนี้ในแกนลึก 20 รหัส BAT245 BAT246 BND123 BNT028 LTD002 LTD003 MWA016 MWA017 MWA018 MWA024 MWA025 MWA026 MWA030 MWA053 MWA077 MWA158 WAL119 (จาก 422 รหัส) ควรไล่เช็คงานที่ส่งตัดไปแล้วด้วย"],
     ["1.295","2026-09-23","FIX ข้อความแจ้งเตือนที่ยิงจากในหน้าต่างไม่เคยมีใครเห็น เพราะถูกหน้าต่างทับมิดทุกบาน — เคสจริง กดปุ่ม เก็บทับออเดอร์นี้ ในหน้าตรวจ XML ระบบยิงข้อความ “เก็บทับประวัติ XML … แล้ว” (หรือ “เก็บไม่สำเร็จ: …”) ออกมาจริง แต่มองไม่เห็น เลยไม่รู้ว่าเก็บผ่านหรือพัง · สาเหตุ .toast ตั้ง z-index ไว้ 400 ซึ่งเท่ากับหน้าตรวจ XML พอดี พอค่าเท่ากัน ตัวที่มาทีหลังใน DOM ชนะ และหน้าต่างพวกนี้ถูกสร้างตอนกดเปิด จึงอยู่หลัง #toast ที่อยู่ในหน้าเว็บตั้งแต่แรกเสมอ · หน้าต่างอื่นยิ่งชัด เพราะสูงกว่า 400 อยู่แล้วทุกบาน ovCard 430 (รายการไฟ · ประวัติแจ้งเตือน · ลิงก์ตู้ · รุ่นบานพับ ฯลฯ) · กล่องรอระหว่างโหลดออเดอร์ 600 · แถบสแกน 9000 · หน้าเข้าสู่ระบบ 2147483000 · ยกแจ้งเตือนขึ้นบนสุดที่ 2147483100 เห็นได้ทุกหน้าต่างแล้ว · ปลอดภัย ไม่บังการกดอะไร เพราะกล่องแจ้งเตือนตั้ง pointer-events:none ไว้ตั้งแต่แรก เมาส์ทะลุผ่านได้ และมันหายเองใน 2.6 วินาที · ข้อความยังถูกเก็บลงประวัติแจ้งเตือนเหมือนเดิมทุกบรรทัด (ที่ผ่านมาย้อนดูได้ทางนั้นทางเดียว)"],
     ["1.294","2026-09-23","FIX เส้นไฟ LED ออกใบอุปกรณ์เป็นท่อน ๆ ตามท่อนราง ทั้งที่ของจริงเดินยาวเส้นเดียว — รางอลูมิเนียมบนแผ่นข้างถูกชั้นตายตัดเป็นท่อนจริง ท่อนละชิ้น สั่งแยกกัน ตรงนั้นถูกแล้ว แต่เส้นไฟเป็นเส้นอ่อน วิ่งผ่านรอยต่อไปได้ทีเดียวตลอดแนว · เคสจริง LTO002 แผ่นข้างละ 5 ท่อน (430 · 300 · 440 · 340 · 309.4) สองด้าน ของเดิมออกเส้นไฟ 10 เส้น ทั้งที่ต้องเป็นเส้นยาว 1886.1 สองเส้น · ตัวรวมรางเดิม _ledJoinRuns (v16.4) รวมเฉพาะท่อนที่ปลายชนกันสนิทห่างไม่เกิน 0.05 มม. ซึ่งถูกสำหรับราง เพราะชั้นหนา 16.6 คั่นอยู่จริง เส้นไฟจึงต้องมีตัวรวมของตัวเอง · เพิ่ม ledStripRuns() จับท่อนที่อยู่แนวเดียวกันเป๊ะ (แกนเดียวกัน ระยะตั้งฉากเท่ากัน หน้าตัดเดียวกัน) แล้วต่อเป็นเส้นเดียวเมื่อช่องที่คั่นไม่เกิน 40 มม. (ตั้งได้ที่ ledStripGapMax หรือรายชุดไฟที่ stripGap) ความหนาชั้น 16-36 จึงข้ามได้ ส่วนช่วงที่ห่างกันจริงยังแยกเส้นตามเดิม · ความยาวที่สั่ง = ช่วงเต็มจากต้นท่อนแรกถึงปลายท่อนสุดท้าย รวมช่องที่ชั้นคั่น (1819.4 เป็น 1886.1) เพราะไฟต้องวิ่งผ่านช่องนั้นไปด้วย ไม่ใช่ผลบวกของท่อน · ยาวเกินม้วนซอยเท่า ๆ กันให้สั่งได้ (stripMaxL ตั้งต้น 5000 · 0 = ไม่จำกัด) · สายเชื่อมที่นับ ตามเส้นไฟ นับตามเส้นไฟจริงแล้ว ไม่ใช่ตามท่อนราง · หน้ารายการไฟบอกจำนวนเส้นไฟต่อโซนและทั้งงาน จะได้เทียบกับจำนวนท่อนรางได้ · ความยาวที่ใช้เลือกหม้อแปลงคิดจากเส้นจริงชุดเดียวกัน หน้ารายการไฟกับใบอุปกรณ์จึงบอกเลขเดียวกันเสมอ · ราง พลาสติกปิดราง ฝาปิดปลาย ไม่ถูกแตะเลย ยังออกท่อนละชิ้นเหมือนเดิม · อยากได้แบบเดิมตั้ง stripJoin = ตัดตามท่อนราง ที่ Element → ชุดไฟ LED"],
@@ -1364,7 +1367,7 @@ const DEF_SETTINGS={ frontSetMax:6, dowelD:8, dowelDepth:28, dowelMateDepth:12, 
   healOnVarChange:true,                           // v31.1: แก้ค่าตัวแปรของตู้แล้วเชื่อมเดือยใหม่ให้ตู้ใบนั้น
   kitField:"K_Fitting_Concept", kitPushMap:"B:top, W:bottom", xmlThinMin:1, xmlSkipNoModel:false, orderProgNo:"700", doorGapWarn:50, csNewGap:120, ledSets:[{id:"12V-COB", volt:12, wPerM:9.6,
     stripCode:"", psuMap:"30, 60, 100", psuCode:"", psuUse:80, maxRunM:5,
-    wireCode:"", wireMode:"ต่อเส้นไฟ", wireQty:1}], ledSetPerRun:false, cutSizeFmt:"{ชื่อ} ตัดขนาด {ยาว} mm.", cutLookupKey:"ตัดขนาด", cutMiterOptSec:"007, 021", cutLookupOn:true, glassBomOn:true, glassUnit:"EA", glassMatCodes:"FC,MC,FT,PT,FS,MT", glassKinds:"กระจกใส|กระจกเงา|กระจกฝ้า|กระจกใสชาดำ|กระจกใสชาทอง|กระจกเงาชาทอง|กระจกใส ลอนลูกฟูก", glassEdges:"ลบคมรอบ|ลบคมขัดมันรอบ|เจียรริมรอบ|เจียรริมขัดมันรอบ|เจียรริม 1 mm. ขัดมันรอบ", glassKind:"กระจกใส", glassEdge:"ลบคมรอบ", glassXmlField:"K_Front_Glass", glassShelfKind:"กระจกใส", glassShelfEdge:"เจียรริมขัดมันรอบ", glassDoorT:5, pullXmlOn:true, pullHingeGuard:true, pullField:"K_Pull", pullOriField:"K_Orientation", pullPosField:"K_Pull_Position", pullXField:"K_Pull_Coordinate_X", pullYField:"K_Pull_Coordinate_Y", pullNo:"nopull,none,-", pullName:"มือจับ", pull3D:true, dxNotchGap:0.5, railLikeMaxW:100, pullDefPos:"UpMiddle", pullDefOri:"H", pullDefX:35, pullDefY:0, legClipOn:true, legClipMap:"", legClipCode:"LEGCLIP", legClipName:"กิ๊ฟขาตู้ (ยึดแผ่นปิดขา)", doorSwing:true, doorRelief3D:true, doorReliefMap:"MCxx35 = 0:3, 3:0, 55:0, 58:3, 60:6, 95:6, 110:2, 110:0 | ตั้งทะลุ 55-60", shelfT:16, hangRailCode:"HANGRAIL", hangRailName:"ราวแขวนผ้า สแตนเลส C", glassHangerCode:"GLASSHANGER", glassHangerName:"หูแขวนกระจก", coverScrewCode:"COVERSCREW", coverScrewName:"สกรูยึดแผ่นปิด", coverScrewPer:1, hangRailThruD:8, hangRailCsD:13, hangRailCsDepth:2, hangRailEndGap:25, hangRailBarH:25, hangRailMap:"", drawerSideT:16, drawerBotT:9, drawerBoxH:120, drawerBoxLift:20, screwD:5, screwMateDepth:28, screwInset:9,
+    wireCode:"", wireMode:"ต่อเส้นไฟ", wireQty:1}], ledSetPerRun:false, cutSizeFmt:"{ชื่อ} ตัดขนาด {ยาว} mm.", cutLookupKey:"ตัดขนาด", cutNearTol:1, cutMiterOptSec:"007, 021", cutLookupOn:true, glassBomOn:true, glassUnit:"EA", glassMatCodes:"FC,MC,FT,PT,FS,MT", glassKinds:"กระจกใส|กระจกเงา|กระจกฝ้า|กระจกใสชาดำ|กระจกใสชาทอง|กระจกเงาชาทอง|กระจกใส ลอนลูกฟูก", glassEdges:"ลบคมรอบ|ลบคมขัดมันรอบ|เจียรริมรอบ|เจียรริมขัดมันรอบ|เจียรริม 1 mm. ขัดมันรอบ", glassKind:"กระจกใส", glassEdge:"ลบคมรอบ", glassXmlField:"K_Front_Glass", glassShelfKind:"กระจกใส", glassShelfEdge:"เจียรริมขัดมันรอบ", glassDoorT:5, pullXmlOn:true, pullHingeGuard:true, pullField:"K_Pull", pullOriField:"K_Orientation", pullPosField:"K_Pull_Position", pullXField:"K_Pull_Coordinate_X", pullYField:"K_Pull_Coordinate_Y", pullNo:"nopull,none,-", pullName:"มือจับ", pull3D:true, dxNotchGap:0.5, railLikeMaxW:100, pullDefPos:"UpMiddle", pullDefOri:"H", pullDefX:35, pullDefY:0, legClipOn:true, legClipMap:"", legClipCode:"LEGCLIP", legClipName:"กิ๊ฟขาตู้ (ยึดแผ่นปิดขา)", doorSwing:true, doorRelief3D:true, doorReliefMap:"MCxx35 = 0:3, 3:0, 55:0, 58:3, 60:6, 95:6, 110:2, 110:0 | ตั้งทะลุ 55-60", shelfT:16, hangRailCode:"HANGRAIL", hangRailName:"ราวแขวนผ้า สแตนเลส C", glassHangerCode:"GLASSHANGER", glassHangerName:"หูแขวนกระจก", coverScrewCode:"COVERSCREW", coverScrewName:"สกรูยึดแผ่นปิด", coverScrewPer:1, hangRailThruD:8, hangRailCsD:13, hangRailCsDepth:2, hangRailEndGap:25, hangRailBarH:25, hangRailMap:"", drawerSideT:16, drawerBotT:9, drawerBoxH:120, drawerBoxLift:20, screwD:5, screwMateDepth:28, screwInset:9,
   /* v1.201: รอยต่อกล่องลิ้นชักไม้ — แผ่นหน้า/หลังชนเข้าแผ่นข้าง ยึดด้วยเดือย + สกรูจากนอกแผ่นข้าง */
   boxJointOn:true, boxDowelFormula:BOXJ_DOWEL_NAME, boxScrewFormula:BOXJ_SCREW_NAME,
   boxJointDowelD:8, boxJointDowelDepth:24, boxJointMateD:8, boxJointMateDepth:12,
@@ -2111,7 +2114,11 @@ function pull(m,val){ return m==="กลาง"? Math.max(val,0)/2 : Math.max(va
 
 /* ---------- undo / redo history ---------- */
 let undoStack=[], redoStack=[], lastSnap=null;
-function snap(){ return JSON.stringify({boards:state.boards,globalTone:state.globalTone}); }
+/* v1.297: Ctrl+Z ต้องย้อนค่าประจำตู้ด้วย ไม่ใช่แค่ชิ้น — เดิมเก็บแต่ boards
+   เปลี่ยนสีในช่อง Variables หรือวางคุณสมบัติตู้แล้วกด Ctrl+Z ชิ้นย้อน แต่สีกับค่าปรับบานค้างของใหม่ ไม่ตรงกัน */
+const SNAP_CAB_KEYS=["cabColors","cabDP","cabVarTxt","cabFrontEdge","cabFrontDir"];
+function snap(){ const cab={}; SNAP_CAB_KEYS.forEach(k=>{ if(state[k]) cab[k]=state[k]; });
+  return JSON.stringify({boards:state.boards,globalTone:state.globalTone,cab:cab}); }
 // รูที่ชิ้นอื่นมาเจาะฝากไว้ (src=เจ้าของ): ถ้าเจ้าของถูกลบไม่ว่าทางไหน รูต้องหายตาม — กวาดกลางทุกครั้งที่ commit
 /* v37.8: h.src ส่วนใหญ่คือ "id ของชิ้นที่เป็นเจ้าของรู" แต่ไม่ใช่ทุกตัว
    รูของระบบบางชุดใช้ src เป็น "ป้ายชื่อผัง" ไม่ใช่ id ของชิ้น (หูแขวนกระจก = "glasshanger")
@@ -2376,7 +2383,9 @@ function runOverlapCheck(){
     +(ov.joint?("\nข้ามรอยต่อที่เข้าร่องพอดีไปแล้ว "+ov.joint+" คู่ (เช่นแผ่นหลังเสียบร่อง)"):"")+"\n\n"+lines+(ov.length>30?"\n…":""));
 }
 function clearOverlapHL(){ if(state.overlapIds&&state.overlapIds.length){ state.overlapIds=[]; render3D(false); } }
-function restoreSnap(str){ const o=JSON.parse(str); state.boards=o.boards; state.globalTone=o.globalTone; if(!selBoard())state.selectedId=null; buildGTones(); sync(0,1,0); }
+function restoreSnap(str){ const o=JSON.parse(str); state.boards=o.boards; state.globalTone=o.globalTone;
+  if(o.cab) SNAP_CAB_KEYS.forEach(k=>{ state[k]=o.cab[k]||{}; });   /* v1.297 */
+  if(!selBoard())state.selectedId=null; buildGTones(); sync(0,1,0); }
 function undo(){ if(_alignHold>0) return; if(moveSession)cancelMove(); if(!undoStack.length)return; redoStack.push(snap()); const prev=undoStack.pop(); restoreSnap(prev); lastSnap=prev; refreshUndoUI(); toast("ย้อนกลับ"); }
 function redo(){ if(_alignHold>0) return; if(!redoStack.length)return; undoStack.push(snap()); const nxt=redoStack.pop(); restoreSnap(nxt); lastSnap=nxt; refreshUndoUI(); toast("ทำซ้ำ"); }
 function refreshUndoUI(){ const u=$("undoBtn"),r=$("redoBtn"); if(u)u.disabled=!undoStack.length; if(r)r.disabled=!redoStack.length; }
@@ -13825,6 +13834,119 @@ const b=state.boards.find(x=>x.id===id);if(!b)return;
    งานที่ต้องพิมพ์เฉพาะบางใบจึงต้องพิมพ์ทั้งจ็อบแล้วไปคัดหน้าเอาที่เครื่องพิมพ์ */
 function cabSelKeys(){ return Array.isArray(state.selectedCabs)?state.selectedCabs.filter(Boolean):[]; }
 function cabSelHas(k){ return cabSelKeys().indexOf(String(k))>=0 || String(state.selectedCab||"")===String(k); }
+/* ───────── v1.297: คัดลอกคุณสมบัติตู้ → วางใส่หลายตู้ ─────────
+   งานจริง ออเดอร์เดียวมีตู้รุ่นเดียวกันหลายใบ แก้สี เปลี่ยน Part ติ๊กล็อกในใบแรกเสร็จ
+   ต้องไล่ทำซ้ำทุกใบทีละช่อง ตู้ 3 ใบ ๆ ละ 10 ชิ้นก็ 30 รอบแล้ว
+   คัดลอกจากตู้ต้นแบบครั้งเดียว แล้ววางใส่ตู้ที่เลือกไว้กี่ใบก็ได้ในคำสั่งเดียว เลือกได้ว่าจะวางกลุ่มไหน
+     · สี / Variables  → state.cabColors (+ ขอบหน้าตู้ ทิศหน้าตู้) — รวมค่าเข้าไป ค่าที่ปลายทางมีแต่ต้นแบบไม่มี คงไว้
+     · Part รายชิ้น     → part mat surfT surfB edges
+     · ติ๊ก/ล็อกรายชิ้น  → fixW fixH fixY fixDim core grain grainCross _grainLock _shelfSup pinPitch rule.noHanger
+     · ค่าปรับบาน       → state.cabDP + state.cabVarTxt (ตำแหน่งมือจับ)
+   ชิ้นในตู้จับคู่ด้วยชื่อ + ลำดับของชื่อซ้ำ (Back Rail Upright ตัวที่ 1 ↔ ตัวที่ 1)
+   ปลายทางมีชื่อซ้ำมากกว่าต้นแบบ (เช่นกดจัดคานเพิ่มไว้) ตัวที่เกินใช้ค่าของตัวสุดท้ายในต้นแบบ
+   ชิ้นที่ชื่อไม่ตรงข้ามไป ไม่เดา · ไม่แตะขนาด ตำแหน่ง เลขจาก XML (cabNums) และสเปคบาน (_de) เลย
+   ชิ้นที่ระบบปั้นเองทุกรอบ (ขา เฟรม กระจก ราง LED อุปกรณ์) ไม่นับ เพราะถูกสร้างใหม่ตามค่าของตู้อยู่แล้ว */
+let _cabPropClip=null;
+const CABPROP_PART=["part","mat","surfT","surfB","edges"];
+const CABPROP_TICK=["fixW","fixH","fixY","fixDim","core","grain","grainCross","_grainLock","_shelfSup","pinPitch"];
+function _cpBoardsOf(inst){ inst=String(inst);
+  return state.boards.filter(b=>b&&String(b.cabInst)===inst&&!b._virtual&&!b._framePart&&!b._ledPart&&!b._fitPart&&String(b.name||"").trim()); }
+function _cpJ(v){ return (v==null)?v:JSON.parse(JSON.stringify(v)); }
+function cabPropCopy(inst){
+  inst=String(inst);
+  const bs=_cpBoardsOf(inst);
+  if(!bs.length){ toast("ไม่พบชิ้นของตู้ใบนี้"); return null; }
+  const byName={};
+  bs.forEach(b=>{ const nm=String(b.name).trim(), rec={};
+    CABPROP_PART.concat(CABPROP_TICK).forEach(k=>{ if(b[k]!==undefined) rec[k]=_cpJ(b[k]); });
+    if(b.rule&&b.rule.kind==="rail") rec._noHanger=b.rule.noHanger?true:false;
+    (byName[nm]=byName[nm]||[]).push(rec); });
+  const g=cabGroups().find(x=>String(x.key)===inst);
+  const code=String((bs.find(b=>b.cab)||{}).cab||"");
+  _cabPropClip={src:inst, code:code, pid:(g&&g.productId)||code||inst, nb:bs.length, boards:byName,
+    vars:_cpJ((state.cabColors||{})[inst]||{}),
+    fe:(state.cabFrontEdge||{})[inst], fd:(state.cabFrontDir||{})[inst],
+    dp:(state.cabDP||{})[inst], vt:(state.cabVarTxt||{})[inst]};
+  toast("📋 คัดลอกคุณสมบัติตู้ "+_cabPropClip.pid+" แล้ว ("+bs.length+" ชิ้น) — เลือกตู้ปลายทางแล้วกด วางคุณสมบัติ");
+  return _cabPropClip;
+}
+function cabPropPaste(targets,opt){
+  const c=_cabPropClip; opt=opt||{};
+  const out={cabs:0, boards:0, miss:{}, legs:0};
+  if(!c) return out;
+  const lf=(()=>{ try{ return legFamName(); }catch(e){ return ""; } })();
+  const setMap=(key,inst,v)=>{ state[key]=state[key]||{}; if(v==null||v==="") delete state[key][inst]; else state[key][inst]=_cpJ(v); };
+  [...new Set((targets||[]).map(String))].forEach(inst=>{
+    if(!inst||inst===c.src) return;
+    const bs=_cpBoardsOf(inst); if(!bs.length) return;
+    out.cabs++;
+    if(opt.vars){
+      state.cabColors=state.cabColors||{};
+      const old=Object.assign({},state.cabColors[inst]||{});
+      state.cabColors[inst]=Object.assign({},old,_cpJ(c.vars||{}));
+      setMap("cabFrontEdge",inst,c.fe); setMap("cabFrontDir",inst,c.fd);
+      if(lf&&old[lf]!==state.cabColors[inst][lf]){ try{ applyXmlLeg(inst,null); out.legs++; }catch(e){ console.error("applyXmlLeg:",e); } }
+    }
+    if(opt.dp){ setMap("cabDP",inst,c.dp); setMap("cabVarTxt",inst,c.vt); }
+    if(opt.part||opt.tick){
+      const seen={};
+      bs.forEach(b=>{ const nm=String(b.name).trim(), i=seen[nm]=(seen[nm]||0)+1;
+        const list=c.boards[nm];
+        if(!list||!list.length){ out.miss[nm]=(out.miss[nm]||0)+1; return; }
+        const rec=list[Math.min(i,list.length)-1];
+        let ch=false;
+        const put=k=>{ const has=Object.prototype.hasOwnProperty.call(rec,k), nv=has?_cpJ(rec[k]):undefined;
+          if(JSON.stringify(b[k])===JSON.stringify(nv)) return;
+          if(has) b[k]=nv; else delete b[k];
+          ch=true; };
+        if(opt.part){ const p0=b.part; CABPROP_PART.forEach(put);
+          if(b.part!==p0){ try{ applyThick(b); }catch(e){} } }                 // ทางเดียวกับช่อง Part ในแผงขวา
+        if(opt.tick){ CABPROP_TICK.forEach(put);
+          if(b.rule&&b.rule.kind==="rail"&&Object.prototype.hasOwnProperty.call(rec,"_noHanger")){
+            const nh=rec._noHanger||undefined; if(b.rule.noHanger!==nh){ b.rule.noHanger=nh; ch=true; } } }
+        if(ch) out.boards++; });
+    }
+    if(opt.vars||opt.part){ try{ applyCabinetSkin(inst); }catch(e){ console.error("applyCabinetSkin:",e); } }
+  });
+  return out;
+}
+/* ตู้ปลายทาง: เลือกไว้หลายใบ = ทุกใบที่เลือก · เลือกใบเดียว = ใบนั้น (ต้นแบบไม่นับ) */
+function cabPropTargets(fallback){
+  const keys=cabSelKeys();
+  const t=(keys.length>1)?keys:((fallback!=null)?[String(fallback)]:keys);
+  return [...new Set(t.map(String))].filter(k=>k&&(!_cabPropClip||k!==_cabPropClip.src));
+}
+async function cabPropPasteDialog(targets){
+  const c=_cabPropClip;
+  if(!c){ toast("ยังไม่ได้คัดลอก — คลิกขวาที่ตู้ต้นแบบ → คัดลอกคุณสมบัติตู้ ก่อน"); return; }
+  if(typeof isLocked==="function"&&isLocked()){ guardEdit("วางคุณสมบัติตู้"); return; }
+  targets=[...new Set((targets||[]).map(String))].filter(k=>k&&k!==c.src);
+  if(!targets.length){ toast("เลือกตู้ปลายทางก่อน (Ctrl+คลิกเลือกได้หลายใบ · ตู้ต้นแบบไม่นับ)"); return; }
+  const sel=Object.assign({vars:true,part:true,tick:true,dp:true}, settings.cabPropSel||{});
+  const codeOf=k=>{ const b=state.boards.find(x=>x&&String(x.cabInst)===k&&x.cab); return b?String(b.cab):""; };
+  const diff=targets.filter(k=>codeOf(k)!==c.code).length;
+  const row=(k,label,hint)=>'<label style="display:flex;gap:8px;align-items:flex-start;margin:7px 0;cursor:pointer">'
+    +'<input type="checkbox" data-cp="'+k+'"'+(sel[k]?" checked":"")+' style="margin-top:3px">'
+    +'<span><b>'+label+'</b><br><span class="muted" style="font-size:11px">'+hint+'</span></span></label>';
+  const html='<div style="font-size:12px;line-height:1.5;margin-bottom:4px">ต้นแบบ <b>'+escapeHtml(String(c.pid))+'</b> → <b>'+targets.length+'</b> ใบ'
+    +(diff?'<br><span style="color:#e58a24">ต่างรุ่นกับต้นแบบ '+diff+' ใบ — วางเฉพาะชิ้นที่ชื่อตรงกัน</span>':'')+'</div>'
+    +row("vars","🎨 สี / Variables","สีตู้ สีบาน รูปบาน ขา มือจับ ขอบหน้าตู้ ทิศหน้าตู้ · ค่าที่ปลายทางมีแต่ต้นแบบไม่มี คงไว้")
+    +row("part","🧩 Part รายชิ้น","Part วัสดุ ผิว ขอบ · จับคู่ชิ้นด้วยชื่อ (Left Side ↔ Left Side)")
+    +row("tick","☑ ติ๊ก / ล็อกรายชิ้น","ล็อกกว้าง/สูง/ระดับ · ลายไม้ · ไม้เพาะโครง · ชนิดพิน · คานไม่แขวน")
+    +row("dp","🚪 ค่าปรับบาน + ตำแหน่งมือจับ","ค่าที่พิมพ์ในช่องปรับบาน และ K_Pull_Coordinate");
+  const p=dialog({title:"วางคุณสมบัติตู้",html:html,ok:"วาง "+targets.length+" ใบ"});
+  document.querySelectorAll("#askHtml input[data-cp]").forEach(el=>{ el.onchange=()=>{ sel[el.dataset.cp]=el.checked; }; });
+  const ok=await p; if(!ok) return;
+  settings.cabPropSel=sel; try{ lsSet("furnitech:settings",settings); }catch(e){}
+  if(!["vars","part","tick","dp"].some(k=>sel[k])){ toast("ไม่ได้ติ๊กอะไรให้วาง"); return; }
+  const r=cabPropPaste(targets,sel);
+  sync(1); try{ showInspector(); }catch(e){}
+  const mn=Object.keys(r.miss);
+  toast("📌 วางคุณสมบัติจาก "+c.pid+" ใส่ "+r.cabs+" ใบ"+((sel.part||sel.tick)?(" · แก้ "+r.boards+" ชิ้น"):"")
+    +(r.legs?(" · จัดขาใหม่ "+r.legs+" ใบ"):"")
+    +(mn.length?(" · ข้ามชิ้นที่ไม่มีในต้นแบบ: "+mn.slice(0,4).join(", ")+(mn.length>4?" …":"")):"")+" (Ctrl+Z ย้อนได้)");
+  return r;
+}
 function cabSelSet(keys){ state.selectedCabs=[...new Set((keys||[]).map(String))]; }
 function cabSelClear(){ state.selectedCabs=[]; }
 function select(id){
@@ -13976,6 +14098,7 @@ function renderCabInspector(g,insp,body,rf){
     <div class="fld"><label>รหัสตู้ (Cabinet Code) — เปลี่ยนทั้งตู้</label><input class="nameinp" id="cab_code" value="${escapeHtml(code)}" placeholder="เช่น BND001" style="width:100%">
       <div class="muted" style="font-size:11px;margin-top:3px;line-height:1.5">ช่องนี้เปลี่ยนแต่ป้ายที่ติดอยู่ ชิ้นข้างในยังเป็นของเดิม — อยากได้รูปแบบตู้ของอีกรหัสจริง ๆ ใช้ปุ่มข้างล่าง</div></div>
     <div class="ibtns" style="margin-top:4px"><button class="ibtn" id="cab_swap" style="flex:1">🔁 เปลี่ยนรุ่นตู้ (โหลดรหัสอื่นมาแทน · ใช้ Variables เดิม)</button></div>
+    <div class="ibtns" style="margin-top:4px"><button class="ibtn" id="cab_pcopy" style="flex:1" title="เก็บสี Part และค่าที่ติ๊กของตู้ใบนี้ไว้ วางใส่ตู้อื่น">📋 คัดลอกคุณสมบัติ</button><button class="ibtn" id="cab_ppaste" style="flex:1"${_cabPropClip?"":" disabled"} title="${_cabPropClip?("จาก "+escapeHtml(String(_cabPropClip.pid))+" → ตู้ที่เลือก"):"ยังไม่ได้คัดลอก"}">📌 วางคุณสมบัติ${_cabPropClip?(" ("+escapeHtml(String(_cabPropClip.pid))+")"):""}</button></div>
     <div class="fld"><label>ขนาดตู้ปัจจุบัน (มม.)</label>
       <div class="grid3">
         <div class="num"><span>กว้าง</span><input type="number" id="cab_W" value="${W}"></div>
@@ -14032,7 +14155,7 @@ function renderCabInspector(g,insp,body,rf){
     <div class="ibtns" style="margin-top:8px"><button class="ibtn" id="cab_door" style="flex:1">🚪 เพิ่มหน้าบาน / ลิ้นชัก</button></div>
     <div class="ibtns" style="margin-top:8px"><button class="ibtn" id="cab_dup">⧉ ทำสำเนาตู้</button><button class="ibtn del" id="cab_del" style="color:var(--red)">🗑 ลบตู้</button></div>`;
   const codeInp=body.querySelector("#cab_code");
-  codeInp.onchange=()=>{ const nc=codeInp.value.trim(); g.boards.forEach(x=>{ x.cab=nc||undefined; }); renderList(); render3D(false); autosave(); commit(); toast("เปลี่ยนรหัสตู้เป็น "+(nc||"(ใช้ Order ID)")); };
+  codeInp.onchange=()=>{ const nc=codeInp.value.trim(); g.boards.forEach(x=>{ x.cab=nc||undefined; }); try{ bcRenumberIfTaken(g.key); }catch(e){} renderList(); render3D(false); autosave(); commit(); toast("เปลี่ยนรหัสตู้เป็น "+(nc||"(ใช้ Order ID)")); };
   // ปรับขนาด W/H/D ในแผงนี้ = เรียก resize ทันที (เลือกชิ้นแรกของตู้ไว้แล้ว)
   const doResize=()=>{ resizeCabinetTo(g.key, +body.querySelector("#cab_W").value, +body.querySelector("#cab_H").value, +body.querySelector("#cab_D").value); };
   ["cab_W","cab_H","cab_D"].forEach(id=>{ const el=body.querySelector("#"+id); el.onkeydown=e=>{ if(e.key==="Enter"){e.preventDefault();doResize();} }; });
@@ -14095,6 +14218,10 @@ function renderCabInspector(g,insp,body,rf){
   /* v1.287: เปลี่ยนรูปแบบตู้ทั้งใบ โดย Variables/ตำแหน่ง/มุมหัน ของตู้ใบนี้อยู่ครบ */
   { const sw=body.querySelector("#cab_swap");
     if(sw) sw.onclick=()=>{ cabSwapModelDialog(g.key).catch(err=>{ console.error(err); toast("เปลี่ยนรุ่นตู้ไม่สำเร็จ: "+err.message); }); }; }
+  { const pc=body.querySelector("#cab_pcopy");                                  // v1.297
+    if(pc) pc.onclick=()=>{ if(cabPropCopy(g.key)){ try{ showInspector(); }catch(e){} } };
+    const pp=body.querySelector("#cab_ppaste");
+    if(pp) pp.onclick=()=>{ cabPropPasteDialog(cabPropTargets(g.key)).catch(err=>{ console.error(err); toast("วางคุณสมบัติไม่สำเร็จ: "+err.message); }); }; }
   // ย้ายตู้: เลื่อนทุกชิ้น (รวมบาน) เท่ากับส่วนต่างของมุมอ้างอิง
   const doMove=()=>{ const tx=+body.querySelector("#cab_px").value, ty=+body.querySelector("#cab_py").value, tz=+body.querySelector("#cab_pz").value;
     if(![tx,ty,tz].every(isFinite))return;
@@ -16776,6 +16903,23 @@ async function cutLookupSeq(codes,len,hint,v){
   for(const c of (codes||[])){
     let r=null; try{ r=await cutLookup(c,len,hint,v); }catch(e){ console.error(e); }
     if(r&&r.code){ _fgCut[k]=Object.assign({},r,{src:c}); return _fgCut[k]; }
+  }
+  /* ───────── v1.298: ไม่มีท่อนยาวตรงตัว ใช้ท่อนที่ห่างไม่เกิน cutNearTol (ตั้งต้น 1 มม.) ─────────
+     เคสจริง รางไฟ PROFILE 1103 ยาวจริง 309.4 ปัดลงเป็น 309 · คลังเปิดรหัส "ตัดขนาด 310 mm." ไว้แล้ว
+     แต่ไม่มี 309 จึงขึ้นค้นไม่เจอ ต้องไปขอเปิดรหัสใหม่ทั้งที่ของห่างกันไม่ถึงมิล
+     เลือกตัวที่ใกล้ความยาวจริงที่สุด เท่ากันเลือกท่อนยาวกว่า (ตัดเล็มหน้างานได้ ท่อนสั้นต่อไม่ได้)
+     ใช้เฉพาะของที่ไม่มีเงื่อนไขหน้าตัด (v ว่าง) — เส้นเฟรมบานที่ผูกสี/ปลายตัด/หน้าตัดต้องยาวตรงเท่านั้น
+     ในใบอุปกรณ์มีบรรทัดส้มบอกว่าใช้ท่อนไหนแทน ไม่เงียบ */
+  const tol=Math.max(+((settings.cutNearTol!=null)?settings.cutNearTol:DEF_SETTINGS.cutNearTol)||0,0);
+  if(tol>0 && !v){
+    const raw=+len||0, L0=cutLen(raw), cand=[];
+    for(let n=Math.floor(raw-tol); n<=Math.ceil(raw+tol); n++)
+      if(n>0 && n!==L0 && Math.abs(n-raw)<=tol+1e-6) cand.push(n);
+    cand.sort((a,b)=>(Math.abs(a-raw)-Math.abs(b-raw))||(b-a));
+    for(const n of cand) for(const c of (codes||[])){
+      let r=null; try{ r=await cutLookup(c,n,hint,v); }catch(e){ console.error(e); }
+      if(r&&r.code){ _fgCut[k]=Object.assign({},r,{src:c,near:n,want:round(raw)}); return _fgCut[k]; }
+    }
   }
   return null;
 }
@@ -23690,6 +23834,7 @@ async function cabSwapModel(inst,code,opt){
     state.boards.filter(x=>x.cabInst===inst&&x._door&&(x.connectors||[]).some(k=>k.type==="hinge"&&k.plate!==false))
       .forEach(d=>{ try{ drillHingePlateHoles(d); }catch(e){ console.error("hingePlate:",e); } });
     _restoreCabPose(inst,yaw0,m0);                        // หันเท่าเดิม · มุมหลังซ้ายล่างทับจุดเดิม
+    try{ bcRenumberIfTaken(inst); }catch(e){}              // v1.299: รหัสใหม่มีใบที่ใช้เลขนี้อยู่แล้ว → ใบนี้รับเลขถัดไป
   }catch(e){ state.boards=back; throw e; }
   /* นับจากฉากจริง ไม่ใช่จำนวนที่ปั้นมา — ชิ้นของตู้ประกอบ (_asmSub) ถูก asmSplit แยกไปเป็นใบลูกแล้ว */
   return {n:state.boards.filter(x=>x&&x.cabInst===inst).length, nAsm:(out.asm||[]).length,
@@ -24479,6 +24624,7 @@ function renderSettings(){
     <label style="display:flex;gap:8px;align-items:flex-start;font-size:12px;line-height:1.5;margin-top:6px"><input type="checkbox" id="setCutLookupOn" ${settings.cutLookupOn!==false?"checked":""} style="margin-top:2px">
       <span><b>ค้นรหัสท่อนที่ตัดจากคลังอุปกรณ์เอง</b> — ทำแบบเดียวกับถาดฟรอยด์ ค้นคลังตัวเดียวกับที่ปลายทางใช้แล้วส่งรหัสจริงออกไปเลย ไม่ต้องให้ใครไปจับคู่ต่อ · ไม่เจอก็ส่งรหัสตั้งต้นพร้อมความยาวไปก่อน แล้วขึ้นเตือนให้ไปเพิ่มในคลัง</span></label>
     ${txt("cutLookupKey","คำที่ใช้ค้นในชื่อสินค้า (ตั้งต้น ตัดขนาด) — ระบบค้นคำนี้ตามด้วยความยาว")}
+    ${num("cutNearTol","ไม่มีท่อนยาวตรงตัว ใช้ท่อนที่ห่างไม่เกิน (มม.) — ตั้งต้น 1 · 0 = ต้องตรงเท่านั้น · ไม่ใช้กับเส้นเฟรมบาน",0.5)}
     ${txt("cutMiterOptSec","เส้นเฟรมที่ไม่บังคับแบบ “ตัด 45/2ด้าน” (คั่นด้วยจุลภาค) — คลังมีแต่ท่อนตัดตรงก็ใช้ได้ เพราะหน้างานตัดมุมเอง")}
     <div style="font-size:11px;opacity:.62;margin:2px 0 6px;line-height:1.6">ปิดสวิตช์ = ส่งรหัสที่ตั้งไว้พร้อมความยาวในช่อง LENGTH ให้ปลายทางจับคู่เอง</div>
     <div style="font-size:11px;opacity:.62;margin:2px 0 6px;line-height:1.6"><b>คนละความยาว = คนละบรรทัดในใบอุปกรณ์</b> เพราะสั่งซื้อเป็นท่อนตามที่ตัดจริง · เศษทศนิยมปัดลงเสมอ 867.5 จึงออกเป็น 867<br>
@@ -29114,7 +29260,15 @@ function railStacksOf(inst){
         && near(r.W,b.W,0.6) && near(r.T,b.T,0.6) && near(r.L,b.L,5); });
     if(g) g.push(b); else gs.push([b]);
   });
-  return gs.map(a=>a.slice().sort((p,q)=>p.y-q.y)).filter(a=>a.length>=2);
+  /* v1.298: หัว-ท้ายของชุดคือคานที่ล็อก "จากพื้น" กับ "ใต้ฝาบน" ไว้ ไม่ใช่แค่ตัวที่ต่ำ/สูงสุด
+     ไฟล์ที่โดนบั๊ก v1.292 มีคานกลางเด้งไปกองเหนือคานบน (1930–2000 ทับแผ่นบน)
+     ถ้าเรียงตามความสูงเฉย ๆ คานที่เด้งขึ้นไปจะกลายเป็น "คานบน" แล้วคานบนตัวจริงถูกถอดทิ้ง */
+  const isLo=b=>!!(b._datum&&/^(floorTop|floorBot|cabBottom)$/.test(String(b._datum.m||"")));
+  const isHi=b=>!!(b._datum&&/^(topUnder|cabTop)$/.test(String(b._datum.m||"")));
+  return gs.map(a=>{ const s=a.slice().sort((p,q)=>p.y-q.y);
+      const lo=s.find(isLo), hi=s.slice().reverse().find(isHi);
+      if(lo&&hi&&lo!==hi&&lo.y<hi.y) return [lo].concat(s.filter(b=>b!==lo&&b!==hi),[hi]);
+      return s; }).filter(a=>a.length>=2);
 }
 function railAutoPlan(stack,gap){
   const lo=stack[0].y, hi=stack[stack.length-1].y, span=hi-lo;
@@ -29132,8 +29286,9 @@ function autoRailsInCab(inst,gap){
   railStacksOf(inst).forEach(st=>{
     const p=railAutoPlan(st,gap); if(!p) return;
     out.stacks++; out.pitch.push(p.pitch);
-    if(p.want===p.have){ out.same++; return; }
     const last=st[st.length-1], mids=st.slice(1,-1), tpl=mids[0]||last;
+    /* v1.298: จำนวนพอดีแต่คานกลางไม่มีล็อกระยะ = ของที่ v1.292 ปั้นไว้ ต้องทำใหม่ ไม่ใช่ถือว่าพอดี */
+    if(p.want===p.have && mids.every(b=>b._datum&&b._datum.m)){ out.same++; return; }
     const kill=new Set(mids.map(b=>b.id));
     if(kill.size){ state.boards=state.boards.filter(b=>!(b&&kill.has(b.id))); out.removed+=kill.size; }
     syncUid();
@@ -29149,6 +29304,17 @@ function autoRailsInCab(inst,gap){
       add.push(c);
     }
     if(add.length){ state.boards=state.boards.concat(add); out.added+=add.length; }
+    /* ───────── v1.298: คานกลางที่ปั้นใหม่ต้องมีล็อกระยะ ไม่งั้นกฎคานพาไปกองบนสุด ─────────
+       v1.292 ถอด _datum ออกแล้ววางด้วย y ตรง ๆ ซึ่งอยู่ได้แค่จนกว่าจะมีรอบคิดกฎคาน (reapplyRules)
+       คานที่ก๊อปมามีกฎ refV "จากบน ร่น 0" ติดมาด้วย พอกฎทำงาน ทุกเส้นเด้งไปชิดบนสุดของตู้
+       ทับแผ่นบนและทับกันเอง เคสจริง MWD011-01 สูง 1200 · MWD009-01 สูง 2000 คานกลางหายไปกองข้างบน
+       ล็อก "จากบนแผ่นพื้น" ด้วยระยะจริงของแต่ละเส้น ใช้ guideDatumPlace ตัวเดียวกับที่ sync ใช้
+       ถามก่อนว่าระยะ 0 ไปตกที่ไหน แล้วหักส่วนต่าง จึงได้ตำแหน่งเดิมเป๊ะ ไม่ต้องเดาความหนาพื้น */
+    add.forEach(c=>{ if(c._datum) return;
+      const want=c.y;
+      try{ if(guideDatumPlace(c,"floorTop",0,"near")){ const e=round(want-c.y);
+          if(isFinite(e)) c._datum={e:String(e),f:"near",m:"floorTop"}; } }catch(err){ console.error("railDatum:",err); }
+      c.y=want; });
   });
   return out;
 }
@@ -32692,6 +32858,8 @@ function bindCtx(){
     else if(a==="cabrot"){ try{ rotateCabQuick(b, ctxShift?-90:90); }catch(err){ console.error(err); toast("หมุนตู้ไม่สำเร็จ: "+err.message); } }
     else if(a==="cabmirror"){ try{ if(b&&b.cabInst) mirrorCabinet(b.cabInst); else toast("เลือกชิ้นในตู้ก่อน"); }catch(err){ console.error(err); toast("กลับด้านไม่สำเร็จ: "+err.message); } }
     else if(a==="cabswap"){ cabSwapModelDialog((b&&b.cabInst)||((groupOf(b)||{}).key)).catch(err=>{ console.error(err); toast("เปลี่ยนรุ่นตู้ไม่สำเร็จ: "+err.message); }); }   // v1.287
+    else if(a==="cabpcopy"){ const k=(b&&b.cabInst)||((groupOf(b)||{}).key); if(k!=null) cabPropCopy(k); else toast("คลิกที่ชิ้นในตู้ก่อน"); }   // v1.297
+    else if(a==="cabppaste"){ const k=(b&&b.cabInst)||((groupOf(b)||{}).key); cabPropPasteDialog(cabPropTargets(k)).catch(err=>{ console.error(err); toast("วางคุณสมบัติไม่สำเร็จ: "+err.message); }); }
     else if(a==="ordmirror"){ try{ mirrorOrder(); }catch(err){ console.error(err); toast("กลับด้านทั้งออเดอร์ไม่สำเร็จ: "+err.message); } }
     else if(a==="ledpower"){ try{ ledPowerDialog(); }catch(err){ console.error(err); toast("เปิดรายการไฟไม่สำเร็จ: "+err.message); } }
     else if(a==="ledadd"){ try{ ledDialog(b); }catch(err){ console.error(err); toast("เปิดหน้าต่างรางไฟไม่สำเร็จ: "+err.message); } }
@@ -33878,6 +34046,20 @@ async function iidRemember(oid,v){ try{ const k=String(oid||"").trim(); if(!k) r
    เลขที่เคยใช้แล้วไม่เอากลับมาใช้ซ้ำ ลบชิ้นที่ 3 ทิ้งก็เว้นช่องว่างไว้ ชิ้นใหม่ไปต่อท้าย
    ช่องว่างในลำดับปลอดภัยกว่าเลขซ้ำที่หมายถึงคนละชิ้น */
 function _bcState(){ state.bcSeq=state.bcSeq||{}; state.bcMax=state.bcMax||{}; return state; }
+/* v1.299: ตู้ที่เพิ่งเปลี่ยนรหัส ถ้าเลขเดิมชนใบอื่นในรหัสใหม่ ให้ใบนี้รับเลขถัดไป
+   ไม่งั้นตัวกันซ้ำใน cabGroups จะไปเปลี่ยนเลขใบไหนก็ได้ที่วนถึงทีหลัง ซึ่งอาจเป็นใบที่พิมพ์สติกเกอร์ไปแล้ว */
+function bcRenumberIfTaken(inst){
+  _bcState(); inst=String(inst);
+  const own=state.boards.filter(b=>b&&String(b.cabInst)===inst); if(!own.length) return false;
+  const cab=cabOf(own[0]), sq=state.bcSeq[inst];
+  if(!(sq>0)) return false;
+  const codeOfInst={}; state.boards.forEach(b=>{ if(b&&b.cabInst!=null&&codeOfInst[b.cabInst]==null) codeOfInst[b.cabInst]=cabOf(b); });
+  let clash=false, mx=state.bcMax[cab]||0;
+  Object.keys(state.bcSeq).forEach(k=>{ if(k===inst||codeOfInst[k]!==cab) return;
+    const v=state.bcSeq[k]||0; if(v===sq) clash=true; if(v>mx) mx=v; });
+  if(!clash) return false;
+  state.bcSeq[inst]=mx+1; state.bcMax[cab]=mx+1; return true;
+}
 function bcResetAll(){ _bcState(); state.bcSeq={}; state.bcMax={};
   (state.boards||[]).forEach(b=>{ if(b) delete b._bc; }); }
 /* ═════════ v1.223: กลุ่มตู้สำหรับงานส่งออก ═════════
@@ -33903,11 +34085,25 @@ function cabGroups(){   // group by physical unit (cabInst); untagged → fall b
   state.boards.forEach(b=>{ const cab=cabOf(b); const inst=b.cabInst||("c:"+cab);
     if(!byKey[inst]){ byKey[inst]={key:inst,cab,boards:[]}; groups.push(byKey[inst]); }
     byKey[inst].boards.push(b); });
+  /* ───────── v1.299: เลขตู้ (productId) ห้ามซ้ำกันเด็ดขาด ─────────
+     เลขตู้จำไว้ต่อ cabInst แต่ผูกกับรหัสตู้ตอนประกอบชื่อ · เปลี่ยนรหัสตู้ในแผง หรือ 🔁 เปลี่ยนรุ่นตู้
+     ตู้ใบนั้นพาเลขเดิมไปด้วย ถ้ารหัสใหม่มีใบที่ใช้เลขนั้นอยู่แล้ว ได้ชื่อซ้ำกันสองใบ
+     เคสจริง ลิงก์ตู้สร้างไม่ได้ HTTP 409 duplicate key furnitech_share_pkey — รหัสลิงก์แจกตามชื่อตู้
+     สองใบชื่อเดียวกันจึงได้รหัสลิงก์ตัวเดียวกันสองแถวในคำขอเดียว ฐานข้อมูลปัดทั้งชุด
+     และที่แย่กว่าลิงก์คือบาร์โค้ด/ชื่อในไฟล์ส่งออกซ้ำกันสองใบ
+     รอบแรกหาเลขสูงสุดของแต่ละรหัสจากทุกใบก่อน (เดิมอัปเดตระหว่างวน ใบใหม่ที่วนถึงก่อนจึงอาจได้เลขชนใบที่ยังไม่ถึง)
+     รอบสองแจกเลข · เลขที่ชนกับใบที่วนผ่านไปแล้ว ได้เลขถัดไปแทน และจำไว้ถาวร */
+  groups.forEach(g=>{ const sq=state.bcSeq[g.key]; if(sq>0&&sq>(state.bcMax[g.cab]||0)) state.bcMax[g.cab]=sq; });
+  const _pidUsed={};
   groups.forEach(g=>{
     /* เลขตู้: จำต่อ cabInst · ตู้ที่โดนลบไปแล้วไม่คืนเลขให้ใครใช้ต่อ */
     let sq=state.bcSeq[g.key];
-    if(!(sq>0)){ sq=(state.bcMax[g.cab]||0)+1; state.bcSeq[g.key]=sq; state.bcMax[g.cab]=sq; }
-    else if(sq>(state.bcMax[g.cab]||0)) state.bcMax[g.cab]=sq;
+    const _clash=(sq>0)&&_pidUsed[g.cab+"|"+sq];
+    if(!(sq>0)||_clash){ const old=sq; sq=(state.bcMax[g.cab]||0)+1; state.bcSeq[g.key]=sq; state.bcMax[g.cab]=sq;
+      if(_clash){ const a=g.cab+"-"+String(old).padStart(2,"0"), b2=g.cab+"-"+String(sq).padStart(2,"0");
+        console.warn("เลขตู้ซ้ำ "+a+" → เปลี่ยนใบที่ซ้ำ ("+g.key+") เป็น "+b2);
+        try{ toast("⚠ เลขตู้ซ้ำ "+a+" สองใบ — เปลี่ยนใบที่ซ้ำเป็น "+b2); }catch(e){} } }
+    _pidUsed[g.cab+"|"+sq]=1;
     g.seq=sq; g.productId=g.cab+"-"+String(sq).padStart(2,"0");
     /* เลขชิ้นในตู้: ปั๊มลงชิ้นครั้งแรกที่เจอ แล้วอยู่กับชิ้นนั้นตลอด */
     let mx=0; g.boards.forEach(b=>{ if(b&&b._bc>mx) mx=b._bc; });
@@ -34896,6 +35092,8 @@ function renderSummary(){
           +((f._fg&&f._fg.alt&&f._gcut)?'<div style="font-size:10px;color:#b26a00">ชนิดกับขนาดตรง แต่ลักษณะขอบไม่ตรง — ตรวจก่อนสั่ง</div>':"")
           /* v1.284: ได้ท่อนที่ปลายตัดคนละแบบกับที่แบบบานตั้งไว้ — ของถูกต้น ถูกสี ถูกความยาว แต่ต้องตัดมุมเอง */
           +((f._fg&&f._fg.mitAlt)?('<div style="font-size:10px;color:#b26a00">คลังไม่มีแบบ'+(f._fg.mitAlt==="45"?"ตัด 45/2ด้าน":"ตัดตรง")+' — ใช้ท่อน'+(f._fg.mitAlt==="45"?"ตัดตรง":"ตัด 45/2ด้าน")+' แทน (ตัดมุมหน้างาน)</div>'):"")
+          /* v1.298: ไม่มีท่อนยาวตรงตัว ใช้ท่อนใกล้เคียงแทน — ต้องเห็นในใบ */
+          +((f._fg&&f._fg.near)?('<div style="font-size:10px;color:#b26a00">คลังไม่มีท่อน '+escapeHtml(String(cutLen(f._fg.want)))+' มม. — ใช้ท่อน '+escapeHtml(String(f._fg.near))+' มม. แทน (ความยาวจริง '+escapeHtml(String(f._fg.want))+')</div>'):"")
           /* v1.080: กระจกค้นไม่เจอ ต้องบอกในใบเหมือนกัน */
           +((()=>{ if(f._fg||!f._gcut) return "";
               let ms=null; try{ ms=glassMissOf(f); }catch(e){}
@@ -39018,6 +39216,8 @@ const CurvedShelf = (function(){
   <button data-act="cabrot"><span>↻ หมุนตู้ 90° (ทวนกลับด้วย Shift)</span></button>
   <button data-act="cabmirror"><span>⇋ กลับตู้ซ้าย ⇄ ขวา (Mirror ทั้งใบ)</span></button>
   <button data-act="cabswap"><span>🔁 เปลี่ยนรุ่นตู้ (ใช้ Variables เดิม)…</span></button>
+  <button data-act="cabpcopy"><span>📋 คัดลอกคุณสมบัติตู้</span></button>
+  <button data-act="cabppaste"><span>📌 วางคุณสมบัติตู้ (ใส่ตู้ที่เลือก)…</span></button>
   <button data-act="ordmirror"><span>⇔ กลับด้านทั้งออเดอร์ (ตู้สลับที่ด้วย)</span></button>
   <div class="ctx-sep"></div>
   <div class="ctx-h" data-view>มุมมอง</div>
