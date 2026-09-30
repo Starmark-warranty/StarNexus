@@ -972,7 +972,7 @@
    ===================================================================== */
 /* ---- APP_META: แหล่งความจริงเดียวของเวอร์ชัน (ดูได้จาก console / คลิกชื่อแอป) ---- */
 const APP_META={
-  name:"StarNexus", version:"1.341", build:"2026-09-30/send-box",
+  name:"StarNexus", version:"1.343", build:"2026-09-30/settings-big",
   file:"StarNexus.html", basedOn:"Furnitech_V3.html (v3.11)",
   /* ───────── เริ่มนับเวอร์ชันใหม่ที่ 1.001 (21/08/2026) ─────────
      ของเดิมนับมาถึง 42.1 แล้ววิ่งเป็นทศนิยมสองชั้นซึ่งอ่านลำดับยาก
@@ -980,6 +980,8 @@ const APP_META={
      ประวัติเก่าเก็บไว้ทั้งหมดตามเลขเดิม ไม่ไล่เขียนใหม่ เพราะเลขในนั้นถูกอ้างถึงไปแล้ว
      รายการที่อยู่ใต้ 1.001 ลงไปจึงเป็นเลขชุดเก่า อ่านต่อกันได้ตามวันที่ */
   changelog:[
+    ["1.343","2026-09-30","FIX เปิดจากเว็บ github.io ตู้ไม่มีสี/ลายหน้าบาน/มือจับ ทั้งที่ไฟล์กลางขึ้นว่า \"ใช้ Variables/Element แล้ว\": ค่าตั้งใหญ่เกินที่เก็บของเบราว์เซอร์ (localStorage ~5 ล้านตัวอักษร) cloudLoadSettings เขียนไม่ลงแล้วอ่านคืนได้ค่าตั้งต้น — ตอนนี้ใช้ค่าจากไฟล์กลางตรง ๆ (loadSettings(val)) · ที่เก็บเต็มย้ายค่าไป IndexedDB (ป้ายชี้ในคีย์เดิม ไม่เปลี่ยนคีย์) เปิดใหม่ยังอยู่ · บันทึกรัวเขียนแค่ค่าล่าสุด · ค่าตั้ง/โมเดลจากไฟล์กลางมาใหม่ (อ่านไฟล์ล่าสุด) วาดตู้บนจอใหม่ทันที ไม่ต้องเปิดออเดอร์ใหม่ · สถานะไฟล์กลางบอกจำนวน Variables/ผิว/สี ไว้เทียบกับเครื่องอื่น · ปิดได้ SN_OFF.kvIdb"],
+    ["1.342","2026-09-30","PERF ส่งเข้าไฟล์กลางเร็วขึ้น (ส่งจริง 220 วิ: ลิงก์ GitHub 47 · imos_orders 38 · part_index 74 · imos_mapping เกิน 60): ระหว่างส่งหยุดรอบตรวจไฟล์ทุก 10 วิ ไม่ให้แย่งคิว · รอบตรวจที่ช้าเว้นระยะ 3 เท่าของเวลาที่ใช้ · ก่อนเขียนอ่านเฉพาะกลุ่มที่จะเขียน (part_index ไม่อ่านดัชนีของทุกออเดอร์ · imos_mapping เฉพาะกลุ่ม hash ที่แตะ) · ไฟล์ชี้ของตู้รายใบส่งใน tree ครั้งเดียว ไม่ส่ง blob ทีละไฟล์ · ขั้นเสริมที่เกินเวลาบอกว่า ยังทำต่อเบื้องหลัง แล้วขึ้นข้อความเมื่อเสร็จจริง (เดิมเตือนว่าไม่สำเร็จ) · กล่องผลบอกเวลา รอคิว/อ่าน/เขียน และ อบ 3D/GitHub · ปิดได้ SN_OFF.sxlScanAll / sxlPollBackoff"],
     ["1.341","2026-09-30","FIX ส่งเข้าไฟล์กลาง: กล่องบอกขั้นตอน + วินาทีที่ผ่านไป · ตรวจ/ขอสิทธิ์แก้ไขโฟลเดอร์ Server ก่อนส่ง · ทุกขั้นมีเวลาหมด ไม่ค้างเงียบ (ขั้นเสริมพัง = ข้ามแล้วส่งต่อ · imos_orders พัง = บอกขั้น/เหตุ/วิธีแก้) · จบแล้วค้างกล่องผล มีปุ่มส่งใหม่/อนุญาตแก้ไข/เปิดไฟล์กลาง/คัดลอกรายละเอียด · GitHub: ทดสอบสิทธิ์เขียนจริงของ Token (เดิมขึ้น \"เขียนได้\" จากสิทธิ์บัญชี แล้วพัง 403 ตอนตั้งค่า) · 403 Resource not accessible บอกจุดแก้ทีละข้อ · คำขอ GitHub มีเวลาหมด · ส่งเข้าไฟล์กลางตอน GitHub ใช้ไม่ได้ = ใช้ลิงก์ในไฟล์กลางแทน ไม่ปล่อย CAB_URL ว่าง · ปิดได้ SN_OFF.sendBox"],
     ["1.340","2026-09-30","FEAT ลิงก์ดูบน GitHub เว็บเดิม ไม่พึ่ง Supabase — ปุ่มแชร์ → 🐙 GitHub: ใส่ owner/repo/Token (Fine-grained · Contents: Read and write · เก็บในเครื่องนี้เท่านั้น) · สร้างลิงก์ = อบภาพ 3D จากจอแล้ว commit เป็นไฟล์เข้า repo (v/<รหัส>.bin + t/<รูปผิว> + view.html) ครั้งเดียวหนึ่ง commit ไฟล์ที่เหมือนเดิมไม่ส่งซ้ำ · รอ GitHub Pages สร้างเว็บแล้วบอกเมื่อเปิดได้ · ลิงก์ตู้บนสติกเกอร์ (?view=<รหัสตู้>&p=P28) รูปแบบเดิม ไปทาง GitHub เมื่อเชื่อมแล้ว (ไฟล์ชี้ตู้ → ออเดอร์ทั้งก้อน อบภาพครั้งเดียวต่อออเดอร์) · index.html มีสคริปต์บนสุดพา ?view= ไป view.html ก่อนโหลดโปรแกรม 6 MB · ลิงก์เก่าก่อนเลิก Supabase ส่งต่อไป legacy.html (ตั้งค่าครั้งแรกเก็บ index.html รุ่นเดิมเป็น legacy.html ให้ + อัปโปรแกรมตัวนี้เป็น index.html ได้ในปุ่มเดียว) · หน้าดูงานรองรับการสแกน: &p= ดูเฉพาะตู้ ย้อมเขียวชิ้น กางบานให้ถ้าชิ้นอยู่ข้างใน แถบบอกชิ้น + ดูทั้งออเดอร์ · &cab= ไฮไลต์ตู้"],
     ["1.339","2026-09-30","FIX 🧪 วัสดุทั้งออเดอร์ ไม่มีผลกับบาน (ช่องบาน \"ไม่มีในบาน\") และโครงเปลี่ยน 0 ชิ้น — v1.337 บังคับที่ Family ลูก Material แต่ลิงก์วัสดุจริงไม่ได้เดินผ่าน Family นั้น ($FrontMat1 → MDF 19 เป็นลูกตรงของหัวแบบบาน · $CarcassBodyMat เป็นพี่น้องกับ Family Material) · ตอนนี้แทนที่ที่ \"รหัสวัสดุ\" ที่ resolve แล้ว: ตารางรหัสที่ใช้อยู่จริงในออเดอร์ แยกโครง/บาน พร้อมจำนวนชิ้น เลือกรหัสใหม่ทีละแถวหรือแถว \"ทุกรหัส\" · ⚡ ทั้งหมดเป็น HMR · รหัสใหม่เปลี่ยนชนิดวัสดุ เลขความหนาเดินตามชิ้นเดิม (MDF 19 → MDF-HMR 19 (ME)) และตามตารางแปลงเนื้อ (PB 16 + 16:15 → MDF-HMR 15 (ME)) · ยกเว้นรหัสไหนก็ได้ (= คงรหัสเดิม) · ใช้ได้ตั้งแต่หน้าตรวจ XML · บังคับ Family ลูกแบบเดิมย้ายไปอยู่ใต้ \"ขั้นสูง\""],
@@ -16639,9 +16641,54 @@ function dxfProfile(text,opt){
 
 /* ---------- persistence ---------- */
 // ที่เก็บข้อมูล: ใช้ window.storage บน claude.ai, ถ้าไม่มี (รันบนเครื่อง file://) ใช้ localStorage
+/* ───────── v1.343: ค่าที่ใหญ่เกินที่เก็บของเบราว์เซอร์ ต้องไม่หายเงียบ ─────────
+   localStorage เก็บได้ราว 5 ล้านตัวอักษรต่อที่อยู่ (ทั้งก้อนรวมกันทุกคีย์) เกินแล้ว setItem โยน QuotaExceededError
+   ตัวเดิมกลืน error ทิ้ง: ค่าตั้ง (Variables · Element · Fitting 3D · หน้าตัด) ที่ใหญ่เกิน "บันทึกไม่ลง" โดยไม่มีใครรู้
+   เคสจริง: เปิดโปรแกรมจากเว็บ github.io (ที่อยู่ใหม่ ที่เก็บว่าง) ไฟล์กลางอ่าน app_settings มาแล้ว ขึ้นว่า "ใช้ Variables/Element แล้ว"
+     แต่ cloudLoadSettings เขียนลง localStorage ไม่ลง แล้วอ่านกลับ (loadSettings) ได้ค่าตั้งต้นเดิม
+     ตู้บนเว็บจึงไม่มีสี ไม่มีลายหน้าบาน ไม่มีมือจับ ทั้งที่ตัวในเครื่องครบ (ตัวในเครื่องใช้ค่าตั้งชุดเก่าที่เคยเก็บลงได้)
+   ตอนนี้: localStorage เต็ม → ย้ายค่านั้นไปเก็บใน IndexedDB (ไม่มีเพดาน 5 ล้าน) วางป้ายชี้ไว้ในคีย์เดิม · อ่านคืนผ่านป้าย
+     IndexedDB ก็ใช้ไม่ได้ → จำไว้ในหน่วยความจำรอบนี้ + เตือนหนึ่งครั้ง
+     คีย์เดิมทุกตัว (ห้ามเปลี่ยนคีย์) · ค่าเล็กยังอยู่ใน localStorage เหมือนเดิม · งานเขียน/อ่านคีย์เดียวกันเข้าคิวตามลำดับ ไม่แซงกัน */
+const _KV_PTR="\u0001sxkv:idb";                 // ป้ายใน localStorage ว่าค่าจริงอยู่ใน IndexedDB (ไม่ใช่ JSON ที่ถูกต้อง ตัวอ่านเก่าจะมองเป็นไม่มีค่า)
+const _kvMem={}, _kvQ={};
+let _kvDbP=null, _kvWarned=0;
+function _kvDb(){ if(!_kvDbP) _kvDbP=new Promise((res,rej)=>{ try{ const r=indexedDB.open("sxlocaltrial-kv",1);
+    r.onupgradeneeded=()=>{ try{ r.result.createObjectStore("kv"); }catch(e){} }; r.onsuccess=()=>res(r.result);
+    r.onerror=()=>rej(r.error); r.onblocked=()=>rej(new Error("IndexedDB blocked")); }catch(e){ rej(e); } });
+  return _kvDbP; }
+function _kvIdb(mode,k,v){ return Promise.race([ (async()=>{ const db=await _kvDb(); return new Promise((res,rej)=>{
+      const tx=db.transaction("kv",mode==="get"?"readonly":"readwrite"), os=tx.objectStore("kv"); let out;
+      if(mode==="get"){ const q=os.get(k); q.onsuccess=()=>{ out=q.result; }; } else if(mode==="put") os.put(v,k); else os.delete(k);
+      tx.oncomplete=()=>res(out); tx.onerror=()=>rej(tx.error); tx.onabort=()=>rej(tx.error||new Error("abort")); }); })(),
+    new Promise((_,rej)=>setTimeout(()=>rej(new Error("IndexedDB ไม่ตอบ")),8000)) ]); }
+function _kvWarn(k,v,where){ if(_kvWarned&2&&where==="mem") return; if(_kvWarned&1&&where==="idb") return; _kvWarned|=(where==="mem"?2:1);
+  const n=(String(v||"").length/1e6).toFixed(1);
+  try{ if(where==="mem") toast("⚠ ที่เก็บในเบราว์เซอร์เต็ม — "+k.replace(/^sxlocaltrial:/,"")+" ("+n+" ล้านตัวอักษร) ใช้ได้เฉพาะรอบนี้ ปิดแล้วเปิดใหม่จะดึงค่าตั้งจากไฟล์กลางอีกครั้ง");
+    else console.warn("ℹ️ "+k+" ใหญ่ "+n+" ล้านตัวอักษร เกินที่เก็บปกติของเบราว์เซอร์ — ย้ายไปเก็บใน IndexedDB แล้ว (v1.343)"); }catch(e){} }
+function _kvRun(k,fn){ const p=(_kvQ[k]||Promise.resolve()).then(fn,fn); _kvQ[k]=p.catch(()=>{}); return p; }
+const _kvPend={};   // ค่าล่าสุดที่รอเขียนต่อคีย์ — บันทึกรัว ๆ (ลากแถบ/แก้ทีละช่อง) เขียนแค่ค่าล่าสุดครั้งเดียว ไม่เขียนก้อนหลาย MB ซ้ำทุกครั้ง
 const store={
-  async set(k,v){ if(window.storage){ try{ await window.storage.set(k,v,false); return; }catch(e){} } try{ localStorage.setItem(k,v); }catch(e){} },
-  async get(k){ if(window.storage){ try{ const r=await window.storage.get(k,false); if(r)return r.value; }catch(e){} } try{ return localStorage.getItem(k); }catch(e){ return null; } }
+  async set(k,v){ if(window.storage){ try{ await window.storage.set(k,v,false); return; }catch(e){} }
+    _kvPend[k]=v;
+    return _kvRun(k,async()=>{
+      if(!Object.prototype.hasOwnProperty.call(_kvPend,k)) return;   // ค่าที่ใหม่กว่าถูกเขียนไปแล้วในรอบก่อนหน้า
+      v=_kvPend[k]; delete _kvPend[k];
+      /* เก็บลง localStorage ได้ = จบ (ค่าที่เคยย้ายไป IndexedDB กลายเป็นของค้าง ไม่ถูกอ่านอีก เพราะคีย์ไม่ใช่ป้ายแล้ว)
+         ไม่อ่านค่าเดิมมาเช็คก่อน — ค่าตั้งหลายล้านตัวอักษร อ่านทุกครั้งที่บันทึกเสียเวลาเปล่า */
+      try{ localStorage.setItem(k,v); delete _kvMem[k]; return; }catch(e){}
+      /* ลง IndexedDB ให้สำเร็จก่อน แล้วค่อยเอาค่าเก่าออกจาก localStorage วางป้ายแทน (สองคำสั่งติดกัน ไม่มีจังหวะรอคั่น)
+         IndexedDB พัง = ค่าเก่าในเครื่องยังอยู่ ไม่ถูกลบทิ้งก่อน */
+      if(!(window.SN_OFF&&window.SN_OFF.kvIdb)) try{ await _kvIdb("put",k,v);     // ปิดได้ SN_OFF.kvIdb=1 (เหลือแค่จำในหน่วยความจำรอบนี้)
+        try{ localStorage.removeItem(k); }catch(_){} localStorage.setItem(k,_KV_PTR); delete _kvMem[k]; _kvWarn(k,v,"idb"); return; }
+      catch(e2){ console.warn("store.set IndexedDB:",e2); }
+      _kvMem[k]=v; _kvWarn(k,v,"mem"); }); },
+  async get(k){ if(window.storage){ try{ const r=await window.storage.get(k,false); if(r)return r.value; }catch(e){} }
+    return _kvRun(k,async()=>{
+      if(_kvMem[k]!==undefined) return _kvMem[k];
+      let v=null; try{ v=localStorage.getItem(k); }catch(e){ return null; }
+      if(v===_KV_PTR){ try{ const x=await _kvIdb("get",k); return (x==null)?null:x; }catch(e){ console.warn("store.get IndexedDB:",e); return null; } }
+      return v; }); }
 };
 /* v7.59.1: ตัวแปรตัวเลขรายตู้ (cabNums/cabVarTxt) ต้องถูกเซฟด้วย ไม่งั้นปิดโปรแกรมแล้ว $D4 หาย */
 /* ───────── v36.3: เปิดสองแท็บพร้อมกันต้องไม่ทับงานกัน ─────────
@@ -20791,7 +20838,10 @@ function boardRole(b){
      SN_OFF.orderMat=1    ปิดวัสดุทั้งออเดอร์ (บังคับ Family ลูก Material) (v1.337)
      SN_OFF.webView=1     ปุ่มแชร์กลับไปสร้างลิงก์ในวงออฟฟิศแบบเดิมทันที ไม่เปิดหน้าต่างไฟล์ดูงาน/เว็บดูงาน (v1.338)
      SN_OFF.ghShare=1     ไม่ส่งลิงก์ขึ้น GitHub (ลิงก์ตู้กลับไปเก็บในไฟล์กลาง) (v1.340)
-     SN_OFF.sendBox=1     ปุ่มส่งเข้าไฟล์กลางกลับไปแบบเดิม (ข้อความสั้น ไม่มีกล่องขั้นตอน ไม่มีเวลาหมด ไม่ขอสิทธิ์โฟลเดอร์) (v1.341) */
+     SN_OFF.sendBox=1     ปุ่มส่งเข้าไฟล์กลางกลับไปแบบเดิม (ข้อความสั้น ไม่มีกล่องขั้นตอน ไม่มีเวลาหมด ไม่ขอสิทธิ์โฟลเดอร์) (v1.341)
+     SN_OFF.sxlScanAll=1  ไฟล์กลาง: ก่อนเขียนอ่าน _changes ทุกกลุ่มแบบเดิม (ไม่อ่านเฉพาะกลุ่มที่จะเขียน) (v1.342)
+     SN_OFF.sxlPollBackoff=1 ไฟล์กลาง: รอบตรวจไฟล์ทุก 10 วิเสมอ ไม่เว้นตามเวลาที่รอบก่อนใช้ (v1.342)
+     SN_OFF.kvIdb=1       ค่าที่ใหญ่เกิน localStorage ไม่ย้ายไป IndexedDB (จำในหน่วยความจำรอบนี้อย่างเดียว) (v1.343) */
 window.SN_SAFE=window.SN_SAFE||0;
 window.SN_OFF=window.SN_OFF||{};
 function snOff(k){ return !!(window.SN_SAFE||window.SN_OFF[k]); }
@@ -25693,7 +25743,9 @@ async function processXmlText(text,opts){ opts=opts||{}; try{
   }catch(err){ console.error(err); toast("อ่าน XML ผิดพลาด: "+err.message); } }
 
 /* ---------- Settings (default dowel/pin) ---------- */
-async function loadSettings(){ const s=await lsGet("sxlocaltrial:furnitech:settings",null);
+/* v1.343: src = ค่าตั้งที่ได้มาแล้วในมือ (จากไฟล์กลาง) ใช้ตัวนั้นเลย ไม่อ่านคืนจากที่เก็บในเบราว์เซอร์
+   เดิม cloudLoadSettings เขียนลงที่เก็บแล้วอ่านคืน — เขียนไม่ลง (ใหญ่เกิน) = อ่านได้ของเก่า ค่าตั้งใหม่หายเงียบ */
+async function loadSettings(src){ const s=(src&&typeof src==="object")?src:await lsGet("sxlocaltrial:furnitech:settings",null);
   if(s&&typeof s==="object"){ Object.assign(settings,DEF_SETTINGS,s);
     /* v29.6: เครื่องที่ยังไม่เคยมีกฎรายการเส้นเลย ใส่ชุดตั้งต้นให้ครั้งเดียว
        ลบทิ้งเองแล้วจะไม่ถูกใส่คืนให้รำคาญ เพราะจำไว้ว่าเคยใส่ไปแล้ว */
@@ -37309,6 +37361,10 @@ async function ghCommit(c,T,files,copies,msg,onStep){
     if(f.onlyIfMissing&&T.have[f.path]) continue;
     const u8=ghU8(f.data), sha=await ghGitSha(u8);
     if(sha&&T.have[f.path]===sha) continue;                                   // เนื้อเหมือนเดิม ไม่ต้องส่ง
+    /* ───────── v1.342: ไฟล์ข้อความเล็ก (ไฟล์ชี้ของตู้รายใบ) ใส่ใน tree ตรง ๆ ไม่ต้องส่ง blob ทีละไฟล์ ─────────
+       ออเดอร์ 21 ตู้ = 21 คำขอ blob ต่อกันทีละตัว กินเวลาเกือบครึ่งของ 47 วิ ที่ผู้ใช้เจอตอนส่งเข้าไฟล์กลาง
+       Git Data API รับ content ในรายการของ tree ได้เลย GitHub สร้าง blob ให้เอง = ทั้งหมดไปในคำขอ tree ครั้งเดียว */
+    if(typeof f.data==="string"&&u8.length<=65536){ entries.push({path:f.path,mode:"100644",type:"blob",content:f.data}); continue; }
     if(onStep) onStep("ส่ง "+f.path+" ("+Math.max(1,Math.round(u8.length/1024))+" KB)",i/files.length);
     const b=await ghApi(c,"POST","/git/blobs",{content:snvB64(u8),encoding:"base64"});
     entries.push({path:f.path,mode:"100644",type:"blob",sha:b.sha}); }
@@ -37338,7 +37394,9 @@ async function ghPublish(opt){
   step("ตรวจสิทธิ์ GitHub…",.05);
   { const w=await ghWriteProbe(c); if(!w.ok){ const er=new Error(w.err); er.status=w.status; throw er; } }
   step("อบภาพ 3D จากจอ…",.1);
+  const _t0=Date.now();                                            // v1.342: จับเวลา อบ 3D / ส่ง GitHub
   const r=await snvBuild({title:opt.title||"",folder:true,texMax:1024});
+  const _tBake=Date.now()-_t0;
   const oid=opt.oid||shareId(), files=[];
   step("ย่อข้อมูล…",.3);
   const gz=await snvGzip(JSON.stringify(r.D));
@@ -37352,7 +37410,8 @@ async function ghPublish(opt){
   const T=await ghTree(c);
   const res=await ghCommit(c,T,files,null,"StarNexus: ลิงก์ดู "+(r.D.ord||opt.title||oid)+" · "+(r.D.cabs||[]).length+" ตู้"+(opt.cabs?" (+ลิงก์ตู้)":""),(m,p)=>step(m,.4+.55*p));
   const base=ghPagesBase(c);
-  return {oid, cabSids, base, link:base+"?view="+oid, link2:base+"view.html?view="+oid, kb:Math.round(gz.length/1024), changed:res.changed, sha:res.sha, rootOk:!!c.rootOk}; }
+  const _s=ms=>(ms/1000).toFixed(1)+" วิ", tm="อบ 3D "+_s(_tBake)+" · GitHub "+_s(Date.now()-_t0-_tBake)+" ("+res.changed+" ไฟล์ · "+Math.round(gz.length/1024)+" KB)";
+  return {oid, cabSids, base, link:base+"?view="+oid, link2:base+"view.html?view="+oid, kb:Math.round(gz.length/1024), changed:res.changed, sha:res.sha, rootOk:!!c.rootOk, tm}; }
 /* รอให้ GitHub Pages สร้างเว็บเสร็จ — ถามไฟล์ของลิงก์ตรง ๆ ทุก 6 วิ สูงสุด ~4 นาที */
 async function ghWaitLive(base,oid,onTick){
   const url=base+"v/"+oid+".bin", t0=Date.now();
@@ -37407,7 +37466,7 @@ async function ghPushCabShares(days,force,opt){
       CAB_SID[pid]=sid; CAB_LINK[pid]=r.base+"?view="+sid; CAB_SIG[pid]=cabSg[pid]; });
     ORDER_SID=r.oid; ORDER_SIG=ordSg;
     if(!r.rootOk) toast("⚠ index.html บน GitHub ยังเป็นโปรแกรมรุ่นเก่า — ลิงก์ ?view= จะเปิดไม่ขึ้นจนกว่าจะอัปโปรแกรมตัวนี้ขึ้นเป็น index.html (ปุ่มแชร์ → GitHub → ตั้งค่าครั้งแรก)");
-    return {n:gs.length,made:gs.length,kept:0,order:r.oid,github:true};
+    return {n:gs.length,made:gs.length,kept:0,order:r.oid,github:true,tm:r.tm};
   }catch(e){ if(own) bz.finish(false,"ส่งลิงก์ตู้ขึ้น GitHub ไม่สำเร็จ",ghErrHtml(e)); throw e; } }
 function snvTpl(id){ const el=document.getElementById(id); return el?String(el.textContent||""):""; }
 function snvThreeSrc(){ const s=[...document.scripts].find(x=>x.text&&x.text.length>300000&&/Three\.js Authors/.test(x.text.slice(0,400))); return s?s.text:""; }
@@ -40019,6 +40078,16 @@ async function sendSupabaseRun(){
   const log=[], warn=[], res={kb:0,pi:0,nm:0};
   let cur="", curT=0, fail=null;
   const step=async(name,pct)=>{ if(cur) log.push([cur,Date.now()-curT]); cur=name; curT=Date.now(); bz.step(name,pct); await new Promise(r=>setTimeout(r,30)); };
+  /* ───────── v1.342: ส่งจริงของผู้ใช้ 220 วิ (imos_orders 38 · part_index 74 · imos_mapping เกิน 60) ─────────
+     · ระหว่างส่ง หยุดรอบตรวจไฟล์ทุก 10 วิ (SXL.hold) — ไม่ให้มาแย่งคิวไฟล์กลางระหว่างขั้นเขียนแต่ละขั้น
+     · ขั้นเสริมที่หมดเวลา ไม่ได้ "ไม่สำเร็จ" — งานเขียนยังอยู่ในคิวและทำต่อ เดิมเตือนว่าไม่สำเร็จทั้งที่เสร็จทีหลัง
+       ตอนนี้บอกว่า "ยังทำต่อเบื้องหลัง" แล้วขึ้นข้อความอีกครั้งเมื่อเสร็จจริง (late)
+     · จดเวลาการเขียนแต่ละครั้ง (SXL.wlog) — รอคิว / อ่านรายชื่อไฟล์ / อ่าน / เขียน แสดงสรุปในกล่อง + แนบในคัดลอกรายละเอียด */
+  const seq0=LOC?(SXL.wseq||0):0;
+  if(LOC) SXL.hold=(SXL.hold||0)+1;
+  const late=(p,what,okFn)=>{ Promise.resolve(p).then(v=>{ const m=okFn?okFn(v):""; if(m===null) return; toast("✓ "+what+" เสร็จแล้ว (ทำต่อหลังกล่องส่ง · "+(res.oid||"")+")"+(m?(" · "+m):"")); },
+      e=>{ toast("⚠ "+what+" ไม่สำเร็จ (ทำต่อหลังกล่องส่ง · "+(res.oid||"")+"): "+sbErr(e)); }); };
+  const bgNote=" — ยังทำต่อเบื้องหลัง อย่าเพิ่งปิดโปรแกรม จะมีข้อความขึ้นบอกเมื่อเสร็จ";
   try{
     /* ① โฟลเดอร์ Server ต้องเขียนได้ก่อน — ไม่งั้นทำทุกขั้นเสร็จแล้วค่อยพังตอนเขียน */
     if(LOC){
@@ -40056,7 +40125,12 @@ async function sendSupabaseRun(){
       await sendTmo(sxlLocked(async()=>0),90000,"คิวไฟล์กลาง (งานอ่าน/เขียนก่อนหน้ายังไม่จบ)"); }
     /* ⑥ ขั้นหลัก imos_orders */
     await step("เขียน imos_orders · "+data.orderID+" ("+res.kb+" KB)…",60);
-    const {error}=await sendTmo(db.from("imos_orders").upsert({order_id:data.orderID,data:data,loaded_at:new Date().toISOString()},{onConflict:"order_id"}),180000,"เขียน imos_orders");
+    /* Promise.resolve ครั้งเดียว — ตัวถามแบบ supabase-js สั่งเขียนใหม่ทุกครั้งที่เรียก .then จึงห้ามเรียกซ้ำกับตัวเดิม */
+    const pMain=Promise.resolve(db.from("imos_orders").upsert({order_id:data.orderID,data:data,loaded_at:new Date().toISOString()},{onConflict:"order_id"}));
+    let rMain;
+    try{ rMain=await sendTmo(pMain,180000,"เขียน imos_orders"); }
+    catch(e){ if(e&&e.sendTimeout) late(pMain,"เขียน imos_orders",r=>(r&&r.error)?null:"ออเดอร์เข้าแล้ว · ดัชนีชิ้นกับรหัสอุปกรณ์ยังไม่ได้เขียน ให้กดส่งอีกครั้ง"); throw e; }
+    const {error}=rMain;
     if(error) throw error;
     res.main=true;
     if(data.itemIdSet){
@@ -40065,11 +40139,18 @@ async function sendSupabaseRun(){
       await iidRemember(data.orderID,data.itemIdSet); }             // v1.256: เปิดมาส่งซ้ำเติมให้เอง
     /* ⑦ v1.175: ดัชนีชิ้น หลัง imos_orders สำเร็จแล้วเท่านั้น */
     await step("เขียนดัชนีชิ้น part_index…",76);
-    try{ res.pi=await sendTmo(pushPartIndex(data),180000,"เขียนดัชนีชิ้น part_index"); }
-    catch(e){ console.error("partIndex:",e); warn.push("เขียนดัชนีชิ้น part_index ไม่สำเร็จ: "+sbErr(e)+" — ข้อมูลออเดอร์เข้าแล้ว กดส่งซ้ำเพื่อสร้างดัชนีใหม่ได้"); }
+    const pPi=pushPartIndex(data);
+    try{ res.pi=await sendTmo(pPi,180000,"เขียนดัชนีชิ้น part_index"); }
+    catch(e){ console.error("partIndex:",e);
+      if(e&&e.sendTimeout){ late(pPi,"ดัชนีชิ้น part_index",n=>n+" บาร์โค้ด"); warn.push("ดัชนีชิ้น part_index ยังเขียนไม่เสร็จใน 180 วิ"+bgNote); }
+      else warn.push("เขียนดัชนีชิ้น part_index ไม่สำเร็จ: "+sbErr(e)+" — ข้อมูลออเดอร์เข้าแล้ว กดส่งซ้ำเพื่อสร้างดัชนีใหม่ได้"); }
     /* ⑧ v12.8: ลงทะเบียนรหัสอุปกรณ์ */
     await step("ลงทะเบียนรหัสอุปกรณ์ imos_mapping…",90);
-    try{ res.nm=await sendTmo(registerFitMapping(data),60000,"ลงทะเบียนรหัสอุปกรณ์"); }catch(e){ res.nm=-1; _fitMapErr=e.message; }
+    const pNm=registerFitMapping(data);
+    try{ res.nm=await sendTmo(pNm,90000,"ลงทะเบียนรหัสอุปกรณ์"); }
+    catch(e){ res.nm=0; late(pNm,"ลงทะเบียนรหัสอุปกรณ์ imos_mapping",n=>n>0?("ใหม่ "+n+" รหัส"):(n<0?null:"ไม่มีรหัสใหม่"));
+      pNm.then(n=>{ if(n<0) toast("⚠ ลงทะเบียนรหัสอุปกรณ์ imos_mapping ไม่สำเร็จ (ทำต่อหลังกล่องส่ง): "+(_fitMapErr||"ไม่ทราบเหตุ")); },()=>{});
+      warn.push("ลงทะเบียนรหัสอุปกรณ์ imos_mapping ยังไม่เสร็จใน 90 วิ"+bgNote); }
     if(res.nm<0) warn.push("ลงทะเบียนรหัสอุปกรณ์ใหม่ (imos_mapping) ไม่สำเร็จ: "+(_fitMapErr||"ไม่ทราบเหตุ")
       +((LOC&&SXL.s.imos_mapping&&!SXL.s.imos_mapping.ready)?"\nออเดอร์เข้าแล้ว — แค่รหัสอุปกรณ์ที่ตั้งเองยังไม่ถูกลงทะเบียนให้ Production แปลออก · แก้: หน้าไฟล์กลาง → เลือกไฟล์ imos_mapping แล้วกดส่งใหม่":""));
   }catch(e){
@@ -40077,7 +40158,15 @@ async function sendSupabaseRun(){
     fail={step:cur, msg:sbErr(e), tmo:!!(e&&e.sendTimeout), code,
       fix:(e&&e.fix)||(code==="SXL_NODIR"?"dir":(code==="SXL_NOPERM"?"perm":""))};
     console.error("ส่งเข้า"+DEST+" ไม่สำเร็จ:",e); }
+  finally{ if(LOC) SXL.hold=Math.max(0,(SXL.hold||0)-1); }          // v1.342: ปล่อยรอบตรวจไฟล์กลับมา
   if(cur) log.push([cur,Date.now()-curT]);
+  /* v1.342: เวลาเขียนไฟล์กลางของรอบนี้ แยก รอคิว / อ่านรายชื่อไฟล์ / อ่าน / เขียน ต่อตาราง */
+  const wl=LOC?(SXL.wlog||[]).filter(w=>w.seq>seq0):[];
+  const sx=ms=>((ms||0)/1000).toFixed(1);
+  const wSum=wl.length?("ไฟล์กลาง: รอคิว "+sx(wl.reduce((a,w)=>a+(w.wait||0),0))+" วิ · อ่านรายชื่อไฟล์ "+sx(wl.reduce((a,w)=>a+(w.list||0),0))+" วิ ("+wl.reduce((a,w)=>Math.max(a,w.ents||0),0)+" ไฟล์/โฟลเดอร์สูงสุด)"
+      +" · อ่าน "+wl.reduce((a,w)=>a+(w.rd||0),0)+" ไฟล์ "+sx(wl.reduce((a,w)=>a+(w.rdMs||0),0))+" วิ · เขียน "+wl.reduce((a,w)=>a+(w.wr||0),0)+" ไฟล์ "+sx(wl.reduce((a,w)=>a+(w.wrMs||0),0))+" วิ"
+      +(SXL.pollMs?(" · รอบตรวจไฟล์ล่าสุด "+sx(SXL.pollMs)+" วิ"):"")):"";
+  const wRep=wl.map(w=>"  "+w.t+" "+w.k+": รอคิว "+sx(w.wait)+(w.q?(" (คิวค้าง "+w.q+(w.poll?" · รอบตรวจไฟล์":"")+")"):"")+" · รายชื่อ "+sx(w.list)+" วิ/"+(w.ents||0)+" ไฟล์ · อ่าน "+(w.rd||0)+" ไฟล์ "+sx(w.rdMs)+" วิ · เขียน "+(w.wr||0)+" ไฟล์ "+Math.round(w.kb||0)+" KB "+sx(w.wrMs)+" วิ · รวม "+sx(w.ms)+" วิ"+(w.err?(" · ผิดพลาด "+w.err):"")).join("\n");
   /* ── กล่องผล ── */
   const sec=ms=>(ms<10000?(ms/1000).toFixed(1):String(Math.round(ms/1000)))+" วิ";
   const nm=s=>String(s).replace(/…$/,"").replace(/ · .*$/,"");
@@ -40087,7 +40176,8 @@ async function sendSupabaseRun(){
     H.push("<b>ออเดอร์ "+E(res.oid)+"</b>"+(res.iid?(" · IID "+E(res.iid)):"")+" · "+res.kb+" KB");
     H.push("✓ imos_orders"+((LOC&&SXL.dir)?(" → <span style='font-family:var(--mono)'>"+E(SXL.dir.name)+"/_changes/imos_orders</span>"):""));
     const cl=res.cl;
-    if(cl&&cl.n>0) H.push("✓ ลิงก์ตู้ "+cl.n+" ใบ"+(cl.kept?" (ใช้ชุดเดิม ตู้ไม่ถูกแก้)":" (สร้างใหม่)")+(cl.fallback?" · ในไฟล์กลาง":(cl.github?" · GitHub":"")));
+    if(cl&&cl.n>0) H.push("✓ ลิงก์ตู้ "+cl.n+" ใบ"+(cl.kept?" (ใช้ชุดเดิม ตู้ไม่ถูกแก้)":" (สร้างใหม่)")+(cl.fallback?" · ในไฟล์กลาง":(cl.github?" · GitHub":""))
+      +(cl.tm?("<span style='color:var(--ink-dim);font-size:11.5px'> · "+E(cl.tm)+"</span>"):""));
     if(res.pi>0) H.push("✓ ดัชนีชิ้น "+res.pi+" บาร์โค้ด");
     if(res.nm>0) H.push("✓ ลงทะเบียนรหัสอุปกรณ์ใหม่ "+res.nm+" รหัส");
   } else {
@@ -40104,7 +40194,7 @@ async function sendSupabaseRun(){
     if(res.oid) H.push("<span style='color:var(--ink-dim)'>ส่งซ้ำได้ ไม่เกิดออเดอร์ซ้ำ — imos_orders ทับด้วยเลขออเดอร์ "+E(res.oid)+"</span>");
   }
   warn.forEach(w=>H.push("<div style='color:#c05a00'>⚠ "+NL(w)+"</div>"));
-  H.push("<div style='font-size:11px;color:var(--ink-dim);margin-top:4px'>"+E(tline)+"</div>");
+  H.push("<div style='font-size:11px;color:var(--ink-dim);margin-top:4px'>"+E(tline)+(wSum?("<br>"+E(wSum)):"")+"</div>");
   /* ปุ่มอยู่แถวเดียวกับ "ปิด" (busyOpen.finish btns) ไม่จมอยู่ใต้ข้อความยาว */
   const btn=(id,txt,pri)=>"<button class='ibtn' id='"+K+id+"' style='flex:none;padding:7px 12px"+(pri?";background:var(--accent);color:#fff;border-color:transparent":"")+"'>"+txt+"</button>";
   const bs=[];
@@ -40119,7 +40209,8 @@ async function sendSupabaseRun(){
     "ผล: "+(fail?("ไม่สำเร็จ — ติดที่ขั้น "+nm(fail.step)+": "+fail.msg+(fail.code?(" ["+fail.code+"]"):"")):("สำเร็จ"+(warn.length?(" (เตือน "+warn.length+" ข้อ)"):""))),
     "ออเดอร์: "+(res.oid||"-")+(res.iid?(" · IID "+res.iid):"")+" · "+res.kb+" KB · ลิงก์ตู้ "+((res.cl&&res.cl.n)||0)+(res.cl&&res.cl.fallback?" (ไฟล์กลาง แทน GitHub)":"")+" · ดัชนีชิ้น "+(res.pi||0)+" · รหัสใหม่ "+(res.nm||0),
     "ขั้นตอน: "+tline].concat(warn.map(w=>"เตือน: "+w.replace(/\n/g," / ")),
-    [res.ghErr?("GitHub: "+String(res.ghErr).replace(/\n/g," / ")):"",
+    [(res.cl&&res.cl.tm)?("ลิงก์ตู้: "+res.cl.tm):"", wSum, wRep?("เขียนทีละครั้ง:\n"+wRep):"",
+     res.ghErr?("GitHub: "+String(res.ghErr).replace(/\n/g," / ")):"",
      LOC?("ไฟล์กลาง: "+sendDiag()):"", "เปิดจาก: "+location.protocol+"//"+location.host+" · "+navigator.userAgent]).filter(Boolean).join("\n");
   try{ notiAdd(fail?"error":"toast",rep.split("\n").slice(0,3).join(" · ")); }catch(e){}
   const $k=s=>document.getElementById(K+s);
@@ -40241,7 +40332,7 @@ async function cloudLoadSettings(silent){ try{ const db=await getDB();
     val.fitModels=_mergeTs((settings&&settings.fitModels)||{}, val.fitModels||{});
     /* v10.2: หน้าตัดต้องรวมแบบเดียวกัน ไม่งั้นตัวที่เพิ่งนำเข้าจะหายทันทีที่ดึงคลาวด์ */
     val.sections=_mergeTs((settings&&settings.sections)||{}, val.sections||{});
-    await lsSet("sxlocaltrial:furnitech:settings",val); await loadSettings();
+    await lsSet("sxlocaltrial:furnitech:settings",val); await loadSettings(val);   // v1.343: ใช้ค่าที่ได้มาตรง ๆ (เดิม loadSettings() อ่านคืนจากที่เก็บ — เก็บไม่ลงก็ได้ของเก่า)
     /* v30.3: ตั้งค่าบนคลาวด์ที่บันทึกไว้ก่อนจะมีกฎรายการเส้น ทับกฎหายทั้งชุด — ใส่คืนให้ */
     try{ const nAdd=ensureLineRules(); if(nAdd&&!silent) toast("ใส่กฎรายการเส้นตั้งต้นคืนให้แล้ว "+nAdd+" กฎ"); }catch(e){}
     if(!silent)toast("ดึง Variables/Element จากคลาวด์แล้ว"); return true;
@@ -41546,6 +41637,7 @@ function sxlQuery(table){
  q.select=function(cols,opt){if(st.op==='select'){st.cols=cols||'*';if(opt&&opt.head)st.head=true;if(opt&&opt.count)st.count=opt.count}else st.ret=cols||'*';return q};
  ['eq','neq','like','ilike','in','is','gt','gte','lt','lte'].forEach(function(op){q[op]=function(c,v){
   if(c===TK&&(op==='eq'||op==='in'))st.keys=(op==='eq'?[v]:(Array.isArray(v)?v:[])).map(String);   // ตารางอ่านทีละรหัส
+  if(op==='eq')(st.eqs=st.eqs||[]).push([c,v]);   // v1.342: ให้ตัวเขียนรู้ว่าลบ/แก้กลุ่มไหน (อ่านเฉพาะกลุ่มนั้น)
   return add(function(){return sxlOp(c,op,v)})}});
  q.not=function(c,op,v){return add(function(){var f=sxlOp(c,op,v);return function(r){return !f(r)}})};
  q.or=function(expr){return add(function(){var fs=sxlOr(expr);return function(r){return fs.some(function(f){return f(r)})}})};
@@ -41642,16 +41734,23 @@ function sxlRebuild(T,S){
   var cs=new Set(S.cols||[]);ents.forEach(function(e){e.rows.forEach(function(r){for(var c in r)if(c.indexOf('__')!==0)cs.add(c)})});S.cols=Array.from(cs)}
  S.idx=null;S.ver++;S.sort=new Map()}
 /* อ่านไฟล์ใน _changes ที่ใหม่กว่าที่มีอยู่ · only = อ่านเฉพาะบางกลุ่ม · คืน true ถ้ามีอะไรเปลี่ยน */
+/* ───────── v1.342: จับเวลาการเขียนไฟล์กลาง (SXL.curW / SXL.wlog) ─────────
+   ผู้ใช้ส่งออเดอร์จริง 220 วิ: เขียน imos_orders 38 วิ · part_index 74 วิ · imos_mapping เกิน 60 วิ ทั้งที่เครื่องทดสอบใช้ไม่ถึง 1 วิ
+   ต้องรู้ว่าเวลาหายไปกับอะไร: รอคิว (รอบตรวจไฟล์ทุก 10 วิ ถือคิวอยู่) · อ่านรายชื่อไฟล์ใน _changes · อ่านไฟล์ · เขียนไฟล์
+   ทุกการเขียนเก็บตัวเลขไว้ใน SXL.wlog (40 รายการล่าสุด) · กล่องผลการส่งสรุปให้ และแนบใน "คัดลอกรายละเอียด" */
+function sxlWLog(W){SXL.wlog=SXL.wlog||[];SXL.wlog.push(W);if(SXL.wlog.length>40)SXL.wlog.shift()}
 async function sxlScanOver(T,S,only){
  var d=await sxlOverDir(T.t,false);if(!d)return false;
- var latest={},all={};
- for await(var ent of d.entries()){if(ent[1].kind!=='file')continue;var m=SXL_VER_RE.exec(ent[0]);if(!m)continue;
+ var latest={},all={},W=SXL.curW,t0=Date.now(),nE=0;
+ for await(var ent of d.entries()){nE++;if(ent[1].kind!=='file')continue;var m=SXL_VER_RE.exec(ent[0]);if(!m)continue;
   (all[m[1]]=all[m[1]]||[]).push(ent[0]);if(!latest[m[1]]||ent[0]>latest[m[1]])latest[m[1]]=ent[0]}
- S.names=all;var ch=false;
+ if(W){W.list=(W.list||0)+(Date.now()-t0);W.ents=(W.ents||0)+nE}
+ S.names=all;var ch=false,t1=Date.now();
  for(var bf in latest){if(only&&!only.has(bf))continue;var cur=S.over.get(bf);if(cur&&cur.name>=latest[bf])continue;
-  try{var f=await (await d.getFileHandle(latest[bf])).getFile(),o=JSON.parse(await f.text());
+  try{var f=await (await d.getFileHandle(latest[bf])).getFile(),o=JSON.parse(await f.text());if(W){W.rd=(W.rd||0)+1}
    S.over.set(bf,{bucket:o.bucket,name:latest[bf],at:o.at||'',by:o.by||'',rows:(o.rows||[]).map(function(x){return sxlFileToRaw(T,x)})});ch=true}
   catch(e){console.warn('[ไฟล์กลาง] อ่าน',T.t,latest[bf],'ไม่ได้ — รอบหน้าลองใหม่',e&&e.message)}}
+ if(W){W.rdMs=(W.rdMs||0)+(Date.now()-t1)}
  if(ch)sxlRebuild(T,S);return ch}
 function sxlE(m,code,status){return {data:null,error:{message:m,code:code||'SXL'},count:null,status:status||400}}
 async function sxlWrite(st){
@@ -41662,7 +41761,10 @@ async function sxlWrite(st){
  if(!SXL.dir)return sxlE('ยังบันทึกไม่ได้ — ต้องเลือกโฟลเดอร์ Server ที่ปุ่ม “ไฟล์กลาง” ก่อน','SXL_NODIR',403);
  if(!await sxlCanWrite())return sxlE('ยังไม่ได้อนุญาตให้บันทึกลงโฟลเดอร์ Server — กดปุ่ม “ไฟล์กลาง” → “เชื่อมตำแหน่งที่จำไว้” แล้วเลือกอนุญาตให้แก้ไข','SXL_NOPERM',403);
  if(T.load!==false&&!T.lazy&&!S.ready)return sxlE('ยังไม่ได้อ่านไฟล์ '+T.t+' — บันทึกไม่ได้จนกว่าจะอ่านข้อมูลเดิมครบ','SXL_NOBASE',409);
- return sxlLocked(async function(){try{return await sxlWriteIn(T,S,st)}catch(e){console.error('[ไฟล์กลาง] บันทึก',T.t,e);return sxlE('บันทึกลงโฟลเดอร์ Server ไม่สำเร็จ: '+(e&&e.message||e),'SXL_IO',500)}})}
+ var tq=Date.now(),W={seq:(SXL.wseq=(SXL.wseq||0)+1),t:T.t,k:st.wkind,q:SXL.locked,poll:!!SXL.busy};   // v1.342: จับเวลา (คิวตอนเข้า · มีรอบตรวจไฟล์ถือคิวอยู่ไหม)
+ return sxlLocked(async function(){W.wait=Date.now()-tq;SXL.curW=W;var t1=Date.now();
+  try{return await sxlWriteIn(T,S,st)}catch(e){W.err=(e&&e.message)||String(e);console.error('[ไฟล์กลาง] บันทึก',T.t,e);return sxlE('บันทึกลงโฟลเดอร์ Server ไม่สำเร็จ: '+(e&&e.message||e),'SXL_IO',500)}
+  finally{W.ms=Date.now()-t1;if(SXL.curW===W)SXL.curW=null;sxlWLog(W)}})}
 async function sxlWriteIn(T,S,st){
   var now=new Date().toISOString(),K=T.key,kind=st.wkind;
   var arr=(kind==='insert'||kind==='upsert')?(Array.isArray(st.wdata)?st.wdata:[st.wdata]).map(function(p){var e=sxlToRaw(T,p);if(T.w&&T.w.autoId&&e[K]==null)e[K]=Date.now()*1000+Math.floor(Math.random()*1000);return e}):null;
@@ -41670,6 +41772,19 @@ async function sxlWriteIn(T,S,st){
   if(T.lazy)return sxlLazyWrite(T,S,st,arr,now);
   /* อ่านของล่าสุดจากดิสก์ก่อน จะได้ต่อจากที่เครื่องอื่นเพิ่งบันทึก · เพิ่มทีละแถวอ่านเฉพาะกลุ่มนั้น */
   var only=null;if(arr&&((T.w&&T.w.bucket)||'key')==='key'){only=new Set();arr.forEach(function(e){only.add(sxlBf(sxlBucketOf(T,e)))})}
+  /* ───────── v1.342: อ่านเฉพาะกลุ่มที่จะเขียน กับกลุ่มแบบ hash / col และการลบ/แก้ที่กรองด้วยคอลัมน์ของกลุ่ม ─────────
+     เดิมเฉพาะกลุ่มแบบ key ที่อ่านแค่กลุ่มเดียว · part_index (กลุ่มละออเดอร์) ลบ+เพิ่มหนึ่งครั้ง = อ่านไฟล์ดัชนีของ "ทุกออเดอร์" ในโฟลเดอร์สองรอบ
+     บนไดรฟ์เครือข่ายเป็นนาที · imos_mapping (hash:16) ก็อ่านทุกกลุ่มทุกครั้ง
+     ตอนนี้: เพิ่ม/ทับ → กลุ่มของแถวที่ส่งมา · ลบ/แก้ที่มี .eq(คอลัมน์ของกลุ่ม) → กลุ่มนั้นกลุ่มเดียว (แถวที่ตรงเงื่อนไขอยู่ในกลุ่มนั้นทั้งหมด)
+       hash = กลุ่มคิดจากรหัส แถวเดิมอยู่กลุ่มเดียวกันเสมอ ผลเหมือนอ่านทั้งหมดทุกประการ
+       col (เฉพาะตารางที่ไม่ได้อ่านเข้าโปรแกรม เช่น part_index) = แถวเดิมที่อยู่อีกกลุ่ม (บาร์โค้ดซ้ำข้ามออเดอร์) ไม่ถูกลบจากกลุ่มเก่า
+       แต่ตอนอ่านไฟล์ที่ใหม่กว่าชนะเสมอ ผลที่ปลายทางเห็นจึงเหมือนเดิม · ปิดได้ SN_OFF.sxlScanAll */
+  var _snAll=(typeof snOff==='function')&&snOff('sxlScanAll'),_bk=(T.w&&T.w.bucket)||'key';
+  if(!only&&!_snAll){
+   if(arr&&(_bk.indexOf('hash:')===0||(_bk.indexOf('col:')===0&&T.load===false))){only=new Set();arr.forEach(function(e){only.add(sxlBf(sxlBucketOf(T,e)))})}
+   else if(!arr&&st.eqs&&st.eqs.length){var _bc=_bk==='key'?T.key:(_bk.indexOf('col:')===0?_bk.slice(4):null);
+    var _h=_bc&&st.eqs.find(function(x){return x[0]===_bc});
+    if(_h)only=new Set([sxlBf(_bk==='key'?('k:'+String(_h[1])):('c:'+(_h[1]==null?'':String(_h[1]))))])}}   // สูตรเดียวกับ sxlBucketOf
   if(await sxlScanOver(T,S,only))SXL.extChanged.add(T.t);
   var idx=sxlIdx(T,S),changes=new Map();
   if(arr){for(var i=0;i<arr.length;i++){var e=arr[i],k=String(e[K]),prev=changes.get(k),old=prev?prev.nw:(idx.get(k)||null);
@@ -41684,13 +41799,15 @@ async function sxlWriteIn(T,S,st){
   changes.forEach(function(c,k){if(c.old)g(sxlBucketOf(T,c.old)).del.add(k);if(c.nw)g(sxlBucketOf(T,c.nw)).put.set(k,c.nw)});
   var cur=new Map();byB.forEach(function(_,b){cur.set(b,[])});
   S.rows.forEach(function(r){var b=sxlBucketOf(T,r);var a=cur.get(b);if(a)a.push(r)});
-  var dir=await sxlOverDir(T.t,true),made=[];
+  var dir=await sxlOverDir(T.t,true),made=[],_W=SXL.curW,_tw=Date.now();
   for(var ent of byB){var b=ent[0],x=ent[1];
    var snap=cur.get(b).filter(function(r){var k=String(r[K]);return !x.del.has(k)&&!x.put.has(k)});x.put.forEach(function(r){snap.push(r)});
    var bf=sxlBf(b),name=bf+'@'+sxlTs()+'.json';
    var body=JSON.stringify({v:1,table:T.t,bucket:b,at:now,by:SXL.machine,rows:snap.map(function(r){return sxlRawToFile(T,r)})});
    var fh=await dir.getFileHandle(name,{create:true}),w=await fh.createWritable();await w.write(body);await w.close();
+   if(_W){_W.wr=(_W.wr||0)+1;_W.kb=(_W.kb||0)+body.length/1024}   // v1.342
    S.over.set(bf,{bucket:b,name:name,at:now,by:SXL.machine,rows:snap});made.push([bf,name])}
+  if(_W)_W.wrMs=(_W.wrMs||0)+(Date.now()-_tw);
   sxlRebuild(T,S);S.nW=(S.nW||0)+changes.size;
   /* เก็บ 3 รุ่นล่าสุดต่อกลุ่ม ที่เหลือลบ (ลบไม่ได้ก็ไม่เป็นไร) */
   made.forEach(function(p){var ns=((S.names&&S.names[p[0]])||[]).concat([p[1]]).sort();S.names=S.names||{};S.names[p[0]]=ns.slice(-3);
@@ -41702,13 +41819,14 @@ async function sxlWriteIn(T,S,st){
 /* ตารางที่อ่านทีละรหัส (furnitech_share): หนึ่งไฟล์ต่อหนึ่งแถว ชื่อคงที่ ไม่โหลดทั้งตาราง */
 async function sxlLazyWrite(T,S,st,arr,now){
  if(!arr)return sxlE('ตาราง '+T.t+' เพิ่มแถวได้อย่างเดียว');
- var dir=await sxlOverDir(T.t,true);
+ var dir=await sxlOverDir(T.t,true),_W=SXL.curW,_tw=Date.now();
  for(var i=0;i<arr.length;i++){var e=arr[i],name=sxlBf('k:'+e[T.key])+'.json';
   if(st.wkind==='insert'){var ex=true;try{await dir.getFileHandle(name)}catch(_){ex=false}
    if(ex)return sxlE('duplicate key value violates unique constraint ('+T.t+'.'+T.key+' = '+e[T.key]+')','23505',409)}
   if(e.created_at==null)e.created_at=now;
-  var fh=await dir.getFileHandle(name,{create:true}),w=await fh.createWritable();
-  await w.write(JSON.stringify({v:1,table:T.t,bucket:'k:'+e[T.key],at:now,by:SXL.machine,rows:[sxlRawToFile(T,e)]}));await w.close()}
+  var fh=await dir.getFileHandle(name,{create:true}),w=await fh.createWritable(),_bd=JSON.stringify({v:1,table:T.t,bucket:'k:'+e[T.key],at:now,by:SXL.machine,rows:[sxlRawToFile(T,e)]});
+  await w.write(_bd);await w.close();if(_W){_W.wr=(_W.wr||0)+1;_W.kb=(_W.kb||0)+_bd.length/1024}}   // v1.342: จับเวลา
+ if(_W)_W.wrMs=(_W.wrMs||0)+(Date.now()-_tw);
  S.nW=(S.nW||0)+arr.length;setTimeout(sxlRender,0);
  return st.ret?sxlShape(st,sxlProject(T,S,arr,st.ret),arr.length,201):{data:null,error:null,count:null,status:201}}
 async function sxlLazyRead(st){try{return await sxlLazyReadIn(st)}catch(e){return sxlE('อ่านโฟลเดอร์ Server ไม่สำเร็จ: '+(e&&e.message||e),'SXL_IO',500)}}
@@ -41853,7 +41971,16 @@ async function sxlApply(changed,why){
  if(SXL._prog){SXL._prog('ใช้ค่าตั้ง · โมเดลตู้ · Fitting 3D …',85);await new Promise(function(r){setTimeout(r,30)})}
  var msgs=[];try{msgs=(await SXL.cfg.apply(ch,why))||[]}catch(e){console.error('sxlApply:',e);msgs=['ใช้ข้อมูลไม่สำเร็จ: '+(e&&e.message||e)]}
  if(msgs.length)sxlStatus(msgs.join(' · '))}
-async function sxlRefresh(){if(SXL.locked)return;if(SXL.dir||SXL.cfg.tables.some(function(T){return SXL.s[T.t].handle}))await sxlSync(false,'poll')}
+/* ───────── v1.342: รอบตรวจไฟล์ทุก 10 วิ ไม่แย่งคิวกับงานเขียน ─────────
+   รอบตรวจอ่านรายชื่อไฟล์ใน _changes ของทุกตารางที่โหลดไว้ + ตรวจ CSV ทุกตัว โดยถือคิวไฟล์กลางไว้ตลอดรอบ
+   โฟลเดอร์ Server บนไดรฟ์เครือข่าย/ไฟล์ใน _changes เยอะ = รอบหนึ่งกินหลายสิบวินาที แล้วเริ่มรอบใหม่ทุก 10 วิหลังจบ
+   คิวจึงถูกถือเกือบตลอด งานเขียนทุกชิ้น (ส่งออเดอร์ · บันทึกตู้ · ตั้งค่า) ต้องต่อคิวรอ
+   ตอนนี้: SXL.hold>0 (ระหว่างกดส่งเข้าไฟล์กลาง) = ข้ามรอบตรวจ · รอบก่อนใช้เวลา T = เว้นอย่างน้อย 3×T ก่อนรอบถัดไป
+   (รอบละ 1 วิ ยังตรวจทุก 10 วิเหมือนเดิม · รอบละ 30 วิ = ตรวจทุก ~90 วิ) · ปิดการเว้นได้ SN_OFF.sxlPollBackoff */
+async function sxlRefresh(){if(SXL.locked||SXL.hold>0)return;
+ if(SXL.pollEnd&&!((typeof snOff==='function')&&snOff('sxlPollBackoff'))&&Date.now()-SXL.pollEnd<3*(SXL.pollMs||0))return;
+ if(SXL.dir||SXL.cfg.tables.some(function(T){return SXL.s[T.t].handle})){var t0=Date.now();
+  try{await sxlSync(false,'poll')}finally{SXL.pollMs=Date.now()-t0;SXL.pollEnd=Date.now()}}}
 function sxlToast(m){try{var el=document.createElement('div');el.textContent=m;el.style.cssText='position:fixed;left:50%;top:18px;transform:translateX(-50%);z-index:1000000;background:#172c40;color:#fff;padding:10px 16px;border-radius:9px;font:14px/1.5 system-ui,sans-serif;box-shadow:0 4px 18px #0004;max-width:min(560px,92vw)';document.body.append(el);setTimeout(function(){el.remove()},5000)}catch(e){}}
 function sxlNotify(m){try{(SXL.cfg.notify||sxlToast)(m)}catch(e){}sxlStatus(m)}
 
@@ -41999,12 +42126,20 @@ sxlInit({
  /* ของที่ต้อง "ใช้" หลังอ่าน: ตั้งค่า → โมเดล Fitting 3D/หน้าตัด → รายชื่อโมเดลตู้ (ลำดับเดียวกับตอนบูตของตัวจริง) */
  apply:async function(ch){var st=[];
   if(ch.has('app_settings')){var ok=false;try{ok=await cloudLoadSettings(true)}catch(e){}
-   if(ok){st.push('ใช้ Variables/Element จาก app_settings แล้ว');try{renderInspectorIfOpen&&renderInspectorIfOpen()}catch(e){}}
+   /* v1.343: บอกจำนวนในคลังด้วย — เทียบกับตัวในเครื่องได้ทันทีว่าได้ชุดเดียวกันไหม */
+   var _el=(settings&&settings.elements)||{},_nS=(_el.surfaces||[]).length,_nC=(_el.colors||[]).length,_nV=(settings.vars||[]).length;
+   if(ok){st.push('ใช้ Variables/Element จาก app_settings แล้ว (Variables '+_nV+' · ผิว '+_nS+' · สี '+_nC+')');try{renderInspectorIfOpen&&renderInspectorIfOpen()}catch(e){}}
    else st.push('app_settings: ไม่พบค่าตั้ง furnitech_settings ที่อ่านได้')}
   if((ch.has('furnitech_cabinets')||ch.has('app_settings'))&&SXL.s.furnitech_cabinets.ready){
    var a=0,b=0;try{a=await syncFitModelsFromCloud(false)}catch(e){}try{b=await syncSectionsFromCloud(false)}catch(e){}
    try{await cabLibSync()}catch(e){}
    if(ch.has('furnitech_cabinets'))st.push('โมเดลตู้พร้อม'+(a>0?(' · Fitting 3D '+a+' ตัว'):'')+(b>0?(' · หน้าตัด '+b+' ตัว'):''))}
+  /* ───────── v1.343: ค่าตั้ง/โมเดลมาใหม่ = วาดตู้ที่อยู่บนจอใหม่ ─────────
+     เดิมวาดใหม่แค่ครั้งแรกที่เชื่อมโฟลเดอร์ (ผ่าน texImgDirCheck) · กด "อ่านไฟล์ล่าสุด" หลังอีกเครื่องกด ☁ เก็บ
+     ค่าตั้งเข้าแล้วแต่ตู้บนจอยังทาสีชุดเก่าค้างอยู่ ต้องเปิดออเดอร์ใหม่เองถึงจะเห็น
+     ล้างรายการเตือนสีที่เคยขึ้นด้วย จะได้เตือนใหม่ตามค่าตั้งชุดนี้ ไม่ค้างของเก่า */
+  if((ch.has('app_settings')||ch.has('furnitech_cabinets'))&&(state.boards||[]).length){
+   try{_skinWarned={}}catch(e){}try{refreshSkins(true)}catch(e){console.error('refreshSkins:',e)}}
   if(ch.has('xml_history')){try{var m=document.getElementById('xmlImportModal');if(m&&getComputedStyle(m).display!=='none')renderXmlImport()}catch(e){}}
   return st},
  onRender:function(){
