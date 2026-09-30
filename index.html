@@ -972,7 +972,7 @@
    ===================================================================== */
 /* ---- APP_META: แหล่งความจริงเดียวของเวอร์ชัน (ดูได้จาก console / คลิกชื่อแอป) ---- */
 const APP_META={
-  name:"StarNexus", version:"1.343", build:"2026-09-30/settings-big",
+  name:"StarNexus", version:"1.350", build:"2026-10-01/viewer-room-light",
   file:"StarNexus.html", basedOn:"Furnitech_V3.html (v3.11)",
   /* ───────── เริ่มนับเวอร์ชันใหม่ที่ 1.001 (21/08/2026) ─────────
      ของเดิมนับมาถึง 42.1 แล้ววิ่งเป็นทศนิยมสองชั้นซึ่งอ่านลำดับยาก
@@ -980,6 +980,13 @@ const APP_META={
      ประวัติเก่าเก็บไว้ทั้งหมดตามเลขเดิม ไม่ไล่เขียนใหม่ เพราะเลขในนั้นถูกอ้างถึงไปแล้ว
      รายการที่อยู่ใต้ 1.001 ลงไปจึงเป็นเลขชุดเก่า อ่านต่อกันได้ตามวันที่ */
   changelog:[
+    ["1.350","2026-10-01","UX หน้าดูงานผ่านลิงก์ (ตามที่ขอ): ตั้งต้นแสงแบบในห้อง — ชุดเดียวกับปุ่ม แสง ของโปรแกรม ไม่มีเงาแข็ง (เดิมใช้แสงที่อบมาจากจอคนส่ง ส่วนใหญ่เป็นแดด) + ปุ่ม แสง: ในห้อง / แดด / กลางคืน ในแถบ ⋯ เพิ่มเติม (แดด = เปิดเงาให้เอง) · ตารางพื้นปิดไว้ตั้งแต่เปิด (ปุ่ม ตาราง เปิดได้) · ชิ้นที่สแกนและลิงก์ตู้ ตั้งต้นไฮไลต์อย่างเดียว ไม่จางของอื่น (เขียว ขอบเหลือง หมุด วงแหวนตอนชิ้นเล็กบนจอ) ปุ่ม เน้น = กดแล้วค่อยจางของอื่น จำค่าไว้ตอนสลับดูเฉพาะตู้/ทั้งออเดอร์ · ลิงก์เก่าได้หน้าตาใหม่ด้วยเมื่อส่งออเดอร์ครั้งถัดไป (view.html ขึ้นเว็บใหม่)"],
+    ["1.349","2026-09-30","FIX LTF007 (แผ่นหน้าเดี่ยว แบบบาน MCWx58) ไม่ขึ้นลายหน้าบาน 3D ทั้งที่อ่านรหัสแบบบานได้และมีลายในตาราง: ลายหน้าบานวาดให้เฉพาะชิ้นที่ติดธงบาน (_door) ซึ่งติดให้แค่บานที่เกิดจากผังบาน/ลิ้นชักในตู้ แผ่นเดี่ยวตกทุกครั้ง (เฟรม/มือจับแก้ไปแล้วตั้งแต่ v36.9 ลายหน้าบานยังไม่ได้แก้) · ตอนนี้ชิ้นหันหน้าที่ผูก Part ผ่านลิงก์บาน FrontShapeP1..6 ได้ลายด้วย (แผ่นหลัง/ข้างไม่เข้า · ฟิลเลอร์แคบลายลงไม่ได้ = เรียบตามเดิม) · โชว์อย่างเดียว ไม่แตะใบตัด/ไฟล์เจาะ · ปิดได้ SN_OFF.reliefPanel"],
+    ["1.348","2026-09-30","PERF บันทึกลงไฟล์กลางไม่ต้องรอ (กด ☁ เก็บ Variables/Element ค้างที่ขั้น ① 6% นานหลายสิบวินาที): เดิมทุกการบันทึกไล่รายชื่อไฟล์ทั้งโฟลเดอร์ _changes/<ตาราง> ก่อนเขียน และต้องรอรอบตรวจไฟล์ 10 วิ ที่ถือคิวไว้ตลอดรอบ (ไดรฟ์เครือข่ายไฟล์เยอะ = รอบละหลายสิบวินาที) · ตอนนี้ (1) บันทึกแบบทับทั้งแถว (ตู้ · ออเดอร์ · ค่าตั้ง · อุปกรณ์ 3D · หน้าตัด) เขียนเลยไม่ไล่รายชื่อ ผลที่ดิสก์เหมือนเดิม (2) รอบตรวจไฟล์ไล่รายชื่อนอกคิว เข้าคิวแค่ตอนอ่านไฟล์ใหม่ (3) ☁ เก็บ Variables เทียบกับของที่รู้แล้ว ไม่อ่านสดซ้ำ + หยุดรอบตรวจระหว่างเก็บ · จำลองไดรฟ์ช้า (ไล่รายชื่อ 6 วิ): เก็บ Variables 15.5 → 0.2 วิ · บันทึกอุปกรณ์ 3D 12.8 → ไม่ถึง 0.1 วิ · บันทึกตู้ 6.4 → ไม่ถึง 0.1 วิ · ปิดได้ SN_OFF.sxlFastUp / sxlPollFree"],
+    ["1.347","2026-09-30","FIX ตู้เก่าหายจากรายการ (หา BNF001 / TNF001 ในหน้าเปิดงานไม่เจอ ทั้งที่ยังอยู่ในไฟล์กลาง): รายชื่อตู้ดึงแค่ 300 ตู้ที่แก้ล่าสุด ช่องค้นหาก็ค้นใน 300 ตัวนั้น คลังเกิน 300 ตู้เก่าที่ไม่ได้แก้นานหลุดรายการ — ตอนนี้ดึงครบทุกตู้ (หน้าละ 1000) ใช้กับหน้าเปิดงาน · หน้าต่างตู้ · แคตตาล็อก/ห้องออกแบบ · เปลี่ยนรุ่นตู้ · ใส่ตู้ซ้อน · หน้าเปิดงานบอกจำนวนตู้ทั้งคลัง ค้นได้ทั้งรหัสและชื่อ วาด 400 ตู้ล่าสุดก่อน (พิมพ์ค้นหาได้ทั้งคลัง) · ปิดได้ SN_OFF.cabListAll"],
+    ["1.346","2026-09-30","PERF+UX ส่งเข้าไฟล์กลาง: กล่องรอแค่ขั้นหลัก (อบภาพ/รหัสลิงก์ → imos_orders) ที่เหลือทำต่อเบื้องหลังพร้อมป้ายมุมจอ (ส่งลิงก์ขึ้น GitHub · ดัชนีชิ้น · shareBase · ลงทะเบียนรหัสอุปกรณ์) · ดัชนีชิ้นเขียนไฟล์เดียวแทนลบ+เพิ่ม ไม่ไล่รายชื่อ ไม่อ่านรุ่นเก่า (เก็บกวาดรุ่นเก่าทีหลัง) · ไล่รายชื่อไฟล์ในไฟล์กลางล่วงหน้าตั้งแต่เริ่มส่ง · อัปโหลด GitHub เข้าคิวทีละงาน ชนกันลองใหม่ · หน้าดูงาน: ไม่แสดงเส้นแนวลายไม้ของโปรแกรม (ลิงก์เก่าก็ซ่อน) · มือถือเห็นเครื่องมือครบ (แถวหลัก + ⋯ เพิ่มเติม) · ปุ่มวัด = แตะชิ้นขึ้นเส้นบอกขนาด ยาว×กว้าง×หนา (เดิมแตะสองจุด) · ชิ้นที่สแกนเด่นขึ้น: เขียวเข้ม+กะพริบ ขอบเหลืองมองทะลุ ของอื่นจาง หมุดชื่อชิ้น (ปุ่ม เน้น ปิดได้) ดูทั้งตู้/ทั้งออเดอร์ก็ยังเด่น + วงแหวนกะพริบรอบชิ้นตอนชิ้นเล็กบนจอ · แถบผลวัดไม่มุดใต้การ์ดสแกน ป้ายตัวเลขไม่ทับกัน · ลิงก์ตู้: ตู้อื่นจาง+หมุดชื่อตู้ · ปิดได้ SN_OFF.sendBg / ghBg / sxlPrefetch / sxlFastPI"],
+    ["1.345","2026-09-30","FIX ลิงก์ตู้/ชิ้นยังเป็น …github.io/Furnitech/?view=… (เปิดแล้ว 404): ตั้งค่า GitHub ในเครื่องเก็บชื่อ repo เป็น Furnitech (ชื่อเก่าก่อนเปลี่ยนเป็น StarNexus — หน้าตั้งค่า v1.340–1.343 เดาจาก shareBase) GitHub API ยังรับชื่อเก่าจึงอัปโหลดผ่านทุกครั้ง แต่ที่อยู่ลิงก์คิดจากชื่อที่เก็บไว้ — ตอนนี้ถามชื่อจริงจาก GitHub (full_name) แล้วเก็บชื่อนั้น ซ่อมตั้งค่าเดิมให้เองตอนเปิดหน้าแชร์/สร้างลิงก์ (ghHeal) · ที่อยู่เว็บที่กรอกไว้ถ้าชี้ชื่อเก่าล้างทิ้ง · ลิงก์ชุดเดิมในรอบนี้เปลี่ยนที่อยู่ใช้รหัสเดิมไม่ต้องอัปใหม่ · หน้าตรวจลิงก์ตู้: ลิงก์ทั้งออเดอร์ชี้ GitHub (เดิม file:///)"],
+    ["1.344","2026-09-30","FIX ลิงก์ Assembly ใน Production เป็น …github.io/Furnitech/?view=… (เปิดแล้ว 404): ค่าตั้งกลางยังเก็บ shareBase ชื่อเดิม Furnitech — สร้างลิงก์ผ่าน GitHub สำเร็จแล้วตั้ง shareBase เป็นที่อยู่เว็บ GitHub (…/StarNexus/) ทั้งในเครื่องและในไฟล์กลาง (อ่านรุ่นล่าสุดแล้วแก้เฉพาะช่องนี้ ไม่ทับค่าตั้งเครื่องอื่น) · หน้าตั้งค่า GitHub: เดาชื่อ repo จากที่อยู่เว็บที่เปิด (เดิมเดาจาก shareBase ได้ Furnitech) · ช่อง Token ไม่ใช่ช่องรหัสผ่านแล้ว — Chrome เลิกเติมรหัสผ่านที่จำไว้ลงช่อง Token และชื่อผู้ใช้ลงช่อง branch (เคย 9000001) · 404 บอกแยกว่าไม่พบ repo หรือไม่พบ branch · ปิดได้ SN_OFF.shareBaseSync"],
     ["1.343","2026-09-30","FIX เปิดจากเว็บ github.io ตู้ไม่มีสี/ลายหน้าบาน/มือจับ ทั้งที่ไฟล์กลางขึ้นว่า \"ใช้ Variables/Element แล้ว\": ค่าตั้งใหญ่เกินที่เก็บของเบราว์เซอร์ (localStorage ~5 ล้านตัวอักษร) cloudLoadSettings เขียนไม่ลงแล้วอ่านคืนได้ค่าตั้งต้น — ตอนนี้ใช้ค่าจากไฟล์กลางตรง ๆ (loadSettings(val)) · ที่เก็บเต็มย้ายค่าไป IndexedDB (ป้ายชี้ในคีย์เดิม ไม่เปลี่ยนคีย์) เปิดใหม่ยังอยู่ · บันทึกรัวเขียนแค่ค่าล่าสุด · ค่าตั้ง/โมเดลจากไฟล์กลางมาใหม่ (อ่านไฟล์ล่าสุด) วาดตู้บนจอใหม่ทันที ไม่ต้องเปิดออเดอร์ใหม่ · สถานะไฟล์กลางบอกจำนวน Variables/ผิว/สี ไว้เทียบกับเครื่องอื่น · ปิดได้ SN_OFF.kvIdb"],
     ["1.342","2026-09-30","PERF ส่งเข้าไฟล์กลางเร็วขึ้น (ส่งจริง 220 วิ: ลิงก์ GitHub 47 · imos_orders 38 · part_index 74 · imos_mapping เกิน 60): ระหว่างส่งหยุดรอบตรวจไฟล์ทุก 10 วิ ไม่ให้แย่งคิว · รอบตรวจที่ช้าเว้นระยะ 3 เท่าของเวลาที่ใช้ · ก่อนเขียนอ่านเฉพาะกลุ่มที่จะเขียน (part_index ไม่อ่านดัชนีของทุกออเดอร์ · imos_mapping เฉพาะกลุ่ม hash ที่แตะ) · ไฟล์ชี้ของตู้รายใบส่งใน tree ครั้งเดียว ไม่ส่ง blob ทีละไฟล์ · ขั้นเสริมที่เกินเวลาบอกว่า ยังทำต่อเบื้องหลัง แล้วขึ้นข้อความเมื่อเสร็จจริง (เดิมเตือนว่าไม่สำเร็จ) · กล่องผลบอกเวลา รอคิว/อ่าน/เขียน และ อบ 3D/GitHub · ปิดได้ SN_OFF.sxlScanAll / sxlPollBackoff"],
     ["1.341","2026-09-30","FIX ส่งเข้าไฟล์กลาง: กล่องบอกขั้นตอน + วินาทีที่ผ่านไป · ตรวจ/ขอสิทธิ์แก้ไขโฟลเดอร์ Server ก่อนส่ง · ทุกขั้นมีเวลาหมด ไม่ค้างเงียบ (ขั้นเสริมพัง = ข้ามแล้วส่งต่อ · imos_orders พัง = บอกขั้น/เหตุ/วิธีแก้) · จบแล้วค้างกล่องผล มีปุ่มส่งใหม่/อนุญาตแก้ไข/เปิดไฟล์กลาง/คัดลอกรายละเอียด · GitHub: ทดสอบสิทธิ์เขียนจริงของ Token (เดิมขึ้น \"เขียนได้\" จากสิทธิ์บัญชี แล้วพัง 403 ตอนตั้งค่า) · 403 Resource not accessible บอกจุดแก้ทีละข้อ · คำขอ GitHub มีเวลาหมด · ส่งเข้าไฟล์กลางตอน GitHub ใช้ไม่ได้ = ใช้ลิงก์ในไฟล์กลางแทน ไม่ปล่อย CAB_URL ว่าง · ปิดได้ SN_OFF.sendBox"],
@@ -3036,6 +3043,14 @@ function doorReliefGeo(L,W,T,prof,orient,yaw,cut){
   _reliefC.set(key,g);
   return g;
 }
+/* ───────── v1.349: แผ่นหน้าเดี่ยวที่ผูก Part ผ่านลิงก์บาน (FrontShapeP#) ก็ได้ลายหน้าบาน ─────────
+   LTF007 (ตู้ที่เป็นแผ่นหน้าแผ่นเดียว แบบบาน MCWx58) ไม่ขึ้นลาย ทั้งที่อ่านรหัสแบบบานได้ และมีลายในตาราง
+   เดิมด่านนี้ดูแค่ธง _door ซึ่งติดให้เฉพาะบานที่เกิดจากผังบาน/ลิ้นชักในตู้ แผ่นเดี่ยวจึงตกทุกครั้ง
+   (เรื่องเดียวกับ v36.9 ที่แก้ให้เฟรม/มือจับไปแล้ว แต่ลายหน้าบานมาทีหลัง ยังเช็คแค่ _door)
+   นับเพิ่มเฉพาะชิ้นหันหน้า (front) ที่ผูก Part ผ่านลิงก์บาน FrontShapeP1..6 — แผ่นหลัง/แผ่นข้างไม่เข้า
+   ฟิลเลอร์แคบ ๆ ที่ผูกลิงก์เดียวกัน ลายลงไม่ได้อยู่แล้ว (กว้างไม่พอ = แผ่นเรียบตามเดิม) · โชว์อย่างเดียว ไม่แตะใบตัด/ไฟล์เจาะ
+   ปิดได้ SN_OFF.reliefPanel */
+function reliefPanel(b){ return !!(b&&!b._door&&!b._virtual&&b.orient==="front"&&!snOff("reliefPanel")&&/^FrontShapeP\d+$/i.test(String(b.part||"").trim())); }
 /* คืนรูปทรงลายหน้าบานถ้าบานใบนี้มีลายและลงได้ · ไม่มี = null (วาดแผ่นเรียบตามเดิม) */
 function doorReliefFor(b){
   try{
@@ -3043,7 +3058,7 @@ function doorReliefFor(b){
     if(String(settings.doorReliefMap||"").trim()==="MCxx35 = 0:3, 3:0, 55:0, 58:3, 60:6, 95:6, 110:2, 110:0")
       settings.doorReliefMap="MCxx35 = 0:3, 3:0, 55:0, 58:3, 60:6, 95:6, 110:2, 110:0 | ตั้งทะลุ 55-60";
     if(state.eco||settings.doorRelief3D===false) return null;
-    if(!b||!b._door||b._box||b._glass||b._frameDoor||b._noPanel||b.orient!=="front") return null;
+    if(!b||!(b._door||reliefPanel(b))||b._box||b._glass||b._frameDoor||b._noPanel||b.orient!=="front") return null;   // v1.349: + แผ่นหน้าเดี่ยว
     const code=doorShapeCode(b); if(!code) return null;
     const prof=doorReliefProfiles()[code.toUpperCase()]; if(!prof) return null;
     const L=+b.L||0, W=+b.W||0, T=+b.T||0;
@@ -20841,7 +20856,16 @@ function boardRole(b){
      SN_OFF.sendBox=1     ปุ่มส่งเข้าไฟล์กลางกลับไปแบบเดิม (ข้อความสั้น ไม่มีกล่องขั้นตอน ไม่มีเวลาหมด ไม่ขอสิทธิ์โฟลเดอร์) (v1.341)
      SN_OFF.sxlScanAll=1  ไฟล์กลาง: ก่อนเขียนอ่าน _changes ทุกกลุ่มแบบเดิม (ไม่อ่านเฉพาะกลุ่มที่จะเขียน) (v1.342)
      SN_OFF.sxlPollBackoff=1 ไฟล์กลาง: รอบตรวจไฟล์ทุก 10 วิเสมอ ไม่เว้นตามเวลาที่รอบก่อนใช้ (v1.342)
-     SN_OFF.kvIdb=1       ค่าที่ใหญ่เกิน localStorage ไม่ย้ายไป IndexedDB (จำในหน่วยความจำรอบนี้อย่างเดียว) (v1.343) */
+     SN_OFF.kvIdb=1       ค่าที่ใหญ่เกิน localStorage ไม่ย้ายไป IndexedDB (จำในหน่วยความจำรอบนี้อย่างเดียว) (v1.343)
+     SN_OFF.shareBaseSync=1 ไม่ตั้งที่อยู่ลิงก์กลาง (shareBase) ตามเว็บ GitHub ให้เอง (v1.344)
+     SN_OFF.sendBg=1      ส่งเข้าไฟล์กลาง: ทำทุกขั้นในกล่องรอ (ไม่ย้ายดัชนีชิ้น/รหัสอุปกรณ์/shareBase ไปทำเบื้องหลัง) (v1.346)
+     SN_OFF.ghBg=1        ลิงก์ตู้: รอส่งขึ้น GitHub เสร็จก่อนค่อยเขียนข้อมูล (ไม่ส่งต่อเบื้องหลัง) (v1.346)
+     SN_OFF.sxlPrefetch=1 ไฟล์กลาง: ไม่ไล่รายชื่อไฟล์ล่วงหน้า ทุกการเขียนไล่เอง (v1.346)
+     SN_OFF.sxlFastPI=1   ดัชนีชิ้น part_index: ลบแล้วเพิ่มแบบเดิม (ไม่แทนทั้งกลุ่มในการเขียนครั้งเดียว) (v1.346)
+     SN_OFF.cabListAll=1  รายชื่อตู้ในคลังกลับไปดึงแค่ 300 ตู้ที่แก้ล่าสุดแบบเดิม (v1.347)
+     SN_OFF.sxlFastUp=1   ไฟล์กลาง: บันทึกแบบทับทั้งแถว (ตู้ · ออเดอร์ · ค่าตั้ง · อุปกรณ์ 3D) ไล่รายชื่อไฟล์ก่อนเขียนแบบเดิม · ☁ เก็บ Variables อ่านสดก่อนเทียบ (v1.348)
+     SN_OFF.sxlPollFree=1 ไฟล์กลาง: รอบตรวจไฟล์ทุก 10 วิ ไล่รายชื่อไฟล์ในคิวแบบเดิม (ถือคิวทั้งรอบ) (v1.348)
+     SN_OFF.reliefPanel=1 ลายหน้าบาน 3D เฉพาะบานในตู้แบบเดิม (แผ่นหน้าเดี่ยวที่ผูก FrontShapeP# ไม่ได้ลาย) (v1.349) */
 window.SN_SAFE=window.SN_SAFE||0;
 window.SN_OFF=window.SN_OFF||{};
 function snOff(k){ return !!(window.SN_SAFE||window.SN_OFF[k]); }
@@ -26812,7 +26836,22 @@ async function cabLibSync(){
 /* v1.036: หน้าตัดถูกเก็บในตารางเดียวกับตู้ พอบันทึกหน้าตัดทีก็โผล่ในรายการตู้ทุกครั้ง
    ดูเหมือนมีตู้ใหม่เข้ามาเรื่อย ๆ ทั้งที่ไม่ใช่ตู้ และดันตู้จริงหลุดออกไปนอกจอ
    กันออกที่ต้นทางเหมือน FIT3D กับ ORD ที่กันไว้อยู่แล้ว */
-async function cloudListCabs(){ const db=await getDB(); const {data,error}=await db.from("furnitech_cabinets").select("id,name,part_count,updated_at").not("id","like","FIT3D::%").not("id","like","ORD::%").not("id","like","SECT::%").not("id","like","MOD::%").order("updated_at",{ascending:false}).limit(300); if(error)throw error; return data||[]; }
+/* ───────── v1.347: รายชื่อตู้ในคลังดึงมาครบทุกตู้ (เดิมตัดที่ 300 ตู้ที่แก้ล่าสุด) ─────────
+   ผู้ใช้หา BNF001 / TNF001 ในหน้า "เปิดงาน" ไม่เจอ ทั้งที่ตู้ยังอยู่ในไฟล์กลาง
+   เดิม .order(updated_at ใหม่→เก่า).limit(300) แล้วช่องค้นหากรองอยู่ใน 300 ตัวนั้นเท่านั้น
+   คลังมีตู้เกิน 300 → ตู้ที่ไม่ได้แก้นาน (รหัส 001 ที่ทำไว้แรก ๆ) หลุดรายการเงียบ ๆ
+   ทั้งหน้าเปิดงาน · หน้าต่างตู้ · แคตตาล็อก/ห้องออกแบบ · เปลี่ยนรุ่นตู้ · ใส่ตู้ซ้อน (v1.242 เจอเรื่องนี้แล้ว แต่แก้เฉพาะหน้าตรวจ XML)
+   ตอนนี้ดึงเป็นหน้า หน้าละ 1000 จนครบ (ไฟล์กลางอยู่ในหน่วยความจำ เร็วอยู่แล้ว · Supabase ก็ไม่ชนเพดาน 1000 แถวต่อครั้ง) สูงสุด 20000
+   เรียงรอง id ด้วย ไม่ให้แถวที่เวลาเท่ากันซ้ำ/หล่นระหว่างหน้า · ปิดได้ SN_OFF.cabListAll (กลับไปตัด 300 แบบเดิม) */
+async function cloudListCabs(){ const db=await getDB();
+  const q=()=>db.from("furnitech_cabinets").select("id,name,part_count,updated_at").not("id","like","FIT3D::%").not("id","like","ORD::%").not("id","like","SECT::%").not("id","like","MOD::%").order("updated_at",{ascending:false});
+  if(snOff("cabListAll")){ const {data,error}=await q().limit(300); if(error)throw error; return data||[]; }
+  const PG=1000, out=[], seen=new Set();
+  for(let from=0; from<20000; from+=PG){
+    const {data,error}=await q().order("id",{ascending:true}).range(from,from+PG-1); if(error) throw error;
+    const d=data||[]; d.forEach(r=>{ const k=String((r&&r.id)||""); if(k&&seen.has(k)) return; seen.add(k); out.push(r); });
+    if(d.length<PG) break; }
+  return out; }
 /* ───────── v1.036: อ่านรหัสตู้ออกมาเป็นคำอธิบาย ─────────
    รหัสตู้ของงานนี้มีรูปแบบตายตัวอยู่แล้ว ตัวแรกบอกชนิดตู้ ตัวถัดมาบอกกลุ่ม ตัวที่สามบอกหน้าบาน
    พอรหัสสะสมถึงหลักร้อย การไล่อ่านว่า BNL078 กับ BND215 ต่างกันยังไงต้องเปิดดูทีละใบ
@@ -34682,13 +34721,19 @@ async function renderLoader(){
   const cl=$("ldCloud");
   try{ const list=await cloudListCabs();
     if(!list.length){ cl.innerHTML='<div class="empty">คลาวด์ยังไม่มีตู้ที่บันทึก</div>'; return; }
+    /* v1.347: รายการได้ครบทุกตู้แล้ว (เดิม 300) — หัวบอกจำนวนทั้งคลัง · ค้นทั้งรหัสและชื่อ
+       ไม่พิมพ์ค้นหา วาด 400 ตู้ที่แก้ล่าสุดก่อน (คลังเป็นพัน วาดทุกแถวหน้าต่างเปิดช้า) แล้วบอกว่ายังมีอีกเท่าไหร่ */
+    { const hd=cl.previousElementSibling&&cl.previousElementSibling.querySelector("span"); if(hd) hd.textContent="🗄 เปิดตู้เดี่ยวจากคลาวด์ · "+list.length+" ตู้"; }
+    const SHOW=400;
     const draw=(q)=>{ const f=(q||"").trim().toLowerCase();
-      const fl=f?list.filter(r=>String(r.name||r.id||"").toLowerCase().includes(f)):list;
-      cl.innerHTML=""; if(!fl.length){ cl.innerHTML='<div class="empty">ไม่พบรหัสตู้ "'+escapeHtml(q)+'"</div>'; return; }
-      fl.forEach(rec=>cl.appendChild(cabRow(rec,
+      const fl=f?list.filter(r=>(String(r.id||"")+" "+String(r.name||"")).toLowerCase().includes(f)):list;
+      cl.innerHTML=""; if(!fl.length){ cl.innerHTML='<div class="empty">ไม่พบรหัสตู้ "'+escapeHtml(q)+'" (ค้นทั้งคลัง '+list.length+' ตู้แล้ว)</div>'; return; }
+      fl.slice(0,SHOW).forEach(rec=>cl.appendChild(cabRow(rec,
         async id=>{await cloudLoadCab(id,false);closeLoader();},
         async id=>{await cloudLoadCab(id,true);closeLoader();},
-        async id=>{try{await cloudDeleteCab(id);renderLoader();}catch(e){toast(sbErr(e));}}))); };
+        async id=>{try{await cloudDeleteCab(id);renderLoader();}catch(e){toast(sbErr(e));}})));
+      if(fl.length>SHOW){ const more=document.createElement("div"); more.className="empty";
+        more.textContent="แสดง "+SHOW+" ตู้ที่แก้ล่าสุด จาก "+fl.length+" ตู้ — พิมพ์รหัสในช่องค้นหาเพื่อหาตู้ที่เหลือ (เช่น BNF001)"; cl.appendChild(more); } };
     draw("");
     const se=$("ldCloudSearch"); if(se){ se.oninput=()=>draw(se.value); se.focus(); }
   }catch(e){ cl.innerHTML='<div class="empty">อ่านแหล่งข้อมูลไม่ได้: '+escapeHtml(sbErr(e))+'<br>(ต้องรันไฟล์แบบ local และมีอินเทอร์เน็ต)</div>'; }
@@ -37234,6 +37279,9 @@ function snvMeta(){
     let L={}; try{ L=effLinks(b)||{}; }catch(e){}
     const rs=x=>{ if(!x) return ""; try{ const r=resolveLink(x,b); return (r&&!/^\$/.test(String(r))&&!/^no[_\s]?edge$/i.test(String(r)))?String(r):""; }catch(e){ return ""; } };
     const o={n:String(b.name||""), ci:String(b.cabInst||""), d:[r1(b.L),r1(b.W),r1(b.T)]};
+    /* v1.346: กรอบของชิ้นสำหรับปุ่มวัดในหน้าดู (แตะชิ้น → เส้นบอกขนาด DIM) — จุดกลาง + ทิศแกนยาว/กว้าง/หนา แบบเดียวกับที่โปรแกรมวาดชิ้น */
+    try{ const M=orientMatrix(b.orient,b.yaw), a=[[1,0,0],[0,1,0],[0,0,1]].map(v=>new THREE.Vector3(v[0],v[1],v[2]).transformDirection(M));
+      o.x=[r1(b.x),r1(b.y),r1(b.z)]; o.ax=[].concat(...a.map(v=>[r4(v.x),r4(v.y),r4(v.z)])); }catch(e){}
     if(b._virtual){ o.v=1; const f=b._fit||b._pull||b._d33Part||b._bpcPart||""; if(f) o.f=String(f); }
     else { o.m=rs(L.mat); o.st=rs(L.surfT); o.sb=rs(L.surfB); const e=(L.edges||[]).map(rs); if(e.some(Boolean)) o.e=e;
       if(pm[b.id]) o.pid=pm[b.id].map(x=>"P"+x).join(","); if(b.part) o.pt=String(b.part); }
@@ -37244,9 +37292,11 @@ function snvMeta(){
 async function snvBuild(opt){
   opt=opt||{};
   if(noGL||!renderer) throw new Error("เครื่องนี้แสดง 3D ไม่ได้ จึงอบภาพ 3D ไม่ได้");
-  const keep={eco:state.eco,ghost:state.ghost,doorOpen:state.doorOpen,doorPick:state.doorPick,doorProg:state.doorProg,explode:state.explode,hidden:state.hidden,view:state.view,sel:state.selectedId};
+  const keep={eco:state.eco,ghost:state.ghost,doorOpen:state.doorOpen,doorPick:state.doorPick,doorProg:state.doorProg,explode:state.explode,hidden:state.hidden,view:state.view,sel:state.selectedId,grain:state.showGrain};
   try{
     state.eco=false; state.ghost=false; state.doorOpen=0; state.doorPick=[]; state.doorProg={}; state.explode=0; state.hidden=[]; state.view="assembled"; state.selectedId=null;
+    /* v1.346: เส้นแนวลายไม้ (ปุ่ม "ลายไม้") เป็นเส้นช่วยดูทิศลายของโปรแกรม ไม่ใช่ลายจริงของผิว — คนเปิดลิงก์เห็นแล้วงง ไม่อบติดไป */
+    state.showGrain=false;
     render3D(false);
     for(let i=0;i<60;i++){ const busy=Object.keys(_texImgC||{}).some(k=>_texImgC[k]&&_texImgC[k].st==="loading"); if(!busy) break; await new Promise(r=>setTimeout(r,150)); }
     try{ _skinTexC={}; _skinMatC={}; }catch(e){}
@@ -37262,7 +37312,7 @@ async function snvBuild(opt){
       geo:sc.geo, mat:sc.mat, tex:sc.tex, obj:sc.obj}, meta);
     return {D, files:sc.files, preview:prev};
   } finally {
-    Object.assign(state,{eco:keep.eco,ghost:keep.ghost,doorOpen:keep.doorOpen,doorPick:keep.doorPick,doorProg:keep.doorProg,explode:keep.explode,hidden:keep.hidden,view:keep.view,selectedId:keep.sel});
+    Object.assign(state,{eco:keep.eco,ghost:keep.ghost,doorOpen:keep.doorOpen,doorPick:keep.doorPick,doorProg:keep.doorProg,explode:keep.explode,hidden:keep.hidden,view:keep.view,selectedId:keep.sel,showGrain:keep.grain});
     try{ render3D(false); }catch(e){} } }
 /* ═════════ v1.340: ลิงก์ดูบน GitHub เดิม (starmark-warranty.github.io/StarNexus) ไม่พึ่ง Supabase ═════════
    ของเดิม: ลิงก์ ?view=<รหัส>&p=P28 = โปรแกรมเต็มบน GitHub Pages ไปอ่านสแนปช็อตจากตาราง furnitech_share บน Supabase
@@ -37376,9 +37426,18 @@ async function ghCommit(c,T,files,copies,msg,onStep){
   return {changed:entries.length,sha:nc.sha,paths:entries.map(e=>e.path)}; }
 /* ทดสอบ + ตรวจสภาพ repo: สิทธิ์เขียน · branch · มี view.html / legacy.html ไหม · index.html เป็นรุ่นไหน */
 async function ghCheck(c,deep){
-  const info=await ghApi(c,"GET","");
+  /* v1.344: 404 แยกบอกว่า repo ไม่มี หรือ branch ไม่มี — เดิมรวมเป็นประโยคเดียว ผู้ใช้ไม่รู้ว่าต้องแก้ช่องไหน */
+  let info;
+  try{ info=await ghApi(c,"GET",""); }
+  catch(e){ if(e&&e.status===404){ const er=new Error("ไม่พบ repo "+c.owner+"/"+c.repo+" (404) — ชื่อ repo ต้องตรงกับคำหลัง github.io/ ในที่อยู่เว็บ เช่น starmark-warranty.github.io/StarNexus/ → repo = StarNexus"
+      +" · ถ้าชื่อถูกแล้ว แปลว่า Token ไม่ได้ให้สิทธิ์ repo นี้"); er.status=404; throw er; } throw e; }
   const out={full:info.full_name, branch:c.branch||info.default_branch, canPush:!!(info.permissions&&info.permissions.push), priv:!!info.private};
-  const T=await ghTree(Object.assign({},c,{branch:out.branch}));
+  /* v1.345: ชื่อจริงของ repo (repo ที่เคยเปลี่ยนชื่อ API ยังตอบผ่านชื่อเก่า แต่เว็บไม่ตอบ) — ผู้เรียกเอาไปเก็บแทนชื่อที่กรอก */
+  { const cn=ghCanonOf(c,info); out.owner=cn.owner; out.repo=cn.repo; out.renamed=cn.renamed; out.baseStale=cn.baseStale; }
+  let T;
+  try{ T=await ghTree(Object.assign({},c,{branch:out.branch})); }
+  catch(e){ if(e&&e.status===404&&c.branch&&c.branch!==info.default_branch){
+      const er=new Error("ไม่พบ branch “"+c.branch+"” ใน "+info.full_name+" — ช่อง branch เว้นว่างได้ ระบบใช้ "+info.default_branch+" ให้เอง"); er.status=404; throw er; } throw e; }
   out.hasView=!!T.have["view.html"]; out.hasLegacy=!!T.have["legacy.html"]; out.hasIndex=!!T.have["index.html"];
   out.nShare=Object.keys(T.have).filter(p=>/^v\/[^/]+\.bin$/.test(p)).length;
   { const w=await ghWriteProbe(Object.assign({},c,{branch:out.branch})); out.canWrite=w.ok; out.writeErr=w.err||""; }   // v1.341: สิทธิ์เขียนของ Token จริง
@@ -37386,9 +37445,35 @@ async function ghCheck(c,deep){
       out.indexRedirect=/id="snvViewRedirect"/.test(tx); out.indexOld=!/sxlocaltrial/.test(tx);
       out.indexVer=((tx.match(/version:"([^"]+)"/)||[])[1])||""; }catch(e){ out.indexErr=e.message; } }
   return out; }
+/* ───────── v1.345: ลิงก์เป็น …github.io/Furnitech/ ทั้งที่ไฟล์อยู่ใน repo StarNexus ─────────
+   repo นี้เคยชื่อ Furnitech แล้วเปลี่ยนเป็น StarNexus · หน้าตั้งค่า (v1.340–1.343) เดาชื่อ repo จาก shareBase เดิม ได้ "Furnitech"
+   GitHub API ยังรับชื่อเก่า (พาไป repo ใหม่ให้เอง) ทดสอบผ่าน ส่งไฟล์ขึ้น StarNexus ได้จริงทุกครั้ง จึงไม่มีอะไรฟ้อง
+   แต่ที่อยู่ลิงก์คิดจากชื่อที่เก็บไว้ → …/Furnitech/?view=… ซึ่ง GitHub Pages ไม่พาต่อ = 404 (ผู้ใช้แก้คำเป็น StarNexus เองแล้วเปิดได้)
+   ตอนนี้: ถาม GitHub ว่าชื่อจริงคืออะไร (full_name) แล้วเก็บชื่อนั้นแทน · ที่อยู่เว็บที่กรอกไว้ถ้าชี้ชื่อเก่าก็ล้างทิ้ง ใช้ที่คิดจากชื่อจริง
+   ตั้งค่าเดิมที่เก็บไว้ในเครื่อง ซ่อมให้เองครั้งแรกที่สร้างลิงก์ (ghHeal) */
+function ghCanonOf(c,info){
+  const fn=String((info&&info.full_name)||""), m=/^([^\/]+)\/([^\/]+)$/.exec(fn);
+  const out={owner:c.owner, repo:c.repo, renamed:false, baseStale:false};
+  if(!m) return out;
+  if(m[2]!==String(c.repo||"")||m[1].toLowerCase()!==String(c.owner||"").toLowerCase()){ out.renamed=(m[2].toLowerCase()!==String(c.repo||"").toLowerCase()); out.owner=m[1]; out.repo=m[2]; }
+  const bm=/^https?:\/\/([^.\/]+)\.github\.io\/([^\/?#]+)/i.exec(String(c.base||""));
+  if(bm&&(bm[2].toLowerCase()!==m[2].toLowerCase()||bm[1].toLowerCase()!==m[1].toLowerCase())) out.baseStale=true;
+  return out; }
+async function ghHeal(){
+  const c=await ghCfg(); if(!ghReadyC(c)||c.canonOk) return c;
+  try{ const info=await ghApi(c,"GET",""), cn=ghCanonOf(c,info), was=c.owner+"/"+c.repo+(c.base?(" · "+c.base):"");
+    c.owner=cn.owner; c.repo=cn.repo; if(cn.baseStale) c.base=""; c.canonOk=1; await ghSave(c);
+    if(cn.renamed||cn.baseStale) toast("แก้ที่อยู่ GitHub เป็น "+ghPagesBase(c)+" แล้ว (ที่เก็บไว้ "+was+" เป็นชื่อเก่าของ repo ลิงก์จะเปิดไม่ได้)");
+  }catch(e){ console.warn("ghHeal:",e); }
+  return c; }
 /* อบภาพแล้วส่งขึ้น repo · cabs=true = ทำไฟล์ชี้ของตู้ทุกใบด้วย (สำหรับสติกเกอร์) */
-async function ghPublish(opt){
-  opt=opt||{}; const c=await ghCfg(); if(!ghReadyC(c)) throw new Error("ยังไม่ได้ตั้งค่า GitHub (owner / repo / Token)");
+/* ───────── v1.346: แยก "อบ + เตรียมไฟล์" (ghPrepare) ออกจาก "ส่งขึ้น GitHub" (ghUpload) ─────────
+   ตอนกดส่งเข้าไฟล์กลาง ขั้นลิงก์ตู้กินเวลา ~47 วิ ส่วนใหญ่คือรอเน็ตส่งไฟล์ขึ้น GitHub ทั้งที่รหัสลิงก์รู้ตั้งแต่อบเสร็จแล้ว
+   ตอนนี้ตัวส่ง (ghPushCabShares bg) อบภาพ → ได้รหัส → ใส่ลิงก์ลงข้อมูลเลย แล้วส่งขึ้น GitHub ต่อเบื้องหลัง
+   การส่งขึ้น GitHub เข้าคิวทีละงาน (ghUploadQ) — สองออเดอร์ส่งติดกันจะไม่ชนกันตอนขยับ branch
+   ghPublish (ปุ่มแชร์ · ตั้งค่า) = ghPrepare แล้ว ghUpload ต่อกันเหมือนเดิมทุกอย่าง */
+async function ghPrepare(opt){
+  opt=opt||{}; const c=await ghHeal(); if(!ghReadyC(c)) throw new Error("ยังไม่ได้ตั้งค่า GitHub (owner / repo / Token)");   // v1.345: ghCfg → ghHeal
   const step=opt.onStep||(()=>{});
   /* v1.341: ตรวจสิทธิ์เขียนก่อนอบภาพ — Token เขียนไม่ได้จะรู้ในวินาทีแรก ไม่ต้องรออบ 3D จนเสร็จแล้วค่อยพัง */
   step("ตรวจสิทธิ์ GitHub…",.05);
@@ -37406,12 +37491,24 @@ async function ghPublish(opt){
   const cabSids={};
   if(opt.cabs){ (r.D.cabs||[]).forEach(cb=>{ const sid=(opt.cabSids&&opt.cabSids[cb.n])||shareId(); cabSids[cb.n]=sid;
     files.push({path:"v/"+sid+".bin",data:JSON.stringify({alias:oid,c:cb.n,t:String(opt.title||""),at:r.D.at})}); }); }
+  return {c:Object.assign({},c), oid, cabSids, files, base:ghPagesBase(c), gzLen:gz.length, tBake:_tBake, t0:_t0,
+    msg:"StarNexus: ลิงก์ดู "+(r.D.ord||opt.title||oid)+" · "+(r.D.cabs||[]).length+" ตู้"+(opt.cabs?" (+ลิงก์ตู้)":"")}; }
+async function ghUpload(P,onStep){
+  const step=onStep||(()=>{}), t1=Date.now();
   step("เชื่อม GitHub…",.4);
-  const T=await ghTree(c);
-  const res=await ghCommit(c,T,files,null,"StarNexus: ลิงก์ดู "+(r.D.ord||opt.title||oid)+" · "+(r.D.cabs||[]).length+" ตู้"+(opt.cabs?" (+ลิงก์ตู้)":""),(m,p)=>step(m,.4+.55*p));
-  const base=ghPagesBase(c);
-  const _s=ms=>(ms/1000).toFixed(1)+" วิ", tm="อบ 3D "+_s(_tBake)+" · GitHub "+_s(Date.now()-_t0-_tBake)+" ("+res.changed+" ไฟล์ · "+Math.round(gz.length/1024)+" KB)";
-  return {oid, cabSids, base, link:base+"?view="+oid, link2:base+"view.html?view="+oid, kb:Math.round(gz.length/1024), changed:res.changed, sha:res.sha, rootOk:!!c.rootOk, tm}; }
+  let res;
+  for(let k=0;;k++){                                               // v1.346: branch ขยับระหว่างทาง (409/422) = อ่าน tree ใหม่แล้วลองอีกครั้ง
+    try{ const T=await ghTree(P.c); res=await ghCommit(P.c,T,P.files,null,P.msg,(m,p)=>step(m,.4+.55*p)); break; }
+    catch(e){ if(k<1&&e&&(e.status===409||e.status===422)){ await new Promise(r=>setTimeout(r,800)); continue; } throw e; } }
+  const base=P.base, _s=ms=>(ms/1000).toFixed(1)+" วิ";
+  const tm="อบ 3D "+_s(P.tBake)+" · GitHub "+_s(Date.now()-t1)+" ("+res.changed+" ไฟล์ · "+Math.round(P.gzLen/1024)+" KB)";
+  return {oid:P.oid, cabSids:P.cabSids, base, link:base+"?view="+P.oid, link2:base+"view.html?view="+P.oid, kb:Math.round(P.gzLen/1024), changed:res.changed, sha:res.sha, rootOk:!!P.c.rootOk, tm}; }
+let _ghUpQ=Promise.resolve(), _ghUpN=0;
+function ghUploadQ(P){ _ghUpN++; const run=_ghUpQ.then(()=>ghUpload(P)); _ghUpQ=run.catch(()=>{}); run.then(()=>{ _ghUpN--; },()=>{ _ghUpN--; }); return run; }
+/* v1.346: อบ + ส่งต่อกันในคำสั่งเดียว (ปุ่มแชร์ · ตั้งค่า) */
+async function ghPublish(opt){
+  opt=opt||{}; const P=await ghPrepare(opt);
+  return ghUpload(P,opt.onStep); }
 /* รอให้ GitHub Pages สร้างเว็บเสร็จ — ถามไฟล์ของลิงก์ตรง ๆ ทุก 6 วิ สูงสุด ~4 นาที */
 async function ghWaitLive(base,oid,onTick){
   const url=base+"v/"+oid+".bin", t0=Date.now();
@@ -37432,6 +37529,7 @@ async function ghSetup(progFile,onStep){
   if(!ck.canPush) throw new Error("Token นี้อ่านได้แต่เขียน repo "+ck.full+" ไม่ได้ — ตั้ง Contents: Read and write");
   if(!ck.canWrite) throw new Error(ck.writeErr||("Token นี้เขียน repo "+ck.full+" ไม่ได้"));   // v1.341: หยุดก่อนส่งไฟล์ บอกเหตุที่แท้จริง
   c.branch=ck.branch;
+  c.owner=ck.owner||c.owner; c.repo=ck.repo||c.repo; if(ck.baseStale) c.base=""; c.canonOk=1;   // v1.345: ชื่อจริงของ repo
   const T=await ghTree(c), files=[{path:"view.html",data:snvHtml("StarNexus",null,null)}], copies=[];
   let legacy=false;
   if(ck.hasIndex&&ck.indexOld&&!ck.hasLegacy){ copies.push({path:"legacy.html",from:"index.html"}); legacy=true; }
@@ -37447,17 +37545,46 @@ async function ghSetup(progFile,onStep){
 /* ───────── v1.341: เรียกจากปุ่มส่งเข้าไฟล์กลาง = ใช้กล่องรอของการส่ง (opt.bz) ไม่เปิดกล่องซ้อน ─────────
    เดิมเปิดกล่องของตัวเอง พังแล้วค้างกล่อง "ไม่สำเร็จ" ทับกล่องส่ง แล้วการส่งยังเดินต่อข้างหลัง ดูสับสนว่าส่งได้หรือไม่ได้
    และลิงก์ชุดเดิมที่เป็นลิงก์ไฟล์กลาง (สร้างตอน GitHub ยังใช้ไม่ได้) ต้องไม่ถูกนับว่า "ใช้ของเดิมได้" — ต้องขึ้นต้นด้วยเว็บ GitHub */
+let _ghPend=null;   // v1.346: ชุดลิงก์ที่อบแล้วกำลังส่งขึ้น GitHub เบื้องหลัง {sig,oid,cabSids,base,p}
 async function ghPushCabShares(days,force,opt){
   const gs=orderGroups().filter(g=>g&&g.boards&&g.boards.length);
   if(!gs.length){ CAB_LINK={}; CAB_SIG={}; CAB_SID={}; ORDER_SID=""; ORDER_SIG=""; return {n:0,made:0,kept:0,order:""}; }
   const pm=orderPartIdMap(), sigOf=pl=>String(idHash(JSON.stringify(pl)));
   const cabSg={}; gs.forEach(g=>{ cabSg[g.productId]=sigOf(cabSharePayload(g,pm)); });
   const ordSg=sigOf(sharePayload(pm));
-  const ghBase=ghPagesBase(await ghCfg());
-  if(!force&&ORDER_SID&&ORDER_SIG===ordSg&&gs.every(g=>CAB_LINK[g.productId]&&CAB_SID[g.productId]&&String(CAB_LINK[g.productId]).indexOf(ghBase)===0))
-    return {n:gs.length,made:0,kept:gs.length,order:ORDER_SID,github:true};
+  const ghBase=ghPagesBase(await ghHeal());                         // v1.345: ซ่อมชื่อ repo เก่า (Furnitech) ก่อนคิดที่อยู่ลิงก์
+  if(!force&&ORDER_SID&&ORDER_SIG===ordSg&&gs.every(g=>CAB_LINK[g.productId]&&CAB_SID[g.productId])){
+    if(gs.every(g=>String(CAB_LINK[g.productId]).indexOf(ghBase)===0))
+      return {n:gs.length,made:0,kept:gs.length,order:ORDER_SID,github:true,base:ghBase};
+    /* v1.345: ลิงก์ชุดเดิมขึ้น GitHub แล้ว (ไฟล์อยู่ใน repo จริง) แค่ที่อยู่ผิด (…/Furnitech/) = เปลี่ยนที่อยู่ รหัสเดิม ไม่ต้องอบ/อัปใหม่ */
+    if(gs.every(g=>/^https:\/\/[^\/]+\.github\.io\//i.test(String(CAB_LINK[g.productId])))){
+      gs.forEach(g=>{ CAB_LINK[g.productId]=ghBase+"?view="+CAB_SID[g.productId]; });
+      return {n:gs.length,made:0,kept:gs.length,order:ORDER_SID,github:true,base:ghBase,rebased:true}; } }
   const own=!(opt&&opt.bz), bz=own?busyOpen("ส่งลิงก์ตู้ขึ้น GitHub"):opt.bz;
   const b0=own?0:(+opt.base||0), sp=own?100:(+opt.span||100);
+  /* ───────── v1.346: bg = อบเสร็จได้รหัสลิงก์ = ใส่ลงข้อมูลเลย ส่งขึ้น GitHub ต่อเบื้องหลัง (pending) ─────────
+     ลิงก์ชุดนี้นับว่า "ใช้ซ้ำได้" (ORDER_SIG) ก็ต่อเมื่อส่งขึ้นสำเร็จแล้วเท่านั้น · ส่งไม่ขึ้น = ส่งออเดอร์ใหม่ได้รหัสใหม่
+     กดส่งออเดอร์เดิมซ้ำระหว่างที่ชุดก่อนยังส่งไม่เสร็จ = ใช้ชุดเดิม ไม่อบ/ส่งซ้ำ · ปิดได้ SN_OFF.ghBg */
+  if(opt&&opt.bg&&!snOff("ghBg")){
+    if(!force&&_ghPend&&_ghPend.sig===ordSg&&_ghPend.base===ghBase&&gs.every(g=>_ghPend.cabSids[g.productId])){
+      const P0=_ghPend; CAB_LINK={}; CAB_SIG={}; CAB_SID={};
+      gs.forEach(g=>{ const pid=g.productId, sid=P0.cabSids[pid]; CAB_SID[pid]=sid; CAB_LINK[pid]=P0.base+"?view="+sid; CAB_SIG[pid]=cabSg[pid]; });
+      ORDER_SID=P0.oid;
+      return {n:gs.length,made:0,kept:gs.length,order:P0.oid,github:true,base:P0.base,pending:P0.p}; }
+    const P=await ghPrepare({title:String(orderId()||"StarNexus"),cabs:true,onStep:(m,p)=>bz.step(own?m:("ลิงก์ตู้ (GitHub): "+m),Math.round(b0+Math.min(p,.4)*sp/.4))});
+    if(own) bz.done();
+    CAB_LINK={}; CAB_SIG={}; CAB_SID={};
+    gs.forEach(g=>{ const pid=g.productId, sid=P.cabSids[pid]; if(!sid) return;
+      CAB_SID[pid]=sid; CAB_LINK[pid]=P.base+"?view="+sid; CAB_SIG[pid]=cabSg[pid]; });
+    ORDER_SID=P.oid; ORDER_SIG="";
+    const pend={sig:ordSg, oid:P.oid, cabSids:P.cabSids, base:P.base};
+    pend.p=ghUploadQ(P).then(U=>{ if(ORDER_SID===P.oid) ORDER_SIG=ordSg; if(_ghPend===pend) _ghPend=null;
+        if(!U.rootOk) toast("⚠ index.html บน GitHub ยังเป็นโปรแกรมรุ่นเก่า — ลิงก์ ?view= จะเปิดไม่ขึ้นจนกว่าจะอัปโปรแกรมตัวนี้ขึ้นเป็น index.html (ปุ่มแชร์ → GitHub → ตั้งค่าครั้งแรก)");
+        return U; },
+      e=>{ if(_ghPend===pend) _ghPend=null; if(ORDER_SID===P.oid) ORDER_SIG=""; throw e; });
+    pend.p.catch(()=>{});
+    _ghPend=pend;
+    return {n:gs.length,made:gs.length,kept:0,order:P.oid,github:true,base:P.base,pending:pend.p,tBake:P.tBake}; }
   try{
     const r=await ghPublish({title:String(orderId()||"StarNexus"),cabs:true,onStep:(m,p)=>bz.step(own?m:("ลิงก์ตู้ (GitHub): "+m),Math.round(b0+p*sp))});
     if(own) bz.done();
@@ -37466,8 +37593,36 @@ async function ghPushCabShares(days,force,opt){
       CAB_SID[pid]=sid; CAB_LINK[pid]=r.base+"?view="+sid; CAB_SIG[pid]=cabSg[pid]; });
     ORDER_SID=r.oid; ORDER_SIG=ordSg;
     if(!r.rootOk) toast("⚠ index.html บน GitHub ยังเป็นโปรแกรมรุ่นเก่า — ลิงก์ ?view= จะเปิดไม่ขึ้นจนกว่าจะอัปโปรแกรมตัวนี้ขึ้นเป็น index.html (ปุ่มแชร์ → GitHub → ตั้งค่าครั้งแรก)");
-    return {n:gs.length,made:gs.length,kept:0,order:r.oid,github:true,tm:r.tm};
+    return {n:gs.length,made:gs.length,kept:0,order:r.oid,github:true,tm:r.tm,base:r.base};
   }catch(e){ if(own) bz.finish(false,"ส่งลิงก์ตู้ขึ้น GitHub ไม่สำเร็จ",ghErrHtml(e)); throw e; } }
+/* ───────── v1.344: ที่อยู่ลิงก์กลาง (settings.shareBase) ให้ตรงกับเว็บ GitHub ที่เก็บลิงก์จริง ─────────
+   ค่าตั้งกลาง (app_settings · furnitech_settings) ยังเก็บ shareBase = https://starmark-warranty.github.io/Furnitech/ (ชื่อเดิม เปิดแล้ว 404)
+   Production ประกอบลิงก์ Assembly เองจาก share_id + ที่อยู่นี้ → ลิงก์ …/Furnitech/?view=<รหัส>&p=P25 เปิดไม่ขึ้น
+   ทั้งที่ไฟล์ของรหัสนั้นอยู่บน …/StarNexus/ ครบ (ผู้ใช้แก้คำเป็น StarNexus เองแล้วเปิดได้)
+   ตอนนี้: สร้างลิงก์ผ่าน GitHub สำเร็จ = ตั้ง shareBase เป็นที่อยู่เว็บ GitHub ทั้งในเครื่องและในไฟล์กลาง
+     ในไฟล์กลาง อ่านรุ่นล่าสุดก่อน แล้วแก้แค่ช่อง shareBase ช่องเดียว (ไม่เอาค่าตั้งทั้งก้อนของเครื่องนี้ไปทับของเครื่องอื่นที่เพิ่งเก็บ)
+     ทำครั้งเดียวต่อรอบที่เปิดโปรแกรม · ตรงอยู่แล้ว = ไม่เขียนอะไร · ปิดได้ SN_OFF.shareBaseSync */
+let _sbSynced="";
+async function ghSyncShareBase(base){
+  const nb=String(base||"").trim();
+  if(snOff("shareBaseSync")||!/^https:\/\/[^\/]+\.github\.io\//i.test(nb)) return {skip:1};
+  if(_sbSynced===nb) return {skip:1,same:1};
+  const norm=x=>String(x||"").trim().replace(/[?#].*$/,"").replace(/\/*$/,"/").toLowerCase();
+  const res={from:String(settings.shareBase||""),to:nb,local:false,cloud:false};
+  if(norm(settings.shareBase)!==norm(nb)){ settings.shareBase=nb; try{ await lsSet("sxlocaltrial:furnitech:settings",settings); }catch(e){} res.local=true; }
+  try{ const db=await getDB();
+    if(typeof SXL!=="undefined"&&SXL&&SXL.cfg&&SXL.dir&&typeof sxlLocked==="function"){          // อ่านรุ่นล่าสุดจากดิสก์ก่อน (อีกเครื่องอาจเพิ่งเก็บ)
+      const T=sxlCfg("app_settings"), S=SXL.s&&SXL.s.app_settings;
+      if(T&&S&&S.ready){ const o={}; o[T.key]="furnitech_settings"; await sxlLocked(()=>sxlScanOver(T,S,new Set([sxlBf(sxlBucketOf(T,o))]))); } }
+    const {data:cur,error:e0}=await db.from("app_settings").select("value").eq("key","furnitech_settings").maybeSingle(); if(e0) throw e0;
+    const v=_sbVal(cur&&cur.value);
+    if(v&&typeof v==="object"){ if(v.shareBase) res.from=String(v.shareBase);
+      if(norm(v.shareBase)!==norm(nb)){ v.shareBase=nb;
+        const {error}=await db.from("app_settings").upsert({key:"furnitech_settings",value:JSON.stringify(v)},{onConflict:"key"}); if(error) throw error;
+        res.cloud=true; } }
+    _sbSynced=nb;
+  }catch(e){ res.err=sbErr(e); console.warn("ghSyncShareBase:",e); }
+  return res; }
 function snvTpl(id){ const el=document.getElementById(id); return el?String(el.textContent||""):""; }
 function snvThreeSrc(){ const s=[...document.scripts].find(x=>x.text&&x.text.length>300000&&/Three\.js Authors/.test(x.text.slice(0,400))); return s?s.text:""; }
 /* ประกอบหน้าเว็บ · dataB64 ว่าง = หน้าแบบโฟลเดอร์ (อ่าน v/<รหัส>.bin เอง) */
@@ -37547,12 +37702,23 @@ async function snvShareDialog(lanFn){
   const base0=String(settings.shareWebBase||"").trim();
   /* v1.340: GitHub — เดาชื่อ repo จากที่อยู่ลิงก์เดิม (settings.shareBase) ครั้งแรกจะได้ไม่ต้องพิมพ์ */
   const gc=Object.assign({},await ghCfg());
-  if(!gc.owner||!gc.repo){ const m=/^https?:\/\/([^.\/]+)\.github\.io\/([^\/?#]+)/i.exec(String(settings.shareBase||""));
-    gc.owner=gc.owner||(m?m[1]:"starmark-warranty"); gc.repo=gc.repo||(m?decodeURIComponent(m[2]):"StarNexus"); }
+  /* ───────── v1.344: เดาชื่อ repo จากที่อยู่เว็บที่เปิดอยู่ ไม่ใช่จาก settings.shareBase ─────────
+     shareBase ในค่าตั้งกลางยังเป็น …github.io/Furnitech/ (ชื่อเดิม ที่อยู่นี้เปิดแล้วเจอ 404 แล้ว)
+     เปิดจากเว็บครั้งแรก ช่อง repo เลยขึ้น Furnitech → ทดสอบแล้วเจอ "ไม่พบ repo หรือ branch (404)"
+     ตอนนี้: เปิดจาก <owner>.github.io/<repo>/ = ใช้ชื่อนั้นเลย · เปิดจากไฟล์ในเครื่อง = starmark-warranty/StarNexus */
+  if(!gc.owner||!gc.repo){ const hm=/^([^.]+)\.github\.io$/i.exec(String(location.hostname||"")), seg=String(location.pathname||"").split("/").filter(Boolean)[0]||"";
+    const here=!!(hm&&seg&&!/\.html?$/i.test(seg));
+    gc.owner=gc.owner||(here?hm[1]:"starmark-warranty"); gc.repo=gc.repo||(here?decodeURIComponent(seg):"StarNexus"); }
   const ghOn=ghReadyC(gc);
   const card=(ic,h,d,btn,open)=>'<div style="border:1px solid '+(open?'var(--accent)':'var(--line)')+';border-radius:12px;padding:12px 14px;display:flex;flex-direction:column;gap:6px">'
     +'<b style="font-size:14px">'+ic+' '+h+'</b><div style="font-size:12px;color:var(--ink-dim);line-height:1.7">'+d+'</div>'+btn+'</div>';
-  const inp=(id,ph,val,type)=>'<input id="'+id+'" class="nameinp" '+(type?('type="'+type+'" autocomplete="off" '):'')+'placeholder="'+escapeHtml(ph)+'" value="'+escapeHtml(val||"")+'" style="width:100%;font-family:var(--mono);font-size:12px">';
+  /* ───────── v1.344: กันเบราว์เซอร์กรอกให้เอง ─────────
+     ช่อง Token เดิมเป็นชนิด password — Chrome เห็นแล้วเติม "รหัสผ่านที่จำไว้ของเว็บนี้" ให้ (เว็บเดิมเคยมีหน้าล็อกอิน)
+     และเติมชื่อผู้ใช้ลงช่องก่อนหน้า (branch) ด้วย ผู้ใช้เห็นช่อง branch เป็น 9000001 · ทดสอบแล้วได้ 404
+     แย่กว่านั้นคือรหัสผ่านจริงของคนใช้ถูกส่งไป GitHub ในฐานะ Token
+     ตอนนี้ช่อง Token เป็นช่องข้อความธรรมดาที่แสดงเป็นจุด (-webkit-text-security) ตัวจัดการรหัสผ่านไม่มายุ่ง · ทุกช่องปิด autocomplete */
+  const inp=(id,ph,val,type)=>'<input id="'+id+'" name="sxgh_'+id+'" class="nameinp" type="text" autocomplete="off" autocapitalize="off" spellcheck="false" data-lpignore="true" data-1p-ignore="true" '
+    +'placeholder="'+escapeHtml(ph)+'" value="'+escapeHtml(val||"")+'" style="width:100%;font-family:var(--mono);font-size:12px'+(type==="password"?';-webkit-text-security:disc':'')+'">';
   const ghBody=
     '<div id="snvGhSum" style="font-size:12px;'+(ghOn?'':'display:none')+'">เชื่อมแล้ว: <b style="font-family:var(--mono)">'+escapeHtml(gc.owner+"/"+gc.repo)+'</b> ('+escapeHtml(gc.branch||"main")+') → <span style="font-family:var(--mono)">'+escapeHtml(ghPagesBase(gc))+'</span>'
       +(gc.rootOk?'':' <span style="color:#e58a24">· index.html บนเว็บยังไม่ใช่รุ่นนี้ — กด ⚙ แล้ว "ตั้งค่าครั้งแรก"</span>')+'</div>'
@@ -37594,6 +37760,10 @@ async function snvShareDialog(lanFn){
   document.body.appendChild(ov);
   const q=s=>ov.querySelector(s), close=()=>ov.remove();
   q("#snvX").onclick=close; ov.addEventListener("click",e=>{ if(e.target===ov) close(); });
+  /* v1.345: ตั้งค่าที่เก็บไว้ยังเป็นชื่อ repo เก่า = ซ่อมตอนเปิดหน้านี้เลย แถว "เชื่อมแล้ว" จะได้บอกที่อยู่ที่ถูก */
+  if(ghOn&&!gc.canonOk) ghHeal().then(c2=>{ if(!c2||!c2.canonOk) return; Object.assign(gc,c2);
+    try{ q("#snvGhO").value=c2.owner; q("#snvGhR").value=c2.repo; q("#snvGhU").value=c2.base||""; }catch(e){}
+    const sm=q("#snvGhSum"); if(sm) sm.innerHTML="เชื่อมแล้ว: <b style='font-family:var(--mono)'>"+escapeHtml(c2.owner+"/"+c2.repo)+"</b> ("+escapeHtml(c2.branch||"main")+") → <span style='font-family:var(--mono)'>"+escapeHtml(ghPagesBase(c2))+"</span>"; }).catch(()=>{});
   q("#snvOne").onclick=async()=>{ const t=q("#snvT").value.trim()||ttl0; close(); await snvExportSingle(t); };
   q("#snvDrop").onclick=()=>window.open("https://app.netlify.com/drop","_blank");
   if(q("#snvLan")) q("#snvLan").onclick=()=>{ close(); lanFn(); };
@@ -37606,7 +37776,12 @@ async function snvShareDialog(lanFn){
   q("#snvGhTok").onclick=()=>window.open("https://github.com/settings/personal-access-tokens/new","_blank");
   q("#snvGhSave").onclick=async()=>{ const c=ghRead(); if(!c.owner||!c.repo||!c.token){ ghMsg("ใส่ owner · repo · Token ให้ครบ",true); return; }
     ghMsg("กำลังทดสอบ…");
-    try{ const ck=await ghCheck(c,true); c.branch=ck.branch; c.rootOk=!!ck.indexRedirect; await ghSave(c); Object.assign(gc,c);
+    try{ const ck=await ghCheck(c,true); c.branch=ck.branch; c.rootOk=!!ck.indexRedirect;
+      /* v1.345: เก็บชื่อจริงของ repo (ชื่อเก่า Furnitech → StarNexus) · ที่อยู่เว็บที่ชี้ชื่อเก่าล้างทิ้ง */
+      const _was=c.repo; c.owner=ck.owner||c.owner; c.repo=ck.repo||c.repo; if(ck.baseStale) c.base=""; c.canonOk=1;
+      try{ q("#snvGhO").value=c.owner; q("#snvGhR").value=c.repo; if(ck.baseStale) q("#snvGhU").value=""; }catch(e){}
+      await ghSave(c); Object.assign(gc,c);
+      if(ck.renamed) toast("ชื่อ repo จริงคือ "+c.repo+" (“"+_was+"” เป็นชื่อเก่า) — แก้ให้แล้ว ลิงก์จะเป็น "+ghPagesBase(c));
       /* v1.341: "เขียนได้" มาจากการเขียนทดสอบจริงของ Token (canWrite) ไม่ใช่สิทธิ์ของบัญชี (canPush) */
       if(!ck.canWrite){ ghMsg("⚠ เชื่อม <b>"+escapeHtml(ck.full)+"</b> ได้ (อ่านได้) แต่ <b>Token นี้ยังเขียนไม่ได้</b> — ยังส่งลิงก์ขึ้นเว็บไม่ได้<br>"+ghErrHtml(ck.writeErr),true);
         const sb0=q("#snvGh"); if(sb0) sb0.disabled=true; return; }
@@ -37615,6 +37790,8 @@ async function snvShareDialog(lanFn){
         +" · ลิงก์ในเว็บ "+ck.nShare+" งาน"
         +((!ck.hasView||!ck.indexRedirect)?"<br><b>ขั้นต่อไป:</b> กด “ตั้งค่าครั้งแรก” (เลือกไฟล์โปรแกรมตัวนี้ด้วย ถ้าจะให้อัปเป็น index.html)":""));
       const sb=q("#snvGh"); if(sb) sb.disabled=!ck.canWrite;
+      /* v1.344: Token เขียนได้แล้ว = ตั้งที่อยู่ลิงก์กลางให้ตรงเว็บนี้เลย ไม่ต้องรอส่งออเดอร์ถัดไป */
+      if(ck.canWrite) ghSyncShareBase(ghPagesBase(c)).then(r=>{ if(r&&r.cloud) toast("ตั้งที่อยู่ลิงก์กลาง (shareBase) เป็น "+r.to+" แล้ว — Production ที่ประกอบลิงก์เองจะได้ที่อยู่นี้หลังกดอ่านไฟล์ล่าสุด"); }).catch(()=>{});
       const sm=q("#snvGhSum"); if(sm){ sm.style.display=""; sm.innerHTML="เชื่อมแล้ว: <b style='font-family:var(--mono)'>"+escapeHtml(c.owner+"/"+c.repo)+"</b> ("+escapeHtml(c.branch)+") → <span style='font-family:var(--mono)'>"+escapeHtml(ghPagesBase(c))+"</span>"; }
     }catch(e){ ghMsg("⚠ "+ghErrHtml(e),true); } };
   q("#snvGhSetup").onclick=async()=>{ const c=ghRead(); if(!c.owner||!c.repo||!c.token){ ghMsg("ใส่ owner · repo · Token แล้วกดบันทึก + ทดสอบก่อน",true); return; }
@@ -37627,6 +37804,7 @@ async function snvShareDialog(lanFn){
         +(r.progUp?"<br>✓ อัปโปรแกรมตัวนี้เป็น index.html แล้ว":(r.rootOk?"":"<br>⚠ index.html ยังเป็นรุ่นเดิม — ลิงก์ที่ได้จะใช้ view.html?view= ไปก่อน · อัปโปรแกรมตัวนี้เป็น index.html เมื่อไหร่ ลิงก์ ?view= แบบเดิมจะเปิดได้"))
         +"<br>รอ GitHub สร้างเว็บ ~1 นาที");
       const sb=q("#snvGh"); if(sb) sb.disabled=false;
+      ghSyncShareBase(ghPagesBase(c)).then(r=>{ if(r&&r.cloud) toast("ตั้งที่อยู่ลิงก์กลาง (shareBase) เป็น "+r.to+" แล้ว"); }).catch(()=>{});   // v1.344
     }catch(e){ console.error("ghSetup:",e); bz.finish(false,"ตั้งค่าไม่สำเร็จ",ghErrHtml(e)); } };
   q("#snvGh").onclick=async()=>{ const t=q("#snvT").value.trim()||ttl0;
     const bz=busyOpen("สร้างลิงก์บน GitHub");
@@ -38116,6 +38294,9 @@ function renderCabLinks(msg){
   const el=$("cabLinkBody"); if(!el) return;
   const E=x=>escapeHtml(String(x==null?"":x));
   const rs=cabLinkRows(), has=rs.filter(r=>r.url).length;
+  /* v1.345: ลิงก์ตู้ไปอยู่บน GitHub แล้ว ลิงก์ทั้งออเดอร์ต้องไปที่เดียวกัน (เดิมคิดจากที่อยู่ไฟล์โปรแกรม ได้ file:///… เปิดได้เครื่องเดียว) */
+  const _ghL=Object.values(CAB_LINK||{}).find(u=>/^https:\/\/[^\/]+\.github\.io\//i.test(String(u||"")));
+  const _ordUrl=ORDER_SID?(_ghL?(String(_ghL).replace(/[?#].*$/,"")+"?view="+encodeURIComponent(ORDER_SID)):shareViewUrl(ORDER_SID,"")):"";
   const body=rs.map(r=>{
     const cell = r.url
       ? "<a href='"+E(r.url)+"' target='_blank' rel='noopener' style='color:var(--accent);word-break:break-all'>"+E(r.url)+"</a>"
@@ -38129,12 +38310,12 @@ function renderCabLinks(msg){
   el.innerHTML=
     "<div style='margin-bottom:10px;font-size:12.5px;opacity:.75;line-height:1.6'>"
     +"ลิงก์หนึ่งตัวต่อตู้หนึ่งใบ ทุกชิ้นในใบเดียวกันได้ตัวเดียวกัน · เปิดแล้วเห็นเฉพาะตู้ใบนั้น ไม่ต้องล็อกอิน<br>"
-    +"ชุดนี้คือชุดเดียวกับที่จะติดไปในช่อง CAB_URL ตอนกดส่งเข้า Supabase — กดส่งแล้วไม่สร้างซ้ำ"
+    +"ชุดนี้คือชุดเดียวกับที่จะติดไปในช่อง CAB_URL ตอนกดส่งเข้า"+((typeof SXL!=="undefined"&&SXL&&SXL.cfg)?"ไฟล์กลาง":"Supabase")+" — กดส่งแล้วไม่สร้างซ้ำ"
     +"</div>"
     +(msg?"<div style='margin-bottom:10px;padding:7px 10px;border-radius:8px;background:var(--accent);color:#fff;font-size:12.5px'>"+E(msg)+"</div>":"")
     +(ORDER_SID?("<div style='margin-bottom:10px;font-size:12.5px'>ลิงก์ทั้งออเดอร์ (ปลายทางของปุ่ม ดูทั้งออเดอร์): "
-       +"<a href='"+E(shareViewUrl(ORDER_SID,""))+"' target='_blank' rel='noopener' style='color:var(--accent);word-break:break-all'>"
-       +E(shareViewUrl(ORDER_SID,""))+"</a></div>"):"")
+       +"<a href='"+E(_ordUrl)+"' target='_blank' rel='noopener' style='color:var(--accent);word-break:break-all'>"
+       +E(_ordUrl)+"</a></div>"):"")
     +"<div style='display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px'>"
     +"<button class='ibtn' id='clMake' style='background:var(--accent);color:#fff;border-color:transparent'>สร้างลิงก์ที่ยังไม่มี</button>"
     +"<button class='ibtn' id='clAll'>สร้างใหม่ทั้งหมด</button>"
@@ -38194,6 +38375,10 @@ function partIndexRows(data){
 async function pushPartIndex(data){
   const rows=partIndexRows(data); const oid=String((data&&data.orderID)||"");
   if(!oid) return 0;
+  /* v1.346: ไฟล์กลาง — ของออเดอร์นี้ทั้งชุด = ไฟล์รุ่นใหม่ของกลุ่ม c:<ออเดอร์> ไฟล์เดียว (sxlReplaceBucket)
+     แทนการลบแล้วเพิ่ม (สองรอบไล่รายชื่อทั้งโฟลเดอร์ + สองไฟล์) · ผลที่ Production อ่านเหมือนเดิม · ปิดได้ SN_OFF.sxlFastPI */
+  if(typeof sxlReplaceBucket==="function"&&typeof SXL!=="undefined"&&SXL&&SXL.cfg&&!snOff("sxlFastPI")){
+    const r=await sxlReplaceBucket("part_index","c:"+oid,rows); if(r&&r.error) throw r.error; return rows.length; }
   const db=await getDB();
   /* ล้างของออเดอร์นี้ก่อนเสมอ · ส่งออกรอบใหม่ ลำดับชิ้นเปลี่ยนได้ บาร์โค้ดเก่าจึงต้องไม่ค้าง
      ชี้ไปที่ตู้ที่ไม่มีอยู่แล้ว · ออเดอร์อื่นไม่ถูกแตะเพราะกรองด้วย order_id */
@@ -40071,6 +40256,19 @@ async function sendSupabase(){
   if(_sendBusy){ toast("กำลังส่งอยู่ — รอรอบนี้จบก่อน"); return _sendBusy; }
   _sendBusy=sendSupabaseRun();
   try{ return await _sendBusy; }finally{ _sendBusy=null; } }
+/* ───────── v1.346: งานเบื้องหลังหลังกล่องส่ง — ป้ายมุมจอบอกว่ายังทำอะไรอยู่ + เตือนก่อนปิดหน้า ─────────
+   ผู้ใช้: "เมื่อก่อนกดส่งไม่เกิน 10 วิ ตอนนี้ช้ากว่าเดิม 10 เท่า" (ค้างขั้นดัชนีชิ้น 90 วิ) — งานที่ไม่ต้องรอ ย้ายไปทำต่อหลังกล่องปิด
+   ปิดหน้า/รีโหลดระหว่างที่ยังเขียนไม่เสร็จ เบราว์เซอร์จะถามก่อน (งานที่ค้างจะหาย ต้องกดส่งใหม่) */
+const _bgT=new Map(); let _bgSeq=0;
+function bgTask(label,p){ const id=++_bgSeq; _bgT.set(id,label); _bgRender(); const done=()=>{ _bgT.delete(id); _bgRender(); }; Promise.resolve(p).then(done,done); return p; }
+function _bgRender(){ let el=document.getElementById("sxBgChip");
+  if(!_bgT.size){ if(el) el.remove(); return; }
+  if(!el){ el=document.createElement("div"); el.id="sxBgChip";
+    el.style.cssText="position:fixed;left:12px;bottom:64px;z-index:450;background:var(--solid,#fff);color:var(--ink,#111);border:1px solid var(--line,#ccc);border-radius:999px;padding:6px 12px;font-size:12px;box-shadow:0 6px 20px -8px rgba(0,0,0,.35);display:flex;gap:7px;align-items:center;pointer-events:none;max-width:calc(100vw - 24px)";
+    document.body.appendChild(el); }
+  el.innerHTML='<span style="width:12px;height:12px;border-radius:50%;border:2px solid var(--line,#ccc);border-top-color:var(--accent,#007aff);animation:bzspin .7s linear infinite;flex:none"></span>'
+    +'<span style="white-space:nowrap;overflow:hidden;text-overflow:ellipsis">กำลังทำต่อเบื้องหลัง: '+escapeHtml([..._bgT.values()].join(" · "))+'</span>'; }
+addEventListener("beforeunload",e=>{ if(_bgT.size){ e.preventDefault(); e.returnValue=""; } });
 async function sendSupabaseRun(){
   const LOC=(typeof SXL!=="undefined"&&!!SXL&&!!SXL.cfg), DEST=LOC?"ไฟล์กลาง":"Supabase";
   const E=x=>escapeHtml(String(x==null?"":x)), NL=x=>E(x).replace(/\n/g,"<br>");
@@ -40088,6 +40286,14 @@ async function sendSupabaseRun(){
   const late=(p,what,okFn)=>{ Promise.resolve(p).then(v=>{ const m=okFn?okFn(v):""; if(m===null) return; toast("✓ "+what+" เสร็จแล้ว (ทำต่อหลังกล่องส่ง · "+(res.oid||"")+")"+(m?(" · "+m):"")); },
       e=>{ toast("⚠ "+what+" ไม่สำเร็จ (ทำต่อหลังกล่องส่ง · "+(res.oid||"")+"): "+sbErr(e)); }); };
   const bgNote=" — ยังทำต่อเบื้องหลัง อย่าเพิ่งปิดโปรแกรม จะมีข้อความขึ้นบอกเมื่อเสร็จ";
+  /* ───────── v1.346: กล่องส่งรอแค่ขั้นหลัก ที่เหลือทำต่อเบื้องหลัง (BG) ─────────
+     ในกล่อง: ตรวจโฟลเดอร์ → ค้นรหัสท่อน → อบภาพ + ได้รหัสลิงก์ (ไม่รอส่งขึ้น GitHub) → สร้างข้อมูล → เขียน imos_orders (+ Item Id Set)
+     ต่อหลังกล่อง (ป้ายมุมจอ · ข้อความตอนเสร็จ · บรรทัดในกล่องอัปเดตเองถ้ายังเปิดอยู่):
+       ส่งลิงก์ขึ้น GitHub · ดัชนีชิ้น part_index · ที่อยู่ลิงก์กลาง (shareBase) · ลงทะเบียนรหัสอุปกรณ์ imos_mapping
+     ระหว่างนั้นไล่รายชื่อไฟล์ในไฟล์กลางล่วงหน้า (sxlPrefetch) ตั้งแต่ขั้นแรก ขั้นเขียนจะได้ไม่ต้องไล่เอง
+     ปิดได้ SN_OFF.sendBg = ทำทุกขั้นในกล่องแบบ v1.345 */
+  const BG=!snOff("sendBg");
+  let data=null, db=null, cl=null;
   try{
     /* ① โฟลเดอร์ Server ต้องเขียนได้ก่อน — ไม่งั้นทำทุกขั้นเสร็จแล้วค่อยพังตอนเขียน */
     if(LOC){
@@ -40099,16 +40305,16 @@ async function sendSupabaseRun(){
         try{ can=await sxlCanWrite(); sxlRender(); }catch(e){} }
       if(!can){ const e=new Error("โฟลเดอร์ Server “"+SXL.dir.name+"” ได้สิทธิ์แค่ดูไฟล์ ยังไม่ได้อนุญาตให้แก้ไข"); e.fix="perm"; throw e; }
     }
+    if(LOC&&typeof sxlPrefetch==="function") ["imos_orders","app_settings","imos_mapping"].forEach(t=>{ try{ sxlPrefetch(t); }catch(e){} });   // v1.346
     /* ② v13.5: รอรหัสท่อนที่ตัดให้ครบก่อน */
     await step("ค้นรหัสท่อนตัด / กระจก ในคลังอุปกรณ์…",8);
     try{ await sendTmo(cutLookupReady(),60000,"ค้นรหัสท่อนตัด/กระจก"); }
     catch(e){ warn.push("ค้นรหัสท่อนตัด/กระจกยังไม่ครบ ("+e.message+") — ส่งไปด้วยรหัสเท่าที่มี ถ้าใบอุปกรณ์มีรหัสว่างให้กดส่งซ้ำ"); }
-    const db=await getDB();
+    db=await getDB();
     /* ③ v1.173/v1.174: ลิงก์ตู้ก่อน แล้ว buildImosData อ่าน CAB_LINK ไปแปะทุกแถว · ล้มไม่ล้มการส่ง */
     let gh=false; try{ gh=(typeof ghReady==="function")&&!!(await ghReady()); }catch(e){}
     await step("สร้างลิงก์ตู้"+(gh?" (GitHub)":"")+"…",14);
-    let cl=null;
-    try{ cl=await sendTmo(pushCabShares(0,false,{bz,base:14,span:32,fallback:true}),gh?300000:120000,"สร้างลิงก์ตู้"); }
+    try{ cl=await sendTmo(pushCabShares(0,false,{bz,base:14,span:32,fallback:true,bg:BG}),gh?300000:120000,"สร้างลิงก์ตู้"); }
     catch(e){ CAB_LINK={}; CAB_SIG={}; CAB_SID={}; ORDER_SID=""; ORDER_SIG=""; console.error("cabShare:",e);
       warn.push("สร้างลิงก์ตู้ไม่สำเร็จ: "+sbErr(e)+" — ส่งข้อมูลต่อโดยไม่มีลิงก์ (ช่อง CAB_URL ว่าง)"); }
     /* กล่องส่งบอกแค่บรรทัดแรกของเหตุ (วิธีแก้ Token ทีละข้ออยู่ที่ปุ่มแชร์ → ⚙ ตั้งค่า GitHub → บันทึก + ทดสอบ · ข้อความเต็มอยู่ใน คัดลอกรายละเอียด) */
@@ -40118,7 +40324,7 @@ async function sendSupabaseRun(){
     res.cl=cl;
     /* ④ ข้อมูล IMOS */
     await step("สร้างข้อมูล IMOS…",48);
-    const data=buildImosData(); res.oid=data.orderID; res.iid=data.itemIdSet||"";
+    data=buildImosData(); res.oid=data.orderID; res.iid=data.itemIdSet||"";
     try{ res.kb=Math.round(JSON.stringify(data).length/1024); }catch(e){}
     /* ⑤ คิวไฟล์กลาง — มีงานอ่าน/เขียนค้างอยู่ก่อน (เช่นรอบตรวจไฟล์ทุก 10 วิ กำลังอ่าน CSV) ต้องรอให้จบ แยกขั้นไว้ให้รู้ว่ารออะไร */
     if(LOC&&(SXL.locked>0||SXL.busy)){ await step("รอไฟล์กลางอ่าน/เขียนงานก่อนหน้าให้จบ…",55);
@@ -40137,6 +40343,7 @@ async function sendSupabaseRun(){
       try{ const {error:e2}=await sendTmo(db.from("app_settings").upsert({key:"iids:"+data.orderID,value:data.itemIdSet},{onConflict:"key"}),60000,"เก็บ Item Id Set"); if(e2) throw e2; }
       catch(e){ console.error("iids:",sbErr(e)); warn.push("เก็บ Item Id Set ลง app_settings ไม่สำเร็จ: "+sbErr(e)); }
       await iidRemember(data.orderID,data.itemIdSet); }             // v1.256: เปิดมาส่งซ้ำเติมให้เอง
+    if(!BG){   // v1.346: SN_OFF.sendBg — ทำทุกขั้นในกล่องแบบเดิม
     /* ⑦ v1.175: ดัชนีชิ้น หลัง imos_orders สำเร็จแล้วเท่านั้น */
     await step("เขียนดัชนีชิ้น part_index…",76);
     const pPi=pushPartIndex(data);
@@ -40144,6 +40351,11 @@ async function sendSupabaseRun(){
     catch(e){ console.error("partIndex:",e);
       if(e&&e.sendTimeout){ late(pPi,"ดัชนีชิ้น part_index",n=>n+" บาร์โค้ด"); warn.push("ดัชนีชิ้น part_index ยังเขียนไม่เสร็จใน 180 วิ"+bgNote); }
       else warn.push("เขียนดัชนีชิ้น part_index ไม่สำเร็จ: "+sbErr(e)+" — ข้อมูลออเดอร์เข้าแล้ว กดส่งซ้ำเพื่อสร้างดัชนีใหม่ได้"); }
+    /* ⑦½ v1.344: ลิงก์ขึ้น GitHub แล้ว = ที่อยู่ลิงก์กลาง (shareBase) ต้องชี้เว็บเดียวกัน ให้ Production ที่ประกอบลิงก์เองจาก share_id ได้ลิงก์ที่เปิดได้ */
+    if(cl&&cl.github&&!cl.fallback&&cl.base&&typeof ghSyncShareBase==="function"){
+      await step("ตั้งที่อยู่ลิงก์กลาง (shareBase)…",86);
+      try{ res.sb=await sendTmo(ghSyncShareBase(cl.base),60000,"ตั้งที่อยู่ลิงก์กลาง"); }catch(e){ res.sb={err:e.message}; }
+      if(res.sb&&res.sb.err) warn.push("ตั้งที่อยู่ลิงก์กลาง (shareBase) เป็น "+cl.base+" ไม่สำเร็จ: "+res.sb.err+" — Production อาจยังประกอบลิงก์เป็นที่อยู่เดิม"); }
     /* ⑧ v12.8: ลงทะเบียนรหัสอุปกรณ์ */
     await step("ลงทะเบียนรหัสอุปกรณ์ imos_mapping…",90);
     const pNm=registerFitMapping(data);
@@ -40153,6 +40365,7 @@ async function sendSupabaseRun(){
       warn.push("ลงทะเบียนรหัสอุปกรณ์ imos_mapping ยังไม่เสร็จใน 90 วิ"+bgNote); }
     if(res.nm<0) warn.push("ลงทะเบียนรหัสอุปกรณ์ใหม่ (imos_mapping) ไม่สำเร็จ: "+(_fitMapErr||"ไม่ทราบเหตุ")
       +((LOC&&SXL.s.imos_mapping&&!SXL.s.imos_mapping.ready)?"\nออเดอร์เข้าแล้ว — แค่รหัสอุปกรณ์ที่ตั้งเองยังไม่ถูกลงทะเบียนให้ Production แปลออก · แก้: หน้าไฟล์กลาง → เลือกไฟล์ imos_mapping แล้วกดส่งใหม่":""));
+    }
   }catch(e){
     const code=String((e&&e.code)||"");
     fail={step:cur, msg:sbErr(e), tmo:!!(e&&e.sendTimeout), code,
@@ -40161,12 +40374,12 @@ async function sendSupabaseRun(){
   finally{ if(LOC) SXL.hold=Math.max(0,(SXL.hold||0)-1); }          // v1.342: ปล่อยรอบตรวจไฟล์กลับมา
   if(cur) log.push([cur,Date.now()-curT]);
   /* v1.342: เวลาเขียนไฟล์กลางของรอบนี้ แยก รอคิว / อ่านรายชื่อไฟล์ / อ่าน / เขียน ต่อตาราง */
-  const wl=LOC?(SXL.wlog||[]).filter(w=>w.seq>seq0):[];
+  const wlOf=()=>LOC?(SXL.wlog||[]).filter(w=>w.seq>seq0):[]; let wl=wlOf();
   const sx=ms=>((ms||0)/1000).toFixed(1);
-  const wSum=wl.length?("ไฟล์กลาง: รอคิว "+sx(wl.reduce((a,w)=>a+(w.wait||0),0))+" วิ · อ่านรายชื่อไฟล์ "+sx(wl.reduce((a,w)=>a+(w.list||0),0))+" วิ ("+wl.reduce((a,w)=>Math.max(a,w.ents||0),0)+" ไฟล์/โฟลเดอร์สูงสุด)"
+  const wSumOf=wl=>wl.length?("ไฟล์กลาง: รอคิว "+sx(wl.reduce((a,w)=>a+(w.wait||0),0))+" วิ · อ่านรายชื่อไฟล์ "+sx(wl.reduce((a,w)=>a+(w.list||0),0))+" วิ ("+wl.reduce((a,w)=>Math.max(a,w.ents||0),0)+" ไฟล์/โฟลเดอร์สูงสุด)"
       +" · อ่าน "+wl.reduce((a,w)=>a+(w.rd||0),0)+" ไฟล์ "+sx(wl.reduce((a,w)=>a+(w.rdMs||0),0))+" วิ · เขียน "+wl.reduce((a,w)=>a+(w.wr||0),0)+" ไฟล์ "+sx(wl.reduce((a,w)=>a+(w.wrMs||0),0))+" วิ"
-      +(SXL.pollMs?(" · รอบตรวจไฟล์ล่าสุด "+sx(SXL.pollMs)+" วิ"):"")):"";
-  const wRep=wl.map(w=>"  "+w.t+" "+w.k+": รอคิว "+sx(w.wait)+(w.q?(" (คิวค้าง "+w.q+(w.poll?" · รอบตรวจไฟล์":"")+")"):"")+" · รายชื่อ "+sx(w.list)+" วิ/"+(w.ents||0)+" ไฟล์ · อ่าน "+(w.rd||0)+" ไฟล์ "+sx(w.rdMs)+" วิ · เขียน "+(w.wr||0)+" ไฟล์ "+Math.round(w.kb||0)+" KB "+sx(w.wrMs)+" วิ · รวม "+sx(w.ms)+" วิ"+(w.err?(" · ผิดพลาด "+w.err):"")).join("\n");
+      +(SXL.pollMs?(" · รอบตรวจไฟล์ล่าสุด "+sx(SXL.pollMs)+" วิ"):"")):""; const wSum=wSumOf(wl);
+  const wRepOf=wl=>wl.map(w=>"  "+w.t+" "+w.k+": รอคิว "+sx(w.wait)+(w.q?(" (คิวค้าง "+w.q+(w.poll?" · รอบตรวจไฟล์":"")+")"):"")+" · รายชื่อ "+sx(w.list)+" วิ/"+(w.ents||0)+" ไฟล์ · อ่าน "+(w.rd||0)+" ไฟล์ "+sx(w.rdMs)+" วิ · เขียน "+(w.wr||0)+" ไฟล์ "+Math.round(w.kb||0)+" KB "+sx(w.wrMs)+" วิ · รวม "+sx(w.ms)+" วิ"+(w.err?(" · ผิดพลาด "+w.err)+"":"")+(w.pre?" (รายชื่อล่วงหน้า)":"")).join("\n");
   /* ── กล่องผล ── */
   const sec=ms=>(ms<10000?(ms/1000).toFixed(1):String(Math.round(ms/1000)))+" วิ";
   const nm=s=>String(s).replace(/…$/,"").replace(/ · .*$/,"");
@@ -40179,7 +40392,10 @@ async function sendSupabaseRun(){
     if(cl&&cl.n>0) H.push("✓ ลิงก์ตู้ "+cl.n+" ใบ"+(cl.kept?" (ใช้ชุดเดิม ตู้ไม่ถูกแก้)":" (สร้างใหม่)")+(cl.fallback?" · ในไฟล์กลาง":(cl.github?" · GitHub":""))
       +(cl.tm?("<span style='color:var(--ink-dim);font-size:11.5px'> · "+E(cl.tm)+"</span>"):""));
     if(res.pi>0) H.push("✓ ดัชนีชิ้น "+res.pi+" บาร์โค้ด");
+    if(res.sb&&res.sb.cloud) H.push("✓ ที่อยู่ลิงก์กลาง (shareBase) เปลี่ยนจาก <span style='font-family:var(--mono)'>"+E(res.sb.from||"(ว่าง)")+"</span> เป็น <span style='font-family:var(--mono)'>"+E(res.sb.to)+"</span>"
+      +"<span style='color:var(--ink-dim)'> — Production ที่ประกอบลิงก์เองต้องกด “อ่านไฟล์ล่าสุด” / ดึงลิงก์ Assembly ใหม่</span>");
     if(res.nm>0) H.push("✓ ลงทะเบียนรหัสอุปกรณ์ใหม่ "+res.nm+" รหัส");
+    if(BG) H.push("<div id='"+K+"t' style='color:var(--ink-dim)'>⏳ ต่อเบื้องหลัง: "+(cl&&cl.pending?"ส่งลิงก์ขึ้น GitHub · ":"")+"ดัชนีชิ้น · ลงทะเบียนรหัสอุปกรณ์… <span style='font-size:11.5px'>(ปิดกล่องนี้ได้เลย เสร็จแล้วมีข้อความบอก)</span></div>");
   } else {
     const onMain=/imos_orders|คิวไฟล์กลาง|รอไฟล์กลาง/.test(fail.step);
     const hint=fail.fix==="dir"?"กดปุ่ม “📂 เปิดหน้าไฟล์กลาง” ด้านล่าง → “เชื่อมตำแหน่งที่จำไว้” (หรือ “เลือกโฟลเดอร์ Server”) อนุญาตทั้งดูและแก้ไข แล้วกดส่งใหม่"
@@ -40205,20 +40421,61 @@ async function sendSupabaseRun(){
   const ttl=fail?("ส่งเข้า"+DEST+" ไม่สำเร็จ"):(warn.length?("ส่งเข้า"+DEST+"แล้ว — มีเรื่องต้องดู "+warn.length+" ข้อ"):("ส่งเข้า"+DEST+"แล้ว"));
   bz.finish(!fail,ttl,H.map(h=>/^<div/.test(h)?h:("<div>"+h+"</div>")).join(""),(!fail&&!warn.length)?8000:0,bs.join(""));
   /* ── รายละเอียดแบบข้อความ (ปุ่มคัดลอก) + บันทึกลงรายการแจ้งเตือน 🔔 ── */
-  const rep=["StarNexus v"+APP_META.version+" ("+APP_META.build+") · ส่งเข้า"+DEST+" · "+at.toLocaleString("th-TH"),
+  const mkRep=()=>["StarNexus v"+APP_META.version+" ("+APP_META.build+") · ส่งเข้า"+DEST+" · "+at.toLocaleString("th-TH"),
     "ผล: "+(fail?("ไม่สำเร็จ — ติดที่ขั้น "+nm(fail.step)+": "+fail.msg+(fail.code?(" ["+fail.code+"]"):"")):("สำเร็จ"+(warn.length?(" (เตือน "+warn.length+" ข้อ)"):""))),
     "ออเดอร์: "+(res.oid||"-")+(res.iid?(" · IID "+res.iid):"")+" · "+res.kb+" KB · ลิงก์ตู้ "+((res.cl&&res.cl.n)||0)+(res.cl&&res.cl.fallback?" (ไฟล์กลาง แทน GitHub)":"")+" · ดัชนีชิ้น "+(res.pi||0)+" · รหัสใหม่ "+(res.nm||0),
     "ขั้นตอน: "+tline].concat(warn.map(w=>"เตือน: "+w.replace(/\n/g," / ")),
-    [(res.cl&&res.cl.tm)?("ลิงก์ตู้: "+res.cl.tm):"", wSum, wRep?("เขียนทีละครั้ง:\n"+wRep):"",
+    [(res.cl&&res.cl.tm)?("ลิงก์ตู้: "+res.cl.tm):"", res.tail?("เบื้องหลัง: "+res.tail):"", (res.sb&&!res.sb.skip)?("shareBase: "+(res.sb.from||"-")+" → "+(res.sb.to||"-")+(res.sb.cloud?" (เขียนไฟล์กลางแล้ว)":"")+(res.sb.err?(" ผิดพลาด "+res.sb.err):"")):"", wSumOf(wlOf()), (function(){ const r=wRepOf(wlOf()); return r?("เขียนทีละครั้ง:\n"+r):""; })(),
      res.ghErr?("GitHub: "+String(res.ghErr).replace(/\n/g," / ")):"",
      LOC?("ไฟล์กลาง: "+sendDiag()):"", "เปิดจาก: "+location.protocol+"//"+location.host+" · "+navigator.userAgent]).filter(Boolean).join("\n");
-  try{ notiAdd(fail?"error":"toast",rep.split("\n").slice(0,3).join(" · ")); }catch(e){}
+  try{ notiAdd(fail?"error":"toast",mkRep().split("\n").slice(0,3).join(" · ")); }catch(e){}
   const $k=s=>document.getElementById(K+s);
   const shut=el=>{ try{ const en=el&&el.closest(".bzEnd"), cb=en&&en.querySelector(".bzClose"); if(cb) cb.click(); }catch(e){} };
   const r1=$k("r"); if(r1) r1.onclick=()=>{ shut(r1); setTimeout(()=>sendSupabase(),60); };
   const p1=$k("p"); if(p1) p1.onclick=async()=>{ try{ await SXL.dir.requestPermission({mode:"readwrite"}); }catch(e){ console.warn(e); } shut(p1); sendSupabase(); };
   const s1=$k("s"); if(s1) s1.onclick=()=>{ shut(s1); try{ sxLocalSettings(); }catch(e){} };
-  const c1=$k("c"); if(c1) c1.onclick=()=>{ try{ navigator.clipboard.writeText(rep).then(()=>{ c1.textContent="✓ คัดลอกแล้ว"; },()=>{ window.prompt("คัดลอกข้อความนี้",rep); }); }catch(e){ try{ window.prompt("คัดลอกข้อความนี้",rep); }catch(_){} } };
+  const c1=$k("c"); if(c1) c1.onclick=()=>{ const rep=mkRep(); try{ navigator.clipboard.writeText(rep).then(()=>{ c1.textContent="✓ คัดลอกแล้ว"; },()=>{ window.prompt("คัดลอกข้อความนี้",rep); }); }catch(e){ try{ window.prompt("คัดลอกข้อความนี้",rep); }catch(_){} } };
+  /* ── v1.346: งานเบื้องหลัง ── */
+  if(!fail&&BG&&data){
+    const tEl=()=>{ const el=$k("t"); return (el&&document.body.contains(el))?el:null; };
+    const say=h=>{ const el=tEl(); if(el) el.innerHTML=h; };
+    const tw=[], ok=[], tt0=Date.now();
+    const fileTail=(async()=>{
+      if(LOC) SXL.hold=(SXL.hold||0)+1;
+      try{
+        say("⏳ ต่อเบื้องหลัง: เขียนดัชนีชิ้น part_index…");
+        const pPi=pushPartIndex(data);
+        try{ res.pi=await sendTmo(pPi,300000,"เขียนดัชนีชิ้น part_index"); ok.push("✓ ดัชนีชิ้น "+res.pi+" บาร์โค้ด"); }
+        catch(e){ console.error("partIndex:",e);
+          if(e&&e.sendTimeout){ late(pPi,"ดัชนีชิ้น part_index",n=>n+" บาร์โค้ด"); tw.push("ดัชนีชิ้น part_index ยังเขียนไม่เสร็จ ("+e.message+")"+bgNote); }
+          else tw.push("เขียนดัชนีชิ้น part_index ไม่สำเร็จ: "+sbErr(e)+" — ข้อมูลออเดอร์เข้าแล้ว กดส่งซ้ำเพื่อสร้างดัชนีใหม่ได้"); }
+        if(cl&&cl.github&&!cl.fallback&&cl.base&&typeof ghSyncShareBase==="function"){
+          say("⏳ ต่อเบื้องหลัง: ตั้งที่อยู่ลิงก์กลาง (shareBase)…");
+          try{ res.sb=await sendTmo(ghSyncShareBase(cl.base),120000,"ตั้งที่อยู่ลิงก์กลาง"); }catch(e){ res.sb={err:e.message}; }
+          if(res.sb&&res.sb.err) tw.push("ตั้งที่อยู่ลิงก์กลาง (shareBase) ไม่สำเร็จ: "+res.sb.err);
+          else if(res.sb&&res.sb.cloud) ok.push("✓ ที่อยู่ลิงก์กลาง (shareBase) → "+res.sb.to); }
+        say("⏳ ต่อเบื้องหลัง: ลงทะเบียนรหัสอุปกรณ์ imos_mapping…");
+        const pNm=registerFitMapping(data);
+        try{ res.nm=await sendTmo(pNm,300000,"ลงทะเบียนรหัสอุปกรณ์"); }
+        catch(e){ res.nm=0; late(pNm,"ลงทะเบียนรหัสอุปกรณ์ imos_mapping",n=>n>0?("ใหม่ "+n+" รหัส"):(n<0?null:"ไม่มีรหัสใหม่"));
+          tw.push("ลงทะเบียนรหัสอุปกรณ์ imos_mapping ยังไม่เสร็จ ("+e.message+")"+bgNote); }
+        if(res.nm>0) ok.push("✓ รหัสอุปกรณ์ใหม่ "+res.nm+" รหัส");
+        else if(res.nm<0) tw.push("ลงทะเบียนรหัสอุปกรณ์ใหม่ (imos_mapping) ไม่สำเร็จ: "+(_fitMapErr||"ไม่ทราบเหตุ")
+          +((LOC&&SXL.s.imos_mapping&&!SXL.s.imos_mapping.ready)?" — เลือกไฟล์ imos_mapping ในหน้าไฟล์กลาง แล้วกดส่งใหม่":""));
+      } finally { if(LOC) SXL.hold=Math.max(0,(SXL.hold||0)-1); } })();
+    bgTask("ดัชนีชิ้น · รหัสอุปกรณ์ ("+res.oid+")",fileTail);
+    let ghTail=Promise.resolve();
+    if(cl&&cl.pending){ ghTail=cl.pending.then(U=>{ res.cl.tm=U.tm; ok.unshift("✓ ลิงก์ขึ้น GitHub แล้ว ("+U.tm+")"); },
+        e=>{ tw.unshift("ส่งลิงก์ตู้ขึ้น GitHub ไม่สำเร็จ: "+String((e&&e.message)||e).split("\n")[0]+" — ลิงก์ในออเดอร์นี้ยังเปิดไม่ได้ ให้กดส่งเข้าไฟล์กลางใหม่อีกครั้ง"); });
+      bgTask("ส่งลิงก์ขึ้น GitHub ("+res.oid+")",ghTail); }
+    Promise.all([fileTail.catch(()=>{}),ghTail.catch(()=>{})]).then(()=>{
+      const secs=Math.round((Date.now()-tt0)/1000);
+      res.tail=(ok.concat(tw.map(w=>"⚠ "+w))).join(" · ")+" · "+secs+" วิ";
+      const html=ok.map(x=>E(x)).join(" · ")+(tw.length?("<br>"+tw.map(w=>"<span style='color:#c05a00'>⚠ "+E(w)+"</span>").join("<br>")):"")
+        +" <span style='font-size:11px'>(เบื้องหลัง "+secs+" วิ)</span>";
+      if(tEl()) say(html);
+      else toast((tw.length?"⚠ ":"✓ ")+"ส่ง "+res.oid+" ครบแล้ว: "+ok.concat(tw.map(w=>"⚠ "+w.split(" — ")[0])).join(" · "));
+      try{ notiAdd(tw.length?"warn":"toast","ต่อเบื้องหลัง "+res.oid+": "+res.tail); }catch(e){} }); }
   return !fail;
 }
 /* ---------- Cloud: settings (Variables/Element) + XML history ---------- */
@@ -40235,8 +40492,10 @@ let _csBusy=null;
 async function cloudSaveSettings(opts){
   if(VIEW_ONLY){ toast("ลิงก์ดูอย่างเดียว — บันทึกขึ้นคลาวด์ไม่ได้"); return; }   // v27.3
   if(_csBusy){ if(opts&&opts.show) toast("กำลังเก็บอยู่ — รอรอบนี้จบก่อน"); return _csBusy; }
+  /* v1.348: ระหว่างเก็บ หยุดรอบตรวจไฟล์กลางไว้ก่อน (SXL.hold แบบเดียวกับตอนส่งออเดอร์) ไม่ให้มาแทรกคิวระหว่างขั้น */
+  const _hold=(typeof SXL!=="undefined"&&SXL&&SXL.cfg&&SXL.dir)?1:0; if(_hold) SXL.hold=(SXL.hold||0)+1;
   _csBusy=_cloudSaveSettingsRun(opts||{});
-  try{ return await _csBusy; } finally{ _csBusy=null; } }
+  try{ return await _csBusy; } finally{ _csBusy=null; if(_hold) SXL.hold=Math.max(0,(SXL.hold||0)-1); } }
 async function _cloudSaveSettingsRun(opts){
   const show=!!opts.show, t0=Date.now();
   const where=(typeof SXL!=="undefined"&&SXL&&SXL.cfg)?"ไฟล์กลาง":"คลาวด์";
@@ -40262,7 +40521,13 @@ async function _cloudSaveSettingsRun(opts){
     const t1=Date.now(); let tWait=0, tScan=0, tWrite=0, same1=false;
     await step("① ก้อนตั้งค่า — ตรวจว่าแก้ไปจากในไฟล์กลางไหม ("+kb(_raw.length)+")",4);
     try{
-      if(typeof SXL!=="undefined"&&SXL&&SXL.cfg&&SXL.dir&&typeof sxlLocked==="function"){
+      /* ───────── v1.348: ไม่ต้องต่อคิว + ไล่รายชื่อไฟล์เพื่อ "อ่านสด" ก่อนเทียบ ─────────
+         ขั้นนี้เคยรอคิวรอบตรวจไฟล์ แล้วไล่รายชื่อ _changes/app_settings ก่อนเทียบ แล้วตอนเขียนต้องไล่อีกรอบ — ช้าเป็นสองเท่า
+         เทียบกับของที่โปรแกรมรู้อยู่แล้ว (รอบตรวจไฟล์อัปเดตให้ทุก ~10 วิ + ที่เครื่องนี้เพิ่งเขียน) ให้ผลที่ถูกกว่าด้วย:
+         ไม่ได้แก้อะไร แต่อีกเครื่องเพิ่งบันทึกไปก่อนรอบตรวจจะเห็น → อ่านสดจะเห็นว่าต่าง แล้วเขียนค่าเก่าของเครื่องนี้ทับของใหม่เขา
+         เทียบกับของที่รู้ = ตรงกัน ข้าม ไม่ทับ · แก้แล้ว = เขียนทั้งก้อน (ตัวเขียนไม่ต้องไล่รายชื่อแล้ว — sxlWriteIn v1.348)
+         SN_OFF.sxlFastUp = กลับไปอ่านสดแบบเดิม */
+      if(snOff("sxlFastUp")&&typeof SXL!=="undefined"&&SXL&&SXL.cfg&&SXL.dir&&typeof sxlLocked==="function"){
         const T=sxlCfg("app_settings"), S=SXL.s&&SXL.s["app_settings"];
         if(T&&S&&S.ready){ const tq=Date.now(); let tg=0;
           if(SXL.locked) await step("① ก้อนตั้งค่า — รอรอบตรวจไฟล์กลางอัตโนมัติจบก่อน (ต่อคิวเขียนไฟล์)…",4);
@@ -41739,10 +42004,32 @@ function sxlRebuild(T,S){
    ต้องรู้ว่าเวลาหายไปกับอะไร: รอคิว (รอบตรวจไฟล์ทุก 10 วิ ถือคิวอยู่) · อ่านรายชื่อไฟล์ใน _changes · อ่านไฟล์ · เขียนไฟล์
    ทุกการเขียนเก็บตัวเลขไว้ใน SXL.wlog (40 รายการล่าสุด) · กล่องผลการส่งสรุปให้ และแนบใน "คัดลอกรายละเอียด" */
 function sxlWLog(W){SXL.wlog=SXL.wlog||[];SXL.wlog.push(W);if(SXL.wlog.length>40)SXL.wlog.shift()}
-async function sxlScanOver(T,S,only){
+/* ───────── v1.346: อ่านรายชื่อไฟล์ล่วงหน้า (sxlPrefetch) ─────────
+   ส่งออเดอร์ 1 ครั้ง เขียน imos_orders · app_settings · imos_mapping ทุกครั้งต้องไล่รายชื่อไฟล์ทั้งโฟลเดอร์ _changes/<ตาราง> ก่อน
+   (หาว่ากลุ่มนี้มีรุ่นใหม่จากเครื่องอื่นไหม) โฟลเดอร์ Server บนไดรฟ์เครือข่ายที่มีไฟล์เป็นพัน ๆ ไล่ทีละหลายสิบวินาที
+   ตอนนี้ตัวส่งสั่งไล่รายชื่อ "ล่วงหน้า" ตั้งแต่เริ่ม ไปพร้อมกับขั้นอบ 3D / GitHub (อ่านอย่างเดียว ไม่ต้องต่อคิว)
+   พอถึงขั้นเขียน การอ่านเฉพาะกลุ่ม (only) ใช้รายชื่อชุดนั้น + ไฟล์ที่เครื่องนี้เพิ่งเขียนเอง ไม่ต้องไล่ใหม่
+   รายชื่อชุดล่วงหน้าใช้ได้ 3 นาที (อีกเครื่องเขียนออเดอร์เดียวกันในช่วง 3 นาทีนั้นพอดี = รุ่นของเครื่องนั้นไม่ถูกนำมารวม — เกิดยากมาก)
+   รอบตรวจไฟล์ทุก 10 วิ (only=null) ยังไล่เต็มทุกครั้งเหมือนเดิม · ปิดได้ SN_OFF.sxlPrefetch */
+function _sxlSnOff(k){ try{ return (typeof snOff==='function')&&snOff(k); }catch(e){ return false; } }
+function sxlPrefetch(t){
+ if(!SXL.dir||_sxlSnOff('sxlPrefetch')) return null; var T=sxlCfg(t); if(!T) return null;
+ var p=(async function(){ var latest={},all={},n=0,t0=Date.now(),d=await sxlOverDir(t,false);
+  if(d){ for await(var ent of d.entries()){ n++; if(ent[1].kind!=='file')continue; var m=SXL_VER_RE.exec(ent[0]); if(!m)continue;
+   (all[m[1]]=all[m[1]]||[]).push(ent[0]); if(!latest[m[1]]||ent[0]>latest[m[1]])latest[m[1]]=ent[0] } }
+  return {latest:latest,all:all,n:n,ms:Date.now()-t0}; })();
+ p.catch(function(){}); SXL.pre=SXL.pre||{}; SXL.pre[t]={at:Date.now(),p:p}; return p }
+/* v1.348: L0 = รายชื่อไฟล์ที่ไล่มาแล้วนอกคิว (รอบตรวจไฟล์ sxlPollList) — ใช้ชุดนั้นเลย ไม่ไล่ซ้ำในคิว */
+async function sxlScanOver(T,S,only,L0){
  var d=await sxlOverDir(T.t,false);if(!d)return false;
- var latest={},all={},W=SXL.curW,t0=Date.now(),nE=0;
- for await(var ent of d.entries()){nE++;if(ent[1].kind!=='file')continue;var m=SXL_VER_RE.exec(ent[0]);if(!m)continue;
+ var latest={},all={},W=SXL.curW,t0=Date.now(),nE=0,L=L0||null;
+ var pre=(!L&&only&&SXL.pre&&SXL.pre[T.t]&&(Date.now()-SXL.pre[T.t].at<180000)&&!_sxlSnOff('sxlPrefetch'))?SXL.pre[T.t]:null;
+ if(pre){ try{ L=await pre.p }catch(e){ L=null } }
+ if(L){ for(var k0 in L.all) all[k0]=L.all[k0].slice(); for(var k1 in L.latest) latest[k1]=L.latest[k1]; nE=L.n;
+  /* ไฟล์ที่เครื่องนี้เขียนหลังไล่รายชื่อ (ตัวเขียนเติม S.names เอง) */
+  if(S.names) for(var k2 in S.names){ (S.names[k2]||[]).forEach(function(nm){ var a=all[k2]=all[k2]||[]; if(a.indexOf(nm)<0)a.push(nm); if(!latest[k2]||nm>latest[k2])latest[k2]=nm }) }
+  if(W)W.pre=1 }
+ else for await(var ent of d.entries()){nE++;if(ent[1].kind!=='file')continue;var m=SXL_VER_RE.exec(ent[0]);if(!m)continue;
   (all[m[1]]=all[m[1]]||[]).push(ent[0]);if(!latest[m[1]]||ent[0]>latest[m[1]])latest[m[1]]=ent[0]}
  if(W){W.list=(W.list||0)+(Date.now()-t0);W.ents=(W.ents||0)+nE}
  S.names=all;var ch=false,t1=Date.now();
@@ -41785,7 +42072,17 @@ async function sxlWriteIn(T,S,st){
    else if(!arr&&st.eqs&&st.eqs.length){var _bc=_bk==='key'?T.key:(_bk.indexOf('col:')===0?_bk.slice(4):null);
     var _h=_bc&&st.eqs.find(function(x){return x[0]===_bc});
     if(_h)only=new Set([sxlBf(_bk==='key'?('k:'+String(_h[1])):('c:'+(_h[1]==null?'':String(_h[1]))))])}}   // สูตรเดียวกับ sxlBucketOf
-  if(await sxlScanOver(T,S,only))SXL.extChanged.add(T.t);
+  /* ───────── v1.348: ทับทั้งแถว (upsert) ในตารางที่แบ่งกลุ่มทีละแถว = เขียนเลย ไม่ไล่รายชื่อไฟล์ก่อน ─────────
+     ผู้ใช้กด ☁ เก็บ Variables/Element แล้วค้างที่ขั้น ① หลายสิบวินาที · บันทึกตู้/อุปกรณ์ 3D ก็ช้าแบบเดียวกัน
+     เดิมทุกการเขียนไล่รายชื่อไฟล์ทั้งโฟลเดอร์ _changes/<ตาราง> ก่อน (หาว่ากลุ่มนี้มีรุ่นใหม่จากเครื่องอื่นไหม)
+     _changes/furnitech_cabinets มีไฟล์เป็นพัน (ตู้ · ออเดอร์ · อุปกรณ์ 3D · หน้าตัด) บนไดรฟ์เครือข่ายไล่ทีละหลายวินาทีถึงหลายสิบวินาที
+     แต่ตารางแบบนี้หนึ่งกลุ่ม = หนึ่งแถว (รหัสตู้ / furnitech_settings) ไฟล์รุ่นใหม่ที่เขียน = แถวนั้นทั้งแถว ไม่มีแถวอื่นต้องรวม
+     รุ่นของเครื่องอื่นที่ไล่เจอก็ถูกทับด้วยรุ่นใหม่นี้อยู่ดี (ไฟล์ใหม่กว่าชนะ) → ผลที่ดิสก์เหมือนเดิมทุกประการ แค่ไม่ต้องไล่
+     ยังไล่เหมือนเดิม: insert (ต้องเช็กรหัสซ้ำ) · ตารางรหัสอัตโนมัติ (xml_history) · update/delete · กลุ่มหลายแถว (hash/col)
+     ปิดได้ SN_OFF.sxlFastUp */
+  var _fastUp=kind==='upsert'&&_bk==='key'&&!(T.w&&T.w.autoId)&&!_snAll&&!_sxlSnOff('sxlFastUp');
+  if(_fastUp){ if(SXL.curW) SXL.curW.fast=1; }
+  else if(await sxlScanOver(T,S,only))SXL.extChanged.add(T.t);
   var idx=sxlIdx(T,S),changes=new Map();
   if(arr){for(var i=0;i<arr.length;i++){var e=arr[i],k=String(e[K]),prev=changes.get(k),old=prev?prev.nw:(idx.get(k)||null);
     if(kind==='insert'&&old)return sxlE('duplicate key value violates unique constraint ('+T.t+'.'+K+' = '+k+')','23505',409);
@@ -41816,6 +42113,49 @@ async function sxlWriteIn(T,S,st){
   setTimeout(sxlRender,0);
   var out=[];changes.forEach(function(c){if(c.nw)out.push(c.nw)});
   return st.ret?sxlShape(st,sxlProject(T,S,out,st.ret),out.length,201):{data:null,error:null,count:null,status:201}}
+/* ───────── v1.346: แทนทั้งกลุ่มในการเขียนครั้งเดียว (ดัชนีชิ้น part_index) ─────────
+   ดัชนีชิ้นของออเดอร์ = หนึ่งกลุ่ม (col:order_id) · เดิมส่งหนึ่งครั้ง = ลบของออเดอร์นี้ (ไล่รายชื่อ + เขียนไฟล์ว่าง) แล้วเพิ่มใหม่ (ไล่รายชื่อ + เขียนอีกไฟล์)
+   ผู้ใช้เห็นขั้นนี้ค้าง 74–90 วิ บนไดรฟ์เครือข่าย ทั้งที่ผลคือ "ของออเดอร์นี้ = ชุดใหม่ทั้งชุด"
+   ตอนนี้เขียนไฟล์รุ่นใหม่ของกลุ่มนั้นทีเดียว ไม่ไล่รายชื่อ ไม่อ่านรุ่นเก่า (ไม่ต้องใช้ เพราะแทนทั้งชุด)
+   ไฟล์รุ่นเก่าของกลุ่ม ลบทีหลังเบื้องหลัง (sxlCleanLater — ไม่ต่อคิว ไม่ทำระหว่างกดส่ง) · รูปแบบไฟล์เหมือนเดิมทุกอย่าง Production อ่านได้ตามเดิม
+   ใช้ได้เฉพาะตารางที่ไม่ได้อ่านเข้าโปรแกรม (load:false) */
+async function sxlReplaceBucket(t,bucket,rows){
+ var T=sxlCfg(t),S=SXL.s[t];
+ if(!T)return sxlE('รุ่นทดลองยังไม่เชื่อมตาราง '+t);
+ if(T.w&&T.w.deny)return sxlE(T.w.deny,'SXL_DENY',403);
+ if(T.load!==false||T.lazy)return sxlE('แทนทั้งกลุ่มได้เฉพาะตารางที่ไม่ได้อ่านเข้าโปรแกรม ('+t+')');
+ if(!SXL.dir)return sxlE('ยังบันทึกไม่ได้ — ต้องเลือกโฟลเดอร์ Server ที่ปุ่ม “ไฟล์กลาง” ก่อน','SXL_NODIR',403);
+ if(!await sxlCanWrite())return sxlE('ยังไม่ได้อนุญาตให้บันทึกลงโฟลเดอร์ Server — กดปุ่ม “ไฟล์กลาง” → “เชื่อมตำแหน่งที่จำไว้” แล้วเลือกอนุญาตให้แก้ไข','SXL_NOPERM',403);
+ var tq=Date.now(),W={seq:(SXL.wseq=(SXL.wseq||0)+1),t:t,k:'replace',q:SXL.locked,poll:!!SXL.busy};
+ return sxlLocked(async function(){W.wait=Date.now()-tq;SXL.curW=W;var t1=Date.now();
+  try{
+   var now=new Date().toISOString(),raw=(rows||[]).map(function(p){return sxlToRaw(T,p)});
+   if(raw.some(function(e){return e[T.key]==null}))return sxlE('ต้องมีคอลัมน์ '+T.key+' ทุกแถว (ตาราง '+t+')');
+   var dir=await sxlOverDir(t,true),bf=sxlBf(bucket),name=bf+'@'+sxlTs()+'.json';
+   var body=JSON.stringify({v:1,table:t,bucket:bucket,at:now,by:SXL.machine,rows:raw.map(function(r){return sxlRawToFile(T,r)})});
+   var tw=Date.now(),fh=await dir.getFileHandle(name,{create:true}),w=await fh.createWritable();await w.write(body);await w.close();
+   W.wr=1;W.kb=body.length/1024;W.wrMs=Date.now()-tw;
+   S.over.set(bf,{bucket:bucket,name:name,at:now,by:SXL.machine,rows:raw});sxlRebuild(T,S);
+   S.names=S.names||{};S.names[bf]=(S.names[bf]||[]).concat([name]);
+   S.nW=(S.nW||0)+raw.length;setTimeout(sxlRender,0);
+   sxlCleanLater(t,bf);
+   return {data:null,error:null,count:raw.length,status:201}}
+  catch(e){W.err=(e&&e.message)||String(e);console.error('[ไฟล์กลาง] บันทึก',t,e);return sxlE('บันทึกลงโฟลเดอร์ Server ไม่สำเร็จ: '+(e&&e.message||e),'SXL_IO',500)}
+  finally{W.ms=Date.now()-t1;if(SXL.curW===W)SXL.curW=null;sxlWLog(W)}})}
+/* เก็บกวาดรุ่นเก่า (เหลือ 3 รุ่นล่าสุดต่อกลุ่ม) — หน่วง 4 วิ รวบหลายกลุ่มทีเดียว · ไม่ต่อคิวเขียน (ไล่รายชื่อ + ลบรุ่นเก่าเท่านั้น)
+   กำลังกดส่งอยู่ (SXL.hold) = เลื่อนไปก่อน · ลบไม่ได้ก็ปล่อย รอบหน้าลองใหม่ */
+function sxlCleanLater(t,bf){ SXL.clean=SXL.clean||{}; (SXL.clean[t]=SXL.clean[t]||new Set()).add(bf);
+ clearTimeout(SXL._cleanT); SXL._cleanT=setTimeout(sxlCleanRun,4000) }
+async function sxlCleanRun(){
+ if(SXL.hold>0||SXL._cleaning){ clearTimeout(SXL._cleanT); SXL._cleanT=setTimeout(sxlCleanRun,6000); return }
+ SXL._cleaning=1;
+ try{ var jobs=SXL.clean||{}; SXL.clean={};
+  for(var t in jobs){ var set=jobs[t],d=await sxlOverDir(t,false); if(!d)continue; var by={};
+   for await(var ent of d.entries()){ if(ent[1].kind!=='file')continue; var m=SXL_VER_RE.exec(ent[0]); if(!m||!set.has(m[1]))continue; (by[m[1]]=by[m[1]]||[]).push(ent[0]) }
+   for(var bf in by){ var ns=by[bf].sort(); for(var i=0;i<ns.length-3;i++){ try{ await d.removeEntry(ns[i]) }catch(e){} }
+    var S=SXL.s[t]; if(S&&S.names) S.names[bf]=ns.slice(-3) } } }
+ catch(e){ console.warn('[ไฟล์กลาง] เก็บกวาดรุ่นเก่า',e) }
+ finally{ SXL._cleaning=0 } }
 /* ตารางที่อ่านทีละรหัส (furnitech_share): หนึ่งไฟล์ต่อหนึ่งแถว ชื่อคงที่ ไม่โหลดทั้งตาราง */
 async function sxlLazyWrite(T,S,st,arr,now){
  if(!arr)return sxlE('ตาราง '+T.t+' เพิ่มแถวได้อย่างเดียว');
@@ -41945,18 +42285,36 @@ async function sxlScanDir(dir){var found={};
   var f=await h.getFile();if(!found[t]||f.lastModified>found[t].f.lastModified)found[t]={f:f,h:h}}
  return found}
 /* อ่านรอบเดียวทุกแหล่ง: โฟลเดอร์ (จับคู่ตามชื่อ) + ไฟล์ที่เลือกแยกรายตาราง (ชนะโฟลเดอร์) */
+/* ───────── v1.348: รอบตรวจไฟล์ (ทุก 10 วิ) ไล่รายชื่อไฟล์ "นอกคิว" ─────────
+   เดิมรอบตรวจถือคิวไฟล์กลางไว้ตลอดรอบ ทั้งตอนไล่รายชื่อไฟล์ในโฟลเดอร์ Server และใน _changes ของทุกตาราง
+   บนไดรฟ์เครือข่ายที่ไฟล์เยอะ รอบหนึ่งกินหลายสิบวินาที ใครกดบันทึกตอนนั้น (☁ เก็บ Variables/Element · บันทึกตู้ · ส่งออเดอร์)
+   ต้องรอจนรอบตรวจไล่เสร็จก่อน — กล่องค้างที่ 6% ทั้งที่ยังไม่ได้เริ่มเขียนเลย
+   ตอนนี้: ไล่รายชื่อ (อ่านอย่างเดียว) ก่อนเข้าคิว → เข้าคิวแค่ช่วงอ่านไฟล์ที่ใหม่กว่า + ประกอบตารางใหม่ (ปกติไม่มีอะไรเปลี่ยน = แทบไม่ถือคิว)
+   ไฟล์ที่เครื่องนี้เขียนระหว่างนั้น sxlScanOver รวมจาก S.names ให้เองอยู่แล้ว · ไฟล์ที่เครื่องอื่นเขียนระหว่างนั้น ได้ในรอบถัดไป
+   เฉพาะรอบตรวจอัตโนมัติ (why='poll') — ตอนเปิดโปรแกรม/กดอ่านไฟล์ล่าสุด ยังไล่ในคิวแบบเดิม · ปิดได้ SN_OFF.sxlPollFree */
+async function sxlPollList(){ var out={inDir:null,over:{},ms:0},t0=Date.now();
+ try{ out.inDir=await sxlScanDir(SXL.dir); }catch(e){ out.inDir=null; }                      // พลาด = ในคิวไล่เองแบบเดิม
+ var ts=SXL.cfg.tables.filter(function(T){ var S=SXL.s[T.t]; return sxlLoadable(T)&&S&&S.ready; });
+ for(var i=0;i<ts.length;i++){ var T=ts[i]; try{ var d=await sxlOverDir(T.t,false); if(!d) continue;
+   var latest={},all={},n=0; for await(var ent of d.entries()){ n++; if(ent[1].kind!=='file')continue; var m=SXL_VER_RE.exec(ent[0]); if(!m)continue;
+    (all[m[1]]=all[m[1]]||[]).push(ent[0]); if(!latest[m[1]]||ent[0]>latest[m[1]])latest[m[1]]=ent[0] }
+   out.over[T.t]={latest:latest,all:all,n:n}; }catch(e){} }
+ out.ms=Date.now()-t0; return out }
 async function sxlSync(force,why){
+ var PL=null;
+ if(why==='poll'&&SXL.dir&&!_sxlSnOff('sxlPollFree')){ try{ PL=await sxlPollList(); SXL.pollListMs=PL.ms; }catch(e){ PL=null; } }
  var changed=await sxlLocked(async function(){var changed=new Set(),inDir={};SXL.busy=true;
   try{
    if(SXL.dir&&SXL._prog){SXL._prog('ตรวจไฟล์ในโฟลเดอร์ '+(SXL.dir.name||'Server')+' …',3);await new Promise(function(r){setTimeout(r,30)})}   // v1.299-local.9
-   if(SXL.dir){try{inDir=await sxlScanDir(SXL.dir);SXL.dirErr=''}catch(e){SXL.dirErr='อ่านโฟลเดอร์ไม่ได้: '+e.message}}
+   if(SXL.dir){ if(PL&&PL.inDir){ inDir=PL.inDir; SXL.dirErr=''; }                           // v1.348: ไล่มาแล้วนอกคิว
+    else { try{inDir=await sxlScanDir(SXL.dir);SXL.dirErr=''}catch(e){SXL.dirErr='อ่านโฟลเดอร์ไม่ได้: '+e.message} } }
    var _pT=SXL.cfg.tables.filter(sxlLoadable),_pI=0;   /* v1.299-local.8: บอกกล่องโหลดว่ากำลังอ่านไฟล์ไหน */
    for(var T of SXL.cfg.tables){if(!sxlLoadable(T))continue;var S=SXL.s[T.t];
     if(SXL._prog){_pI++;var _pf=(S.src==='file'&&S.handle)?null:inDir[T.t];SXL._prog('อ่าน '+(_pf?_pf.f.name+' · '+sxlMB(_pf.f.size):T.t)+' ('+_pI+'/'+_pT.length+')',5+75*(_pI-1)/Math.max(_pT.length,1));await new Promise(function(r){setTimeout(r,30)})}
     if(S.src==='file'&&S.handle){try{if(await sxlLoadFile(T.t,await S.handle.getFile(),'file',S.handle,force))changed.add(T.t)}catch(e){S.err='อ่านไฟล์ไม่ได้: '+e.message}}
     else if(S.src!=='once'){var m=inDir[T.t];if(m&&await sxlLoadFile(T.t,m.f,'dir',m.h,force))changed.add(T.t)}
     /* ของที่บันทึกไว้ใน _changes (ของเครื่องนี้หรือเครื่องอื่น) */
-    if(SXL.dir&&S.ready){try{if(await sxlScanOver(T,S,null))changed.add(T.t);S.werr=''}catch(e){S.werr='อ่าน _changes ไม่ได้: '+e.message}}}
+    if(SXL.dir&&S.ready){try{if(await sxlScanOver(T,S,null,PL&&PL.over[T.t]))changed.add(T.t);S.werr=''}catch(e){S.werr='อ่าน _changes ไม่ได้: '+e.message}}}   // v1.348: PL = รายชื่อที่ไล่นอกคิว
    SXL.extChanged.forEach(function(t){changed.add(t)});SXL.extChanged.clear();
   }finally{SXL.busy=false}
   return changed});
@@ -45205,6 +45563,51 @@ button{font:inherit;color:inherit}
 #vwScan>span{flex:1 1 220px;min-width:0}
 #vwScan button{border:1px solid var(--line);background:var(--bg);border-radius:9px;padding:5px 10px;cursor:pointer;white-space:nowrap}
 @media(min-width:760px){#vwScan{left:50%;right:auto;transform:translateX(-50%);max-width:min(900px,calc(100vw - 440px))}}
+/* ───────── v1.346: มือถือเห็นเครื่องมือครบ ─────────
+   เดิมแถวล่างมีปุ่มเรียงยาวเกินจอ ต้องปัดซ้ายขวา (แถบเลื่อนซ่อนอยู่) คนเปิดจากมือถือเลยเห็นปุ่มไม่ครบ
+   จอแคบ: แถวล่างเหลือเครื่องมือหลัก (ดูชิ้น · วัด · เปิดบาน) + "⋯ เพิ่มเติม" = แผงรวมปุ่มที่เหลือทั้งหมด · จอกว้างเรียงแถวเดียวเหมือนเดิม */
+#vwMore{display:none}
+@media (min-width:760px){ #vwExtra{display:contents} }
+@media (max-width:759px){
+  #vwBar{overflow:visible;flex-wrap:nowrap;gap:6px;padding-left:8px;padding-right:8px}
+  #vwBar #vwTool{flex:1 1 auto;min-width:0}
+  #vwBar #vwTool button{flex:1 1 0;min-width:0;padding:10px 4px;font-size:13px;white-space:nowrap}
+  #vwMore{display:inline-flex;align-items:center;flex:none;padding:9px 10px}
+  #vwExtra{display:none;position:fixed;left:8px;right:8px;bottom:calc(60px + env(safe-area-inset-bottom));z-index:9;background:var(--solid);border-radius:16px;box-shadow:0 20px 60px -20px rgba(0,0,0,.5);padding:12px;flex-wrap:wrap;gap:8px;max-height:62vh;overflow:auto}
+  #vwExtra.open{display:flex}
+  #vwExtra .vbtn{flex:1 1 calc(50% - 8px);box-shadow:none;padding:11px 8px;text-align:center}
+  #vwExtra .rng{flex:1 1 100%;box-shadow:none;justify-content:space-between;padding:8px 10px}
+  #vwExtra .rng input{flex:1;width:auto;min-width:0}
+  #vwExtra .seg{flex:1 1 100%;box-shadow:none}
+  #vwExtra .seg button{flex:1;padding:11px 6px}
+  #vwZoom{top:auto;bottom:calc(72px + env(safe-area-inset-bottom));right:10px;gap:6px}
+  #vwZoom button{width:40px;height:40px;font-size:20px}
+  .sheet{bottom:calc(60px + env(safe-area-inset-bottom))}
+  #vwScan{font-size:12.5px;padding:6px 8px;gap:5px}
+  #vwScan button{padding:6px 8px}
+  #vwMeas{left:8px;right:8px;transform:none;text-align:center}
+}
+/* v1.346: ป้ายเส้นบอกขนาด (DIM) + หมุดชี้ชิ้นที่สแกน — HTML ลอยตามจุดใน 3D */
+#vwLbl{position:fixed;inset:0;pointer-events:none;z-index:4;overflow:hidden}
+#vwLbl .dl{position:absolute;transform:translate(-50%,-50%);background:#e8590c;color:#fff;font:600 12px/1.25 ui-monospace,Menlo,Consolas,monospace;padding:3px 7px;border-radius:7px;white-space:nowrap;box-shadow:0 2px 8px rgba(0,0,0,.25)}
+#vwLbl .dl small{font:500 10.5px system-ui,sans-serif;opacity:.92;margin-right:4px}
+#vwLbl .pin{position:absolute;transform:translate(-50%,-100%);pointer-events:auto;cursor:pointer;display:flex;flex-direction:column;align-items:center}
+#vwLbl .pin b{background:#16a34a;color:#fff;font:700 12.5px system-ui,sans-serif;padding:5px 10px;border-radius:10px;white-space:nowrap;box-shadow:0 6px 18px -6px rgba(0,0,0,.5);border:2px solid #fff;animation:vwpin 1.1s ease-in-out 4}
+#vwLbl .pin i{display:block;width:2px;height:24px;background:#16a34a}
+#vwLbl .pin.cab b{background:#e8590c} #vwLbl .pin.cab i{background:#e8590c}
+@keyframes vwpin{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+/* วงแหวนกะพริบรอบชิ้นที่สแกน — ขึ้นเฉพาะตอนชิ้นเล็กบนจอ (ดูทั้งออเดอร์/ซูมออกไกล) */
+#vwLbl .ring{position:absolute;transform:translate(-50%,-50%);border-radius:50%;border:3px solid #ffd400;box-shadow:0 0 0 3px rgba(22,163,74,.9),0 0 22px 4px rgba(255,212,0,.7);pointer-events:none;animation:vwring .9s ease-in-out infinite alternate}
+@keyframes vwring{from{opacity:1;transform:translate(-50%,-50%) scale(.86)}to{opacity:.5;transform:translate(-50%,-50%) scale(1.14)}}
+@media (prefers-reduced-motion:reduce){#vwLbl .ring,#vwLbl .pin b{animation:none}}
+#vwMeas .x{border:0;background:transparent;font-size:15px;cursor:pointer;margin-left:6px;padding:0 4px;color:inherit}
+/* v1.346: ปุ่ม ✕ ชิดขวาในแถบ (เดิมตกไปบรรทัดที่สองบนมือถือ) · ชื่อชิ้นใช้ตัวอักษรปกติ ตัวเลขใช้ตัวเท่ากัน */
+#vwMeas.dim{padding-right:38px}
+#vwMeas.dim .x{position:absolute;right:4px;top:50%;transform:translateY(-50%);margin:0;padding:6px 9px}
+#vwMeas b.n{font-family:inherit;font-size:14px}
+@media (max-width:759px){ #vwMeas.dim{font-size:12px;padding-left:10px;text-align:left} #vwMeas b.n{font-size:13px} }
+#vwMeas .code{font-family:ui-monospace,Menlo,Consolas,monospace}
+#vwScan button.on{background:var(--accent);color:#fff;border-color:transparent}
 </script>
 <script type="text/plain" id="snvTplBody">
 <div id="vwCanvas"></div>
@@ -45214,16 +45617,21 @@ button{font:inherit;color:inherit}
 <section id="vwInfo" class="sheet hide"></section>
 <section id="vwCabs" class="sheet hide"></section>
 <div id="vwHint"></div>
+<div id="vwLbl"></div>
 <footer id="vwBar">
-  <div class="seg" id="vwTool"><button data-t="sel" class="on">👆 ดูชิ้น</button><button data-t="door">🚪 เปิดบาน</button><button data-t="meas">📏 วัด</button></div>
-  <button class="vbtn" id="vwAllDoors">เปิดทุกบาน</button>
-  <button class="vbtn" id="vwGhost">โปร่งใส</button>
-  <span class="rng">แยกประกอบ <input type="range" id="vwExp" min="0" max="100" value="0"><span id="vwExpV">0%</span></span>
-  <button class="vbtn" id="vwReset">มุมมอง</button>
-  <div class="seg" id="vwViews"><button data-v="front">หน้า</button><button data-v="top">บน</button><button data-v="side">ข้าง</button></div>
-  <button class="vbtn on" id="vwShadow">เงา</button>
-  <button class="vbtn on" id="vwGrid">ตาราง</button>
-  <button class="vbtn" id="vwEco">ประหยัด</button>
+  <div class="seg" id="vwTool"><button data-t="sel" class="on">👆 ดูชิ้น</button><button data-t="meas">📏 วัด</button><button data-t="door">🚪 เปิดบาน</button></div>
+  <button class="vbtn" id="vwMore" aria-label="เครื่องมือเพิ่มเติม">⋯ เพิ่มเติม</button>
+  <div id="vwExtra">
+    <button class="vbtn" id="vwAllDoors">เปิดทุกบาน</button>
+    <button class="vbtn" id="vwGhost">โปร่งใส</button>
+    <span class="rng">แยกประกอบ <input type="range" id="vwExp" min="0" max="100" value="0"><span id="vwExpV">0%</span></span>
+    <button class="vbtn" id="vwReset">มุมมอง</button>
+    <div class="seg" id="vwViews"><button data-v="front">หน้า</button><button data-v="top">บน</button><button data-v="side">ข้าง</button></div>
+    <button class="vbtn" id="vwLight">แสง: ในห้อง</button>
+    <button class="vbtn" id="vwShadow">เงา</button>
+    <button class="vbtn" id="vwGrid">ตาราง</button>
+    <button class="vbtn" id="vwEco">ประหยัด</button>
+  </div>
 </footer>
 <div id="vwLoad">__PREVIEW__<div class="box"><div class="spin"></div><div class="msg">กำลังเปิดงาน 3D…</div></div><div class="nojs">ถ้าหน้านี้ค้างที่ภาพนิ่ง ให้เปิดลิงก์/ไฟล์นี้ด้วย Chrome หรือ Safari (เปิดในเบราว์เซอร์) เพื่อหมุนดู 3D</div></div>
 </script>
@@ -45234,7 +45642,9 @@ button{font:inherit;color:inherit}
 (function(){
 "use strict";
 var $=function(id){ return document.getElementById(id); };
-var S={D:null,items:[],byId:{},prog:{},anim:{},ex:0,ghost:false,shadows:true,grid:true,eco:false,tool:"sel",sel:null,meas:[],dirty:true,allOpen:false};
+var S={D:null,items:[],byId:{},prog:{},anim:{},ex:0,ghost:false,shadows:false,grid:false,light:"room",eco:false,   // v1.350: ตั้งต้น แสงในห้อง · ไม่มีเงาแข็ง · ปิดตาราง
+  tool:"sel",sel:null,meas:[],dirty:true,allOpen:false,
+  fade:false,hiIds:[],hiMats:[],pulse:0,pin:null};   // v1.346: เน้นชิ้น (จางของอื่น · เส้นขอบ · หมุด · กะพริบ)
 var renderer,scene,camera,root,floor,grid,hemi,keyL,fillL,rimL,selBox,measLine,measDots=[],envTexC=null;
 var orbit={t:new THREE.Vector3(),th:.85,ph:.95,r:2000,mr:900};
 var _Y=new THREE.Vector3(0,1,0), _q=new THREE.Quaternion();
@@ -45309,13 +45719,17 @@ function build(D,imgs){
       case "PT": p.size=(m.sz!=null?m.sz:1); o=new THREE.PointsMaterial(p); break;
       default: o=new THREE.MeshBasicMaterial(p); }
     if(m.vi===0) o.visible=false;
-    o.userData={op0:o.opacity,tr0:o.transparent,dw0:o.depthWrite,mesh:(m.k==="S"||m.k==="P"||m.k==="LA"||m.k==="B")};
+    o.userData={op0:o.opacity,tr0:o.transparent,dw0:o.depthWrite,mesh:(m.k==="S"||m.k==="P"||m.k==="LA"||m.k==="B"),line:(m.k==="L"||m.k==="LD")};
     return o; });
   var geos=(D.geo||[]).map(function(g){ var bg=new THREE.BufferGeometry();
     Object.keys(g.a).forEach(function(k){ var a=g.a[k]; bg.setAttribute(k,new THREE.BufferAttribute(arr(a),a.n,!!a.nm)); });
     if(g.i) bg.setIndex(new THREE.BufferAttribute(arr(g.i),1));
     (g.gr||[]).forEach(function(x){ bg.addGroup(x[0],x[1],x[2]||0); });
     return bg; });
+  /* v1.346: เส้นแนวลายไม้ของโปรแกรม (ปุ่ม "ลายไม้") ไม่ใช่ลายจริงของผิว — ไม่แสดง
+     ลิงก์ใหม่อบโดยไม่มีเส้นนี้แล้ว · ลิงก์เก่าที่อบติดมา จำจากหน้าตา: เส้นคู่ ลำดับวาด 3 วัสดุเส้นโปร่ง ~55% ไม่เขียนความลึก */
+  function isGrain(n){ if(n.k!=="S"||n.ro!==3||n.m==null||Array.isArray(n.m)) return false;
+    var ms=(D.mat||[])[n.m]; return !!(ms&&ms.k==="L"&&ms.tr&&ms.dw===0&&ms.op!=null&&ms.op>.4&&ms.op<.7); }
   function mk(n){ var o, g=(n.g!=null)?geos[n.g]:null, m=(n.m==null)?null:(Array.isArray(n.m)?n.m.map(function(i){ return mats[i]; }):mats[n.m]);
     switch(n.k){ case "M": o=new THREE.Mesh(g,m); break; case "S": o=new THREE.LineSegments(g,m); break;
       case "L": o=new THREE.Line(g,m); break; case "LL": o=new THREE.LineLoop(g,m); break; case "P": o=new THREE.Points(g,m); break;
@@ -45323,6 +45737,7 @@ function build(D,imgs){
     if(n.p) o.position.fromArray(n.p); if(n.q) o.quaternion.fromArray(n.q); if(n.s) o.scale.fromArray(n.s);
     if(n.ro) o.renderOrder=n.ro; if(n.v===0) o.visible=false; if(n.cs) o.castShadow=true; if(n.rs) o.receiveShadow=true; if(n.fc===0) o.frustumCulled=false;
     if(n.id) o.userData.id=n.id;
+    if(isGrain(n)){ o.visible=false; o.userData.grain=1; }
     (n.ch||[]).forEach(function(c){ var co=mk(c); if(co) o.add(co); });
     return o; }
   root=new THREE.Group(); if(D.root&&D.root.p) root.position.fromArray(D.root.p); scene.add(root);
@@ -45345,6 +45760,23 @@ function setupScene(D){
   keyL.castShadow=true; keyL.shadow.mapSize.set(2048,2048); keyL.shadow.bias=-.0004; scene.add(keyL); scene.add(keyL.target);
   var f=L.fill||[0xcdd6e6,.5,[-900,400,-600]]; fillL=new THREE.DirectionalLight(f[0],f[1]); fillL.position.fromArray(f[2]||[-900,400,-600]); scene.add(fillL);
   var r=L.rim||[0xffffff,.3,[-400,600,-1000]]; rimL=new THREE.DirectionalLight(r[0],r[1]); rimL.position.fromArray(r[2]||[-400,600,-1000]); scene.add(rimL); }
+/* ───────── v1.350: แสงแบบในห้องเป็นค่าตั้งต้น ─────────
+   เดิมหน้าดูใช้แสงที่อบมาจากจอคนส่ง ซึ่งส่วนใหญ่เป็น "แดด" (ดวงหลักแรง ยิงเฉียง มีเงาทอด) ภาพแข็ง ด้านหนึ่งสว่างจ้าอีกด้านมืด
+   ผู้ใช้ขอให้หน้าดูเป็นแสงในห้อง — ใช้ชุดเดียวกับปุ่ม "แสง" ของโปรแกรม (SCENE_LIGHTS) ตัวเลขตรงกันทุกค่า
+   เปลี่ยนแค่สีกับความแรงของสี่ดวงเดิม ตำแหน่งไฟยังตามที่อบมา · ลิงก์เก่าก็ได้แสงนี้ (หน้าดูตัวใหม่ขึ้นเว็บตอนส่งครั้งถัดไป)
+   ปุ่ม "แสง: …" ในแถบ ⋯ เพิ่มเติม สลับ ในห้อง → แดด → กลางคืน · แดด = เปิดเงาให้เอง ในห้อง/กลางคืน = ปิดเงาแข็ง */
+var LIGHTS={
+  room: {label:"ในห้อง",  hemi:[0xf4f6fa,0xdcdfe6,.62], key:[0xffffff,.30,false], fill:[0xe3e9f4,.34], rim:[0xffffff,.22], floor:.07},
+  sun:  {label:"แดด",     hemi:[0xffffff,0xd8d8de,.85], key:[0xfff4e2,.95,true ], fill:[0xcdd6e6,.50], rim:[0xffffff,.30], floor:.16},
+  night:{label:"กลางคืน", hemi:[0x8fa0bb,0x3a4152,.20], key:[0xbcc8dd,.10,false], fill:[0x9fb0cc,.12], rim:[0xffffff,.08], floor:.04}};
+function setLight(m){ var P=LIGHTS[m]||LIGHTS.room; S.light=LIGHTS[m]?m:"room";
+  hemi.color.setHex(P.hemi[0]); hemi.groundColor.setHex(P.hemi[1]); hemi.intensity=P.hemi[2];
+  keyL.color.setHex(P.key[0]); keyL.intensity=P.key[1]; fillL.color.setHex(P.fill[0]); fillL.intensity=P.fill[1];
+  rimL.color.setHex(P.rim[0]); rimL.intensity=P.rim[1];
+  if(floor&&floor.material) floor.material.opacity=P.floor;
+  setShadows(!!P.key[2]);
+  var b=$("vwLight"); if(b){ b.textContent="แสง: "+P.label; b.classList.toggle("on",S.light!=="room"); }
+  S.dirty=true; }
 
 function fitGround(){
   var b=sceneBox(); if(b.isEmpty()) return;
@@ -45392,6 +45824,7 @@ function applyPose(){
     var e=D.exp&&D.exp[it.id]; if(e&&ex>0){ x+=e[0]*ex; y+=e[1]*ex; z+=e[2]*ex; }
     it.o.position.set(x,y,z); }
   if(S.sel) showSelBox(S.sel);
+  if(DIM.id) showDim(DIM.id);                                                // v1.346: เส้นขนาดตามบานที่กาง/แยกประกอบ
   S.dirty=true; if(renderer&&renderer.shadowMap) renderer.shadowMap.needsUpdate=true; }
 function animKeys(keys,to){ var from={}, t0=performance.now(), ms=460;
   keys.forEach(function(k){ from[k]=S.prog[k]||0; });
@@ -45469,23 +45902,73 @@ function findPart(pk){ var w=norm(pk); if(!w) return [];
     if(num&&x.pid&&String(x.pid).split(",").some(function(p){ return p.replace(/^P/,"")===num; })){ out.push(id); return; }
     var c=cabOf(x.ci); if(c&&(norm(c.n+x.n)===w||norm(c.c+x.n)===w)) out.push(id); });
   return out; }
-var HI=[];
-function hiClear(){ HI.forEach(function(s){ s[0].material=s[1]; }); HI=[]; S.dirty=true; }
-function hiSet(ids,col){ hiClear(); var C=new THREE.Color(col||0x2f9e44);
-  ids.forEach(function(id){ (S.byId[id]||[]).forEach(function(it){ it.o.traverse(function(o){ if(!o.isMesh) return;
+/* ───────── v1.346: ชิ้นที่สแกนต้องเด่นกว่านี้ — ทั้งตอนดูเฉพาะชิ้น และตอนดูทั้งตู้/ทั้งออเดอร์ ─────────
+   เดิมย้อมเขียวอ่อน ๆ (emissive .45) ชิ้นเล็กในตู้ใหญ่ หรือชิ้นที่อยู่ข้างในหลังบาน มองแทบไม่เห็น
+   ตอนนี้: ย้อมเขียวเข้ม + กะพริบช่วงแรก · เส้นขอบสีเหลืองมองทะลุชิ้นอื่นได้ · ของอื่นจางลง (ปุ่ม "เน้น" ปิดได้)
+   · หมุดลอยบอกชื่อ/PartID ชี้ที่ชิ้น แตะหมุด = รายละเอียด · ทั้งตู้ (ลิงก์ตู้ ?cab=) ย้อมส้มอ่อน + หมุดชื่อตู้ + จางตู้อื่น */
+var HI=[], HO=[];
+function hiClear(){ HI.forEach(function(s){ s[0].material=s[1]; }); HI=[];
+  HO.forEach(function(l){ if(l.parent) l.parent.remove(l); try{ l.geometry.dispose(); l.material.dispose(); }catch(e){} }); HO=[];
+  S.hiIds=[]; S.hiMats=[]; S.fade=false; pinSet(null); matState(); }
+function hiSet(ids,col,opt){ opt=opt||{}; hiClear(); var C=new THREE.Color(col||0x16a34a), soft=!!opt.soft;
+  S.hiIds=ids.slice();
+  ids.forEach(function(id){ (S.byId[id]||[]).forEach(function(it){ it.o.traverse(function(o){ if(!o.isMesh||o.userData.hiEdge) return;
     HI.push([o,o.material]);
-    var tint=function(m){ var c=m.clone(); if(c.emissive){ c.emissive=C.clone(); c.emissiveIntensity=.45; } else if(c.color){ c.color=c.color.clone().lerp(C,.55); } return c; };
-    o.material=Array.isArray(o.material)?o.material.map(tint):tint(o.material); }); }); });
-  S.dirty=true; }
+    var tint=function(m){ var c=m.clone(), u=m.userData||{};
+      c.transparent=!!u.tr0; c.opacity=(u.op0!=null)?u.op0:1; c.depthWrite=(u.dw0!=null)?u.dw0:true;   // ตอนเน้นของอื่นจาง ตัวนี้ต้องทึบเสมอ
+      if(c.emissive){ c.emissive=C.clone(); c.emissiveIntensity=soft?.3:.85; }
+      if(c.color) c.color=c.color.clone().lerp(C,soft?.3:.62);
+      c.userData={hi:1,op0:c.opacity}; S.hiMats.push(c); return c; };
+    o.material=Array.isArray(o.material)?o.material.map(tint):tint(o.material);
+    if(!opt.noEdge&&o.geometry){ try{ var ln=new THREE.LineSegments(new THREE.EdgesGeometry(o.geometry,30),
+          new THREE.LineBasicMaterial({color:opt.edge||0xffd400,depthTest:false,transparent:true,opacity:.95}));
+        ln.renderOrder=40; ln.userData.hiEdge=1; o.add(ln); HO.push(ln); }catch(e){} } }); }); });
+  S.fade=!!opt.fade; matState();
+  if(opt.pin) pinSet(opt.pin);
+  S.pulse=soft?0:performance.now()+2800; S.dirty=true; }
+/* สถานะวัสดุรวม: ปุ่มโปร่งใส กับ "จางของอื่นตอนเน้น" ใช้วัสดุชุดเดียวกัน คิดรวมที่เดียว (วัสดุของชิ้นที่เน้นเป็นตัวโคลน ไม่โดน) */
+function matState(){ var fade=S.fade&&!S.ghost;
+  (S.mats||[]).forEach(function(m){ var u=m.userData||{};
+    if(u.mesh){ if(S.ghost){ m.transparent=true; m.opacity=Math.min(u.op0,.32); m.depthWrite=false; }
+      else if(fade){ m.transparent=true; m.opacity=Math.min(u.op0,.18); m.depthWrite=false; }
+      else { m.transparent=u.tr0; m.opacity=u.op0; m.depthWrite=u.dw0; }
+      m.needsUpdate=true; }
+    else if(u.line){ if(fade){ m.transparent=true; m.opacity=Math.min(u.op0,.12); } else { m.transparent=u.tr0; m.opacity=u.op0; } m.needsUpdate=true; } });
+  if(renderer&&renderer.shadowMap) renderer.shadowMap.needsUpdate=true; S.dirty=true; }
+/* หมุดลอย (HTML) ชี้ที่ชิ้น/ตู้ — ตามกล้องทุกเฟรม */
+/* v1.346: + วงแหวนกะพริบรอบชิ้น (เฉพาะตอนชิ้นเล็กบนจอ เช่นดูทั้งออเดอร์/ซูมออกไกล) — ชิ้นบาง ๆ ในภาพรวมเหลือเส้นเดียว หาไม่เจอ
+   · ตอนโชว์เส้นบอกขนาด (DIM) ซ่อนหมุด/วงแหวนไว้ก่อน (ป้ายตัวเลขทับหมุด อ่านไม่ออก) ปิด DIM แล้วกลับมาเอง */
+function pinSet(o){ if(S.pin){ if(S.pin.el) S.pin.el.remove(); if(S.pin.ring) S.pin.ring.remove(); } S.pin=null; if(!o) return;
+  var el=document.createElement("div"); el.className="pin"+(o.cls?(" "+o.cls):""); el.innerHTML="<b>"+esc(o.text||"")+"</b><i></i>";
+  el.onclick=function(){ if(o.ids&&o.ids.length===1) showInfo(o.ids[0]); };
+  var host=$("vwLbl"), ring=null;
+  if(o.ring!==false){ ring=document.createElement("div"); ring.className="ring"; ring.style.display="none"; if(host) host.appendChild(ring); }
+  if(host) host.appendChild(el); S.pin={el:el,ids:o.ids||[],ring:ring}; S.dirty=true; }
+function toScreen(p){ var v=p.clone().project(camera); if(v.z>1||v.z<-1) return null;
+  return {x:(v.x+1)/2*innerWidth, y:(1-v.y)/2*innerHeight}; }
+function pinTick(){ if(!S.pin) return; var el=S.pin.el, rg=S.pin.ring;
+  var off=function(){ el.style.display="none"; if(rg) rg.style.display="none"; };
+  if(DIM.g) return off();
+  var b=sceneBox(S.pin.ids); if(b.isEmpty()) return off();
+  var c=b.getCenter(new THREE.Vector3()); c.y=b.max.y; var sp=toScreen(c);
+  if(!sp) return off(); el.style.display=""; el.style.left=sp.x+"px"; el.style.top=sp.y+"px";
+  if(!rg) return;
+  var x0=1e9,y0=1e9,x1=-1e9,y1=-1e9,n=0;
+  for(var i=0;i<8;i++){ var q=toScreen(new THREE.Vector3(i&1?b.max.x:b.min.x,i&2?b.max.y:b.min.y,i&4?b.max.z:b.min.z)); if(!q) continue;
+    n++; if(q.x<x0) x0=q.x; if(q.x>x1) x1=q.x; if(q.y<y0) y0=q.y; if(q.y>y1) y1=q.y; }
+  var big=Math.max(x1-x0,y1-y0);
+  if(!n||big>110){ rg.style.display="none"; return; }                             // ชิ้นใหญ่พอเห็นเอง → ไม่ต้องมีวงแหวน (v1.350: ไม่ผูกกับปุ่ม "เน้น" แล้ว — ไฮไลต์ชิ้นอยู่ครบเสมอ)
+  var dm=Math.max(46,big+24); rg.style.display=""; rg.style.width=rg.style.height=dm+"px";
+  rg.style.left=((x0+x1)/2)+"px"; rg.style.top=((y0+y1)/2)+"px"; }
 function isolate(ci){ S.iso=ci||null;
   S.items.forEach(function(it){ var D=S.D, I=it.id&&D.info&&D.info[it.id];
     if(!I&&it.id&&D.own&&D.own[it.id]) I=D.info[D.own[it.id]];
-    it.o.visible=!ci||(!!I&&I.ci===ci); });                                   // ดูเฉพาะตู้: ของที่ไม่รู้ว่าอยู่ตู้ไหน (เส้นบอกระยะ ฯลฯ) ซ่อนด้วย
+    it.o.visible=(!ci||(!!I&&I.ci===ci))&&!it.o.userData.grain; });          // ดูเฉพาะตู้: ของที่ไม่รู้ว่าอยู่ตู้ไหน (เส้นบอกระยะ ฯลฯ) ซ่อนด้วย · v1.346 เส้นลายไม้ซ่อนเสมอ
   if(renderer&&renderer.shadowMap) renderer.shadowMap.needsUpdate=true; S.dirty=true; }
 function frontView(c){ var f=c&&c.f; if(!f) return null; return {th:Math.atan2(f[0],f[2])+.45, ph:1.05}; }   // มุมสามส่วนสี่ด้านหน้าตู้
 function cabIds(ci){ var I=S.D.info||{}; return Object.keys(I).filter(function(id){ return I[id]&&I[id].ci===ci; }); }
 function cabDoorKeys(ci){ var D=S.D, s={}; Object.keys(D.key||{}).forEach(function(id){ var I=D.info&&D.info[id]; if(I&&I.ci===ci) s[D.key[id]]=1; }); return Object.keys(s); }
-function scanBar(html){ var el=$("vwScan"); if(!el){ el=document.createElement("div"); el.id="vwScan"; document.body.appendChild(el); } el.innerHTML=html; return el; }
+function scanBar(html){ var el=$("vwScan"); if(!el){ el=document.createElement("div"); el.id="vwScan"; document.body.appendChild(el); } el.innerHTML=html; measPos(); return el; }
 function scanFocus(pk,quiet){
   var ids=findPart(pk);
   if(!ids.length){ var c0=S.D._alias&&cabByKey(S.D._alias.c);
@@ -45493,27 +45976,37 @@ function scanFocus(pk,quiet){
     el0.onclick=function(e){ if(e.target.dataset.a==="all"){ isolate(null); focusBox(sceneBox()); } };
     if(c0){ isolate(c0.k); focusBox(sceneBox(cabIds(c0.k))); }
     return false; }
-  var id=ids[0], I=S.D.info[id], c=cabOf(I.ci);
-  isolate(I.ci); hiSet([id]);
+  var id=ids[0], I=S.D.info[id], c=cabOf(I.ci), pk0=(I.pid?I.pid.split(",")[0]:"");
+  /* v1.350: ผู้ใช้ขอ "เน้น = เอาแค่ไฮไลต์" — ตั้งต้นไม่จางของอื่น (เห็นสีจริงทั้งตู้) ชิ้นที่สแกนยังเขียว ขอบเหลือง หมุด วงแหวน ครบ
+     ปุ่ม "เน้น" กดแล้วค่อยจางของอื่น (จำค่าไว้ตอนสลับดูเฉพาะตู้/ทั้งออเดอร์) */
+  var fadeOn=false;
+  var hiOn=function(){ hiSet([id],0x16a34a,{fade:fadeOn,pin:{ids:[id],text:"📍 "+(pk0?pk0+" · ":"")+(I.n||"ชิ้นนี้")}}); };   // v1.346
+  isolate(I.ci); hiOn();
   var opened=false;
   if(!I.dr){ var ks=cabDoorKeys(I.ci); if(ks.length){ animKeys(ks,1); opened=true; } }
   setTimeout(function(){ focusBox(sceneBox(cabIds(I.ci)),frontView(c)); },opened?480:0);
   var d=I.d?(fmt(I.d[0])+" × "+fmt(I.d[1])+" × "+fmt(I.d[2])+" มม."):"";
   var el=scanBar('<span><b>'+esc(c?c.n:"")+'</b> · '+esc((I.pid?I.pid.split(",")[0]+" · ":"")+(I.n||"ชิ้น"))+' <span class="d">'+esc(d)+'</span>'
     +(opened?' <span class="d">· กางบานให้แล้ว</span>':'')+(ids.length>1?' <span class="w">เข้าคีย์นี้ '+ids.length+' ชิ้น · แสดงชิ้นแรก</span>':'')+'</span>'
-    +'<button data-a="hi">ไฮไลต์ชิ้นนี้</button><button data-a="info">รายละเอียด</button><button data-a="all">ดูทั้งออเดอร์</button>');
-  el.onclick=function(e){ var a=e.target.dataset.a;
-    if(a==="hi"){ isolate(I.ci); hiSet([id]); focusBox(sceneBox([id])); e.target.parentNode.querySelector('[data-a=all]').textContent="ดูทั้งออเดอร์"; }
+    +'<button data-a="hi">🎯 ซูมชิ้นนี้</button><button data-a="info">รายละเอียด</button><button data-a="all">ดูทั้งออเดอร์</button><button data-a="fade">เน้น: ปิด</button>');
+  /* v1.346: สลับดูทั้งออเดอร์/เฉพาะตู้ ชิ้นยังเน้นอยู่ (ของอื่นจาง + ขอบเหลือง + หมุด) · ปุ่ม "เน้น" ปิดการจางเพื่อดูสีจริงทั้งตู้ */
+  el.onclick=function(e){ var t=e.target.closest("button"); if(!t) return; var a=t.dataset.a;
+    if(a==="hi"){ if(!S.hiIds.length) hiOn(); focusBox(sceneBox([id])); }
     else if(a==="info") showInfo(id);
-    else if(a==="all"){ if(S.iso){ isolate(null); focusBox(sceneBox()); e.target.textContent="ดูเฉพาะตู้นี้"; } else { isolate(I.ci); focusBox(sceneBox(cabIds(I.ci))); e.target.textContent="ดูทั้งออเดอร์"; } } };
-  if(!quiet) hint("ชิ้นที่สแกนย้อมสีเขียว · แตะชิ้นอื่นเพื่อดูรายละเอียด",3000);
+    else if(a==="all"){ if(S.iso){ isolate(null); focusBox(sceneBox()); t.textContent="ดูเฉพาะตู้นี้"; } else { isolate(I.ci); focusBox(sceneBox(cabIds(I.ci))); t.textContent="ดูทั้งออเดอร์"; } }
+    else if(a==="fade"){ fadeOn=!fadeOn; S.fade=fadeOn; matState(); t.textContent=fadeOn?"เน้น: เปิด":"เน้น: ปิด"; t.classList.toggle("on",fadeOn); }
+    measPos(); };                                                                 // ปุ่มเปลี่ยนข้อความ → การ์ดสูง/เตี้ยลง แถบวัดขยับตาม
+  if(!quiet) hint("ชิ้นที่สแกน = สีเขียว ขอบเหลือง มีหมุดชี้ · กด “เน้น” ให้ของอื่นจางลง",3600);
   return true; }
 function cabFocus(k,only){ var c=cabByKey(k); if(!c) return false;
-  var ids=cabIds(c.k); if(only) isolate(c.k); hiSet(ids,0xff9500); focusBox(sceneBox(ids),frontView(c));
+  var ids=cabIds(c.k); if(only) isolate(c.k);
+  hiSet(ids,0xff9500,{soft:true,noEdge:true,fade:false,pin:{ids:ids,text:"📍 ตู้ "+c.n,cls:"cab",ring:false}});   // v1.350: ไม่จางตู้อื่น (ไฮไลต์อย่างเดียว)   // v1.346: ตู้อื่นจาง + หมุดชื่อตู้ (ตู้ใหญ่พอ ไม่ต้องมีวงแหวน)
+  focusBox(sceneBox(ids),frontView(c));
   var el=scanBar('<span>📍 ตู้ <b>'+esc(c.n)+'</b> <span class="d">'+c.cnt+' ชิ้น · จากทั้งหมด '+(S.D.cabs||[]).length+' ใบ</span></span>'
     +'<button data-a="all">'+(only?"ดูทั้งออเดอร์":"ดูเฉพาะตู้นี้")+'</button>');
   el.onclick=function(e){ if(e.target.dataset.a!=="all") return;
-    if(S.iso){ isolate(null); focusBox(sceneBox()); e.target.textContent="ดูเฉพาะตู้นี้"; } else { isolate(c.k); focusBox(sceneBox(ids)); e.target.textContent="ดูทั้งออเดอร์"; } };
+    if(S.iso){ isolate(null); focusBox(sceneBox()); e.target.textContent="ดูเฉพาะตู้นี้"; }   // v1.350: ดูทั้งออเดอร์ไม่จางตู้อื่น
+    else { isolate(c.k); S.fade=false; matState(); focusBox(sceneBox(ids)); e.target.textContent="ดูทั้งออเดอร์"; } };
   return true; }
 function applyScan(){
   var q=new URLSearchParams(location.search), pk=q.get("p")||"", ck=q.get("cab")||"", al=S.D._alias;
@@ -45533,16 +46026,77 @@ function measTap(pt){
     var d=a.distanceTo(b), dx=Math.abs(b.x-a.x), dy=Math.abs(b.y-a.y), dz=Math.abs(b.z-a.z);
     el.innerHTML='ระยะ <b>'+fmt(d)+'</b> มม. <span style="color:var(--dim);font-size:11.5px">(X '+fmt(dx)+' · Y '+fmt(dy)+' · Z '+fmt(dz)+')</span>'; }
   else el.innerHTML='แตะจุดที่สอง…';
-  el.classList.remove("hide"); S.dirty=true; }
+  el.classList.remove("hide","dim"); S.dirty=true; }
 function measClear(){ S.meas=[]; measDots.forEach(function(d){ scene.remove(d); }); measDots=[]; if(measLine){ scene.remove(measLine); measLine=null; }
   var el=$("vwMeas"); if(el) el.classList.add("hide"); S.dirty=true; }
 
+/* ───────── v1.346: ปุ่มวัด = แตะชิ้นแล้วขึ้นเส้นบอกขนาด (DIM) ยาว × กว้าง × หนา ─────────
+   ผู้ใช้ไม่เอาแบบแตะสองจุด (บนมือถือจิ้มให้ตรงมุมยาก ได้ระยะเพี้ยน) · แตะชิ้นเดียว = ได้ขนาดจริงของชิ้นแบบใบตัด
+   ลิงก์ใหม่: โปรแกรมส่งกรอบของชิ้นมาด้วย (จุดกลาง + ทิศแกนยาว/กว้าง/หนา) → เส้นวางตามแนวชิ้นจริง ตามบานที่กาง/แยกประกอบ
+   ลิงก์เก่า: ใช้กล่องล้อมชิ้นตามแกนโลก แล้วจับคู่กับขนาดจริงของชิ้นตามลำดับความยาว
+   เส้นวางที่มุมของชิ้นที่หันหากล้อง ยื่นออกนอกชิ้นเล็กน้อย · ป้ายตัวเลขเป็น HTML ลอยตามจุด (คมทุกขนาดจอ) */
+var DIM={g:null,lab:[],id:null};
+function dimClear(){ if(DIM.g){ scene.remove(DIM.g); DIM.g.traverse(function(o){ if(o.geometry) o.geometry.dispose(); if(o.material&&o.material.dispose) o.material.dispose(); }); DIM.g=null; }
+  DIM.lab.forEach(function(l){ l.el.remove(); }); DIM.lab=[]; DIM.id=null;
+  var el=$("vwMeas"); if(el) el.classList.add("hide"); S.dirty=true; }
+function partFrame(id){
+  var I=(S.D.info||{})[id], its=S.byId[id]||[]; if(!its.length) return null;
+  var it=its[0]; for(var i=0;i<its.length;i++){ if(its[i].o.isMesh){ it=its[i]; break; } }
+  root.updateMatrixWorld(true);
+  var mb=new THREE.Matrix4().compose(new THREE.Vector3(it.px,it.py,it.pz),it.q,it.o.scale), mc=new THREE.Matrix4().compose(it.o.position,it.o.quaternion,it.o.scale);
+  var toW=new THREE.Matrix4().multiplyMatrices(root.matrixWorld,mc.multiply(mb.invert()));    // ท่าตอนนี้ (บานกาง/แยกประกอบ) เทียบท่าตอนอบ
+  if(I&&I.x&&I.ax&&I.d){ var c=new THREE.Vector3().fromArray(I.x).applyMatrix4(toW), R=new THREE.Matrix3().setFromMatrix4(toW);
+    var u=[0,1,2].map(function(k){ return new THREE.Vector3(I.ax[k*3],I.ax[k*3+1],I.ax[k*3+2]).applyMatrix3(R).normalize(); });
+    return {c:c,u:u,s:[+I.d[0]||0,+I.d[1]||0,+I.d[2]||0],lab:["ยาว","กว้าง","หนา"]}; }
+  var b=sceneBox([id]); if(b.isEmpty()) return null;
+  var sz=b.getSize(new THREE.Vector3()), s=[sz.x,sz.y,sz.z], lab=["X","Y","Z"];
+  if(I&&I.d){ var ord=[0,1,2].sort(function(a,b2){ return s[b2]-s[a]; }),
+      dv=[{v:+I.d[0],n:"ยาว"},{v:+I.d[1],n:"กว้าง"},{v:+I.d[2],n:"หนา"}].sort(function(a,b2){ return b2.v-a.v; });
+    ord.forEach(function(ax,i){ if(dv[i]&&Math.abs(dv[i].v-s[ax])<Math.max(3,s[ax]*.08)){ s[ax]=dv[i].v; lab[ax]=dv[i].n; } }); }
+  return {c:b.getCenter(new THREE.Vector3()),u:[new THREE.Vector3(1,0,0),new THREE.Vector3(0,1,0),new THREE.Vector3(0,0,1)],s:s,lab:lab}; }
+function showDim(id){
+  dimClear(); var F=partFrame(id); if(!F) return false; DIM.id=id;
+  var I=(S.D.info||{})[id]||{}, cam=camera.position, c=F.c, u=F.u, s=F.s;
+  var sg=[0,1,2].map(function(k){ return (new THREE.Vector3().subVectors(cam,c).dot(u[k])>=0)?1:-1; });
+  var corner=c.clone(); for(var k=0;k<3;k++) corner.addScaledVector(u[k],sg[k]*s[k]/2);
+  var mx=Math.max(s[0],s[1],s[2]), gap=Math.max(14,mx*.08), pts=[], labs=[];
+  for(var a=0;a<3;a++){ if(!(s[a]>0.05)) continue;
+    var o=(a===0)?1:0, ov=u[o].clone().multiplyScalar(sg[o]*gap);                 // ยาว ยื่นไปทางกว้าง · กว้าง/หนา ยื่นไปทางยาว
+    var p0=corner.clone(), p1=corner.clone().addScaledVector(u[a],-sg[a]*s[a]), q0=p0.clone().add(ov), q1=p1.clone().add(ov);
+    pts.push(p0,q0.clone().addScaledVector(ov,.3), p1,q1.clone().addScaledVector(ov,.3), q0,q1);   // เส้นยื่นสองข้าง + เส้นบอกขนาด
+    var tk=u[a].clone().multiplyScalar(Math.min(gap*.35,s[a]*.2));                                   // ขีดปลายเฉียง
+    pts.push(q0.clone().add(ov.clone().multiplyScalar(.18)).add(tk),q0.clone().sub(ov.clone().multiplyScalar(.18)).sub(tk));
+    pts.push(q1.clone().add(ov.clone().multiplyScalar(.18)).add(tk),q1.clone().sub(ov.clone().multiplyScalar(.18)).sub(tk));
+    labs.push({p:q0.clone().lerp(q1,.5).addScaledVector(ov,.7),t:F.lab[a],v:s[a]}); }
+  var g=new THREE.Group(), ln=new THREE.LineSegments(new THREE.BufferGeometry().setFromPoints(pts),new THREE.LineBasicMaterial({color:0xe8590c,depthTest:false,transparent:true}));
+  ln.renderOrder=50; g.add(ln); scene.add(g); DIM.g=g;
+  var host=$("vwLbl"); labs.forEach(function(L){ var el=document.createElement("div"); el.className="dl"; el.innerHTML="<small>"+esc(L.t)+"</small>"+fmt(L.v); host.appendChild(el); DIM.lab.push({el:el,p:L.p}); });
+  var bar=$("vwMeas");
+  bar.innerHTML='📏 <b class="n">'+esc(I.n||"ชิ้นงาน")+'</b> <span class="code">'+F.lab.map(function(n,i){ return n+" "+fmt(s[i]); }).join(" × ")+'</span> มม.<button class="x" data-x aria-label="ปิด">✕</button>';
+  bar.classList.remove("hide"); bar.classList.add("dim"); measPos();
+  bar.onclick=function(e){ if(e.target.dataset.x!=null) dimClear(); };
+  dimTick(); S.dirty=true; return true; }
+/* v1.346: ป้ายตัวเลขชนกัน (ชิ้นบาง: ป้าย "กว้าง" กับ "หนา" อยู่มุมเดียวกัน ป้ายหลังทับป้ายแรกจนหายไป)
+   → ถ้าชนป้ายที่วางไปแล้ว หรือมุดใต้การ์ด/แถบด้านบน เลื่อนลง/ขึ้นทีละหนึ่งช่องจนไม่ชน (ลองได้ 3 ช่องแต่ละทาง) */
+function dimTick(){ var put=[];
+  ["#vwTop .t","#vwCabBtn","#vwScan","#vwMeas"].forEach(function(s){ var e=document.querySelector(s); if(!e||!e.getClientRects().length) return;   // การ์ด/แถบบนจอ = ที่ห้ามวางป้าย
+    var r=e.getBoundingClientRect(); if(r.height>0) put.push({x:(r.left+r.right)/2,y:(r.top+r.bottom)/2,w:r.width,h:r.height}); });
+  DIM.lab.forEach(function(l){ var sp=toScreen(l.p); if(!sp){ l.el.style.display="none"; return; } l.el.style.display="";
+    var w=l.el.offsetWidth||64, h=l.el.offsetHeight||22, y=sp.y, st=[0,1,-1,2,-2,3,-3], k;
+    var hits=function(yy){ return put.filter(function(r){ return Math.abs(r.x-sp.x)<(r.w+w)/2+4&&Math.abs(r.y-yy)<(r.h+h)/2+3; }); };
+    for(k=0;k<st.length;k++){ if(!hits(sp.y+st[k]*(h+5)).length){ y=sp.y+st[k]*(h+5); break; } }
+    if(k===st.length){ var yy=sp.y, hs;                                         // มุดใต้การ์ดสูง ๆ → ย้ายไปใต้ของที่ทับอยู่
+      for(var z=0;z<5&&(hs=hits(yy)).length;z++) yy=Math.max.apply(null,hs.map(function(r){ return r.y+r.h/2; }))+h/2+5;
+      y=yy; }
+    put.push({x:sp.x,y:y,w:w,h:h}); l.el.style.left=sp.x+"px"; l.el.style.top=y+"px"; }); }
+/* v1.346: แถบผลวัดเคยมุดอยู่ใต้การ์ดชิ้นที่สแกน (อยู่ตำแหน่งเดียวกัน ชั้นเดียวกัน) — เดิมเช็ก sc.offsetParent ซึ่งเป็น null เสมอกับกล่อง position:fixed
+   → วัดกรอบการ์ดจริง ถ้ามีการ์ด วางแถบใต้การ์ด (ทุกขนาดจอ) */
+function measPos(){ var sc=$("vwScan"), el=$("vwMeas"); if(!el) return;
+  var r=(sc&&sc.getClientRects().length)?sc.getBoundingClientRect():null;
+  el.style.top=(r&&r.height>0)?(r.bottom+6)+"px":""; }
+
 /* ── โปร่งใส / เงา / ตาราง / ประหยัด ── */
-function setGhost(on){ S.ghost=on; (S.mats||[]).forEach(function(m){ if(!m.userData||!m.userData.mesh) return;
-    if(on){ m.transparent=true; m.opacity=Math.min(m.userData.op0,.32); m.depthWrite=false; }
-    else { m.transparent=m.userData.tr0; m.opacity=m.userData.op0; m.depthWrite=m.userData.dw0; }
-    m.needsUpdate=true; });
-  $("vwGhost").classList.toggle("on",on); S.dirty=true; }
+function setGhost(on){ S.ghost=on; matState(); $("vwGhost").classList.toggle("on",on); S.dirty=true; }   // v1.346: รวมกับ "จางของอื่น" ที่ matState
 function setShadows(on){ S.shadows=on; renderer.shadowMap.enabled=on; keyL.castShadow=on; if(floor) floor.visible=on;
   S.items.forEach(function(it){ it.o.traverse(function(o){ if(o.material){ var ms=Array.isArray(o.material)?o.material:[o.material]; ms.forEach(function(m){ m.needsUpdate=true; }); } }); });
   renderer.shadowMap.needsUpdate=true; $("vwShadow").classList.toggle("on",on); S.dirty=true; }
@@ -45576,8 +46130,9 @@ function bindControls(el){
   el.addEventListener("contextmenu",function(e){ e.preventDefault(); });
   el.addEventListener("wheel",function(e){ e.preventDefault(); orbit.r*=Math.pow(1.0015,e.deltaY); camApply(); },{passive:false}); }
 function onTap(e){
+  var ex=$("vwExtra"); if(ex&&ex.classList.contains("open")){ ex.classList.remove("open"); $("vwMore").classList.remove("on"); }   // v1.346: แตะฉาก = พับแผงเพิ่มเติม
   var h=pick(e);
-  if(S.tool==="meas"){ if(h) measTap(h.point); return; }
+  if(S.tool==="meas"){ if(h&&h.id&&showDim(h.id)) return; dimClear(); return; }   // v1.346: แตะชิ้น → DIM (เดิมแตะสองจุด)
   if(!h||!h.id){ closeInfo(); return; }
   if(S.tool==="door"){ var k=keyOf(h.id); if(!toggleDoor(k)) hint("ชิ้นนี้ไม่ใช่บานหรือลิ้นชัก"); return; }
   var cb=$("vwCabs"); if(cb) cb.classList.add("hide");
@@ -45586,12 +46141,17 @@ function onTap(e){
 function bindUI(){
   $("vwTool").onclick=function(e){ var b=e.target.closest("button"); if(!b) return; S.tool=b.dataset.t;
     [].forEach.call(this.children,function(x){ x.classList.toggle("on",x===b); });
-    if(S.tool!=="meas") measClear(); if(S.tool!=="sel") closeInfo();
-    hint(S.tool==="door"?"แตะบานหรือหน้าลิ้นชักเพื่อเปิด/ปิด":S.tool==="meas"?"แตะสองจุดบนชิ้นงานเพื่อวัดระยะ":"แตะชิ้นงานเพื่อดูรายละเอียด"); };
+    if(S.tool!=="meas"){ measClear(); dimClear(); } if(S.tool!=="sel") closeInfo();
+    hint(S.tool==="door"?"แตะบานหรือหน้าลิ้นชักเพื่อเปิด/ปิด":S.tool==="meas"?"แตะชิ้นงานเพื่อดูขนาด ยาว × กว้าง × หนา":"แตะชิ้นงานเพื่อดูรายละเอียด"); };
+  /* v1.346: มือถือ — ปุ่มที่เหลืออยู่ในแผง "⋯ เพิ่มเติม" (จอกว้างเรียงแถวเดียวเหมือนเดิม) */
+  $("vwMore").onclick=function(){ var ex=$("vwExtra"), on=!ex.classList.contains("open"); ex.classList.toggle("open",on); this.classList.toggle("on",on);
+    if(on){ closeInfo(); var cb=$("vwCabs"); if(cb) cb.classList.add("hide"); var hn=$("vwHint"); if(hn) hn.classList.remove("show"); } };   // ป้ายคำแนะนำลอยทับแผง (แผงอยู่ในแถบล่างซึ่งชั้นต่ำกว่า) → ซ่อนป้ายตอนเปิดแผง
   $("vwAllDoors").onclick=function(){ var ks=allKeys(); if(!ks.length){ hint("งานนี้ไม่มีบานที่เปิดได้"); return; }
     S.allOpen=!ks.every(function(k){ return (S.prog[k]||0)>.5; }); animKeys(ks,S.allOpen?1:0); this.textContent=S.allOpen?"ปิดทุกบาน":"เปิดทุกบาน"; this.classList.toggle("on",S.allOpen); };
   $("vwGhost").onclick=function(){ setGhost(!S.ghost); };
   $("vwShadow").onclick=function(){ setShadows(!S.shadows); };
+  $("vwLight").onclick=function(){ var ks=["room","sun","night"]; setLight(ks[(ks.indexOf(S.light)+1)%ks.length]);   // v1.350
+    hint("แสง: "+LIGHTS[S.light].label+(S.light==="sun"?" — มีเงาทอด เห็นรูปทรงชัด":S.light==="night"?" — หรี่ลง ไฟ LED เด่น":" — แสงนวลกระจาย ไม่มีเงาแข็ง")); };
   $("vwGrid").onclick=function(){ setGrid(!S.grid); };
   $("vwEco").onclick=function(){ setEco(!S.eco); };
   $("vwReset").onclick=resetView;
@@ -45601,11 +46161,16 @@ function bindUI(){
   $("vwZin").onclick=function(){ orbit.r*=.8; camApply(); };
   $("vwZout").onclick=function(){ orbit.r*=1.25; camApply(); };
   $("vwCabBtn").onclick=showCabs;
-  addEventListener("resize",function(){ camera.aspect=innerWidth/innerHeight; camera.updateProjectionMatrix(); renderer.setSize(innerWidth,innerHeight); S.dirty=true; }); }
+  addEventListener("resize",function(){ camera.aspect=innerWidth/innerHeight; camera.updateProjectionMatrix(); renderer.setSize(innerWidth,innerHeight); measPos(); S.dirty=true; }); }
 
-function loop(){ requestAnimationFrame(loop); if(!S.dirty) return; S.dirty=false;
+function loop(){ requestAnimationFrame(loop);
+  var now=performance.now();
+  if(S.pulse){ if(now<S.pulse){ var k=.5+.5*Math.sin(now/130); S.hiMats.forEach(function(m){ if(m.emissive) m.emissiveIntensity=.45+.75*k; }); S.dirty=true; }
+    else { S.hiMats.forEach(function(m){ if(m.emissive) m.emissiveIntensity=.85; }); S.pulse=0; S.dirty=true; } }   // v1.346: กะพริบช่วงแรกให้ตาหาเจอ
+  if(!S.dirty) return; S.dirty=false;
   if(measDots.length){ var s=Math.max(orbit.r/260,2); measDots.forEach(function(d){ d.scale.set(s,s,s); }); }
-  renderer.render(scene,camera); }
+  renderer.render(scene,camera);
+  if(DIM.lab.length) dimTick(); if(S.pin) pinTick(); }
 
 function start(){
   status("กำลังโหลดข้อมูลงาน…");
@@ -45621,7 +46186,7 @@ function start(){
     status("กำลังโหลดรูปผิว…");
     return loadImages(D.tex).then(function(imgs){
       status("กำลังประกอบ 3D…");
-      build(D,imgs); fitGround();
+      build(D,imgs); fitGround(); setLight(S.light); setGrid(S.grid);   // v1.350: แสงในห้อง · ปิดตาราง
       var c=D.cam||{}; orbit.th=(c.th!=null?c.th:.85); orbit.ph=(c.ph!=null?c.ph:.95); orbit.r=c.r||2000; orbit.mr=Math.max(orbit.mr,c.mr||0);
       if(c.t) orbit.t.fromArray(c.t); else { var b=sceneBox(); b.getCenter(orbit.t); }
       camApply(); applyPose(); bindControls(renderer.domElement); bindUI(); loop();
@@ -45634,6 +46199,7 @@ function start(){
       if(!sc) hint("ลากเพื่อหมุน · สองนิ้วเพื่อซูม/เลื่อน · แตะชิ้นเพื่อดูรายละเอียด",3200); }); })
   .catch(function(e){ console.error(e); status(String((e&&e.message)||e),true); }); }
 
+try{ window.__snv={S:S,DIM:DIM,scene:function(){ return scene; },camera:function(){ return camera; }}; }catch(e){}   // v1.346: ให้ตัวทดสอบอ่านสถานะได้ (อ่านอย่างเดียว)
 if(document.readyState==="loading") document.addEventListener("DOMContentLoaded",start); else start();
 })();
 </script>

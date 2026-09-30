@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="th"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover"><meta name="generator" content="StarNexus 1.347"><title>StarNexus — ดูงาน 3D</title><style>
+<html lang="th"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover"><meta name="generator" content="StarNexus 1.350"><title>StarNexus — ดูงาน 3D</title><style>
 :root{--bg:#e7e8ee;--panel:rgba(255,255,255,.94);--solid:#fff;--ink:#172c40;--dim:#5b6b7c;--line:#d5dae2;--accent:#1e5fa8;--warn:#e8590c;--shadow:0 10px 30px -12px rgba(16,32,56,.35)}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html,body{margin:0;height:100%;background:var(--bg);color:var(--ink);font:14px/1.5 system-ui,-apple-system,"Segoe UI","Noto Sans Thai","Sarabun",sans-serif;overflow:hidden;overscroll-behavior:none}
@@ -123,8 +123,9 @@ button{font:inherit;color:inherit}
     <span class="rng">แยกประกอบ <input type="range" id="vwExp" min="0" max="100" value="0"><span id="vwExpV">0%</span></span>
     <button class="vbtn" id="vwReset">มุมมอง</button>
     <div class="seg" id="vwViews"><button data-v="front">หน้า</button><button data-v="top">บน</button><button data-v="side">ข้าง</button></div>
-    <button class="vbtn on" id="vwShadow">เงา</button>
-    <button class="vbtn on" id="vwGrid">ตาราง</button>
+    <button class="vbtn" id="vwLight">แสง: ในห้อง</button>
+    <button class="vbtn" id="vwShadow">เงา</button>
+    <button class="vbtn" id="vwGrid">ตาราง</button>
     <button class="vbtn" id="vwEco">ประหยัด</button>
   </div>
 </footer>
@@ -142,7 +143,8 @@ button{font:inherit;color:inherit}
 (function(){
 "use strict";
 var $=function(id){ return document.getElementById(id); };
-var S={D:null,items:[],byId:{},prog:{},anim:{},ex:0,ghost:false,shadows:true,grid:true,eco:false,tool:"sel",sel:null,meas:[],dirty:true,allOpen:false,
+var S={D:null,items:[],byId:{},prog:{},anim:{},ex:0,ghost:false,shadows:false,grid:false,light:"room",eco:false,   // v1.350: ตั้งต้น แสงในห้อง · ไม่มีเงาแข็ง · ปิดตาราง
+  tool:"sel",sel:null,meas:[],dirty:true,allOpen:false,
   fade:false,hiIds:[],hiMats:[],pulse:0,pin:null};   // v1.346: เน้นชิ้น (จางของอื่น · เส้นขอบ · หมุด · กะพริบ)
 var renderer,scene,camera,root,floor,grid,hemi,keyL,fillL,rimL,selBox,measLine,measDots=[],envTexC=null;
 var orbit={t:new THREE.Vector3(),th:.85,ph:.95,r:2000,mr:900};
@@ -259,6 +261,23 @@ function setupScene(D){
   keyL.castShadow=true; keyL.shadow.mapSize.set(2048,2048); keyL.shadow.bias=-.0004; scene.add(keyL); scene.add(keyL.target);
   var f=L.fill||[0xcdd6e6,.5,[-900,400,-600]]; fillL=new THREE.DirectionalLight(f[0],f[1]); fillL.position.fromArray(f[2]||[-900,400,-600]); scene.add(fillL);
   var r=L.rim||[0xffffff,.3,[-400,600,-1000]]; rimL=new THREE.DirectionalLight(r[0],r[1]); rimL.position.fromArray(r[2]||[-400,600,-1000]); scene.add(rimL); }
+/* ───────── v1.350: แสงแบบในห้องเป็นค่าตั้งต้น ─────────
+   เดิมหน้าดูใช้แสงที่อบมาจากจอคนส่ง ซึ่งส่วนใหญ่เป็น "แดด" (ดวงหลักแรง ยิงเฉียง มีเงาทอด) ภาพแข็ง ด้านหนึ่งสว่างจ้าอีกด้านมืด
+   ผู้ใช้ขอให้หน้าดูเป็นแสงในห้อง — ใช้ชุดเดียวกับปุ่ม "แสง" ของโปรแกรม (SCENE_LIGHTS) ตัวเลขตรงกันทุกค่า
+   เปลี่ยนแค่สีกับความแรงของสี่ดวงเดิม ตำแหน่งไฟยังตามที่อบมา · ลิงก์เก่าก็ได้แสงนี้ (หน้าดูตัวใหม่ขึ้นเว็บตอนส่งครั้งถัดไป)
+   ปุ่ม "แสง: …" ในแถบ ⋯ เพิ่มเติม สลับ ในห้อง → แดด → กลางคืน · แดด = เปิดเงาให้เอง ในห้อง/กลางคืน = ปิดเงาแข็ง */
+var LIGHTS={
+  room: {label:"ในห้อง",  hemi:[0xf4f6fa,0xdcdfe6,.62], key:[0xffffff,.30,false], fill:[0xe3e9f4,.34], rim:[0xffffff,.22], floor:.07},
+  sun:  {label:"แดด",     hemi:[0xffffff,0xd8d8de,.85], key:[0xfff4e2,.95,true ], fill:[0xcdd6e6,.50], rim:[0xffffff,.30], floor:.16},
+  night:{label:"กลางคืน", hemi:[0x8fa0bb,0x3a4152,.20], key:[0xbcc8dd,.10,false], fill:[0x9fb0cc,.12], rim:[0xffffff,.08], floor:.04}};
+function setLight(m){ var P=LIGHTS[m]||LIGHTS.room; S.light=LIGHTS[m]?m:"room";
+  hemi.color.setHex(P.hemi[0]); hemi.groundColor.setHex(P.hemi[1]); hemi.intensity=P.hemi[2];
+  keyL.color.setHex(P.key[0]); keyL.intensity=P.key[1]; fillL.color.setHex(P.fill[0]); fillL.intensity=P.fill[1];
+  rimL.color.setHex(P.rim[0]); rimL.intensity=P.rim[1];
+  if(floor&&floor.material) floor.material.opacity=P.floor;
+  setShadows(!!P.key[2]);
+  var b=$("vwLight"); if(b){ b.textContent="แสง: "+P.label; b.classList.toggle("on",S.light!=="room"); }
+  S.dirty=true; }
 
 function fitGround(){
   var b=sceneBox(); if(b.isEmpty()) return;
@@ -439,7 +458,7 @@ function pinTick(){ if(!S.pin) return; var el=S.pin.el, rg=S.pin.ring;
   for(var i=0;i<8;i++){ var q=toScreen(new THREE.Vector3(i&1?b.max.x:b.min.x,i&2?b.max.y:b.min.y,i&4?b.max.z:b.min.z)); if(!q) continue;
     n++; if(q.x<x0) x0=q.x; if(q.x>x1) x1=q.x; if(q.y<y0) y0=q.y; if(q.y>y1) y1=q.y; }
   var big=Math.max(x1-x0,y1-y0);
-  if(!n||!S.fade||big>110){ rg.style.display="none"; return; }                  // ชิ้นใหญ่พอเห็นเอง / ปิด "เน้น" → ไม่ต้องมีวงแหวน
+  if(!n||big>110){ rg.style.display="none"; return; }                             // ชิ้นใหญ่พอเห็นเอง → ไม่ต้องมีวงแหวน (v1.350: ไม่ผูกกับปุ่ม "เน้น" แล้ว — ไฮไลต์ชิ้นอยู่ครบเสมอ)
   var dm=Math.max(46,big+24); rg.style.display=""; rg.style.width=rg.style.height=dm+"px";
   rg.style.left=((x0+x1)/2)+"px"; rg.style.top=((y0+y1)/2)+"px"; }
 function isolate(ci){ S.iso=ci||null;
@@ -459,7 +478,10 @@ function scanFocus(pk,quiet){
     if(c0){ isolate(c0.k); focusBox(sceneBox(cabIds(c0.k))); }
     return false; }
   var id=ids[0], I=S.D.info[id], c=cabOf(I.ci), pk0=(I.pid?I.pid.split(",")[0]:"");
-  var hiOn=function(){ hiSet([id],0x16a34a,{fade:true,pin:{ids:[id],text:"📍 "+(pk0?pk0+" · ":"")+(I.n||"ชิ้นนี้")}}); };   // v1.346
+  /* v1.350: ผู้ใช้ขอ "เน้น = เอาแค่ไฮไลต์" — ตั้งต้นไม่จางของอื่น (เห็นสีจริงทั้งตู้) ชิ้นที่สแกนยังเขียว ขอบเหลือง หมุด วงแหวน ครบ
+     ปุ่ม "เน้น" กดแล้วค่อยจางของอื่น (จำค่าไว้ตอนสลับดูเฉพาะตู้/ทั้งออเดอร์) */
+  var fadeOn=false;
+  var hiOn=function(){ hiSet([id],0x16a34a,{fade:fadeOn,pin:{ids:[id],text:"📍 "+(pk0?pk0+" · ":"")+(I.n||"ชิ้นนี้")}}); };   // v1.346
   isolate(I.ci); hiOn();
   var opened=false;
   if(!I.dr){ var ks=cabDoorKeys(I.ci); if(ks.length){ animKeys(ks,1); opened=true; } }
@@ -467,24 +489,24 @@ function scanFocus(pk,quiet){
   var d=I.d?(fmt(I.d[0])+" × "+fmt(I.d[1])+" × "+fmt(I.d[2])+" มม."):"";
   var el=scanBar('<span><b>'+esc(c?c.n:"")+'</b> · '+esc((I.pid?I.pid.split(",")[0]+" · ":"")+(I.n||"ชิ้น"))+' <span class="d">'+esc(d)+'</span>'
     +(opened?' <span class="d">· กางบานให้แล้ว</span>':'')+(ids.length>1?' <span class="w">เข้าคีย์นี้ '+ids.length+' ชิ้น · แสดงชิ้นแรก</span>':'')+'</span>'
-    +'<button data-a="hi">🎯 ซูมชิ้นนี้</button><button data-a="info">รายละเอียด</button><button data-a="all">ดูทั้งออเดอร์</button><button data-a="fade" class="on">เน้น: เปิด</button>');
+    +'<button data-a="hi">🎯 ซูมชิ้นนี้</button><button data-a="info">รายละเอียด</button><button data-a="all">ดูทั้งออเดอร์</button><button data-a="fade">เน้น: ปิด</button>');
   /* v1.346: สลับดูทั้งออเดอร์/เฉพาะตู้ ชิ้นยังเน้นอยู่ (ของอื่นจาง + ขอบเหลือง + หมุด) · ปุ่ม "เน้น" ปิดการจางเพื่อดูสีจริงทั้งตู้ */
   el.onclick=function(e){ var t=e.target.closest("button"); if(!t) return; var a=t.dataset.a;
     if(a==="hi"){ if(!S.hiIds.length) hiOn(); focusBox(sceneBox([id])); }
     else if(a==="info") showInfo(id);
     else if(a==="all"){ if(S.iso){ isolate(null); focusBox(sceneBox()); t.textContent="ดูเฉพาะตู้นี้"; } else { isolate(I.ci); focusBox(sceneBox(cabIds(I.ci))); t.textContent="ดูทั้งออเดอร์"; } }
-    else if(a==="fade"){ S.fade=!S.fade; matState(); t.textContent=S.fade?"เน้น: เปิด":"เน้น: ปิด"; t.classList.toggle("on",S.fade); }
+    else if(a==="fade"){ fadeOn=!fadeOn; S.fade=fadeOn; matState(); t.textContent=fadeOn?"เน้น: เปิด":"เน้น: ปิด"; t.classList.toggle("on",fadeOn); }
     measPos(); };                                                                 // ปุ่มเปลี่ยนข้อความ → การ์ดสูง/เตี้ยลง แถบวัดขยับตาม
-  if(!quiet) hint("ชิ้นที่สแกน = สีเขียว ขอบเหลือง มีหมุดชี้ · ของอื่นจางไว้ (ปุ่ม เน้น ปิดได้)",3600);
+  if(!quiet) hint("ชิ้นที่สแกน = สีเขียว ขอบเหลือง มีหมุดชี้ · กด “เน้น” ให้ของอื่นจางลง",3600);
   return true; }
 function cabFocus(k,only){ var c=cabByKey(k); if(!c) return false;
   var ids=cabIds(c.k); if(only) isolate(c.k);
-  hiSet(ids,0xff9500,{soft:true,noEdge:true,fade:!only,pin:{ids:ids,text:"📍 ตู้ "+c.n,cls:"cab",ring:false}});   // v1.346: ตู้อื่นจาง + หมุดชื่อตู้ (ตู้ใหญ่พอ ไม่ต้องมีวงแหวน)
+  hiSet(ids,0xff9500,{soft:true,noEdge:true,fade:false,pin:{ids:ids,text:"📍 ตู้ "+c.n,cls:"cab",ring:false}});   // v1.350: ไม่จางตู้อื่น (ไฮไลต์อย่างเดียว)   // v1.346: ตู้อื่นจาง + หมุดชื่อตู้ (ตู้ใหญ่พอ ไม่ต้องมีวงแหวน)
   focusBox(sceneBox(ids),frontView(c));
   var el=scanBar('<span>📍 ตู้ <b>'+esc(c.n)+'</b> <span class="d">'+c.cnt+' ชิ้น · จากทั้งหมด '+(S.D.cabs||[]).length+' ใบ</span></span>'
     +'<button data-a="all">'+(only?"ดูทั้งออเดอร์":"ดูเฉพาะตู้นี้")+'</button>');
   el.onclick=function(e){ if(e.target.dataset.a!=="all") return;
-    if(S.iso){ isolate(null); S.fade=true; matState(); focusBox(sceneBox()); e.target.textContent="ดูเฉพาะตู้นี้"; }
+    if(S.iso){ isolate(null); focusBox(sceneBox()); e.target.textContent="ดูเฉพาะตู้นี้"; }   // v1.350: ดูทั้งออเดอร์ไม่จางตู้อื่น
     else { isolate(c.k); S.fade=false; matState(); focusBox(sceneBox(ids)); e.target.textContent="ดูทั้งออเดอร์"; } };
   return true; }
 function applyScan(){
@@ -629,6 +651,8 @@ function bindUI(){
     S.allOpen=!ks.every(function(k){ return (S.prog[k]||0)>.5; }); animKeys(ks,S.allOpen?1:0); this.textContent=S.allOpen?"ปิดทุกบาน":"เปิดทุกบาน"; this.classList.toggle("on",S.allOpen); };
   $("vwGhost").onclick=function(){ setGhost(!S.ghost); };
   $("vwShadow").onclick=function(){ setShadows(!S.shadows); };
+  $("vwLight").onclick=function(){ var ks=["room","sun","night"]; setLight(ks[(ks.indexOf(S.light)+1)%ks.length]);   // v1.350
+    hint("แสง: "+LIGHTS[S.light].label+(S.light==="sun"?" — มีเงาทอด เห็นรูปทรงชัด":S.light==="night"?" — หรี่ลง ไฟ LED เด่น":" — แสงนวลกระจาย ไม่มีเงาแข็ง")); };
   $("vwGrid").onclick=function(){ setGrid(!S.grid); };
   $("vwEco").onclick=function(){ setEco(!S.eco); };
   $("vwReset").onclick=resetView;
@@ -663,7 +687,7 @@ function start(){
     status("กำลังโหลดรูปผิว…");
     return loadImages(D.tex).then(function(imgs){
       status("กำลังประกอบ 3D…");
-      build(D,imgs); fitGround();
+      build(D,imgs); fitGround(); setLight(S.light); setGrid(S.grid);   // v1.350: แสงในห้อง · ปิดตาราง
       var c=D.cam||{}; orbit.th=(c.th!=null?c.th:.85); orbit.ph=(c.ph!=null?c.ph:.95); orbit.r=c.r||2000; orbit.mr=Math.max(orbit.mr,c.mr||0);
       if(c.t) orbit.t.fromArray(c.t); else { var b=sceneBox(); b.getCenter(orbit.t); }
       camApply(); applyPose(); bindControls(renderer.domElement); bindUI(); loop();
