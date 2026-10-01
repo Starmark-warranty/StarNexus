@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="th"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover"><meta name="generator" content="StarNexus 1.356"><title>StarNexus — ดูงาน 3D</title><style>
+<html lang="th"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover"><meta name="generator" content="StarNexus 1.362"><title>StarNexus — ดูงาน 3D</title><style>
 :root{--bg:#e7e8ee;--panel:rgba(255,255,255,.94);--solid:#fff;--ink:#172c40;--dim:#5b6b7c;--line:#d5dae2;--accent:#1e5fa8;--warn:#e8590c;--shadow:0 10px 30px -12px rgba(16,32,56,.35)}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html,body{margin:0;height:100%;background:var(--bg);color:var(--ink);font:14px/1.5 system-ui,-apple-system,"Segoe UI","Noto Sans Thai","Sarabun",sans-serif;overflow:hidden;overscroll-behavior:none}
@@ -105,6 +105,79 @@ button{font:inherit;color:inherit}
 @media (max-width:759px){ #vwMeas.dim{font-size:12px;padding-left:10px;text-align:left} #vwMeas b.n{font-size:13px} }
 #vwMeas .code{font-family:ui-monospace,Menlo,Consolas,monospace}
 #vwScan button.on{background:var(--accent);color:#fff;border-color:transparent}
+/* ───────── v1.359: แบบผลิต (หน้าเต็มจอ) ───────── */
+#vwPaper{position:fixed;inset:0;z-index:30;background:#3b4048;display:flex;flex-direction:column}
+#vwPaper.hide{display:none}
+#vwPaper .ph{display:flex;align-items:center;gap:6px;padding:calc(6px + env(safe-area-inset-top)) 8px 6px;background:var(--solid);box-shadow:var(--shadow);position:relative;z-index:2}
+#vwPaper .ph .tt{flex:1 1 auto;min-width:0;line-height:1.3}
+#vwPaper .ph .tt b{display:block;font-size:13.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#vwPaper .ph .tt span{display:block;font-size:11.5px;color:var(--dim);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#vwPaper .ph button{border:1px solid var(--line);background:var(--bg);border-radius:9px;padding:7px 10px;cursor:pointer;white-space:nowrap;flex:none;min-width:38px}
+#vwPaper .ph button:disabled{opacity:.35;cursor:default}
+#vwPaper .ph button.on{background:var(--accent);color:#fff;border-color:transparent}
+#vwPpZm{display:flex;gap:4px}
+#vwPpBody{flex:1 1 auto;min-height:0;overflow:auto;-webkit-overflow-scrolling:touch;position:relative;touch-action:pan-x pan-y}
+#vwPpPage{margin:10px;background:#fff;box-shadow:0 6px 24px rgba(0,0,0,.35)}
+#vwPpPage>svg{display:block;width:100%;height:auto}   /* เฉพาะตัวนอกสุด — หน้าแผ่นมีรูป 2D ซ้อนเป็น <svg> ข้างใน ถ้าโดนกฎนี้ด้วยจะยืดล้นกรอบ */
+#vwPpMsg{color:#fff;text-align:center;padding:40px 16px;font-size:14px;line-height:1.7}
+#vwPpMsg.err{color:#ffb4a8}
+#vwPpList{position:absolute;right:0;bottom:0;width:min(330px,88vw);background:var(--solid);overflow:auto;z-index:3;box-shadow:-10px 0 30px -12px rgba(0,0,0,.45);-webkit-overflow-scrolling:touch}
+#vwPpList.hide{display:none}
+#vwPpList .g{position:sticky;top:0;background:var(--bg);font-weight:700;font-size:12.5px;padding:7px 12px;border-bottom:1px solid var(--line);font-family:ui-monospace,Menlo,Consolas,monospace}
+#vwPpList .it{padding:8px 12px;border-bottom:1px solid var(--line);font-size:13px;cursor:pointer;display:flex;gap:8px}
+#vwPpList .it i{font-style:normal;color:var(--dim);font-size:11.5px;min-width:26px}
+#vwPpList .it.on{background:var(--accent);color:#fff}
+#vwPpList .it.on i{color:#fff}
+@media (max-width:759px){ #vwPaper .ph{gap:4px;padding-left:6px;padding-right:6px} #vwPaper .ph button{padding:7px 8px;min-width:34px} #vwPpZm .zf{display:none} }
+/* ───────── v1.360: มือถือ — ทุกอย่างเล็กลง · เอาแถบแยกประกอบออกจากแผง ⋯ เพิ่มเติม ─────────
+   ผู้ใช้: "ปรับ UI ในโทรศัพท์ให้เล็กลงหน่อย เอาตัวแยกประกอบออกจากปุ่มเพิ่มเติมด้วย"
+   เดิมแถบสแกนสูง ~125px (ปุ่มขนาดนิ้วโป้ง 5 ปุ่มตกสามบรรทัด) แผงเพิ่มเติมสูง ~380px บังงานเกือบครึ่งจอ
+   ตอนนี้: ตัวหนังสือ 12–13px · ปุ่มเตี้ยลง · แผงเพิ่มเติมเรียงสามคอลัมน์ · แถบเลื่อนแยกประกอบไม่ขึ้นบนจอแคบ (จอคอมยังมี)
+   ตำแหน่งที่อิงความสูงแถบล่าง (แผงเพิ่มเติม · การ์ดชิ้น · ปุ่มซูม · ป้ายคำแนะนำ) ขยับตามแถบที่เตี้ยลง
+   วางท้ายสุด ตัวเลือกเดียวกับของเดิม จึงชนะกฎก่อนหน้าโดยไม่ต้องแก้ของเดิม */
+@media (max-width:759px){
+  html,body{font-size:13px}
+  #vwTop{padding:calc(6px + env(safe-area-inset-top)) 8px 6px;gap:6px}
+  #vwTop .t{padding:4px 10px;border-radius:10px;max-width:calc(100vw - 92px)}
+  #vwTop .t b{font-size:13.5px}
+  #vwTop .t span{font-size:10.5px}
+  .vbtn{padding:5px 10px;border-radius:9px;font-size:12.5px}
+  #vwScan{left:6px;right:6px;top:calc(50px + env(safe-area-inset-top));font-size:11.5px;padding:5px 8px;gap:4px;border-radius:10px;border-left-width:3px}
+  #vwScan span.d,#vwScan span.w{font-size:11px}
+  #vwScan button{padding:3px 8px;font-size:11.5px;border-radius:8px}
+  #vwScan .lg{display:none}
+  #vwMeas{font-size:12px;padding:5px 10px}
+  #vwBar{padding:6px 6px calc(6px + env(safe-area-inset-bottom));gap:5px}
+  #vwBar #vwTool button{padding:7px 3px;font-size:12px}
+  #vwMore{padding:6px 9px;font-size:12px}
+  #vwExtra{left:6px;right:6px;bottom:calc(88px + env(safe-area-inset-bottom));padding:8px;gap:6px;border-radius:14px}   /* v1.361: 48 → 88 (แถวแยกประกอบ · แถบล่างสูง ~83) */
+  #vwExtra .vbtn{flex:1 1 calc(33.33% - 6px);padding:7px 4px;font-size:12px}
+  #vwExtra .seg button{padding:7px 4px;font-size:12px}
+  /* v1.361: แยกประกอบไม่ได้ซ่อน — ย้ายมาเป็นแถวบางบนแถบล่าง (JS ย้ายกล่อง #vwExpRow ตามความกว้างจอ) */
+  #vwBar{flex-wrap:wrap;row-gap:5px}
+  #vwBar>#vwExpRow{order:-1;flex:1 1 100%;padding:2px 10px;gap:8px;border-radius:10px;font-size:11.5px;box-shadow:var(--shadow);justify-content:space-between}
+  #vwBar>#vwExpRow input{flex:1;width:auto;min-width:0;height:22px}
+  #vwBar>#vwExpRow #vwExpV{min-width:30px;text-align:right}
+  #vwZoom{bottom:calc(96px + env(safe-area-inset-bottom));right:8px;gap:5px}
+  #vwZoom button{width:34px;height:34px;font-size:17px}
+  .sheet{left:6px;right:6px;bottom:calc(88px + env(safe-area-inset-bottom));padding:9px 11px 4px;border-radius:14px}
+  .sheet h3{font-size:13.5px}
+  .sheet .sub{font-size:11px;margin-bottom:5px}
+  .sheet table{font-size:11.5px}
+  .sheet .acts{gap:5px;margin-top:7px}
+  .sheet .acts button{padding:4px 8px;font-size:12px}
+  .cabrow{padding:6px 4px}
+  .cabrow b{font-size:12px}
+  #vwHint{font-size:11.5px;padding:5px 10px;bottom:calc(92px + env(safe-area-inset-bottom));max-width:calc(100vw - 96px)}
+  #vwLbl .pin b{font-size:11px;padding:3px 8px;border-radius:8px}
+  #vwLbl .pin i{height:18px}
+  #vwLbl .dl{font-size:11px;padding:2px 6px}
+  #vwPaper .ph button{padding:5px 7px;min-width:30px;font-size:13px}
+  #vwPaper .ph .tt b{font-size:12.5px}
+  #vwPaper .ph .tt span{font-size:10.5px}
+  #vwPpList .it{padding:6px 10px;font-size:12px}
+  #vwPpList .g{font-size:11.5px;padding:5px 10px}
+}
 </style></head><body>
 <div id="vwCanvas"></div>
 <header id="vwTop"><div class="t"><b id="vwTitle">ดูงาน 3D</b><span id="vwSub"></span></div><div class="sp"></div><button class="vbtn" id="vwCabBtn">☰ ตู้</button></header>
@@ -120,13 +193,14 @@ button{font:inherit;color:inherit}
   <div id="vwExtra">
     <button class="vbtn" id="vwAllDoors">เปิดทุกบาน</button>
     <button class="vbtn" id="vwGhost">โปร่งใส</button>
-    <span class="rng">แยกประกอบ <input type="range" id="vwExp" min="0" max="100" value="0"><span id="vwExpV">0%</span></span>
+    <span class="rng" id="vwExpRow">แยกประกอบ <input type="range" id="vwExp" min="0" max="100" value="0"><span id="vwExpV">0%</span></span>
     <button class="vbtn" id="vwReset">มุมมอง</button>
     <div class="seg" id="vwViews"><button data-v="front">หน้า</button><button data-v="top">บน</button><button data-v="side">ข้าง</button></div>
     <button class="vbtn" id="vwLight">แสง: ในห้อง</button>
     <button class="vbtn" id="vwShadow">เงา</button>
     <button class="vbtn" id="vwGrid">ตาราง</button>
     <button class="vbtn" id="vwEco">ประหยัด</button>
+    <button class="vbtn" id="vwPaperBtn" style="display:none">📄 แบบผลิต</button>
   </div>
 </footer>
 <div id="vwLoad"><div class="box"><div class="spin"></div><div class="msg">กำลังเปิดงาน 3D…</div></div><div class="nojs">ถ้าหน้านี้ค้างที่ภาพนิ่ง ให้เปิดลิงก์/ไฟล์นี้ด้วย Chrome หรือ Safari (เปิดในเบราว์เซอร์) เพื่อหมุนดู 3D</div></div>
@@ -372,12 +446,14 @@ function showInfo(id){
     +'<div class="sub">'+(I.v?"อุปกรณ์ / ชิ้นประกอบ":(I.dr?"บาน / หน้าลิ้นชัก":"ชิ้นไม้"))+'</div>'
     +'<div class="bd"><table>'+rows.map(function(r){ return '<tr><td>'+r[0]+'</td><td>'+r[1]+'</td></tr>'; }).join("")+'</table>'
     +'<div class="acts">'+(k!=null?'<button data-a="door">'+((S.prog[k]||0)>.5?"ปิดบานนี้":"เปิดบานนี้")+'</button>':'')
-    +'<button data-a="zoom">ซูมไปที่ชิ้น</button>'+(cab?'<button data-a="cab">ดูทั้งตู้</button>':'')+'</div></div>';
+    +'<button data-a="zoom">ซูมไปที่ชิ้น</button>'+(cab?'<button data-a="cab">ดูทั้งตู้</button>':'')
+    +((D.pp&&!I.v)?'<button data-a="paper">📄 แบบผลิต</button>':'')+'</div></div>';   // v1.359
   box.classList.remove("hide");
   box.onclick=function(e){ var t=e.target; if(t.dataset.x!=null){ closeInfo(); return; }
     var a=t.dataset.a; if(a==="door"){ toggleDoor(k); setTimeout(function(){ showInfo(id); },480); }
     else if(a==="zoom") focusBox(sceneBox([id]));
-    else if(a==="cab") focusCab(I.ci); }; }
+    else if(a==="cab") focusCab(I.ci);
+    else if(a==="paper") paperOpen(id); }; }
 function closeInfo(){ var b=$("vwInfo"); if(b) b.classList.add("hide"); S.sel=null; if(selBox) selBox.visible=false; S.dirty=true; }
 function focusCab(ci){ var ids=Object.keys(S.D.info||{}).filter(function(id){ return S.D.info[id].ci===ci; }); focusBox(sceneBox(ids)); }
 function showCabs(){
@@ -489,11 +565,12 @@ function scanFocus(pk,quiet){
   var d=I.d?(fmt(I.d[0])+" × "+fmt(I.d[1])+" × "+fmt(I.d[2])+" มม."):"";
   var el=scanBar('<span><b>'+esc(c?c.n:"")+'</b> · '+esc((I.pid?I.pid.split(",")[0]+" · ":"")+(I.n||"ชิ้น"))+' <span class="d">'+esc(d)+'</span>'
     +(opened?' <span class="d">· กางบานให้แล้ว</span>':'')+(ids.length>1?' <span class="w">เข้าคีย์นี้ '+ids.length+' ชิ้น · แสดงชิ้นแรก</span>':'')+'</span>'
-    +'<button data-a="hi">🎯 ซูมชิ้นนี้</button><button data-a="info">รายละเอียด</button><button data-a="all">ดูทั้งออเดอร์</button><button data-a="fade">เน้น: ปิด</button>');
+    +'<button data-a="hi">🎯 ซูม<span class="lg">ชิ้นนี้</span></button>'+(S.D.pp?'<button data-a="paper">📄 แบบผลิต<span class="lg">ชิ้นนี้</span></button>':'')   /* v1.360: มือถือซ่อน "ชิ้นนี้" */+'<button data-a="info">รายละเอียด</button><button data-a="all">ดูทั้งออเดอร์</button><button data-a="fade">เน้น: ปิด</button>');   // v1.359: ปุ่มแบบผลิตกลับมา
   /* v1.346: สลับดูทั้งออเดอร์/เฉพาะตู้ ชิ้นยังเน้นอยู่ (ของอื่นจาง + ขอบเหลือง + หมุด) · ปุ่ม "เน้น" ปิดการจางเพื่อดูสีจริงทั้งตู้ */
   el.onclick=function(e){ var t=e.target.closest("button"); if(!t) return; var a=t.dataset.a;
     if(a==="hi"){ if(!S.hiIds.length) hiOn(); focusBox(sceneBox([id])); }
     else if(a==="info") showInfo(id);
+    else if(a==="paper") paperOpen(id);
     else if(a==="all"){ if(S.iso){ isolate(null); focusBox(sceneBox()); t.textContent="ดูเฉพาะตู้นี้"; } else { isolate(I.ci); focusBox(sceneBox(cabIds(I.ci))); t.textContent="ดูทั้งออเดอร์"; } }
     else if(a==="fade"){ fadeOn=!fadeOn; S.fade=fadeOn; matState(); t.textContent=fadeOn?"เน้น: เปิด":"เน้น: ปิด"; t.classList.toggle("on",fadeOn); }
     measPos(); };                                                                 // ปุ่มเปลี่ยนข้อความ → การ์ดสูง/เตี้ยลง แถบวัดขยับตาม
@@ -658,11 +735,114 @@ function bindUI(){
   $("vwReset").onclick=resetView;
   $("vwViews").onclick=function(e){ var b=e.target.closest("button"); if(!b) return; var v=b.dataset.v, bx=sceneBox();
     focusBox(bx, v==="front"?{th:0,ph:Math.PI/2-.001}:v==="top"?{th:0,ph:.021}:{th:Math.PI/2,ph:Math.PI/2-.001}); };
+  /* ───────── v1.361: แถบเลื่อนแยกประกอบบนมือถืออยู่บนแถบล่าง (ไม่อยู่ในแผง ⋯ เพิ่มเติม) ─────────
+     จอแคบ: ย้ายกล่องไปเป็นลูกตรงของ #vwBar (CSS จัดเป็นแถวบางเหนือปุ่มเครื่องมือ) · จอกว้าง: คืนที่เดิมก่อนปุ่ม "มุมมอง"
+     ฟังหมุนจอ/ปรับขนาดหน้าต่าง ข้าม 760px ก็ย้ายเอง · ตัวแถบเลื่อนเป็นตัวเดิม ค่าที่เลื่อนไว้ไม่หาย */
+  { var _mq=(window.matchMedia?matchMedia("(max-width:759px)"):null);
+    var _placeExp=function(){ var r=$("vwExpRow"), bar=$("vwBar"), ex=$("vwExtra"), rs=$("vwReset"); if(!r||!bar||!ex) return;
+      if(_mq&&_mq.matches){ if(r.parentNode!==bar) bar.insertBefore(r,bar.firstChild); }
+      else if(r.parentNode!==ex) ex.insertBefore(r,(rs&&rs.parentNode===ex)?rs:null); };
+    _placeExp(); if(_mq){ if(_mq.addEventListener) _mq.addEventListener("change",_placeExp); else if(_mq.addListener) _mq.addListener(_placeExp); } }
   $("vwExp").oninput=function(){ S.ex=(+this.value||0)/100; $("vwExpV").textContent=this.value+"%"; applyPose(); };
   $("vwZin").onclick=function(){ orbit.r*=.8; camApply(); };
   $("vwZout").onclick=function(){ orbit.r*=1.25; camApply(); };
   $("vwCabBtn").onclick=showCabs;
+  { var pb=$("vwPaperBtn"); if(pb){ pb.style.display=S.D.pp?"":"none"; pb.onclick=function(){ var ex=$("vwExtra"); if(ex) ex.classList.remove("open"); var mo=$("vwMore"); if(mo) mo.classList.remove("on"); paperOpen(S.sel); }; } }   // v1.359
   addEventListener("resize",function(){ camera.aspect=innerWidth/innerHeight; camera.updateProjectionMatrix(); renderer.setSize(innerWidth,innerHeight); measPos(); S.dirty=true; }); }
+
+/* ───────── v1.359: แบบผลิต ─────────
+   ไฟล์ p/<D.pp>.bin (หรือฝังในไฟล์ดูงาน #snvPaper) = หน้าแบบผลิตทั้งออเดอร์ที่อบจากโปรแกรม (SVG ชุดเดียวกับ ShopPaper)
+   โหลดครั้งแรกที่กดปุ่ม แล้วจำไว้ · ชิ้นที่กดมาเปิดหน้าของชิ้นนั้น (bkey) · ไม่มีหน้าแยก = หน้ารวม
+   หน้าเว็บนี้ปิดการซูมของเบราว์เซอร์ไว้ (ให้สองนิ้วหมุน 3D) จึงซูมแบบเอง: ปุ่ม − + ⤢ · สองนิ้ว · แตะสองครั้ง · Ctrl+ล้อเมาส์
+   เปิดแล้วดันประวัติหนึ่งขั้น ปุ่มย้อนกลับของมือถือ = ปิดหน้าแบบ (ไม่หลุดออกจากงาน) */
+var PP=null, PPS={k:null,z:1,hist:0};
+function paperLoad(){
+  if(PP) return PP;
+  var el=$("snvPaper"), txt=el?String(el.textContent||"").trim():"";
+  if(txt.length>16) PP=gunzip(b64u8(txt)).then(JSON.parse);
+  else PP=fetch("p/"+String(S.D.pp||"").replace(/[^A-Za-z0-9_-]/g,"")+".bin",{cache:"no-cache"}).then(function(r){
+      if(!r.ok) throw new Error(r.status===404?"ยังไม่มีไฟล์แบบผลิตของงานนี้บนเว็บ — ถ้าเพิ่งส่ง รอ 1–2 นาทีแล้วลองใหม่":"โหลดแบบผลิตไม่สำเร็จ (HTTP "+r.status+")");
+      return r.arrayBuffer(); }).then(function(ab){ return gunzip(new Uint8Array(ab)); }).then(JSON.parse);
+  PP.catch(function(){ PP=null; });   // พลาด = กดใหม่แล้วโหลดใหม่
+  return PP; }
+function paperUI(){
+  var ov=$("vwPaper"); if(ov) return ov;
+  ov=document.createElement("div"); ov.id="vwPaper"; ov.className="hide";
+  ov.innerHTML='<div class="ph"><button data-p="x" aria-label="ปิด">✕</button><button data-p="prev" aria-label="หน้าก่อน">‹</button>'
+    +'<div class="tt"><b id="vwPpT">แบบผลิต</b><span id="vwPpS"></span></div>'
+    +'<button data-p="next" aria-label="หน้าถัดไป">›</button><span id="vwPpZm"><button data-p="zo" aria-label="ซูมออก">−</button><button data-p="zi" aria-label="ซูมเข้า">+</button><button data-p="fit" class="zf" aria-label="พอดีจอ">⤢</button></span>'
+    +'<button data-p="list">☰ หน้า</button></div>'
+    +'<div id="vwPpBody"><div id="vwPpMsg"></div><div id="vwPpPage"></div></div><div id="vwPpList" class="hide"></div>';
+  document.body.appendChild(ov);
+  ov.querySelector(".ph").onclick=function(e){ var b=e.target.closest("button"); if(!b) return; var a=b.dataset.p;
+    if(a==="x") paperClose(); else if(a==="prev") paperStep(-1); else if(a==="next") paperStep(1);
+    else if(a==="zi") paperZoom(PPS.z*1.4); else if(a==="zo") paperZoom(PPS.z/1.4); else if(a==="fit") paperZoom(1);
+    else if(a==="list") paperList(); };
+  /* สองนิ้ว = ซูม (จุดกึ่งกลางนิ้วอยู่ที่เดิม) · ลากนิ้วเดียว = เลื่อนตามปกติของกล่อง */
+  var bd=ov.querySelector("#vwPpBody"), pz=null, lastTap=0;
+  bd.addEventListener("touchstart",function(e){ if(e.touches.length===2){ var a=e.touches[0],b=e.touches[1];
+      pz={d:Math.hypot(a.clientX-b.clientX,a.clientY-b.clientY)||1, z:PPS.z, mx:(a.clientX+b.clientX)/2, my:(a.clientY+b.clientY)/2}; e.preventDefault(); }
+    else if(e.touches.length===1){ var now=Date.now(), t=e.touches[0];
+      if(now-lastTap<300){ paperZoom(PPS.z>1.3?1:2.6,t.clientX,t.clientY); lastTap=0; e.preventDefault(); } else lastTap=now; } },{passive:false});
+  bd.addEventListener("touchmove",function(e){ if(!pz||e.touches.length!==2) return; var a=e.touches[0],b=e.touches[1];
+    paperZoom(pz.z*(Math.hypot(a.clientX-b.clientX,a.clientY-b.clientY)/pz.d),pz.mx,pz.my); e.preventDefault(); },{passive:false});
+  bd.addEventListener("touchend",function(e){ if(e.touches.length<2) pz=null; });
+  bd.addEventListener("wheel",function(e){ if(!(e.ctrlKey||e.metaKey)) return; e.preventDefault(); paperZoom(PPS.z*(e.deltaY<0?1.15:1/1.15),e.clientX,e.clientY); },{passive:false});
+  bd.addEventListener("dblclick",function(e){ paperZoom(PPS.z>1.3?1:2.6,e.clientX,e.clientY); });
+  addEventListener("keydown",function(e){ if(ov.classList.contains("hide")) return;
+    if(e.key==="Escape") paperClose(); else if(e.key==="ArrowLeft") paperStep(-1); else if(e.key==="ArrowRight") paperStep(1); });
+  addEventListener("popstate",function(){ if(PPS.hist){ PPS.hist=0; paperClose(true); } });
+  addEventListener("resize",function(){ if(!ov.classList.contains("hide")) paperZoom(PPS.z); });
+  return ov; }
+function paperMsg(t,err){ var m=$("vwPpMsg"); if(!m) return; m.textContent=t||""; m.style.display=t?"":"none"; m.classList.toggle("err",!!err); }
+function paperOpen(id){
+  var ov=paperUI(); ov.classList.remove("hide");
+  if(!PPS.hist){ try{ history.pushState({snvPaper:1},""); PPS.hist=1; }catch(e){} }
+  var lp=$("vwPpList"); if(lp) lp.classList.add("hide");
+  paperMsg("กำลังโหลดแบบผลิต…"); $("vwPpPage").innerHTML=""; $("vwPpT").textContent="แบบผลิต"; $("vwPpS").textContent="";
+  paperLoad().then(function(P){
+    var bk=P.bkey||{}, k=null;
+    if(id!=null){ k=bk[id]||null; var own=S.D.own&&S.D.own[id]; if(!k&&own) k=bk[own]||null; }
+    var note=""; if(!k){ if(id!=null) note="ชิ้นนี้ไม่มีหน้าแบบแยก — แสดงหน้ารวม"; k=(P.order||[])[0]; }
+    paperMsg(""); paperShow(k,note);
+  },function(e){ paperMsg(String((e&&e.message)||e),true); }); }
+function paperClose(fromPop){
+  var ov=$("vwPaper"); if(!ov||ov.classList.contains("hide")) return;
+  ov.classList.add("hide"); $("vwPpPage").innerHTML="";
+  if(!fromPop&&PPS.hist){ PPS.hist=0; try{ history.back(); }catch(e){} }
+  S.dirty=true; }
+function paperShow(k,note){
+  PP&&PP.then(function(P){ var ord=P.order||[]; if(ord.indexOf(k)<0) k=ord[0]; if(k==null) return;
+    PPS.k=k; var i=ord.indexOf(k);
+    $("vwPpPage").innerHTML=(P.pages||{})[k]||"";
+    $("vwPpT").textContent=(P.titles||{})[k]||k;
+    var cb=(P.cab||{})[k]; $("vwPpS").textContent="หน้า "+(i+1)+" / "+ord.length+(cb?(" · ตู้ "+cb):"")+(note?(" · "+note):"");
+    var ov=$("vwPaper"); ov.querySelector('[data-p="prev"]').disabled=(i<=0); ov.querySelector('[data-p="next"]').disabled=(i>=ord.length-1);
+    paperZoom(1); var bd=$("vwPpBody"); bd.scrollTop=0; bd.scrollLeft=0;
+    var lp=$("vwPpList"); if(lp&&!lp.classList.contains("hide")) paperList(true); }); }
+function paperStep(d){ PP&&PP.then(function(P){ var ord=P.order||[], i=ord.indexOf(PPS.k)+d; if(i>=0&&i<ord.length) paperShow(ord[i]); }); }
+/* z = 1 คือทั้งหน้าพอดีจอ · ซูมแล้วจุด (cx,cy) บนจอค้างอยู่ที่เดิม */
+function paperZoom(z,cx,cy){
+  var bd=$("vwPpBody"), pg=$("vwPpPage"); if(!bd||!pg) return;
+  z=Math.max(1,Math.min(8,z||1));
+  var W=Math.max(bd.clientWidth-20,80), H=Math.max(bd.clientHeight-20,80), fit=Math.min(W,H*1587/1123);
+  var r=bd.getBoundingClientRect(), mx=(cx!=null?cx-r.left:bd.clientWidth/2), my=(cy!=null?cy-r.top:bd.clientHeight/2);
+  var w0=pg.offsetWidth||fit, fx=(bd.scrollLeft+mx-10)/w0, fy=(bd.scrollTop+my-10)/(w0*1123/1587);
+  var w=Math.round(fit*z); pg.style.width=w+"px";
+  pg.style.marginLeft=pg.style.marginRight=(w<W?Math.round((W-w)/2+10):10)+"px";
+  if(cx!=null||PPS.z!==z){ bd.scrollLeft=Math.max(0,fx*w+10-mx); bd.scrollTop=Math.max(0,fy*(w*1123/1587)+10-my); }
+  PPS.z=z; }
+function paperList(keep){
+  var lp=$("vwPpList"), bt=$("vwPaper").querySelector('[data-p="list"]');
+  if(!keep&&!lp.classList.contains("hide")){ lp.classList.add("hide"); bt.classList.remove("on"); return; }
+  PP&&PP.then(function(P){ var ord=P.order||[], T=P.titles||{}, C=P.cab||{}, h="", last=null;
+    ord.forEach(function(k,i){ var g=C[k]||(k==="summary"?"หน้ารวม":"อื่น ๆ");
+      if(g!==last){ h+='<div class="g">'+esc(g)+'</div>'; last=g; }
+      h+='<div class="it'+(k===PPS.k?' on':'')+'" data-k="'+esc(k)+'"><i>'+(i+1)+'</i><span>'+esc(T[k]||k)+'</span></div>'; });
+    lp.innerHTML=h; lp.style.top=$("vwPaper").querySelector(".ph").offsetHeight+"px";
+    lp.classList.remove("hide"); bt.classList.add("on");
+    lp.onclick=function(e){ var it=e.target.closest(".it"); if(!it) return; paperShow(it.dataset.k); if(innerWidth<760){ lp.classList.add("hide"); bt.classList.remove("on"); } };
+    var on=lp.querySelector(".it.on"); if(on) try{ on.scrollIntoView({block:"nearest"}); }catch(e){} }); }
 
 function loop(){ requestAnimationFrame(loop);
   var now=performance.now();
@@ -700,7 +880,7 @@ function start(){
       if(!sc) hint("ลากเพื่อหมุน · สองนิ้วเพื่อซูม/เลื่อน · แตะชิ้นเพื่อดูรายละเอียด",3200); }); })
   .catch(function(e){ console.error(e); status(String((e&&e.message)||e),true); }); }
 
-try{ window.__snv={S:S,DIM:DIM,scene:function(){ return scene; },camera:function(){ return camera; }}; }catch(e){}   // v1.346: ให้ตัวทดสอบอ่านสถานะได้ (อ่านอย่างเดียว)
+try{ window.__snv={S:S,DIM:DIM,scene:function(){ return scene; },camera:function(){ return camera; },pp:function(){ return PPS; },ppOpen:function(id){ paperOpen(id); }}; }catch(e){}   // v1.359: + สถานะ/ตัวเปิดหน้าแบบผลิต (ให้ตัวทดสอบเรียก)   // v1.346: ให้ตัวทดสอบอ่านสถานะได้ (อ่านอย่างเดียว)
 if(document.readyState==="loading") document.addEventListener("DOMContentLoaded",start); else start();
 })();
 </script></body></html>
