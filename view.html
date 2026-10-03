@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="th"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover"><meta name="generator" content="StarNexus 1.380"><title>StarNexus — ดูงาน 3D</title><style>
+<html lang="th"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover"><meta name="generator" content="StarNexus 1.386"><title>StarNexus — ดูงาน 3D</title><style>
 :root{--bg:#e7e8ee;--panel:rgba(255,255,255,.94);--solid:#fff;--ink:#172c40;--dim:#5b6b7c;--line:#d5dae2;--accent:#1e5fa8;--warn:#e8590c;--shadow:0 10px 30px -12px rgba(16,32,56,.35)}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html,body{margin:0;height:100%;background:var(--bg);color:var(--ink);font:14px/1.5 system-ui,-apple-system,"Segoe UI","Noto Sans Thai","Sarabun",sans-serif;overflow:hidden;overscroll-behavior:none}
@@ -443,11 +443,11 @@ function showInfo(id){
   if(I.pt) rows.push(["Part",'<span class="code">'+esc(I.pt)+'</span>']);
   var k=keyOf(id);
   box.innerHTML='<h3>'+esc(I.n||"ชิ้นงาน")+'<button class="x" data-x>✕</button></h3>'
-    +'<div class="sub">'+(I.v?"อุปกรณ์ / ชิ้นประกอบ":(I.dr?"บาน / หน้าลิ้นชัก":"ชิ้นไม้"))+'</div>'
+    +'<div class="sub">'+(I.pg?"เสาเหล็ก (งานสั่งทำ)":(I.v?"อุปกรณ์ / ชิ้นประกอบ":(I.dr?"บาน / หน้าลิ้นชัก":"ชิ้นไม้")))+'</div>'
     +'<div class="bd"><table>'+rows.map(function(r){ return '<tr><td>'+r[0]+'</td><td>'+r[1]+'</td></tr>'; }).join("")+'</table>'
     +'<div class="acts">'+(k!=null?'<button data-a="door">'+((S.prog[k]||0)>.5?"ปิดบานนี้":"เปิดบานนี้")+'</button>':'')
     +'<button data-a="zoom">ซูมไปที่ชิ้น</button>'+(cab?'<button data-a="cab">ดูทั้งตู้</button>':'')
-    +((D.pp&&!I.v)?'<button data-a="paper">📄 แบบผลิต</button>':'')+'</div></div>';   // v1.359
+    +((D.pp&&(!I.v||I.pg))?'<button data-a="paper">'+(I.pg?'📄 แบบเสานี้':'📄 แบบผลิต')+'</button>':'')+'</div></div>';   // v1.359 · v1.382: เสา
   box.classList.remove("hide");
   box.onclick=function(e){ var t=e.target; if(t.dataset.x!=null){ closeInfo(); return; }
     var a=t.dataset.a; if(a==="door"){ toggleDoor(k); setTimeout(function(){ showInfo(id); },480); }
