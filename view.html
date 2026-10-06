@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="th"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover"><meta name="generator" content="StarNexus 1.394"><title>StarNexus — ดูงาน 3D</title><style>
+<html lang="th"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover"><meta name="generator" content="StarNexus 1.396"><title>StarNexus — ดูงาน 3D</title><style>
 :root{--bg:#e7e8ee;--panel:rgba(255,255,255,.94);--solid:#fff;--ink:#172c40;--dim:#5b6b7c;--line:#d5dae2;--accent:#1e5fa8;--warn:#e8590c;--shadow:0 10px 30px -12px rgba(16,32,56,.35)}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html,body{margin:0;height:100%;background:var(--bg);color:var(--ink);font:14px/1.5 system-ui,-apple-system,"Segoe UI","Noto Sans Thai","Sarabun",sans-serif;overflow:hidden;overscroll-behavior:none}
@@ -196,6 +196,7 @@ button{font:inherit;color:inherit}
     <span class="rng" id="vwExpRow">แยกประกอบ <input type="range" id="vwExp" min="0" max="100" value="0"><span id="vwExpV">0%</span></span>
     <button class="vbtn" id="vwReset">มุมมอง</button>
     <div class="seg" id="vwViews"><button data-v="front">หน้า</button><button data-v="top">บน</button><button data-v="side">ข้าง</button></div>
+    <button class="vbtn on" id="vwLed" style="display:none" title="เปิด/ปิดไฟราง LED">💡 ไฟ LED: เปิด</button>
     <button class="vbtn" id="vwLight">แสง: ในห้อง</button>
     <button class="vbtn" id="vwShadow">เงา</button>
     <button class="vbtn" id="vwGrid">ตาราง</button>
@@ -219,7 +220,7 @@ button{font:inherit;color:inherit}
 var $=function(id){ return document.getElementById(id); };
 var S={D:null,items:[],byId:{},prog:{},anim:{},ex:0,ghost:false,shadows:false,grid:false,light:"room",eco:false,   // v1.350: ตั้งต้น แสงในห้อง · ไม่มีเงาแข็ง · ปิดตาราง
   tool:"sel",sel:null,meas:[],dirty:true,allOpen:false,
-  fade:false,hiIds:[],hiMats:[],pulse:0,pin:null};   // v1.346: เน้นชิ้น (จางของอื่น · เส้นขอบ · หมุด · กะพริบ)
+  fade:false,hiIds:[],hiMats:[],pulse:0,pin:null,led:[],ledOn:true};   // v1.346: เน้นชิ้น (จางของอื่น · เส้นขอบ · หมุด · กะพริบ) · v1.396: led = แถบเรืองแสงไฟราง
 var renderer,scene,camera,root,floor,grid,hemi,keyL,fillL,rimL,selBox,measLine,measDots=[],envTexC=null;
 var orbit={t:new THREE.Vector3(),th:.85,ph:.95,r:2000,mr:900};
 var _Y=new THREE.Vector3(0,1,0), _q=new THREE.Quaternion();
@@ -312,6 +313,7 @@ function build(D,imgs){
     if(n.p) o.position.fromArray(n.p); if(n.q) o.quaternion.fromArray(n.q); if(n.s) o.scale.fromArray(n.s);
     if(n.ro) o.renderOrder=n.ro; if(n.v===0) o.visible=false; if(n.cs) o.castShadow=true; if(n.rs) o.receiveShadow=true; if(n.fc===0) o.frustumCulled=false;
     if(n.id) o.userData.id=n.id;
+    if(n.lg){ o.userData.led=1; S.led.push(o); }                                 // v1.396: ไฟราง LED (ปุ่ม 💡)
     if(isGrain(n)){ o.visible=false; o.userData.grain=1; }
     (n.ch||[]).forEach(function(c){ var co=mk(c); if(co) o.add(co); });
     return o; }
@@ -675,6 +677,8 @@ function measPos(){ var sc=$("vwScan"), el=$("vwMeas"); if(!el) return;
 
 /* ── โปร่งใส / เงา / ตาราง / ประหยัด ── */
 function setGhost(on){ S.ghost=on; matState(); $("vwGhost").classList.toggle("on",on); S.dirty=true; }   // v1.346: รวมกับ "จางของอื่น" ที่ matState
+/* v1.396: ปุ่ม 💡 ไฟ LED — ซ่อน/แสดงแถบเรืองแสงกับม่านแสงที่อบมา (ตัวรางอลูยังอยู่) */
+function setLed(on){ S.ledOn=on; S.led.forEach(function(o){ o.visible=on; }); var b=$("vwLed"); if(b){ b.classList.toggle("on",on); b.textContent="💡 ไฟ LED: "+(on?"เปิด":"ปิด"); } S.dirty=true; }
 function setShadows(on){ S.shadows=on; renderer.shadowMap.enabled=on; keyL.castShadow=on; if(floor) floor.visible=on;
   S.items.forEach(function(it){ it.o.traverse(function(o){ if(o.material){ var ms=Array.isArray(o.material)?o.material:[o.material]; ms.forEach(function(m){ m.needsUpdate=true; }); } }); });
   renderer.shadowMap.needsUpdate=true; $("vwShadow").classList.toggle("on",on); S.dirty=true; }
@@ -728,6 +732,7 @@ function bindUI(){
     S.allOpen=!ks.every(function(k){ return (S.prog[k]||0)>.5; }); animKeys(ks,S.allOpen?1:0); this.textContent=S.allOpen?"ปิดทุกบาน":"เปิดทุกบาน"; this.classList.toggle("on",S.allOpen); };
   $("vwGhost").onclick=function(){ setGhost(!S.ghost); };
   $("vwShadow").onclick=function(){ setShadows(!S.shadows); };
+  if($("vwLed")) $("vwLed").onclick=function(){ setLed(!S.ledOn); hint("ไฟ LED "+(S.ledOn?"เปิด":"ปิด")+(S.ledOn&&S.light!=="night"?" — กด แสง ให้เป็น กลางคืน จะเห็นไฟชัดขึ้น":"")); };   // v1.396
   $("vwLight").onclick=function(){ var ks=["room","sun","night"]; setLight(ks[(ks.indexOf(S.light)+1)%ks.length]);   // v1.350
     hint("แสง: "+LIGHTS[S.light].label+(S.light==="sun"?" — มีเงาทอด เห็นรูปทรงชัด":S.light==="night"?" — หรี่ลง ไฟ LED เด่น":" — แสงนวลกระจาย ไม่มีเงาแข็ง")); };
   $("vwGrid").onclick=function(){ setGrid(!S.grid); };
@@ -867,7 +872,8 @@ function start(){
     status("กำลังโหลดรูปผิว…");
     return loadImages(D.tex).then(function(imgs){
       status("กำลังประกอบ 3D…");
-      build(D,imgs); fitGround(); setLight(S.light); setGrid(S.grid);   // v1.350: แสงในห้อง · ปิดตาราง
+      build(D,imgs); fitGround(); setLight(S.light); setGrid(S.grid);
+      if(S.led.length&&$("vwLed")) $("vwLed").style.display="";                // v1.396: มีไฟราง = มีปุ่ม   // v1.350: แสงในห้อง · ปิดตาราง
       var c=D.cam||{}; orbit.th=(c.th!=null?c.th:.85); orbit.ph=(c.ph!=null?c.ph:.95); orbit.r=c.r||2000; orbit.mr=Math.max(orbit.mr,c.mr||0);
       if(c.t) orbit.t.fromArray(c.t); else { var b=sceneBox(); b.getCenter(orbit.t); }
       camApply(); applyPose(); bindControls(renderer.domElement); bindUI(); loop();
