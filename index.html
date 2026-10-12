@@ -1019,7 +1019,7 @@
    ===================================================================== */
 /* ---- APP_META: แหล่งความจริงเดียวของเวอร์ชัน (ดูได้จาก console / คลิกชื่อแอป) ---- */
 const APP_META={
-  name:"StarNexus", version:"1.436", build:"2026-10-12/shelf-eq-gaps",
+  name:"StarNexus", version:"1.437", build:"2026-10-12/prefetch-own",
   file:"StarNexus.html", basedOn:"Furnitech_V3.html (v3.11)",
   /* ───────── เริ่มนับเวอร์ชันใหม่ที่ 1.001 (21/08/2026) ─────────
      ของเดิมนับมาถึง 42.1 แล้ววิ่งเป็นทศนิยมสองชั้นซึ่งอ่านลำดับยาก
@@ -1027,6 +1027,7 @@ const APP_META={
      ประวัติเก่าเก็บไว้ทั้งหมดตามเลขเดิม ไม่ไล่เขียนใหม่ เพราะเลขในนั้นถูกอ้างถึงไปแล้ว
      รายการที่อยู่ใต้ 1.001 ลงไปจึงเป็นเลขชุดเก่า อ่านต่อกันได้ตามวันที่ */
   changelog:[
+    ["1.437","2026-10-12","FIX ตัวเชื่อม Google Drive โหลดล่วงหน้าเฉพาะตารางที่โปรแกรมนั้นใช้ + ป้ายดาวน์โหลดขึ้นเฉพาะตอนเปิด Order (ผู้ใช้ 16:17 Production v179: ป้าย “☁ กำลังโหลดจาก Google Drive · 0.0 MB / 1.3 MB · 0/120 ไฟล์” คืออะไร ทำไม มันกำลังโหลดอะไร) — ตัวโหลดล่วงหน้าเดิมเว้นเฉพาะตารางในรายการที่ไม่โหลด ตารางที่ไม่อยู่ในรายการของโปรแกรมเลยจึงถูกดาวน์โหลดหมด: Production โหลดโมเดลตู้ (_changes/furnitech_cabinets 120 ไฟล์ + ไฟล์ฐาน) ประวัติ XML และ Parts ของ StarNexus ที่ไม่ได้ใช้ · ตอนนี้เฉพาะตารางที่โหลดจริง (StarNexus เหมือนเดิม) · GasFS 1.4 ไฟล์ที่โหลดล่วงหน้าไม่นับว่ามีคนรอ (แถบความคืบหน้าตอนเปิดนับเฉพาะที่รอจริง) · ป้ายกลางล่างจอขึ้นเฉพาะตอนเปิด Order ที่ยังไม่โหลด บอกเลข Order (StarNexus ไม่ขึ้นแล้ว) · ใช้ร่วมกับ Production V2 v180"],
     ["1.436","2026-10-12","FEAT จัดชั้นให้ช่องเท่ากันทำกับชั้นตายได้ + ไม้วัดคลิกแผ่นข้างขึ้นช่องใส + FIX เตือน “Unexpected end of JSON input” (ผู้ใช้ 15:33: 1.อยากได้ ช่องๆ เท่ากันตู้ใบนี้เพิ่มคำสั่งได้ไหม 2.เครื่องมือวัด มีแบบกดแผ่นข้าง ขึ้น Dim ได้ไหม ผมมานั่งวัดเอามันช้า 3.เลข 2606012207 มันเตือนอะไร) — (1) “↕ จัดชั้น…ให้ห่างเท่ากัน” เดิมจับเฉพาะชั้นปรับ ตอนนี้ชั้นตายด้วย: คลิกขวาชั้นตาย/แผ่นข้าง/ชิ้นไหนในตู้ หรือปุ่มในแผงขวาของชั้นตาย · ช่องที่มีชั้นตายตั้งต้น “ผิวชั้น (ช่องใสเท่ากัน)” · ชั้นตายที่ย้าย ปลดล็อกระยะอ้างอิง + ล้างรูคู่เดือย/มินิฟิกเก่าแล้วเจาะใหม่ตรงที่ (ไฟล์ 49 ตู้ JMO001: 271.1 / 267.1 / 267.0 → 268.4 ×3) · ชั้นปรับในช่องที่มีชั้นตาย เลือกได้ว่าจัดเฉพาะชั้นปรับหรือทุกชั้น (2) ไม้วัด 📦 ขนาดชิ้น: คลิกแผ่นข้าง (หรือแผ่นใดก็ได้) ขึ้นโซ่ช่องใสสีฟ้าระหว่างแผ่นที่มาชน (พื้น · ชั้น · ฝาบน · คาน) + แถบล่าง “ช่องใส ล่าง→บน …” ไม่ต้องวัด 2 จุดทีละช่อง (3) คำเตือนอ่าน app_settings order_base_data_… ไม่ได้ ×3 = รอบตรวจ 10 วิ ไปเจอไฟล์ที่เครื่องนี้กำลังส่งขึ้น Drive (ยังเขียนไม่เสร็จ อ่านได้ไฟล์ว่าง) ข้อมูลไม่เสีย · GasFS 1.3 ไม่โชว์ไฟล์ที่ยังเขียนไม่เสร็จในรายการ · บันทึก Order เขียนดัชนีให้ Production V2 v179 (โหลดเฉพาะ Order ที่เปิด) · ปิดได้ SN_OFF.shelfEqFixed / mdGaps / lazyOrders"],
     ["1.435","2026-10-12","FEAT ปุ่ม 📋 คัดลอก Token ในหน้าแชร์ (ผู้ใช้: ไม่ได้เก็บ Token ไว้ อยากคัดลอกจากตัวที่เปิดบนเครื่องไปใส่ตัวที่เปิดบนเว็บ) — ตั้งค่า GitHub เก็บแยกต่อที่อยู่ที่เปิดโปรแกรม เดิมดู Token ที่จำไว้ไม่ได้ ต้องสร้างใหม่ · ตอนนี้กดคัดลอกไปคลิปบอร์ด (เฉพาะตอนกดเอง ไม่ลงไฟล์/ค่าตั้ง) พร้อมบอก owner/repo/branch ที่ต้องใส่คู่กัน · วางในช่อง Token ของรุ่นเก่าก็ได้"],
     ["1.434","2026-10-12","UX ส่งออเดอร์จากเบราว์เซอร์ที่ยังไม่ได้ตั้งค่า GitHub = เตือนในกล่องผล (ผู้ใช้: ทำไม Github ไม่อัพ Link) — ตั้งค่า GitHub (Token) เก็บแยกต่อเบราว์เซอร์และต่อที่อยู่ที่เปิดโปรแกรม ตัวที่เปิดจาก github.io ยังไม่ได้ตั้ง เลยได้ลิงก์ในไฟล์กลางแทนแบบเงียบ ๆ (ไม่ขึ้น GitHub · QR สติกเกอร์เปิดจากมือถือไม่ได้) · ตอนนี้บอกในกล่องผลพร้อมวิธีแก้ และขั้นสร้างลิงก์ขึ้นว่ายังไม่ได้ตั้งค่า"],
@@ -48896,7 +48897,7 @@ var sxlShareLan=async function(){
  document.body.appendChild(ov);
  ov.onclick=e=>{const a=e.target&&e.target.dataset&&e.target.dataset.a;if(e.target===ov||a==="x")ov.remove();else if(a==="c"){try{navigator.clipboard.writeText(link);toast("คัดลอกลิงก์แล้ว")}catch(_){}}else if(a==="o")window.open(link,"_blank")}};
 /* ═══════════════════════════════════════════════════════════════════════
-   GasFS 1.3 (2026-10-12) — โฟลเดอร์ Server เสมือนบน Google Drive ผ่าน Apps Script (StarNexus DB 0.3+)
+   GasFS 1.4 (2026-10-12) — โฟลเดอร์ Server เสมือนบน Google Drive ผ่าน Apps Script (StarNexus DB 0.3+)
 
    ใช้ร่วมกันใน StarNexus และ Production V2: ทั้งสองโปรแกรมอ่าน/เขียนโฟลเดอร์ Server ผ่าน
    File System Access API (getDirectoryHandle / getFileHandle / entries / getFile / createWritable / removeEntry)
@@ -48912,7 +48913,7 @@ var sxlShareLan=async function(){
    ═══════════════════════════════════════════════════════════════════════ */
 var GasFS = (function () {
   'use strict';
-  var VER = '1.3';
+  var VER = '1.4';
   var PART = 4000000;          // base64 เกินนี้ แบ่งชิ้นอัปโหลด
   var BATCH_MS = 15, BATCH_OPS = 40, BATCH_BYTES = 6000000;
   var LIST_TTL = 1500;         // รายการโฟลเดอร์เดียวกันที่ขอซ้ำภายในเวลานี้ ใช้ของเดิม (กันไล่ซ้ำในรอบเดียว)
@@ -48988,6 +48989,7 @@ var GasFS = (function () {
     this.L = {};          // รายการโฟลเดอร์ในหน่วยความจำ: p → {files:{n:{u,s,d?}}, dirs:Set, hi, at, ok}
     this.C = new Map();   // เนื้อไฟล์ในหน่วยความจำ: p\nn → {u, c}
     this.inflight = {};   // อ่านไฟล์ซ้ำระหว่างรอ = รอตัวเดียวกัน
+    this.inrec = {};      // 1.4: p\nn → {es, fg, done} — การอ่านนั้นมีคนรอ (fg) หรือโหลดล่วงหน้าเฉย ๆ
     this.st = { calls: 0, ops: 0, ms: 0, last: 0, err: '', bytesUp: 0, bytesDown: 0, cacheHit: 0, trace: [],
                 rx: 0, need: 0, got: 0, nNeed: 0, nGot: 0 };   // 1.2: rx = ไบต์ที่รับแล้ว (นับระหว่างรับ) · need/got = ขนาดไฟล์ที่ต้องดาวน์โหลด/ได้แล้ว · nNeed/nGot = จำนวนไฟล์
     this.cache = this.opt.cache !== false;
@@ -49166,7 +49168,7 @@ var GasFS = (function () {
       await Promise.all(jobs.map(async function (j) { var d = await idbGet('f', self.url + '\n' + j[0] + '\n' + j[1]); if (d && d.u === j[2]) self.C.set(j[0] + '\n' + j[1], d); else left.push(j); }));
       jobs = left;
     }
-    await Promise.all(jobs.map(function (j) { return self.readC(j[0], j[1], j[2]).catch(function () {}); }));
+    await Promise.all(jobs.map(function (j) { return self.readC(j[0], j[1], j[2], true).catch(function () {}); }));   // 1.4: โหลดล่วงหน้า = ไม่นับว่ามีคนรอ
     return jobs.length;
   };
   FS.prototype._touch = function (p, n, u, s, c) {        // หลังเขียนเอง: อัปเดตรายการ/ที่จำ ทันที
@@ -49184,7 +49186,11 @@ var GasFS = (function () {
   };
 
   /* ── อ่านเนื้อไฟล์ (จำในเครื่องตามเวลาแก้) ── */
-  FS.prototype.readC = async function (p, n, u) {
+  /* ───────── GasFS 1.4: แยก “โหลดล่วงหน้า” ออกจาก “มีคนรออยู่” ─────────
+     เดิม (1.2) ทุกการดาวน์โหลดนับเข้า need/nNeed → ป้าย/แถบความคืบหน้านับไฟล์ที่โหลดล่วงหน้าเบื้องหลังด้วย
+     ผู้ใช้ 12/10/2026 16:17 (Production v179): ป้าย “กำลังโหลดจาก Google Drive · 0.0 MB / 1.3 MB · 0/120 ไฟล์” โผล่เฉย ๆ หลังเปิดโปรแกรม
+       = ไฟล์ที่โหลดล่วงหน้า (ไม่มีใครรอ) · ตอนนี้: bg=true ไม่นับ จนกว่าจะมีคนมารอไฟล์ตัวเดียวกัน (นับตอนนั้น · นับครั้งเดียว) */
+  FS.prototype.readC = async function (p, n, u, bg) {
     var k = p + '\n' + n, self = this;
     var m = this.C.get(k);
     if (m && (u == null || m.u === u)) { this.st.cacheHit++; return m.c; }
@@ -49192,9 +49198,13 @@ var GasFS = (function () {
       var d = await idbGet('f', this.url + '\n' + k);
       if (d && (u == null || d.u === u)) { this.C.set(k, d); this.st.cacheHit++; return d.c; }
     }
-    if (this.inflight[k]) return this.inflight[k];
+    if (this.inflight[k]) {
+      var r0 = this.inrec[k]; if (!bg && r0 && !r0.fg && !r0.done) { r0.fg = true; self.st.need += r0.es; self.st.nNeed++; }   // 1.4: มีคนมารอไฟล์ที่กำลังโหลดล่วงหน้า
+      return this.inflight[k];
+    }
     var L = this.L[p], big = !!(L && L.files[n] && L.files[n].s > 1500000), es = (L && L.files[n] && L.files[n].s) || 0;
-    self.st.need += es; self.st.nNeed++;                     // 1.2: ไว้บอกความคืบหน้าการดาวน์โหลด
+    var rec = { es: es, fg: !bg, done: false }; this.inrec[k] = rec;
+    if (rec.fg) { self.st.need += es; self.st.nNeed++; }      // 1.2: ไว้บอกความคืบหน้าการดาวน์โหลด (1.4: เฉพาะที่มีคนรอ)
     var pr = (async function () {
       try {
       var o = await self.call({ a: 'fsRead', p: p, names: [n], _solo: big });
@@ -49208,10 +49218,10 @@ var GasFS = (function () {
       self.C.set(k, { u: f.u, c: c });
       if (self.cache) idbPut('f', self.url + '\n' + k, { u: f.u, c: c });
       return c;
-      } finally { self.st.got += es; self.st.nGot++; }
+      } finally { rec.done = true; if (rec.fg) { self.st.got += es; self.st.nGot++; } }
     })();
     this.inflight[k] = pr;
-    try { return await pr; } finally { delete this.inflight[k]; }
+    try { return await pr; } finally { delete this.inflight[k]; if (self.inrec[k] === rec) delete self.inrec[k]; }
   };
   FS.prototype.readBytes = async function (p, n, u) { return ungz(await this.readC(p, n, u)); };
 
@@ -49538,7 +49548,13 @@ function gasLs(k,v){ try{ if(v===undefined) return localStorage.getItem(k); if(v
           var _skipT={}; SXL.cfg.tables.forEach(function(T){ if(!sxlLoadable(T)) _skipT[T.t]=1; });
           /* v1.436 / PV2 v179: Order แยกไฟล์แล้ว (ไฟล์ฐานเล็ก) = ไม่โหลดไฟล์ Order ล่วงหน้า (โหลดตอนเปิด Order) */
           try{ var _ob=SXL.dir._fs.L['']&&SXL.dir._fs.L[''].files['imos_orders_rows.csv']; if(ordIdxOn()&&SXL.cfg.app==='Production'&&_ob&&_ob.s<2000000) _skipT.imos_orders=1; }catch(e){}
-          SXL.dir._fs.prefetch(function(p,n){ if(/^_backup|^_parts/.test(p)) return false; var m=/^_changes\/([^\/]+)$/.exec(p); if(m) return !_skipT[m[1]]; return p===''&&/_rows\.csv$/i.test(n)&&!_skipT[(sxlMatchName(n)||'')]; }).catch(function(){});
+          /* ───────── v1.437 / PV2 v180: โหลดล่วงหน้าเฉพาะตารางที่โปรแกรมนี้ใช้ ─────────
+             เดิม: เว้นเฉพาะตารางในรายการของโปรแกรมที่ไม่โหลด (_skipT) · ตารางที่ไม่อยู่ในรายการเลยหลุดไปโหลดหมด
+             Production ไม่มี furnitech_cabinets / xml_history / furnitech_parts ในรายการ → ดาวน์โหลดโมเดลตู้ ประวัติ XML ของ StarNexus
+             ทั้งไฟล์ฐาน (หลาย MB) และ _changes ทุกไฟล์ ที่ไม่เคยได้ใช้ (ผู้ใช้ 12/10/2026 16:17 เห็นป้าย “… 0.0 MB / 1.3 MB · 0/120 ไฟล์”
+             หลังเปิด Production = _changes/furnitech_cabinets 120 ไฟล์) · ตอนนี้: เฉพาะตารางในรายการที่โหลดจริง (_useT) */
+          var _useT={}; SXL.cfg.tables.forEach(function(T){ if(sxlLoadable(T)&&!_skipT[T.t]) _useT[T.t]=1; });
+          SXL.dir._fs.prefetch(function(p,n){ if(/^_backup|^_parts/.test(p)) return false; var m=/^_changes\/([^\/]+)$/.exec(p); if(m) return !!_useT[m[1]]; return p===''&&/_rows\.csv$/i.test(n)&&!!_useT[(sxlMatchName(n)||'')]; }).catch(function(){});
         }catch(e){ console.warn('[Drive] warm',e); }
         return sxlSync(true,'restore'); });
       gasHide(); if(gasDriveOnly()) try{ gasDriveRender(); }catch(e){}
@@ -50130,8 +50146,15 @@ function gasDlTick(){
       if(ln&&ln.textContent!==label) ln.textContent=label; if(fl) fl.style.width=d.pct.toFixed(1)+'%'; if(pc) pc.textContent=Math.floor(d.pct)+'% ดาวน์โหลด'; return; }
     if(typeof SXL!=='undefined'&&SXL._prog){ SXL._prog(label,Math.max(3,Math.min(88,d.pct*0.88))); return; }
     var P=document.getElementById('sxLocalPanel'); if(P&&P.style.display!=='none'&&label!==GAS_DL.last){ GAS_DL.last=label; sxlStatus(label); }
-    /* v1.436 / PV2 v179: ไม่มีหน้าต่างโหลด (เช่น เปิด Order ที่ยังไม่โหลด) — ป้ายเล็กกลางล่างจอ เมื่อรอเกิน 0.7 วิ */
-    if(Date.now()-GAS_DL.t0>700) gasDlChip('☁ กำลังโหลดจาก Google Drive · '+gasMB(d.done)+' / '+gasMB(d.total)+(d.nAll>1?' · '+d.n+'/'+d.nAll+' ไฟล์':''));
+    /* v1.436 / PV2 v179: ไม่มีหน้าต่างโหลด (เช่น เปิด Order ที่ยังไม่โหลด) — ป้ายเล็กกลางล่างจอ เมื่อรอเกิน 0.7 วิ
+       ───────── v1.437 / PV2 v180: ขึ้นเฉพาะตอนเปิด Order ที่ยังไม่โหลด + บอกเลข Order ─────────
+       เดิม (v179) ขึ้นทุกครั้งที่มีไฟล์กำลังดาวน์โหลดแล้วไม่มีหน้าต่างโหลด (โหลดล่วงหน้า · รอบตรวจ 10 วิ)
+       ผู้ใช้ 12/10/2026 16:17 เห็น “☁ กำลังโหลดจาก Google Drive · 0.0 MB / 1.3 MB · 0/120 ไฟล์” แล้วถามว่าโหลดอะไร
+       (= ไฟล์โมเดลตู้ของ StarNexus ที่ Production โหลดล่วงหน้าโดยไม่ได้ใช้ — แก้ที่ตัวโหลดล่วงหน้าแล้ว)
+       ตอนนี้: งานเบื้องหลังไม่ขึ้นป้าย · ขึ้นเมื่อกำลังเปิด Order (ORD_HYD) นานเกิน 0.7 วิ */
+    var hk=[]; try{ hk=Object.keys(ORD_HYD||{}); }catch(e){}
+    if(hk.length&&Date.now()-GAS_DL.t0>700) gasDlChip('☁ กำลังโหลด Order '+hk.slice(0,3).join(', ')+(hk.length>3?(' และอีก '+(hk.length-3)+' Order'):'')+' จาก Google Drive · '+gasMB(d.done)+' / '+gasMB(d.total));
+    else gasDlChip(null);
   }catch(e){}
 }
 function gasDlChip(t){
