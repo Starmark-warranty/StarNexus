@@ -1019,7 +1019,7 @@
    ===================================================================== */
 /* ---- APP_META: แหล่งความจริงเดียวของเวอร์ชัน (ดูได้จาก console / คลิกชื่อแอป) ---- */
 const APP_META={
-  name:"StarNexus", version:"1.439", build:"2026-10-12/cost",
+  name:"StarNexus", version:"1.440", build:"2026-10-12/texture-upload",
   file:"StarNexus.html", basedOn:"Furnitech_V3.html (v3.11)",
   /* ───────── เริ่มนับเวอร์ชันใหม่ที่ 1.001 (21/08/2026) ─────────
      ของเดิมนับมาถึง 42.1 แล้ววิ่งเป็นทศนิยมสองชั้นซึ่งอ่านลำดับยาก
@@ -1027,6 +1027,7 @@ const APP_META={
      ประวัติเก่าเก็บไว้ทั้งหมดตามเลขเดิม ไม่ไล่เขียนใหม่ เพราะเลขในนั้นถูกอ้างถึงไปแล้ว
      รายการที่อยู่ใต้ 1.001 ลงไปจึงเป็นเลขชุดเก่า อ่านต่อกันได้ตามวันที่ */
   changelog:[
+    ["1.440","2026-10-12","FEAT อัปโหลดรูปลายผิว (รูปสี) ขึ้น Google Drive จากในโปรแกรม (ผู้ใช้ 20:01: ผมจะอัพรูปด้วยโปรแกรมผมได้ไหม อัพรูปสี) — เดิมรูปลายผิวคือไฟล์ใน <Server>/textures/<รหัสสี>.jpg ที่วางเองด้วย Windows Explorer พอย้ายมา Google Drive ไม่มีทางเพิ่มรูปเลย · หน้า 🖼 รูปลายผิว (ปุ่มในหน้าคลัง · คลิกขวาชิ้น “รูปลายผิวของสีนี้” · หน้าแก้ผิวใน Element): สีที่ใช้ในงานนี้แต่ยังไม่มีรูป กด 📷 เลือกรูปตั้งชื่อตามรหัสสีให้เอง · เพิ่มหลายรูป (เลือก/ลากวาง) แก้ชื่อก่อนส่งได้ · รูปบน Drive ทั้งหมดพร้อมรูปย่อ เปลี่ยน/ลบ (ถามก่อน) · ย่อเหลือด้านยาว 2048 px บีบ JPG ก่อนส่ง · ส่งเสร็จ 3D ทาผิวใหม่ทันที เครื่องอื่นเห็นหลัง F5 + FIX รูปลายผิวไฟล์ใหญ่บน Drive (≥ 2 MB) ไม่ขึ้น — ตัวเชื่อมคืนตัวอ่านทีหลังแต่ตัวโหลดรูปส่งเข้า createObjectURL ตรง ๆ · ปิดได้ SN_OFF.texMgr"],
     ["1.439","2026-10-12","FEAT ราคาทุน + ต้นทุนในห้องออกแบบ (ผู้ใช้ 16:45: Fitting ยังไม่มีช่องให้ใส่ราคา ในห้องออกแบบต้องมีราคาออกเพื่อรู้ต้นทุน ออกแบบให้ใส่ได้ง่ายๆ ไม่ต้องไล่หาใส่หลายที · เลือก: ไม้ + ขอบ + Fitting · ราคาพิมพ์เอง) — หน้า 💰 ราคาทุน (ปุ่มในคลัง · ปุ่มในห้องออกแบบ) แท็บ Fitting / ไม้ (ต่อ ตร.ม.) / ขอบ (ต่อเมตร) ตั้งต้นโชว์เฉพาะที่ใช้ในงานนี้และยังไม่มีราคา กรอกแล้ว Enter ไปช่องถัดไป บันทึกเอง · วางจาก Excel ทีละหลายแถว (รหัส + ราคา) · CSV รายการที่ยังไม่มีราคาให้จัดซื้อกรอก · ของตัดยาวคิดต่อเมตร · เผื่อเศษไม้/ขอบ % · ห้องออกแบบ: ตู้ที่เลือกบอกต้นทุน (ไม้ · ขอบ · Fitting) + กำไรเทียบราคาขาย · แถบล่างต้นทุนทั้งห้อง + กำไรขั้นต้น + ยังไม่มีราคา n รายการ (กดใส่ราคาที่ขาดได้เลย) · คิดชิ้น/ขอบ/Fitting ด้วยตัวเดียวกับใบตัดและ BOM ส่งออก · ราคาเก็บในค่าตั้ง (ทุกเครื่องเห็นเหมือนกัน) ไม่ออกในลิงก์แชร์ · ปิดได้ SN_OFF.cost"],
     ["1.438","2026-10-12","FIX คำเตือน “อ่าน app_settings order_base_data_2606012207… ไม่ได้ — Unexpected end of JSON input” ขึ้นซ้ำไม่หยุด (ผู้ใช้ 16:50: ทำไมถึงยังขึ้นเตือน หาสาเหตุไม่ได้หรอ ผมไม่ได้ยุ่งกับ order นั้นแล้วนิ) — สาเหตุจริง: ไฟล์รุ่นล่าสุดของกลุ่มนั้นเสีย (เนื้อไฟล์ขาด) ตั้งแต่ 5/10/2026 11:36 ตอนเขียนลงโฟลเดอร์ Server (ภาพถ่าย BOM ที่ Production เก็บไว้เทียบต้นทางแก้) แล้วถูกย้ายขึ้น Drive ไปด้วย ตัวอ่านข้ามแล้วลองใหม่ทุก 10 วิ จึงเตือนตลอด (1.436 อธิบายผิดว่าเป็นไฟล์ที่กำลังส่ง) · ตอนนี้: ตรวจไฟล์นั้นครั้งแรก เสียจริง = จำว่าเสีย ข้ามไปใช้รุ่นก่อนหน้า แจ้งครั้งเดียวว่าไฟล์ไหน เขียนเมื่อไหร่ · หน้า Google Drive มีรายการไฟล์เสีย + ปุ่มย้ายไป _backup/broken (ทุกเครื่องหยุดเตือน) (GasFS 1.5) + FEAT แผงขวาของชั้นบอก “⚖ รับน้ำหนักได้ประมาณ … กก.” (ผู้ใช้ 16:45: ลูกค้าถามรับ นน.ได้ชั้นละเท่าไหร่) คิดจากช่วง/ลึก/หนาเนื้อ/ชนิดแผ่น แอ่นไม่เกิน 0.5% ของช่วงหลังแอ่นเพิ่มตามเวลา + วางชั่วคราว · ชั้นปรับมีเพดานตัวรับชั้น · ตู้ JMO001 = 25 กก. · ใช้ร่วมกับ Production V2 v181 · ปิดได้ SN_OFF.gasBad / shelfLoad"],
     ["1.437","2026-10-12","FIX ตัวเชื่อม Google Drive โหลดล่วงหน้าเฉพาะตารางที่โปรแกรมนั้นใช้ + ป้ายดาวน์โหลดขึ้นเฉพาะตอนเปิด Order (ผู้ใช้ 16:17 Production v179: ป้าย “☁ กำลังโหลดจาก Google Drive · 0.0 MB / 1.3 MB · 0/120 ไฟล์” คืออะไร ทำไม มันกำลังโหลดอะไร) — ตัวโหลดล่วงหน้าเดิมเว้นเฉพาะตารางในรายการที่ไม่โหลด ตารางที่ไม่อยู่ในรายการของโปรแกรมเลยจึงถูกดาวน์โหลดหมด: Production โหลดโมเดลตู้ (_changes/furnitech_cabinets 120 ไฟล์ + ไฟล์ฐาน) ประวัติ XML และ Parts ของ StarNexus ที่ไม่ได้ใช้ · ตอนนี้เฉพาะตารางที่โหลดจริง (StarNexus เหมือนเดิม) · GasFS 1.4 ไฟล์ที่โหลดล่วงหน้าไม่นับว่ามีคนรอ (แถบความคืบหน้าตอนเปิดนับเฉพาะที่รอจริง) · ป้ายกลางล่างจอขึ้นเฉพาะตอนเปิด Order ที่ยังไม่โหลด บอกเลข Order (StarNexus ไม่ขึ้นแล้ว) · ใช้ร่วมกับ Production V2 v180"],
@@ -2842,7 +2843,9 @@ async function _texImgLoad(d,c,r){
   try{
     const idx=await _texImgIndex(d), h=_texImgFind(idx,c);
     if(!h){ r.st="none"; return; }
-    const f=await h.getFile(), url=URL.createObjectURL(f), img=new Image();
+    /* v1.440: บน Google Drive ไฟล์ใหญ่ (≥ 2 MB) ได้ตัวอ่านทีหลัง (LazyFile) ไม่ใช่ Blob — เดิมส่งเข้า createObjectURL ตรง ๆ แล้วพัง รูปไม่ขึ้น */
+    let f=await h.getFile(); if(f&&!(f instanceof Blob)&&typeof f.toBlob==="function") f=await f.toBlob();
+    const url=URL.createObjectURL(f), img=new Image();
     img.src=url; try{ await img.decode(); } finally{ URL.revokeObjectURL(url); }
     if(texImgDir()!==d) return;                                  // เปลี่ยนโฟลเดอร์ระหว่างโหลด ทิ้งผลเก่า
     r.img=img; r.w=img.naturalWidth||1; r.h=img.naturalHeight||1; r.name=f.name;
@@ -2873,6 +2876,144 @@ function _texImgVertical(img){
     gx+=Math.abs(L(i+4)-L(i)); gy+=Math.abs(L(i+N*4)-L(i)); }
   return gx>gy*1.1;
 }
+/* ═════════ v1.440: 🖼 รูปลายผิว — อัปโหลด/เปลี่ยน/ลบ รูปสีขึ้น Google Drive จากในโปรแกรม ═════════
+   ผู้ใช้ 12/10/2026 20:01 “ผมจะอัพรูปด้วยโปรแกรมผมได้ไหมครับ ไม่ใช่ production นะ อัพรูปสีอะครับ”
+   เดิม (v1.299-local.7): รูปลายผิวอยู่ที่ <Server>/textures/<รหัสสี>.jpg — วางไฟล์เองด้วย Windows Explorer
+     ย้ายมาใช้ Google Drive (1.429–1.432) โฟลเดอร์ Server กลายเป็นโฟลเดอร์เสมือนที่ Apps Script เก็บ (ลากไฟล์ใส่ Google Drive เองไม่เห็น)
+     → ไม่มีทางเพิ่มรูปใหม่เลย (รูปเดิมที่ย้ายขึ้นไปตอนย้ายข้อมูลยังใช้ได้)
+     + รูปที่ไฟล์ใหญ่ (เก็บบน Drive ≥ 2 MB) ตัวเชื่อมคืนเป็นไฟล์อ่านทีหลัง (LazyFile) แต่ตัวโหลดรูปส่งเข้า URL.createObjectURL ตรง ๆ → พัง
+       รูปนั้นไม่ขึ้น กลับไปใช้ลายวาด (แก้ใน _texImgLoad)
+   ตอนนี้: หน้า 🖼 รูปลายผิว (ปุ่มในหน้าคลัง · คลิกขวาชิ้น “🖼 รูปลายผิวของสีนี้” · หน้าแก้ผิวใน Element)
+     · สีที่ใช้ในงานนี้แต่ยังไม่มีรูป — กด 📷 แล้วเลือกรูป ตั้งชื่อตามรหัสสีให้เอง
+     · เพิ่มหลายรูปทีเดียว (เลือก/ลากวาง) ชื่อไฟล์ = รหัสสี แก้ชื่อก่อนส่งได้ · รูปบน Drive ทั้งหมด ดูรูปย่อ · เปลี่ยนรูป · ลบ (ถามก่อน)
+     · ย่อรูปให้ด้านยาวไม่เกิน 2048 px บีบเป็น JPG ก่อนส่ง (รูปมือถือ 4–8 MB เหลือ ~0.3–0.8 MB · เปิด 3D เร็ว เปลือง Drive น้อย)
+     · ส่งเสร็จ 3D/ห้องออกแบบ/แคตตาล็อกทาผิวใหม่ทันที · เครื่องอื่นเห็นหลังกด F5
+   ปิดได้: SN_OFF.texMgr=1 */
+const TEX_MAX=2048;
+function texMgrOn(){ return !snOff("texMgr")&&!(document.body&&document.body.classList.contains("viewOnly")); }
+function texSafeName(n){ return String(n||"").trim().replace(/\.(jpe?g|png|webp|gif|bmp|heic)$/i,"").replace(/[\\/:*?"<>|]+/g,"_").replace(/\s+/g," ").trim(); }
+function texBoardCode(b){ if(!b) return "";
+  try{ const L=effLinks(b); for(const raw of [L&&L.surfT, b.surfT, L&&L.surfB, b.surfB]){ const r0=String(raw==null?"":raw).trim(); if(!r0) continue;
+      let c=r0; try{ c=resolveLink(r0,b)||r0; }catch(e){} c=String(c||"").trim(); if(c&&c[0]!=="$") return c; } }catch(e){}
+  return ""; }
+async function texDirH(create){ const d=texImgDir(); if(!d) throw Error("ยังไม่ได้เชื่อมต่อ Google Drive"); return await d.getDirectoryHandle("textures",{create:!!create}); }
+async function texList(){ let td=null; try{ td=await texDirH(false); }catch(e){ if(/ยังไม่ได้เชื่อมต่อ/.test(e.message)) throw e; return []; }
+  const out=[]; for await (const [name,h] of td.entries()){ if(!h||h.kind!=="file") continue; const m=String(name).match(/^(.*)\.(jpe?g|png|webp)$/i); if(!m) continue;
+    let size=0; try{ const L=td._fs&&td._fs.L&&td._fs.L[td._p]; size=(L&&L.files[name]&&L.files[name].s)||0; }catch(e){}
+    out.push({name,base:m[1],h,size}); }
+  return out.sort((a,b)=>a.name.localeCompare(b.name)); }
+async function texBlobOf(h){ let f=await h.getFile(); if(f&&!(f instanceof Blob)&&typeof f.toBlob==="function") f=await f.toBlob(); return f; }
+/* ย่อ + บีบเป็น JPG (รูป JPG เล็กอยู่แล้ว = ส่งตัวเดิม) */
+async function texPrep(file){
+  let src=null, w=0, h=0;
+  try{ src=await createImageBitmap(file); w=src.width; h=src.height; }
+  catch(e){ const url=URL.createObjectURL(file); try{ const im=new Image(); im.src=url; await im.decode(); src=im; w=im.naturalWidth; h=im.naturalHeight; } finally{ URL.revokeObjectURL(url); } }
+  if(!(w>0&&h>0)) throw Error("เปิดรูปไม่ได้ (รองรับ JPG · PNG · WEBP)");
+  const k=Math.min(1,TEX_MAX/Math.max(w,h));
+  if(k===1&&/jpe?g/i.test(file.type||file.name||"")&&file.size<=1500000) return {blob:file,w,h,resized:false};
+  const cv=document.createElement("canvas"); cv.width=Math.max(1,Math.round(w*k)); cv.height=Math.max(1,Math.round(h*k));
+  const g=cv.getContext("2d"); g.fillStyle="#fff"; g.fillRect(0,0,cv.width,cv.height); g.drawImage(src,0,0,cv.width,cv.height);
+  try{ if(src.close) src.close(); }catch(e){}
+  const blob=await new Promise((res,rej)=>cv.toBlob(b=>b?res(b):rej(Error("บีบรูปไม่ได้")),"image/jpeg",0.86));
+  return {blob,w:cv.width,h:cv.height,resized:true}; }
+function texAfterChange(){ try{ _texImgReset(texImgDir()); }catch(e){} try{ Object.keys(_plSw).forEach(k=>delete _plSw[k]); }catch(e){}
+  try{ refreshSkins(true); }catch(e){} try{ if(PL.on&&PL.items) plPanelGrid(); }catch(e){} }
+async function texPut(name,file){
+  const base=texSafeName(name); if(!base) throw Error("ตั้งชื่อรูปก่อน (รหัสสี)");
+  const pr=await texPrep(file), td=await texDirH(true);
+  const fh=await td.getFileHandle(base+".jpg",{create:true}), w=await fh.createWritable(); await w.write(pr.blob); await w.close();
+  return Object.assign({name:base+".jpg"},pr); }
+async function texDel(name){ const td=await texDirH(false); await td.removeEntry(name); }
+/* สีที่ใช้ในงานนี้ (รหัสผิวที่ resolve แล้ว) → {code, n, desc, hex, has} */
+async function texUsed(){
+  const m=new Map();
+  (state.boards||[]).forEach(b=>{ if(!b||isGuide(b)) return; const c=texBoardCode(b); if(!c) return;
+    let x=m.get(c); if(!x){ const d=surfDef(c); x={code:c,n:0,desc:String((d&&d.desc)||""),hex:(d&&normHex(d.hex))||""}; m.set(c,x); } x.n++; });
+  let idx={}; try{ idx=await _texImgIndex(texImgDir()); }catch(e){}
+  m.forEach(x=>{ const h=_texImgFind(idx,x.code); x.has=h?h.name:""; });
+  return [...m.values()].sort((a,b)=>(!!a.has)-(!!b.has)||b.n-a.n); }
+function texMgrOpen(opt){
+  opt=opt||{}; if(!texMgrOn()) return;
+  if(!texImgDir()){ toast("ยังไม่ได้เชื่อมต่อ Google Drive — เชื่อมต่อก่อนแล้วค่อยอัปโหลดรูปลายผิว"); return; }
+  const focus=opt.code||(opt.board?texBoardCode(opt.board):"");
+  const _C=ovCard(900,90), ov=_C.ov;
+  ov.innerHTML='<div style="'+_C.cardCSS+'">'
+    +'<div style="display:flex;align-items:center;gap:8px;padding:12px 16px;border-bottom:1px solid var(--line)"><b style="font-size:15px">🖼 รูปลายผิว</b>'
+      +'<span style="color:var(--ink-dim);font-size:12px">เก็บบน Google Drive (โฟลเดอร์ textures) · ชื่อรูป = รหัสสี · ใช้ปูผิวใน 3D ห้องออกแบบ และแคตตาล็อก</span>'
+      +'<button class="ibtn" data-a="x" '+_C.xbtn+'>ปิด</button></div>'
+    +'<div id="txBody" style="flex:1;overflow:auto;padding:10px 16px 14px"><div style="color:var(--ink-dim)">กำลังอ่านรายการรูป…</div></div>'
+    +'<div style="display:flex;gap:8px;align-items:center;padding:10px 16px;border-top:1px solid var(--line)">'
+      +'<button class="ibtn" id="txAdd" style="flex:none;background:var(--accent);color:#fff;border-color:transparent">＋ เพิ่มรูป (เลือกได้หลายรูป)…</button>'
+      +'<input type="file" id="txFile" accept="image/jpeg,image/png,image/webp" multiple style="display:none"><input type="file" id="txOne" accept="image/jpeg,image/png,image/webp" style="display:none">'
+      +'<span id="txSt" style="margin-left:auto;font-size:12px;color:var(--ink-dim)">ลากรูปมาวางในหน้านี้ก็ได้ · ย่อเหลือด้านยาว 2048 px ก่อนส่ง</span></div></div>';
+  document.body.appendChild(ov);
+  const Q=s=>ov.querySelector(s), st=Q("#txSt"), body=Q("#txBody"), urls=[];
+  const close=()=>{ urls.forEach(u=>{ try{ URL.revokeObjectURL(u); }catch(e){} }); ov.remove(); };
+  ov.addEventListener("click",ev=>{ if(ev.target===ov||(ev.target.dataset&&ev.target.dataset.a==="x")) close(); });
+  let pending=[], oneFor=null, io=null;
+  const kb=n=>n>=1048576?((n/1048576).toFixed(1)+" MB"):(Math.max(1,Math.round(n/1024))+" KB");
+  const sw=x=>'<span style="display:inline-block;width:14px;height:14px;border-radius:3px;vertical-align:-2px;border:1px solid var(--line);background:'+(x.hex||"transparent")+'"></span>';
+  const paint=async()=>{
+    let files=[], used=[]; try{ files=await texList(); used=await texUsed(); }catch(e){ body.innerHTML='<div style="color:#b42318">✗ '+escapeHtml(String(e&&e.message||e))+'</div>'; return; }
+    const miss=used.filter(x=>!x.has), fx=focus?used.find(x=>x.code===focus):null;
+    let h='';
+    if(focus){ const has=fx?fx.has:(_texImgFind(Object.fromEntries(files.map(f=>[f.base.toLowerCase(),f.h])),focus)||{}).name;
+      h+='<div style="padding:8px 10px;border-radius:9px;background:rgba(28,126,214,.08);margin-bottom:10px"><b>สีของชิ้นที่เลือก</b> '+sw(fx||{})+' <code>'+escapeHtml(focus)+'</code> '
+        +(has?('· มีรูปแล้ว <code>'+escapeHtml(has)+'</code>'):'· <span style="color:#e58a24">ยังไม่มีรูป</span>')
+        +' <button class="ibtn txOne" data-code="'+escapeHtml(focus)+'" style="margin-left:6px;padding:3px 9px">📷 '+(has?'เปลี่ยนรูป…':'เลือกรูป…')+'</button></div>'; }
+    if(pending.length){
+      h+='<h4 style="margin:4px 0 6px">รูปที่จะส่งขึ้น ('+pending.length+')</h4><div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:8px;margin-bottom:8px">'
+        +pending.map((p,i)=>'<div style="border:1px solid var(--line);border-radius:9px;padding:6px"><img src="'+p.url+'" style="width:100%;height:90px;object-fit:cover;border-radius:6px">'
+          +'<input class="nameinp txPn" data-i="'+i+'" value="'+escapeHtml(p.name)+'" title="ชื่อรูป = รหัสสี (เช่น G01M0349Y) · รหัสที่มีท้าย _BT4 / _EC ใช้รูปรหัสหลักได้" style="width:100%;margin-top:4px;font-family:var(--mono);font-size:11.5px">'
+          +'<div style="font-size:11px;color:var(--ink-dim)">'+kb(p.file.size)+(p.st?(' · '+escapeHtml(p.st)):'')+' <a href="#" class="txPx" data-i="'+i+'">ไม่ส่ง</a></div></div>').join("")
+        +'</div><div style="display:flex;gap:8px;margin-bottom:12px"><button class="ibtn" id="txGo" style="background:var(--accent);color:#fff;border-color:transparent">⬆ ส่งขึ้น Google Drive '+pending.length+' รูป</button></div>'; }
+    h+='<h4 style="margin:4px 0 6px">สีที่ใช้ในงานนี้แต่ยังไม่มีรูป ('+miss.length+')</h4>'
+      +(miss.length?('<div style="display:flex;flex-direction:column;gap:4px;margin-bottom:12px">'+miss.map(x=>'<div style="display:flex;align-items:center;gap:8px;font-size:12.5px">'+sw(x)
+          +'<code style="min-width:0;word-break:break-all">'+escapeHtml(x.code)+'</code><span style="color:var(--ink-dim)">'+escapeHtml(x.desc)+' · '+x.n+' ชิ้น</span>'
+          +'<button class="ibtn txOne" data-code="'+escapeHtml(x.code)+'" style="margin-left:auto;padding:2px 9px;flex:none">📷 เลือกรูป…</button></div>').join("")+'</div>')
+        :('<div style="color:var(--ink-dim);font-size:12px;margin-bottom:12px">'+(used.length?'✓ ทุกสีในงานนี้มีรูปแล้ว':'ยังไม่ได้เปิดงาน')+'</div>'));
+    h+='<h4 style="margin:4px 0 6px">รูปบน Google Drive ('+files.length+')</h4>'
+      +(files.length?('<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:8px">'+files.map((f,i)=>'<div style="border:1px solid var(--line);border-radius:9px;padding:6px">'
+          +'<div class="txTh" data-i="'+i+'" style="height:84px;border-radius:6px;background:var(--line) center/cover no-repeat"></div>'
+          +'<div style="font-family:var(--mono);font-size:11px;margin-top:4px;word-break:break-all">'+escapeHtml(f.name)+'</div>'
+          +'<div style="font-size:11px;color:var(--ink-dim);display:flex;gap:6px;align-items:center">'+(f.size?('<span title="ขนาดที่ต้องโหลดจาก Drive">'+kb(f.size)+'</span>'):'')
+          +'<a href="#" class="txRe" data-code="'+escapeHtml(f.base)+'" style="margin-left:auto">เปลี่ยน</a><a href="#" class="txDel" data-n="'+escapeHtml(f.name)+'" style="color:#b42318">ลบ</a></div></div>').join("")+'</div>')
+        :'<div style="color:var(--ink-dim);font-size:12px">ยังไม่มีรูปบน Drive</div>');
+    body.innerHTML=h;
+    ov.querySelectorAll(".txOne,.txRe").forEach(b=>b.onclick=ev=>{ ev.preventDefault(); oneFor=b.dataset.code; Q("#txOne").value=""; Q("#txOne").click(); });
+    ov.querySelectorAll(".txDel").forEach(a=>a.onclick=async ev=>{ ev.preventDefault(); const n=a.dataset.n;
+      if(!confirm("ลบรูปลายผิว "+n+" ออกจาก Google Drive?\n\nทุกเครื่องจะกลับไปใช้ลายที่วาดจากสีในคลังผิว")) return;
+      try{ st.textContent="กำลังลบ…"; await texDel(n); texAfterChange(); st.textContent="✓ ลบ "+n+" แล้ว"; paint(); }catch(e){ st.textContent="✗ ลบไม่ได้: "+(e&&e.message||e); } });
+    ov.querySelectorAll(".txPn").forEach(i=>i.oninput=()=>{ const p=pending[+i.dataset.i]; if(p) p.name=i.value; });
+    ov.querySelectorAll(".txPx").forEach(a=>a.onclick=ev=>{ ev.preventDefault(); const p=pending.splice(+a.dataset.i,1)[0]; if(p) try{ URL.revokeObjectURL(p.url); }catch(e){} paint(); });
+    const go=Q("#txGo"); if(go) go.onclick=()=>upAll();
+    /* รูปย่อ: โหลดเมื่อเลื่อนมาเห็น (รูปบน Drive โหลดครั้งแรกครั้งเดียว แล้วจำในเครื่อง) */
+    if(io) io.disconnect();
+    io=new IntersectionObserver(es=>es.forEach(async e=>{ if(!e.isIntersecting) return; io.unobserve(e.target); const f=files[+e.target.dataset.i]; if(!f) return;
+      try{ const b=await texBlobOf(f.h), u=URL.createObjectURL(b); urls.push(u); e.target.style.backgroundImage='url("'+u+'")'; }catch(er){ e.target.textContent="โหลดรูปไม่ได้"; } }),{root:body});
+    ov.querySelectorAll(".txTh").forEach(el=>io.observe(el));
+  };
+  const addFiles=list=>{ [...(list||[])].filter(f=>/^image\//.test(f.type)||/\.(jpe?g|png|webp)$/i.test(f.name)).forEach(f=>{
+      pending.push({file:f,name:texSafeName(f.name),url:URL.createObjectURL(f),st:""}); });
+    pending.forEach(p=>urls.push(p.url)); paint(); };
+  const upAll=async()=>{ const go=Q("#txGo"); if(go) go.disabled=true; let ok=0, bad=0;
+    for(const p of pending.slice()){ if(!texSafeName(p.name)){ p.st="ตั้งชื่อก่อน"; bad++; continue; }
+      try{ st.textContent="กำลังส่ง "+p.name+" …"; const r=await texPut(p.name,p.file); ok++; p.done=1; p.st="✓ "+kb(r.blob.size)+(r.resized?(" (ย่อเป็น "+r.w+"×"+r.h+")"):""); }
+      catch(e){ bad++; p.st="✗ "+(e&&e.message||e); } }
+    pending=pending.filter(p=>!p.done); texAfterChange();
+    st.textContent=(ok?("✓ ส่งขึ้น Drive แล้ว "+ok+" รูป · 3D ทาผิวใหม่แล้ว · เครื่องอื่นเห็นหลังกด F5"):"")+(bad?(" · ไม่สำเร็จ "+bad+" รูป"):""); paint(); };
+  Q("#txAdd").onclick=()=>{ Q("#txFile").value=""; Q("#txFile").click(); };
+  Q("#txFile").onchange=()=>addFiles(Q("#txFile").files);
+  Q("#txOne").onchange=async()=>{ const f=Q("#txOne").files&&Q("#txOne").files[0]; if(!f||!oneFor) return;
+    try{ st.textContent="กำลังส่ง "+oneFor+" …"; const r=await texPut(oneFor,f); texAfterChange(); st.textContent="✓ "+r.name+" ขึ้น Drive แล้ว ("+kb(r.blob.size)+(r.resized?(" · ย่อเป็น "+r.w+"×"+r.h):"")+") · 3D ทาผิวใหม่แล้ว"; paint(); }
+    catch(e){ st.textContent="✗ ส่งไม่ได้: "+(e&&e.message||e); } };
+  const card=ov.firstElementChild;
+  /* ลากรูปมาวาง — กันไม่ให้ตัวรับไฟล์ของหน้าหลัก (#drop เปิดงาน/XML) รับไปด้วย */
+  ["dragenter","dragover"].forEach(t=>card.addEventListener(t,ev=>{ ev.preventDefault(); ev.stopPropagation(); card.style.outline="2px dashed var(--accent)"; }));
+  card.addEventListener("dragleave",ev=>{ ev.stopPropagation(); card.style.outline=""; });
+  card.addEventListener("drop",ev=>{ ev.preventDefault(); ev.stopPropagation(); card.style.outline=""; addFiles(ev.dataTransfer&&ev.dataTransfer.files); });
+  paint();
+  return ov; }
 function surfDef(code){
   const c=String(code||"").trim(); if(!c) return null;
   const list=(settings.elements&&settings.elements.surfaces)||[];
@@ -23143,6 +23284,7 @@ function boardRole(b){
      SN_OFF.shelfEqFixed=1 จัดชั้นห่างเท่ากันทำเฉพาะชั้นปรับแบบ v1.269 (ชั้นตายเป็นขอบช่อง · คลิกชิ้นอื่นในตู้ไม่ได้) (v1.436)
      SN_OFF.mdGaps=1      ไม้วัด 📦 ขนาดชิ้น ไม่ขึ้นโซ่ช่องใสของแผ่นที่มาชน (v1.436)
      SN_OFF.lazyOrders=1  บันทึก Order ไม่เขียนดัชนี _changes/_idx/imos_orders (ของ Production V2 v179 — ไม่ขึ้นกับ SN_SAFE) (v1.436)
+     SN_OFF.texMgr=1      ไม่มีหน้า 🖼 รูปลายผิว (อัปโหลดรูปสีขึ้น Drive ไม่ได้ · ปุ่ม/คลิกขวาหาย) (v1.440)
      SN_OFF.cost=1        ไม่มีราคาทุน (ห้องออกแบบไม่โชว์ต้นทุน · ไม่มีปุ่ม 💰 ราคาทุน) (v1.439)
      SN_OFF.shelfLoad=1   แผงขวาของชั้นไม่บอกน้ำหนักที่รับได้ (v1.438)
      SN_OFF.gasBad=1      ไฟล์เสียบน Google Drive เตือนซ้ำทุกรอบแบบเดิม (ไม่ตรวจ/ไม่ข้าม/ไม่มีปุ่มย้ายออก · ไม่ขึ้นกับ SN_SAFE) (v1.438)
@@ -26740,6 +26882,7 @@ function renderElements(){
           +'</select></div></div>'
           +'<div style="display:flex;gap:8px;align-items:center;margin-top:8px;flex-wrap:wrap">'
           +'<button class="ibtn skUp">📷 อัปโหลดรูปแผ่นจริง → ดูดสีให้</button>'
+          +(texMgrOn()?'<button class="ibtn skTex" title="เก็บรูปจริงของผิวนี้ไว้บน Google Drive ใช้ปูผิวใน 3D (v1.440)">🖼 รูปลายผิวบน Drive…</button>':'')
           +'<input type="file" class="skF" accept="image/*" style="display:none">'
           +'<span class="skMsg" style="font-size:11.5px;color:var(--ink-dim)"></span></div>'
           +'<div style="font-size:11px;color:var(--ink-dim);margin-top:5px;line-height:1.6">รูปที่ดีคือถ่ายผิวแผ่นตรง ๆ แสงสม่ำเสมอ ไม่ติดเงาหรือขอบ · ระบบย่อรูปเหลือ 96 จุดแล้วเรียงความสว่าง เอาค่ากลางเป็นสีพื้น สว่าง 88% เป็นสีอ่อน เข้ม 12% เป็นเส้นลาย · <b>รูปไม่ถูกเก็บ</b> เก็บแค่สามค่าสี</div>';
@@ -26756,6 +26899,7 @@ function renderElements(){
         const sp=wrap.querySelector(".skP"); if(sp) sp.onchange=e=>{ cur.pattern=e.target.value; _skinTexC={}; _skinMatC={}; sync(1); };
         const fi=wrap.querySelector(".skF"), bt=wrap.querySelector(".skUp"), ms=wrap.querySelector(".skMsg");
         if(bt) bt.onclick=()=>fi.click();
+        { const tx=wrap.querySelector(".skTex"); if(tx) tx.onclick=()=>{ try{ texMgrOpen({code:String(cur.code||"").trim()}); }catch(e){ console.error(e); } }; }   // v1.440
         if(fi) fi.onchange=()=>{ const f2=fi.files&&fi.files[0]; if(!f2) return;
           const rd=new FileReader();
           rd.onload=()=>{ const im=new Image();
@@ -40140,6 +40284,7 @@ async function renderLoader(){
       <button class="ibtn" id="ldCont">↩ ทำงานต่อจากงานล่าสุด (autosave)</button>
       <button class="ibtn" id="ldCatalog" title="ตั้งว่ารุ่นไหนขึ้นในห้องออกแบบ · หมวด · ขนาดที่ขายได้ · ฟิลเลอร์คู่ · ราคา · รูปย่อ">🗂 แคตตาล็อกห้องออกแบบ</button>
       <button class="ibtn" id="ldCost" title="ราคาทุน Fitting / ไม้ (ตร.ม.) / ขอบ (เมตร) — ใช้คิดต้นทุนในห้องออกแบบ · วางจาก Excel ได้ (v1.439)">💰 ราคาทุน</button>
+      <button class="ibtn" id="ldTex" title="อัปโหลด/เปลี่ยน/ลบ รูปลายผิว (รูปสี) บน Google Drive — ชื่อรูป = รหัสสี (v1.440)">🖼 รูปลายผิว</button>
     </div></div>
     <div class="sumh" style="display:flex;align-items:center;gap:10px;justify-content:space-between;flex-wrap:wrap"><span>🗄 เปิดตู้เดี่ยวจากคลาวด์</span>
       <input id="ldCloudSearch" placeholder="🔍 ค้นหารหัสตู้…" autocomplete="off" style="font-size:12px;padding:5px 9px;border:1px solid var(--line);border-radius:7px;width:190px;font-weight:400">
@@ -40148,6 +40293,7 @@ async function renderLoader(){
   $("ldNew").onclick=async()=>{ if(await newOrder()) closeLoader(); };
   $("ldGen").onclick=()=>{ closeLoader(); try{genCabinet();}catch(e){console.error(e);} };
   { const lc=$("ldCatalog"); if(lc) lc.onclick=()=>{ try{ openCatalog(); }catch(e){ console.error(e); toast("เปิดแคตตาล็อกไม่ได้: "+e.message); } }; }
+  { const lt=$("ldTex"); if(lt){ if(snOff("texMgr")) lt.style.display="none"; lt.onclick=()=>{ try{ texMgrOpen({}); }catch(e){ console.error(e); toast("เปิดรูปลายผิวไม่ได้: "+e.message); } }; } }   // v1.440
   { const lk=$("ldCost"); if(lk){ if(snOff("cost")) lk.style.display="none"; lk.onclick=()=>{ try{ costEditor({onlyMissing:false,onlyUsed:state.boards.length>0}); }catch(e){ console.error(e); toast("เปิดราคาทุนไม่ได้: "+e.message); } }; } }   // v1.439   // v1.304
   $("ldCont").onclick=async()=>{
     try{ const saved=await loadSaved();
@@ -41051,6 +41197,10 @@ function showCtx(x,y,id){ctxTarget=id;ctxX=x;ctxY=y;const m=$("ctxMenu");
       const cur=host?hangRailsOf(host):[];
       show("#ctxHangRail", !!host);
       show("#ctxHangRailDel", cur.length>0);
+      /* v1.440: รูปลายผิวของสีชิ้นนี้ — ต่อ Drive แล้ว + ชิ้นมีรหัสผิวจริง */
+      { let _tc=""; try{ _tc=(tb&&!tb._virtual&&texMgrOn()&&texImgDir())?texBoardCode(tb):""; }catch(e){}
+        show("#ctxTexImg", !!_tc);
+        const e7=m.querySelector("#ctxTexImg span"); if(e7&&_tc) e7.textContent="🖼 รูปลายผิวของสีนี้ ("+_tc+")…"; }
       /* v1.436: เดิมโชว์เฉพาะคลิกขวาชั้นปรับ (v1.269) — ตอนนี้ชั้นตาย หรือชิ้นไหนในตู้ที่มีชั้นก็สั่งได้ */
       { let _se=null; try{ _se=tb?shelfEqPick(tb):null; }catch(e){}
         show("#ctxShelfEq", !!_se);
@@ -42705,6 +42855,7 @@ function bindCtx(){
     else if(a==="hanger"){ try{addHangerMenu(b,ctxX,ctxY);}catch(err){ console.error(err); toast("เปิดเมนูหูแขวนไม่สำเร็จ: "+err.message); } }
     else if(a==="hangrail"){ addHangRail(b).catch(err=>{ console.error(err); toast("ใส่ราวแขวนไม่สำเร็จ: "+err.message); }); }   // v1.235
     else if(a==="hangraildel"){ try{ removeHangRail(b); }catch(err){ console.error(err); toast("เอาราวแขวนออกไม่สำเร็จ: "+err.message); } }
+    else if(a==="teximg"){ try{ texMgrOpen({board:b}); }catch(err){ console.error(err); toast("เปิดรูปลายผิวไม่ได้: "+err.message); } }   // v1.440
     else if(a==="shelfeq"){ spaceShelvesEqual(b).catch(err=>{ console.error(err); toast("จัดชั้นไม่สำเร็จ: "+err.message); }); }   // v1.269
     else if(a==="struct"){ try{ structSwapUI(b); }catch(err){ console.error(err); toast("เปลี่ยนโครงสร้างไม่สำเร็จ: "+err.message); } }   // v1.240
     else if(a==="leg"){ try{legMenu(b,ctxX,ctxY);}catch(err){ console.error(err); toast("เปิดเมนูขาตู้ไม่สำเร็จ: "+err.message); } }
@@ -53510,6 +53661,7 @@ const CurvedShelf = (function(){
   <button data-act="hanger"><span>🪝 ใส่หูแขวน (ตู้ลอย)…</span></button>
   <button data-act="hangrail" id="ctxHangRail"><span>🧷 ใส่ราวแขวนผ้าใต้ชิ้นนี้…</span></button>
   <button data-act="hangraildel" id="ctxHangRailDel"><span>✕ เอาราวแขวนผ้าออก</span></button>
+  <button data-act="teximg" id="ctxTexImg"><span>🖼 รูปลายผิวของสีนี้…</span></button>
   <button data-act="shelfeq" id="ctxShelfEq"><span>↕ จัดชั้นปรับในช่องนี้ให้ห่างเท่ากัน…</span></button>
   <button data-act="struct" id="ctxStruct"><span>🧱 เปลี่ยนโครงสร้างตู้…</span></button>
   <button data-act="leg"><span>🦵 ใส่ขาตู้ (เลือกรุ่น)…</span></button>
