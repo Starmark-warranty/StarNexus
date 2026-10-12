@@ -1019,7 +1019,7 @@
    ===================================================================== */
 /* ---- APP_META: แหล่งความจริงเดียวของเวอร์ชัน (ดูได้จาก console / คลิกชื่อแอป) ---- */
 const APP_META={
-  name:"StarNexus", version:"1.437", build:"2026-10-12/prefetch-own",
+  name:"StarNexus", version:"1.439", build:"2026-10-12/cost",
   file:"StarNexus.html", basedOn:"Furnitech_V3.html (v3.11)",
   /* ───────── เริ่มนับเวอร์ชันใหม่ที่ 1.001 (21/08/2026) ─────────
      ของเดิมนับมาถึง 42.1 แล้ววิ่งเป็นทศนิยมสองชั้นซึ่งอ่านลำดับยาก
@@ -1027,6 +1027,8 @@ const APP_META={
      ประวัติเก่าเก็บไว้ทั้งหมดตามเลขเดิม ไม่ไล่เขียนใหม่ เพราะเลขในนั้นถูกอ้างถึงไปแล้ว
      รายการที่อยู่ใต้ 1.001 ลงไปจึงเป็นเลขชุดเก่า อ่านต่อกันได้ตามวันที่ */
   changelog:[
+    ["1.439","2026-10-12","FEAT ราคาทุน + ต้นทุนในห้องออกแบบ (ผู้ใช้ 16:45: Fitting ยังไม่มีช่องให้ใส่ราคา ในห้องออกแบบต้องมีราคาออกเพื่อรู้ต้นทุน ออกแบบให้ใส่ได้ง่ายๆ ไม่ต้องไล่หาใส่หลายที · เลือก: ไม้ + ขอบ + Fitting · ราคาพิมพ์เอง) — หน้า 💰 ราคาทุน (ปุ่มในคลัง · ปุ่มในห้องออกแบบ) แท็บ Fitting / ไม้ (ต่อ ตร.ม.) / ขอบ (ต่อเมตร) ตั้งต้นโชว์เฉพาะที่ใช้ในงานนี้และยังไม่มีราคา กรอกแล้ว Enter ไปช่องถัดไป บันทึกเอง · วางจาก Excel ทีละหลายแถว (รหัส + ราคา) · CSV รายการที่ยังไม่มีราคาให้จัดซื้อกรอก · ของตัดยาวคิดต่อเมตร · เผื่อเศษไม้/ขอบ % · ห้องออกแบบ: ตู้ที่เลือกบอกต้นทุน (ไม้ · ขอบ · Fitting) + กำไรเทียบราคาขาย · แถบล่างต้นทุนทั้งห้อง + กำไรขั้นต้น + ยังไม่มีราคา n รายการ (กดใส่ราคาที่ขาดได้เลย) · คิดชิ้น/ขอบ/Fitting ด้วยตัวเดียวกับใบตัดและ BOM ส่งออก · ราคาเก็บในค่าตั้ง (ทุกเครื่องเห็นเหมือนกัน) ไม่ออกในลิงก์แชร์ · ปิดได้ SN_OFF.cost"],
+    ["1.438","2026-10-12","FIX คำเตือน “อ่าน app_settings order_base_data_2606012207… ไม่ได้ — Unexpected end of JSON input” ขึ้นซ้ำไม่หยุด (ผู้ใช้ 16:50: ทำไมถึงยังขึ้นเตือน หาสาเหตุไม่ได้หรอ ผมไม่ได้ยุ่งกับ order นั้นแล้วนิ) — สาเหตุจริง: ไฟล์รุ่นล่าสุดของกลุ่มนั้นเสีย (เนื้อไฟล์ขาด) ตั้งแต่ 5/10/2026 11:36 ตอนเขียนลงโฟลเดอร์ Server (ภาพถ่าย BOM ที่ Production เก็บไว้เทียบต้นทางแก้) แล้วถูกย้ายขึ้น Drive ไปด้วย ตัวอ่านข้ามแล้วลองใหม่ทุก 10 วิ จึงเตือนตลอด (1.436 อธิบายผิดว่าเป็นไฟล์ที่กำลังส่ง) · ตอนนี้: ตรวจไฟล์นั้นครั้งแรก เสียจริง = จำว่าเสีย ข้ามไปใช้รุ่นก่อนหน้า แจ้งครั้งเดียวว่าไฟล์ไหน เขียนเมื่อไหร่ · หน้า Google Drive มีรายการไฟล์เสีย + ปุ่มย้ายไป _backup/broken (ทุกเครื่องหยุดเตือน) (GasFS 1.5) + FEAT แผงขวาของชั้นบอก “⚖ รับน้ำหนักได้ประมาณ … กก.” (ผู้ใช้ 16:45: ลูกค้าถามรับ นน.ได้ชั้นละเท่าไหร่) คิดจากช่วง/ลึก/หนาเนื้อ/ชนิดแผ่น แอ่นไม่เกิน 0.5% ของช่วงหลังแอ่นเพิ่มตามเวลา + วางชั่วคราว · ชั้นปรับมีเพดานตัวรับชั้น · ตู้ JMO001 = 25 กก. · ใช้ร่วมกับ Production V2 v181 · ปิดได้ SN_OFF.gasBad / shelfLoad"],
     ["1.437","2026-10-12","FIX ตัวเชื่อม Google Drive โหลดล่วงหน้าเฉพาะตารางที่โปรแกรมนั้นใช้ + ป้ายดาวน์โหลดขึ้นเฉพาะตอนเปิด Order (ผู้ใช้ 16:17 Production v179: ป้าย “☁ กำลังโหลดจาก Google Drive · 0.0 MB / 1.3 MB · 0/120 ไฟล์” คืออะไร ทำไม มันกำลังโหลดอะไร) — ตัวโหลดล่วงหน้าเดิมเว้นเฉพาะตารางในรายการที่ไม่โหลด ตารางที่ไม่อยู่ในรายการของโปรแกรมเลยจึงถูกดาวน์โหลดหมด: Production โหลดโมเดลตู้ (_changes/furnitech_cabinets 120 ไฟล์ + ไฟล์ฐาน) ประวัติ XML และ Parts ของ StarNexus ที่ไม่ได้ใช้ · ตอนนี้เฉพาะตารางที่โหลดจริง (StarNexus เหมือนเดิม) · GasFS 1.4 ไฟล์ที่โหลดล่วงหน้าไม่นับว่ามีคนรอ (แถบความคืบหน้าตอนเปิดนับเฉพาะที่รอจริง) · ป้ายกลางล่างจอขึ้นเฉพาะตอนเปิด Order ที่ยังไม่โหลด บอกเลข Order (StarNexus ไม่ขึ้นแล้ว) · ใช้ร่วมกับ Production V2 v180"],
     ["1.436","2026-10-12","FEAT จัดชั้นให้ช่องเท่ากันทำกับชั้นตายได้ + ไม้วัดคลิกแผ่นข้างขึ้นช่องใส + FIX เตือน “Unexpected end of JSON input” (ผู้ใช้ 15:33: 1.อยากได้ ช่องๆ เท่ากันตู้ใบนี้เพิ่มคำสั่งได้ไหม 2.เครื่องมือวัด มีแบบกดแผ่นข้าง ขึ้น Dim ได้ไหม ผมมานั่งวัดเอามันช้า 3.เลข 2606012207 มันเตือนอะไร) — (1) “↕ จัดชั้น…ให้ห่างเท่ากัน” เดิมจับเฉพาะชั้นปรับ ตอนนี้ชั้นตายด้วย: คลิกขวาชั้นตาย/แผ่นข้าง/ชิ้นไหนในตู้ หรือปุ่มในแผงขวาของชั้นตาย · ช่องที่มีชั้นตายตั้งต้น “ผิวชั้น (ช่องใสเท่ากัน)” · ชั้นตายที่ย้าย ปลดล็อกระยะอ้างอิง + ล้างรูคู่เดือย/มินิฟิกเก่าแล้วเจาะใหม่ตรงที่ (ไฟล์ 49 ตู้ JMO001: 271.1 / 267.1 / 267.0 → 268.4 ×3) · ชั้นปรับในช่องที่มีชั้นตาย เลือกได้ว่าจัดเฉพาะชั้นปรับหรือทุกชั้น (2) ไม้วัด 📦 ขนาดชิ้น: คลิกแผ่นข้าง (หรือแผ่นใดก็ได้) ขึ้นโซ่ช่องใสสีฟ้าระหว่างแผ่นที่มาชน (พื้น · ชั้น · ฝาบน · คาน) + แถบล่าง “ช่องใส ล่าง→บน …” ไม่ต้องวัด 2 จุดทีละช่อง (3) คำเตือนอ่าน app_settings order_base_data_… ไม่ได้ ×3 = รอบตรวจ 10 วิ ไปเจอไฟล์ที่เครื่องนี้กำลังส่งขึ้น Drive (ยังเขียนไม่เสร็จ อ่านได้ไฟล์ว่าง) ข้อมูลไม่เสีย · GasFS 1.3 ไม่โชว์ไฟล์ที่ยังเขียนไม่เสร็จในรายการ · บันทึก Order เขียนดัชนีให้ Production V2 v179 (โหลดเฉพาะ Order ที่เปิด) · ปิดได้ SN_OFF.shelfEqFixed / mdGaps / lazyOrders"],
     ["1.435","2026-10-12","FEAT ปุ่ม 📋 คัดลอก Token ในหน้าแชร์ (ผู้ใช้: ไม่ได้เก็บ Token ไว้ อยากคัดลอกจากตัวที่เปิดบนเครื่องไปใส่ตัวที่เปิดบนเว็บ) — ตั้งค่า GitHub เก็บแยกต่อที่อยู่ที่เปิดโปรแกรม เดิมดู Token ที่จำไว้ไม่ได้ ต้องสร้างใหม่ · ตอนนี้กดคัดลอกไปคลิปบอร์ด (เฉพาะตอนกดเอง ไม่ลงไฟล์/ค่าตั้ง) พร้อมบอก owner/repo/branch ที่ต้องใส่คู่กัน · วางในช่อง Token ของรุ่นเก่าก็ได้"],
@@ -10403,6 +10405,42 @@ async function addTopPanel(){
 
 // เพิ่มชั้นแบ่งแนวตั้ง (เสาแบ่ง) — orient side เต็มความสูงภายใน; โหมด: ระบุ X / แบ่งเท่ากัน / ในช่อง
 function isShelfBoard(b){ return !!(b && b.orient==="flat" && /shelf|ชั้น|guide/i.test(b.name||"")); }
+/* ───────── v1.438: ชั้นนี้รับน้ำหนักได้ประมาณเท่าไหร่ ─────────
+   ผู้ใช้ 12/10/2026 16:45 (ลูกค้าถามใน LINE “รับ นน.ได้ชั้นละเท่าไหร่” ตู้ JMO001) — เดิมโปรแกรมไม่มีอะไรตอบได้ ต้องคิดเอง
+   คิดแบบชั้นวางพาดสองข้าง (ไม่นับแรงยึดของเดือย/มินิฟิก = เผื่อไว้แล้ว) ของวางกระจายทั่วชั้น
+     · ค่าแผ่นต่ำสุดตามเกรด (ปาร์ติเกิล E 1,600 / MOR 11 MPa · HMR 1,950 / 14 · MDF 2,200 / 20 · ไม้อัด 4,000 / 25 · กระจก 70,000 / ใช้ได้ 15)
+       ความหนาเนื้อแผ่น = หนาจากรหัสวัสดุ (ไม่นับผิวปิด) หรือปัดลงจากความหนาชิ้น
+     · แนะนำ (ของวางทิ้งไว้ตลอด) = แอ่นสุดท้าย ≤ 0.5% ของช่วง หลังแอ่นเพิ่มตามเวลา (ไม้แผ่น ×3.25 · ไม้อัด ×1.8 · กระจก ×1)
+     · วางชั่วคราว = แอ่นตอนวาง ≤ 0.5% ของช่วง · ไม่หัก = แรงดัดไม่เกิน MOR ÷ 2.5
+     · ชั้นปรับ: ตัวรับชั้น 4 จุด คิดจุดละ 10 กก. เป็นเพดาน (รูพินในไม้แผ่นมักพังก่อนตัวชั้น)
+     · ตัวเลขแนะนำปัดลง (≥ 10 กก. ปัดทีละ 5) · ไม่ใช่ค่ารับรอง — ค่าแผ่นจริงส่วนใหญ่ดีกว่าค่าต่ำสุด
+   ตัวอย่างไฟล์ 49 ตู้ JMO001 ชั้นตาย 267.6 × 281.8 หนา 16 ปาร์ติเกิล: แนะนำ 25 กก. · ชั่วคราว ~84 กก.
+   ปิดได้: SN_OFF.shelfLoad=1 */
+const SHELF_MATS={pb:{n:"ปาร์ติเกิลบอร์ด",E:1600,R:11,k:2.25},hmr:{n:"ปาร์ติเกิลกันชื้น (HMR)",E:1950,R:14,k:2.25},mdf:{n:"MDF",E:2200,R:20,k:2.25},
+  ply:{n:"ไม้อัด",E:4000,R:25,k:0.8},glass:{n:"กระจก",E:70000,R:15*2.5,k:0}};
+function shelfMatKind(b){
+  if(b&&b._glassShelf) return "glass";
+  let t=String((b&&b.part)||"")+" "+String((b&&b.name)||"");
+  try{ const L=effLinks(b), code=resolveLink(L.mat,b), e=elemByCode(code); t+=" "+(code||"")+" "+(e?elemDesc(e):""); }catch(e){}
+  if(/glass|กระจก/i.test(t)) return "glass";
+  if(/hmr|moist|กันชื้น/i.test(t)) return "hmr";
+  if(/mdf|(^|[^a-z])md[_ -]?\d/i.test(t)) return "mdf";
+  if(/plywood|(^|[^a-z])ply|ไม้อัด/i.test(t)) return "ply";
+  return "pb"; }
+function shelfLoadEst(b){
+  if(!b||b.orient!=="flat"||b._virtual||b._door||(b.profile&&b.profile.length>=3)) return null;
+  const kind=shelfMatKind(b), M=SHELF_MATS[kind]||SHELF_MATS.pb;
+  let t=0; try{ const L=effLinks(b); t=thickFromMat(resolveLink(L.mat,b))||0; }catch(e){}
+  if(!(t>0)||t>(+b.T||0)+0.5) t=(kind==="glass")?(+b.T||0):Math.floor(+b.T||0);
+  const span=+b.L||0, dep=+b.W||0; if(!(span>50&&dep>50&&t>2)) return null;
+  const I=dep*t*t*t/12, Z=dep*t*t/6, dN=5*span*span*span/(384*M.E*I);   // แอ่นต่อแรง 1 N (วางกระจาย · วางพาด)
+  const lim=span*0.005, g=9.81;
+  const temp=lim/dN/g, rec0=temp/(1+M.k), brk=(8*(M.R/2.5)*Z/span)/g;
+  const adj=isAdjShelf(b), cap=adj?40:Infinity;
+  let rec=Math.min(rec0,brk,cap);
+  rec=rec>=10?Math.floor(rec/5)*5:Math.max(0,Math.floor(rec));
+  return {rec,temp:Math.min(temp,brk,cap),brk,cap,span,dep,t,kind,mat:M.n,adj,lim,
+    why:(cap<=rec0&&cap<=brk)?"ตัวรับชั้น":(brk<rec0?"ความแข็งแรง":"การแอ่นระยะยาว")}; }
 function isAdjShelf(b){ return /adj|ปรับ/i.test(b.name||""); }
 /* ───────── v1.414: ซ่อมชั้นปรับที่ค้างเต็มช่อง (ไฟล์ที่บันทึกก่อนรุ่นนี้) ─────────
    เปิดไฟล์ .json ไม่ผ่าน refitInterior ชั้นที่เคยถูกขยายเต็มช่องจึงค้างอยู่ — แก้เฉพาะชั้นปรับที่ "ยาวเท่าช่องพอดี" (±0.06)
@@ -17773,6 +17811,12 @@ function showInspector(){
         <div class="muted" style="font-size:11px;line-height:1.55;white-space:normal">ผังบานที่พังแล้วซ่อมยากกว่าสร้างใหม่ · ล้างแล้วกด ＋ เพิ่มหน้าบาน แล้วใส่ผังในช่อง <b>แบ่งช่องแนวกว้างเอง</b> เช่น <span style="font-family:var(--mono)">1:$D3</span></div>
       </div>`:""; })()}
     ${isShelfBoard(b)?`<div class="fld"><label>${_shM.length>1?("☑ "+_shM.length+" ชั้นที่เลือก — ชนิด & ระยะ"):"ชั้นนี้ — ชนิด & ระยะ"}</label>${shelfMultiBarHtml(b,_shM)}
+      ${(()=>{ if(snOff("shelfLoad")) return ""; let r=null; try{ r=shelfLoadEst(b); }catch(e){ console.error("shelfLoad:",e); } if(!r) return "";   /* v1.438 */
+        const k=v=>(v>=100?Math.round(v/10)*10:Math.round(v)).toLocaleString();
+        return `<div id="f_shelfLoad" title="คิดแบบชั้นวางพาดสองข้าง ของวางกระจายทั่วชั้น · ค่าแผ่นต่ำสุดตามเกรด (${r.mat}) · แอ่นไม่เกิน 0.5% ของช่วง (${fmt(r.lim)} มม.) · ของวางทิ้งไว้นานแอ่นเพิ่มตามเวลา · ไม่นับแรงยึดของเดือย/มินิฟิก${r.adj?" · ชั้นปรับ: ตัวรับชั้น 4 จุด จุดละ 10 กก.":""} — เป็นค่าประมาณ ไม่ใช่ค่ารับรอง"
+          style="margin:0 0 8px;padding:6px 9px;border-radius:7px;background:rgba(28,126,214,.08);font-size:12px;line-height:1.6">
+          ⚖ รับน้ำหนักได้ประมาณ <b style="font-size:14px">${r.rec.toLocaleString()} กก.</b> <span style="opacity:.75">(ของวางกระจาย · วางทิ้งไว้ได้ตลอด)</span>
+          <div style="opacity:.75">วางชั่วคราว ~${k(r.temp)} กก. · ช่วง ${fmt(r.span)} × ลึก ${fmt(r.dep)} · หนาเนื้อ ${fmt(r.t)} มม. · ${r.mat} · ขึ้นกับ${r.why}</div></div>`; })()}
       <div class="seg" style="display:inline-flex;margin-bottom:7px"><button type="button" id="f_toFixed" class="${!isAdjShelf(b)?"sel":""}">ชั้นตาย</button><button type="button" id="f_toAdj" class="${(isAdjShelf(b)&&!b._glassShelf)?"sel":""}">ชั้นปรับ</button><button type="button" id="f_toGlass" class="${(isAdjShelf(b)&&b._glassShelf)?"sel":""}">ชั้นปรับกระจก</button></div>
       ${isAdjShelf(b)?`<div style="margin:6px 0 8px">
         ${b._glassShelf
@@ -23099,6 +23143,9 @@ function boardRole(b){
      SN_OFF.shelfEqFixed=1 จัดชั้นห่างเท่ากันทำเฉพาะชั้นปรับแบบ v1.269 (ชั้นตายเป็นขอบช่อง · คลิกชิ้นอื่นในตู้ไม่ได้) (v1.436)
      SN_OFF.mdGaps=1      ไม้วัด 📦 ขนาดชิ้น ไม่ขึ้นโซ่ช่องใสของแผ่นที่มาชน (v1.436)
      SN_OFF.lazyOrders=1  บันทึก Order ไม่เขียนดัชนี _changes/_idx/imos_orders (ของ Production V2 v179 — ไม่ขึ้นกับ SN_SAFE) (v1.436)
+     SN_OFF.cost=1        ไม่มีราคาทุน (ห้องออกแบบไม่โชว์ต้นทุน · ไม่มีปุ่ม 💰 ราคาทุน) (v1.439)
+     SN_OFF.shelfLoad=1   แผงขวาของชั้นไม่บอกน้ำหนักที่รับได้ (v1.438)
+     SN_OFF.gasBad=1      ไฟล์เสียบน Google Drive เตือนซ้ำทุกรอบแบบเดิม (ไม่ตรวจ/ไม่ข้าม/ไม่มีปุ่มย้ายออก · ไม่ขึ้นกับ SN_SAFE) (v1.438)
      SN_OFF.gasfs=1       ไม่มีโหมดไฟล์กลางบน Google Drive (ใช้โฟลเดอร์ในเครื่องอย่างเดียว ซ่อนส่วน ☁ Google Drive) (v1.429)
      SN_OFF.shoeRack=1    ไม่มีชั้นวางรองเท้าเหล็ก (ไม่เจาะรู ไม่วาดชั้น/พิน ไม่นับใบเบิก · ค่าที่ตั้งยังอยู่ที่แผ่นข้าง) (v1.420)
      SN_OFF.nomOverlayTop=1 กล่องปรับขนาดตู้วัดสูงจากแผ่นข้างล้วนแบบเดิม (ตู้แผ่นบนทับข้างจะเตี้ยลงทุกครั้งที่กดตกลง) (v1.420)
@@ -30935,6 +30982,196 @@ function plRoomHtml(r,num){ plCss317();
         +(+r.wallTop>0?('ตู้ลอยสูง <b style="color:var(--ink)">'+(r.wallTop-r.wallBot)+'</b> มม. · ตู้สูงหัวเสมอแนวบน · '):'แนวบน 0 = ไม่คุม (ตู้ลอยใช้ความสูงโมเดล) · ')
         +'ห่างท็อป 550–650 (เหนือเตา ≥ 650) · แก้ค่าแล้วตู้ในห้องขยับ/ปรับสูงตามทันที</div>');
   return head+size+work+line; }
+/* ═════════ v1.439: ราคาทุน — ต้นทุนต่อตู้ / ทั้งห้อง ในห้องออกแบบ ═════════
+   ผู้ใช้ 12/10/2026 16:45 “Fitting ยังไม่มีช่องให้ใส่ราคา ในห้องออกแบบมันจะต้องมีราคาออกเพื่อรู้ต้นทุน … ออกแบบให้ผมใส่ได้ง่ายๆ
+   ไม่ต้องไปนั่งไล่หาใส่หลายที” · เลือกแล้ว: ต้นทุน = ไม้ + ขอบ + Fitting · ราคายังไม่มีที่ไหน พิมพ์เอง
+   เดิม: ห้องออกแบบมีแค่ราคาขายต่อรุ่นจากแคตตาล็อก (catPrice) · Element มีช่อง cost ของวัสดุ/ผิว/ขอบ แต่ไม่มีใครอ่าน · Fitting ไม่มีช่องราคาเลย
+   ตอนนี้:
+     · ราคาเก็บใน settings.costs = {fit:{รหัส:{p,at}}, mat:{…}, edge:{…}, waste, edgeWaste} → บันทึกแบบค่าตั้งปกติ (ทุกเครื่องเห็นราคาเดียวกันผ่าน Google Drive)
+       รหัส = Purchase ID (รหัสสั่งซื้อ AX) ถ้ามี ไม่งั้นรหัส Element · ของตัดยาว (โปรไฟล์/รางไฟ/เส้นเฟรม) = ราคาต่อเมตร (รหัส@m)
+       ไม่มีในตาราง → ใช้ช่อง cost ของ Element (วัสดุ/ขอบ) ถ้าเคยใส่ไว้
+     · คิดเหมือนตอนส่งออก: ชิ้นไม้ = ชิ้นที่ออกใบตัด (ไม่นับเส้นแบ่ง/หนา 0 · แตกเพาะโครง) พื้นที่ขนาดคลี่ × (1 + เผื่อเศษไม้ %)
+       ขอบ = ยาวขอบจากตัวคิดขอบตัวเดียวกับ BOM × (1 + เผื่อขอบ %) · Fitting = fittingAgg (ตัวเดียวกับ BOM/ส่งออก)
+     · ห้องออกแบบ: ตู้ที่เลือก = ต้นทุนตู้ + กำไรเทียบราคาขาย · แถบล่าง = ต้นทุนทั้งห้อง + กำไรขั้นต้น + “ยังไม่มีราคา n รายการ”
+       คิดเบื้องหลัง (หน่วง 0.25 วิ) ลากตู้ไม่สะดุด
+     · หน้า 💰 ราคาทุน: แท็บ Fitting / ไม้ / ขอบ · ตั้งต้นโชว์ “ที่ใช้ในงานนี้ + ยังไม่มีราคา” กรอกแล้ว Enter ไปช่องถัดไป บันทึกเอง
+       📋 วางจาก Excel (รหัส + ราคา ทีละหลายแถว) · ⬇ CSV รายการที่ยังไม่มีราคา (ส่งให้จัดซื้อกรอก แล้ววางกลับ)
+     · ไม่ออกในลิงก์แชร์/ไฟล์งาน (ราคาอยู่ในค่าตั้ง ไม่อยู่ในข้อมูลงาน) · โหมดดูอย่างเดียวไม่โชว์
+   ปิดได้: SN_OFF.cost=1 */
+const COST_TABS={fit:{n:"Fitting",u:"ราคา/หน่วย"},mat:{n:"ไม้ (แผ่น)",u:"ราคา/ตร.ม."},edge:{n:"ขอบ",u:"ราคา/เมตร"}};
+function costCfg(){ let c=settings.costs; if(!c||typeof c!=="object") c=settings.costs={};
+  ["fit","mat","edge"].forEach(k=>{ if(!c[k]||typeof c[k]!=="object") c[k]={}; });
+  if(!(+c.waste>=0)) c.waste=15; if(!(+c.edgeWaste>=0)) c.edgeWaste=10; return c; }
+function costOn(){ return !snOff("cost")&&!(document.body&&document.body.classList.contains("viewOnly")); }
+function costNum(v){ if(v==null) return 0; if(typeof v==="object") v=v.p; const n=parseFloat(String(v).replace(/[,\s฿]/g,"")); return (isFinite(n)&&n>0)?n:0; }
+function costElemPrice(kind,key,code){
+  try{ const L=((settings.elements||{})[kind==="mat"?"materials":"edges"])||[];
+    const re=c=>{ try{ return new RegExp("^"+String(c).replace(/[.*+?^${}()|[\]\\]/g,"\\$&").replace(/xx/g,"\\d\\d")+"$","i"); }catch(e){ return null; } };
+    const e=L.find(x=>{ if(!x||!x.code) return false; if(x.code===code||x.code===key) return true;
+      if(x.itemId&&String(x.itemId).split(",").map(s=>s.trim()).indexOf(key)>=0) return true;
+      const r=/xx/.test(x.code)?re(x.code):null; return !!(r&&(r.test(key)||r.test(code))); });
+    return e?costNum(e.cost):0; }catch(e){ return 0; } }
+function costPrice(kind,key,code){ const c=costCfg(), v=c[kind][key]; const n=costNum(v); if(n>0) return n; return (kind==="fit")?0:costElemPrice(kind,key,code); }
+/* รายการที่ใช้: ไม้ (ตร.ม.) · ขอบ (ม.) · Fitting (หน่วย / ม.) — key = รหัสที่ใช้เก็บราคา */
+function costItems(boards,fitRows){
+  const R={fit:new Map(),mat:new Map(),edge:new Map(),unres:0};
+  const add=(m,key,o,q)=>{ let x=m.get(key); if(!x){ x=Object.assign({key,qty:0},o); m.set(key,x); } x.qty+=q; };
+  const bs=(boards||[]).filter(b=>b&&!isGuide(b)); let cut=bs; try{ cut=expandCoreBoards(bs); }catch(e){}
+  cut.forEach(b=>{ try{ const el=effLinks(b), bd=blankDims(b), th=coreThickOf(b,bd.T);
+      const code=String(matCodeForThick(resolveLink(el.mat,b),th)||"").trim(), pid=String(matCodeForThick(resolveOut(el.mat,b),th)||"").trim(), key=pid||code;
+      const a=(+bd.L||0)*(+bd.W||0)/1e6;
+      if(!key||key[0]==="$") R.unres++;
+      else if(a>0){ const e=elemByCode(code); add(R.mat,key,{code,name:String((e&&elemDesc(e))||code),unit:"ตร.ม."},a); }
+      edgeUsage(b).forEach(u=>{ const k=String(u.out||"").trim(); if(!k||k[0]==="$"){ R.unres++; return; }
+        add(R.edge,k,{code:k,name:u.tag?("ขอบ "+u.tag):k,unit:"ม."},(+u.mm||0)/1000); });
+    }catch(e){} });
+  (fitRows||[]).forEach(r=>{ if(!r) return; const base=String(r.purchase||r.art||"").trim(); if(!base) return;
+    const perM=(+r._cut>0), key=perM?base+"@m":base, q=perM?(+r.count||0)*(+r._cut)/1000:(+r.count||0);
+    let nm=String(r.name||base); if(perM){ try{ const d=fitDef(r.art); if(d&&d.desc) nm=String(d.desc); }catch(e){} }
+    add(R.fit,key,{code:String(r.art||base),pid:String(r.purchase||""),name:nm,unit:perM?"ม.":String(r.unit||"ชิ้น"),perM},q); });
+  return R; }
+function costCalc(boards,fitRows){ const c=costCfg(), R=costItems(boards,fitRows), o={wood:0,edge:0,fit:0,miss:[],R,unres:R.unres};
+  R.mat.forEach(x=>{ const p=costPrice("mat",x.key,x.code); x.p=p; if(p>0) o.wood+=p*x.qty*(1+(+c.waste||0)/100); else o.miss.push(["mat",x]); });
+  R.edge.forEach(x=>{ const p=costPrice("edge",x.key,x.code); x.p=p; if(p>0) o.edge+=p*x.qty*(1+(+c.edgeWaste||0)/100); else o.miss.push(["edge",x]); });
+  R.fit.forEach(x=>{ const p=costPrice("fit",x.key,x.code); x.p=p; if(p>0) o.fit+=p*x.qty; else o.miss.push(["fit",x]); });
+  o.total=o.wood+o.edge+o.fit; return o; }
+function costAllBoards(){ try{ return orderGroups().reduce((a,g)=>a.concat(g.boards),[]); }catch(e){ return state.boards.slice(); } }
+function costFitRows(bs){ try{ return fittingAgg(bs); }catch(e){ console.error("cost fittingAgg:",e); return []; } }
+function costOfCab(inst){ const bs=plBoardsOf(inst); return costCalc(bs,costFitRows(bs)); }
+function costOfAll(){ return costCalc(costAllBoards(),costFitRows(state.boards)); }
+function costBreak(o){ return "ไม้ "+plMoney(o.wood)+" · ขอบ "+plMoney(o.edge)+" · Fitting "+plMoney(o.fit); }
+/* ห้องออกแบบ: คิดเบื้องหลังหลังแผงวาดเสร็จ */
+let _costT=0;
+function costSchedule(){ if(!costOn()) return; clearTimeout(_costT); _costT=setTimeout(()=>{ try{ costPaint(); }catch(e){ console.error("costPaint:",e); } },250); }
+function costSlot(host,id){ let el=host.querySelector("#"+id); if(el) return el;
+  el=document.createElement("div"); el.id=id; const r0=host.querySelector(".plRow");
+  if(r0&&r0.parentNode===host&&r0.nextSibling) host.insertBefore(el,r0.nextSibling); else host.appendChild(el); return el; }
+function costPaint(){
+  if(!costOn()) return;
+  const f=$("plFoot");
+  if(f&&f.offsetParent!==null){ const o=costOfAll(), p=plPrice(), nm=o.miss.length, el=costSlot(f,"plCostFoot");
+    const gp=p.sum>0?('<span style="margin-left:auto" title="ราคาขายจากแคตตาล็อก − ต้นทุน'+(nm?" (ต้นทุนยังไม่ครบ)":"")+'">กำไรขั้นต้น <b>'+plMoney(p.sum-o.total)+'</b> ('+Math.round((p.sum-o.total)/p.sum*100)+'%)'+(nm?" *":"")+'</span>'):'';
+    el.innerHTML='<div class="plRow" style="margin-top:3px"><span>ต้นทุน</span><b style="margin-left:6px;font-size:14px">'+plMoney(o.total)+'</b>'+gp+'</div>'
+      +'<div class="plNote">'+escapeHtml(costBreak(o))+'</div>'
+      +'<div class="plRow" style="margin-top:3px">'+(nm?('<span style="color:#e58a24;font-size:11px">ยังไม่มีราคา '+nm+' รายการ — ต้นทุนยังไม่ครบ</span>'):'<span class="plNote">ราคาครบทุกรายการ</span>')
+      +(o.unres?('<span class="plNote" style="margin-left:6px" title="ชิ้น/ขอบที่ยังเป็นตัวแปร ($…) ไม่รู้รหัสวัสดุจริง">· ยังไม่ผูกวัสดุ '+o.unres+'</span>'):'')
+      +'<button class="ibtn" id="plCostEdit" style="margin-left:auto;padding:2px 8px;font-size:11px">💰 '+(nm?'ใส่ราคาที่ขาด…':'ราคาทุน…')+'</button></div>';
+    const b=el.querySelector("#plCostEdit"); if(b) b.onclick=()=>costEditor({onlyMissing:nm>0}); }
+  const s=$("plSelSec"), inst=plSelInst();
+  if(s&&inst&&!csmIsRailInst(inst)){ const o=costOfCab(inst), el=costSlot(s,"plCabCost");
+    let pr=0; try{ const d=plLocalDims(inst); pr=catPrice(d.f.code,d.W); }catch(e){}
+    el.innerHTML='<div class="plRow" style="font-size:11.5px;margin-top:2px"><span>ต้นทุนตู้นี้ <b>'+plMoney(o.total)+'</b></span>'
+      +(pr>0?('<span style="margin-left:auto" title="ราคาขาย − ต้นทุน">กำไร <b>'+plMoney(pr-o.total)+'</b> ('+Math.round((pr-o.total)/pr*100)+'%)'+(o.miss.length?" *":"")+'</span>'):'')+'</div>'
+      +'<div class="plNote">'+escapeHtml(costBreak(o))+(o.miss.length?(' · <a href="#" id="plCabCostEdit" style="color:#e58a24">ยังไม่มีราคา '+o.miss.length+' รายการ — ใส่ราคา…</a>'):'')+'</div>';
+    const a=el.querySelector("#plCabCostEdit"); if(a) a.onclick=ev=>{ ev.preventDefault(); costEditor({inst,onlyMissing:true}); }; }
+}
+(function(){ const _f=plPanelFoot, _s=plPanelSel;
+  plPanelFoot=function(){ const r=_f.apply(this,arguments); try{ costSchedule(); }catch(e){} return r; };
+  plPanelSel=function(){ const r=_s.apply(this,arguments); try{ costSchedule(); }catch(e){} return r; }; })();
+/* ── หน้า 💰 ราคาทุน ── */
+let _costSaveT=0;
+function costSaveSoon(st){ clearTimeout(_costSaveT); if(st) st.textContent="กำลังบันทึก…";
+  _costSaveT=setTimeout(async()=>{ try{ await catSaveSettings();
+      if(st) st.textContent=(settings.cloudAutoSave!==false)?"✓ บันทึกแล้ว — ทุกเครื่องเห็นราคาเดียวกัน":"✓ บันทึกในเครื่องนี้แล้ว (ปิดส่งค่าตั้งขึ้นคลาวด์อยู่)"; }
+    catch(e){ if(st) st.textContent="✗ บันทึกไม่ได้: "+(e&&e.message||e); } },700); }
+function costParsePaste(txt){ const out=[];
+  String(txt||"").split(/\r?\n/).forEach(line=>{ if(!line.trim()) return;
+    const cells=(line.indexOf("\t")>=0?line.split("\t"):line.split(/[;,]/)).map(s=>s.trim()).filter(s=>s!=="");
+    if(cells.length<2) return; let price=null;
+    for(let i=cells.length-1;i>=1;i--){ const t=cells[i].replace(/[฿\s]/g,""); if(/^\d[\d,]*(\.\d+)?$/.test(t)){ price=parseFloat(t.replace(/,/g,"")); break; } }
+    if(price==null||!(price>=0)) return; out.push({code:cells[0],price}); });
+  return out; }
+function costEditor(opt){
+  opt=opt||{}; if(snOff("cost")) return;
+  const c=costCfg(), today=new Date().toISOString().slice(0,10);
+  const scopeB=opt.inst?plBoardsOf(opt.inst):null;
+  const used=opt.inst?costItems(scopeB,costFitRows(scopeB)):costItems(costAllBoards(),costFitRows(state.boards));
+  const known={fit:new Map(),mat:new Map(),edge:new Map()}, E=settings.elements||{};
+  (E.fittings||[]).forEach(e=>{ if(!e||!e.code) return; const ids=String(e.itemId||"").split(",").map(s=>s.trim()).filter(Boolean), key=ids[0]||String(e.code);
+    if(!known.fit.has(key)) known.fit.set(key,{key,code:String(e.code),pid:ids[0]||"",name:String(e.desc||e.code),unit:String(e.unit||"ชิ้น")}); });
+  (E.materials||[]).forEach(e=>{ if(!e||!e.code) return; const key=String(e.itemId||"").split(",")[0].trim()||String(e.code); known.mat.set(key,{key,code:String(e.code),name:String(e.desc||e.code),unit:"ตร.ม."}); });
+  (E.edges||[]).forEach(e=>{ if(!e||!e.code||/no.?edge/i.test(e.code)) return; const key=String(e.itemId||"").split(",")[0].trim()||String(e.code); known.edge.set(key,{key,code:String(e.code),name:String(e.desc||e.code),unit:"ม."}); });
+  ["fit","mat","edge"].forEach(k=>Object.keys(c[k]).forEach(key=>{ if(!known[k].has(key)&&!used[k].has(key))
+    known[k].set(key,{key,code:key.replace(/@m$/,""),name:"",unit:(k==="mat"?"ตร.ม.":k==="edge"?"ม.":(/@m$/.test(key)?"ม.":"ชิ้น"))}); }));
+  const miss=k=>[...used[k].values()].filter(x=>!(costPrice(k,x.key,x.code)>0)).length;
+  let tab=opt.tab||((opt.onlyMissing&&!miss("fit"))?(miss("mat")?"mat":miss("edge")?"edge":"fit"):"fit");
+  let onlyUsed=opt.onlyUsed!==false, onlyMissing=opt.onlyMissing!==false, q="";
+  const _C=ovCard(980,90), ov=_C.ov;
+  ov.innerHTML='<div style="'+_C.cardCSS+'">'
+    +'<div style="display:flex;align-items:center;gap:8px;padding:12px 16px;border-bottom:1px solid var(--line)"><b style="font-size:15px">💰 ราคาทุน</b>'
+      +'<span style="color:var(--ink-dim);font-size:12px">'+(opt.inst?('ตู้ '+escapeHtml(String((plLocalDims(opt.inst).f||{}).code||opt.inst))):'ทั้งงาน')+' · ใช้คิดต้นทุนในห้องออกแบบ · บันทึกเอง ทุกเครื่องเห็นราคาเดียวกัน</span>'
+      +'<button class="ibtn" data-a="x" '+_C.xbtn+'>ปิด</button></div>'
+    +'<div style="display:flex;gap:6px;flex-wrap:wrap;align-items:center;padding:10px 16px 6px"><div class="seg" id="cpTabs"></div>'
+      +'<input id="cpQ" placeholder="ค้นรหัส / ชื่อ" style="flex:1;min-width:140px;padding:5px 8px">'
+      +'<label style="font-size:12px"><input type="checkbox" id="cpUsed"'+(onlyUsed?' checked':'')+'> เฉพาะที่ใช้ใน'+(opt.inst?'ตู้นี้':'งานนี้')+'</label>'
+      +'<label style="font-size:12px"><input type="checkbox" id="cpMiss"'+(onlyMissing?' checked':'')+'> เฉพาะที่ยังไม่มีราคา</label></div>'
+    +'<div id="cpOpt" style="padding:0 16px 6px;font-size:12px;color:var(--ink-dim)"></div>'
+    +'<div style="flex:1;overflow:auto;padding:0 16px"><table id="cpTbl" style="width:100%;border-collapse:collapse;font-size:12.5px"></table></div>'
+    +'<div id="cpPasteBox" style="display:none;padding:8px 16px;border-top:1px solid var(--line)">'
+      +'<div style="font-size:12px;color:var(--ink-dim);margin-bottom:4px">คัดลอก 2 คอลัมน์จาก Excel (รหัส · ราคา) มาวางได้ทีละหลายแถว — รหัสจับคู่ทั้ง Purchase ID และรหัส Element · รหัสที่ยังไม่มีในงานนี้เก็บไว้ใช้ทีหลัง</div>'
+      +'<textarea id="cpPaste" rows="5" style="width:100%;font-family:var(--mono);font-size:12px" placeholder="DOWEL8\t1.50&#10;MINIFIX\t6.20"></textarea>'
+      +'<div style="display:flex;gap:8px;margin-top:6px"><button class="ibtn" id="cpPasteGo" style="background:var(--accent);color:#fff;border-color:transparent">นำเข้าราคา</button><span id="cpPasteSt" style="font-size:12px;align-self:center"></span></div></div>'
+    +'<div style="display:flex;gap:8px;align-items:center;padding:10px 16px;border-top:1px solid var(--line)">'
+      +'<button class="ibtn" id="cpPasteT" style="flex:none">📋 วางจาก Excel</button><button class="ibtn" id="cpCsv" style="flex:none">⬇ CSV รายการที่ยังไม่มีราคา</button>'
+      +'<span id="cpSt" style="margin-left:auto;font-size:12px;color:var(--ink-dim)"></span></div></div>';
+  document.body.appendChild(ov);
+  const Q=sel=>ov.querySelector(sel), st=Q("#cpSt");
+  const close=()=>{ ov.remove(); try{ costSchedule(); }catch(e){} };
+  ov.addEventListener("click",ev=>{ if(ev.target===ov||(ev.target.dataset&&ev.target.dataset.a==="x")) close(); });
+  const fmtQ=(x,k)=>{ const v=x.qty||0; if(!v) return ""; return (k==="fit"&&!x.perM)?Math.round(v).toLocaleString():v.toFixed(v>=100?0:2); };
+  const rowsOf=k=>{ const m=new Map(); used[k].forEach((x,key)=>m.set(key,x)); if(!onlyUsed) known[k].forEach((x,key)=>{ if(!m.has(key)) m.set(key,Object.assign({qty:0},x)); });
+    let L=[...m.values()]; const qq=q.trim().toLowerCase();
+    if(qq) L=L.filter(x=>[x.key,x.code,x.pid,x.name].some(v=>String(v||"").toLowerCase().indexOf(qq)>=0));
+    if(onlyMissing) L=L.filter(x=>!(costPrice(k,x.key,x.code)>0)||x._keep);
+    return L.sort((a,b)=>(b.qty>0)-(a.qty>0)||String(a.name||a.key).localeCompare(String(b.name||b.key),"th")); };
+  const paintTabs=()=>{ Q("#cpTabs").innerHTML=Object.keys(COST_TABS).map(k=>{ const n=miss(k);
+      return '<button type="button" data-t="'+k+'" class="'+(k===tab?'sel':'')+'">'+COST_TABS[k].n+(n?(' <span style="color:#e58a24">('+n+')</span>'):'')+'</button>'; }).join("");
+    Q("#cpTabs").querySelectorAll("button").forEach(b=>b.onclick=()=>{ tab=b.dataset.t; paint(); }); };
+  const paintOpt=()=>{ const o=Q("#cpOpt");
+    if(tab==="mat") o.innerHTML='พื้นที่ = ขนาดคลี่ของชิ้นที่ออกใบตัด · เผื่อเศษไม้ <input id="cpWaste" type="number" min="0" step="1" value="'+(+c.waste||0)+'" style="width:58px"> %';
+    else if(tab==="edge") o.innerHTML='ยาวขอบจากตัวคิดขอบตัวเดียวกับ BOM · เผื่อขอบ <input id="cpWaste" type="number" min="0" step="1" value="'+(+c.edgeWaste||0)+'" style="width:58px"> %';
+    else o.innerHTML='จำนวนจากรายการ BOM Fitting (ตัวเดียวกับตอนส่งออก) · ของตัดยาว (โปรไฟล์/รางไฟ/เฟรม) ใส่ราคาต่อเมตร';
+    const w=Q("#cpWaste"); if(w) w.onchange=()=>{ const v=Math.max(0,parseFloat(w.value)||0); if(tab==="mat") c.waste=v; else c.edgeWaste=v; costSaveSoon(st); }; };
+  const paint=()=>{ paintTabs(); paintOpt(); const L=rowsOf(tab), T=Q("#cpTbl");
+    const th='style="position:sticky;top:0;background:var(--solid,#fff);text-align:left;padding:6px 6px;border-bottom:1px solid var(--line);font-weight:600"';
+    T.innerHTML='<tr><th '+th+'>รหัส</th><th '+th+'>ชื่อ</th><th '+th+'>หน่วย</th><th '+th.replace("left","right")+'>ใช้ใน'+(opt.inst?'ตู้นี้':'งานนี้')+'</th><th '+th+'>'+COST_TABS[tab].u+'</th><th '+th.replace("left","right")+'>รวม</th></tr>'
+      +(L.length?L.map((x,i)=>{ const p=costPrice(tab,x.key,x.code), own=costNum(c[tab][x.key]);
+        const sub=(x.code&&x.code!==x.key.replace(/@m$/,""))?('<div style="font-size:10.5px;color:var(--ink-dim)">'+escapeHtml(x.code)+'</div>'):'';
+        return '<tr data-i="'+i+'" style="border-bottom:1px solid var(--line)"><td style="padding:4px 6px;font-family:var(--mono);font-size:11.5px;word-break:break-all">'+escapeHtml(x.key)+sub+'</td>'
+          +'<td style="padding:4px 6px">'+escapeHtml(String(x.name||""))+'</td><td style="padding:4px 6px;white-space:nowrap">'+escapeHtml(String(x.unit||""))+'</td>'
+          +'<td style="padding:4px 6px;text-align:right;font-family:var(--mono)">'+fmtQ(x,tab)+'</td>'
+          +'<td style="padding:3px 6px"><input class="cpIn" data-i="'+i+'" inputmode="decimal" value="'+(own>0?own:"")+'" placeholder="'+((!own&&p>0)?(p+" (Element)"):"")+'" style="width:100px;font-family:var(--mono);padding:3px 6px"></td>'
+          +'<td class="cpTot" style="padding:4px 6px;text-align:right;font-family:var(--mono)">'+(p>0&&x.qty?plMoney(p*x.qty):"")+'</td></tr>'; }).join("")
+        :'<tr><td colspan="6" style="padding:18px 6px;color:var(--ink-dim);text-align:center">'+(onlyMissing?'✓ ไม่มีรายการที่ยังขาดราคา (เอาติ๊ก “เฉพาะที่ยังไม่มีราคา” ออกเพื่อดู/แก้ราคาที่ใส่แล้ว)':'ไม่มีรายการ')+'</td></tr>');
+    const ins=[...T.querySelectorAll(".cpIn")];
+    ins.forEach((inp,j)=>{ const x=L[+inp.dataset.i];
+      inp.oninput=()=>{ const n=costNum(inp.value); x._keep=1;
+        if(n>0) c[tab][x.key]={p:n,at:today}; else delete c[tab][x.key];
+        const p=costPrice(tab,x.key,x.code), td=inp.closest("tr").querySelector(".cpTot"); if(td) td.textContent=(p>0&&x.qty)?plMoney(p*x.qty):"";
+        paintTabs(); costSaveSoon(st); };
+      inp.onkeydown=ev=>{ if(ev.key==="Enter"||ev.key==="ArrowDown"){ ev.preventDefault(); const nx=ins[j+1]; if(nx){ nx.focus(); nx.select(); } }
+        else if(ev.key==="ArrowUp"){ ev.preventDefault(); const pv=ins[j-1]; if(pv){ pv.focus(); pv.select(); } } }; });
+    if(ins[0]&&!opt._noFocus){ setTimeout(()=>{ try{ ins[0].focus(); }catch(e){} },30); }
+    const mt=miss("fit")+miss("mat")+miss("edge");
+    if(!st.textContent||/^ยังไม่มีราคา|^ราคาครบ/.test(st.textContent)) st.textContent=mt?('ยังไม่มีราคา '+mt+' รายการใน'+(opt.inst?'ตู้นี้':'งานนี้')):('ราคาครบทุกรายการใน'+(opt.inst?'ตู้นี้':'งานนี้')); };
+  Q("#cpQ").oninput=e=>{ q=e.target.value; opt._noFocus=1; paint(); };
+  Q("#cpUsed").onchange=e=>{ onlyUsed=e.target.checked; paint(); };
+  Q("#cpMiss").onchange=e=>{ onlyMissing=e.target.checked; [...used[tab].values()].forEach(x=>delete x._keep); paint(); };
+  Q("#cpPasteT").onclick=()=>{ const b=Q("#cpPasteBox"); b.style.display=(b.style.display==="none")?"":"none"; if(b.style.display==="") Q("#cpPaste").focus(); };
+  Q("#cpPasteGo").onclick=()=>{ const items=costParsePaste(Q("#cpPaste").value); if(!items.length){ Q("#cpPasteSt").textContent="ไม่พบแถวที่มีรหัส + ราคา"; return; }
+    const idx=new Map(); [known[tab],used[tab]].forEach(m=>m.forEach(x=>{ [x.key,x.code,x.pid,x.key.replace(/@m$/,"")].forEach(v=>{ const s=String(v||"").trim().toLowerCase(); if(s&&!idx.has(s)) idx.set(s,x.key); }); }));
+    let hit=0, fresh=0; items.forEach(it=>{ const k0=String(it.code).trim(), key=idx.get(k0.toLowerCase());
+      if(key){ hit++; if(it.price>0) c[tab][key]={p:it.price,at:today}; else delete c[tab][key]; }
+      else { fresh++; if(it.price>0) c[tab][k0]={p:it.price,at:today}; } });
+    Q("#cpPasteSt").textContent="✓ ใส่ราคา "+hit+" รายการ"+(fresh?(" · รหัสที่ยังไม่มีใน"+COST_TABS[tab].n+" "+fresh+" รายการ (เก็บไว้ใช้ทีหลัง)"):"");
+    Q("#cpPaste").value=""; costSaveSoon(st); paint(); };
+  Q("#cpCsv").onclick=()=>{ const L=[...used[tab].values()].filter(x=>!(costPrice(tab,x.key,x.code)>0));
+    if(!L.length){ toast("ไม่มีรายการที่ยังไม่มีราคาใน"+COST_TABS[tab].n); return; }
+    const cs=v=>{ const s=String(v==null?"":v); return /[",\r\n]/.test(s)?'"'+s.replace(/"/g,'""')+'"':s; };
+    const csv="รหัส,ชื่อ,รหัส Element,หน่วย,ใช้ในงานนี้,ราคา\n"+L.map(x=>[x.key,x.name,x.code,x.unit,fmtQ(x,tab),""].map(cs).join(",")).join("\n");
+    download("ราคาทุน-"+COST_TABS[tab].n.replace(/[^\wก-๙]+/g,"")+"-ที่ยังไม่มี.csv","\uFEFF"+csv,"text/csv"); };
+  paint();
+  return ov; }
 /* ---------- แผงห้องออกแบบ ---------- */
 function plPrice(){ let sum=0, n=0, miss=0;
   const _m=plCabMap(); Object.keys(_m).forEach(inst=>{ if(_m[inst].some(b=>b&&b._csmRail)) return;   // v1.390: ราวแขวนไม่ใช่ตู้
@@ -39902,6 +40139,7 @@ async function renderLoader(){
       <button class="ibtn" id="ldGen">⚙ สร้างตู้พารามิเตอร์</button>
       <button class="ibtn" id="ldCont">↩ ทำงานต่อจากงานล่าสุด (autosave)</button>
       <button class="ibtn" id="ldCatalog" title="ตั้งว่ารุ่นไหนขึ้นในห้องออกแบบ · หมวด · ขนาดที่ขายได้ · ฟิลเลอร์คู่ · ราคา · รูปย่อ">🗂 แคตตาล็อกห้องออกแบบ</button>
+      <button class="ibtn" id="ldCost" title="ราคาทุน Fitting / ไม้ (ตร.ม.) / ขอบ (เมตร) — ใช้คิดต้นทุนในห้องออกแบบ · วางจาก Excel ได้ (v1.439)">💰 ราคาทุน</button>
     </div></div>
     <div class="sumh" style="display:flex;align-items:center;gap:10px;justify-content:space-between;flex-wrap:wrap"><span>🗄 เปิดตู้เดี่ยวจากคลาวด์</span>
       <input id="ldCloudSearch" placeholder="🔍 ค้นหารหัสตู้…" autocomplete="off" style="font-size:12px;padding:5px 9px;border:1px solid var(--line);border-radius:7px;width:190px;font-weight:400">
@@ -39909,7 +40147,8 @@ async function renderLoader(){
   /* v40.0: ปุ่มนี้เคยล้างแค่ state.boards ของที่ผูกกับออเดอร์ยังค้างจากงานก่อน — ใช้ทางเดียวกับออเดอร์ใหม่ */
   $("ldNew").onclick=async()=>{ if(await newOrder()) closeLoader(); };
   $("ldGen").onclick=()=>{ closeLoader(); try{genCabinet();}catch(e){console.error(e);} };
-  { const lc=$("ldCatalog"); if(lc) lc.onclick=()=>{ try{ openCatalog(); }catch(e){ console.error(e); toast("เปิดแคตตาล็อกไม่ได้: "+e.message); } }; }   // v1.304
+  { const lc=$("ldCatalog"); if(lc) lc.onclick=()=>{ try{ openCatalog(); }catch(e){ console.error(e); toast("เปิดแคตตาล็อกไม่ได้: "+e.message); } }; }
+  { const lk=$("ldCost"); if(lk){ if(snOff("cost")) lk.style.display="none"; lk.onclick=()=>{ try{ costEditor({onlyMissing:false,onlyUsed:state.boards.length>0}); }catch(e){ console.error(e); toast("เปิดราคาทุนไม่ได้: "+e.message); } }; } }   // v1.439   // v1.304
   $("ldCont").onclick=async()=>{
     try{ const saved=await loadSaved();
       if(saved&&saved.boards&&saved.boards.length){
@@ -48897,7 +49136,7 @@ var sxlShareLan=async function(){
  document.body.appendChild(ov);
  ov.onclick=e=>{const a=e.target&&e.target.dataset&&e.target.dataset.a;if(e.target===ov||a==="x")ov.remove();else if(a==="c"){try{navigator.clipboard.writeText(link);toast("คัดลอกลิงก์แล้ว")}catch(_){}}else if(a==="o")window.open(link,"_blank")}};
 /* ═══════════════════════════════════════════════════════════════════════
-   GasFS 1.4 (2026-10-12) — โฟลเดอร์ Server เสมือนบน Google Drive ผ่าน Apps Script (StarNexus DB 0.3+)
+   GasFS 1.5 (2026-10-12) — โฟลเดอร์ Server เสมือนบน Google Drive ผ่าน Apps Script (StarNexus DB 0.3+)
 
    ใช้ร่วมกันใน StarNexus และ Production V2: ทั้งสองโปรแกรมอ่าน/เขียนโฟลเดอร์ Server ผ่าน
    File System Access API (getDirectoryHandle / getFileHandle / entries / getFile / createWritable / removeEntry)
@@ -48913,7 +49152,7 @@ var sxlShareLan=async function(){
    ═══════════════════════════════════════════════════════════════════════ */
 var GasFS = (function () {
   'use strict';
-  var VER = '1.4';
+  var VER = '1.5';
   var PART = 4000000;          // base64 เกินนี้ แบ่งชิ้นอัปโหลด
   var BATCH_MS = 15, BATCH_OPS = 40, BATCH_BYTES = 6000000;
   var LIST_TTL = 1500;         // รายการโฟลเดอร์เดียวกันที่ขอซ้ำภายในเวลานี้ ใช้ของเดิม (กันไล่ซ้ำในรอบเดียว)
@@ -48990,6 +49229,7 @@ var GasFS = (function () {
     this.C = new Map();   // เนื้อไฟล์ในหน่วยความจำ: p\nn → {u, c}
     this.inflight = {};   // อ่านไฟล์ซ้ำระหว่างรอ = รอตัวเดียวกัน
     this.inrec = {};      // 1.4: p\nn → {es, fg, done} — การอ่านนั้นมีคนรอ (fg) หรือโหลดล่วงหน้าเฉย ๆ
+    this.bad = badLoad(this.url);   // 1.5: ไฟล์ที่ตรวจแล้วว่าเสีย p\nn → u (เวลาแก้ไฟล์ตอนตรวจ) — ไม่โชว์ในรายการ
     this.st = { calls: 0, ops: 0, ms: 0, last: 0, err: '', bytesUp: 0, bytesDown: 0, cacheHit: 0, trace: [],
                 rx: 0, need: 0, got: 0, nNeed: 0, nGot: 0 };   // 1.2: rx = ไบต์ที่รับแล้ว (นับระหว่างรับ) · need/got = ขนาดไฟล์ที่ต้องดาวน์โหลด/ได้แล้ว · nNeed/nGot = จำนวนไฟล์
     this.cache = this.opt.cache !== false;
@@ -49224,6 +49464,19 @@ var GasFS = (function () {
     try { return await pr; } finally { delete this.inflight[k]; if (self.inrec[k] === rec) delete self.inrec[k]; }
   };
   FS.prototype.readBytes = async function (p, n, u) { return ungz(await this.readC(p, n, u)); };
+  /* ── 1.5: ไฟล์เสีย (จำในเครื่องนี้ ตามเวลาแก้ไฟล์ — ไฟล์ถูกเขียนใหม่ = ตรวจใหม่) ── */
+  FS.prototype.markBad = function (p, n) { var L = this.L[p], f = L && L.files[n]; if (!f) return false; this.bad[p + '\n' + n] = f.u; badSave(this.url, this.bad); return true; };
+  FS.prototype.isBad = function (p, n) { var L = this.L[p], f = L && L.files[n], b = this.bad[p + '\n' + n]; return !!(f && b != null && b === f.u); };
+  FS.prototype.unBad = function (p, n) { delete this.bad[p + '\n' + n]; badSave(this.url, this.bad); };
+  FS.prototype.badList = function () {
+    var out = [], ch = false;
+    for (var k in this.bad) { var i = k.indexOf('\n'), p = k.slice(0, i), n = k.slice(i + 1), L = this.L[p];
+      if (!L || !L.ok) continue;                                   // ยังไม่ได้ไล่โฟลเดอร์นั้น — ยังไม่รู้
+      var f = L.files[n]; if (!f || f.u !== this.bad[k]) { delete this.bad[k]; ch = true; continue; }   // ถูกลบ/เขียนใหม่แล้ว
+      out.push({ p: p, n: n, u: f.u, s: f.s }); }
+    if (ch) badSave(this.url, this.bad);
+    return out;
+  };
 
   /* ── เขียนไฟล์ ── */
   FS.prototype.write = async function (p, n, bytes) {
@@ -49299,7 +49552,10 @@ var GasFS = (function () {
        เดิม: รอบตรวจ 10 วิ เห็นชื่อไฟล์ใหม่ระหว่างที่ตัวเขียนยังส่งไม่เสร็จ (ไฟล์ใหญ่ส่งหลายวินาที) อ่านได้ไฟล์ว่าง
        → “อ่าน app_settings …json ไม่ได้ — Unexpected end of JSON input ×3” (ผู้ใช้ 12/10/2026 15:33 ถามว่าเตือนอะไร) · ข้อมูลไม่เสีย แต่เตือนให้ตกใจ
        ตอนนี้: ข้ามไฟล์ที่ยังรอเขียน (เปิดด้วยชื่อตรง ๆ ยังได้เหมือนเดิม) */
-    var dirs = Array.from(L.dirs), files = Object.keys(L.files).filter(function (n) { return !L.files[n].local; });
+    /* GasFS 1.5: + ไฟล์ที่ตรวจแล้วว่าเสีย (ข้อมูลไม่ครบ อ่านไม่ได้) ไม่โชว์ = ตัวอ่านใช้รุ่นก่อนหน้าของกลุ่มนั้นเอง
+       หมายเหตุ: คำเตือนที่ผู้ใช้ถาม (15:33 และ 16:50) สาเหตุจริงคือไฟล์เสียตั้งแต่ 5/10 ที่ย้ายมาจากโฟลเดอร์ Server ไม่ใช่ไฟล์ที่กำลังส่ง (ดูตัวเชื่อมส่วน “ไฟล์เสียบน Drive”) */
+    var bad = fs.bad || {};
+    var dirs = Array.from(L.dirs), files = Object.keys(L.files).filter(function (n) { var f = L.files[n]; return !f.local && !(bad[p + '\n' + n] != null && bad[p + '\n' + n] === f.u); });
     for (var i = 0; i < dirs.length; i++) yield [dirs[i], new DirH(fs, join(p, dirs[i]), dirs[i])];
     for (var j = 0; j < files.length; j++) yield [files[j], new FileH(fs, p, files[j])];
   };
@@ -49478,6 +49734,9 @@ var GasFS = (function () {
 
   /* ═════════ ค่าตั้ง (เก็บในเบราว์เซอร์เครื่องนี้เท่านั้น) ═════════ */
   var LSK = 'sxlocaltrial:furnitech:gas';
+  var BADK = 'sxlocaltrial:furnitech:gasBad';                 // 1.5: { url: { 'p\nn': u } }
+  function badLoad(url) { try { var o = JSON.parse(localStorage.getItem(BADK) || '{}'); return (o && o[url]) || {}; } catch (e) { return {}; } }
+  function badSave(url, m) { try { var o = JSON.parse(localStorage.getItem(BADK) || '{}') || {}; if (m && Object.keys(m).length) o[url] = m; else delete o[url]; localStorage.setItem(BADK, JSON.stringify(o)); } catch (e) {} }
   function cfgGet() { try { return JSON.parse(localStorage.getItem(LSK) || 'null') || {}; } catch (e) { return {}; } }
   function cfgSet(v) { try { if (v == null) localStorage.removeItem(LSK); else localStorage.setItem(LSK, JSON.stringify(v)); } catch (e) {} }
 
@@ -50426,6 +50685,105 @@ function ordUi(){
   var b=document.getElementById('gasOrdGo'); if(b) b.onclick=function(){ ordSplitDialog(false); };
 }
 (function(){ var _u=gasUiRefresh; gasUiRefresh=function(){ _u.apply(this,arguments); try{ ordUi(); }catch(e){} }; })();
+
+
+/* ═════════ StarNexus v1.438 / Production V2 v181: ไฟล์เสียบน Google Drive — ตรวจ · ข้าม · บอกครั้งเดียว · ย้ายออกได้ ═════════
+   ผู้ใช้ 12/10/2026 16:50 (ถามซ้ำหลัง 1.436) “ทำไมถึงยังขึ้นเตือน หาสาเหตุไม่ได้หรอ ผมไม่ได้ยุ่งกับ order นั้นแล้วนิ”
+     “[Google Drive] อ่าน app_settings order_base_data_2606012207_IPD_MSU_7B9R~545d0ddc@0muurc1zr-qmlm.json ไม่ได้ — รอบหน้าลองใหม่
+      Unexpected end of JSON input ×3”
+   สาเหตุจริง: ไฟล์รุ่นล่าสุดของกลุ่มนั้นเสีย (เนื้อไฟล์ขาดกลางทาง) · ชื่อไฟล์บอกเวลาเขียน 0muurc1zr = 5/10/2026 11:36 (ก่อนย้ายขึ้น Drive)
+     = ภาพถ่าย BOM ของ Order 2606012207 ที่ Production เก็บไว้เทียบ “ต้นทางแก้” เขียนลงโฟลเดอร์ Server ไม่จบตั้งแต่วันนั้น แล้วถูกย้ายขึ้น Drive ไปทั้งอย่างนั้น
+     ตัวอ่านไฟล์กลางเจอไฟล์อ่านไม่ได้ = ข้ามแล้ว “รอบหน้าลองใหม่” → รอบตรวจทุก 10 วิ อ่านซ้ำ เตือนซ้ำไม่จบ (ไม่เกี่ยวกับว่าเปิด Order นั้นหรือไม่)
+     1.436 เดาว่าเป็นไฟล์ที่เครื่องตัวเองกำลังส่ง — ผิด (ตัวกรองไฟล์ที่กำลังส่งของ GasFS 1.3 ยังเก็บไว้ ไม่เสียหาย)
+   ตอนนี้:
+     · คำเตือนนี้ครั้งแรกของไฟล์นั้น → ดาวน์โหลดมาตรวจ (แกะ gzip + อ่าน JSON)
+       เสียจริง = จำว่าเสีย (เครื่องนี้ · ตามเวลาแก้ไฟล์) แล้วไม่โชว์ในรายการไฟล์ → ตัวอ่านใช้รุ่นก่อนหน้าของกลุ่มนั้นเอง (ไม่มีรุ่นก่อน = ค่าในไฟล์ฐาน)
+       แจ้งครั้งเดียวว่าไฟล์ไหนเสีย เขียนเมื่อไหร่ · อ่านได้ปกติ (สะดุดชั่วคราว) = ไม่จำ รอบหน้าอ่านใหม่ตามเดิม
+     · หน้า Google Drive: “⚠ ไฟล์เสียบน Google Drive n ไฟล์” + ปุ่ม “ย้ายไป _backup/broken” (ถามยืนยันก่อน) = หายจากทุกเครื่อง รวมรุ่นเก่าที่ยังไม่อัปเดต
+   ปิดได้: SN_OFF.gasBad=1 (กลับไปเตือนแบบเดิม) */
+var GAS_BAD={chk:{}}, GAS_W0=console.warn;
+function gasBadOn(){ return !gasSw('gasBad'); }
+function gasVerTime(n){ var m=/@([0-9a-z]{6,10})-/.exec(String(n||'')); if(!m) return ''; var t=parseInt(m[1],36);
+  if(!(t>1500000000000&&t<Date.now()+86400000)) return '';
+  try{ return new Date(t).toLocaleString('th-TH',{day:'numeric',month:'short',year:'numeric',hour:'2-digit',minute:'2-digit'}); }catch(e){ return new Date(t).toISOString(); } }
+/* ตรวจเนื้อไฟล์ JSON บน Drive: {ok} · {ok:false,…} = เสียจริง · null = ดาวน์โหลดไม่ได้/ไม่มีไฟล์ (ยังไม่ตัดสิน) */
+async function gasBadVerify(p,n){
+  var fs=GasFS.current(); if(!fs) return null;
+  var L=await fs.list(p), f=L&&L.files[n]; if(!f) return null;
+  var c; try{ c=await fs.readC(p,n,f.u); }catch(e){ return null; }
+  var txt;
+  try{ txt=new TextDecoder().decode(await GasFS.ungz(c)); }catch(e){ return {ok:false,u:f.u,s:f.s,len:0,msg:'แกะไฟล์ไม่ได้ ('+(e&&e.message||e)+')'}; }
+  try{ JSON.parse(txt); return {ok:true}; }catch(e){ return {ok:false,u:f.u,s:f.s,len:txt.length,msg:e&&e.message||String(e)}; }
+}
+async function gasBadHandle(p,n,a){
+  var k=p+'\n'+n, r=null; try{ r=await gasBadVerify(p,n); }catch(e){}
+  var fs=GasFS.current();
+  if(r&&!r.ok&&fs&&fs.markBad(p,n)){
+    var when=gasVerTime(n), tb=p.replace(/^_changes\//,'');
+    GAS_W0.call(console,'[Google Drive] ไฟล์เสียบน Drive: '+tb+' / '+n+(when?(' (เขียนเมื่อ '+when+')'):'')
+      +' — เนื้อไฟล์ไม่ครบ อ่านไม่ได้ ('+r.msg+') · ข้ามไฟล์นี้แล้ว ใช้ข้อมูลรุ่นก่อนหน้าแทน ไม่ต้องทำอะไร · ย้ายออกจาก Drive ได้ที่หน้า Google Drive (เตือนครั้งเดียว)');
+    try{ gasUiRefresh(); }catch(e){}
+    /* อ่านตารางนั้นใหม่ทันที (ไม่รอรอบตรวจ — รอบตรวจของ StarNexus ดูเฉพาะตารางที่มีไฟล์เปลี่ยน) → ได้รุ่นก่อนหน้าของกลุ่มนั้น */
+    try{ var T=sxlCfg(tb), S=SXL.s[tb];
+      if(T&&S&&S.ready){ var ch=await sxlLocked(function(){ return sxlScanOver(T,S,null); }); if(ch&&typeof sxlApply==='function') await sxlApply(new Set([tb]),'check'); } }
+    catch(e){ console.info('[Google Drive] อ่าน '+tb+' ใหม่หลังข้ามไฟล์เสียไม่สำเร็จ',e&&e.message); }
+    return;
+  }
+  if(r&&r.ok){ setTimeout(function(){ delete GAS_BAD.chk[k]; },60000); return; }   // อ่านได้ปกติ = สะดุดชั่วคราว (ไม่จำ)
+  delete GAS_BAD.chk[k]; GAS_W0.apply(console,a);                                  // ตรวจไม่ได้ (เน็ต) = เตือนแบบเดิม
+}
+/* ดักคำเตือน “[ไฟล์กลาง] อ่าน <ตาราง> <ไฟล์> ไม่ได้ — รอบหน้าลองใหม่ <สาเหตุ>” (ตัวอ่านของทั้งสองโปรแกรมใช้ข้อความนี้) */
+(function(){
+  console.warn=function(){
+    var a=arguments;
+    try{
+      if(gasBadOn()&&a.length>=3&&a[0]==='[ไฟล์กลาง] อ่าน'&&typeof a[1]==='string'&&typeof a[2]==='string'&&typeof SXL!=='undefined'&&SXL.dir&&sxlIsGas(SXL.dir)){
+        var p='_changes/'+a[1], n=a[2], k=p+'\n'+n, fs=GasFS.current();
+        if(fs&&fs.isBad(p,n)) return;                              // รู้แล้วว่าเสีย (เตือนไปแล้ว) — เงียบ
+        if(GAS_BAD.chk[k]) return;                                 // กำลังตรวจ / เพิ่งตรวจว่าอ่านได้
+        GAS_BAD.chk[k]=1; gasBadHandle(p,n,a); return;
+      }
+    }catch(e){}
+    return GAS_W0.apply(console,a);
+  };
+})();
+/* ย้ายไฟล์เสียไป _backup/broken/<ตาราง>/ (เก็บเนื้อเดิมไว้ดู) แล้วลบออกจาก _changes — ทุกเครื่องเลิกเห็นไฟล์นี้ */
+async function gasDirAt(path,create){ var d=SXL.dir;
+  var segs=String(path).split('/').filter(Boolean); for(var i=0;i<segs.length;i++) d=await d.getDirectoryHandle(segs[i],{create:!!create}); return d; }
+async function gasBadMove(){
+  var fs=GasFS.current(); if(!fs||!sxlIsGas(SXL.dir)) throw Error('ยังไม่ได้เชื่อมต่อ Google Drive');
+  var list=fs.badList(); if(!list.length) return 0;
+  var txt=list.map(function(f){ var w=gasVerTime(f.n); return '• '+f.p.replace(/^_changes\//,'')+' / '+f.n+(w?(' (เขียนเมื่อ '+w+')'):''); }).join('\n');
+  if(!confirm('ย้ายไฟล์เสีย '+list.length+' ไฟล์ ไปไว้ที่ _backup/broken บน Google Drive?\n\n'+txt+'\n\nไฟล์เหล่านี้อ่านไม่ได้อยู่แล้ว (เนื้อไฟล์ไม่ครบ) — ย้ายแล้วทุกเครื่องใช้ข้อมูลรุ่นก่อนหน้าแทน และหยุดเตือน')) return -1;
+  var n=0;
+  for(var i=0;i<list.length;i++){ var f=list[i], tb=f.p.replace(/^_changes\//,'');
+    var c=await fs.readC(f.p,f.n,f.u), bytes=null; try{ bytes=await GasFS.ungz(c); }catch(e){ bytes=null; }
+    var dst=await gasDirAt('_backup/broken/'+tb,true);
+    var fh=await dst.getFileHandle(bytes?f.n:(f.n+'.gz64.txt'),{create:true}), w=await fh.createWritable(); await w.write(bytes||c); await w.close();
+    var src=await gasDirAt(f.p,false); await src.removeEntry(f.n);
+    fs.unBad(f.p,f.n); n++;
+  }
+  try{ SXL.pollEnd=0; if(typeof sxlRefresh==='function') sxlRefresh(); }catch(e){}
+  return n;
+}
+/* หน้า Google Drive: รายการไฟล์เสีย + ปุ่มย้ายออก */
+function gasBadUi(){
+  var box=document.getElementById('gasBox'); if(!box) return;
+  var el=document.getElementById('gasBad'), fs=GasFS.current();
+  var list=(fs&&sxlIsGas(SXL.dir))?fs.badList():[];
+  if(!list.length){ if(el) el.style.display='none'; return; }
+  if(!el){ el=document.createElement('div'); el.id='gasBad'; el.style.cssText='border-top:1px dashed #e0b4a8;margin-top:10px;padding-top:8px'; box.appendChild(el); }
+  var key=list.map(function(f){ return f.p+'/'+f.n; }).join('|'); el.style.display='';
+  if(el.dataset.k===key) return; el.dataset.k=key;
+  el.innerHTML='<b style="color:#b42318">⚠ ไฟล์เสียบน Google Drive '+list.length+' ไฟล์</b> <small>(เนื้อไฟล์ไม่ครบ อ่านไม่ได้ — โปรแกรมข้ามให้แล้ว ใช้ข้อมูลรุ่นก่อนหน้าแทน)</small>'
+    +'<div style="font:12px/1.5 ui-monospace,Consolas,monospace;color:#5b6b78;margin:4px 0;word-break:break-all">'+list.map(function(f){ var w=gasVerTime(f.n); return esc2(f.p.replace(/^_changes\//,'')+' / '+f.n)+(w?(' <span style="font-family:system-ui,Sarabun,sans-serif">· เขียนเมื่อ '+esc2(w)+'</span>'):''); }).join('<br>')+'</div>'
+    +'<div class="gb"><button id="gasBadGo">ย้ายไป _backup/broken (ทุกเครื่องหยุดเตือน)…</button></div><div id="gasBadSt" style="font-size:12px;color:#5b6b78"></div>';
+  var b=document.getElementById('gasBadGo'); if(b) b.onclick=async function(){ var st=document.getElementById('gasBadSt'); b.disabled=true;
+    try{ var r=await gasBadMove(); if(st) st.textContent=(r>0)?('✓ ย้ายแล้ว '+r+' ไฟล์ ไปที่ _backup/broken'):(r<0?'':'ไม่มีไฟล์ให้ย้าย'); }
+    catch(e){ if(st) st.textContent='✗ '+(e&&e.message||e); }
+    b.disabled=false; el.dataset.k=''; try{ gasBadUi(); }catch(e){} };
+}
+(function(){ var _u=gasUiRefresh; gasUiRefresh=function(){ _u.apply(this,arguments); try{ gasBadUi(); }catch(e){} }; })();
 
 sxlStart();
 
