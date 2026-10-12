@@ -1019,7 +1019,7 @@
    ===================================================================== */
 /* ---- APP_META: แหล่งความจริงเดียวของเวอร์ชัน (ดูได้จาก console / คลิกชื่อแอป) ---- */
 const APP_META={
-  name:"StarNexus", version:"1.435", build:"2026-10-12/gh-copy",
+  name:"StarNexus", version:"1.436", build:"2026-10-12/shelf-eq-gaps",
   file:"StarNexus.html", basedOn:"Furnitech_V3.html (v3.11)",
   /* ───────── เริ่มนับเวอร์ชันใหม่ที่ 1.001 (21/08/2026) ─────────
      ของเดิมนับมาถึง 42.1 แล้ววิ่งเป็นทศนิยมสองชั้นซึ่งอ่านลำดับยาก
@@ -1027,6 +1027,7 @@ const APP_META={
      ประวัติเก่าเก็บไว้ทั้งหมดตามเลขเดิม ไม่ไล่เขียนใหม่ เพราะเลขในนั้นถูกอ้างถึงไปแล้ว
      รายการที่อยู่ใต้ 1.001 ลงไปจึงเป็นเลขชุดเก่า อ่านต่อกันได้ตามวันที่ */
   changelog:[
+    ["1.436","2026-10-12","FEAT จัดชั้นให้ช่องเท่ากันทำกับชั้นตายได้ + ไม้วัดคลิกแผ่นข้างขึ้นช่องใส + FIX เตือน “Unexpected end of JSON input” (ผู้ใช้ 15:33: 1.อยากได้ ช่องๆ เท่ากันตู้ใบนี้เพิ่มคำสั่งได้ไหม 2.เครื่องมือวัด มีแบบกดแผ่นข้าง ขึ้น Dim ได้ไหม ผมมานั่งวัดเอามันช้า 3.เลข 2606012207 มันเตือนอะไร) — (1) “↕ จัดชั้น…ให้ห่างเท่ากัน” เดิมจับเฉพาะชั้นปรับ ตอนนี้ชั้นตายด้วย: คลิกขวาชั้นตาย/แผ่นข้าง/ชิ้นไหนในตู้ หรือปุ่มในแผงขวาของชั้นตาย · ช่องที่มีชั้นตายตั้งต้น “ผิวชั้น (ช่องใสเท่ากัน)” · ชั้นตายที่ย้าย ปลดล็อกระยะอ้างอิง + ล้างรูคู่เดือย/มินิฟิกเก่าแล้วเจาะใหม่ตรงที่ (ไฟล์ 49 ตู้ JMO001: 271.1 / 267.1 / 267.0 → 268.4 ×3) · ชั้นปรับในช่องที่มีชั้นตาย เลือกได้ว่าจัดเฉพาะชั้นปรับหรือทุกชั้น (2) ไม้วัด 📦 ขนาดชิ้น: คลิกแผ่นข้าง (หรือแผ่นใดก็ได้) ขึ้นโซ่ช่องใสสีฟ้าระหว่างแผ่นที่มาชน (พื้น · ชั้น · ฝาบน · คาน) + แถบล่าง “ช่องใส ล่าง→บน …” ไม่ต้องวัด 2 จุดทีละช่อง (3) คำเตือนอ่าน app_settings order_base_data_… ไม่ได้ ×3 = รอบตรวจ 10 วิ ไปเจอไฟล์ที่เครื่องนี้กำลังส่งขึ้น Drive (ยังเขียนไม่เสร็จ อ่านได้ไฟล์ว่าง) ข้อมูลไม่เสีย · GasFS 1.3 ไม่โชว์ไฟล์ที่ยังเขียนไม่เสร็จในรายการ · บันทึก Order เขียนดัชนีให้ Production V2 v179 (โหลดเฉพาะ Order ที่เปิด) · ปิดได้ SN_OFF.shelfEqFixed / mdGaps / lazyOrders"],
     ["1.435","2026-10-12","FEAT ปุ่ม 📋 คัดลอก Token ในหน้าแชร์ (ผู้ใช้: ไม่ได้เก็บ Token ไว้ อยากคัดลอกจากตัวที่เปิดบนเครื่องไปใส่ตัวที่เปิดบนเว็บ) — ตั้งค่า GitHub เก็บแยกต่อที่อยู่ที่เปิดโปรแกรม เดิมดู Token ที่จำไว้ไม่ได้ ต้องสร้างใหม่ · ตอนนี้กดคัดลอกไปคลิปบอร์ด (เฉพาะตอนกดเอง ไม่ลงไฟล์/ค่าตั้ง) พร้อมบอก owner/repo/branch ที่ต้องใส่คู่กัน · วางในช่อง Token ของรุ่นเก่าก็ได้"],
     ["1.434","2026-10-12","UX ส่งออเดอร์จากเบราว์เซอร์ที่ยังไม่ได้ตั้งค่า GitHub = เตือนในกล่องผล (ผู้ใช้: ทำไม Github ไม่อัพ Link) — ตั้งค่า GitHub (Token) เก็บแยกต่อเบราว์เซอร์และต่อที่อยู่ที่เปิดโปรแกรม ตัวที่เปิดจาก github.io ยังไม่ได้ตั้ง เลยได้ลิงก์ในไฟล์กลางแทนแบบเงียบ ๆ (ไม่ขึ้น GitHub · QR สติกเกอร์เปิดจากมือถือไม่ได้) · ตอนนี้บอกในกล่องผลพร้อมวิธีแก้ และขั้นสร้างลิงก์ขึ้นว่ายังไม่ได้ตั้งค่า"],
     ["1.433","2026-10-12","UX โหลดจาก Google Drive บอกความคืบหน้า (ผู้ใช้: ทำไมฝั่ง Production นานจัง — จอค้าง “กำลังเตรียม… 0%”) — เดิมหน้าต่าง/กล่องรอนับแค่ตอนแกะไฟล์ ช่วงดาวน์โหลดจาก Drive (เครื่องใหม่ · ไฟล์ใหญ่) แถบไม่ขยับดูเหมือนค้าง · ตอนนี้ขึ้น “ดาวน์โหลดจาก Google Drive · x / y MB · n/m ไฟล์” ทุก 0.4 วิ (GasFS 1.2 นับไบต์ระหว่างรับ) · ตัวเชื่อมใช้ร่วมกับ Production V2 v178"],
@@ -10143,9 +10144,36 @@ async function addShelf(){
    และอยู่ช่องกว้างเดียวกัน (ซ้อนกันแนวกว้างเกินครึ่ง) · ขอบช่อง = แผ่นนอนที่ไม่ใช่ชั้นปรับ (พื้น ฝาบน ชั้นตาย)
    วัดถึง กึ่งกลางชั้น = ศูนย์ห่างเท่ากัน (ช่องบน/ล่างสุดใสกว่าครึ่งความหนา) · ผิวชั้น = ช่องใสเท่ากันทุกช่อง
    ย้ายแล้วเจาะรูพินใหม่ ราวแขวนใต้ชั้นตามไป · ตู้หมุนคิดในแกนตรงผ่าน runCabAligned */
-let _shelfEqRef="กึ่งกลางชั้น";
-async function spaceShelvesEqual(b){
-  if(!b||b.orient!=="flat"||b._door||b._virtual||!isAdjShelf(b)){ toast("คลิกเลือกชั้นปรับก่อน"); return; }
+/* ───────── v1.436: จัดชั้นห่างเท่ากัน — ทำกับชั้นตายได้ด้วย + สั่งจากชิ้นไหนในตู้ก็ได้ ─────────
+   ผู้ใช้ 12/10/2026 15:33 “อยากได้ ช่องๆ เท่ากันตู้ใบนี้เพิ่มคำสั่งได้ไหม” (ไฟล์ 49 ตู้ JMO001: ชั้นตาย 2 แผ่น ช่องใส 271.1 / 267.1 / 267.0
+   ต้องลากเองทีละแผ่น) · เดิม (v1.269) จับเฉพาะชั้นปรับ — คลิกชั้นตายขึ้น “คลิกเลือกชั้นปรับก่อน” ชั้นตายเป็นขอบช่องเสมอ เมนูคลิกขวาไม่โชว์
+   ตอนนี้:
+     · ชั้น = แผ่นนอนชื่อมี shelf/ชั้น (ชั้นตาย + ชั้นปรับ) ไม่นับเส้นนำ บาน คาน ราวแขวน อุปกรณ์ · ขอบช่อง = แผ่นนอนที่ไม่ใช่ชั้น (พื้น ฝาบน คาน)
+     · คลิกชั้นตาย = จัดทุกชั้นในช่องนั้น · คลิกชั้นปรับ = แบบเดิม (ชั้นตายเป็นขอบ) ถ้าในช่องมีชั้นตายด้วย มีให้เลือก “ทุกชั้นในช่อง”
+     · คลิกชิ้นอื่นในตู้ (แผ่นข้าง พื้น ฝาบน บาน) = ใช้ชั้นของตู้ใบนั้น (แผ่นข้าง → ชั้นที่ชนแผ่นนั้นก่อน · เอาชั้นล่างสุดเป็นตัวตั้ง)
+     · ช่องที่มีชั้นตาย ตั้งต้นวัด “ผิวชั้น (ช่องใสเท่ากัน)” (ถ้ารอบนี้ยังไม่ได้เลือกเอง) — ช่องเท่ากัน = ช่องใสเท่ากัน
+     · ชั้นตายที่ย้าย: ปลดล็อกระยะอ้างอิง (_datum) + ล้างรูคู่เดือย/มินิฟิก/สกรูที่มันเจาะไว้บนแผ่นอื่น แล้วยิงใหม่ตรงตำแหน่งใหม่ (drillMates)
+       ไม่ทำ = รูคู่เก่าค้างผิดที่ (ตัวล้างรูกำพร้า v21.5 ทิ้งเฉพาะรูที่ต้นทางย้ายไกลเกินระยะเอื้อมของเดือย ย้ายไม่กี่มิลไม่จับ)
+   ปิดได้: SN_OFF.shelfEqFixed=1 */
+function isEqShelf(b){ return !!(b&&b.orient==="flat"&&(+b.T||0)>0&&!b._door&&!b._virtual&&!b._dx&&!b._hangRail&&!b._fitPart&&!isRail(b)
+  &&(isAdjShelf(b)||(!snOff("shelfEqFixed")&&/shelf|ชั้น/i.test(b.name||"")&&!/guide/i.test(b.name||"")))); }
+/* ชั้นตัวตั้งเมื่อสั่งจากชิ้น t · null = สั่งไม่ได้ (ตู้นี้ไม่มีชั้น) */
+function shelfEqPick(t){
+  if(!t) return null;
+  if(t.orient==="flat"&&!t._door&&!t._virtual&&isAdjShelf(t)) return t;
+  if(isEqShelf(t)) return t;
+  if(snOff("shelfEqFixed")||!t.cabInst) return null;
+  const sh=state.boards.filter(x=>x&&x.cabInst===t.cabInst&&isEqShelf(x));
+  if(!sh.length) return null;
+  let cand=sh;
+  if(t.orient==="side"){ const d=worldDims(t), x0=t.x-d[0]/2, x1=t.x+d[0]/2;
+    const touch=sh.filter(q=>{ const e=worldDims(q), q0=q.x-e[0]/2, q1=q.x+e[0]/2; return Math.abs(q0-x1)<=3||Math.abs(q1-x0)<=3; });
+    if(touch.length) cand=touch; }
+  return cand.slice().sort((a,c)=>a.y-c.y)[0]; }
+let _shelfEqRef="กึ่งกลางชั้น", _shelfEqRefSet=false;   // v1.436: _shelfEqRefSet = รอบนี้ผู้ใช้เลือกวิธีวัดเองแล้ว
+async function spaceShelvesEqual(b0){
+  const b=shelfEqPick(b0);   // v1.436: ชั้นตาย / ชิ้นอื่นในตู้ → ชั้นตัวตั้ง
+  if(!b){ toast(snOff("shelfEqFixed")?"คลิกเลือกชั้นปรับก่อน":"ตู้นี้ยังไม่มีชั้น — คลิกเลือกชั้น หรือชิ้นในตู้ที่มีชั้น"); return; }
   if(isLocked()){ guardEdit("จัดชั้น"); return; }
   const inst=b.cabInst; if(!inst){ toast("ไม่พบตู้ของชั้นนี้"); return; }
   if(cabYawOf(inst)) return runCabAligned(inst,()=>spaceShelvesEqual(b));
@@ -10156,20 +10184,33 @@ async function spaceShelvesEqual(b){
     return ox>Math.min(bd[0],d[0])*0.5 && oz>Math.min(bd[2],d[2])*0.3; };
   const flats=carc.filter(x=>x.orient==="flat"&&(+x.T||0)>0&&sameCol(x)).sort((a,c)=>a.y-c.y);
   const i0=flats.indexOf(b); if(i0<0){ toast("หาช่องของชั้นนี้ไม่เจอ"); return; }
-  let lo=i0, hi=i0;
-  while(lo-1>=0&&isAdjShelf(flats[lo-1])) lo--;
-  while(hi+1<flats.length&&isAdjShelf(flats[hi+1])) hi++;
-  const below=flats[lo-1], above=flats[hi+1];
-  if(!below||!above){ toast("หาแผ่นพื้น/แผ่นบนของช่องนี้ไม่เจอ — ต้องมีแผ่นนอนที่ไม่ใช่ชั้นปรับทั้งบนและล่าง"); return; }
-  const grp=flats.slice(lo,hi+1);
-  const cLo=below.y+worldDims(below)[1]/2, cHi=above.y-worldDims(above)[1]/2, H=cHi-cLo;
-  const Ts=grp.map(x=>+x.T||0), sumT=Ts.reduce((a,v)=>a+v,0);
-  if(!(H>sumT+10)){ toast("ช่องสูง "+fmt(H)+" มม. ไม่พอให้ชั้น "+grp.length+" แผ่น"); return; }
-  const v=await promptFields("จัดชั้นปรับให้ห่างเท่ากัน — "+grp.length+" ชั้น · ช่องสูง "+fmt(H)+" มม. (ใต้ "+(above.name||"แผ่นบน")+" ถึงบน "+(below.name||"แผ่นล่าง")+")",[
-    {key:"ref",label:"วัดระยะถึง",type:"toggle",options:["กึ่งกลางชั้น","ผิวชั้น (ช่องใสเท่ากัน)"],value:_shelfEqRef},
-    {key:"snap",label:"ลงระยะรูระบบ 32 มม.",type:"toggle",options:["ไม่ (เท่ากันเป๊ะ)","ใช่ (ตามรู 32 จากพื้นตู้)"],value:"ไม่ (เท่ากันเป๊ะ)"}]);
+  /* v1.436: ช่วงชั้นติดกันในช่อง — ชั้นปรับอย่างเดียว (แบบเดิม) หรือทุกชั้น (ชั้นตาย + ชั้นปรับ) */
+  const runOf=fn=>{ let lo=i0, hi=i0; while(lo-1>=0&&fn(flats[lo-1])) lo--; while(hi+1<flats.length&&fn(flats[hi+1])) hi++; return {lo,hi}; };
+  const zoneOf=r=>{ const below=flats[r.lo-1], above=flats[r.hi+1], grp=flats.slice(r.lo,r.hi+1);
+    if(!below||!above) return {grp,err:"หาแผ่นพื้น/แผ่นบนของช่องนี้ไม่เจอ — ต้องมีแผ่นนอนที่ไม่ใช่ชั้นทั้งบนและล่าง"};
+    const cLo=below.y+worldDims(below)[1]/2, cHi=above.y-worldDims(above)[1]/2, H=cHi-cLo;
+    const Ts=grp.map(x=>+x.T||0), sumT=Ts.reduce((a,v)=>a+v,0);
+    if(!(H>sumT+10)) return {grp,err:"ช่องสูง "+fmt(H)+" มม. ไม่พอให้ชั้น "+grp.length+" แผ่น"};
+    return {grp,below,above,cLo,cHi,H,Ts,sumT,fixed:grp.some(x=>!isAdjShelf(x))}; };
+  const selAdj=isAdjShelf(b);
+  const zAdj=selAdj?zoneOf(runOf(isAdjShelf)):null, zAll=snOff("shelfEqFixed")?null:zoneOf(runOf(isEqShelf));
+  const both=!!(selAdj&&zAll&&zAll.grp.length>zAdj.grp.length&&!zAll.err);   // ชั้นปรับในช่องที่มีชั้นตายด้วย → ให้เลือก
+  const z0=(selAdj||!zAll)?zAdj:zAll;
+  if(z0.err&&!both){ toast(z0.err); return; }
+  const SC1=both?("เฉพาะชั้นปรับ ("+zAdj.grp.length+" ชั้น · ชั้นตายเป็นขอบช่อง)"):"", SC2=both?("ทุกชั้นในช่อง ("+zAll.grp.length+" ชั้น · ชั้นตาย + ชั้นปรับ)"):"";
+  const refDef=(!_shelfEqRefSet&&!z0.err&&z0.fixed)?"ผิวชั้น (ช่องใสเท่ากัน)":_shelfEqRef;
+  const fl=[];
+  if(both) fl.push({key:"scope",label:"ชั้นที่จัด",type:"toggle",options:[SC1,SC2],value:z0.err?SC2:SC1});
+  fl.push({key:"ref",label:"วัดระยะถึง",type:"toggle",options:["กึ่งกลางชั้น","ผิวชั้น (ช่องใสเท่ากัน)"],value:refDef},
+    {key:"snap",label:"ลงระยะรูระบบ 32 มม.",type:"toggle",options:["ไม่ (เท่ากันเป๊ะ)","ใช่ (ตามรู 32 จากพื้นตู้)"],value:"ไม่ (เท่ากันเป๊ะ)"});
+  const ttl=both?("จัดชั้นให้ห่างเท่ากัน — ตู้ "+(b.cab||"")+" (ช่องนี้มีทั้งชั้นปรับและชั้นตาย)")
+    :((z0.fixed?"จัดชั้นให้ห่างเท่ากัน — ":"จัดชั้นปรับให้ห่างเท่ากัน — ")+z0.grp.length+" ชั้น · ช่องสูง "+fmt(z0.H)+" มม. (ใต้ "+(z0.above.name||"แผ่นบน")+" ถึงบน "+(z0.below.name||"แผ่นล่าง")+")");
+  const v=await promptFields(ttl,fl);
   if(!v) return;
-  _shelfEqRef=String(v.ref||_shelfEqRef);
+  _shelfEqRef=String(v.ref||_shelfEqRef); _shelfEqRefSet=true;
+  const zz=(both&&String(v.scope||"")===SC2)?zAll:z0;
+  if(zz.err){ toast(zz.err); return; }
+  const {grp,cLo,cHi,H,Ts,sumT}=zz;
   const byFace=/^ผิว/.test(_shelfEqRef), n=grp.length;
   let ys=[];
   if(byFace){ const g=(H-sumT)/(n+1); let acc=cLo; grp.forEach((x,k)=>{ acc+=g; ys.push(acc+Ts[k]/2); acc+=Ts[k]; }); }
@@ -10178,22 +10219,30 @@ async function spaceShelvesEqual(b){
     const hz=horizRefsOf(groupOf(b)); const base=hz.length?(hz[0].y+(hz[0].T||18)/2):cLo;
     ys=ys.map((y,k)=>{ const t=Ts[k]; let yb=base+Math.round((y-t/2-base)/32)*32;
       yb=Math.max(cLo,Math.min(cHi-t,yb)); return yb+t/2; }); }
-  let moved=0, unlocked=0;
+  let moved=0, unlocked=0; const reMate=[];
   grp.forEach((x,k)=>{ const ny=round(ys[k]);
     if(Math.abs(ny-x.y)<0.05) return;
     x.y=ny; moved++;
     if(x._datum){ delete x._datum; unlocked++; }                       // ล็อกระยะอ้างอิงจะดึงชั้นกลับที่เดิม
-    const inf=shelfCabInfo(x);
-    state.boards.forEach(o=>{ if(o.holes) o.holes=o.holes.filter(h=>!(h&&h.pin&&h.src===x.id)); });
-    if(inf&&inf.sides&&inf.sides.length) shelfDrillPins(x,inf.sides); });
+    if(isAdjShelf(x)){                                                 // ชั้นปรับ: รูพินใหม่ (แบบเดิม)
+      const inf=shelfCabInfo(x);
+      state.boards.forEach(o=>{ if(o.holes) o.holes=o.holes.filter(h=>!(h&&h.pin&&h.src===x.id)); });
+      if(inf&&inf.sides&&inf.sides.length) shelfDrillPins(x,inf.sides); }
+    else {                                                             // v1.436: ชั้นตาย — ล้างรูคู่ที่มันเจาะไว้ แล้วยิงใหม่ด้านล่าง
+      state.boards.forEach(o=>{ if(o!==x&&o.holes) o.holes=o.holes.filter(h=>!(h&&h.src===x.id&&(h.dowel||h.screw)&&!h.manual&&!h.pin)); });
+      if((x.connectors||[]).length) reMate.push(x); } });
   try{ relayHangRails(inst); }catch(e){ console.error("relayHangRails:",e); }
+  let reHoles=0;
+  if(reMate.length){ try{ render3D(false); reMate.forEach(x=>{ try{ reHoles+=(drillMates(x).added||0); }catch(e){ console.error("shelfEq drillMates:",e); } }); }catch(e){ console.error("shelfEq remate:",e); } }
   sync(0);
   const gaps=[]; { let prev=cLo; grp.forEach(x=>{ const t=+x.T||0; gaps.push(round((x.y-t/2)-prev)); prev=x.y+t/2; }); gaps.push(round(cHi-prev)); }
   const cc=[]; { let prev=cLo; grp.forEach(x=>{ cc.push(round(x.y-prev)); prev=x.y; }); cc.push(round(cHi-prev)); }
-  const _msg=(moved?("จัดชั้นปรับ "+n+" ชั้นแล้ว"):"ชั้นอยู่ห่างเท่ากันอยู่แล้ว")
+  const _fx=grp.some(x=>!isAdjShelf(x));   // v1.436
+  const _msg=(moved?((_fx?"จัดชั้น ":"จัดชั้นปรับ ")+n+" ชั้นแล้ว"):"ชั้นอยู่ห่างเท่ากันอยู่แล้ว")
     +" · ศูนย์ชั้น (ล่าง→บน) "+cc.map(x=>fmt(x)).join(" / ")
     +" · ช่องใส "+gaps.map(x=>fmt(x)).join(" / ")+" มม."
-    +(unlocked?(" · ปลดล็อกระยะอ้างอิง "+unlocked+" ชั้น"):"");
+    +(unlocked?(" · ปลดล็อกระยะอ้างอิง "+unlocked+" ชั้น"):"")
+    +(reMate.length?(" · เจาะรูคู่เดือย/มินิฟิกใหม่ "+reHoles+" รู"):"");
   setTimeout(()=>toast(_msg),0);   // หลัง commit (บานพับหลบชั้นขึ้นข้อความของมันก่อน ข้อความนี้จึงไม่ถูกทับ · ทั้งคู่อยู่ในบันทึกแจ้งเตือน)
 }
 // เพิ่มแผ่นหลังในช่องที่เลือก — แบ่งช่องด้วยชั้น(แนวสูง)/เสา-ตั้ง(แนวกว้าง)ก่อน แล้วเลือกช่องวางแผ่นหลังพอดีช่อง
@@ -15578,6 +15627,43 @@ function mdBoxOf(id){
   const c=new THREE.Vector3(+b.x||0,+b.y||0,+b.z||0).applyMatrix4(root.matrixWorld);
   const o=c.clone().addScaledVector(e[0],-.5).addScaledVector(e[1],-.5).addScaledVector(e[2],-.5);
   return {o,e,lab}; }
+/* ───────── v1.436: ไม้วัด 📦 ขนาดชิ้น — คลิกแผ่นข้าง ขึ้นช่องใสระหว่างแผ่นที่มาชนด้วย ─────────
+   ผู้ใช้ 12/10/2026 15:33 “เครื่องมือวัด มีแบบกดแผ่นข้าง ขึ้น Dim ได้ไหม ผมมานั่งวัดเอามันช้า” (รูปที่ส่งมา: 📏 วัด 2 จุดทีละช่อง 271.1 / 267.1 / 267.0)
+   เดิม: 📦 ขนาดชิ้นบอกแค่ ยาว/กว้าง/หนา ของชิ้นที่คลิก · ช่องใสระหว่างชั้นต้องวัด 2 จุดเองทีละช่อง
+   ตอนนี้: แผ่นที่มาชนผิวของชิ้นที่คลิก (แผ่นนอน/แผ่นตั้งที่ตั้งฉาก ชิดผิว ≤ 2 มม. หรือฝังร่อง ≤ 12 มม. อยู่ในตู้เดียวกัน)
+         → เส้นโซ่ช่องใสตามแนวของแผ่นที่ชน: ปลายชิ้น → ผิวแผ่นที่ชน → … → ปลายอีกด้าน (ช่วงปลายที่เป็น 0 ไม่ขึ้น)
+         วางลอยเข้าไปในช่อง 30 มม. ที่ขอบฝั่งใกล้กล้อง · สีฟ้า (ขนาดชิ้นยังเป็นสีส้ม) · แถบล่างต่อท้าย “ช่องใส ล่าง→บน …”
+         ไม่นับ บาน เส้นนำ อุปกรณ์ ราวแขวน ชิ้นที่ซ่อน และแผ่นแนวหน้า (แผ่นหลัง/หน้าบาน = ระยะแนวลึก ไม่ใช่ช่อง)
+         คิดจากตำแหน่งจริง — ตอนแยกประกอบไม่ขึ้น · ตู้ที่หมุนเฉียง (ไม่ใช่ทีละ 90°) ไม่ขึ้น
+   ปิดได้: SN_OFF.mdGaps=1 */
+const MD_GC="#1C7ED6";
+function mdGapChains(id){
+  if(snOff("mdGaps")||state.view!=="assembled"||(+state.explode||0)>0) return [];
+  const P=state.boards.find(x=>x&&x.id===id); if(!P||P._virtual||((+P.yaw||0)%90)) return [];
+  const d=worldDims(P), c=[+P.x||0,+P.y||0,+P.z||0];
+  const ax=[0,1,2].reduce((a,i)=>d[i]<d[a]?i:a,0), oth=[0,1,2].filter(i=>i!==ax);
+  if(!(d[ax]>0)||d[ax]>0.5*Math.min(d[oth[0]],d[oth[1]])) return [];          // ไม่ใช่แผ่น
+  const hid=new Set(state.hidden||[]);
+  const lo=i=>c[i]-d[i]/2, hi=i=>c[i]+d[i]/2, ov=(a0,a1,b0,b1)=>Math.min(a1,b1)-Math.max(a0,b0);
+  const groups={};
+  state.boards.forEach(q=>{
+    if(!q||q===P||(P.cabInst&&q.cabInst!==P.cabInst)||q._door||q._virtual||q._fitPart||q._hangRail||hid.has(q.id)) return;
+    if((q.orient!=="flat"&&q.orient!=="side")||((+q.yaw||0)%90)||!((+q.T||0)>0)) return;
+    const e=worldDims(q), qc=[+q.x||0,+q.y||0,+q.z||0], qlo=i=>qc[i]-e[i]/2, qhi=i=>qc[i]+e[i]/2;
+    const k=[0,1,2].reduce((a,i)=>e[i]<e[a]?i:a,0); if(k===ax) return;      // ขนานกัน ไม่ใช่แผ่นที่มาชน
+    const sP=qlo(ax)-hi(ax), sN=lo(ax)-qhi(ax); let side=0;
+    if(sP>=-12&&sP<=2&&qhi(ax)>hi(ax)+5) side=1; else if(sN>=-12&&sN<=2&&qlo(ax)<lo(ax)-5) side=-1;
+    if(!side) return;
+    if(ov(qlo(k),qhi(k),lo(k),hi(k))<e[k]*0.5) return;                       // อยู่ในช่วงยาวของชิ้น
+    const m=3-ax-k; if(ov(qlo(m),qhi(m),lo(m),hi(m))<Math.min(e[m],d[m])*0.3) return;
+    const key=side+":"+k; (groups[key]=groups[key]||{side,k,m,iv:[]}).iv.push([qlo(k),qhi(k)]); });
+  const words=["ซ้าย→ขวา","ล่าง→บน","หลัง→หน้า"];
+  return Object.keys(groups).map(key=>{ const g=groups[key], mg=[];
+    g.iv.sort((a,b)=>a[0]-b[0]).forEach(v=>{ const L=mg[mg.length-1]; if(L&&v[0]<=L[1]+0.05) L[1]=Math.max(L[1],v[1]); else mg.push(v.slice()); });
+    const segs=[]; let prev=lo(g.k); mg.forEach(v=>{ segs.push([prev,v[0]]); prev=v[1]; }); segs.push([prev,hi(g.k)]);
+    const keep=segs.filter((sg,i)=>{ const L=sg[1]-sg[0]; return (i===0||i===segs.length-1)?L>=0.5:L>0.05; });
+    return {side:g.side,k:g.k,m:g.m,ax,segs:keep,n:mg.length,words:words[g.k],face:g.side>0?hi(ax):lo(ax),mLo:lo(g.m),mHi:hi(g.m)};
+  }).filter(ch=>ch.n>=1&&ch.segs.length>=1); }
 function mdPaint(cam){
   const el=renderer&&renderer.domElement; if(!el) return;
   const ids=MD.ids.filter(id=>state.boards.some(b=>b&&b.id===id));
@@ -15634,6 +15720,28 @@ function mdPaint(cam){
       info='<b style="color:var(--ink)">'+escapeHtml(String(b.name||b.id))+'</b>'+(b.cab?' <span class="muted">· '+escapeHtml(String(b.cab))+'</span>':'')
         +' · ยาว <b style="color:var(--ink)">'+g("ยาว")+'</b> × กว้าง <b style="color:var(--ink)">'+g("กว้าง")+'</b> × หนา <b style="color:var(--ink)">'+g("หนา")+'</b> มม.'
         +(ids.length>1?' <span class="muted">· เลือกไว้ '+ids.length+' ชิ้น</span>':''); } });
+  /* v1.436: โซ่ช่องใสของแผ่นที่มาชน (ดู mdGapChains) — วาดทับขนาดชิ้น · แถบล่างต่อท้ายของชิ้นล่าสุด */
+  try{ if(ids.length&&ids.length<=4){ root.updateMatrixWorld();
+    const camP=new THREE.Vector3().setFromMatrixPosition(cam.matrixWorld);
+    ids.forEach((id,n)=>{ const chs=mdGapChains(id); if(!chs.length) return; const txt=[];
+      chs.forEach(ch=>{
+        const mk=(t,mv)=>{ const v=[0,0,0]; v[ch.ax]=ch.face+ch.side*30; v[ch.k]=t; v[ch.m]=mv; return new THREE.Vector3(v[0],v[1],v[2]).applyMatrix4(root.matrixWorld); };
+        const t0=ch.segs[0][0], t1=ch.segs[ch.segs.length-1][1], tm=(t0+t1)/2;
+        const mv=(mk(tm,ch.mLo).distanceTo(camP)<mk(tm,ch.mHi).distanceTo(camP))?ch.mLo:ch.mHi;   // ขอบฝั่งใกล้กล้อง
+        const A0=P(mk(t0,mv)), B0=P(mk(t1,mv)); if(!A0||!B0) return;
+        let g='<path d="'+seg(A0,B0)+'" stroke="'+MD_GC+'" stroke-width="1" stroke-dasharray="2 3" opacity=".6" fill="none"/>', tg="";
+        ch.segs.forEach(sg=>{ const A=P(mk(sg[0],mv)), B=P(mk(sg[1],mv)); if(!A||!B) return;
+          const dx=B[0]-A[0], dy=B[1]-A[1], L=Math.hypot(dx,dy); if(L<1) return;
+          const nx=-dy/L, ny=dx/L, T=6;
+          const path=seg(A,B)+seg([A[0]+nx*T,A[1]+ny*T],[A[0]-nx*T,A[1]-ny*T])+seg([B[0]+nx*T,B[1]+ny*T],[B[0]-nx*T,B[1]-ny*T]);
+          g+='<path d="'+path+'" stroke="'+halo+'" stroke-width="4" fill="none" stroke-linecap="round"/><path d="'+path+'" stroke="'+MD_GC+'" stroke-width="1.8" fill="none" stroke-linecap="round"/>';
+          if(L>=18){ const t=String(mm1(sg[1]-sg[0])), fs=12.5, tw=t.length*fs*0.62+12, th2=fs+8, cx=(A[0]+B[0])/2, cy=(A[1]+B[1])/2;
+            tg+='<g class="mdGapTag" transform="translate('+f1(cx)+' '+f1(cy)+')"><title>ช่องใส</title><rect x="'+f1(-tw/2)+'" y="'+f1(-th2/2)+'" width="'+f1(tw)+'" height="'+th2+'" rx="5" fill="#0b3a66" stroke="'+MD_GC+'" stroke-width="1.5"/>'
+              +'<text y="0.5" text-anchor="middle" dominant-baseline="central" fill="#fff" font-size="'+fs+'" font-weight="700" font-family="system-ui,Sarabun,sans-serif">'+escapeHtml(t)+'</text></g>'; } });
+        out+=g+tg;
+        const sw=[["ซ้าย","ขวา"],["ใต้","บน"],["หลัง","หน้า"]][ch.ax][ch.side>0?1:0];
+        txt.push((chs.length>1?("ฝั่ง"+sw+" "):"")+ch.words+' <b style="color:var(--ink)">'+ch.segs.map(sg=>mm1(sg[1]-sg[0])).join(" / ")+'</b>'); });
+      if(n===ids.length-1&&txt.length) info+=' · <span style="color:'+MD_GC+'">ช่องใส '+txt.join(" · ")+' มม.</span>'; }); } }catch(e){ console.error("mdGap:",e); }
   svg.innerHTML=out;
   if(info!==MD.info){ MD.info=info; const ie=MD.hud&&MD.hud.querySelector("#mdInfo"); if(ie&&ids.length) ie.innerHTML=info; } }
 /* แถบลอยด้านล่างตอนอยู่ในไม้วัด: สลับ ขนาดชิ้น ⇄ วัด 2 จุด + บอกขนาดชิ้นล่าสุด */
@@ -15644,7 +15752,7 @@ function mdHud(){
     h.style.cssText="position:fixed;left:50%;bottom:calc(var(--sb) + 16px);transform:translateX(-50%);z-index:45;display:flex;align-items:center;gap:10px;"
       +"padding:5px 12px 5px 5px;background:var(--panel-strong);-webkit-backdrop-filter:blur(26px) saturate(1.8);backdrop-filter:blur(26px) saturate(1.8);"
       +"border:.5px solid var(--line-strong);border-radius:12px;box-shadow:var(--shadow);max-width:min(94vw,820px);font-size:12.5px";
-    h.innerHTML='<div class="seg" id="mdSeg"><button type="button" data-m="part" title="คลิกชิ้นไหน ขึ้นขนาดชิ้นนั้น · Ctrl+คลิก = หลายชิ้น">📦 ขนาดชิ้น</button>'
+    h.innerHTML='<div class="seg" id="mdSeg"><button type="button" data-m="part" title="คลิกชิ้นไหน ขึ้นขนาดชิ้นนั้น · คลิกแผ่นข้าง = ช่องใสระหว่างชั้น (สีฟ้า) · Ctrl+คลิก = หลายชิ้น">📦 ขนาดชิ้น</button>'
       +'<button type="button" data-m="pts" title="คลิก 2 จุดเพื่อวัดระยะ (สแนปมุม · กลางขอบ · ผิว)">📏 วัด 2 จุด</button></div>'
       +'<div id="mdInfo" style="min-width:0;color:var(--ink-dim);white-space:nowrap;overflow:hidden;text-overflow:ellipsis"></div>';
     h.querySelectorAll("#mdSeg button").forEach(b=>b.onclick=()=>mdSetMode(b.dataset.m));
@@ -15652,8 +15760,8 @@ function mdHud(){
   h.style.display="flex";
   const m=mdMode(); h.querySelectorAll("#mdSeg button").forEach(b=>b.classList.toggle("sel",b.dataset.m===m));
   const ie=h.querySelector("#mdInfo");
-  if(m==="pts") ie.innerHTML="คลิกจุดที่ 1 แล้วจุดที่ 2 · สแนปมุม / กลางขอบ / ผิว";
-  else if(!MD.ids.length) ie.innerHTML="คลิกชิ้นเพื่อดูขนาด · Ctrl+คลิก = หลายชิ้น · คลิกที่ว่าง = ล้าง";
+  if(m==="pts") ie.innerHTML="คลิกจุดที่ 1 แล้วจุดที่ 2 · สแนปมุม / กลางขอบ / ผิว · วัดช่องระหว่างชั้น: กด 📦 ขนาดชิ้น แล้วคลิกแผ่นข้าง";   // v1.436
+  else if(!MD.ids.length) ie.innerHTML="คลิกชิ้นเพื่อดูขนาด · คลิกแผ่นข้าง = ช่องใสระหว่างชั้น · Ctrl+คลิก = หลายชิ้น · คลิกที่ว่าง = ล้าง";   // v1.436
   else { MD.info=""; ie.innerHTML="…"; }                               // ขนาดจริงเติมให้ตอนวาดเฟรมถัดไป
 }
 function startMove(id,e,hit){
@@ -17696,7 +17804,8 @@ function showInspector(){
         <div style="font-size:11px;opacity:.6;margin-top:4px">ชั้นปรับ — ร่นแต่ละด้าน + ระดับรู + เลื่อนชั้นเป็นจำนวนรู (บวก=ขึ้น ลบ=ลง · รูละ ${settings.pinPitch||32} มม.) แล้วกด "ใช้" → ชั้นย้าย + เจาะรูพินใหม่ตามตำแหน่งใหม่</div>`; })()
       :`<div style="display:flex;gap:6px;align-items:center"><span style="font-size:12px;opacity:.85;min-width:62px">ร่นจากหน้า</span><input type="number" id="f_setback" class="nameinp" value="${Math.round(b.setback||0)}" style="width:90px;font-family:var(--mono)"><span style="font-size:11px;opacity:.6">มม.</span><button class="ibtn" id="f_setbackApply" style="margin-left:auto;background:var(--accent);color:#fff;border-color:transparent">ใช้</button></div>
       <div style="display:flex;gap:6px;align-items:center;margin-top:6px"><span style="font-size:12px;opacity:.85;min-width:62px">🔒 ล็อคลึก</span><input type="number" id="f_depthFix" class="nameinp" value="${Math.round((b.shelfInset&&b.shelfInset.depthFix)||0)}" style="width:90px;font-family:var(--mono)"><span style="font-size:11px;opacity:.6">มม. · 0=ปลด</span><button class="ibtn" id="f_depthFixApply" style="margin-left:auto">ใช้</button></div>
-      <div style="font-size:11px;opacity:.6;margin-top:3px;line-height:1.5">ล็อคลึก = ชั้นลึกคงที่อิงผิวในแผ่นหลัง (เช่น 450) ไม่ยืดตามตู้ตอนปรับขนาด — สำหรับชุดลิ้นชักภายใน/ราวแขวน</div>      <div class="ibtns" style="margin-top:6px"><button class="ibtn" id="f_hangRail" style="flex:1">🧷 ใส่ราวแขวนผ้าใต้ชั้นนี้ (Ø8 ทะลุ + Ø13×2)</button></div>`}
+      <div style="font-size:11px;opacity:.6;margin-top:3px;line-height:1.5">ล็อคลึก = ชั้นลึกคงที่อิงผิวในแผ่นหลัง (เช่น 450) ไม่ยืดตามตู้ตอนปรับขนาด — สำหรับชุดลิ้นชักภายใน/ราวแขวน</div>      ${(!b._virtual&&!snOff("shelfEqFixed"))?`<button class="ibtn" id="f_shelfEq" style="width:100%;margin-top:6px" title="จัดทุกชั้นในช่องนี้ให้ช่องเท่ากัน · เดือย/มินิฟิกเจาะใหม่ให้">↕ จัดชั้นในช่องนี้ให้ห่างเท่ากัน…</button>`:""}<!-- v1.436 -->
+      <div class="ibtns" style="margin-top:6px"><button class="ibtn" id="f_hangRail" style="flex:1">🧷 ใส่ราวแขวนผ้าใต้ชั้นนี้ (Ø8 ทะลุ + Ø13×2)</button></div>`}
       </div>`:""}
     <div class="fld"><label>Connector / เดือย (${(b.connectors||[]).length})</label>
       <div class="ibtns"><button class="ibtn" id="f_conn">＋ เดือย</button><button class="ibtn" id="f_hinge">＋ บานพับ</button><button class="ibtn" id="f_mate" style="background:var(--accent);color:#fff;border-color:transparent">เชื่อม/ตรวจชน</button></div>
@@ -22986,6 +23095,9 @@ function boardRole(b){
      SN_OFF.sxlPollAll=1  รอบตรวจไฟล์ 10 วิ ไล่ทุกตารางแบบเดิม (v1.428)
      SN_OFF.driveOnly=1   กลับไปเลือกได้ว่าเก็บที่โฟลเดอร์ Server หรือ Google Drive แบบ 1.431 · ปุ่ม/คำบนจอกลับเป็น “ไฟล์กลาง” (v1.432)
                           (SN_OFF.gasfs / driveOnly ไม่ขึ้นกับ SN_SAFE ตั้งแต่ 1.432 — ข้อมูลอยู่บน Drive อย่างเดียวแล้ว)
+     SN_OFF.shelfEqFixed=1 จัดชั้นห่างเท่ากันทำเฉพาะชั้นปรับแบบ v1.269 (ชั้นตายเป็นขอบช่อง · คลิกชิ้นอื่นในตู้ไม่ได้) (v1.436)
+     SN_OFF.mdGaps=1      ไม้วัด 📦 ขนาดชิ้น ไม่ขึ้นโซ่ช่องใสของแผ่นที่มาชน (v1.436)
+     SN_OFF.lazyOrders=1  บันทึก Order ไม่เขียนดัชนี _changes/_idx/imos_orders (ของ Production V2 v179 — ไม่ขึ้นกับ SN_SAFE) (v1.436)
      SN_OFF.gasfs=1       ไม่มีโหมดไฟล์กลางบน Google Drive (ใช้โฟลเดอร์ในเครื่องอย่างเดียว ซ่อนส่วน ☁ Google Drive) (v1.429)
      SN_OFF.shoeRack=1    ไม่มีชั้นวางรองเท้าเหล็ก (ไม่เจาะรู ไม่วาดชั้น/พิน ไม่นับใบเบิก · ค่าที่ตั้งยังอยู่ที่แผ่นข้าง) (v1.420)
      SN_OFF.nomOverlayTop=1 กล่องปรับขนาดตู้วัดสูงจากแผ่นข้างล้วนแบบเดิม (ตู้แผ่นบนทับข้างจะเตี้ยลงทุกครั้งที่กดตกลง) (v1.420)
@@ -40699,7 +40811,11 @@ function showCtx(x,y,id){ctxTarget=id;ctxX=x;ctxY=y;const m=$("ctxMenu");
       const cur=host?hangRailsOf(host):[];
       show("#ctxHangRail", !!host);
       show("#ctxHangRailDel", cur.length>0);
-      show("#ctxShelfEq", !!(tb&&tb.orient==="flat"&&!tb._door&&!tb._virtual&&isAdjShelf(tb)));   // v1.269
+      /* v1.436: เดิมโชว์เฉพาะคลิกขวาชั้นปรับ (v1.269) — ตอนนี้ชั้นตาย หรือชิ้นไหนในตู้ที่มีชั้นก็สั่งได้ */
+      { let _se=null; try{ _se=tb?shelfEqPick(tb):null; }catch(e){}
+        show("#ctxShelfEq", !!_se);
+        const e6=m.querySelector("#ctxShelfEq span");
+        if(e6&&_se) e6.textContent=(_se===tb)?(isAdjShelf(tb)?"↕ จัดชั้นปรับในช่องนี้ให้ห่างเท่ากัน…":"↕ จัดชั้นในช่องนี้ให้ห่างเท่ากัน…"):"↕ จัดชั้นในตู้นี้ให้ช่องเท่ากัน…"; }
       const e4=m.querySelector("#ctxHangRail span");
       if(e4&&host) e4.textContent="🧷 ใส่ราวแขวนผ้าใต้"+((host===tb)?"ชิ้นนี้":(" "+(host.name||"ทอปบนสุด")))+" (Ø8 ทะลุ + Ø13×2)…";
       const e5=m.querySelector("#ctxHangRailDel span");
@@ -48780,7 +48896,7 @@ var sxlShareLan=async function(){
  document.body.appendChild(ov);
  ov.onclick=e=>{const a=e.target&&e.target.dataset&&e.target.dataset.a;if(e.target===ov||a==="x")ov.remove();else if(a==="c"){try{navigator.clipboard.writeText(link);toast("คัดลอกลิงก์แล้ว")}catch(_){}}else if(a==="o")window.open(link,"_blank")}};
 /* ═══════════════════════════════════════════════════════════════════════
-   GasFS 1.2 (2026-10-12) — โฟลเดอร์ Server เสมือนบน Google Drive ผ่าน Apps Script (StarNexus DB 0.3+)
+   GasFS 1.3 (2026-10-12) — โฟลเดอร์ Server เสมือนบน Google Drive ผ่าน Apps Script (StarNexus DB 0.3+)
 
    ใช้ร่วมกันใน StarNexus และ Production V2: ทั้งสองโปรแกรมอ่าน/เขียนโฟลเดอร์ Server ผ่าน
    File System Access API (getDirectoryHandle / getFileHandle / entries / getFile / createWritable / removeEntry)
@@ -48796,7 +48912,7 @@ var sxlShareLan=async function(){
    ═══════════════════════════════════════════════════════════════════════ */
 var GasFS = (function () {
   'use strict';
-  var VER = '1.2';
+  var VER = '1.3';
   var PART = 4000000;          // base64 เกินนี้ แบ่งชิ้นอัปโหลด
   var BATCH_MS = 15, BATCH_OPS = 40, BATCH_BYTES = 6000000;
   var LIST_TTL = 1500;         // รายการโฟลเดอร์เดียวกันที่ขอซ้ำภายในเวลานี้ ใช้ของเดิม (กันไล่ซ้ำในรอบเดียว)
@@ -49169,7 +49285,11 @@ var GasFS = (function () {
   };
   DirH.prototype.entries = async function* () {
     var L = await this._fs.list(this._p), fs = this._fs, p = this._p;
-    var dirs = Array.from(L.dirs), files = Object.keys(L.files);
+    /* GasFS 1.3: ไฟล์ที่เพิ่งสร้างแต่ยังเขียนไม่เสร็จ (รอส่งขึ้น Drive) ไม่โชว์ในรายการ
+       เดิม: รอบตรวจ 10 วิ เห็นชื่อไฟล์ใหม่ระหว่างที่ตัวเขียนยังส่งไม่เสร็จ (ไฟล์ใหญ่ส่งหลายวินาที) อ่านได้ไฟล์ว่าง
+       → “อ่าน app_settings …json ไม่ได้ — Unexpected end of JSON input ×3” (ผู้ใช้ 12/10/2026 15:33 ถามว่าเตือนอะไร) · ข้อมูลไม่เสีย แต่เตือนให้ตกใจ
+       ตอนนี้: ข้ามไฟล์ที่ยังรอเขียน (เปิดด้วยชื่อตรง ๆ ยังได้เหมือนเดิม) */
+    var dirs = Array.from(L.dirs), files = Object.keys(L.files).filter(function (n) { return !L.files[n].local; });
     for (var i = 0; i < dirs.length; i++) yield [dirs[i], new DirH(fs, join(p, dirs[i]), dirs[i])];
     for (var j = 0; j < files.length; j++) yield [files[j], new FileH(fs, p, files[j])];
   };
@@ -49416,10 +49536,13 @@ function gasLs(k,v){ try{ if(v===undefined) return localStorage.getItem(k); if(v
           /* โหลดไฟล์ที่ยังไม่มีในเครื่องล่วงหน้าแบบขนาน (เครื่องใหม่/ไฟล์ใหม่) — ไม่รอ ตารางที่อ่านถึงก่อนจะรอไฟล์ตัวเดียวกันเอง
              เว้นตารางที่ไม่ได้โหลดเข้าโปรแกรม (imos_orders · part_index · furnitech_share) และโฟลเดอร์สำรอง */
           var _skipT={}; SXL.cfg.tables.forEach(function(T){ if(!sxlLoadable(T)) _skipT[T.t]=1; });
+          /* v1.436 / PV2 v179: Order แยกไฟล์แล้ว (ไฟล์ฐานเล็ก) = ไม่โหลดไฟล์ Order ล่วงหน้า (โหลดตอนเปิด Order) */
+          try{ var _ob=SXL.dir._fs.L['']&&SXL.dir._fs.L[''].files['imos_orders_rows.csv']; if(ordIdxOn()&&SXL.cfg.app==='Production'&&_ob&&_ob.s<2000000) _skipT.imos_orders=1; }catch(e){}
           SXL.dir._fs.prefetch(function(p,n){ if(/^_backup|^_parts/.test(p)) return false; var m=/^_changes\/([^\/]+)$/.exec(p); if(m) return !_skipT[m[1]]; return p===''&&/_rows\.csv$/i.test(n)&&!_skipT[(sxlMatchName(n)||'')]; }).catch(function(){});
         }catch(e){ console.warn('[Drive] warm',e); }
         return sxlSync(true,'restore'); });
       gasHide(); if(gasDriveOnly()) try{ gasDriveRender(); }catch(e){}
+      setTimeout(function(){ try{ ordSplitCheck(); }catch(e){} },2500);   /* v1.436 / PV2 v179 */
       sxlStatus('ใช้ Google Drive · พร้อม '+sxlReadyN()+' ตาราง'+(gasLd()?(' · '+gasLd()):''));
     }catch(e){ SXL.dirErr='Google Drive: '+(e.message||e); sxlStatus('ต่อ Google Drive ไม่ได้: '+(e.message||e),true); sxLocalSettings(); }
     gasAxAuto(false).catch(function(){});   /* v1.432: ข้อมูล Excel ของ AX (เดิม gasFgAutoCheck เฉพาะ Fitting Global) */
@@ -49439,7 +49562,8 @@ function gasLs(k,v){ try{ if(v===undefined) return localStorage.getItem(k); if(v
     if(gasDriveOnly()) try{ gasDriveRender(); }catch(e){ console.error('gasDriveRender',e); }
   };
   var _mount0=sxLocalMount;
-  sxLocalMount=function(){ _mount0.apply(this,arguments); try{ gasUiMount(); if(gasDriveOnly()){ gasDriveUi(); gasDriveRender(); } }catch(e){ console.error('gasUiMount',e); } };
+  sxLocalMount=function(){ _mount0.apply(this,arguments); try{ gasUiMount(); if(gasDriveOnly()){ gasDriveUi(); gasDriveRender(); } }catch(e){ console.error('gasUiMount',e); }
+    try{ ordInstall(); }catch(e){ console.error('ordInstall',e); } };   /* v1.436 / PV2 v179: หลังสคริปต์ทุกโมดูลโหลดครบ = ตัวห่อชั้นนอกสุด */
 })();
 
 function gasSetOn(on){ var c=GasFS.cfgGet(); c.on=!!on; GasFS.cfgSet(c); }
@@ -49986,13 +50110,13 @@ if(gasDriveOnly()){
    เดิม: หน้าต่างโหลดนับแค่ตอนแกะไฟล์ · ช่วงดาวน์โหลดจาก Drive (เครื่องใหม่ / ไฟล์ใหญ่ เช่น imos_orders ~20 MB บีบอัด) แถบไม่ขยับ ดูเหมือนค้าง
    ตอนนี้: ระหว่างมีไฟล์กำลังดาวน์โหลด ขึ้น “ดาวน์โหลดจาก Google Drive · x / y MB · n/m ไฟล์” ทุก 0.4 วิ (GasFS 1.2 นับไบต์ระหว่างรับ)
      Production V2 = บนหน้าต่าง “กำลังโหลด…” · StarNexus = กล่องรอ · ไม่มีหน้าต่าง = บรรทัดสถานะหน้า Google Drive (ถ้าเปิดอยู่) */
-var GAS_DL={base:null,last:''};
+var GAS_DL={base:null,last:'',t0:0};
 function gasMB(n){ return (Math.max(0,n)/1048576).toFixed(n>=10485760?0:1)+' MB'; }
 function gasDlState(){
   var fs=GasFS.current(); if(!fs) return null;
   var s=fs.st;
-  if(!(s.nNeed>s.nGot)){ GAS_DL.base=null; return null; }
-  if(!GAS_DL.base) GAS_DL.base={rx:s.rx,got:s.got,n:s.nGot};
+  if(!(s.nNeed>s.nGot)){ GAS_DL.base=null; gasDlChip(null); return null; }
+  if(!GAS_DL.base){ GAS_DL.base={rx:s.rx,got:s.got,n:s.nGot}; GAS_DL.t0=Date.now(); }
   var B=GAS_DL.base, total=Math.max(1,s.need-B.got), done=Math.min(total*0.99,Math.max(0,s.rx-B.rx));
   return {total:total,done:done,pct:Math.min(99,done/total*100),n:s.nGot-B.n,nAll:s.nNeed-B.n};
 }
@@ -50006,9 +50130,279 @@ function gasDlTick(){
       if(ln&&ln.textContent!==label) ln.textContent=label; if(fl) fl.style.width=d.pct.toFixed(1)+'%'; if(pc) pc.textContent=Math.floor(d.pct)+'% ดาวน์โหลด'; return; }
     if(typeof SXL!=='undefined'&&SXL._prog){ SXL._prog(label,Math.max(3,Math.min(88,d.pct*0.88))); return; }
     var P=document.getElementById('sxLocalPanel'); if(P&&P.style.display!=='none'&&label!==GAS_DL.last){ GAS_DL.last=label; sxlStatus(label); }
+    /* v1.436 / PV2 v179: ไม่มีหน้าต่างโหลด (เช่น เปิด Order ที่ยังไม่โหลด) — ป้ายเล็กกลางล่างจอ เมื่อรอเกิน 0.7 วิ */
+    if(Date.now()-GAS_DL.t0>700) gasDlChip('☁ กำลังโหลดจาก Google Drive · '+gasMB(d.done)+' / '+gasMB(d.total)+(d.nAll>1?' · '+d.n+'/'+d.nAll+' ไฟล์':''));
   }catch(e){}
 }
+function gasDlChip(t){
+  var el=document.getElementById('gasDlChip');
+  if(!t){ if(el) el.style.display='none'; return; }
+  if(!el){ el=document.createElement('div'); el.id='gasDlChip'; el.setAttribute('role','status');
+    el.style.cssText='position:fixed;left:50%;bottom:18px;transform:translateX(-50%);z-index:595;background:#172c40;color:#fff;padding:7px 14px;border-radius:99px;font:13px/1.4 system-ui,Sarabun,sans-serif;box-shadow:0 4px 16px #0005;pointer-events:none;white-space:nowrap';
+    document.body.appendChild(el); }
+  if(el.textContent!==t) el.textContent=t; el.style.display='';
+}
 setInterval(gasDlTick,400);
+
+
+/* ═════════ StarNexus v1.436 / Production V2 v179: Production โหลดเฉพาะ Order ที่เปิด ═════════
+   ผู้ใช้ 12/10/2026 14:34 “ทำไมฝั่ง Production นานจัง” → เลือก “โหลดเฉพาะออเดอร์ที่เปิด”
+   เดิม: imos_orders = ไฟล์ฐานก้อนเดียว (264 Order · ข้อมูล ~113 MB · CSV ~126 MB) + ไฟล์รุ่นใน _changes ที่โหลดทุกไฟล์
+         Production อ่านทุก Order ทั้งก้อนทุกครั้งที่เปิด (เครื่องใหม่ต้องดาวน์โหลด ~20 MB ผ่าน Apps Script · F5 ยังต้องแกะ 126 MB)
+   ตอนนี้ (หลัง “แยกไฟล์ Order” ครั้งเดียว):
+     · ไฟล์ฐาน imos_orders_rows.csv = รายชื่อเบา (order_id · loaded_at · created_by + data ที่มีแค่ป้าย source/_isManualBOM/__impMetaStr/itemIdSet
+       ขึ้นต้น {"__lazy":…}) · ข้อมูลเต็มของแต่ละ Order อยู่ในไฟล์รุ่นของมันเองใน _changes/imos_orders (รูปแบบเดิมของไฟล์กลาง)
+     · ดัชนีรายการ _changes/_idx/imos_orders/<กลุ่ม>.json (ไฟล์เล็ก) บอกป้ายของรุ่นล่าสุดแต่ละ Order → เปิดโปรแกรมไม่ต้องอ่านไฟล์ Order เลย
+       ทุกครั้งที่บันทึก Order (ทั้ง StarNexus และ Production) เขียนดัชนีตาม · ไม่มี/ไม่ตรงรุ่น = อ่านไฟล์ Order นั้นเต็มแล้วเขียนดัชนีให้ (ซ่อมเอง)
+     · คำขอที่ต้องใช้ข้อมูลเต็ม (select data / data->> ที่ไม่ใช่ป้าย) → โหลดเฉพาะ Order ที่ขอ (eq/in order_id) แล้วเติมลงแถวเดิม (วัตถุเดิม
+       ตัวเช็คว่าต้นทางแก้ (RevGuard) จึงยังจับคู่ได้) · ก่อนเขียน Order ที่ยังไม่โหลด โหลดเต็มก่อนเสมอ (กันเขียนป้ายทับข้อมูล)
+     · ปุ่ม 🧹 รวมไฟล์ _changes ไม่รวม imos_orders แล้ว (รวมกลับ = ไฟล์ก้อนใหญ่อีก) — แก้ที่โมดูล v166 ของ Production
+     · รุ่นเก่าที่ยังไม่อัปเดตยังอ่านได้ครบ (ไฟล์ฐานเบา + ไฟล์รุ่นเต็มทุก Order = แถวเต็ม) แค่ช้าเหมือนเดิม
+   ปิดได้: SN_OFF.lazyOrders=1 (อ่านทั้งก้อนแบบเดิม · ไม่เขียนดัชนี) */
+var ORD_T='imos_orders', ORD_SPLIT_TS='000000001-base', ORD_META=['source','_isManualBOM','__impMetaStr','itemIdSet'];
+/* ตัวช่วยของตัวเอง — StarNexus ไม่มีตัวอ่านเวลาในชื่อไฟล์ / ชื่อแบบ + (ของ Production v120) */
+function ordTsOf(n){ n=String(n||''); var i=n.lastIndexOf('@'); return i<0?'':n.slice(i+1,i+15); }
+function ordAsPlus(n){ return String(n).replace(/~([0-9a-f]{8})(@|$)/,'+$1$2'); }
+function ordIdxOn(){ return !gasSw('lazyOrders'); }
+function ordIsLazy(r){ return !!(r&&typeof r.data==='string'&&r.data.charCodeAt(0)===123&&r.data.lastIndexOf('{"__lazy":',0)===0); }
+function ordBaseLight(S){ return !!(S&&S.base&&S.base.length&&ordIsLazy(S.base[0])); }
+function ordLazyOn(){ try{ if(!ordIdxOn()||!SXL.cfg||SXL.cfg.app!=='Production'||!SXL.dir) return false; var S=SXL.s[ORD_T]; return !!(S&&S.ready&&ordBaseLight(S)); }catch(e){ return false; } }
+window.SXL_ordersLazy=function(){ try{ return ordIdxOn()&&ordBaseLight(SXL.s[ORD_T]); }catch(e){ return false; } };
+function ordMetaOf(r){
+  var d=r&&r.data, m={};
+  if(typeof d==='string'){ try{ d=JSON.parse(d); }catch(e){ d=null; } }
+  if(d&&typeof d==='object') ORD_META.forEach(function(k){ if(d[k]!=null) m[k]=d[k]; });
+  return m;
+}
+function ordMarker(ts,meta){ return JSON.stringify(Object.assign({__lazy:ts},meta||{})); }
+function ordRowCols(T,r){ var o={}; Object.keys(r||{}).forEach(function(c){ if(c!=='data'&&c.indexOf('__')!==0) o[c]=r[c]; }); return o; }
+function ordLazyRow(T,sc,ts){ var r=Object.assign({},sc.row||{}); r[T.key]=sc.k; r.data=ordMarker(ts,sc.meta); return r; }
+async function ordPool(list,n,fn){ var i=0; var w=async function(){ while(i<list.length){ var x=list[i++]; await fn(x); } }; var ws=[]; for(var k=0;k<Math.min(n,list.length);k++) ws.push(w()); await Promise.all(ws); }
+async function ordIdxDir(create){
+  if(!SXL.dir) return null;
+  try{ var a=await SXL.dir.getDirectoryHandle('_changes',{create:!!create}), b=await a.getDirectoryHandle('_idx',{create:!!create}); return await b.getDirectoryHandle(ORD_T,{create:!!create}); }
+  catch(e){ if(e&&(e.name==='NotFoundError'||e.name==='TypeMismatchError')&&!create) return null; throw e; }
+}
+function ordIdxName(bf){ return ordAsPlus(bf)+'.json'; }      // + แทน ~ (ใช้ได้ทุกเครื่อง)
+async function ordIdxRead(){
+  var out={}, d=await ordIdxDir(false); if(!d) return out;
+  var hs=[]; for await (var e of d.entries()){ if(e[1].kind==='file'&&/\.json$/.test(e[0])) hs.push(e[1]); }
+  await ordPool(hs,8,async function(h){ try{ var o=JSON.parse(await (await h.getFile()).text()); if(o&&o.k!=null&&o.ts) out[sxlBf(o.bucket||('k:'+o.k))]=o; }catch(e){} });
+  return out;
+}
+/* ดัชนีของ Order ที่เพิ่งบันทึก/อ่านเต็ม — ไฟล์ละ Order (สองเครื่องเขียนพร้อมกันไม่ชนกัน) · พังได้ไม่เป็นไร (คนอ่านถอยไปอ่านไฟล์ Order เต็ม) */
+async function ordIdxWrite(T,S,keys){
+  if(!ordIdxOn()||!SXL.dir||!keys||!keys.length) return 0;
+  var dir=await ordIdxDir(true); if(!dir) return 0;
+  var idx=sxlIdx(T,S), n=0;
+  await ordPool(keys.map(String),6,async function(k){
+    var o={}; o[T.key]=k; var b=sxlBucketOf(T,o), bf=sxlBf(b), e=S.over.get(bf); if(!e||!e.name) return;
+    var r=idx.get(k), ts=ordTsOf(e.name);
+    var body=r?{v:1,k:k,bucket:b,ts:ts,at:e.at||'',by:e.by||'',row:ordRowCols(T,r),meta:ordIsLazy(r)?ordMarkerMeta(r.data):ordMetaOf(r)}:{v:1,k:k,bucket:b,ts:ts,del:1};
+    var fh=await dir.getFileHandle(ordIdxName(bf),{create:true}), w=await fh.createWritable(); await w.write(JSON.stringify(body)); await w.close(); n++;
+  });
+  return n;
+}
+function ordMarkerMeta(s){ try{ var o=JSON.parse(s); delete o.__lazy; return o; }catch(e){ return {}; } }
+var ORD_INNER=null, ORD_HYD={};
+/* รอบอ่าน _changes/imos_orders แบบเบา: ไม่อ่านไฟล์ Order — ใช้ดัชนี (รุ่นตรงกัน) หรือแถวในไฟล์ฐานเบา (ไฟล์ที่แยกออกมาตอนแยกไฟล์) */
+async function ordScan(inner,self,T,S){
+  var d=await sxlOverDir(T.t,false); if(!d) return false;
+  var latest={}, all={};
+  for await (var ent of d.entries()){ if(ent[1].kind!=='file') continue; var v=sxlVer(ent[0]); if(!v) continue;
+    (all[v.key]=all[v.key]||[]).push(ent[0]); var L0=latest[v.key];
+    if(!L0||v.ts>L0.ts||(v.ts===L0.ts&&L0.plus&&!v.plus)) latest[v.key]={name:ent[0],ts:v.ts,plus:v.plus}; }
+  S.names=all;
+  var todo=[]; for(var bf in latest){ var cur=S.over.get(bf), L=latest[bf]; if(cur&&ordTsOf(cur.name)>=L.ts) continue; todo.push(bf); }
+  if(!todo.length) return false;
+  var ix=await ordIdxRead(), baseBy=null, ch=false, full=new Set();
+  todo.forEach(function(bf){
+    var L=latest[bf], sc=ix[bf];
+    if(sc&&sc.ts===L.ts){ S.over.set(bf,{bucket:sc.bucket||('k:'+sc.k),name:L.name,at:sc.at||'',by:sc.by||'',rows:sc.del?[]:[ordLazyRow(T,sc,L.ts)],lazy:true}); ch=true; return; }
+    if(L.ts===ORD_SPLIT_TS){
+      if(!baseBy){ baseBy=new Map(); (S.base||[]).forEach(function(r){ baseBy.set(sxlBf(sxlBucketOf(T,r)),r); }); }
+      var br=baseBy.get(bf);
+      if(br&&ordIsLazy(br)){ var r2=Object.assign({},br); r2.data=ordMarker(ORD_SPLIT_TS,ordMarkerMeta(br.data)); S.over.set(bf,{bucket:sxlBucketOf(T,br),name:L.name,at:'',by:'',rows:[r2],lazy:true}); ch=true; return; }
+    }
+    full.add(bf);
+  });
+  var ch2=false;
+  if(full.size){ ch2=await inner.call(self,T,S,full);
+    var ks=[]; full.forEach(function(bf){ var e=S.over.get(bf); if(e) (e.rows||[]).forEach(function(r){ ks.push(String(r[T.key])); }); });
+    if(ks.length) ordIdxWrite(T,S,ks).catch(function(e){ console.warn('[ดัชนี Order] ซ่อมไม่สำเร็จ',e); }); }
+  if(ch&&!ch2) sxlRebuild(T,S);
+  return ch||ch2;
+}
+/* เติมข้อมูลเต็มให้แถวที่ยังเป็นป้าย — ลงวัตถุแถวเดิม (ตัวเช็คต้นทางแก้ใช้วัตถุแถวจับคู่) */
+async function ordHydrate(T,S,keys){
+  var idx=sxlIdx(T,S), list=[];
+  (keys||[]).forEach(function(k){ k=String(k); var r=idx.get(k); if(r&&ordIsLazy(r)&&list.indexOf(k)<0) list.push(k); });
+  if(!list.length) return 0;
+  await ordPool(list,4,async function(k){
+    if(!ORD_HYD[k]) ORD_HYD[k]=ordHydrateOne(T,S,k).then(function(v){ delete ORD_HYD[k]; return v; },function(e){ delete ORD_HYD[k]; throw e; });
+    await ORD_HYD[k];
+  });
+  return list.length;
+}
+async function ordHydrateOne(T,S,k){
+  var r=sxlIdx(T,S).get(k); if(!r||!ordIsLazy(r)) return;
+  var bf=sxlBf(sxlBucketOf(T,r)), e=S.over.get(bf), name=e&&e.name, o=null;
+  var d=await sxlOverDir(T.t,false);
+  if(d&&name){ try{ o=JSON.parse(await (await (await d.getFileHandle(name)).getFile()).text()); }catch(er){ if(!(er&&(er.name==='NotFoundError'||er instanceof SyntaxError))) throw er; o=null; } }
+  if(!o){                                                          // รุ่นนั้นถูกแทน/ลบไปแล้ว → อ่านรุ่นล่าสุดแบบเต็ม (แถวใหม่ = ต้นทางแก้จริง)
+    if(ORD_INNER){ await ORD_INNER(T,S,new Set([bf])); var r3=sxlIdx(T,S).get(k); if(r3&&!ordIsLazy(r3)) return; }
+    throw Error('ไม่พบไฟล์ข้อมูลของ Order '+k+(name?(' ('+name+')'):''));
+  }
+  var full=null; (o.rows||[]).forEach(function(x){ var y=sxlFileToRaw(T,x); if(String(y[T.key])===k) full=y; });
+  if(!full) throw Error('ไฟล์ '+name+' ไม่มี Order '+k);
+  if(sxlIdx(T,S).get(k)!==r) return;                               // ระหว่างรอมีรอบอ่านใหม่แทนแถวนี้แล้ว
+  Object.keys(full).forEach(function(c){ r[c]=full[c]; }); delete r.__px;
+  if(e) e.lazy=false; S.sort=new Map();
+}
+function ordNeedData(st){
+  if(st.head) return false;
+  var cols=st.cols; if(cols==null) return true; cols=String(cols).trim(); if(!cols||cols==='*') return true;
+  var parts=cols.split(',');
+  for(var i=0;i<parts.length;i++){ var x=parts[i].trim(), m=x.match(/^([A-Za-z0-9_]+):(.+)$/); if(m) x=m[2].trim();
+    var p; try{ p=sxlPath(x); }catch(e){ return true; }
+    if(p.col!=='data') continue;
+    if(!p.steps.length||p.steps.length>1||ORD_META.indexOf(p.steps[0].k)<0) return true; }
+  return false;
+}
+async function ordExecLazy(exec,st){
+  var T=sxlCfg(ORD_T), S=SXL.s[ORD_T];
+  if(!S||!S.ready) return exec(st);
+  var keys=st.keys;
+  if(!keys){ keys=S.rows.filter(ordIsLazy).map(function(r){ return String(r[T.key]); });
+    if(keys.length) console.warn('[Order แบบเบา] คำขอใช้ข้อมูลเต็มของทุก Order (ไม่ระบุ order_id) — โหลด '+keys.length+' Order',st.cols); }
+  try{ await ordHydrate(T,S,keys); }
+  catch(e){ return sxlE('โหลดข้อมูล Order จาก Google Drive ไม่ได้: '+(e&&e.message||e),'SXL_IO',500); }
+  return exec(st);
+}
+function ordWriteKeys(T,S,st){
+  try{
+    if(st.wkind==='insert'||st.wkind==='upsert') return (Array.isArray(st.wdata)?st.wdata:[st.wdata]).map(function(p){ return p&&p[T.key]; }).filter(function(k){ return k!=null; }).map(String);
+    SXL_TBL=T; return S.rows.filter(function(r){ return (st.f||[]).every(function(f){ return f(r); }); }).map(function(r){ return String(r[T.key]); });
+  }catch(e){ return []; }
+}
+/* ติดตั้งตอนเปิดหน้าไฟล์กลาง (หลังสคริปต์ทุกโมดูลโหลดครบ = เป็นตัวห่อชั้นนอกสุด) */
+function ordInstall(){
+  if(ordInstall.done) return; ordInstall.done=1;
+  if(SXL.cfg&&SXL.cfg.app==='Production'){
+    var inner=sxlScanOver; ORD_INNER=function(T,S,only){ return inner.call(null,T,S,only); };
+    sxlScanOver=async function(T,S,only){ if(!T||T.t!==ORD_T||only||!ordLazyOn()) return inner.apply(this,arguments); return ordScan(inner,this,T,S); };
+    var exec=sxlExec;
+    sxlExec=function(st){ if(st&&st.op==='select'&&st.table===ORD_T&&ordLazyOn()&&ordNeedData(st)) return ordExecLazy(exec,st); return exec(st); };
+  }
+  if(typeof sxlWriteIn==='function'){
+    var wi=sxlWriteIn;
+    sxlWriteIn=async function(T,S,st){
+      var keys=null;
+      if(T&&T.t===ORD_T){ keys=ordWriteKeys(T,S,st); if(keys.length&&ordLazyOn()) await ordHydrate(T,S,keys); }
+      var r=await wi.apply(this,arguments);
+      if(keys&&keys.length&&!(r&&r.error)&&ordIdxOn()) ordIdxWrite(T,S,keys).catch(function(e){ console.warn('[ดัชนี Order] เขียนไม่สำเร็จ',e); });
+      return r;
+    };
+  }
+}
+
+/* ───────── แยกไฟล์ Order (ทำครั้งเดียว · เครื่องเดียวพอ) ─────────
+   ① ไฟล์รุ่นของ Order ที่ยังอยู่แค่ในไฟล์ฐาน (ชื่อเวลา 000000001-base = เก่ากว่ารุ่นจริงทุกรุ่น — บันทึกใหม่ทับได้เสมอ)
+   ② ดัชนีทุก Order ③ สำรองไฟล์ฐานเดิมใน _backup ④ ไฟล์ฐานเบา (เขียนเป็นอย่างสุดท้าย — ค้างกลางทางก็ยังอ่านได้ครบแบบเดิม) */
+function ordCsvCell(v){ if(v==null) return ''; var s=String(v); return /[",\r\n]/.test(s)?'"'+s.replace(/"/g,'""')+'"':s; }
+async function ordSplit(step){
+  step=step||function(){};
+  var T=sxlCfg(ORD_T), S=SXL.s[ORD_T];
+  if(!S||!S.ready) throw Error('ยังโหลด Order ไม่ครบ');
+  if(ordBaseLight(S)) return {already:true};
+  if(!SXL.dir) throw Error('ยังไม่ได้เชื่อมต่อ Google Drive');
+  var found=await sxlScanDir(SXL.dir), fb=found[ORD_T]; if(!fb) throw Error('ไม่พบไฟล์ฐาน imos_orders_rows.csv');
+  var d=await sxlOverDir(T.t,true), now=new Date().toISOString();
+  var need=(S.base||[]).filter(function(r){ return !S.over.has(sxlBf(sxlBucketOf(T,r))); }), done=0;
+  step('แยกไฟล์ Order ทีละ Order…',2);
+  await ordPool(need,4,async function(r){
+    var b=sxlBucketOf(T,r), bf=sxlBf(b), name=(SXL.plus?ordAsPlus(bf):bf)+'@'+ORD_SPLIT_TS+'.json';
+    var fh=await d.getFileHandle(name,{create:true}), w=await fh.createWritable();
+    await w.write(JSON.stringify({v:1,table:T.t,bucket:b,at:r.loaded_at||now,by:'แยกไฟล์ Order',rows:[sxlRawToFile(T,r)]})); await w.close();
+    S.over.set(bf,{bucket:b,name:name,at:r.loaded_at||now,by:'แยกไฟล์ Order',rows:[r]});
+    done++; step('แยกไฟล์ Order '+done+'/'+need.length,2+70*done/Math.max(1,need.length));
+  });
+  step('เขียนดัชนีรายการ Order…',74);
+  var keys=S.rows.map(function(r){ return String(r[T.key]); });
+  await ordIdxWrite(T,S,keys);
+  step('สำรองไฟล์ฐานเดิมไว้ใน _backup…',82);
+  var bytes=new Uint8Array(await fb.f.arrayBuffer()), _d=new Date(), _p=function(x){ return ('0'+x).slice(-2); }, stamp=_d.getFullYear()+_p(_d.getMonth()+1)+_p(_d.getDate())+'-'+_p(_d.getHours())+_p(_d.getMinutes());   // เวลาเครื่อง
+  var bk=await SXL.dir.getDirectoryHandle('_backup',{create:true}), bh=await bk.getFileHandle('imos_orders_rows_full_'+stamp+'.csv',{create:true}), bw=await bh.createWritable(); await bw.write(bytes); await bw.close();
+  step('เขียนไฟล์ฐานแบบรายชื่อ…',94);
+  var cols=['order_id','data']; (S.base||[]).forEach(function(r){ Object.keys(r).forEach(function(c){ if(c.indexOf('__')!==0&&cols.indexOf(c)<0) cols.push(c); }); });
+  var lines=[cols.join(',')];
+  (S.base||[]).forEach(function(r){ var bf=sxlBf(sxlBucketOf(T,r)), e=S.over.get(bf), ts=e?ordTsOf(e.name):ORD_SPLIT_TS;
+    lines.push(cols.map(function(c){ return ordCsvCell(c==='data'?ordMarker(ts,ordIsLazy(r)?ordMarkerMeta(r.data):ordMetaOf(r)):r[c]); }).join(',')); });
+  var w2=await fb.h.createWritable(); await w2.write(lines.join('\n')+'\n'); await w2.close();
+  step('เสร็จแล้ว',100);
+  return {n:need.length,total:S.rows.length,backup:'_backup/imos_orders_rows_full_'+stamp+'.csv',mb:(bytes.length/1048576).toFixed(1)};
+}
+var ORD_SNOOZE='sxlocaltrial:furnitech:ordSplitSnooze';
+function ordSplitDialog(auto){
+  if(document.getElementById('ordSplitOv')) return;
+  var S=SXL.s[ORD_T], n=(S&&S.rows)?S.rows.length:0;
+  var ov=document.createElement('div'); ov.id='ordSplitOv';
+  ov.style.cssText='position:fixed;inset:0;z-index:1000003;background:#0009;display:flex;align-items:center;justify-content:center;padding:16px';
+  ov.innerHTML='<div style="background:#fff;color:#172c40;border-radius:12px;padding:18px 20px;width:min(560px,96vw);font:14px/1.6 system-ui,Sarabun,sans-serif">'
+   +'<b style="font-size:16px">⚡ ให้ Production เปิดเร็วขึ้น</b>'
+   +'<div id="osBody" style="margin-top:8px">ตอนนี้ Order ทั้งหมด ('+n.toLocaleString()+' Order) อยู่ในไฟล์เดียว ทุกครั้งที่เปิดโปรแกรมต้องโหลดและแกะทั้งก้อน'
+   +'<br>แยกเป็นไฟล์ละ Order (ทำครั้งเดียว เครื่องเดียวพอ ใช้เวลาราว 1–3 นาที) — ต่อไปเปิดโปรแกรมโหลดแค่รายชื่อ Order · เปิด Order ไหนค่อยโหลด Order นั้น'
+   +'<br><small style="color:#5b6b78">ไฟล์เดิมสำรองไว้ใน _backup · ระหว่างแยกใช้โปรแกรมต่อได้ แต่อย่าปิดหน้าต่างนี้ · เครื่องที่ยังเป็นรุ่นเก่ายังเปิดได้ครบ (แค่ช้าเหมือนเดิม)</small></div>'
+   +'<div style="height:10px;background:#e7edf2;border-radius:99px;overflow:hidden;margin:10px 0"><i id="osBar" style="display:block;height:100%;width:0;background:#1f6feb"></i></div>'
+   +'<div id="osTxt" style="font-size:13px;color:#5b6b78"></div>'
+   +'<div style="display:flex;gap:8px;justify-content:flex-end;margin-top:12px"><button id="osGo" class="pri" style="padding:8px 14px;border-radius:7px;border:1px solid #135e73;background:#135e73;color:#fff;font-weight:600;cursor:pointer">เริ่มแยกไฟล์</button>'
+   +'<button id="osX" style="padding:8px 14px;border-radius:7px;border:1px solid #93a9b8;background:#fff;cursor:pointer">'+(auto?'ไว้ทีหลัง':'ปิด')+'</button></div></div>';
+  document.body.append(ov);
+  var q=function(id){ return ov.querySelector('#'+id); };
+  q('osX').onclick=function(){ if(auto) gasLs(ORD_SNOOZE,Date.now()+86400000); ov.remove(); };
+  q('osGo').onclick=async function(){
+    var go=q('osGo'), x=q('osX'); go.disabled=true; x.disabled=true; go.textContent='กำลังแยกไฟล์…';
+    try{
+      var r=await ordSplit(function(m,p){ q('osTxt').textContent=m; q('osBar').style.width=Math.max(0,Math.min(100,p))+'%'; });
+      q('osBar').style.width='100%';
+      q('osBody').innerHTML=r.already?'✓ Order แยกไฟล์ไว้แล้ว':'✓ แยกไฟล์เสร็จ · '+r.total.toLocaleString()+' Order (แยกใหม่ '+r.n.toLocaleString()+' ไฟล์) · สำรองไฟล์เดิม '+r.mb+' MB ไว้ที่ '+esc2(r.backup)
+        +'<br>กด F5 (หรือเปิดโปรแกรมใหม่) เพื่อใช้แบบเร็ว · เครื่องอื่นเปิดใหม่ก็เร็วด้วย';
+      q('osTxt').textContent=''; go.textContent='F5 ตอนนี้'; go.disabled=false; go.onclick=function(){ location.reload(); };
+      x.disabled=false; x.textContent='ปิด'; x.onclick=function(){ ov.remove(); };
+    }catch(e){
+      q('osTxt').innerHTML='<span style="color:#b42318">✗ '+esc2(e&&e.message||String(e))+' — ข้อมูลเดิมไม่เสียหาย กดเริ่มใหม่ได้</span>';
+      go.disabled=false; go.textContent='ลองใหม่'; x.disabled=false;
+    }
+  };
+}
+/* เปิด Production บน Google Drive แล้ว Order ยังเป็นไฟล์ก้อนใหญ่ → ชวนแยกไฟล์ (ถามครั้งเดียวต่อวันต่อเครื่อง) */
+function ordSplitCheck(){
+  try{
+    if(!ordIdxOn()||!SXL.cfg||SXL.cfg.app!=='Production'||!sxlIsGas(SXL.dir)) return;
+    var S=SXL.s[ORD_T]; if(!S||!S.ready||ordBaseLight(S)||!(S.size>4194304)) return;
+    if((+gasLs(ORD_SNOOZE)||0)>Date.now()) return;
+    if(!SXL.canWrite) return;
+    ordSplitDialog(true);
+  }catch(e){}
+}
+
+/* หน้า Google Drive (Production): สถานะการแยกไฟล์ Order + ปุ่มแยกไฟล์ */
+function ordUi(){
+  if(!SXL.cfg||SXL.cfg.app!=='Production'||!ordIdxOn()) return;
+  var box=document.getElementById('gasBox'); if(!box) return;
+  var el=document.getElementById('gasOrd');
+  if(!el){ el=document.createElement('div'); el.id='gasOrd'; el.style.cssText='border-top:1px dashed #c9dbe6;margin-top:10px;padding-top:8px'; box.appendChild(el); }
+  var S=SXL.s[ORD_T], on=sxlIsGas(SXL.dir);
+  if(!on||!S||!S.ready){ el.style.display='none'; return; }
+  el.style.display='';
+  var light=ordBaseLight(S), n=S.rows.length, full=S.rows.filter(function(r){ return !ordIsLazy(r); }).length;
+  var key=light?'L'+n+'/'+full:'F'+n+'/'+S.size; if(el.dataset.k===key) return; el.dataset.k=key;
+  el.innerHTML=light
+    ?'<b>⚡ Order แยกไฟล์แล้ว</b><br><small>เปิดโปรแกรมโหลดแค่รายชื่อ Order · เปิด Order ไหนค่อยโหลด Order นั้น — ตอนนี้ '+n.toLocaleString()+' Order · โหลดข้อมูลเต็มแล้ว '+full.toLocaleString()+' Order</small>'
+    :'<b>📦 Order ทั้งหมดอยู่ในไฟล์เดียว</b> <small>('+n.toLocaleString()+' Order — ทุกครั้งที่เปิดต้องโหลดและแกะทั้งก้อน)</small><div class="gb"><button id="gasOrdGo">⚡ แยกไฟล์ Order ให้เปิดเร็ว…</button></div>';
+  var b=document.getElementById('gasOrdGo'); if(b) b.onclick=function(){ ordSplitDialog(false); };
+}
+(function(){ var _u=gasUiRefresh; gasUiRefresh=function(){ _u.apply(this,arguments); try{ ordUi(); }catch(e){} }; })();
 
 sxlStart();
 
