@@ -1019,7 +1019,7 @@
    ===================================================================== */
 /* ---- APP_META: แหล่งความจริงเดียวของเวอร์ชัน (ดูได้จาก console / คลิกชื่อแอป) ---- */
 const APP_META={
-  name:"StarNexus", version:"1.432", build:"2026-10-12/drive-only",
+  name:"StarNexus", version:"1.435", build:"2026-10-12/gh-copy",
   file:"StarNexus.html", basedOn:"Furnitech_V3.html (v3.11)",
   /* ───────── เริ่มนับเวอร์ชันใหม่ที่ 1.001 (21/08/2026) ─────────
      ของเดิมนับมาถึง 42.1 แล้ววิ่งเป็นทศนิยมสองชั้นซึ่งอ่านลำดับยาก
@@ -1027,6 +1027,9 @@ const APP_META={
      ประวัติเก่าเก็บไว้ทั้งหมดตามเลขเดิม ไม่ไล่เขียนใหม่ เพราะเลขในนั้นถูกอ้างถึงไปแล้ว
      รายการที่อยู่ใต้ 1.001 ลงไปจึงเป็นเลขชุดเก่า อ่านต่อกันได้ตามวันที่ */
   changelog:[
+    ["1.435","2026-10-12","FEAT ปุ่ม 📋 คัดลอก Token ในหน้าแชร์ (ผู้ใช้: ไม่ได้เก็บ Token ไว้ อยากคัดลอกจากตัวที่เปิดบนเครื่องไปใส่ตัวที่เปิดบนเว็บ) — ตั้งค่า GitHub เก็บแยกต่อที่อยู่ที่เปิดโปรแกรม เดิมดู Token ที่จำไว้ไม่ได้ ต้องสร้างใหม่ · ตอนนี้กดคัดลอกไปคลิปบอร์ด (เฉพาะตอนกดเอง ไม่ลงไฟล์/ค่าตั้ง) พร้อมบอก owner/repo/branch ที่ต้องใส่คู่กัน · วางในช่อง Token ของรุ่นเก่าก็ได้"],
+    ["1.434","2026-10-12","UX ส่งออเดอร์จากเบราว์เซอร์ที่ยังไม่ได้ตั้งค่า GitHub = เตือนในกล่องผล (ผู้ใช้: ทำไม Github ไม่อัพ Link) — ตั้งค่า GitHub (Token) เก็บแยกต่อเบราว์เซอร์และต่อที่อยู่ที่เปิดโปรแกรม ตัวที่เปิดจาก github.io ยังไม่ได้ตั้ง เลยได้ลิงก์ในไฟล์กลางแทนแบบเงียบ ๆ (ไม่ขึ้น GitHub · QR สติกเกอร์เปิดจากมือถือไม่ได้) · ตอนนี้บอกในกล่องผลพร้อมวิธีแก้ และขั้นสร้างลิงก์ขึ้นว่ายังไม่ได้ตั้งค่า"],
+    ["1.433","2026-10-12","UX โหลดจาก Google Drive บอกความคืบหน้า (ผู้ใช้: ทำไมฝั่ง Production นานจัง — จอค้าง “กำลังเตรียม… 0%”) — เดิมหน้าต่าง/กล่องรอนับแค่ตอนแกะไฟล์ ช่วงดาวน์โหลดจาก Drive (เครื่องใหม่ · ไฟล์ใหญ่) แถบไม่ขยับดูเหมือนค้าง · ตอนนี้ขึ้น “ดาวน์โหลดจาก Google Drive · x / y MB · n/m ไฟล์” ทุก 0.4 วิ (GasFS 1.2 นับไบต์ระหว่างรับ) · ตัวเชื่อมใช้ร่วมกับ Production V2 v178"],
     ["1.432","2026-10-12","CHANGE ใช้ Google Drive อย่างเดียว ตัดโหมดโฟลเดอร์ Server (ผู้ใช้: ตอนนี้ส่งเข้าที่ไหน ไฟล์กลางหรือ Google · อยากตัดไฟล์กลางออก — เลือกทั้งสองโปรแกรม · ตัดทิ้งหมด · เปลี่ยนคำบนจอ) — เปิดโปรแกรม: มี URL + กุญแจ = ต่อ Drive เลย · ไม่มี = หน้าต่างให้ใส่ (ไม่คืนโฟลเดอร์/ไฟล์ในเครื่องที่จำไว้) · หน้าต่างไม่มีปุ่มเลือกโฟลเดอร์/ไฟล์/เชื่อมตำแหน่ง/กลับไปใช้โฟลเดอร์ · ปุ่ม “ใช้ Google Drive” → “เชื่อมต่อ” · ปุ่มบน “☁ Google Drive · n/m ตาราง” · คำว่า “ไฟล์กลาง” บนจอทั้งหมด (ปุ่ม หน้าต่าง ข้อความเด้ง กล่องถาม) → “Google Drive” และ Supabase ที่หมายถึงที่เก็บข้อมูล → Google Drive (แปลตอนแสดงผล ไม่แตะช่องพิมพ์/ประวัติรุ่น) · ข้อมูลจาก AX: เครื่องในออฟฟิศเลือกโฟลเดอร์ Excel ครั้งเดียว → ส่งเฉพาะค่าในตาราง (FittingGlobal_* → fitting_global_rows.csv · FittingBOM_* → .xlsx ค่าล้วน ไม่มีรหัสผ่าน/มาโคร/การเชื่อมต่อ) เองเมื่อไฟล์เปลี่ยน (ตรวจทุก 5 นาที) · ย้ายข้อมูลเสร็จส่งให้เลย — เดิมโหมด Drive ไม่มี FittingBOM ทำให้ Production V2 แตก BOM ไม้จาก AX ไม่ได้ · รหัสเชื่อมต่อ: คัดลอกจากเครื่องที่ใช้อยู่ วางในช่อง URL ของเครื่องใหม่ได้ทั้ง URL และกุญแจ · สวิตช์ Drive ไม่ขึ้นกับ SN_SAFE · ปิดได้ SN_OFF.driveOnly"],
     ["1.431","2026-10-12","UX ย้ายข้อมูลขึ้น Google Drive: ขั้น “กำลังอ่านรายการไฟล์…” ค้างข้อความเดียวจนนับครบ (ผู้ใช้: อ่านนานไหม) — เดิมอ่านขนาดไฟล์ทีละไฟล์ต่อกัน โฟลเดอร์ Server บนเครื่องอื่นในวง LAN ไฟล์เป็นหมื่นใช้หลายนาทีโดยไม่บอกอะไร · ตอนนี้บอกจำนวนไฟล์/MB/โฟลเดอร์ที่อ่านแล้ว + เวลา + โฟลเดอร์ที่กำลังอ่าน ทุก ~0.25 วิ · อ่านขนาดพร้อมกันทีละ 16 ไฟล์ · กดยกเลิกระหว่างนับได้ · ไฟล์ที่อ่านไม่ได้ (ถูกลบ/เปิดค้าง) ข้ามแล้วแจ้ง แทนที่จะหยุดทั้งหมด (GasFS 1.1)"],
     ["1.430","2026-10-12","FIX ส่วน ☁ Google Drive กดปุ่มแล้วไม่เห็นผล (ผู้ใช้: กดทดสอบไม่เห็นขึ้นอะไร) — ผลของทุกปุ่มไปขึ้นที่บรรทัดสถานะท้ายหน้าต่างไฟล์กลาง (ใต้ตารางทั้งหมด) ระหว่างรอ Apps Script ตอบก็ไม่มีอะไรบอก · ตอนนี้กดแล้วขึ้น “กำลัง…” ใต้ปุ่มทันที ปุ่มเทาระหว่างรอ รอนานเกิน 6 วิ บอกว่ายังรอ Apps Script อยู่ ผล/ข้อผิดพลาดขึ้นตรงนั้น · ทดสอบการเชื่อมต่อบอกด้วยว่าบน Drive มีข้อมูลแล้วหรือยัง และขั้นต่อไปต้องกดอะไร"],
@@ -43137,7 +43140,9 @@ async function snvShareDialog(lanFn){
       +(gc.rootOk?'':' <span style="color:#e58a24">· index.html บนเว็บยังไม่ใช่รุ่นนี้ — กด ⚙ แล้ว "ตั้งค่าครั้งแรก"</span>')+'</div>'
     +'<div style="display:flex;gap:8px;flex-wrap:wrap">'
       +'<button class="ibtn" id="snvGh" style="background:var(--accent);color:#fff;border-color:transparent"'+(ghOn?'':' disabled')+'>🐙 สร้างลิงก์ทั้งออเดอร์บน GitHub</button>'
-      +'<button class="ibtn" id="snvGhCfgT">⚙ ตั้งค่า GitHub</button></div>'
+      +'<button class="ibtn" id="snvGhCfgT">⚙ ตั้งค่า GitHub</button>'
+      /* v1.435: คัดลอก Token ที่เบราว์เซอร์นี้จำไว้ ไปใส่อีกที่ (ไฟล์ในเครื่อง ↔ หน้าเว็บ github.io เก็บค่าแยกกัน) */
+      +(gc.token?'<button class="ibtn" id="snvGhCopy" title="คัดลอก Token ที่เครื่องนี้จำไว้ ไปวางในช่อง Token ของอีกที่ (หน้าเว็บ github.io / เครื่องอื่น)">📋 คัดลอก Token</button>':'')+'</div>'
     +'<div id="snvGhCfg" style="display:'+(ghOn?'none':'flex')+';flex-direction:column;gap:6px;padding:10px;border:1px dashed var(--line);border-radius:10px">'
       +'<div style="display:grid;grid-template-columns:1fr 1fr 110px;gap:6px">'+inp("snvGhO","owner (ชื่อบัญชี/องค์กร)",gc.owner)+inp("snvGhR","repo",gc.repo)+inp("snvGhB","branch (main)",gc.branch||"")+'</div>'
       +inp("snvGhT",gc.token?"Token บันทึกไว้แล้ว — เว้นว่าง = ใช้ตัวเดิม":"Token (github_pat_… หรือ ghp_…)","","password")
@@ -43186,6 +43191,19 @@ async function snvShareDialog(lanFn){
     c.owner=q("#snvGhO").value.trim(); c.repo=q("#snvGhR").value.trim(); c.branch=q("#snvGhB").value.trim();
     const tk=q("#snvGhT").value.trim(); if(tk) c.token=tk; c.base=q("#snvGhU").value.trim(); return c; };
   q("#snvGhCfgT").onclick=()=>{ const el=q("#snvGhCfg"); el.style.display=(el.style.display==="none")?"flex":"none"; };
+  /* ───────── v1.435: คัดลอก Token ไปใส่อีกที่ ─────────
+     ผู้ใช้ 12/10/2026 15:19 "ผมไม่ได้เก็บ Token ไว้ มีให้คัดลอกไหม จากที่เปิดบนเครื่องแล้วเอาไปใส่ที่เปิดบนเว็บ"
+     ตั้งค่า GitHub เก็บในเบราว์เซอร์แยกตามที่อยู่ที่เปิดโปรแกรม (ไฟล์ในเครื่อง ≠ github.io) — เดิมดู Token ที่จำไว้ไม่ได้เลย ต้องสร้างใหม่
+     ตอนนี้: ปุ่ม 📋 คัดลอก Token (เฉพาะตอนผู้ใช้กดเอง · ไปที่คลิปบอร์ดเท่านั้น ไม่ลงไฟล์/ค่าตั้ง/ข้อมูลที่ส่งออก)
+     ข้อความบอก owner/repo/branch ที่ต้องใส่คู่กัน · วาง Token ตรง ๆ ในช่อง Token ของอีกที่ได้ (รุ่นเก่าก็ใช้ได้) */
+  if(q("#snvGhCopy")) q("#snvGhCopy").onclick=async()=>{
+    const c=await ghCfg(); if(!c||!c.token){ toast("เครื่องนี้ยังไม่มี Token ที่จำไว้"); return; }
+    let ok=false; try{ await navigator.clipboard.writeText(c.token); ok=true; }catch(e){}
+    if(!ok){ try{ window.prompt("คัดลอก Token นี้ (Ctrl+C) — อย่าส่งให้คนนอก",c.token); ok=true; }catch(e){} }
+    const el=q("#snvGhCfg"); if(el) el.style.display="flex";
+    ghMsg((ok?"✓ คัดลอก Token แล้ว":"คัดลอกไม่ได้")+" — ที่อีกที่ (เช่นหน้าเว็บ "+escapeHtml(ghPagesBase(c))+"): ปุ่มแชร์ → ⚙ ตั้งค่า GitHub → ใส่ "
+      +"<b style='font-family:var(--mono)'>"+escapeHtml(c.owner)+"</b> / <b style='font-family:var(--mono)'>"+escapeHtml(c.repo)+"</b> / <b style='font-family:var(--mono)'>"+escapeHtml(c.branch||"main")+"</b> → วาง Token → บันทึก + ทดสอบ"
+      +"<br><span style='color:#9a4a12'>Token = กุญแจเขียน repo — วางในโปรแกรมของเราเท่านั้น อย่าส่งให้คนนอก</span>"); };
   q("#snvGhTok").onclick=()=>window.open("https://github.com/settings/personal-access-tokens/new","_blank");
   q("#snvGhSave").onclick=async()=>{ const c=ghRead(); if(!c.owner||!c.repo||!c.token){ ghMsg("ใส่ owner · repo · Token ให้ครบ",true); return; }
     ghMsg("กำลังทดสอบ…");
@@ -46312,7 +46330,7 @@ async function sendSupabaseRun(){
       catch(e){ warn.push("อ่านเลขชิ้นเดิมจาก Production ไม่ทัน ("+e.message+") — เลขชิ้นรอบนี้นับตามฉาก ถ้าออเดอร์เคยส่งแล้วให้เช็คสติกเกอร์"); } }
     /* ③ v1.173/v1.174: ลิงก์ตู้ก่อน แล้ว buildImosData อ่าน CAB_LINK ไปแปะทุกแถว · ล้มไม่ล้มการส่ง */
     let gh=false; try{ gh=(typeof ghReady==="function")&&!!(await ghReady()); }catch(e){}
-    await step("สร้างลิงก์ตู้"+(gh?" (GitHub)":"")+"…",14);
+    await step("สร้างลิงก์ตู้"+(gh?" (GitHub)":" — ยังไม่ได้ตั้งค่า GitHub ในเบราว์เซอร์นี้")+"…",14);   /* v1.434 */
     try{ cl=await sendTmo(pushCabShares(0,false,{bz,base:14,span:32,fallback:true,bg:BG}),gh?300000:120000,"สร้างลิงก์ตู้"); }
     catch(e){ CAB_LINK={}; CAB_SIG={}; CAB_SID={}; ORDER_SID=""; ORDER_SIG=""; console.error("cabShare:",e);
       warn.push("สร้างลิงก์ตู้ไม่สำเร็จ: "+sbErr(e)+" — ส่งข้อมูลต่อโดยไม่มีลิงก์ (ช่อง CAB_URL ว่าง)"); }
@@ -46320,6 +46338,14 @@ async function sendSupabaseRun(){
     if(cl&&cl.fallback) warn.push("ลิงก์ตู้ขึ้น GitHub ไม่ได้ — ใช้ลิงก์ในไฟล์กลางแทน (เปิดได้เฉพาะคอมที่เข้าโฟลเดอร์ Server มือถือเปิดไม่ได้)\nเหตุ: "+String(cl.ghErr||"").split("\n")[0]
       +"\nแก้: ปุ่มแชร์ → ⚙ ตั้งค่า GitHub → บันทึก + ทดสอบ (บอกวิธีแก้ Token ทีละข้อ) แล้วกดส่งใหม่ จะได้ลิงก์ GitHub");
     res.ghErr=(cl&&cl.ghErr)||"";
+    /* ───────── v1.434: เบราว์เซอร์นี้ยังไม่ได้ตั้งค่า GitHub = บอกในกล่องผล ─────────
+       ผู้ใช้ 12/10/2026 15:04 "ทำไม Github ไม่อัพ Link" — ตั้งค่า GitHub (Token) เก็บในเบราว์เซอร์ แยกตามที่อยู่ที่เปิดโปรแกรม
+       ไฟล์ในเครื่อง (file://…) ตั้งไว้แล้ว แต่ตัวที่เปิดจาก github.io ยังไม่ได้ตั้ง → ส่งออเดอร์แล้วได้ลิงก์ในไฟล์กลางแทนแบบเงียบ ๆ
+       (ไม่ขึ้น GitHub · QR บนสติกเกอร์เปิดจากมือถือไม่ได้) · repo ไม่มี commit ลิงก์ตั้งแต่ 10:45 ทั้งที่ส่งออเดอร์ไปหลายครั้ง
+       เดิม: เตือนเฉพาะตอนตั้งค่าแล้วแต่ส่งไม่ขึ้น (cl.fallback) · ตอนนี้: ยังไม่ได้ตั้งค่าเลยก็เตือน พร้อมบอกวิธีแก้ */
+    if(!gh&&cl&&!cl.github&&(cl.n||0)>0) warn.push("เบราว์เซอร์นี้ยังไม่ได้ตั้งค่า GitHub — ลิงก์ตู้ (QR บนสติกเกอร์) ไม่ได้ขึ้น GitHub มือถือเปิดไม่ได้"
+      +"\nแก้: ปุ่มแชร์ → ⚙ ตั้งค่า GitHub → ใส่ owner / repo / Token → บันทึก + ทดสอบ แล้วกดส่งใหม่ (รหัสลิงก์เดิมของตู้ใช้ต่อ)"
+      +"\nตั้งค่า GitHub เก็บแยกต่อเบราว์เซอร์และต่อที่อยู่ที่เปิดโปรแกรม — ไฟล์ในเครื่องกับหน้าเว็บ github.io ต้องตั้งแยกกัน");
     if(cl&&cl.prev&&cl.prev.tmo) warn.push("ค้นรหัสลิงก์ตู้เดิมในไฟล์กลางไม่เสร็จใน 45 วิ — ใช้เท่าที่เจอ ("+(cl.same||0)+"/"+cl.n+" ใบ) ตู้ที่เหลือได้รหัสใหม่ สติกเกอร์เก่าของตู้เหล่านั้นยังเปิดไม่ได้ · กดส่งอีกครั้งจะค้นต่อ");   /* v1.397 */
     res.cl=cl;
     /* ④ ข้อมูล IMOS */
@@ -48754,7 +48780,7 @@ var sxlShareLan=async function(){
  document.body.appendChild(ov);
  ov.onclick=e=>{const a=e.target&&e.target.dataset&&e.target.dataset.a;if(e.target===ov||a==="x")ov.remove();else if(a==="c"){try{navigator.clipboard.writeText(link);toast("คัดลอกลิงก์แล้ว")}catch(_){}}else if(a==="o")window.open(link,"_blank")}};
 /* ═══════════════════════════════════════════════════════════════════════
-   GasFS 1.1 (2026-10-12) — โฟลเดอร์ Server เสมือนบน Google Drive ผ่าน Apps Script (StarNexus DB 0.3+)
+   GasFS 1.2 (2026-10-12) — โฟลเดอร์ Server เสมือนบน Google Drive ผ่าน Apps Script (StarNexus DB 0.3+)
 
    ใช้ร่วมกันใน StarNexus และ Production V2: ทั้งสองโปรแกรมอ่าน/เขียนโฟลเดอร์ Server ผ่าน
    File System Access API (getDirectoryHandle / getFileHandle / entries / getFile / createWritable / removeEntry)
@@ -48770,7 +48796,7 @@ var sxlShareLan=async function(){
    ═══════════════════════════════════════════════════════════════════════ */
 var GasFS = (function () {
   'use strict';
-  var VER = '1.1';
+  var VER = '1.2';
   var PART = 4000000;          // base64 เกินนี้ แบ่งชิ้นอัปโหลด
   var BATCH_MS = 15, BATCH_OPS = 40, BATCH_BYTES = 6000000;
   var LIST_TTL = 1500;         // รายการโฟลเดอร์เดียวกันที่ขอซ้ำภายในเวลานี้ ใช้ของเดิม (กันไล่ซ้ำในรอบเดียว)
@@ -48846,7 +48872,8 @@ var GasFS = (function () {
     this.L = {};          // รายการโฟลเดอร์ในหน่วยความจำ: p → {files:{n:{u,s,d?}}, dirs:Set, hi, at, ok}
     this.C = new Map();   // เนื้อไฟล์ในหน่วยความจำ: p\nn → {u, c}
     this.inflight = {};   // อ่านไฟล์ซ้ำระหว่างรอ = รอตัวเดียวกัน
-    this.st = { calls: 0, ops: 0, ms: 0, last: 0, err: '', bytesUp: 0, bytesDown: 0, cacheHit: 0, trace: [] };
+    this.st = { calls: 0, ops: 0, ms: 0, last: 0, err: '', bytesUp: 0, bytesDown: 0, cacheHit: 0, trace: [],
+                rx: 0, need: 0, got: 0, nNeed: 0, nGot: 0 };   // 1.2: rx = ไบต์ที่รับแล้ว (นับระหว่างรับ) · need/got = ขนาดไฟล์ที่ต้องดาวน์โหลด/ได้แล้ว · nNeed/nGot = จำนวนไฟล์
     this.cache = this.opt.cache !== false;
   }
   FS.prototype.root = function (name) { return new DirH(this, '', name || 'Server (Google Drive)'); };
@@ -48885,7 +48912,14 @@ var GasFS = (function () {
     var tm = ac ? setTimeout(function () { try { ac.abort(); } catch (e) {} }, txt.length > 2e6 ? 300000 : 120000) : 0;
     try {
       r = await fetch(this.url, { method: 'POST', body: txt, redirect: 'follow', signal: ac ? ac.signal : undefined });
-      var rt = await r.text(); self.st.bytesDown += rt.length;
+      /* GasFS 1.2: อ่านคำตอบทีละก้อน นับไบต์ที่รับแล้วระหว่างรับ (หน้าต่างโหลดบอก MB ได้ ไม่ค้าง 0% จนไฟล์มาครบ) */
+      var rt;
+      if (r.body && r.body.getReader && typeof TextDecoder !== 'undefined') {
+        var rd = r.body.getReader(), dec = new TextDecoder(), chunks = [];
+        for (;;) { var ch = await rd.read(); if (ch.done) break; self.st.rx += ch.value.length; chunks.push(dec.decode(ch.value, { stream: true })); }
+        chunks.push(dec.decode()); rt = chunks.join('');
+      } else { rt = await r.text(); self.st.rx += rt.length; }
+      self.st.bytesDown += rt.length;
       try { out = JSON.parse(rt); } catch (e) { throw dex('NetworkError', 'Apps Script ตอบไม่ใช่ข้อมูล (HTTP ' + r.status + ') — ตรวจว่า Deploy เป็น Web app · Who has access = Anyone'); }
     } catch (e) {
       clearTimeout(tm);
@@ -49043,8 +49077,10 @@ var GasFS = (function () {
       if (d && (u == null || d.u === u)) { this.C.set(k, d); this.st.cacheHit++; return d.c; }
     }
     if (this.inflight[k]) return this.inflight[k];
-    var L = this.L[p], big = !!(L && L.files[n] && L.files[n].s > 1500000);
+    var L = this.L[p], big = !!(L && L.files[n] && L.files[n].s > 1500000), es = (L && L.files[n] && L.files[n].s) || 0;
+    self.st.need += es; self.st.nNeed++;                     // 1.2: ไว้บอกความคืบหน้าการดาวน์โหลด
     var pr = (async function () {
+      try {
       var o = await self.call({ a: 'fsRead', p: p, names: [n], _solo: big });
       var f = o.files[0];
       if (!f || f.missing) throw dex('NotFoundError', 'ไม่พบไฟล์ ' + join(p, n));
@@ -49056,6 +49092,7 @@ var GasFS = (function () {
       self.C.set(k, { u: f.u, c: c });
       if (self.cache) idbPut('f', self.url + '\n' + k, { u: f.u, c: c });
       return c;
+      } finally { self.st.got += es; self.st.nGot++; }
     })();
     this.inflight[k] = pr;
     try { return await pr; } finally { delete this.inflight[k]; }
@@ -49943,6 +49980,35 @@ if(gasDriveOnly()){
   try{ if(typeof SXL_SRC==='object'&&SXL_SRC) SXL_SRC.dir='จาก Google Drive'; }catch(e){}
   gasWordsInit();
 }
+
+/* ───────── v1.433 / PV2 v178: ความคืบหน้าการดาวน์โหลดจาก Google Drive ─────────
+   ผู้ใช้ 12/10/2026 14:34: “ทำไมฝั่ง Production นานจังครับ” (จอค้าง “กำลังเตรียม… 0%”)
+   เดิม: หน้าต่างโหลดนับแค่ตอนแกะไฟล์ · ช่วงดาวน์โหลดจาก Drive (เครื่องใหม่ / ไฟล์ใหญ่ เช่น imos_orders ~20 MB บีบอัด) แถบไม่ขยับ ดูเหมือนค้าง
+   ตอนนี้: ระหว่างมีไฟล์กำลังดาวน์โหลด ขึ้น “ดาวน์โหลดจาก Google Drive · x / y MB · n/m ไฟล์” ทุก 0.4 วิ (GasFS 1.2 นับไบต์ระหว่างรับ)
+     Production V2 = บนหน้าต่าง “กำลังโหลด…” · StarNexus = กล่องรอ · ไม่มีหน้าต่าง = บรรทัดสถานะหน้า Google Drive (ถ้าเปิดอยู่) */
+var GAS_DL={base:null,last:''};
+function gasMB(n){ return (Math.max(0,n)/1048576).toFixed(n>=10485760?0:1)+' MB'; }
+function gasDlState(){
+  var fs=GasFS.current(); if(!fs) return null;
+  var s=fs.st;
+  if(!(s.nNeed>s.nGot)){ GAS_DL.base=null; return null; }
+  if(!GAS_DL.base) GAS_DL.base={rx:s.rx,got:s.got,n:s.nGot};
+  var B=GAS_DL.base, total=Math.max(1,s.need-B.got), done=Math.min(total*0.99,Math.max(0,s.rx-B.rx));
+  return {total:total,done:done,pct:Math.min(99,done/total*100),n:s.nGot-B.n,nAll:s.nNeed-B.n};
+}
+function gasDlTick(){
+  var d; try{ d=gasDlState(); }catch(e){ return; }
+  if(!d) return;
+  var label='ดาวน์โหลดจาก Google Drive · '+gasMB(d.done)+' / '+gasMB(d.total)+(d.nAll>1?' · '+d.n+'/'+d.nAll+' ไฟล์':'')+(d.total>3145728?' (เก็บไว้ในเครื่อง ครั้งต่อไปไม่ต้องโหลดซ้ำ)':'');
+  try{
+    var ov=document.querySelector('#sxlLoadOv.on');
+    if(ov){ var ln=ov.querySelector('.sl-line'), fl=ov.querySelector('.sl-fill'), pc=ov.querySelector('.sl-pct');
+      if(ln&&ln.textContent!==label) ln.textContent=label; if(fl) fl.style.width=d.pct.toFixed(1)+'%'; if(pc) pc.textContent=Math.floor(d.pct)+'% ดาวน์โหลด'; return; }
+    if(typeof SXL!=='undefined'&&SXL._prog){ SXL._prog(label,Math.max(3,Math.min(88,d.pct*0.88))); return; }
+    var P=document.getElementById('sxLocalPanel'); if(P&&P.style.display!=='none'&&label!==GAS_DL.last){ GAS_DL.last=label; sxlStatus(label); }
+  }catch(e){}
+}
+setInterval(gasDlTick,400);
 
 sxlStart();
 
