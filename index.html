@@ -1019,7 +1019,7 @@
    ===================================================================== */
 /* ---- APP_META: แหล่งความจริงเดียวของเวอร์ชัน (ดูได้จาก console / คลิกชื่อแอป) ---- */
 const APP_META={
-  name:"StarNexus", version:"1.440", build:"2026-10-12/texture-upload",
+  name:"StarNexus", version:"1.443", build:"2026-10-13/cab-size-viewer",
   file:"StarNexus.html", basedOn:"Furnitech_V3.html (v3.11)",
   /* ───────── เริ่มนับเวอร์ชันใหม่ที่ 1.001 (21/08/2026) ─────────
      ของเดิมนับมาถึง 42.1 แล้ววิ่งเป็นทศนิยมสองชั้นซึ่งอ่านลำดับยาก
@@ -1027,6 +1027,9 @@ const APP_META={
      ประวัติเก่าเก็บไว้ทั้งหมดตามเลขเดิม ไม่ไล่เขียนใหม่ เพราะเลขในนั้นถูกอ้างถึงไปแล้ว
      รายการที่อยู่ใต้ 1.001 ลงไปจึงเป็นเลขชุดเก่า อ่านต่อกันได้ตามวันที่ */
   changelog:[
+    ["1.443","2026-10-13","FEAT ส่งขนาดตู้ไป Production + หน้าดูงานมีรายการ PART / ปุ่มไม่ไฮไลต์ / พื้นเทาเสมอ (ผู้ใช้ 17:06: 1.โปรแกรมเราต้องส่งออกขนาดไปด้วย ขนาดตู้ 2.ขวามือของตัวดูออเดอร์ที่ผมกด อยากให้แสดงรายการ PART ด้วย และเพิ่มปุ่มไม่ highlight 3.ในหน้าออเดอร์ให้แสดงพื้นเทาตลอด ถ้าคนกดส่งสีดำไปปรับพื้นเป็นเทาตลอด) — (1) ทุกแถวชิ้นที่ส่งเข้า Production มีขนาดตู้ กว้าง/สูง/ลึก (ตัวเดียวกับ “ขนาดตู้ปัจจุบัน” ในแผงขวา) → Production V2 v182 ใส่ ProductHeight / ProductWidth / ProductDepth ในหน้า AX · ออเดอร์เก่าต้องกดส่งใหม่ (2) แผง ☰ ตู้ ในหน้าดูงาน: แตะตู้ = ซูม + รายการชิ้นเรียงตาม PartID (P1 · ชื่อ · ขนาด) แตะชิ้น = เน้น + ซูม · ปุ่ม ✕ ไม่ไฮไลต์ ในแผง/แถบบน (กดเน้นกลับได้) (3) หน้าดูงานพื้นเทาเสมอ ไม่ตามธีมจอคนส่ง (ลิงก์เก่าก็เทา หลังส่งงานขึ้นเว็บครั้งถัดไปซึ่งอัปเดต view.html)"],
+    ["1.442","2026-10-12","FEAT ผิวเมลามีนคิด 0 ให้เอง (ผู้ใช้ 20:20: คุณไปใส่ให้ผมเลยครับ G01M G02M ถ้าตัวที่ 4 เป็น M คือไม้เมลามีน) — รหัสสีแบบ อักษร+เลข 2 หลัก+อักษร+เลข (G01M0349Y · N01M0029N · K_N01M0029_…) ตัวที่ 4 = M = เมลามีน รวมในราคาแผ่นแล้ว → คิด 0 นับว่ามีราคา ไม่ต้องใส่ทีละสี สีใหม่ก็ได้เอง · ตัวอื่น (เช่น G08H… HPL) ยังใส่ราคาเอง · พิมพ์ราคาในตารางชนะกฎ · ติ๊กปิดกฎได้ในแท็บผิว · ตารางโชว์ “0 · เมลามีน (M)” / “รวมแล้ว (M)”"],
+    ["1.441","2026-10-12","FEAT ราคาทุนคิดผิวด้วย (ผู้ใช้ 20:13: ตอนนี้ผิวยังไม่ถูกคิดราคาหรือเปล่า เห็นตอนกดห้องออกแบบแล้วมีให้ใส่แค่วัสดุ) — 1.439 ข้ามผิวไว้ (คิดว่ารวมในราคาแผ่น) · หน้า 💰 ราคาทุนมีแท็บ “ผิว” ราคาต่อ ตร.ม. ต่อด้าน คิดผิวบน + ผิวล่างของชิ้นที่ออกใบตัด (รหัสเดียวกับ SURFACE_TOP/BOTTOM ตอนส่งออก) + เผื่อเศษผิว % · ใส่ 0 ได้ทุกแท็บ = รวมในราคาแผ่นแล้ว/ไม่คิดเพิ่ม (นับว่ามีราคา ไม่ขึ้นว่ายังขาด) + ปุ่มตั้ง 0 ให้ทุกแถวที่แสดง (ผิวเมลามีนสำเร็จ) · วางจาก Excel ราคา 0 ได้ · ห้องออกแบบแยกต้นทุน ไม้ · ผิว · ขอบ · Fitting"],
     ["1.440","2026-10-12","FEAT อัปโหลดรูปลายผิว (รูปสี) ขึ้น Google Drive จากในโปรแกรม (ผู้ใช้ 20:01: ผมจะอัพรูปด้วยโปรแกรมผมได้ไหม อัพรูปสี) — เดิมรูปลายผิวคือไฟล์ใน <Server>/textures/<รหัสสี>.jpg ที่วางเองด้วย Windows Explorer พอย้ายมา Google Drive ไม่มีทางเพิ่มรูปเลย · หน้า 🖼 รูปลายผิว (ปุ่มในหน้าคลัง · คลิกขวาชิ้น “รูปลายผิวของสีนี้” · หน้าแก้ผิวใน Element): สีที่ใช้ในงานนี้แต่ยังไม่มีรูป กด 📷 เลือกรูปตั้งชื่อตามรหัสสีให้เอง · เพิ่มหลายรูป (เลือก/ลากวาง) แก้ชื่อก่อนส่งได้ · รูปบน Drive ทั้งหมดพร้อมรูปย่อ เปลี่ยน/ลบ (ถามก่อน) · ย่อเหลือด้านยาว 2048 px บีบ JPG ก่อนส่ง · ส่งเสร็จ 3D ทาผิวใหม่ทันที เครื่องอื่นเห็นหลัง F5 + FIX รูปลายผิวไฟล์ใหญ่บน Drive (≥ 2 MB) ไม่ขึ้น — ตัวเชื่อมคืนตัวอ่านทีหลังแต่ตัวโหลดรูปส่งเข้า createObjectURL ตรง ๆ · ปิดได้ SN_OFF.texMgr"],
     ["1.439","2026-10-12","FEAT ราคาทุน + ต้นทุนในห้องออกแบบ (ผู้ใช้ 16:45: Fitting ยังไม่มีช่องให้ใส่ราคา ในห้องออกแบบต้องมีราคาออกเพื่อรู้ต้นทุน ออกแบบให้ใส่ได้ง่ายๆ ไม่ต้องไล่หาใส่หลายที · เลือก: ไม้ + ขอบ + Fitting · ราคาพิมพ์เอง) — หน้า 💰 ราคาทุน (ปุ่มในคลัง · ปุ่มในห้องออกแบบ) แท็บ Fitting / ไม้ (ต่อ ตร.ม.) / ขอบ (ต่อเมตร) ตั้งต้นโชว์เฉพาะที่ใช้ในงานนี้และยังไม่มีราคา กรอกแล้ว Enter ไปช่องถัดไป บันทึกเอง · วางจาก Excel ทีละหลายแถว (รหัส + ราคา) · CSV รายการที่ยังไม่มีราคาให้จัดซื้อกรอก · ของตัดยาวคิดต่อเมตร · เผื่อเศษไม้/ขอบ % · ห้องออกแบบ: ตู้ที่เลือกบอกต้นทุน (ไม้ · ขอบ · Fitting) + กำไรเทียบราคาขาย · แถบล่างต้นทุนทั้งห้อง + กำไรขั้นต้น + ยังไม่มีราคา n รายการ (กดใส่ราคาที่ขาดได้เลย) · คิดชิ้น/ขอบ/Fitting ด้วยตัวเดียวกับใบตัดและ BOM ส่งออก · ราคาเก็บในค่าตั้ง (ทุกเครื่องเห็นเหมือนกัน) ไม่ออกในลิงก์แชร์ · ปิดได้ SN_OFF.cost"],
     ["1.438","2026-10-12","FIX คำเตือน “อ่าน app_settings order_base_data_2606012207… ไม่ได้ — Unexpected end of JSON input” ขึ้นซ้ำไม่หยุด (ผู้ใช้ 16:50: ทำไมถึงยังขึ้นเตือน หาสาเหตุไม่ได้หรอ ผมไม่ได้ยุ่งกับ order นั้นแล้วนิ) — สาเหตุจริง: ไฟล์รุ่นล่าสุดของกลุ่มนั้นเสีย (เนื้อไฟล์ขาด) ตั้งแต่ 5/10/2026 11:36 ตอนเขียนลงโฟลเดอร์ Server (ภาพถ่าย BOM ที่ Production เก็บไว้เทียบต้นทางแก้) แล้วถูกย้ายขึ้น Drive ไปด้วย ตัวอ่านข้ามแล้วลองใหม่ทุก 10 วิ จึงเตือนตลอด (1.436 อธิบายผิดว่าเป็นไฟล์ที่กำลังส่ง) · ตอนนี้: ตรวจไฟล์นั้นครั้งแรก เสียจริง = จำว่าเสีย ข้ามไปใช้รุ่นก่อนหน้า แจ้งครั้งเดียวว่าไฟล์ไหน เขียนเมื่อไหร่ · หน้า Google Drive มีรายการไฟล์เสีย + ปุ่มย้ายไป _backup/broken (ทุกเครื่องหยุดเตือน) (GasFS 1.5) + FEAT แผงขวาของชั้นบอก “⚖ รับน้ำหนักได้ประมาณ … กก.” (ผู้ใช้ 16:45: ลูกค้าถามรับ นน.ได้ชั้นละเท่าไหร่) คิดจากช่วง/ลึก/หนาเนื้อ/ชนิดแผ่น แอ่นไม่เกิน 0.5% ของช่วงหลังแอ่นเพิ่มตามเวลา + วางชั่วคราว · ชั้นปรับมีเพดานตัวรับชั้น · ตู้ JMO001 = 25 กก. · ใช้ร่วมกับ Production V2 v181 · ปิดได้ SN_OFF.gasBad / shelfLoad"],
@@ -31141,24 +31144,40 @@ function plRoomHtml(r,num){ plCss317();
      · หน้า 💰 ราคาทุน: แท็บ Fitting / ไม้ / ขอบ · ตั้งต้นโชว์ “ที่ใช้ในงานนี้ + ยังไม่มีราคา” กรอกแล้ว Enter ไปช่องถัดไป บันทึกเอง
        📋 วางจาก Excel (รหัส + ราคา ทีละหลายแถว) · ⬇ CSV รายการที่ยังไม่มีราคา (ส่งให้จัดซื้อกรอก แล้ววางกลับ)
      · ไม่ออกในลิงก์แชร์/ไฟล์งาน (ราคาอยู่ในค่าตั้ง ไม่อยู่ในข้อมูลงาน) · โหมดดูอย่างเดียวไม่โชว์
+   ───────── v1.441: คิดผิวด้วย + ใส่ 0 ได้ ─────────
+   ผู้ใช้ 12/10/2026 20:13 “ตอนนี้ผิวยังไม่ถูกคิดราคาหรือเปล่าครับ เห็นตอนกดห้องออกแบบ แล้วมีให้ใส่แค่วัสดุ” — 1.439 ข้ามผิว (คิดว่ารวมในราคาแผ่น)
+   ตอนนี้: แท็บ “ผิว” ราคาต่อ ตร.ม. ต่อด้าน (ผิวบน + ผิวล่างของชิ้นที่ออกใบตัด · รหัสเดียวกับ SURFACE_TOP/BOTTOM ตอนส่งออก) × (1 + เผื่อเศษผิว %)
+     · ใส่ 0 ได้ = “รวมในราคาแผ่นแล้ว / ไม่คิดเพิ่ม” นับว่ามีราคา (ไม่ขึ้นว่ายังไม่มีราคา) — ใช้ได้ทุกแท็บ · ปุ่ม “ตั้ง 0 ให้ทุกแถวที่แสดง” สำหรับผิวเมลามีนสำเร็จ
+     · ต้นทุนแยก ไม้ · ผิว · ขอบ · Fitting
+   ───────── v1.442: ผิวเมลามีน (รหัสสีตัวที่ 4 = M) คิด 0 ให้เอง ─────────
+   ผู้ใช้ 12/10/2026 20:20 “คุณไปใส่ให้ผมเลยครับ G01M G02M ถ้าตัวที่ 4 เป็น M คือไม้เมลามีน”
+   ตอนนี้: ผิวที่รหัสสีเป็นแบบ อักษร+เลข 2 หลัก+อักษร+เลข (เช่น G01M0349Y · N01M0029N · K_N01M0029_…) แล้วตัวที่ 4 = M
+     = เมลามีน รวมในราคาแผ่นแล้ว → คิด 0 นับว่ามีราคา (ไม่ต้องใส่ทีละสี · สีใหม่ที่เพิ่มทีหลังก็ได้เอง)
+     ตัวอื่น (เช่น G08H… = HPL) ยังต้องใส่ราคาเอง · พิมพ์ราคาเองในตารางชนะกฎนี้เสมอ · ปิดกฎได้ที่ติ๊กในแท็บผิว (settings.costs.melAuto=false)
    ปิดได้: SN_OFF.cost=1 */
-const COST_TABS={fit:{n:"Fitting",u:"ราคา/หน่วย"},mat:{n:"ไม้ (แผ่น)",u:"ราคา/ตร.ม."},edge:{n:"ขอบ",u:"ราคา/เมตร"}};
+const COST_TABS={fit:{n:"Fitting",u:"ราคา/หน่วย"},mat:{n:"ไม้ (แผ่น)",u:"ราคา/ตร.ม."},surf:{n:"ผิว",u:"ราคา/ตร.ม./ด้าน"},edge:{n:"ขอบ",u:"ราคา/เมตร"}};
 function costCfg(){ let c=settings.costs; if(!c||typeof c!=="object") c=settings.costs={};
-  ["fit","mat","edge"].forEach(k=>{ if(!c[k]||typeof c[k]!=="object") c[k]={}; });
-  if(!(+c.waste>=0)) c.waste=15; if(!(+c.edgeWaste>=0)) c.edgeWaste=10; return c; }
+  ["fit","mat","surf","edge"].forEach(k=>{ if(!c[k]||typeof c[k]!=="object") c[k]={}; });
+  if(!(+c.waste>=0)) c.waste=15; if(!(+c.surfWaste>=0)) c.surfWaste=15; if(!(+c.edgeWaste>=0)) c.edgeWaste=10; return c; }
 function costOn(){ return !snOff("cost")&&!(document.body&&document.body.classList.contains("viewOnly")); }
 function costNum(v){ if(v==null) return 0; if(typeof v==="object") v=v.p; const n=parseFloat(String(v).replace(/[,\s฿]/g,"")); return (isFinite(n)&&n>0)?n:0; }
 function costElemPrice(kind,key,code){
-  try{ const L=((settings.elements||{})[kind==="mat"?"materials":"edges"])||[];
+  try{ const L=((settings.elements||{})[kind==="mat"?"materials":kind==="surf"?"surfaces":"edges"])||[];
     const re=c=>{ try{ return new RegExp("^"+String(c).replace(/[.*+?^${}()|[\]\\]/g,"\\$&").replace(/xx/g,"\\d\\d")+"$","i"); }catch(e){ return null; } };
     const e=L.find(x=>{ if(!x||!x.code) return false; if(x.code===code||x.code===key) return true;
       if(x.itemId&&String(x.itemId).split(",").map(s=>s.trim()).indexOf(key)>=0) return true;
       const r=/xx/.test(x.code)?re(x.code):null; return !!(r&&(r.test(key)||r.test(code))); });
     return e?costNum(e.cost):0; }catch(e){ return 0; } }
-function costPrice(kind,key,code){ const c=costCfg(), v=c[kind][key]; const n=costNum(v); if(n>0) return n; return (kind==="fit")?0:costElemPrice(kind,key,code); }
+function costPrice(kind,key,code){ const c=costCfg(), v=c[kind][key]; const n=costNum(v); if(n>0) return n; if(costZero(v)) return 0; if(kind==="surf"&&v==null&&costIsMel(key,code)) return 0; return (kind==="fit")?0:costElemPrice(kind,key,code); }
+/* v1.442: รหัสสี อักษร+เลข 2 หลัก+อักษร (+เลข) — ตัวที่ 4 = M คือเมลามีน (G01M · G02M · N01M) · H = HPL ฯลฯ */
+function costMelToken(code){ const u=String(code||"").toUpperCase(); const m=u.match(/(?:^|[^A-Z0-9])([A-Z]\d{2}[A-Z])\d{3}/); return m?m[1]:""; }
+function costIsMel(key,code){ if(costCfg().melAuto===false) return false; return [key,code].some(v=>{ const t=costMelToken(v); return !!t&&t[3]==="M"; }); }
+/* v1.441: ใส่ 0 ไว้ = มีราคา (รวมในราคาแผ่นแล้ว / ไม่คิดเพิ่ม) */
+function costZero(v){ if(v==null) return false; const x=(typeof v==="object")?v.p:v; return x!==""&&x!=null&&isFinite(+x)&&+x===0; }
+function costHas(kind,key,code){ const v=costCfg()[kind][key]; return costPrice(kind,key,code)>0||costZero(v)||(kind==="surf"&&v==null&&costIsMel(key,code)); }
 /* รายการที่ใช้: ไม้ (ตร.ม.) · ขอบ (ม.) · Fitting (หน่วย / ม.) — key = รหัสที่ใช้เก็บราคา */
 function costItems(boards,fitRows){
-  const R={fit:new Map(),mat:new Map(),edge:new Map(),unres:0};
+  const R={fit:new Map(),mat:new Map(),surf:new Map(),edge:new Map(),unres:0};
   const add=(m,key,o,q)=>{ let x=m.get(key); if(!x){ x=Object.assign({key,qty:0},o); m.set(key,x); } x.qty+=q; };
   const bs=(boards||[]).filter(b=>b&&!isGuide(b)); let cut=bs; try{ cut=expandCoreBoards(bs); }catch(e){}
   cut.forEach(b=>{ try{ const el=effLinks(b), bd=blankDims(b), th=coreThickOf(b,bd.T);
@@ -31166,6 +31185,11 @@ function costItems(boards,fitRows){
       const a=(+bd.L||0)*(+bd.W||0)/1e6;
       if(!key||key[0]==="$") R.unres++;
       else if(a>0){ const e=elemByCode(code); add(R.mat,key,{code,name:String((e&&elemDesc(e))||code),unit:"ตร.ม."},a); }
+      /* v1.441: ผิวบน + ผิวล่าง — รหัสเดียวกับตอนส่งออก (SURFACE_TOP / SURFACE_BOTTOM) · ด้านละเต็มพื้นที่ */
+      if(a>0) [el.surfT,el.surfB].forEach(lk=>{ const raw=String(lk==null?"":lk).trim(); if(!raw||/^no\s*surf/i.test(raw)) return;
+        let sc="", sp=""; try{ sc=String(resolveLink(lk,b)||"").trim(); }catch(e){} try{ sp=String(resolveOut(lk,b)||"").trim(); }catch(e){}
+        const sk=sp||sc; if(!sk||sk[0]==="$"){ R.unres++; return; } if(/^k?_?no_?surf/i.test(sk)) return;
+        const se=elemByCode(sc); add(R.surf,sk,{code:sc||sk,name:String((se&&elemDesc(se))||sc||sk),unit:"ตร.ม."},a); });
       edgeUsage(b).forEach(u=>{ const k=String(u.out||"").trim(); if(!k||k[0]==="$"){ R.unres++; return; }
         add(R.edge,k,{code:k,name:u.tag?("ขอบ "+u.tag):k,unit:"ม."},(+u.mm||0)/1000); });
     }catch(e){} });
@@ -31174,16 +31198,15 @@ function costItems(boards,fitRows){
     let nm=String(r.name||base); if(perM){ try{ const d=fitDef(r.art); if(d&&d.desc) nm=String(d.desc); }catch(e){} }
     add(R.fit,key,{code:String(r.art||base),pid:String(r.purchase||""),name:nm,unit:perM?"ม.":String(r.unit||"ชิ้น"),perM},q); });
   return R; }
-function costCalc(boards,fitRows){ const c=costCfg(), R=costItems(boards,fitRows), o={wood:0,edge:0,fit:0,miss:[],R,unres:R.unres};
-  R.mat.forEach(x=>{ const p=costPrice("mat",x.key,x.code); x.p=p; if(p>0) o.wood+=p*x.qty*(1+(+c.waste||0)/100); else o.miss.push(["mat",x]); });
-  R.edge.forEach(x=>{ const p=costPrice("edge",x.key,x.code); x.p=p; if(p>0) o.edge+=p*x.qty*(1+(+c.edgeWaste||0)/100); else o.miss.push(["edge",x]); });
-  R.fit.forEach(x=>{ const p=costPrice("fit",x.key,x.code); x.p=p; if(p>0) o.fit+=p*x.qty; else o.miss.push(["fit",x]); });
-  o.total=o.wood+o.edge+o.fit; return o; }
+function costCalc(boards,fitRows){ const c=costCfg(), R=costItems(boards,fitRows), o={wood:0,surf:0,edge:0,fit:0,miss:[],R,unres:R.unres};
+  const run=(k,f,w)=>R[k].forEach(x=>{ const p=costPrice(k,x.key,x.code); x.p=p; if(p>0) o[f]+=p*x.qty*(1+(+w||0)/100); else if(!costHas(k,x.key,x.code)) o.miss.push([k,x]); });
+  run("mat","wood",c.waste); run("surf","surf",c.surfWaste); run("edge","edge",c.edgeWaste); run("fit","fit",0);
+  o.total=o.wood+o.surf+o.edge+o.fit; return o; }
 function costAllBoards(){ try{ return orderGroups().reduce((a,g)=>a.concat(g.boards),[]); }catch(e){ return state.boards.slice(); } }
 function costFitRows(bs){ try{ return fittingAgg(bs); }catch(e){ console.error("cost fittingAgg:",e); return []; } }
 function costOfCab(inst){ const bs=plBoardsOf(inst); return costCalc(bs,costFitRows(bs)); }
 function costOfAll(){ return costCalc(costAllBoards(),costFitRows(state.boards)); }
-function costBreak(o){ return "ไม้ "+plMoney(o.wood)+" · ขอบ "+plMoney(o.edge)+" · Fitting "+plMoney(o.fit); }
+function costBreak(o){ return "ไม้ "+plMoney(o.wood)+" · ผิว "+plMoney(o.surf||0)+" · ขอบ "+plMoney(o.edge)+" · Fitting "+plMoney(o.fit); }
 /* ห้องออกแบบ: คิดเบื้องหลังหลังแผงวาดเสร็จ */
 let _costT=0;
 function costSchedule(){ if(!costOn()) return; clearTimeout(_costT); _costT=setTimeout(()=>{ try{ costPaint(); }catch(e){ console.error("costPaint:",e); } },250); }
@@ -31230,15 +31253,16 @@ function costEditor(opt){
   const c=costCfg(), today=new Date().toISOString().slice(0,10);
   const scopeB=opt.inst?plBoardsOf(opt.inst):null;
   const used=opt.inst?costItems(scopeB,costFitRows(scopeB)):costItems(costAllBoards(),costFitRows(state.boards));
-  const known={fit:new Map(),mat:new Map(),edge:new Map()}, E=settings.elements||{};
+  const known={fit:new Map(),mat:new Map(),surf:new Map(),edge:new Map()}, E=settings.elements||{};
   (E.fittings||[]).forEach(e=>{ if(!e||!e.code) return; const ids=String(e.itemId||"").split(",").map(s=>s.trim()).filter(Boolean), key=ids[0]||String(e.code);
     if(!known.fit.has(key)) known.fit.set(key,{key,code:String(e.code),pid:ids[0]||"",name:String(e.desc||e.code),unit:String(e.unit||"ชิ้น")}); });
   (E.materials||[]).forEach(e=>{ if(!e||!e.code) return; const key=String(e.itemId||"").split(",")[0].trim()||String(e.code); known.mat.set(key,{key,code:String(e.code),name:String(e.desc||e.code),unit:"ตร.ม."}); });
+  (E.surfaces||[]).forEach(e=>{ if(!e||!e.code||/no.?surf/i.test(e.code)) return; const key=String(e.itemId||"").split(",")[0].trim()||String(e.code); known.surf.set(key,{key,code:String(e.code),name:String(e.desc||e.code),unit:"ตร.ม."}); });   // v1.441
   (E.edges||[]).forEach(e=>{ if(!e||!e.code||/no.?edge/i.test(e.code)) return; const key=String(e.itemId||"").split(",")[0].trim()||String(e.code); known.edge.set(key,{key,code:String(e.code),name:String(e.desc||e.code),unit:"ม."}); });
-  ["fit","mat","edge"].forEach(k=>Object.keys(c[k]).forEach(key=>{ if(!known[k].has(key)&&!used[k].has(key))
-    known[k].set(key,{key,code:key.replace(/@m$/,""),name:"",unit:(k==="mat"?"ตร.ม.":k==="edge"?"ม.":(/@m$/.test(key)?"ม.":"ชิ้น"))}); }));
-  const miss=k=>[...used[k].values()].filter(x=>!(costPrice(k,x.key,x.code)>0)).length;
-  let tab=opt.tab||((opt.onlyMissing&&!miss("fit"))?(miss("mat")?"mat":miss("edge")?"edge":"fit"):"fit");
+  ["fit","mat","surf","edge"].forEach(k=>Object.keys(c[k]).forEach(key=>{ if(!known[k].has(key)&&!used[k].has(key))
+    known[k].set(key,{key,code:key.replace(/@m$/,""),name:"",unit:((k==="mat"||k==="surf")?"ตร.ม.":k==="edge"?"ม.":(/@m$/.test(key)?"ม.":"ชิ้น"))}); }));
+  const miss=k=>[...used[k].values()].filter(x=>!costHas(k,x.key,x.code)).length;
+  let tab=opt.tab||((opt.onlyMissing&&!miss("fit"))?(miss("mat")?"mat":miss("surf")?"surf":miss("edge")?"edge":"fit"):"fit");
   let onlyUsed=opt.onlyUsed!==false, onlyMissing=opt.onlyMissing!==false, q="";
   const _C=ovCard(980,90), ov=_C.ov;
   ov.innerHTML='<div style="'+_C.cardCSS+'">'
@@ -31266,37 +31290,42 @@ function costEditor(opt){
   const rowsOf=k=>{ const m=new Map(); used[k].forEach((x,key)=>m.set(key,x)); if(!onlyUsed) known[k].forEach((x,key)=>{ if(!m.has(key)) m.set(key,Object.assign({qty:0},x)); });
     let L=[...m.values()]; const qq=q.trim().toLowerCase();
     if(qq) L=L.filter(x=>[x.key,x.code,x.pid,x.name].some(v=>String(v||"").toLowerCase().indexOf(qq)>=0));
-    if(onlyMissing) L=L.filter(x=>!(costPrice(k,x.key,x.code)>0)||x._keep);
+    if(onlyMissing) L=L.filter(x=>!costHas(k,x.key,x.code)||x._keep);
     return L.sort((a,b)=>(b.qty>0)-(a.qty>0)||String(a.name||a.key).localeCompare(String(b.name||b.key),"th")); };
   const paintTabs=()=>{ Q("#cpTabs").innerHTML=Object.keys(COST_TABS).map(k=>{ const n=miss(k);
       return '<button type="button" data-t="'+k+'" class="'+(k===tab?'sel':'')+'">'+COST_TABS[k].n+(n?(' <span style="color:#e58a24">('+n+')</span>'):'')+'</button>'; }).join("");
     Q("#cpTabs").querySelectorAll("button").forEach(b=>b.onclick=()=>{ tab=b.dataset.t; paint(); }); };
   const paintOpt=()=>{ const o=Q("#cpOpt");
     if(tab==="mat") o.innerHTML='พื้นที่ = ขนาดคลี่ของชิ้นที่ออกใบตัด · เผื่อเศษไม้ <input id="cpWaste" type="number" min="0" step="1" value="'+(+c.waste||0)+'" style="width:58px"> %';
+    else if(tab==="surf") o.innerHTML='ผิวบน + ผิวล่าง ด้านละเต็มพื้นที่ชิ้น · เผื่อเศษผิว <input id="cpWaste" type="number" min="0" step="1" value="'+(+c.surfWaste||0)+'" style="width:58px"> % · ผิวที่รวมในราคาแผ่นแล้ว (เมลามีนสำเร็จ) ใส่ <b>0</b>'
+      +' <button class="ibtn" id="cpZero" style="padding:2px 8px;font-size:11px;margin-left:6px" title="ใส่ 0 ให้ทุกแถวที่แสดงอยู่และยังไม่มีราคา = ไม่คิดเพิ่ม">ตั้ง 0 ให้ทุกแถวที่แสดง (รวมในราคาแผ่น)</button>'   // v1.441
+      +'<div style="margin-top:4px"><label title="รหัสสีแบบ G01M0349Y · N01M0029N — ตัวที่ 4 เป็น M = เมลามีน (รวมในราคาแผ่น) · พิมพ์ราคาเองในตารางชนะกฎนี้"><input type="checkbox" id="cpMel"'+(c.melAuto!==false?' checked':'')+'> ผิวรหัสสีตัวที่ 4 = <b>M</b> (G01M · G02M …) = เมลามีน คิด 0 ให้เอง</label></div>';   // v1.442
     else if(tab==="edge") o.innerHTML='ยาวขอบจากตัวคิดขอบตัวเดียวกับ BOM · เผื่อขอบ <input id="cpWaste" type="number" min="0" step="1" value="'+(+c.edgeWaste||0)+'" style="width:58px"> %';
     else o.innerHTML='จำนวนจากรายการ BOM Fitting (ตัวเดียวกับตอนส่งออก) · ของตัดยาว (โปรไฟล์/รางไฟ/เฟรม) ใส่ราคาต่อเมตร';
-    const w=Q("#cpWaste"); if(w) w.onchange=()=>{ const v=Math.max(0,parseFloat(w.value)||0); if(tab==="mat") c.waste=v; else c.edgeWaste=v; costSaveSoon(st); }; };
+    const w=Q("#cpWaste"); if(w) w.onchange=()=>{ const v=Math.max(0,parseFloat(w.value)||0); if(tab==="mat") c.waste=v; else if(tab==="surf") c.surfWaste=v; else c.edgeWaste=v; costSaveSoon(st); };
+    const mc=Q("#cpMel"); if(mc) mc.onchange=()=>{ c.melAuto=!!mc.checked; costSaveSoon(st); paint(); };   // v1.442
+    const z=Q("#cpZero"); if(z) z.onclick=()=>{ let n=0; rowsOf(tab).forEach(x=>{ if(!costHas(tab,x.key,x.code)){ c[tab][x.key]={p:0,at:today}; x._keep=1; n++; } }); if(n){ costSaveSoon(st); paint(); } toast(n?("ตั้ง 0 (รวมในราคาแผ่น) "+n+" รายการ"):"ไม่มีแถวที่ยังไม่มีราคา"); }; };
   const paint=()=>{ paintTabs(); paintOpt(); const L=rowsOf(tab), T=Q("#cpTbl");
     const th='style="position:sticky;top:0;background:var(--solid,#fff);text-align:left;padding:6px 6px;border-bottom:1px solid var(--line);font-weight:600"';
     T.innerHTML='<tr><th '+th+'>รหัส</th><th '+th+'>ชื่อ</th><th '+th+'>หน่วย</th><th '+th.replace("left","right")+'>ใช้ใน'+(opt.inst?'ตู้นี้':'งานนี้')+'</th><th '+th+'>'+COST_TABS[tab].u+'</th><th '+th.replace("left","right")+'>รวม</th></tr>'
-      +(L.length?L.map((x,i)=>{ const p=costPrice(tab,x.key,x.code), own=costNum(c[tab][x.key]);
+      +(L.length?L.map((x,i)=>{ const p=costPrice(tab,x.key,x.code), own=costNum(c[tab][x.key]), z0=costZero(c[tab][x.key]), mel=(tab==="surf"&&c[tab][x.key]==null&&costIsMel(x.key,x.code));
         const sub=(x.code&&x.code!==x.key.replace(/@m$/,""))?('<div style="font-size:10.5px;color:var(--ink-dim)">'+escapeHtml(x.code)+'</div>'):'';
         return '<tr data-i="'+i+'" style="border-bottom:1px solid var(--line)"><td style="padding:4px 6px;font-family:var(--mono);font-size:11.5px;word-break:break-all">'+escapeHtml(x.key)+sub+'</td>'
           +'<td style="padding:4px 6px">'+escapeHtml(String(x.name||""))+'</td><td style="padding:4px 6px;white-space:nowrap">'+escapeHtml(String(x.unit||""))+'</td>'
           +'<td style="padding:4px 6px;text-align:right;font-family:var(--mono)">'+fmtQ(x,tab)+'</td>'
-          +'<td style="padding:3px 6px"><input class="cpIn" data-i="'+i+'" inputmode="decimal" value="'+(own>0?own:"")+'" placeholder="'+((!own&&p>0)?(p+" (Element)"):"")+'" style="width:100px;font-family:var(--mono);padding:3px 6px"></td>'
-          +'<td class="cpTot" style="padding:4px 6px;text-align:right;font-family:var(--mono)">'+(p>0&&x.qty?plMoney(p*x.qty):"")+'</td></tr>'; }).join("")
+          +'<td style="padding:3px 6px"><input class="cpIn" data-i="'+i+'" inputmode="decimal" value="'+(own>0?own:(z0?"0":""))+'" placeholder="'+(mel?"0 · เมลามีน (M)":((!own&&!z0&&p>0)?(p+" (Element)"):""))+'" style="width:100px;font-family:var(--mono);padding:3px 6px"></td>'
+          +'<td class="cpTot" style="padding:4px 6px;text-align:right;font-family:var(--mono)">'+(p>0&&x.qty?plMoney(p*x.qty):(z0?"รวมแล้ว":(mel?"รวมแล้ว (M)":"")))+'</td></tr>'; }).join("")
         :'<tr><td colspan="6" style="padding:18px 6px;color:var(--ink-dim);text-align:center">'+(onlyMissing?'✓ ไม่มีรายการที่ยังขาดราคา (เอาติ๊ก “เฉพาะที่ยังไม่มีราคา” ออกเพื่อดู/แก้ราคาที่ใส่แล้ว)':'ไม่มีรายการ')+'</td></tr>');
     const ins=[...T.querySelectorAll(".cpIn")];
     ins.forEach((inp,j)=>{ const x=L[+inp.dataset.i];
-      inp.oninput=()=>{ const n=costNum(inp.value); x._keep=1;
-        if(n>0) c[tab][x.key]={p:n,at:today}; else delete c[tab][x.key];
-        const p=costPrice(tab,x.key,x.code), td=inp.closest("tr").querySelector(".cpTot"); if(td) td.textContent=(p>0&&x.qty)?plMoney(p*x.qty):"";
+      inp.oninput=()=>{ const raw=String(inp.value||"").replace(/[,\s฿]/g,""), n=parseFloat(raw); x._keep=1;
+        if(raw!==""&&isFinite(n)&&n>=0) c[tab][x.key]={p:n,at:today}; else delete c[tab][x.key];   // v1.441: 0 = รวมแล้ว/ไม่คิดเพิ่ม
+        const p=costPrice(tab,x.key,x.code), td=inp.closest("tr").querySelector(".cpTot"); if(td) td.textContent=(p>0&&x.qty)?plMoney(p*x.qty):(costZero(c[tab][x.key])?"รวมแล้ว":"");
         paintTabs(); costSaveSoon(st); };
       inp.onkeydown=ev=>{ if(ev.key==="Enter"||ev.key==="ArrowDown"){ ev.preventDefault(); const nx=ins[j+1]; if(nx){ nx.focus(); nx.select(); } }
         else if(ev.key==="ArrowUp"){ ev.preventDefault(); const pv=ins[j-1]; if(pv){ pv.focus(); pv.select(); } } }; });
     if(ins[0]&&!opt._noFocus){ setTimeout(()=>{ try{ ins[0].focus(); }catch(e){} },30); }
-    const mt=miss("fit")+miss("mat")+miss("edge");
+    const mt=miss("fit")+miss("mat")+miss("surf")+miss("edge");
     if(!st.textContent||/^ยังไม่มีราคา|^ราคาครบ/.test(st.textContent)) st.textContent=mt?('ยังไม่มีราคา '+mt+' รายการใน'+(opt.inst?'ตู้นี้':'งานนี้')):('ราคาครบทุกรายการใน'+(opt.inst?'ตู้นี้':'งานนี้')); };
   Q("#cpQ").oninput=e=>{ q=e.target.value; opt._noFocus=1; paint(); };
   Q("#cpUsed").onchange=e=>{ onlyUsed=e.target.checked; paint(); };
@@ -31305,11 +31334,11 @@ function costEditor(opt){
   Q("#cpPasteGo").onclick=()=>{ const items=costParsePaste(Q("#cpPaste").value); if(!items.length){ Q("#cpPasteSt").textContent="ไม่พบแถวที่มีรหัส + ราคา"; return; }
     const idx=new Map(); [known[tab],used[tab]].forEach(m=>m.forEach(x=>{ [x.key,x.code,x.pid,x.key.replace(/@m$/,"")].forEach(v=>{ const s=String(v||"").trim().toLowerCase(); if(s&&!idx.has(s)) idx.set(s,x.key); }); }));
     let hit=0, fresh=0; items.forEach(it=>{ const k0=String(it.code).trim(), key=idx.get(k0.toLowerCase());
-      if(key){ hit++; if(it.price>0) c[tab][key]={p:it.price,at:today}; else delete c[tab][key]; }
-      else { fresh++; if(it.price>0) c[tab][k0]={p:it.price,at:today}; } });
+      if(key){ hit++; c[tab][key]={p:it.price,at:today}; }                    // v1.441: 0 = รวมแล้ว
+      else { fresh++; c[tab][k0]={p:it.price,at:today}; } });
     Q("#cpPasteSt").textContent="✓ ใส่ราคา "+hit+" รายการ"+(fresh?(" · รหัสที่ยังไม่มีใน"+COST_TABS[tab].n+" "+fresh+" รายการ (เก็บไว้ใช้ทีหลัง)"):"");
     Q("#cpPaste").value=""; costSaveSoon(st); paint(); };
-  Q("#cpCsv").onclick=()=>{ const L=[...used[tab].values()].filter(x=>!(costPrice(tab,x.key,x.code)>0));
+  Q("#cpCsv").onclick=()=>{ const L=[...used[tab].values()].filter(x=>!costHas(tab,x.key,x.code));
     if(!L.length){ toast("ไม่มีรายการที่ยังไม่มีราคาใน"+COST_TABS[tab].n); return; }
     const cs=v=>{ const s=String(v==null?"":v); return /[",\r\n]/.test(s)?'"'+s.replace(/"/g,'""')+'"':s; };
     const csv="รหัส,ชื่อ,รหัส Element,หน่วย,ใช้ในงานนี้,ราคา\n"+L.map(x=>[x.key,x.name,x.code,x.unit,fmtQ(x,tab),""].map(cs).join(",")).join("\n");
@@ -40283,7 +40312,7 @@ async function renderLoader(){
       <button class="ibtn" id="ldGen">⚙ สร้างตู้พารามิเตอร์</button>
       <button class="ibtn" id="ldCont">↩ ทำงานต่อจากงานล่าสุด (autosave)</button>
       <button class="ibtn" id="ldCatalog" title="ตั้งว่ารุ่นไหนขึ้นในห้องออกแบบ · หมวด · ขนาดที่ขายได้ · ฟิลเลอร์คู่ · ราคา · รูปย่อ">🗂 แคตตาล็อกห้องออกแบบ</button>
-      <button class="ibtn" id="ldCost" title="ราคาทุน Fitting / ไม้ (ตร.ม.) / ขอบ (เมตร) — ใช้คิดต้นทุนในห้องออกแบบ · วางจาก Excel ได้ (v1.439)">💰 ราคาทุน</button>
+      <button class="ibtn" id="ldCost" title="ราคาทุน Fitting / ไม้ (ตร.ม.) / ผิว (ตร.ม./ด้าน) / ขอบ (เมตร) — ใช้คิดต้นทุนในห้องออกแบบ · วางจาก Excel ได้ (v1.439 · ผิว v1.441)">💰 ราคาทุน</button>
       <button class="ibtn" id="ldTex" title="อัปโหลด/เปลี่ยน/ลบ รูปลายผิว (รูปสี) บน Google Drive — ชื่อรูป = รหัสสี (v1.440)">🖼 รูปลายผิว</button>
     </div></div>
     <div class="sumh" style="display:flex;align-items:center;gap:10px;justify-content:space-between;flex-wrap:wrap"><span>🗄 เปิดตู้เดี่ยวจากคลาวด์</span>
@@ -43112,7 +43141,7 @@ async function snvBuild(opt){
     if(opt.preview){ try{ renderer.render(scene,camera); prev=snvImgUrl(renderer.domElement,1280); }catch(e){ console.warn("snv preview:",e); } }
     const lt=o=>o?[o.color.getHex(),Math.round(o.intensity*1000)/1000,o.position?o.position.toArray().map(v=>Math.round(v)):null]:null;
     const D=Object.assign({v:1, app:APP_META.version, t:String(opt.title||""), ord:String((function(){ try{ return orderId()||""; }catch(e){ return ""; } })()), at:new Date().toISOString(),
-      root:{p:root.position.toArray()}, bg:(scene.background&&scene.background.getHex)?scene.background.getHex():0xe7e8ee,
+      root:{p:root.position.toArray()}, bg:0xe7e8ee,   /* v1.443: พื้นเทาเสมอ ไม่ตามธีมจอคนส่ง */
       cam:{t:orbit.target.toArray().map(v=>Math.round(v*10)/10), th:orbit.theta, ph:orbit.phi, r:orbit.radius, mr:modelRadius, fov:camera.fov},
       light:{hemi:hemiLight?[hemiLight.color.getHex(),hemiLight.groundColor.getHex(),hemiLight.intensity]:null, key:lt(keyLight), fill:lt(fillLight), rim:lt(rimLight)},
       geo:sc.geo, mat:sc.mat, tex:sc.tex, obj:sc.obj}, meta);
@@ -46347,6 +46376,11 @@ function buildImosData(){
         /* v1.179: ลิงก์ของชิ้นนี้โดยเฉพาะ ต่อ &p= ให้เสร็จตั้งแต่ตรงนี้
            pid อยู่ในมือแล้วในลูปนี้ ไม่มีเหตุผลให้ปลายทางไปต่อสตริงเอง */
         PART_URL:(CAB_LINK[grp.productId]?(CAB_LINK[grp.productId]+"&p=P"+pid):""),
+        /* ───────── v1.443: ขนาดตู้ไปกับทุกชิ้น ─────────
+           ผู้ใช้ 13/10/2026 17:06 “โปรแกรมเราต้องส่งออกขนาดไปด้วยครับ ขนาดตู้” (Production AX Detail: ProductHeight/Width/Depth ว่าง “—”)
+           เดิมไม่มีช่องไหนบอกขนาดตู้ · ตอนนี้ = cabWHD ตัวเดียวกับ “ขนาดตู้ปัจจุบัน” ในแผงขวา (กว้าง/สูง/ลึก โครงตู้ ไม่นับบาน · ตู้หมุนสลับแกนให้แล้ว)
+           ขีดล่างนำ = ไม่ใช่คอลัมน์ IMOS (ไฟล์ข้อความไม่เพิ่มคอลัมน์) · Production V2 v182 อ่านไปใส่ ProductHeight/Width/Depth */
+        ...(()=>{ const w=grp._cwh||(grp._cwh=cabWHD(grp)); return (w&&w.W>0)?{_prodW:w.W,_prodH:w.H,_prodD:w.D}:{}; })(),
         _cabInst:String(grp.key||""), _bid:String(b.id||""),   /* v1.175: ช่องของ part_index · ขีดล่างนำ = ไม่ใช่คอลัมน์ IMOS */
         _e1:ec[0]||"",_e2:ec[1]||"",_e3:ec[2]||"",_e4:ec[3]||""});
       // แถว TYP4 = วัสดุ (Purchase ID) → Production ต่อเป็น CutRiteMaterialCode = ART4+ART5+ART6
@@ -54013,6 +54047,17 @@ button{font:inherit;color:inherit}
 .cabrow:hover{background:rgba(30,95,168,.06)}
 .cabrow b{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:13px}
 .cabrow span{margin-left:auto;font-size:11.5px;color:var(--dim)}
+.cabrow .tg{font-style:normal;color:var(--dim);width:14px;flex:none}
+.parts{padding:0 0 6px 18px}
+.partrow{display:flex;align-items:baseline;gap:8px;padding:6px 6px;border-top:1px dashed var(--line);cursor:pointer;font-size:12.5px}
+.partrow:hover{background:rgba(47,158,68,.07)}
+.partrow.on{background:rgba(47,158,68,.16)}
+.partrow b{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:12px;min-width:34px}
+.partrow .pn{flex:1;min-width:0}
+.partrow .pn em{font-style:normal;font-size:10.5px;color:var(--dim);border:1px solid var(--line);border-radius:5px;padding:0 4px;margin-left:4px}
+.partrow .pd{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:11px;color:var(--dim);white-space:nowrap}
+.sheet h3 .nohi{border:1px solid var(--line);background:var(--bg);border-radius:9px;padding:3px 9px;font-size:12px;cursor:pointer;font-weight:400}
+@media(min-width:760px){body:has(#vwCabs:not(.hide)) #vwScan,body:has(#vwInfo:not(.hide)) #vwScan{right:404px}}
 #vwMeas{position:fixed;left:50%;transform:translateX(-50%);top:calc(64px + env(safe-area-inset-top));z-index:7;background:var(--solid);border-radius:12px;padding:6px 12px;box-shadow:var(--shadow);font-size:13px}
 #vwMeas.hide{display:none}
 #vwMeas b{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:15px}
@@ -54298,7 +54343,8 @@ function sceneBox(ids){ var b=new THREE.Box3(), t=new THREE.Box3();
   return b; }
 
 function setupScene(D){
-  scene=new THREE.Scene(); scene.background=new THREE.Color(D.bg!=null?D.bg:0xe7e8ee);
+  /* v1.443: พื้นเทาเสมอ (ผู้ใช้: ถ้าคนกดส่งสีดำไป ปรับพื้นเป็นเทาตลอด) — เดิมใช้สีพื้นที่อบมาจากจอคนส่ง (โหมดมืด = ดำ) · ลิงก์เก่าก็ได้เทา */
+  scene=new THREE.Scene(); scene.background=new THREE.Color(0xe7e8ee);
   camera=new THREE.PerspectiveCamera((D.cam&&D.cam.fov)||42,innerWidth/innerHeight,5,60000);
   var L=D.light||{};
   var h=L.hemi||[0xffffff,0xd8d8de,.85]; hemi=new THREE.HemisphereLight(h[0],h[1],h[2]); scene.add(hemi);
@@ -54427,15 +54473,36 @@ function showInfo(id){
     else if(a==="paper") paperOpen(id); }; }
 function closeInfo(){ var b=$("vwInfo"); if(b) b.classList.add("hide"); S.sel=null; if(selBox) selBox.visible=false; S.dirty=true; }
 function focusCab(ci){ var ids=Object.keys(S.D.info||{}).filter(function(id){ return S.D.info[id].ci===ci; }); focusBox(sceneBox(ids)); }
-function showCabs(){
+/* ───────── v1.443: แผง “ตู้ในงานนี้” มีรายการ PART + ปุ่มไม่ไฮไลต์ ─────────
+   ผู้ใช้ 13/10/2026 17:06 “ขวามือของตัวดูออเดอร์ที่ผมกด อยากให้แสดงรายการ PART ด้วยครับ และเพิ่มปุ่มไม่ highlight”
+   เดิม: แผงมีแค่ชื่อตู้ + จำนวนชิ้น แตะแล้วซูมไปที่ตู้ · ชิ้นที่สแกนเขียวค้างจนปิดหน้า (ปุ่ม “เน้น” แค่จาง/ไม่จางของอื่น)
+   ตอนนี้: แตะตู้ = ซูม + กาง/พับรายการชิ้นของตู้นั้น (ตู้เดียว / ตู้ของชิ้นที่สแกน กางให้เอง) · รายการเรียงตาม PartID: P1 · ชื่อ · ขนาด
+     แตะชิ้น = เน้นชิ้นนั้น (เขียว ขอบเหลือง หมุด) + ซูม + แถบบนเปลี่ยนเป็นชิ้นนั้น · ปุ่ม “✕ ไม่ไฮไลต์” ในแผง/แถบบน = เอาสีเน้นออกหมด
+     (แถบบนเปลี่ยนเป็น “🟩 ไฮไลต์” กดเน้นกลับได้) */
+function partsOf(ci){ var I=S.D.info||{}, n=function(id){ var v=parseInt(String(I[id].pid||"").split(",")[0].replace(/^P/i,""),10); return isFinite(v)?v:null; };
+  return cabIds(ci).filter(function(id){ var x=I[id]; return x&&!x.v&&!x.g; }).sort(function(a,b){ var pa=n(a), pb=n(b);
+    if(pa!=null&&pb!=null&&pa!==pb) return pa-pb; if((pa==null)!==(pb==null)) return pa==null?1:-1; return String(I[a].n||"").localeCompare(String(I[b].n||"")); }); }
+function hiOff(){ hiClear(); var b=document.querySelector('#vwScan [data-a="nohi"]'); if(b){ b.textContent="🟩 ไฮไลต์"; b.dataset.a="rehi"; } measPos(); }
+function showCabs(force){
   var D=S.D, box=$("vwCabs"); if(!box) return;
-  if(!box.classList.contains("hide")){ box.classList.add("hide"); return; }
+  if(force!==true&&!box.classList.contains("hide")){ box.classList.add("hide"); return; }
   closeInfo();
-  box.innerHTML='<h3>ตู้ในงานนี้ ('+(D.cabs||[]).length+')<button class="x" data-x>✕</button></h3><div class="sub">แตะเพื่อซูมไปที่ตู้</div><div class="bd">'
-    +(D.cabs||[]).map(function(c){ return '<div class="cabrow" data-k="'+esc(c.k)+'"><b>'+esc(c.n)+'</b><span>'+c.cnt+' ชิ้น</span></div>'; }).join("")+'</div>';
+  var I=D.info||{}, cabs=D.cabs||[], cur=(S.cur&&I[S.cur])?S.cur:null;
+  if(!S.cabOpen){ S.cabOpen={}; if(cabs.length===1) S.cabOpen[cabs[0].k]=true; if(cur) S.cabOpen[I[cur].ci]=true; }
+  var dd=function(x){ return x&&x.d?(fmt(x.d[0])+"×"+fmt(x.d[1])+"×"+fmt(x.d[2])):""; };
+  box.innerHTML='<h3>ตู้ในงานนี้ ('+cabs.length+')'+(S.hiIds.length?'<button class="nohi" data-a="nohi" title="เอาสีเน้น ขอบเหลือง และหมุดออก">✕ ไม่ไฮไลต์</button>':'')+'<button class="x" data-x>✕</button></h3>'
+    +'<div class="sub">แตะตู้ = ซูม + ดูรายการชิ้น · แตะชิ้น = เน้นชิ้นนั้น</div><div class="bd">'
+    +cabs.map(function(c){ var op=!!S.cabOpen[c.k], ps=op?partsOf(c.k):[];
+      return '<div class="cabrow" data-k="'+esc(c.k)+'"><i class="tg">'+(op?'▾':'▸')+'</i><b>'+esc(c.n)+'</b><span>'+c.cnt+' ชิ้น</span></div>'
+        +(op?('<div class="parts">'+ps.map(function(id){ var x=I[id], p0=x.pid?String(x.pid).split(",")[0]:"";
+            return '<div class="partrow'+(id===cur?' on':'')+'" data-id="'+esc(id)+'"><b>'+esc(p0||"—")+'</b><span class="pn">'+esc(x.n||"ชิ้น")+(x.dr?'<em>บาน</em>':'')+'</span><span class="pd">'+esc(dd(x))+'</span></div>'; }).join("")
+          +(ps.length?'':'<div class="partrow"><span class="pn">ไม่มีรายการชิ้นของตู้นี้</span></div>')+'</div>'):''); }).join("")+'</div>';
   box.classList.remove("hide");
-  box.onclick=function(e){ if(e.target.dataset.x!=null){ box.classList.add("hide"); return; }
-    var r=e.target.closest(".cabrow"); if(r){ focusCab(r.dataset.k); if(innerWidth<760) box.classList.add("hide"); } }; }
+  box.onclick=function(e){ var t=e.target;
+    if(t.dataset.x!=null){ box.classList.add("hide"); return; }
+    if(t.dataset.a==="nohi"){ hiOff(); showCabs(true); return; }
+    var pr=t.closest(".partrow[data-id]"); if(pr){ partFocus(pr.dataset.id,{quiet:true,zoomPart:true}); showCabs(true); if(innerWidth<760) box.classList.add("hide"); return; }
+    var r=t.closest(".cabrow"); if(r){ var k=r.dataset.k; S.cabOpen[k]=!S.cabOpen[k]; if(S.cabOpen[k]) focusCab(k); showCabs(true); } }; }
 
 /* ── สแกนสติกเกอร์: ?view=<รหัส>&p=P28 · &cab=<รหัสตู้> (ทำแบบเดียวกับโปรแกรมหลัก v1.170–v1.191) ──
    p = PartID (P28 หรือ 28) หรือ รหัสตู้+ชื่อชิ้น (WNT044_RightPanel) · เจอแล้ว: ดูเฉพาะตู้นั้น ย้อมเขียวชิ้นนั้น
@@ -54524,7 +54591,11 @@ function scanFocus(pk,quiet){
     el0.onclick=function(e){ if(e.target.dataset.a==="all"){ isolate(null); focusBox(sceneBox()); } };
     if(c0){ isolate(c0.k); focusBox(sceneBox(cabIds(c0.k))); }
     return false; }
-  var id=ids[0], I=S.D.info[id], c=cabOf(I.ci), pk0=(I.pid?I.pid.split(",")[0]:"");
+  return partFocus(ids[0],{quiet:quiet,many:ids.length}); }
+/* v1.443: ตัวเน้นชิ้นแยกออกจาก scanFocus — ใช้ทั้งตอนสแกน (?p=) และตอนแตะชิ้นในแผงตู้ · opt.zoomPart = ซูมเข้าชิ้น (ไม่ใช่ทั้งตู้) */
+function partFocus(id,opt){ opt=opt||{}; var quiet=!!opt.quiet, ids={length:opt.many||1};
+  var I=S.D.info[id]; if(!I) return false; var c=cabOf(I.ci), pk0=(I.pid?I.pid.split(",")[0]:"");
+  S.cur=id;
   /* v1.350: ผู้ใช้ขอ "เน้น = เอาแค่ไฮไลต์" — ตั้งต้นไม่จางของอื่น (เห็นสีจริงทั้งตู้) ชิ้นที่สแกนยังเขียว ขอบเหลือง หมุด วงแหวน ครบ
      ปุ่ม "เน้น" กดแล้วค่อยจางของอื่น (จำค่าไว้ตอนสลับดูเฉพาะตู้/ทั้งออเดอร์) */
   var fadeOn=false;
@@ -54532,11 +54603,11 @@ function scanFocus(pk,quiet){
   isolate(I.ci); hiOn();
   var opened=false;
   if(!I.dr){ var ks=cabDoorKeys(I.ci); if(ks.length){ animKeys(ks,1); opened=true; } }
-  setTimeout(function(){ focusBox(sceneBox(cabIds(I.ci)),frontView(c)); },opened?480:0);
+  setTimeout(function(){ focusBox(opt.zoomPart?sceneBox([id]):sceneBox(cabIds(I.ci)),frontView(c)); },opened?480:0);
   var d=I.d?(fmt(I.d[0])+" × "+fmt(I.d[1])+" × "+fmt(I.d[2])+" มม."):"";
   var el=scanBar('<span><b>'+esc(c?c.n:"")+'</b> · '+esc((I.pid?I.pid.split(",")[0]+" · ":"")+(I.n||"ชิ้น"))+' <span class="d">'+esc(d)+'</span>'
     +(opened?' <span class="d">· กางบานให้แล้ว</span>':'')+(ids.length>1?' <span class="w">เข้าคีย์นี้ '+ids.length+' ชิ้น · แสดงชิ้นแรก</span>':'')+'</span>'
-    +'<button data-a="hi">🎯 ซูม<span class="lg">ชิ้นนี้</span></button>'+(S.D.pp?'<button data-a="paper">📄 แบบผลิต<span class="lg">ชิ้นนี้</span></button>':'')   /* v1.360: มือถือซ่อน "ชิ้นนี้" */+'<button data-a="info">รายละเอียด</button><button data-a="all">ดูทั้งออเดอร์</button><button data-a="fade">เน้น: ปิด</button>');   // v1.359: ปุ่มแบบผลิตกลับมา
+    +'<button data-a="hi">🎯 ซูม<span class="lg">ชิ้นนี้</span></button>'+(S.D.pp?'<button data-a="paper">📄 แบบผลิต<span class="lg">ชิ้นนี้</span></button>':'')   /* v1.360: มือถือซ่อน "ชิ้นนี้" */+'<button data-a="info">รายละเอียด</button><button data-a="all">ดูทั้งออเดอร์</button><button data-a="fade">เน้น: ปิด</button><button data-a="nohi" title="เอาสีเน้น ขอบเหลือง และหมุดออก (v1.443)">✕ ไม่ไฮไลต์</button>');   // v1.359: ปุ่มแบบผลิตกลับมา
   /* v1.346: สลับดูทั้งออเดอร์/เฉพาะตู้ ชิ้นยังเน้นอยู่ (ของอื่นจาง + ขอบเหลือง + หมุด) · ปุ่ม "เน้น" ปิดการจางเพื่อดูสีจริงทั้งตู้ */
   el.onclick=function(e){ var t=e.target.closest("button"); if(!t) return; var a=t.dataset.a;
     if(a==="hi"){ if(!S.hiIds.length) hiOn(); focusBox(sceneBox([id])); }
@@ -54544,16 +54615,21 @@ function scanFocus(pk,quiet){
     else if(a==="paper") paperOpen(id);
     else if(a==="all"){ if(S.iso){ isolate(null); focusBox(sceneBox()); t.textContent="ดูเฉพาะตู้นี้"; } else { isolate(I.ci); focusBox(sceneBox(cabIds(I.ci))); t.textContent="ดูทั้งออเดอร์"; } }
     else if(a==="fade"){ fadeOn=!fadeOn; S.fade=fadeOn; matState(); t.textContent=fadeOn?"เน้น: เปิด":"เน้น: ปิด"; t.classList.toggle("on",fadeOn); }
+    else if(a==="nohi"){ hiOff(); try{ if(!$("vwCabs").classList.contains("hide")) showCabs(true); }catch(_){} }   // v1.443
+    else if(a==="rehi"){ hiOn(); t.textContent="✕ ไม่ไฮไลต์"; t.dataset.a="nohi"; }
     measPos(); };                                                                 // ปุ่มเปลี่ยนข้อความ → การ์ดสูง/เตี้ยลง แถบวัดขยับตาม
-  if(!quiet) hint("ชิ้นที่สแกน = สีเขียว ขอบเหลือง มีหมุดชี้ · กด “เน้น” ให้ของอื่นจางลง",3600);
+  if(!quiet) hint("ชิ้นที่สแกน = สีเขียว ขอบเหลือง มีหมุดชี้ · กด “เน้น” ให้ของอื่นจางลง · “ไม่ไฮไลต์” เอาสีเน้นออก",3600);
   return true; }
 function cabFocus(k,only){ var c=cabByKey(k); if(!c) return false;
   var ids=cabIds(c.k); if(only) isolate(c.k);
   hiSet(ids,0xff9500,{soft:true,noEdge:true,fade:false,pin:{ids:ids,text:"📍 ตู้ "+c.n,cls:"cab",ring:false}});   // v1.350: ไม่จางตู้อื่น (ไฮไลต์อย่างเดียว)   // v1.346: ตู้อื่นจาง + หมุดชื่อตู้ (ตู้ใหญ่พอ ไม่ต้องมีวงแหวน)
   focusBox(sceneBox(ids),frontView(c));
   var el=scanBar('<span>📍 ตู้ <b>'+esc(c.n)+'</b> <span class="d">'+c.cnt+' ชิ้น · จากทั้งหมด '+(S.D.cabs||[]).length+' ใบ</span></span>'
-    +'<button data-a="all">'+(only?"ดูทั้งออเดอร์":"ดูเฉพาะตู้นี้")+'</button>');
-  el.onclick=function(e){ if(e.target.dataset.a!=="all") return;
+    +'<button data-a="all">'+(only?"ดูทั้งออเดอร์":"ดูเฉพาะตู้นี้")+'</button><button data-a="nohi">✕ ไม่ไฮไลต์</button>');   // v1.443
+  el.onclick=function(e){ var a0=e.target.dataset.a;
+    if(a0==="nohi"){ hiOff(); return; }
+    if(a0==="rehi"){ hiSet(ids,0xff9500,{soft:true,noEdge:true,fade:false,pin:{ids:ids,text:"📍 ตู้ "+c.n,cls:"cab",ring:false}}); e.target.textContent="✕ ไม่ไฮไลต์"; e.target.dataset.a="nohi"; return; }
+    if(a0!=="all") return;
     if(S.iso){ isolate(null); focusBox(sceneBox()); e.target.textContent="ดูเฉพาะตู้นี้"; }   // v1.350: ดูทั้งออเดอร์ไม่จางตู้อื่น
     else { isolate(c.k); S.fade=false; matState(); focusBox(sceneBox(ids)); e.target.textContent="ดูทั้งออเดอร์"; } };
   return true; }
