@@ -1019,7 +1019,7 @@
    ===================================================================== */
 /* ---- APP_META: แหล่งความจริงเดียวของเวอร์ชัน (ดูได้จาก console / คลิกชื่อแอป) ---- */
 const APP_META={
-  name:"StarNexus", version:"1.446", build:"2026-10-14/flat-pull",
+  name:"StarNexus", version:"1.448", build:"2026-10-14/bottom-rise",
   file:"StarNexus.html", basedOn:"Furnitech_V3.html (v3.11)",
   /* ───────── เริ่มนับเวอร์ชันใหม่ที่ 1.001 (21/08/2026) ─────────
      ของเดิมนับมาถึง 42.1 แล้ววิ่งเป็นทศนิยมสองชั้นซึ่งอ่านลำดับยาก
@@ -1027,6 +1027,8 @@ const APP_META={
      ประวัติเก่าเก็บไว้ทั้งหมดตามเลขเดิม ไม่ไล่เขียนใหม่ เพราะเลขในนั้นถูกอ้างถึงไปแล้ว
      รายการที่อยู่ใต้ 1.001 ลงไปจึงเป็นเลขชุดเก่า อ่านต่อกันได้ตามวันที่ */
   changelog:[
+    ["1.448","2026-10-14","FEAT แผ่นพื้น/คานขอบล่างตู้ที่อยู่ระหว่างแผ่นข้าง ยกขึ้น 0.5 (ผู้ใช้ 14:16: แผ่นพื้นก็ยกขึ้น 0.5 แล้วนะครับ — ต่อจาก “ร่นบนล่าง”) — เดิม 1.447 ทำเฉพาะขอบบน แผ่นพื้นเสมอขอบล่างแผ่นข้างพอดี (รูมินิฟิกพื้นบนข้างที่ 8.1 สำหรับพื้น 16.2) · ตอนนี้กลับด้านของกฎขอบบน ระยะเดียวกัน: ชิ้นนอน (แผ่นพื้น · คานนอนล่าง) และคานตั้งขอบล่าง ที่ปลายสองข้างชนผิวในแผ่นข้างและขอบล่างเสมอขอบล่างข้าง (ไม่ถึง 0.45) ยกขึ้นให้ห่างพอดี 0.5 → รูบนข้างที่ 8.6 จากขอบล่าง · ยกไว้แล้ว 0.5 ขึ้นไป (พื้นยก 1 มม. อยู่แล้ว · พื้นเหนือฐานรอง 100) ไม่แตะ · คานฐานรองที่มีชิ้นนอนวางทับ (ใต้พื้นที่ยกสูง) ไม่แตะ · ชิ้นตั้งที่ยืนบนพื้นที่ยก (แผ่นแบ่ง · คานตั้งบนพื้น) เตี้ยลงเท่ากัน ขอบบนคงที่ (แผ่นแบ่งพื้นถึงทอปจึงสั้นรวม 1.0) · บาน/ชั้น/รูพิน/ไกด์ลิ้นชัก คิดจากรูปทรงปกติเหมือน 1.447 ไม่เปลี่ยน · ออเดอร์ล็อกไม่แตะ · ปิดแยกจากขอบบนได้ (ตั้งค่า หรือ SN_OFF.botRise=1) · แก้ด้วย: ขอบบนที่ห่างอยู่ 0.1–0.4 ดรอปเพิ่มจนครบ 0.5 แล้ว ชิ้นใต้ทอปเตี้ยตามเท่าระยะที่ขยับจริง (เดิมไม่เตี้ย ซ้อนค้าง) · ชิ้นที่สูงเต็มแผ่นข้าง (ชนทั้งขอบบนและขอบล่าง) ไม่แตะทั้งสองกฎ"],
+    ["1.447","2026-10-14","FEAT ชิ้นขอบบนตู้ที่อยู่ระหว่างแผ่นข้าง ดรอปลง 0.5 (ผู้ใช้ 13:29: ตู้ที่มีแผ่นทอปหรือคานนอน/ตั้งที่อยู่ในแผ่นข้าง น่าจะต้องเดปเข้าตู้ 0.5 ตอนประกอบจะพอดี · ตอบคำถาม: ร่นบนล่าง ไม่ใช่หน้าหลัง · แผ่นบนหรือชิ้นขอบบนตู้ดรอปลง 0.5 ระยะเจาะมินิฟิกจะได้ 8.6 · ดรอปขึ้น (ขอบล่าง) ไม่ต้องทำ · ดรอปเกิน 5 ให้ค่าปกติ · ชิ้นที่ชนใต้ทอปเตี้ยลง 0.5 ตาม · ทุกออเดอร์ทั้งเก่าและใหม่) — เดิมทอปในข้าง/คานบนเสมอขอบบนแผ่นข้างพอดี ประกอบแล้วชิ้นในยื่นเกินข้างได้ · ตอนนี้ทุกรอบคิดฉาก (applyTopDrop): ชิ้นนอน (ทอป · คานนอน) และคานตั้ง ที่ปลายสองข้างชนแผ่นข้างและขอบบนเสมอขอบบนแผ่นข้าง (ไม่เกิน 0.45) ดรอปลงให้ห่างขอบบนข้าง 0.5 · ดรอปไว้แล้ว 0.5 ขึ้นไป (รวมเกิน 5) = ไม่แตะ · ทอปทับข้าง / แผ่นหลัง / ลิ้นชัก / บาน / ขอบล่างตู้ ไม่แตะ · ชิ้นตั้งที่ชนใต้ชิ้นที่ดรอป (แผ่นแบ่ง · คานตั้งใต้ทอป · แผ่นหลังที่ไม่ได้ลงร่อง) เตี้ยลงเท่ากัน ขอบล่างคงที่ รูบนชิ้นอยู่ที่เดิม · รูเดือย/มินิฟิกบนแผ่นข้างเจาะใหม่ตามเอง (ตัวเจาะอัตโนมัติ v1.425) → ทอป 16.2 ได้รูที่ 8.6 จากขอบบนข้าง · คิดบาน/ชั้น/ราวแขวน/รูพินบนรูปทรงปกติแล้วค่อยดรอปตอนท้ายรอบคิดฉาก — ขนาดบาน ตำแหน่งชั้น รูพิน ไม่เปลี่ยน (ช่องห่างใต้ทอปของบานแบบในแคบลงเท่าที่ดรอป · บานพับตัวบนอาจขยับลงไม่เกิน 0.5 รูถ้วย/รูฐานไปด้วยกัน) · ปิดฟีเจอร์ = ยกคืนเสมอขอบ · ออเดอร์ที่ล็อก/ลิงก์ดูอย่างเดียว ไม่แตะ · ตั้งค่าระยะได้ (0.5 ตั้งต้น · ปิดได้) · ปิด SN_OFF.topDrop"],
     ["1.446","2026-10-14","FEAT มือจับบาร์แบนใน 3D (pull3D = flat) ตามของจริง (ผู้ใช้ 10:40: อยากได้ 3D มือจับตัวที่ใส่อยู่รหัสนั้น เป็นรูปที่ส่ง · ระยะรูถูกแล้ว แค่เปลี่ยน 3D ให้ตรงกับของจริง) — เดิมมือจับสองรูมีแบบเดียวคือก้านกลม Ø12 + เสากลึง ยาวเลยรูข้างละ 20 (H002 128 มม. = ก้าน 168) แต่ของจริงเป็นแผ่นโลหะตั้งฉากกับหน้าบาน รูปตัว U คว่ำ: คานบนแบน ขากว้างสองข้างอยู่ตรงรู ปลายเสมอขา มุมในโค้ง · ตอนนี้ตั้ง pull3D = flat ที่ Element → Fittings แล้วได้แผ่นตั้งรีดจากโปรไฟล์ (มองหน้าบานเห็นเป็นเส้นบาง มองข้างเห็นตัว U) ขาอยู่กึ่งกลางรูเสมอ · ขนาดตั้งได้รายรุ่น: pullH ยื่น · pullLen ยาวรวม · pullT หนาแผ่น · pullBar คานบนหนา · pullLeg ขากว้าง (เว้นว่าง = ค่าที่ประเมินจากรูปของจริง: ยาว = ระยะรู + 22 · ยื่น 26 · หนา 6 · คาน 6.5 · ขา 22 · มุมใน R4) · ยาวรวมมากกว่าระยะรู + ขา = คานยื่นเลยขาออกไป (มือจับทรงคานยื่น) · ใช้กับบานแนวตั้ง/แนวนอนได้ (หมุนตาม ori) · FIX มือจับที่สเปครูมีรูซ้อนที่เดิม (รูทะลุ Ø5 + คว้าน Ø8 ตรงตำแหน่งเดียวกัน) ได้เสากลึงซ้อนกันสองต้นต่อรู — ตอนนี้หนึ่งต้นต่อตำแหน่ง · ภาพเท่านั้น ไม่เข้าใบตัด/MPR (รูเจาะเหมือนเดิมทุกอย่าง) · ปิด SN_OFF.pullFlat (กลับเป็นก้านกลม)"],
     ["1.445","2026-10-14","FIX หน้าจอทำงานจำค่าที่กดตั้งไว้ (ผู้ใช้ 08:15: ทำยังไงให้หน้าจอทำงานมันจำที่ผม กดตั้งไว้ได้บ้าง) — เดิมแถบล่างจำได้แค่ ประหยัด · ลายไม้/เลข/แสง·เงา/โปร่งใส/ตาราง/สแนป/ดูดมุม ไม่ถูกเก็บเลย เปิดใหม่กลับค่าตั้งต้น · ธีม (สว่าง/เทา/มืด) กับ แดด/ในห้อง/กลางคืน เก็บในก้อนตั้งค่า แต่ตอนเปิดโปรแกรมก้อนตั้งค่าจาก Google Drive มาทับทั้งก้อน (ปุ่มแถบล่างไม่ได้ส่งขึ้น Drive) จึงเด้งกลับทุกครั้ง · แสงในฉากยังถูกใช้แค่ตอนสร้างฉากก่อนโหลดค่าเสร็จ · ตอนนี้กดอะไรบนแถบล่างจำทันทีในเครื่องนี้ (คีย์ใหม่ viewPrefs) เปิดใหม่ได้หน้าจอเดิม · ธีม/แสง/ขนาด UI/หมอก ของเครื่องนี้ชนะค่าจาก Drive (คนละเครื่องตั้งคนละแบบได้) · ไม่จำท่าดูชั่วคราว (เลือก/ย้าย · ประกอบ/แยกชิ้น · เปิดบาน · แยกประกอบ) · ลิงก์ดูอย่างเดียวไม่ใช้ค่านี้ · ปิด SN_OFF.viewPrefs"],
     ["1.444","2026-10-13","UI แบบผลิต: คำบอกทั้งหมดย้ายออกจากรูปไปเป็นกล่อง “รายการรู” มุมขวาล่าง + สีรูแยกตามขนาด Ø (ผู้ใช้ 18:00: ตัวหนังสือที่บอกว่ารู DIA เท่าไหร่ ไปอยู่เป็นรายการมุมไหนที่ไม่โดนได้ไหม · สี DIA ต่างกันแยกสีเลย · 18:13: ย้ายคำบอกไปอยู่ในรายการรู หมดก็ได้ จะได้ไม่ไปบังแบบ) — เดิมป้าย “13 รู · Ø8 ลึก12 · ผิวบน” เกาะรูตัวแรกของกลุ่ม Left Side 1200 × 300 ป้าย Ø8 กับ Ø5 กองทับกันที่มุมขวาบนและล้นออกนอกแผ่น · แผ่นบนมีมินิฟิก ป้ายแคม/เดือย/สลักสัน/34 จากขอบ ทับกันทุกมุม · ลิ้นชักป้ายเดือยกับร่องพาดขอบแผ่น · สีรูบอกผิว Ø8 กับ Ø5 ผิวเดียวกันจึงเขียวทั้งแผ่น · ตอนนี้ในรูปเหลือแต่ตัวเลขระยะ · กล่องเหนือตารางชื่อแบบ (กว้างเท่ากัน) แถวละกลุ่ม: สัญลักษณ์เหมือนในรูป · Ø · ลึก/ทะลุ/พิน · กี่รู · ผิว — รูหน้าแผ่น · รูสัน · ถ้วยบานพับ (ห่างขอบ) + รูยึด · แคมมินิฟิก (ห่างขอบ 34) · สลักสัน · เดือย · ร่อง/บาก/สันหน้าตัด/เพ (แถวเต็มกว้าง) · 4 กลุ่มขึ้นไปสองคอลัมน์ · ข้อความยาวย่อตัวหนังสือก่อนตัด (จำนวนรูไม่หาย) · เยอะเกินช่องว่างหดกรอบแบบให้ ไม่ทับรูป · บรรทัด “เส้นเต็ม = … เส้นประ = …” ไปอยู่หัวกล่อง (เฉพาะแบบที่มีในแผ่น) หัวแบบแผ่นสั้นจึงไม่ชนกันแล้ว (ข้างลิ้นชัก 400: “หน้า (front) … หมุนวางนอน 90°” เคยทับ “มองจากผิวบน”) · สีรู = ขนาด (Ø3 เขียวน้ำทะเล · Ø5 ส้ม · Ø8 น้ำเงิน · Ø10 เขียว · Ø12 ชมพู · Ø15 ม่วง … ขนาดเดียวกันสีเดียวกันทุกหน้า แผ่นเดียวสองขนาดไม่ชนสี) ผิวดูจากเส้น: ทึบ = ผิวที่มอง · ประ = อีกด้าน · กากบาท = ทะลุ · วงโปร่ง = เจาะสัน · บานพับ/มินิฟิก/เดือยสีตามชนิดเดิม · Preview 2D แถวคำอธิบายเป็นรายการเดียวกัน · หน้าดูงานได้ด้วยเมื่อเผยแพร่ใหม่ · ปิด SN_OFF.p2dHoleList (ป้ายกลับเข้ารูป) / SN_OFF.p2dDiaColor (สีตามผิว)"],
@@ -1602,7 +1604,7 @@ const DEF_SETTINGS={ frontSetMax:6, dowelD:8, dowelDepth:28, dowelMateDepth:12, 
   healOnVarChange:true,                           // v31.1: แก้ค่าตัวแปรของตู้แล้วเชื่อมเดือยใหม่ให้ตู้ใบนั้น
   kitField:"K_Fitting_Concept", kitPushMap:"B:top, W:bottom", xmlThinMin:1, xmlSkipNoModel:false, orderProgNo:"700", doorGapWarn:50, csNewGap:120, ledSets:[{id:"12V-COB", volt:12, wPerM:9.6,
     stripCode:"", psuMap:"30, 60, 100", psuCode:"", psuUse:80, maxRunM:5,
-    wireCode:"", wireMode:"ต่อเส้นไฟ", wireQty:1}], ledSetPerRun:false, cutSizeFmt:"{ชื่อ} ตัดขนาด {ยาว} mm.", cutLookupKey:"ตัดขนาด", cutNearTol:1, cutMiterOptSec:"007, 021", cutLookupOn:true, glassBomOn:true, glassUnit:"EA", glassMatCodes:"FC,MC,FT,PT,FS,MT", glassKinds:"กระจกใส|กระจกเงา|กระจกฝ้า|กระจกใสชาดำ|กระจกใสชาทอง|กระจกเงาชาทอง|กระจกใส ลอนลูกฟูก", glassEdges:"ลบคมรอบ|ลบคมขัดมันรอบ|เจียรริมรอบ|เจียรริมขัดมันรอบ|เจียรริม 1 mm. ขัดมันรอบ", glassKind:"กระจกใส", glassEdge:"ลบคมรอบ", glassXmlField:"K_Front_Glass", glassShelfKind:"กระจกใส", glassShelfEdge:"เจียรริมขัดมันรอบ", glassDoorT:5, pullXmlOn:true, pullHingeGuard:true, pullField:"K_Pull", pullOriField:"K_Orientation", pullPosField:"K_Pull_Position", pullXField:"K_Pull_Coordinate_X", pullYField:"K_Pull_Coordinate_Y", pullNo:"nopull,none,-", pullName:"มือจับ", pull3D:true, dxNotchGap:0.5, railLikeMaxW:100, pullDefPos:"UpMiddle", pullDefOri:"H", pullDefX:35, pullDefY:0, pullZeroDef:35, pull3DStyle:"real", pull3DFinish:"brass", d33Code:"FITBK00002", d33On:true, bpClipCode:"FITBP00002", bpClipOn:true, bpClipMaxT:12, bpClipMaxRails:2, bpClipTB:"0:1,550:2,950:3", bpClipLR:"0:1,700:2,1000:3,1500:4", legClipOn:true, legClipMap:"", legClipCode:"LEGCLIP", legClipName:"กิ๊ฟขาตู้ (ยึดแผ่นปิดขา)", doorSwing:true, doorRelief3D:true, doorReliefMap:"MCxx35 = 0:3, 3:0, 55:0, 58:3, 60:6, 95:6, 110:2, 110:0 | ตั้งทะลุ 55-60", shelfT:16, hangRailCode:"HANGRAIL", hangRailName:"ราวแขวนผ้า สแตนเลส C", glassHangerCode:"GLASSHANGER", glassHangerName:"หูแขวนกระจก", coverScrewCode:"COVERSCREW", coverScrewName:"สกรูยึดแผ่นปิด", coverScrewPer:1, hangRailThruD:8, hangRailCsD:13, hangRailCsDepth:2, hangRailEndGap:25, hangRailBarH:25, hangRailMap:"", drawerSideT:16, drawerBotT:9, drawerBotInT:16, drawerBotInPart:"", drawerBoxH:120, drawerBoxLift:20,   /* v1.407: พื้นวางในกล่อง หนา 16 · Part ว่าง = ตัว _Mat16 ของ Part เดิม */ screwD:5, screwMateDepth:28, screwInset:9,
+    wireCode:"", wireMode:"ต่อเส้นไฟ", wireQty:1}], ledSetPerRun:false, cutSizeFmt:"{ชื่อ} ตัดขนาด {ยาว} mm.", cutLookupKey:"ตัดขนาด", cutNearTol:1, cutMiterOptSec:"007, 021", cutLookupOn:true, glassBomOn:true, glassUnit:"EA", glassMatCodes:"FC,MC,FT,PT,FS,MT", glassKinds:"กระจกใส|กระจกเงา|กระจกฝ้า|กระจกใสชาดำ|กระจกใสชาทอง|กระจกเงาชาทอง|กระจกใส ลอนลูกฟูก", glassEdges:"ลบคมรอบ|ลบคมขัดมันรอบ|เจียรริมรอบ|เจียรริมขัดมันรอบ|เจียรริม 1 mm. ขัดมันรอบ", glassKind:"กระจกใส", glassEdge:"ลบคมรอบ", glassXmlField:"K_Front_Glass", glassShelfKind:"กระจกใส", glassShelfEdge:"เจียรริมขัดมันรอบ", glassDoorT:5, pullXmlOn:true, pullHingeGuard:true, pullField:"K_Pull", pullOriField:"K_Orientation", pullPosField:"K_Pull_Position", pullXField:"K_Pull_Coordinate_X", pullYField:"K_Pull_Coordinate_Y", pullNo:"nopull,none,-", pullName:"มือจับ", pull3D:true, dxNotchGap:0.5, railLikeMaxW:100, topDropOn:true, topDropMM:0.5, botRiseOn:true, pullDefPos:"UpMiddle", pullDefOri:"H", pullDefX:35, pullDefY:0, pullZeroDef:35, pull3DStyle:"real", pull3DFinish:"brass", d33Code:"FITBK00002", d33On:true, bpClipCode:"FITBP00002", bpClipOn:true, bpClipMaxT:12, bpClipMaxRails:2, bpClipTB:"0:1,550:2,950:3", bpClipLR:"0:1,700:2,1000:3,1500:4", legClipOn:true, legClipMap:"", legClipCode:"LEGCLIP", legClipName:"กิ๊ฟขาตู้ (ยึดแผ่นปิดขา)", doorSwing:true, doorRelief3D:true, doorReliefMap:"MCxx35 = 0:3, 3:0, 55:0, 58:3, 60:6, 95:6, 110:2, 110:0 | ตั้งทะลุ 55-60", shelfT:16, hangRailCode:"HANGRAIL", hangRailName:"ราวแขวนผ้า สแตนเลส C", glassHangerCode:"GLASSHANGER", glassHangerName:"หูแขวนกระจก", coverScrewCode:"COVERSCREW", coverScrewName:"สกรูยึดแผ่นปิด", coverScrewPer:1, hangRailThruD:8, hangRailCsD:13, hangRailCsDepth:2, hangRailEndGap:25, hangRailBarH:25, hangRailMap:"", drawerSideT:16, drawerBotT:9, drawerBotInT:16, drawerBotInPart:"", drawerBoxH:120, drawerBoxLift:20,   /* v1.407: พื้นวางในกล่อง หนา 16 · Part ว่าง = ตัว _Mat16 ของ Part เดิม */ screwD:5, screwMateDepth:28, screwInset:9,
   /* v1.201: รอยต่อกล่องลิ้นชักไม้ — แผ่นหน้า/หลังชนเข้าแผ่นข้าง ยึดด้วยเดือย + สกรูจากนอกแผ่นข้าง */
   boxJointOn:true, boxDowelFormula:BOXJ_DOWEL_NAME, boxScrewFormula:BOXJ_SCREW_NAME,
   boxJointDowelD:8, boxJointDowelDepth:24, boxJointMateD:8, boxJointMateDepth:12,
@@ -2109,6 +2111,7 @@ function bind(id,fn,ev){ const e=(typeof id==="string")?$(id):id; if(e) e[ev||"o
    ย้อนกลับครั้งเดียวจึงได้ตู้ที่หันผิดทิศค้างอยู่กลางห้อง · ตัวนับนี้ทำให้ทั้งสองอย่างรอจนหมุนกลับ แล้ว sync(1) ค่อยเก็บครั้งเดียว */
 let _alignHold=0;
 function sync(rebuild,save,cm){
+  try{ topDropUndo(true); }catch(e){ console.error("topDropUndo:",e); }   // v1.447: ยกชิ้นที่ดรอปไว้คืนเสมอขอบก่อน — ตัวคิดบาน/ชั้น/ราว/ตรึงผิว เห็นรูปทรงปกติเหมือนเดิม
   try{ healStrayShelves(); }catch(e){ console.error("healShelf:",e); }   // v1.265: ชั้นที่หันผิดแกนในตู้ที่หมุน (ซ่อมครั้งเดียว ไม่เจอก็ไม่ทำอะไร)
   const channelInsts=[...new Set(state.boards.filter(b=>b.rule&&b.rule.channelRail).map(b=>b.cabInst))];
   channelInsts.forEach(inst=>withCabAxisAligned(inst,()=>{ state.boards.filter(b=>b.cabInst===inst&&b.rule&&b.rule.channelRail).forEach(refitChannelRail); }));
@@ -2233,6 +2236,7 @@ function sync(rebuild,save,cm){
      จะได้เลิกเดากันว่า "หน่วงเพราะอะไร" · ดูได้จากแจ้งเตือน/console: ⏱ */
   const _tR0=performance.now(); _bmHit=0; _bmMiss=0; _bmMs=0;
   refitModules();
+  try{ applyTopDrop(); }catch(e){ console.error("topDrop:",e); }   // v1.447: ทอปในข้าง/คานขอบบนตู้ ดรอปลง 0.5 (ท้ายสุด ก่อนวาด/บันทึก/เจาะรูคู่)
   render3D(!!rebuild);
   const _tR1=performance.now();
   renderList(); showInspector();
@@ -7595,6 +7599,7 @@ function ensureFrontZones(inst){
   return n;
 }
 function captureDoorSpecs(inst,force){
+  try{ topDropUndo(); }catch(e){}                      // v1.447: จับความสัมพันธ์บาน-โครงจากรูปทรงปกติ (ไม่ใช่ทอปที่ดรอป) — sync ถัดไปดรอปคืนเอง
   if(cabYawOf(inst)) return withCabAxisAligned(inst,()=>captureDoorSpecs(inst,force));    // v1.160: สเปคขอบอ้างแกน X เหมือนกัน
   const carc=_deCarcOf(inst), drs=_deDoorsOf(inst);
   if(!carc.length||!drs.length) return 0;
@@ -23345,6 +23350,8 @@ function boardRole(b){
      SN_OFF.shelfEqFixed=1 จัดชั้นห่างเท่ากันทำเฉพาะชั้นปรับแบบ v1.269 (ชั้นตายเป็นขอบช่อง · คลิกชิ้นอื่นในตู้ไม่ได้) (v1.436)
      SN_OFF.mdGaps=1      ไม้วัด 📦 ขนาดชิ้น ไม่ขึ้นโซ่ช่องใสของแผ่นที่มาชน (v1.436)
      SN_OFF.lazyOrders=1  บันทึก Order ไม่เขียนดัชนี _changes/_idx/imos_orders (ของ Production V2 v179 — ไม่ขึ้นกับ SN_SAFE) (v1.436)
+     SN_OFF.botRise=1     แผ่นพื้น/คานขอบล่างตู้ เสมอขอบล่างแผ่นข้างแบบเดิม (ไม่ยก 0.5 · ชิ้นที่ยืนบนพื้นไม่เตี้ยตาม) — ขอบบนยังดรอปตาม topDrop (v1.448)
+     SN_OFF.topDrop=1     ทอปในข้าง/คานขอบบนตู้ เสมอขอบบนแผ่นข้างแบบเดิม (ไม่ดรอป 0.5 · ชิ้นใต้ทอปไม่เตี้ยตาม · บานไม่ชดเชย) (v1.447)
      SN_OFF.pullFlat=1    มือจับที่ตั้ง pull3D = flat วาดเป็นก้านกลม + เสากลึงแบบเดิม (v1.446)
      SN_OFF.viewPrefs=1   หน้าจอทำงานไม่จำค่าที่กดตั้งไว้ (ลายไม้/เลข/เงา/โปร่งใส/ตาราง/สแนป ตั้งต้นทุกครั้ง · ธีม/แสงตามก้อนตั้งค่าแบบเดิม) (v1.445)
      SN_OFF.p2dHoleList=1 แบบชิ้น/แบบผลิต คำบอก (รู · บานพับ · มินิฟิก · เดือย · ร่อง · บาก · เส้นเต็ม/ประ) กลับไปติดในรูปแบบเดิม ไม่มีกล่องรายการรู (v1.444)
@@ -28881,6 +28888,13 @@ function renderSettings(){
     <div style="display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:8px">${txt("pullDefPos","ตำแหน่ง (เช่น UpMiddle)")}${txt("pullDefOri","แนวรู H / V")}${num("pullDefX","ระยะแนวตั้งจากขอบ (มม.)")}${num("pullDefY","ระยะแนวนอนจากขอบ (มม.)")}</div>
     <div style="font-size:11px;opacity:.62;margin:2px 0 6px;line-height:1.6">ตู้ที่ออเดอร์ไม่ได้ส่งมือจับมา พอเลือกรุ่นที่หน้า Variables (ตู้นี้) จะใช้ค่าชุดนี้ตั้งต้นให้ทันที ไม่ต้องกรอกอะไรก่อน · ถ้าจับคู่ช่องตำแหน่งกับระยะไว้กับ Variable ด้วย จะใช้ค่าจากตรงนั้นแทน · เลือกกลับเป็นไม่มีมือจับก็ถอดออกให้เอง</div>
     ${num("railLikeMaxW","ชิ้นหน้ากว้างไม่เกินกี่ มม. ให้ใส่เดือยแบบคานได้ (ตั้งต้น 100 · 0 = เฉพาะคานจริง)")}
+    <!-- ───────── v1.447: ทอปในข้าง/คานขอบบนตู้ ดรอปลง ───────── -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;align-items:end;margin-top:4px">
+      <label style="display:flex;align-items:center;gap:8px;font-size:13px;cursor:pointer"><input type="checkbox" id="setTopDrop" ${settings.topDropOn!==false?"checked":""}> ทอปในข้าง / คานขอบบนตู้ ดรอปลงจากขอบบนแผ่นข้าง</label>
+      ${num("topDropMM","ดรอป/ยกกี่ มม. (ตั้งต้น 0.5 · ไม่เกิน 5)",0.1)}
+      <!-- ───────── v1.448: ขอบล่างตู้ ยกขึ้น (ระยะเดียวกับขอบบน) ───────── -->
+      <label style="display:flex;align-items:center;gap:8px;font-size:13px;cursor:pointer"><input type="checkbox" id="setBotRise" ${settings.botRiseOn!==false?"checked":""}> แผ่นพื้น / คานขอบล่างตู้ ยกขึ้นจากขอบล่างแผ่นข้าง (ระยะเดียวกัน)</label></div>
+    <div style="font-size:11px;opacity:.62;margin:2px 0 6px;line-height:1.6">ชิ้นนอน (ทอป · คานนอน) และคานตั้ง ที่อยู่ระหว่างแผ่นข้างและเสมอขอบบนข้าง จะต่ำกว่าขอบบนข้างเท่านี้ · ชิ้นที่ชนใต้ทอปเตี้ยลงตาม · รูเดือย/มินิฟิกบนแผ่นข้างเจาะใหม่ให้เอง (ทอป 16.2 ดรอป 0.5 = รูที่ 8.6) · ทอปทับข้างไม่แตะ<br>ขอบล่าง: แผ่นพื้น/คานล่างที่เสมอขอบล่างข้าง ยกขึ้นเท่ากัน · ชิ้นที่ยืนบนพื้นเตี้ยลงตาม (ขอบบนคงที่) · พื้นที่ยกอยู่แล้ว (เช่นเหนือฐานรอง) และคานฐานรองที่มีพื้นวางทับ ไม่แตะ</div>
     <!-- ───────── v1.333: ฉาก D33 ───────── -->
     ${txt("d33Code","ฉากพลาสติก D33 — รหัสที่นับในใบอุปกรณ์ (ตั้งต้น FITBK00002)")}
     <!-- ───────── v1.334: ตัวยึดแผ่นหลังพลาสติก ───────── -->
@@ -29112,6 +29126,8 @@ function renderSettings(){
     { const hn=body.querySelector("#setHealNow"); if(hn) hn.onclick=()=>{ try{ healDrills(false); }catch(e){ console.error(e); toast("ซ่อมไม่สำเร็จ — ดู console"); } }; }
     { const cl=body.querySelector("#setCutLookupOn"); if(cl)settings.cutLookupOn=cl.checked; }  // v13.0
     { const pg=body.querySelector("#setPullHingeGuard"); if(pg)settings.pullHingeGuard=pg.checked; }   // v1.261
+    { const td=body.querySelector("#setTopDrop"); if(td)settings.topDropOn=td.checked; }   // v1.447
+    { const br=body.querySelector("#setBotRise"); if(br)settings.botRiseOn=br.checked; }   // v1.448: ขอบล่างตู้ ยกขึ้น
     { const px=body.querySelector("#setPullXmlOn"); if(px)settings.pullXmlOn=px.checked;        // v9.71
       const p3=body.querySelector("#setPull3D"); if(p3)settings.pull3D=p3.checked; }
     { const lc=body.querySelector("#setLegClipOn"); if(lc)settings.legClipOn=lc.checked; }      // v9.64
@@ -34704,6 +34720,230 @@ function cabFaces(inst){
            innerL:round(innerL),innerR:round(innerR), backFrontZ,backRearZ, T:Math.round(maxT||16) };
 }
 
+/* ═════════ v1.447: ชิ้นขอบบนตู้ที่อยู่ระหว่างแผ่นข้าง ดรอปลง 0.5 ═════════
+   ผู้ใช้ 14/10/2026 13:29: “ตู้ทุกใบที่มีแผ่นพื้นหรือแผ่นทอป หรือคานนอนหรือตั้ง ที่เป็นทอปอยู่ในแผ่นข้าง น่าจะต้องให้มัน
+   เดปเข้าตู้ 0.5 เพื่อตอนประกอบจะพอดี” · ตอบคำถาม: ร่นบนล่าง (ไม่ใช่หน้าหลัง) — แผ่นบนหรือชิ้นขอบบนตู้ดรอปลง 0.5
+   ระยะเจาะมินิฟิกจะได้ 8.6 · ดรอปขึ้น (ขอบล่าง) ไม่ต้องทำ · ดรอปเกิน 5 ให้ค่าปกติ · ชิ้นที่ชนใต้ทอปเตี้ยลงตาม · ทุกออเดอร์
+   เดิม: ทอปในข้าง/คานบนเสมอขอบบนแผ่นข้างพอดี (รูมินิฟิกบนข้างที่ 8.1 สำหรับทอป 16.2) ประกอบแล้วชิ้นในยื่นเกินข้างได้
+   ทำทุกรอบคิดฉาก (sync) ดูจากรูปทรงล้วน ๆ ไม่ติดธง — ออเดอร์เก่า/ใหม่/ปรับขนาดตู้/ตัวจัดภายในตั้งกลับเสมอขอบ ได้ผลเดียวกัน
+     ต้นรอบ topDropUndo ยกชิ้นที่ดรอปคืนเสมอขอบ → ทุกตัวคิดในรอบเห็นรูปทรงปกติ (บาน/ชั้น/ราวแขวน/รูพิน ไม่เปลี่ยนเพราะฟีเจอร์นี้)
+     ท้ายรอบ applyTopDrop ดรอปใหม่ ก่อนวาด 3D · บันทึก · เจาะรูคู่ (ตัวเจาะ/ไฟล์ส่งออก/ใบตัด เห็นรูปทรงที่ดรอปแล้ว)
+     ชิ้นที่ดรอป = ชิ้นนอน (ทอป · คานนอน) หรือคานตั้ง (คาน/หน้ากว้าง ≤ เกณฑ์คาน) ที่ปลายสองข้างชนผิวในแผ่นข้าง
+                  (แผ่นข้างสองฝั่งสูงเท่ากัน ±0.6) และขอบบนห่างขอบบนแผ่นข้างไม่ถึง 0.45 → เลื่อนลงให้ห่างพอดี 0.5
+                  ห่างอยู่แล้ว 0.5 ขึ้นไป (รวม “ดรอปเกิน 5”) = ค่าปกติ ไม่แตะ · ทำซ้ำได้ไม่ดรอปซ้อน
+     ไม่แตะ: ทอปทับข้าง (ปลายไม่ชนผิวในข้าง) · แผ่นข้าง/แผ่นแบ่ง · แผ่นหลัง · บาน/ลิ้นชัก · ชิ้นเสมือน · ขาแผ่นไม้/เสา Cosimo
+             · กล่องขา · ตู้ที่หมุนมุมไม่ลง 90° · ออเดอร์ล็อก/ลิงก์ดูอย่างเดียว · ขอบล่างตู้
+     ชิ้นตั้งที่ชนใต้ชิ้นที่ดรอป (แผ่นแบ่ง · คานตั้งใต้ทอป · แผ่นหลังที่ไม่ได้ลงร่องทอป) → เตี้ยลงเท่ากัน ขอบล่างคงที่
+                  รู/Pocket บนชิ้นนั้นเลื่อนชดเชยให้อยู่ที่เดิมในโลก · ชิ้นที่ลงร่องทอปอยู่ (ซ้อน > 0.8) ไม่แตะ
+   รูคู่เดือย/มินิฟิกบนแผ่นข้าง: ตัวเจาะอัตโนมัติ (v1.425) เห็นตู้เปลี่ยนแล้วเจาะใหม่เอง
+   บานพับ: กระจายในช่วงที่บานชนโครงจริง (เดิม) — บานที่ชิดทอปที่ดรอป บานพับตัวบนขยับลงได้ไม่เกินระยะดรอป (รูถ้วย/รูฐานไปด้วยกัน)
+   ปิด: ตั้งค่า (settings.topDropOn) หรือ SN_OFF.topDrop=1 — ปิดแล้วชิ้นที่ดรอปไว้ถูกยกคืนเสมอขอบ */
+/* ───────── v1.448: ขอบล่างตู้ — แผ่นพื้น/คานล่างที่อยู่ระหว่างแผ่นข้าง ยกขึ้น 0.5 ─────────
+   ผู้ใช้ 14/10/2026 14:16: “แผ่นพื้นก็ยกขึ้น 0.5 แล้วนะครับ” (ต่อจาก “ร่นบนล่าง” ตอน 13:29)
+   เดิม (1.447): ทำเฉพาะขอบบน — แผ่นพื้นเสมอขอบล่างแผ่นข้างพอดี รูมินิฟิกพื้นบนข้างที่ 8.1 (พื้น 16.2)
+                 ตั้งตู้แล้วพื้นยื่นเกินขอบล่างข้างได้ ตู้โยก/ประกอบไม่พอดีเหมือนทอป
+   ตอนนี้: กลับด้านของกฎขอบบน ใช้ระยะเดียวกัน (settings.topDropMM) ในรอบคิดฉากเดียวกัน (ยกคืนต้นรอบ · ยกใหม่ท้ายรอบ)
+     ชิ้นที่ยก = ชิ้นนอน (แผ่นพื้น · คานนอนล่าง) หรือคานตั้งขอบล่าง ที่ปลายสองข้างชนผิวในแผ่นข้าง
+                 (ขอบล่างข้างสองฝั่งเท่ากัน ±0.6) และขอบล่างห่างขอบล่างแผ่นข้างไม่ถึง 0.45 → ยกขึ้นให้ห่างพอดี 0.5
+                 (พื้น 16.2 → รูมินิฟิก/เดือยบนข้างที่ 8.6 จากขอบล่าง ตัวเจาะอัตโนมัติเจาะใหม่เอง)
+                 ยกไว้แล้ว 0.5 ขึ้นไป (พื้นที่ยก 1 มม. อยู่แล้ว · พื้นเหนือฐานรอง 100 = “ดรอปเกิน 5 ให้ค่าปกติ”) ไม่แตะ
+     ไม่แตะ: คานตั้งขอบล่างที่มีชิ้นนอนวางทับอยู่ (คานฐานรองใต้พื้นที่ยกสูง เช่น JMT005/JMT007 — “ถ้ายกขึ้นไม่ต้องทำอะไร”)
+             · ชิ้นที่สูงเต็มแผ่นข้าง (ชนทั้งขอบบนและขอบล่าง — ทั้งสองกฎ) · ที่เหลือเหมือนขอบบน (ลิ้นชัก/บาน/แผ่นหลัง/กล่องขา ฯลฯ)
+     ชิ้นตั้งที่ยืนบนชิ้นที่ยก (แผ่นแบ่ง · คานตั้งบนพื้น · แผ่นหลังที่วางบนพื้น) → เตี้ยลงเท่ากัน ขอบบนคงที่
+                 แผ่นแบ่งที่ยาวจากพื้นถึงทอปจึงสั้นลงรวม 1.0 (บน 0.5 + ล่าง 0.5) · รู/Pocket เลื่อนชดเชยอยู่ที่เดิมในโลก
+     บาน · ชั้น · รูพิน · ไกด์ลิ้นชัก · ราวแขวน คิดจากรูปทรงปกติ (ต้นรอบยกคืนแล้ว) จึงไม่เปลี่ยนเพราะฟีเจอร์นี้
+   ปิดแยกจากขอบบนได้: ตั้งค่า (settings.botRiseOn) หรือ SN_OFF.botRise=1 — ปิดแล้วพื้นที่ยกไว้ถูกลดคืนเสมอขอบ
+   แก้ด้วย: ขอบบนที่ห่างอยู่ 0.1–0.4 (ดรอปเพิ่มให้ครบ) เดิมชิ้นใต้ทอปไม่เตี้ยตามเลยเพราะช่วงจับคิดจากระยะเต็ม → ซ้อนค้าง
+            ตอนนี้ชิ้นใต้ทอป/ชิ้นบนพื้นเตี้ยตาม “ระยะที่ขยับจริง” */
+function tdMM(){
+  if(snOff("topDrop")||settings.topDropOn===false) return 0;
+  return _tdVal(); }
+/* v1.448: ระยะที่ตั้งไว้ (ไม่สนเปิด/ปิด) — ตัวยกคืนใช้ค่านี้ ปิดฟีเจอร์แล้วยังจำชิ้นที่ขยับไว้ได้ */
+function _tdVal(){ const v=+settings.topDropMM; return (isFinite(v)&&v>0&&v<=5)?v:0.5; }
+/* v1.448: ขอบล่างตู้ ยกขึ้นเท่าไหร่ (0 = ปิด) — ระยะเดียวกับขอบบน */
+function brMM(){
+  if(snOff("botRise")||settings.botRiseOn===false) return 0;
+  return _tdVal(); }
+function _tdSkip(b){ return !b||b._door||b._virtual||b._noPanel||!(+b.T>0)||b._fitPart||b._dx||b._dwall||b._shoeWood
+  ||b._csmPart||b._csmRail||b._csmPost||b._csmBase||b._csmLs||b._pbx||/drawer|ลิ้นชัก/i.test(String(b.name||"")); }
+function _tdExt(b){ const d=worldDims(b); return [[b.x-d[0]/2,b.x+d[0]/2],[b.y-d[1]/2,b.y+d[1]/2],[b.z-d[2]/2,b.z+d[2]/2]]; }
+function _tdOv(a,c){ return Math.min(a[1],c[1])-Math.max(a[0],c[0]); }
+function _tdCand(b){
+  if(_tdSkip(b)||b.orient==="side"||isBackPanel(b)) return false;
+  if(b.orient==="flat") return true;
+  if(b.orient==="front") return isRail(b)||(+b.W>0&&+b.W<=Math.max(+settings.railLikeMaxW||0,100));
+  return false; }
+function _tdAxes(inst){ const yw=((Math.round(+cabYawOf(inst)||0)%360)+360)%360; if(yw%90) return null;
+  const A=(yw%180===0)?0:2; return {A:A, D:2-A}; }        // A = แกนกว้างตู้ · D = แกนลึก
+function _tdSidesAll(inst){ return state.boards.filter(b=>b&&b.cabInst===inst&&b.orient==="side"&&!_tdSkip(b)&&!isBackPanel(b)); }
+/* แผ่นข้างซ้าย/ขวาที่ชิ้นนี้นั่งอยู่ระหว่าง (ผิวในชนปลายชิ้น ±0.6 · ซ้อนตามความลึก · สูงคลุมชิ้น) → {top, bot, L, R}
+   v1.448: คืนขอบล่างข้างด้วย (bot) · เดิมข้างสูงไม่เท่ากัน (ขอบบนต่างกันเกิน 0.6) คืน null ทั้งก้อน
+           ตอนนี้ top = null (ขอบบนไม่ทำ) แต่ขอบล่างยังทำได้ถ้าขอบล่างสองข้างเท่ากัน — ผลของขอบบนเหมือนเดิมทุกกรณี */
+function _tdSides(b,sides,A,D){
+  const e=_tdExt(b); let L=null,R=null,tL=-Infinity,tR=-Infinity;
+  sides.forEach(sd=>{ if(sd===b) return; const es=_tdExt(sd);
+    if(_tdOv(es[D],e[D])<=1) return;
+    if(es[1][0]>e[1][0]+0.6||es[1][1]<e[1][1]-0.6) return;
+    if(Math.abs(es[A][1]-e[A][0])<=0.6){ if(es[1][1]>tL){ L=sd; tL=es[1][1]; } }
+    else if(Math.abs(es[A][0]-e[A][1])<=0.6){ if(es[1][1]>tR){ R=sd; tR=es[1][1]; } } });
+  if(!L||!R) return null;
+  const bL=_tdExt(L)[1][0], bR=_tdExt(R)[1][0];
+  const top=(Math.abs(tL-tR)>0.6)?null:Math.min(tL,tR), bot=(Math.abs(bL-bR)>0.6)?null:Math.max(bL,bR);
+  /* v1.448: ชิ้นสูงเต็มแผ่นข้าง (ชนทั้งขอบบนและขอบล่าง เช่นคานของตู้ฐานรองที่สูงเท่าข้าง) — เลื่อนทางเดียวจะยื่นอีกขอบ
+     ไม่แตะทั้งสองกฎ (ความสูงชิ้นไม่เปลี่ยนเพราะดรอป/ยก จึงเช็กได้ทั้งตอนยกคืนและตอนดรอป) */
+  if(top!=null&&bot!=null&&(e[1][1]-e[1][0])>=(top-bot)-1.2) return null;
+  return {top:top, bot:bot, L:L, R:R};
+}
+/* ตู้ที่ทำได้ → [{inst, bs, ax, sides}] (ข้ามตู้หมุนมุมแปลก · ขาแผ่นไม้/เสา Cosimo · กล่องขา · ข้างไม่ครบสองแผ่น) */
+function _tdCabs(){
+  const byInst=new Map(), out=[];
+  (state.boards||[]).forEach(b=>{ if(!b||!b.cabInst) return; let a=byInst.get(b.cabInst); if(!a){ a=[]; byInst.set(b.cabInst,a); } a.push(b); });
+  byInst.forEach((bs,inst)=>{
+    if(bs.some(b=>b._pbx||b._csmBase||b._csmPost)) return;
+    const ax=_tdAxes(inst); if(!ax) return;
+    const sides=bs.filter(b=>b.orient==="side"&&!_tdSkip(b)&&!isBackPanel(b));
+    if(sides.length>=2) out.push({inst:inst, bs:bs, ax:ax, sides:sides}); });
+  return out;
+}
+/* ชิ้นตั้งที่ชนใต้ชิ้น p (ซ้อนเข้าไป lo..hi) */
+function _tdUnder(o,p,sd,lo,hi){
+  const e=_tdExt(p), bot=e[1][0], out=[];
+  o.bs.forEach(v=>{ if(v===p||v===sd.L||v===sd.R||_tdSkip(v)||v.orient==="flat") return;
+    const ev=_tdExt(v); if(_tdOv(ev[o.ax.A],e[o.ax.A])<=1||_tdOv(ev[o.ax.D],e[o.ax.D])<=1) return;
+    const over=ev[1][1]-bot; if(over>lo&&over<=hi) out.push(v); });
+  return out;
+}
+/* v1.448: ชิ้นตั้งที่ยืนบนชิ้น p (p ซ้อนขึ้นไปในชิ้นนั้น lo..hi) — กลับด้านของ _tdUnder */
+function _tdOn(o,p,sd,lo,hi){
+  const e=_tdExt(p), top=e[1][1], out=[];
+  o.bs.forEach(v=>{ if(v===p||v===sd.L||v===sd.R||_tdSkip(v)||v.orient==="flat") return;
+    const ev=_tdExt(v); if(_tdOv(ev[o.ax.A],e[o.ax.A])<=1||_tdOv(ev[o.ax.D],e[o.ax.D])<=1) return;
+    const over=top-ev[1][0]; if(over>lo&&over<=hi) out.push(v); });
+  return out;
+}
+/* v1.448: คานตั้งขอบล่างที่มีชิ้นนอนวางทับอยู่ (คานฐานรองใต้พื้นที่ยกสูง) → ไม่ยก
+   ผู้ใช้: “ถ้ายกขึ้นไม่ต้องทำอะไร · ดรอปเกิน 5 ให้ค่าปกติ” — พื้นเหนือฐานรองคงที่ คานใต้มันจึงคงที่ด้วย (ไม่ดันขึ้นไปซ้อนพื้น) */
+function _tdRested(o,p){
+  if(p.orient==="flat") return false;
+  const e=_tdExt(p), top=e[1][1];
+  return o.bs.some(f=>{ if(f===p||f.orient!=="flat"||_tdSkip(f)) return false;
+    const ef=_tdExt(f); if(_tdOv(ef[o.ax.A],e[o.ax.A])<=1||_tdOv(ef[o.ax.D],e[o.ax.D])<=1) return false;
+    const d=ef[1][0]-top; return d>-0.8&&d<=0.3; });
+}
+/* ───────── ยกคืน (ต้นทุกรอบคิดฉาก) ─────────
+   ชิ้นที่ดรอปอยู่ (ขอบบนต่ำกว่าขอบบนข้าง = ระยะดรอปพอดี) ยกกลับเสมอขอบ + ชิ้นตั้งที่ชนใต้มันยืดกลับเท่ากัน
+   ตัวคิดบาน · ชั้นตามระยะอ้างอิง · ราวแขวน · ตรึงผิว · ชั้นวางรองเท้า ฯลฯ จึงเห็นรูปทรงปกติแบบก่อน v1.447 ทุกประการ
+   (ขนาดบาน/ตำแหน่งชั้น/รูพินไม่เปลี่ยนเพราะฟีเจอร์นี้) แล้ว applyTopDrop ดรอปใหม่ตอนท้ายรอบ ก่อนวาด/บันทึก/เจาะรูคู่
+   ปิดฟีเจอร์ (ตั้งค่า/SN_OFF) = ยกคืนอย่างเดียว ไม่ดรอป → กลับเป็นเสมอขอบแบบเดิม
+   ออเดอร์ล็อก/ลิงก์ดูอย่างเดียว: ยกคืนชั่วคราวเหมือนกัน (ตัวคิดบาน ฯลฯ จะได้เห็นรูปทรงเดียวกับตอนบันทึก) แล้วท้ายรอบดรอปกลับ
+     เฉพาะชิ้นที่ยกไป เป๊ะ ๆ (ไม่ดรอปชิ้นใหม่ ไม่ยกคืนถาวร) → ออเดอร์ล็อกไม่เปลี่ยนแม้แต่ 0.1
+   เรียกจากนอกรอบคิดฉาก (ปรับขนาดตู้ · จัดภายใน · จับสเปคบาน): ออเดอร์ล็อกไม่แตะ
+   v1.448: ขอบล่างด้วย — พื้น/คานล่างที่ยกไว้ (ห่างขอบล่างข้าง = ระยะพอดี) ลดกลับเสมอขอบ + ชิ้นที่ยืนบนมันยืดกลับลงเท่ากัน */
+/* v1.448: ระยะเดิมก่อนดรอป/ยก — ชิ้นที่ห่างขอบอยู่ก่อนแล้วนิดหน่อย (เช่นพื้นห่างขอบล่าง 0.2 จากงานเก่า) ขยับไม่เต็ม 0.5
+   เดิมตัวยกคืนพาไปเสมอขอบ (0) ไม่ใช่ 0.2 → รูปทรงปกติเปลี่ยน บานลิ้นชักที่คิดจากพื้นเลื่อนลง 0.2 ในรอบถัดไป
+   ตอนนี้จำระยะเดิมไว้บนชิ้น (_tdGt ขอบบน · _tdGb ขอบล่าง · เฉพาะชิ้นที่ไม่ได้เสมอขอบพอดี) ตัวยกคืนพากลับที่เดิมเป๊ะ */
+function _tdG0(p,k,td){ const g=+p[k]; return (isFinite(g)&&g>-0.3&&g<td-0.05)?g:0; }
+var _tdUndone=null;     // ที่ยกคืนในรอบคิดฉากนี้ [{p, td, under:[ชิ้น], on:[ชิ้น], up}] — var กัน temporal dead zone (sync อาจถูกเรียกก่อนบรรทัดนี้)
+function topDropUndo(inSync){
+  const lk=(typeof isLocked==="function"&&isLocked());
+  if(inSync){ if(!_tdUndone) _tdUndone=[]; }        // ยังไม่ได้ดรอปกลับ (sync ซ้อน/รอบก่อนพังกลางทาง) = ต่อรายการเดิม ไม่ทิ้ง
+  else if(lk) return 0;
+  const td=_tdVal();      // v1.448: เดิม tdMM()||ค่าที่ตั้ง — ได้ค่าเดียวกัน (ปิดอยู่ก็ใช้ค่าที่ตั้งไว้ยกคืน)
+  let n=0;
+  _tdCabs().forEach(o=>{
+    o.bs.forEach(p=>{ if(!_tdCand(p)) return;
+      const sd=_tdSides(p,o.sides,o.ax.A,o.ax.D); if(!sd) return;
+      const e=_tdExt(p);
+      if(sd.top!=null&&Math.abs(sd.top-e[1][1]-td)<=0.05){
+        const g0=_tdG0(p,"_tdGt",td), mv=Math.round((td-g0)*100)/100;     // v1.448: ยกคืนไปที่ระยะเดิม (ปกติ 0 = เสมอขอบ)
+        const un=_tdUnder(o,p,sd,-0.06,0.3);
+        un.forEach(v=>{ const k=(v.orient==="front")?"W":"L";
+          v[k]=Math.round((+v[k]+mv)*100)/100; v.y=Math.round((v.y+mv/2)*100)/100; _tdShiftOwn(v,-mv/2); });
+        p.y=Math.round((p.y+mv)*100)/100; n++; delete p._tdGt;
+        if(inSync) _tdUndone.push({p:p, td:mv, under:un, gk:"_tdGt", g0:g0});
+        return; }
+      /* v1.448: ขอบล่าง */
+      if(sd.bot!=null&&Math.abs(e[1][0]-sd.bot-td)<=0.05&&!_tdRested(o,p)){
+        const g0=_tdG0(p,"_tdGb",td), mv=Math.round((td-g0)*100)/100;
+        const on=_tdOn(o,p,sd,-0.06,0.3);
+        on.forEach(v=>{ const k=(v.orient==="front")?"W":"L";
+          v[k]=Math.round((+v[k]+mv)*100)/100; v.y=Math.round((v.y-mv/2)*100)/100; _tdShiftOwn(v,mv/2); });
+        p.y=Math.round((p.y-mv)*100)/100; n++; delete p._tdGb;
+        if(inSync) _tdUndone.push({p:p, td:mv, under:[], on:on, up:true, gk:"_tdGb", g0:g0});
+        return; }
+      if(!lk){ if(p._tdGt!=null) delete p._tdGt;        // ชิ้นถูกย้ายไปแล้ว (ไม่ได้อยู่ที่ระยะดรอป) = ระยะเดิมที่จำไว้ใช้ไม่ได้ · ออเดอร์ล็อกไม่แตะ
+        if(p._tdGb!=null) delete p._tdGb; }
+    }); });
+  return n;
+}
+/* ดรอปกลับเฉพาะที่ยกไปในรอบนี้ (ออเดอร์ล็อก) · v1.448: พื้นที่ลดคืนไว้ ยกกลับ + ชิ้นที่ยืนบนมันเตี้ยคืน */
+function _tdRedoExact(){
+  const L=_tdUndone||[]; _tdUndone=null;
+  L.forEach(o=>{ const td=o.td;
+    (o.under||[]).forEach(v=>{ const k=(v.orient==="front")?"W":"L";
+      v[k]=Math.round((+v[k]-td)*100)/100; v.y=Math.round((v.y-td/2)*100)/100; _tdShiftOwn(v,td/2); });
+    (o.on||[]).forEach(v=>{ const k=(v.orient==="front")?"W":"L";
+      v[k]=Math.round((+v[k]-td)*100)/100; v.y=Math.round((v.y+td/2)*100)/100; _tdShiftOwn(v,-td/2); });
+    o.p.y=Math.round((o.p.y+(o.up?td:-td))*100)/100;
+    if(o.gk&&o.g0) o.p[o.gk]=o.g0; });
+  return L.length;
+}
+/* ชิ้นตั้งเตี้ยลงจากขอบบน: ศูนย์ลง s · รู/Pocket (พิกัดจากศูนย์ชิ้น) ขยับขึ้น s ให้อยู่ที่เดิมในโลก
+   แกนตั้งของชิ้น: แนวข้าง = แกน x ของชิ้น (orientMatrix: X→Y) · แนวหน้า = แกน y
+   v1.448: เตี้ยลงจากขอบล่าง = ศูนย์ขึ้น → ส่ง s ติดลบ */
+function _tdShiftOwn(v,s){
+  const k=(v.orient==="side")?"x":"y";
+  (v.holes||[]).forEach(h=>{ if(h&&isFinite(+h[k])) h[k]=Math.round((+h[k]+s)*100)/100; });
+  (v.pockets||[]).forEach(q=>{ if(q&&isFinite(+q[k])) q[k]=Math.round((+q[k]+s)*100)/100; });
+}
+function applyTopDrop(){
+  if(typeof isLocked==="function"&&isLocked()) return _tdRedoExact();     // ออเดอร์ล็อก: คืนสภาพตอนบันทึกเป๊ะ
+  _tdUndone=null;
+  const td=tdMM(), br=brMM();                                             // v1.448: ขอบบน/ขอบล่าง เปิดปิดแยกกัน
+  if(!td&&!br) return 0;                                                  // ปิดทั้งคู่: ยกคืนไปแล้วต้นรอบ = เสมอขอบแบบเดิม
+  let nd=0, nu=0, nr=0, ns=0; const rep=[];
+  _tdCabs().forEach(o=>{ const bs=o.bs, ax=o.ax, sides=o.sides, inst=o.inst;
+    if(td){                                                               // ── ขอบบน (1.447) ──
+    const drp=[];
+    bs.forEach(p=>{ if(!_tdCand(p)) return;
+      const sd=_tdSides(p,sides,ax.A,ax.D); if(!sd||sd.top==null) return;
+      const d=sd.top-_tdExt(p)[1][1];
+      if(d>-0.3&&d<td-0.05){ const mv=td-d; p.y=Math.round((p.y-mv)*100)/100; nd++; drp.push({p:p,sd:sd,mv:mv});
+        if(Math.abs(d)>0.01) p._tdGt=Math.round(d*100)/100; else delete p._tdGt;          // v1.448: จำระยะเดิม (ยกคืนกลับที่เดิม)
+        rep.push({ตู้:p.cab||inst, ชิ้น:p.name||p.id, ดรอป:Math.round(mv*100)/100}); }
+      else if(Math.abs(d-td)<=0.05) drp.push({p:p,sd:sd,mv:td}); });
+    /* ชิ้นตั้งที่ชนใต้ชิ้นที่ดรอป → เตี้ยลงเท่ากัน (ขอบล่างคงที่) · ซ้อนลึกกว่า 0.8 = ลงร่อง/ตั้งใจซ้อน ไม่แตะ */
+    drp.forEach(q=>{ const p=q.p, mv=q.mv;
+      /* ซ้อนเข้าไป ≈ ระยะดรอป = เคยชนใต้ชิ้นนั้นพอดี → เตี้ยลงเท่าระยะดรอปเป๊ะ (ที่ซ้อนกันอยู่ก่อนแล้ว เช่น 0.2 จากโมเดล คงไว้ตามเดิม)
+         ทำซ้ำได้: เตี้ยแล้วซ้อนเหลือ ≤ 0.3 ไม่เข้าเงื่อนไขอีก
+         v1.448: ใช้ระยะที่ขยับจริง (mv) — เดิมใช้ระยะเต็ม td ชิ้นที่ห่างอยู่ก่อน 0.1–0.4 ดรอปเพิ่มไม่ถึง 0.5 ชิ้นใต้มันจึงไม่เตี้ยตาม */
+      _tdUnder(o,p,q.sd,mv-0.15,mv+0.3).forEach(v=>{
+        const k=(v.orient==="front")?"W":"L"; if(!(+v[k]>mv+1)) return;
+        v[k]=Math.round((+v[k]-mv)*100)/100; v.y=Math.round((v.y-mv/2)*100)/100; _tdShiftOwn(v,mv/2); nu++;
+        rep.push({ตู้:v.cab||inst, ชิ้น:v.name||v.id, เตี้ยลง:Math.round(mv*100)/100, ใต้:p.name||p.id}); }); });
+    }
+    if(br){                                                               // ── v1.448: ขอบล่าง ──
+      const rise=[];
+      bs.forEach(p=>{ if(!_tdCand(p)) return;
+        const sd=_tdSides(p,sides,ax.A,ax.D); if(!sd||sd.bot==null) return;
+        const g=_tdExt(p)[1][0]-sd.bot;
+        if(g>-0.3&&g<br-0.05){ if(_tdRested(o,p)) return;
+          const mv=br-g; p.y=Math.round((p.y+mv)*100)/100; nr++; rise.push({p:p,sd:sd,mv:mv});
+          if(Math.abs(g)>0.01) p._tdGb=Math.round(g*100)/100; else delete p._tdGb;
+          rep.push({ตู้:p.cab||inst, ชิ้น:p.name||p.id, ยกขึ้น:Math.round(mv*100)/100}); }
+        else if(Math.abs(g-br)<=0.05&&!_tdRested(o,p)) rise.push({p:p,sd:sd,mv:br}); });
+      /* ชิ้นตั้งที่ยืนบนชิ้นที่ยก → เตี้ยลงเท่าระยะที่ยกจริง ขอบบนคงที่ · ซ้อนลึก (ลงร่องพื้น) ไม่แตะ · ทำซ้ำไม่เตี้ยซ้อน */
+      rise.forEach(q=>{ const p=q.p, mv=q.mv;
+        _tdOn(o,p,q.sd,mv-0.15,mv+0.3).forEach(v=>{
+          const k=(v.orient==="front")?"W":"L"; if(!(+v[k]>mv+1)) return;
+          v[k]=Math.round((+v[k]-mv)*100)/100; v.y=Math.round((v.y+mv/2)*100)/100; _tdShiftOwn(v,-mv/2); ns++;
+          rep.push({ตู้:v.cab||inst, ชิ้น:v.name||v.id, เตี้ยลง:Math.round(mv*100)/100, บน:p.name||p.id}); }); });
+    }
+  });
+  if(nd||nu||nr||ns){ try{ console.log("⬇⬆ v1.448 ชิ้นขอบตู้ในแผ่นข้าง · ขอบบนดรอปลง "+td+" "+nd+" ชิ้น"+(nu?(" (ชิ้นใต้ทอปเตี้ยลง "+nu+")"):"")
+      +" · ขอบล่างยกขึ้น "+br+" "+nr+" ชิ้น"+(ns?(" (ชิ้นบนพื้นเตี้ยลง "+ns+")"):"")); if(rep.length<=60) console.table(rep); }catch(e){} }
+  return nd+nu+nr+ns;
+}
 /* ---------- ทอปฝังใน ⇄ ทอปทับข้าง (สลับวิธีต่อโครงตู้) ---------- */
 /* inset   = ข้างเต็มสูง · ทอปสอดอยู่ระหว่างข้าง (ค่าเริ่มต้นของ genCabinet)
    overlay = ทอปกว้างเต็มตู้ วางคร่อมบนหัวข้าง · ข้างสั้นลงเท่าความหนาทอป
@@ -39306,6 +39546,7 @@ async function topToRails(){
 /* ============================================================================= */
 // รีฟิตชั้น/เสา/เส้นแบ่ง (ไม่ใช่โครงนอก · ไม่ใช่คาน) ให้พอดีช่องใหม่หลังปรับขนาดตู้
 function refitInterior(boards){
+  try{ topDropUndo(); }catch(e){}                      // v1.447: จัดภายในบนรูปทรงปกติ (ชั้น/แผ่นแบ่งไม่ถูกคิดจากทอปที่ดรอป) — sync ถัดไปดรอปคืนเอง
   if(boards&&boards.some(b=>b&&b._pbx)&&!snOff("pbxAuto")) return;   /* v1.402: กล่องขา — คานบนไม่ใช่ชั้น คานตั้งไม่ใช่เสาแบ่ง (เดิมย่อคานตั้งสูงเต็มให้ไปอยู่ใต้คานบนที่สเกลมาทับ 3 มม.) · pbxRelay จัดเอง */
   if(boards&&boards.some(b=>b&&b._csmBase)) return;          // v1.379: ขาแผ่นไม้ Cosimo — แผ่นบนไม่ใช่ชั้นระหว่างไม้ปิดหัว (project 18: เคยหด 1650 → 1611.6)
   if(!_fzDepth&&boards&&boards.length&&boards[0]&&boards[0].cabInst){ const i=boards[0].cabInst, zs=fixZoneOf(i,false);   // v1.216
@@ -39974,6 +40215,7 @@ async function fixZoneDialog(b){
   else toast("ล็อก Filler ซ้าย "+res.L+" ชิ้น ("+res.l+" มม.) · ขวา "+res.R+" ชิ้น ("+res.r+" มม.)");
 }
 function resizeCabinetTo(inst, W, H, D, lock){
+  try{ topDropUndo(); }catch(e){}                      // v1.447: ปรับขนาดบนรูปทรงปกติ (ทอป/คานเสมอขอบ) — sync ถัดไปดรอปคืนเอง
   if(!_fzDepth){ const zs=fixZoneOf(inst,true); if(zs&&zs.size) return _resizeWithFixZones(inst,zs,W,H,D,lock||{}); }   // v1.216
   const _yaw0=cabYawOf(inst), _m0=_cabMinLocal(inst,_yaw0);
   /* v7.90: บานคิดใหม่จาก "สเปคขอบ" แทนการถูกสเกล
