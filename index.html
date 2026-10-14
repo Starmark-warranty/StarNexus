@@ -1019,7 +1019,7 @@
    ===================================================================== */
 /* ---- APP_META: แหล่งความจริงเดียวของเวอร์ชัน (ดูได้จาก console / คลิกชื่อแอป) ---- */
 const APP_META={
-  name:"StarNexus", version:"1.449", build:"2026-10-14/back-groove",
+  name:"StarNexus", version:"1.450", build:"2026-10-14/dowel-depth",
   file:"StarNexus.html", basedOn:"Furnitech_V3.html (v3.11)",
   /* ───────── เริ่มนับเวอร์ชันใหม่ที่ 1.001 (21/08/2026) ─────────
      ของเดิมนับมาถึง 42.1 แล้ววิ่งเป็นทศนิยมสองชั้นซึ่งอ่านลำดับยาก
@@ -1027,6 +1027,7 @@ const APP_META={
      ประวัติเก่าเก็บไว้ทั้งหมดตามเลขเดิม ไม่ไล่เขียนใหม่ เพราะเลขในนั้นถูกอ้างถึงไปแล้ว
      รายการที่อยู่ใต้ 1.001 ลงไปจึงเป็นเลขชุดเก่า อ่านต่อกันได้ตามวันที่ */
   changelog:[
+    ["1.450","2026-10-14","FIX ความลึกเดือยตามหน้าตั้งค่า (ผู้ใช้ 16:47: ตั้ง 26 ทำไม MPR ยัง 28) — เดิมตัวเชื่อมเดือยของแต่ละชิ้นจำเลขความลึกไว้ตอนสร้าง (v1.029 เขียนครบทุกช่องให้ผังคงที่) ทอป/พื้น/คานจากโมเดลและออเดอร์เก่าจึงพก 28 ติดมา แก้หน้าตั้งค่าเป็น 26 แล้ว MPR · แบบผลิต · 3D · ใบส่งออก ยังอ่าน 28 จากตัวเชื่อม · ตอนนี้ความลึกที่ขอบแผ่นที่ใส่เดือย และความลึกแผ่นที่เดือยทิ่มตั้งฉาก ใช้ค่าในหน้าตั้งค่าเสมอ (dwEdgeDepth/dwMateDepthOf) ทุกออเดอร์ทั้งเก่าและใหม่ · ยกเว้น: ชิ้นที่ตั้งความลึกเองในกล่องใส่เดือยรายชิ้นให้ต่างจากค่าตั้ง (ธง depthOwn) · รอยต่อกล่องลิ้นชัก (มีค่าตั้งของตัวเอง) · ออเดอร์ล็อก/ลิงก์ดูอย่างเดียว ใช้เลขที่บันทึกไว้ (งานผลิตไปแล้วไม่เปลี่ยน) · เปลี่ยนค่าตั้งแล้วรูคู่บนแผ่นที่ทับเจาะใหม่ให้เอง · มินิฟิกตามค่าตั้งมินิฟิกอยู่แล้วเหมือนเดิม · ปิดกลับแบบเดิมได้ด้วย SN_OFF.dowelDepthSet=1"],
     ["1.449","2026-10-14","FIX แผ่นหลังที่ลงร่องทอป/พื้น หดตามระยะดรอป/ยกด้วย (ผู้ใช้ 14:49: แผ่นหลังหดไปแล้วด้วยไหม 1 mm เพราะบนและล่างดรอป 0.5) — เดิม 1.447/1.448 ชิ้นตั้งเตี้ยตามเฉพาะที่ชนพอดีใต้ทอป/บนพื้น (ซ้อนไม่เกิน 0.3) แผ่นหลังลงร่องทอป/พื้น (ฝังร่อง 2.4–5.2 เช่น MWA053/016/024 · WNO077/078 · WNT044 · WCR028) ไม่หด ยาวเท่าเดิม จึงจมลึกเข้าร่องเพิ่มข้างละ 0.5 · ตอนนี้ชิ้นตั้งที่ฝังเข้าไปในทอป/พื้นที่ดรอป/ยก (ร่อง · บังใบ — ปลายชิ้นยังอยู่ในความหนาแผ่น) หดเท่าระยะที่ขยับ ความลึกที่ฝังร่องเท่าเดิม → แผ่นหลังลงร่องทั้งบนล่างสั้นลง 1.0 · ชนพอดีแบบเดิมก็หด 1.0 เหมือนเดิม · จำระยะที่หดไว้บนชิ้น (_tdSt บน · _tdSb ล่าง) ต้นรอบยืดคืนตรงตัว ไม่ต้องเดาจากระยะซ้อน · งานที่บันทึกจาก 1.447/1.448 (ยังไม่มีค่าจำ) ใช้วิธีเดิมยืดคืน แล้วหดใหม่แบบ 1.449 ให้เอง"],
     ["1.448","2026-10-14","FEAT แผ่นพื้น/คานขอบล่างตู้ที่อยู่ระหว่างแผ่นข้าง ยกขึ้น 0.5 (ผู้ใช้ 14:16: แผ่นพื้นก็ยกขึ้น 0.5 แล้วนะครับ — ต่อจาก “ร่นบนล่าง”) — เดิม 1.447 ทำเฉพาะขอบบน แผ่นพื้นเสมอขอบล่างแผ่นข้างพอดี (รูมินิฟิกพื้นบนข้างที่ 8.1 สำหรับพื้น 16.2) · ตอนนี้กลับด้านของกฎขอบบน ระยะเดียวกัน: ชิ้นนอน (แผ่นพื้น · คานนอนล่าง) และคานตั้งขอบล่าง ที่ปลายสองข้างชนผิวในแผ่นข้างและขอบล่างเสมอขอบล่างข้าง (ไม่ถึง 0.45) ยกขึ้นให้ห่างพอดี 0.5 → รูบนข้างที่ 8.6 จากขอบล่าง · ยกไว้แล้ว 0.5 ขึ้นไป (พื้นยก 1 มม. อยู่แล้ว · พื้นเหนือฐานรอง 100) ไม่แตะ · คานฐานรองที่มีชิ้นนอนวางทับ (ใต้พื้นที่ยกสูง) ไม่แตะ · ชิ้นตั้งที่ยืนบนพื้นที่ยก (แผ่นแบ่ง · คานตั้งบนพื้น) เตี้ยลงเท่ากัน ขอบบนคงที่ (แผ่นแบ่งพื้นถึงทอปจึงสั้นรวม 1.0) · บาน/ชั้น/รูพิน/ไกด์ลิ้นชัก คิดจากรูปทรงปกติเหมือน 1.447 ไม่เปลี่ยน · ออเดอร์ล็อกไม่แตะ · ปิดแยกจากขอบบนได้ (ตั้งค่า หรือ SN_OFF.botRise=1) · แก้ด้วย: ขอบบนที่ห่างอยู่ 0.1–0.4 ดรอปเพิ่มจนครบ 0.5 แล้ว ชิ้นใต้ทอปเตี้ยตามเท่าระยะที่ขยับจริง (เดิมไม่เตี้ย ซ้อนค้าง) · ชิ้นที่สูงเต็มแผ่นข้าง (ชนทั้งขอบบนและขอบล่าง) ไม่แตะทั้งสองกฎ"],
     ["1.447","2026-10-14","FEAT ชิ้นขอบบนตู้ที่อยู่ระหว่างแผ่นข้าง ดรอปลง 0.5 (ผู้ใช้ 13:29: ตู้ที่มีแผ่นทอปหรือคานนอน/ตั้งที่อยู่ในแผ่นข้าง น่าจะต้องเดปเข้าตู้ 0.5 ตอนประกอบจะพอดี · ตอบคำถาม: ร่นบนล่าง ไม่ใช่หน้าหลัง · แผ่นบนหรือชิ้นขอบบนตู้ดรอปลง 0.5 ระยะเจาะมินิฟิกจะได้ 8.6 · ดรอปขึ้น (ขอบล่าง) ไม่ต้องทำ · ดรอปเกิน 5 ให้ค่าปกติ · ชิ้นที่ชนใต้ทอปเตี้ยลง 0.5 ตาม · ทุกออเดอร์ทั้งเก่าและใหม่) — เดิมทอปในข้าง/คานบนเสมอขอบบนแผ่นข้างพอดี ประกอบแล้วชิ้นในยื่นเกินข้างได้ · ตอนนี้ทุกรอบคิดฉาก (applyTopDrop): ชิ้นนอน (ทอป · คานนอน) และคานตั้ง ที่ปลายสองข้างชนแผ่นข้างและขอบบนเสมอขอบบนแผ่นข้าง (ไม่เกิน 0.45) ดรอปลงให้ห่างขอบบนข้าง 0.5 · ดรอปไว้แล้ว 0.5 ขึ้นไป (รวมเกิน 5) = ไม่แตะ · ทอปทับข้าง / แผ่นหลัง / ลิ้นชัก / บาน / ขอบล่างตู้ ไม่แตะ · ชิ้นตั้งที่ชนใต้ชิ้นที่ดรอป (แผ่นแบ่ง · คานตั้งใต้ทอป · แผ่นหลังที่ไม่ได้ลงร่อง) เตี้ยลงเท่ากัน ขอบล่างคงที่ รูบนชิ้นอยู่ที่เดิม · รูเดือย/มินิฟิกบนแผ่นข้างเจาะใหม่ตามเอง (ตัวเจาะอัตโนมัติ v1.425) → ทอป 16.2 ได้รูที่ 8.6 จากขอบบนข้าง · คิดบาน/ชั้น/ราวแขวน/รูพินบนรูปทรงปกติแล้วค่อยดรอปตอนท้ายรอบคิดฉาก — ขนาดบาน ตำแหน่งชั้น รูพิน ไม่เปลี่ยน (ช่องห่างใต้ทอปของบานแบบในแคบลงเท่าที่ดรอป · บานพับตัวบนอาจขยับลงไม่เกิน 0.5 รูถ้วย/รูฐานไปด้วยกัน) · ปิดฟีเจอร์ = ยกคืนเสมอขอบ · ออเดอร์ที่ล็อก/ลิงก์ดูอย่างเดียว ไม่แตะ · ตั้งค่าระยะได้ (0.5 ตั้งต้น · ปิดได้) · ปิด SN_OFF.topDrop"],
@@ -5148,8 +5149,8 @@ function buildConnectorMeshes(b){
         const sm=new THREE.Mesh(new THREE.CylinderGeometry(sr,sr,sLen,12),connMat0);
         sm.quaternion.setFromUnitVectors(new THREE.Vector3(0,1,0),zW); sm.position.copy(w); sm.userData.id=b.id; arr.push(sm); }); return; }
     const mf=(c.type==="minifix");
-    const eDep=Math.max((mf?settings.mfBoltDepth:c.depth)||settings.dowelDepth||13,1);
-    const mDep=Math.max((mf?settings.mfMateDepth:(c.mateDepth!=null?c.mateDepth:settings.dowelMateDepth))||12,1);
+    const eDep=Math.max((mf?settings.mfBoltDepth:dwEdgeDepth(c))||settings.dowelDepth||13,1);              // v1.450: ความลึกตามค่าตั้ง
+    const mDep=Math.max((mf?settings.mfMateDepth:dwMateDepthOf(c))||12,1);
     const len=Math.max(eDep+mDep,6), rad=Math.max(((mf?settings.mfBoltD:c.d)||8)/2,.5), shift=(mDep-eDep)/2;
     const bz=mfBoreZ(c,T);
     pts.forEach(lp=>{ const wEdge=lp.clone().applyMatrix4(M).add(bp);
@@ -5216,7 +5217,7 @@ function drillMates(b){   // adds matching through-holes on mating panels; retur
     }
     const {pts,axisLocal}=connectorPoints(b,c); const axW=axisLocal.clone().transformDirection(M);
     const mf=(c.type==="minifix"), bz=mfBoreZ(c,b.T||18);
-    const reach=Math.max(((mf?settings.mfBoltDepth:c.depth)||12)*2.2,30);
+    const reach=Math.max(((mf?settings.mfBoltDepth:dwEdgeDepth(c))||12)*2.2,30);     // v1.450
     pts.forEach(lp=>{ const w=lp.clone().applyMatrix4(M).add(bp).addScaledVector(zW,bz);
       rc.set(w.clone().addScaledVector(axW,-2), axW); rc.far=reach;
       const hit=rc.intersectObjects(others.map(o=>o.mesh),false)[0];
@@ -5260,7 +5261,7 @@ function drillMates(b){   // adds matching through-holes on mating panels; retur
         const _wMin=Math.max(settings.dowelWallMin!=null?(+settings.dowelWallMin||0):3,0);
         if(_wall<_wMin-0.05){ edge++; return; } }
       if(!mb.holes)mb.holes=[];
-      const mdep=Math.min(Math.max((mf?settings.mfMateDepth:(c.mateDepth!=null?c.mateDepth:settings.dowelMateDepth))||12,1),(mb.T||18)-0.5);
+      const mdep=Math.min(Math.max((mf?settings.mfMateDepth:dwMateDepthOf(c))||12,1),(mb.T||18)-0.5);     // v1.450: รูคู่ลึกตามค่าตั้ง
       const ex=mb.holes.find(h=>Math.hypot((h.x||0)-lx,(h.y||0)-ly)<1.5);
       /* v1.426: รูเดิมที่อยู่ใกล้ (≤1.5) แต่ไม่ตรงจุด — เดิมแค่ติดป้ายแล้วปล่อยไว้ที่เดิม
          รูที่ติดมากับโมเดล (เจาะไว้ตั้งแต่ตอนยังโดนดันเข้า ไม่มีป้ายเจ้าของ) จึงค้างเยื้องต่อไปเรื่อย ๆ
@@ -5337,6 +5338,24 @@ function autoCarcassDowels(){
   toast("เชื่อมโครงอัตโนมัติ: เดือย "+addedConn+" ขอบ + มินิฟิก "+addedMf+" ขอบ · เจาะรูคู่ "+totalHoles+" จุด"+(totalThin?" · ข้ามแผ่นบาง <11 มม.":""));
 }
 function addConnector(b){ return openConnectorModal(b); }   // kept for back-compat callers
+/* ───────── v1.450: ความลึกเดือย ตามหน้าตั้งค่าเสมอ ─────────
+   ผู้ใช้ 14/10/2026 16:47: ตั้ง “เจาะลึกที่ขอบแผ่นที่ใส่เดือย” = 26 แล้ว MPR ทอป (woodWOP) ยังเจาะ 28
+   เดิม: ตัวเชื่อมเดือยบนแต่ละชิ้นจำเลข depth/mateDepth ไว้ตอนสร้าง (v1.029 เขียนครบทุกช่องให้ผังตู้คงที่)
+         ตัวส่งออก/วาดอ่าน c.depth ก่อนค่าตั้ง → ตู้จากโมเดลในคลังและออเดอร์เก่าพก 28 ติดมาตลอด แก้หน้าตั้งค่าไม่มีผล
+         (ข้อมูลจริงทุกไฟล์: เดือยทุกตัวเป็น 28/12 = ค่าตั้งเดิม · ไม่มีชิ้นไหนตั้งเลขอื่นเอง)
+   ตอนนี้: ความลึกสองช่องนี้ใช้ค่าในหน้าตั้งค่าเสมอ ทุกออเดอร์ (สูตร/จำนวน/ตำแหน่งยังจำไว้ในตัวเชื่อมเหมือนเดิม)
+     ยกเว้น  · ชิ้นที่ตั้งความลึกเองในกล่องใส่เดือยให้ต่างจากค่าตั้ง (ธง depthOwn บนตัวเชื่อม)
+             · รอยต่อกล่องลิ้นชัก (_bj — มีค่าตั้งของตัวเองในหมวดลิ้นชัก)
+             · ออเดอร์ล็อก/ลิงก์ดูอย่างเดียว → เลขที่บันทึกไว้ (ส่งผลิตไปแล้ว ส่งออกซ้ำต้องได้เหมือนเดิม)
+     เปลี่ยนค่าตั้งแล้ว ตัวเจาะอัตโนมัติ (v1.425) เห็นค่าตั้ง dowel* เปลี่ยน → เจาะรูคู่บนแผ่นที่ทับใหม่ให้เอง
+   มินิฟิกใช้ค่าตั้งมินิฟิก (mfBoltDepth/mfMateDepth) อยู่แล้วแต่เดิม ไม่แตะ · ปิด: SN_OFF.dowelDepthSet=1 */
+function _dwStored(c){ return snOff("dowelDepthSet")||!!(c&&(c._bj||c.depthOwn))||(typeof isLocked==="function"&&isLocked()); }
+function dwEdgeDepth(c){ const s=+settings.dowelDepth;
+  if(!_dwStored(c)&&s>0) return s;
+  return +(c&&c.depth)||s||28; }
+function dwMateDepthOf(c){ const s=+settings.dowelMateDepth;
+  if(!_dwStored(c)&&s>0) return s;
+  return (c&&c.mateDepth!=null)?+c.mateDepth:(s||12); }
 function openConnectorModal(b){
   if(!b){toast("เลือกชิ้นก่อน");return;}
   if((b.T||18)<11){toast("แผ่นนี้บางกว่า 11 มม. ใส่เดือยไม่ได้");return;}
@@ -5476,7 +5495,9 @@ function openConnectorModal(b){
           ? Object.assign(common,{type:"minifix",face:mfFace,d:settings.mfBoltD,depth:settings.mfBoltDepth,mateDepth:settings.mfMateDepth})
           : tp==="screw"
           ? Object.assign(common,{type:"screw",face:screwSrcFace(b),d:settings.screwD||5,mateDepth:settings.screwMateDepth||28})
-          : Object.assign(common,{type:"dowel",d:dia,depth:depth,mateDepth:mate});
+          : Object.assign(common,{type:"dowel",d:dia,depth:depth,mateDepth:mate},
+              /* v1.450: พิมพ์ความลึกต่างจากหน้าตั้งค่า = ค่าเฉพาะชิ้นนี้ (ไม่ตามค่าตั้ง) · เท่ากัน = ตามค่าตั้งต่อไป */
+              (Math.abs(depth-(+settings.dowelDepth||0))>0.01||Math.abs(mate-(+settings.dowelMateDepth||0))>0.01)?{depthOwn:1}:{});
         if(tp==="screw"){ if(mode==="manual")setManual(conn); else conn.count=common.count; }
         else if(mode==="formula"){ conn.sizeRule=true; conn.formula=(tp==="minifix")?mfFormula:dowelFormula;
           if(flipMode!=="auto") conn.flip=(flipMode==="front"); }      // v26.8: จุดเริ่มนับเฉพาะชิ้นนี้
@@ -23351,6 +23372,7 @@ function boardRole(b){
      SN_OFF.shelfEqFixed=1 จัดชั้นห่างเท่ากันทำเฉพาะชั้นปรับแบบ v1.269 (ชั้นตายเป็นขอบช่อง · คลิกชิ้นอื่นในตู้ไม่ได้) (v1.436)
      SN_OFF.mdGaps=1      ไม้วัด 📦 ขนาดชิ้น ไม่ขึ้นโซ่ช่องใสของแผ่นที่มาชน (v1.436)
      SN_OFF.lazyOrders=1  บันทึก Order ไม่เขียนดัชนี _changes/_idx/imos_orders (ของ Production V2 v179 — ไม่ขึ้นกับ SN_SAFE) (v1.436)
+     SN_OFF.dowelDepthSet=1 ความลึกเดือยอ่านจากตัวเชื่อมของแต่ละชิ้นแบบเดิม (เลขที่จำไว้ตอนสร้าง) ไม่ตามหน้าตั้งค่า (v1.450)
      SN_OFF.tdGroove=1    ชิ้นที่ลงร่อง/บังใบทอป-พื้น (แผ่นหลังลงร่อง) ไม่หดตามการดรอป/ยก — หดเฉพาะชิ้นที่ชนพอดีแบบ 1.448 (v1.449)
      SN_OFF.botRise=1     แผ่นพื้น/คานขอบล่างตู้ เสมอขอบล่างแผ่นข้างแบบเดิม (ไม่ยก 0.5 · ชิ้นที่ยืนบนพื้นไม่เตี้ยตาม) — ขอบบนยังดรอปตาม topDrop (v1.448)
      SN_OFF.topDrop=1     ทอปในข้าง/คานขอบบนตู้ เสมอขอบบนแผ่นข้างแบบเดิม (ไม่ดรอป 0.5 · ชิ้นใต้ทอปไม่เตี้ยตาม · บานไม่ชดเชย) (v1.447)
@@ -41927,7 +41949,7 @@ function p2dHoleGroups(b){
       if(+hs.dowelD>0) add("hdw",+hs.dowelD,+hs.dowelDepth||0,"#6f3df0",{face:f,per:2,sp:+hs.dowelSpacing||0}); }
     else if(c2.type==="minifix"){ add("cam",+(settings.mfCamD||15),+(settings.mfCamDepth||13),"#0c7a5a",{off:+(settings.mfCamOffset||34)});
       add("bolt",+(settings.mfBoltD||8),+(settings.mfBoltDepth||28),"#0c7a5a"); }
-    else add("dowel",Math.max(+(c2.d||settings.dowelD||8),1),Math.max(+(c2.depth||settings.dowelDepth||28),1),"#c0392b"); });
+    else add("dowel",Math.max(+(c2.d||settings.dowelD||8),1),Math.max(+(dwEdgeDepth(c2)||28),1),"#c0392b"); });   // v1.450
   const KO={cup:0,hdw:1,cam:2,bolt:3,dowel:4};
   conn.sort((a,c)=>(KO[a.kind]-KO[c.kind])||(a.d-c.d)||(a.depth-c.depth));
   /* ผู้ใช้ 18:13 “ย้ายคำบอก…หมด” — ป้ายบาก / ร่อง / สันหน้าตัด / เพ ก็เข้ารายการ (แถวเต็มความกว้าง เพราะข้อความยาว)
@@ -42275,7 +42297,7 @@ function part2DSvg(b,o){
              แยกชั้นตามความสูงตัวอักษรจริง แคมอยู่บนสุด ระยะจากขอบถัดลงมา สลักสันล่างสุด */
           +(_hList?"":`<text x="${(cx+SX(ccx,ccy))/2}" y="${(cy+SY(ccx,ccy))/2+(isSide?FS(20):-FS(6))}" text-anchor="middle" font-size="${FS(13)}" fill="#0c7a5a">${fmt(camOff)} จากขอบ</text>`)   /* v1.444 */
           +(_hList?"":`<text x="${cx}" y="${cy+(isSide?FS(20):(ey>0?-FS(20):FS(28)))}" text-anchor="${isSide?(ex<0?"start":"end"):"middle"}" font-size="${FS(12)}" fill="#0c7a5a">${isSide?" ":""}สลักสัน Ø${fmt(boltD)} ลึก ${fmt(boltDep)}</text>`);   /* v1.444 */
-      } else { const dD=Math.max(c2.d||settings.dowelD||8,1), dDep=Math.max(c2.depth||settings.dowelDepth||28,1);
+      } else { const dD=Math.max(c2.d||settings.dowelD||8,1), dDep=Math.max(dwEdgeDepth(c2)||28,1);     // v1.450
         /* ───────── v18.7: เดือยที่สันต้องบอกระยะด้วย ─────────
            ถ้วยบานพับกับแคมมินิฟิกถูกนับเข้าโซ่ระยะไปแล้ว แต่เดือยกับมินิฟิกที่สันยังไม่เคยถูกนับ
            แบบจึงมีแต่จุดแดงกับป้ายขนาดดอก ไม่มีเลขบอกว่าห่างจากขอบเท่าไหร่หรือห่างกันเท่าไหร่
@@ -45286,7 +45308,7 @@ function boardToMPR(b, side){   // side=1/2 → เอาเฉพาะรู�
       return;
     }
     const mf=(c.type==="minifix");
-    const dia=(mf?settings.mfBoltD:c.d)||settings.dowelD||8, depth=(mf?settings.mfBoltDepth:c.depth)||settings.dowelDepth||28;
+    const dia=(mf?settings.mfBoltD:c.d)||settings.dowelD||8, depth=(mf?settings.mfBoltDepth:dwEdgeDepth(c))||settings.dowelDepth||28;   // v1.450: ความลึกเดือยตามค่าตั้ง
     let ZA="d/2";
     if(mf && T>(settings.mfCenterMax||16)){ const off=settings.mfFixFromFace||8.1; ZA = c.face==="bottom"? mprNum(off) : mprNum(T-off); }
     const camOff=settings.mfCamOffset||34;
@@ -46347,7 +46369,8 @@ function buildExport(){
       edges:(el.edges||[]).map(n=>({name:n,code:resolveLink(n,b),purchase:edgeOut(n,b)})),
       holes:(b.holes||[]).map(h=>({d:h.d,x:h.x,y:h.y,pin:!!h.pin})),
       grooves:(b.grooves||[]).map(g=>({axis:g.axis,face:g.face,pos:g.pos,width:g.width,depth:g.depth,edge:g.edge,posT:g.posT,off0:g.off0,off1:g.off1,end:g.end,r:g.r,back:g.back,backThk:g.backThk,backset:g.backset})),
-      connectors:(b.connectors||[]).map(c=>({type:c.type||"dowel",edge:c.edge,count:connCount(b,c),d:c.d,depth:c.depth,mateDepth:(c.mateDepth!=null?c.mateDepth:settings.dowelMateDepth),face:c.face,formula:c.formula})) });
+      connectors:(b.connectors||[]).map(c=>{ const dw=(c.type||"dowel")==="dowel";   /* v1.450: เดือยตามค่าตั้ง */
+        return {type:c.type||"dowel",edge:c.edge,count:connCount(b,c),d:c.d,depth:dw?dwEdgeDepth(c):c.depth,mateDepth:dw?dwMateDepthOf(c):(c.mateDepth!=null?c.mateDepth:settings.dowelMateDepth),face:c.face,formula:c.formula}; }) });
   }); });
   let nc=0,nh=0,ng=0; parts.forEach(p=>{nc+=p.connectors.reduce((s,c)=>s+(c.count||0),0);nh+=p.holes.filter(h=>!h.pin).length;ng+=p.grooves.length;});
   const gs=orderGroups(), fittings=fittingAgg(state.boards);
