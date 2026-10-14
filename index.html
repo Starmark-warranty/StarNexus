@@ -1019,7 +1019,7 @@
    ===================================================================== */
 /* ---- APP_META: แหล่งความจริงเดียวของเวอร์ชัน (ดูได้จาก console / คลิกชื่อแอป) ---- */
 const APP_META={
-  name:"StarNexus", version:"1.445", build:"2026-10-14/view-prefs",
+  name:"StarNexus", version:"1.446", build:"2026-10-14/flat-pull",
   file:"StarNexus.html", basedOn:"Furnitech_V3.html (v3.11)",
   /* ───────── เริ่มนับเวอร์ชันใหม่ที่ 1.001 (21/08/2026) ─────────
      ของเดิมนับมาถึง 42.1 แล้ววิ่งเป็นทศนิยมสองชั้นซึ่งอ่านลำดับยาก
@@ -1027,6 +1027,7 @@ const APP_META={
      ประวัติเก่าเก็บไว้ทั้งหมดตามเลขเดิม ไม่ไล่เขียนใหม่ เพราะเลขในนั้นถูกอ้างถึงไปแล้ว
      รายการที่อยู่ใต้ 1.001 ลงไปจึงเป็นเลขชุดเก่า อ่านต่อกันได้ตามวันที่ */
   changelog:[
+    ["1.446","2026-10-14","FEAT มือจับบาร์แบนใน 3D (pull3D = flat) ตามของจริง (ผู้ใช้ 10:40: อยากได้ 3D มือจับตัวที่ใส่อยู่รหัสนั้น เป็นรูปที่ส่ง · ระยะรูถูกแล้ว แค่เปลี่ยน 3D ให้ตรงกับของจริง) — เดิมมือจับสองรูมีแบบเดียวคือก้านกลม Ø12 + เสากลึง ยาวเลยรูข้างละ 20 (H002 128 มม. = ก้าน 168) แต่ของจริงเป็นแผ่นโลหะตั้งฉากกับหน้าบาน รูปตัว U คว่ำ: คานบนแบน ขากว้างสองข้างอยู่ตรงรู ปลายเสมอขา มุมในโค้ง · ตอนนี้ตั้ง pull3D = flat ที่ Element → Fittings แล้วได้แผ่นตั้งรีดจากโปรไฟล์ (มองหน้าบานเห็นเป็นเส้นบาง มองข้างเห็นตัว U) ขาอยู่กึ่งกลางรูเสมอ · ขนาดตั้งได้รายรุ่น: pullH ยื่น · pullLen ยาวรวม · pullT หนาแผ่น · pullBar คานบนหนา · pullLeg ขากว้าง (เว้นว่าง = ค่าที่ประเมินจากรูปของจริง: ยาว = ระยะรู + 22 · ยื่น 26 · หนา 6 · คาน 6.5 · ขา 22 · มุมใน R4) · ยาวรวมมากกว่าระยะรู + ขา = คานยื่นเลยขาออกไป (มือจับทรงคานยื่น) · ใช้กับบานแนวตั้ง/แนวนอนได้ (หมุนตาม ori) · FIX มือจับที่สเปครูมีรูซ้อนที่เดิม (รูทะลุ Ø5 + คว้าน Ø8 ตรงตำแหน่งเดียวกัน) ได้เสากลึงซ้อนกันสองต้นต่อรู — ตอนนี้หนึ่งต้นต่อตำแหน่ง · ภาพเท่านั้น ไม่เข้าใบตัด/MPR (รูเจาะเหมือนเดิมทุกอย่าง) · ปิด SN_OFF.pullFlat (กลับเป็นก้านกลม)"],
     ["1.445","2026-10-14","FIX หน้าจอทำงานจำค่าที่กดตั้งไว้ (ผู้ใช้ 08:15: ทำยังไงให้หน้าจอทำงานมันจำที่ผม กดตั้งไว้ได้บ้าง) — เดิมแถบล่างจำได้แค่ ประหยัด · ลายไม้/เลข/แสง·เงา/โปร่งใส/ตาราง/สแนป/ดูดมุม ไม่ถูกเก็บเลย เปิดใหม่กลับค่าตั้งต้น · ธีม (สว่าง/เทา/มืด) กับ แดด/ในห้อง/กลางคืน เก็บในก้อนตั้งค่า แต่ตอนเปิดโปรแกรมก้อนตั้งค่าจาก Google Drive มาทับทั้งก้อน (ปุ่มแถบล่างไม่ได้ส่งขึ้น Drive) จึงเด้งกลับทุกครั้ง · แสงในฉากยังถูกใช้แค่ตอนสร้างฉากก่อนโหลดค่าเสร็จ · ตอนนี้กดอะไรบนแถบล่างจำทันทีในเครื่องนี้ (คีย์ใหม่ viewPrefs) เปิดใหม่ได้หน้าจอเดิม · ธีม/แสง/ขนาด UI/หมอก ของเครื่องนี้ชนะค่าจาก Drive (คนละเครื่องตั้งคนละแบบได้) · ไม่จำท่าดูชั่วคราว (เลือก/ย้าย · ประกอบ/แยกชิ้น · เปิดบาน · แยกประกอบ) · ลิงก์ดูอย่างเดียวไม่ใช้ค่านี้ · ปิด SN_OFF.viewPrefs"],
     ["1.444","2026-10-13","UI แบบผลิต: คำบอกทั้งหมดย้ายออกจากรูปไปเป็นกล่อง “รายการรู” มุมขวาล่าง + สีรูแยกตามขนาด Ø (ผู้ใช้ 18:00: ตัวหนังสือที่บอกว่ารู DIA เท่าไหร่ ไปอยู่เป็นรายการมุมไหนที่ไม่โดนได้ไหม · สี DIA ต่างกันแยกสีเลย · 18:13: ย้ายคำบอกไปอยู่ในรายการรู หมดก็ได้ จะได้ไม่ไปบังแบบ) — เดิมป้าย “13 รู · Ø8 ลึก12 · ผิวบน” เกาะรูตัวแรกของกลุ่ม Left Side 1200 × 300 ป้าย Ø8 กับ Ø5 กองทับกันที่มุมขวาบนและล้นออกนอกแผ่น · แผ่นบนมีมินิฟิก ป้ายแคม/เดือย/สลักสัน/34 จากขอบ ทับกันทุกมุม · ลิ้นชักป้ายเดือยกับร่องพาดขอบแผ่น · สีรูบอกผิว Ø8 กับ Ø5 ผิวเดียวกันจึงเขียวทั้งแผ่น · ตอนนี้ในรูปเหลือแต่ตัวเลขระยะ · กล่องเหนือตารางชื่อแบบ (กว้างเท่ากัน) แถวละกลุ่ม: สัญลักษณ์เหมือนในรูป · Ø · ลึก/ทะลุ/พิน · กี่รู · ผิว — รูหน้าแผ่น · รูสัน · ถ้วยบานพับ (ห่างขอบ) + รูยึด · แคมมินิฟิก (ห่างขอบ 34) · สลักสัน · เดือย · ร่อง/บาก/สันหน้าตัด/เพ (แถวเต็มกว้าง) · 4 กลุ่มขึ้นไปสองคอลัมน์ · ข้อความยาวย่อตัวหนังสือก่อนตัด (จำนวนรูไม่หาย) · เยอะเกินช่องว่างหดกรอบแบบให้ ไม่ทับรูป · บรรทัด “เส้นเต็ม = … เส้นประ = …” ไปอยู่หัวกล่อง (เฉพาะแบบที่มีในแผ่น) หัวแบบแผ่นสั้นจึงไม่ชนกันแล้ว (ข้างลิ้นชัก 400: “หน้า (front) … หมุนวางนอน 90°” เคยทับ “มองจากผิวบน”) · สีรู = ขนาด (Ø3 เขียวน้ำทะเล · Ø5 ส้ม · Ø8 น้ำเงิน · Ø10 เขียว · Ø12 ชมพู · Ø15 ม่วง … ขนาดเดียวกันสีเดียวกันทุกหน้า แผ่นเดียวสองขนาดไม่ชนสี) ผิวดูจากเส้น: ทึบ = ผิวที่มอง · ประ = อีกด้าน · กากบาท = ทะลุ · วงโปร่ง = เจาะสัน · บานพับ/มินิฟิก/เดือยสีตามชนิดเดิม · Preview 2D แถวคำอธิบายเป็นรายการเดียวกัน · หน้าดูงานได้ด้วยเมื่อเผยแพร่ใหม่ · ปิด SN_OFF.p2dHoleList (ป้ายกลับเข้ารูป) / SN_OFF.p2dDiaColor (สีตามผิว)"],
 
@@ -4249,6 +4250,7 @@ function shapeLocalGeo(b){
     g.applyMatrix4(MB);
     g.applyMatrix4(new THREE.Matrix4().copy(orientMatrix(b.orient,b.yaw)).invert());
     return g; }
+  if(b._shape==="flatPull") return pullFlatGeo(b);                                    // v1.446: มือจับบาร์แบน
   throw new Error("unknown shape");
 }
 /* v7.80: แผ่นที่มี Pocket ไม่ทะลุ -> หั่นเป็นชั้นตามระดับก้นหลุม
@@ -23343,6 +23345,7 @@ function boardRole(b){
      SN_OFF.shelfEqFixed=1 จัดชั้นห่างเท่ากันทำเฉพาะชั้นปรับแบบ v1.269 (ชั้นตายเป็นขอบช่อง · คลิกชิ้นอื่นในตู้ไม่ได้) (v1.436)
      SN_OFF.mdGaps=1      ไม้วัด 📦 ขนาดชิ้น ไม่ขึ้นโซ่ช่องใสของแผ่นที่มาชน (v1.436)
      SN_OFF.lazyOrders=1  บันทึก Order ไม่เขียนดัชนี _changes/_idx/imos_orders (ของ Production V2 v179 — ไม่ขึ้นกับ SN_SAFE) (v1.436)
+     SN_OFF.pullFlat=1    มือจับที่ตั้ง pull3D = flat วาดเป็นก้านกลม + เสากลึงแบบเดิม (v1.446)
      SN_OFF.viewPrefs=1   หน้าจอทำงานไม่จำค่าที่กดตั้งไว้ (ลายไม้/เลข/เงา/โปร่งใส/ตาราง/สแนป ตั้งต้นทุกครั้ง · ธีม/แสงตามก้อนตั้งค่าแบบเดิม) (v1.445)
      SN_OFF.p2dHoleList=1 แบบชิ้น/แบบผลิต คำบอก (รู · บานพับ · มินิฟิก · เดือย · ร่อง · บาก · เส้นเต็ม/ประ) กลับไปติดในรูปแบบเดิม ไม่มีกล่องรายการรู (v1.444)
      SN_OFF.p2dDiaColor=1 สีรูในแบบชิ้น/แบบผลิตตามผิวแบบเดิม (บนเขียว · ล่างส้ม · ทะลุน้ำเงิน · พินเทา · สันชมพู) (v1.444)
@@ -25628,10 +25631,15 @@ const ELEM_FORM={
              ["legClip","ขาตู้ — รหัสกิ๊ฟยึดแผ่นปิดขา (เว้นว่าง = ใช้รหัสกลางในตั้งค่า) · ออกให้เฉพาะขาแถวหน้า 1 ตัว/ขา"],
              ["pullDrill","มือจับ — สเปครูเจาะ พิกัดนับจากศูนย์กลางมือจับ · x,y,Ø,ลึก,ฝั่ง (b=หลังบาน t=หน้าบาน x=ทะลุ) · s128 = คู่ห่าง 128 · หลายบรรทัดคั่นด้วย ; เช่น s128,0,5,0,x ; s128,0,8,1,b"],
              ["pullPocket","มือจับ — สเปค Pocket กรอบเดียวกัน · x,y,กว้าง,สูง,ลึก,ฝั่ง,R เช่น 0,0,150,22,3,b = คว้านหลังบาน 150×22 ลึก 3"],
-             ["pull3D","มือจับ — รูปใน 3D (v1.331): knob = ปุ่มกลม · bar = ก้านกลม+เสา · box = กล่องแบบเดิม · เว้นว่าง = รูเดียวเป็นปุ่ม สองรูเป็นก้าน"],
+             ["pull3D","มือจับ — รูปใน 3D (v1.331): knob = ปุ่มกลม · bar = ก้านกลม+เสา · flat = บาร์แบนตั้งฉากกับบาน (v1.446) · box = กล่องแบบเดิม · เว้นว่าง = รูเดียวเป็นปุ่ม สองรูเป็นก้าน"],
              ["pullFinish","มือจับ — สีผิว 3D: brass ทองเหลือง · gold ทอง · chrome โครม · nickel นิกเกิล/สแตนเลส · black ดำ · bronze บรอนซ์ · copper ทองแดง · white ขาว · หรือ #HEX · เว้นว่าง = เดาจากคำอธิบาย ไม่เจอใช้ค่าในตั้งค่า"],
              ["pullDia","มือจับ — Ø ปุ่ม / Ø ก้าน ใน 3D (มม.) · เว้นว่าง = ปุ่ม 32 · ก้าน 12"],
-             ["pullH","มือจับ — ยื่นจากหน้าบาน ใน 3D (มม.) · เว้นว่าง = ปุ่ม 26 · ก้าน 34"],
+             ["pullH","มือจับ — ยื่นจากหน้าบาน ใน 3D (มม.) · เว้นว่าง = ปุ่ม 26 · ก้าน 34 · บาร์แบน 26"],
+             /* ───────── v1.446: บาร์แบน (pull3D = flat) ───────── */
+             ["pullLen","มือจับ — บาร์แบน (pull3D = flat): ยาวรวม (มม.) · เว้นว่าง = ระยะรู + ขากว้าง (ปลายเสมอขา) · ยาวกว่านั้น = คานยื่นเลยขา"],
+             ["pullT","มือจับ — บาร์แบน: หนาแผ่น ที่เห็นจากหน้าบาน (มม.) · เว้นว่าง = 6"],
+             ["pullBar","มือจับ — บาร์แบน: คานบนหนา วัดตามแนวยื่นจากบาน (มม.) · เว้นว่าง = 6.5"],
+             ["pullLeg","มือจับ — บาร์แบน: ขากว้าง วัดตามแนวยาวมือจับ ขาอยู่กึ่งกลางรู (มม.) · เว้นว่าง = 22"],
              ["bdx","ตำแหน่ง: เลื่อน X จากกึ่งกลางช่อง (มม. · +ขวา · 0=กลาง)"],
              ["bdy","ตำแหน่ง: เลื่อน Y (มม. · +ขึ้น · 0=กลางหน้าบาน)"],
              ["bdz","ตำแหน่ง: เลื่อน Z (มม. · +ออกหน้า · 0=ชิดหลังหน้าบาน)"],
@@ -26049,6 +26057,7 @@ const FIT_FIELD_GRP={
   sTop:"hanger", sSide:"hanger", sRef:"hanger",
   legH:"leg", legD:"leg", legInset:"leg", legClip:"leg",
   pullDrill:"pull", pullPocket:"pull", pull3D:"pull", pullFinish:"pull", pullDia:"pull", pullH:"pull",   // v1.331
+  pullLen:"pull", pullT:"pull", pullBar:"pull", pullLeg:"pull",                                        // v1.446: บาร์แบน
   defCabs:"basket", bw:"basket", bh:"basket", bd:"basket", bFromBot:"basket",
   bQty:"basket", bPitch:"basket", bdx:"basket", bdy:"basket", bdz:"basket",
   lenMap:"rail", boxToRail:"rail", drillMap:"rail", drillH:"rail", frontDrill:"rail"
@@ -28865,7 +28874,7 @@ function renderSettings(){
         <option value="box"${settings.pull3DStyle==="box"?" selected":""}>กล่อง (แบบเดิม · เบาเครื่อง)</option></select></div>
       <div class="fld"><label>สีผิวตั้งต้น (รุ่นที่ไม่ได้ตั้งเอง)</label><select class="nameinp" data-sk="pull3DFinish" style="width:100%">
         ${Object.keys(PULL_FINISH).map(k=>'<option value="'+k+'"'+((String(settings.pull3DFinish||"brass")===k)?" selected":"")+'>'+k+' — '+escapeHtml(PULL_FINISH[k].th)+'</option>').join("")}</select></div></div>
-    <div style="font-size:11px;opacity:.62;margin:2px 0 6px;line-height:1.6">ตั้งรายรุ่นได้ที่ <b>Element → Fittings</b> (kind = มือจับ) ช่อง pull3D · pullFinish · pullDia · pullH · สีผิวเว้นว่างไว้ ระบบเดาจากคำอธิบายก่อน (ทองเหลือง · ดำ · โครม · สแตนเลส) · เป็นภาพ 3D อย่างเดียว ไม่เข้าใบตัดหรือใบอุปกรณ์</div>
+    <div style="font-size:11px;opacity:.62;margin:2px 0 6px;line-height:1.6">ตั้งรายรุ่นได้ที่ <b>Element → Fittings</b> (kind = มือจับ) ช่อง pull3D (knob · bar · flat บาร์แบน) · pullFinish · pullDia · pullH · บาร์แบน: pullLen · pullT · pullBar · pullLeg · สีผิวเว้นว่างไว้ ระบบเดาจากคำอธิบายก่อน (ทองเหลือง · ดำ · โครม · สแตนเลส) · เป็นภาพ 3D อย่างเดียว ไม่เข้าใบตัดหรือใบอุปกรณ์</div>
     <!-- ───────── v1.327: ระยะ 0000 ที่แกนชิดขอบ ───────── -->
     <div style="display:grid;grid-template-columns:1fr 2fr;gap:8px;margin-top:6px">${num("pullZeroDef","ระยะที่ใช้แทน 0000 (มม. · 0 = ปิด)")}<div style="font-size:11px;opacity:.62;line-height:1.6;align-self:end">XML ส่งระยะ <code>0000</code> มากับแกนที่ชิดขอบ (Up/Down/Left/Right) = ไม่ได้ส่งระยะมา มือจับจะไปกองที่ขอบบาน จึงใช้ค่านี้แทนรายแกน · แกนที่เป็นกึ่งกลาง (<code>UpMiddle</code> แนวนอน · <code>Center</code> ทั้งสองแกน) ได้ 0 ถูกแล้ว ไม่แตะ</div></div>
     <div class="sumh" style="margin-top:10px">ค่าตั้งต้นเมื่อเลือกรุ่นมือจับเองที่ Variables ของตู้</div>
@@ -36805,6 +36814,7 @@ function _drillOnePull(d,pu,idx,add){
      pullFinish brass · gold · chrome · nickel · black · bronze · copper · white · หรือ #HEX
                 (เว้นว่าง = เดาจากคำอธิบาย เช่น "ทอง" "ดำ" "โครม" ไม่เจอใช้ค่าในตั้งค่า)
      pullDia  Ø ปุ่ม หรือ Ø ก้าน (มม.) · pullH ยื่นจากหน้าบาน (มม.)
+     v1.446: pull3D = flat บาร์แบน (แผ่นตั้งรูปตัว U คว่ำ) · pullLen ยาวรวม · pullT หนาแผ่น · pullBar คานบน · pullLeg ขากว้าง
    ปิดกลับเป็นกล่องแบบเดิม: ตั้งค่า → รูปมือจับ = กล่อง หรือ SN_OFF.pullReal=1
    ของที่วาดนี้เป็นภาพเท่านั้น ไม่เข้าใบตัด/ใบอุปกรณ์ (นับมือจับจาก _pulls เหมือนเดิม) */
 function pullFitEl(code){ const c=String(code||"").trim().toLowerCase(); if(!c) return null;
@@ -36832,9 +36842,59 @@ function pullKnobProfile(D,H){
 }
 function pullPostProfile(pd,H){ const r=Math.max(+pd||9,3)/2, h=Math.max(+H||10,2);
   return [[0,0],[r*1.25,0],[r*1.25,0],[r*1.25,.7],[r*1.25,.7],[r*1.05,1.8],[r,Math.min(3,h*.3)],[r,h],[0,h]]; }
+/* ═════════ v1.446: มือจับบาร์แบน (pull3D = flat) ─────────
+   ผู้ใช้ 14/10/2026 10:40 ส่งรูป H002 (รู 128) — แผ่นโลหะผิวนิกเกิลปัด รูปตัว U คว่ำ: คานบนแบน ขากว้างสองข้าง
+   รูเกลียวอยู่ที่สันล่างของขา (ขันสกรูจากหลังบาน) แผ่นตั้งฉากกับหน้าบาน มองตรงหน้าบานเห็นแค่สันบาง ๆ
+   เดิมมีแต่ก้านกลม + เสากลึง (v1.331) ซึ่งเป็นคนละทรงกับของจริงเลย
+   ขนาดตั้งต้นประเมินจากรูป เทียบกับระยะรู 128 ที่รู้แน่: ยาวรวม ≈ 150 (= ระยะรู + ขา 22) · ยื่น ≈ 26 · คานบน ≈ 6.5
+     หนาแผ่นดูจากรูปไม่ได้แน่ (ถ่ายเกือบตรง) ใช้ 6 · มุมในโค้ง R4 · ของจริงวัดได้แล้วใส่ทับที่ Element → Fittings
+   โปรไฟล์ (มองข้าง): u = ตามยาวมือจับ (0 = กลางระยะรู) · v = ตามแนวยื่น (−H/2 = ผิวหน้าบาน) แล้วรีดตามความหนา
+   ขาอยู่กึ่งกลางรูเสมอ (_fpSpan = ระยะรู) — ยาวรวมเกิน ระยะรู + ขา = คานยื่นเลยขาออกไป มีมุมโค้งใต้คานด้านนอกด้วย
+   ชิ้น: L×W = ยาว×หนา (หรือหนา×ยาว เมื่อมือจับแนวตั้ง) · T = ยื่น — วางเหมือนชิ้นอื่นด้วย orientMatrix ของบาน */
+function pullFlatShape(len,H,span,leg,bar,r){
+  const hl=len/2, hh=H/2, yi=hh-bar, ro=Math.min(0.8,bar/3);
+  let xb=Math.min(span/2+leg/2, hl), xa=xb-leg;                // ขอบนอก/ใน ของขา (นับจากกลาง)
+  if(hl-xb<0.6) xb=hl, xa=hl-leg;                              // ปลายเสมอขา (แบบของจริงในรูป)
+  const over=hl-xb>0.6;                                        // คานยื่นเลยขา
+  const ri=Math.max(0,Math.min(r, xa-0.3, yi+hh-0.5, leg*0.45));     // มุมในระหว่างขา
+  const rx=over?Math.max(0,Math.min(r, hl-xb-0.3, yi+hh-0.5)):0;     // มุมใต้คานด้านนอก (เฉพาะคานยื่น)
+  const s=new THREE.Shape();
+  const arc=(cx,cy,rr,a0,a1,cw)=>{ if(rr>0.05) s.absarc(cx,cy,rr,a0,a1,cw); };
+  /* เดินทวนเข็มจากมุมล่างขาซ้าย (ด้านนอก) */
+  s.moveTo(-xb,-hh);
+  if(xa>0.5){
+    s.lineTo(-xa,-hh); s.lineTo(-xa,yi-ri); arc(-xa+ri,yi-ri,ri,Math.PI,Math.PI/2,true);
+    s.lineTo(xa-ri,yi); arc(xa-ri,yi-ri,ri,Math.PI/2,0,true); s.lineTo(xa,-hh);
+  }
+  s.lineTo(xb,-hh);
+  if(over){ s.lineTo(xb,yi-rx); arc(xb+rx,yi-rx,rx,Math.PI,Math.PI/2,true); s.lineTo(hl,yi); }
+  s.lineTo(hl,hh-ro); arc(hl-ro,hh-ro,ro,0,Math.PI/2,false);
+  s.lineTo(-hl+ro,hh); arc(-hl+ro,hh-ro,ro,Math.PI/2,Math.PI,false);
+  if(over){ s.lineTo(-hl,yi); s.lineTo(-xb-rx,yi); arc(-xb-rx,yi-rx,rx,Math.PI/2,0,true); }
+  s.lineTo(-xb,-hh);
+  return s;
+}
+function pullFlatGeo(b){
+  const H=Math.max(+b.T||1,2), alongX=!((+b.W||0)>(+b.L||0));
+  const len=Math.max(alongX?(+b.L||1):(+b.W||1),6), t=Math.max(alongX?(+b.W||1):(+b.L||1),0.6);
+  const span=Math.max(+b._fpSpan||0,0), bar=Math.min(Math.max(+b._fpBar||6.5,0.8),H-0.8);
+  const leg=Math.min(Math.max(+b._fpLeg||22,2),len);
+  const sh=pullFlatShape(len,H,Math.min(span,len),leg,bar,Math.max(+b._fpR||4,0));
+  const bv=Math.min(0.45,t/5);                                  // ลบมุมสันเล็กน้อย ให้โลหะมีเส้นแสงที่ขอบ (ขนาดรวมไม่เปลี่ยน)
+  const dep=Math.max(t-2*bv,0.2);
+  const g=new THREE.ExtrudeGeometry(sh,{depth:dep,curveSegments:12,bevelEnabled:bv>0.05,bevelThickness:bv,bevelSize:bv,bevelOffset:-bv,bevelSegments:2});
+  g.translate(0,0,-dep/2);
+  /* โปรไฟล์ (x=u, y=v) รีดตาม z → แกนของชิ้น · หมุนแบบ det +1 เท่านั้น (สลับแกนแบบกระจกทำหน้าสามเหลี่ยมกลับด้าน แสงเงาดำ) */
+  if(alongX) g.applyMatrix4(new THREE.Matrix4().set(1,0,0,0, 0,0,-1,0, 0,1,0,0, 0,0,0,1));   // u→x · v→z · ความหนา→y
+  else       g.applyMatrix4(new THREE.Matrix4().set(0,0,1,0, 1,0,0,0, 0,1,0,0, 0,0,0,1));    // u→y · v→z · ความหนา→x
+  return g;
+}
 function _pull3D(d,pu,idx,hs,c,V,add){
   const xs=hs.map(h=>h.x), T=Math.max(+d.T||18,1), stand=14, barT=16;
   const x0=Math.min.apply(null,xs), x1=Math.max.apply(null,xs), span=x1-x0, mid=(x0+x1)/2;
+  /* ───────── v1.446: เสาหนึ่งต้นต่อตำแหน่งรู ─────────
+     สเปครูมือจับมักมีสองรูตรงตำแหน่งเดียวกัน (Ø5 ทะลุ + คว้าน Ø8 ลึก 2.5 สำหรับหัวสกรู) เดิมได้เสากลึงซ้อนกันสองต้นต่อรู */
+  const xu=xs.filter((v,i)=>xs.findIndex(w=>Math.abs(w-v)<0.05)===i);
   const M=orientMatrix(d.orient,d.yaw), bp=new THREE.Vector3(d.x,d.y,d.z);
   const mp=(x,y)=>V?{x:-y,y:x}:{x:x,y:y};
   const put=(lx,ly,lz,LL,WW,TT,nm,k,ext)=>{ const w=new THREE.Vector3(lx,ly,lz).applyMatrix4(M).add(bp);
@@ -36848,6 +36908,15 @@ function _pull3D(d,pu,idx,hs,c,V,add){
   const el=pullFitEl(pu.code), sty=String((el&&el.pull3D)||"").trim().toLowerCase();
   if(!snOff("pullReal")&&settings.pull3DStyle!=="box"&&!/^(box|กล่อง)$/.test(sty)){
     const fin=pullFinishOf(el), nD=+(el&&el.pullDia)||0, nH=+(el&&el.pullH)||0;
+    /* v1.446: บาร์แบน — ชิ้นเดียวทั้งตัว (คาน+ขา) ขาอยู่กึ่งกลางรู */
+    if(!snOff("pullFlat")&&/^(flat|แบน|บาร์แบน|plate)$/.test(sty)){
+      const leg=(+(el&&el.pullLeg)>=2)?+el.pullLeg:22, H=nH>=6?nH:26;
+      const tt=(+(el&&el.pullT)>=0.6)?+el.pullT:6, bar=(+(el&&el.pullBar)>=0.8)?+el.pullBar:6.5;
+      const len0=(span<1)?Math.max(leg*3,60):(span+leg), fl=+(el&&el.pullLen)||0, len=(fl>=Math.max(span,leg)+1)?fl:len0;
+      const q=mp(mid,0);
+      put(c.x+q.x, c.y+q.y, T/2+H/2, V?tt:len, V?len:tt, H, "flat", "f",
+        {_shape:"flatPull", _fpSpan:round(span), _fpLeg:leg, _fpBar:bar, _fpR:4, _metal:fin});
+      return; }
     const asKnob=/^(knob|ปุ่ม)$/.test(sty)||(!/^(bar|ก้าน)$/.test(sty)&&span<1);
     if(asKnob){ const D=nD>=8?nD:32, H=nH>=8?nH:26, q=mp(mid,0);
       put(c.x+q.x, c.y+q.y, T/2+H/2, D, D, H, "knob", "k", {_shape:"lathe", _pts:pullKnobProfile(D,H), _latheSeg:56, _metal:fin});
@@ -36855,14 +36924,14 @@ function _pull3D(d,pu,idx,hs,c,V,add){
     const dia=nD>=4?nD:12, H=nH>dia+4?nH:34, over=20;
     const barL=(span<1)?Math.max(dia*8,96):(span+2*over), q=mp(mid,0), postH=Math.max(H-dia/2,4), pd=Math.max(Math.round(dia*.8),6);
     put(c.x+q.x, c.y+q.y, T/2+H-dia/2, V?dia:barL, V?barL:dia, dia, "bar", "b", {_shape:"rod", _metal:fin});
-    (span<1?[mid]:xs).forEach((hx,i)=>{ const q2=mp(hx,0);
+    (span<1?[mid]:xu).forEach((hx,i)=>{ const q2=mp(hx,0);
       put(c.x+q2.x, c.y+q2.y, T/2+postH/2, pd, pd, postH, "post"+(i+1), "p"+i, {_shape:"lathe", _pts:pullPostProfile(pd,postH), _latheSeg:28, _metal:fin}); });
     return;
   }
   if(span<1){ const q=mp(mid,0); put(c.x+q.x, c.y+q.y, T/2+(stand+14)/2, 28,28,stand+14,"knob","k"); return; }
   { const q=mp(mid,0), barL=span+40;
     put(c.x+q.x, c.y+q.y, T/2+stand+barT/2, V?barT:barL, V?barL:barT, barT, "bar","b"); }
-  xs.forEach((hx,i)=>{ const q=mp(hx,0);
+  xu.forEach((hx,i)=>{ const q=mp(hx,0);                     // v1.446: ไม่ซ้อนที่เดิม
     put(c.x+q.x, c.y+q.y, T/2+stand/2, 12,12,stand, "post"+(i+1), "p"+i); });
 }
 /* ═════════ v1.333: ฉากพลาสติก D33 (FITBK00002) — ชุดยึดคานแบบที่สาม นอกจากเดือย+มินิฟิก / เดือยคู่ ─────────
