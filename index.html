@@ -1019,7 +1019,7 @@
    ===================================================================== */
 /* ---- APP_META: แหล่งความจริงเดียวของเวอร์ชัน (ดูได้จาก console / คลิกชื่อแอป) ---- */
 const APP_META={
-  name:"StarNexus", version:"1.450", build:"2026-10-14/dowel-depth",
+  name:"StarNexus", version:"1.451", build:"2026-10-15/skin-trim",
   file:"StarNexus.html", basedOn:"Furnitech_V3.html (v3.11)",
   /* ───────── เริ่มนับเวอร์ชันใหม่ที่ 1.001 (21/08/2026) ─────────
      ของเดิมนับมาถึง 42.1 แล้ววิ่งเป็นทศนิยมสองชั้นซึ่งอ่านลำดับยาก
@@ -1027,6 +1027,7 @@ const APP_META={
      ประวัติเก่าเก็บไว้ทั้งหมดตามเลขเดิม ไม่ไล่เขียนใหม่ เพราะเลขในนั้นถูกอ้างถึงไปแล้ว
      รายการที่อยู่ใต้ 1.001 ลงไปจึงเป็นเลขชุดเก่า อ่านต่อกันได้ตามวันที่ */
   changelog:[
+    ["1.451","2026-10-15","FIX แผ่นข้างใต้ทอปทับข้าง หักผิวทอป + ชั้นรองเท้าไม้ใช้ชุดหัวท้าย + ลายไม้ชั้นรองเท้าไม้ (ผู้ใช้ 15/10 08:06–08:11) — (1) แผ่นข้างไม่ได้หักลบผิวของแผ่นทอป: ตู้ JMT007 ทอปทับข้างหนา 16.2 (เนื้อ 16 + ผิว 0.2) แต่ข้างยาว 984 = คิดจากเนื้อ 16 → ข้างจมเข้าใต้ทอป 0.2 (ตัวจัดผิวตู้บวกผิวให้ทอปโตเข้าใน แต่ไม่ได้หดชิ้นที่ชนใต้ทอปตาม) แผ่นหลังก็เกินเข้าทอป 0.2 เหมือนกัน · ตอนนี้ทุกรอบคิดฉาก (skinTrimHeal ต่อจากยกคืนทอปดรอป): ชิ้นตั้ง (แผ่นข้าง แผ่นหลัง แผ่นแบ่ง) ที่ปลายจมเข้าทอป/พื้นที่เป็นผนังนอกของตู้ ลึกเท่าผิวของแผ่นนั้นพอดี (±0.06) → ตัดให้ชนผิวพอดี ปลายอีกข้างคงที่ รู/Pocket อยู่ที่เดิม (ข้าง 984 → 983.8) · ลงร่อง/ซ้อนลึกกว่านี้ไม่แตะ · คานตามกฎไม่แตะ · ออเดอร์ล็อกไม่แตะ · ปิด SN_OFF.skinTrim=1 · (2) ชั้นรองเท้าไม้: ตัวยึดแผ่น↔คานหน้า/หลัง จากมินิฟิกสูตร “มินิฟิก” 2 จุด เป็นชุดหัวท้าย (เดือย “ชุดหัวท้าย · เดือย” + มินิฟิก “ชุดหัวท้าย · มินิฟิก” ระยะเท่ากันทั้งสองปลาย แบบแผ่นหลัง) รูคู่ที่คานครบทั้งเดือยและมินิฟิก · ปิด SN_OFF.shoeWSym=1 · (3) ชั้นรองเท้าไม้เห็นเป็นสีเรียบ ลายไม้ไม่ขึ้น: กล่องเอียง (tiltBox) ใช้ UV 0–1 ต่อหน้า ผืนลายตั้ง 1/600 ต่อ มม. จึงเห็นแค่เศษเดียวของผืน → เขียน UV เป็น มม. ตามแกนชิ้น (แบบแผ่นเรียบ v1.299)"],
     ["1.450","2026-10-14","FIX ความลึกเดือยตามหน้าตั้งค่า (ผู้ใช้ 16:47: ตั้ง 26 ทำไม MPR ยัง 28) — เดิมตัวเชื่อมเดือยของแต่ละชิ้นจำเลขความลึกไว้ตอนสร้าง (v1.029 เขียนครบทุกช่องให้ผังคงที่) ทอป/พื้น/คานจากโมเดลและออเดอร์เก่าจึงพก 28 ติดมา แก้หน้าตั้งค่าเป็น 26 แล้ว MPR · แบบผลิต · 3D · ใบส่งออก ยังอ่าน 28 จากตัวเชื่อม · ตอนนี้ความลึกที่ขอบแผ่นที่ใส่เดือย และความลึกแผ่นที่เดือยทิ่มตั้งฉาก ใช้ค่าในหน้าตั้งค่าเสมอ (dwEdgeDepth/dwMateDepthOf) ทุกออเดอร์ทั้งเก่าและใหม่ · ยกเว้น: ชิ้นที่ตั้งความลึกเองในกล่องใส่เดือยรายชิ้นให้ต่างจากค่าตั้ง (ธง depthOwn) · รอยต่อกล่องลิ้นชัก (มีค่าตั้งของตัวเอง) · ออเดอร์ล็อก/ลิงก์ดูอย่างเดียว ใช้เลขที่บันทึกไว้ (งานผลิตไปแล้วไม่เปลี่ยน) · เปลี่ยนค่าตั้งแล้วรูคู่บนแผ่นที่ทับเจาะใหม่ให้เอง · มินิฟิกตามค่าตั้งมินิฟิกอยู่แล้วเหมือนเดิม · ปิดกลับแบบเดิมได้ด้วย SN_OFF.dowelDepthSet=1"],
     ["1.449","2026-10-14","FIX แผ่นหลังที่ลงร่องทอป/พื้น หดตามระยะดรอป/ยกด้วย (ผู้ใช้ 14:49: แผ่นหลังหดไปแล้วด้วยไหม 1 mm เพราะบนและล่างดรอป 0.5) — เดิม 1.447/1.448 ชิ้นตั้งเตี้ยตามเฉพาะที่ชนพอดีใต้ทอป/บนพื้น (ซ้อนไม่เกิน 0.3) แผ่นหลังลงร่องทอป/พื้น (ฝังร่อง 2.4–5.2 เช่น MWA053/016/024 · WNO077/078 · WNT044 · WCR028) ไม่หด ยาวเท่าเดิม จึงจมลึกเข้าร่องเพิ่มข้างละ 0.5 · ตอนนี้ชิ้นตั้งที่ฝังเข้าไปในทอป/พื้นที่ดรอป/ยก (ร่อง · บังใบ — ปลายชิ้นยังอยู่ในความหนาแผ่น) หดเท่าระยะที่ขยับ ความลึกที่ฝังร่องเท่าเดิม → แผ่นหลังลงร่องทั้งบนล่างสั้นลง 1.0 · ชนพอดีแบบเดิมก็หด 1.0 เหมือนเดิม · จำระยะที่หดไว้บนชิ้น (_tdSt บน · _tdSb ล่าง) ต้นรอบยืดคืนตรงตัว ไม่ต้องเดาจากระยะซ้อน · งานที่บันทึกจาก 1.447/1.448 (ยังไม่มีค่าจำ) ใช้วิธีเดิมยืดคืน แล้วหดใหม่แบบ 1.449 ให้เอง"],
     ["1.448","2026-10-14","FEAT แผ่นพื้น/คานขอบล่างตู้ที่อยู่ระหว่างแผ่นข้าง ยกขึ้น 0.5 (ผู้ใช้ 14:16: แผ่นพื้นก็ยกขึ้น 0.5 แล้วนะครับ — ต่อจาก “ร่นบนล่าง”) — เดิม 1.447 ทำเฉพาะขอบบน แผ่นพื้นเสมอขอบล่างแผ่นข้างพอดี (รูมินิฟิกพื้นบนข้างที่ 8.1 สำหรับพื้น 16.2) · ตอนนี้กลับด้านของกฎขอบบน ระยะเดียวกัน: ชิ้นนอน (แผ่นพื้น · คานนอนล่าง) และคานตั้งขอบล่าง ที่ปลายสองข้างชนผิวในแผ่นข้างและขอบล่างเสมอขอบล่างข้าง (ไม่ถึง 0.45) ยกขึ้นให้ห่างพอดี 0.5 → รูบนข้างที่ 8.6 จากขอบล่าง · ยกไว้แล้ว 0.5 ขึ้นไป (พื้นยก 1 มม. อยู่แล้ว · พื้นเหนือฐานรอง 100) ไม่แตะ · คานฐานรองที่มีชิ้นนอนวางทับ (ใต้พื้นที่ยกสูง) ไม่แตะ · ชิ้นตั้งที่ยืนบนพื้นที่ยก (แผ่นแบ่ง · คานตั้งบนพื้น) เตี้ยลงเท่ากัน ขอบบนคงที่ (แผ่นแบ่งพื้นถึงทอปจึงสั้นรวม 1.0) · บาน/ชั้น/รูพิน/ไกด์ลิ้นชัก คิดจากรูปทรงปกติเหมือน 1.447 ไม่เปลี่ยน · ออเดอร์ล็อกไม่แตะ · ปิดแยกจากขอบบนได้ (ตั้งค่า หรือ SN_OFF.botRise=1) · แก้ด้วย: ขอบบนที่ห่างอยู่ 0.1–0.4 ดรอปเพิ่มจนครบ 0.5 แล้ว ชิ้นใต้ทอปเตี้ยตามเท่าระยะที่ขยับจริง (เดิมไม่เตี้ย ซ้อนค้าง) · ชิ้นที่สูงเต็มแผ่นข้าง (ชนทั้งขอบบนและขอบล่าง) ไม่แตะทั้งสองกฎ"],
@@ -2113,7 +2114,8 @@ function bind(id,fn,ev){ const e=(typeof id==="string")?$(id):id; if(e) e[ev||"o
    ย้อนกลับครั้งเดียวจึงได้ตู้ที่หันผิดทิศค้างอยู่กลางห้อง · ตัวนับนี้ทำให้ทั้งสองอย่างรอจนหมุนกลับ แล้ว sync(1) ค่อยเก็บครั้งเดียว */
 let _alignHold=0;
 function sync(rebuild,save,cm){
-  try{ topDropUndo(true); }catch(e){ console.error("topDropUndo:",e); }   // v1.447: ยกชิ้นที่ดรอปไว้คืนเสมอขอบก่อน — ตัวคิดบาน/ชั้น/ราว/ตรึงผิว เห็นรูปทรงปกติเหมือนเดิม
+  try{ topDropUndo(true); }catch(e){ console.error("topDropUndo:",e); }
+  try{ skinTrimHeal(); }catch(e){ console.error("skinTrim:",e); }      // v1.451: ชิ้นตั้งที่จมเข้าทอป/พื้นนอกเท่าผิว → ตัดให้ชนผิว (บนรูปทรงปกติ ก่อนตัวคิดบาน/ชั้น)   // v1.447: ยกชิ้นที่ดรอปไว้คืนเสมอขอบก่อน — ตัวคิดบาน/ชั้น/ราว/ตรึงผิว เห็นรูปทรงปกติเหมือนเดิม
   try{ healStrayShelves(); }catch(e){ console.error("healShelf:",e); }   // v1.265: ชั้นที่หันผิดแกนในตู้ที่หมุน (ซ่อมครั้งเดียว ไม่เจอก็ไม่ทำอะไร)
   const channelInsts=[...new Set(state.boards.filter(b=>b.rule&&b.rule.channelRail).map(b=>b.cabInst))];
   channelInsts.forEach(inst=>withCabAxisAligned(inst,()=>{ state.boards.filter(b=>b.cabInst===inst&&b.rule&&b.rule.channelRail).forEach(refitChannelRail); }));
@@ -4244,6 +4246,12 @@ function shapeLocalGeo(b){
   /* ───────── v1.423: ชิ้นไม้ชั้นวางรองเท้า (tiltBox) — กล่อง L×W×T หมุนรอบเส้นแกน x ที่ผ่านศูนย์แผ่น ─────────
      _tiltOff = ศูนย์ชิ้นนี้ห่างศูนย์แผ่นเท่าไหร่ในแกนของชิ้น → เลื่อนไปที่ศูนย์แผ่น หมุน แล้วเลื่อนกลับ */
   if(b._shape==="tiltBox"){ const g=new THREE.BoxGeometry(Math.max(+b.L||1,1),Math.max(+b.W||1,1),T), e=b._tiltOff||[0,0,0];
+    /* v1.451: UV เป็น มม. ตามแกนชิ้น (ก่อนหมุน) — เดิม UV 0–1 ต่อหน้า ผืนลายตั้ง 1/600 ต่อ มม. เห็นแค่เศษเดียว = สีเรียบ ลายไม้ไม่ขึ้น
+       หน้าใหญ่ u=L v=W · สันยาว u=L v=T · สันหัวท้าย u=W v=T (แบบเดียวกับ _boxUvMM ของแผ่นเรียบ) */
+    try{ const pa=g.attributes.position, na=g.attributes.normal, ua=g.attributes.uv;
+      for(let i=0;i<pa.count;i++){ const nx=Math.abs(na.getX(i)), ny=Math.abs(na.getY(i)), nz=Math.abs(na.getZ(i));
+        if(nz>0.5) ua.setXY(i,pa.getX(i),pa.getY(i)); else if(ny>0.5) ua.setXY(i,pa.getX(i),pa.getZ(i)); else ua.setXY(i,pa.getY(i),pa.getZ(i)); }
+      ua.needsUpdate=true; }catch(_){}
     g.translate(+e[0]||0,+e[1]||0,+e[2]||0); g.rotateX((+b._tilt||0)*Math.PI/180); g.translate(-(+e[0]||0),-(+e[1]||0),-(+e[2]||0)); return g; }
   /* ───────── v1.333: ฉากพลาสติก D33 (FITBK00002) ─────────
      ปั้นในแกนของฉากเอง (u,v,w) แล้วหมุนด้วยเวกเตอร์ที่ตัววางคิดมา (_basis) — ไม่ผูกกับ orient/yaw ของชิ้น
@@ -23372,6 +23380,8 @@ function boardRole(b){
      SN_OFF.shelfEqFixed=1 จัดชั้นห่างเท่ากันทำเฉพาะชั้นปรับแบบ v1.269 (ชั้นตายเป็นขอบช่อง · คลิกชิ้นอื่นในตู้ไม่ได้) (v1.436)
      SN_OFF.mdGaps=1      ไม้วัด 📦 ขนาดชิ้น ไม่ขึ้นโซ่ช่องใสของแผ่นที่มาชน (v1.436)
      SN_OFF.lazyOrders=1  บันทึก Order ไม่เขียนดัชนี _changes/_idx/imos_orders (ของ Production V2 v179 — ไม่ขึ้นกับ SN_SAFE) (v1.436)
+     SN_OFF.skinTrim=1    ชิ้นตั้งที่จมเข้าทอป/พื้นนอกเท่าผิวแผ่น ไม่ตัดให้ชนผิว (แผ่นข้างใต้ทอปทับข้างยาวเกินผิวทอปแบบเดิม) (v1.451)
+     SN_OFF.shoeWSym=1    ชั้นรองเท้าไม้ใช้มินิฟิกสูตร “มินิฟิก” 2 จุดแบบเดิม (ไม่ใช่ชุดหัวท้าย) (v1.451)
      SN_OFF.dowelDepthSet=1 ความลึกเดือยอ่านจากตัวเชื่อมของแต่ละชิ้นแบบเดิม (เลขที่จำไว้ตอนสร้าง) ไม่ตามหน้าตั้งค่า (v1.450)
      SN_OFF.tdGroove=1    ชิ้นที่ลงร่อง/บังใบทอป-พื้น (แผ่นหลังลงร่อง) ไม่หดตามการดรอป/ยก — หดเฉพาะชิ้นที่ชนพอดีแบบ 1.448 (v1.449)
      SN_OFF.botRise=1     แผ่นพื้น/คานขอบล่างตู้ เสมอขอบล่างแผ่นข้างแบบเดิม (ไม่ยก 0.5 · ชิ้นที่ยืนบนพื้นไม่เตี้ยตาม) — ขอบบนยังดรอปตาม topDrop (v1.448)
@@ -34994,6 +35004,43 @@ function applyTopDrop(){
       +" · ขอบล่างยกขึ้น "+br+" "+nr+" ชิ้น"+(ns?(" (ชิ้นบนพื้นเตี้ยลง "+ns+")"):"")); if(rep.length<=60) console.table(rep); }catch(e){} }
   return nd+nu+nr+ns;
 }
+/* ───────── v1.451: ชิ้นตั้งที่ชนทอป/พื้นนอก หักผิวของทอป/พื้น ─────────
+   ผู้ใช้ 15/10/2026 08:06: “แผ่นข้างไม่ได้หักลบผิวของแผ่นทอปหรือครับ กรณีนี้” (JMT007 ทอปทับข้าง)
+   เดิม: ตู้จาก XML คิดขนาดจากความหนาเนื้อ (16) แล้วตัวจัดผิวตู้ (applyCabinetSkin) บวกผิวให้แผ่น (16 + 0.2 = 16.2)
+         ทอป/พื้นที่เป็นผนังนอกคงผิวนอก โตเข้าใน 0.2 — แต่ชิ้นที่ชนใต้ทอป/บนพื้นไม่ถูกหดตาม (แกนความกว้างหดให้แล้วตั้งแต่ v1.216
+         แกนตั้งไม่มี) → แผ่นข้างใต้ทอปทับข้างยาว 984 จมเข้าทอป 0.2 · แผ่นหลังที่ชนใต้ทอปก็เกินเข้าทอป 0.2
+   ตอนนี้: ทุกรอบคิดฉาก (หลังยกคืนทอปที่ดรอป = รูปทรงปกติ) แผ่นนอนที่เป็นผนังนอกของตู้ (ผิวบนสุด/ล่างสุดของโครง)
+     ชิ้นตั้งที่ซ้อนกับแผ่นนั้นตามแนวกว้าง+ลึก และปลายจมเข้าแผ่นลึกเท่า “ผิวของแผ่นนั้น” พอดี (±0.06)
+     → ตัดปลายนั้นให้ชนผิวพอดี ปลายอีกข้างคงที่ · รู/Pocket บนชิ้นเลื่อนชดเชยอยู่ที่เดิมในโลก
+     ทำซ้ำได้ (ตัดแล้วจม 0 ไม่เข้าเงื่อนไขอีก) · ลงร่อง/ซ้อนลึกกว่าผิว ไม่แตะ · คานตามกฎ (คิดจากผิวจริงอยู่แล้ว) ไม่แตะ
+     ออเดอร์ล็อก/ลิงก์ดูอย่างเดียว ไม่แตะ · รูคู่เดือย/มินิฟิกตัวเจาะอัตโนมัติเจาะใหม่เอง · ปิด: SN_OFF.skinTrim=1 */
+function skinTrimHeal(){
+  if(snOff("skinTrim")) return 0;
+  if(typeof isLocked==="function"&&isLocked()) return 0;
+  const byInst=new Map();
+  (state.boards||[]).forEach(b=>{ if(!b||!b.cabInst||b._virtual) return; let a=byInst.get(b.cabInst); if(!a){ a=[]; byInst.set(b.cabInst,a); } a.push(b); });
+  let n=0; const rep=[];
+  byInst.forEach((bs,inst)=>{
+    const carc=bs.filter(b=>!_tdSkip(b)&&!b._csmBase&&!b._csmPost);
+    if(carc.length<3) return;
+    let yLo=Infinity, yHi=-Infinity;
+    carc.forEach(b=>{ const e=_tdExt(b); if(e[1][0]<yLo) yLo=e[1][0]; if(e[1][1]>yHi) yHi=e[1][1]; });
+    carc.forEach(f=>{ if(f.orient!=="flat") return;
+      let sk=0; try{ sk=+partSkin(f)||0; }catch(e){ sk=0; } if(!(sk>0.05)) return;
+      const ef=_tdExt(f), isTop=Math.abs(ef[1][1]-yHi)<=0.5, isBot=Math.abs(ef[1][0]-yLo)<=0.5;
+      if(!isTop&&!isBot) return;
+      carc.forEach(v=>{ if(v===f||v.orient==="flat"||(isRail(v)&&v.rule)) return;
+        const ev=_tdExt(v); if(_tdOv(ev[0],ef[0])<=1||_tdOv(ev[2],ef[2])<=1) return;
+        const k=_tdK(v);
+        if(isTop&&ev[1][1]<ef[1][1]-1){ const pen=ev[1][1]-ef[1][0];
+          if(Math.abs(pen-sk)<=0.06&&+v[k]>pen+1){ const a=Math.round(pen*100)/100; _tdShrinkTop(v,a); n++;
+            rep.push({ตู้:v.cab||inst, ชิ้น:v.name||v.id, ตัด:a, ชน:"ใต้ "+(f.name||f.id)}); } }
+        else if(isBot&&ev[1][0]>ef[1][0]+1){ const pen=ef[1][1]-ev[1][0];
+          if(Math.abs(pen-sk)<=0.06&&+v[k]>pen+1){ const a=Math.round(pen*100)/100; _tdShrinkBot(v,a); n++;
+            rep.push({ตู้:v.cab||inst, ชิ้น:v.name||v.id, ตัด:a, ชน:"บน "+(f.name||f.id)}); } } }); }); });
+  if(n){ try{ console.log("✂ v1.451 หักผิวทอป/พื้น · ชิ้นตั้งที่จมเข้าทอป/พื้นนอกเท่าผิว ตัดให้ชนผิว "+n+" ชิ้น"); if(rep.length<=60) console.table(rep); }catch(e){} }
+  return n;
+}
 /* ---------- ทอปฝังใน ⇄ ทอปทับข้าง (สลับวิธีต่อโครงตู้) ---------- */
 /* inset   = ข้างเต็มสูง · ทอปสอดอยู่ระหว่างข้าง (ค่าเริ่มต้นของ genCabinet)
    overlay = ทอปกว้างเต็มตู้ วางคร่อมบนหัวข้าง · ข้างสั้นลงเท่าความหนาทอป
@@ -37671,17 +37718,37 @@ function shoeWoodSync(G,Lay,P){
       b._tiltOff=mkOff(b,{x:-dW.x,y:-dW.y,z:-dW.z}).map(n=>-n);   // ศูนย์ชิ้น − ศูนย์แผ่น ในแกนของชิ้น
       if(q.role==="p") plate=b; });
     /* มินิฟิกที่แผ่น: ขอบ bottom (local −y) = หน้า · top (+y) = หลัง · ถ้วยผิวล่างเสมอ */
-    const mfBase={type:"minifix", face:"bottom", sizeRule:true, formula:"มินิฟิก", count:2, margin:50, d:8, depth:28, mateDepth:12, _shoeW:1};
-    plate.connectors=(plate.connectors||[]).filter(c=>!(c&&c._shoeW)).concat([Object.assign({edge:"bottom"},mfBase),Object.assign({edge:"top"},mfBase)]);
+    /* ───────── v1.451: ชุดหัวท้าย (เดือย + มินิฟิก ระยะเท่ากันทั้งสองปลาย) ─────────
+       ผู้ใช้ 15/10 08:09: “เดือยมินิฟิกขอเป็นชุดหัวท้ายครับ ที่เท่า ๆ กัน”
+       เดิม: มินิฟิกอย่างเดียว สูตร “มินิฟิก” 2 จุด (ตำแหน่งตามตารางสูตรมินิฟิก ไม่สมมาตรหน้า-หลัง)
+       ตอนนี้: สูตรชุดเดียวกับแผ่นหลัง — เดือยปลายละจุดที่ระยะร่น (+ จุดกลางตามความยาว) · มินิฟิกถัดเข้ามาตามระยะชุด
+       สูตรยังไม่มีในเครื่อง → เขียนให้ (ensureSymFixFormulas) · ชื่อสูตรเขียนตรง ๆ กันเรียกก่อนประกาศ const · ปิด SN_OFF.shoeWSym=1 */
+    const _sym=!snOff("shoeWSym"), SDN="ชุดหัวท้าย · เดือย", SMN="ชุดหัวท้าย · มินิฟิก";
+    if(_sym){ try{ const F=getFormulas(); if(!F.some(f=>f&&f.name===SDN)||!F.some(f=>f&&f.name===SMN))
+      ensureSymFixFormulas(+settings.symFixIns||50,+settings.symFixGap||32,+settings.symFixMidMin||600); }catch(e){ console.error("shoeW symfix:",e); } }
+    const _ins=Math.max(+settings.symFixIns||50,1), _gap=Math.max(+settings.symFixGap||32,1);
+    const mfBase=_sym
+      ? {type:"minifix", face:"bottom", sizeRule:true, formula:SMN, count:2, margin:_ins+_gap, d:8, depth:28, mateDepth:12, _shoeW:1, _symfix:1}
+      : {type:"minifix", face:"bottom", sizeRule:true, formula:"มินิฟิก", count:2, margin:50, d:8, depth:28, mateDepth:12, _shoeW:1};
+    const dwBase={type:"dowel", sizeRule:true, formula:SDN, count:3, margin:_ins, d:Math.max(+settings.dowelD||8,1), _shoeW:1, _symfix:1};
+    plate.connectors=(plate.connectors||[]).filter(c=>!(c&&c._shoeW)).concat(_sym
+      ? [Object.assign({edge:"bottom"},dwBase),Object.assign({edge:"bottom"},mfBase),Object.assign({edge:"top"},dwBase),Object.assign({edge:"top"},mfBase)]
+      : [Object.assign({edge:"bottom"},mfBase),Object.assign({edge:"top"},mfBase)]);
     plate.holes=(plate.holes||[]).filter(h=>!(h&&h._shoeW));
     /* รูคู่ที่คาน: แกน x ของคานกับแผ่นทิศเดียวกัน ศูนย์ตรงกัน · สูงที่กึ่งกลางความหนาแผ่น · ผิวในของคาน */
     const md=Math.max(+settings.mfMateD||8,1), mdep=Math.min(Math.max(+settings.mfMateDepth||12,1),Tf-0.5);
     [["bottom","f"],["top","b"]].forEach(([edge,role])=>{
       const rail=state.boards.find(z=>z&&z.id===inst+":shoeW:"+i+":"+role); if(!rail) return;
-      const c=plate.connectors.find(k=>k&&k._shoeW&&k.edge===edge);
+      const c=plate.connectors.find(k=>k&&k._shoeW&&k.type==="minifix"&&k.edge===edge);
       let xs=[]; try{ xs=connAlong(plate,c)||[]; }catch(e){ xs=[]; }
       const ly=(role==="f")?-(rH-Tp)/2:(rH-Tp)/2, face=(role==="f")?"bottom":"top";
-      rail.holes=(rail.holes||[]).filter(h=>!(h&&h._shoeW)).concat(xs.map(x=>({d:md, x:round(x), y:round(ly), depth:round(mdep), face, dowel:true, mf:true, src:plate.id, _shoeW:1}))); });
+      /* v1.451: รูคู่ของเดือยชุดหัวท้ายด้วย (Ø/ลึกตามค่าตั้งเดือย · ไม่เกินความหนาคาน) */
+      const cd=plate.connectors.find(k=>k&&k._shoeW&&k.type==="dowel"&&k.edge===edge);
+      let xd=[]; if(cd){ try{ xd=connAlong(plate,cd)||[]; }catch(e){ xd=[]; } }
+      const dd=Math.max(+settings.dowelMateD||+settings.dowelD||8,1), ddep=Math.min(Math.max(dwMateDepthOf(cd)||12,1),Tf-0.5);
+      rail.holes=(rail.holes||[]).filter(h=>!(h&&h._shoeW)).concat(xs.map(x=>({d:md, x:round(x), y:round(ly), depth:round(mdep), face, dowel:true, mf:true, src:plate.id, _shoeW:1})))
+        .concat(xd.map(x=>({d:dd, x:round(x), y:round(ly), depth:round(ddep), face, dowel:true, src:plate.id, _shoeW:1}))); });
+    try{ if(_sym) plate._sfxOk=symfixSig(plate); }catch(e){}     // v1.451: รูคู่ครบตามชุดแล้ว — ตัวตรวจชุดหัวท้ายค้างไม่ต้องเชื่อมใหม่
   });
   /* ชั้นที่หายไป (ลดจำนวนชั้น) */
   const gone=state.boards.filter(b=>b&&b._shoeWood&&b.cabInst===inst&&!want.has(b.id)).map(b=>b.id);
