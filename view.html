@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="th"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover"><meta name="generator" content="StarNexus 1.456"><title>StarNexus — ดูงาน 3D</title><style>
+<html lang="th"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover"><meta name="generator" content="StarNexus 1.461"><title>StarNexus — ดูงาน 3D</title><style>
 :root{--bg:#e7e8ee;--panel:rgba(255,255,255,.94);--solid:#fff;--ink:#172c40;--dim:#5b6b7c;--line:#d5dae2;--accent:#1e5fa8;--warn:#e8590c;--shadow:0 10px 30px -12px rgba(16,32,56,.35)}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html,body{margin:0;height:100%;background:var(--bg);color:var(--ink);font:14px/1.5 system-ui,-apple-system,"Segoe UI","Noto Sans Thai","Sarabun",sans-serif;overflow:hidden;overscroll-behavior:none}
@@ -71,6 +71,10 @@ button{font:inherit;color:inherit}
 #vwScan>span{flex:1 1 220px;min-width:0}
 #vwScan button{border:1px solid var(--line);background:var(--bg);border-radius:9px;padding:5px 10px;cursor:pointer;white-space:nowrap}
 @media(min-width:760px){#vwScan{left:50%;right:auto;transform:translateX(-50%);max-width:min(900px,calc(100vw - 440px))}}
+/* v1.457: แถบชิ้นที่สแกนขึ้นไปชิดบน (ผู้ใช้ 11:58: อยากได้พื้นที่แคปรูป) — จอกว้างวางข้างการ์ดชื่องานถ้าพอ ไม่พอ/จอแคบ = ซ่อนการ์ดชื่องานชั่วคราว แถบขึ้นแทนที่ */
+body.vwScanTop #vwTop .t{display:none}
+body.vwScanTop #vwScan{top:calc(8px + env(safe-area-inset-top))}
+#vwScan button[data-a="snap"]{padding:5px 8px}
 /* ───────── v1.346: มือถือเห็นเครื่องมือครบ ─────────
    เดิมแถวล่างมีปุ่มเรียงยาวเกินจอ ต้องปัดซ้ายขวา (แถบเลื่อนซ่อนอยู่) คนเปิดจากมือถือเลยเห็นปุ่มไม่ครบ
    จอแคบ: แถวล่างเหลือเครื่องมือหลัก (ดูชิ้น · วัด · เปิดบาน) + "⋯ เพิ่มเติม" = แผงรวมปุ่มที่เหลือทั้งหมด · จอกว้างเรียงแถวเดียวเหมือนเดิม */
@@ -99,6 +103,7 @@ button{font:inherit;color:inherit}
 #vwLbl{position:fixed;inset:0;pointer-events:none;z-index:4;overflow:hidden}
 #vwLbl .dl{position:absolute;transform:translate(-50%,-50%);background:#e8590c;color:#fff;font:600 12px/1.25 ui-monospace,Menlo,Consolas,monospace;padding:3px 7px;border-radius:7px;white-space:nowrap;box-shadow:0 2px 8px rgba(0,0,0,.25)}
 #vwLbl .dl small{font:500 10.5px system-ui,sans-serif;opacity:.92;margin-right:4px}
+#vwLbl .dl.cd{background:#1f2937}   /* v1.457: ป้ายขนาดรวมตู้ (สีเข้ม แยกจากป้ายวัดชิ้นสีส้ม) */
 #vwLbl .pin{position:absolute;transform:translate(-50%,-100%);pointer-events:auto;cursor:pointer;display:flex;flex-direction:column;align-items:center}
 #vwLbl .pin b{background:#16a34a;color:#fff;font:700 12.5px system-ui,sans-serif;padding:5px 10px;border-radius:10px;white-space:nowrap;box-shadow:0 6px 18px -6px rgba(0,0,0,.5);border:2px solid #fff;animation:vwpin 1.1s ease-in-out 4}
 #vwLbl .pin i{display:block;width:2px;height:24px;background:#16a34a}
@@ -154,6 +159,7 @@ button{font:inherit;color:inherit}
   #vwTop .t span{font-size:10.5px}
   .vbtn{padding:5px 10px;border-radius:9px;font-size:12.5px}
   #vwScan{left:6px;right:6px;top:calc(50px + env(safe-area-inset-top));font-size:11.5px;padding:5px 8px;gap:4px;border-radius:10px;border-left-width:3px}
+  body.vwScanTop #vwScan{top:calc(6px + env(safe-area-inset-top));right:62px}   /* v1.457: เว้นปุ่ม ☰ ตู้ */
   #vwScan span.d,#vwScan span.w{font-size:11px}
   #vwScan button{padding:3px 8px;font-size:11.5px;border-radius:8px}
   #vwScan .lg{display:none}
@@ -203,6 +209,8 @@ button{font:inherit;color:inherit}
   <button class="vbtn" id="vwMore" aria-label="เครื่องมือเพิ่มเติม">⋯ เพิ่มเติม</button>
   <div id="vwExtra">
     <button class="vbtn" id="vwAllDoors">เปิดทุกบาน</button>
+    <button class="vbtn" id="vwCabDim" title="เปิด/ปิดเส้นบอกขนาดรวมของตู้ (กว้าง × สูง × ลึก)">📐 ขนาดตู้</button>
+    <button class="vbtn" id="vwSnap" title="บันทึกภาพ 3D ตอนนี้เป็น PNG — ไม่มีกล่องข้อความ/ปุ่ม (ป้ายขนาดที่เปิดอยู่ติดไปด้วย)">📷 แคปรูป</button>
     <button class="vbtn" id="vwGhost">โปร่งใส</button>
     <span class="rng" id="vwExpRow">แยกประกอบ <input type="range" id="vwExp" min="0" max="100" value="0"><span id="vwExpV">0%</span></span>
     <button class="vbtn" id="vwReset">มุมมอง</button>
@@ -330,7 +338,7 @@ function build(D,imgs){
     return o; }
   root=new THREE.Group(); if(D.root&&D.root.p) root.position.fromArray(D.root.p); scene.add(root);
   (D.obj||[]).forEach(function(n){ var o=mk(n); root.add(o);
-    var id=n.id||null, it={o:o,id:id,px:o.position.x,py:o.position.y,pz:o.position.z,q:o.quaternion.clone(),hf:n.hf?1:0,hk:n.hk||null};   // v1.456: บานพับ (แขน/ฐาน · ข้อต่อ)
+    var id=n.id||null, it={o:o,id:id,px:o.position.x,py:o.position.y,pz:o.position.z,q:o.quaternion.clone(),hf:n.hf?1:0,hk:n.hk||null,sk:(n.sk!=null)?n.sk:null};   // v1.456: บานพับ (แขน/ฐาน · ข้อต่อ) · v1.461: sk = ท่อนรางลูกปืน
     S.items.push(it); if(id){ (S.byId[id]=S.byId[id]||[]).push(it); } });
   S.mats=mats; }
 
@@ -427,7 +435,7 @@ function applyPose(){
         if(t.k&&D.hk){ var pp=hkPole(t.k,t.k.ph*p); if(pp) P=pp; }               // v1.456: จุดหมุนตามมุม (กลไกบานพับ)
         var dx=x-P[0], dz=z-P[1];
         x=P[0]+dx*cs+dz*sn; z=P[1]-dx*sn+dz*cs; _q.setFromAxisAngle(_Y,rr); it.o.quaternion.premultiply(_q); }
-      else if(t.f){ x+=t.f[0]*t.z*p; z+=t.f[1]*t.z*p; } }
+      else if(t.f){ var kk=(it.sk!=null)?it.sk:1; x+=t.f[0]*t.z*p*kk; z+=t.f[1]*t.z*p*kk; } }   // v1.461: ท่อนรางลูกปืนเลื่อนตามสัดส่วน (ตัวนอก 0 · ตัวกลาง ½ · ตัวใน 1)
     var e=D.exp&&D.exp[it.id]; if(e&&ex>0){ x+=e[0]*ex; y+=e[1]*ex; z+=e[2]*ex; }
     it.o.position.set(x,y,z); }
   if(S.sel) showSelBox(S.sel);
@@ -598,7 +606,10 @@ function isolate(ci){ S.iso=ci||null;
 function frontView(c){ var f=c&&c.f; if(!f) return null; return {th:Math.atan2(f[0],f[2])+.45, ph:1.05}; }   // มุมสามส่วนสี่ด้านหน้าตู้
 function cabIds(ci){ var I=S.D.info||{}; return Object.keys(I).filter(function(id){ return I[id]&&I[id].ci===ci; }); }
 function cabDoorKeys(ci){ var D=S.D, s={}; Object.keys(D.key||{}).forEach(function(id){ var I=D.info&&D.info[id]; if(I&&I.ci===ci) s[D.key[id]]=1; }); return Object.keys(s); }
-function scanBar(html){ var el=$("vwScan"); if(!el){ el=document.createElement("div"); el.id="vwScan"; document.body.appendChild(el); } el.innerHTML=html; measPos(); return el; }
+function scanBar(html){ var el=$("vwScan"); if(!el){ el=document.createElement("div"); el.id="vwScan"; document.body.appendChild(el);
+    el.addEventListener("click",function(e){ var t=e.target.closest&&e.target.closest('button[data-a="snap"]'); if(t) snapShot(); });   // v1.457: 📷 แคปรูป (ผู้เรียกตั้ง onclick ทับได้ ตัวนี้ไม่หาย)
+    try{ var mo=new MutationObserver(function(){ measPos(); }); ["vwCabs","vwInfo"].forEach(function(id){ var x=$(id); if(x) mo.observe(x,{attributes:true,attributeFilter:["class"]}); }); }catch(e){} }   // v1.457: แผงขวาเปิด/ปิด → จัดแถบใหม่
+  el.innerHTML=html+'<button data-a="snap" title="แคปรูป 3D — ไม่มีกล่องข้อความ">📷</button>'; measPos(); return el; }
 function scanFocus(pk,quiet){
   var ids=findPart(pk);
   if(!ids.length){ var c0=S.D._alias&&cabByKey(S.D._alias.c);
@@ -731,9 +742,121 @@ function dimTick(){ var put=[];
     put.push({x:sp.x,y:y,w:w,h:h}); l.el.style.left=sp.x+"px"; l.el.style.top=y+"px"; }); }
 /* v1.346: แถบผลวัดเคยมุดอยู่ใต้การ์ดชิ้นที่สแกน (อยู่ตำแหน่งเดียวกัน ชั้นเดียวกัน) — เดิมเช็ก sc.offsetParent ซึ่งเป็น null เสมอกับกล่อง position:fixed
    → วัดกรอบการ์ดจริง ถ้ามีการ์ด วางแถบใต้การ์ด (ทุกขนาดจอ) */
-function measPos(){ var sc=$("vwScan"), el=$("vwMeas"); if(!el) return;
+/* ───────── v1.457: ตำแหน่งแถบชิ้นที่สแกน ─────────
+   เดิมอยู่ใต้การ์ดชื่องาน (บนลงมา 64px) กินที่กลางจอ เวลาแคปรูปจึงติดกล่องข้อความ
+   จอกว้าง: วางข้างการ์ดชื่องาน แถวเดียวกับการ์ด (ถ้าที่ว่างถึง 560px) · ไม่พอ/จอแคบ: ซ่อนการ์ดชื่องานขณะมีแถบ แถบขึ้นชิดบนแทน */
+function scanPlace(){ var el=$("vwScan"), B=document.body; if(!B) return;
+  B.classList.remove("vwScanTop"); if(!el) return;
+  el.style.left=el.style.right=el.style.top=el.style.transform=el.style.maxWidth="";
+  if(!el.getClientRects().length) return;
+  var W=innerWidth, t=document.querySelector("#vwTop .t"), cb=$("vwCabBtn");
+  if(W>=760&&t&&t.getClientRects().length){ var tr=t.getBoundingClientRect(), cr=(cb&&cb.getClientRects().length)?cb.getBoundingClientRect():{left:W-12};
+    var side=document.querySelector("#vwCabs:not(.hide),#vwInfo:not(.hide)"), rEdge=Math.min(cr.left-10,side?W-404:W-10), L=tr.right+10;
+    if(rEdge-L>=560){ el.style.top=tr.top+"px"; el.style.left=L+"px"; el.style.right=Math.max(W-rEdge,0)+"px"; el.style.transform="none"; el.style.maxWidth="none"; return; } }
+  B.classList.add("vwScanTop"); }
+/* ───────── v1.457: 📷 แคปรูป ─────────
+   ผู้ใช้ 11:58: "ไม่ก็เพิ่มปุ่มแคปรูปที่ไม่ติดกล่องข้อความใด ๆ เลย"
+   วาดฉากใหม่ที่ความละเอียด 2 เท่าของจอ (ไม่เกิน 4096 px) เอาแต่ภาพ 3D — การ์ด แถบ ปุ่ม หมุด คำแนะนำ ไม่ติด · กรอบเลือกสีฟ้าซ่อน
+   ป้ายขนาดที่เปิดอยู่ (📏 วัด / 📐 ขนาดตู้) วาดลงภาพตามตำแหน่งบนจอ (ไม่งั้นเหลือแต่เส้นไม่มีตัวเลข)
+   มือถือ: เปิดหน้าแชร์ (บันทึกลงรูป / ส่งไลน์) · คอม: ดาวน์โหลด PNG */
+function snapShot(){ if(!renderer||!scene||!camera) return;
+  var pr=renderer.getPixelRatio(), k=Math.max(1,Math.min(2,4096/(Math.max(innerWidth,innerHeight)*pr))), sb=!!(selBox&&selBox.visible), cv=null;
+  try{ if(selBox) selBox.visible=false;
+    renderer.setPixelRatio(pr*k); renderer.render(scene,camera);
+    var src=renderer.domElement; cv=document.createElement("canvas"); cv.width=src.width; cv.height=src.height;
+    var g=cv.getContext("2d"); g.drawImage(src,0,0);
+    var sx=cv.width/Math.max(innerWidth,1);
+    [].concat(DIM.lab||[],CD.lab||[]).forEach(function(l){ var e=l.el; if(!e||e.style.display==="none"||!e.isConnected) return;
+      var x=parseFloat(e.style.left), y=parseFloat(e.style.top); if(!isFinite(x)||!isFinite(y)) return;
+      var cs=getComputedStyle(e), sm=e.querySelector("small"), cap=sm?sm.textContent:"", val=(e.textContent||"").slice(cap.length);
+      var f1=Math.round(10.5*sx)+"px system-ui,sans-serif", f2="600 "+Math.round(12*sx)+"px ui-monospace,Menlo,Consolas,monospace";
+      g.font=f1; var w1=cap?g.measureText(cap).width+4*sx:0; g.font=f2; var w2=g.measureText(val).width, pw=w1+w2+14*sx, ph=20*sx, X=x*sx-pw/2, Y=y*sx-ph/2;
+      g.fillStyle=cs.backgroundColor||"#1f2937"; g.beginPath(); if(g.roundRect) g.roundRect(X,Y,pw,ph,7*sx); else g.rect(X,Y,pw,ph); g.fill();
+      g.fillStyle="#fff"; g.textBaseline="middle"; if(cap){ g.font=f1; g.globalAlpha=.92; g.fillText(cap,X+7*sx,Y+ph/2); g.globalAlpha=1; } g.font=f2; g.fillText(val,X+7*sx+w1,Y+ph/2+.5*sx); }); }
+  catch(e){ console.error("snap:",e); cv=null; }
+  finally{ renderer.setPixelRatio(pr); if(selBox) selBox.visible=sb; S.dirty=true; }
+  if(!cv){ hint("แคปรูปไม่สำเร็จ"); return; }
+  var nm=String((S.D&&S.D.t)||"ดูงาน").replace(/[\\\/:*?"<>|\s]+/g,"_").slice(0,60)||"ดูงาน";
+  try{ var I=S.cur&&S.D.info&&S.D.info[S.cur]; if(I&&I.pid) nm+="_"+String(I.pid).split(",")[0]; }catch(e){}
+  cv.toBlob(function(bl){ if(!bl){ hint("แคปรูปไม่สำเร็จ"); return; }
+    var file=null; try{ file=new File([bl],nm+".png",{type:"image/png"}); }catch(e){}
+    var touch=!!(window.matchMedia&&matchMedia("(pointer:coarse)").matches);
+    if(touch&&file&&navigator.canShare&&navigator.canShare({files:[file]})){ navigator.share({files:[file],title:nm}).catch(function(){}); return; }
+    var u=URL.createObjectURL(bl), A=document.createElement("a"); A.href=u; A.download=nm+".png"; document.body.appendChild(A); A.click(); A.remove();
+    setTimeout(function(){ URL.revokeObjectURL(u); },5000); hint("บันทึกภาพแล้ว ("+cv.width+"×"+cv.height+")"); },"image/png"); }
+function measPos(){ try{ scanPlace(); }catch(e){}
+  var sc=$("vwScan"), el=$("vwMeas"); if(!el) return;
   var r=(sc&&sc.getClientRects().length)?sc.getBoundingClientRect():null;
   el.style.top=(r&&r.height>0)?(r.bottom+6)+"px":""; }
+
+/* ───────── v1.457: ปุ่ม 📐 ขนาดตู้ — เส้นบอกขนาดรวมของตู้ (กว้าง · สูง · ลึก) แบบรูปสินค้า ─────────
+   ผู้ใช้ 15/10 11:31: "ในหน้าดูแบบผลิต ให้มีปุ่มเปิดปิด Dim รวมตู้ เหมือนรูปที่ส่ง" (รูปตู้ทีวี กว้าง 150 · สูง 45 · ลึก 40 ซม.)
+   เดิม: มีแค่ 📏 วัด (แตะทีละชิ้น ได้ ยาว × กว้าง × หนา ของชิ้นนั้น) — ขนาดทั้งตู้ต้องเปิดดูในโปรแกรม
+   ตอนนี้: กดปุ่มเดียว ทุกตู้ที่มองเห็นขึ้นเส้นขนาดรวม (กดซ้ำ = ปิด)
+     กรอบตู้มาจากโปรแกรม (cabs[].b = กล่องรวมทุกชิ้นของตู้ รวมบาน/ขา/ตีน ไม่รวมมือจับ · cabs[].f = ทิศหน้าตู้)
+     ลิงก์เก่าที่ไม่มี b: ใช้กล่องของชิ้นในตู้ที่อบมา (รวมมือจับ — ลึกอาจเกินจริงเท่ามือจับ)
+     กว้าง = เส้นบนพื้นหน้าตู้ · สูง = เส้นตั้งที่มุมหน้าด้านที่หันหากล้อง · ลึก = เส้นบนพื้นด้านข้างนั้น
+     ดูเฉพาะตู้ = ขึ้นตู้เดียว · หมุนกล้องไปอีกข้าง เส้นสูง/ลึกย้ายไปข้างที่เห็นเอง · ตัวเลขเป็น มม. */
+var CD={on:false,g:null,lab:[],sig:"",its:null};
+function cdClear(){ if(CD.g){ scene.remove(CD.g); CD.g.traverse(function(o){ if(o.geometry) o.geometry.dispose(); if(o.material&&o.material.dispose) o.material.dispose(); }); CD.g=null; }
+  CD.lab.forEach(function(l){ l.el.remove(); }); CD.lab=[]; CD.sig=""; S.dirty=true; }
+function cdItems(){ if(CD.its) return CD.its; var I=S.D.info||{}, m={};
+  Object.keys(I).forEach(function(id){ var x=I[id]; if(!x||x.g||x.ci==null) return; (m[x.ci]=m[x.ci]||[]).push.apply(m[x.ci],S.byId[id]||[]); });
+  return (CD.its=m); }
+function cdCabs(){ var out=[], m=cdItems(); root.updateMatrixWorld(true);
+  (S.D.cabs||[]).forEach(function(c){ var its=m[c.k]||[]; if(!its.some(function(it){ return it.o.visible; })) return;   // ตู้ที่ซ่อน (ดูเฉพาะตู้อื่น)
+    var f=(c.f&&c.f.length===3)?new THREE.Vector3(+c.f[0]||0,0,+c.f[2]||0):new THREE.Vector3(0,0,1); if(f.lengthSq()<1e-6) f.set(0,0,1); f.normalize();
+    var bx=new THREE.Box3();
+    if(c.b&&c.b.length===6){ bx.set(new THREE.Vector3(c.b[0],c.b[1],c.b[2]),new THREE.Vector3(c.b[3],c.b[4],c.b[5])).applyMatrix4(root.matrixWorld); }
+    else { var t=new THREE.Box3(); its.forEach(function(it){ if(!it.o.isMesh) return; t.setFromObject(it.o); if(!t.isEmpty()) bx.union(t); }); }
+    if(bx.isEmpty()) return;
+    var r=new THREE.Vector3(f.z,0,-f.x), cen=bx.getCenter(new THREE.Vector3()), sz=bx.getSize(new THREE.Vector3());
+    var W=Math.abs(sz.x*r.x)+Math.abs(sz.z*r.z), D=Math.abs(sz.x*f.x)+Math.abs(sz.z*f.z);   // แกนหน้าตู้ขนานแกนโลกเสมอ (±X/±Z)
+    if(Math.min(W,sz.y,D)<150) return;                                          // ฟิลเลอร์/แผ่นปิด/คิ้ว/ตีน (ด้านใดด้านหนึ่ง < 15 ซม.) ไม่ขึ้นขนาด — ไม่งั้นรกทั้งจอ
+    var side=(new THREE.Vector3().subVectors(camera.position,cen).dot(r)>=0)?1:-1;
+    out.push({k:c.k,f:f,r:r,c:cen,y0:bx.min.y,y1:bx.max.y,W:W,H:sz.y,D:D,s:side,bx:bx}); });
+  /* หลายตู้บนจอ (ดูทั้งออเดอร์): ขึ้นทุกใบ = เส้นทับกันทั้งจอ
+     → แตะชิ้นอยู่ (หรือสแกนมา) = ขนาดตู้ใบนั้น · ไม่ได้เลือก = ขนาดรวมทั้งชุด (กล่องรวมทุกตู้ที่เห็น ตามทิศหน้าที่ตู้ส่วนใหญ่หัน) */
+  if(out.length>1){ var I=S.D.info||{}, pid=S.sel||S.cur, ci=(pid&&I[pid])?I[pid].ci:null, one=out.filter(function(q){ return q.k===ci; });
+    if(one.length) return one;
+    var cnt={}, best=null; out.forEach(function(q){ var key=Math.round(q.f.x)+","+Math.round(q.f.z); cnt[key]=(cnt[key]||0)+1; if(!best||cnt[key]>cnt[best.key]) best={key:key,f:q.f,r:q.r}; });
+    var ub=new THREE.Box3(); out.forEach(function(q){ ub.union(q.bx); });
+    var f2=best.f, r2=best.r, c2=ub.getCenter(new THREE.Vector3()), s2=ub.getSize(new THREE.Vector3());
+    var W2=Math.abs(s2.x*r2.x)+Math.abs(s2.z*r2.z), D2=Math.abs(s2.x*f2.x)+Math.abs(s2.z*f2.z);
+    return [{k:"*all",all:out.length,f:f2,r:r2,c:c2,y0:ub.min.y,y1:ub.max.y,W:W2,H:s2.y,D:D2,s:(new THREE.Vector3().subVectors(camera.position,c2).dot(r2)>=0)?1:-1}]; }
+  return out; }
+function cdBuild(){ cdClear(); var cs=cdCabs(); if(!cs.length) return 0;
+  var pts=[], host=$("vwLbl");
+  cs.forEach(function(q){ var P=function(a,y,b){ return new THREE.Vector3(q.c.x+q.r.x*a+q.f.x*b, y, q.c.z+q.r.z*a+q.f.z*b); };
+    var g=Math.max(25,Math.min(120,Math.max(q.W,q.H,q.D)*.07)), hw=q.W/2, hd=q.D/2, s=q.s, y0=q.y0+.5, y1=q.y1;
+    var seg=function(p0,p1,ov,cap,val){                                               // p0/p1 = จุดบนตู้ · ov = ทิศยื่นออก (ยาว g)
+      var a0=p0.clone().addScaledVector(ov,g), a1=p1.clone().addScaledVector(ov,g);
+      pts.push(p0.clone().addScaledVector(ov,g*.15),a0.clone().addScaledVector(ov,g*.25), p1.clone().addScaledVector(ov,g*.15),a1.clone().addScaledVector(ov,g*.25), a0,a1);
+      var dir=new THREE.Vector3().subVectors(a1,a0).normalize(), tk=dir.multiplyScalar(g*.22);   // ขีดปลายเฉียง
+      pts.push(a0.clone().addScaledVector(ov,g*.18).add(tk),a0.clone().addScaledVector(ov,-g*.18).sub(tk));
+      pts.push(a1.clone().addScaledVector(ov,g*.18).add(tk),a1.clone().addScaledVector(ov,-g*.18).sub(tk));
+      var el=document.createElement("div"); el.className="dl cd"; el.innerHTML="<small>"+cap+"</small>"+fmt(Math.round(val));
+      host.appendChild(el); CD.lab.push({el:el,p:a0.clone().lerp(a1,.5).addScaledVector(ov,g*.55)}); };
+    var Yv=new THREE.Vector3(0,1,0), rs=q.r.clone().multiplyScalar(s);
+    var pre=q.all?"รวม ":"";
+    seg(P(-hw,y0,hd),P(hw,y0,hd),q.f,pre+"กว้าง",q.W);                                // กว้าง: บนพื้นหน้าตู้
+    seg(P(s*hw,y0,hd),P(s*hw,y1,hd),rs,pre+"สูง",q.H);                                  // สูง: มุมหน้า ด้านที่หันหากล้อง
+    seg(P(s*hw,y0,hd),P(s*hw,y0,-hd),rs,pre+"ลึก",q.D); });                             // ลึก: บนพื้นด้านข้างนั้น
+  var gr=new THREE.Group(), ln=new THREE.LineSegments(new THREE.BufferGeometry().setFromPoints(pts),new THREE.LineBasicMaterial({color:0x1f2937,depthTest:false,transparent:true}));
+  ln.renderOrder=49; gr.add(ln); scene.add(gr); CD.g=gr;
+  CD.sig=cs.map(function(q){ return q.k+":"+q.s; }).join("|"); cdTick(); S.dirty=true; return cs.length; }
+/* หมุนกล้องข้ามด้าน / ซ่อน-แสดงตู้ → วาดใหม่ (เช็กเฉพาะเฟรมที่ภาพเปลี่ยน) */
+function cdCheck(){ if(!CD.on) return; var cs=cdCabs(), sig=cs.map(function(q){ return q.k+":"+q.s; }).join("|"); if(sig!==CD.sig) cdBuild(); }
+function cdTick(){ var put=[];
+  ["#vwTop .t","#vwCabBtn","#vwScan","#vwMeas"].forEach(function(s){ var e=document.querySelector(s); if(!e||!e.getClientRects().length) return;
+    var r=e.getBoundingClientRect(); if(r.height>0) put.push({x:(r.left+r.right)/2,y:(r.top+r.bottom)/2,w:r.width,h:r.height}); });
+  CD.lab.forEach(function(l){ var sp=toScreen(l.p); if(!sp){ l.el.style.display="none"; return; } l.el.style.display="";
+    var w=l.el.offsetWidth||64, h=l.el.offsetHeight||22, y=sp.y, st=[0,1,-1,2,-2], k;
+    var hits=function(yy){ return put.some(function(r){ return Math.abs(r.x-sp.x)<(r.w+w)/2+4&&Math.abs(r.y-yy)<(r.h+h)/2+3; }); };
+    for(k=0;k<st.length;k++){ if(!hits(sp.y+st[k]*(h+5))){ y=sp.y+st[k]*(h+5); break; } }
+    put.push({x:sp.x,y:y,w:w,h:h}); l.el.style.left=sp.x+"px"; l.el.style.top=y+"px"; }); }
+function setCabDim(on){ CD.on=!!on; var b=$("vwCabDim"); if(b) b.classList.toggle("on",CD.on);
+  if(!CD.on){ cdClear(); return 0; } var n=cdBuild(); if(!n) hint("ไม่มีตู้ที่มองเห็นอยู่"); return n; }
 
 /* ── โปร่งใส / เงา / ตาราง / ประหยัด ── */
 function setGhost(on){ S.ghost=on; matState(); $("vwGhost").classList.toggle("on",on); S.dirty=true; }   // v1.346: รวมกับ "จางของอื่น" ที่ matState
@@ -791,6 +914,9 @@ function bindUI(){
   $("vwAllDoors").onclick=function(){ var ks=allKeys(); if(!ks.length){ hint("งานนี้ไม่มีบานที่เปิดได้"); return; }
     S.allOpen=!ks.every(function(k){ return (S.prog[k]||0)>.5; }); animKeys(ks,S.allOpen?1:0); this.textContent=S.allOpen?"ปิดทุกบาน":"เปิดทุกบาน"; this.classList.toggle("on",S.allOpen); };
   $("vwGhost").onclick=function(){ setGhost(!S.ghost); };
+  { var cdb=$("vwCabDim"); if(cdb){ cdb.style.display=(S.D.cabs&&S.D.cabs.length)?"":"none";   // v1.457: ขนาดรวมตู้
+      cdb.onclick=function(){ var n=setCabDim(!CD.on); if(CD.on&&n) hint("ขนาดรวมตู้ (มม.) — กว้าง × สูง × ลึก รวมบานและขา ไม่รวมมือจับ"+(CD.sig.indexOf("*all")===0?" · หลายตู้ = ขนาดรวมทั้งชุด แตะชิ้นในตู้ไหนขึ้นขนาดตู้นั้น":"")); }; } }
+  { var snb=$("vwSnap"); if(snb) snb.onclick=function(){ var ex=$("vwExtra"); if(ex) ex.classList.remove("open"); var mo=$("vwMore"); if(mo) mo.classList.remove("on"); snapShot(); }; }   // v1.457
   $("vwShadow").onclick=function(){ setShadows(!S.shadows); };
   if($("vwLed")) $("vwLed").onclick=function(){ setLed(!S.ledOn); hint("ไฟ LED "+(S.ledOn?"เปิด":"ปิด")+(S.ledOn&&S.light!=="night"?" — กด แสง ให้เป็น กลางคืน จะเห็นไฟชัดขึ้น":"")); };   // v1.396
   $("vwLight").onclick=function(){ var ks=["room","sun","night"]; setLight(ks[(ks.indexOf(S.light)+1)%ks.length]);   // v1.350
@@ -915,8 +1041,9 @@ function loop(){ requestAnimationFrame(loop);
     else { S.hiMats.forEach(function(m){ if(m.emissive) m.emissiveIntensity=.85; }); S.pulse=0; S.dirty=true; } }   // v1.346: กะพริบช่วงแรกให้ตาหาเจอ
   if(!S.dirty) return; S.dirty=false;
   if(measDots.length){ var s=Math.max(orbit.r/260,2); measDots.forEach(function(d){ d.scale.set(s,s,s); }); }
+  if(CD.on) cdCheck();                                                     // v1.457: ด้านที่หันหากล้อง/ตู้ที่มองเห็นเปลี่ยน → วาดเส้นขนาดตู้ใหม่
   renderer.render(scene,camera);
-  if(DIM.lab.length) dimTick(); if(S.pin) pinTick(); }
+  if(DIM.lab.length) dimTick(); if(S.pin) pinTick(); if(CD.lab.length) cdTick(); }
 
 function start(){
   status("กำลังโหลดข้อมูลงาน…");
