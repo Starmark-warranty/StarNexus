@@ -1019,7 +1019,7 @@
    ===================================================================== */
 /* ---- APP_META: แหล่งความจริงเดียวของเวอร์ชัน (ดูได้จาก console / คลิกชื่อแอป) ---- */
 const APP_META={
-  name:"StarNexus", version:"1.456", build:"2026-10-15/hinge-kin",
+  name:"StarNexus", version:"1.457", build:"2026-10-15/poster",
   file:"StarNexus.html", basedOn:"Furnitech_V3.html (v3.11)",
   /* ───────── เริ่มนับเวอร์ชันใหม่ที่ 1.001 (21/08/2026) ─────────
      ของเดิมนับมาถึง 42.1 แล้ววิ่งเป็นทศนิยมสองชั้นซึ่งอ่านลำดับยาก
@@ -1027,6 +1027,7 @@ const APP_META={
      ประวัติเก่าเก็บไว้ทั้งหมดตามเลขเดิม ไม่ไล่เขียนใหม่ เพราะเลขในนั้นถูกอ้างถึงไปแล้ว
      รายการที่อยู่ใต้ 1.001 ลงไปจึงเป็นเลขชุดเก่า อ่านต่อกันได้ตามวันที่ */
   changelog:[
+    ["1.457","2026-10-15","FEAT ① หน้าดูงาน: ปุ่ม 📐 ขนาดตู้ (ผู้ใช้ 11:31: อยากได้ปุ่มเปิด/ปิด Dim รวมตู้ แบบรูปสินค้า) — กดแล้วทุกตู้ที่มองเห็นขึ้นเส้นขนาดรวม กว้าง (บนพื้นหน้าตู้) · สูง (มุมหน้าด้านที่หันหากล้อง) · ลึก (บนพื้นด้านข้างนั้น) เป็น มม. ป้ายสีเข้มแยกจากป้ายวัดชิ้น · หมุนกล้องไปอีกข้าง เส้นย้ายตามเอง · ดูเฉพาะตู้ = ขึ้นตู้เดียว · กรอบมาจากโปรแกรม (cabOverallBox: ทุกชิ้นของตู้รวมบาน/ขา/ตีน ไม่รวมมือจับ เส้นแบ่ง ไฟ LED) ส่งไปกับงานเป็น cabs[].b · ลิงก์เก่าใช้กล่องของชิ้นที่อบมา ② ห้องออกแบบ: ปุ่ม 🖼 โปสเตอร์ขาย (ผู้ใช้ 11:31–11:33 เลือกแบบไม่ใช้ AI · ให้โปรแกรมวาดตัวหนังสือเอง) — หน้าต่างกรอกข้อความซ้าย ภาพตัวอย่างขวา · ภาพห้องถ่ายจากฉาก 3D จริง (ตามจอตอนนี้ หรือมุมอัตโนมัติที่จับกรอบตู้ทั้งหมด · ซ่อนเส้นขอบ/กรอบเลือก/เส้นแนว/ป้าย) พร้อมเลขกำกับ · ชื่อชุดตัวใหญ่ หัวข้อเล็ก ป้ายพื้นที่ ตร.ม./ขนาดห้อง/รหัสชุด · ป้ายราคาพิเศษ (เว้นว่าง = รวมราคาขายจากแคตตาล็อก) + ราคาปกติขีดฆ่า · รายการสินค้า (รหัส+ขนาดเดียวกันรวมเป็น ×จำนวน · ไม่นับฟิลเลอร์/แผ่นปิด/ตีน · ขนาด ซม./มม. · ราคาต่อรายการเลือกได้ · รายการยาวย่อภาพห้องให้เอง) · แปลนมองลงจากเพดาน + ขนาดห้องเป็นเมตร + เลขกำกับ (ตู้ซ้อนกันขยับเลขให้เห็นครบ) · ของแถม · แถบติดต่อ โทร/LINE/เว็บ + QR + โลโก้ + สีหลัก/สีพื้น · ขนาด A4 (1654×2339) หรือ 4:5 (1440×1800) · ⬇ บันทึก PNG / 📋 คัดลอกภาพ · ข้อความชุดเก็บใน state.room.poster (ไปกับงาน) ข้อมูลร้านจำในเครื่อง (lsSet sxlocaltrial:furnitech:poster) · ใช้ราคาขายเท่านั้น ไม่มีต้นทุน · ไม่แสดงในโหมดดูอย่างเดียว · ปิดปุ่ม SN_OFF={plPoster:1} ③ หน้าดูงาน: แถบชิ้นที่สแกนขึ้นชิดบน (ผู้ใช้ 11:58: อยากได้พื้นที่แคปรูป) — จอกว้างวางข้างการ์ดชื่องานแถวเดียวกัน (ถ้าที่ว่าง ≥ 560px) ไม่พอ/มือถือ = ซ่อนการ์ดชื่องานขณะมีแถบ แถบขึ้นแทนที่ · แผง ☰ ตู้/รายละเอียดเปิดปิด จัดใหม่เอง · ปุ่ม 📷 แคปรูป (แถบเครื่องมือ + ท้ายแถบชิ้น) = ภาพ 3D ล้วน 2 เท่าของจอ ไม่มีการ์ด/ปุ่ม/หมุด/กรอบเลือก ป้ายขนาดที่เปิดอยู่วาดลงภาพ · คอมดาวน์โหลด PNG มือถือเปิดหน้าแชร์ (บันทึกรูป/ส่งไลน์)"],
     ["1.456","2026-10-15","FEAT บานพับ 3D สมจริงขึ้น (ผู้ใช้ 10:13–10:22: “มีวิธีทำให้เหมือนจริงกว่านี้ไหม” · “ทำบานพับเป็นสีนิกเกิล” · “รู DIA35 ต้องเจาะเนื้อออกด้วย” · “คอมันหายไป”) — ① บานเปิดขยับตามกลไก 4 ข้อต่อของบานพับจริง: หมุดข้อต่อวัดจากไฟล์ Blum (แขน A1/A2 · ถ้วย C1/C2) ไล่มุม 0–130° หาท่าถ้วยและมุมข้อต่อ · เดิมบานหมุนรอบมุมบานตายตัว ถ้วยจึงลอยห่างแขนเป็นเซนติเมตร ตอนนี้ถ้วย–ข้อต่อ–แขนต่อกันทุกมุม บานเลื่อนออกพร้อมหมุนแบบของจริง · ข้อต่อตัวนอก (คอ) หมุนรอบหมุดแขนโผล่ออกจากถ้วยให้เห็น (เดิมติดไปกับถ้วยจึงจมในเนื้อบาน) · ท่าบานส่งต่อเป็นจุดหมุน+องศาแบบเดิม มือจับ/เฟรมตามบาน อนิเมชันเร็ว หน้าดูงาน ใช้ได้หมด · อนิเมชันเร็วหมุนสองจังหวะ (กลับท่าปิดรอบจุด A แล้วไปท่า B รอบจุด B) แขน/ฐานไม่หมุนตามบานระหว่างกาง ข้อต่อจัดท่าทุกเฟรม ② แขนงอที่คอ (crank) แทนการเลื่อนทั้งแขน — หมุดตรงถ้วย ปลายหลังแนบแผ่นข้างเหมือนเดิม (บานกลางขอบ/ในขอบ) ③ สีนิกเกิลมีภาพสะท้อน (ใช้วัสดุโลหะเดียวกับมือจับ) + เส้นปกติจากไฟล์ผู้ผลิต สันคมตามจริง · เลือกสีได้ในตั้งค่า (นิกเกิล/โครเมียม/ดำ) ④ รูถ้วย Ø35 เจาะเนื้อบานในภาพ (ทางหลุมไม่ทะลุเดิมของ Pocket) ลึกตามรุ่น จากผิวด้านที่เจาะ — ภาพอย่างเดียว ไฟล์เจาะไม่เปลี่ยน · บานลาย/บานเพ/สันหน้าตัดยังไม่เจาะ ⑤ หน้าดูงาน (ลิงก์แชร์/QR): แขน/ฐานไม่หมุนตามบานแล้ว ข้อต่อและจุดหมุนบานคิดตามกลไกแบบเดียวกับโปรแกรม (ส่งตารางกลไก hk ไปกับงาน · ลิงก์เก่ายังเปิดได้ ท่าสุดท้ายเหมือนเดิม) · ไม่วาดเส้นแกนสีส้มของบานที่ขยับตามกลไก (จุดหมุนเปลี่ยนตามมุม) · ปิด: SN_OFF={hingeKin:1} (ขยับแบบเดิม) · SN_OFF={hingeCut:1} (ไม่เจาะรูถ้วย)"],
     ["1.455","2026-10-15","FEAT ฐานบานพับ 3D (ผู้ใช้ 09:54: ส่งไฟล์ 173H7100_44226109.dae · “ฐาน”) — 1.454 มีแต่ตัวบานพับ แขนลอยแนบแผ่นข้างโดยไม่มีฐานรอง · ตอนนี้วาดฐาน Blum 173H7100 (CLIP กากบาท 0 มม. · 2,600 สามเหลี่ยม) ทุกจุดบานพับ: ผิวหลังฐานแนบผิวในแผ่นข้าง · ศูนย์ระหว่างรูสกรูคู่ (ห่าง 32) ตรงระดับศูนย์ถ้วย · ห่างหน้าแผ่นข้างตามค่า “ระยะรูจากหน้าตู้” ของรุ่นบานพับ (ตรงกับรูฐานที่เจาะจริง) · อยู่กับแขน (ค้างที่แผ่นข้างตอนเปิดบาน) · ปิดพร้อมบานพับ 3D (ตั้งค่า / SN_OFF.hinge3D=1)"],
     ["1.454","2026-10-15","FEAT บานพับ 3D จริงตามไฟล์ของผู้ผลิต (ผู้ใช้ 09:22–09:25: อยากได้ 3D บานพับไปแสดง · ส่งไฟล์ 71B3550_43192717.dae ของ Blum) — เดิมบานพับในฉาก 3D เป็นแค่ฝาวงบอกตำแหน่งรูถ้วย/เดือยบนผิวบาน (v1.302) · ตอนนี้วาดตัวบานพับจริงจากไฟล์ .dae (Blum CLIP top 110° ทับขอบ · 5 ชิ้น · 7,444 สามเหลี่ยม ฝังในไฟล์ราว 117 KB · ถอดครั้งเดียวแล้วใช้รูปทรงร่วมกันทุกตัว) ทุกจุดบานพับของทุกบาน: ศูนย์ถ้วยตรงจุดเจาะถ้วยเดิม (ระยะจากขอบตามรุ่นบานพับ) · ปีกถ้วยแนบผิวบานด้านที่เจาะ · แขนวิ่งเข้าตู้ตามแผ่นข้าง · บานเปิด: ถ้วย+ข้อต่อหมุนไปกับบาน แขนค้างที่แผ่นข้าง (ตำแหน่งตอนบานปิด) · ระยะเจาะ/ไฟล์ส่งออกไม่เปลี่ยน · ปิดได้ที่ตั้งค่า (บานพับ → แสดงบานพับเป็นรูป 3D จริง) หรือ SN_OFF.hinge3D=1 · ข้อจำกัด: ใช้รูปรุ่นนี้กับบานพับทุกรุ่น (กลางขอบ/ในขอบ แขนจริงงอต่างกัน) · ไม่มีแผ่นรองในไฟล์ (ดาวน์โหลดแบบ All component variants ส่งมาเพิ่มได้)"],
@@ -23631,6 +23632,7 @@ function boardRole(b){
      SN_OFF.hinge3D=1     บานพับในฉาก 3D เป็นฝาวงบอกตำแหน่งอย่างเดียวแบบเดิม (ไม่วาดตัวบานพับจากไฟล์ .dae) (v1.454)
      SN_OFF.hingeKin=1    บานเปิดหมุนรอบมุมบานแบบเดิม · ข้อต่อบานพับติดถ้วย · แขนเลื่อนทั้งท่อน (ไม่ใช้กลไก 4 ข้อต่อ) (v1.456)
      SN_OFF.hingeCut=1    ไม่เจาะรูถ้วย Ø35 ในเนื้อบาน (ภาพ 3D) — บานเป็นแผ่นตันแบบเดิม (v1.456)
+     SN_OFF.plPoster=1    ห้องออกแบบไม่มีปุ่ม 🖼 โปสเตอร์ขาย (v1.457)
      SN_OFF.shoeWGrain=1  ชิ้นแปะหน้า/หลังของชั้นรองเท้าไม้ ลายตามกติกาแผ่นหลัง (ลายตั้ง) แบบเดิม (v1.452)
      SN_OFF.shoeWPart=1   ชั้นรองเท้าไม้ที่ใส่ใหม่ไม่ตั้ง Part ให้ (เว้นว่างแบบเดิม) (v1.452)
      SN_OFF.skinTrim=1    ชิ้นตั้งที่จมเข้าทอป/พื้นนอกเท่าผิวแผ่น ไม่ตัดให้ชนผิว (แผ่นข้างใต้ทอปทับข้างยาวเกินผิวทอปแบบเดิม) (v1.451)
@@ -30847,6 +30849,7 @@ function plBind(){
   addEventListener("pointerup",plDragUp,true);
   addEventListener("contextmenu",plCtx,true);                                   // v1.306: คลิกขวา = เลือกสีเท่านั้น
   addEventListener("keydown",e=>{ if(!PL.on) return; const t=e.target; if(t&&/INPUT|TEXTAREA|SELECT/.test(t.tagName)) return;
+    if(PLP.el) return;                                                          // v1.457: หน้าต่างโปสเตอร์เปิดอยู่ — Del/R ไม่ไปลบ/หมุนตู้ข้างหลัง
     const inst=plSelInst(); if(!inst) return;
     if(e.key==="Delete"||e.key==="Backspace"){ e.preventDefault(); e.stopImmediatePropagation(); plDelete(inst); }
     else if(e.key==="r"||e.key==="R"){ e.preventDefault(); e.stopImmediatePropagation(); plRotate(inst); } },true);
@@ -32007,7 +32010,9 @@ function plPanelGaps(){
 }
 function plPanelFoot(){
   const s=$("plFoot"); if(!s) return; const p=plPrice();
-  s.innerHTML='<div class="plRow"><span>ตู้ในห้อง <b>'+p.n+'</b> ใบ</span><span style="margin-left:auto;font-size:15px;font-weight:800">'+plMoney(p.sum)+'</span></div>'+plFootOpen()   // v1.317
+  s.innerHTML='<div class="plRow"><span>ตู้ในห้อง <b>'+p.n+'</b> ใบ</span><span style="margin-left:auto;font-size:15px;font-weight:800">'+plMoney(p.sum)+'</span></div>'
+    +((VIEW_ONLY||snOff("plPoster"))?'':'<div class="plRow" style="margin:6px 0 2px"><button class="ibtn" id="plPosterBtn" style="flex:1" title="ภาพห้อง 3D + รายการตู้ ขนาด ราคา + แปลน → PNG">🖼 โปสเตอร์ขาย</button></div>')   // v1.457
+    +plFootOpen()   // v1.317
     +(p.miss?'<div style="color:var(--ink-dim);font-size:11px;margin-top:2px">ยังไม่มีราคา '+p.miss+' ใบ — ใส่ได้ที่ 🗂 แคตตาล็อก (ราคารวมยังไม่นับใบพวกนี้)</div>':'')
     +(()=>{ const row=plPlinthRow(), xr=plPlinthXml(), need=plPlinthNeed(); if(!row&&!xr&&!need) return '';
       const have=Math.round(+((row||xr||{}).qty)||0), bad=!xr&&need!==have;
@@ -32019,8 +32024,322 @@ function plPanelFoot(){
       return '<div class="plRow" style="margin-top:4px;font-size:11.5px"><span>ฟิลเลอร์บน '+escapeHtml(String(row.code||''))+' · สูง '+escapeHtml(String(row.size||'').split('*')[1]||'')+' · 3D '+pcs.length+' ท่อน รวม '+tot+' → '+need+' เส้น</span></div>'; })()
     +'<div style="color:var(--ink-dim);font-size:11px;margin-top:4px">ตู้ในห้องคือออเดอร์จริงแล้ว — ใบตัด / BOM / ส่งออก ใช้ต่อได้เลย</div></details>';
   { const b=s.querySelector("#plPlSync"); if(b) b.onclick=()=>plPlinthSync(); }
+  { const pb=s.querySelector("#plPosterBtn"); if(pb) pb.onclick=()=>{ plPosterOpen().catch(e=>{ console.error("poster:",e); toast("เปิดโปสเตอร์ไม่สำเร็จ — ดู console"); }); }; }   // v1.457
   plRoomGrpWire(s);
 }
+/* ═════════ v1.457: 🖼 โปสเตอร์ขาย จากห้องออกแบบ ═════════
+   ผู้ใช้ 15/10 11:31–11:33: อยากกดออกโปสเตอร์ขายเฟอร์จากห้องออกแบบ แบบรูปตัวอย่าง
+     (ชื่อชุดตัวใหญ่ · ภาพห้อง 3D มีเลขกำกับ · ราคาพิเศษ/ราคาปกติ · รายการสินค้า · แปลนพื้นที่ · ของแถม · ติดต่อ + QR)
+     เลือก "ไม่ใช้ AI" และ "ให้โปรแกรมวาดตัวหนังสือเอง" (ภาษาไทยถูกเป๊ะ ราคา/ขนาดตรงข้อมูลตู้)
+   เดิม: ห้องออกแบบมีแค่ราคารวมในแผง ต้องจับภาพหน้าจอไปแต่งต่อในโปรแกรมอื่น
+   ตอนนี้: ปุ่ม 🖼 โปสเตอร์ขาย (ท้ายแผงห้องออกแบบ) → หน้าต่างกรอกข้อความ (ซ้าย) + ภาพตัวอย่าง (ขวา) → ⬇ บันทึก PNG / 📋 คัดลอกภาพ
+     ภาพห้อง = ถ่ายจากฉาก 3D จริงด้วยตัวเรนเดอร์หลัก (ขยายชั่วคราวตามขนาดกรอบภาพ แล้วคืนเท่าเดิม)
+       ซ่อนกรอบเลือก เส้นแนวผนัง ป้ายเลข ไม้วัด และ (ตั้งได้) เส้นขอบชิ้น · มุมกล้อง = ตามจอตอนนี้ หรือมุมห้องอัตโนมัติ
+     แปลน = กล้องตั้งฉากมองลงจากเพดาน (ผนังหลังอยู่บน) + เส้นขนาดห้อง (เมตร)
+     รายการ = ตู้ในห้อง (ไม่นับฟิลเลอร์ ราวแขวน แผ่นไม้ไฟ) · รหัส+ขนาดเดียวกัน = รายการเดียว ×จำนวน · เลขกำกับบนภาพ/แปลนตรงกับรายการ
+       ชื่อ = ชื่อในแคตตาล็อก → คำอธิบายรหัส → รหัส · ขนาด กว้าง×ลึก×สูง (ซม. หรือ มม.) · ราคา = catPrice ตามแคตตาล็อก
+     ราคาพิเศษ เว้นว่าง = ราคารวมทั้งห้องจากแคตตาล็อก · ราคาปกติ (ขีดฆ่า) ใส่ได้ · ไม่มีราคาเลย = "สอบถามราคา"
+     ข้อความของชุด (ชื่อ/หัวข้อ/รหัส/ราคา/ของแถม) เก็บใน state.room.poster ไปกับงาน
+     ข้อมูลร้าน (โทร/LINE/เว็บ/โลโก้/QR/สี/ขนาด) จำในเครื่อง (lsSet sxlocaltrial:furnitech:poster) — ไม่ลงไฟล์งาน/ไฟล์กลาง
+   ไม่แสดงในโหมดดูอย่างเดียว (มีราคา) · ไม่แตะข้อมูลตู้ ไม่แตะไฟล์ส่งออก · ปิดปุ่ม: SN_OFF.plPoster=1 */
+const PLP={el:null, hero:null, plan:null, brand:null, busy:false, tmr:0, sig:"", dirty:false};
+const PLP_LS="sxlocaltrial:furnitech:poster";
+const PLP_SIZES={a4:{w:1654,h:2339,lbl:"A4 แนวตั้ง (พิมพ์ / ส่งไลน์)"}, p45:{w:1440,h:1800,lbl:"4:5 โพสต์ Facebook / IG"}};
+const PLP_TH='"Sarabun","Leelawadee UI","Tahoma",sans-serif', PLP_TT='"Fraunces","Sarabun","Leelawadee UI",serif';
+function plpDefBrand(){ return {size:"a4", cam:"view", noEdge:true, nums:true, plan:true, itemPrice:false, unit:"cm",
+  tel:"", line:"", web:"", logo:"", qr:"", c1:"#5b3f2c", c2:"#f3ece2"}; }
+function plpData(){ const r=plRoom(); if(!r.poster||typeof r.poster!=="object") r.poster={};
+  const p=r.poster, d={title:"", tag:"ครบทุกฟังก์ชัน วางเข้ากันอย่างลงตัว", code:"", price:"", normal:"", gift:""};
+  Object.keys(d).forEach(k=>{ if(p[k]==null) p[k]=d[k]; }); return p; }
+/* กรอบของแต่ละส่วนบนหน้า (หน่วย: หน้ากว้าง 1000) — ภาพ 3D/แปลนต้องรู้ขนาดก่อนถ่าย */
+function plpLayout(B,n,hasGift){
+  const S=PLP_SIZES[B.size]||PLP_SIZES.a4, k=S.w/1000, H=S.h/k, m=44, a4=(B.size!=="p45");
+  const heroY=262, foot=86, gap=a4?78:62, footTop=H-foot, qrS=150, qrTop=B.qr?(H-qrS-14):H;   // QR โผล่ขึ้นจากแถบท้ายมุมขวา (กินที่แปลน ไม่กินรายการ)
+  /* รายการยาว → ย่อภาพห้องลง (ไม่ต่ำกว่า heroMin) ให้รายการพอ · รายการ ≤ 4 = สองบรรทัด (ชื่อ / รหัส·ขนาด) · มากกว่านั้นบรรทัดเดียว */
+  n=Math.max(+n||0,0); const rowH=(n<=4)?58:38, giftH=hasGift?166:0;
+  let heroH=a4?560:470; const heroMin=a4?400:330;
+  const need=62+Math.max(n,1)*rowH+8, avail=footTop-24-giftH-(heroY+heroH+gap);
+  if(need>avail) heroH=Math.max(heroMin,heroH-(need-avail));
+  const lowY=heroY+heroH+gap, colR={x:m+538, w:1000-2*m-538};
+  const planH=Math.max(120,Math.min(a4?300:230,Math.min(footTop,qrTop)-22-(lowY+58)));
+  return {S, k, H, m, a4, gap, qrS, qrTop, hero:{x:m, y:heroY, w:1000-2*m, h:heroH}, lowY, foot, footTop, rowH, giftH, colL:{x:m, w:(B.plan?520:1000-2*m)}, colR,
+    plan:{x:colR.x, y:lowY+58, w:colR.w, h:planH}}; }
+/* รายการสินค้าในห้อง (เรียงซ้าย→ขวาตามตำแหน่งตู้) */
+function plpItems(){
+  const m=plCabMap(), byKey={}, groups=[];
+  Object.keys(m).forEach(inst=>{ const bs=m[inst]; if(!bs||!bs.length) return;
+    if(bs.some(b=>b&&(b._csmRail||b._plLightPanel))) return;                 // ราวแขวน Cosimo · แผ่นไม้ไฟ = ไม่ใช่ตู้
+    let d; try{ d=plLocalDims(inst); }catch(e){ return; }
+    const code=String((d&&d.f&&d.f.code)||"").trim(); if(!code) return;
+    const e=catalogOf(code)||{}; if(e.kind==="filler"||catGuessKind(code,e)==="filler") return;   // ฟิลเลอร์ไม่ใช่สินค้าหลัก
+    if(Math.min(+d.W||0,+d.D||0,+d.H||0)<150) return;                         // แผ่นปิด/คิ้ว/ตีน (ด้านใดด้านหนึ่ง < 15 ซม.) = อุปกรณ์ประกอบ ไม่ใช่ตัวสินค้า
+    const lo=d.f.lo, hi=d.f.hi; if(!isFinite(lo[0])) return;
+    const key=catKey(code)+"|"+d.W+"|"+d.H+"|"+d.D;
+    let g=byKey[key];
+    if(!g){ let nm=""; try{ nm=String(e.name||cabDescGet(code)||cabCodeDesc(code)||"").trim(); }catch(_){}
+      g=byKey[key]={code, name:nm||code, W:d.W, H:d.H, D:d.D, qty:0, price:0, pts:[], sx:Infinity}; groups.push(g); }
+    let f=[0,0,1]; try{ f=cabFrontDir(String(inst))||f; }catch(_){}
+    const c=[(lo[0]+hi[0])/2,(lo[1]+hi[1])/2,(lo[2]+hi[2])/2], half=[(hi[0]-lo[0])/2,(hi[1]-lo[1])/2,(hi[2]-lo[2])/2];
+    g.pts.push({x:c[0]+f[0]*half[0], y:lo[1]+(hi[1]-lo[1])*0.62, z:c[2]+f[2]*half[2], top:{x:c[0], y:hi[1], z:c[2]}});
+    g.qty++; g.price+=(+catPrice(code,d.W)||0); g.sx=Math.min(g.sx,c[0]+c[2]*0.001); });
+  groups.sort((a,b)=>a.sx-b.sx); groups.forEach((g,i)=>g.no=i+1);
+  return groups; }
+/* ถ่ายภาพจากฉาก 3D — kind "hero" (มุมมอง) | "plan" (มองลงจากเพดาน) → {img, cam, w, h} */
+function plpShot(kind,w,h,B){
+  if(typeof noGL!=="undefined"&&noGL||!renderer) throw new Error("เครื่องนี้แสดง 3D ไม่ได้");
+  w=Math.max(64,Math.round(w)); h=Math.max(64,Math.round(h));
+  const keep={pr:renderer.getPixelRatio(), sz:renderer.getSize(new THREE.Vector2()), bg:scene.background, fog:scene.fog};
+  const hid=[]; const H=o=>{ if(o&&o.visible){ o.visible=false; hid.push(o); } };
+  [selBox,cabBox,axisLine,grid,(typeof PLD!=="undefined"&&PLD)?PLD.grp:null,(typeof _msGrp!=="undefined")?_msGrp:null].forEach(H);
+  root.traverse(o=>{ const u=o.userData||{}; if(o.isSprite||u.label) H(o); else if(B.noEdge&&kind==="hero"&&u.edge) H(o); });
+  if(PL.grp) PL.grp.traverse(o=>{ if(o.material&&o.material.isLineDashedMaterial) H(o); });
+  let cam=null, url="";
+  try{
+    if(kind==="plan"){ const r=plRoom(), T=100, x0=r.x0-T, x1=r.x0+r.w+T, z0=r.z0-T, z1=r.z0+r.d+T, cx=(x0+x1)/2, cz=(z0+z1)/2;
+      let hw=(x1-x0)/2*1.03, hh=(z1-z0)/2*1.03; const asp=w/h; if(hw/hh>asp) hh=hw/asp; else hw=hh*asp;
+      cam=new THREE.OrthographicCamera(-hw,hw,hh,-hh,10,(+r.h||2600)+20000); cam.position.set(cx,(+r.h||2600)+4000,cz); cam.up.set(0,0,-1); cam.lookAt(cx,0,cz);
+      scene.background=new THREE.Color("#ffffff"); }
+    else { cam=plpHeroCam(w/h,B.cam); let hb; try{ hb=new THREE.Color(B.c2||"#f3ece2").lerp(new THREE.Color(B.c1||"#5b3f2c"),.07); }catch(e){ hb=new THREE.Color("#ece5da"); } scene.background=hb; }   // พื้นหลังภาพห้อง = สีพื้นโปสเตอร์เข้มขึ้นนิด
+    scene.fog=null; cam.updateProjectionMatrix(); cam.updateMatrixWorld(true);
+    renderer.setPixelRatio(1); renderer.setSize(w,h,false);
+    try{ if(renderer.shadowMap) renderer.shadowMap.needsUpdate=true; }catch(e){}
+    renderer.render(scene,cam);
+    url=renderer.domElement.toDataURL("image/png");
+  } finally {
+    hid.forEach(o=>o.visible=true); scene.background=keep.bg; scene.fog=keep.fog;
+    renderer.setPixelRatio(keep.pr); renderer.setSize(keep.sz.x,keep.sz.y);
+    try{ camera.aspect=innerWidth/innerHeight; camera.updateProjectionMatrix(); }catch(e){}
+    try{ if(renderer.shadowMap) renderer.shadowMap.needsUpdate=true; }catch(e){}
+    invalidate(); }
+  return {url, cam, w, h}; }
+/* กล้องภาพหลัก: ตามจอ = ตำแหน่ง/ทิศเดิม คงมุมกว้างแนวนอนเท่าจอ (ไม่ถูกตัดข้าง) · อัตโนมัติ = มุมเฉียงหน้า-ขวา เห็นผนังหลัง/ซ้าย พอดีห้อง */
+function plpHeroCam(asp,mode){
+  const cam=new THREE.PerspectiveCamera(42,asp,5,60000);
+  if(mode==="auto"){ const r=plRoom(), rh=+r.h||2600;
+    /* กรอบ = ตู้ทั้งหมด + ระยะเผื่อ 40 ซม. (ไม่เกินห้อง) — โปสเตอร์ต้องเห็นตู้เต็มตา ไม่ใช่พื้นห้องโล่ง · ไม่มีตู้ = ทั้งห้อง */
+    let lo=[Infinity,0,Infinity], hi=[-Infinity,rh*0.8,-Infinity];
+    try{ const mp=plCabMap(); Object.keys(mp).forEach(k=>{ const f=plFp(mp[k]); if(!isFinite(f.lo[0])) return;
+        lo[0]=Math.min(lo[0],f.lo[0]); lo[2]=Math.min(lo[2],f.lo[2]); hi[0]=Math.max(hi[0],f.hi[0]); hi[2]=Math.max(hi[2],f.hi[2]); hi[1]=Math.max(hi[1],f.hi[1]); }); }catch(e){}
+    if(!isFinite(lo[0])){ lo=[r.x0,0,r.z0]; hi=[r.x0+r.w,rh,r.z0+r.d]; }
+    else { lo[0]=Math.max(r.x0,lo[0]-400); lo[2]=Math.max(r.z0,lo[2]-400); hi[0]=Math.min(r.x0+r.w,hi[0]+400); hi[2]=Math.min(r.z0+r.d,hi[2]+400); hi[1]=Math.min(rh,hi[1]+200); }
+    const c=new THREE.Vector3((lo[0]+hi[0])/2,(lo[1]+hi[1])*0.46,(lo[2]+hi[2])/2);
+    const th=0.58, ph=1.10, rad=Math.hypot(hi[0]-lo[0],hi[1]-lo[1],hi[2]-lo[2])/2;
+    const vf=cam.fov*Math.PI/180, hf=2*Math.atan(Math.tan(vf/2)*asp), R=rad/Math.sin(Math.min(vf,hf)/2)*0.92;
+    cam.position.set(c.x+R*Math.sin(ph)*Math.sin(th), c.y+R*Math.cos(ph), c.z+R*Math.sin(ph)*Math.cos(th)); cam.lookAt(c); return cam; }
+  const sa=Math.max(innerWidth,1)/Math.max(innerHeight,1), vf0=camera.fov*Math.PI/180, hf0=2*Math.atan(Math.tan(vf0/2)*sa);
+  const vf=Math.min(2*Math.atan(Math.tan(hf0/2)/asp), 100*Math.PI/180);
+  cam.fov=vf*180/Math.PI; cam.position.copy(camera.position); cam.quaternion.copy(camera.quaternion); return cam; }
+function plpImg(url){ return new Promise(res=>{ if(!url){ res(null); return; } const im=new Image(); im.onload=()=>res(im); im.onerror=()=>res(null); im.src=url; }); }
+async function plpFonts(){ try{ if(!document.fonts||!document.fonts.load) return;
+  await Promise.race([Promise.all(["800 90px Fraunces","700 40px Sarabun","600 30px Sarabun","400 20px Sarabun"].map(f=>document.fonts.load(f).catch(()=>{}))), new Promise(r=>setTimeout(r,2500))]); }catch(e){} }
+/* ถ่ายภาพใหม่เมื่อขนาดหน้า/มุมกล้อง/เส้นขอบ/แปลนเปลี่ยน (ข้อความเปลี่ยน = วาดใหม่อย่างเดียว) */
+async function plpShoot(force){
+  const B=PLP.brand, L=plpLayout(B,plpItems().length,!!String(plpData().gift||"").trim()), sig=[B.size,B.cam,B.noEdge?1:0,B.plan?1:0,L.hero.h,L.plan.h,B.c1,B.c2].join("|");
+  if(!force&&PLP.hero&&PLP.sig===sig) return;
+  const hs=plpShot("hero",L.hero.w*L.k,L.hero.h*L.k,B);
+  PLP.hero=Object.assign(hs,{img:await plpImg(hs.url)});
+  if(B.plan){ const ps=plpShot("plan",L.plan.w*L.k,L.plan.h*L.k,B); PLP.plan=Object.assign(ps,{img:await plpImg(ps.url)}); } else PLP.plan=null;
+  PLP.sig=sig; }
+const plpMoney=v=>Math.round(+v||0).toLocaleString("th-TH")+".-";
+const plpNum=v=>{ const s=String(v==null?"":v).replace(/[,\s฿]/g,""); return (s!==""&&isFinite(+s))?+s:null; };
+function plpDim(v,B){ return (B.unit==="mm")?String(Math.round(v)):String(Math.round(v/10*10)/10).replace(/\.0$/,""); }
+/* ── วาดหน้าโปสเตอร์ลง canvas ── */
+async function plpCompose(cv){
+  const B=PLP.brand, P=plpData(), items=plpItems(), L=plpLayout(B,items.length,!!String(P.gift||"").trim()), k=L.k, U=v=>v*L.k, g=cv.getContext("2d");
+  cv.width=L.S.w; cv.height=L.S.h;
+  const c1=B.c1||"#5b3f2c", c2=B.c2||"#f3ece2", ink="#2a211b", mut="#7d6f64", Wd=1000, m=L.m;
+  const F=(wt,sz,fam)=>wt+" "+U(sz)+"px "+(fam||PLP_TH);
+  const rr=(x,y,w,h,r)=>{ g.beginPath(); g.moveTo(U(x+r),U(y)); g.arcTo(U(x+w),U(y),U(x+w),U(y+h),U(r)); g.arcTo(U(x+w),U(y+h),U(x),U(y+h),U(r)); g.arcTo(U(x),U(y+h),U(x),U(y),U(r)); g.arcTo(U(x),U(y),U(x+w),U(y),U(r)); g.closePath(); };
+  const fit=(t,maxW,sz,wt,fam,min)=>{ let s=sz; g.font=F(wt,s,fam); while(s>(min||10)&&g.measureText(t).width>U(maxW)){ s-=2; g.font=F(wt,s,fam); } return s; };
+  const ell=(t,maxW)=>{ t=String(t||""); if(g.measureText(t).width<=U(maxW)) return t; while(t.length>1&&g.measureText(t+"…").width>U(maxW)) t=t.slice(0,-1); return t+"…"; };
+  const wrap=(t,maxW)=>{ const out=[]; String(t||"").split(/\n/).forEach(par=>{ let line="";
+      const toks=par.match(/\S+\s*|\s+/g)||[""]; toks.forEach(tk=>{ const tr=line+tk; if(line&&g.measureText(tr.trim()).width>U(maxW)){ out.push(line.trim()); line=tk; } else line=tr; });
+      if(line.trim()||!out.length) out.push(line.trim()); }); return out; };
+  const pill=(x,y,t,o)=>{ o=o||{}; const sz=o.sz||22, h=o.h||Math.round(sz*1.75), px=o.px||16; g.font=F(o.wt||"700",sz); const w=g.measureText(t).width/k+px*2;
+    rr(x,y,w,h,h/2); if(o.bg){ g.fillStyle=o.bg; g.fill(); } if(o.line){ g.strokeStyle=o.line; g.lineWidth=U(2); g.stroke(); }
+    g.fillStyle=o.fg||"#fff"; g.textBaseline="middle"; g.fillText(t,U(x+px),U(y+h/2+1)); g.textBaseline="alphabetic"; return w; };
+  const r=plRoom();
+  /* พื้น + วงกลมจาง ๆ มุมขวาบน */
+  g.fillStyle=c2; g.fillRect(0,0,cv.width,cv.height);
+  g.save(); g.globalAlpha=.07; g.fillStyle=c1; g.beginPath(); g.arc(U(Wd-80),U(60),U(260),0,Math.PI*2); g.fill(); g.restore();
+  /* หัว: หัวข้อเล็ก · ชื่อชุด · ป้ายพื้นที่/ขนาดห้อง/รหัส · โลโก้ */
+  const logo=B.logo?await plpImg(B.logo):null, logoW=logo?170:0, txtW=Wd-2*m-(logo?logoW+28:0);
+  if(logo){ const s=Math.min(U(logoW)/logo.width,U(170)/logo.height); const lw=logo.width*s, lh=logo.height*s; g.drawImage(logo,U(Wd-m)-lw,U(40)+(U(170)-lh)/2,lw,lh); }
+  if(P.tag){ g.fillStyle=c1; fit(P.tag,txtW,27,"600"); g.fillText(P.tag,U(m),U(80)); }
+  const title=String(P.title||"").trim()||"ชุดเฟอร์นิเจอร์";
+  g.fillStyle=ink; fit(title,txtW,92,"800",PLP_TT,40); g.fillText(title,U(m-3),U(170));
+  { let x=m; const y=196, area=Math.round((+r.w||0)*(+r.d||0)/1e5)/10;
+    if(area>0) x+=pill(x,y,"พื้นที่ "+String(area).replace(/\.0$/,"")+" ตร.ม.",{bg:c1,fg:"#fff",sz:21})+10;
+    if(+r.w>0&&+r.d>0) x+=pill(x,y,"ห้อง "+(Math.round(r.w/100)/10)+" × "+(Math.round(r.d/100)/10)+" ม.",{line:c1,fg:c1,sz:21})+10;
+    if(String(P.code||"").trim()) x+=pill(x,y,String(P.code).trim(),{line:c1,fg:c1,sz:21})+10; }
+  /* ภาพห้อง 3D + เลขกำกับ */
+  const Hh=L.hero;
+  g.save(); rr(Hh.x,Hh.y,Hh.w,Hh.h,22); g.clip();
+  if(PLP.hero&&PLP.hero.img) g.drawImage(PLP.hero.img,U(Hh.x),U(Hh.y),U(Hh.w),U(Hh.h)); else { g.fillStyle="#e6ddd0"; g.fillRect(U(Hh.x),U(Hh.y),U(Hh.w),U(Hh.h)); }
+  g.restore(); g.strokeStyle="rgba(0,0,0,.12)"; g.lineWidth=U(1.5); rr(Hh.x,Hh.y,Hh.w,Hh.h,22); g.stroke();
+  const mark=(x,y,n,R)=>{ g.beginPath(); g.arc(x,y,U(R),0,Math.PI*2); g.fillStyle=c1; g.fill(); g.lineWidth=U(R*.16); g.strokeStyle="#fff"; g.stroke();
+    g.fillStyle="#fff"; g.font=F("700",R*1.05); g.textAlign="center"; g.textBaseline="middle"; g.fillText(String(n),x,y+U(1)); g.textAlign="left"; g.textBaseline="alphabetic"; };
+  const proj=(S,p,box)=>{ if(!S||!S.cam) return null; const v=new THREE.Vector3(p.x,p.y,p.z).project(S.cam); if(v.z<-1||v.z>1||Math.abs(v.x)>1.02||Math.abs(v.y)>1.02) return null;
+    return {x:U(box.x)+(v.x+1)/2*U(box.w), y:U(box.y)+(1-v.y)/2*U(box.h)}; };
+  if(B.nums&&PLP.hero){ const put=[]; items.forEach(it=>it.pts.forEach(p=>{ const s=proj(PLP.hero,p,Hh); if(!s) return;
+      if(put.some(q=>Math.hypot(q.x-s.x,q.y-s.y)<U(34))) return; put.push(s); mark(s.x,s.y,it.no,19); })); }
+  /* ป้ายราคา ทับมุมขวาล่างของภาพ */
+  const sum=items.reduce((a,b)=>a+b.price,0), sp=plpNum(P.price), nm=plpNum(P.normal), price=(sp!=null)?sp:(sum>0?sum:null);
+  { const cw=356, chh=(nm!=null&&price!=null)?172:142, cx=Wd-m-cw-18, cy=Hh.y+Hh.h-chh+(L.gap-18);   // ล้นใต้ภาพไม่ถึงป้าย "ขนาดพื้นที่"
+    g.save(); g.shadowColor="rgba(0,0,0,.22)"; g.shadowBlur=U(24); g.shadowOffsetY=U(8); rr(cx,cy,cw,chh,22); g.fillStyle="#fff"; g.fill(); g.restore();
+    g.fillStyle=c1; g.font=F("700",26); g.fillText(price!=null?"ราคาพิเศษ":"ราคา",U(cx+26),U(cy+46));
+    g.fillStyle=ink; if(price!=null){ fit(plpMoney(price),cw-52,60,"800"); g.fillText(plpMoney(price),U(cx+26),U(cy+112)); }
+    else { g.font=F("800",46); g.fillText("สอบถามราคา",U(cx+26),U(cy+104)); }
+    if(nm!=null&&price!=null){ const t="จากปกติ "+plpMoney(nm); g.fillStyle=mut; g.font=F("600",22); g.fillText(t,U(cx+26),U(cy+148));
+      const tw=g.measureText(t).width, x0=U(cx+26)+g.measureText("จากปกติ ").width; g.strokeStyle="#c0392b"; g.lineWidth=U(2.4);
+      g.beginPath(); g.moveTo(x0-U(2),U(cy+141)); g.lineTo(U(cx+26)+tw+U(2),U(cy+141)); g.stroke(); } }
+  /* ล่างซ้าย: รายการสินค้า (+ ของแถม) */
+  const footTop=L.footTop, gifts=String(P.gift||"").trim();
+  let y=L.lowY; const cl=L.colL;
+  pill(cl.x,y,"รายการสินค้า",{bg:ink,fg:"#fff",sz:23});
+  y+=62;
+  g.font=F("500",20); const gLines=gifts?wrap(gifts,cl.w-20).slice(0,3):[];
+  const avail=footTop-24-L.giftH-y, n=items.length; let rowH=L.rowH;
+  if(n*rowH>avail) rowH=Math.max(30,avail/Math.max(n,1));
+  const two=(rowH>=52), maxRows=Math.max(1,Math.floor(avail/rowH)), show=(n>maxRows)?maxRows-1:n;
+  const szOf=it=>plpDim(it.W,B)+"×"+plpDim(it.D,B)+"×"+plpDim(it.H,B)+" "+(B.unit==="mm"?"มม.":"ซม.");
+  if(!n){ g.fillStyle=mut; g.font=F("500",20); g.fillText("ยังไม่มีตู้ในห้อง",U(cl.x+4),U(y+24)); }
+  for(let i=0;i<show;i++){ const it=items[i], yy=y+i*rowH, R=two?17:Math.min(15,rowH*.42), cy=yy+(two?18:rowH/2-2);
+    mark(U(cl.x+18),U(cy),it.no,R);
+    const pr=(B.itemPrice&&it.price>0)?plpMoney(it.price):"";
+    g.font=F("700",21); const prW=pr?g.measureText(pr).width/k+16:0;
+    const nm=it.name+(it.qty>1?"  ×"+it.qty:"");
+    if(two){ g.fillStyle=ink; g.font=F("700",22); g.fillText(ell(nm,cl.w-52-prW),U(cl.x+46),U(yy+25));
+      g.fillStyle=mut; g.font=F("400",17); g.fillText(ell(it.code+" · กว้าง×ลึก×สูง "+szOf(it),cl.w-52-prW),U(cl.x+46),U(yy+49)); }
+    else { const fs=Math.min(21,rowH*.56); g.font=F("700",fs); const nmT=ell(nm,(cl.w-52-prW)*.62); g.fillStyle=ink; g.textBaseline="middle"; g.fillText(nmT,U(cl.x+46),U(cy+1));
+      const x2=cl.x+46+g.measureText(nmT).width/k+12; g.fillStyle=mut; g.font=F("400",fs*.8); g.fillText(ell(szOf(it),cl.x+cl.w-prW-x2),U(x2),U(cy+1)); g.textBaseline="alphabetic"; }
+    if(pr){ g.fillStyle=c1; g.font=F("700",two?21:Math.min(20,rowH*.54)); g.textAlign="right"; g.textBaseline="middle"; g.fillText(pr,U(cl.x+cl.w),U(two?yy+18:cy+1)); g.textAlign="left"; g.textBaseline="alphabetic"; } }
+  if(show<n){ g.fillStyle=mut; g.font=F("600",19); g.fillText("และอีก "+(n-show)+" รายการ",U(cl.x+46),U(y+show*rowH+20)); }
+  if(gifts){ let gy=footTop-24-L.giftH+14;
+    pill(cl.x,gy,"ของแถมพิเศษ",{bg:c1,fg:"#fff",sz:22}); gy+=58;
+    g.fillStyle=ink; g.font=F("500",20); gLines.forEach((ln,i)=>g.fillText(ln,U(cl.x+6),U(gy+i*30+12))); }
+  /* ล่างขวา: แปลนพื้นที่ + เส้นขนาดห้อง */
+  if(B.plan){ const pb=L.plan, cr=L.colR;
+    pill(cr.x,L.lowY,"ขนาดพื้นที่",{bg:ink,fg:"#fff",sz:23});
+    g.save(); g.shadowColor="rgba(0,0,0,.12)"; g.shadowBlur=U(14); rr(pb.x,pb.y,pb.w,pb.h,18); g.fillStyle="#fff"; g.fill(); g.restore();
+    g.save(); rr(pb.x,pb.y,pb.w,pb.h,18); g.clip(); if(PLP.plan&&PLP.plan.img) g.drawImage(PLP.plan.img,U(pb.x),U(pb.y),U(pb.w),U(pb.h)); g.restore();
+    if(PLP.plan){ const a=proj(PLP.plan,{x:r.x0,y:0,z:r.z0},pb), b=proj(PLP.plan,{x:r.x0+r.w,y:0,z:r.z0+r.d},pb);
+      if(a&&b){ g.strokeStyle=ink; g.fillStyle=ink; g.lineWidth=U(1.6);
+        const tick=(x,y)=>{ g.beginPath(); g.moveTo(x-U(5),y+U(5)); g.lineTo(x+U(5),y-U(5)); g.stroke(); };
+        const yT=a.y-U(12); g.beginPath(); g.moveTo(a.x,yT); g.lineTo(b.x,yT); g.stroke(); tick(a.x,yT); tick(b.x,yT);
+        const tw=(Math.round(r.w/100)/10)+" ม."; g.font=F("700",17); const w1=g.measureText(tw).width;
+        g.fillStyle="#fff"; g.fillRect((a.x+b.x)/2-w1/2-U(6),yT-U(11),w1+U(12),U(22)); g.fillStyle=ink; g.textAlign="center"; g.textBaseline="middle"; g.fillText(tw,(a.x+b.x)/2,yT+U(1));
+        const xL=a.x-U(12); g.beginPath(); g.moveTo(xL,a.y); g.lineTo(xL,b.y); g.stroke(); tick(xL,a.y); tick(xL,b.y);
+        const td=(Math.round(r.d/100)/10)+" ม."; const w2=g.measureText(td).width;
+        g.save(); g.translate(xL,(a.y+b.y)/2); g.rotate(-Math.PI/2); g.fillStyle="#fff"; g.fillRect(-w2/2-U(6),-U(11),w2+U(12),U(22)); g.fillStyle=ink; g.fillText(td,0,U(1)); g.restore();
+        g.textAlign="left"; g.textBaseline="alphabetic"; }
+      if(B.nums){ const put=[], OF=[[0,0],[1,0],[-1,0],[0,1],[0,-1],[1,1],[-1,1]];   // ตู้ซ้อนกัน (ตู้แขวนบนตู้ล่าง) ตำแหน่งแปลนเดียวกัน → ขยับเลขออกข้าง ๆ ให้เห็นครบ
+        items.forEach(it=>{ const own=[]; it.pts.forEach(p=>{ const s0=proj(PLP.plan,p.top,pb); if(!s0) return;
+          if(own.some(q=>Math.hypot(q.x-s0.x,q.y-s0.y)<U(22))) return;            // เลขเดียวกันซ้ำที่เดิม = ไม่ต้องวาดซ้ำ
+          for(const o of OF){ const s={x:s0.x+o[0]*U(25),y:s0.y+o[1]*U(25)}; if(put.some(q=>Math.hypot(q.x-s.x,q.y-s.y)<U(23))) continue;
+            put.push(s); own.push(s0); mark(s.x,s.y,it.no,12); break; } }); }); } } }
+  /* ท้าย: แถบติดต่อ + QR */
+  const cts=[B.tel?"☎ "+B.tel:"", B.line?"LINE "+B.line:"", B.web?String(B.web):""].filter(Boolean);
+  const qr=B.qr?await plpImg(B.qr):null;
+  if(cts.length||qr){ g.fillStyle=c1; g.fillRect(0,U(L.H-L.foot),cv.width,U(L.foot));
+    g.fillStyle="#fff"; const maxW=Wd-2*m-(qr?170:0); fit(cts.join("     "),maxW,24,"600"); g.textBaseline="middle"; g.fillText(cts.join("     "),U(m),U(L.H-L.foot/2)); g.textBaseline="alphabetic";
+    if(qr){ const qs=L.qrS, qx=Wd-m-qs, qy=L.qrTop; rr(qx,qy,qs,qs,14); g.fillStyle="#fff"; g.fill(); g.strokeStyle="rgba(0,0,0,.15)"; g.lineWidth=U(1.5); g.stroke();
+      const s=Math.min(U(qs-16)/qr.width,U(qs-16)/qr.height); g.drawImage(qr,U(qx+qs/2)-qr.width*s/2,U(qy+qs/2)-qr.height*s/2,qr.width*s,qr.height*s); } }
+  return {items:items.length, price, sum}; }
+/* ── หน้าต่าง ── */
+async function plPosterOpen(){
+  if(VIEW_ONLY) return;
+  if(typeof noGL!=="undefined"&&noGL||!renderer){ toast("เครื่องนี้แสดง 3D ไม่ได้ จึงถ่ายภาพห้องไม่ได้"); return; }
+  plpClose();
+  let sv={}; try{ sv=await lsGet(PLP_LS,{})||{}; }catch(e){}
+  PLP.brand=Object.assign(plpDefBrand(),(sv&&typeof sv==="object")?sv:{}); PLP.hero=null; PLP.plan=null; PLP.sig=""; PLP.dirty=false;
+  const P=plpData(), B=PLP.brand, esc=s=>escapeHtml(String(s==null?"":s));
+  if(!$("plpCSS")){ const st=document.createElement("style"); st.id="plpCSS"; st.textContent=
+    "#plPoster{position:fixed;inset:0;z-index:410;background:rgba(15,18,24,.55);display:flex;align-items:center;justify-content:center;padding:14px}"
+    +"#plPoster .pw{background:var(--solid,#fff);color:var(--ink,#111);border-radius:16px;box-shadow:0 30px 80px -20px rgba(0,0,0,.6);display:flex;width:min(1180px,100%);height:min(900px,100%);overflow:hidden}"
+    +"#plPoster .pf{width:330px;flex:none;display:flex;flex-direction:column;border-right:1px solid var(--line,#ddd)}"
+    +"#plPoster .ph{padding:12px 14px;border-bottom:1px solid var(--line,#ddd);display:flex;align-items:center;gap:8px}"
+    +"#plPoster .pb{flex:1;overflow:auto;padding:10px 14px;display:flex;flex-direction:column;gap:8px;font-size:12.5px}"
+    +"#plPoster .pb label{display:flex;flex-direction:column;gap:3px;color:var(--ink-dim,#666);font-size:11.5px}"
+    +"#plPoster .pb input[type=text],#plPoster .pb textarea,#plPoster .pb select{font:inherit;font-size:13px;padding:5px 7px;border:1px solid var(--line,#ccc);border-radius:7px;background:var(--panel,#fff);color:var(--ink,#111)}"
+    +"#plPoster .pb .row{display:flex;gap:8px}#plPoster .pb .row>*{flex:1;min-width:0}"
+    +"#plPoster .pb .ck{flex-direction:row;align-items:center;gap:6px;color:var(--ink,#111);font-size:12.5px}"
+    +"#plPoster .pb h5{margin:6px 0 0;font-size:11.5px;color:var(--ink-dim,#777);letter-spacing:.02em}"
+    +"#plPoster .pa{padding:10px 14px;border-top:1px solid var(--line,#ddd);display:flex;gap:6px;flex-wrap:wrap}"
+    +"#plPoster .pv{flex:1;min-width:0;display:flex;align-items:center;justify-content:center;background:#d9d6d0;position:relative;padding:14px}"
+    +"#plPoster .pv canvas{max-width:100%;max-height:100%;box-shadow:0 10px 40px -10px rgba(0,0,0,.45);background:#fff}"
+    +"#plPoster .pv .st{position:absolute;left:12px;bottom:10px;font-size:11.5px;color:#444;background:rgba(255,255,255,.8);border-radius:99px;padding:2px 10px}"
+    +"#plPoster .img{display:flex;align-items:center;gap:6px}#plPoster .img img{max-height:34px;max-width:70px;border-radius:4px;background:#fff;border:1px solid var(--line,#ddd)}"
+    +"@media(max-width:820px){#plPoster .pw{flex-direction:column}#plPoster .pf{width:auto;height:46%;border-right:0;border-bottom:1px solid var(--line,#ddd)}}";
+    document.head.appendChild(st); }
+  const ov=document.createElement("div"); ov.id="plPoster";
+  const opt=(v,list)=>list.map(o=>'<option value="'+o[0]+'"'+(String(v)===o[0]?" selected":"")+'>'+o[1]+'</option>').join("");
+  const sum=plpItems().reduce((a,b)=>a+b.price,0);
+  ov.innerHTML='<div class="pw"><div class="pf"><div class="ph"><b style="font-size:14px">🖼 โปสเตอร์ขาย</b><span style="color:var(--ink-dim);font-size:11px">ภาพจากห้องออกแบบ</span><button class="ibtn" data-a="x" style="margin-left:auto">ปิด</button></div>'
+    +'<div class="pb">'
+    +'<h5>หน้า / ภาพ</h5>'
+    +'<div class="row"><label>ขนาดหน้า<select data-b="size">'+opt(B.size,Object.keys(PLP_SIZES).map(k=>[k,PLP_SIZES[k].lbl]))+'</select></label></div>'
+    +'<div class="row"><label>มุมภาพห้อง<select data-b="cam">'+opt(B.cam,[["view","ตามจอตอนนี้"],["auto","มุมห้องอัตโนมัติ"]])+'</select></label>'
+    +'<label>&nbsp;<button class="ibtn" data-a="shot" title="หมุน/ซูมจอห้องออกแบบให้ได้มุมที่ชอบ แล้วกดถ่ายใหม่">📷 ถ่ายภาพใหม่</button></label></div>'
+    +'<label class="ck"><input type="checkbox" data-b="noEdge"'+(B.noEdge?" checked":"")+'> ภาพเนียน (ซ่อนเส้นขอบชิ้น)</label>'
+    +'<label class="ck"><input type="checkbox" data-b="nums"'+(B.nums?" checked":"")+'> เลขกำกับบนภาพ / แปลน</label>'
+    +'<label class="ck"><input type="checkbox" data-b="plan"'+(B.plan?" checked":"")+'> แปลนพื้นที่</label>'
+    +'<h5>ชุดนี้ (เก็บไปกับงาน)</h5>'
+    +'<label>หัวข้อเล็ก<input type="text" data-p="tag" value="'+esc(P.tag)+'"></label>'
+    +'<label>ชื่อชุด (ตัวใหญ่)<input type="text" data-p="title" value="'+esc(P.title)+'" placeholder="เช่น GENTLE SET"></label>'
+    +'<label>รหัสชุด<input type="text" data-p="code" value="'+esc(P.code)+'" placeholder="เช่น PAY-103"></label>'
+    +'<div class="row"><label>ราคาพิเศษ (บาท)<input type="text" inputmode="numeric" data-p="price" value="'+esc(P.price)+'" placeholder="'+(sum>0?("รวมจากแคตตาล็อก "+Math.round(sum).toLocaleString("th-TH")):"เว้นว่าง = สอบถามราคา")+'"></label>'
+    +'<label>ราคาปกติ (ขีดฆ่า)<input type="text" inputmode="numeric" data-p="normal" value="'+esc(P.normal)+'"></label></div>'
+    +'<label class="ck"><input type="checkbox" data-b="itemPrice"'+(B.itemPrice?" checked":"")+'> แสดงราคาแต่ละรายการ</label>'
+    +'<div class="row"><label>หน่วยขนาด<select data-b="unit">'+opt(B.unit,[["cm","ซม."],["mm","มม."]])+'</select></label></div>'
+    +'<label>ของแถม (เว้นว่าง = ไม่แสดง)<textarea data-p="gift" rows="2" placeholder="เช่น สตูลนั่งพักคอย 2 ลูก">'+esc(P.gift)+'</textarea></label>'
+    +'<h5>ร้าน (จำในเครื่องนี้)</h5>'
+    +'<div class="row"><label>โทร<input type="text" data-b="tel" value="'+esc(B.tel)+'"></label><label>LINE<input type="text" data-b="line" value="'+esc(B.line)+'"></label></div>'
+    +'<label>เว็บ / เพจ<input type="text" data-b="web" value="'+esc(B.web)+'"></label>'
+    +'<div class="row"><label>โลโก้<span class="img"><img data-i="logo" style="'+(B.logo?'':'display:none')+'" src="'+esc(B.logo||"")+'"><button class="ibtn" data-a="logo">เลือกรูป</button><button class="ibtn" data-a="logoX" title="เอาออก">✕</button></span></label></div>'
+    +'<div class="row"><label>QR (LINE / เพจ)<span class="img"><img data-i="qr" style="'+(B.qr?'':'display:none')+'" src="'+esc(B.qr||"")+'"><button class="ibtn" data-a="qr">เลือกรูป</button><button class="ibtn" data-a="qrX" title="เอาออก">✕</button></span></label></div>'
+    +'<div class="row"><label>สีหลัก<input type="color" data-b="c1" value="'+esc(B.c1)+'"></label><label>สีพื้น<input type="color" data-b="c2" value="'+esc(B.c2)+'"></label></div>'
+    +'</div><div class="pa"><button class="ibtn" data-a="png" style="background:var(--accent);color:#fff;border-color:transparent">⬇ บันทึก PNG</button><button class="ibtn" data-a="copy">📋 คัดลอกภาพ</button></div></div>'
+    +'<div class="pv"><canvas></canvas><div class="st"></div></div></div>';
+  document.body.appendChild(ov); PLP.el=ov;
+  const cv=ov.querySelector("canvas"), st=ov.querySelector(".st");
+  const say=t=>{ st.textContent=t||""; st.style.display=t?"":"none"; };
+  const saveBrand=()=>{ try{ lsSet(PLP_LS,PLP.brand); }catch(e){} };
+  const redraw=async(shoot)=>{ if(PLP.busy) { PLP.again=PLP.again||shoot||"draw"; return; } PLP.busy=true;
+    try{ if(shoot){ say("กำลังถ่ายภาพห้อง…"); await new Promise(r=>setTimeout(r,30)); await plpShoot(shoot==="force"); }
+      const res=await plpCompose(cv); say(res.items+" รายการ"+(res.price!=null?" · ราคา "+plpMoney(res.price):"")); }
+    catch(e){ console.error("poster:",e); say("⚠ "+(e&&e.message||e)); }
+    finally{ PLP.busy=false; if(PLP.again){ const a=PLP.again; PLP.again=null; redraw(a==="draw"?false:a); } } };
+  const soon=()=>{ clearTimeout(PLP.tmr); PLP.tmr=setTimeout(()=>redraw(false),180); };
+  ov.addEventListener("input",e=>{ const t=e.target;
+    if(t.dataset.p!=null){ P[t.dataset.p]=t.value; PLP.dirty=true; soon(); return; }
+    if(t.dataset.b!=null&&t.type!=="checkbox"&&t.tagName!=="SELECT"){ PLP.brand[t.dataset.b]=t.value; saveBrand(); soon(); } });
+  ov.addEventListener("change",e=>{ const t=e.target, kb=t.dataset.b; if(kb==null) return;
+    PLP.brand[kb]=(t.type==="checkbox")?t.checked:t.value; saveBrand();
+    redraw(["size","cam","noEdge","plan","c1","c2"].includes(kb)?true:false); });
+  const pick=key=>{ const fi=document.createElement("input"); fi.type="file"; fi.accept="image/*";
+    fi.onchange=()=>{ const f=fi.files&&fi.files[0]; if(!f) return;
+      const rd=new FileReader(); rd.onload=async()=>{ let url=String(rd.result||"");
+        try{ const im=await plpImg(url); if(im){ const mx=600, s=Math.min(1,mx/Math.max(im.width,im.height)); const c=document.createElement("canvas"); c.width=Math.max(1,Math.round(im.width*s)); c.height=Math.max(1,Math.round(im.height*s));
+            c.getContext("2d").drawImage(im,0,0,c.width,c.height); url=c.toDataURL("image/png"); } }catch(_){}   // ย่อไม่เกิน 600 px — เก็บในเครื่องได้ ไม่หนัก
+        PLP.brand[key]=url; saveBrand(); const im2=ov.querySelector('img[data-i="'+key+'"]'); if(im2){ im2.src=url; im2.style.display=""; } redraw(false); };
+      rd.readAsDataURL(f); };
+    fi.click(); };
+  ov.addEventListener("click",async e=>{ const b=e.target.closest("[data-a]"); if(!b) return; const a=b.dataset.a;
+    if(a==="x"){ plpClose(); return; }
+    if(a==="shot"){ redraw("force"); return; }
+    if(a==="logo"||a==="qr"){ pick(a); return; }
+    if(a==="logoX"||a==="qrX"){ const key=a.slice(0,-1); PLP.brand[key]=""; saveBrand(); const im=ov.querySelector('img[data-i="'+key+'"]'); if(im) im.style.display="none"; redraw(false); return; }
+    if(a==="png"){ cv.toBlob(bl=>{ if(!bl){ toast("บันทึกภาพไม่สำเร็จ"); return; } const u=URL.createObjectURL(bl), A=document.createElement("a");
+        A.href=u; A.download=(String(P.title||P.code||"poster").trim().replace(/[\\\/:*?"<>|]+/g,"_")||"poster")+".png"; document.body.appendChild(A); A.click(); A.remove(); setTimeout(()=>URL.revokeObjectURL(u),4000); toast("บันทึกโปสเตอร์แล้ว"); },"image/png"); return; }
+    if(a==="copy"){ cv.toBlob(async bl=>{ try{ await navigator.clipboard.write([new ClipboardItem({"image/png":bl})]); toast("📋 คัดลอกภาพแล้ว — วางในไลน์/แชทได้เลย"); }
+        catch(err){ toast("เบราว์เซอร์นี้คัดลอกภาพไม่ได้ — ใช้ ⬇ บันทึก PNG แทน"); } },"image/png"); return; } });
+  ov.addEventListener("mousedown",e=>{ if(e.target===ov) plpClose(); });
+  ov.addEventListener("keydown",e=>{ if(e.key==="Escape"){ e.preventDefault(); plpClose(); } e.stopPropagation(); });   // ปุ่มลัดของโปรแกรม (Del/Ctrl+Z) ไม่ทะลุไปถึงตู้ในห้อง
+  say("กำลังเตรียมภาพ…"); await plpFonts(); await redraw(true);
+}
+function plpClose(){ if(PLP.el){ PLP.el.remove(); PLP.el=null; } clearTimeout(PLP.tmr);
+  if(PLP.dirty){ PLP.dirty=false; try{ autosave(); }catch(e){} } }
 function plPanelGrid(){
   const tabs=$("plTabs"), grid=$("plGrid"); if(!tabs||!grid) return;
   if(!PL.items){ grid.innerHTML='<div style="grid-column:1/-1;color:var(--ink-dim)">กำลังอ่านคลังตู้…</div>'; try{ plGridWait("กำลังอ่านคลังตู้…",0,0); }catch(e){} return; }
@@ -43953,6 +44272,16 @@ function snvSerialize(opt){
   const obj=root.children.map(node).filter(Boolean);
   return {geo:G,mat:M,tex:T,obj,files}; }
 /* ข้อมูลประกอบที่หน้าดูต้องใช้ — คิดด้วยฟังก์ชันเดียวกับโปรแกรม ท่าบาน/ลิ้นชัก/แยกประกอบจึงตรงกันทุกประการ */
+/* ───────── v1.457: กรอบรวมของตู้ (ขนาดรวมแบบรูปสินค้า) ─────────
+   ต่างจาก cabWHD (ขนาดโครงตู้ส่ง Production — ไม่นับบาน/ชิ้นแสดงผล): ตัวนี้นับทุกชิ้นที่เห็นของตู้ รวมบาน ขา ตีนตู้
+   ไม่นับมือจับ เส้นแบ่ง ไฟ LED และชิ้นที่ไม่ได้วาด · คืน [minX,minY,minZ,maxX,maxY,maxZ] (พิกัดเดียวกับชิ้นในฉาก) */
+function cabOverallBox(g){
+  const mn=[Infinity,Infinity,Infinity], mx=[-Infinity,-Infinity,-Infinity];
+  ((g&&g.boards)||[]).forEach(b=>{ if(!b||isGuideLine(b)||b._pull||b._pullOwner||b._led||b._lineHide||b._noPanel) return;
+    if((state.hidden||[]).includes(b.id)) return;
+    let d; try{ d=worldDims(b); }catch(e){ return; } if(!d||!(d[0]>0)) return;
+    const c=[+b.x||0,+b.y||0,+b.z||0]; for(let a=0;a<3;a++){ mn[a]=Math.min(mn[a],c[a]-d[a]/2); mx[a]=Math.max(mx[a],c[a]+d[a]/2); } });
+  return isFinite(mn[0])?mn.concat(mx):null; }
 function snvMeta(){
   const r1=v=>Math.round((+v||0)*10)/10, r2=v=>Math.round((+v||0)*100)/100, r4=v=>Math.round((+v||0)*1e4)/1e4;
   const keyOf={}, keys=[];
@@ -43981,6 +44310,7 @@ function snvMeta(){
   let gs=[]; try{ gs=cabGroups().filter(g=>!dispOnlyGroup(g)); }catch(e){}   // v1.362: ตีนตู้สแตนเลส (ชิ้นแสดงผลล้วน) ไม่ใช่ตู้ในหน้าดูงาน
   const cabs=gs.map(g=>{ const o={k:String(g.key), n:String(g.productId||g.cab||""), c:String(g.cab||""), cnt:g.boards.filter(b=>b&&!b._virtual&&!isGuideLine(b)).length};
     try{ const f=cabFrontDir(String(g.key)); if(f&&f.length===3) o.f=f.map(v=>Math.round(v*1000)/1000); }catch(e){}   // v1.340: สแกนแล้วหันกล้องเข้าหน้าตู้
+    try{ const bb=cabOverallBox(g); if(bb) o.b=bb.map(v=>Math.round(v*10)/10); }catch(e){}   // v1.457: กรอบรวมตู้ (ปุ่ม 📐 ขนาดตู้ ในหน้าดูงาน)
     return o; });
   const info={};
   state.boards.forEach(b=>{ if(!b) return;
@@ -55054,6 +55384,10 @@ button{font:inherit;color:inherit}
 #vwScan>span{flex:1 1 220px;min-width:0}
 #vwScan button{border:1px solid var(--line);background:var(--bg);border-radius:9px;padding:5px 10px;cursor:pointer;white-space:nowrap}
 @media(min-width:760px){#vwScan{left:50%;right:auto;transform:translateX(-50%);max-width:min(900px,calc(100vw - 440px))}}
+/* v1.457: แถบชิ้นที่สแกนขึ้นไปชิดบน (ผู้ใช้ 11:58: อยากได้พื้นที่แคปรูป) — จอกว้างวางข้างการ์ดชื่องานถ้าพอ ไม่พอ/จอแคบ = ซ่อนการ์ดชื่องานชั่วคราว แถบขึ้นแทนที่ */
+body.vwScanTop #vwTop .t{display:none}
+body.vwScanTop #vwScan{top:calc(8px + env(safe-area-inset-top))}
+#vwScan button[data-a="snap"]{padding:5px 8px}
 /* ───────── v1.346: มือถือเห็นเครื่องมือครบ ─────────
    เดิมแถวล่างมีปุ่มเรียงยาวเกินจอ ต้องปัดซ้ายขวา (แถบเลื่อนซ่อนอยู่) คนเปิดจากมือถือเลยเห็นปุ่มไม่ครบ
    จอแคบ: แถวล่างเหลือเครื่องมือหลัก (ดูชิ้น · วัด · เปิดบาน) + "⋯ เพิ่มเติม" = แผงรวมปุ่มที่เหลือทั้งหมด · จอกว้างเรียงแถวเดียวเหมือนเดิม */
@@ -55082,6 +55416,7 @@ button{font:inherit;color:inherit}
 #vwLbl{position:fixed;inset:0;pointer-events:none;z-index:4;overflow:hidden}
 #vwLbl .dl{position:absolute;transform:translate(-50%,-50%);background:#e8590c;color:#fff;font:600 12px/1.25 ui-monospace,Menlo,Consolas,monospace;padding:3px 7px;border-radius:7px;white-space:nowrap;box-shadow:0 2px 8px rgba(0,0,0,.25)}
 #vwLbl .dl small{font:500 10.5px system-ui,sans-serif;opacity:.92;margin-right:4px}
+#vwLbl .dl.cd{background:#1f2937}   /* v1.457: ป้ายขนาดรวมตู้ (สีเข้ม แยกจากป้ายวัดชิ้นสีส้ม) */
 #vwLbl .pin{position:absolute;transform:translate(-50%,-100%);pointer-events:auto;cursor:pointer;display:flex;flex-direction:column;align-items:center}
 #vwLbl .pin b{background:#16a34a;color:#fff;font:700 12.5px system-ui,sans-serif;padding:5px 10px;border-radius:10px;white-space:nowrap;box-shadow:0 6px 18px -6px rgba(0,0,0,.5);border:2px solid #fff;animation:vwpin 1.1s ease-in-out 4}
 #vwLbl .pin i{display:block;width:2px;height:24px;background:#16a34a}
@@ -55137,6 +55472,7 @@ button{font:inherit;color:inherit}
   #vwTop .t span{font-size:10.5px}
   .vbtn{padding:5px 10px;border-radius:9px;font-size:12.5px}
   #vwScan{left:6px;right:6px;top:calc(50px + env(safe-area-inset-top));font-size:11.5px;padding:5px 8px;gap:4px;border-radius:10px;border-left-width:3px}
+  body.vwScanTop #vwScan{top:calc(6px + env(safe-area-inset-top));right:62px}   /* v1.457: เว้นปุ่ม ☰ ตู้ */
   #vwScan span.d,#vwScan span.w{font-size:11px}
   #vwScan button{padding:3px 8px;font-size:11.5px;border-radius:8px}
   #vwScan .lg{display:none}
@@ -55187,6 +55523,8 @@ button{font:inherit;color:inherit}
   <button class="vbtn" id="vwMore" aria-label="เครื่องมือเพิ่มเติม">⋯ เพิ่มเติม</button>
   <div id="vwExtra">
     <button class="vbtn" id="vwAllDoors">เปิดทุกบาน</button>
+    <button class="vbtn" id="vwCabDim" title="เปิด/ปิดเส้นบอกขนาดรวมของตู้ (กว้าง × สูง × ลึก)">📐 ขนาดตู้</button>
+    <button class="vbtn" id="vwSnap" title="บันทึกภาพ 3D ตอนนี้เป็น PNG — ไม่มีกล่องข้อความ/ปุ่ม (ป้ายขนาดที่เปิดอยู่ติดไปด้วย)">📷 แคปรูป</button>
     <button class="vbtn" id="vwGhost">โปร่งใส</button>
     <span class="rng" id="vwExpRow">แยกประกอบ <input type="range" id="vwExp" min="0" max="100" value="0"><span id="vwExpV">0%</span></span>
     <button class="vbtn" id="vwReset">มุมมอง</button>
@@ -55577,7 +55915,10 @@ function isolate(ci){ S.iso=ci||null;
 function frontView(c){ var f=c&&c.f; if(!f) return null; return {th:Math.atan2(f[0],f[2])+.45, ph:1.05}; }   // มุมสามส่วนสี่ด้านหน้าตู้
 function cabIds(ci){ var I=S.D.info||{}; return Object.keys(I).filter(function(id){ return I[id]&&I[id].ci===ci; }); }
 function cabDoorKeys(ci){ var D=S.D, s={}; Object.keys(D.key||{}).forEach(function(id){ var I=D.info&&D.info[id]; if(I&&I.ci===ci) s[D.key[id]]=1; }); return Object.keys(s); }
-function scanBar(html){ var el=$("vwScan"); if(!el){ el=document.createElement("div"); el.id="vwScan"; document.body.appendChild(el); } el.innerHTML=html; measPos(); return el; }
+function scanBar(html){ var el=$("vwScan"); if(!el){ el=document.createElement("div"); el.id="vwScan"; document.body.appendChild(el);
+    el.addEventListener("click",function(e){ var t=e.target.closest&&e.target.closest('button[data-a="snap"]'); if(t) snapShot(); });   // v1.457: 📷 แคปรูป (ผู้เรียกตั้ง onclick ทับได้ ตัวนี้ไม่หาย)
+    try{ var mo=new MutationObserver(function(){ measPos(); }); ["vwCabs","vwInfo"].forEach(function(id){ var x=$(id); if(x) mo.observe(x,{attributes:true,attributeFilter:["class"]}); }); }catch(e){} }   // v1.457: แผงขวาเปิด/ปิด → จัดแถบใหม่
+  el.innerHTML=html+'<button data-a="snap" title="แคปรูป 3D — ไม่มีกล่องข้อความ">📷</button>'; measPos(); return el; }
 function scanFocus(pk,quiet){
   var ids=findPart(pk);
   if(!ids.length){ var c0=S.D._alias&&cabByKey(S.D._alias.c);
@@ -55710,9 +56051,121 @@ function dimTick(){ var put=[];
     put.push({x:sp.x,y:y,w:w,h:h}); l.el.style.left=sp.x+"px"; l.el.style.top=y+"px"; }); }
 /* v1.346: แถบผลวัดเคยมุดอยู่ใต้การ์ดชิ้นที่สแกน (อยู่ตำแหน่งเดียวกัน ชั้นเดียวกัน) — เดิมเช็ก sc.offsetParent ซึ่งเป็น null เสมอกับกล่อง position:fixed
    → วัดกรอบการ์ดจริง ถ้ามีการ์ด วางแถบใต้การ์ด (ทุกขนาดจอ) */
-function measPos(){ var sc=$("vwScan"), el=$("vwMeas"); if(!el) return;
+/* ───────── v1.457: ตำแหน่งแถบชิ้นที่สแกน ─────────
+   เดิมอยู่ใต้การ์ดชื่องาน (บนลงมา 64px) กินที่กลางจอ เวลาแคปรูปจึงติดกล่องข้อความ
+   จอกว้าง: วางข้างการ์ดชื่องาน แถวเดียวกับการ์ด (ถ้าที่ว่างถึง 560px) · ไม่พอ/จอแคบ: ซ่อนการ์ดชื่องานขณะมีแถบ แถบขึ้นชิดบนแทน */
+function scanPlace(){ var el=$("vwScan"), B=document.body; if(!B) return;
+  B.classList.remove("vwScanTop"); if(!el) return;
+  el.style.left=el.style.right=el.style.top=el.style.transform=el.style.maxWidth="";
+  if(!el.getClientRects().length) return;
+  var W=innerWidth, t=document.querySelector("#vwTop .t"), cb=$("vwCabBtn");
+  if(W>=760&&t&&t.getClientRects().length){ var tr=t.getBoundingClientRect(), cr=(cb&&cb.getClientRects().length)?cb.getBoundingClientRect():{left:W-12};
+    var side=document.querySelector("#vwCabs:not(.hide),#vwInfo:not(.hide)"), rEdge=Math.min(cr.left-10,side?W-404:W-10), L=tr.right+10;
+    if(rEdge-L>=560){ el.style.top=tr.top+"px"; el.style.left=L+"px"; el.style.right=Math.max(W-rEdge,0)+"px"; el.style.transform="none"; el.style.maxWidth="none"; return; } }
+  B.classList.add("vwScanTop"); }
+/* ───────── v1.457: 📷 แคปรูป ─────────
+   ผู้ใช้ 11:58: "ไม่ก็เพิ่มปุ่มแคปรูปที่ไม่ติดกล่องข้อความใด ๆ เลย"
+   วาดฉากใหม่ที่ความละเอียด 2 เท่าของจอ (ไม่เกิน 4096 px) เอาแต่ภาพ 3D — การ์ด แถบ ปุ่ม หมุด คำแนะนำ ไม่ติด · กรอบเลือกสีฟ้าซ่อน
+   ป้ายขนาดที่เปิดอยู่ (📏 วัด / 📐 ขนาดตู้) วาดลงภาพตามตำแหน่งบนจอ (ไม่งั้นเหลือแต่เส้นไม่มีตัวเลข)
+   มือถือ: เปิดหน้าแชร์ (บันทึกลงรูป / ส่งไลน์) · คอม: ดาวน์โหลด PNG */
+function snapShot(){ if(!renderer||!scene||!camera) return;
+  var pr=renderer.getPixelRatio(), k=Math.max(1,Math.min(2,4096/(Math.max(innerWidth,innerHeight)*pr))), sb=!!(selBox&&selBox.visible), cv=null;
+  try{ if(selBox) selBox.visible=false;
+    renderer.setPixelRatio(pr*k); renderer.render(scene,camera);
+    var src=renderer.domElement; cv=document.createElement("canvas"); cv.width=src.width; cv.height=src.height;
+    var g=cv.getContext("2d"); g.drawImage(src,0,0);
+    var sx=cv.width/Math.max(innerWidth,1);
+    [].concat(DIM.lab||[],CD.lab||[]).forEach(function(l){ var e=l.el; if(!e||e.style.display==="none"||!e.isConnected) return;
+      var x=parseFloat(e.style.left), y=parseFloat(e.style.top); if(!isFinite(x)||!isFinite(y)) return;
+      var cs=getComputedStyle(e), sm=e.querySelector("small"), cap=sm?sm.textContent:"", val=(e.textContent||"").slice(cap.length);
+      var f1=Math.round(10.5*sx)+"px system-ui,sans-serif", f2="600 "+Math.round(12*sx)+"px ui-monospace,Menlo,Consolas,monospace";
+      g.font=f1; var w1=cap?g.measureText(cap).width+4*sx:0; g.font=f2; var w2=g.measureText(val).width, pw=w1+w2+14*sx, ph=20*sx, X=x*sx-pw/2, Y=y*sx-ph/2;
+      g.fillStyle=cs.backgroundColor||"#1f2937"; g.beginPath(); if(g.roundRect) g.roundRect(X,Y,pw,ph,7*sx); else g.rect(X,Y,pw,ph); g.fill();
+      g.fillStyle="#fff"; g.textBaseline="middle"; if(cap){ g.font=f1; g.globalAlpha=.92; g.fillText(cap,X+7*sx,Y+ph/2); g.globalAlpha=1; } g.font=f2; g.fillText(val,X+7*sx+w1,Y+ph/2+.5*sx); }); }
+  catch(e){ console.error("snap:",e); cv=null; }
+  finally{ renderer.setPixelRatio(pr); if(selBox) selBox.visible=sb; S.dirty=true; }
+  if(!cv){ hint("แคปรูปไม่สำเร็จ"); return; }
+  var nm=String((S.D&&S.D.t)||"ดูงาน").replace(/[\\\/:*?"<>|\s]+/g,"_").slice(0,60)||"ดูงาน";
+  try{ var I=S.cur&&S.D.info&&S.D.info[S.cur]; if(I&&I.pid) nm+="_"+String(I.pid).split(",")[0]; }catch(e){}
+  cv.toBlob(function(bl){ if(!bl){ hint("แคปรูปไม่สำเร็จ"); return; }
+    var file=null; try{ file=new File([bl],nm+".png",{type:"image/png"}); }catch(e){}
+    var touch=!!(window.matchMedia&&matchMedia("(pointer:coarse)").matches);
+    if(touch&&file&&navigator.canShare&&navigator.canShare({files:[file]})){ navigator.share({files:[file],title:nm}).catch(function(){}); return; }
+    var u=URL.createObjectURL(bl), A=document.createElement("a"); A.href=u; A.download=nm+".png"; document.body.appendChild(A); A.click(); A.remove();
+    setTimeout(function(){ URL.revokeObjectURL(u); },5000); hint("บันทึกภาพแล้ว ("+cv.width+"×"+cv.height+")"); },"image/png"); }
+function measPos(){ try{ scanPlace(); }catch(e){}
+  var sc=$("vwScan"), el=$("vwMeas"); if(!el) return;
   var r=(sc&&sc.getClientRects().length)?sc.getBoundingClientRect():null;
   el.style.top=(r&&r.height>0)?(r.bottom+6)+"px":""; }
+
+/* ───────── v1.457: ปุ่ม 📐 ขนาดตู้ — เส้นบอกขนาดรวมของตู้ (กว้าง · สูง · ลึก) แบบรูปสินค้า ─────────
+   ผู้ใช้ 15/10 11:31: "ในหน้าดูแบบผลิต ให้มีปุ่มเปิดปิด Dim รวมตู้ เหมือนรูปที่ส่ง" (รูปตู้ทีวี กว้าง 150 · สูง 45 · ลึก 40 ซม.)
+   เดิม: มีแค่ 📏 วัด (แตะทีละชิ้น ได้ ยาว × กว้าง × หนา ของชิ้นนั้น) — ขนาดทั้งตู้ต้องเปิดดูในโปรแกรม
+   ตอนนี้: กดปุ่มเดียว ทุกตู้ที่มองเห็นขึ้นเส้นขนาดรวม (กดซ้ำ = ปิด)
+     กรอบตู้มาจากโปรแกรม (cabs[].b = กล่องรวมทุกชิ้นของตู้ รวมบาน/ขา/ตีน ไม่รวมมือจับ · cabs[].f = ทิศหน้าตู้)
+     ลิงก์เก่าที่ไม่มี b: ใช้กล่องของชิ้นในตู้ที่อบมา (รวมมือจับ — ลึกอาจเกินจริงเท่ามือจับ)
+     กว้าง = เส้นบนพื้นหน้าตู้ · สูง = เส้นตั้งที่มุมหน้าด้านที่หันหากล้อง · ลึก = เส้นบนพื้นด้านข้างนั้น
+     ดูเฉพาะตู้ = ขึ้นตู้เดียว · หมุนกล้องไปอีกข้าง เส้นสูง/ลึกย้ายไปข้างที่เห็นเอง · ตัวเลขเป็น มม. */
+var CD={on:false,g:null,lab:[],sig:"",its:null};
+function cdClear(){ if(CD.g){ scene.remove(CD.g); CD.g.traverse(function(o){ if(o.geometry) o.geometry.dispose(); if(o.material&&o.material.dispose) o.material.dispose(); }); CD.g=null; }
+  CD.lab.forEach(function(l){ l.el.remove(); }); CD.lab=[]; CD.sig=""; S.dirty=true; }
+function cdItems(){ if(CD.its) return CD.its; var I=S.D.info||{}, m={};
+  Object.keys(I).forEach(function(id){ var x=I[id]; if(!x||x.g||x.ci==null) return; (m[x.ci]=m[x.ci]||[]).push.apply(m[x.ci],S.byId[id]||[]); });
+  return (CD.its=m); }
+function cdCabs(){ var out=[], m=cdItems(); root.updateMatrixWorld(true);
+  (S.D.cabs||[]).forEach(function(c){ var its=m[c.k]||[]; if(!its.some(function(it){ return it.o.visible; })) return;   // ตู้ที่ซ่อน (ดูเฉพาะตู้อื่น)
+    var f=(c.f&&c.f.length===3)?new THREE.Vector3(+c.f[0]||0,0,+c.f[2]||0):new THREE.Vector3(0,0,1); if(f.lengthSq()<1e-6) f.set(0,0,1); f.normalize();
+    var bx=new THREE.Box3();
+    if(c.b&&c.b.length===6){ bx.set(new THREE.Vector3(c.b[0],c.b[1],c.b[2]),new THREE.Vector3(c.b[3],c.b[4],c.b[5])).applyMatrix4(root.matrixWorld); }
+    else { var t=new THREE.Box3(); its.forEach(function(it){ if(!it.o.isMesh) return; t.setFromObject(it.o); if(!t.isEmpty()) bx.union(t); }); }
+    if(bx.isEmpty()) return;
+    var r=new THREE.Vector3(f.z,0,-f.x), cen=bx.getCenter(new THREE.Vector3()), sz=bx.getSize(new THREE.Vector3());
+    var W=Math.abs(sz.x*r.x)+Math.abs(sz.z*r.z), D=Math.abs(sz.x*f.x)+Math.abs(sz.z*f.z);   // แกนหน้าตู้ขนานแกนโลกเสมอ (±X/±Z)
+    if(Math.min(W,sz.y,D)<150) return;                                          // ฟิลเลอร์/แผ่นปิด/คิ้ว/ตีน (ด้านใดด้านหนึ่ง < 15 ซม.) ไม่ขึ้นขนาด — ไม่งั้นรกทั้งจอ
+    var side=(new THREE.Vector3().subVectors(camera.position,cen).dot(r)>=0)?1:-1;
+    out.push({k:c.k,f:f,r:r,c:cen,y0:bx.min.y,y1:bx.max.y,W:W,H:sz.y,D:D,s:side,bx:bx}); });
+  /* หลายตู้บนจอ (ดูทั้งออเดอร์): ขึ้นทุกใบ = เส้นทับกันทั้งจอ
+     → แตะชิ้นอยู่ (หรือสแกนมา) = ขนาดตู้ใบนั้น · ไม่ได้เลือก = ขนาดรวมทั้งชุด (กล่องรวมทุกตู้ที่เห็น ตามทิศหน้าที่ตู้ส่วนใหญ่หัน) */
+  if(out.length>1){ var I=S.D.info||{}, pid=S.sel||S.cur, ci=(pid&&I[pid])?I[pid].ci:null, one=out.filter(function(q){ return q.k===ci; });
+    if(one.length) return one;
+    var cnt={}, best=null; out.forEach(function(q){ var key=Math.round(q.f.x)+","+Math.round(q.f.z); cnt[key]=(cnt[key]||0)+1; if(!best||cnt[key]>cnt[best.key]) best={key:key,f:q.f,r:q.r}; });
+    var ub=new THREE.Box3(); out.forEach(function(q){ ub.union(q.bx); });
+    var f2=best.f, r2=best.r, c2=ub.getCenter(new THREE.Vector3()), s2=ub.getSize(new THREE.Vector3());
+    var W2=Math.abs(s2.x*r2.x)+Math.abs(s2.z*r2.z), D2=Math.abs(s2.x*f2.x)+Math.abs(s2.z*f2.z);
+    return [{k:"*all",all:out.length,f:f2,r:r2,c:c2,y0:ub.min.y,y1:ub.max.y,W:W2,H:s2.y,D:D2,s:(new THREE.Vector3().subVectors(camera.position,c2).dot(r2)>=0)?1:-1}]; }
+  return out; }
+function cdBuild(){ cdClear(); var cs=cdCabs(); if(!cs.length) return 0;
+  var pts=[], host=$("vwLbl");
+  cs.forEach(function(q){ var P=function(a,y,b){ return new THREE.Vector3(q.c.x+q.r.x*a+q.f.x*b, y, q.c.z+q.r.z*a+q.f.z*b); };
+    var g=Math.max(25,Math.min(120,Math.max(q.W,q.H,q.D)*.07)), hw=q.W/2, hd=q.D/2, s=q.s, y0=q.y0+.5, y1=q.y1;
+    var seg=function(p0,p1,ov,cap,val){                                               // p0/p1 = จุดบนตู้ · ov = ทิศยื่นออก (ยาว g)
+      var a0=p0.clone().addScaledVector(ov,g), a1=p1.clone().addScaledVector(ov,g);
+      pts.push(p0.clone().addScaledVector(ov,g*.15),a0.clone().addScaledVector(ov,g*.25), p1.clone().addScaledVector(ov,g*.15),a1.clone().addScaledVector(ov,g*.25), a0,a1);
+      var dir=new THREE.Vector3().subVectors(a1,a0).normalize(), tk=dir.multiplyScalar(g*.22);   // ขีดปลายเฉียง
+      pts.push(a0.clone().addScaledVector(ov,g*.18).add(tk),a0.clone().addScaledVector(ov,-g*.18).sub(tk));
+      pts.push(a1.clone().addScaledVector(ov,g*.18).add(tk),a1.clone().addScaledVector(ov,-g*.18).sub(tk));
+      var el=document.createElement("div"); el.className="dl cd"; el.innerHTML="<small>"+cap+"</small>"+fmt(Math.round(val));
+      host.appendChild(el); CD.lab.push({el:el,p:a0.clone().lerp(a1,.5).addScaledVector(ov,g*.55)}); };
+    var Yv=new THREE.Vector3(0,1,0), rs=q.r.clone().multiplyScalar(s);
+    var pre=q.all?"รวม ":"";
+    seg(P(-hw,y0,hd),P(hw,y0,hd),q.f,pre+"กว้าง",q.W);                                // กว้าง: บนพื้นหน้าตู้
+    seg(P(s*hw,y0,hd),P(s*hw,y1,hd),rs,pre+"สูง",q.H);                                  // สูง: มุมหน้า ด้านที่หันหากล้อง
+    seg(P(s*hw,y0,hd),P(s*hw,y0,-hd),rs,pre+"ลึก",q.D); });                             // ลึก: บนพื้นด้านข้างนั้น
+  var gr=new THREE.Group(), ln=new THREE.LineSegments(new THREE.BufferGeometry().setFromPoints(pts),new THREE.LineBasicMaterial({color:0x1f2937,depthTest:false,transparent:true}));
+  ln.renderOrder=49; gr.add(ln); scene.add(gr); CD.g=gr;
+  CD.sig=cs.map(function(q){ return q.k+":"+q.s; }).join("|"); cdTick(); S.dirty=true; return cs.length; }
+/* หมุนกล้องข้ามด้าน / ซ่อน-แสดงตู้ → วาดใหม่ (เช็กเฉพาะเฟรมที่ภาพเปลี่ยน) */
+function cdCheck(){ if(!CD.on) return; var cs=cdCabs(), sig=cs.map(function(q){ return q.k+":"+q.s; }).join("|"); if(sig!==CD.sig) cdBuild(); }
+function cdTick(){ var put=[];
+  ["#vwTop .t","#vwCabBtn","#vwScan","#vwMeas"].forEach(function(s){ var e=document.querySelector(s); if(!e||!e.getClientRects().length) return;
+    var r=e.getBoundingClientRect(); if(r.height>0) put.push({x:(r.left+r.right)/2,y:(r.top+r.bottom)/2,w:r.width,h:r.height}); });
+  CD.lab.forEach(function(l){ var sp=toScreen(l.p); if(!sp){ l.el.style.display="none"; return; } l.el.style.display="";
+    var w=l.el.offsetWidth||64, h=l.el.offsetHeight||22, y=sp.y, st=[0,1,-1,2,-2], k;
+    var hits=function(yy){ return put.some(function(r){ return Math.abs(r.x-sp.x)<(r.w+w)/2+4&&Math.abs(r.y-yy)<(r.h+h)/2+3; }); };
+    for(k=0;k<st.length;k++){ if(!hits(sp.y+st[k]*(h+5))){ y=sp.y+st[k]*(h+5); break; } }
+    put.push({x:sp.x,y:y,w:w,h:h}); l.el.style.left=sp.x+"px"; l.el.style.top=y+"px"; }); }
+function setCabDim(on){ CD.on=!!on; var b=$("vwCabDim"); if(b) b.classList.toggle("on",CD.on);
+  if(!CD.on){ cdClear(); return 0; } var n=cdBuild(); if(!n) hint("ไม่มีตู้ที่มองเห็นอยู่"); return n; }
 
 /* ── โปร่งใส / เงา / ตาราง / ประหยัด ── */
 function setGhost(on){ S.ghost=on; matState(); $("vwGhost").classList.toggle("on",on); S.dirty=true; }   // v1.346: รวมกับ "จางของอื่น" ที่ matState
@@ -55770,6 +56223,9 @@ function bindUI(){
   $("vwAllDoors").onclick=function(){ var ks=allKeys(); if(!ks.length){ hint("งานนี้ไม่มีบานที่เปิดได้"); return; }
     S.allOpen=!ks.every(function(k){ return (S.prog[k]||0)>.5; }); animKeys(ks,S.allOpen?1:0); this.textContent=S.allOpen?"ปิดทุกบาน":"เปิดทุกบาน"; this.classList.toggle("on",S.allOpen); };
   $("vwGhost").onclick=function(){ setGhost(!S.ghost); };
+  { var cdb=$("vwCabDim"); if(cdb){ cdb.style.display=(S.D.cabs&&S.D.cabs.length)?"":"none";   // v1.457: ขนาดรวมตู้
+      cdb.onclick=function(){ var n=setCabDim(!CD.on); if(CD.on&&n) hint("ขนาดรวมตู้ (มม.) — กว้าง × สูง × ลึก รวมบานและขา ไม่รวมมือจับ"+(CD.sig.indexOf("*all")===0?" · หลายตู้ = ขนาดรวมทั้งชุด แตะชิ้นในตู้ไหนขึ้นขนาดตู้นั้น":"")); }; } }
+  { var snb=$("vwSnap"); if(snb) snb.onclick=function(){ var ex=$("vwExtra"); if(ex) ex.classList.remove("open"); var mo=$("vwMore"); if(mo) mo.classList.remove("on"); snapShot(); }; }   // v1.457
   $("vwShadow").onclick=function(){ setShadows(!S.shadows); };
   if($("vwLed")) $("vwLed").onclick=function(){ setLed(!S.ledOn); hint("ไฟ LED "+(S.ledOn?"เปิด":"ปิด")+(S.ledOn&&S.light!=="night"?" — กด แสง ให้เป็น กลางคืน จะเห็นไฟชัดขึ้น":"")); };   // v1.396
   $("vwLight").onclick=function(){ var ks=["room","sun","night"]; setLight(ks[(ks.indexOf(S.light)+1)%ks.length]);   // v1.350
@@ -55894,8 +56350,9 @@ function loop(){ requestAnimationFrame(loop);
     else { S.hiMats.forEach(function(m){ if(m.emissive) m.emissiveIntensity=.85; }); S.pulse=0; S.dirty=true; } }   // v1.346: กะพริบช่วงแรกให้ตาหาเจอ
   if(!S.dirty) return; S.dirty=false;
   if(measDots.length){ var s=Math.max(orbit.r/260,2); measDots.forEach(function(d){ d.scale.set(s,s,s); }); }
+  if(CD.on) cdCheck();                                                     // v1.457: ด้านที่หันหากล้อง/ตู้ที่มองเห็นเปลี่ยน → วาดเส้นขนาดตู้ใหม่
   renderer.render(scene,camera);
-  if(DIM.lab.length) dimTick(); if(S.pin) pinTick(); }
+  if(DIM.lab.length) dimTick(); if(S.pin) pinTick(); if(CD.lab.length) cdTick(); }
 
 function start(){
   status("กำลังโหลดข้อมูลงาน…");
