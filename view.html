@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="th"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover"><meta name="generator" content="StarNexus 1.452"><title>StarNexus — ดูงาน 3D</title><style>
+<html lang="th"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover"><meta name="generator" content="StarNexus 1.456"><title>StarNexus — ดูงาน 3D</title><style>
 :root{--bg:#e7e8ee;--panel:rgba(255,255,255,.94);--solid:#fff;--ink:#172c40;--dim:#5b6b7c;--line:#d5dae2;--accent:#1e5fa8;--warn:#e8590c;--shadow:0 10px 30px -12px rgba(16,32,56,.35)}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html,body{margin:0;height:100%;background:var(--bg);color:var(--ink);font:14px/1.5 system-ui,-apple-system,"Segoe UI","Noto Sans Thai","Sarabun",sans-serif;overflow:hidden;overscroll-behavior:none}
@@ -330,7 +330,7 @@ function build(D,imgs){
     return o; }
   root=new THREE.Group(); if(D.root&&D.root.p) root.position.fromArray(D.root.p); scene.add(root);
   (D.obj||[]).forEach(function(n){ var o=mk(n); root.add(o);
-    var id=n.id||null, it={o:o,id:id,px:o.position.x,py:o.position.y,pz:o.position.z,q:o.quaternion.clone()};
+    var id=n.id||null, it={o:o,id:id,px:o.position.x,py:o.position.y,pz:o.position.z,q:o.quaternion.clone(),hf:n.hf?1:0,hk:n.hk||null};   // v1.456: บานพับ (แขน/ฐาน · ข้อต่อ)
     S.items.push(it); if(id){ (S.byId[id]=S.byId[id]||[]).push(it); } });
   S.mats=mats; }
 
@@ -399,6 +399,21 @@ function resetView(){ var D=S.D, c=D.cam;
   if(c&&c.t){ tween({th:c.th,ph:c.ph,r:c.r,t:new THREE.Vector3().fromArray(c.t)}); }
   else focusBox(sceneBox(),{th:.85,ph:.95}); }
 
+/* ── v1.456: กลไกบานพับ (สูตรเดียวกับ hingeKinAt / hingeKinPole / hinge3DLinkM ในโปรแกรมหลัก) ── */
+function hkAt(phi){ var H=S.D.hk, T=H&&H.t, n=T?T.length:0; if(!n) return null;
+  var x=Math.max(0,Math.min(+phi||0,(n-1)*H.st))/H.st, i=Math.min(Math.floor(x),n-1), j=Math.min(i+1,n-1), f=x-i, A=T[i], B=T[j];
+  return [A[0]+(B[0]-A[0])*f, A[1]+(B[1]-A[1])*f, A[2]+(B[2]-A[2])*f, A[3]+(B[3]-A[3])*f]; }
+function hkPole(k,phi){ var H=S.D.hk; if(!H||!H.t||H.t.length<2) return null;
+  var dk=Math.min(Math.max(+phi||0,0),(H.t.length-1)*H.st); if(dk<0.01) return null;
+  var r=hkAt(dk), t=dk*Math.PI/180, c=Math.cos(t), s=Math.sin(t), C=H.C1, tx=r[0]-(C[0]*c+C[1]*s), tz=r[1]-(-C[0]*s+C[1]*c), a=1-c, det=a*a+s*s;
+  if(!(det>1e-12)) return null;
+  var Px=(a*tx+s*tz)/det, Pz=(-s*tx+a*tz)/det, b=k.b; return [b[0]+b[2]*Px+b[4]*Pz, b[1]+b[3]*Px+b[5]*Pz]; }
+var _hkT=null;
+function hkLinkPose(it,phi){ var H=S.D.hk, a=it.hk, L=a[0];
+  if(!_hkT) _hkT=[new THREE.Matrix4(),new THREE.Matrix4(),new THREE.Vector3(),new THREE.Quaternion(),new THREE.Vector3()];
+  var M=_hkT[0].fromArray(a,1), r=hkAt(phi), A=(L===1)?H.A1:H.A2, ang=r?((L===1)?r[2]:r[3]):0;
+  if(Math.abs(ang)>1e-7){ M.multiply(_hkT[1].makeTranslation(A[0],0,A[1])); M.multiply(_hkT[1].makeRotationY(ang)); M.multiply(_hkT[1].makeTranslation(-A[0],0,-A[1])); }
+  M.decompose(_hkT[2],_hkT[3],_hkT[4]); it.o.position.copy(_hkT[2]); it.o.quaternion.copy(_hkT[3]); }
 /* ── ท่าของบาน/ลิ้นชัก + แยกประกอบ (สูตรเดียวกับโปรแกรมหลัก) ── */
 function keyOf(id){ var D=S.D, own=(D.own&&D.own[id])||id; return (D.key&&D.key[own]!=null)?D.key[own]:null; }
 function applyPose(){
@@ -406,9 +421,12 @@ function applyPose(){
   for(var i=0;i<S.items.length;i++){ var it=S.items[i]; if(!it.id) continue;
     var own=(D.own&&D.own[it.id])||it.id, t=D.door&&D.door[own], k=(D.key&&D.key[own]!=null)?D.key[own]:null, p=(k!=null&&S.prog[k])||0;
     var x=it.px, y=it.py, z=it.pz; it.o.quaternion.copy(it.q);
-    if(t&&p>0){
-      if(t.p){ var rr=t.d*p*Math.PI/180, cs=Math.cos(rr), sn=Math.sin(rr), dx=x-t.p[0], dz=z-t.p[1];
-        x=t.p[0]+dx*cs+dz*sn; z=t.p[1]-dx*sn+dz*cs; _q.setFromAxisAngle(_Y,rr); it.o.quaternion.premultiply(_q); }
+    if(it.hk&&D.hk&&!(ex>0)&&(!t||t.k)){ hkLinkPose(it,(t&&t.k&&p>0)?t.k.ph*p:0); continue; }   // v1.456: ข้อต่อบานพับหมุนรอบหมุดแขน
+    if(t&&p>0&&!(it.hf&&!(ex>0))){                                               // v1.456: แขน/ฐานบานพับอยู่กับแผ่นข้าง (แยกประกอบ = ตามบานทั้งตัว)
+      if(t.p){ var rr=t.d*p*Math.PI/180, cs=Math.cos(rr), sn=Math.sin(rr), P=t.p;
+        if(t.k&&D.hk){ var pp=hkPole(t.k,t.k.ph*p); if(pp) P=pp; }               // v1.456: จุดหมุนตามมุม (กลไกบานพับ)
+        var dx=x-P[0], dz=z-P[1];
+        x=P[0]+dx*cs+dz*sn; z=P[1]-dx*sn+dz*cs; _q.setFromAxisAngle(_Y,rr); it.o.quaternion.premultiply(_q); }
       else if(t.f){ x+=t.f[0]*t.z*p; z+=t.f[1]*t.z*p; } }
     var e=D.exp&&D.exp[it.id]; if(e&&ex>0){ x+=e[0]*ex; y+=e[1]*ex; z+=e[2]*ex; }
     it.o.position.set(x,y,z); }
