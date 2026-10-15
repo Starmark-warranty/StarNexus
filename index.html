@@ -3248,7 +3248,7 @@
    ===================================================================== */
 /* ---- APP_META: แหล่งความจริงเดียวของเวอร์ชัน (ดูได้จาก console / คลิกชื่อแอป) ---- */
 const APP_META={
-  name:"StarNexus", version:"1.460", build:"2026-10-15/poster-text",
+  name:"StarNexus", version:"1.461", build:"2026-10-15/slide3d-dodge",
   file:"StarNexus.html", basedOn:"Furnitech_V3.html (v3.11)",
   /* ───────── เริ่มนับเวอร์ชันใหม่ที่ 1.001 (21/08/2026) ─────────
      ของเดิมนับมาถึง 42.1 แล้ววิ่งเป็นทศนิยมสองชั้นซึ่งอ่านลำดับยาก
@@ -3256,6 +3256,7 @@ const APP_META={
      ประวัติเก่าเก็บไว้ทั้งหมดตามเลขเดิม ไม่ไล่เขียนใหม่ เพราะเลขในนั้นถูกอ้างถึงไปแล้ว
      รายการที่อยู่ใต้ 1.001 ลงไปจึงเป็นเลขชุดเก่า อ่านต่อกันได้ตามวันที่ */
   changelog:[
+    ["1.461","2026-10-15","FEAT ① รางลูกปืนรับข้าง 3D สมจริง (ผู้ใช้ 17:00: “เรามีบานพับ 3D สมจริงแล้ว อยากได้รางลูกปืนรับข้างสมจริงด้วย ตอนเปิดก็ให้สมจริง สีนิกเกิลตามบานพับ”) — เดิมลิ้นชักกล่องไม้ไม่มีรางในฉากเลย ช่องเผื่อรางระหว่างกล่องกับแผ่นข้างว่าง เปิดลิ้นชักแล้วกล่องลอยออกมาเฉย ๆ · ตอนนี้วาดราง 3 ท่อน สูง 45 หนาเต็มช่องเผื่อราง ทั้งสองข้างของกล่องที่ใช้รางรับข้าง: ตัวนอกติดแผ่นข้างตู้ (ปีกม้วนเป็นร่องลูกปืน · รูกลมตรงรูนำสกรูที่เจาะจริง + รูยาว · ยางกันกระแทกท้าย) · ตัวกลาง · ตัวในติดกล่อง (ก้านปลดรางสีดำ) · ลูกปืน 2 แถวต่อชั้นในรังพลาสติก · ยาวราง/สูงศูนย์รางคิดทางเดียวกับรูนำ (drillDrawerSlides) · ข้างซ้ายเป็นรูปสะท้อนของข้างขวา · เปิดลิ้นชัก: ตัวในไปกับกล่อง ตัวกลางครึ่งระยะ รังลูกปืน ¼ / ¾ ตัวนอกค้างที่แผ่นข้าง — ทั้งภาพนิ่ง อนิเมชันเร็ว หน้าดูงาน (n.sk) และ .glb · สีตาม “สีบานพับ 3D” (นิกเกิล) ลูกปืนโครเมียม · ภาพอย่างเดียว ไม่แตะรูเจาะ/ไฟล์ส่งออก · ไม่วาดรางรับใต้/แผงเหล็ก/ตอนแยกประกอบ · ปิด: ตั้งค่า → Drawer System หรือ SN_OFF.slide3D=1 ② หลบเดือย/มินิฟิกที่เจาะชนกันคนละผิว (ผู้ใช้: แผ่นหลังที่อีกฝั่งเจาะชน ขยับหลบ 16 อีกฝั่งที่ไม่ชนขยับตาม · ตอบเพิ่ม: แผ่นขอบสั้นกว่าหลบ · ทิศอัตโนมัติ · อีกฝั่ง = ขอบอีกข้างของแผ่นเดียวกัน · ใช้ทุกชิ้น) — เดิม JMT008: เดือยล่าง Back Panel 1 กับ Back Panel 2 สูง 50 เท่ากัน ตรงกันคนละผิวของ Divider 1 ลึก 12+12 ในไม้ 16.2 แถม drillMates รวมเป็นรูเดียว (Back Panel 2 ไม่มีรูคู่ · MPR เสาขาด 1 รู) · ตอนนี้ก่อนยิงรูคู่ทั้งตู้ (เจาะรูคู่อัตโนมัติ/เชื่อมเดือยใหม่/ส่งออก) mateDodgePlan หาจุดชน (คนละผิว ห่าง < รัศมีรวม+2 ลึกรวม > หนา−1) → แผ่นที่ขอบประกบสั้นกว่าเลื่อน 16 (เข้าหากลางก่อน · ห่างจุดข้าง ๆ/ปลายขอบไม่ถึง 20 หรือไปชนรูอื่น ค่อยออกหาขอบ) + ขอบตรงข้ามจุดเดียวกันเลื่อนตาม · เก็บที่ c._dodge (แยกจาก c.shift) dowelAlong บวกให้ → 3D/รูคู่/MPR/แบบผลิตตรงกัน · คิดใหม่ทุกรอบ ไม่ชนแล้วกลับที่เดิม · JMT008: Back Panel 2 เดือยล่าง 50→66 ทั้งสองขอบ · Divider 1 ได้รูคู่ครบทั้งสองผิว · Right Side 166.9→182.9 · ชิ้นอื่นไม่เปลี่ยน · ปิด: ตั้งค่า → Corner Connector หรือ SN_OFF.mateDodge=1"],
     ["1.460","2026-10-15","UX โปสเตอร์ขาย (ผู้ใช้ 12:59: “ปรับขนาดตัวหนังสือได้ไหม” · “ปิดแสดงรหัสตู้ได้ไหม”) — แถบเลื่อนขนาดตัวหนังสือ 3 ชุด: ชื่อชุด (50–150%) · หัวข้อเล็ก+ป้าย (60–170%) · รายการสินค้า (80–150% · รายการโตขึ้นจนล้น = ภาพห้องย่อลงแล้วถ่ายใหม่เอง) เก็บไปกับงาน · ชื่อชุดใหญ่ได้ไม่เกินช่องระหว่างหัวข้อเล็กกับป้าย (ไม่ทับกัน) · ติ๊ก “แสดงรหัสตู้ในรายการ” ปิดได้ · ชื่อรายการตัดขนาดรุ่นที่ติดมากับคำอธิบายรหัสออก (เดิม “2 บาน · 2 ชั้นตาย · 900×596×2300” ขัดกับขนาดจริง 796×400×1000 ที่บรรทัดล่าง)"],
     ["1.459","2026-10-15","FEAT ส่งออก 3D (.glb) สำหรับ Blender (ผู้ใช้ 12:57: “ปุ่มส่งออกให้ Blender” — เรนเดอร์ภาพเหมือนจริงเองฟรี) — ปุ่ม 🧊 ในหน้าส่งออก และท้ายแผงห้องออกแบบ (คู่กับ 🖼 โปสเตอร์ขาย) · ส่งทุกชิ้นที่เห็นในฉากตามท่าที่เห็น (บานเปิด/แยกชิ้น/ซ่อนชิ้นตามจอ) รวมมือจับ บานพับ 3D ขา ชั้นรองเท้า · ตัดเส้นขอบ ป้าย กรอบเลือก เส้นแนว พื้นเงา เดือย/มินิฟิกในเนื้อไม้ แผ่นโปร่งที่ใช้เน้น · ห้องออกแบบเปิดอยู่ = ส่งผนัง+พื้นห้องไปด้วย (วัสดุทึบ) · หน่วยเมตร (มม. × 0.001) Blender เปิดมาขนาดจริง · วัสดุ PBR เดิม (สี ความด้าน โลหะ ลายไม้ + KHR_texture_transform) รูปลายไม่เกิน 2048 px · ชื่อวัตถุ = รหัสตู้ · ชื่อชิ้น · ตัวส่งออก THREE.GLTFExporter (three.js r128 · MIT) ฝังในไฟล์ ไม่โหลดจากเน็ต · ปิดปุ่ม SN_OFF={glbExport:1}"],
     ["1.458","2026-10-15","FIX ห้องออกแบบ: ตู้ลอยจากพื้น (ผู้ใช้ 12:06 รูป JMT009: “ตู้ใบนี้ไม่ลงพื้น มันมีขาในตัวมันเองแล้ว”) — ห้องออกแบบจัดขา/ความสูงเฉพาะตู้ระดับ ตู้พื้น/ตู้สูง (รหัส B/T หรือตั้งในแคตตาล็อก) · รหัสอื่น (JMT… MWA… BF_…) เป็นระดับ “อื่น ๆ” ไม่ถูกแตะ วางตามพิกัดโมเดล ซึ่งโมเดล JMT ตั้งตู้ไว้ที่ y 100 (เผื่อระยะขา) ทั้งที่ตัวตู้มีฐานเอง (แผ่นข้างลงถึงก้น + คิ้ว · K_LEG noLeg) จึงลอย 10 ซม. · ตอนนี้ตู้ระดับ “อื่น ๆ” (ไม่ใช่ช่อง Cosimo/ฟิลเลอร์) ที่ลอยไม่เกิน 30 ซม. และไม่มีตู้อื่นรองข้างใต้ เลื่อนลงแตะพื้นเอง (ไม่เติมขา) · ลอยเกิน 30 ซม./มีตู้รอง (ตู้ซ้อน) = ไม่แตะ · ตู้ที่วางไว้แล้วกด “จัดแนวทั้งห้อง” หรือลากนิดเดียวก็ลง · เพิ่มปุ่ม ⬇ ลงพื้น ในแผงตู้ที่เลือก (ขึ้นเมื่อก้นไม่แตะพื้น · ไม่ขึ้นกับตู้ลอย W) · ปิด SN_OFF={plOtherFloor:1}"],
@@ -3872,7 +3873,7 @@ const DEF_SETTINGS={ frontSetMax:6, dowelD:8, dowelDepth:28, dowelMateDepth:12, 
   railAutoGap:500,   // v1.292: คานขวางในโครง ห่างกันไม่เกินกี่ มม. ก่อนต้องเพิ่มคาน
   ledStripGapMax:40, ledStripMaxL:5000,   // v1.294: เส้นไฟข้ามรอยที่ชั้นตัดรางได้ไม่เกินกี่ มม. · ยาวสุดต่อเส้น (ม้วน)
   drawerBotThick:9, drawerBotLift:11, drawerBotOver:4.5, drawerBotClear:0.5, drawerBotMacroOn:true, drawerBotPipeNotch:false, drawerBotPipeW:40, drawerBotPipeH:25,
-  mfMark:true, mfMarkColor:"#ff8a00", hingeMark:true, hingeMarkColor:"#0a84ff", hinge3D:true, hingeFinish:"nickel", mfBoltD:8, mfBoltDepth:28, mfCamD:15, mfCamDepth:13, mfCamOffset:34, mfMateD:5, mfMateDepth:12, mfFixFromFace:8.1, mfCenterMax:16, mfName:"Minifix", mfCode:"MINIFIX",
+  mfMark:true, mfMarkColor:"#ff8a00", hingeMark:true, hingeMarkColor:"#0a84ff", hinge3D:true, hingeFinish:"nickel", slide3D:true, mfBoltD:8, mfBoltDepth:28, mfCamD:15, mfCamDepth:13, mfCamOffset:34, mfMateD:5, mfMateDepth:12, mfFixFromFace:8.1, mfCenterMax:16, mfName:"Minifix", mfCode:"MINIFIX",
   ledMinRun:60,         // v22.8: ท่อนรางที่สั้นกว่านี้ = เศษ ไม่ต้องออก
   hingeShelfClear:96,   // v7.29: ระยะปลอดภัย ศูนย์ถ้วยบานพับ -> ผิวชั้น (มม.)
   hingeAvoidRail:true,  // v22.3: ให้บานพับหลบคานด้วย ไม่ใช่แค่ชั้น
@@ -3910,6 +3911,7 @@ const DEF_SETTINGS={ frontSetMax:6, dowelD:8, dowelDepth:28, dowelMateDepth:12, 
   sinkTrayCabs:"", sinkTraySide:7, sinkTraySideCore:16, sinkTrayStepD:5, sinkTrayFront:"9:10, 4:5, 16:7", sinkTrayH:30, sinkTrayKeyword:"ถาดฟรอยด์",
   grainAuto:true,   // v9.19: ตั้งแนวลายไม้ให้อัตโนมัติตามบทบาทชิ้นและท้ายรหัสสี
   conEdgeMin:25,   // v9.14: ระยะขั้นต่ำจากขอบชิ้นถึงเดือย/มินิฟิก (0 = ไม่บังคับ)
+  mateDodge:true, mateDodgeStep:16,   // v1.461: หลบเดือย/มินิฟิกที่เจาะชนกันคนละผิว (แผ่นขอบสั้นกว่าเลื่อน 16 + ขอบตรงข้ามตาม)
   /* v32.4: ตั้งต้น = ตามสูตรเป๊ะ — ตัวเลขในสูตรเป็นสิ่งที่คนเขียนกำกับไว้เอง
      ระบบไม่ควรไปขยับโดยไม่บอก ใครอยากให้บังคับระยะขอบค่อยเลือกอีกสองแบบ */
   conEdgeRuleMode:"exact",  // exact=ตามสูตรเป๊ะ · shift=เลื่อนทั้งชุด · clamp=บีบเฉพาะตัวที่ล้ำ (แบบเดิม)
@@ -7030,9 +7032,12 @@ function dowelAlong(c,len){
      ผูกไว้กับความยาวขอบที่ใช้คิด — ขนาดเปลี่ยนแล้วยังไม่ถูกคิดใหม่ ก็ถอยไปใช้สูตรตามเดิม */
   if(c&&Array.isArray(c.at)&&c.at.length&&Math.abs((+c.atLen||0)-len)<0.05) return c.at.slice();
   const out=dowelAlong0(c,len);
-  const sh=c&&c.shift; if(!Array.isArray(sh)||!sh.length) return out;
-  const half=len/2, lim=Math.max(half-12,1);
-  return out.map((p,i)=>Math.max(-lim,Math.min(lim,p+(+sh[i]||0))));
+  /* ───────── v1.461: ระยะหลบเดือยที่เจาะชนกันคนละผิว (c._dodge · mateDodgePlan เป็นคนใส่) บวกเพิ่มจาก c.shift ─────────
+     เดิมมีแต่ c.shift (บานพับหลบชั้น) · ระยะหลบเก็บแยกเพื่อไม่ทับค่าที่ตั้งเอง และคิดใหม่ได้ทุกรอบ · ปิดฟีเจอร์ = ไม่บวก */
+  const sh=c&&c.shift, dd=(c&&Array.isArray(c._dodge)&&c._dodge.length&&mateDodgeOn())?c._dodge:null;
+  if((!Array.isArray(sh)||!sh.length)&&!dd) return out;
+  const half=len/2, lim=Math.max(half-12,1), s2=Array.isArray(sh)?sh:[];
+  return out.map((p,i)=>Math.max(-lim,Math.min(lim,p+(+s2[i]||0)+(dd?(+dd[i]||0):0))));
 }
 /* v9.14: กันเดือย/มินิฟิกชิดขอบเกินไป
    สูตรมาตรฐานให้จุดแรกที่ 9-19 มม. จากขอบ ซึ่งพอดีกับขอบสั้น ๆ แต่บนชั้นตายลึก 400+
@@ -7582,6 +7587,188 @@ function hingeCupBlinds(b){
         out.push({x:cc.x, y:cc.y, w:D, h:D, r:D/2, circ:1, depth:dep, face:(c.face==="bottom")?"bottom":"top", _hgCup:1}); }); });
   }catch(e){ console.error("hingeCut:",e); return []; }
   return out; }
+/* ═════════ v1.461: รางลูกปืนรับข้าง 3D สมจริง (ราง 3 ท่อน · ลูกปืน · ชักออกเป็นชั้น) ═════════
+   ผู้ใช้ 15/10 17:00: "เรามีบานพับ 3D สมจริงแล้ว ผมอยากได้รางลูกปืนรับข้าง สมจริงด้วย ตอนเปิดก็ให้สมจริงเช่นกัน สีนิเกิล ตามบานพับได้เลย"
+   เดิม: ลิ้นชักกล่องไม้ไม่มีรางในฉาก 3D เลย (มีแค่รูนำสกรูบนแผ่นข้างตู้) — ช่องเผื่อรางระหว่างกล่องกับแผ่นข้างว่างโล่ง
+         เปิดลิ้นชักแล้วกล่องลอยออกมาเฉย ๆ ไม่มีอะไรรับ
+   ตอนนี้: วาดรางลูกปืน 3 ท่อน (สูง 45 · หนาเต็มช่องเผื่อราง) ทั้งสองข้างของกล่องไม้ที่ใช้รางรับข้าง
+     • ตัวนอก (ติดแผ่นข้างตู้): ตัว C ปีกม้วนเป็นร่องลูกปืน · แผ่นหลังรางเจาะรูกลมตรงรูนำสกรูที่เจาะจริง + รูยาวระหว่างรู · ยางกันกระแทกท้าย (ดำ)
+     • ตัวกลาง: ตัว C ซ้อนใน ปลายปีกม้วนเข้า · ตัวใน (ติดกล่อง): ตัว C หันเข้าหาตู้ + ก้านปลดรางสีดำใกล้หน้า
+     • ลูกปืน 2 แถว บน-ล่าง ต่อชั้น (Ø4 ชั้นนอก · Ø3.5 ชั้นใน) เรียงในรังพลาสติกดำ
+     ผนังโค้งใช้เส้นปกติเรียบ (คิดจากหน้าตัด) สันคมเฉพาะปลายปีก — ไม่เป็นเหลี่ยมแบบ ExtrudeGeometry
+   แกนราง: u = ตามยาวจากท้าย (0) ถึงหน้า (ยาวราง) · v = ตั้ง (0 = ศูนย์ราง) · w = จากผิวในแผ่นข้างตู้ (0) ถึงผิวนอกกล่อง (ช่อง G)
+     ยาวราง / สูงศูนย์ราง / รูนำ คิดทางเดียวกับ drillDrawerSlides (Element.drillH > สูงรายลูก railY > ค่าตั้ง > กลางกล่อง · slideRail · slideDrillOffsets)
+     หน้ารางเสมอหน้ากล่อง · ช่อง G วัดจากแผ่นข้างตู้จริงที่ติดกล่อง (9–16 มม. = รางหนาเต็มช่อง · นอกนั้นใช้ 12.7 ชิดกล่อง)
+     คิดในกรอบของตู้ (หมุนตาม yaw ของกล่อง) ตู้ที่หมุนในห้องออกแบบจึงได้รางถูกทิศ · ข้างซ้าย = รูปสะท้อนของข้างขวา (แบบรางจริงที่เป็นคู่ซ้าย-ขวา)
+   เปิดลิ้นชัก: ตัวในไปกับกล่องเต็มระยะ · ตัวกลางครึ่งหนึ่ง · รังลูกปืนชั้นนอก ¼ · ชั้นใน ¾
+     (ลูกปืนกลิ้งระหว่างสองท่อน จึงไปได้ครึ่งของระยะที่สองท่อนนั้นเลื่อนต่อกัน — แบบรางจริง) · ตัวนอกค้างที่แผ่นข้าง
+     ธง userData._slideK (สัดส่วนระยะชัก) → อนิเมชันเร็ว (_doorApply) และหน้าดูงาน (n.sk) ใช้ค่าเดียวกัน
+   สี: ตามค่า "สีบานพับ 3D" (hingeFinishKey · นิกเกิลเป็นค่าเริ่ม) · ลูกปืนโครเมียม · ภาพอย่างเดียว ไม่มีผลกับรูเจาะ/ไฟล์ส่งออก/ใบอุปกรณ์
+   ไม่วาด: รางรับใต้ (Blum/Häfele/railU) · แผงข้างเหล็ก ALTO/K40 · มุมมองแยกประกอบ · ไม่ใส่ใน meshes (ไม่บังการคลิก/ยิงหารูคู่)
+   ปิด: ตั้งค่า → รางลิ้นชัก → แสดงรางลูกปืนรับข้างเป็นรูป 3D จริง หรือ SN_OFF.slide3D=1 */
+const SL3={H:45, G:12.7, t1:1.2, t2:1.0, t3:1.0, dB1:4.0, dB2:3.5, pB1:7.0, pB2:6.5};
+const _sl3Geo=new Map();
+/* พลาสติกดำ (ยางกันกระแทก/ก้านปลด/รังลูกปืน) — ไม่ใช้ metalMat("plasticBlack") เพราะ metalMat แปลงชื่อเป็นตัวเล็กก่อนค้น PULL_FINISH (คีย์ plasticBlack ตัวใหญ่ = ไม่เจอ → ได้ทองเหลือง) */
+const _sl3MatC={};
+function _sl3Plastic(){ const k=(state.ghost?1:0)+"|"+_metalGen; if(_sl3MatC[k]) return _sl3MatC[k];
+  let c; try{ c=new THREE.Color("#2a2b2d").convertSRGBToLinear(); }catch(e){ c=new THREE.Color(0x2a2b2d); }
+  const m=new THREE.MeshStandardMaterial({color:c, roughness:.55, metalness:0}); m.side=THREE.DoubleSide;
+  if(state.ghost){ m.transparent=true; m.opacity=.4; m.depthWrite=false; }
+  return (_sl3MatC[k]=m); }
+function slide3DOn(){ return !snOff("slide3D")&&settings.slide3D!==false; }
+function _sl3Arc(out,cx,cy,r,a0,a1,n){ for(let i=1;i<=n;i++){ const a=(a0+(a1-a0)*i/n)*Math.PI/180; out.push([cx+r*Math.cos(a),cy+r*Math.sin(a)]); } return out; }
+/* เส้นกลางผนังบาง (จุดเรียงกัน ไม่ปิด) → ขอบปิดของหน้าตัด (ฝั่งซ้ายไป · ฝั่งขวากลับ) หนา t */
+function _sl3Wall(path,t){
+  const n=path.length, A=[], B=[];
+  const sn=(p,q)=>{ const dx=q[0]-p[0], dy=q[1]-p[1], l=Math.hypot(dx,dy)||1; return [-dy/l,dx/l]; };
+  for(let i=0;i<n;i++){ const p=path[i]; let nx=0, ny=0, k=1;
+    if(i>0){ const s=sn(path[i-1],p); nx+=s[0]; ny+=s[1]; }
+    if(i<n-1){ const s=sn(p,path[i+1]); nx+=s[0]; ny+=s[1]; }
+    const l=Math.hypot(nx,ny)||1; nx/=l; ny/=l;
+    if(i>0&&i<n-1){ const s=sn(path[i-1],p); k=1/Math.max(nx*s[0]+ny*s[1],0.5); }   // มุมเลี้ยว = ยืดออฟเซ็ตให้ผนังหนาเท่าเดิม
+    A.push([p[0]+nx*t/2*k, p[1]+ny*t/2*k]); B.push([p[0]-nx*t/2*k, p[1]-ny*t/2*k]); }
+  return A.concat(B.reverse()); }
+/* หน้าตัดปิด (x,y) → ทรงยืดตามแกน z 0..len · เส้นปกติเรียบตามหน้าตัด ยกเว้นมุมที่หักเกิน sharp องศา · ปิดหัวท้าย */
+function _sl3Extrude(ct,len,sharp){
+  let ar=0; for(let i=0;i<ct.length;i++){ const a=ct[i], b=ct[(i+1)%ct.length]; ar+=a[0]*b[1]-b[0]*a[1]; }
+  if(ar<0) ct=ct.slice().reverse();                                                  // ทวนเข็ม → เส้นปกติขอบ = (dy,−dx) ชี้ออก
+  const n=ct.length, en=[], P=[], N=[], cs=Math.cos((sharp||35)*Math.PI/180);
+  for(let i=0;i<n;i++){ const a=ct[i], b=ct[(i+1)%n], dx=b[0]-a[0], dy=b[1]-a[1], l=Math.hypot(dx,dy)||1; en.push([dy/l,-dx/l]); }
+  const vN=(i,e)=>{ const p=en[(i-1+n)%n], c=en[i];
+    if(p[0]*c[0]+p[1]*c[1]>=cs){ const x=p[0]+c[0], y=p[1]+c[1], l=Math.hypot(x,y)||1; return [x/l,y/l]; }
+    return en[e]; };
+  for(let i=0;i<n;i++){ const j=(i+1)%n, a=ct[i], b=ct[j], na=vN(i,i), nb=vN(j,i);
+    [[a,na,0],[b,nb,0],[b,nb,len],[a,na,0],[b,nb,len],[a,na,len]].forEach(v=>{ P.push(v[0][0],v[0][1],v[2]); N.push(v[1][0],v[1][1],0); }); }
+  let tri=[]; try{ tri=THREE.ShapeUtils.triangulateShape(ct.map(p=>new THREE.Vector2(p[0],p[1])),[]); }catch(e){ tri=[]; }
+  tri.forEach(f=>{ let i0=f[0], i1=f[1], i2=f[2]; const A=ct[i0], B=ct[i1], C=ct[i2];
+    if((B[0]-A[0])*(C[1]-A[1])-(B[1]-A[1])*(C[0]-A[0])<0){ const t=i1; i1=i2; i2=t; }
+    [i0,i1,i2].forEach(k=>{ P.push(ct[k][0],ct[k][1],len); N.push(0,0,1); });
+    [i0,i2,i1].forEach(k=>{ P.push(ct[k][0],ct[k][1],0); N.push(0,0,-1); }); });
+  const g=new THREE.BufferGeometry();
+  g.setAttribute("position",new THREE.Float32BufferAttribute(P,3)); g.setAttribute("normal",new THREE.Float32BufferAttribute(N,3));
+  return g; }
+function _sl3Merge(list){
+  const P=[], N=[];
+  list=list.filter(Boolean);
+  if(list.length&&list.every(g=>g.index)){                                            // ทรงมีดัชนีล้วน (ลูกปืน/แถบ) — รวมแบบมีดัชนี จุดน้อยกว่าราว 4 เท่า (ไฟล์ดูงานเล็กลง)
+    const I=[]; let off=0;
+    list.forEach(g=>{ if(!g.attributes.normal) g.computeVertexNormals();
+      const p=g.attributes.position.array, q=g.attributes.normal.array, ix=g.index.array;
+      for(let i=0;i<p.length;i++){ P.push(p[i]); N.push(q[i]); }
+      for(let i=0;i<ix.length;i++) I.push(ix[i]+off);
+      off+=g.attributes.position.count; g.dispose(); });
+    const g=new THREE.BufferGeometry();
+    g.setAttribute("position",new THREE.Float32BufferAttribute(P,3)); g.setAttribute("normal",new THREE.Float32BufferAttribute(N,3));
+    g.setIndex(new THREE.BufferAttribute(off>65535?new Uint32Array(I):new Uint16Array(I),1));
+    g.computeBoundingSphere(); g.userData._keep=true; return g; }
+  list.forEach(g=>{ if(!g) return; const h=g.index?g.toNonIndexed():g; if(!h.attributes.normal) h.computeVertexNormals();
+    const p=h.attributes.position.array, q=h.attributes.normal.array; for(let i=0;i<p.length;i++){ P.push(p[i]); N.push(q[i]); }
+    if(h!==g) h.dispose(); g.dispose(); });
+  const g=new THREE.BufferGeometry();
+  g.setAttribute("position",new THREE.Float32BufferAttribute(P,3)); g.setAttribute("normal",new THREE.Float32BufferAttribute(N,3));
+  g.computeBoundingSphere(); g.userData._keep=true; return g; }
+/* ชุดรูปทรงของรางยาว L ช่อง G (รูนำที่ u ตาม hu) — แคชไว้ใช้ร่วมทุกตัวที่ขนาดเท่ากัน (_keep กันตัวล้างฉากทิ้ง) */
+function slide3DGeos(L,G,hu){
+  const key=[Math.round(L*10),Math.round(G*10),(hu||[]).map(u=>Math.round(u*10)).join(",")].join("|");
+  const hit=_sl3Geo.get(key); if(hit) return hit;
+  const S=SL3, k=(G-0.5-0.6)/(12.2-0.6), wm=w=>0.6+(w-0.6)*k;                       // หน้าตัดออกแบบที่ช่อง 12.7 → ยืด/หดตามช่องจริง (ความหนาเหล็กคงเดิม)
+  const toSh=pts=>pts.map(p=>[-wm(p[0]),p[1]]);                                       // x ของหน้าตัด = −w (หมุน Y +90° แล้ว w = +z)
+  const mirV=pts=>pts.map(p=>[p[0],-p[1]]).reverse();
+  const prof=(path,t,len,u0)=>{ const g=_sl3Extrude(_sl3Wall(toSh(path),t),len,35); g.rotateY(Math.PI/2); if(u0) g.translate(u0,0,0); return g; };
+  const box=(u0,u1,v0,v1,w0,w1)=>{ const g=new THREE.BoxGeometry(Math.max(u1-u0,.1),Math.max(v1-v0,.1),Math.max(w1-w0,.1)); g.translate((u0+u1)/2,(v0+v1)/2,(w0+w1)/2); return g; };
+  /* ── ตัวนอก: ปีกบน/ล่าง (ม้วนลงเป็นขอบกันลูกปืน) + แผ่นหลังรางมีรู ── */
+  const oTop=[[10.2,18.6],[10.2,20.5]]; _sl3Arc(oTop,8.8,20.5,1.4,0,90,6); oTop.push([2.0,21.9]); _sl3Arc(oTop,2.0,20.5,1.4,90,180,6);
+  const oParts=[prof(oTop,S.t1,L,0), prof(mirV(oTop),S.t1,L,0)];
+  { const sh=new THREE.Shape(); const vh=20.5;
+    sh.moveTo(0,-vh); sh.lineTo(L,-vh); sh.lineTo(L,vh); sh.lineTo(0,vh); sh.lineTo(0,-vh);
+    const r=2.3, used=[];
+    const rnd=u=>{ if(u<r+3||u>L-r-3||used.some(x=>Math.abs(x-u)<r*2+3)) return; used.push(u); const p=new THREE.Path(); p.absarc(u,0,r,0,Math.PI*2,true); sh.holes.push(p); };
+    const slot=(u,len)=>{ if(u-len/2<r+3||u+len/2>L-r-3||used.some(x=>Math.abs(x-u)<len/2+r+3)) return; used.push(u);
+      const p=new THREE.Path(); p.moveTo(u-len/2,-r); p.lineTo(u+len/2,-r); p.absarc(u+len/2,0,r,-Math.PI/2,Math.PI/2,false); p.lineTo(u-len/2,r); p.absarc(u-len/2,0,r,Math.PI/2,Math.PI*1.5,false); sh.holes.push(p); };
+    const hs=(hu||[]).slice().sort((a,b)=>a-b); hs.forEach(rnd);
+    for(let i=0;i<hs.length-1;i++){ if(hs[i+1]-hs[i]>=34) slot((hs[i]+hs[i+1])/2,9); }   // รูยาวปรับตั้ง (แบบรางจริง) ระหว่างรูกลม
+    if(hs.length&&hs[0]>40) slot(Math.max(hs[0]/2,16),9);
+    let web; try{ web=new THREE.ExtrudeGeometry(sh,{depth:S.t1,bevelEnabled:false,curveSegments:10}); }catch(e){ web=box(0,L,-vh,vh,0,S.t1); }
+    oParts.push(web); }
+  /* ── ตัวกลาง (ตัว C ซ้อนใน · ปลายปีกม้วนเข้าเป็นร่องลูกปืนชั้นใน) ── */
+  const mT=[[10.4,13.6],[10.4,15.4]]; _sl3Arc(mT,9.2,15.4,1.2,0,90,5); mT.push([3.4,16.6]); _sl3Arc(mT,3.4,15.4,1.2,90,180,5);
+  const mid=mT.concat(mirV(mT));
+  const mU0=8, mU1=L-0.5;
+  /* ── ตัวใน (ติดกล่อง · ตัว C หันเข้าหาตู้ ปลายปีกม้วนขึ้นกันลูกปืน) ── */
+  const iT=[[4.9,14.6],[4.9,13.1]]; _sl3Arc(iT,6.1,13.1,1.2,180,270,5); iT.push([11.0,11.9]); _sl3Arc(iT,11.0,10.7,1.2,90,0,5);
+  const inner=iT.concat(mirV(iT));
+  const iU0=14, iU1=L;
+  /* ── รังลูกปืน: ชั้นนอก (ระหว่างตัวนอก–ตัวกลาง) · ชั้นใน (ระหว่างตัวกลาง–ตัวใน) · ตำแหน่งตอนปิดให้อยู่ในช่วงซ้อนกันได้ถึงชักสุด ── */
+  const Lc=Math.max(L*0.3,40), c0=mU0+0.22*L+2, c1=iU0+0.22*L+2;
+  const balls=(u0,w,v,d,p)=>{ const out=[], n=Math.max(Math.floor((Lc-2)/p),2), base=new THREE.SphereGeometry(d/2,10,7);
+    [v,-v].forEach(vv=>{ for(let i=0;i<n;i++){ const g=base.clone(); g.translate(u0+1+p/2+i*p,vv,wm(w)); out.push(g); } }); base.dispose(); return out; };
+  const strip=(u0,w,v,h)=>[box(u0,u0+Lc,v-h/2,v+h/2,wm(w)-0.3,wm(w)+0.3), box(u0,u0+Lc,-v-h/2,-v+h/2,wm(w)-0.3,wm(w)+0.3)];
+  const parts=[
+    {k:0,    m:"n", g:_sl3Merge(oParts)},                                                       // ตัวนอก (ค้างที่แผ่นข้างตู้)
+    {k:0,    m:"b", g:_sl3Merge([box(0.6,7,-14,14,S.t1,wm(4.2))])},                              // ยางกันกระแทกท้ายราง
+    {k:0.5,  m:"n", g:_sl3Merge([prof(mid,S.t2,mU1-mU0,mU0)])},                                 // ตัวกลาง
+    {k:1,    m:"n", g:_sl3Merge([prof(inner,S.t3,iU1-iU0,iU0)])},                               // ตัวใน (ไปกับกล่อง)
+    {k:1,    m:"b", g:_sl3Merge([box(L-78,L-36,-3.6,3.6,wm(12.2)-0.5-2.4,wm(12.2)-0.5), box(L-40,L-30,-5.5,5.5,wm(12.2)-0.5-3.4,wm(12.2)-0.5)])},   // ก้านปลดราง
+    {k:0.25, m:"c", g:_sl3Merge(balls(c0,7.0,19.2,S.dB1,S.pB1))},                                // ลูกปืนชั้นนอก
+    {k:0.25, m:"b", g:_sl3Merge(strip(c0,7.0,19.2,3.2))},
+    {k:0.75, m:"c", g:_sl3Merge(balls(c1,7.6,14.25,S.dB2,S.pB2))},                               // ลูกปืนชั้นใน
+    {k:0.75, m:"b", g:_sl3Merge(strip(c1,7.6,14.25,2.8))} ];
+  const R={parts};
+  if(_sl3Geo.size<120) _sl3Geo.set(key,R); else parts.forEach(p=>{ p.g.userData._keep=false; });   // เกินแคช = ให้ตัวล้างฉากคืนหน่วยความจำ
+  return R; }
+/* รางของแผ่นข้างกล่องหนึ่งแผ่น (ชิ้นในมุมมอง b — ลิ้นชักที่ชักออกแล้วคือสำเนาที่เลื่อนไป) → เมชของราง (ตัวนอกอยู่ที่ท่าปิด · ท่อนอื่นเลื่อนตามสัดส่วน) */
+function slide3DMeshes(b){
+  const out=[]; if(!slide3DOn()||!b||!b._box||!b._dg||b.orient!=="side"||b._alto) return out;
+  if((+state.explode||0)>0) return out;
+  const ob=(state.boards||[]).find(x=>x&&x.id===b.id)||b;
+  const boxes=(state.boards||[]).filter(x=>x&&x._dg===ob._dg&&x._box&&(x.cabInst||"")===(ob.cabInst||""));
+  if(boxes.some(x=>x._alto)) return out;
+  const bp=(boxes.find(x=>x._bp)||{})._bp||{};
+  if(String(bp.slideType||"side")!=="side") return out;                                    // รางรับใต้ / แผงเหล็ก ไม่ใช่รางรับข้าง
+  const sEl=drsOfBoxes(boxes)||slideSeriesEl();
+  if(sEl&&(drsIsUnder(sEl)||drsIsSteel(sEl))) return out;
+  const yw=+ob.yaw||0, th=yw*Math.PI/180, F=new THREE.Vector3(Math.sin(th),0,Math.cos(th)), X=new THREE.Vector3(Math.cos(th),0,-Math.sin(th));
+  const xc=o=>o.x*X.x+o.z*X.z, zc=o=>o.x*F.x+o.z*F.z;
+  const sides=boxes.filter(x=>x.orient==="side"&&!(((+x.yaw||0)-yw)%180)); if(sides.length<2) return out;
+  const xs=sides.map(xc), lo=Math.min.apply(null,xs), hi=Math.max.apply(null,xs), me=xc(ob);
+  const isL=Math.abs(me-lo)<=0.5, isR=Math.abs(me-hi)<=0.5; if(isL===isR) return out;      // แผ่นกลางในกล่อง (ถ้ามี) ไม่ติดราง
+  const sg=isL?-1:1, T=+ob.T||16, faceX=me+sg*T/2;
+  /* ความสูงศูนย์ราง + ความยาวราง — ทางเดียวกับ drillDrawerSlides (รูนำบนแผ่นข้างตู้จึงตรงกลางรางเสมอ) */
+  const ref=boxes.find(x=>/Side L/.test(x.name||""))||boxes.find(x=>/Side R/.test(x.name||""))||sides[0];
+  const boxH=+ref.L||0, boxBot=ref.y-boxH/2, dH=elDrillH(sEl), rsE=drsOfBoxes(boxes);
+  const fromBot=((+bp.railY>0)?+bp.railY:(drsVal(rsE,"railFromBot")||+settings.slideRailFromBot||0));
+  const yc=(dH!=null)?(boxBot+dH):(fromBot>0?(boxBot+fromBot):ref.y);
+  const boxDepth=+ref.W||0, bOff=(+bp.boxOff||0);
+  let L; try{ L=(bOff!==0)?round(boxDepth+bOff):slideRail(sEl,boxDepth).railLen; }catch(e){ L=boxDepth; }
+  L=+L||0; if(!(L>=120&&L<=1500)) return out;
+  const zF=zc(ob)+(+ob.W||0)/2;                                                            // หน้าราง = หน้ากล่อง
+  /* แผ่นข้างตู้ที่รางยึด: แผ่นตั้งในตู้เดียวกัน · คลุมความสูงศูนย์ราง · ซ้อนช่วงลึกราง ≥ 30% · ผิวห่างกล่อง 0.3–40 ทางนอก */
+  let G=null, cab=null, cabD=null;
+  (state.boards||[]).forEach(o=>{ if(!o||o===ob||o.cabInst!==ob.cabInst||o._door||o._box||o._virtual||o._dg||!(+o.T>0)||o.orient!=="side") return;
+    if(((+o.yaw||0)-yw)%180) return;
+    let d; try{ d=worldDims(Object.assign({},o,{yaw:0})); }catch(e){ return; }
+    if(yc<o.y-d[1]/2+5||yc>o.y+d[1]/2-5) return;
+    const oz=zc(o); if(Math.min(zF,oz+d[2]/2)-Math.max(zF-L,oz-d[2]/2)<L*0.3) return;
+    const g=((xc(o)-sg*d[0]/2)-faceX)*sg; if(!(g>0.3&&g<40)) return;
+    if(G==null||g<G){ G=g; cab=o; cabD=d; } });
+  const Gd=(G!=null&&G>=9&&G<=16)?G:SL3.G;
+  /* รูกลมบนแผ่นหลังตัวนอก = รูนำสกรูที่เจาะจริง (วัดจากหน้าแผ่นข้างตู้) */
+  let hu=[];
+  try{ const cf=cab?(zc(cab)+cabD[2]/2):zF;
+    hu=(slideDrillOffsets(sEl,L)||[]).map(off=>L-(off-(cf-zF))).filter(u=>u>6&&u<L-6); }catch(e){ hu=[]; }
+  const geos=slide3DGeos(L,Gd,hu);
+  const s=Math.max(((+b.x||0)-(+ob.x||0))*F.x+((+b.z||0)-(+ob.z||0))*F.z,0);                // ระยะที่ลิ้นชักชักออก (มุมมองเปิดบาน)
+  const W=X.clone().multiplyScalar(-sg), M0=new THREE.Matrix4().makeBasis(F,new THREE.Vector3(0,1,0),W);
+  const O=X.clone().multiplyScalar(faceX+sg*Gd).add(F.clone().multiplyScalar(zF-L)); O.y=yc;
+  const mN=metalMat(hingeFinishKey()), mB=_sl3Plastic(), mC=metalMat("chrome");
+  const pos=new THREE.Vector3(), q=new THREE.Quaternion(), sc=new THREE.Vector3();
+  geos.parts.forEach(P=>{ const m4=M0.clone().setPosition(O.clone().addScaledVector(F,P.k*s));
+    const mm=new THREE.Mesh(P.g,(P.m==="b")?mB:((P.m==="c")?mC:mN));
+    m4.decompose(pos,q,sc); mm.position.copy(pos); mm.quaternion.copy(q); mm.scale.copy(sc);   // ข้างซ้าย = สะท้อน (scale ลบ · วัสดุสองหน้า)
+    mm.userData.id=b.id; mm.userData._slideK=P.k; mm.castShadow=true; mm.receiveShadow=true;
+    out.push(mm); });
+  return out; }
+
 function buildConnectorMeshes(b){
   const arr=[]; const M=orientMatrix(b.orient,b.yaw); const bp=new THREE.Vector3(b.x,b.y,b.z);
   const zW=new THREE.Vector3(0,0,1).transformDirection(M);
@@ -7652,6 +7839,114 @@ function isDowelSource(b){
   if(b._box&&b._alto) return false;               // แผงเหล็กลิ้นชักสำเร็จรูป
   return (b.T||18)>=11;
 }
+/* ═════════ v1.461: หลบเดือย/มินิฟิกที่เจาะชนกันคนละผิว ═════════
+   ผู้ใช้ 15/10 17:00: "มีแผ่นหลังอยู่ 1 ตัว อยากให้มีระบบหลบ เดือย หรือมินิฟิก ที่อีกฝั่งมันเจาะชนกัน ขยับหลบ 16 mm
+     โดยที่อีกฝั่งที่ไม่ชน ต้องขยับตามด้วย" · ตอบเพิ่ม: แผ่นที่ขอบสั้นกว่าเป็นตัวหลบ · ทิศอัตโนมัติ · อีกฝั่ง = ขอบอีกข้างของแผ่นเดียวกัน · ใช้กับทุกชิ้น
+   เดิม: เสาแบ่งที่มีแผ่นหลังสองแผ่นประกบคนละข้าง (JMT008: Back Panel 1 ซ้าย · Back Panel 2 ขวา) เดือยล่างของทั้งคู่สูง 50 จากล่างเท่ากัน
+     รูคู่จึงตรงกันเป๊ะคนละผิวของเสา ลึก 12+12 = 24 แต่เสาหนา 16.2 → เจาะทะลุหากัน ประกอบไม่ได้
+     ซ้ำ drillMates หา "รูเดิมใกล้ ๆ" โดยไม่ดูผิว (ห่าง < 1.5) → รูของแผ่นที่สองไปทับป้ายรูของแผ่นแรก ฝั่งแผ่นที่สองไม่มีรูคู่เลย (MPR เสาขาดไป 1 รู)
+   ตอนนี้: ก่อนยิงรูคู่ทั้งตู้ (เจาะรูคู่อัตโนมัติ · เชื่อมเดือยใหม่ตู้นี้/ทั้งฉาก · ส่งออก) ไล่ทุกจุดเดือย/มินิฟิกที่ยิงเข้าแผ่นเดียวกัน
+     ชน = คนละผิว · ห่างกันน้อยกว่า รัศมีรวม + 2 · ลึกรวม > หนาแผ่น − 1  (ผิวเดียวกันแต่ทับกัน ก็นับ) · ชิ้นเดียวกันไม่นับว่าชนกันเอง
+     ตัวหลบ = แผ่นที่ขอบ (ช่วงที่ประกบจริง) สั้นกว่า · ยาวเท่ากัน = ชิ้นที่อยู่ท้ายรายการ · ตัวหลบเลื่อนไม่ได้ → ลองอีกแผ่น
+     ทิศ: เข้าหากลางขอบก่อน → ไม่ได้ค่อยออกหาขอบ · ใช้ได้เมื่อ ห่างปลายช่วงประกบ ≥ 20 · ห่างจุดอื่นบนขอบเดียวกัน ≥ 20
+       ยิงใหม่ยังโดนแผ่นเดิม เนื้อเหลือถึงขอบพอ · ไม่ไปชนรูอื่นบนแผ่นนั้น (รูคู่อื่น · พิน · บานพับ · ราง · Part)
+       จุดของชิ้นเดียวกันขอบเดียวกันที่ตำแหน่งเดียวกัน (เดือย+มินิฟิกซ้อนกัน) เลื่อนไปด้วยกัน
+     ขอบอีกข้างของแผ่นเดียวกัน (ซ้าย↔ขวา · บน↔ล่าง) จุดที่ตำแหน่งตรงกันเลื่อนเท่ากันทิศเดียวกัน (แผ่นยังกลับหัวท้ายได้แบบชุดหัวท้าย)
+       อีกข้างเลื่อนไม่ได้ (ชนของอื่น) = เลื่อนเฉพาะข้างที่ชน + บอกใน console
+     เก็บที่ตัวเชื่อม c._dodge[i] (มม. ตามแนวขอบ · แยกจาก c.shift ที่ตั้งเอง) → dowelAlong บวกให้ → 3D · รูคู่ · MPR · แบบผลิต ใช้ตำแหน่งเดียวกันหมด
+     คิดใหม่จากตำแหน่งตามสูตรทุกรอบที่ยิงรูคู่ — ย้าย/ปรับขนาดจนไม่ชนแล้ว จุดกลับที่เดิมเอง · ไม่อยู่ในลายเซ็นตู้ของ autoMate (ขึ้นต้น _)
+   ไม่แตะ: รอยต่อกล่องลิ้นชัก (c.at / _bj) · คานชั้นรองเท้าไม้ (_shoeW) · บานพับ · สกรู
+   ปิด: ตั้งค่า → Corner Connector → "เดือย / มินิฟิก — หลบรูที่เจาะชนกัน" (ติ๊ก + ระยะหลบ settings.mateDodgeStep ค่าเริ่ม 16) หรือ SN_OFF.mateDodge=1 */
+function mateDodgeOn(){ try{ return !snOff("mateDodge")&&settings.mateDodge!==false; }catch(e){ return false; } }
+function _mdConnOk(c){ return !!c&&(c.type==="dowel"||c.type==="minifix")&&!(Array.isArray(c.at)&&c.at.length)&&!c._bj&&!c._shoeW; }
+/* ยิงหาจุดรูคู่ของจุดเดือยหนึ่งจุด — ทางเดียวกับ drillMates (ไม่แก้รูใด ๆ) → {mb, lx, ly, face, d, dep} หรือ null */
+function _mdRay(b,c,lp,axL,cx,byId){
+  const axW=axL.clone().transformDirection(cx.M), mf=(c.type==="minifix"), bz=mfBoreZ(c,b.T||18);
+  const reach=Math.max(((mf?settings.mfBoltDepth:dwEdgeDepth(c))||12)*2.2,30), tol=Math.max(+settings.mateGapTol||1.2,0);
+  const w=lp.clone().applyMatrix4(cx.M).add(cx.bp).addScaledVector(cx.zW,bz);
+  cx.rc.set(w.clone().addScaledVector(axW,-2),axW); cx.rc.far=reach;
+  const hit=cx.rc.intersectObjects(cx.others,false)[0]; if(!hit||hit.distance>2+tol) return null;
+  const mb=byId[hit.object.userData.id]; if(!mb||mb===b||(mb.T||18)<11) return null;
+  const Mi=orientMatrix(mb.orient,mb.yaw).clone().invert();
+  const loc=hit.point.clone().sub(new THREE.Vector3(mb.x,mb.y,mb.z)).applyMatrix4(Mi);
+  const face=(axW.clone().transformDirection(Mi).z>=0)?"bottom":"top";
+  const d=Math.max((mf?settings.mfMateD:(settings.dowelMateD||c.d))||8,1);
+  if(!(mb.profile&&mb.profile.length>=3)){ const wall=Math.min(mb.L/2-Math.abs(loc.x),mb.W/2-Math.abs(loc.y))-d/2;
+    const wMin=Math.max(settings.dowelWallMin!=null?(+settings.dowelWallMin||0):3,0); if(wall<wMin-0.05) return null; }
+  const dep=Math.min(Math.max((mf?settings.mfMateDepth:dwMateDepthOf(c))||12,1),(mb.T||18)-0.5);
+  return {mb, lx:loc.x, ly:loc.y, face, d, dep}; }
+function _mdClash(h1,h2){ if(!h1||!h2||h1.mb!==h2.mb) return false;
+  const dist=Math.hypot(h1.lx-h2.lx,h1.ly-h2.ly), rr=h1.d/2+h2.d/2;
+  if(h1.face===h2.face) return dist<rr+0.5;                                          // ผิวเดียวกัน ทับกัน
+  return dist<rr+2&&(h1.dep+h2.dep)>(+h1.mb.T||18)-1; }                              // คนละผิว ตรงกัน ลึกรวมเกินเนื้อไม้
+/* รูอื่นที่มีอยู่บนแผ่นรับ (พิน/บานพับ/ราง/Part/เจาะเอง) — รูคู่ของต้นทางรอบนี้ไม่นับ (ถูกยิงใหม่อยู่แล้ว) */
+function _mdHoleClash(h,skip){ return (h.mb.holes||[]).some(o=>{ if(!o||o.edge||o.x==null) return false;
+    if(o.src&&skip.has(o.src)&&(o.dowel||o.screw)) return false;
+    const dist=Math.hypot((+o.x||0)-h.lx,(+o.y||0)-h.ly), rr=(+o.d||0)/2+h.d/2;
+    if(o.through||(o.face||"top")===h.face) return dist<rr+0.5;
+    return dist<rr+2&&((+o.depth||0)+h.dep)>(+h.mb.T||18)-1; }); }
+function mateDodgePlan(srcs){
+  const R={n:0,both:0,one:0,fail:0,list:[]};
+  const all=(srcs||[]).filter(b=>b&&isDowelSource(b)&&!b._shoeWood&&(b.connectors||[]).some(_mdConnOk));
+  all.forEach(b=>(b.connectors||[]).forEach(c=>{ if(c&&c._dodge) delete c._dodge; }));     // คิดใหม่จากตำแหน่งตามสูตรทุกรอบ
+  if(!mateDodgeOn()||!all.length||typeof meshes==="undefined"||!meshes||!meshes.length) return R;
+  const STEP=Math.max(+settings.mateDodgeStep||16,1), EDGE=20, SP=20;
+  const byId={}, order=new Map(); (state.boards||[]).forEach((x,i)=>{ if(x&&x.id!=null){ byId[x.id]=x; order.set(x,i); } });
+  const skip=new Set(all.map(b=>b.id)), P=[], cxOf=new Map();
+  all.forEach(b=>{ const M=orientMatrix(b.orient,b.yaw);
+    const cx={M, bp:new THREE.Vector3(b.x,b.y,b.z), zW:new THREE.Vector3(0,0,1).transformDirection(M), rc:new THREE.Raycaster(),
+      others:meshes.filter(o=>o.id!==b.id&&!o.groove&&!o.connector).map(o=>o.mesh)};
+    cxOf.set(b,cx);
+    (b.connectors||[]).forEach(c=>{ if(!_mdConnOk(c)) return;
+      let cp; try{ cp=connectorPoints(b,c); }catch(e){ return; }
+      const ax=dowelEdgeInfo(b,c.edge).along, ofs=cp.span?((cp.span.lo+cp.span.hi)/2):0;
+      cp.pts.forEach((lp,i)=>{ P.push({b, c, i, n:cp.pts.length, lp:lp.clone(), ax, ofs, len:cp.len, axL:cp.axisLocal.clone(), dl:0,
+        a:(ax==="x")?lp.x:lp.y, d:(c.type==="minifix")?(+settings.mfBoltD||8):(+c.d||+settings.dowelD||8),
+        hit:_mdRay(b,c,lp,cp.axisLocal,cx,byId)}); }); }); });
+  const cl=[], byMb=new Map();                                                       // จับคู่เฉพาะจุดที่ยิงเข้าแผ่นเดียวกัน (ทั้งฉากหลายพันจุดก็ไม่ช้า)
+  P.forEach(p=>{ if(!p.hit) return; let a=byMb.get(p.hit.mb); if(!a){ a=[]; byMb.set(p.hit.mb,a); } a.push(p); });
+  byMb.forEach(L=>{ for(let i=0;i<L.length;i++) for(let j=i+1;j<L.length;j++){ const p=L[i], q=L[j];
+    if(q.b!==p.b&&_mdClash(p.hit,q.hit)) cl.push([p,q]); } });
+  if(!cl.length){ window._mdLast=R; return R; }
+  const OPP={left:"right",right:"left",top:"bottom",bottom:"top"};
+  const alongV=p=>(p.ax==="x")?new THREE.Vector3(1,0,0):new THREE.Vector3(0,1,0);
+  const grp=p=>P.filter(o=>o.b===p.b&&o.c.edge===p.c.edge&&Math.abs(o.a-p.a)<1);
+  const twin=p=>P.filter(o=>o.b===p.b&&o.c.edge===OPP[p.c.edge]&&Math.abs(o.a-p.a)<1.5);
+  /* ชุดจุดที่เลื่อนไปด้วยกัน → ตำแหน่งใหม่ทั้งชุด · ข้อใดข้อหนึ่งไม่ผ่าน = null */
+  const cand=(set,dl)=>{ const out=[];
+    for(const p of set){ if(p.dl) return null;
+      const a2=p.a+dl; if(Math.abs(a2-p.ofs)>p.len/2-EDGE) return null;
+      if(P.some(o=>o.b===p.b&&o.c.edge===p.c.edge&&set.indexOf(o)<0&&Math.abs(o.a-a2)<Math.max(SP,(o.d+p.d)/2+10))) return null;
+      const lp2=p.lp.clone().addScaledVector(alongV(p),dl);
+      const h2=_mdRay(p.b,p.c,lp2,p.axL,cxOf.get(p.b),byId);
+      if(p.hit&&(!h2||h2.mb!==p.hit.mb)) return null;
+      if(h2){ if(P.some(o=>set.indexOf(o)<0&&o.b!==p.b&&o.hit&&_mdClash(o.hit,h2))) return null;
+        if(_mdHoleClash(h2,skip)) return null; }
+      out.push({p,a:a2,lp:lp2,h:h2}); }
+    return out; };
+  const put=(arr,dl)=>arr.forEach(x=>{ const p=x.p; p.dl=dl; p.a=x.a; p.lp=x.lp; p.hit=x.h;
+    const c=p.c; if(!Array.isArray(c._dodge)||c._dodge.length!==p.n) c._dodge=new Array(p.n).fill(0); c._dodge[p.i]=round(dl); });
+  const tryDodge=p=>{
+    const g=grp(p), tw=[]; g.forEach(o=>twin(o).forEach(t=>{ if(tw.indexOf(t)<0&&g.indexOf(t)<0) tw.push(t); }));
+    const s0=(p.a-p.ofs>0.5)?-1:1, dirs=[s0,-s0];                                     // เข้าหากลางขอบก่อน
+    for(const s of dirs){ const A=cand(g,s*STEP); if(!A) continue;
+      if(!tw.length){ put(A,s*STEP); return 2; }
+      const B=cand(tw,s*STEP); if(B){ put(A,s*STEP); put(B,s*STEP); return 2; } }
+    for(const s of dirs){ const A=cand(g,s*STEP); if(A){ put(A,s*STEP); return 1; } }   // ขอบตรงข้ามเลื่อนตามไม่ได้ — หลบเฉพาะข้างที่ชน
+    return 0; };
+  cl.sort((x,y)=>((order.get(x[0].hit.mb)||0)-(order.get(y[0].hit.mb)||0))||(x[0].hit.lx-y[0].hit.lx)||(x[0].hit.ly-y[0].hit.ly));
+  const nm=b=>String((b&&(b.name||b.id))||"");
+  cl.forEach(pq=>{ const p=pq[0], q=pq[1];
+    if(!_mdClash(p.hit,q.hit)) return;                                                 // ข้อก่อนหน้าหลบไปแล้ว
+    const first=(Math.abs(p.len-q.len)>0.5)?((p.len<q.len)?p:q):(((order.get(p.b)||0)>(order.get(q.b)||0))?p:q), second=(first===p)?q:p;
+    let who=first, r=tryDodge(first); if(!r){ who=second; r=tryDodge(second); }
+    const other=(who===first)?second:first;
+    if(r){ R.n++; if(r===2) R.both++; else R.one++;
+      R.list.push(nm(who.b)+" ("+who.c.type+" ขอบ"+who.c.edge+") หลบ "+who.dl+" มม. ไม่ให้ชน "+nm(other.b)+" บน "+nm(who.hit&&who.hit.mb)+(r===2?" · ขอบตรงข้ามเลื่อนตาม":" · ⚠ ขอบตรงข้ามเลื่อนตามไม่ได้")); }
+    else { R.fail++; R.list.push("⚠ หลบไม่ได้: "+nm(p.b)+" ↔ "+nm(q.b)+" บน "+nm(p.hit.mb)+" (ชิดขอบ/ชนรูอื่นทั้งสองทิศ)"); } });
+  if(R.n||R.fail) console.log("🔩 หลบเดือย/มินิฟิกที่เจาะชนกัน (v1.461):",R.list);
+  window._mdLast=R;
+  return R; }
 function drillMates(b){   // adds matching through-holes on mating panels; returns {added, mates, thin}
   if(!isDowelSource(b)) return {added:0,mates:new Set(),thin:0,gap:0,edge:0};
   const M=orientMatrix(b.orient,b.yaw), bp=new THREE.Vector3(b.x,b.y,b.z);
@@ -8553,6 +8848,7 @@ function rebuildMatesCore(){
   try{ _mateSpanCache.clear(); }catch(e){}         // v1.425: แคชช่วงชนผูกกับชิ้นตัวเองเท่านั้น ชิ้นข้างเคียงขยับแล้วไม่รู้ — คิดใหม่ก่อนยิง
   render3D(true);                                  // ต้องมีเมชใหม่ก่อน ไม่งั้นยิงตรวจชนไม่โดน
   let added=0, thin=0; const mates=new Set();
+  try{ mateDodgePlan(srcs.filter(isDowelSource)); }catch(e){ console.error("mateDodge:",e); }   // v1.461: หลบเดือยที่เจาะชนกันคนละผิว
   srcs.filter(isDowelSource).forEach(b=>{ try{ const r=drillMates(b);
     added+=r.added||0; thin+=r.thin||0; (r.mates||new Set()).forEach(x=>mates.add(x)); }
     catch(e){ console.error("rebuildMatesCore:",e); } });
@@ -8590,6 +8886,7 @@ function healDrillsFor(inst,silent){
       killed+=m-b.holes.length; });
     try{ _mateSpanCache.clear(); }catch(e){}       // v1.425: แคชช่วงชนคิดใหม่ก่อนยิง (ดู rebuildMatesCore)
     render3D(true);
+    try{ mateDodgePlan(state.boards.filter(b=>b&&b.cabInst===inst&&(b.connectors||[]).length&&isDowelSource(b)&&!b._shoeWood)); }catch(e){ console.error("mateDodge:",e); }   // v1.461
     state.boards.filter(b=>b&&b.cabInst===inst&&(b.connectors||[]).length&&isDowelSource(b)&&!b._shoeWood)
       .forEach(b=>{ try{ const r=drillMates(b); added+=r.added||0;
         (r.mates||new Set()).forEach(x=>mates.add(x)); }catch(e){ console.error("healDrillsFor:",e); } });
@@ -8783,6 +9080,7 @@ function autoMateDirty(){
     /* เมชที่มีอยู่วาดจากชิ้นสภาพเดียวกับตอนนี้ (sync เพิ่งวาดมา) → ยิงได้เลย · ไม่ใช่ (ปรับขอบด้วยสูตรหลังวาด / เพิ่งสลับท่า) → วาดใหม่ก่อน */
     if(swap||_amRSig==null||_amRSig!==_amJoin(cur)) render3D(false);
     if(!meshes||!meshes.length) throw new Error("ไม่มีเมชให้ยิงตรวจชน");
+    try{ mateDodgePlan(srcs); }catch(e){ console.error("mateDodge:",e); }   // v1.461: หลบเดือยที่เจาะชนกันคนละผิว ก่อนยิงรูคู่
     srcs.forEach(b=>{ try{ drillMates(b); }catch(e){ console.error("autoMate drill:",e); } });
     doors.forEach(d=>{ try{ drillHingePlateHoles(d); }catch(e){ console.error("autoMate plate:",e); } });
     try{ dedupeHoles(); }catch(e){}
@@ -17153,7 +17451,8 @@ function _doorApply(snap,own,t0,t1){
       const r=(((B&&B.deg)||0)-((A&&A.deg)||0))*Math.PI/180;
       s.o.position.set(x, s.py, z);
       q.setFromAxisAngle(ax,r); s.o.quaternion.copy(q).multiply(s.q); continue; }
-    const D=(B&&B.fx!=null)?B:A, d=((B&&B.dz)||0)-((A&&A.dz)||0);
+    /* v1.461: ท่อนรางลูกปืน (_slideK) เลื่อนตามสัดส่วนระยะชัก — ตัวนอก 0 · รังลูกปืน ¼ · ตัวกลาง ½ · รังใน ¾ · ตัวใน 1 */
+    const D=(B&&B.fx!=null)?B:A, d=(((B&&B.dz)||0)-((A&&A.dz)||0))*((ud._slideK!=null)?ud._slideK:1);
     s.o.position.set(s.px+(D.fx||0)*d, s.py, s.pz+((D.fz!=null)?D.fz:1)*d);
     s.o.quaternion.copy(s.q);
   }
@@ -17650,6 +17949,7 @@ function render3D(refit){
       (b.grooves||[]).forEach(g=>{ if(grooveIsCarved(b,g))return;   // v13.2: ควักเป็นเนื้อไม้จริงแล้ว ไม่ต้องทาบสีซ้ำ
         const gm=buildGrooveMesh(b,g);gm.position.set(b.x,b.y,b.z);gm.userData.id=b.id;root.add(gm);meshes.push({mesh:gm,id:b.id,d,groove:true});});
       shoeTiltWrap(b,buildConnectorMeshes(b)).forEach(cm=>{root.add(cm);meshes.push({mesh:cm,id:b.id,d,connector:true});});   // v1.423: ชิ้นเอียงหมุนตาม
+      if(b._box&&b._dg&&b.orient==="side"){ try{ slide3DMeshes(b).forEach(sm=>root.add(sm)); }catch(e){ console.error("slide3D:",e); } }   // v1.461: รางลูกปืนรับข้าง 3D (โชว์อย่างเดียว ไม่ใส่ meshes)
       shoeTiltWrap(b,buildBlindHoleMeshes(b)).forEach(hm=>root.add(hm));   // รูตัน (โชว์อย่างเดียว ไม่ raycast)
       buildPocketMeshes(b).forEach(pm=>root.add(pm));      // Pocket (โชว์อย่างเดียว)
       if(!_gFillOwn.has(b.id)){ try{ const gm2=buildDoorGlassMesh(b); if(gm2) root.add(gm2); }catch(e){ console.error("doorGlass3D:",e); } }   // v1.283: กระจกในบานกัดทะลุ (ทั้งโหมดประหยัดและไม่ประหยัด)
@@ -25867,6 +26167,8 @@ function boardRole(b){
      SN_OFF.plPoster=1    ห้องออกแบบไม่มีปุ่ม 🖼 โปสเตอร์ขาย (v1.457)
      SN_OFF.plOtherFloor=1 ห้องออกแบบไม่เลื่อนตู้ระดับ "อื่น ๆ" ลงพื้น (อยู่ตามพิกัดโมเดลแบบเดิม) (v1.458)
      SN_OFF.glbExport=1   ไม่มีปุ่ม 🧊 ส่งออก 3D (.glb) สำหรับ Blender (v1.459)
+     SN_OFF.slide3D=1     ลิ้นชักกล่องไม้ไม่วาดรางลูกปืนรับข้าง 3D (ช่องเผื่อรางว่างแบบเดิม) (v1.461)
+     SN_OFF.mateDodge=1   เดือย/มินิฟิกที่เจาะเข้าแผ่นเดียวกันคนละผิวตรงจุดเดียวกัน ไม่หลบ (รูทับกันแบบเดิม) (v1.461)
      SN_OFF.shoeWGrain=1  ชิ้นแปะหน้า/หลังของชั้นรองเท้าไม้ ลายตามกติกาแผ่นหลัง (ลายตั้ง) แบบเดิม (v1.452)
      SN_OFF.shoeWPart=1   ชั้นรองเท้าไม้ที่ใส่ใหม่ไม่ตั้ง Part ให้ (เว้นว่างแบบเดิม) (v1.452)
      SN_OFF.skinTrim=1    ชิ้นตั้งที่จมเข้าทอป/พื้นนอกเท่าผิวแผ่น ไม่ตัดให้ชนผิว (แผ่นข้างใต้ทอปทับข้างยาวเกินผิวทอปแบบเดิม) (v1.451)
@@ -31167,6 +31469,8 @@ function renderSettings(){
     <div style="font-size:11.5px;color:var(--ink-dim);margin:4px 0">ค่าสำรองของลิ้นชักที่ยังไม่ได้ผูกระบบราง — ลิ้นชักที่ผูกแล้วใช้ค่าจาก Element → ระบบราง</div>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">${num("slideDrillD","รางรับข้าง: Ø รูนำสกรูบนแผ่นข้าง (มม.) เช่น 5")}${num("slideDrillDepth","รางรับข้าง: ลึกรูนำ (มม. · ไม่ทะลุ) เช่น 3")}</div>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">${num("slideRailFromBot","รางรับข้าง: สูงศูนย์รางจากล่างกล่อง (มม. · 0=กลางกล่อง)")}<div></div></div>
+    <!-- ───────── v1.461: รางลูกปืนรับข้าง 3D ───────── -->
+    <label style="display:flex;align-items:center;gap:8px;font-size:13px;cursor:pointer;margin-top:6px"><input type="checkbox" id="setSlide3D" ${settings.slide3D!==false?"checked":""}> แสดงรางลูกปืนรับข้างเป็นรูป 3D จริง (ราง 3 ท่อน สูง 45 · ลูกปืน · เปิดลิ้นชักแล้วชักออกเป็นชั้น · สีตาม “สีบานพับ 3D”) — ไม่มีผลกับระยะเจาะ/ไฟล์ส่งออก</label>
     <div class="sumh" style="margin-top:12px">ลูกลิ้นชักแผงข้างเหล็ก — รหัสซีรีส์ ALTO</div>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">${pick("altoCodeA","ซีรีส์ ALTO สี Anthracite — รหัส Element → Fittings","fittings")}${pick("altoCodeW","ซีรีส์ ALTO สี White — รหัส Element → Fittings","fittings")}</div>
 
@@ -31300,6 +31604,10 @@ function renderSettings(){
     <div style="font-size:11px;opacity:.72;line-height:1.6">เลขตู้และเลขชิ้นถูกจำติดตัวไว้ตั้งแต่ครั้งแรกที่ได้รับ แก้งานทีหลังจึงไม่เคลื่อน — ลบชิ้นกลางตู้ เลขที่เหลือคงเดิม เว้นช่องว่างไว้ · ชิ้นที่เพิ่มใหม่ไปต่อท้ายเสมอ ไม่เอาเลขเก่ามาใช้ซ้ำ</div>
     <button class="ibtn" id="setBcReset" style="margin-top:6px">↺ รีเซ็ตเลขบาร์โค้ดทั้งออเดอร์</button>
     <div style="font-size:11px;opacity:.62;margin-top:2px">ใช้ตอนเริ่มงานใหม่เท่านั้น — กดแล้วทุกชิ้นจะถูกไล่เลขใหม่ตั้งแต่ 01 ใบที่ยิงไปแล้วจะไม่ตรงอีก</div>
+    <!-- ───────── v1.461: หลบเดือย/มินิฟิกที่เจาะชนกันคนละผิว (หัวข้อแยก → อยู่หมวด เดือย/มินิฟิก) ───────── -->
+    <div class="sumh" style="margin-top:12px">เดือย / มินิฟิก — หลบรูที่เจาะชนกัน</div>
+    <label style="display:flex;gap:8px;align-items:flex-start;font-size:12px;line-height:1.5;margin-top:4px"><input type="checkbox" id="setMateDodge" ${settings.mateDodge!==false?"checked":""} style="margin-top:2px">
+      <span><b>หลบเดือย/มินิฟิกที่เจาะชนกัน</b> — สองแผ่นยิงเข้าแผ่นเดียวกันคนละผิวตรงจุดเดียวกัน (ลึกรวมเกินความหนา) แผ่นที่ขอบสั้นกว่าเลื่อนจุดนั้น <input type="number" id="setMateDodgeStep" value="${+settings.mateDodgeStep||16}" min="4" max="60" step="1" style="width:56px;font-size:12px"> มม. (เข้าหากลางแผ่นก่อน ชิดจุดข้าง ๆ ค่อยออกหาขอบ) และขอบอีกข้างของแผ่นนั้นเลื่อนตาม (v1.461)</span></label>
     <div class="sumh" style="margin-top:12px">🔗 ตอนโหลดออเดอร์</div>
     <label style="display:flex;gap:8px;align-items:flex-start;font-size:12px;line-height:1.5;margin-top:4px"><input type="checkbox" id="setXmlAutoHeal" ${settings.xmlAutoHeal!==false?"checked":""} style="margin-top:2px">
       <span>โหลดเสร็จแล้ว <b>เชื่อมเดือยใหม่และเจาะรูฐานบานพับใหม่</b> ให้เอง — เท่ากับกดคลิกขวา → 🔗 เชื่อมเดือยใหม่ทั้งฉาก</span></label>
@@ -31649,6 +31957,8 @@ function renderSettings(){
     { const hv=body.querySelector("#setHealVar"); if(hv)settings.healOnVarChange=hv.checked; }           // v31.1
     { const eh=body.querySelector("#setExportHeal"); if(eh)settings.exportHeal=eh.checked; }            // v1.424
     { const am=body.querySelector("#setAutoMate"); if(am)settings.autoMate=am.checked; }                // v1.425
+    { const md=body.querySelector("#setMateDodge"); if(md)settings.mateDodge=md.checked;                 // v1.461: หลบเดือยที่เจาะชนกัน
+      const ms=body.querySelector("#setMateDodgeStep"); if(ms){ const v=+ms.value; settings.mateDodgeStep=(v>=4&&v<=60)?v:16; } }
     { const hn=body.querySelector("#setHealNow"); if(hn) hn.onclick=()=>{ try{ healDrills(false); }catch(e){ console.error(e); toast("ซ่อมไม่สำเร็จ — ดู console"); } }; }
     { const cl=body.querySelector("#setCutLookupOn"); if(cl)settings.cutLookupOn=cl.checked; }  // v13.0
     { const pg=body.querySelector("#setPullHingeGuard"); if(pg)settings.pullHingeGuard=pg.checked; }   // v1.261
@@ -31656,6 +31966,7 @@ function renderSettings(){
     { const br=body.querySelector("#setBotRise"); if(br)settings.botRiseOn=br.checked; }   // v1.448: ขอบล่างตู้ ยกขึ้น
     { const h3=body.querySelector("#setHinge3D"); if(h3)settings.hinge3D=h3.checked; }     // v1.454: บานพับ 3D จริง
     { const hf=body.querySelector("#setHingeFinish"); if(hf)settings.hingeFinish=hf.value||"nickel"; }   // v1.456: สีบานพับ 3D
+    { const s3=body.querySelector("#setSlide3D"); if(s3)settings.slide3D=s3.checked; }     // v1.461: รางลูกปืนรับข้าง 3D
     { const px=body.querySelector("#setPullXmlOn"); if(px)settings.pullXmlOn=px.checked;        // v9.71
       const p3=body.querySelector("#setPull3D"); if(p3)settings.pull3D=p3.checked; }
     { const lc=body.querySelector("#setLegClipOn"); if(lc)settings.legClipOn=lc.checked; }      // v9.64
@@ -46589,6 +46900,7 @@ function snvSerialize(opt){
     /* v1.456: บานพับ 3D ในหน้าดูงาน — แขน/ฐาน (hf) อยู่กับแผ่นข้าง ไม่หมุนตามบาน · ข้อต่อ (hk = [ข้อต่อที่, กรอบแขน 16 ค่า]) จัดท่าตามมุมบาน */
     if(o.userData&&o.userData._hkFix) n.hf=1;
     if(o.userData&&o.userData._hk&&o.userData._hk.m) n.hk=[o.userData._hk.L].concat(o.userData._hk.m.map(r4));
+    if(o.userData&&o.userData._slideK!=null) n.sk=r4(o.userData._slideK);       // v1.461: ท่อนรางลูกปืน — หน้าดูงานเลื่อนตามสัดส่วนระยะชัก
     if(o.userData&&o.userData._ledGlowMesh&&!snOff("snvLed")) n.lg=1;           // v1.396: แถบเรืองแสง/ม่านแสงไฟราง — หน้าดูเปิด/ปิดได้
     if(o.children&&o.children.length){ const ch=o.children.map(node).filter(Boolean); if(ch.length) n.ch=ch; }
     return n; };
@@ -57972,7 +58284,7 @@ function build(D,imgs){
     return o; }
   root=new THREE.Group(); if(D.root&&D.root.p) root.position.fromArray(D.root.p); scene.add(root);
   (D.obj||[]).forEach(function(n){ var o=mk(n); root.add(o);
-    var id=n.id||null, it={o:o,id:id,px:o.position.x,py:o.position.y,pz:o.position.z,q:o.quaternion.clone(),hf:n.hf?1:0,hk:n.hk||null};   // v1.456: บานพับ (แขน/ฐาน · ข้อต่อ)
+    var id=n.id||null, it={o:o,id:id,px:o.position.x,py:o.position.y,pz:o.position.z,q:o.quaternion.clone(),hf:n.hf?1:0,hk:n.hk||null,sk:(n.sk!=null)?n.sk:null};   // v1.456: บานพับ (แขน/ฐาน · ข้อต่อ) · v1.461: sk = ท่อนรางลูกปืน
     S.items.push(it); if(id){ (S.byId[id]=S.byId[id]||[]).push(it); } });
   S.mats=mats; }
 
@@ -58069,7 +58381,7 @@ function applyPose(){
         if(t.k&&D.hk){ var pp=hkPole(t.k,t.k.ph*p); if(pp) P=pp; }               // v1.456: จุดหมุนตามมุม (กลไกบานพับ)
         var dx=x-P[0], dz=z-P[1];
         x=P[0]+dx*cs+dz*sn; z=P[1]-dx*sn+dz*cs; _q.setFromAxisAngle(_Y,rr); it.o.quaternion.premultiply(_q); }
-      else if(t.f){ x+=t.f[0]*t.z*p; z+=t.f[1]*t.z*p; } }
+      else if(t.f){ var kk=(it.sk!=null)?it.sk:1; x+=t.f[0]*t.z*p*kk; z+=t.f[1]*t.z*p*kk; } }   // v1.461: ท่อนรางลูกปืนเลื่อนตามสัดส่วน (ตัวนอก 0 · ตัวกลาง ½ · ตัวใน 1)
     var e=D.exp&&D.exp[it.id]; if(e&&ex>0){ x+=e[0]*ex; y+=e[1]*ex; z+=e[2]*ex; }
     it.o.position.set(x,y,z); }
   if(S.sel) showSelBox(S.sel);
