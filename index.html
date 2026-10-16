@@ -3250,7 +3250,7 @@
    ===================================================================== */
 /* ---- APP_META: แหล่งความจริงเดียวของเวอร์ชัน (ดูได้จาก console / คลิกชื่อแอป) ---- */
 const APP_META={
-  name:"StarNexus", version:"1.470", build:"2026-10-16/rail-holes",
+  name:"StarNexus", version:"1.471", build:"2026-10-16/box-up",
   file:"StarNexus.html", basedOn:"Furnitech_V3.html (v3.11)",
   /* ───────── เริ่มนับเวอร์ชันใหม่ที่ 1.001 (21/08/2026) ─────────
      ของเดิมนับมาถึง 42.1 แล้ววิ่งเป็นทศนิยมสองชั้นซึ่งอ่านลำดับยาก
@@ -3258,6 +3258,7 @@ const APP_META={
      ประวัติเก่าเก็บไว้ทั้งหมดตามเลขเดิม ไม่ไล่เขียนใหม่ เพราะเลขในนั้นถูกอ้างถึงไปแล้ว
      รายการที่อยู่ใต้ 1.001 ลงไปจึงเป็นเลขชุดเก่า อ่านต่อกันได้ตามวันที่ */
   changelog:[
+    ["1.471","2026-10-16","FIX กล่องลิ้นชักแผงเหล็กยกขึ้นให้ตรงรูเจาะ (ผู้ใช้ 16:37: “ปรับ ตัวกล่องตามขึ้นไปด้วยครับ”) — ตัวกล่อง (พื้น/หลัง/แผงเหล็ก) ยกเพิ่มตามค่า ‘ยกกล่องเพิ่ม’ (K40 เริ่ม 28 · ALTO 0 · ระบบรางช่อง boxUp ก่อน) แต่รูเจาะทุกชุดคิดจากจุดเดิม ไฟล์เจาะไม่เปลี่ยน · งานเก่าปรับความสูงชิ้นกล่องให้เองตอนวาด · ปิด: SN_OFF.altoBoxUp"],
     ["1.470","2026-10-16","UI ราวเหลี่ยมลิ้นชักแผงเหล็ก 3D สูงตามรูเจาะที่หลังหน้าบาน (ผู้ใช้ 16:30: “ขยับ 3D ขึ้นอีกได้ไหมครับ แขน3D ดูไม่ตรงกับระยะรูเจาะ”) — เดิมศูนย์ราว = ขอบบนแผ่นหลัง − 6 (งาน 55: 158) ไม่ตรงรูยึดฉากหน้า (182.5/189.5) · ตอนนี้ใช้กลางกลุ่มรูที่ระบบรางเจาะหลังหน้าบานซึ่งสูงเกินแผงข้าง · ฉากหน้าครอบรูยึด · ฉากท้ายยืดถึงราว · ไม่มีรู = แบบเดิม · ภาพอย่างเดียว"],
     ["1.469","2026-10-16","FIX บานลาย (มีโปรไฟล์หน้าบาน) ไม่มีรูถ้วยบานพับ Ø35 ในภาพ 3D (ผู้ใช้ 15:55: “แบบบานที่มีโปรไฟล์ ทำไมบานพับ ไม่มีหลุม DIA35”) — บานลายปั้นรูปทรงเองทั้งแผ่น ไม่ผ่านทางเจาะรูถ้วยของ v1.456 ผิวหลังจึงตัน ถ้วยบานพับ 3D จมหายในเนื้อไม้ · ตอนนี้ผิวหลังเป็นแผ่นมีรูวงกลม + ผนังถ้วย + ก้นถ้วย ลึกตามรุ่นบานพับแต่ไม่ทะลุลายด้านหน้า · บานกัดทะลุ (ไม่มีบ่าหลัง) เจาะด้วย · บ่าหลังยังไม่เจาะ · ภาพอย่างเดียว ไฟล์เจาะไม่เปลี่ยน · ปิด: SN_OFF.reliefCup"],
     ["1.468","2026-10-16","FIX รูยึดหูแขวนที่แผ่นข้าง = 14 ใต้แผ่นบน (ผู้ใช้ 15:44: “ขยับ เปลี่ยน เป็น จาก 23 ใต้แผ่นบน เป็น 14 ใต้ แผ่นบนครับ”) — v1.466 ตีความ ‘ขึ้น 16’ เป็น 7 ซึ่งผิด · ค่าตั้งต้น 14 · ชุดค่าที่เป็น 23 หรือ 7 ย้ายเป็น 14 ครั้งเดียว (ธง hangSideDownV=1468) · แก้เองได้ที่ ตั้งค่า → หูแขวน → จากใต้แผ่นบนลงมา"],
@@ -3884,7 +3885,7 @@ const DEF_SETTINGS={ frontSetMax:6, dowelD:8, dowelDepth:28, dowelMateDepth:12, 
   railAutoGap:500,   // v1.292: คานขวางในโครง ห่างกันไม่เกินกี่ มม. ก่อนต้องเพิ่มคาน
   ledStripGapMax:40, ledStripMaxL:5000,   // v1.294: เส้นไฟข้ามรอยที่ชั้นตัดรางได้ไม่เกินกี่ มม. · ยาวสุดต่อเส้น (ม้วน)
   drawerBotThick:9, drawerBotLift:11, drawerBotOver:4.5, drawerBotClear:0.5, drawerBotMacroOn:true, drawerBotPipeNotch:false, drawerBotPipeW:40, drawerBotPipeH:25,
-  mfMark:true, mfMarkColor:"#ff8a00", hingeMark:true, hingeMarkColor:"#0a84ff", hinge3D:true, hingeFinish:"nickel", slide3D:true, alto3D:true, alto3DRail:true, alto3DCross:2, mfBoltD:8, mfBoltDepth:28, mfCamD:15, mfCamDepth:13, mfCamOffset:34, mfMateD:5, mfMateDepth:12, mfFixFromFace:8.1, mfCenterMax:16, mfName:"Minifix", mfCode:"MINIFIX",
+  mfMark:true, mfMarkColor:"#ff8a00", hingeMark:true, hingeMarkColor:"#0a84ff", hinge3D:true, hingeFinish:"nickel", slide3D:true, alto3D:true, alto3DRail:true, alto3DCross:2, k40BoxUp:28, altoBoxUp:0, mfBoltD:8, mfBoltDepth:28, mfCamD:15, mfCamDepth:13, mfCamOffset:34, mfMateD:5, mfMateDepth:12, mfFixFromFace:8.1, mfCenterMax:16, mfName:"Minifix", mfCode:"MINIFIX",
   ledMinRun:60,         // v22.8: ท่อนรางที่สั้นกว่านี้ = เศษ ไม่ต้องออก
   hingeShelfClear:96,   // v7.29: ระยะปลอดภัย ศูนย์ถ้วยบานพับ -> ผิวชั้น (มม.)
   hingeAvoidRail:true,  // v22.3: ให้บานพับหลบคานด้วย ไม่ใช่แค่ชั้น
@@ -9985,14 +9986,14 @@ function refitDrawerBox(grpBoards, carc){
   if(boxes.some(b=>b._alto)){
     const _rsA=drsOfBoxes(boxes), _lA=drsLens(_rsA);                        // v1.225: ความยาว NL ของระบบราง
     const LW=Math.max(inX1-inX0,60); const NLs=_lA.length?_lA:[350,400,450,500]; let NL=NLs[0]; NLs.forEach(L2=>{ if(L2+5<=avail) NL=L2; });
-    const bpA=(boxes.find(b=>b._bp)||{})._bp||{}; const fbA=front.y-worldDims(front)[1]/2, cxA=(inX0+inX1)/2, zF=frontFaceZ, yBotA=fbA+(bpA.lift||0)+8;
+    const bpA=(boxes.find(b=>b._bp)||{})._bp||{}; const fbA=front.y-worldDims(front)[1]/2, cxA=(inX0+inX1)/2, zF=frontFaceZ, yBotA=fbA+(bpA.lift||0)+8+altoBoxUp(boxes,bpA);   // v1.471: + ยกกล่องเพิ่ม (รูเจาะไม่ขยับ)
     const st=(b,L,W,T,x,y,z)=>{ if(!b)return; b.L=round(L);b.W=round(W);b.T=round(T);b.x=round(x);b.y=round(y);b.z=round(z); if(b._alto)b._alto=NL; };
     const _sys=railSysOf(boxes), _cf=railSysCfg(_sys,bpA);                     // v7.88: ALTO / Kitchen 4.0 ใช้สูตรเดียวกัน ต่างที่ค่ามิติ
     const sH=_cf.sideH, bH=_cf.backH, btW=_cf.botW, bkW=_cf.backW, btD=_cf.botD;
     st(boxes.find(b=>RX_RAILPART("Bottom").test(b.name||"")), LW-btW, NL-btD, _cf.panelT, cxA, yBotA, zF-(NL-btD)/2);
     st(boxes.find(b=>RX_RAILPART("Back").test(b.name||"")),   LW-bkW, bH,    _cf.panelT, cxA, yBotA+8+bH/2, zF-(NL-btD)+8);
-    st(boxes.find(b=>RX_RAILPART("Steel L").test(b.name||"")), sH, NL, 13, inX0+6.5, fbA+(bpA.lift||0)+sH/2, zF-NL/2);
-    st(boxes.find(b=>RX_RAILPART("Steel R").test(b.name||"")), sH, NL, 13, inX1-6.5, fbA+(bpA.lift||0)+sH/2, zF-NL/2);
+    st(boxes.find(b=>RX_RAILPART("Steel L").test(b.name||"")), sH, NL, 13, inX0+6.5, yBotA-8+sH/2, zF-NL/2);   // v1.471: ตามก้นกล่อง (รวมยกกล่องเพิ่ม)
+    st(boxes.find(b=>RX_RAILPART("Steel R").test(b.name||"")), sH, NL, 13, inX1-6.5, yBotA-8+sH/2, zF-NL/2);
     try{ drillDrawerSlides(grpBoards, carc); }catch(e){ console.error(e); }   // Alto: เจาะแผ่นข้าง + หน้าบาน ตอน refit ด้วย (ไม่งั้นไม่ขึ้นจนกว่าจะ re-render)
     return;
   }
@@ -10315,12 +10316,12 @@ async function addDoor(preset){
         const LW=Math.max(inX1-inX0,60), insideD=(innerOn?frontPlane-T:bb0.zmax)-backFaceZ;
         const NLs=(_rsD&&drsLens(_rsD).length)?drsLens(_rsD):[350,400,450,500]; let NL=NLs[0]; NLs.forEach(L2=>{ if(L2+5<=insideD) NL=L2; });   // ต้องมีที่ ≥ NL+5
         const boxH=_cf.sideH, fb=yc-Hd/2, cx=(inX0+inX1)/2, zF=bb0.zmax;
-        const yBot=fb+bp.lift+8;
+        const _up=altoBoxUp(null,{railCode:_rsD?_rsD.code:"",railSys:_sys}), yBot=fb+bp.lift+8+_up;   // v1.471: + ยกกล่องเพิ่ม (รูเจาะไม่ขยับ)
         const ex={_dg:dg,_alto:NL,_altoSys:_sys,_altoColor:(_sys==="K40"?"":(_rsD?(_rsD.color||"Anthracite"):v.altoColor))};
         const _bo=Object.assign(mkP(_pf+" Bottom "+idx, LW-_cf.botW, NL-_cf.botD, _cf.panelT, cx, yBot, zF-(NL-_cf.botD)/2, "flat"),ex);
         const _bk=Object.assign(mkP(_pf+" Back "+idx, LW-_cf.backW, _cf.backH, _cf.panelT, cx, yBot+8+_cf.backH/2, zF-(NL-_cf.botD)+8, "front"),ex);
-        const _ml=Object.assign(mkP(_pf+" Steel L "+idx, boxH, NL, 13, inX0+6.5, fb+bp.lift+boxH/2, zF-NL/2, "side"),ex,{_virtual:true});
-        const _mr=Object.assign(mkP(_pf+" Steel R "+idx, boxH, NL, 13, inX1-6.5, fb+bp.lift+boxH/2, zF-NL/2, "side"),ex,{_virtual:true});
+        const _ml=Object.assign(mkP(_pf+" Steel L "+idx, boxH, NL, 13, inX0+6.5, fb+bp.lift+_up+boxH/2, zF-NL/2, "side"),ex,{_virtual:true});
+        const _mr=Object.assign(mkP(_pf+" Steel R "+idx, boxH, NL, 13, inX1-6.5, fb+bp.lift+_up+boxH/2, zF-NL/2, "side"),ex,{_virtual:true});
         doors.push(_bo,_bk,_ml,_mr);
       }
       else if(v.box==="มี"){ const boxH=bp.h>0?bp.h:Math.max(Hd-30,50); const fb=yc-Hd/2, byc=fb+bp.lift+boxH/2;
@@ -15980,8 +15981,34 @@ function unifyBoxHeights(){
   return todo.length;
 }
 const _boxHealTried=new Set();   // v1.279: ชุดลิ้นชักที่ลองซ่อมไปแล้วในรอบเปิดโปรแกรมนี้ (ประกาศก่อน reslideAll — กัน TDZ)
+/* ───────── v1.471: ยกกล่องแผงเหล็กให้ตรงรูเจาะ (รูอยู่ที่เดิม) ─────────
+   ผู้ใช้ 16/10 16:36–16:37 (หลังเลื่อนราว 3D ขึ้นตามรูหน้าบาน): "แสดงว่า กล่องอยู่ตำแหน่งไม่ตรง ระยะเจาะแต่แรกหรือเปล่า" → "ปรับ ตัวกล่องตามขึ้นไปด้วย"
+   เดิม: ก้นกล่องแผงเหล็ก = ขอบล่างหน้าบาน + ยกกล่อง (งาน 55: 35) · รูทุกชุดคิดจากก้นกล่องนี้ (รูรางแผ่นข้าง drillH · รูหน้าบาน frontDrill)
+         ผลคือรูอยู่สูงกว่าอุปกรณ์ในภาพ: รูฉากหน้าราว 182.5/189.5 แต่ขอบบนแผ่นหลัง 164 · รูฉากหน้าบานบน 93.5 แต่แผงสูง 80
+   ตอนนี้: ตัวกล่อง (พื้น · หลัง · แผงเหล็ก) ยกขึ้นอีก "ยกกล่องเพิ่ม" มม. แต่รูเจาะทุกชุดยังคิดจากจุดเดิม (ขอบล่างหน้าบาน + ยกกล่อง) → ไฟล์เจาะไม่เปลี่ยน
+     ค่า: ระบบราง (Element) ช่อง boxUp ก่อน → ตั้งค่า k40BoxUp / altoBoxUp · K40 เริ่ม 28 (= ระยะที่ราวต้องขึ้นให้ตรงรู ราวจึงกลับมาเสมอขอบบนแผ่นหลังแบบในรูปของจริง) · ALTO เริ่ม 0
+     งานเก่า: altoBoxSync (เรียกใน reslideAll ทุกรอบ) ตั้งความสูงชิ้นกล่องตามสูตรเดียวกับ refit — ไม่แตะขนาด/ลึก/ซ้ายขวา
+   ปิด: SN_OFF.altoBoxUp=1 (กล่องอยู่ที่ยกกล่องเดิม) */
+function altoBoxUp(boxes,bp){
+  if(snOff("altoBoxUp")) return 0;
+  try{ let e=null; try{ e=(boxes&&boxes.length)?drsOfBoxes(boxes):((bp&&bp.railCode)?drsByCode(bp.railCode):null); }catch(_){ e=null; }
+    const v=e?drsVal(e,"boxUp"):null; if(v!=null) return v;
+    const K=boxes&&boxes.length?(railSysOf(boxes)==="K40"):(String((bp&&bp.railSys)||"")==="K40");
+    const s=K?settings.k40BoxUp:settings.altoBoxUp; return isFinite(+s)?+s:0; }catch(e){ return 0; } }
+function altoBoxSync(){
+  const gs={}; (state.boards||[]).forEach(b=>{ if(b&&b._dg&&b._box&&b._alto) (gs[(b.cabInst||"")+"|"+b._dg]=gs[(b.cabInst||"")+"|"+b._dg]||[]).push(b); });
+  let n=0;
+  Object.keys(gs).forEach(k=>{ const bx=gs[k], dg=bx[0]._dg, inst=bx[0].cabInst||"";
+    const front=(state.boards||[]).find(x=>x&&x._dg===dg&&x._door&&!x._box&&(x.cabInst||"")===inst); if(!front) return;
+    const bp=(bx.find(b=>b._bp)||{})._bp||{}, fb=front.y-worldDims(front)[1]/2, up=altoBoxUp(bx,bp), y0=fb+(+bp.lift||0)+up;
+    const set=(b,y)=>{ if(b&&isFinite(y)&&Math.abs((+b.y||0)-y)>0.05){ b.y=round(y); n++; } };
+    set(bx.find(b=>RX_RAILPART("Bottom").test(b.name||"")), y0+8);
+    const bk=bx.find(b=>RX_RAILPART("Back").test(b.name||"")); if(bk) set(bk, y0+16+(+bk.W||0)/2);
+    bx.filter(b=>/(?:ALTO|K40) Steel [LR]/.test(b.name||"")).forEach(s=>set(s, y0+(+s.L||0)/2)); });
+  return n; }
 function reslideAll(){   // เจาะรางรับข้างให้ทุกลิ้นชักในฉาก (เรียกอัตโนมัติตอนโหลด/ย้าย/รีไซซ์)
   try{ if(healDrawerGroups(state.boards)) _slideSig=""; }catch(e){ console.error("healDrawerGroups:",e); }   // v1.258
+  try{ altoBoxSync(); }catch(e){ console.error("altoBoxSync:",e); }   // v1.471: กล่องแผงเหล็กยกตามค่ายกกล่องเพิ่ม (รูเจาะไม่ขยับ)
   try{ const _live=new Set(); state.boards.forEach(b=>{ if(b._dg) _live.add(b._dg); });   // GC: รูราง/รูหน้าบานที่เจ้าของ (_dg) ถูกลบไปแล้ว → ล้างทิ้ง (กันรูค้างบนแผ่นข้างตู้)
     state.boards.forEach(o=>{ if(!o.holes||!o.holes.length)return;
       o.holes=o.holes.filter(h=>!((h.slide||h.fdrill)&&(!h.src||!_live.has(h.src)))); });   // v8.00: รูรางที่ไม่มี src ก็เป็นรูค้างจากรุ่นเก่า -> ล้างด้วย
@@ -27316,6 +27343,7 @@ function boardRole(b){
      SN_OFF.alto3D=1      ลิ้นชักแผงเหล็ก ALTO/K40 วาดเป็นกล่องเขียวโปร่งแบบเดิม (ไม่มีแผงจริง/รางซ่อนใต้/คลิปล็อก) (v1.466)
      SN_OFF.alto3DRail=1  ลิ้นชักแผงเหล็ก 3D ไม่วาดราวเหลี่ยมด้านข้าง (v1.466)
      SN_OFF.alto3DCross=1 ลิ้นชักแผงเหล็ก 3D ไม่วาดราวขวาง/ข้อต่อตัว T (v1.467)
+     SN_OFF.altoBoxUp=1   กล่องแผงเหล็กอยู่ที่ "ยกกล่อง" เดิม ไม่บวกยกกล่องเพิ่ม (v1.471)
      SN_OFF.shoeWGrain=1  ชิ้นแปะหน้า/หลังของชั้นรองเท้าไม้ ลายตามกติกาแผ่นหลัง (ลายตั้ง) แบบเดิม (v1.452)
      SN_OFF.shoeWPart=1   ชั้นรองเท้าไม้ที่ใส่ใหม่ไม่ตั้ง Part ให้ (เว้นว่างแบบเดิม) (v1.452)
      SN_OFF.skinTrim=1    ชิ้นตั้งที่จมเข้าทอป/พื้นนอกเท่าผิวแผ่น ไม่ตัดให้ชนผิว (แผ่นข้างใต้ทอปทับข้างยาวเกินผิวทอปแบบเดิม) (v1.451)
@@ -32631,6 +32659,8 @@ function renderSettings(){
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">${pick("altoCodeA","ซีรีส์ ALTO สี Anthracite — รหัส Element → Fittings","fittings")}${pick("altoCodeW","ซีรีส์ ALTO สี White — รหัส Element → Fittings","fittings")}</div>
 
     <div class="sumh" style="margin-top:12px">ลูกลิ้นชักแผงข้างเหล็ก — ขนาดไม้ (ALTO-S H80)</div>
+    <!-- ───────── v1.471: ยกกล่องเพิ่ม (รูเจาะไม่ขยับ) ───────── -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:6px">${num("k40BoxUp","K40 · ยกกล่องเพิ่ม มม. (กล่องขึ้น รูเจาะอยู่ที่เดิม) เช่น 28")}${num("altoBoxUp","ALTO · ยกกล่องเพิ่ม มม. (กล่องขึ้น รูเจาะอยู่ที่เดิม)")}</div>
     <div style="font-size:11px;opacity:.7;margin-bottom:6px">สูตรตามแคตตาล็อก: <b>แผ่นพื้น = (LW − 35) × (NL − 10)</b> · <b>แผ่นหลัง = (LW − 38) × 63</b> · LW = ระยะผิวในแผ่นข้างตู้ · NL = ความยาวรางที่เลือกได้ (350/400/450/500)</div>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">
       ${num("altoBotMinusW","ALTO · แผ่นพื้น: หักความกว้างจาก LW (มม.) เช่น 35")}${num("altoBotMinusD","ALTO · แผ่นพื้น: หักความลึกจาก NL (มม.) เช่น 10")}
