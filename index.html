@@ -3250,7 +3250,7 @@
    ===================================================================== */
 /* ---- APP_META: แหล่งความจริงเดียวของเวอร์ชัน (ดูได้จาก console / คลิกชื่อแอป) ---- */
 const APP_META={
-  name:"StarNexus", version:"1.464", build:"2026-10-16/view-real",
+  name:"StarNexus", version:"1.465", build:"2026-10-16/view-light",
   file:"StarNexus.html", basedOn:"Furnitech_V3.html (v3.11)",
   /* ───────── เริ่มนับเวอร์ชันใหม่ที่ 1.001 (21/08/2026) ─────────
      ของเดิมนับมาถึง 42.1 แล้ววิ่งเป็นทศนิยมสองชั้นซึ่งอ่านลำดับยาก
@@ -3258,6 +3258,7 @@ const APP_META={
      ประวัติเก่าเก็บไว้ทั้งหมดตามเลขเดิม ไม่ไล่เขียนใหม่ เพราะเลขในนั้นถูกอ้างถึงไปแล้ว
      รายการที่อยู่ใต้ 1.001 ลงไปจึงเป็นเลขชุดเก่า อ่านต่อกันได้ตามวันที่ */
   changelog:[
+    ["1.465","2026-10-16","FEAT หน้าดูงาน: 🎛 ปรับแสงเอง ในโหมดสมจริง (ผู้ใช้ 09:17: “มีปุ่มปรับด้านแสง หรือเปลี่ยนมุมหน้าต่างได้ไหม เฉพาะโหมดคนดู ให้เขาเลือกมุม เลือกแสง ปรับค่าแสงเองได้”) — เดิมคนดูเลือกได้แค่แบบแสง 3 แบบ หน้าต่างผนังซ้ายตายตัว · ตอนนี้ปุ่ม 🎛 ปรับแสง บนแถบสมจริงเปิดแผง: หน้าต่าง ซ้าย/ขวา · หมุนแดด ±60° · แดดสูง/ต่ำ −25…+30° (กันไว้ 4–82°) · แรงแดด 0–200% · ไฟในห้อง (ดาวน์ไลท์ + LED) 0–200% · ความสว่างภาพ ±2 สต็อป · โทนสี เย็น↔อุ่น (ทาแดดกับไฟเพดาน) · คืนค่าเริ่มต้น — ค่าเป็นสัดส่วนของแบบแสงที่เลือก ใช้ได้ทุกแบบ จำในเครื่องคนดู · กลางคืนปิดแถบที่เกี่ยวกับแดด · หมุน/ยกแดด/แรงแดด/ความสว่าง ปรับไฟเดิมทันที (ไม่ปั้นเงาใหม่ ลากลื่น) · ไฟในห้อง/โทนสี/หน้าต่าง ปั้นห้อง+ไฟใหม่หน่วง 0.15 วิ · หน้าต่างขวา = สะท้อนห้องรอบกลางตู้ (ผนังที่หาย/ดวงไฟ/ช่องหน้าต่างภาพแสงจริงสะท้อนตาม) · 📸 ภาพแสงจริงใช้ค่าที่ปรับทั้งหมด (ความสว่างติดไปเป็นค่าตั้งต้นของแถบความสว่างในหน้าต่างภาพ) · โปรแกรมหลักแก้จุดเดียว: rptPrepare รับช่องหน้าต่างจาก R.portal ถ้ามี (โปรแกรมหลักไม่มี = เดิม) · ลิงก์เก่าได้แผงเมื่อส่งงานขึ้นเว็บครั้งถัดไป"],
     ["1.464","2026-10-16","FEAT ✨ โหมดสมจริง + 📸 ภาพแสงจริง ในหน้าดูงาน (ลิงก์/ไฟล์ดูงานที่ลูกค้าเปิด) (ผู้ใช้ 08:43: “เพิ่มโหมดสมจริงใน Link ที่คนดูได้ไหม” · ตอบเพิ่ม: รวม 📸 ด้วย · เปิดมาแบบปกติมีปุ่ม ✨ ให้กด · ตัวกันการ์ดจอรีเซ็ตเฉพาะในลิงก์) — เดิมหน้าดูมีแค่แสง ในห้อง/แดด/กลางคืน แบบไฟลอย · ตอนนี้แถบล่างมีปุ่ม ✨ สมจริง: ห้อง/แสง 3 แบบ/เงามุม/ตัดผนังด้านกล้อง/ภาพแสงจริง ใช้โค้ดตัวจริงของโปรแกรมหลัก v1.463 (snvRealInject ฉีดค่าคงที่ + Function.toString ตอนประกอบหน้าดู ไม่เขียนซ้ำสองชุด) · หน้าดูเขียนเองเฉพาะ กล่องตู้จากข้อมูลที่อบ (ไม่นับบาน) · ไฟ LED จากแถบที่อบ · แถบเลือกแสง/คุณภาพเหนือแถบล่าง (จอแคบเหลือไอคอน · ปุ่มซูมขยับขึ้น · แผง ⋯ เปิด = ซ่อนแถบ) · ระดับคุณภาพ อัตโนมัติ/เบา/กลาง/สูง จำในเครื่องคนดู: อัตโนมัติ = มือถือ/การ์ดจอออนบอร์ด/ไม่รู้ชื่อ/ไม่ใช้การ์ดจอ/โหมดประหยัด/เคยรีเซ็ต → เบา (วาดตรง ไม่มีบัฟเฟอร์ทศนิยม แดดเงา 1024 ไม่มีเงาไฟเพดาน) · การ์ดจอแยก → กลาง (เงามุม MSAA 2 จำกัด ~2.1 ล้านพิกเซล แดด 2048) · สูง = แบบโปรแกรมหลัก · ตัวกันรีเซ็ต: การ์ดจอรีเซ็ตระหว่างเปิด → ปิดโหมดเอง จำไว้ ครั้งหน้าเบา + ไม่มี 📸 (เลือกคุณภาพเอง = ล้างประวัติ) · วาดไม่ทัน (เฟรมกลาง 16 เฟรม > 110 ms) → ลดคุณภาพเอง · ได้การ์ดจอคืน = วาดต่อ · 📸 เฉพาะคอมการ์ดจอแยก + WebGL2 + ไม่เคยรีเซ็ต ค่าตั้งต้น 960 px 128 รอบ · แคปรูปในโหมดสมจริงได้ภาพสมจริง · โปรแกรมหลักไม่เปลี่ยน · ลิงก์เก่าได้ปุ่มเมื่อส่งงานขึ้นเว็บครั้งถัดไป (หน้าดูตัวใหม่) · ปิด: SN_OFF.vwReal=1 / realPhoto=1"],
     ["1.463","2026-10-15","FEAT ✨ โหมดสมจริง + 📸 ถ่ายภาพแสงจริง (ผู้ใช้ 21:41 ส่งภาพตู้กางบาน: “มีโหมดสมจริงขึ้นไปอีกไหม ระดับเกมส์ 3D อยู่ในห้องที่มีแสงจริง กดปุ่มเอาได้” · ตอบเพิ่ม: ทั้งสองแบบ · สร้างห้องรอบตู้ให้เอง · แสงสลับได้หลายแบบ) — เดิมฉากมีไฟลอย 4 ดวง + พื้นรับเงาโปร่ง ไม่มีห้อง ไม่มีแสงสะท้อนรอบตัว มุมในตู้สว่างเท่าผิวหน้า · ปุ่มใหม่ ✨ สมจริง (แถบล่างข้างปุ่มแสง): ① หมุนดูได้ทันทีแบบเกม — ห้องสร้างเองรอบตู้ (พื้นไม้ลายแผ่น 180×1.2–2.2 ม. · ผนัง · ฝ้า · บัวเชิงผนังเว้นหลังตู้ · หน้าต่างผนังซ้ายกรอบอะลูมิเนียม+กระจก · ตู้ชิดผนังหลัง หน้าตู้เว้น ≥2.6 ม. ฝ้า ≥2.7 ม.) คิดห้องใหม่เองเมื่อตู้เปลี่ยนขนาด/ย้าย (รอนิ่ง 0.3 วิ · กางบานไม่นับ) · ผนังด้านที่กล้องอยู่นอกห้องหายเอง (เลเยอร์ 2: กล้องไม่เห็น เงายังบัง แดดจึงเข้าทางหน้าต่างเท่านั้น) · แสง 3 แบบจำไว้ในเครื่อง ☀️ กลางวัน (แดดลอดหน้าต่างตกพื้นหน้าตู้ เงา 4096) 🌇 เย็น (แดดส้มยิงหน้าตู้ + ดาวน์ไลท์อุ่น) 🌙 กลางคืน (ดาวน์ไลท์ส่องเป็นลำ เงาจริง 2 ดวง + LED ในตู้ส่องตามทิศราง) · แสงรอบตัวจากห้องจำลองตามแบบแสง (PMREM) · เงามุม SSAO ครึ่งความละเอียด + เบลอรักษาขอบ · โทน ACES · วาดลงบัฟเฟอร์ทศนิยม MSAA 4 ความลึก 24 บิต (16 บิตทำผนังหลังที่ห่างตู้ 3 มม. ทะลุขอบตู้เป็นฟันเลื่อย) · ไม่มี WebGL2/โหมดประหยัด = ข้ามเงามุม · ระหว่างเปิดซ่อนเส้นขอบ/ตาราง/พื้นเงา/ห้องของห้องออกแบบ ทุกชิ้นทอด/รับเงา · ออกแล้วคืนทุกอย่าง ② 📸 ถ่ายภาพแสงจริง (path tracing WebGL2 หน้าต่างแยก) — เก็บทุก mesh ที่เห็นเป็นสามเหลี่ยม + BVH (SAH 16 ช่อง) ลง texture ทศนิยม · ยิงแสงจริงสะท้อน 5 ทอด · แหล่งแสง: แดด · ท้องฟ้าผ่านช่องหน้าต่าง (สุ่มจุดบนช่อง) · ดาวน์ไลท์/LED เป็นแผ่นเรืองแสงจริง (สุ่มครึ่งตามกำลังครึ่งเท่ากันทุกดวง) · ลายผิวจริงใน texture array · GGX ตามความด้าน/โลหะเดิม · กระจกทะลุตามความทึบ · ผนังที่หายยังสะท้อนแสง · วาดเป็นแถบปรับตามเวลาเฟรม (การ์ดจอไม่ค้าง) · ปรับแสงอัตโนมัติ + เลื่อนเอง · ลดเม็ดสี à-trous 5 รอบ · เลือกกว้าง 960–2560 / รอบ 64–1024 · หยุด/ทำต่อ · บันทึก PNG · จำกัดแสงทอดที่สองกันจุดขาว · ภาพอย่างเดียว ไม่แตะ state.boards/ใบผลิต/MPR/ไฟล์งาน · ปิด: SN_OFF.realMode=1 / realAO=1 / realPhoto=1"],
     ["1.462","2026-10-15","FIX ปรับขนาดตู้แล้วตู้เพี้ยน (ผู้ใช้ 20:21 ส่ง JMT008 ก่อน/หลัง: “ทำไมปรับความสูง แล้วตู้เพี้ยน” 1500×500 → 1200×1000) — ต้นเหตุ ① ตัวสเกลยืดทุกชิ้นตามสัดส่วนก่อน แผ่นพื้นที่ผูกระยะอ้างอิง (cabBottom 100.5) ถูกยกไป 208.9 · ชั้นตาย (floorBot 180) ไป 536.9 แล้วรีฟิต/คาน/พินจัดของที่อิงสองแผ่นนี้ตามตำแหน่งที่ถูกยืด จบท้าย sync ค่อยดึงแผ่นพื้น/ชั้นตายกลับที่ ของที่จัดไปแล้วค้าง → คานตีนตู้ลอยขึ้นไปในตู้ 108.9–208.9 · เสาแบ่งเริ่ม 225 · แผ่นหลังเริ่ม 233 · Back Panel 2 เหลือสูง 30.9 · บานพับหลบคานที่ลอยเลยเลื่อน 192 ② ตัวสเกลปัดขอบทุกชิ้นเป็นมิลเต็ม แผ่น 16.2 จึงได้ขอบใน 16 → แผ่นพื้น/คานยาวเกินช่อง 0.4 (1168 แทน 1167.6) ปรับแค่กว้างก็โดน · ตอนนี้ (_resizeCabinetToCore) จดรอยต่อขอบชนผิวก่อนสเกล → หลังสเกลวางชิ้นระยะอ้างอิงทันที (2 รอบ) แล้วดึงรอยต่อกลับมาชนเท่าเดิม (ไล่เป็นทอด ≤ 3 รอบ · หน้าบาน/ลิ้นชักตามชิ้นระยะอ้างอิงด้วย ให้หาช่องถูก) ก่อนรีฟิต และอีกรอบหลัง refitInterior · JMT008 1200×1000: แผ่นพื้น 86.2–1253.8 · คาน 0.5–100.5 · เสาแบ่ง 116.75–983.85 · แผ่นหลัง 116.95–983.65 · Back Panel 2 871.35–1253.65 ไม่มีชิ้นทับกัน · ขนาดเดิม/ตู้หนาเลขเต็ม/ตู้ไม่มีระยะอ้างอิงได้ผลเท่าเดิมทุกค่า · ตู้ 16.2 ได้ชิ้นใน 0.4 สั้นกว่าเดิม (ตรงช่องจริง) · ปิด: SN_OFF.resizeDatumFirst=1 (ทั้งหมด) / SN_OFF.resizeFaceSnap=1 (เฉพาะเศษปัด)"],
@@ -18538,7 +18539,8 @@ function rptPrepare(){
   const bg=new THREE.Color(P.bg);
   RPT.scn={cam:[cp.x,cp.y,cp.z],cr:[me[0],me[1],me[2]],cu:[me[4],me[5],me[6]],cf:[-me[8],-me[9],-me[10]],tan:Math.tan(THREE.MathUtils.degToRad(camera.fov)/2),asp:camera.aspect,
     sunD:sunOn?REAL.sunDir.toArray():[0,1,0],sunC:[sc.r,sc.g,sc.b],sunCos:Math.cos(THREE.MathUtils.degToRad(.9)),
-    skyT:P.pt.skyT,skyH:P.pt.skyH,skyG:P.pt.skyG,wp:[R.x0-T-2,yb,za],wu:[0,0,W0.w],wv:[0,W0.h,0],lw,nl:D.nl,inside:inside?1:0,bg:[bg.r,bg.g,bg.b],key:P.pt.key};
+    skyT:P.pt.skyT,skyH:P.pt.skyH,skyG:P.pt.skyG,wp:(R.portal&&R.portal.p)||[R.x0-T-2,yb,za],wu:(R.portal&&R.portal.u)||[0,0,W0.w],wv:(R.portal&&R.portal.v)||[0,W0.h,0],lw,nl:D.nl,inside:inside?1:0,bg:[bg.r,bg.g,bg.b],key:P.pt.key};
+  /* v1.465: ช่องหน้าต่างของห้องที่ถูกสะท้อน (หน้าดูงาน: หน้าต่างขวา) ส่งมาที่ R.portal · โปรแกรมหลักไม่มี = ผนังซ้ายแบบเดิม */
   RPT.S={n:S.n,mats:S.mats.length,imgs:S.imgs.length,depth:B.depth,nodes:B.nn,lights:D.nl,ms:Math.round(performance.now()-tA)};
   console.log("📸 ภาพแสงจริง: ฉาก",RPT.S); }
 function rptRestart(){
@@ -59154,6 +59156,23 @@ body.vwScanTop #vwScan{top:calc(8px + env(safe-area-inset-top))}
 #vwRealBar .vbtn{flex:none;box-shadow:none;padding:6px 10px;font:inherit}
 #vwRealBar .vbtn.pri{background:var(--accent);color:#fff;border-color:transparent}
 @media(max-width:480px){#vwRealBar .seg .tx{display:none}#vwRealBar .seg button{padding:6px 11px}}
+/* v1.465: แผง 🎛 ปรับแสง (เหนือแถบสมจริง · JS วางตำแหน่ง) */
+#vwRealBar .vbtn.on{background:var(--accent);color:#fff;border-color:transparent}
+@media(max-width:480px){#vwRealBar .vbtn .tx{display:none}}
+#vwRealAdj{position:fixed;left:50%;transform:translateX(-50%);z-index:8;display:none;flex-direction:column;gap:6px;width:min(380px,calc(100vw - 16px));box-sizing:border-box;background:var(--solid);border:1px solid var(--line);border-radius:14px;padding:10px 12px;box-shadow:var(--shadow);font-size:13px}
+#vwRealAdj .row{display:flex;align-items:center;gap:8px;min-height:30px}
+#vwRealAdj .row>span{flex:none;width:96px;color:var(--dim)}
+#vwRealAdj input[type=range]{flex:1;min-width:0;accent-color:var(--accent)}
+#vwRealAdj b{flex:none;width:66px;text-align:right;font-weight:600;font-variant-numeric:tabular-nums;font-size:12px}
+#vwRealAdj .row.off{opacity:.4}
+#vwRealAdj .seg{display:flex;border:1px solid var(--line);border-radius:10px;overflow:hidden}
+#vwRealAdj .seg button{border:0;background:transparent;padding:6px 14px;cursor:pointer;font:inherit;color:inherit}
+#vwRealAdj .seg button.on{background:var(--accent);color:#fff}
+#vwRealAdj .nt{font-size:11.5px;color:var(--dim)}
+#vwRealAdj .nt:empty{display:none}
+#vwRealAdj .act{justify-content:flex-end}
+#vwRealAdj .vbtn{box-shadow:none;padding:6px 12px;font:inherit}
+#vwRealAdj .vbtn.pri{background:var(--accent);color:#fff;border-color:transparent}
 </script>
 <script type="text/plain" id="snvTplBody">
 <div id="vwCanvas"></div>
@@ -60006,9 +60025,19 @@ function paperList(keep){
      สูง  = แบบโปรแกรมหลัก (MSAA 4 · ~3.7 ล้านพิกเซล · แดด 4096 · เงา 2 ดวง)
    ตัวกัน: การ์ดจอรีเซ็ตระหว่างเปิด (webglcontextlost) → ปิดโหมดเอง + จำไว้ในเครื่องคนดู ครั้งหน้าอัตโนมัติ = เบา และไม่มีปุ่ม 📸
      · วาดไม่ทัน (เฟรมกลางของ 16 เฟรมล่าสุดช้ากว่า 110 มิลลิวินาทีตอนหมุน) → ลดคุณภาพลงทีละขั้นเอง
-     · 📸 มีเฉพาะคอมที่การ์ดจอแยก + WebGL2 + ไม่เคยรีเซ็ต · มือถือไม่เห็นปุ่ม · ค่าตั้งต้นของภาพ 960 px 128 รอบ วาดแถบละ 8 แถว */
+     · 📸 มีเฉพาะคอมที่การ์ดจอแยก + WebGL2 + ไม่เคยรีเซ็ต · มือถือไม่เห็นปุ่ม · ค่าตั้งต้นของภาพ 960 px 128 รอบ วาดแถบละ 8 แถว
+   ───────── v1.465: 🎛 ปรับแสงเอง (เฉพาะหน้าดูงาน) ─────────
+   ผู้ใช้ 16/10 09:17: "มีปุ่มปรับด้านแสง หรือเปลี่ยนมุมหน้าต่างได้ไหมครับ เฉพาะโหมดคนดู เพื่อให้เขาเลือกมุม เลือกแสง ปรับค่าแสงเองได้"
+   เดิม: คนดูเลือกได้แค่แบบแสง 3 แบบ หน้าต่างอยู่ผนังซ้ายตายตัว แดดตกที่เดิมทุกครั้ง
+   ตอนนี้ปุ่ม 🎛 บนแถบสมจริง เปิดแผง: หน้าต่าง ซ้าย/ขวา · หมุนแดด ±60° · แดดสูง/ต่ำ · แรงแดด 0–200% · ไฟในห้อง (ดาวน์ไลท์+LED) 0–200%
+     · ความสว่างภาพ ±2 สต็อป · โทนสี เย็น↔อุ่น · คืนค่าเริ่มต้น — จำในเครื่องคนดู ใช้กับทุกแบบแสง (ค่าเป็นสัดส่วนของแบบแสงนั้น)
+   ทำยังไง: แบบแสงที่ใช้วาดจริง = สำเนาของแบบที่เลือก + ค่าที่ปรับ (REAL_PRESETS.__v · REAL.base = แบบที่เลือก) ฟังก์ชันที่ฉีดมาจากโปรแกรมหลักอ่านค่าเดิมได้เลย
+     หน้าต่างขวา = สะท้อนห้องทั้งก้อนรอบกลางตู้ (ห้องสมมาตรรอบตู้อยู่แล้ว) + ผนัง/ดวงไฟ/ช่องหน้าต่างของภาพแสงจริงสะท้อนตาม
+     หมุนแดด/สูงต่ำ/แรงแดด/ความสว่าง = ปรับไฟเดิมในที่ (ไม่ปั้นเงาใหม่ ลากลื่น) · ไฟในห้อง/โทนสี/หน้าต่าง = ปั้นไฟใหม่ (หน่วง 0.15 วิ) */
 var REAL={on:false,preset:"day",grp:null,lights:[],env:null,walls:[],sig:"",room:null,lamps:[],cmp:null,cmpFail:"",bgCol:null,floorTex:null,sunDir:null,
-  q:"auto",qEff:"low",tier:1,gpu:"",mob:false,keep:null,ft:[],lastF:0,hidL:[],shK:[],hooked:false};
+  q:"auto",qEff:"low",tier:1,gpu:"",mob:false,keep:null,ft:[],lastF:0,hidL:[],shK:[],hooked:false,
+  base:"day",adj:null,sunL:null,spots:[],adjT:0};   // v1.465: base = แบบแสงที่เลือก · adj = ค่าที่คนดูปรับ · preset = "__v" (แบบที่ผสมค่าแล้ว)
+var RV_BASES=["day","evening","night"];
 var RPT={el:null,cv:null,gl:null,raf:0,run:false,frame:0,target:128,row:0,band:8,W:0,H:0,res:960,
   P:null,S:null,acc:null,dn:null,prog:null,expAuto:1,expUser:0,t0:0,tRun:0,lastT:0,done:false,keyH:null,dnOn:true,scn:null};
 var REAL_L2=new THREE.Layers(); REAL_L2.set(2);
@@ -60048,25 +60077,59 @@ function rvLedRuns(){ var out=[];
     var col=(o.material&&o.material.color)?o.material.color.clone():new THREE.Color(0xffd9a0);
     out.push({c:c,out:d,len:srt[2],col:col}); });
   return out; }
+/* ── v1.465: ค่าที่คนดูปรับ → แบบแสงที่ใช้วาดจริง ── */
+function rvAdjDef(){ return {side:"left",az:0,el:0,sun:1,lamp:1,ev:0,warm:0}; }
+function rvTint(hex,w){ var c=new THREE.Color(hex); if(w>0) c.lerp(new THREE.Color(0xffa45c),w*.5); else if(w<0) c.lerp(new THREE.Color(0xb8d0ff),-w*.5); return c.getHex(); }
+function rvEff(){
+  if(!REAL.adj) REAL.adj=rvAdjDef();
+  var B=REAL_PRESETS[REAL.base]||REAL_PRESETS.day, A=REAL.adj, E=JSON.parse(JSON.stringify(B));
+  if(E.sun){ E.sun.c=rvTint(E.sun.c,A.warm); E.sun.i*=A.sun; }
+  E.pt.sun*=A.sun; E.lamp*=A.lamp; E.pt.lampL*=A.lamp; E.led*=A.lamp; E.pt.ledL*=A.lamp;
+  E.exp*=Math.pow(2,A.ev); E.lampCol=rvTint(0xffd6a6,A.warm);
+  REAL_PRESETS.__v=E; REAL.preset="__v"; return E; }
+/* หน้าต่างขวา: ห้องปั้นแบบหน้าต่างซ้ายแล้วสะท้อนรอบกลางห้อง (ห้องกว้างเท่ากันสองข้างตู้) */
+function rvMirror(){ var R=REAL.room; if(!R||!REAL.grp) return;
+  R.side=REAL.adj&&REAL.adj.side==="right"?"right":"left"; R.portal=null;
+  if(R.side!=="right") return;
+  var cx=(R.x0+R.x1)/2, W0=R.win, T=120;
+  REAL.grp.scale.x=-1; REAL.grp.position.x=2*cx; REAL.grp.updateMatrixWorld(true);
+  REAL.walls.forEach(function(w){ w.p.x=2*cx-w.p.x; w.n.x=-w.n.x; w.hid=null; });
+  REAL.lamps.forEach(function(p){ p.x=2*cx-p.x; });
+  R.portal={p:[R.x1+T+2,W0.yc-W0.h/2,W0.zc-W0.w/2],u:[0,0,W0.w],v:[0,W0.h,0]}; }
+function rvRoom(){ rvEff(); if(!realBuildRoom()) return false; rvMirror(); return true; }
+/* ทิศแดด: จากช่องหน้าต่างไปจุดที่อยากให้แดดตก (แบบโปรแกรมหลัก) แล้วหมุนรอบแนวตั้ง/ยกขึ้นลงตามที่คนดูปรับ */
+function rvSunDir(P,R){
+  var bx=R.bx, Wc=bx.max.x-bx.min.x, rt=R.side==="right";
+  var C=new THREE.Vector3(rt?R.x1+60:R.x0-60,R.win.yc+R.win.h*.15,R.win.zc);
+  var tx=(P.sun.tgt==="cab")?Wc*.42:Wc*.25;
+  var Tg=(P.sun.tgt==="cab")?new THREE.Vector3(rt?bx.max.x-tx:bx.min.x+tx,R.y0+Math.min(700,(bx.max.y-bx.min.y)*.45),bx.max.z+40)
+                            :new THREE.Vector3(rt?bx.max.x-tx:bx.min.x+tx,R.y0,bx.max.z+420);
+  var L=C.sub(Tg).normalize(), A=REAL.adj||rvAdjDef();
+  if(A.az) L.applyAxisAngle(new THREE.Vector3(0,1,0),A.az*Math.PI/180*(rt?-1:1));
+  if(A.el){ var h=Math.hypot(L.x,L.z)||1e-6, el=Math.atan2(L.y,h)+A.el*Math.PI/180; el=Math.max(4*Math.PI/180,Math.min(82*Math.PI/180,el));
+    L.set(L.x/h*Math.cos(el),Math.sin(el),L.z/h*Math.cos(el)); }
+  return L.normalize(); }
+function rvSunSet(){ var s=REAL.sunL, P=REAL_PRESETS[REAL.preset], R=REAL.room; if(!s||!P||!P.sun||!R) return;
+  var cx=(R.x0+R.x1)/2, cy=(R.y0+R.y1)/2, cz=(R.z0+R.z1)/2, rad=Math.hypot(R.x1-R.x0,R.y1-R.y0,R.z1-R.z0)*.6+400, L=rvSunDir(P,R);
+  REAL.sunDir=L.clone(); s.color.setHex(P.sun.c); s.intensity=P.sun.i;
+  s.position.set(cx,cy,cz).addScaledVector(L,rad*1.5); s.target.position.set(cx,cy,cz); s.target.updateMatrixWorld();
+  renderer.shadowMap.needsUpdate=true; S.dirty=true; }
 function rvApplyLights(){
-  realDropLights();
+  realDropLights(); REAL.sunL=null; REAL.spots=[];
   var P=REAL_PRESETS[REAL.preset]||REAL_PRESETS.day, R=REAL.room, Q=RV_Q[REAL.qEff]||RV_Q.low; if(!R) return;
   function add(l){ scene.add(l); if(l.target&&!l.target.parent) scene.add(l.target); REAL.lights.push(l); return l; }
   add(new THREE.HemisphereLight(P.hemi[0],P.hemi[1],P.hemi[2]));
-  var cx=(R.x0+R.x1)/2, cy=(R.y0+R.y1)/2, cz=(R.z0+R.z1)/2, bx=R.bx, Wc=bx.max.x-bx.min.x;
+  var cx=(R.x0+R.x1)/2, cy=(R.y0+R.y1)/2, cz=(R.z0+R.z1)/2;
   REAL.sunDir=null;
   if(P.sun){
-    var C=new THREE.Vector3(R.x0-60,R.win.yc+R.win.h*.15,R.win.zc);
-    var Tg=(P.sun.tgt==="cab")?new THREE.Vector3(bx.min.x+Wc*.42,R.y0+Math.min(700,(bx.max.y-bx.min.y)*.45),bx.max.z+40)
-                              :new THREE.Vector3(bx.min.x+Wc*.25,R.y0,bx.max.z+420);
-    var L=C.clone().sub(Tg).normalize(); REAL.sunDir=L.clone();
-    var s=add(new THREE.DirectionalLight(P.sun.c,P.sun.i)), rad=Math.hypot(R.x1-R.x0,R.y1-R.y0,R.z1-R.z0)*.6+400;
+    var L=rvSunDir(P,R); REAL.sunDir=L.clone();
+    var s=add(new THREE.DirectionalLight(P.sun.c,P.sun.i)), rad=Math.hypot(R.x1-R.x0,R.y1-R.y0,R.z1-R.z0)*.6+400; REAL.sunL=s;
     s.position.set(cx,cy,cz).addScaledVector(L,rad*1.5); s.target.position.set(cx,cy,cz);
     s.castShadow=true; s.shadow.mapSize.set(Q.sun,Q.sun);
     var sc=s.shadow.camera; sc.left=-rad; sc.right=rad; sc.top=rad; sc.bottom=-rad; sc.near=10; sc.far=rad*3.2; sc.updateProjectionMatrix();
     s.shadow.bias=-0.00004*(4096/Q.sun); s.shadow.normalBias=.5*(4096/Q.sun>1?1.6:1); sc.layers.enable(2); }
   if(P.lamp>0) REAL.lamps.forEach(function(p,i){
-    var sp=add(new THREE.SpotLight(0xffd6a6,P.lamp*1.25,6500,Math.PI*.27,.75,1.4));
+    var sp=add(new THREE.SpotLight(P.lampCol||0xffd6a6,P.lamp*1.25,6500,Math.PI*.27,.75,1.4)); REAL.spots.push(sp);
     sp.position.set(p.x,p.y,p.z); sp.target.position.set(p.x,R.y0,p.z-420);
     if(i<Q.spotSh){ sp.castShadow=true; sp.shadow.mapSize.set(1024,1024); sp.shadow.bias=-0.00015; sp.shadow.normalBias=.6;
       sp.shadow.camera.near=50; sp.shadow.camera.far=7000; sp.shadow.camera.layers.enable(2); } });
@@ -60148,13 +60211,15 @@ function rvHook(){ if(REAL.hooked) return; REAL.hooked=true; var cv=renderer.dom
     setTimeout(function(){ try{ rvToggle(false); }catch(e){} hint("การ์ดจอรีเซ็ต — ปิดโหมดสมจริงให้แล้ว · ถ้าภาพ 3D ไม่กลับมา ให้ปิดเบราว์เซอร์แล้วเปิดลิงก์ใหม่",7000); },0); },false);
   cv.addEventListener("webglcontextrestored",function(){ S.dirty=true; try{ renderer.shadowMap.needsUpdate=true; }catch(e){} },false); }
 function rvPhoto(){
+  RPT.expUser=(REAL.adj&&REAL.adj.ev)||0;   // v1.465: ความสว่างที่คนดูปรับ ติดไปภาพแสงจริงด้วย (ปรับแสงอัตโนมัติแล้วคูณอีกที)
   try{ rptOpen(); }catch(e){ hint("เปิดภาพแสงจริงไม่ได้: "+((e&&e.message)||e),4000); return; }
   var cv=RPT.cv; if(!cv) return;
   cv.addEventListener("webglcontextlost",function(){ if(RPT.cv!==cv) return;   // ปิดหน้าต่างเอง (loseContext) ไม่นับ
     rvLS("realCrash",{t:Date.now(),src:"photo",gpu:REAL.gpu}); RPT.run=false;
     rptStatus("⚠ การ์ดจอรีเซ็ต — หยุดคำนวณแล้ว ปิดหน้าต่างนี้ได้เลย (ครั้งหน้าจะไม่มีปุ่มนี้ในเครื่องนี้)",true); },false); }
 function rvBarSync(){ var el=$("vwRealBar"); if(!el) return;
-  [].forEach.call(el.querySelectorAll("[data-p]"),function(b){ b.classList.toggle("on",b.dataset.p===REAL.preset); });
+  [].forEach.call(el.querySelectorAll("[data-p]"),function(b){ b.classList.toggle("on",b.dataset.p===REAL.base); });
+  var ab=el.querySelector('[data-a="adj"]'); if(ab) ab.classList.toggle("on",!!REAL.adjOpen);
   var se=el.querySelector("select"); if(se){ se.value=REAL.q; var o=se.querySelector('option[value="auto"]'); if(o) o.textContent="อัตโนมัติ ("+RV_Q[rvQEff()].label+")"; } }
 /* วางแถบเหนือแถบล่างเสมอ — จอแคบแถบล่างมีสองแถว (แยกประกอบ) / เปิด ⋯ เพิ่มเติม แถบล่างสูงขึ้น · ข้อความแนะนำขึ้นไปเหนือแถบนี้อีกที */
 function rvPlace(){ var el=$("vwRealBar"), bar=$("vwBar"), h=$("vwHint"), z=$("vwZoom"), ex=$("vwExtra");
@@ -60163,21 +60228,27 @@ function rvPlace(){ var el=$("vwRealBar"), bar=$("vwBar"), h=$("vwHint"), z=$("v
   var r=bar.getBoundingClientRect(), bt=Math.max(8,Math.round(innerHeight-r.top+6)); el.style.bottom=bt+"px";
   /* จอแคบ: แผง ⋯ เพิ่มเติม เด้งทับตำแหน่งเดียวกัน → ซ่อนแถบนี้ระหว่างแผงเปิด · ปุ่มซูม +/− ขยับขึ้นพ้นแถบ */
   el.style.visibility=(narrow&&ex&&ex.classList.contains("open"))?"hidden":"";
-  var top=bt+el.offsetHeight+8;
+  var top=bt+el.offsetHeight+8, pn=$("vwRealAdj");
+  /* แผง 🎛: จอกว้างชิดซ้าย (ไม่บังตู้กลางจอ · ขวามีปุ่มซูม/แผงข้อมูลชิ้น) · จอแคบกลางจอเหนือแถบ */
+  if(pn&&pn.style.display!=="none"){ pn.style.visibility=el.style.visibility;
+    if(narrow){ pn.style.left=""; pn.style.transform=""; pn.style.bottom=top+"px"; top+=pn.offsetHeight+8; }
+    else { pn.style.left="12px"; pn.style.transform="none"; pn.style.bottom=top+"px"; } }
   if(h) h.style.bottom=top+"px";
   if(z) z.style.bottom=narrow?(top+"px"):""; }
 function rvBar(on){ var el=$("vwRealBar"); document.body.classList.toggle("rvOn",!!on);
   if(!REAL.placeHooked){ REAL.placeHooked=true; addEventListener("resize",rvPlace);
     try{ if(window.ResizeObserver) new ResizeObserver(function(){ rvPlace(); }).observe($("vwBar")); }catch(e){}
     try{ if(window.MutationObserver&&$("vwExtra")) new MutationObserver(function(){ rvPlace(); }).observe($("vwExtra"),{attributes:true,attributeFilter:["class"]}); }catch(e){} }
-  if(!on){ if(el) el.style.display="none"; rvPlace(); return; }
+  if(!on){ if(el) el.style.display="none"; rvAdjPanel(false); rvPlace(); return; }
   if(!el){ el=document.createElement("div"); el.id="vwRealBar"; document.body.appendChild(el); }
-  el.innerHTML='<div class="seg">'+Object.keys(REAL_PRESETS).map(function(k){ var p=REAL_PRESETS[k]; return '<button data-p="'+k+'" title="แสง'+p.label+'">'+p.icon+'<span class="tx"> '+p.label+'</span></button>'; }).join("")+'</div>'
+  el.innerHTML='<div class="seg">'+RV_BASES.map(function(k){ var p=REAL_PRESETS[k]; return '<button data-p="'+k+'" title="แสง'+p.label+'">'+p.icon+'<span class="tx"> '+p.label+'</span></button>'; }).join("")+'</div>'
+    +'<button class="vbtn" data-a="adj" title="ปรับแสงเอง: หน้าต่าง ซ้าย/ขวา · ทิศแดด · ความแรงไฟ · ความสว่าง · โทนสี">🎛<span class="tx"> ปรับแสง</span></button>'
     +'<select title="คุณภาพภาพ — เครื่องอืดหรือร้อนให้เลือก เบา"><option value="auto">อัตโนมัติ</option><option value="low">เบา</option><option value="mid">กลาง</option><option value="high">สูง</option></select>'
     +(rvCanPhoto()?'<button class="vbtn pri" data-a="ph" title="คำนวณแสงจริงจากมุมนี้ แล้วบันทึกเป็นรูป (ใช้การ์ดจอเต็มที่ชั่วคราว)">📸 ภาพแสงจริง</button>':'')
     +'<button class="vbtn" data-a="x" title="กลับมุมมองปกติ">✕</button>';
   el.onclick=function(e){ var b=e.target.closest&&e.target.closest("button"); if(!b) return;
-    if(b.dataset.p){ REAL.preset=b.dataset.p; rvLS("realPreset",REAL.preset); realBuildRoom(); rvApplyLights(); rvBarSync(); }
+    if(b.dataset.p){ REAL.base=b.dataset.p; rvLS("realPreset",REAL.base); rvRoom(); rvApplyLights(); rvBarSync(); rvAdjSync(); }
+    else if(b.dataset.a==="adj") rvAdjPanel(!REAL.adjOpen);
     else if(b.dataset.a==="ph") rvPhoto();
     else if(b.dataset.a==="x") rvToggle(false); };
   el.querySelector("select").onchange=function(){ REAL.q=this.value; rvLS("realQ",REAL.q); if(REAL.q!=="auto") rvLS("realCrash",null);   // เลือกเอง = ยอมรับความเสี่ยง ล้างประวัติรีเซ็ต
@@ -60190,7 +60261,8 @@ function rvToggle(on){
     rvHook();
     REAL.gpu=rvGpu(); REAL.tier=(window.__snvTier!=null)?+window.__snvTier:rvTier(REAL.gpu); REAL.mob=rvMobile();   // __snvTier = ตัวทดสอบบังคับระดับการ์ดจอ
     REAL.q=rvLS("realQ")||"auto"; if(!RV_Q[REAL.q]&&REAL.q!=="auto") REAL.q="auto";
-    var pr=rvLS("realPreset"); if(pr&&REAL_PRESETS[pr]) REAL.preset=pr;
+    var pr=rvLS("realPreset"); if(pr&&RV_BASES.indexOf(pr)>=0) REAL.base=pr;
+    REAL.adj=Object.assign(rvAdjDef(),rvLS("realAdj")||{});
     REAL.qEff=rvQEff(); REAL.ft=[]; REAL.lastF=0; REAL.cmpFail="";
     REAL.keep={bg:scene.background,fog:scene.fog,env:scene.environment,sh:renderer.shadowMap.enabled,tm:renderer.toneMapping,te:renderer.toneMappingExposure,
       vis:[hemi,keyL,fillL,rimL].map(function(l){ return !!(l&&l.visible); }),fl:!!(floor&&floor.visible),gr:!!(grid&&grid.visible)};
@@ -60200,7 +60272,7 @@ function rvToggle(on){
       if(o.isMesh&&!(o.userData&&o.userData.led)){ REAL.shK.push([o,o.castShadow,o.receiveShadow]);
         var m=o.material, tr=Array.isArray(m)?m.some(function(x){ return x&&x.transparent; }):!!(m&&m.transparent); o.castShadow=!tr; o.receiveShadow=true; } });
     renderer.shadowMap.enabled=true;
-    if(!realBuildRoom()){ rvToggle(false); hint("หาขนาดตู้ไม่ได้ จึงสร้างห้องไม่ได้"); return; }
+    if(!rvRoom()){ rvToggle(false); hint("หาขนาดตู้ไม่ได้ จึงสร้างห้องไม่ได้"); return; }
     rvApplyLights(); _realMatsDirty(); rvBar(true);
     var why=rvLS("realCrash")?"ครั้งก่อนการ์ดจอเครื่องนี้รีเซ็ต — เปิดแบบเบาให้":(REAL.qEff==="low"?"เปิดแบบเบา (เหมาะกับเครื่องนี้)":"");
     hint("✨ โหมดสมจริง — ลากหมุนดูได้ ผนังด้านกล้องหายเอง"+(why?" · "+why:""),4200);
@@ -60222,6 +60294,36 @@ function rvToggle(on){
   }
   var b=$("vwReal"); if(b) b.classList.toggle("on",REAL.on);
   try{ renderer.shadowMap.needsUpdate=true; }catch(e){} S.dirty=true; }
+/* ── v1.465: แผง 🎛 ปรับแสง ── */
+var RV_ADJ=[["az","หมุนแดด",-60,60,1],["el","แดดสูง/ต่ำ",-25,30,1],["sun","แรงแดด",0,2,.05],["lamp","ไฟในห้อง",0,2,.05],["ev","ความสว่างภาพ",-2,2,.1],["warm","โทนสี",-1,1,.05]];
+function rvAdjTxt(k,x){ x=+x;
+  if(k==="az"||k==="el") return (x>0?"+":"")+Math.round(x)+"°";
+  if(k==="sun"||k==="lamp") return Math.round(x*100)+"%";
+  if(k==="ev") return (x>0?"+":"")+x.toFixed(1);
+  return Math.abs(x)<.03?"กลาง":(x>0?"อุ่น ":"เย็น ")+Math.round(Math.abs(x)*100)+"%"; }
+function rvAdjSync(){ var pn=$("vwRealAdj"); if(!pn||!REAL.adj) return; var A=REAL.adj, P=REAL_PRESETS[REAL.base]||{};
+  [].forEach.call(pn.querySelectorAll("[data-side]"),function(b){ b.classList.toggle("on",b.dataset.side===A.side); });
+  RV_ADJ.forEach(function(r){ var k=r[0], i=pn.querySelector('input[data-k="'+k+'"]'), o=pn.querySelector('[data-v="'+k+'"]'), row=i&&i.closest(".row");
+    if(i&&document.activeElement!==i) i.value=A[k]; if(o) o.textContent=rvAdjTxt(k,A[k]);
+    var off=(!P.sun&&(k==="az"||k==="el"||k==="sun")); if(i) i.disabled=off; if(row) row.classList.toggle("off",off); });
+  var nt=pn.querySelector(".nt"); if(nt) nt.textContent=!P.sun?"กลางคืนไม่มีแดด — ปรับไฟในห้องแทน":(!(P.lamp>0)?"กลางวันปิดไฟเพดาน — ไฟในห้องมีผลกับ LED":""); }
+function rvAdjApply(k){ rvLS("realAdj",REAL.adj); rvEff();
+  if(k==="az"||k==="el"||k==="sun"){ rvSunSet(); }
+  else if(k==="ev"){ S.dirty=true; }
+  else { clearTimeout(REAL.adjT); REAL.adjT=setTimeout(function(){ if(!REAL.on) return; rvRoom(); rvApplyLights(); },k==="side"?0:150); }   // ไฟเพดานติด/ดับ + กำลังไฟของภาพแสงจริงอยู่ในตัวห้อง → ปั้นห้องใหม่ด้วย
+  rvAdjSync(); }
+function rvAdjPanel(open){ var pn=$("vwRealAdj"); REAL.adjOpen=!!open&&REAL.on;
+  if(!REAL.adjOpen){ if(pn) pn.style.display="none"; rvBarSync(); rvPlace(); return; }
+  if(!pn){ pn=document.createElement("div"); pn.id="vwRealAdj"; document.body.appendChild(pn);
+    pn.innerHTML='<div class="row"><span>หน้าต่าง</span><div class="seg"><button data-side="left">⬅ ซ้าย</button><button data-side="right">ขวา ➡</button></div></div>'
+      +RV_ADJ.map(function(r){ return '<label class="row"><span>'+r[1]+'</span><input type="range" data-k="'+r[0]+'" min="'+r[2]+'" max="'+r[3]+'" step="'+r[4]+'"><b data-v="'+r[0]+'"></b></label>'; }).join("")
+      +'<div class="nt"></div><div class="row act"><button class="vbtn" data-a="reset">คืนค่าเริ่มต้น</button><button class="vbtn pri" data-a="done">เสร็จ</button></div>';
+    pn.addEventListener("input",function(e){ var i=e.target; if(!i||!i.dataset||!i.dataset.k) return; REAL.adj[i.dataset.k]=+i.value; rvAdjApply(i.dataset.k); });
+    pn.addEventListener("click",function(e){ var b=e.target.closest&&e.target.closest("button"); if(!b) return;
+      if(b.dataset.side){ if(REAL.adj.side!==b.dataset.side){ REAL.adj.side=b.dataset.side; rvAdjApply("side"); } }
+      else if(b.dataset.a==="reset"){ var sd=REAL.adj.side; REAL.adj=rvAdjDef(); rvAdjApply(sd!=="left"?"side":"lamp"); }
+      else if(b.dataset.a==="done") rvAdjPanel(false); }); }
+  pn.style.display="flex"; rvAdjSync(); rvBarSync(); rvPlace(); }
 /* เก็บฉากสำหรับภาพแสงจริง (แบบเดียวกับโปรแกรมหลัก — ต่างแค่ของที่ข้าม: กรอบเลือก · พื้นเงา · ตาราง · เส้นวัด · เส้นขนาด · ม่านแสง LED) */
 function rptCollect(){
   scene.updateMatrixWorld(true);
@@ -60246,7 +60348,9 @@ function rptCollect(){
       e={c:[c.r,c.g,c.b],rough:m.isMeshStandardMaterial?m.roughness:(m.isMeshPhongMaterial?Math.max(.15,1-(m.shininess||30)/120):1),
         metal:m.isMeshStandardMaterial?m.metalness:0,op:m.transparent?Math.max(0,Math.min(1,m.opacity)):1,layer:-1,wrap:0,uv:[1,0,0,0,1,0],em:[0,0,0]};
       if(m.emissive&&(m.emissiveIntensity||0)>0){ var k0=m.emissiveIntensity; e.em=[m.emissive.r*k0,m.emissive.g*k0,m.emissive.b*k0]; }
-      if(u._rptEmit!=null&&isFinite(+u._rptEmit)){ var k1=+u._rptEmit, ec=u._rptEmitCol||[1,.86,.68]; e.em=[ec[0]*k1,ec[1]*k1,ec[2]*k1]; e.ek=+u._rptEmitK||0; }
+      if(u._rptEmit!=null&&isFinite(+u._rptEmit)){ var k1=+u._rptEmit, ec=u._rptEmitCol||[1,.86,.68], wt=(REAL.adj&&REAL.adj.warm)||0;
+        if(wt){ var tc=new THREE.Color(ec[0],ec[1],ec[2]).lerp(wt>0?new THREE.Color(1,.6,.32):new THREE.Color(.7,.8,1),Math.abs(wt)*.5); ec=[tc.r,tc.g,tc.b]; }   // v1.465: โทนสีที่คนดูปรับ
+        e.em=[ec[0]*k1,ec[1]*k1,ec[2]*k1]; e.ek=+u._rptEmitK||0; }
       var t=m.map;
       if(t&&t.image){ var li=imgLayer(t.image); if(li>=0){ e.layer=li; t.updateMatrix(); var el=t.matrix.elements;
         e.uv=[el[0],el[3],el[6],el[1],el[4],el[7]]; e.wrap=(t.wrapS===THREE.MirroredRepeatWrapping)?1:(t.wrapS===THREE.RepeatWrapping?0:2); } }
