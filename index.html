@@ -3250,7 +3250,7 @@
    ===================================================================== */
 /* ---- APP_META: แหล่งความจริงเดียวของเวอร์ชัน (ดูได้จาก console / คลิกชื่อแอป) ---- */
 const APP_META={
-  name:"StarNexus", version:"1.469", build:"2026-10-16/relief-cup",
+  name:"StarNexus", version:"1.470", build:"2026-10-16/rail-holes",
   file:"StarNexus.html", basedOn:"Furnitech_V3.html (v3.11)",
   /* ───────── เริ่มนับเวอร์ชันใหม่ที่ 1.001 (21/08/2026) ─────────
      ของเดิมนับมาถึง 42.1 แล้ววิ่งเป็นทศนิยมสองชั้นซึ่งอ่านลำดับยาก
@@ -3258,6 +3258,7 @@ const APP_META={
      ประวัติเก่าเก็บไว้ทั้งหมดตามเลขเดิม ไม่ไล่เขียนใหม่ เพราะเลขในนั้นถูกอ้างถึงไปแล้ว
      รายการที่อยู่ใต้ 1.001 ลงไปจึงเป็นเลขชุดเก่า อ่านต่อกันได้ตามวันที่ */
   changelog:[
+    ["1.470","2026-10-16","UI ราวเหลี่ยมลิ้นชักแผงเหล็ก 3D สูงตามรูเจาะที่หลังหน้าบาน (ผู้ใช้ 16:30: “ขยับ 3D ขึ้นอีกได้ไหมครับ แขน3D ดูไม่ตรงกับระยะรูเจาะ”) — เดิมศูนย์ราว = ขอบบนแผ่นหลัง − 6 (งาน 55: 158) ไม่ตรงรูยึดฉากหน้า (182.5/189.5) · ตอนนี้ใช้กลางกลุ่มรูที่ระบบรางเจาะหลังหน้าบานซึ่งสูงเกินแผงข้าง · ฉากหน้าครอบรูยึด · ฉากท้ายยืดถึงราว · ไม่มีรู = แบบเดิม · ภาพอย่างเดียว"],
     ["1.469","2026-10-16","FIX บานลาย (มีโปรไฟล์หน้าบาน) ไม่มีรูถ้วยบานพับ Ø35 ในภาพ 3D (ผู้ใช้ 15:55: “แบบบานที่มีโปรไฟล์ ทำไมบานพับ ไม่มีหลุม DIA35”) — บานลายปั้นรูปทรงเองทั้งแผ่น ไม่ผ่านทางเจาะรูถ้วยของ v1.456 ผิวหลังจึงตัน ถ้วยบานพับ 3D จมหายในเนื้อไม้ · ตอนนี้ผิวหลังเป็นแผ่นมีรูวงกลม + ผนังถ้วย + ก้นถ้วย ลึกตามรุ่นบานพับแต่ไม่ทะลุลายด้านหน้า · บานกัดทะลุ (ไม่มีบ่าหลัง) เจาะด้วย · บ่าหลังยังไม่เจาะ · ภาพอย่างเดียว ไฟล์เจาะไม่เปลี่ยน · ปิด: SN_OFF.reliefCup"],
     ["1.468","2026-10-16","FIX รูยึดหูแขวนที่แผ่นข้าง = 14 ใต้แผ่นบน (ผู้ใช้ 15:44: “ขยับ เปลี่ยน เป็น จาก 23 ใต้แผ่นบน เป็น 14 ใต้ แผ่นบนครับ”) — v1.466 ตีความ ‘ขึ้น 16’ เป็น 7 ซึ่งผิด · ค่าตั้งต้น 14 · ชุดค่าที่เป็น 23 หรือ 7 ย้ายเป็น 14 ครั้งเดียว (ธง hangSideDownV=1468) · แก้เองได้ที่ ตั้งค่า → หูแขวน → จากใต้แผ่นบนลงมา"],
     ["1.467","2026-10-16","UI ลิ้นชักแผงเหล็ก 3D ปรับตามรูปของจริงที่ผู้ใช้ถ่ายมา (15:31: “ผมไปถ่ายของจริงมาให้ครับ ลองปรับ”) — ราวเหลี่ยม: เอาเสาหน้าออก ราวข้างวิ่งจากฉากท้าย (ผิวหลังแผ่นหลัง มุมบน · สกรู 2) ถึงฝาปลายที่หลังหน้าบาน ขอบบนราวเสมอขอบบนแผ่นหลัง · เพิ่มราวขวาง + ข้อต่อตัว T (ค่าตั้ง ‘ราวขวาง’ ค่าเริ่ม 2 เส้นแบบในรูป · 0 = ไม่มี · SN_OFF.alto3DCross) · ราวสีเทาเข้มอ่อนกว่าแผง ข้อต่อ/ฝาพลาสติกเทาเข้ม · แผ่นยึดรางตัวนอกเป็นเทาเข้มแทนสังกะสี · ป้ายดำผิวนอกหัวแผง · ภาพอย่างเดียว รูเจาะเท่า v1.466"],
@@ -7878,7 +7879,7 @@ function _al3Fin(col){ const s=String(col||"").toLowerCase();
    o: H สูงแผง · NL ยาว · lw ปีกรับพื้นยื่นถึง w · bt ผิวบนแผ่นพื้น (v) · bk {u0,u1,w,top} แผ่นหลัง · rail ราวเหลี่ยม */
 function alto3DGeos(o){
   const r1=x=>Math.round((+x||0)*10);
-  const key=["a2",r1(o.H),r1(o.NL),r1(o.lw),r1(o.bt),o.bk?[r1(o.bk.u0),r1(o.bk.u1),r1(o.bk.w),r1(o.bk.top)].join(","):"-",o.rail?1:0,r1(o.cw),o.nx|0,o.fin||""].join("|");
+  const key=["a2",r1(o.H),r1(o.NL),r1(o.lw),r1(o.bt),o.bk?[r1(o.bk.u0),r1(o.bk.u1),r1(o.bk.w),r1(o.bk.top)].join(","):"-",o.rail?1:0,r1(o.cw),o.nx|0,o.fin||"",o.rv!=null?r1(o.rv):"-",r1(o.rw)].join("|");
   const hit=_al3Geo.get(key); if(hit) return hit;
   const S=AL3, H=o.H, NL=o.NL, t=S.t, g0=S.gap;
   const toSh=pts=>pts.map(p=>[-p[0],p[1]]);                                           // x ของหน้าตัด = −w (หมุน Y +90° แล้ว w = +z)
@@ -7931,12 +7932,17 @@ function alto3DGeos(o){
                 มีราวขวางพาดข้ามลิ้นชัก ต่อกับราวข้างด้วยข้อต่อตัว T (ในรูปมี 2 เส้น แบ่งลิ้นชักเป็น 3 ช่อง)
        ราวขวางวาดครึ่งเส้นจากแต่ละข้างไปชนกันกลางลิ้นชัก (สองข้างเป็นคนละชิ้น) */
   const railP=[], capP=[];
-  if(o.rail&&o.bk){ const vc=o.bk.top-6, ru0=o.bk.u0-6, ru1=NL-20, wr0=1.5, wr1=11.5, ws0=0.3, ws1=12.7;
+  /* ───────── v1.470: ความสูงราวตามรูเจาะที่หลังหน้าบาน ─────────
+     ผู้ใช้ 16/10 16:30 (รูปหลังหน้าบาน K40 · ปลายราวอยู่ต่ำกว่ารูคู่บน): "ขยับ 3D ขึ้นอีกได้ไหมครับ แขน3D ดูไม่ตรงกับระยะรูเจาะ"
+     เดิม (v1.467): ศูนย์ราว = ขอบบนแผ่นหลัง − 6 เสมอ (งาน 55: 158 จากก้นกล่อง) แต่รูยึดฉากหน้าราวที่เจาะจริงอยู่ 182.5/189.5
+     ตอนนี้: alto3DMeshes หารูที่ระบบรางเจาะหลังหน้าบาน (src = กลุ่มลิ้นชัก) ที่สูงเกินแผงข้าง 15+ ฝั่งเดียวกัน → ศูนย์ราว = กลางกลุ่มรูนั้น (o.rv)
+       ฉากหน้าราวกว้างเลยรูยึด (o.rw) · ฉากท้ายยืดขึ้นถึงราวถ้าราวสูงกว่าแผ่นหลัง (สกรูยังอยู่ในแผ่นหลัง) · ไม่มีรู = ขอบบนแผ่นหลัง − 6 แบบเดิม */
+  if(o.rail&&o.bk){ const vc=(o.rv!=null&&isFinite(+o.rv))?+o.rv:o.bk.top-6, ru0=o.bk.u0-6, ru1=NL-20, wr0=1.5, wr1=11.5, ws0=0.3, ws1=12.7;
     if(ru1-ru0>60){
       railP.push(solid(rr(wr0,vc-5,wr1,vc+5,1.4),ru1-ru0,ru0));                                       // ราวข้าง 10×10
-      capP.push(box(NL-22,NL-0.5,vc-6.5,vc+6.5,ws0,ws1));                                             // ฝาปลายราวชนหลังหน้าบาน
-      { const bw1=Math.max(o.bk.w+26,ws1+14);                                                          // ฉากท้ายราว (ผิวหลังแผ่นหลัง มุมบน)
-        railP.push(box(o.bk.u0-7,o.bk.u0,o.bk.top-30,o.bk.top,ws0,bw1));
+      capP.push(box(NL-22,NL-0.5,vc-7,vc+7,ws0,Math.min(Math.max(ws1,(+o.rw||0)+6),40)));             // ฉากหน้าราว: ชนหลังหน้าบาน ครอบรูยึด (v1.470)
+      { const bw1=Math.max(o.bk.w+26,ws1+14), bv0=Math.min(o.bk.top-30,vc-12), bv1=Math.max(o.bk.top,vc+7);   // ฉากท้ายราว (ผิวหลังแผ่นหลัง มุมบน · v1.470 ยืดถึงราว)
+        railP.push(box(o.bk.u0-7,o.bk.u0,bv0,bv1,ws0,bw1));
         [o.bk.w+7,o.bk.w+17].forEach(w=>{ if(w>bw1-4) return; const c=new THREE.CylinderGeometry(3,3,1.4,14); c.rotateZ(Math.PI/2); c.translate(o.bk.u0-7.7,o.bk.top-15,w); zinc1.push(c); }); }
       const n=Math.max(Math.min(Math.round(+o.nx||0),6),0), cw=+o.cw||0;
       if(n>0&&cw>ws1+30){ const a0=o.bk.u1+30, a1=ru1-20;                                              // ราวขวาง: เว้นห่างเท่ากันระหว่างแผ่นหลังกับหน้า
@@ -7974,13 +7980,21 @@ function alto3DMeshes(b){
   if(bot){ lw=Math.min(wOf(xc(bot)-(+bot.L||0)/2),wOf(xc(bot)+(+bot.L||0)/2))+6.5; bt=(bot.y+(+bot.T||16)/2)-y0; }
   if(bk){ const T2=+bk.T||16; bkI={u0:zc(bk)-T2/2-uR, u1:zc(bk)+T2/2-uR, w:Math.min(wOf(xc(bk)-(+bk.L||0)/2),wOf(xc(bk)+(+bk.L||0)/2)), top:bk.y+(+bk.W||0)/2-y0};
     if(!(bkI.w>0&&bkI.w<60&&bkI.u0>-5&&bkI.u0<NL*0.5)) bkI=null; }
-  const rail=!!(bkI&&settings.alto3DRail!==false&&!snOff("alto3DRail")&&bkI.top-H>=30);
+  /* v1.470: รูยึดฉากหน้าราวที่หลังหน้าบาน (ระบบรางเจาะไว้ · src = กลุ่มลิ้นชัก) — สูงเกินแผงข้าง 15+ ฝั่งเดียวกัน → ความสูงราวตามรูนั้น */
+  let rv=null, rw=0;
+  try{ const fr=(state.boards||[]).find(x=>x&&x._dg===ob._dg&&x._door&&!x._box&&x.orient==="front"&&(x.cabInst||"")===(ob.cabInst||""));
+    if(fr){ const OMf=orientMatrix(fr.orient,fr.yaw), hv=[], hw=[];
+      (fr.holes||[]).forEach(h=>{ if(!h||String(h.src||"")!==String(ob._dg)) return;
+        const p=new THREE.Vector3(+h.x||0,+h.y||0,0).applyMatrix4(OMf).add(new THREE.Vector3(+fr.x||0,+fr.y||0,+fr.z||0));
+        const v=p.y-y0, w=wOf(xc(p)); if(v>H+15&&w>-5&&w<60){ hv.push(v); hw.push(w); } });
+      if(hv.length){ rv=(Math.min.apply(null,hv)+Math.max.apply(null,hv))/2; rw=Math.max.apply(null,hw); } } }catch(e){ rv=null; }
+  const rail=!!(bkI&&settings.alto3DRail!==false&&!snOff("alto3DRail")&&(bkI.top-H>=30||rv!=null));
   let col=ob._altoColor||""; if(!col){ try{ col=(drsOfBoxes(boxes)||{}).color||""; }catch(e){ col=""; } }
   const fin=_al3Fin(col);
   /* v1.467: กลางลิ้นชัก (ราวขวางครึ่งเส้นวิ่งมาชนกันตรงนี้) · จำนวนราวขวางจากค่าตั้ง */
   let mid=ref; { const sl=steel.filter(x=>x!==ob&&Math.abs(xc(x)-me)>30); if(sl.length) mid=(me+xc(sl[0]))/2; }
   const nx=Math.max(Math.round(+(settings.alto3DCross!=null?settings.alto3DCross:2))||0,0);
-  const geos=alto3DGeos({H,NL,lw,bt,bk:bkI,rail,cw:wOf(mid),nx:snOff("alto3DCross")?0:nx});
+  const geos=alto3DGeos({H,NL,lw,bt,bk:bkI,rail,cw:wOf(mid),nx:snOff("alto3DCross")?0:nx,rv,rw});
   const ex=(+state.explode||0)>0;
   const s=Math.max(((+b.x||0)-(+ob.x||0))*F.x+((+b.z||0)-(+ob.z||0))*F.z,0);               // ระยะที่ลิ้นชักชักออก (มุมมองเปิดบาน)
   const W=X.clone().multiplyScalar(-sg), M0=new THREE.Matrix4().makeBasis(F,new THREE.Vector3(0,1,0),W);
