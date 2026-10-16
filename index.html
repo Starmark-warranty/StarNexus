@@ -3250,7 +3250,7 @@
    ===================================================================== */
 /* ---- APP_META: แหล่งความจริงเดียวของเวอร์ชัน (ดูได้จาก console / คลิกชื่อแอป) ---- */
 const APP_META={
-  name:"StarNexus", version:"1.466", build:"2026-10-16/alto3d",
+  name:"StarNexus", version:"1.468", build:"2026-10-16/hang14",
   file:"StarNexus.html", basedOn:"Furnitech_V3.html (v3.11)",
   /* ───────── เริ่มนับเวอร์ชันใหม่ที่ 1.001 (21/08/2026) ─────────
      ของเดิมนับมาถึง 42.1 แล้ววิ่งเป็นทศนิยมสองชั้นซึ่งอ่านลำดับยาก
@@ -3258,6 +3258,8 @@ const APP_META={
      ประวัติเก่าเก็บไว้ทั้งหมดตามเลขเดิม ไม่ไล่เขียนใหม่ เพราะเลขในนั้นถูกอ้างถึงไปแล้ว
      รายการที่อยู่ใต้ 1.001 ลงไปจึงเป็นเลขชุดเก่า อ่านต่อกันได้ตามวันที่ */
   changelog:[
+    ["1.468","2026-10-16","FIX รูยึดหูแขวนที่แผ่นข้าง = 14 ใต้แผ่นบน (ผู้ใช้ 15:44: “ขยับ เปลี่ยน เป็น จาก 23 ใต้แผ่นบน เป็น 14 ใต้ แผ่นบนครับ”) — v1.466 ตีความ ‘ขึ้น 16’ เป็น 7 ซึ่งผิด · ค่าตั้งต้น 14 · ชุดค่าที่เป็น 23 หรือ 7 ย้ายเป็น 14 ครั้งเดียว (ธง hangSideDownV=1468) · แก้เองได้ที่ ตั้งค่า → หูแขวน → จากใต้แผ่นบนลงมา"],
+    ["1.467","2026-10-16","UI ลิ้นชักแผงเหล็ก 3D ปรับตามรูปของจริงที่ผู้ใช้ถ่ายมา (15:31: “ผมไปถ่ายของจริงมาให้ครับ ลองปรับ”) — ราวเหลี่ยม: เอาเสาหน้าออก ราวข้างวิ่งจากฉากท้าย (ผิวหลังแผ่นหลัง มุมบน · สกรู 2) ถึงฝาปลายที่หลังหน้าบาน ขอบบนราวเสมอขอบบนแผ่นหลัง · เพิ่มราวขวาง + ข้อต่อตัว T (ค่าตั้ง ‘ราวขวาง’ ค่าเริ่ม 2 เส้นแบบในรูป · 0 = ไม่มี · SN_OFF.alto3DCross) · ราวสีเทาเข้มอ่อนกว่าแผง ข้อต่อ/ฝาพลาสติกเทาเข้ม · แผ่นยึดรางตัวนอกเป็นเทาเข้มแทนสังกะสี · ป้ายดำผิวนอกหัวแผง · ภาพอย่างเดียว รูเจาะเท่า v1.466"],
     ["1.466","2026-10-16","FEAT ลิ้นชักแผงเหล็ก ALTO-S / K40 เป็นรูป 3D จริง (ผู้ใช้ 14:50 แนบแคตตาล็อก Häfele ALTO-S: “อยากได้ ราง 3D ด้วยอะครับ”) — เดิมแผงข้างเหล็กเป็นกล่องเขียวโปร่งและไม่มีราง · ตอนนี้ แผงข้างหนา 13 ขอบบนมน สี Anthracite/White ปีกรับแผ่นพื้น ฝาช่องปรับ ฉากยึดแผ่นหลัง+สกรู · รางซ่อนใต้ 3 ท่อนสังกะสี (รูยึด 2 แถวตามแบบเจาะ 37/+128/+224 · กล่องปิดนุ่มนวล) · คลิปล็อกเทาก้านแดงใต้แผ่นพื้น · ราวเหลี่ยมด้านข้างเมื่อแผ่นหลังสูงกว่าแผง ≥30 (เช่น K40 หลัง 148) · เปิดลิ้นชัก ตัวกลางไปครึ่งเดียว ตัวนอกค้าง (ธง _slideK เดิม → หน้าดูงานเลื่อนตามด้วย) · ภาพอย่างเดียว ไม่แตะรูเจาะ/ไฟล์ส่งออก · ปิดได้ที่ตั้งค่า → รางลิ้นชัก หรือ SN_OFF.alto3D · ② FIX รูยึดหูแขวนที่แผ่นข้าง ขยับขึ้น 16 (ผู้ใช้ 15:10: “ขยับรูยิงหูแขวนที่แผ่นข้างขึ้น ให้ด้วยครับ 16 mm.”) — จากใต้แผ่นบน 23 → 7 · ชุดค่าที่ยังเป็น 23 ย้ายให้ครั้งเดียว · แก้ค่ารูชุดนี้ในตั้งค่าแล้วเจาะใหม่ทันที (เพิ่มเข้าลายเซ็นอุปกรณ์)"],
     ["1.465","2026-10-16","FEAT หน้าดูงาน: 🎛 ปรับแสงเอง ในโหมดสมจริง (ผู้ใช้ 09:17: “มีปุ่มปรับด้านแสง หรือเปลี่ยนมุมหน้าต่างได้ไหม เฉพาะโหมดคนดู ให้เขาเลือกมุม เลือกแสง ปรับค่าแสงเองได้”) — เดิมคนดูเลือกได้แค่แบบแสง 3 แบบ หน้าต่างผนังซ้ายตายตัว · ตอนนี้ปุ่ม 🎛 ปรับแสง บนแถบสมจริงเปิดแผง: หน้าต่าง ซ้าย/ขวา · หมุนแดด ±60° · แดดสูง/ต่ำ −25…+30° (กันไว้ 4–82°) · แรงแดด 0–200% · ไฟในห้อง (ดาวน์ไลท์ + LED) 0–200% · ความสว่างภาพ ±2 สต็อป · โทนสี เย็น↔อุ่น (ทาแดดกับไฟเพดาน) · คืนค่าเริ่มต้น — ค่าเป็นสัดส่วนของแบบแสงที่เลือก ใช้ได้ทุกแบบ จำในเครื่องคนดู · กลางคืนปิดแถบที่เกี่ยวกับแดด · หมุน/ยกแดด/แรงแดด/ความสว่าง ปรับไฟเดิมทันที (ไม่ปั้นเงาใหม่ ลากลื่น) · ไฟในห้อง/โทนสี/หน้าต่าง ปั้นห้อง+ไฟใหม่หน่วง 0.15 วิ · หน้าต่างขวา = สะท้อนห้องรอบกลางตู้ (ผนังที่หาย/ดวงไฟ/ช่องหน้าต่างภาพแสงจริงสะท้อนตาม) · 📸 ภาพแสงจริงใช้ค่าที่ปรับทั้งหมด (ความสว่างติดไปเป็นค่าตั้งต้นของแถบความสว่างในหน้าต่างภาพ) · โปรแกรมหลักแก้จุดเดียว: rptPrepare รับช่องหน้าต่างจาก R.portal ถ้ามี (โปรแกรมหลักไม่มี = เดิม) · ลิงก์เก่าได้แผงเมื่อส่งงานขึ้นเว็บครั้งถัดไป"],
     ["1.464","2026-10-16","FEAT ✨ โหมดสมจริง + 📸 ภาพแสงจริง ในหน้าดูงาน (ลิงก์/ไฟล์ดูงานที่ลูกค้าเปิด) (ผู้ใช้ 08:43: “เพิ่มโหมดสมจริงใน Link ที่คนดูได้ไหม” · ตอบเพิ่ม: รวม 📸 ด้วย · เปิดมาแบบปกติมีปุ่ม ✨ ให้กด · ตัวกันการ์ดจอรีเซ็ตเฉพาะในลิงก์) — เดิมหน้าดูมีแค่แสง ในห้อง/แดด/กลางคืน แบบไฟลอย · ตอนนี้แถบล่างมีปุ่ม ✨ สมจริง: ห้อง/แสง 3 แบบ/เงามุม/ตัดผนังด้านกล้อง/ภาพแสงจริง ใช้โค้ดตัวจริงของโปรแกรมหลัก v1.463 (snvRealInject ฉีดค่าคงที่ + Function.toString ตอนประกอบหน้าดู ไม่เขียนซ้ำสองชุด) · หน้าดูเขียนเองเฉพาะ กล่องตู้จากข้อมูลที่อบ (ไม่นับบาน) · ไฟ LED จากแถบที่อบ · แถบเลือกแสง/คุณภาพเหนือแถบล่าง (จอแคบเหลือไอคอน · ปุ่มซูมขยับขึ้น · แผง ⋯ เปิด = ซ่อนแถบ) · ระดับคุณภาพ อัตโนมัติ/เบา/กลาง/สูง จำในเครื่องคนดู: อัตโนมัติ = มือถือ/การ์ดจอออนบอร์ด/ไม่รู้ชื่อ/ไม่ใช้การ์ดจอ/โหมดประหยัด/เคยรีเซ็ต → เบา (วาดตรง ไม่มีบัฟเฟอร์ทศนิยม แดดเงา 1024 ไม่มีเงาไฟเพดาน) · การ์ดจอแยก → กลาง (เงามุม MSAA 2 จำกัด ~2.1 ล้านพิกเซล แดด 2048) · สูง = แบบโปรแกรมหลัก · ตัวกันรีเซ็ต: การ์ดจอรีเซ็ตระหว่างเปิด → ปิดโหมดเอง จำไว้ ครั้งหน้าเบา + ไม่มี 📸 (เลือกคุณภาพเอง = ล้างประวัติ) · วาดไม่ทัน (เฟรมกลาง 16 เฟรม > 110 ms) → ลดคุณภาพเอง · ได้การ์ดจอคืน = วาดต่อ · 📸 เฉพาะคอมการ์ดจอแยก + WebGL2 + ไม่เคยรีเซ็ต ค่าตั้งต้น 960 px 128 รอบ · แคปรูปในโหมดสมจริงได้ภาพสมจริง · โปรแกรมหลักไม่เปลี่ยน · ลิงก์เก่าได้ปุ่มเมื่อส่งงานขึ้นเว็บครั้งถัดไป (หน้าดูตัวใหม่) · ปิด: SN_OFF.vwReal=1 / realPhoto=1"],
@@ -3880,7 +3882,7 @@ const DEF_SETTINGS={ frontSetMax:6, dowelD:8, dowelDepth:28, dowelMateDepth:12, 
   railAutoGap:500,   // v1.292: คานขวางในโครง ห่างกันไม่เกินกี่ มม. ก่อนต้องเพิ่มคาน
   ledStripGapMax:40, ledStripMaxL:5000,   // v1.294: เส้นไฟข้ามรอยที่ชั้นตัดรางได้ไม่เกินกี่ มม. · ยาวสุดต่อเส้น (ม้วน)
   drawerBotThick:9, drawerBotLift:11, drawerBotOver:4.5, drawerBotClear:0.5, drawerBotMacroOn:true, drawerBotPipeNotch:false, drawerBotPipeW:40, drawerBotPipeH:25,
-  mfMark:true, mfMarkColor:"#ff8a00", hingeMark:true, hingeMarkColor:"#0a84ff", hinge3D:true, hingeFinish:"nickel", slide3D:true, alto3D:true, alto3DRail:true, mfBoltD:8, mfBoltDepth:28, mfCamD:15, mfCamDepth:13, mfCamOffset:34, mfMateD:5, mfMateDepth:12, mfFixFromFace:8.1, mfCenterMax:16, mfName:"Minifix", mfCode:"MINIFIX",
+  mfMark:true, mfMarkColor:"#ff8a00", hingeMark:true, hingeMarkColor:"#0a84ff", hinge3D:true, hingeFinish:"nickel", slide3D:true, alto3D:true, alto3DRail:true, alto3DCross:2, mfBoltD:8, mfBoltDepth:28, mfCamD:15, mfCamDepth:13, mfCamOffset:34, mfMateD:5, mfMateDepth:12, mfFixFromFace:8.1, mfCenterMax:16, mfName:"Minifix", mfCode:"MINIFIX",
   ledMinRun:60,         // v22.8: ท่อนรางที่สั้นกว่านี้ = เศษ ไม่ต้องออก
   hingeShelfClear:96,   // v7.29: ระยะปลอดภัย ศูนย์ถ้วยบานพับ -> ผิวชั้น (มม.)
   hingeAvoidRail:true,  // v22.3: ให้บานพับหลบคานด้วย ไม่ใช่แค่ชั้น
@@ -3896,7 +3898,7 @@ const DEF_SETTINGS={ frontSetMax:6, dowelD:8, dowelDepth:28, dowelMateDepth:12, 
   dowelMateSpan:true,   // v7.49: เดือย/มินิฟิก คิดเฉพาะช่วงที่มีชิ้นประกบจริง
   hangRailZone:200,     // v7.74: คานที่จะใช้ยึดหูแขวน ต้องอยู่ใต้ท็อปไม่เกินระยะนี้
   /* v7.85: รูยึดหูแขวนที่ "แผ่นข้าง" — วัดจากขอบหลังแผ่นข้างเข้ามา และจากใต้ท็อปลงมา */
-  hangSideOn:true, hangSideD:3, hangSideDepth:2, hangSideBack:37, hangSidePitch:32, hangSideN:2, hangSideDown:7,   // v1.466: 23 → 7 (ผู้ใช้ให้ขยับรูขึ้น 16)
+  hangSideOn:true, hangSideD:3, hangSideDepth:2, hangSideBack:37, hangSidePitch:32, hangSideN:2, hangSideDown:14,   // v1.466: 23 → 7 · v1.468: ผู้ใช้ระบุชัด = 14 ใต้แผ่นบน
   hangSideCodes:"HANGER_STD",   // v8.50: รุ่นหูแขวนที่ต้องเจาะรูยึดแผ่นข้าง (คั่นด้วยจุลภาค)
   legMarkOn:true, legMarkD:8, legMarkDepth:5,      // v7.44: รูมาร์คขาตู้ใต้แผ่นพื้น
   /* v8.19: กล่องไม้หลบสิ่งกีดขวางเอง — คาน/ชั้นตาย/แผ่นพื้นในช่องของลิ้นชักลูกนั้น */
@@ -7791,7 +7793,8 @@ function slide3DMeshes(b){
        ตัวกลาง: ตัว U ในท้องราง · ตัวใน: แผ่นบนรองแผงข้าง + ตัว U คว่ำลงในตัวกลาง
        คลิปล็อก (ตัวเทา + ก้านแดง) ใต้แผ่นพื้นหัวกล่อง ไปกับลิ้นชัก
      • ราวเหลี่ยมด้านข้าง 10×10 (อุปกรณ์เสริมหน้า 4) เมื่อแผ่นหลังสูงกว่าแผงข้าง ≥ 30 มม. (เช่น K40 หลัง 148 แผง 80)
-       เสาหน้าเสียบลงหัวแผง · หัวเสียบพลาสติกดำจับปลายแผ่นหลัง
+       v1.467 (ตามรูปของจริง 15:31): ราวข้างจากฉากท้าย (ผิวหลังแผ่นหลัง มุมบน · สกรู 2) ถึงฝาปลายที่หลังหน้าบาน · ไม่มีเสาหน้า
+       ราวขวาง + ข้อต่อตัว T (ค่าตั้ง alto3DCross · ค่าเริ่ม 2 เส้นแบบในรูป) · แผ่นยึดรางตัวนอกสีเทาเข้ม · ป้ายผิวนอกหัวแผง
    เปิดลิ้นชัก: แผงข้าง/ตัวใน/คลิป ไปกับกล่องเต็มระยะ · ตัวกลางครึ่งหนึ่ง (ชักสุดแบบซิงโครไนซ์) · ตัวนอกค้างที่แผ่นข้างตู้
      ใช้ธง userData._slideK ตัวเดียวกับ v1.461 → อนิเมชันเร็ว (_doorApply) และหน้าดูงาน (n.sk) ทำงานเหมือนกันโดยไม่ต้องแก้
    แกน: u = ตามยาวจากท้ายแผง (0) ถึงหน้าแผง (NL = แนวหน้าตู้) · v = ตั้งจากก้นกล่อง (0 = ใต้แผ่นพื้น) · w = จากผิวในแผ่นข้างตู้ (0) เข้าหากลางลิ้นชัก
@@ -7809,7 +7812,12 @@ const AL3_FIN={
   zinc :{c:"#c3cad2", m:.95, r:.34, e:1},     // สังกะสี (ราง · สกรู)
   plg  :{c:"#b4b7bb", m:0,   r:.55, e:.3},    // พลาสติกเทา (ตัวคลิปล็อก)
   red  :{c:"#d0222d", m:0,   r:.42, e:.3},    // ก้านแดงคลิปล็อก
-  dark :{c:"#25262a", m:0,   r:.6,  e:.3}     // พลาสติกดำ (กล่องปิดนุ่มนวล · ฝาช่องปรับ · หัวเสียบราว)
+  dark :{c:"#25262a", m:0,   r:.6,  e:.3},    // พลาสติกดำ (กล่องปิดนุ่มนวล · ฝาช่องปรับ)
+  /* v1.467 (รูปของจริงที่ผู้ใช้ถ่ายมา 15:31) */
+  rail :{c:"#555a60", m:.35, r:.42, e:.55},   // ราวเหลี่ยม/ราวขวาง (เทาเข้ม อ่อนกว่าแผงนิดหนึ่ง)
+  plgd :{c:"#4a4e54", m:0,   r:.5,  e:.35},   // พลาสติกเทาเข้ม (ข้อต่อตัว T · ฝาปลายราว)
+  rplate:{c:"#5d636a", m:.6, r:.4,  e:.8},    // แผ่นยึดรางตัวนอก (สีเทาเข้ม · ในรูปจริงไม่ใช่สังกะสีเงิน)
+  logo :{c:"#2a2c30", m:.1,  r:.3,  e:.4}     // แผ่นป้ายด้านนอกแผงข้าง
 };
 function alto3DOn(){ return !snOff("alto3D")&&settings.alto3D!==false; }
 /* วัสดุของชุด ALTO — แคชตามชนิด+โหมดโปร่งใส+รุ่นแผนที่สะท้อน (ไม่ใช้ metalMat เพราะชื่อพลาสติกตัวใหญ่ค้นไม่เจอ และสีพ่นต้องไม่เป็นโลหะเงา) */
@@ -7829,7 +7837,7 @@ function _al3Fin(col){ const s=String(col||"").toLowerCase();
    o: H สูงแผง · NL ยาว · lw ปีกรับพื้นยื่นถึง w · bt ผิวบนแผ่นพื้น (v) · bk {u0,u1,w,top} แผ่นหลัง · rail ราวเหลี่ยม */
 function alto3DGeos(o){
   const r1=x=>Math.round((+x||0)*10);
-  const key=["a1",r1(o.H),r1(o.NL),r1(o.lw),r1(o.bt),o.bk?[r1(o.bk.u0),r1(o.bk.u1),r1(o.bk.w),r1(o.bk.top)].join(","):"-",o.rail?1:0].join("|");
+  const key=["a2",r1(o.H),r1(o.NL),r1(o.lw),r1(o.bt),o.bk?[r1(o.bk.u0),r1(o.bk.u1),r1(o.bk.w),r1(o.bk.top)].join(","):"-",o.rail?1:0,r1(o.cw),o.nx|0,o.fin||""].join("|");
   const hit=_al3Geo.get(key); if(hit) return hit;
   const S=AL3, H=o.H, NL=o.NL, t=S.t, g0=S.gap;
   const toSh=pts=>pts.map(p=>[-p[0],p[1]]);                                           // x ของหน้าตัด = −w (หมุน Y +90° แล้ว w = +z)
@@ -7846,6 +7854,7 @@ function alto3DGeos(o){
   const shell=[solid(sh,NL-0.5,0)];
   const dark1=[], zinc1=[];
   { const va=Math.min(H*0.55,46); dark1.push(box(NL-31,NL-24,va-3.5,va+3.5,t,t+0.5), box(NL-19,NL-12,va-3.5,va+3.5,t,t+0.5)); }   // ฝาช่องปรับซ้าย-ขวา / ขึ้น-ลง
+  const logo1=(H>=40&&NL>=200)?[box(NL-108,NL-38,7,Math.min(24,H*0.35),g0-0.45,g0)]:[];   // v1.467: แผ่นป้ายผิวนอกหัวแผง (รูปจริง: ป้ายดำที่หัวแผงด้านล่าง · ไม่ใส่ตัวอักษรยี่ห้อ)
   if(o.bk&&o.bk.u0>=2){ const v0=(+o.bt||16)+2, v1=Math.min(H-6,o.bk.top-4);                       // ฉากยึดแผ่นหลัง (หลังผิวหลังของแผ่นหลัง)
     if(v1-v0>=12){ const w1=Math.max(o.bk.w+12,t+6); shell.push(box(o.bk.u0-1.2,o.bk.u0,v0,v1,t-0.2,w1));
       if(v1-v0>=20) [1/3,2/3].forEach(f=>{ const c=new THREE.CylinderGeometry(3.2,3.2,1.4,14); c.rotateZ(Math.PI/2); c.translate(o.bk.u0-1.9,v0+(v1-v0)*f,Math.min(o.bk.w+6,w1-4)); zinc1.push(c); }); } }
@@ -7864,7 +7873,8 @@ function alto3DGeos(o){
     [12,24].forEach(u=>hole(u,ra,2)); hole(18,rb,2);                                   // รูยึดท้ายราง
     let fg; try{ fg=new THREE.ExtrudeGeometry(fl,{depth:1.2,bevelEnabled:false,curveSegments:8}); fg.translate(0,0,g0); }catch(e){ fg=box(0,uE,vB,vT,g0,g0+1.2); }
     const web=[[1.9,vB+0.6],[10.8,vB+0.6]]; _sl3Arc(web,10.8,vB+1.8,1.2,-90,0,4); web.push([12.0,vB+7]);
-    parts.push({k:0,m:"zinc",r:1,g:_sl3Merge([fg,prof(web,1.2,uE,0)])}); }                   // ตัวนอก (ค้างที่แผ่นข้างตู้)
+    parts.push({k:0,m:"rplate",r:1,g:_sl3Merge([fg])});                                     // ตัวนอก: แผ่นยึด (เทาเข้มมีรู · ตามรูปจริง)
+    parts.push({k:0,m:"zinc",r:1,g:_sl3Merge([prof(web,1.2,uE,0)])}); }                     // ตัวนอก: ท้องราง (สังกะสี · ค้างที่แผ่นข้างตู้)
   parts.push({k:0,m:"dark",r:1,g:_sl3Merge([box(4,64,vB+1.3,vB+9.5,2.6,11.2)])});            // กล่องปิดนุ่มนวลท้ายราง
   parts.push({k:0.5,m:"zinc",r:1,g:_sl3Merge([prof([[10.2,vB+10.5],[10.2,vB+2.2],[3.0,vB+2.2],[3.0,vB+10.5]],1.0,NL-78,70)])});   // ตัวกลาง
   parts.push({k:1,m:"zinc",r:1,g:_sl3Merge([prof([[2.4,vT-3],[2.4,vT-0.6],[12.4,vT-0.6],[12.4,vT-3]],1.2,NL-8,6),
@@ -7872,11 +7882,29 @@ function alto3DGeos(o){
   parts.push({k:1,m:"plg",r:1,g:_sl3Merge([box(NL-70,NL-24,vT-8.5,vb-0.1,t+0.4,44)])});      // คลิปล็อก: ตัวเทาใต้แผ่นพื้น
   { const kn=new THREE.CylinderGeometry(5,5,4,16); kn.translate(NL-31,-6.5,56);
     parts.push({k:1,m:"red",r:1,g:_sl3Merge([box(NL-36,NL-26,-8.5,-4.5,40,56),kn])}); }   // ก้านแดง
-  /* ── ราวเหลี่ยมด้านข้าง (แผ่นหลังสูงกว่าแผง) ── */
-  if(o.rail&&o.bk){ const vc=o.bk.top-8, ru0=o.bk.u0+4, ru1=NL-9;
+  /* ── ราวเหลี่ยม (แผ่นหลังสูงกว่าแผง) ─────────
+     v1.467 — ปรับตามรูปของจริงที่ผู้ใช้ถ่ายมา (15:31):
+       เดิม: ราวเส้นเดียวต่อข้าง มีเสาหน้าลงไปเสียบหัวแผง · หัวเสียบพลาสติกดำคร่อมปลายแผ่นหลัง
+       ของจริง: ไม่มีเสาหน้า — ราวข้างวิ่งตรงจากแผ่นหลังถึงหลังหน้าบาน ปลายหน้ามีฝาพลาสติก
+                ท้ายราวเสียบฉากเทาเข้มที่ "ผิวหลัง" ของแผ่นหลังตรงมุมบน (สกรู 2 ตัว) · ขอบบนราว ≈ ขอบบนแผ่นหลัง
+                มีราวขวางพาดข้ามลิ้นชัก ต่อกับราวข้างด้วยข้อต่อตัว T (ในรูปมี 2 เส้น แบ่งลิ้นชักเป็น 3 ช่อง)
+       ราวขวางวาดครึ่งเส้นจากแต่ละข้างไปชนกันกลางลิ้นชัก (สองข้างเป็นคนละชิ้น) */
+  const railP=[], capP=[];
+  if(o.rail&&o.bk){ const vc=o.bk.top-6, ru0=o.bk.u0-6, ru1=NL-20, wr0=1.5, wr1=11.5, ws0=0.3, ws1=12.7;
     if(ru1-ru0>60){
-      parts.push({k:1,m:"S",g:_sl3Merge([solid(rr(1.5,vc-5,11.5,vc+5,1.6),ru1-ru0,ru0), box(NL-15,NL-5,H-3,vc-4,2.5,10.5)])});   // ราว + เสาหน้า
-      dark1.push(box(o.bk.u0-1.5,o.bk.u1+10,vc-8,vc+7,1.2,Math.max(o.bk.w-0.3,12))); } }   // หัวเสียบจับปลายแผ่นหลัง
+      railP.push(solid(rr(wr0,vc-5,wr1,vc+5,1.4),ru1-ru0,ru0));                                       // ราวข้าง 10×10
+      capP.push(box(NL-22,NL-0.5,vc-6.5,vc+6.5,ws0,ws1));                                             // ฝาปลายราวชนหลังหน้าบาน
+      { const bw1=Math.max(o.bk.w+26,ws1+14);                                                          // ฉากท้ายราว (ผิวหลังแผ่นหลัง มุมบน)
+        railP.push(box(o.bk.u0-7,o.bk.u0,o.bk.top-30,o.bk.top,ws0,bw1));
+        [o.bk.w+7,o.bk.w+17].forEach(w=>{ if(w>bw1-4) return; const c=new THREE.CylinderGeometry(3,3,1.4,14); c.rotateZ(Math.PI/2); c.translate(o.bk.u0-7.7,o.bk.top-15,w); zinc1.push(c); }); }
+      const n=Math.max(Math.min(Math.round(+o.nx||0),6),0), cw=+o.cw||0;
+      if(n>0&&cw>ws1+30){ const a0=o.bk.u1+30, a1=ru1-20;                                              // ราวขวาง: เว้นห่างเท่ากันระหว่างแผ่นหลังกับหน้า
+        for(let i=1;i<=n;i++){ const u=a0+(a1-a0)*i/(n+1);
+          capP.push(box(u-9,u+9,vc-7,vc+7,ws0,ws1), box(u-6.2,u+6.2,vc-7,vc+7,ws1,ws1+18));               // ข้อต่อตัว T (ปลอกราวข้าง + ปลอกราวขวาง)
+          railP.push(box(u-5,u+5,vc-5,vc+5,ws1+12,cw)); } }                                             // ราวขวางครึ่งเส้น ถึงกลางลิ้นชัก
+      parts.push({k:1,m:"R",g:_sl3Merge(railP)});
+      parts.push({k:1,m:"C",g:_sl3Merge(capP)}); } }
+  if(logo1.length) parts.push({k:1,m:"logo",g:_sl3Merge(logo1)});
   parts.push({k:1,m:"dark",g:_sl3Merge(dark1)});
   if(zinc1.length) parts.push({k:1,m:"zinc",g:_sl3Merge(zinc1)});
   const R={parts};
@@ -7908,7 +7936,10 @@ function alto3DMeshes(b){
   const rail=!!(bkI&&settings.alto3DRail!==false&&!snOff("alto3DRail")&&bkI.top-H>=30);
   let col=ob._altoColor||""; if(!col){ try{ col=(drsOfBoxes(boxes)||{}).color||""; }catch(e){ col=""; } }
   const fin=_al3Fin(col);
-  const geos=alto3DGeos({H,NL,lw,bt,bk:bkI,rail});
+  /* v1.467: กลางลิ้นชัก (ราวขวางครึ่งเส้นวิ่งมาชนกันตรงนี้) · จำนวนราวขวางจากค่าตั้ง */
+  let mid=ref; { const sl=steel.filter(x=>x!==ob&&Math.abs(xc(x)-me)>30); if(sl.length) mid=(me+xc(sl[0]))/2; }
+  const nx=Math.max(Math.round(+(settings.alto3DCross!=null?settings.alto3DCross:2))||0,0);
+  const geos=alto3DGeos({H,NL,lw,bt,bk:bkI,rail,cw:wOf(mid),nx:snOff("alto3DCross")?0:nx});
   const ex=(+state.explode||0)>0;
   const s=Math.max(((+b.x||0)-(+ob.x||0))*F.x+((+b.z||0)-(+ob.z||0))*F.z,0);               // ระยะที่ลิ้นชักชักออก (มุมมองเปิดบาน)
   const W=X.clone().multiplyScalar(-sg), M0=new THREE.Matrix4().makeBasis(F,new THREE.Vector3(0,1,0),W);
@@ -7918,7 +7949,8 @@ function alto3DMeshes(b){
   geos.parts.forEach(P=>{ if(ex&&P.r) return;                                             // แยกประกอบ: วาดแผงอย่างเดียว ไม่วาดราง
     const base=(P.k===1)?Ob:O.clone().addScaledVector(F,P.k*s);
     const m4=M0.clone().setPosition(base);
-    const mm=new THREE.Mesh(P.g,_al3Mat(P.m==="S"?fin:P.m));
+    const mk=(P.m==="S")?fin:(P.m==="R")?(fin==="anth"?"rail":fin):(P.m==="C")?(fin==="white"?"plg":"plgd"):P.m;   // R = ราว · C = ข้อต่อ/ฝาปลาย (ตามสีแผง)
+    const mm=new THREE.Mesh(P.g,_al3Mat(mk));
     m4.decompose(pos,q,sc); mm.position.copy(pos); mm.quaternion.copy(q); mm.scale.copy(sc);   // ข้างซ้าย = สะท้อน (scale ลบ · วัสดุสองหน้า)
     mm.userData.id=b.id; if(P.r) mm.userData._slideK=P.k; if(P.pick) mm.userData._altoPick=true;
     mm.castShadow=true; mm.receiveShadow=true;
@@ -16739,8 +16771,13 @@ function _hangerSideHoles(all,topBot,def){
      ผู้ใช้ 16/10 15:10 (ส่งรูปหูแขวนที่มุมบนแผ่นข้าง): "ขยับรูยิงหูแขวนที่แผ่นข้างขึ้น ให้ด้วยครับ 16 mm."
      เดิม: รูอยู่ใต้แผ่นบนลงมา 23 (ค่าตั้งต้น hangSideDown) · ตอนนี้ 7 (= 23 − 16)
      เครื่องที่เคยบันทึกค่า 23 ไว้แล้ว loadSettings เปลี่ยนเป็น 7 ให้ครั้งเดียว (ธง hangSideDownV) · ตั้งเลขอื่นเองได้ที่ ตั้งค่า → หูแขวน
-     ค่าตกหล่น (ว่าง) ใช้ 7 แทน 23 */
-  const nH=Math.max(Math.round(+settings.hangSideN||2),1), down=Math.max(+settings.hangSideDown||7,0);
+     ค่าตกหล่น (ว่าง) ใช้ 7 แทน 23
+     ───────── v1.468: ระยะที่ถูก = 14 ใต้แผ่นบน ─────────
+     ผู้ใช้ 16/10 15:44 (ส่งรูปหน้าจอ woodWOP ของแผ่นข้าง 950×300 ที่รูยังอยู่ X 38.9):
+       "ขยับรูหูแขวนแล้วหรอ — ขยับ เปลี่ยน เป็น จาก 23 ใต้แผ่นบน เป็น 14 ใต้ แผ่นบนครับ"
+     v1.466 ตีความ "ขึ้น 16" เป็น 23 − 16 = 7 ซึ่งไม่ใช่ที่ต้องการ → ค่าตั้งต้น 14 · ชุดค่าที่เป็น 23 หรือ 7 ย้ายเป็น 14 ครั้งเดียว (ธง hangSideDownV = 1468)
+     (X 38.9 ในรูปคือไฟล์ที่ส่งออกก่อนแก้ = 23 + ส่วนของแผ่นข้างที่อยู่เหนือใต้แผ่นบน) */
+  const nH=Math.max(Math.round(+settings.hangSideN||2),1), down=Math.max(+settings.hangSideDown||14,0);
   const sides=all.filter(b=>!b._door&&!b._virtual&&!b._fitPart&&!b._dwall&&b.orient==="side"&&(b.T||18)>=8)
     .sort((a,b)=>a.x-b.x);
   if(!sides.length||!isFinite(topBot)) return 0;
@@ -27222,6 +27259,7 @@ function boardRole(b){
      SN_OFF.vwReal=1      หน้าดูงาน (ลิงก์/ไฟล์ดูงาน) ไม่มีปุ่ม ✨ สมจริง — realPhoto=1 ก็ซ่อน 📸 ในหน้าดูด้วย (v1.464)
      SN_OFF.alto3D=1      ลิ้นชักแผงเหล็ก ALTO/K40 วาดเป็นกล่องเขียวโปร่งแบบเดิม (ไม่มีแผงจริง/รางซ่อนใต้/คลิปล็อก) (v1.466)
      SN_OFF.alto3DRail=1  ลิ้นชักแผงเหล็ก 3D ไม่วาดราวเหลี่ยมด้านข้าง (v1.466)
+     SN_OFF.alto3DCross=1 ลิ้นชักแผงเหล็ก 3D ไม่วาดราวขวาง/ข้อต่อตัว T (v1.467)
      SN_OFF.shoeWGrain=1  ชิ้นแปะหน้า/หลังของชั้นรองเท้าไม้ ลายตามกติกาแผ่นหลัง (ลายตั้ง) แบบเดิม (v1.452)
      SN_OFF.shoeWPart=1   ชั้นรองเท้าไม้ที่ใส่ใหม่ไม่ตั้ง Part ให้ (เว้นว่างแบบเดิม) (v1.452)
      SN_OFF.skinTrim=1    ชิ้นตั้งที่จมเข้าทอป/พื้นนอกเท่าผิวแผ่น ไม่ตัดให้ชนผิว (แผ่นข้างใต้ทอปทับข้างยาวเกินผิวทอปแบบเดิม) (v1.451)
@@ -32300,7 +32338,8 @@ async function loadSettings(src){ const s=(src&&typeof src==="object")?src:await
     /* v1.466: รูยึดหูแขวนที่แผ่นข้าง ขยับขึ้น 16 — ชุดค่าที่ยังเป็น 23 (ค่าตั้งต้นเดิม) เปลี่ยนเป็น 7 ครั้งเดียว
        ธง hangSideDownV ไม่อยู่ใน DEF_SETTINGS (ไม่งั้น Object.assign ด้านบนเติมธงให้ก่อน แล้วไม่เคยย้ายเลย)
        ตั้งกลับเป็น 23 เองทีหลังได้ — มีธงแล้วไม่ย้ายซ้ำ */
-    if(!settings.hangSideDownV){ if(+settings.hangSideDown===23) settings.hangSideDown=7; settings.hangSideDownV=1466; }
+    /* v1.468: ระยะที่ผู้ใช้ระบุชัดคือ 14 ใต้แผ่นบน (v1.466 ใส่ 7 ผิด) — ชุดค่าที่ยังเป็น 23 (เดิม) หรือ 7 (v1.466–1.467) ย้ายเป็น 14 ครั้งเดียว */
+    if(!(+settings.hangSideDownV>=1468)){ if(+settings.hangSideDown===23||+settings.hangSideDown===7) settings.hangSideDown=14; settings.hangSideDownV=1468; }
     try{ vpOverlaySettings(); }catch(e){ console.error("viewPrefs:",e); }   // v1.445: ธีม/แสง/ขนาด UI/หมอก ของเครื่องนี้ ไม่ให้ก้อนจาก Drive ทับ
     /* v29.6: เครื่องที่ยังไม่เคยมีกฎรายการเส้นเลย ใส่ชุดตั้งต้นให้ครั้งเดียว
        ลบทิ้งเองแล้วจะไม่ถูกใส่คืนให้รำคาญ เพราะจำไว้ว่าเคยใส่ไปแล้ว */
@@ -32531,6 +32570,7 @@ function renderSettings(){
     <!-- ───────── v1.466: ลิ้นชักแผงข้างเหล็ก ALTO/K40 3D ───────── -->
     <label style="display:flex;align-items:center;gap:8px;font-size:13px;cursor:pointer;margin-top:6px"><input type="checkbox" id="setAlto3D" ${settings.alto3D!==false?"checked":""}> แสดงลิ้นชักแผงเหล็ก ALTO/K40 เป็นรูป 3D จริง (แผงข้าง 13 มม. · รางซ่อนใต้ 3 ท่อน · คลิปล็อกแดง · เปิดลิ้นชักแล้วรางชักออกเป็นชั้น · ไม่ติ๊ก = กล่องเขียวโปร่งแบบเดิม) (v1.466)</label>
     <label style="display:flex;align-items:center;gap:8px;font-size:13px;cursor:pointer;margin:2px 0 0 26px"><input type="checkbox" id="setAlto3DRail" ${settings.alto3DRail!==false?"checked":""}> ราวเหลี่ยมด้านข้าง เมื่อแผ่นหลังสูงกว่าแผงข้างตั้งแต่ 30 มม. (เช่น แผง 80 หลัง 148)</label>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:4px 0 0 26px">${num("alto3DCross","ราวขวาง (เส้น · เว้นห่างเท่ากัน · 0 = ไม่มี) (v1.467)")}<div></div></div>
     <div class="sumh" style="margin-top:12px">ลูกลิ้นชักแผงข้างเหล็ก — รหัสซีรีส์ ALTO</div>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">${pick("altoCodeA","ซีรีส์ ALTO สี Anthracite — รหัส Element → Fittings","fittings")}${pick("altoCodeW","ซีรีส์ ALTO สี White — รหัส Element → Fittings","fittings")}</div>
 
