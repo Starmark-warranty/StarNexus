@@ -3250,7 +3250,7 @@
    ===================================================================== */
 /* ---- APP_META: แหล่งความจริงเดียวของเวอร์ชัน (ดูได้จาก console / คลิกชื่อแอป) ---- */
 const APP_META={
-  name:"StarNexus", version:"1.463", build:"2026-10-15/real-mode",
+  name:"StarNexus", version:"1.464", build:"2026-10-16/view-real",
   file:"StarNexus.html", basedOn:"Furnitech_V3.html (v3.11)",
   /* ───────── เริ่มนับเวอร์ชันใหม่ที่ 1.001 (21/08/2026) ─────────
      ของเดิมนับมาถึง 42.1 แล้ววิ่งเป็นทศนิยมสองชั้นซึ่งอ่านลำดับยาก
@@ -3258,6 +3258,7 @@ const APP_META={
      ประวัติเก่าเก็บไว้ทั้งหมดตามเลขเดิม ไม่ไล่เขียนใหม่ เพราะเลขในนั้นถูกอ้างถึงไปแล้ว
      รายการที่อยู่ใต้ 1.001 ลงไปจึงเป็นเลขชุดเก่า อ่านต่อกันได้ตามวันที่ */
   changelog:[
+    ["1.464","2026-10-16","FEAT ✨ โหมดสมจริง + 📸 ภาพแสงจริง ในหน้าดูงาน (ลิงก์/ไฟล์ดูงานที่ลูกค้าเปิด) (ผู้ใช้ 08:43: “เพิ่มโหมดสมจริงใน Link ที่คนดูได้ไหม” · ตอบเพิ่ม: รวม 📸 ด้วย · เปิดมาแบบปกติมีปุ่ม ✨ ให้กด · ตัวกันการ์ดจอรีเซ็ตเฉพาะในลิงก์) — เดิมหน้าดูมีแค่แสง ในห้อง/แดด/กลางคืน แบบไฟลอย · ตอนนี้แถบล่างมีปุ่ม ✨ สมจริง: ห้อง/แสง 3 แบบ/เงามุม/ตัดผนังด้านกล้อง/ภาพแสงจริง ใช้โค้ดตัวจริงของโปรแกรมหลัก v1.463 (snvRealInject ฉีดค่าคงที่ + Function.toString ตอนประกอบหน้าดู ไม่เขียนซ้ำสองชุด) · หน้าดูเขียนเองเฉพาะ กล่องตู้จากข้อมูลที่อบ (ไม่นับบาน) · ไฟ LED จากแถบที่อบ · แถบเลือกแสง/คุณภาพเหนือแถบล่าง (จอแคบเหลือไอคอน · ปุ่มซูมขยับขึ้น · แผง ⋯ เปิด = ซ่อนแถบ) · ระดับคุณภาพ อัตโนมัติ/เบา/กลาง/สูง จำในเครื่องคนดู: อัตโนมัติ = มือถือ/การ์ดจอออนบอร์ด/ไม่รู้ชื่อ/ไม่ใช้การ์ดจอ/โหมดประหยัด/เคยรีเซ็ต → เบา (วาดตรง ไม่มีบัฟเฟอร์ทศนิยม แดดเงา 1024 ไม่มีเงาไฟเพดาน) · การ์ดจอแยก → กลาง (เงามุม MSAA 2 จำกัด ~2.1 ล้านพิกเซล แดด 2048) · สูง = แบบโปรแกรมหลัก · ตัวกันรีเซ็ต: การ์ดจอรีเซ็ตระหว่างเปิด → ปิดโหมดเอง จำไว้ ครั้งหน้าเบา + ไม่มี 📸 (เลือกคุณภาพเอง = ล้างประวัติ) · วาดไม่ทัน (เฟรมกลาง 16 เฟรม > 110 ms) → ลดคุณภาพเอง · ได้การ์ดจอคืน = วาดต่อ · 📸 เฉพาะคอมการ์ดจอแยก + WebGL2 + ไม่เคยรีเซ็ต ค่าตั้งต้น 960 px 128 รอบ · แคปรูปในโหมดสมจริงได้ภาพสมจริง · โปรแกรมหลักไม่เปลี่ยน · ลิงก์เก่าได้ปุ่มเมื่อส่งงานขึ้นเว็บครั้งถัดไป (หน้าดูตัวใหม่) · ปิด: SN_OFF.vwReal=1 / realPhoto=1"],
     ["1.463","2026-10-15","FEAT ✨ โหมดสมจริง + 📸 ถ่ายภาพแสงจริง (ผู้ใช้ 21:41 ส่งภาพตู้กางบาน: “มีโหมดสมจริงขึ้นไปอีกไหม ระดับเกมส์ 3D อยู่ในห้องที่มีแสงจริง กดปุ่มเอาได้” · ตอบเพิ่ม: ทั้งสองแบบ · สร้างห้องรอบตู้ให้เอง · แสงสลับได้หลายแบบ) — เดิมฉากมีไฟลอย 4 ดวง + พื้นรับเงาโปร่ง ไม่มีห้อง ไม่มีแสงสะท้อนรอบตัว มุมในตู้สว่างเท่าผิวหน้า · ปุ่มใหม่ ✨ สมจริง (แถบล่างข้างปุ่มแสง): ① หมุนดูได้ทันทีแบบเกม — ห้องสร้างเองรอบตู้ (พื้นไม้ลายแผ่น 180×1.2–2.2 ม. · ผนัง · ฝ้า · บัวเชิงผนังเว้นหลังตู้ · หน้าต่างผนังซ้ายกรอบอะลูมิเนียม+กระจก · ตู้ชิดผนังหลัง หน้าตู้เว้น ≥2.6 ม. ฝ้า ≥2.7 ม.) คิดห้องใหม่เองเมื่อตู้เปลี่ยนขนาด/ย้าย (รอนิ่ง 0.3 วิ · กางบานไม่นับ) · ผนังด้านที่กล้องอยู่นอกห้องหายเอง (เลเยอร์ 2: กล้องไม่เห็น เงายังบัง แดดจึงเข้าทางหน้าต่างเท่านั้น) · แสง 3 แบบจำไว้ในเครื่อง ☀️ กลางวัน (แดดลอดหน้าต่างตกพื้นหน้าตู้ เงา 4096) 🌇 เย็น (แดดส้มยิงหน้าตู้ + ดาวน์ไลท์อุ่น) 🌙 กลางคืน (ดาวน์ไลท์ส่องเป็นลำ เงาจริง 2 ดวง + LED ในตู้ส่องตามทิศราง) · แสงรอบตัวจากห้องจำลองตามแบบแสง (PMREM) · เงามุม SSAO ครึ่งความละเอียด + เบลอรักษาขอบ · โทน ACES · วาดลงบัฟเฟอร์ทศนิยม MSAA 4 ความลึก 24 บิต (16 บิตทำผนังหลังที่ห่างตู้ 3 มม. ทะลุขอบตู้เป็นฟันเลื่อย) · ไม่มี WebGL2/โหมดประหยัด = ข้ามเงามุม · ระหว่างเปิดซ่อนเส้นขอบ/ตาราง/พื้นเงา/ห้องของห้องออกแบบ ทุกชิ้นทอด/รับเงา · ออกแล้วคืนทุกอย่าง ② 📸 ถ่ายภาพแสงจริง (path tracing WebGL2 หน้าต่างแยก) — เก็บทุก mesh ที่เห็นเป็นสามเหลี่ยม + BVH (SAH 16 ช่อง) ลง texture ทศนิยม · ยิงแสงจริงสะท้อน 5 ทอด · แหล่งแสง: แดด · ท้องฟ้าผ่านช่องหน้าต่าง (สุ่มจุดบนช่อง) · ดาวน์ไลท์/LED เป็นแผ่นเรืองแสงจริง (สุ่มครึ่งตามกำลังครึ่งเท่ากันทุกดวง) · ลายผิวจริงใน texture array · GGX ตามความด้าน/โลหะเดิม · กระจกทะลุตามความทึบ · ผนังที่หายยังสะท้อนแสง · วาดเป็นแถบปรับตามเวลาเฟรม (การ์ดจอไม่ค้าง) · ปรับแสงอัตโนมัติ + เลื่อนเอง · ลดเม็ดสี à-trous 5 รอบ · เลือกกว้าง 960–2560 / รอบ 64–1024 · หยุด/ทำต่อ · บันทึก PNG · จำกัดแสงทอดที่สองกันจุดขาว · ภาพอย่างเดียว ไม่แตะ state.boards/ใบผลิต/MPR/ไฟล์งาน · ปิด: SN_OFF.realMode=1 / realAO=1 / realPhoto=1"],
     ["1.462","2026-10-15","FIX ปรับขนาดตู้แล้วตู้เพี้ยน (ผู้ใช้ 20:21 ส่ง JMT008 ก่อน/หลัง: “ทำไมปรับความสูง แล้วตู้เพี้ยน” 1500×500 → 1200×1000) — ต้นเหตุ ① ตัวสเกลยืดทุกชิ้นตามสัดส่วนก่อน แผ่นพื้นที่ผูกระยะอ้างอิง (cabBottom 100.5) ถูกยกไป 208.9 · ชั้นตาย (floorBot 180) ไป 536.9 แล้วรีฟิต/คาน/พินจัดของที่อิงสองแผ่นนี้ตามตำแหน่งที่ถูกยืด จบท้าย sync ค่อยดึงแผ่นพื้น/ชั้นตายกลับที่ ของที่จัดไปแล้วค้าง → คานตีนตู้ลอยขึ้นไปในตู้ 108.9–208.9 · เสาแบ่งเริ่ม 225 · แผ่นหลังเริ่ม 233 · Back Panel 2 เหลือสูง 30.9 · บานพับหลบคานที่ลอยเลยเลื่อน 192 ② ตัวสเกลปัดขอบทุกชิ้นเป็นมิลเต็ม แผ่น 16.2 จึงได้ขอบใน 16 → แผ่นพื้น/คานยาวเกินช่อง 0.4 (1168 แทน 1167.6) ปรับแค่กว้างก็โดน · ตอนนี้ (_resizeCabinetToCore) จดรอยต่อขอบชนผิวก่อนสเกล → หลังสเกลวางชิ้นระยะอ้างอิงทันที (2 รอบ) แล้วดึงรอยต่อกลับมาชนเท่าเดิม (ไล่เป็นทอด ≤ 3 รอบ · หน้าบาน/ลิ้นชักตามชิ้นระยะอ้างอิงด้วย ให้หาช่องถูก) ก่อนรีฟิต และอีกรอบหลัง refitInterior · JMT008 1200×1000: แผ่นพื้น 86.2–1253.8 · คาน 0.5–100.5 · เสาแบ่ง 116.75–983.85 · แผ่นหลัง 116.95–983.65 · Back Panel 2 871.35–1253.65 ไม่มีชิ้นทับกัน · ขนาดเดิม/ตู้หนาเลขเต็ม/ตู้ไม่มีระยะอ้างอิงได้ผลเท่าเดิมทุกค่า · ตู้ 16.2 ได้ชิ้นใน 0.4 สั้นกว่าเดิม (ตรงช่องจริง) · ปิด: SN_OFF.resizeDatumFirst=1 (ทั้งหมด) / SN_OFF.resizeFaceSnap=1 (เฉพาะเศษปัด)"],
     ["1.461","2026-10-15","FEAT ① รางลูกปืนรับข้าง 3D สมจริง (ผู้ใช้ 17:00: “เรามีบานพับ 3D สมจริงแล้ว อยากได้รางลูกปืนรับข้างสมจริงด้วย ตอนเปิดก็ให้สมจริง สีนิกเกิลตามบานพับ”) — เดิมลิ้นชักกล่องไม้ไม่มีรางในฉากเลย ช่องเผื่อรางระหว่างกล่องกับแผ่นข้างว่าง เปิดลิ้นชักแล้วกล่องลอยออกมาเฉย ๆ · ตอนนี้วาดราง 3 ท่อน สูง 45 หนาเต็มช่องเผื่อราง ทั้งสองข้างของกล่องที่ใช้รางรับข้าง: ตัวนอกติดแผ่นข้างตู้ (ปีกม้วนเป็นร่องลูกปืน · รูกลมตรงรูนำสกรูที่เจาะจริง + รูยาว · ยางกันกระแทกท้าย) · ตัวกลาง · ตัวในติดกล่อง (ก้านปลดรางสีดำ) · ลูกปืน 2 แถวต่อชั้นในรังพลาสติก · ยาวราง/สูงศูนย์รางคิดทางเดียวกับรูนำ (drillDrawerSlides) · ข้างซ้ายเป็นรูปสะท้อนของข้างขวา · เปิดลิ้นชัก: ตัวในไปกับกล่อง ตัวกลางครึ่งระยะ รังลูกปืน ¼ / ¾ ตัวนอกค้างที่แผ่นข้าง — ทั้งภาพนิ่ง อนิเมชันเร็ว หน้าดูงาน (n.sk) และ .glb · สีตาม “สีบานพับ 3D” (นิกเกิล) ลูกปืนโครเมียม · ภาพอย่างเดียว ไม่แตะรูเจาะ/ไฟล์ส่งออก · ไม่วาดรางรับใต้/แผงเหล็ก/ตอนแยกประกอบ · ปิด: ตั้งค่า → Drawer System หรือ SN_OFF.slide3D=1 ② หลบเดือย/มินิฟิกที่เจาะชนกันคนละผิว (ผู้ใช้: แผ่นหลังที่อีกฝั่งเจาะชน ขยับหลบ 16 อีกฝั่งที่ไม่ชนขยับตาม · ตอบเพิ่ม: แผ่นขอบสั้นกว่าหลบ · ทิศอัตโนมัติ · อีกฝั่ง = ขอบอีกข้างของแผ่นเดียวกัน · ใช้ทุกชิ้น) — เดิม JMT008: เดือยล่าง Back Panel 1 กับ Back Panel 2 สูง 50 เท่ากัน ตรงกันคนละผิวของ Divider 1 ลึก 12+12 ในไม้ 16.2 แถม drillMates รวมเป็นรูเดียว (Back Panel 2 ไม่มีรูคู่ · MPR เสาขาด 1 รู) · ตอนนี้ก่อนยิงรูคู่ทั้งตู้ (เจาะรูคู่อัตโนมัติ/เชื่อมเดือยใหม่/ส่งออก) mateDodgePlan หาจุดชน (คนละผิว ห่าง < รัศมีรวม+2 ลึกรวม > หนา−1) → แผ่นที่ขอบประกบสั้นกว่าเลื่อน 16 (เข้าหากลางก่อน · ห่างจุดข้าง ๆ/ปลายขอบไม่ถึง 20 หรือไปชนรูอื่น ค่อยออกหาขอบ) + ขอบตรงข้ามจุดเดียวกันเลื่อนตาม · เก็บที่ c._dodge (แยกจาก c.shift) dowelAlong บวกให้ → 3D/รูคู่/MPR/แบบผลิตตรงกัน · คิดใหม่ทุกรอบ ไม่ชนแล้วกลับที่เดิม · JMT008: Back Panel 2 เดือยล่าง 50→66 ทั้งสองขอบ · Divider 1 ได้รูคู่ครบทั้งสองผิว · Right Side 166.9→182.9 · ชิ้นอื่นไม่เปลี่ยน · ปิด: ตั้งค่า → Corner Connector หรือ SN_OFF.mateDodge=1"],
@@ -27054,6 +27055,7 @@ function boardRole(b){
      SN_OFF.realMode=1    ไม่มีปุ่ม ✨ สมจริง (ห้องจริง แสงจริง หมุนดูได้) (v1.463)
      SN_OFF.realAO=1      โหมดสมจริงไม่ทำเงามุม SSAO (ยังมีห้อง แสง เงา โทน ACES) (v1.463)
      SN_OFF.realPhoto=1   โหมดสมจริงไม่มีปุ่ม 📸 ถ่ายภาพแสงจริง (v1.463)
+     SN_OFF.vwReal=1      หน้าดูงาน (ลิงก์/ไฟล์ดูงาน) ไม่มีปุ่ม ✨ สมจริง — realPhoto=1 ก็ซ่อน 📸 ในหน้าดูด้วย (v1.464)
      SN_OFF.shoeWGrain=1  ชิ้นแปะหน้า/หลังของชั้นรองเท้าไม้ ลายตามกติกาแผ่นหลัง (ลายตั้ง) แบบเดิม (v1.452)
      SN_OFF.shoeWPart=1   ชั้นรองเท้าไม้ที่ใส่ใหม่ไม่ตั้ง Part ให้ (เว้นว่างแบบเดิม) (v1.452)
      SN_OFF.skinTrim=1    ชิ้นตั้งที่จมเข้าทอป/พื้นนอกเท่าผิวแผ่น ไม่ตัดให้ชนผิว (แผ่นข้างใต้ทอปทับข้างยาวเกินผิวทอปแบบเดิม) (v1.451)
@@ -48421,9 +48423,27 @@ async function ghSyncShareBase(base){
 function snvTpl(id){ const el=document.getElementById(id); return el?String(el.textContent||""):""; }
 function snvThreeSrc(){ const s=[...document.scripts].find(x=>x.text&&x.text.length>300000&&/Three\.js Authors/.test(x.text.slice(0,400))); return s?s.text:""; }
 /* ประกอบหน้าเว็บ · dataB64 ว่าง = หน้าแบบโฟลเดอร์ (อ่าน v/<รหัส>.bin เอง) */
+/* ───────── v1.464: โหมดสมจริงในหน้าดูงาน — ฉีดโค้ดตัวจริงของโปรแกรมหลัก (v1.463) เข้าไปในหน้าดู ─────────
+   ผู้ใช้ 16/10 08:43: "เพิ่มโหมดสมจริงใน Link ที่คนดูได้ไหมครับ"
+   หน้าดูงานเป็นหน้าเว็บแยก (snvTplJs) ไม่มีโค้ดโปรแกรมหลัก — ถ้าเขียนห้อง/แสง/เงามุม/ตัวยิงแสงซ้ำอีกชุด สองที่จะเพี้ยนกันเมื่อแก้ทีหลัง
+   จึงหยิบค่าคงที่ (แบบแสง · เชดเดอร์) กับตัวฟังก์ชันจริง (Function.toString) ไปวางในหน้าดูตอนประกอบไฟล์ทุกครั้ง
+   หน้าดูเขียนเองเฉพาะส่วนที่ต่าง: กล่องตู้จากข้อมูลที่อบ · ไฟ LED · ระดับคุณภาพ · ตัวกันการ์ดจอรีเซ็ต · แถบปุ่ม (ดู vw_real ใน snvTplJs)
+   ชื่อตัวแปรที่ฟังก์ชันพวกนี้อ้าง (REAL · RPT · camera · scene · renderer · $ · toast · snOff · realRender · rptCollect · _realCabBox) หน้าดูมีชื่อเดียวกันให้
+   ปิด: SN_OFF.vwReal=1 (หน้าดูไม่มีปุ่ม ✨) · SN_OFF.realPhoto=1 (หน้าดูไม่มีปุ่ม 📸) */
+function snvRealInject(){
+  if(snOff("vwReal")||snOff("realMode")) return "var RV_OFF=1;";
+  try{
+    const J=JSON.stringify, C={REAL_PRESETS,REAL_VS,REAL_AO_FS,REAL_BL_FS,REAL_CP_FS,RPT_TW,RPT_VS,RPT_HEAD,RPT_PT_FS,RPT_DISP_FS,RPT_PREP_FS,RPT_ATR_FS,RPT_LUM_FS};
+    const F=[mulberry32,realLin,_realRoomOf,_realFloorTex,realDropRoom,realBuildRoom,realDropLights,realEnvBuild,_realCutaway,_realCmpDispose,_realQ,_realMatsDirty,
+      rptBVH,rptPack,_rptShader,_rptProg,_rptDataTex,_rptTarget,_rptDropTarget,_rptBind,_rptQuad,rptPrepare,rptRestart,rptRun,rptLoop,_rptCur,_rptAutoExp,
+      rptShow,rptStatus,_rptStat,_rptFit,rptSave,rptClose,_rptCss,rptOpen];
+    let s="var RV_OFF=0;\n"+Object.keys(C).map(k=>"var "+k+"="+J(C[k])+";").join("\n")+"\n"+F.map(f=>f.toString()).join("\n")+"\n";
+    if(snOff("realPhoto")) s+="var RV_NOPHOTO=1;\n";
+    return s.replace(/<\/script/gi,"<\\/script");
+  }catch(e){ console.error("snvRealInject:",e); return "var RV_OFF=1;"; } }
 function snvHtml(title,dataB64,preview,paperB64){   // v1.359: paperB64 = แบบผลิตฝังในไฟล์ (ไฟล์ดูงานไฟล์เดียว)
   const three=snvThreeSrc(); if(!three) throw new Error("หา three.js ในไฟล์โปรแกรมไม่เจอ");
-  const css=snvTpl("snvTplCss"), body=snvTpl("snvTplBody"), js=snvTpl("snvTplJs");
+  const css=snvTpl("snvTplCss"), body=snvTpl("snvTplBody"), js=snvTpl("snvTplJs").replace("/*__RV_INJECT__*/",()=>snvRealInject());   // v1.464: ✨ โหมดสมจริงในหน้าดูงาน
   if(!css||!body||!js) throw new Error("ไม่พบแม่แบบหน้าดูงานในไฟล์โปรแกรม (snvTpl*)");
   const pv=preview?('<img id="vwPrev" alt="ภาพตัวอย่างงาน" src="'+preview+'">'):"";
   return '<!doctype html>\n<html lang="th"><head><meta charset="utf-8">'
@@ -59123,6 +59143,17 @@ body.vwScanTop #vwScan{top:calc(8px + env(safe-area-inset-top))}
   #vwPpList .it{padding:6px 10px;font-size:12px}
   #vwPpList .g{font-size:11.5px;padding:5px 10px}
 }
+/* v1.464: ✨ โหมดสมจริง — แถบเลือกแสง/คุณภาพ เหนือแถบล่าง · ข้อความแนะนำยกขึ้นพ้นแถบ */
+#vwReal{flex:none}
+#vwRealBar{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(62px + env(safe-area-inset-bottom));z-index:7;display:none;align-items:center;gap:6px;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:6px 8px;box-shadow:var(--shadow);max-width:calc(100vw - 16px);overflow-x:auto;scrollbar-width:none;font-size:13px}
+#vwRealBar::-webkit-scrollbar{display:none}
+#vwRealBar .seg{display:flex;flex:none;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:var(--solid)}
+#vwRealBar .seg button{border:0;background:transparent;padding:6px 9px;cursor:pointer;white-space:nowrap;font:inherit;color:inherit}
+#vwRealBar .seg button.on{background:var(--accent);color:#fff}
+#vwRealBar select{flex:none;font:inherit;border:1px solid var(--line);border-radius:9px;padding:5px 6px;background:var(--solid);color:var(--ink)}
+#vwRealBar .vbtn{flex:none;box-shadow:none;padding:6px 10px;font:inherit}
+#vwRealBar .vbtn.pri{background:var(--accent);color:#fff;border-color:transparent}
+@media(max-width:480px){#vwRealBar .seg .tx{display:none}#vwRealBar .seg button{padding:6px 11px}}
 </script>
 <script type="text/plain" id="snvTplBody">
 <div id="vwCanvas"></div>
@@ -59135,6 +59166,7 @@ body.vwScanTop #vwScan{top:calc(8px + env(safe-area-inset-top))}
 <div id="vwLbl"></div>
 <footer id="vwBar">
   <div class="seg" id="vwTool"><button data-t="sel" class="on">👆 ดูชิ้น</button><button data-t="meas">📏 วัด</button><button data-t="door">🚪 เปิดบาน</button></div>
+  <button class="vbtn" id="vwReal" title="✨ โหมดสมจริง — ดูตู้ในห้องจริง แสงกลางวัน / เย็น / กลางคืน">✨ สมจริง</button>
   <button class="vbtn" id="vwMore" aria-label="เครื่องมือเพิ่มเติม">⋯ เพิ่มเติม</button>
   <div id="vwExtra">
     <button class="vbtn" id="vwAllDoors">เปิดทุกบาน</button>
@@ -59686,7 +59718,7 @@ function scanPlace(){ var el=$("vwScan"), B=document.body; if(!B) return;
 function snapShot(){ if(!renderer||!scene||!camera) return;
   var pr=renderer.getPixelRatio(), k=Math.max(1,Math.min(2,4096/(Math.max(innerWidth,innerHeight)*pr))), sb=!!(selBox&&selBox.visible), cv=null;
   try{ if(selBox) selBox.visible=false;
-    renderer.setPixelRatio(pr*k); renderer.render(scene,camera);
+    renderer.setPixelRatio(pr*k); if(REAL.on) rvRender(); else renderer.render(scene,camera);   // v1.464: แคปรูปในโหมดสมจริงได้ภาพสมจริง
     var src=renderer.domElement; cv=document.createElement("canvas"); cv.width=src.width; cv.height=src.height;
     var g=cv.getContext("2d"); g.drawImage(src,0,0);
     var sx=cv.width/Math.max(innerWidth,1);
@@ -59847,6 +59879,7 @@ function bindUI(){
     hint("แสง: "+LIGHTS[S.light].label+(S.light==="sun"?" — มีเงาทอด เห็นรูปทรงชัด":S.light==="night"?" — หรี่ลง ไฟ LED เด่น":" — แสงนวลกระจาย ไม่มีเงาแข็ง")); };
   $("vwGrid").onclick=function(){ setGrid(!S.grid); };
   $("vwEco").onclick=function(){ setEco(!S.eco); };
+  if($("vwReal")){ if(typeof RV_OFF==="undefined"||RV_OFF) $("vwReal").style.display="none"; else $("vwReal").onclick=function(){ rvToggle(); }; }   // v1.464: ✨ โหมดสมจริง
   $("vwReset").onclick=resetView;
   $("vwViews").onclick=function(e){ var b=e.target.closest("button"); if(!b) return; var v=b.dataset.v, bx=sceneBox();
     focusBox(bx, v==="front"?{th:0,ph:Math.PI/2-.001}:v==="top"?{th:0,ph:.021}:{th:Math.PI/2,ph:Math.PI/2-.001}); };
@@ -59959,6 +59992,294 @@ function paperList(keep){
     lp.onclick=function(e){ var it=e.target.closest(".it"); if(!it) return; paperShow(it.dataset.k); if(innerWidth<760){ lp.classList.add("hide"); bt.classList.remove("on"); } };
     var on=lp.querySelector(".it.on"); if(on) try{ on.scrollIntoView({block:"nearest"}); }catch(e){} }); }
 
+/*__RV_INJECT__*/
+/* ═════════ v1.464: ✨ โหมดสมจริง + 📸 ภาพแสงจริง ในหน้าดูงาน (ลิงก์ที่ลูกค้าเปิด) ═════════
+   ผู้ใช้ 16/10 08:43: "เพิ่มโหมดสมจริงใน Link ที่คนดูได้ไหมครับ" · ตอบเพิ่ม: รวม 📸 ด้วย · เปิดลิงก์มาแบบปกติมีปุ่ม ✨ ให้กด · ตัวกันการ์ดจอรีเซ็ตใส่เฉพาะในลิงก์
+   ที่มา: เช้านี้เครื่องผู้ใช้เปิดโหมดสมจริงในโปรแกรมหลักแล้วการ์ดจอรีเซ็ต (Edge งด 3D ทั้งไฟล์จนปิดเบราว์เซอร์)
+     ลูกค้าส่วนใหญ่เปิดลิงก์จากมือถือ/โน้ตบุ๊กการ์ดจอออนบอร์ด → ในลิงก์ต้องเริ่มแบบเบาเสมอถ้าไม่แน่ใจ
+   ห้อง/แสง/เงามุม/ภาพแสงจริง ใช้โค้ดชุดเดียวกับโปรแกรมหลัก (v1.463) — snvHtml ฉีดฟังก์ชันกับเชดเดอร์ตัวจริงมาให้ (snvRealInject ในโปรแกรมหลัก) ตรงจุดฉีดเหนือบล็อกนี้
+   ส่วนที่เขียนใหม่สำหรับหน้าดู: กล่องตู้จากข้อมูลที่อบ · ไฟ LED จากแถบที่อบ · ระดับคุณภาพ · ตัวกันรีเซ็ต · แถบปุ่ม
+   ระดับคุณภาพ (เลือกได้ที่แถบ · จำในเครื่องคนดู):
+     อัตโนมัติ = มือถือ/แท็บเล็ต/การ์ดจอออนบอร์ด/ไม่รู้ชื่อ/เบราว์เซอร์ไม่ใช้การ์ดจอ/โหมดประหยัด/เคยรีเซ็ต → เบา · การ์ดจอแยก (NVIDIA/Radeon RX/Arc) → กลาง
+     เบา  = วาดตรงลงจอ (ไม่มีบัฟเฟอร์ทศนิยม ไม่มีเงามุม) แดดเงา 1024 · ไฟเพดานไม่มีเงา · LED ≤ 4 ดวง
+     กลาง = เงามุม + บัฟเฟอร์ทศนิยม MSAA 2 จำกัด ~2.1 ล้านพิกเซล (จอใหญ่กว่านั้นคิดเล็กแล้วขยาย) · แดด 2048 · ไฟเพดานเงา 1 ดวง
+     สูง  = แบบโปรแกรมหลัก (MSAA 4 · ~3.7 ล้านพิกเซล · แดด 4096 · เงา 2 ดวง)
+   ตัวกัน: การ์ดจอรีเซ็ตระหว่างเปิด (webglcontextlost) → ปิดโหมดเอง + จำไว้ในเครื่องคนดู ครั้งหน้าอัตโนมัติ = เบา และไม่มีปุ่ม 📸
+     · วาดไม่ทัน (เฟรมกลางของ 16 เฟรมล่าสุดช้ากว่า 110 มิลลิวินาทีตอนหมุน) → ลดคุณภาพลงทีละขั้นเอง
+     · 📸 มีเฉพาะคอมที่การ์ดจอแยก + WebGL2 + ไม่เคยรีเซ็ต · มือถือไม่เห็นปุ่ม · ค่าตั้งต้นของภาพ 960 px 128 รอบ วาดแถบละ 8 แถว */
+var REAL={on:false,preset:"day",grp:null,lights:[],env:null,walls:[],sig:"",room:null,lamps:[],cmp:null,cmpFail:"",bgCol:null,floorTex:null,sunDir:null,
+  q:"auto",qEff:"low",tier:1,gpu:"",mob:false,keep:null,ft:[],lastF:0,hidL:[],shK:[],hooked:false};
+var RPT={el:null,cv:null,gl:null,raf:0,run:false,frame:0,target:128,row:0,band:8,W:0,H:0,res:960,
+  P:null,S:null,acc:null,dn:null,prog:null,expAuto:1,expUser:0,t0:0,tRun:0,lastT:0,done:false,keyH:null,dnOn:true,scn:null};
+var REAL_L2=new THREE.Layers(); REAL_L2.set(2);
+var RV_Q={
+  low: {label:"เบา", cmp:0,sun:1024,spotSh:0,led:4,cap:0,    ms:0},
+  mid: {label:"กลาง",cmp:1,sun:2048,spotSh:1,led:6,cap:2.1e6,ms:2},
+  high:{label:"สูง", cmp:1,sun:4096,spotSh:2,led:8,cap:3.7e6,ms:4}};
+function snOff(){ return false; }                                   // ฟังก์ชันที่ฉีดมาจากโปรแกรมหลักเรียกใช้ — หน้าดูไม่มีสวิตช์ปิดรายข้อ
+function toast(m){ hint(String(m||""),4800); }
+function realRender(){ rvRender(); }
+function rvLS(k,v){ try{ var K="snv:"+k;
+    if(v===undefined){ var s=localStorage.getItem(K); return s==null?null:JSON.parse(s); }
+    if(v===null) localStorage.removeItem(K); else localStorage.setItem(K,JSON.stringify(v)); }catch(e){} return null; }
+function rvGpu(){ try{ var gl=renderer.getContext(), ex=gl.getExtension("WEBGL_debug_renderer_info");
+  return String((ex&&gl.getParameter(ex.UNMASKED_RENDERER_WEBGL))||gl.getParameter(gl.RENDERER)||""); }catch(e){ return ""; } }
+/* 0 = ไม่ได้ใช้การ์ดจอ · 1 = ออนบอร์ด/ไม่รู้จัก · 2 = การ์ดจอแยก */
+function rvTier(n){ n=String(n||"");
+  if(/swiftshader|llvmpipe|basic render|software|subzero/i.test(n)) return 0;
+  if(/nvidia|geforce|quadro|rtx|radeon\s*(rx|pro|r9|r7|vii)|\brx\s*\d{3,4}|arc\(tm\)\s*a\d|arc\s*a\d|apple m\d\s*(max|pro|ultra)/i.test(n)) return 2;
+  return 1; }
+function rvMobile(){ return /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent||"")||!!(window.matchMedia&&matchMedia("(pointer:coarse)").matches); }
+function rvQEff(){ if(REAL.q!=="auto"&&RV_Q[REAL.q]) return REAL.q;
+  if(S.eco||rvLS("realCrash")||REAL.mob||REAL.tier<2) return "low"; return "mid"; }
+function rvCanPhoto(){ return typeof RV_NOPHOTO==="undefined"&&!REAL.mob&&REAL.tier>=2&&!rvLS("realCrash")&&!!(renderer.capabilities&&renderer.capabilities.isWebGL2); }
+/* กล่องตัวตู้: ทุกชิ้นที่มีข้อมูล ยกเว้นบาน/หน้าลิ้นชัก และชิ้นที่ขยับตามบาน (กางบานแล้วห้องไม่ขยับ) */
+function _realCabBox(){
+  var D=S.D, I=D.info||{}, ids=Object.keys(I).filter(function(id){ var own=(D.own&&D.own[id])||id; return !(I[id]&&I[id].dr)&&!(D.door&&D.door[own]); });
+  var b=ids.length?sceneBox(ids):new THREE.Box3(); if(b.isEmpty()) b=sceneBox();
+  return b.isEmpty()?null:b; }
+/* แถบ LED ที่อบมา: แผ่นบาง (สองด้านแคบ) = ตัวแถบ · แผ่นกว้าง = ม่านแสง (ไม่ใช่แหล่งไฟ) · ทิศส่อง = ด้านบางสุด (แนวตั้ง = ส่องลง) */
+function rvLedRuns(){ var out=[];
+  S.led.forEach(function(o){ if(!o||!o.isMesh||!o.visible) return;
+    var b=new THREE.Box3().setFromObject(o); if(b.isEmpty()) return;
+    var s=b.getSize(new THREE.Vector3()), c=b.getCenter(new THREE.Vector3()), a=[s.x,s.y,s.z], srt=a.slice().sort(function(p,q){ return p-q; });
+    if(srt[1]>40||srt[2]<60) return;
+    var ax=a.indexOf(srt[0]), d=new THREE.Vector3(); d.setComponent(ax,ax===1?-1:1);
+    var col=(o.material&&o.material.color)?o.material.color.clone():new THREE.Color(0xffd9a0);
+    out.push({c:c,out:d,len:srt[2],col:col}); });
+  return out; }
+function rvApplyLights(){
+  realDropLights();
+  var P=REAL_PRESETS[REAL.preset]||REAL_PRESETS.day, R=REAL.room, Q=RV_Q[REAL.qEff]||RV_Q.low; if(!R) return;
+  function add(l){ scene.add(l); if(l.target&&!l.target.parent) scene.add(l.target); REAL.lights.push(l); return l; }
+  add(new THREE.HemisphereLight(P.hemi[0],P.hemi[1],P.hemi[2]));
+  var cx=(R.x0+R.x1)/2, cy=(R.y0+R.y1)/2, cz=(R.z0+R.z1)/2, bx=R.bx, Wc=bx.max.x-bx.min.x;
+  REAL.sunDir=null;
+  if(P.sun){
+    var C=new THREE.Vector3(R.x0-60,R.win.yc+R.win.h*.15,R.win.zc);
+    var Tg=(P.sun.tgt==="cab")?new THREE.Vector3(bx.min.x+Wc*.42,R.y0+Math.min(700,(bx.max.y-bx.min.y)*.45),bx.max.z+40)
+                              :new THREE.Vector3(bx.min.x+Wc*.25,R.y0,bx.max.z+420);
+    var L=C.clone().sub(Tg).normalize(); REAL.sunDir=L.clone();
+    var s=add(new THREE.DirectionalLight(P.sun.c,P.sun.i)), rad=Math.hypot(R.x1-R.x0,R.y1-R.y0,R.z1-R.z0)*.6+400;
+    s.position.set(cx,cy,cz).addScaledVector(L,rad*1.5); s.target.position.set(cx,cy,cz);
+    s.castShadow=true; s.shadow.mapSize.set(Q.sun,Q.sun);
+    var sc=s.shadow.camera; sc.left=-rad; sc.right=rad; sc.top=rad; sc.bottom=-rad; sc.near=10; sc.far=rad*3.2; sc.updateProjectionMatrix();
+    s.shadow.bias=-0.00004*(4096/Q.sun); s.shadow.normalBias=.5*(4096/Q.sun>1?1.6:1); sc.layers.enable(2); }
+  if(P.lamp>0) REAL.lamps.forEach(function(p,i){
+    var sp=add(new THREE.SpotLight(0xffd6a6,P.lamp*1.25,6500,Math.PI*.27,.75,1.4));
+    sp.position.set(p.x,p.y,p.z); sp.target.position.set(p.x,R.y0,p.z-420);
+    if(i<Q.spotSh){ sp.castShadow=true; sp.shadow.mapSize.set(1024,1024); sp.shadow.bias=-0.00015; sp.shadow.normalBias=.6;
+      sp.shadow.camera.near=50; sp.shadow.camera.far=7000; sp.shadow.camera.layers.enable(2); } });
+  if(P.led>0&&S.ledOn) rvLedRuns().slice(0,Q.led).forEach(function(r){
+    var sp=add(new THREE.SpotLight(r.col,P.led*.9,Math.max(900,r.len*1.2),Math.PI*.46,1,2));
+    sp.position.copy(r.c).addScaledVector(r.out,20); sp.target.position.copy(r.c).addScaledVector(r.out,600); });
+  realEnvBuild(P);
+  REAL.bgCol=realLin(P.bg);
+  renderer.shadowMap.needsUpdate=true; S.dirty=true; }
+function rvCmp(){
+  var Q=RV_Q[REAL.qEff]||RV_Q.low; if(!Q.cmp||REAL.cmpFail) return null;
+  var caps=renderer.capabilities, ex=renderer.extensions;
+  if(!caps||!caps.isWebGL2){ REAL.cmpFail="webgl1"; return null; }
+  if(!(ex.has("EXT_color_buffer_float")||ex.has("EXT_color_buffer_half_float"))){ REAL.cmpFail="float"; return null; }
+  var v=renderer.getDrawingBufferSize(new THREE.Vector2()), W=Math.max(1,v.x|0), H=Math.max(1,v.y|0);
+  var C=REAL.cmp; if(C&&C.W===W&&C.H===H&&C.q===REAL.qEff) return C;
+  _realCmpDispose();
+  try{
+    /* จำกัดจำนวนพิกเซลของบัฟเฟอร์ (จอ 4K = คิดเล็กแล้วขยาย) — บัฟเฟอร์ทศนิยม MSAA บนการ์ดจอออนบอร์ดกินหน่วยความจำร่วมเป็นร้อย MB */
+    var k=Math.min(1,Math.sqrt(Q.cap/(W*H))), w=Math.max(1,Math.round(W*k)), h=Math.max(1,Math.round(H*k));
+    C={W:W,H:H,w:w,h:h,q:REAL.qEff};
+    C.rt=new THREE.WebGLMultisampleRenderTarget(w,h,{type:THREE.HalfFloatType,format:THREE.RGBAFormat,minFilter:THREE.LinearFilter,magFilter:THREE.LinearFilter,stencilBuffer:true}); C.rt.samples=Q.ms;
+    var lin={minFilter:THREE.LinearFilter,magFilter:THREE.LinearFilter,format:THREE.RGBAFormat};
+    C.nd=new THREE.WebGLRenderTarget(w,h,{minFilter:THREE.NearestFilter,magFilter:THREE.NearestFilter,format:THREE.RGBAFormat});
+    C.nd.depthTexture=new THREE.DepthTexture(w,h); C.nd.depthTexture.type=THREE.UnsignedIntType;
+    C.a1=new THREE.WebGLRenderTarget(w,h,lin); C.a2=new THREE.WebGLRenderTarget(w,h,lin);
+    C.normM=new THREE.MeshNormalMaterial({side:THREE.DoubleSide});
+    C.qs=new THREE.Scene(); C.qc=new THREE.OrthographicCamera(-1,1,1,-1,0,1);
+    C.q=new THREE.Mesh(new THREE.PlaneGeometry(2,2)); C.q.frustumCulled=false; C.qs.add(C.q);
+    var Qm=function(fs,u){ return new THREE.ShaderMaterial({uniforms:u,vertexShader:REAL_VS,fragmentShader:fs,depthTest:false,depthWrite:false}); };
+    C.aoM=Qm(REAL_AO_FS,{tD:{value:C.nd.depthTexture},tN:{value:C.nd.texture},uP:{value:new THREE.Matrix4()},uIP:{value:new THREE.Matrix4()},uRes:{value:new THREE.Vector2(w,h)},uRad:{value:240},uStr:{value:1.05}});
+    C.blM=Qm(REAL_BL_FS,{tA:{value:null},tD:{value:C.nd.depthTexture},uDir:{value:new THREE.Vector2()},uCN:{value:new THREE.Vector2(5,60000)}});
+    C.cpM=Qm(REAL_CP_FS,{tC:{value:C.rt.texture},tA:{value:C.a1.texture},uExp:{value:1},uAoK:{value:.85},uAoOn:{value:1}});
+    return (REAL.cmp=C);
+  }catch(e){ console.warn("rvCmp:",e); REAL.cmpFail="err"; _realCmpDispose(); return null; } }
+function rvEnforce(){
+  if(scene.fog) scene.fog=null;
+  if(REAL.bgCol&&scene.background!==REAL.bgCol) scene.background=REAL.bgCol;
+  if(!renderer.shadowMap.enabled){ renderer.shadowMap.enabled=true; renderer.shadowMap.needsUpdate=true; }
+  if(floor&&floor.visible) floor.visible=false;
+  if(grid&&grid.visible) grid.visible=false;
+  [hemi,keyL,fillL,rimL].forEach(function(l){ if(l&&l.visible) l.visible=false; }); }
+var RV_ORDER=["low","mid","high"];
+function rvDown(why){ var i=RV_ORDER.indexOf(REAL.qEff); if(i<=0) return;
+  REAL.qEff=RV_ORDER[i-1]; _realCmpDispose(); rvApplyLights(); rvBarSync();
+  hint("เครื่องนี้วาดไม่ทัน — ลดคุณภาพเป็น \""+RV_Q[REAL.qEff].label+"\" ให้แล้ว",3800); }
+/* แทน renderer.render(scene,camera) ระหว่างเปิดโหมดสมจริง */
+function rvRender(){
+  var now=performance.now();
+  if(REAL.lastF&&now-REAL.lastF<400){ REAL.ft.push(now-REAL.lastF); if(REAL.ft.length>16) REAL.ft.shift();
+    if(REAL.ft.length>=16&&REAL.qEff!=="low"){ var md=REAL.ft.slice().sort(function(a,b){ return a-b; })[8]; if(md>110){ REAL.ft=[]; rvDown(); } } }
+  REAL.lastF=now;
+  rvEnforce(); _realCutaway();
+  var P=REAL_PRESETS[REAL.preset]||REAL_PRESETS.day, C=rvCmp();
+  if(!C){
+    if(renderer.toneMapping!==THREE.ACESFilmicToneMapping){ renderer.toneMapping=THREE.ACESFilmicToneMapping; _realMatsDirty(); }
+    renderer.toneMappingExposure=P.exp; renderer.setRenderTarget(null); renderer.render(scene,camera); return; }
+  if(renderer.toneMapping!==THREE.NoToneMapping){ renderer.toneMapping=THREE.NoToneMapping; _realMatsDirty(); }
+  renderer.setRenderTarget(C.rt); renderer.render(scene,camera);
+  var hid=[]; scene.traverseVisible(function(o){ if(o.isLine||o.isSprite||o.isPoints) hid.push(o);
+    else if(o.isMesh){ var m=o.material, tr=Array.isArray(m)?m.some(function(x){ return x&&x.transparent; }):!!(m&&m.transparent); if(tr) hid.push(o); } });
+  hid.forEach(function(o){ o.visible=false; });
+  var bg=scene.background, cc=renderer.getClearColor(new THREE.Color()), ca=renderer.getClearAlpha();
+  scene.background=null; scene.overrideMaterial=C.normM; renderer.setClearColor(0x8080ff,1);
+  try{ renderer.setRenderTarget(C.nd); renderer.render(scene,camera); }
+  finally{ scene.overrideMaterial=null; scene.background=bg; renderer.setClearColor(cc,ca); hid.forEach(function(o){ o.visible=true; }); }
+  C.aoM.uniforms.uP.value.copy(camera.projectionMatrix); C.aoM.uniforms.uIP.value.copy(camera.projectionMatrixInverse);
+  _realQ(C,C.aoM,C.a1);
+  C.blM.uniforms.uCN.value.set(camera.near,camera.far);
+  C.blM.uniforms.tA.value=C.a1.texture; C.blM.uniforms.uDir.value.set(1/C.a1.width,0); _realQ(C,C.blM,C.a2);
+  C.blM.uniforms.tA.value=C.a2.texture; C.blM.uniforms.uDir.value.set(0,1/C.a1.height); _realQ(C,C.blM,C.a1);
+  C.cpM.uniforms.uExp.value=P.exp; C.cpM.uniforms.uAoOn.value=1;
+  _realQ(C,C.cpM,null); }
+/* การ์ดจอรีเซ็ต: ปิดโหมด + จำไว้ (ครั้งหน้าเบา · ไม่มี 📸) · ได้คืนเมื่อไรก็วาดใหม่ */
+function rvHook(){ if(REAL.hooked) return; REAL.hooked=true; var cv=renderer.domElement;
+  cv.addEventListener("webglcontextlost",function(){
+    if(!(REAL.on||RPT.el)) return;
+    rvLS("realCrash",{t:Date.now(),q:REAL.qEff,gpu:REAL.gpu});
+    setTimeout(function(){ try{ rvToggle(false); }catch(e){} hint("การ์ดจอรีเซ็ต — ปิดโหมดสมจริงให้แล้ว · ถ้าภาพ 3D ไม่กลับมา ให้ปิดเบราว์เซอร์แล้วเปิดลิงก์ใหม่",7000); },0); },false);
+  cv.addEventListener("webglcontextrestored",function(){ S.dirty=true; try{ renderer.shadowMap.needsUpdate=true; }catch(e){} },false); }
+function rvPhoto(){
+  try{ rptOpen(); }catch(e){ hint("เปิดภาพแสงจริงไม่ได้: "+((e&&e.message)||e),4000); return; }
+  var cv=RPT.cv; if(!cv) return;
+  cv.addEventListener("webglcontextlost",function(){ if(RPT.cv!==cv) return;   // ปิดหน้าต่างเอง (loseContext) ไม่นับ
+    rvLS("realCrash",{t:Date.now(),src:"photo",gpu:REAL.gpu}); RPT.run=false;
+    rptStatus("⚠ การ์ดจอรีเซ็ต — หยุดคำนวณแล้ว ปิดหน้าต่างนี้ได้เลย (ครั้งหน้าจะไม่มีปุ่มนี้ในเครื่องนี้)",true); },false); }
+function rvBarSync(){ var el=$("vwRealBar"); if(!el) return;
+  [].forEach.call(el.querySelectorAll("[data-p]"),function(b){ b.classList.toggle("on",b.dataset.p===REAL.preset); });
+  var se=el.querySelector("select"); if(se){ se.value=REAL.q; var o=se.querySelector('option[value="auto"]'); if(o) o.textContent="อัตโนมัติ ("+RV_Q[rvQEff()].label+")"; } }
+/* วางแถบเหนือแถบล่างเสมอ — จอแคบแถบล่างมีสองแถว (แยกประกอบ) / เปิด ⋯ เพิ่มเติม แถบล่างสูงขึ้น · ข้อความแนะนำขึ้นไปเหนือแถบนี้อีกที */
+function rvPlace(){ var el=$("vwRealBar"), bar=$("vwBar"), h=$("vwHint"), z=$("vwZoom"), ex=$("vwExtra");
+  var narrow=!!(window.matchMedia&&matchMedia("(max-width: 759px)").matches);
+  if(!el||!bar||el.style.display==="none"){ if(h) h.style.bottom=""; if(z) z.style.bottom=""; return; }
+  var r=bar.getBoundingClientRect(), bt=Math.max(8,Math.round(innerHeight-r.top+6)); el.style.bottom=bt+"px";
+  /* จอแคบ: แผง ⋯ เพิ่มเติม เด้งทับตำแหน่งเดียวกัน → ซ่อนแถบนี้ระหว่างแผงเปิด · ปุ่มซูม +/− ขยับขึ้นพ้นแถบ */
+  el.style.visibility=(narrow&&ex&&ex.classList.contains("open"))?"hidden":"";
+  var top=bt+el.offsetHeight+8;
+  if(h) h.style.bottom=top+"px";
+  if(z) z.style.bottom=narrow?(top+"px"):""; }
+function rvBar(on){ var el=$("vwRealBar"); document.body.classList.toggle("rvOn",!!on);
+  if(!REAL.placeHooked){ REAL.placeHooked=true; addEventListener("resize",rvPlace);
+    try{ if(window.ResizeObserver) new ResizeObserver(function(){ rvPlace(); }).observe($("vwBar")); }catch(e){}
+    try{ if(window.MutationObserver&&$("vwExtra")) new MutationObserver(function(){ rvPlace(); }).observe($("vwExtra"),{attributes:true,attributeFilter:["class"]}); }catch(e){} }
+  if(!on){ if(el) el.style.display="none"; rvPlace(); return; }
+  if(!el){ el=document.createElement("div"); el.id="vwRealBar"; document.body.appendChild(el); }
+  el.innerHTML='<div class="seg">'+Object.keys(REAL_PRESETS).map(function(k){ var p=REAL_PRESETS[k]; return '<button data-p="'+k+'" title="แสง'+p.label+'">'+p.icon+'<span class="tx"> '+p.label+'</span></button>'; }).join("")+'</div>'
+    +'<select title="คุณภาพภาพ — เครื่องอืดหรือร้อนให้เลือก เบา"><option value="auto">อัตโนมัติ</option><option value="low">เบา</option><option value="mid">กลาง</option><option value="high">สูง</option></select>'
+    +(rvCanPhoto()?'<button class="vbtn pri" data-a="ph" title="คำนวณแสงจริงจากมุมนี้ แล้วบันทึกเป็นรูป (ใช้การ์ดจอเต็มที่ชั่วคราว)">📸 ภาพแสงจริง</button>':'')
+    +'<button class="vbtn" data-a="x" title="กลับมุมมองปกติ">✕</button>';
+  el.onclick=function(e){ var b=e.target.closest&&e.target.closest("button"); if(!b) return;
+    if(b.dataset.p){ REAL.preset=b.dataset.p; rvLS("realPreset",REAL.preset); realBuildRoom(); rvApplyLights(); rvBarSync(); }
+    else if(b.dataset.a==="ph") rvPhoto();
+    else if(b.dataset.a==="x") rvToggle(false); };
+  el.querySelector("select").onchange=function(){ REAL.q=this.value; rvLS("realQ",REAL.q); if(REAL.q!=="auto") rvLS("realCrash",null);   // เลือกเอง = ยอมรับความเสี่ยง ล้างประวัติรีเซ็ต
+    REAL.qEff=rvQEff(); REAL.ft=[]; _realCmpDispose(); rvApplyLights(); rvBar(true); };
+  el.style.display="flex"; rvBarSync(); rvPlace(); }
+function rvToggle(on){
+  if(on==null) on=!REAL.on; if(!!on===REAL.on) return;
+  if(on){
+    if(!renderer||!S.D) return;
+    rvHook();
+    REAL.gpu=rvGpu(); REAL.tier=(window.__snvTier!=null)?+window.__snvTier:rvTier(REAL.gpu); REAL.mob=rvMobile();   // __snvTier = ตัวทดสอบบังคับระดับการ์ดจอ
+    REAL.q=rvLS("realQ")||"auto"; if(!RV_Q[REAL.q]&&REAL.q!=="auto") REAL.q="auto";
+    var pr=rvLS("realPreset"); if(pr&&REAL_PRESETS[pr]) REAL.preset=pr;
+    REAL.qEff=rvQEff(); REAL.ft=[]; REAL.lastF=0; REAL.cmpFail="";
+    REAL.keep={bg:scene.background,fog:scene.fog,env:scene.environment,sh:renderer.shadowMap.enabled,tm:renderer.toneMapping,te:renderer.toneMappingExposure,
+      vis:[hemi,keyL,fillL,rimL].map(function(l){ return !!(l&&l.visible); }),fl:!!(floor&&floor.visible),gr:!!(grid&&grid.visible)};
+    REAL.on=true; REAL.hidL=[]; REAL.shK=[];
+    root.traverse(function(o){
+      if(o.isLine){ if(o.visible){ o.visible=false; REAL.hidL.push(o); } return; }
+      if(o.isMesh&&!(o.userData&&o.userData.led)){ REAL.shK.push([o,o.castShadow,o.receiveShadow]);
+        var m=o.material, tr=Array.isArray(m)?m.some(function(x){ return x&&x.transparent; }):!!(m&&m.transparent); o.castShadow=!tr; o.receiveShadow=true; } });
+    renderer.shadowMap.enabled=true;
+    if(!realBuildRoom()){ rvToggle(false); hint("หาขนาดตู้ไม่ได้ จึงสร้างห้องไม่ได้"); return; }
+    rvApplyLights(); _realMatsDirty(); rvBar(true);
+    var why=rvLS("realCrash")?"ครั้งก่อนการ์ดจอเครื่องนี้รีเซ็ต — เปิดแบบเบาให้":(REAL.qEff==="low"?"เปิดแบบเบา (เหมาะกับเครื่องนี้)":"");
+    hint("✨ โหมดสมจริง — ลากหมุนดูได้ ผนังด้านกล้องหายเอง"+(why?" · "+why:""),4200);
+  } else {
+    REAL.on=false; rvBar(false);
+    try{ rptClose(); }catch(e){}
+    realDropLights(); realDropRoom(); _realCmpDispose();
+    if(REAL.env){ try{ REAL.env.dispose(); }catch(e){} REAL.env=null; }
+    var K=REAL.keep||{};
+    scene.environment=K.env||null; scene.fog=K.fog||null; if(K.bg) scene.background=K.bg;
+    [hemi,keyL,fillL,rimL].forEach(function(l,i){ if(l) l.visible=K.vis?K.vis[i]:true; });
+    if(floor) floor.visible=!!K.fl; if(grid) grid.visible=!!K.gr;
+    REAL.hidL.forEach(function(o){ o.visible=true; }); REAL.hidL=[];
+    REAL.shK.forEach(function(r){ r[0].castShadow=r[1]; r[0].receiveShadow=r[2]; }); REAL.shK=[];
+    renderer.shadowMap.enabled=(K.sh!=null)?K.sh:true;
+    if(renderer.toneMapping!==(K.tm||THREE.NoToneMapping)) renderer.toneMapping=K.tm||THREE.NoToneMapping;
+    renderer.toneMappingExposure=(K.te!=null)?K.te:1;
+    _realMatsDirty(); REAL.keep=null; REAL.room=null;
+  }
+  var b=$("vwReal"); if(b) b.classList.toggle("on",REAL.on);
+  try{ renderer.shadowMap.needsUpdate=true; }catch(e){} S.dirty=true; }
+/* เก็บฉากสำหรับภาพแสงจริง (แบบเดียวกับโปรแกรมหลัก — ต่างแค่ของที่ข้าม: กรอบเลือก · พื้นเงา · ตาราง · เส้นวัด · เส้นขนาด · ม่านแสง LED) */
+function rptCollect(){
+  scene.updateMatrixWorld(true);
+  var P=REAL_PRESETS[REAL.preset]||REAL_PRESETS.day;
+  var skip=[selBox,floor,grid,measLine,DIM&&DIM.g,CD&&CD.g].filter(Boolean).concat(measDots||[]);
+  var mats=[], mIdx={}, imgs=[], iIdx=[], cap=1<<15, n=0;
+  var pos=new Float32Array(cap*9), nrm=new Float32Array(cap*9), uvs=new Float32Array(cap*6), mid=new Int32Array(cap), flg=new Uint8Array(cap);
+  function grow(){ cap*=2; function g(A,k){ var B=new A.constructor(cap*k); B.set(A); return B; } pos=g(pos,9); nrm=g(nrm,9); uvs=g(uvs,6); mid=g(mid,1); flg=g(flg,1); }
+  function imgLayer(img){ for(var i=0;i<iIdx.length;i++) if(iIdx[i][0]===img) return iIdx[i][1];
+    var ok=imgs.length<48&&(img.width||img.naturalWidth), li=ok?imgs.length:-1; if(ok) imgs.push(img); iIdx.push([img,li]); return li; }
+  var bb=new THREE.Box3(), bs=new THREE.Vector3();
+  function matOf(m,o){
+    var u=o.userData||{};
+    if(!m||m.visible===false||m.colorWrite===false||u._rptSkip||m.isShadowMaterial) return -1;
+    var led=!!u.led;
+    if(led){ if(!m.isMeshBasicMaterial) return -1; bb.setFromObject(o); bb.getSize(bs); var a=[bs.x,bs.y,bs.z].sort(function(p,q){ return p-q; }); if(a[1]>40) return -1; }   // ม่านแสง = ไม่ใช่แหล่งไฟ
+    var key=m.uuid+(led?"|L":"")+(u._rptEmit!=null?"|E"+u._rptEmit:"");
+    if(mIdx[key]!=null) return mIdx[key];
+    var e=null;
+    if(m.isMeshStandardMaterial||m.isMeshPhongMaterial||m.isMeshLambertMaterial){
+      var c=m.color||new THREE.Color(1,1,1);
+      e={c:[c.r,c.g,c.b],rough:m.isMeshStandardMaterial?m.roughness:(m.isMeshPhongMaterial?Math.max(.15,1-(m.shininess||30)/120):1),
+        metal:m.isMeshStandardMaterial?m.metalness:0,op:m.transparent?Math.max(0,Math.min(1,m.opacity)):1,layer:-1,wrap:0,uv:[1,0,0,0,1,0],em:[0,0,0]};
+      if(m.emissive&&(m.emissiveIntensity||0)>0){ var k0=m.emissiveIntensity; e.em=[m.emissive.r*k0,m.emissive.g*k0,m.emissive.b*k0]; }
+      if(u._rptEmit!=null&&isFinite(+u._rptEmit)){ var k1=+u._rptEmit, ec=u._rptEmitCol||[1,.86,.68]; e.em=[ec[0]*k1,ec[1]*k1,ec[2]*k1]; e.ek=+u._rptEmitK||0; }
+      var t=m.map;
+      if(t&&t.image){ var li=imgLayer(t.image); if(li>=0){ e.layer=li; t.updateMatrix(); var el=t.matrix.elements;
+        e.uv=[el[0],el[3],el[6],el[1],el[4],el[7]]; e.wrap=(t.wrapS===THREE.MirroredRepeatWrapping)?1:(t.wrapS===THREE.RepeatWrapping?0:2); } }
+    } else if(m.isMeshBasicMaterial&&led){ var cc=m.color, kl=P.pt.ledL;
+      e={c:[cc.r,cc.g,cc.b],rough:1,metal:0,op:1,layer:-1,wrap:0,uv:[1,0,0,0,1,0],em:[cc.r*kl,cc.g*kl,cc.b*kl]}; }
+    else return -1;
+    if(e.op<.04) return -1;
+    var i=mats.length; mats.push(e); mIdx[key]=i; return i; }
+  var v=new THREE.Vector3(), nv=new THREE.Vector3(), NM=new THREE.Matrix3(), ea=new THREE.Vector3(), eb=new THREE.Vector3();
+  function addMesh(o){
+    var geo=o.geometry; if(!geo||!geo.attributes||!geo.attributes.position) return;
+    var camVis=o.layers.test(camera.layers), hidW=!camVis&&o.layers.test(REAL_L2); if(!camVis&&!hidW) return;
+    var pa=geo.attributes.position, na=geo.attributes.normal, ua=geo.attributes.uv, ix=geo.index, M=o.matrixWorld; NM.getNormalMatrix(M);
+    var mm=Array.isArray(o.material)?o.material:null, total=ix?ix.count:pa.count;
+    var groups=(mm&&geo.groups&&geo.groups.length)?geo.groups:[{start:0,count:total,materialIndex:0}];
+    groups.forEach(function(gr){
+      var mi=matOf(mm?mm[gr.materialIndex]:o.material,o); if(mi<0) return;
+      var tr=mats[mi].op<.99, en=Math.min(gr.start+gr.count,total);
+      for(var k=gr.start;k+2<en;k+=3){
+        if(n>=cap) grow();
+        var b9=n*9, b6=n*6;
+        for(var j=0;j<3;j++){ var vi=ix?ix.getX(k+j):(k+j);
+          v.fromBufferAttribute(pa,vi).applyMatrix4(M); pos[b9+j*3]=v.x; pos[b9+j*3+1]=v.y; pos[b9+j*3+2]=v.z;
+          if(na){ nv.fromBufferAttribute(na,vi).applyMatrix3(NM).normalize(); } else nv.set(0,0,0);
+          nrm[b9+j*3]=nv.x; nrm[b9+j*3+1]=nv.y; nrm[b9+j*3+2]=nv.z;
+          uvs[b6+j*2]=ua?ua.getX(vi):0; uvs[b6+j*2+1]=ua?ua.getY(vi):0; }
+        ea.set(pos[b9+3]-pos[b9],pos[b9+4]-pos[b9+1],pos[b9+5]-pos[b9+2]); eb.set(pos[b9+6]-pos[b9],pos[b9+7]-pos[b9+1],pos[b9+8]-pos[b9+2]);
+        if(ea.cross(eb).lengthSq()<1e-12) continue;
+        mid[n]=mi; flg[n]=(hidW?1:0)|(tr?2:0); n++; } }); }
+  function walk(o){ if(!o.visible||skip.indexOf(o)>=0) return; if(o.isMesh&&!o.isSprite) addMesh(o); for(var i=0;i<o.children.length;i++) walk(o.children[i]); }
+  walk(scene);
+  return {n:n,pos:pos,nrm:nrm,uvs:uvs,mid:mid,flg:flg,mats:mats,imgs:imgs}; }
+
 function loop(){ requestAnimationFrame(loop);
   var now=performance.now();
   if(S.pulse){ if(now<S.pulse){ var k=.5+.5*Math.sin(now/130); S.hiMats.forEach(function(m){ if(m.emissive) m.emissiveIntensity=.45+.75*k; }); S.dirty=true; }
@@ -59966,7 +60287,8 @@ function loop(){ requestAnimationFrame(loop);
   if(!S.dirty) return; S.dirty=false;
   if(measDots.length){ var s=Math.max(orbit.r/260,2); measDots.forEach(function(d){ d.scale.set(s,s,s); }); }
   if(CD.on) cdCheck();                                                     // v1.457: ด้านที่หันหากล้อง/ตู้ที่มองเห็นเปลี่ยน → วาดเส้นขนาดตู้ใหม่
-  renderer.render(scene,camera);
+  if(REAL.on){ try{ rvRender(); }catch(e){ console.error("rvRender:",e); try{ renderer.setRenderTarget(null); }catch(_){} renderer.render(scene,camera); } }   // v1.464: ✨ โหมดสมจริง
+  else renderer.render(scene,camera);
   if(DIM.lab.length) dimTick(); if(S.pin) pinTick(); if(CD.lab.length) cdTick(); }
 
 function start(){
@@ -59997,7 +60319,8 @@ function start(){
       if(!sc) hint("ลากเพื่อหมุน · สองนิ้วเพื่อซูม/เลื่อน · แตะชิ้นเพื่อดูรายละเอียด",3200); }); })
   .catch(function(e){ console.error(e); status(String((e&&e.message)||e),true); }); }
 
-try{ window.__snv={S:S,DIM:DIM,scene:function(){ return scene; },camera:function(){ return camera; },pp:function(){ return PPS; },ppOpen:function(id){ paperOpen(id); }}; }catch(e){}   // v1.359: + สถานะ/ตัวเปิดหน้าแบบผลิต (ให้ตัวทดสอบเรียก)   // v1.346: ให้ตัวทดสอบอ่านสถานะได้ (อ่านอย่างเดียว)
+try{ window.__snv={S:S,DIM:DIM,scene:function(){ return scene; },camera:function(){ return camera; },pp:function(){ return PPS; },ppOpen:function(id){ paperOpen(id); },
+  real:function(){ return REAL; },rpt:function(){ return RPT; },rv:function(on){ rvToggle(on); },rvPhoto:function(){ rvPhoto(); },orbit:orbit,camApply:function(){ camApply(); },renderer:function(){ return renderer; }}; }catch(e){}   // v1.464: + โหมดสมจริง (ให้ตัวทดสอบเรียก)   // v1.359: + สถานะ/ตัวเปิดหน้าแบบผลิต (ให้ตัวทดสอบเรียก)   // v1.346: ให้ตัวทดสอบอ่านสถานะได้ (อ่านอย่างเดียว)
 if(document.readyState==="loading") document.addEventListener("DOMContentLoaded",start); else start();
 })();
 </script>
