@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="th"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover"><meta name="generator" content="StarNexus 1.463"><title>StarNexus — ดูงาน 3D</title><style>
+<html lang="th"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover"><meta name="generator" content="StarNexus 1.464"><title>StarNexus — ดูงาน 3D</title><style>
 :root{--bg:#e7e8ee;--panel:rgba(255,255,255,.94);--solid:#fff;--ink:#172c40;--dim:#5b6b7c;--line:#d5dae2;--accent:#1e5fa8;--warn:#e8590c;--shadow:0 10px 30px -12px rgba(16,32,56,.35)}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html,body{margin:0;height:100%;background:var(--bg);color:var(--ink);font:14px/1.5 system-ui,-apple-system,"Segoe UI","Noto Sans Thai","Sarabun",sans-serif;overflow:hidden;overscroll-behavior:none}
@@ -195,6 +195,17 @@ body.vwScanTop #vwScan{top:calc(8px + env(safe-area-inset-top))}
   #vwPpList .it{padding:6px 10px;font-size:12px}
   #vwPpList .g{font-size:11.5px;padding:5px 10px}
 }
+/* v1.464: ✨ โหมดสมจริง — แถบเลือกแสง/คุณภาพ เหนือแถบล่าง · ข้อความแนะนำยกขึ้นพ้นแถบ */
+#vwReal{flex:none}
+#vwRealBar{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(62px + env(safe-area-inset-bottom));z-index:7;display:none;align-items:center;gap:6px;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:6px 8px;box-shadow:var(--shadow);max-width:calc(100vw - 16px);overflow-x:auto;scrollbar-width:none;font-size:13px}
+#vwRealBar::-webkit-scrollbar{display:none}
+#vwRealBar .seg{display:flex;flex:none;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:var(--solid)}
+#vwRealBar .seg button{border:0;background:transparent;padding:6px 9px;cursor:pointer;white-space:nowrap;font:inherit;color:inherit}
+#vwRealBar .seg button.on{background:var(--accent);color:#fff}
+#vwRealBar select{flex:none;font:inherit;border:1px solid var(--line);border-radius:9px;padding:5px 6px;background:var(--solid);color:var(--ink)}
+#vwRealBar .vbtn{flex:none;box-shadow:none;padding:6px 10px;font:inherit}
+#vwRealBar .vbtn.pri{background:var(--accent);color:#fff;border-color:transparent}
+@media(max-width:480px){#vwRealBar .seg .tx{display:none}#vwRealBar .seg button{padding:6px 11px}}
 </style></head><body>
 <div id="vwCanvas"></div>
 <header id="vwTop"><div class="t"><b id="vwTitle">ดูงาน 3D</b><span id="vwSub"></span></div><div class="sp"></div><button class="vbtn" id="vwCabBtn">☰ ตู้</button></header>
@@ -206,6 +217,7 @@ body.vwScanTop #vwScan{top:calc(8px + env(safe-area-inset-top))}
 <div id="vwLbl"></div>
 <footer id="vwBar">
   <div class="seg" id="vwTool"><button data-t="sel" class="on">👆 ดูชิ้น</button><button data-t="meas">📏 วัด</button><button data-t="door">🚪 เปิดบาน</button></div>
+  <button class="vbtn" id="vwReal" title="✨ โหมดสมจริง — ดูตู้ในห้องจริง แสงกลางวัน / เย็น / กลางคืน">✨ สมจริง</button>
   <button class="vbtn" id="vwMore" aria-label="เครื่องมือเพิ่มเติม">⋯ เพิ่มเติม</button>
   <div id="vwExtra">
     <button class="vbtn" id="vwAllDoors">เปิดทุกบาน</button>
@@ -762,7 +774,7 @@ function scanPlace(){ var el=$("vwScan"), B=document.body; if(!B) return;
 function snapShot(){ if(!renderer||!scene||!camera) return;
   var pr=renderer.getPixelRatio(), k=Math.max(1,Math.min(2,4096/(Math.max(innerWidth,innerHeight)*pr))), sb=!!(selBox&&selBox.visible), cv=null;
   try{ if(selBox) selBox.visible=false;
-    renderer.setPixelRatio(pr*k); renderer.render(scene,camera);
+    renderer.setPixelRatio(pr*k); if(REAL.on) rvRender(); else renderer.render(scene,camera);   // v1.464: แคปรูปในโหมดสมจริงได้ภาพสมจริง
     var src=renderer.domElement; cv=document.createElement("canvas"); cv.width=src.width; cv.height=src.height;
     var g=cv.getContext("2d"); g.drawImage(src,0,0);
     var sx=cv.width/Math.max(innerWidth,1);
@@ -923,6 +935,7 @@ function bindUI(){
     hint("แสง: "+LIGHTS[S.light].label+(S.light==="sun"?" — มีเงาทอด เห็นรูปทรงชัด":S.light==="night"?" — หรี่ลง ไฟ LED เด่น":" — แสงนวลกระจาย ไม่มีเงาแข็ง")); };
   $("vwGrid").onclick=function(){ setGrid(!S.grid); };
   $("vwEco").onclick=function(){ setEco(!S.eco); };
+  if($("vwReal")){ if(typeof RV_OFF==="undefined"||RV_OFF) $("vwReal").style.display="none"; else $("vwReal").onclick=function(){ rvToggle(); }; }   // v1.464: ✨ โหมดสมจริง
   $("vwReset").onclick=resetView;
   $("vwViews").onclick=function(e){ var b=e.target.closest("button"); if(!b) return; var v=b.dataset.v, bx=sceneBox();
     focusBox(bx, v==="front"?{th:0,ph:Math.PI/2-.001}:v==="top"?{th:0,ph:.021}:{th:Math.PI/2,ph:Math.PI/2-.001}); };
@@ -1035,6 +1048,694 @@ function paperList(keep){
     lp.onclick=function(e){ var it=e.target.closest(".it"); if(!it) return; paperShow(it.dataset.k); if(innerWidth<760){ lp.classList.add("hide"); bt.classList.remove("on"); } };
     var on=lp.querySelector(".it.on"); if(on) try{ on.scrollIntoView({block:"nearest"}); }catch(e){} }); }
 
+var RV_OFF=0;
+var REAL_PRESETS={"day":{"label":"กลางวัน","icon":"☀️","sun":{"c":16773598,"i":2.5,"tgt":"floor"},"hemi":[14280703,10521200,0.24],"env":0.72,"win":7,"lamp":0,"led":0.35,"exp":0.95,"bg":14343651,"out":14477823,"pt":{"sun":5.5,"skyT":[0.42,0.58,0.95],"skyH":[1.05,1.08,1.12],"skyG":[0.22,0.2,0.18],"lampL":0,"ledL":10,"lw":[0.5,0.45,0.05],"key":0.18}},"evening":{"label":"เย็น","icon":"🌇","sun":{"c":16747069,"i":2.7,"tgt":"cab"},"hemi":[7168912,3812386,0.11],"env":0.26,"win":3.2,"lamp":0.9,"led":0.9,"exp":1,"bg":9274768,"out":16756858,"pt":{"sun":3.6,"skyT":[0.28,0.26,0.48],"skyH":[1,0.6,0.34],"skyG":[0.12,0.08,0.06],"lampL":110,"ledL":28,"lw":[0.35,0.25,0.4],"key":0.15}},"night":{"label":"กลางคืน","icon":"🌙","sun":null,"hemi":[1712694,1709071,0.035],"env":0.06,"win":0.25,"lamp":1.7,"led":1.7,"exp":1.1,"bg":1447966,"out":857904,"pt":{"sun":0,"skyT":[0.01,0.015,0.04],"skyH":[0.025,0.03,0.06],"skyG":[0.006,0.006,0.006],"lampL":200,"ledL":55,"lw":[0,0.12,0.88],"key":0.075}}};
+var REAL_VS="varying vec2 vUv; void main(){ vUv=uv; gl_Position=vec4(position.xy,0.,1.); }";
+var REAL_AO_FS="uniform sampler2D tD,tN; uniform mat4 uP,uIP; uniform vec2 uRes; uniform float uRad,uStr; varying vec2 vUv;\nvec3 vpos(vec2 uv){ float z=texture2D(tD,uv).x; vec4 c=uIP*vec4(uv*2.-1.,z*2.-1.,1.); return c.xyz/c.w; }\nfloat hs(vec2 p){ return fract(sin(dot(p,vec2(12.9898,78.233)))*43758.5453); }\nvoid main(){ float z=texture2D(tD,vUv).x; if(z>=.99999){ gl_FragColor=vec4(1.); return; }\n vec3 P=vpos(vUv), N=normalize(texture2D(tN,vUv).xyz*2.-1.);\n float a0=hs(floor(vUv*uRes))*6.2831853; vec3 rv=vec3(cos(a0),sin(a0),.37);\n vec3 T=normalize(rv-N*dot(rv,N)); vec3 B=cross(N,T); float occ=0.; float r=uRad*clamp(-P.z/2500.,.6,2.2);\n for(int i=0;i<14;i++){ float fi=float(i)+.5, u=fi/14., ph=fi*2.3999632;\n  float st=sqrt(u), ct=sqrt(1.-u); vec3 k=vec3(cos(ph)*st,sin(ph)*st,ct); float sc=mix(.12,1.,u*u);\n  vec3 S=P+(T*k.x+B*k.y+N*k.z)*r*sc; vec4 o=uP*vec4(S,1.); vec2 su=o.xy/o.w*.5+.5;\n  if(su.x<0.||su.y<0.||su.x>1.||su.y>1.) continue;\n  float sz=vpos(su).z; float rc=smoothstep(0.,1.,r/max(abs(P.z-sz),1e-3));\n  occ+=step(S.z+r*.03,sz)*rc; }\n float ao=clamp(1.-occ/14.*uStr,0.,1.); gl_FragColor=vec4(ao,ao,ao,1.); }";
+var REAL_BL_FS="uniform sampler2D tA,tD; uniform vec2 uDir,uCN; varying vec2 vUv;\nfloat lz(float d){ float n=uCN.x,f=uCN.y; float z=d*2.-1.; return 2.*n*f/(f+n-z*(f-n)); }\nvoid main(){ float d0=lz(texture2D(tD,vUv).x); float s=0.,w=0.;\n for(int i=-4;i<=4;i++){ vec2 uv=vUv+uDir*float(i); float d=lz(texture2D(tD,uv).x);\n  float wd=exp(-float(i*i)/8.)*exp(-abs(d-d0)/(d0*.02+1.)); s+=texture2D(tA,uv).r*wd; w+=wd; }\n float a=s/max(w,1e-4); gl_FragColor=vec4(a,a,a,1.); }";
+var REAL_CP_FS="uniform sampler2D tC,tA; uniform float uExp,uAoK,uAoOn; varying vec2 vUv;\nvec3 rrt(vec3 v){ vec3 a=v*(v+.0245786)-.000090537; vec3 b=v*(.983729*v+.4329510)+.238081; return a/b; }\nvec3 aces(vec3 c){ c*=uExp/.6; const mat3 I=mat3(vec3(.59719,.07600,.02840),vec3(.35458,.90834,.13383),vec3(.04823,.01566,.83777));\n const mat3 O=mat3(vec3(1.60475,-.10208,-.00327),vec3(-.53108,1.10813,-.07276),vec3(-.07367,-.00605,1.07602)); c=I*c; c=rrt(c); c=O*c; return clamp(c,0.,1.); }\nvec3 srgb(vec3 c){ return mix(c*12.92,1.055*pow(c,vec3(1./2.4))-.055,step(.0031308,c)); }\nvoid main(){ vec3 col=texture2D(tC,vUv).rgb; float a=uAoOn>.5?texture2D(tA,vUv).r:1.; col*=mix(1.,a,uAoK);\n vec2 q=vUv-.5; col*=1.-dot(q,q)*.32; col=srgb(aces(col));\n col+=(fract(sin(dot(gl_FragCoord.xy,vec2(12.9898,78.233)))*43758.5453)-.5)/255.; gl_FragColor=vec4(col,1.); }";
+var RPT_TW=4096;
+var RPT_VS="#version 300 es\nin vec2 aP; void main(){ gl_Position=vec4(aP,0.,1.); }";
+var RPT_HEAD="#version 300 es\nprecision highp float; precision highp int; precision highp sampler2D; precision highp sampler2DArray;";
+var RPT_PT_FS="#version 300 es\nprecision highp float; precision highp int; precision highp sampler2D; precision highp sampler2DArray;\nuniform sampler2D uTP,uTN,uTV,uBV,uMT,uLT,uA0,uA1,uA2; uniform sampler2DArray uTX;\nuniform vec3 uCam,uCR,uCU,uCF; uniform float uTan,uAsp; uniform vec2 uRes;\nuniform int uFrame,uNL,uMaxD,uInside,uWin,uHasTex;\nuniform vec3 uSunD,uSunC; uniform float uSunCos,uTexS;\nuniform vec3 uSkyT,uSkyH,uSkyG,uWP,uWU,uWV,uLW;\nlayout(location=0) out vec4 o0; layout(location=1) out vec4 o1; layout(location=2) out vec4 o2;\nconst float PI=3.14159265359, INF=1e30; const int TW=4096;\nvec4 F(sampler2D t,int i){ return texelFetch(t,ivec2(i%TW,i/TW),0); }\nuint sd;\nuint hs(uint x){ x^=x>>16; x*=0x7feb352du; x^=x>>15; x*=0x846ca68bu; x^=x>>16; return x; }\nfloat rnd(){ sd=sd*747796405u+2891336453u; uint w=((sd>>((sd>>28u)+4u))^sd)*277803737u; w=(w>>22u)^w; return float(w>>8u)*(1.0/16777216.0); }\nfloat bxT(vec3 mn,vec3 mx,vec3 ro,vec3 iv,float tm){ vec3 a=(mn-ro)*iv, b=(mx-ro)*iv; vec3 s=min(a,b), l=max(a,b);\n float t0=max(max(s.x,s.y),max(s.z,0.)), t1=min(min(l.x,l.y),min(l.z,tm)); return t0<=t1?t0:INF; }\nint trace(vec3 ro,vec3 rd,float tmax,bool cam,bool sh,out float th,out float hu,out float hv){\n vec3 iv=1./vec3(abs(rd.x)>1e-9?rd.x:1e-9,abs(rd.y)>1e-9?rd.y:1e-9,abs(rd.z)>1e-9?rd.z:1e-9);\n th=tmax; hu=0.; hv=0.; int hit=-1; int stk[48]; int sp=0; int nd=0;\n if(bxT(F(uBV,0).xyz,F(uBV,1).xyz,ro,iv,th)>=INF) return -1;\n for(int it=0;it<16384;it++){\n  vec4 a=F(uBV,nd*2), b=F(uBV,nd*2+1); int cnt=int(b.w+.5);\n  if(cnt>0){ int f=int(a.w+.5);\n   for(int i=0;i<cnt;i++){ int t=f+i; vec4 p0=F(uTP,t*3), p1=F(uTP,t*3+1), p2=F(uTP,t*3+2); int fl=int(p1.w+.5);\n    if(cam&&(fl&1)!=0) continue; if(sh&&(fl&2)!=0) continue;\n    vec3 e1=p1.xyz-p0.xyz, e2=p2.xyz-p0.xyz, pv=cross(rd,e2); float det=dot(e1,pv); if(abs(det)<1e-14) continue;\n    float id=1./det; vec3 tv=ro-p0.xyz; float u=dot(tv,pv)*id; if(u<0.||u>1.) continue;\n    vec3 qv=cross(tv,e1); float v=dot(rd,qv)*id; if(v<0.||u+v>1.) continue;\n    float tt=dot(e2,qv)*id; if(tt>1e-3&&tt<th){ th=tt; hit=t; hu=u; hv=v; if(sh) return hit; } }\n   if(sp==0) break; nd=stk[--sp];\n  } else { int l=nd+1, r=int(a.w+.5);\n   float tl=bxT(F(uBV,l*2).xyz,F(uBV,l*2+1).xyz,ro,iv,th), tr=bxT(F(uBV,r*2).xyz,F(uBV,r*2+1).xyz,ro,iv,th);\n   if(tl<INF&&tr<INF){ if(sp<47){ if(tl<=tr){ stk[sp++]=r; nd=l; } else { stk[sp++]=l; nd=r; } } else nd=(tl<=tr)?l:r; }\n   else if(tl<INF) nd=l; else if(tr<INF) nd=r; else { if(sp==0) break; nd=stk[--sp]; } } }\n return hit; }\nvec3 cl3(vec3 v,int b){ if(b<1) return v; float mx=max(v.x,max(v.y,v.z)); return mx>2.5?v*(2.5/mx):v; }\nvec3 sky(vec3 d){ if(d.y<0.) return uSkyG; return mix(uSkyH,uSkyT,pow(clamp(d.y,0.,1.),.45)); }\nstruct M{ vec3 c; float r,m,op,ek; vec3 e; };\nM getM(int mi,vec2 uv,float tpm,float foot){ vec4 a=F(uMT,mi*5), b=F(uMT,mi*5+1), e=F(uMT,mi*5+2); M m;\n m.c=a.rgb; m.r=clamp(b.x,.03,1.); m.m=clamp(b.y,0.,1.); m.op=b.z; m.e=e.rgb; m.ek=e.w;\n if(uHasTex==1&&a.w>=-.5){ vec4 r0=F(uMT,mi*5+3), r1=F(uMT,mi*5+4); vec2 t=vec2(dot(r0.xyz,vec3(uv,1.)),dot(r1.xyz,vec3(uv,1.)));\n  float sc=length(vec2(r0.x,r1.x))+length(vec2(r0.y,r1.y)); float lod=log2(max(foot*tpm*sc*.5*uTexS,1.));\n  if(b.w<.5) t=fract(t); else if(b.w<1.5) t=1.-abs(mod(t,2.)-1.); else t=clamp(t,0.,1.);\n  m.c*=textureLod(uTX,vec3(t,a.w),lod).rgb; }\n return m; }\nfloat Dg(float nh,float a2){ float d=nh*nh*(a2-1.)+1.; return a2/(PI*d*d); }\nfloat Gs(float nx,float a2){ return 2.*nx/(nx+sqrt(a2+(1.-a2)*nx*nx)); }\nvec3 Fs(vec3 f0,float c){ return f0+(1.-f0)*pow(1.-clamp(c,0.,1.),5.); }\nfloat pSpec(M m){ return m.m>.5?1.:mix(.1,.5,1.-m.r); }\nvec3 evalF(M m,vec3 n,vec3 wo,vec3 wi,bool inS){ float nl=dot(n,wi), nv=dot(n,wo); if(nl<=0.||nv<=0.) return vec3(0.);\n vec3 h=normalize(wo+wi); float vh=max(dot(wo,h),0.); float al=m.r*m.r, a2=al*al; vec3 f0=mix(vec3(.04),m.c,m.m); vec3 Fr=Fs(f0,vh);\n vec3 r=(1.-m.m)*(1.-Fr)*m.c/PI*nl; if(inS){ float nh=max(dot(n,h),0.); r+=Fr*Dg(nh,a2)*Gs(nl,a2)*Gs(nv,a2)/(4.*nv); } return r; }\nvoid basis(vec3 n,out vec3 t,out vec3 b){ t=normalize(abs(n.y)<.99?cross(n,vec3(0.,1.,0.)):cross(n,vec3(1.,0.,0.))); b=cross(n,t); }\nvec3 sampleF(M m,vec3 n,vec3 wo,out vec3 wi,out bool smooth_){ float ps=pSpec(m); float al=max(m.r*m.r,.001), a2=al*al; vec3 f0=mix(vec3(.04),m.c,m.m);\n vec3 t,b; basis(n,t,b); smooth_=false; float nv=dot(n,wo); if(nv<=0.) { wi=n; return vec3(0.); }\n if(rnd()<ps){ float u1=rnd(),u2=rnd(); float ct=sqrt((1.-u1)/(1.+(a2-1.)*u1)), st=sqrt(max(0.,1.-ct*ct)), ph=2.*PI*u2;\n  vec3 h=normalize(t*cos(ph)*st+b*sin(ph)*st+n*ct); wi=reflect(-wo,h); float nl=dot(n,wi); if(nl<=0.) return vec3(0.);\n  float vh=max(dot(wo,h),1e-4), nh=max(dot(n,h),1e-4); smooth_=m.r<.25;\n  return Fs(f0,vh)*Gs(nl,a2)*Gs(nv,a2)*vh/(nv*nh)/ps; }\n float u1=rnd(),u2=rnd(); float r=sqrt(u1), ph=2.*PI*u2; wi=normalize(t*r*cos(ph)+b*r*sin(ph)+n*sqrt(max(0.,1.-u1)));\n vec3 h=normalize(wo+wi); return (1.-m.m)*(1.-Fs(f0,max(dot(wo,h),0.)))*m.c/(1.-ps); }\nvec3 cone(vec3 d,float cm){ float u1=rnd(),u2=rnd(); float ct=1.-u1*(1.-cm), st=sqrt(max(0.,1.-ct*ct)), ph=2.*PI*u2; vec3 t,b; basis(d,t,b); return normalize(t*cos(ph)*st+b*sin(ph)*st+d*ct); }\nvoid main(){\n ivec2 px=ivec2(gl_FragCoord.xy); sd=hs(hs(uint(px.x)*1973u+uint(px.y)*9277u)+uint(uFrame)*26699u)|1u;\n vec2 ndc=((gl_FragCoord.xy-.5+vec2(rnd(),rnd()))/uRes)*2.-1.;\n vec3 rd=normalize(uCF+uCR*ndc.x*uTan*uAsp+uCU*ndc.y*uTan), ro=uCam;\n vec3 L=vec3(0.), T=vec3(1.), alb=vec3(0.), nrm=vec3(0.); float dep=0., bg=0.; bool gb=false, cam=true, cE=true;\n float plen=0., pixA=2.*uTan/uRes.y; int bnc=0;\n for(int it=0;it<14;it++){\n  float th,hu,hv; int tri=trace(ro,rd,INF,cam,false,th,hu,hv);\n  if(tri<0){\n   if(cam){ if(uInside==1) L+=T*sky(rd); else bg=1.; }\n   else if(cE){ vec3 e=sky(rd); if(uSunCos<1.&&dot(rd,uSunD)>uSunCos) e+=uSunC/(2.*PI*(1.-uSunCos)); L+=cl3(T*e,bnc); }\n   break; }\n  vec4 p0=F(uTP,tri*3), p1=F(uTP,tri*3+1), p2=F(uTP,tri*3+2), n0=F(uTN,tri*3), n1=F(uTN,tri*3+1), n2=F(uTN,tri*3+2), vv=F(uTV,tri);\n  float w=1.-hu-hv; vec3 P=ro+rd*th; plen+=th;\n  vec3 cg=cross(p1.xyz-p0.xyz,p2.xyz-p0.xyz); float wa=length(cg); vec3 ng=cg/max(wa,1e-20);\n  vec3 ns=n0.xyz*w+n1.xyz*hu+n2.xyz*hv; ns=dot(ns,ns)>1e-8?normalize(ns):ng; vec3 nraw=ns;\n  if(dot(ng,rd)>0.) ng=-ng; if(dot(ns,ng)<0.) ns=-ns;\n  vec2 t0=vec2(n0.w,vv.x), t1=vec2(n1.w,vv.y), t2=vec2(n2.w,vv.z), uv=t0*w+t1*hu+t2*hv;\n  vec2 d1=t1-t0, d2=t2-t0; float tpm=sqrt(abs(d1.x*d2.y-d1.y*d2.x)/max(wa,1e-12));\n  M m=getM(int(p0.w+.5),uv,tpm,plen*pixA/max(abs(dot(rd,ng)),.15));\n  if(cE&&dot(m.e,m.e)>0.){ vec3 le=m.e; if(m.ek>0.){ float c=dot(nraw,-rd); le*=c>0.?(m.ek+1.)*.5*pow(c,m.ek):0.; } L+=cl3(T*le,bnc); }\n  if(m.op<.99){ float fr=.04+.96*pow(1.-abs(dot(rd,ns)),5.);\n   if(rnd()<fr){ rd=reflect(rd,ns); ro=P+ng*.08; cE=true; cam=false; continue; }\n   T*=mix(vec3(1.),m.c,m.op); ro=P-ng*.08; continue; }\n  if(!gb){ alb=m.c; nrm=ns; dep=plen; gb=true; }\n  cam=false; vec3 wo=-rd, Po=P+ng*.08; bool inS=m.r>=.25;\n  float xs=rnd(); float a_,b_,c_;\n  if(xs<uLW.x){ vec3 ld=cone(uSunD,uSunCos); if(dot(ld,ng)>0.){ vec3 f=evalF(m,ns,wo,ld,inS); if(f.x+f.y+f.z>0.&&trace(Po,ld,INF,false,true,a_,b_,c_)<0) L+=cl3(T*f*uSunC/uLW.x,bnc); } }\n  else if(xs<uLW.x+uLW.y){ vec3 q=uWP+uWU*rnd()+uWV*rnd(); vec3 dv=q-Po; float d2=dot(dv,dv), dd=sqrt(d2); vec3 ld=dv/dd; vec3 wn=cross(uWU,uWV); float ar=length(wn); float cw=abs(dot(wn/ar,ld));\n   if(dot(ld,ng)>0.&&cw>1e-4){ vec3 f=evalF(m,ns,wo,ld,inS); if(f.x+f.y+f.z>0.&&trace(Po,ld,dd*.999,false,true,a_,b_,c_)<0) L+=cl3(T*f*sky(ld)*ar*cw/(d2*uLW.y),bnc); } }\n  else if(uNL>0){ float xi=rnd(); int lo=0, hi=uNL-1; for(int k=0;k<24;k++){ if(lo>=hi) break; int md=(lo+hi)/2; if(F(uLT,md).y<xi) lo=md+1; else hi=md; }\n   vec4 li=F(uLT,lo); float pS=li.y-(lo>0?F(uLT,lo-1).y:0.); int lt=int(li.x+.5);\n   vec4 q0=F(uTP,lt*3), q1=F(uTP,lt*3+1), q2=F(uTP,lt*3+2); float su=sqrt(rnd()), sv=rnd(); vec3 q=q0.xyz*(1.-su)+q1.xyz*(su*(1.-sv))+q2.xyz*(su*sv);\n   vec3 lc=cross(q1.xyz-q0.xyz,q2.xyz-q0.xyz); float la=length(lc)*.5; vec3 ln=lc/(2.*la+1e-20); vec3 dv=q-Po; float d2=dot(dv,dv), dd=sqrt(d2); vec3 ld=dv/dd; float cl=abs(dot(ln,ld));\n   if(dot(ld,ng)>0.&&cl>1e-4&&pS>0.){ vec3 f=evalF(m,ns,wo,ld,inS); if(f.x+f.y+f.z>0.&&trace(Po,ld,dd*.998,false,true,a_,b_,c_)<0){\n    vec4 me=F(uMT,int(q0.w+.5)*5+2); vec3 Le=me.rgb; if(me.w>0.){ vec3 nL=F(uTN,lt*3).xyz+F(uTN,lt*3+1).xyz+F(uTN,lt*3+2).xyz; float c=dot(normalize(nL+vec3(1e-9)),-ld); Le*=c>0.?(me.w+1.)*.5*pow(c,me.w):0.; }\n    L+=cl3(T*f*Le*cl*la/(pS*d2*uLW.z),bnc); } } }\n  vec3 wi; bool sm; vec3 wg=sampleF(m,ns,wo,wi,sm);\n  if(wg.x+wg.y+wg.z<=0.||dot(wi,ng)<=0.) break;\n  T*=wg; cE=sm; rd=wi; ro=Po; bnc++; if(bnc>=uMaxD) break;\n  if(bnc>=3){ float pr=clamp(max(T.x,max(T.y,T.z)),.05,.95); if(rnd()>pr) break; T/=pr; } }\n L=min(L,vec3(40.));\n o0=texelFetch(uA0,px,0)+vec4(L,0.); o1=texelFetch(uA1,px,0)+vec4(alb,bg); o2=texelFetch(uA2,px,0)+vec4(nrm,dep); }";
+var RPT_DISP_FS="#version 300 es\nprecision highp float; precision highp int; precision highp sampler2D; precision highp sampler2DArray;\nuniform sampler2D uC,uA1; uniform float uN,uExp; uniform vec3 uBg; uniform int uMode; out vec4 o;\nvec3 rrt(vec3 v){ vec3 a=v*(v+.0245786)-.000090537; vec3 b=v*(.983729*v+.4329510)+.238081; return a/b; }\nvec3 aces(vec3 c){ c*=uExp/.6; const mat3 I=mat3(vec3(.59719,.07600,.02840),vec3(.35458,.90834,.13383),vec3(.04823,.01566,.83777));\n const mat3 O=mat3(vec3(1.60475,-.10208,-.00327),vec3(-.53108,1.10813,-.07276),vec3(-.07367,-.00605,1.07602)); c=I*c; c=rrt(c); c=O*c; return clamp(c,0.,1.); }\nvec3 srgb(vec3 c){ return mix(c*12.92,1.055*pow(c,vec3(1./2.4))-.055,step(.0031308,c)); }\nvoid main(){ ivec2 p=ivec2(gl_FragCoord.xy); vec4 a1=texelFetch(uA1,p,0); float cov=clamp(a1.w/uN,0.,1.), gn=max(uN-a1.w,1.); vec3 L;\n if(uMode==0) L=texelFetch(uC,p,0).rgb/gn; else L=texelFetch(uC,p,0).rgb*max(a1.rgb/gn,vec3(.03));\n vec3 c=cov>.999?uBg:mix(srgb(aces(L)),uBg,cov);\n c+=(fract(sin(dot(gl_FragCoord.xy,vec2(12.9898,78.233)))*43758.5453)-.5)/255.; o=vec4(c,1.); }";
+var RPT_PREP_FS="#version 300 es\nprecision highp float; precision highp int; precision highp sampler2D; precision highp sampler2DArray;\nuniform sampler2D uA0,uA1; uniform float uN; out vec4 o;\nvoid main(){ ivec2 p=ivec2(gl_FragCoord.xy); vec4 a1=texelFetch(uA1,p,0); float gn=max(uN-a1.w,1.);\n o=vec4(texelFetch(uA0,p,0).rgb/gn/max(a1.rgb/gn,vec3(.03)),1.); }";
+var RPT_ATR_FS="#version 300 es\nprecision highp float; precision highp int; precision highp sampler2D; precision highp sampler2DArray;\nuniform sampler2D uI,uA1,uA2; uniform float uN,uPhi; uniform int uStep; uniform ivec2 uSz; out vec4 o;\nvoid main(){ ivec2 p=ivec2(gl_FragCoord.xy); vec4 c0=texelFetch(uI,p,0), a1=texelFetch(uA1,p,0);\n if(a1.w/uN>.999){ o=c0; return; }\n vec4 g0=texelFetch(uA2,p,0); vec3 n0=normalize(g0.xyz+vec3(1e-6)); float z0=g0.w/max(uN-a1.w,1.); vec3 t0=c0.rgb/(1.+c0.rgb);\n float kw[3]=float[3](.375,.25,.0625); vec3 s=vec3(0.); float ws=0.;\n for(int y=-2;y<=2;y++) for(int x=-2;x<=2;x++){ ivec2 q=clamp(p+ivec2(x,y)*uStep,ivec2(0),uSz-1);\n  vec4 b1=texelFetch(uA1,q,0); if(b1.w/uN>.999) continue; vec4 g=texelFetch(uA2,q,0); vec3 n=normalize(g.xyz+vec3(1e-6)); float z=g.w/max(uN-b1.w,1.);\n  vec4 c=texelFetch(uI,q,0); vec3 dc=c.rgb/(1.+c.rgb)-t0;\n  float wgt=kw[abs(x)]*kw[abs(y)]*exp(-dot(dc,dc)/uPhi)*pow(max(dot(n,n0),0.),48.)*exp(-abs(z-z0)/(z0*.012*float(uStep)+.5));\n  s+=c.rgb*wgt; ws+=wgt; }\n o=vec4(ws>0.?s/ws:c0.rgb,1.); }";
+var RPT_LUM_FS="#version 300 es\nprecision highp float; precision highp int; precision highp sampler2D; precision highp sampler2DArray;\nuniform sampler2D uA0,uA1; uniform float uN; uniform ivec2 uSz,uOut; out vec4 o;\nvoid main(){ ivec2 p=ivec2(gl_FragCoord.xy); vec2 cell=vec2(uSz)/vec2(uOut); float sL=0., sw=0.;\n for(int y=0;y<4;y++) for(int x=0;x<4;x++){ ivec2 q=clamp(ivec2((vec2(p)+(vec2(x,y)+.5)/4.)*cell),ivec2(0),uSz-1);\n  vec4 a1=texelFetch(uA1,q,0); float gn=uN-a1.w; if(gn<.5) continue; vec3 L=texelFetch(uA0,q,0).rgb/gn;\n  float w=gn/uN; sL+=log(dot(L,vec3(.2126,.7152,.0722))+1e-4)*w; sw+=w; }\n o=vec4(sL,sw,0.,1.); }";
+function mulberry32(a){return function(){a|=0;a=a+0x6D2B79F5|0;let t=Math.imul(a^a>>>15,1|a);t=t+Math.imul(t^t>>>7,61|t)^t;return((t^t>>>14)>>>0)/4294967296;};}
+function realLin(hex){ return new THREE.Color(hex).convertSRGBToLinear(); }
+function _realRoomOf(bx){
+  const W=bx.max.x-bx.min.x, D=bx.max.z-bx.min.z;
+  const mx=Math.max(1100,W*.35), x0=bx.min.x-mx, x1=bx.max.x+mx;
+  const z0=bx.min.z-3, z1=bx.max.z+Math.max(2600,D*3.2);
+  const y0=Math.min(0,bx.min.y), y1=Math.max(y0+2700,bx.max.y+380);
+  const wh=Math.min(1500,(y1-y0)-1000), wyc=Math.min(y0+850+wh/2,y1-260-wh/2);
+  const ww=Math.min(1600,(z1-z0)-700), wzc=Math.min(Math.max(bx.max.z+1150,z0+350+ww/2),z1-350-ww/2);
+  return {x0,x1,y0,y1,z0,z1,W,D,bx,win:{zc:wzc,w:ww,yc:wyc,h:wh}}; }
+function _realFloorTex(){
+  if(REAL.floorTex) return REAL.floorTex;
+  const S=1024, c=document.createElement("canvas"); c.width=c.height=S;
+  const g=c.getContext("2d"), rng=mulberry32(91731), rows=6, rh=S/rows;
+  const rect=(x,y,w,h)=>{ g.fillRect(x,y,w,h); if(x+w>S) g.fillRect(x-S,y,w,h); };
+  for(let r=0;r<rows;r++){ let x=rng()*S; const end=x+S;
+    while(x<end-4){ const len=Math.min(S*(.55+rng()*.45),end-x);
+      const j=rng()*14, b=[198+j+rng()*5,160+j*.85+rng()*4,118+j*.7+rng()*4].map(v=>v|0), xs=x%S;
+      g.fillStyle="rgb("+b.join(",")+")"; rect(xs,r*rh,len,rh);
+      g.save(); g.beginPath(); g.rect(0,r*rh,S,rh); g.clip();
+      for(let k=0;k<22;k++){ let yy=r*rh+rng()*rh; const pts=[]; for(let xx=0;xx<=len;xx+=32){ yy+=(rng()-.5)*2; pts.push([xx,yy]); }
+        g.strokeStyle="rgba("+(b[0]-70)+","+(b[1]-62)+","+(b[2]-50)+","+(.06+rng()*.16).toFixed(3)+")"; g.lineWidth=.5+rng()*1.6;
+        [0,-S].forEach(off=>{ g.beginPath(); pts.forEach((p,i)=>{ if(i) g.lineTo(xs+off+p[0],p[1]); else g.moveTo(xs+off+p[0],p[1]); }); g.stroke(); }); }
+      g.restore();
+      g.fillStyle="rgba(70,48,30,.55)"; rect(xs,r*rh,2,rh);
+      x+=len; }
+    g.fillStyle="rgba(60,42,26,.55)"; g.fillRect(0,r*rh,S,2); }
+  const t=new THREE.CanvasTexture(c); t.wrapS=t.wrapT=THREE.RepeatWrapping; t.encoding=THREE.sRGBEncoding;
+  try{ t.anisotropy=Math.min(8,renderer.capabilities.getMaxAnisotropy()||1); }catch(e){}
+  return (REAL.floorTex=t); }
+function realDropRoom(){
+  if(!REAL.grp) return;
+  scene.remove(REAL.grp);
+  REAL.grp.traverse(o=>{ if(o.geometry) o.geometry.dispose();
+    if(o.material){ (Array.isArray(o.material)?o.material:[o.material]).forEach(m=>{ if(m.map&&m.map!==REAL.floorTex) m.map.dispose(); m.dispose(); }); } });
+  REAL.grp=null; REAL.walls=[]; REAL.lamps=[]; }
+function realBuildRoom(){
+  const bx=_realCabBox(); if(!bx) return false;
+  const R=_realRoomOf(bx), P=REAL_PRESETS[REAL.preset]||REAL_PRESETS.day;
+  realDropRoom(); REAL.room=R;
+  const g=new THREE.Group(); g.name="realRoom"; g.userData._realRoom=true;
+  const T=120, w=R.x1-R.x0, d=R.z1-R.z0, h=R.y1-R.y0, cx=(R.x0+R.x1)/2, cz=(R.z0+R.z1)/2, cy=(R.y0+R.y1)/2;
+  const M=(hex,rough,metal)=>new THREE.MeshStandardMaterial({color:realLin(hex),roughness:rough,metalness:metal||0});
+  const wallM=M(0xe9e4db,.92), ceilM=M(0xf3f1ec,.95), skirtM=M(0xf1efea,.45), frameM=M(0x4a4d52,.38,.65), sillM=M(0xf0eee9,.4);
+  const ft=_realFloorTex().clone(); ft.needsUpdate=true; ft.repeat.set(w/2160,d/1080);   // ผืนลาย = ยาว 2160 (แนวแผ่น) × กว้าง 1080 (6 แผ่น)
+  const floorM=new THREE.MeshStandardMaterial({map:ft,roughness:.5,metalness:0});
+  const box=(par,sx,sy,sz,m,x,y,z,noCast)=>{ const o=new THREE.Mesh(new THREE.BoxGeometry(Math.max(sx,.5),Math.max(sy,.5),Math.max(sz,.5)),m);
+    o.position.set(x,y,z); o.castShadow=!noCast; o.receiveShadow=true; par.add(o); return o; };
+  REAL.walls=[]; REAL.lamps=[];
+  const wall=(name,n,p)=>{ const wg=new THREE.Group(); wg.name="realWall_"+name; g.add(wg);
+    REAL.walls.push({g:wg,n:new THREE.Vector3(n[0],n[1],n[2]),p:new THREE.Vector3(p[0],p[1],p[2]),hid:false}); return wg; };
+  // พื้น
+  { const fl=new THREE.Mesh(new THREE.PlaneGeometry(w,d),floorM); fl.rotation.x=-Math.PI/2; fl.position.set(cx,R.y0,cz); fl.receiveShadow=true; g.add(fl); }
+  const SK=90, SKT=14;
+  // ผนังหลัง (หลังตู้) — บัวเชิงผนังเว้นช่วงที่ตู้ตั้ง
+  { const wg=wall("back",[0,0,1],[0,0,R.z0]); box(wg,w+2*T,h+2*T,T,wallM,cx,cy,R.z0-T/2);
+    [[R.x0,bx.min.x],[bx.max.x,R.x1]].forEach(([a,b])=>{ if(b-a>20) box(wg,b-a,SK,SKT,skirtM,(a+b)/2,R.y0+SK/2,R.z0+SKT/2,true); }); }
+  { const wg=wall("front",[0,0,-1],[0,0,R.z1]); box(wg,w+2*T,h+2*T,T,wallM,cx,cy,R.z1+T/2); box(wg,w,SK,SKT,skirtM,cx,R.y0+SK/2,R.z1-SKT/2,true); }
+  { const wg=wall("right",[-1,0,0],[R.x1,0,0]); box(wg,T,h+2*T,d,wallM,R.x1+T/2,cy,cz); box(wg,SKT,SK,d,skirtM,R.x1-SKT/2,R.y0+SK/2,cz,true); }
+  // ผนังซ้าย + ช่องหน้าต่าง
+  { const wg=wall("left",[1,0,0],[R.x0,0,0]), W0=R.win, yb=W0.yc-W0.h/2, yt=W0.yc+W0.h/2, za=W0.zc-W0.w/2, zb=W0.zc+W0.w/2, X=R.x0-T/2;
+    const zl=R.z0-T, zr=R.z1+T, ylo=R.y0-T, yhi=R.y1+T;
+    box(wg,T,yb-ylo,zr-zl,wallM,X,(yb+ylo)/2,(zl+zr)/2);
+    box(wg,T,yhi-yt,zr-zl,wallM,X,(yt+yhi)/2,(zl+zr)/2);
+    box(wg,T,yt-yb,za-zl,wallM,X,(yb+yt)/2,(zl+za)/2);
+    box(wg,T,yt-yb,zr-zb,wallM,X,(yb+yt)/2,(zb+zr)/2);
+    const F=55, FD=70;
+    box(wg,FD,F,W0.w,frameM,X,yb+F/2,W0.zc); box(wg,FD,F,W0.w,frameM,X,yt-F/2,W0.zc);
+    box(wg,FD,W0.h,F,frameM,X,W0.yc,za+F/2); box(wg,FD,W0.h,F,frameM,X,W0.yc,zb-F/2); box(wg,FD,W0.h,40,frameM,X,W0.yc,W0.zc);
+    box(wg,T+70,26,W0.w+90,sillM,X+35,yb-13,W0.zc);
+    const gl=box(wg,6,W0.h-2*F,W0.w-2*F,new THREE.MeshStandardMaterial({color:realLin(0xdfeef2),roughness:.04,metalness:.1,transparent:true,opacity:.14,depthWrite:false}),X,W0.yc,W0.zc,true);
+    gl.receiveShadow=false; gl.userData._rptSkip=true;
+    // กล่องฟ้านอกหน้าต่าง: ให้มองจากในห้องเห็นฟ้าสว่าง · ไม่บังแดด · ภาพแสงจริงไม่ใช้ (ฟ้าคิดจริงทางช่องหน้าต่าง)
+    const sk=box(wg,300,W0.h+60,W0.w+60,new THREE.MeshBasicMaterial({color:realLin(P.out).multiplyScalar(Math.min(P.win*.22,1.6))}),R.x0-T-152,W0.yc,W0.zc,true);
+    sk.receiveShadow=false; sk.userData._rptSkip=true;
+    box(wg,SKT,SK,d,skirtM,R.x0+SKT/2,R.y0+SK/2,cz,true); }
+  // ฝ้า + ดาวน์ไลท์
+  { const wg=wall("ceil",[0,-1,0],[0,R.y1,0]); box(wg,w+2*T,T,d+2*T,ceilM,cx,R.y1+T/2,cz);
+    const Wc=bx.max.x-bx.min.x, n=Math.max(1,Math.min(4,Math.round(Wc/1200)||1)), lz=Math.min(bx.max.z+750,R.z1-300);
+    for(let i=0;i<n;i++){ const lx=bx.min.x+(i+.5)*Wc/n, on=P.lamp>0;
+      const lm=new THREE.MeshStandardMaterial({color:realLin(0xf5f3ee),roughness:.3,metalness:0,emissive:realLin(0xffe2b8),emissiveIntensity:on?2.4:0});
+      const o=new THREE.Mesh(new THREE.CylinderGeometry(62,62,14,32),lm); o.position.set(lx,R.y1-7,lz); o.receiveShadow=false; wg.add(o);
+      o.userData._rptEmit=on?P.pt.lampL:0; o.userData._rptEmitCol=[1,.82,.62]; o.userData._rptEmitK=4;   // ภาพแสงจริง: ส่องลงเป็นลำ
+      const rim=new THREE.Mesh(new THREE.CylinderGeometry(78,78,4,32),M(0xd8d8d8,.35,.6)); rim.position.set(lx,R.y1-2,lz); wg.add(rim);
+      REAL.lamps.push({x:lx,y:R.y1-16,z:lz}); } }
+  scene.add(g); REAL.grp=g;
+  REAL.walls.forEach(w2=>w2.hid=false);
+  return true; }
+function realDropLights(){
+  REAL.lights.forEach(l=>{ scene.remove(l); if(l.target&&l.target.parent) l.target.parent.remove(l.target);
+    if(l.shadow&&l.shadow.map){ l.shadow.map.dispose(); l.shadow.map=null; } });
+  REAL.lights=[]; }
+function realEnvBuild(P){
+  try{
+    if(REAL.env){ REAL.env.dispose(); REAL.env=null; }
+    const es=new THREE.Scene();
+    const add=(geo,col,k,x,y,z,rx,ry)=>{ const m=new THREE.Mesh(geo,new THREE.MeshBasicMaterial({color:realLin(col).multiplyScalar(k),side:THREE.DoubleSide}));
+      m.position.set(x,y,z); if(rx) m.rotation.x=rx; if(ry) m.rotation.y=ry; es.add(m); return m; };
+    add(new THREE.BoxGeometry(10,6,10),0xe9e4db,.62*P.env,0,0,0).material.side=THREE.BackSide;
+    add(new THREE.PlaneGeometry(10,10),0xa98560,.5*P.env,0,-2.98,0,-Math.PI/2);
+    add(new THREE.PlaneGeometry(3,2.4),P.out,P.win,-4.97,.6,1.2,0,Math.PI/2);
+    if(P.lamp>0) [-2,0,2].forEach(x=>add(new THREE.CircleGeometry(.35,24),0xffe0b5,P.lamp*7,x,2.97,1,Math.PI/2));
+    const pm=new THREE.PMREMGenerator(renderer); REAL.env=pm.fromScene(es,0.03); pm.dispose();
+    es.traverse(o=>{ if(o.geometry) o.geometry.dispose(); if(o.material) o.material.dispose(); });
+    scene.environment=REAL.env.texture;
+  }catch(e){ console.warn("realEnv:",e); scene.environment=null; } }
+function _realCutaway(){
+  const cp=camera.position; let ch=false;
+  REAL.walls.forEach(w=>{ const out=(cp.x-w.p.x)*w.n.x+(cp.y-w.p.y)*w.n.y+(cp.z-w.p.z)*w.n.z<0;
+    if(out!==w.hid){ w.hid=out; ch=true; w.g.traverse(o=>{ if(o.isMesh) o.layers.set(out?2:0); }); } });
+  return ch; }
+function _realCmpDispose(){
+  const C=REAL.cmp; if(!C) return;
+  ["rt","nd","a1","a2"].forEach(k=>{ try{ if(C[k]){ if(C[k].depthTexture) C[k].depthTexture.dispose(); C[k].dispose(); } }catch(e){} });
+  ["normM","aoM","blM","cpM"].forEach(k=>{ try{ if(C[k]) C[k].dispose(); }catch(e){} });
+  try{ C.q.geometry.dispose(); }catch(e){}
+  REAL.cmp=null; }
+function _realQ(C,mat,rt){ C.q.material=mat; renderer.setRenderTarget(rt); renderer.render(C.qs,C.qc); }
+function _realMatsDirty(){
+  scene.traverse(o=>{ if(o.material) (Array.isArray(o.material)?o.material:[o.material]).forEach(m=>{ if(m) m.needsUpdate=true; }); }); }
+function rptBVH(n,pos){
+  const cen=new Float32Array(n*3), bmn=new Float32Array(n*3), bmx=new Float32Array(n*3);
+  for(let i=0;i<n;i++){ const o=i*9; for(let a=0;a<3;a++){ const p0=pos[o+a],p1=pos[o+3+a],p2=pos[o+6+a], lo=Math.min(p0,p1,p2), hi=Math.max(p0,p1,p2);
+    bmn[i*3+a]=lo; bmx[i*3+a]=hi; cen[i*3+a]=(lo+hi)*.5; } }
+  const idx=new Uint32Array(n); for(let i=0;i<n;i++) idx[i]=i;
+  const nodes=new Float32Array(Math.max(2*n,2)*8); let nn=0, maxD=0;
+  const NB=16, bC=new Int32Array(NB), bMn=new Float64Array(NB*3), bMx=new Float64Array(NB*3), rA=new Float64Array(NB), rC=new Int32Array(NB);
+  const SA=(x0,y0,z0,x1,y1,z1)=>{ const dx=x1-x0, dy=y1-y0, dz=z1-z0; return dx*dy+dy*dz+dz*dx; };
+  const build=(s,e,dep)=>{
+    const id=nn++, o=id*8; if(dep>maxD) maxD=dep;
+    let x0=Infinity,y0=Infinity,z0=Infinity,x1=-Infinity,y1=-Infinity,z1=-Infinity, c0=[Infinity,Infinity,Infinity], c1=[-Infinity,-Infinity,-Infinity];
+    for(let i=s;i<e;i++){ const t=idx[i]*3;
+      if(bmn[t]<x0)x0=bmn[t]; if(bmn[t+1]<y0)y0=bmn[t+1]; if(bmn[t+2]<z0)z0=bmn[t+2];
+      if(bmx[t]>x1)x1=bmx[t]; if(bmx[t+1]>y1)y1=bmx[t+1]; if(bmx[t+2]>z1)z1=bmx[t+2];
+      for(let a=0;a<3;a++){ const c=cen[t+a]; if(c<c0[a])c0[a]=c; if(c>c1[a])c1[a]=c; } }
+    nodes[o]=x0; nodes[o+1]=y0; nodes[o+2]=z0; nodes[o+4]=x1; nodes[o+5]=y1; nodes[o+6]=z1;
+    const cnt=e-s, leaf=()=>{ nodes[o+3]=s; nodes[o+7]=cnt; return id; };
+    if(cnt<=4||dep>=46) return leaf();
+    let ax=0; const ex=[c1[0]-c0[0],c1[1]-c0[1],c1[2]-c0[2]]; if(ex[1]>ex[ax])ax=1; if(ex[2]>ex[ax])ax=2;
+    let mid=(s+e)>>1;
+    if(ex[ax]>1e-6){
+      const cm=c0[ax], k=NB/ex[ax], binOf=t=>{ let b=((cen[t*3+ax]-cm)*k)|0; return b>=NB?NB-1:(b<0?0:b); };
+      bC.fill(0); bMn.fill(Infinity); bMx.fill(-Infinity);
+      for(let i=s;i<e;i++){ const t=idx[i], b=binOf(t), q=b*3, tq=t*3; bC[b]++;
+        for(let a=0;a<3;a++){ if(bmn[tq+a]<bMn[q+a])bMn[q+a]=bmn[tq+a]; if(bmx[tq+a]>bMx[q+a])bMx[q+a]=bmx[tq+a]; } }
+      let r0=[Infinity,Infinity,Infinity], r1=[-Infinity,-Infinity,-Infinity], rc=0;
+      for(let b=NB-1;b>0;b--){ const q=b*3; if(bC[b]){ for(let a=0;a<3;a++){ if(bMn[q+a]<r0[a])r0[a]=bMn[q+a]; if(bMx[q+a]>r1[a])r1[a]=bMx[q+a]; } }
+        rc+=bC[b]; rC[b]=rc; rA[b]=rc?SA(r0[0],r0[1],r0[2],r1[0],r1[1],r1[2]):0; }
+      let l0=[Infinity,Infinity,Infinity], l1=[-Infinity,-Infinity,-Infinity], lc=0, best=Infinity, bb=-1;
+      for(let b=0;b<NB-1;b++){ const q=b*3; if(bC[b]){ for(let a=0;a<3;a++){ if(bMn[q+a]<l0[a])l0[a]=bMn[q+a]; if(bMx[q+a]>l1[a])l1[a]=bMx[q+a]; } }
+        lc+=bC[b]; if(!lc||!rC[b+1]) continue;
+        const cost=lc*SA(l0[0],l0[1],l0[2],l1[0],l1[1],l1[2])+rC[b+1]*rA[b+1]; if(cost<best){ best=cost; bb=b; } }
+      if(bb>=0){
+        if(cnt<=12&&best>=cnt*SA(x0,y0,z0,x1,y1,z1)) return leaf();
+        let i=s, j=e-1; while(i<=j){ if(binOf(idx[i])<=bb) i++; else { const tmp=idx[i]; idx[i]=idx[j]; idx[j]=tmp; j--; } }
+        if(i>s&&i<e) mid=i; } }
+    build(s,mid,dep+1); const r=build(mid,e,dep+1);
+    nodes[o+3]=r; nodes[o+7]=0; return id; };
+  if(n) build(0,n,0);
+  return {nodes,nn,idx,depth:maxD}; }
+function rptPack(S,B){
+  const n=S.n, idx=B.idx, TW=RPT_TW;
+  const tex=texels=>{ const h=Math.max(1,Math.ceil(texels/TW)); return {w:TW,h,data:new Float32Array(TW*h*4)}; };
+  const TP=tex(n*3), TN=tex(n*3), TV=tex(n);
+  for(let k=0;k<n;k++){ const t=idx[k];
+    for(let j=0;j<3;j++){ const o=(k*3+j)*4, si=t*9+j*3;
+      TP.data[o]=S.pos[si]; TP.data[o+1]=S.pos[si+1]; TP.data[o+2]=S.pos[si+2];
+      TN.data[o]=S.nrm[si]; TN.data[o+1]=S.nrm[si+1]; TN.data[o+2]=S.nrm[si+2]; TN.data[o+3]=S.uvs[t*6+j*2]; }
+    TP.data[k*12+3]=S.mid[t]; TP.data[k*12+7]=S.flg[t];
+    TV.data[k*4]=S.uvs[t*6+1]; TV.data[k*4+1]=S.uvs[t*6+3]; TV.data[k*4+2]=S.uvs[t*6+5]; }
+  const BV=tex(B.nn*2); BV.data.set(B.nodes.subarray(0,B.nn*8));
+  const MT=tex(Math.max(1,S.mats.length)*5);
+  S.mats.forEach((m,i)=>MT.data.set([m.c[0],m.c[1],m.c[2],m.layer, m.rough,m.metal,m.op,m.wrap, m.em[0],m.em[1],m.em[2],m.ek||0,
+    m.uv[0],m.uv[1],m.uv[2],0, m.uv[3],m.uv[4],m.uv[5],0],i*20));
+  /* แหล่งแสงจากผิว: เฉพาะที่สว่างพอ (กันไฮไลต์สีเรืองอ่อน ๆ กลายเป็นไฟ) · ดาวน์ไลท์ (ek>0) เอาเฉพาะหน้าที่หันลง (ข้างกระบอกส่องไม่ถึงห้อง สุ่มไปก็เสียเปล่า)
+     โอกาสสุ่ม: ครึ่งหนึ่งตามกำลังจริง (ความสว่าง × พื้นที่) อีกครึ่งแบ่งเท่ากันทุกดวง — แถบ LED เส้นเล็กกำลังรวมน้อยกว่าดาวน์ไลท์มาก
+     แต่เป็นแสงหลักในช่องของมันเอง ถ้าสุ่มตามกำลังล้วนจะได้แทบไม่กี่ครั้ง ในช่องเป็นเม็ดระยิบ */
+  const G=new Map();
+  for(let k=0;k<n;k++){ const mi=S.mid[idx[k]], me=S.mats[mi], e=me.em, lum=.2126*e[0]+.7152*e[1]+.0722*e[2]; if(lum<.5) continue;
+    const o=k*12; if((me.ek||0)>0&&(TN.data[o+1]+TN.data[o+5]+TN.data[o+9])>-1.5) continue;
+    const ax=TP.data[o+4]-TP.data[o], ay=TP.data[o+5]-TP.data[o+1], az=TP.data[o+6]-TP.data[o+2], bx=TP.data[o+8]-TP.data[o], by=TP.data[o+9]-TP.data[o+1], bz=TP.data[o+10]-TP.data[o+2];
+    const area=.5*Math.hypot(ay*bz-az*by,az*bx-ax*bz,ax*by-ay*bx); if(!(area>0)) continue;
+    let g=G.get(mi); if(!g){ g={t:[],pw:0}; G.set(mi,g); } g.t.push([k,lum*area]); g.pw+=lum*area; }
+  const grp=[...G.values()], totPw=grp.reduce((s2,g)=>s2+g.pw,0), L=[]; let cum=0;
+  grp.forEach(g=>{ const mass=.5*g.pw/totPw+.5/grp.length; g.t.forEach(([k,p])=>{ cum+=mass*p/g.pw; L.push([k,cum]); }); });
+  const LT=tex(Math.max(1,L.length)); L.forEach((l,i)=>{ LT.data[i*4]=l[0]; LT.data[i*4+1]=l[1]/(cum||1); });
+  if(L.length) LT.data[(L.length-1)*4+1]=1;
+  return {TP,TN,TV,BV,MT,LT,nl:L.length}; }
+function _rptShader(gl,type,src){ const s=gl.createShader(type); gl.shaderSource(s,src); gl.compileShader(s);
+  if(!gl.getShaderParameter(s,gl.COMPILE_STATUS)){ const log=gl.getShaderInfoLog(s); gl.deleteShader(s); throw new Error("คอมไพล์เชดเดอร์ไม่ผ่าน: "+log); } return s; }
+function _rptProg(gl,fs){ const p=gl.createProgram(); gl.attachShader(p,_rptShader(gl,gl.VERTEX_SHADER,RPT_VS)); gl.attachShader(p,_rptShader(gl,gl.FRAGMENT_SHADER,fs));
+  gl.bindAttribLocation(p,0,"aP"); gl.linkProgram(p);
+  if(!gl.getProgramParameter(p,gl.LINK_STATUS)) throw new Error("ลิงก์เชดเดอร์ไม่ผ่าน: "+gl.getProgramInfoLog(p));
+  const U={}, nu=gl.getProgramParameter(p,gl.ACTIVE_UNIFORMS); for(let i=0;i<nu;i++){ const a=gl.getActiveUniform(p,i); U[a.name.replace(/\[0\]$/,"")]=gl.getUniformLocation(p,a.name); }
+  return {p,U}; }
+function _rptDataTex(gl,T){ const t=gl.createTexture(); gl.bindTexture(gl.TEXTURE_2D,t);
+  [gl.TEXTURE_MIN_FILTER,gl.TEXTURE_MAG_FILTER].forEach(k=>gl.texParameteri(gl.TEXTURE_2D,k,gl.NEAREST));
+  [gl.TEXTURE_WRAP_S,gl.TEXTURE_WRAP_T].forEach(k=>gl.texParameteri(gl.TEXTURE_2D,k,gl.CLAMP_TO_EDGE));
+  gl.texImage2D(gl.TEXTURE_2D,0,gl.RGBA32F,T.w,T.h,0,gl.RGBA,gl.FLOAT,T.data); return t; }
+function _rptTarget(gl,W,H,k){ const fb=gl.createFramebuffer(); gl.bindFramebuffer(gl.FRAMEBUFFER,fb); const tx=[], bufs=[];
+  for(let i=0;i<k;i++){ const t=gl.createTexture(); gl.bindTexture(gl.TEXTURE_2D,t);
+    [gl.TEXTURE_MIN_FILTER,gl.TEXTURE_MAG_FILTER].forEach(q=>gl.texParameteri(gl.TEXTURE_2D,q,gl.NEAREST));
+    [gl.TEXTURE_WRAP_S,gl.TEXTURE_WRAP_T].forEach(q=>gl.texParameteri(gl.TEXTURE_2D,q,gl.CLAMP_TO_EDGE));
+    gl.texImage2D(gl.TEXTURE_2D,0,gl.RGBA32F,W,H,0,gl.RGBA,gl.FLOAT,null);
+    gl.framebufferTexture2D(gl.FRAMEBUFFER,gl.COLOR_ATTACHMENT0+i,gl.TEXTURE_2D,t,0); tx.push(t); bufs.push(gl.COLOR_ATTACHMENT0+i); }
+  gl.drawBuffers(bufs);
+  if(gl.checkFramebufferStatus(gl.FRAMEBUFFER)!==gl.FRAMEBUFFER_COMPLETE) throw new Error("การ์ดจอนี้สร้างบัฟเฟอร์ภาพทศนิยมไม่ได้");
+  for(let i=0;i<k;i++) gl.clearBufferfv(gl.COLOR,i,[0,0,0,0]);
+  gl.bindFramebuffer(gl.FRAMEBUFFER,null); return {fb,tx}; }
+function _rptDropTarget(gl,T){ if(!T) return; try{ gl.deleteFramebuffer(T.fb); T.tx.forEach(t=>gl.deleteTexture(t)); }catch(e){} }
+function _rptBind(gl,prog,unit,name,tex,arr){ gl.activeTexture(gl.TEXTURE0+unit); gl.bindTexture(arr?gl.TEXTURE_2D_ARRAY:gl.TEXTURE_2D,tex); if(prog.U[name]!=null) gl.uniform1i(prog.U[name],unit); }
+function _rptQuad(gl){ gl.bindVertexArray(RPT.vao); gl.drawArrays(gl.TRIANGLES,0,3); }
+function rptPrepare(){
+  const tA=performance.now();
+  try{ realRender(); }catch(e){}                                  // ให้ผนังที่หาย/ห้องตรงกับมุมกล้องตอนนี้
+  const S=rptCollect(); if(!S.n) throw new Error("ไม่มีชิ้นในฉาก");
+  const B=rptBVH(S.n,S.pos), D=rptPack(S,B);
+  const gl=RPT.cv.getContext("webgl2",{antialias:false,depth:false,stencil:false,alpha:false,premultipliedAlpha:false,preserveDrawingBuffer:true,powerPreference:"high-performance"});
+  if(!gl) throw new Error("เบราว์เซอร์/การ์ดจอนี้ไม่มี WebGL2 — ถ่ายภาพแสงจริงไม่ได้");
+  if(!gl.getExtension("EXT_color_buffer_float")) throw new Error("การ์ดจอนี้วาดลงบัฟเฟอร์ทศนิยมไม่ได้ (EXT_color_buffer_float)");
+  const mx=gl.getParameter(gl.MAX_TEXTURE_SIZE); if(mx<RPT_TW||[D.TP,D.TN,D.TV,D.BV].some(T=>T.h>mx)) throw new Error("ฉากใหญ่เกินที่การ์ดจอนี้เก็บได้ ("+S.n.toLocaleString()+" สามเหลี่ยม)");
+  RPT.gl=gl;
+  RPT.vao=gl.createVertexArray(); gl.bindVertexArray(RPT.vao); const vb=gl.createBuffer(); gl.bindBuffer(gl.ARRAY_BUFFER,vb);
+  gl.bufferData(gl.ARRAY_BUFFER,new Float32Array([-1,-1,3,-1,-1,3]),gl.STATIC_DRAW); gl.enableVertexAttribArray(0); gl.vertexAttribPointer(0,2,gl.FLOAT,false,0,0);
+  RPT.prog={pt:_rptProg(gl,RPT_PT_FS),disp:_rptProg(gl,RPT_DISP_FS),prep:_rptProg(gl,RPT_PREP_FS),atr:_rptProg(gl,RPT_ATR_FS),lum:_rptProg(gl,RPT_LUM_FS)};
+  RPT.tex={TP:_rptDataTex(gl,D.TP),TN:_rptDataTex(gl,D.TN),TV:_rptDataTex(gl,D.TV),BV:_rptDataTex(gl,D.BV),MT:_rptDataTex(gl,D.MT),LT:_rptDataTex(gl,D.LT)};
+  /* ลายผิว → texture array (ชั้นละรูป · พลิกแนวตั้งเองแบบที่ three ทำ เพราะ FLIP_Y ใช้กับ texImage3D จากรูปไม่ได้) */
+  const TS=S.imgs.length<=6?1024:512, ta=gl.createTexture(); gl.bindTexture(gl.TEXTURE_2D_ARRAY,ta);
+  gl.texParameteri(gl.TEXTURE_2D_ARRAY,gl.TEXTURE_MIN_FILTER,gl.LINEAR_MIPMAP_LINEAR); gl.texParameteri(gl.TEXTURE_2D_ARRAY,gl.TEXTURE_MAG_FILTER,gl.LINEAR);
+  gl.texParameteri(gl.TEXTURE_2D_ARRAY,gl.TEXTURE_WRAP_S,gl.REPEAT); gl.texParameteri(gl.TEXTURE_2D_ARRAY,gl.TEXTURE_WRAP_T,gl.REPEAT);
+  const nl=Math.max(1,S.imgs.length); gl.texStorage3D(gl.TEXTURE_2D_ARRAY,Math.floor(Math.log2(TS))+1,gl.SRGB8_ALPHA8,TS,TS,nl);
+  let texOk=0; const c2=document.createElement("canvas"); c2.width=c2.height=TS; const g2=c2.getContext("2d");
+  S.imgs.forEach((im,i)=>{ try{ g2.setTransform(1,0,0,1,0,0); g2.clearRect(0,0,TS,TS); g2.setTransform(1,0,0,-1,0,TS); g2.drawImage(im,0,0,TS,TS);
+    gl.texSubImage3D(gl.TEXTURE_2D_ARRAY,0,0,0,i,TS,TS,1,gl.RGBA,gl.UNSIGNED_BYTE,c2); texOk++; }catch(e){ console.warn("rpt tex:",e); } });
+  if(!S.imgs.length){ gl.texSubImage3D(gl.TEXTURE_2D_ARRAY,0,0,0,0,1,1,1,gl.RGBA,gl.UNSIGNED_BYTE,new Uint8Array([255,255,255,255])); }
+  gl.generateMipmap(gl.TEXTURE_2D_ARRAY); RPT.tex.TX=ta; RPT.texS=TS; RPT.hasTex=texOk>0?1:0;
+  /* ภาพถ่ายคงฉากไว้ตอนกด: กล้อง แดด ฟ้า ช่องหน้าต่าง ไม่ตามการหมุนจอข้างหลัง */
+  const P=REAL_PRESETS[REAL.preset]||REAL_PRESETS.day, R=REAL.room, me=camera.matrixWorld.elements;
+  const W0=R.win, T=120, yb=W0.yc-W0.h/2, za=W0.zc-W0.w/2;
+  const sunOn=!!(P.sun&&REAL.sunDir&&P.pt.sun>0), sc=sunOn?realLin(P.sun.c).multiplyScalar(P.pt.sun):new THREE.Color(0,0,0);
+  let lw=P.pt.lw.slice(); if(!sunOn) lw[0]=0; if(!D.nl) lw[2]=0; const ls=lw[0]+lw[1]+lw[2]||1; lw=lw.map(x=>x/ls);
+  const cp=camera.position, inside=cp.x>R.x0&&cp.x<R.x1&&cp.y>R.y0&&cp.y<R.y1&&cp.z>R.z0&&cp.z<R.z1;
+  const bg=new THREE.Color(P.bg);
+  RPT.scn={cam:[cp.x,cp.y,cp.z],cr:[me[0],me[1],me[2]],cu:[me[4],me[5],me[6]],cf:[-me[8],-me[9],-me[10]],tan:Math.tan(THREE.MathUtils.degToRad(camera.fov)/2),asp:camera.aspect,
+    sunD:sunOn?REAL.sunDir.toArray():[0,1,0],sunC:[sc.r,sc.g,sc.b],sunCos:Math.cos(THREE.MathUtils.degToRad(.9)),
+    skyT:P.pt.skyT,skyH:P.pt.skyH,skyG:P.pt.skyG,wp:[R.x0-T-2,yb,za],wu:[0,0,W0.w],wv:[0,W0.h,0],lw,nl:D.nl,inside:inside?1:0,bg:[bg.r,bg.g,bg.b],key:P.pt.key};
+  RPT.S={n:S.n,mats:S.mats.length,imgs:S.imgs.length,depth:B.depth,nodes:B.nn,lights:D.nl,ms:Math.round(performance.now()-tA)};
+  console.log("📸 ภาพแสงจริง: ฉาก",RPT.S); }
+function rptRestart(){
+  const gl=RPT.gl; if(!gl) return;
+  const W=Math.max(64,Math.round(RPT.res)), H=Math.max(48,Math.round(W/(RPT.scn.asp||1.5)));
+  RPT.W=W; RPT.H=H; RPT.cv.width=W; RPT.cv.height=H; _rptFit();
+  ["a","b"].forEach(k=>_rptDropTarget(gl,RPT.acc&&RPT.acc[k])); ["a","b"].forEach(k=>_rptDropTarget(gl,RPT.dn&&RPT.dn[k])); _rptDropTarget(gl,RPT.lumT);
+  RPT.acc={a:_rptTarget(gl,W,H,3),b:_rptTarget(gl,W,H,3)}; RPT.dn={a:_rptTarget(gl,W,H,1),b:_rptTarget(gl,W,H,1)};
+  RPT.lumW=96; RPT.lumH=Math.max(1,Math.round(96*H/W)); RPT.lumT=_rptTarget(gl,RPT.lumW,RPT.lumH,1);
+  RPT.frame=0; RPT.row=0; RPT.band=16; RPT.done=false; RPT.expAuto=1; RPT.t0=performance.now(); RPT.tRun=0; RPT.lastT=0;
+  gl.bindFramebuffer(gl.FRAMEBUFFER,null); gl.viewport(0,0,W,H); gl.clearColor(.08,.08,.09,1); gl.clear(gl.COLOR_BUFFER_BIT);
+  rptRun(true); }
+function rptRun(on){
+  RPT.run=!!on; const b=RPT.el&&RPT.el.querySelector("#rptPause"); if(b) b.textContent=RPT.run?"⏸ หยุด":(RPT.done?"▶ ทำต่อ +"+RPT.target:"▶ ทำต่อ");
+  if(RPT.run&&!RPT.raf){ RPT.lastT=0; RPT.raf=requestAnimationFrame(rptLoop); } }
+function rptLoop(){
+  RPT.raf=0; if(!RPT.run||!RPT.gl) return;
+  const gl=RPT.gl; if(gl.isContextLost()){ rptStatus("⚠ การ์ดจอรีเซ็ตระหว่างคำนวณ — ลดขนาดภาพแล้วลองใหม่",true); RPT.run=false; return; }
+  const now=performance.now(); if(RPT.lastT){ const dt=now-RPT.lastT; RPT.tRun+=dt;
+    if(dt>80) RPT.band=Math.max(4,Math.floor(RPT.band*.6)); else if(dt<36) RPT.band=Math.min(RPT.H,Math.ceil(RPT.band*1.3)+1); }
+  RPT.lastT=now;
+  const Z=RPT.scn, pr=RPT.prog.pt, U=pr.U, src=(RPT.frame%2)?RPT.acc.b:RPT.acc.a, dst=(RPT.frame%2)?RPT.acc.a:RPT.acc.b;
+  gl.useProgram(pr.p); gl.bindFramebuffer(gl.FRAMEBUFFER,dst.fb); gl.viewport(0,0,RPT.W,RPT.H);
+  const T=RPT.tex; let u=0;
+  [["uTP",T.TP],["uTN",T.TN],["uTV",T.TV],["uBV",T.BV],["uMT",T.MT],["uLT",T.LT],["uA0",src.tx[0]],["uA1",src.tx[1]],["uA2",src.tx[2]]].forEach(([nm,t])=>_rptBind(gl,pr,u++,nm,t));
+  _rptBind(gl,pr,u++,"uTX",T.TX,true);
+  const v3=(n,a)=>{ if(U[n]!=null) gl.uniform3f(U[n],a[0],a[1],a[2]); }, f1=(n,x)=>{ if(U[n]!=null) gl.uniform1f(U[n],x); }, i1=(n,x)=>{ if(U[n]!=null) gl.uniform1i(U[n],x); };
+  v3("uCam",Z.cam); v3("uCR",Z.cr); v3("uCU",Z.cu); v3("uCF",Z.cf); f1("uTan",Z.tan); f1("uAsp",RPT.W/RPT.H); if(U.uRes!=null) gl.uniform2f(U.uRes,RPT.W,RPT.H);
+  i1("uFrame",RPT.frame); i1("uNL",Z.nl); i1("uMaxD",5); i1("uInside",Z.inside); i1("uWin",1); i1("uHasTex",RPT.hasTex);
+  v3("uSunD",Z.sunD); v3("uSunC",Z.sunC); f1("uSunCos",Z.sunCos); f1("uTexS",RPT.texS);
+  v3("uSkyT",Z.skyT); v3("uSkyH",Z.skyH); v3("uSkyG",Z.skyG); v3("uWP",Z.wp); v3("uWU",Z.wu); v3("uWV",Z.wv); v3("uLW",Z.lw);
+  const y0=RPT.row, y1=Math.min(RPT.H,y0+RPT.band);
+  gl.enable(gl.SCISSOR_TEST); gl.scissor(0,y0,RPT.W,y1-y0); _rptQuad(gl); gl.disable(gl.SCISSOR_TEST);
+  RPT.row=y1;
+  if(RPT.row>=RPT.H){ RPT.row=0; RPT.frame++;
+    if(RPT.frame===4||RPT.frame===16||RPT.frame===64) _rptAutoExp();
+    if(RPT.frame<=8||RPT.frame%4===0||RPT.frame>=RPT.target) rptShow(false);
+    _rptStat();
+    if(RPT.frame>=RPT.target){ RPT.done=true; rptShow(true); rptRun(false); _rptStat(); return; } }
+  RPT.raf=requestAnimationFrame(rptLoop); }
+function _rptCur(){ return (RPT.frame%2)?RPT.acc.b:RPT.acc.a; }
+function _rptAutoExp(){
+  const gl=RPT.gl, A=_rptCur(), pr=RPT.prog.lum; gl.useProgram(pr.p); gl.bindFramebuffer(gl.FRAMEBUFFER,RPT.lumT.fb); gl.viewport(0,0,RPT.lumW,RPT.lumH);
+  _rptBind(gl,pr,0,"uA0",A.tx[0]); _rptBind(gl,pr,1,"uA1",A.tx[1]); gl.uniform1f(pr.U.uN,RPT.frame);
+  gl.uniform2i(pr.U.uSz,RPT.W,RPT.H); gl.uniform2i(pr.U.uOut,RPT.lumW,RPT.lumH); _rptQuad(gl);
+  const px=new Float32Array(RPT.lumW*RPT.lumH*4); gl.readPixels(0,0,RPT.lumW,RPT.lumH,gl.RGBA,gl.FLOAT,px);
+  let sL=0, sw=0; for(let i=0;i<px.length;i+=4){ sL+=px[i]; sw+=px[i+1]; }
+  gl.bindFramebuffer(gl.FRAMEBUFFER,null);
+  if(sw>0){ const avg=Math.exp(sL/sw); RPT.expAuto=Math.min(Math.max(.6*(RPT.scn.key||.18)/Math.max(avg,1e-5)*1.9,.02),400); } }
+function rptShow(final){
+  const gl=RPT.gl; if(!gl||!RPT.frame) return;
+  const A=_rptCur(), N=RPT.frame, W=RPT.W, H=RPT.H; let C=A.tx[0], mode=0;
+  if(RPT.dnOn&&N>=2){
+    let pr=RPT.prog.prep; gl.useProgram(pr.p); gl.bindFramebuffer(gl.FRAMEBUFFER,RPT.dn.a.fb); gl.viewport(0,0,W,H);
+    _rptBind(gl,pr,0,"uA0",A.tx[0]); _rptBind(gl,pr,1,"uA1",A.tx[1]); gl.uniform1f(pr.U.uN,N); _rptQuad(gl);
+    pr=RPT.prog.atr; gl.useProgram(pr.p); let s=RPT.dn.a, d=RPT.dn.b; const sg=.55/Math.sqrt(N)+.012;
+    for(let i=0;i<5;i++){ gl.bindFramebuffer(gl.FRAMEBUFFER,d.fb);
+      _rptBind(gl,pr,0,"uI",s.tx[0]); _rptBind(gl,pr,1,"uA1",A.tx[1]); _rptBind(gl,pr,2,"uA2",A.tx[2]);
+      gl.uniform1f(pr.U.uN,N); gl.uniform1f(pr.U.uPhi,sg*sg*Math.pow(2,-i)*4); gl.uniform1i(pr.U.uStep,1<<i); gl.uniform2i(pr.U.uSz,W,H); _rptQuad(gl);
+      const t=s; s=d; d=t; }
+    C=s.tx[0]; mode=1; }
+  const pr=RPT.prog.disp; gl.useProgram(pr.p); gl.bindFramebuffer(gl.FRAMEBUFFER,null); gl.viewport(0,0,W,H);
+  _rptBind(gl,pr,0,"uC",C); _rptBind(gl,pr,1,"uA1",A.tx[1]);
+  gl.uniform1f(pr.U.uN,N); gl.uniform1f(pr.U.uExp,RPT.expAuto*Math.pow(2,RPT.expUser)); gl.uniform3f(pr.U.uBg,RPT.scn.bg[0],RPT.scn.bg[1],RPT.scn.bg[2]); gl.uniform1i(pr.U.uMode,mode);
+  _rptQuad(gl); }
+function rptStatus(t,err){ const s=RPT.el&&RPT.el.querySelector("#rptStat"); if(s){ s.textContent=t; s.classList.toggle("err",!!err); } }
+function _rptStat(){
+  const n=RPT.frame, tg=RPT.target, sec=RPT.tRun/1000, per=n?sec/n:0, left=Math.max(0,tg-n)*per;
+  const mmss=x=>{ x=Math.round(x); return Math.floor(x/60)+":"+String(x%60).padStart(2,"0"); };
+  rptStatus(RPT.done?("✓ เสร็จ "+n+" รอบ · "+mmss(sec)+" · "+RPT.W+"×"+RPT.H):("รอบ "+n+"/"+tg+" · "+mmss(sec)+(n>=2?" · เหลือราว "+mmss(left):"")));
+  const b=RPT.el&&RPT.el.querySelector("#rptBar"); if(b) b.style.width=Math.min(100,n/tg*100).toFixed(1)+"%"; }
+function _rptFit(){ const cv=RPT.cv, st=RPT.el&&RPT.el.querySelector(".rptStage"); if(!cv||!st||!RPT.W) return;
+  const r=st.getBoundingClientRect(), k=Math.min(r.width/RPT.W,r.height/RPT.H,1)||1; cv.style.width=Math.floor(RPT.W*k)+"px"; cv.style.height=Math.floor(RPT.H*k)+"px"; }
+function rptSave(){
+  if(!RPT.gl||!RPT.frame){ toast("ยังไม่มีภาพ"); return; }
+  rptShow(true);
+  const d=new Date(), p2=x=>String(x).padStart(2,"0");
+  let oid=""; try{ const v=(($("exOrderId")||{}).value||"").trim(); if(v) oid=v.replace(/[\\/:*?"<>|\s]+/g,"_")+"-"; }catch(e){}
+  const name="StarNexus-"+oid+"แสงจริง-"+(REAL_PRESETS[REAL.preset]||{}).label+"-"+d.getFullYear()+p2(d.getMonth()+1)+p2(d.getDate())+"-"+p2(d.getHours())+p2(d.getMinutes())+".png";
+  RPT.cv.toBlob(b=>{ if(!b){ toast("บันทึกภาพไม่ได้"); return; } const a=document.createElement("a"); a.href=URL.createObjectURL(b); a.download=name;
+    document.body.appendChild(a); a.click(); setTimeout(()=>{ URL.revokeObjectURL(a.href); a.remove(); },1500); toast("💾 บันทึก "+name); },"image/png"); }
+function rptClose(){
+  if(RPT.raf){ cancelAnimationFrame(RPT.raf); RPT.raf=0; } RPT.run=false;
+  if(RPT.keyH){ removeEventListener("keydown",RPT.keyH,true); RPT.keyH=null; }
+  if(RPT.rsH){ removeEventListener("resize",RPT.rsH); RPT.rsH=null; }
+  const gl=RPT.gl;
+  if(gl){ try{ const lc=gl.getExtension("WEBGL_lose_context"); if(lc) lc.loseContext(); }catch(e){} }
+  RPT.gl=null; RPT.acc=null; RPT.dn=null; RPT.lumT=null; RPT.tex=null; RPT.prog=null; RPT.scn=null; RPT.frame=0;
+  if(RPT.el){ RPT.el.remove(); RPT.el=null; } RPT.cv=null; }
+function _rptCss(){
+  if($("rptCss")) return;
+  const st=document.createElement("style"); st.id="rptCss";
+  st.textContent=[
+   "#rptWin{position:fixed;inset:0;z-index:410;display:flex;flex-direction:column;background:rgba(12,13,16,.94);color:#e9eaee;font:12px var(--font)}",
+   "#rptWin .rptHead{display:flex;align-items:center;gap:10px;padding:10px 14px}",
+   "#rptWin .rptHead b{font-size:14px;font-weight:600}",
+   "#rptWin .rptSp{flex:1}",
+   "#rptWin #rptStat{color:#a2a6b1;font-variant-numeric:tabular-nums}",
+   "#rptWin #rptStat.err{color:#ff8a80}",
+   "#rptWin .rptBarW{height:2px;background:rgba(255,255,255,.08);margin:0 14px}",
+   "#rptWin #rptBar{height:2px;width:0;background:#E8901F;transition:width .3s}",
+   "#rptWin .rptStage{flex:1;min-height:0;display:flex;align-items:center;justify-content:center;padding:12px}",
+   "#rptWin canvas{display:block;border-radius:6px;box-shadow:0 10px 40px rgba(0,0,0,.5);background:#141519}",
+   "#rptWin .rptFoot{display:flex;flex-wrap:wrap;align-items:center;gap:10px 14px;padding:10px 14px 14px}",
+   "#rptWin label{display:flex;align-items:center;gap:6px;color:#a2a6b1}",
+   "#rptWin select,#rptWin input[type=range]{font:inherit}",
+   "#rptWin select{background:#20232c;color:#e9eaee;border:.5px solid rgba(255,255,255,.18);border-radius:7px;padding:4px 6px}",
+   "#rptWin button{border:.5px solid rgba(255,255,255,.18);background:#20232c;color:#e9eaee;font:inherit;padding:7px 12px;border-radius:8px;cursor:pointer}",
+   "#rptWin button.pri{background:#E8901F;border-color:#E8901F;color:#1d1d1f;font-weight:600}",
+   "#rptWin .rptNote{color:#767a85;font-size:11px}",
+   "@media (max-width:760px){#rptWin .rptNote{display:none}}"].join("\n");
+  document.head.appendChild(st); }
+function rptOpen(){
+  if(snOff("realPhoto")) return;
+  if(!REAL.on||!REAL.room){ toast("เปิด ✨ โหมดสมจริงก่อน แล้วค่อยถ่ายภาพแสงจริง"); return; }
+  rptClose(); _rptCss();
+  const P=REAL_PRESETS[REAL.preset]||REAL_PRESETS.day, el=document.createElement("div"); el.id="rptWin";
+  el.innerHTML='<div class="rptHead"><b>📸 ภาพแสงจริง</b><span style="color:#a2a6b1">'+P.icon+' '+P.label+'</span><span class="rptSp"></span><span id="rptStat">กำลังเตรียมฉาก…</span>'
+    +'<button id="rptX" title="ปิด (Esc)">✕</button></div><div class="rptBarW"><div id="rptBar"></div></div>'
+    +'<div class="rptStage"><canvas id="rptCv"></canvas></div>'
+    +'<div class="rptFoot"><label>กว้าง <select id="rptRes"><option value="960">960 px</option><option value="1280">1280 px</option><option value="1920">1920 px (Full HD)</option><option value="2560">2560 px</option></select></label>'
+    +'<label>รอบ <select id="rptSpp"><option>64</option><option>128</option><option>256</option><option>512</option><option>1024</option></select></label>'
+    +'<label>ความสว่าง <input type="range" id="rptExp" min="-2" max="2" step=".1" value="0"></label>'
+    +'<label><input type="checkbox" id="rptDn" checked> ลดเม็ดสี</label>'
+    +'<button id="rptPause">⏸ หยุด</button><button id="rptSave" class="pri">💾 บันทึกภาพ</button>'
+    +'<span class="rptNote">มุมกล้อง/บาน/แสงตามที่เห็นตอนกด · รอบมาก = เนียนขึ้นแต่นานขึ้น</span></div>';
+  document.body.appendChild(el); RPT.el=el; RPT.cv=el.querySelector("#rptCv");
+  const rs=el.querySelector("#rptRes"), sp=el.querySelector("#rptSpp"), ex=el.querySelector("#rptExp"), dn=el.querySelector("#rptDn");
+  [[rs,RPT.res],[sp,RPT.target]].forEach(([q,v])=>{ if(![...q.options].some(o=>+o.value===+v)){ const o=document.createElement("option"); o.value=String(v); o.textContent=String(v); q.appendChild(o); } q.value=String(v); }); ex.value=String(RPT.expUser); dn.checked=RPT.dnOn;
+  el.querySelector("#rptX").onclick=()=>rptClose();
+  rs.onchange=()=>{ RPT.res=+rs.value||1280; if(RPT.gl) rptRestart(); };
+  sp.onchange=()=>{ RPT.target=+sp.value||256; if(RPT.gl){ if(RPT.frame<RPT.target){ RPT.done=false; rptRun(true); } _rptStat(); } };
+  ex.oninput=()=>{ RPT.expUser=+ex.value||0; if(RPT.gl) rptShow(RPT.done); };
+  dn.onchange=()=>{ RPT.dnOn=dn.checked; if(RPT.gl) rptShow(RPT.done); };
+  el.querySelector("#rptPause").onclick=()=>{ if(!RPT.gl) return;
+    if(RPT.run) rptRun(false); else { if(RPT.frame>=RPT.target){ RPT.target=RPT.frame+(+sp.value||256); RPT.done=false; } rptRun(true); } _rptStat(); };
+  el.querySelector("#rptSave").onclick=()=>rptSave();
+  RPT.keyH=e=>{ if(e.key==="Escape"){ e.preventDefault(); e.stopPropagation(); rptClose(); } }; addEventListener("keydown",RPT.keyH,true);
+  RPT.rsH=()=>_rptFit(); addEventListener("resize",RPT.rsH);
+  setTimeout(()=>{ if(!RPT.el) return; try{ rptPrepare(); rptRestart(); }catch(e){ console.error("rpt:",e); rptStatus("⚠ "+((e&&e.message)||e),true); } },40); }
+
+/* ═════════ v1.464: ✨ โหมดสมจริง + 📸 ภาพแสงจริง ในหน้าดูงาน (ลิงก์ที่ลูกค้าเปิด) ═════════
+   ผู้ใช้ 16/10 08:43: "เพิ่มโหมดสมจริงใน Link ที่คนดูได้ไหมครับ" · ตอบเพิ่ม: รวม 📸 ด้วย · เปิดลิงก์มาแบบปกติมีปุ่ม ✨ ให้กด · ตัวกันการ์ดจอรีเซ็ตใส่เฉพาะในลิงก์
+   ที่มา: เช้านี้เครื่องผู้ใช้เปิดโหมดสมจริงในโปรแกรมหลักแล้วการ์ดจอรีเซ็ต (Edge งด 3D ทั้งไฟล์จนปิดเบราว์เซอร์)
+     ลูกค้าส่วนใหญ่เปิดลิงก์จากมือถือ/โน้ตบุ๊กการ์ดจอออนบอร์ด → ในลิงก์ต้องเริ่มแบบเบาเสมอถ้าไม่แน่ใจ
+   ห้อง/แสง/เงามุม/ภาพแสงจริง ใช้โค้ดชุดเดียวกับโปรแกรมหลัก (v1.463) — snvHtml ฉีดฟังก์ชันกับเชดเดอร์ตัวจริงมาให้ (snvRealInject ในโปรแกรมหลัก) ตรงจุดฉีดเหนือบล็อกนี้
+   ส่วนที่เขียนใหม่สำหรับหน้าดู: กล่องตู้จากข้อมูลที่อบ · ไฟ LED จากแถบที่อบ · ระดับคุณภาพ · ตัวกันรีเซ็ต · แถบปุ่ม
+   ระดับคุณภาพ (เลือกได้ที่แถบ · จำในเครื่องคนดู):
+     อัตโนมัติ = มือถือ/แท็บเล็ต/การ์ดจอออนบอร์ด/ไม่รู้ชื่อ/เบราว์เซอร์ไม่ใช้การ์ดจอ/โหมดประหยัด/เคยรีเซ็ต → เบา · การ์ดจอแยก (NVIDIA/Radeon RX/Arc) → กลาง
+     เบา  = วาดตรงลงจอ (ไม่มีบัฟเฟอร์ทศนิยม ไม่มีเงามุม) แดดเงา 1024 · ไฟเพดานไม่มีเงา · LED ≤ 4 ดวง
+     กลาง = เงามุม + บัฟเฟอร์ทศนิยม MSAA 2 จำกัด ~2.1 ล้านพิกเซล (จอใหญ่กว่านั้นคิดเล็กแล้วขยาย) · แดด 2048 · ไฟเพดานเงา 1 ดวง
+     สูง  = แบบโปรแกรมหลัก (MSAA 4 · ~3.7 ล้านพิกเซล · แดด 4096 · เงา 2 ดวง)
+   ตัวกัน: การ์ดจอรีเซ็ตระหว่างเปิด (webglcontextlost) → ปิดโหมดเอง + จำไว้ในเครื่องคนดู ครั้งหน้าอัตโนมัติ = เบา และไม่มีปุ่ม 📸
+     · วาดไม่ทัน (เฟรมกลางของ 16 เฟรมล่าสุดช้ากว่า 110 มิลลิวินาทีตอนหมุน) → ลดคุณภาพลงทีละขั้นเอง
+     · 📸 มีเฉพาะคอมที่การ์ดจอแยก + WebGL2 + ไม่เคยรีเซ็ต · มือถือไม่เห็นปุ่ม · ค่าตั้งต้นของภาพ 960 px 128 รอบ วาดแถบละ 8 แถว */
+var REAL={on:false,preset:"day",grp:null,lights:[],env:null,walls:[],sig:"",room:null,lamps:[],cmp:null,cmpFail:"",bgCol:null,floorTex:null,sunDir:null,
+  q:"auto",qEff:"low",tier:1,gpu:"",mob:false,keep:null,ft:[],lastF:0,hidL:[],shK:[],hooked:false};
+var RPT={el:null,cv:null,gl:null,raf:0,run:false,frame:0,target:128,row:0,band:8,W:0,H:0,res:960,
+  P:null,S:null,acc:null,dn:null,prog:null,expAuto:1,expUser:0,t0:0,tRun:0,lastT:0,done:false,keyH:null,dnOn:true,scn:null};
+var REAL_L2=new THREE.Layers(); REAL_L2.set(2);
+var RV_Q={
+  low: {label:"เบา", cmp:0,sun:1024,spotSh:0,led:4,cap:0,    ms:0},
+  mid: {label:"กลาง",cmp:1,sun:2048,spotSh:1,led:6,cap:2.1e6,ms:2},
+  high:{label:"สูง", cmp:1,sun:4096,spotSh:2,led:8,cap:3.7e6,ms:4}};
+function snOff(){ return false; }                                   // ฟังก์ชันที่ฉีดมาจากโปรแกรมหลักเรียกใช้ — หน้าดูไม่มีสวิตช์ปิดรายข้อ
+function toast(m){ hint(String(m||""),4800); }
+function realRender(){ rvRender(); }
+function rvLS(k,v){ try{ var K="snv:"+k;
+    if(v===undefined){ var s=localStorage.getItem(K); return s==null?null:JSON.parse(s); }
+    if(v===null) localStorage.removeItem(K); else localStorage.setItem(K,JSON.stringify(v)); }catch(e){} return null; }
+function rvGpu(){ try{ var gl=renderer.getContext(), ex=gl.getExtension("WEBGL_debug_renderer_info");
+  return String((ex&&gl.getParameter(ex.UNMASKED_RENDERER_WEBGL))||gl.getParameter(gl.RENDERER)||""); }catch(e){ return ""; } }
+/* 0 = ไม่ได้ใช้การ์ดจอ · 1 = ออนบอร์ด/ไม่รู้จัก · 2 = การ์ดจอแยก */
+function rvTier(n){ n=String(n||"");
+  if(/swiftshader|llvmpipe|basic render|software|subzero/i.test(n)) return 0;
+  if(/nvidia|geforce|quadro|rtx|radeon\s*(rx|pro|r9|r7|vii)|\brx\s*\d{3,4}|arc\(tm\)\s*a\d|arc\s*a\d|apple m\d\s*(max|pro|ultra)/i.test(n)) return 2;
+  return 1; }
+function rvMobile(){ return /Android|iPhone|iPad|iPod|Mobile/i.test(navigator.userAgent||"")||!!(window.matchMedia&&matchMedia("(pointer:coarse)").matches); }
+function rvQEff(){ if(REAL.q!=="auto"&&RV_Q[REAL.q]) return REAL.q;
+  if(S.eco||rvLS("realCrash")||REAL.mob||REAL.tier<2) return "low"; return "mid"; }
+function rvCanPhoto(){ return typeof RV_NOPHOTO==="undefined"&&!REAL.mob&&REAL.tier>=2&&!rvLS("realCrash")&&!!(renderer.capabilities&&renderer.capabilities.isWebGL2); }
+/* กล่องตัวตู้: ทุกชิ้นที่มีข้อมูล ยกเว้นบาน/หน้าลิ้นชัก และชิ้นที่ขยับตามบาน (กางบานแล้วห้องไม่ขยับ) */
+function _realCabBox(){
+  var D=S.D, I=D.info||{}, ids=Object.keys(I).filter(function(id){ var own=(D.own&&D.own[id])||id; return !(I[id]&&I[id].dr)&&!(D.door&&D.door[own]); });
+  var b=ids.length?sceneBox(ids):new THREE.Box3(); if(b.isEmpty()) b=sceneBox();
+  return b.isEmpty()?null:b; }
+/* แถบ LED ที่อบมา: แผ่นบาง (สองด้านแคบ) = ตัวแถบ · แผ่นกว้าง = ม่านแสง (ไม่ใช่แหล่งไฟ) · ทิศส่อง = ด้านบางสุด (แนวตั้ง = ส่องลง) */
+function rvLedRuns(){ var out=[];
+  S.led.forEach(function(o){ if(!o||!o.isMesh||!o.visible) return;
+    var b=new THREE.Box3().setFromObject(o); if(b.isEmpty()) return;
+    var s=b.getSize(new THREE.Vector3()), c=b.getCenter(new THREE.Vector3()), a=[s.x,s.y,s.z], srt=a.slice().sort(function(p,q){ return p-q; });
+    if(srt[1]>40||srt[2]<60) return;
+    var ax=a.indexOf(srt[0]), d=new THREE.Vector3(); d.setComponent(ax,ax===1?-1:1);
+    var col=(o.material&&o.material.color)?o.material.color.clone():new THREE.Color(0xffd9a0);
+    out.push({c:c,out:d,len:srt[2],col:col}); });
+  return out; }
+function rvApplyLights(){
+  realDropLights();
+  var P=REAL_PRESETS[REAL.preset]||REAL_PRESETS.day, R=REAL.room, Q=RV_Q[REAL.qEff]||RV_Q.low; if(!R) return;
+  function add(l){ scene.add(l); if(l.target&&!l.target.parent) scene.add(l.target); REAL.lights.push(l); return l; }
+  add(new THREE.HemisphereLight(P.hemi[0],P.hemi[1],P.hemi[2]));
+  var cx=(R.x0+R.x1)/2, cy=(R.y0+R.y1)/2, cz=(R.z0+R.z1)/2, bx=R.bx, Wc=bx.max.x-bx.min.x;
+  REAL.sunDir=null;
+  if(P.sun){
+    var C=new THREE.Vector3(R.x0-60,R.win.yc+R.win.h*.15,R.win.zc);
+    var Tg=(P.sun.tgt==="cab")?new THREE.Vector3(bx.min.x+Wc*.42,R.y0+Math.min(700,(bx.max.y-bx.min.y)*.45),bx.max.z+40)
+                              :new THREE.Vector3(bx.min.x+Wc*.25,R.y0,bx.max.z+420);
+    var L=C.clone().sub(Tg).normalize(); REAL.sunDir=L.clone();
+    var s=add(new THREE.DirectionalLight(P.sun.c,P.sun.i)), rad=Math.hypot(R.x1-R.x0,R.y1-R.y0,R.z1-R.z0)*.6+400;
+    s.position.set(cx,cy,cz).addScaledVector(L,rad*1.5); s.target.position.set(cx,cy,cz);
+    s.castShadow=true; s.shadow.mapSize.set(Q.sun,Q.sun);
+    var sc=s.shadow.camera; sc.left=-rad; sc.right=rad; sc.top=rad; sc.bottom=-rad; sc.near=10; sc.far=rad*3.2; sc.updateProjectionMatrix();
+    s.shadow.bias=-0.00004*(4096/Q.sun); s.shadow.normalBias=.5*(4096/Q.sun>1?1.6:1); sc.layers.enable(2); }
+  if(P.lamp>0) REAL.lamps.forEach(function(p,i){
+    var sp=add(new THREE.SpotLight(0xffd6a6,P.lamp*1.25,6500,Math.PI*.27,.75,1.4));
+    sp.position.set(p.x,p.y,p.z); sp.target.position.set(p.x,R.y0,p.z-420);
+    if(i<Q.spotSh){ sp.castShadow=true; sp.shadow.mapSize.set(1024,1024); sp.shadow.bias=-0.00015; sp.shadow.normalBias=.6;
+      sp.shadow.camera.near=50; sp.shadow.camera.far=7000; sp.shadow.camera.layers.enable(2); } });
+  if(P.led>0&&S.ledOn) rvLedRuns().slice(0,Q.led).forEach(function(r){
+    var sp=add(new THREE.SpotLight(r.col,P.led*.9,Math.max(900,r.len*1.2),Math.PI*.46,1,2));
+    sp.position.copy(r.c).addScaledVector(r.out,20); sp.target.position.copy(r.c).addScaledVector(r.out,600); });
+  realEnvBuild(P);
+  REAL.bgCol=realLin(P.bg);
+  renderer.shadowMap.needsUpdate=true; S.dirty=true; }
+function rvCmp(){
+  var Q=RV_Q[REAL.qEff]||RV_Q.low; if(!Q.cmp||REAL.cmpFail) return null;
+  var caps=renderer.capabilities, ex=renderer.extensions;
+  if(!caps||!caps.isWebGL2){ REAL.cmpFail="webgl1"; return null; }
+  if(!(ex.has("EXT_color_buffer_float")||ex.has("EXT_color_buffer_half_float"))){ REAL.cmpFail="float"; return null; }
+  var v=renderer.getDrawingBufferSize(new THREE.Vector2()), W=Math.max(1,v.x|0), H=Math.max(1,v.y|0);
+  var C=REAL.cmp; if(C&&C.W===W&&C.H===H&&C.q===REAL.qEff) return C;
+  _realCmpDispose();
+  try{
+    /* จำกัดจำนวนพิกเซลของบัฟเฟอร์ (จอ 4K = คิดเล็กแล้วขยาย) — บัฟเฟอร์ทศนิยม MSAA บนการ์ดจอออนบอร์ดกินหน่วยความจำร่วมเป็นร้อย MB */
+    var k=Math.min(1,Math.sqrt(Q.cap/(W*H))), w=Math.max(1,Math.round(W*k)), h=Math.max(1,Math.round(H*k));
+    C={W:W,H:H,w:w,h:h,q:REAL.qEff};
+    C.rt=new THREE.WebGLMultisampleRenderTarget(w,h,{type:THREE.HalfFloatType,format:THREE.RGBAFormat,minFilter:THREE.LinearFilter,magFilter:THREE.LinearFilter,stencilBuffer:true}); C.rt.samples=Q.ms;
+    var lin={minFilter:THREE.LinearFilter,magFilter:THREE.LinearFilter,format:THREE.RGBAFormat};
+    C.nd=new THREE.WebGLRenderTarget(w,h,{minFilter:THREE.NearestFilter,magFilter:THREE.NearestFilter,format:THREE.RGBAFormat});
+    C.nd.depthTexture=new THREE.DepthTexture(w,h); C.nd.depthTexture.type=THREE.UnsignedIntType;
+    C.a1=new THREE.WebGLRenderTarget(w,h,lin); C.a2=new THREE.WebGLRenderTarget(w,h,lin);
+    C.normM=new THREE.MeshNormalMaterial({side:THREE.DoubleSide});
+    C.qs=new THREE.Scene(); C.qc=new THREE.OrthographicCamera(-1,1,1,-1,0,1);
+    C.q=new THREE.Mesh(new THREE.PlaneGeometry(2,2)); C.q.frustumCulled=false; C.qs.add(C.q);
+    var Qm=function(fs,u){ return new THREE.ShaderMaterial({uniforms:u,vertexShader:REAL_VS,fragmentShader:fs,depthTest:false,depthWrite:false}); };
+    C.aoM=Qm(REAL_AO_FS,{tD:{value:C.nd.depthTexture},tN:{value:C.nd.texture},uP:{value:new THREE.Matrix4()},uIP:{value:new THREE.Matrix4()},uRes:{value:new THREE.Vector2(w,h)},uRad:{value:240},uStr:{value:1.05}});
+    C.blM=Qm(REAL_BL_FS,{tA:{value:null},tD:{value:C.nd.depthTexture},uDir:{value:new THREE.Vector2()},uCN:{value:new THREE.Vector2(5,60000)}});
+    C.cpM=Qm(REAL_CP_FS,{tC:{value:C.rt.texture},tA:{value:C.a1.texture},uExp:{value:1},uAoK:{value:.85},uAoOn:{value:1}});
+    return (REAL.cmp=C);
+  }catch(e){ console.warn("rvCmp:",e); REAL.cmpFail="err"; _realCmpDispose(); return null; } }
+function rvEnforce(){
+  if(scene.fog) scene.fog=null;
+  if(REAL.bgCol&&scene.background!==REAL.bgCol) scene.background=REAL.bgCol;
+  if(!renderer.shadowMap.enabled){ renderer.shadowMap.enabled=true; renderer.shadowMap.needsUpdate=true; }
+  if(floor&&floor.visible) floor.visible=false;
+  if(grid&&grid.visible) grid.visible=false;
+  [hemi,keyL,fillL,rimL].forEach(function(l){ if(l&&l.visible) l.visible=false; }); }
+var RV_ORDER=["low","mid","high"];
+function rvDown(why){ var i=RV_ORDER.indexOf(REAL.qEff); if(i<=0) return;
+  REAL.qEff=RV_ORDER[i-1]; _realCmpDispose(); rvApplyLights(); rvBarSync();
+  hint("เครื่องนี้วาดไม่ทัน — ลดคุณภาพเป็น \""+RV_Q[REAL.qEff].label+"\" ให้แล้ว",3800); }
+/* แทน renderer.render(scene,camera) ระหว่างเปิดโหมดสมจริง */
+function rvRender(){
+  var now=performance.now();
+  if(REAL.lastF&&now-REAL.lastF<400){ REAL.ft.push(now-REAL.lastF); if(REAL.ft.length>16) REAL.ft.shift();
+    if(REAL.ft.length>=16&&REAL.qEff!=="low"){ var md=REAL.ft.slice().sort(function(a,b){ return a-b; })[8]; if(md>110){ REAL.ft=[]; rvDown(); } } }
+  REAL.lastF=now;
+  rvEnforce(); _realCutaway();
+  var P=REAL_PRESETS[REAL.preset]||REAL_PRESETS.day, C=rvCmp();
+  if(!C){
+    if(renderer.toneMapping!==THREE.ACESFilmicToneMapping){ renderer.toneMapping=THREE.ACESFilmicToneMapping; _realMatsDirty(); }
+    renderer.toneMappingExposure=P.exp; renderer.setRenderTarget(null); renderer.render(scene,camera); return; }
+  if(renderer.toneMapping!==THREE.NoToneMapping){ renderer.toneMapping=THREE.NoToneMapping; _realMatsDirty(); }
+  renderer.setRenderTarget(C.rt); renderer.render(scene,camera);
+  var hid=[]; scene.traverseVisible(function(o){ if(o.isLine||o.isSprite||o.isPoints) hid.push(o);
+    else if(o.isMesh){ var m=o.material, tr=Array.isArray(m)?m.some(function(x){ return x&&x.transparent; }):!!(m&&m.transparent); if(tr) hid.push(o); } });
+  hid.forEach(function(o){ o.visible=false; });
+  var bg=scene.background, cc=renderer.getClearColor(new THREE.Color()), ca=renderer.getClearAlpha();
+  scene.background=null; scene.overrideMaterial=C.normM; renderer.setClearColor(0x8080ff,1);
+  try{ renderer.setRenderTarget(C.nd); renderer.render(scene,camera); }
+  finally{ scene.overrideMaterial=null; scene.background=bg; renderer.setClearColor(cc,ca); hid.forEach(function(o){ o.visible=true; }); }
+  C.aoM.uniforms.uP.value.copy(camera.projectionMatrix); C.aoM.uniforms.uIP.value.copy(camera.projectionMatrixInverse);
+  _realQ(C,C.aoM,C.a1);
+  C.blM.uniforms.uCN.value.set(camera.near,camera.far);
+  C.blM.uniforms.tA.value=C.a1.texture; C.blM.uniforms.uDir.value.set(1/C.a1.width,0); _realQ(C,C.blM,C.a2);
+  C.blM.uniforms.tA.value=C.a2.texture; C.blM.uniforms.uDir.value.set(0,1/C.a1.height); _realQ(C,C.blM,C.a1);
+  C.cpM.uniforms.uExp.value=P.exp; C.cpM.uniforms.uAoOn.value=1;
+  _realQ(C,C.cpM,null); }
+/* การ์ดจอรีเซ็ต: ปิดโหมด + จำไว้ (ครั้งหน้าเบา · ไม่มี 📸) · ได้คืนเมื่อไรก็วาดใหม่ */
+function rvHook(){ if(REAL.hooked) return; REAL.hooked=true; var cv=renderer.domElement;
+  cv.addEventListener("webglcontextlost",function(){
+    if(!(REAL.on||RPT.el)) return;
+    rvLS("realCrash",{t:Date.now(),q:REAL.qEff,gpu:REAL.gpu});
+    setTimeout(function(){ try{ rvToggle(false); }catch(e){} hint("การ์ดจอรีเซ็ต — ปิดโหมดสมจริงให้แล้ว · ถ้าภาพ 3D ไม่กลับมา ให้ปิดเบราว์เซอร์แล้วเปิดลิงก์ใหม่",7000); },0); },false);
+  cv.addEventListener("webglcontextrestored",function(){ S.dirty=true; try{ renderer.shadowMap.needsUpdate=true; }catch(e){} },false); }
+function rvPhoto(){
+  try{ rptOpen(); }catch(e){ hint("เปิดภาพแสงจริงไม่ได้: "+((e&&e.message)||e),4000); return; }
+  var cv=RPT.cv; if(!cv) return;
+  cv.addEventListener("webglcontextlost",function(){ if(RPT.cv!==cv) return;   // ปิดหน้าต่างเอง (loseContext) ไม่นับ
+    rvLS("realCrash",{t:Date.now(),src:"photo",gpu:REAL.gpu}); RPT.run=false;
+    rptStatus("⚠ การ์ดจอรีเซ็ต — หยุดคำนวณแล้ว ปิดหน้าต่างนี้ได้เลย (ครั้งหน้าจะไม่มีปุ่มนี้ในเครื่องนี้)",true); },false); }
+function rvBarSync(){ var el=$("vwRealBar"); if(!el) return;
+  [].forEach.call(el.querySelectorAll("[data-p]"),function(b){ b.classList.toggle("on",b.dataset.p===REAL.preset); });
+  var se=el.querySelector("select"); if(se){ se.value=REAL.q; var o=se.querySelector('option[value="auto"]'); if(o) o.textContent="อัตโนมัติ ("+RV_Q[rvQEff()].label+")"; } }
+/* วางแถบเหนือแถบล่างเสมอ — จอแคบแถบล่างมีสองแถว (แยกประกอบ) / เปิด ⋯ เพิ่มเติม แถบล่างสูงขึ้น · ข้อความแนะนำขึ้นไปเหนือแถบนี้อีกที */
+function rvPlace(){ var el=$("vwRealBar"), bar=$("vwBar"), h=$("vwHint"), z=$("vwZoom"), ex=$("vwExtra");
+  var narrow=!!(window.matchMedia&&matchMedia("(max-width: 759px)").matches);
+  if(!el||!bar||el.style.display==="none"){ if(h) h.style.bottom=""; if(z) z.style.bottom=""; return; }
+  var r=bar.getBoundingClientRect(), bt=Math.max(8,Math.round(innerHeight-r.top+6)); el.style.bottom=bt+"px";
+  /* จอแคบ: แผง ⋯ เพิ่มเติม เด้งทับตำแหน่งเดียวกัน → ซ่อนแถบนี้ระหว่างแผงเปิด · ปุ่มซูม +/− ขยับขึ้นพ้นแถบ */
+  el.style.visibility=(narrow&&ex&&ex.classList.contains("open"))?"hidden":"";
+  var top=bt+el.offsetHeight+8;
+  if(h) h.style.bottom=top+"px";
+  if(z) z.style.bottom=narrow?(top+"px"):""; }
+function rvBar(on){ var el=$("vwRealBar"); document.body.classList.toggle("rvOn",!!on);
+  if(!REAL.placeHooked){ REAL.placeHooked=true; addEventListener("resize",rvPlace);
+    try{ if(window.ResizeObserver) new ResizeObserver(function(){ rvPlace(); }).observe($("vwBar")); }catch(e){}
+    try{ if(window.MutationObserver&&$("vwExtra")) new MutationObserver(function(){ rvPlace(); }).observe($("vwExtra"),{attributes:true,attributeFilter:["class"]}); }catch(e){} }
+  if(!on){ if(el) el.style.display="none"; rvPlace(); return; }
+  if(!el){ el=document.createElement("div"); el.id="vwRealBar"; document.body.appendChild(el); }
+  el.innerHTML='<div class="seg">'+Object.keys(REAL_PRESETS).map(function(k){ var p=REAL_PRESETS[k]; return '<button data-p="'+k+'" title="แสง'+p.label+'">'+p.icon+'<span class="tx"> '+p.label+'</span></button>'; }).join("")+'</div>'
+    +'<select title="คุณภาพภาพ — เครื่องอืดหรือร้อนให้เลือก เบา"><option value="auto">อัตโนมัติ</option><option value="low">เบา</option><option value="mid">กลาง</option><option value="high">สูง</option></select>'
+    +(rvCanPhoto()?'<button class="vbtn pri" data-a="ph" title="คำนวณแสงจริงจากมุมนี้ แล้วบันทึกเป็นรูป (ใช้การ์ดจอเต็มที่ชั่วคราว)">📸 ภาพแสงจริง</button>':'')
+    +'<button class="vbtn" data-a="x" title="กลับมุมมองปกติ">✕</button>';
+  el.onclick=function(e){ var b=e.target.closest&&e.target.closest("button"); if(!b) return;
+    if(b.dataset.p){ REAL.preset=b.dataset.p; rvLS("realPreset",REAL.preset); realBuildRoom(); rvApplyLights(); rvBarSync(); }
+    else if(b.dataset.a==="ph") rvPhoto();
+    else if(b.dataset.a==="x") rvToggle(false); };
+  el.querySelector("select").onchange=function(){ REAL.q=this.value; rvLS("realQ",REAL.q); if(REAL.q!=="auto") rvLS("realCrash",null);   // เลือกเอง = ยอมรับความเสี่ยง ล้างประวัติรีเซ็ต
+    REAL.qEff=rvQEff(); REAL.ft=[]; _realCmpDispose(); rvApplyLights(); rvBar(true); };
+  el.style.display="flex"; rvBarSync(); rvPlace(); }
+function rvToggle(on){
+  if(on==null) on=!REAL.on; if(!!on===REAL.on) return;
+  if(on){
+    if(!renderer||!S.D) return;
+    rvHook();
+    REAL.gpu=rvGpu(); REAL.tier=(window.__snvTier!=null)?+window.__snvTier:rvTier(REAL.gpu); REAL.mob=rvMobile();   // __snvTier = ตัวทดสอบบังคับระดับการ์ดจอ
+    REAL.q=rvLS("realQ")||"auto"; if(!RV_Q[REAL.q]&&REAL.q!=="auto") REAL.q="auto";
+    var pr=rvLS("realPreset"); if(pr&&REAL_PRESETS[pr]) REAL.preset=pr;
+    REAL.qEff=rvQEff(); REAL.ft=[]; REAL.lastF=0; REAL.cmpFail="";
+    REAL.keep={bg:scene.background,fog:scene.fog,env:scene.environment,sh:renderer.shadowMap.enabled,tm:renderer.toneMapping,te:renderer.toneMappingExposure,
+      vis:[hemi,keyL,fillL,rimL].map(function(l){ return !!(l&&l.visible); }),fl:!!(floor&&floor.visible),gr:!!(grid&&grid.visible)};
+    REAL.on=true; REAL.hidL=[]; REAL.shK=[];
+    root.traverse(function(o){
+      if(o.isLine){ if(o.visible){ o.visible=false; REAL.hidL.push(o); } return; }
+      if(o.isMesh&&!(o.userData&&o.userData.led)){ REAL.shK.push([o,o.castShadow,o.receiveShadow]);
+        var m=o.material, tr=Array.isArray(m)?m.some(function(x){ return x&&x.transparent; }):!!(m&&m.transparent); o.castShadow=!tr; o.receiveShadow=true; } });
+    renderer.shadowMap.enabled=true;
+    if(!realBuildRoom()){ rvToggle(false); hint("หาขนาดตู้ไม่ได้ จึงสร้างห้องไม่ได้"); return; }
+    rvApplyLights(); _realMatsDirty(); rvBar(true);
+    var why=rvLS("realCrash")?"ครั้งก่อนการ์ดจอเครื่องนี้รีเซ็ต — เปิดแบบเบาให้":(REAL.qEff==="low"?"เปิดแบบเบา (เหมาะกับเครื่องนี้)":"");
+    hint("✨ โหมดสมจริง — ลากหมุนดูได้ ผนังด้านกล้องหายเอง"+(why?" · "+why:""),4200);
+  } else {
+    REAL.on=false; rvBar(false);
+    try{ rptClose(); }catch(e){}
+    realDropLights(); realDropRoom(); _realCmpDispose();
+    if(REAL.env){ try{ REAL.env.dispose(); }catch(e){} REAL.env=null; }
+    var K=REAL.keep||{};
+    scene.environment=K.env||null; scene.fog=K.fog||null; if(K.bg) scene.background=K.bg;
+    [hemi,keyL,fillL,rimL].forEach(function(l,i){ if(l) l.visible=K.vis?K.vis[i]:true; });
+    if(floor) floor.visible=!!K.fl; if(grid) grid.visible=!!K.gr;
+    REAL.hidL.forEach(function(o){ o.visible=true; }); REAL.hidL=[];
+    REAL.shK.forEach(function(r){ r[0].castShadow=r[1]; r[0].receiveShadow=r[2]; }); REAL.shK=[];
+    renderer.shadowMap.enabled=(K.sh!=null)?K.sh:true;
+    if(renderer.toneMapping!==(K.tm||THREE.NoToneMapping)) renderer.toneMapping=K.tm||THREE.NoToneMapping;
+    renderer.toneMappingExposure=(K.te!=null)?K.te:1;
+    _realMatsDirty(); REAL.keep=null; REAL.room=null;
+  }
+  var b=$("vwReal"); if(b) b.classList.toggle("on",REAL.on);
+  try{ renderer.shadowMap.needsUpdate=true; }catch(e){} S.dirty=true; }
+/* เก็บฉากสำหรับภาพแสงจริง (แบบเดียวกับโปรแกรมหลัก — ต่างแค่ของที่ข้าม: กรอบเลือก · พื้นเงา · ตาราง · เส้นวัด · เส้นขนาด · ม่านแสง LED) */
+function rptCollect(){
+  scene.updateMatrixWorld(true);
+  var P=REAL_PRESETS[REAL.preset]||REAL_PRESETS.day;
+  var skip=[selBox,floor,grid,measLine,DIM&&DIM.g,CD&&CD.g].filter(Boolean).concat(measDots||[]);
+  var mats=[], mIdx={}, imgs=[], iIdx=[], cap=1<<15, n=0;
+  var pos=new Float32Array(cap*9), nrm=new Float32Array(cap*9), uvs=new Float32Array(cap*6), mid=new Int32Array(cap), flg=new Uint8Array(cap);
+  function grow(){ cap*=2; function g(A,k){ var B=new A.constructor(cap*k); B.set(A); return B; } pos=g(pos,9); nrm=g(nrm,9); uvs=g(uvs,6); mid=g(mid,1); flg=g(flg,1); }
+  function imgLayer(img){ for(var i=0;i<iIdx.length;i++) if(iIdx[i][0]===img) return iIdx[i][1];
+    var ok=imgs.length<48&&(img.width||img.naturalWidth), li=ok?imgs.length:-1; if(ok) imgs.push(img); iIdx.push([img,li]); return li; }
+  var bb=new THREE.Box3(), bs=new THREE.Vector3();
+  function matOf(m,o){
+    var u=o.userData||{};
+    if(!m||m.visible===false||m.colorWrite===false||u._rptSkip||m.isShadowMaterial) return -1;
+    var led=!!u.led;
+    if(led){ if(!m.isMeshBasicMaterial) return -1; bb.setFromObject(o); bb.getSize(bs); var a=[bs.x,bs.y,bs.z].sort(function(p,q){ return p-q; }); if(a[1]>40) return -1; }   // ม่านแสง = ไม่ใช่แหล่งไฟ
+    var key=m.uuid+(led?"|L":"")+(u._rptEmit!=null?"|E"+u._rptEmit:"");
+    if(mIdx[key]!=null) return mIdx[key];
+    var e=null;
+    if(m.isMeshStandardMaterial||m.isMeshPhongMaterial||m.isMeshLambertMaterial){
+      var c=m.color||new THREE.Color(1,1,1);
+      e={c:[c.r,c.g,c.b],rough:m.isMeshStandardMaterial?m.roughness:(m.isMeshPhongMaterial?Math.max(.15,1-(m.shininess||30)/120):1),
+        metal:m.isMeshStandardMaterial?m.metalness:0,op:m.transparent?Math.max(0,Math.min(1,m.opacity)):1,layer:-1,wrap:0,uv:[1,0,0,0,1,0],em:[0,0,0]};
+      if(m.emissive&&(m.emissiveIntensity||0)>0){ var k0=m.emissiveIntensity; e.em=[m.emissive.r*k0,m.emissive.g*k0,m.emissive.b*k0]; }
+      if(u._rptEmit!=null&&isFinite(+u._rptEmit)){ var k1=+u._rptEmit, ec=u._rptEmitCol||[1,.86,.68]; e.em=[ec[0]*k1,ec[1]*k1,ec[2]*k1]; e.ek=+u._rptEmitK||0; }
+      var t=m.map;
+      if(t&&t.image){ var li=imgLayer(t.image); if(li>=0){ e.layer=li; t.updateMatrix(); var el=t.matrix.elements;
+        e.uv=[el[0],el[3],el[6],el[1],el[4],el[7]]; e.wrap=(t.wrapS===THREE.MirroredRepeatWrapping)?1:(t.wrapS===THREE.RepeatWrapping?0:2); } }
+    } else if(m.isMeshBasicMaterial&&led){ var cc=m.color, kl=P.pt.ledL;
+      e={c:[cc.r,cc.g,cc.b],rough:1,metal:0,op:1,layer:-1,wrap:0,uv:[1,0,0,0,1,0],em:[cc.r*kl,cc.g*kl,cc.b*kl]}; }
+    else return -1;
+    if(e.op<.04) return -1;
+    var i=mats.length; mats.push(e); mIdx[key]=i; return i; }
+  var v=new THREE.Vector3(), nv=new THREE.Vector3(), NM=new THREE.Matrix3(), ea=new THREE.Vector3(), eb=new THREE.Vector3();
+  function addMesh(o){
+    var geo=o.geometry; if(!geo||!geo.attributes||!geo.attributes.position) return;
+    var camVis=o.layers.test(camera.layers), hidW=!camVis&&o.layers.test(REAL_L2); if(!camVis&&!hidW) return;
+    var pa=geo.attributes.position, na=geo.attributes.normal, ua=geo.attributes.uv, ix=geo.index, M=o.matrixWorld; NM.getNormalMatrix(M);
+    var mm=Array.isArray(o.material)?o.material:null, total=ix?ix.count:pa.count;
+    var groups=(mm&&geo.groups&&geo.groups.length)?geo.groups:[{start:0,count:total,materialIndex:0}];
+    groups.forEach(function(gr){
+      var mi=matOf(mm?mm[gr.materialIndex]:o.material,o); if(mi<0) return;
+      var tr=mats[mi].op<.99, en=Math.min(gr.start+gr.count,total);
+      for(var k=gr.start;k+2<en;k+=3){
+        if(n>=cap) grow();
+        var b9=n*9, b6=n*6;
+        for(var j=0;j<3;j++){ var vi=ix?ix.getX(k+j):(k+j);
+          v.fromBufferAttribute(pa,vi).applyMatrix4(M); pos[b9+j*3]=v.x; pos[b9+j*3+1]=v.y; pos[b9+j*3+2]=v.z;
+          if(na){ nv.fromBufferAttribute(na,vi).applyMatrix3(NM).normalize(); } else nv.set(0,0,0);
+          nrm[b9+j*3]=nv.x; nrm[b9+j*3+1]=nv.y; nrm[b9+j*3+2]=nv.z;
+          uvs[b6+j*2]=ua?ua.getX(vi):0; uvs[b6+j*2+1]=ua?ua.getY(vi):0; }
+        ea.set(pos[b9+3]-pos[b9],pos[b9+4]-pos[b9+1],pos[b9+5]-pos[b9+2]); eb.set(pos[b9+6]-pos[b9],pos[b9+7]-pos[b9+1],pos[b9+8]-pos[b9+2]);
+        if(ea.cross(eb).lengthSq()<1e-12) continue;
+        mid[n]=mi; flg[n]=(hidW?1:0)|(tr?2:0); n++; } }); }
+  function walk(o){ if(!o.visible||skip.indexOf(o)>=0) return; if(o.isMesh&&!o.isSprite) addMesh(o); for(var i=0;i<o.children.length;i++) walk(o.children[i]); }
+  walk(scene);
+  return {n:n,pos:pos,nrm:nrm,uvs:uvs,mid:mid,flg:flg,mats:mats,imgs:imgs}; }
+
 function loop(){ requestAnimationFrame(loop);
   var now=performance.now();
   if(S.pulse){ if(now<S.pulse){ var k=.5+.5*Math.sin(now/130); S.hiMats.forEach(function(m){ if(m.emissive) m.emissiveIntensity=.45+.75*k; }); S.dirty=true; }
@@ -1042,7 +1743,8 @@ function loop(){ requestAnimationFrame(loop);
   if(!S.dirty) return; S.dirty=false;
   if(measDots.length){ var s=Math.max(orbit.r/260,2); measDots.forEach(function(d){ d.scale.set(s,s,s); }); }
   if(CD.on) cdCheck();                                                     // v1.457: ด้านที่หันหากล้อง/ตู้ที่มองเห็นเปลี่ยน → วาดเส้นขนาดตู้ใหม่
-  renderer.render(scene,camera);
+  if(REAL.on){ try{ rvRender(); }catch(e){ console.error("rvRender:",e); try{ renderer.setRenderTarget(null); }catch(_){} renderer.render(scene,camera); } }   // v1.464: ✨ โหมดสมจริง
+  else renderer.render(scene,camera);
   if(DIM.lab.length) dimTick(); if(S.pin) pinTick(); if(CD.lab.length) cdTick(); }
 
 function start(){
@@ -1073,7 +1775,8 @@ function start(){
       if(!sc) hint("ลากเพื่อหมุน · สองนิ้วเพื่อซูม/เลื่อน · แตะชิ้นเพื่อดูรายละเอียด",3200); }); })
   .catch(function(e){ console.error(e); status(String((e&&e.message)||e),true); }); }
 
-try{ window.__snv={S:S,DIM:DIM,scene:function(){ return scene; },camera:function(){ return camera; },pp:function(){ return PPS; },ppOpen:function(id){ paperOpen(id); }}; }catch(e){}   // v1.359: + สถานะ/ตัวเปิดหน้าแบบผลิต (ให้ตัวทดสอบเรียก)   // v1.346: ให้ตัวทดสอบอ่านสถานะได้ (อ่านอย่างเดียว)
+try{ window.__snv={S:S,DIM:DIM,scene:function(){ return scene; },camera:function(){ return camera; },pp:function(){ return PPS; },ppOpen:function(id){ paperOpen(id); },
+  real:function(){ return REAL; },rpt:function(){ return RPT; },rv:function(on){ rvToggle(on); },rvPhoto:function(){ rvPhoto(); },orbit:orbit,camApply:function(){ camApply(); },renderer:function(){ return renderer; }}; }catch(e){}   // v1.464: + โหมดสมจริง (ให้ตัวทดสอบเรียก)   // v1.359: + สถานะ/ตัวเปิดหน้าแบบผลิต (ให้ตัวทดสอบเรียก)   // v1.346: ให้ตัวทดสอบอ่านสถานะได้ (อ่านอย่างเดียว)
 if(document.readyState==="loading") document.addEventListener("DOMContentLoaded",start); else start();
 })();
 </script></body></html>
