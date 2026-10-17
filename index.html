@@ -3250,7 +3250,7 @@
    ===================================================================== */
 /* ---- APP_META: แหล่งความจริงเดียวของเวอร์ชัน (ดูได้จาก console / คลิกชื่อแอป) ---- */
 const APP_META={
-  name:"StarNexus", version:"1.472", build:"2026-10-16/tandem3d",
+  name:"StarNexus", version:"1.473", build:"2026-10-16/under3d",
   file:"StarNexus.html", basedOn:"Furnitech_V3.html (v3.11)",
   /* ───────── เริ่มนับเวอร์ชันใหม่ที่ 1.001 (21/08/2026) ─────────
      ของเดิมนับมาถึง 42.1 แล้ววิ่งเป็นทศนิยมสองชั้นซึ่งอ่านลำดับยาก
@@ -3258,6 +3258,7 @@ const APP_META={
      ประวัติเก่าเก็บไว้ทั้งหมดตามเลขเดิม ไม่ไล่เขียนใหม่ เพราะเลขในนั้นถูกอ้างถึงไปแล้ว
      รายการที่อยู่ใต้ 1.001 ลงไปจึงเป็นเลขชุดเก่า อ่านต่อกันได้ตามวันที่ */
   changelog:[
+    ["1.473","2026-10-16","FEAT รางรับใต้ 3D ใต้ลิ้นชักกล่องไม้ (ผู้ใช้ 21:56: “พอจะใส่รางรับใต้ของตัว KT40 เอาตัวรางมาใส่ได้ไหมครับ ในชุด INT01 จะได้สมจริง”) — ลิ้นชักกล่องไม้ที่ใช้รางรับใต้ (HAF-U / BLUM-U / railU) เดิมไม่มีรางในฉาก 3D · ตอนนี้วางตัวราง Blum TANDEM 560H ชุดเดียวกับ K40 (AL3_BLUM) ใต้แผ่นข้างกล่องทั้งสองข้าง (under3DMeshes · under3DGeos): แผ่นยึดชิดผิวในแผ่นข้างตู้ · กล่องนั่งบนราง (รูอ้างอิงสูงจากก้นกล่อง 9 แบบ K40 · รูที่เจาะจริงอยู่ในช่วง 9±3 ใช้ความสูงรูจริง) · ตามลึกตรงรูหน้าสุดที่เจาะจริง ส่วนหลังยืด/หดให้ท้ายรางชนท้ายกล่อง · เปิดลิ้นชักแล้วรางชักออกเป็นชั้น (_slideK) · ภาพอย่างเดียว รูเจาะ/MPR ไม่เปลี่ยน · ค่าตั้ง under3D · ปิด SN_OFF.under3D"],
     ["1.472","2026-10-16","FEAT รางรับใต้ 3D จากไฟล์ผู้ผลิต (ผู้ใช้ 16:58 แนบ .dae Blum TANDEM 560H: “เอาตัวรางไปรับใต้ แผงเหล็กได้ครับ ผมว่าระยะรู อาจจะตรงกับ 3D เลย”) — ลิ้นชักแผงเหล็กใช้ราง 560H + ตัวล็อก T51 จริง (ฝังในไฟล์ ~200 KB) วางรูอ้างอิงของรางตรงรูที่เจาะแผ่นข้างตู้ (ขอบล่างหน้าบาน + ยกกล่อง + drillH · รูแรกจากหน้าตู้) · ท่อนเลื่อนเป็นชั้นเหมือนเดิม · ยาวอื่นยืดส่วนหลัง · ALTO ยกกล่องเพิ่มเริ่ม 28 เท่า K40 · ปิดได้ที่ตั้งค่า หรือ SN_OFF.altoBlum"],
     ["1.471","2026-10-16","FIX กล่องลิ้นชักแผงเหล็กยกขึ้นให้ตรงรูเจาะ (ผู้ใช้ 16:37: “ปรับ ตัวกล่องตามขึ้นไปด้วยครับ”) — ตัวกล่อง (พื้น/หลัง/แผงเหล็ก) ยกเพิ่มตามค่า ‘ยกกล่องเพิ่ม’ (K40 เริ่ม 28 · ALTO 0 · ระบบรางช่อง boxUp ก่อน) แต่รูเจาะทุกชุดคิดจากจุดเดิม ไฟล์เจาะไม่เปลี่ยน · งานเก่าปรับความสูงชิ้นกล่องให้เองตอนวาด · ปิด: SN_OFF.altoBoxUp"],
     ["1.470","2026-10-16","UI ราวเหลี่ยมลิ้นชักแผงเหล็ก 3D สูงตามรูเจาะที่หลังหน้าบาน (ผู้ใช้ 16:30: “ขยับ 3D ขึ้นอีกได้ไหมครับ แขน3D ดูไม่ตรงกับระยะรูเจาะ”) — เดิมศูนย์ราว = ขอบบนแผ่นหลัง − 6 (งาน 55: 158) ไม่ตรงรูยึดฉากหน้า (182.5/189.5) · ตอนนี้ใช้กลางกลุ่มรูที่ระบบรางเจาะหลังหน้าบานซึ่งสูงเกินแผงข้าง · ฉากหน้าครอบรูยึด · ฉากท้ายยืดถึงราว · ไม่มีรู = แบบเดิม · ภาพอย่างเดียว"],
@@ -3886,7 +3887,7 @@ const DEF_SETTINGS={ frontSetMax:6, dowelD:8, dowelDepth:28, dowelMateDepth:12, 
   railAutoGap:500,   // v1.292: คานขวางในโครง ห่างกันไม่เกินกี่ มม. ก่อนต้องเพิ่มคาน
   ledStripGapMax:40, ledStripMaxL:5000,   // v1.294: เส้นไฟข้ามรอยที่ชั้นตัดรางได้ไม่เกินกี่ มม. · ยาวสุดต่อเส้น (ม้วน)
   drawerBotThick:9, drawerBotLift:11, drawerBotOver:4.5, drawerBotClear:0.5, drawerBotMacroOn:true, drawerBotPipeNotch:false, drawerBotPipeW:40, drawerBotPipeH:25,
-  mfMark:true, mfMarkColor:"#ff8a00", hingeMark:true, hingeMarkColor:"#0a84ff", hinge3D:true, hingeFinish:"nickel", slide3D:true, alto3D:true, alto3DRail:true, alto3DCross:2, k40BoxUp:28, altoBoxUp:28, alto3DBlum:true, mfBoltD:8, mfBoltDepth:28, mfCamD:15, mfCamDepth:13, mfCamOffset:34, mfMateD:5, mfMateDepth:12, mfFixFromFace:8.1, mfCenterMax:16, mfName:"Minifix", mfCode:"MINIFIX",
+  mfMark:true, mfMarkColor:"#ff8a00", hingeMark:true, hingeMarkColor:"#0a84ff", hinge3D:true, hingeFinish:"nickel", slide3D:true, alto3D:true, alto3DRail:true, alto3DCross:2, k40BoxUp:28, altoBoxUp:28, alto3DBlum:true, under3D:true, mfBoltD:8, mfBoltDepth:28, mfCamD:15, mfCamDepth:13, mfCamOffset:34, mfMateD:5, mfMateDepth:12, mfFixFromFace:8.1, mfCenterMax:16, mfName:"Minifix", mfCode:"MINIFIX",
   ledMinRun:60,         // v22.8: ท่อนรางที่สั้นกว่านี้ = เศษ ไม่ต้องออก
   hingeShelfClear:96,   // v7.29: ระยะปลอดภัย ศูนย์ถ้วยบานพับ -> ผิวชั้น (มม.)
   hingeAvoidRail:true,  // v22.3: ให้บานพับหลบคานด้วย ไม่ใช่แค่ชั้น
@@ -8052,6 +8053,85 @@ function alto3DMeshes(b){
     m4.decompose(pos,q,sc); mm.position.copy(pos); mm.quaternion.copy(q); mm.scale.copy(sc);   // ข้างซ้าย = สะท้อน (scale ลบ · วัสดุสองหน้า)
     mm.userData.id=b.id; if(P.r) mm.userData._slideK=P.k; if(P.pick) mm.userData._altoPick=true;
     mm.castShadow=true; mm.receiveShadow=true;
+    out.push(mm); });
+  return out; }
+
+/* ═════════ v1.473: รางรับใต้ 3D ใต้ลิ้นชักกล่องไม้ (ชุด INT01 · HAF-U / BLUM-U) — ใช้ตัวรางไฟล์ Blum TANDEM 560H ชุดเดียวกับ K40 ═════════
+   ผู้ใช้ 16/10 21:56: "พอจะใส่รางรับใต้ของตัว KT40 เอาตัวรางมาใส่ได้ไหมครับ ในชุด INT01 จะได้สมจริง"
+   เดิม: ลิ้นชักกล่องไม้ที่ใช้รางรับใต้ไม่มีรางในฉาก 3D เลย — v1.461 วาดเฉพาะรางลูกปืนรับข้าง · v1.472 ราง Blum ใส่เฉพาะแผงเหล็ก ALTO/K40
+         ใต้กล่องโล่ง เปิดลิ้นชักแล้วกล่องลอยออกมาเฉย ๆ ไม่มีอะไรรับ
+   ตอนนี้: วางตัวราง Blum (AL3_BLUM: ตัวนอก/ตัวกลาง/ตัวใน/ตัวล็อก T51/กล่องปิดนุ่มนวล) ใต้แผ่นข้างกล่องทั้งสองข้าง
+     • ข้าง: แผ่นยึดรางชิดผิวในแผ่นข้างตู้ที่ติดกล่อง (หาไม่เจอ = underInner − หนาข้างกล่อง)
+     • สูง: กล่องนั่งบนราง — รูอ้างอิงในไฟล์ (รูแรกแถวบน · ผิวบนตัวใน −9.8) สูงจากก้นกล่อง 9 แบบเดียวกับ K40 (ยกกล่อง 28 · drillH 37)
+            รูที่เจาะจริงอยู่ในช่วง 9 ± 3 = ใช้ความสูงรูจริง (ภาพตรงรูเป๊ะ) · ไกลกว่านั้น (เช่น HAF-U 23) = ยึดก้นกล่องไว้ ไม่ให้รางทะลุขึ้นไปในกล่อง
+     • ตามลึก: รูอ้างอิงตรงรูหน้าสุดที่เจาะจริงบนแผ่นข้างตู้ (ไม่มีรู = 37 จากหน้าแผ่นข้างตู้)
+               ส่วนหน้า (z ≥ −60) คงเดิม · ส่วนหลังยืด/หดให้ท้ายรางอยู่ท้ายกล่อง −1 (ขอเกี่ยวท้ายเข้าแผ่นหลังกล่อง) — สูตรเดียวกับ v1.472
+   เปิดลิ้นชัก: ใช้สัดส่วน k ของไฟล์ (ตัวนอก 0 · ตัวกลาง ½ · ตัวใน/ตัวล็อก 1) ผ่าน userData._slideK แบบ v1.461 → อนิเมชันเร็วและหน้าดูงานทำงานเหมือนเดิม
+   ภาพอย่างเดียว: ไม่แตะขนาดกล่อง รูเจาะ ไฟล์ MPR ใบอุปกรณ์ · ไม่ใส่ใน meshes (ไม่บังการคลิก/ยิงหารูคู่) · มุมมองแยกประกอบไม่วาด
+   ปิด: ตั้งค่า → รางลิ้นชัก → "แสดงรางรับใต้ใต้ลิ้นชักกล่องไม้เป็นรูป 3D" หรือ SN_OFF.under3D=1 */
+const _bu3Geo=new Map();
+function under3DOn(){ return !snOff("under3D")&&settings.under3D!==false; }
+/* ชุดรูปทรงราง Blum ในแกน u (ตามยาว · บวก = ไปหน้า) · v (ตั้ง) · w (จากผิวแผ่นข้างตู้เข้าหากล่อง) · จุดศูนย์ = รูอ้างอิง · s = สัดส่วนยืดส่วนหลัง */
+function under3DGeos(s){
+  const key=Math.round(s*1000), hit=_bu3Geo.get(key); if(hit) return hit;
+  const B=_al3BlumParts(); if(!B||!B.length) return null;
+  const zs=z=>(z>=-60)?z:(-60+(z+60)*s), parts=[];
+  B.forEach(d=>{ const n=d.pos.length/3, P=new Float32Array(n*3), N=new Float32Array(n*3);
+    for(let i=0;i<n;i++){ P[3*i]=zs(d.pos[3*i+2]); P[3*i+1]=d.pos[3*i+1]; P[3*i+2]=-d.pos[3*i];        // (x,y,z) ไฟล์ → (u,v,w) แบบ v1.472 (หมุนรอบแกนตั้ง 90° ไม่สะท้อน)
+      N[3*i]=d.nor[3*i+2]; N[3*i+1]=d.nor[3*i+1]; N[3*i+2]=-d.nor[3*i]; }
+    const g=new THREE.BufferGeometry(); g.setAttribute("position",new THREE.BufferAttribute(P,3)); g.setAttribute("normal",new THREE.BufferAttribute(N,3));
+    g.setIndex(new THREE.BufferAttribute(d.idx,1)); g.computeBoundingSphere(); g.userData._keep=true;
+    parts.push({k:d.k, m:d.m, g}); });
+  const R={parts};
+  if(_bu3Geo.size<40) _bu3Geo.set(key,R); else parts.forEach(p=>{ p.g.userData._keep=false; });   // เกินแคช = ให้ตัวล้างฉากคืนหน่วยความจำ
+  return R; }
+/* รางของแผ่นข้างกล่องไม้หนึ่งแผ่น (ชิ้นในมุมมอง b — ลิ้นชักที่ชักออกคือสำเนาที่เลื่อนไป) → เมชของราง · ไม่ใช่รางรับใต้ = [] */
+function under3DMeshes(b){
+  const out=[]; if(!under3DOn()||!b||!b._box||!b._dg||b.orient!=="side"||b._alto) return out;
+  if((+state.explode||0)>0) return out;
+  const ob=(state.boards||[]).find(x=>x&&x.id===b.id)||b;
+  const boxes=(state.boards||[]).filter(x=>x&&x._dg===ob._dg&&x._box&&(x.cabInst||"")===(ob.cabInst||""));
+  if(boxes.some(x=>x._alto)) return out;                                                   // แผงเหล็ก = v1.472 วาดแล้ว
+  const bp=(boxes.find(x=>x._bp)||{})._bp||{}, st=String(bp.slideType||"side");
+  let rsE=null; try{ rsE=drsOfBoxes(boxes); }catch(e){ rsE=null; }
+  if(!(st==="railU"||st==="blumU"||st==="hafeleU"||(rsE&&drsIsUnder(rsE)))) return out;    // รางรับข้าง = v1.461
+  const yw=+ob.yaw||0, th=yw*Math.PI/180, F=new THREE.Vector3(Math.sin(th),0,Math.cos(th)), X=new THREE.Vector3(Math.cos(th),0,-Math.sin(th));
+  const xc=o=>o.x*X.x+o.z*X.z, zc=o=>o.x*F.x+o.z*F.z;
+  const sides=boxes.filter(x=>x.orient==="side"&&!(((+x.yaw||0)-yw)%180)); if(sides.length<2) return out;
+  const xs=sides.map(xc), lo=Math.min.apply(null,xs), hi=Math.max.apply(null,xs), me=xc(ob);
+  const isL=Math.abs(me-lo)<=0.5, isR=Math.abs(me-hi)<=0.5; if(isL===isR) return out;      // แผ่นกลางในกล่อง (ถ้ามี) ไม่มีราง
+  const sg=isL?-1:1, T=+ob.T||16, faceX=me+sg*T/2;                                          // faceX = ผิวนอกข้างกล่อง
+  if(!(+ob.W>=150&&+ob.L>0)) return out;
+  const boxBot=(+ob.y||0)-(+ob.L||0)/2, zF=zc(ob)+(+ob.W||0)/2, zB=zc(ob)-(+ob.W||0)/2;    // ก้นกล่อง · หน้า/ท้ายกล่อง (ท่าปิด)
+  /* แผ่นข้างตู้ที่รางยึด: แผ่นตั้งในตู้เดียวกัน · คลุมก้นกล่อง · ซ้อนช่วงลึกกล่อง ≥ 30% · ผิวห่างข้างกล่อง 0.3–40 ทางนอก (เกณฑ์เดียวกับ v1.461) */
+  let G=null, cab=null, cabD=null;
+  (state.boards||[]).forEach(o=>{ if(!o||o===ob||o.cabInst!==ob.cabInst||o._door||o._box||o._virtual||o._dg||!(+o.T>0)||o.orient!=="side") return;
+    if(((+o.yaw||0)-yw)%180) return;
+    let d; try{ d=worldDims(Object.assign({},o,{yaw:0})); }catch(e){ return; }
+    if(boxBot<o.y-d[1]/2+5||boxBot>o.y+d[1]/2-5) return;
+    const oz=zc(o); if(Math.min(zF,oz+d[2]/2)-Math.max(zB,oz-d[2]/2)<(zF-zB)*0.3) return;
+    const g=((xc(o)-sg*d[0]/2)-faceX)*sg; if(!(g>0.3&&g<40)) return;
+    if(G==null||g<G){ G=g; cab=o; cabD=d; } });
+  if(G==null) G=Math.max((+bp.underInner||+settings.underSideInner||21)-T,0.5);
+  const cabFace=faceX+sg*G;                                                                  // ผิวในแผ่นข้างตู้ (w = 0 ของราง)
+  /* รูหน้าสุดที่ระบบรางเจาะให้ลิ้นชักลูกนี้ (src = กลุ่มลิ้นชัก) บนแผ่นข้างตู้นั้น */
+  let zh=null, hv=null;
+  if(cab){ try{ const OM=orientMatrix(cab.orient,cab.yaw), c0=new THREE.Vector3(+cab.x||0,+cab.y||0,+cab.z||0);
+    (cab.holes||[]).forEach(h=>{ if(!h||!h.slide||String(h.src||"")!==String(ob._dg)) return;
+      const p=new THREE.Vector3(+h.x||0,+h.y||0,0).applyMatrix4(OM).add(c0), z=zc(p), v=p.y-boxBot;
+      if(zh==null||z>zh+0.5||(Math.abs(z-zh)<=0.5&&v>hv)){ zh=z; hv=v; } }); }catch(e){ zh=null; hv=null; } }
+  if(zh==null) zh=(cab?(zc(cab)+cabD[2]/2):zF)-37;
+  const vRef=(hv!=null&&Math.abs(hv-9)<=3)?hv:9;                                            // ตรงรู Blum (9) = ใช้รูจริง · ไม่ใช่ = กล่องนั่งบนราง
+  const s=((zh-zB-1)-60)/402; if(!(s>=0.2)) return out;                                      // ท้ายรางชนท้ายกล่อง (กล่องสั้นเกิน = ไม่วาด)
+  const geos=under3DGeos(Math.min(s,3)); if(!geos) return out;
+  const so=Math.max(((+b.x||0)-(+ob.x||0))*F.x+((+b.z||0)-(+ob.z||0))*F.z,0);               // ระยะที่ลิ้นชักชักออก (มุมมองเปิดบาน)
+  const W=X.clone().multiplyScalar(-sg), M0=new THREE.Matrix4().makeBasis(F,new THREE.Vector3(0,1,0),W);   // ข้างซ้าย = สะท้อน (scale ลบ · วัสดุสองหน้า)
+  const O=X.clone().multiplyScalar(cabFace).add(F.clone().multiplyScalar(zh)); O.y=boxBot+vRef;
+  const pos=new THREE.Vector3(), q=new THREE.Quaternion(), sc=new THREE.Vector3();
+  geos.parts.forEach(P=>{ const m4=M0.clone().setPosition(O.clone().addScaledVector(F,P.k*so));
+    const mm=new THREE.Mesh(P.g,_al3Mat(P.m));
+    m4.decompose(pos,q,sc); mm.position.copy(pos); mm.quaternion.copy(q); mm.scale.copy(sc);
+    mm.userData.id=b.id; mm.userData._slideK=P.k; mm.castShadow=true; mm.receiveShadow=true;
     out.push(mm); });
   return out; }
 
@@ -19153,6 +19233,7 @@ function render3D(refit){
         const gm=buildGrooveMesh(b,g);gm.position.set(b.x,b.y,b.z);gm.userData.id=b.id;root.add(gm);meshes.push({mesh:gm,id:b.id,d,groove:true});});
       shoeTiltWrap(b,buildConnectorMeshes(b)).forEach(cm=>{root.add(cm);meshes.push({mesh:cm,id:b.id,d,connector:true});});   // v1.423: ชิ้นเอียงหมุนตาม
       if(b._box&&b._dg&&b.orient==="side"){ try{ slide3DMeshes(b).forEach(sm=>root.add(sm)); }catch(e){ console.error("slide3D:",e); } }   // v1.461: รางลูกปืนรับข้าง 3D (โชว์อย่างเดียว ไม่ใส่ meshes)
+      if(b._box&&b._dg&&b.orient==="side"){ try{ under3DMeshes(b).forEach(um=>root.add(um)); }catch(e){ console.error("under3D:",e); } }   // v1.473: รางรับใต้ Blum 3D ใต้ลิ้นชักกล่องไม้ (โชว์อย่างเดียว)
       shoeTiltWrap(b,buildBlindHoleMeshes(b)).forEach(hm=>root.add(hm));   // รูตัน (โชว์อย่างเดียว ไม่ raycast)
       buildPocketMeshes(b).forEach(pm=>root.add(pm));      // Pocket (โชว์อย่างเดียว)
       if(!_gFillOwn.has(b.id)){ try{ const gm2=buildDoorGlassMesh(b); if(gm2) root.add(gm2); }catch(e){ console.error("doorGlass3D:",e); } }   // v1.283: กระจกในบานกัดทะลุ (ทั้งโหมดประหยัดและไม่ประหยัด)
@@ -27387,6 +27468,7 @@ function boardRole(b){
      SN_OFF.alto3DCross=1 ลิ้นชักแผงเหล็ก 3D ไม่วาดราวขวาง/ข้อต่อตัว T (v1.467)
      SN_OFF.altoBoxUp=1   กล่องแผงเหล็กอยู่ที่ "ยกกล่อง" เดิม ไม่บวกยกกล่องเพิ่ม (v1.471)
      SN_OFF.altoBlum=1    ลิ้นชักแผงเหล็ก 3D ใช้รางวาดเองแบบง่าย แทนไฟล์ Blum TANDEM 560H (v1.472)
+     SN_OFF.under3D=1     ลิ้นชักกล่องไม้ที่ใช้รางรับใต้ ไม่วาดราง Blum TANDEM 3D ใต้กล่อง (โล่งแบบเดิม) (v1.473)
      SN_OFF.shoeWGrain=1  ชิ้นแปะหน้า/หลังของชั้นรองเท้าไม้ ลายตามกติกาแผ่นหลัง (ลายตั้ง) แบบเดิม (v1.452)
      SN_OFF.shoeWPart=1   ชั้นรองเท้าไม้ที่ใส่ใหม่ไม่ตั้ง Part ให้ (เว้นว่างแบบเดิม) (v1.452)
      SN_OFF.skinTrim=1    ชิ้นตั้งที่จมเข้าทอป/พื้นนอกเท่าผิวแผ่น ไม่ตัดให้ชนผิว (แผ่นข้างใต้ทอปทับข้างยาวเกินผิวทอปแบบเดิม) (v1.451)
@@ -32694,6 +32776,8 @@ function renderSettings(){
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">${num("slideRailFromBot","รางรับข้าง: สูงศูนย์รางจากล่างกล่อง (มม. · 0=กลางกล่อง)")}<div></div></div>
     <!-- ───────── v1.461: รางลูกปืนรับข้าง 3D ───────── -->
     <label style="display:flex;align-items:center;gap:8px;font-size:13px;cursor:pointer;margin-top:6px"><input type="checkbox" id="setSlide3D" ${settings.slide3D!==false?"checked":""}> แสดงรางลูกปืนรับข้างเป็นรูป 3D จริง (ราง 3 ท่อน สูง 45 · ลูกปืน · เปิดลิ้นชักแล้วชักออกเป็นชั้น · สีตาม “สีบานพับ 3D”) — ไม่มีผลกับระยะเจาะ/ไฟล์ส่งออก</label>
+    <!-- ───────── v1.473: รางรับใต้ 3D ใต้ลิ้นชักกล่องไม้ ───────── -->
+    <label style="display:flex;align-items:center;gap:8px;font-size:13px;cursor:pointer;margin-top:6px"><input type="checkbox" id="setUnder3D" ${settings.under3D!==false?"checked":""}> แสดงรางรับใต้ใต้ลิ้นชักกล่องไม้เป็นรูป 3D (ตัวราง Blum TANDEM 560H ชุดเดียวกับ K40 · กล่องนั่งบนราง · เปิดลิ้นชักแล้วรางชักออกเป็นชั้น) — ไม่มีผลกับระยะเจาะ/ไฟล์ส่งออก</label>
     <!-- ───────── v1.466: ลิ้นชักแผงข้างเหล็ก ALTO/K40 3D ───────── -->
     <label style="display:flex;align-items:center;gap:8px;font-size:13px;cursor:pointer;margin-top:6px"><input type="checkbox" id="setAlto3D" ${settings.alto3D!==false?"checked":""}> แสดงลิ้นชักแผงเหล็ก ALTO/K40 เป็นรูป 3D จริง (แผงข้าง 13 มม. · รางซ่อนใต้ 3 ท่อน · คลิปล็อกแดง · เปิดลิ้นชักแล้วรางชักออกเป็นชั้น · ไม่ติ๊ก = กล่องเขียวโปร่งแบบเดิม) (v1.466)</label>
     <label style="display:flex;align-items:center;gap:8px;font-size:13px;cursor:pointer;margin:2px 0 0 26px"><input type="checkbox" id="setAlto3DRail" ${settings.alto3DRail!==false?"checked":""}> ราวเหลี่ยมด้านข้าง เมื่อแผ่นหลังสูงกว่าแผงข้างตั้งแต่ 30 มม. (เช่น แผง 80 หลัง 148)</label>
@@ -33197,6 +33281,7 @@ function renderSettings(){
     { const h3=body.querySelector("#setHinge3D"); if(h3)settings.hinge3D=h3.checked; }     // v1.454: บานพับ 3D จริง
     { const hf=body.querySelector("#setHingeFinish"); if(hf)settings.hingeFinish=hf.value||"nickel"; }   // v1.456: สีบานพับ 3D
     { const s3=body.querySelector("#setSlide3D"); if(s3)settings.slide3D=s3.checked; }     // v1.461: รางลูกปืนรับข้าง 3D
+    { const u3=body.querySelector("#setUnder3D"); if(u3)settings.under3D=u3.checked; }     // v1.473: รางรับใต้ 3D ใต้กล่องไม้
     { const a3=body.querySelector("#setAlto3D"); if(a3)settings.alto3D=a3.checked; const a4=body.querySelector("#setAlto3DRail"); if(a4)settings.alto3DRail=a4.checked; const a5=body.querySelector("#setAlto3DBlum"); if(a5)settings.alto3DBlum=a5.checked; }   // v1.466: ลิ้นชักแผงเหล็ก 3D
     { const px=body.querySelector("#setPullXmlOn"); if(px)settings.pullXmlOn=px.checked;        // v9.71
       const p3=body.querySelector("#setPull3D"); if(p3)settings.pull3D=p3.checked; }
