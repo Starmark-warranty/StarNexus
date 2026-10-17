@@ -3250,7 +3250,7 @@
    ===================================================================== */
 /* ---- APP_META: แหล่งความจริงเดียวของเวอร์ชัน (ดูได้จาก console / คลิกชื่อแอป) ---- */
 const APP_META={
-  name:"StarNexus", version:"1.473", build:"2026-10-16/under3d",
+  name:"StarNexus", version:"1.474", build:"2026-10-17/undertravel",
   file:"StarNexus.html", basedOn:"Furnitech_V3.html (v3.11)",
   /* ───────── เริ่มนับเวอร์ชันใหม่ที่ 1.001 (21/08/2026) ─────────
      ของเดิมนับมาถึง 42.1 แล้ววิ่งเป็นทศนิยมสองชั้นซึ่งอ่านลำดับยาก
@@ -3258,6 +3258,7 @@ const APP_META={
      ประวัติเก่าเก็บไว้ทั้งหมดตามเลขเดิม ไม่ไล่เขียนใหม่ เพราะเลขในนั้นถูกอ้างถึงไปแล้ว
      รายการที่อยู่ใต้ 1.001 ลงไปจึงเป็นเลขชุดเก่า อ่านต่อกันได้ตามวันที่ */
   changelog:[
+    ["1.474","2026-10-17","FIX รางรับใต้ 3D กล่องไม้ (ผู้ใช้ 08:16 ส่งภาพ INT01 ลิ้นชักเปิด: “1.ระยะที่เปิดออกมาให้สมจริงหน่อยครับ 2.ขยับรางขึ้นให้ตรงกับรูเก่า ส่วนรูด้านลึกไม่ตรงไม่เป็นไร”) — ① ลิ้นชักรางรับใต้ชักออกเท่าระยะชักรางจริง (รางชักออกเต็มระยะ = ความยาวราง ไม่เกินลึกกล่อง −10 · HAF-U กล่อง 367 = 350) แทนสูตรเดิม 70% ของลึกชุดลิ้นชัก (ได้แค่ ~270) ทั้งตอนวาด (viewBoards) อนิเมชันเร็ว และหน้าดูงาน (_doorTfAt) · ลิ้นชักแบบอื่นใช้สูตรเดิม · ปิด SN_OFF.underTravel ② ความสูงราง = รูที่เจาะจริงเสมอ (เดิมรูห่างจาก 9 เกิน 3 มม. เช่น HAF-U railY 23 → ยึดก้นกล่องไว้ ภาพรางต่ำกว่ารู 14 มม.) · ตามลึกยังตรงรูหน้าสุดเหมือนเดิม · ③ ความลึกชุดลิ้นชัก (ฐานของระยะชัก 70% ของลิ้นชักแบบอื่น) วัดตามทิศหน้าตู้และแยกตามตู้ — เดิมวัดแกน Z ของโลก ตู้หมุน 90°/270° จึงชักตามความกว้าง (INT01 หน้าบาน 720 → ชัก 504 กล่องลึก 367 หลุดพ้นตู้) · ตู้ไม่หมุน/หมุน 180° เท่าเดิม · ปิด SN_OFF.dwrAxis · รูเจาะ/MPR ไม่เปลี่ยน"],
     ["1.473","2026-10-16","FEAT รางรับใต้ 3D ใต้ลิ้นชักกล่องไม้ (ผู้ใช้ 21:56: “พอจะใส่รางรับใต้ของตัว KT40 เอาตัวรางมาใส่ได้ไหมครับ ในชุด INT01 จะได้สมจริง”) — ลิ้นชักกล่องไม้ที่ใช้รางรับใต้ (HAF-U / BLUM-U / railU) เดิมไม่มีรางในฉาก 3D · ตอนนี้วางตัวราง Blum TANDEM 560H ชุดเดียวกับ K40 (AL3_BLUM) ใต้แผ่นข้างกล่องทั้งสองข้าง (under3DMeshes · under3DGeos): แผ่นยึดชิดผิวในแผ่นข้างตู้ · กล่องนั่งบนราง (รูอ้างอิงสูงจากก้นกล่อง 9 แบบ K40 · รูที่เจาะจริงอยู่ในช่วง 9±3 ใช้ความสูงรูจริง) · ตามลึกตรงรูหน้าสุดที่เจาะจริง ส่วนหลังยืด/หดให้ท้ายรางชนท้ายกล่อง · เปิดลิ้นชักแล้วรางชักออกเป็นชั้น (_slideK) · ภาพอย่างเดียว รูเจาะ/MPR ไม่เปลี่ยน · ค่าตั้ง under3D · ปิด SN_OFF.under3D"],
     ["1.472","2026-10-16","FEAT รางรับใต้ 3D จากไฟล์ผู้ผลิต (ผู้ใช้ 16:58 แนบ .dae Blum TANDEM 560H: “เอาตัวรางไปรับใต้ แผงเหล็กได้ครับ ผมว่าระยะรู อาจจะตรงกับ 3D เลย”) — ลิ้นชักแผงเหล็กใช้ราง 560H + ตัวล็อก T51 จริง (ฝังในไฟล์ ~200 KB) วางรูอ้างอิงของรางตรงรูที่เจาะแผ่นข้างตู้ (ขอบล่างหน้าบาน + ยกกล่อง + drillH · รูแรกจากหน้าตู้) · ท่อนเลื่อนเป็นชั้นเหมือนเดิม · ยาวอื่นยืดส่วนหลัง · ALTO ยกกล่องเพิ่มเริ่ม 28 เท่า K40 · ปิดได้ที่ตั้งค่า หรือ SN_OFF.altoBlum"],
     ["1.471","2026-10-16","FIX กล่องลิ้นชักแผงเหล็กยกขึ้นให้ตรงรูเจาะ (ผู้ใช้ 16:37: “ปรับ ตัวกล่องตามขึ้นไปด้วยครับ”) — ตัวกล่อง (พื้น/หลัง/แผงเหล็ก) ยกเพิ่มตามค่า ‘ยกกล่องเพิ่ม’ (K40 เริ่ม 28 · ALTO 0 · ระบบรางช่อง boxUp ก่อน) แต่รูเจาะทุกชุดคิดจากจุดเดิม ไฟล์เจาะไม่เปลี่ยน · งานเก่าปรับความสูงชิ้นกล่องให้เองตอนวาด · ปิด: SN_OFF.altoBoxUp"],
@@ -8121,7 +8122,13 @@ function under3DMeshes(b){
       const p=new THREE.Vector3(+h.x||0,+h.y||0,0).applyMatrix4(OM).add(c0), z=zc(p), v=p.y-boxBot;
       if(zh==null||z>zh+0.5||(Math.abs(z-zh)<=0.5&&v>hv)){ zh=z; hv=v; } }); }catch(e){ zh=null; hv=null; } }
   if(zh==null) zh=(cab?(zc(cab)+cabD[2]/2):zF)-37;
-  const vRef=(hv!=null&&Math.abs(hv-9)<=3)?hv:9;                                            // ตรงรู Blum (9) = ใช้รูจริง · ไม่ใช่ = กล่องนั่งบนราง
+  /* ───────── v1.474: ความสูงราง = รูที่เจาะจริงเสมอ ─────────
+     ผู้ใช้ 17/10 08:16 (ภาพ INT01 รางอยู่ต่ำกว่ารู): "ขยับรางขึ้นให้ตรงกับรูเก่า ส่วนรูด้านลึกไม่ตรงไม่เป็นไร"
+     เดิม (v1.473): รูห่างจาก 9 (ตำแหน่งรู Blum เมื่อกล่องนั่งบนราง) เกิน 3 มม. = ไม่ใช้รูจริง ยึดก้นกล่องไว้แทน
+           HAF-U railY 23 → รูอ้างอิงรางอยู่ 9 · ภาพรางต่ำกว่ารูที่เจาะ 14 มม.
+     ตอนนี้: มีรูของลิ้นชักลูกนี้ = รูอ้างอิงราง (รูแรกแถวบนของแผ่นยึด) ตรงความสูงรูนั้นเลย · ไม่มีรู = 9 แบบเดิม
+            ตามลึกยังตรงรูหน้าสุด (รูถัดไปของ Blum กับของระบบรางห่างไม่เท่ากัน ผู้ใช้รับได้) */
+  const vRef=(hv!=null&&hv>-40&&hv<(+ob.L||0))?hv:9;
   const s=((zh-zB-1)-60)/402; if(!(s>=0.2)) return out;                                      // ท้ายรางชนท้ายกล่อง (กล่องสั้นเกิน = ไม่วาด)
   const geos=under3DGeos(Math.min(s,3)); if(!geos) return out;
   const so=Math.max(((+b.x||0)-(+ob.x||0))*F.x+((+b.z||0)-(+ob.z||0))*F.z,0);               // ระยะที่ลิ้นชักชักออก (มุมมองเปิดบาน)
@@ -8134,6 +8141,32 @@ function under3DMeshes(b){
     mm.userData.id=b.id; mm.userData._slideK=P.k; mm.castShadow=true; mm.receiveShadow=true;
     out.push(mm); });
   return out; }
+/* ───────── v1.474: ระยะชักลิ้นชักรางรับใต้ = ระยะชักรางจริง ─────────
+   ผู้ใช้ 17/10 08:16 (ภาพ INT01 เปิดลิ้นชัก): "ระยะที่เปิดออกมาให้สมจริงหน่อยครับ"
+   เดิม: ลิ้นชักทุกแบบชักออก 70% ของความลึกชุดลิ้นชัก (หน้าบาน + กล่อง) — INT01 ลึก 385 → ชักแค่ ~270
+         รางรับใต้ของจริงชักออกเต็มระยะ (full extension) ภาพจึงดูเหมือนเปิดค้างครึ่งทาง ตัวกลางรางโผล่พ้นหน้าตู้นิดเดียว
+   ตอนนี้: ลิ้นชักกล่องไม้ที่ใช้รางรับใต้ (HAF-U / BLUM-U / railU) ชักออก = ความยาวราง (สูตรเดียวกับ drillDrawerSlides: กล่อง + boxOff หรือ slideRail)
+           ไม่เกินลึกกล่อง −10 (ท้ายกล่องยังค้างในตู้นิดหนึ่งแบบของจริง) · มุมเปิดเกิน 90 ไม่ชักเพิ่ม (รางสุดแล้ว)
+           ใช้ทั้งตอนวาด (viewBoards) อนิเมชันเร็วและหน้าดูงาน (_doorTfAt) ค่าเดียวกัน · ลิ้นชักแบบอื่นยัง 70% เหมือนเดิม
+   ปิด: SN_OFF.underTravel=1 */
+function underTravelOf(bx){
+  if(snOff("underTravel")) return null;
+  bx=(bx||[]).filter(x=>x&&x._box); if(!bx.length||bx.some(x=>x._alto)) return null;
+  const bp=(bx.find(x=>x._bp)||{})._bp||{}, st=String(bp.slideType||"side");
+  let e=null; try{ e=drsOfBoxes(bx); }catch(_){ e=null; }
+  if(!(st==="railU"||st==="blumU"||st==="hafeleU"||(e&&drsIsUnder(e)))) return null;
+  const ref=bx.find(x=>/Side L/.test(x.name||""))||bx.find(x=>/Side R/.test(x.name||""))||bx.find(x=>x.orient==="side"); if(!ref) return null;
+  const dep=+ref.W||0; if(!(dep>=150)) return null;
+  const bOff=+bp.boxOff||0; let L=dep;
+  try{ L=(bOff!==0)?round(dep+bOff):slideRail(e||slideSeriesEl(),dep).railLen; }catch(_){ L=dep; }
+  L=+L||dep;
+  return Math.max(Math.min(L,dep-10),40); }
+/* ระยะเลื่อนออกของชิ้นในชุดลิ้นชัก (viewBoards / _doorTfAt ใช้ตัวเดียวกัน) · cache = {} ต่อการเรียกหนึ่งรอบ */
+function _drawerDz(b,D,f,p,cache){
+  const k=(b.cabInst||"")+"|"+b._dg;
+  if(!(k in cache)){ let v=null; try{ v=underTravelOf((state.boards||[]).filter(x=>x&&x._dg===b._dg&&x._box&&(x.cabInst||"")===(b.cabInst||""))); }catch(e){ v=null; } cache[k]=v; }
+  const tv=cache[k];
+  return (tv!=null)?tv*Math.min(f,1)*p:D*0.7*f*p; }
 
 function buildConnectorMeshes(b){
   const arr=[]; const M=orientMatrix(b.orient,b.yaw); const bp=new THREE.Vector3(b.x,b.y,b.z);
@@ -17711,15 +17744,29 @@ function explodeBoards(list,ex){
     return Object.assign({},b,{ x:round(b.x+nrm.x*sgn*dist), y:round(b.y+nrm.y*sgn*dist), z:round(b.z+nrm.z*sgn*dist) });
   });
 }
+/* ───────── v1.474: ความลึกชุดลิ้นชัก (ฐานของระยะชัก 70%) วัดตามทิศหน้าตู้ และแยกตามตู้ ─────────
+   เจอตอนแก้ภาพ INT01 ของผู้ใช้ (17/10 08:16 ตู้หมุน 270°): ลิ้นชักลึก 367 แต่ชักออกมา 504 — กล่องหลุดพ้นตู้ทั้งใบ
+   เดิม: ความลึกชุด = ช่วงตามแกน Z ของโลกเสมอ · ตู้ที่หมุน 90°/270° แกน Z คือ "ความกว้าง" (หน้าบาน 720 → ชัก 0.7 × 720)
+         และรวมกลุ่มด้วย _dg อย่างเดียว ตู้ที่ก๊อปมา (_dg ซ้ำกันข้ามตู้ · ดู v9.01) ช่วงจึงกินข้ามตู้ ยิ่งชักไกล
+   ตอนนี้: วัดช่วงตามทิศหน้าตู้ของชิ้น (sin/cos ของ yaw · ตัวเดียวกับทิศที่เลื่อนออก) และกุญแจ = ตู้ + ชุดลิ้นชัก
+           ตู้ไม่หมุน/หมุน 180° ได้ค่าเท่าเดิมทุกประการ · ใช้ทั้ง viewBoards และ _doorTfAt (อนิเมชันเร็ว/หน้าดูงาน)
+   ปิด: SN_OFF.dwrAxis=1 (วัดแกน Z ของโลก รวมทุกตู้แบบเดิม) */
+function _dwrSpans(){
+  const dg={}, old=snOff("dwrAxis");
+  (state.boards||[]).forEach(b=>{ if(!b||!b._dg) return; const d=worldDims(b);
+    const k=old?b._dg:((b.cabInst||"")+"|"+b._dg), g=dg[k]=dg[k]||{z0:Infinity,z1:-Infinity};
+    if(old){ g.z0=Math.min(g.z0,b.z-d[2]/2); g.z1=Math.max(g.z1,b.z+d[2]/2); return; }
+    const th=((+b.yaw||0)*Math.PI)/180, fx=Math.sin(th), fz=Math.cos(th);
+    const c=(+b.x||0)*fx+(+b.z||0)*fz, h=(Math.abs(fx)*d[0]+Math.abs(fz)*d[2])/2;
+    g.z0=Math.min(g.z0,c-h); g.z1=Math.max(g.z1,c+h); });
+  return dg; }
+function _dwrSpanOf(dg,b){ return dg[snOff("dwrAxis")?b._dg:((b.cabInst||"")+"|"+b._dg)]||{z0:0,z1:40}; }
 function viewBoards(){
   const ex=Math.max(+state.explode||0,0);
   const ang=+state.doorOpen||0;
   if(!ang || state.view!=="assembled") return (ex>0&&state.view==="assembled")?explodeBoards(state.boards,ex):state.boards;
   const f=Math.min(ang/90,1.15);
-  const dg={};                                         // ความลึกของแต่ละกลุ่มลิ้นชัก -> ระยะเลื่อนออก
-  state.boards.forEach(b=>{ if(!b._dg)return; const d=worldDims(b);
-    const g=dg[b._dg]=dg[b._dg]||{z0:Infinity,z1:-Infinity};
-    g.z0=Math.min(g.z0,b.z-d[2]/2); g.z1=Math.max(g.z1,b.z+d[2]/2); });
+  const dg=_dwrSpans();                                // ความลึกของแต่ละกลุ่มลิ้นชัก -> ระยะเลื่อนออก (v1.474: วัดตามทิศหน้าตู้ · แยกตามตู้)
   /* v8.97: โหมดเปิดบาน = เข้ามาแล้วยังปิดทุกใบ แล้วคลิกเลือกเปิดทีละใบเอง
      เก็บเป็นรายชื่อ "ใบที่สั่งเปิด" (state.doorPick) — ว่าง = ไม่มีใบไหนกาง */
   const pick=state.doorPick||[], prog=state.doorProg||{};
@@ -17734,14 +17781,15 @@ function viewBoards(){
   /* v9.74: จำ "บานใบไหนขยับไปเท่าไหร่" ไว้ แล้วให้ชิ้นที่เกาะบาน (มือจับ) ตามไปด้วย
      ไม่งั้นกดเปิดบานแล้วมือจับค้างลอยอยู่กับที่ */
   const dTf={};
+  const _tvC={};   // v1.474: ระยะชักรางรับใต้ต่อชุดลิ้นชัก (คิดครั้งเดียวต่อรอบ)
   const out=state.boards.map(b=>{
     const p=pOf(b); if(p<=0.002) return b;
-    if(b._dg){ const g=dg[b._dg]; const D=Math.max(g.z1-g.z0,40);
+    if(b._dg){ const g=_dwrSpanOf(dg,b); const D=Math.max(g.z1-g.z0,40);
       /* ───────── v15.5: ลิ้นชักต้องเลื่อนออกทาง "หน้าตู้ใบนั้น" ─────────
          เดิมเลื่อนไปทางแกน Z บวกตายตัว ซึ่งถูกเฉพาะตู้ที่หันหน้าตรงตามแกนโลก
          ตู้ที่วางหันหลังกลับ (หมุน 180 องศา) หน้าตู้อยู่ทางลบ ลิ้นชักจึงไถเข้าไปในตู้แทนที่จะออกมา
          คิดทิศจากมุมหมุนของชิ้นเอง เหมือนที่บานเปิดใช้อยู่แล้ว จึงถูกทุกทิศทางที่ตู้วางได้ */
-      const dz=D*0.7*f*p;
+      const dz=_drawerDz(b,D,f,p,_tvC);   // v1.474: รางรับใต้ = ระยะชักรางจริง · แบบอื่น 70% ของความลึกเหมือนเดิม
       const th=((+b.yaw||0)*Math.PI)/180, fx=Math.sin(th), fz=Math.cos(th);
       dTf[b.id]={dz:dz,fx:fx,fz:fz};
       return Object.assign({},b,{x:round(b.x+fx*dz), z:round(b.z+fz*dz)}); }   // ลิ้นชัก: เลื่อนออก 70% ของความลึกกล่อง
@@ -17799,17 +17847,15 @@ function _doorTfAt(ang,prog){
   if(state.view!=="assembled") return tf;
   ang=+ang||0; prog=prog||{};
   const f=Math.min(ang/90,1.15), pick=state.doorPick||[];
-  const dg={};
-  state.boards.forEach(b=>{ if(!b._dg)return; const d=worldDims(b);
-    const g=dg[b._dg]=dg[b._dg]||{z0:Infinity,z1:-Infinity};
-    g.z0=Math.min(g.z0,b.z-d[2]/2); g.z1=Math.max(g.z1,b.z+d[2]/2); });
+  const dg=_dwrSpans();                                // v1.474: ตัวเดียวกับ viewBoards
   const _key=b=>b._dg?((b.cabInst||"")+"|dg:"+b._dg):b.id;
   const pOf=b=>{ const k=_key(b), v=prog[k];
     return (v!=null)?Math.max(0,Math.min(v,1)):((pick.indexOf(k)>=0)?1:0); };
+  const _tvC={};   // v1.474
   state.boards.forEach(b=>{
     const p=pOf(b); if(p<=0.002) return;
-    if(b._dg){ const g=dg[b._dg], D=Math.max(g.z1-g.z0,40), th=((+b.yaw||0)*Math.PI)/180;
-      tf[b.id]={dz:D*0.7*f*p, fx:Math.sin(th), fz:Math.cos(th)}; return; }
+    if(b._dg){ const g=_dwrSpanOf(dg,b), D=Math.max(g.z1-g.z0,40), th=((+b.yaw||0)*Math.PI)/180;
+      tf[b.id]={dz:_drawerDz(b,D,f,p,_tvC), fx:Math.sin(th), fz:Math.cos(th)}; return; }   // v1.474: ค่าเดียวกับ viewBoards
     if(!b._door||b._box||b._panel||b._dummy) return;
     const side=hingeSideOf(b); if(!side) return;
     const sgn=(side==="left")?-1:1;
@@ -27469,6 +27515,8 @@ function boardRole(b){
      SN_OFF.altoBoxUp=1   กล่องแผงเหล็กอยู่ที่ "ยกกล่อง" เดิม ไม่บวกยกกล่องเพิ่ม (v1.471)
      SN_OFF.altoBlum=1    ลิ้นชักแผงเหล็ก 3D ใช้รางวาดเองแบบง่าย แทนไฟล์ Blum TANDEM 560H (v1.472)
      SN_OFF.under3D=1     ลิ้นชักกล่องไม้ที่ใช้รางรับใต้ ไม่วาดราง Blum TANDEM 3D ใต้กล่อง (โล่งแบบเดิม) (v1.473)
+     SN_OFF.underTravel=1 ลิ้นชักรางรับใต้ชักออก 70% ของความลึกแบบเดิม (ไม่ใช่ระยะชักรางจริง) (v1.474)
+     SN_OFF.dwrAxis=1     ความลึกชุดลิ้นชัก (ระยะชัก 70%) วัดตามแกน Z ของโลก รวมทุกตู้แบบเดิม — ตู้หมุน 90°/270° ชักตามความกว้าง (v1.474)
      SN_OFF.shoeWGrain=1  ชิ้นแปะหน้า/หลังของชั้นรองเท้าไม้ ลายตามกติกาแผ่นหลัง (ลายตั้ง) แบบเดิม (v1.452)
      SN_OFF.shoeWPart=1   ชั้นรองเท้าไม้ที่ใส่ใหม่ไม่ตั้ง Part ให้ (เว้นว่างแบบเดิม) (v1.452)
      SN_OFF.skinTrim=1    ชิ้นตั้งที่จมเข้าทอป/พื้นนอกเท่าผิวแผ่น ไม่ตัดให้ชนผิว (แผ่นข้างใต้ทอปทับข้างยาวเกินผิวทอปแบบเดิม) (v1.451)
