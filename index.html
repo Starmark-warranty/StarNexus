@@ -3250,7 +3250,7 @@
    ===================================================================== */
 /* ---- APP_META: แหล่งความจริงเดียวของเวอร์ชัน (ดูได้จาก console / คลิกชื่อแอป) ---- */
 const APP_META={
-  name:"StarNexus", version:"1.474", build:"2026-10-17/undertravel",
+  name:"StarNexus", version:"1.475", build:"2026-10-17/under80",
   file:"StarNexus.html", basedOn:"Furnitech_V3.html (v3.11)",
   /* ───────── เริ่มนับเวอร์ชันใหม่ที่ 1.001 (21/08/2026) ─────────
      ของเดิมนับมาถึง 42.1 แล้ววิ่งเป็นทศนิยมสองชั้นซึ่งอ่านลำดับยาก
@@ -3258,6 +3258,7 @@ const APP_META={
      ประวัติเก่าเก็บไว้ทั้งหมดตามเลขเดิม ไม่ไล่เขียนใหม่ เพราะเลขในนั้นถูกอ้างถึงไปแล้ว
      รายการที่อยู่ใต้ 1.001 ลงไปจึงเป็นเลขชุดเก่า อ่านต่อกันได้ตามวันที่ */
   changelog:[
+    ["1.475","2026-10-17","CHANGE ระยะชักลิ้นชักรางรับใต้ในภาพ (ผู้ใช้ 10:50: “ชัก 70% ถูกแล้วครับ” → “ชัก สัก 80 % เฉพาะ INT01”) — v1.474 ชักเต็มระยะราง (HAF-U 350) · ตอนนี้ลิ้นชักรางรับใต้ชัก 80% ของความลึกชุดลิ้นชัก (INT01 ลึก 385 → 308) · ลิ้นชักแบบอื่น (K40 / รับข้าง) 70% เหมือนเดิม · ค่าตั้ง underOpenPct (ตั้งค่า → รางลิ้นชัก) · ปิด SN_OFF.underTravel = 70% แบบอื่น"],
     ["1.474","2026-10-17","FIX รางรับใต้ 3D กล่องไม้ (ผู้ใช้ 08:16 ส่งภาพ INT01 ลิ้นชักเปิด: “1.ระยะที่เปิดออกมาให้สมจริงหน่อยครับ 2.ขยับรางขึ้นให้ตรงกับรูเก่า ส่วนรูด้านลึกไม่ตรงไม่เป็นไร”) — ① ลิ้นชักรางรับใต้ชักออกเท่าระยะชักรางจริง (รางชักออกเต็มระยะ = ความยาวราง ไม่เกินลึกกล่อง −10 · HAF-U กล่อง 367 = 350) แทนสูตรเดิม 70% ของลึกชุดลิ้นชัก (ได้แค่ ~270) ทั้งตอนวาด (viewBoards) อนิเมชันเร็ว และหน้าดูงาน (_doorTfAt) · ลิ้นชักแบบอื่นใช้สูตรเดิม · ปิด SN_OFF.underTravel ② ความสูงราง = รูที่เจาะจริงเสมอ (เดิมรูห่างจาก 9 เกิน 3 มม. เช่น HAF-U railY 23 → ยึดก้นกล่องไว้ ภาพรางต่ำกว่ารู 14 มม.) · ตามลึกยังตรงรูหน้าสุดเหมือนเดิม · ③ ความลึกชุดลิ้นชัก (ฐานของระยะชัก 70% ของลิ้นชักแบบอื่น) วัดตามทิศหน้าตู้และแยกตามตู้ — เดิมวัดแกน Z ของโลก ตู้หมุน 90°/270° จึงชักตามความกว้าง (INT01 หน้าบาน 720 → ชัก 504 กล่องลึก 367 หลุดพ้นตู้) · ตู้ไม่หมุน/หมุน 180° เท่าเดิม · ปิด SN_OFF.dwrAxis · รูเจาะ/MPR ไม่เปลี่ยน"],
     ["1.473","2026-10-16","FEAT รางรับใต้ 3D ใต้ลิ้นชักกล่องไม้ (ผู้ใช้ 21:56: “พอจะใส่รางรับใต้ของตัว KT40 เอาตัวรางมาใส่ได้ไหมครับ ในชุด INT01 จะได้สมจริง”) — ลิ้นชักกล่องไม้ที่ใช้รางรับใต้ (HAF-U / BLUM-U / railU) เดิมไม่มีรางในฉาก 3D · ตอนนี้วางตัวราง Blum TANDEM 560H ชุดเดียวกับ K40 (AL3_BLUM) ใต้แผ่นข้างกล่องทั้งสองข้าง (under3DMeshes · under3DGeos): แผ่นยึดชิดผิวในแผ่นข้างตู้ · กล่องนั่งบนราง (รูอ้างอิงสูงจากก้นกล่อง 9 แบบ K40 · รูที่เจาะจริงอยู่ในช่วง 9±3 ใช้ความสูงรูจริง) · ตามลึกตรงรูหน้าสุดที่เจาะจริง ส่วนหลังยืด/หดให้ท้ายรางชนท้ายกล่อง · เปิดลิ้นชักแล้วรางชักออกเป็นชั้น (_slideK) · ภาพอย่างเดียว รูเจาะ/MPR ไม่เปลี่ยน · ค่าตั้ง under3D · ปิด SN_OFF.under3D"],
     ["1.472","2026-10-16","FEAT รางรับใต้ 3D จากไฟล์ผู้ผลิต (ผู้ใช้ 16:58 แนบ .dae Blum TANDEM 560H: “เอาตัวรางไปรับใต้ แผงเหล็กได้ครับ ผมว่าระยะรู อาจจะตรงกับ 3D เลย”) — ลิ้นชักแผงเหล็กใช้ราง 560H + ตัวล็อก T51 จริง (ฝังในไฟล์ ~200 KB) วางรูอ้างอิงของรางตรงรูที่เจาะแผ่นข้างตู้ (ขอบล่างหน้าบาน + ยกกล่อง + drillH · รูแรกจากหน้าตู้) · ท่อนเลื่อนเป็นชั้นเหมือนเดิม · ยาวอื่นยืดส่วนหลัง · ALTO ยกกล่องเพิ่มเริ่ม 28 เท่า K40 · ปิดได้ที่ตั้งค่า หรือ SN_OFF.altoBlum"],
@@ -3888,7 +3889,7 @@ const DEF_SETTINGS={ frontSetMax:6, dowelD:8, dowelDepth:28, dowelMateDepth:12, 
   railAutoGap:500,   // v1.292: คานขวางในโครง ห่างกันไม่เกินกี่ มม. ก่อนต้องเพิ่มคาน
   ledStripGapMax:40, ledStripMaxL:5000,   // v1.294: เส้นไฟข้ามรอยที่ชั้นตัดรางได้ไม่เกินกี่ มม. · ยาวสุดต่อเส้น (ม้วน)
   drawerBotThick:9, drawerBotLift:11, drawerBotOver:4.5, drawerBotClear:0.5, drawerBotMacroOn:true, drawerBotPipeNotch:false, drawerBotPipeW:40, drawerBotPipeH:25,
-  mfMark:true, mfMarkColor:"#ff8a00", hingeMark:true, hingeMarkColor:"#0a84ff", hinge3D:true, hingeFinish:"nickel", slide3D:true, alto3D:true, alto3DRail:true, alto3DCross:2, k40BoxUp:28, altoBoxUp:28, alto3DBlum:true, under3D:true, mfBoltD:8, mfBoltDepth:28, mfCamD:15, mfCamDepth:13, mfCamOffset:34, mfMateD:5, mfMateDepth:12, mfFixFromFace:8.1, mfCenterMax:16, mfName:"Minifix", mfCode:"MINIFIX",
+  mfMark:true, mfMarkColor:"#ff8a00", hingeMark:true, hingeMarkColor:"#0a84ff", hinge3D:true, hingeFinish:"nickel", slide3D:true, alto3D:true, alto3DRail:true, alto3DCross:2, k40BoxUp:28, altoBoxUp:28, alto3DBlum:true, under3D:true, underOpenPct:80, mfBoltD:8, mfBoltDepth:28, mfCamD:15, mfCamDepth:13, mfCamOffset:34, mfMateD:5, mfMateDepth:12, mfFixFromFace:8.1, mfCenterMax:16, mfName:"Minifix", mfCode:"MINIFIX",
   ledMinRun:60,         // v22.8: ท่อนรางที่สั้นกว่านี้ = เศษ ไม่ต้องออก
   hingeShelfClear:96,   // v7.29: ระยะปลอดภัย ศูนย์ถ้วยบานพับ -> ผิวชั้น (มม.)
   hingeAvoidRail:true,  // v22.3: ให้บานพับหลบคานด้วย ไม่ใช่แค่ชั้น
@@ -8149,6 +8150,11 @@ function under3DMeshes(b){
            ไม่เกินลึกกล่อง −10 (ท้ายกล่องยังค้างในตู้นิดหนึ่งแบบของจริง) · มุมเปิดเกิน 90 ไม่ชักเพิ่ม (รางสุดแล้ว)
            ใช้ทั้งตอนวาด (viewBoards) อนิเมชันเร็วและหน้าดูงาน (_doorTfAt) ค่าเดียวกัน · ลิ้นชักแบบอื่นยัง 70% เหมือนเดิม
    ปิด: SN_OFF.underTravel=1 */
+/* ───────── v1.475: ชัก 80% ของความลึก (ไม่ใช่เต็มระยะราง) ─────────
+   ผู้ใช้ 17/10 10:50 หลังเห็น v1.474 ชัก 350: "ชัก 70% ถูกแล้วครับ" → เลือก "ชัก สัก 80 % เฉพาะ INT01"
+   เดิม (v1.474): รางรับใต้ชักเต็มระยะราง = ความยาวราง (HAF-U 350 · ท้ายกล่องค้างในตู้แค่ 16)
+   ตอนนี้: รางรับใต้ชัก underOpenPct % (ตั้งต้น 80) ของความลึกชุดลิ้นชัก — สูตรเดียวกับแบบอื่นที่ใช้ 70% (INT01 ลึก 385 → 308)
+           underTravelOf คืน "สัดส่วน" แทนระยะ มม. · ลิ้นชักแบบอื่นยัง 70% · ความลึกยังวัดตามทิศหน้าตู้ (v1.474 ③) */
 function underTravelOf(bx){
   if(snOff("underTravel")) return null;
   bx=(bx||[]).filter(x=>x&&x._box); if(!bx.length||bx.some(x=>x._alto)) return null;
@@ -8157,16 +8163,14 @@ function underTravelOf(bx){
   if(!(st==="railU"||st==="blumU"||st==="hafeleU"||(e&&drsIsUnder(e)))) return null;
   const ref=bx.find(x=>/Side L/.test(x.name||""))||bx.find(x=>/Side R/.test(x.name||""))||bx.find(x=>x.orient==="side"); if(!ref) return null;
   const dep=+ref.W||0; if(!(dep>=150)) return null;
-  const bOff=+bp.boxOff||0; let L=dep;
-  try{ L=(bOff!==0)?round(dep+bOff):slideRail(e||slideSeriesEl(),dep).railLen; }catch(_){ L=dep; }
-  L=+L||dep;
-  return Math.max(Math.min(L,dep-10),40); }
+  const pc=+settings.underOpenPct;                                                          // v1.475: สัดส่วนของความลึก (เดิมคืนความยาวราง มม.)
+  return Math.max(Math.min((isFinite(pc)&&pc>0)?pc:80,100),10)/100; }
 /* ระยะเลื่อนออกของชิ้นในชุดลิ้นชัก (viewBoards / _doorTfAt ใช้ตัวเดียวกัน) · cache = {} ต่อการเรียกหนึ่งรอบ */
 function _drawerDz(b,D,f,p,cache){
   const k=(b.cabInst||"")+"|"+b._dg;
   if(!(k in cache)){ let v=null; try{ v=underTravelOf((state.boards||[]).filter(x=>x&&x._dg===b._dg&&x._box&&(x.cabInst||"")===(b.cabInst||""))); }catch(e){ v=null; } cache[k]=v; }
   const tv=cache[k];
-  return (tv!=null)?tv*Math.min(f,1)*p:D*0.7*f*p; }
+  return D*((tv!=null)?tv:0.7)*f*p; }   // v1.475: รางรับใต้ = underOpenPct % · แบบอื่น 70%
 
 function buildConnectorMeshes(b){
   const arr=[]; const M=orientMatrix(b.orient,b.yaw); const bp=new THREE.Vector3(b.x,b.y,b.z);
@@ -27515,7 +27519,7 @@ function boardRole(b){
      SN_OFF.altoBoxUp=1   กล่องแผงเหล็กอยู่ที่ "ยกกล่อง" เดิม ไม่บวกยกกล่องเพิ่ม (v1.471)
      SN_OFF.altoBlum=1    ลิ้นชักแผงเหล็ก 3D ใช้รางวาดเองแบบง่าย แทนไฟล์ Blum TANDEM 560H (v1.472)
      SN_OFF.under3D=1     ลิ้นชักกล่องไม้ที่ใช้รางรับใต้ ไม่วาดราง Blum TANDEM 3D ใต้กล่อง (โล่งแบบเดิม) (v1.473)
-     SN_OFF.underTravel=1 ลิ้นชักรางรับใต้ชักออก 70% ของความลึกแบบเดิม (ไม่ใช่ระยะชักรางจริง) (v1.474)
+     SN_OFF.underTravel=1 ลิ้นชักรางรับใต้ชักออก 70% ของความลึกเท่าแบบอื่น (ไม่ใช้ค่าตั้ง underOpenPct · ตั้งต้น 80) (v1.474 · v1.475)
      SN_OFF.dwrAxis=1     ความลึกชุดลิ้นชัก (ระยะชัก 70%) วัดตามแกน Z ของโลก รวมทุกตู้แบบเดิม — ตู้หมุน 90°/270° ชักตามความกว้าง (v1.474)
      SN_OFF.shoeWGrain=1  ชิ้นแปะหน้า/หลังของชั้นรองเท้าไม้ ลายตามกติกาแผ่นหลัง (ลายตั้ง) แบบเดิม (v1.452)
      SN_OFF.shoeWPart=1   ชั้นรองเท้าไม้ที่ใส่ใหม่ไม่ตั้ง Part ให้ (เว้นว่างแบบเดิม) (v1.452)
@@ -32821,7 +32825,7 @@ function renderSettings(){
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">${txt("slideName","ชื่อรางลิ้นชัก (fallback ถ้าซีรีส์ไม่มีคำอธิบาย)")}${pick("slideCode","ซีรีส์รางที่ใช้ — รหัส Element → Fittings ที่มีตารางความลึก (lenMap)","fittings")}</div>
     <div style="font-size:11.5px;color:var(--ink-dim);margin:4px 0">ค่าสำรองของลิ้นชักที่ยังไม่ได้ผูกระบบราง — ลิ้นชักที่ผูกแล้วใช้ค่าจาก Element → ระบบราง</div>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">${num("slideDrillD","รางรับข้าง: Ø รูนำสกรูบนแผ่นข้าง (มม.) เช่น 5")}${num("slideDrillDepth","รางรับข้าง: ลึกรูนำ (มม. · ไม่ทะลุ) เช่น 3")}</div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">${num("slideRailFromBot","รางรับข้าง: สูงศูนย์รางจากล่างกล่อง (มม. · 0=กลางกล่อง)")}<div></div></div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">${num("slideRailFromBot","รางรับข้าง: สูงศูนย์รางจากล่างกล่อง (มม. · 0=กลางกล่อง)")}${num("underOpenPct","รางรับใต้: เปิดลิ้นชักในภาพ ชักออก (% ของความลึก · ตั้งต้น 80 · แบบอื่น 70)")}</div>
     <!-- ───────── v1.461: รางลูกปืนรับข้าง 3D ───────── -->
     <label style="display:flex;align-items:center;gap:8px;font-size:13px;cursor:pointer;margin-top:6px"><input type="checkbox" id="setSlide3D" ${settings.slide3D!==false?"checked":""}> แสดงรางลูกปืนรับข้างเป็นรูป 3D จริง (ราง 3 ท่อน สูง 45 · ลูกปืน · เปิดลิ้นชักแล้วชักออกเป็นชั้น · สีตาม “สีบานพับ 3D”) — ไม่มีผลกับระยะเจาะ/ไฟล์ส่งออก</label>
     <!-- ───────── v1.473: รางรับใต้ 3D ใต้ลิ้นชักกล่องไม้ ───────── -->
