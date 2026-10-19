@@ -3250,7 +3250,7 @@
    ===================================================================== */
 /* ---- APP_META: แหล่งความจริงเดียวของเวอร์ชัน (ดูได้จาก console / คลิกชื่อแอป) ---- */
 const APP_META={
-  name:"StarNexus", version:"1.479", build:"2026-10-19/odoo-mark",
+  name:"StarNexus", version:"1.480", build:"2026-10-19/odoo-assets",
   file:"StarNexus.html", basedOn:"Furnitech_V3.html (v3.11)",
   /* ───────── เริ่มนับเวอร์ชันใหม่ที่ 1.001 (21/08/2026) ─────────
      ของเดิมนับมาถึง 42.1 แล้ววิ่งเป็นทศนิยมสองชั้นซึ่งอ่านลำดับยาก
@@ -3258,6 +3258,7 @@ const APP_META={
      ประวัติเก่าเก็บไว้ทั้งหมดตามเลขเดิม ไม่ไล่เขียนใหม่ เพราะเลขในนั้นถูกอ้างถึงไปแล้ว
      รายการที่อยู่ใต้ 1.001 ลงไปจึงเป็นเลขชุดเก่า อ่านต่อกันได้ตามวันที่ */
   changelog:[
+    ["1.480","2026-10-19","FIX ย้ายข้อมูลเข้า Odoo: ส่งรูปลายผิว/รูปย่อหยุดทั้งชุดที่ไฟล์ที่ไม่ใช่รูป (ผู้ใช้ 15:24 “ส่งรูป textures/starnexus-project.json เข้า Odoo ไม่สำเร็จ: หน้าเว็บบันทึกไฟล์ชนิดนี้ไม่ได้”) — ส่งเฉพาะ .jpg .jpeg .png .webp (ชนิดเดียวกับตัวอ่านลายผิว) บอกจำนวนไฟล์ที่ข้าม · รูปไหนส่งไม่ผ่านส่งที่เหลือต่อจนจบแล้วบอกรายชื่อ (ยังไม่ติดป้าย assets · กดซ้ำส่งเฉพาะที่ยังไม่มี)"],
     ["1.479","2026-10-19","FIX ① ลิงก์ดูงานบน Odoo ฝามินิฟิกเป็นสี่เหลี่ยมดำ (ผู้ใช้ 13:32 ออเดอร์ 2610197001_TESTODOO “Minifix ไม่เหมือนเดิม”) — รูปเล็ก ≤ 48,000 ตัวอักษร (ฝามินิฟิก) ฝังในไฟล์ข้อมูลลิงก์เลย ไม่แยกไฟล์ t/ · หน้าดูขอรูปไฟล์แบบ crossOrigin (ส่งต่อไปโดเมนอื่นไม่อนุญาต = ไม่มีลาย แทนผิวดำ) · ปิด SN_OFF.snvTexInline ② ย้ายข้อมูลเข้า Odoo ค้างที่ป้าย “ส่งเข้าแล้ว” (ผู้ใช้ 13:30 กดส่งที่ Odoo จริง: “ชื่อไฟล์ของเว็บดูงานไม่ถูกต้อง: _sxl/odoo/furnitech_cabinets.json”) — Odoo รับเฉพาะชื่อแบบไฟล์เว็บดูงาน · ป้ายย้ายไปที่ v/zxmig<ชื่อย่อ>.bin (รูปเดียวกับไฟล์ลิงก์ดูงาน) · เขียนแล้วอ่านกลับจาก /web/list ทันที ไม่เจอ = บอกชัด ไม่ถือว่าย้าย · อ่านป้ายทั้งที่ใหม่และที่เดิม · ตารางที่ส่งแถวไปแล้วกดส่งซ้ำได้ (ส่งเฉพาะที่ต่าง) · ใช้ร่วมกับ Production V2 v200"],
     ["1.478","2026-10-19","FEAT ย้ายตารางที่ใช้ร่วมกับ Production เข้า Odoo ได้ (ผู้ใช้ 11:08 ส่ง Production ปัจจุบัน + ตัว Odoo 2.0: “ย้ายไป odoo ได้เลย production”) — โมดูลย้ายข้อมูลใช้ร่วม StarNexus + Production V2 v199 (ข้อความเดียวกัน): StarNexus ส่ง furnitech_cabinets · furnitech_parts · xml_history · furnitech_share + รูป · Production ส่ง app_settings · imos_orders · imos_mapping · part_index (โปรแกรมที่อ่านตารางนั้นเต็ม ๆ) · ป้ายใน Odoo ชุดเดียวกัน → ส่งจาก Production แล้ว StarNexus ก็เปิด 4 ตารางนั้นจาก Odoo เอง (โหลดหน้าใหม่) · ย้ายครบทั้งสองโปรแกรม = เปิดใน Odoo ไม่ต้องต่อ Google Drive · หน้าต่างย้ายข้อมูลโชว์ตารางของอีกโปรแกรม (ส่งแล้ว ✓ / ยังอยู่ Drive) · ปุ่มบน “☁ Odoo · n/m ตาราง” เมื่อเปิดผ่าน Odoo (เดิมขึ้น “☁ Google Drive · ยังไม่เชื่อมต่อ” สีส้มทั้งที่อ่านจาก Odoo ครบ) · รูปเจาะ/MPR ไม่เปลี่ยน"],
     ["1.477","2026-10-19","FEAT เปิดผ่าน Odoo ได้ (ย้ายตัวเชื่อม Odoo จากไฟล์ Odoo v1.424–1.434 มาใส่ตัวล่าสุด) + ปุ่มย้ายข้อมูลจาก Google Drive เข้า Odoo (ผู้ใช้ 19/10 10:28–10:40 ส่ง starnexus_1.434_20261019.html: “แอพอัปเดตไม่ทัน · สลับโปรแกรมนี้ก่อน เดี๋ยวค่อยสลับ Production · ทำปุ่มกดส่งเข้า odoo · ฝั่ง odoo ไม่เปลี่ยนแล้ว แก้ฝั่งเราให้ on odoo”) — ตัว Odoo แยกจากเราที่ v1.423 (ไม่มีของ 1.424–1.476 เลย) · ตอนนี้รวมกลับ: เปิดจาก /nexus/starnexus1 (มี window.Nexus) = ① Fitting Global ดึงจาก API ของ AX ผ่าน Odoo (แคช ETag · ปุ่มดึงจาก AX · ดูรายการ) ② ตารางที่ Odoo เป็นหลัก อ่าน/บันทึกที่ Odoo (/table/rows · changes · write · select · replace · ถามของใหม่ทุก 10 วิ) ③ ลิงก์ตู้ / QR / เว็บดูงาน 3D ส่งเข้า Odoo (/nexus/web/) ④ รูปลายผิว/รูปย่อตู้จาก Odoo เมื่อย้ายรูปแล้ว ⑤ ซ่อนปุ่มเลือกไฟล์ของตารางที่อยู่ Odoo — ต่างจากตัว Odoo: ตารางจะเปิดจาก Odoo ต่อเมื่อ Odoo ตั้งเป็นหลัก “และ” ส่งข้อมูลจาก Drive เข้าไปแล้ว (ป้ายใน Odoo _sxl/odoo/<ตาราง>.json ผ่าน /nexus/api/web/put) — เดิมเปิดตามโหมด Odoo ทันที = เห็นข้อมูลเก่า 14/10 · ปุ่ม ⬆ ย้ายข้อมูลเข้า Odoo… (หน้าไฟล์กลาง เฉพาะตอนเปิดผ่าน Odoo): ตรวจ = เทียบทุกแถว Drive กับ Odoo · ส่ง = เฉพาะแถวที่ต่าง + ลบแถวที่ไม่มีบน Drive (เลือกได้) + รูปที่ยังไม่มี → ตรวจซ้ำทั้งตาราง → เขียนป้าย → โหลดหน้าใหม่ = เปิดจาก Odoo · ย้ายรอบนี้เฉพาะตารางของ StarNexus (furnitech_cabinets · furnitech_parts · xml_history · furnitech_share) · app_settings / imos_orders / imos_mapping / part_index ใช้ร่วมกับ Production อยู่ Drive ต่อ (ไม่ใช้แม้ Odoo ตั้งเป็นหลักไว้) · กันบันทึกผิดที่: เครื่องที่ยังเปิดแบบ Drive บันทึกตารางที่ย้ายแล้วไม่ได้ (ป้าย _MOVED_TO_ODOO.json บน Drive) · เปิดนอก Odoo (github.io) = Google Drive เหมือนเดิมทุกอย่าง · ฝั่ง Odoo ไม่ต้องแก้ · ลบรูปลายผิวใน Odoo จากโปรแกรมไม่ได้ (Odoo ไม่มีคำสั่งลบ) · ปิด: SN_OFF.odoo · odooTables · odooMovedGuard"],
@@ -55067,23 +55068,30 @@ async function sxlMigMarkDrive(names,info){
  var h=await SXL.dir.getFileHandle(SXL_MIG.moved,{create:true}),w=await h.createWritable();await w.write(JSON.stringify(v,null,1));await w.close();
  SXL_MIG.mv={at:Date.now(),v:v}}
 /* รูปลายผิว (textures/) + รูปย่อตู้ (thumbs/) บน Drive → Odoo (/nexus/api/asset/put) · มีแล้วขนาดเท่ากัน = ข้าม */
+/* ───────── v1.480: ส่งเฉพาะไฟล์รูป · รูปไหนส่งไม่ได้ ส่งที่เหลือต่อแล้วค่อยบอก ─────────
+   ผู้ใช้ 19/10/2026 15:24 (ส่งเข้า Odoo จริง): “ส่งรูป textures/starnexus-project.json เข้า Odoo ไม่สำเร็จ: หน้าเว็บบันทึกไฟล์ชนิดนี้ไม่ได้”
+   เดิม: ส่งทุกไฟล์ในโฟลเดอร์ textures/ thumbs/ บน Drive — มีไฟล์โปรเจกต์ .json ที่มีคนวางไว้ในโฟลเดอร์รูป · Odoo รับเฉพาะรูป จึงหยุดทั้งชุด
+   ตอนนี้: ส่งเฉพาะ .jpg .jpeg .png .webp (ชนิดเดียวกับที่ตัวอ่านลายผิวใช้ — ไฟล์อื่นโปรแกรมไม่เคยอ่านอยู่แล้ว) · บอกจำนวนไฟล์ที่ข้าม
+           รูปไหนส่งไม่สำเร็จ = ส่งที่เหลือจนจบ แล้วบอกรายชื่อ (ยังไม่ติดป้าย assets — ลายผิว/รูปย่อยังอ่านจาก Drive · กดส่งซ้ำได้ ส่งเฉพาะที่ยังไม่มี) */
 async function sxlMigAssetsPlan(){
- var out={up:[],same:0,drive:0};
+ var out={up:[],same:0,drive:0,skip:[]};
  for(var kind of ['textures','thumbs']){
   var have={};var rl=await window.Nexus.rpc('/asset/list',{app:window.NEXUS.app,kind:kind});((rl&&rl.files)||[]).forEach(function(f){have[f.name]=f.size});
   var dd=null;try{dd=await SXL.dir.getDirectoryHandle(kind)}catch(e){dd=null}if(!dd)continue;
-  for await(var e of dd.entries()){if(e[1].kind!=='file')continue;out.drive++;var sz=null;
+  for await(var e of dd.entries()){if(e[1].kind!=='file')continue;if(!/\.(jpe?g|png|webp)$/i.test(e[0])){out.skip.push(kind+'/'+e[0]);continue}out.drive++;var sz=null;   // v1.480: รูปเท่านั้น
    try{var L=dd._fs&&dd._fs.L&&dd._fs.L[dd._p];sz=L&&L.files[e[0]]?L.files[e[0]].s:null}catch(_){sz=null}
    if(have[e[0]]!=null&&(sz==null||+have[e[0]]===+sz)){out.same++;continue}
    out.up.push({kind:kind,name:e[0],h:e[1]})}}
  return out}
-async function sxlMigAssetsPush(p,onp){var n=0;
+async function sxlMigAssetsPush(p,onp){var n=0,bad=[];
  await sxlPool(p.up,3,async function(x){
+  try{   // v1.480: รูปไหนไม่ผ่าน จดไว้แล้วส่งรูปถัดไปต่อ
   var f=await x.h.getFile();if(f&&!(f instanceof Blob)&&typeof f.toBlob==='function')f=await f.toBlob();
   var fd=new FormData();fd.append('app',window.NEXUS.app);fd.append('kind',x.kind);fd.append('csrf_token',sxlMigTok());fd.append('file',new Blob([f]),x.name);
   var r=await fetch('/nexus/api/asset/put',{method:'POST',body:fd,credentials:'same-origin'}),j={};try{j=await r.json()}catch(e){}
-  if(!r.ok||j.error)throw Error('ส่งรูป '+x.kind+'/'+x.name+' เข้า Odoo ไม่สำเร็จ: '+(j.error||('HTTP '+r.status)));
-  n++;if(onp)onp(n)});
+  if(!r.ok||j.error)throw Error(j.error||('HTTP '+r.status));
+  n++;if(onp)onp(n)}catch(e){bad.push(x.kind+'/'+x.name+': '+((e&&e.message)||e))}});
+ if(bad.length)throw Error('ส่งรูปเข้า Odoo ไม่สำเร็จ '+bad.length+' จาก '+p.up.length+' รูป (ส่งได้ '+n+') — '+bad.slice(0,3).join(' · ')+(bad.length>3?' …':'')+' · ลายผิว/รูปย่อยังอ่านจาก Google Drive · กดส่งซ้ำได้');
  return n}
 /* หน้าต่าง “ย้ายข้อมูลเข้า Odoo” */
 async function sxlOdooMigDialog(){
@@ -55125,7 +55133,7 @@ async function sxlOdooMigDialog(){
  var fmt=function(p){return 'ส่ง <b>'+p.put.length.toLocaleString()+'</b> · เหมือนแล้ว '+p.same.toLocaleString()+(p.del.length?' · มีแต่ใน Odoo '+p.del.length.toLocaleString():'')+'<br><small>Drive '+p.drive.toLocaleString()+' · Odoo '+p.odoo.toLocaleString()+' แถว</small>'};
  var check=async function(){var ts=sel();if(!ts.length)throw Error('ยังไม่ได้เลือกอะไร');
   for(var t of ts){
-   if(t==='assets'){res(t,'กำลังตรวจรูป…');aPlan=await sxlMigAssetsPlan();res(t,'ส่ง <b>'+aPlan.up.length.toLocaleString()+'</b> รูป · มีแล้ว '+aPlan.same.toLocaleString()+'<br><small>Drive '+aPlan.drive.toLocaleString()+' รูป</small>');continue}
+   if(t==='assets'){res(t,'กำลังตรวจรูป…');aPlan=await sxlMigAssetsPlan();res(t,'ส่ง <b>'+aPlan.up.length.toLocaleString()+'</b> รูป · มีแล้ว '+aPlan.same.toLocaleString()+'<br><small>Drive '+aPlan.drive.toLocaleString()+' รูป'+(aPlan.skip.length?(' · ข้าม '+aPlan.skip.length+' ไฟล์ที่ไม่ใช่รูป ('+esc2(aPlan.skip.slice(0,2).join(', '))+(aPlan.skip.length>2?' …':'')+')'):'')+'</small>');continue}   // v1.480
    res(t,'กำลังเทียบ…');plans[t]=await sxlMigPlan(t,function(m){res(t,esc2(m))});res(t,fmt(plans[t]))}
   log('ตรวจแล้ว — กด “ส่งเข้า Odoo” เพื่อส่งตามนี้')};
  var go=async function(){var ts=sel();if(!ts.length)throw Error('ยังไม่ได้เลือกอะไร');
