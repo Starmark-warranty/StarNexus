@@ -3250,7 +3250,7 @@
    ===================================================================== */
 /* ---- APP_META: แหล่งความจริงเดียวของเวอร์ชัน (ดูได้จาก console / คลิกชื่อแอป) ---- */
 const APP_META={
-  name:"StarNexus", version:"1.477", build:"2026-10-19/odoo",
+  name:"StarNexus", version:"1.478", build:"2026-10-19/odoo-prod",
   file:"StarNexus.html", basedOn:"Furnitech_V3.html (v3.11)",
   /* ───────── เริ่มนับเวอร์ชันใหม่ที่ 1.001 (21/08/2026) ─────────
      ของเดิมนับมาถึง 42.1 แล้ววิ่งเป็นทศนิยมสองชั้นซึ่งอ่านลำดับยาก
@@ -3258,6 +3258,7 @@ const APP_META={
      ประวัติเก่าเก็บไว้ทั้งหมดตามเลขเดิม ไม่ไล่เขียนใหม่ เพราะเลขในนั้นถูกอ้างถึงไปแล้ว
      รายการที่อยู่ใต้ 1.001 ลงไปจึงเป็นเลขชุดเก่า อ่านต่อกันได้ตามวันที่ */
   changelog:[
+    ["1.478","2026-10-19","FEAT ย้ายตารางที่ใช้ร่วมกับ Production เข้า Odoo ได้ (ผู้ใช้ 11:08 ส่ง Production ปัจจุบัน + ตัว Odoo 2.0: “ย้ายไป odoo ได้เลย production”) — โมดูลย้ายข้อมูลใช้ร่วม StarNexus + Production V2 v199 (ข้อความเดียวกัน): StarNexus ส่ง furnitech_cabinets · furnitech_parts · xml_history · furnitech_share + รูป · Production ส่ง app_settings · imos_orders · imos_mapping · part_index (โปรแกรมที่อ่านตารางนั้นเต็ม ๆ) · ป้ายใน Odoo ชุดเดียวกัน → ส่งจาก Production แล้ว StarNexus ก็เปิด 4 ตารางนั้นจาก Odoo เอง (โหลดหน้าใหม่) · ย้ายครบทั้งสองโปรแกรม = เปิดใน Odoo ไม่ต้องต่อ Google Drive · หน้าต่างย้ายข้อมูลโชว์ตารางของอีกโปรแกรม (ส่งแล้ว ✓ / ยังอยู่ Drive) · ปุ่มบน “☁ Odoo · n/m ตาราง” เมื่อเปิดผ่าน Odoo (เดิมขึ้น “☁ Google Drive · ยังไม่เชื่อมต่อ” สีส้มทั้งที่อ่านจาก Odoo ครบ) · รูปเจาะ/MPR ไม่เปลี่ยน"],
     ["1.477","2026-10-19","FEAT เปิดผ่าน Odoo ได้ (ย้ายตัวเชื่อม Odoo จากไฟล์ Odoo v1.424–1.434 มาใส่ตัวล่าสุด) + ปุ่มย้ายข้อมูลจาก Google Drive เข้า Odoo (ผู้ใช้ 19/10 10:28–10:40 ส่ง starnexus_1.434_20261019.html: “แอพอัปเดตไม่ทัน · สลับโปรแกรมนี้ก่อน เดี๋ยวค่อยสลับ Production · ทำปุ่มกดส่งเข้า odoo · ฝั่ง odoo ไม่เปลี่ยนแล้ว แก้ฝั่งเราให้ on odoo”) — ตัว Odoo แยกจากเราที่ v1.423 (ไม่มีของ 1.424–1.476 เลย) · ตอนนี้รวมกลับ: เปิดจาก /nexus/starnexus1 (มี window.Nexus) = ① Fitting Global ดึงจาก API ของ AX ผ่าน Odoo (แคช ETag · ปุ่มดึงจาก AX · ดูรายการ) ② ตารางที่ Odoo เป็นหลัก อ่าน/บันทึกที่ Odoo (/table/rows · changes · write · select · replace · ถามของใหม่ทุก 10 วิ) ③ ลิงก์ตู้ / QR / เว็บดูงาน 3D ส่งเข้า Odoo (/nexus/web/) ④ รูปลายผิว/รูปย่อตู้จาก Odoo เมื่อย้ายรูปแล้ว ⑤ ซ่อนปุ่มเลือกไฟล์ของตารางที่อยู่ Odoo — ต่างจากตัว Odoo: ตารางจะเปิดจาก Odoo ต่อเมื่อ Odoo ตั้งเป็นหลัก “และ” ส่งข้อมูลจาก Drive เข้าไปแล้ว (ป้ายใน Odoo _sxl/odoo/<ตาราง>.json ผ่าน /nexus/api/web/put) — เดิมเปิดตามโหมด Odoo ทันที = เห็นข้อมูลเก่า 14/10 · ปุ่ม ⬆ ย้ายข้อมูลเข้า Odoo… (หน้าไฟล์กลาง เฉพาะตอนเปิดผ่าน Odoo): ตรวจ = เทียบทุกแถว Drive กับ Odoo · ส่ง = เฉพาะแถวที่ต่าง + ลบแถวที่ไม่มีบน Drive (เลือกได้) + รูปที่ยังไม่มี → ตรวจซ้ำทั้งตาราง → เขียนป้าย → โหลดหน้าใหม่ = เปิดจาก Odoo · ย้ายรอบนี้เฉพาะตารางของ StarNexus (furnitech_cabinets · furnitech_parts · xml_history · furnitech_share) · app_settings / imos_orders / imos_mapping / part_index ใช้ร่วมกับ Production อยู่ Drive ต่อ (ไม่ใช้แม้ Odoo ตั้งเป็นหลักไว้) · กันบันทึกผิดที่: เครื่องที่ยังเปิดแบบ Drive บันทึกตารางที่ย้ายแล้วไม่ได้ (ป้าย _MOVED_TO_ODOO.json บน Drive) · เปิดนอก Odoo (github.io) = Google Drive เหมือนเดิมทุกอย่าง · ฝั่ง Odoo ไม่ต้องแก้ · ลบรูปลายผิวใน Odoo จากโปรแกรมไม่ได้ (Odoo ไม่มีคำสั่งลบ) · ปิด: SN_OFF.odoo · odooTables · odooMovedGuard"],
     ["1.476","2026-10-18","FIX แผงขวา (แก้ไขชิ้นงาน) เลื่อนลงเองทีละนิดทุกครั้งที่คลิกเปิด/ปิดบาน (ผู้ใช้ 11:16 ส่งภาพตู้ b106: “เปิดปิดบาน เรื่อยๆ แล้วแผงขวาเลื่อนลงเรื่อยครับ”) — ต้นเหตุ: คลิกบาน = เลือกบาน → วาดแผงใหม่ (innerHTML) แล้วช่องบาร์โค้ด f_bcInfo ใกล้หัวแผงถูกเติมทีหลัง สูงขึ้น ~31 px · เบราว์เซอร์ยึดตำแหน่งเลื่อน (scroll anchoring) เลยบวก scrollTop ตามทุกรอบ สะสมไปเรื่อย ๆ (ทดสอบ: 700 → 731 → 762 → 793 …) · ตอนนี้ปิดการยึดตำแหน่งของ #inspBody (overflow-anchor:none) → วาดใหม่กี่รอบก็อยู่ที่เดิม · ปิด SN_OFF.inspAnchor"],
     ["1.475","2026-10-17","CHANGE ระยะชักลิ้นชักรางรับใต้ในภาพ (ผู้ใช้ 10:50: “ชัก 70% ถูกแล้วครับ” → “ชัก สัก 80 % เฉพาะ INT01”) — v1.474 ชักเต็มระยะราง (HAF-U 350) · ตอนนี้ลิ้นชักรางรับใต้ชัก 80% ของความลึกชุดลิ้นชัก (INT01 ลึก 385 → 308) · ลิ้นชักแบบอื่น (K40 / รับข้าง) 70% เหมือนเดิม · ค่าตั้ง underOpenPct (ตั้งค่า → รางลิ้นชัก) · ปิด SN_OFF.underTravel = 70% แบบอื่น"],
@@ -54545,7 +54546,7 @@ function sxlOdooChrome(){
  ['sxlDir','sxLocalReconnect'].forEach(function(id){var e=document.getElementById(id);if(e)e.style.display=(all||drv)?'none':''});
  var up=document.getElementById('sxLocalUpload');if(up&&up.parentElement&&up.parentElement.tagName==='P')up.parentElement.style.display=(all||drv)?'none':'';
  var mg=document.getElementById('sxlOdooMig');if(mg){mg.style.display=sxlOdbOn()?'':'none';
-  var left=SXL_MIG.now.filter(function(t){var S=SXL.s[t];return S&&S.src!=='odb'});mg.textContent=left.length?'⬆ ย้ายข้อมูลเข้า Odoo…':'✓ ข้อมูล StarNexus อยู่บน Odoo (ดูสถานะ)'}}
+  var left=sxlMigMine().filter(function(t){var S=SXL.s[t];return S&&S.src!=='odb'});/* v1.478: ตารางที่โปรแกรมนี้ส่ง */mg.textContent=left.length?'⬆ ย้ายข้อมูลเข้า Odoo…':'✓ ข้อมูล StarNexus อยู่บน Odoo (ดูสถานะ)'}}
 function sxLocalSettings(){sxlRender();document.getElementById('sxLocalPanel').style.display='flex'}
 async function sxlPickDir(){
  if(!window.showDirectoryPicker)throw Error('เบราว์เซอร์นี้เลือกโฟลเดอร์ไม่ได้ — ใช้ Chrome/Edge หรือเลือกหลายไฟล์ครั้งเดียวด้านล่าง');
@@ -54943,9 +54944,21 @@ function sxlFgView(){
       (Item Id Set ที่ส่งไปกับออเดอร์อยู่ใน app_settings · Production เขียน order_base_data_* ลง app_settings)
    ④ กันบันทึกผิดที่: ตารางที่ย้ายแล้ว ถ้ามีเครื่องที่ยังเปิดแบบ Drive (github.io หรือเปิดค้างก่อนย้าย) กดบันทึก
       = ไม่บันทึก + บอกให้เปิดผ่าน Odoo (อ่านป้าย _MOVED_TO_ODOO.json บน Drive · แคช 60 วิ)
-   ปิด: SN_OFF.odoo=1 (ไม่ใช้ Odoo เลย · ทำงานแบบ Drive) · SN_OFF.odooTables=1 (ไม่เปิดตารางจาก Odoo แม้ส่งแล้ว) · SN_OFF.odooMovedGuard=1 (ไม่กันบันทึก) */
+   ปิด: SN_OFF.odoo=1 (ไม่ใช้ Odoo เลย · ทำงานแบบ Drive) · SN_OFF.odooTables=1 (ไม่เปิดตารางจาก Odoo แม้ส่งแล้ว) · SN_OFF.odooMovedGuard=1 (ไม่กันบันทึก)
+   ───────── StarNexus v1.478 / Production V2 v199: ย้าย Production ด้วย ─────────
+   ผู้ใช้ 19/10 11:08 (ส่ง Production ตัวปัจจุบัน + ตัว Odoo 2.0): “ย้ายไป odoo ได้เลย production”
+   โมดูลนี้ใช้ร่วมทั้งสองโปรแกรม (ข้อความเดียวกัน) · แต่ละโปรแกรมส่งตารางของตัวเอง (โปรแกรมที่อ่านตารางนั้นเต็ม ๆ):
+     StarNexus = furnitech_cabinets · furnitech_parts · xml_history · furnitech_share + รูป
+     Production = app_settings · imos_orders (โหลด Order ที่ยังไม่ได้เปิดจาก Drive ให้ครบก่อน) · imos_mapping · part_index
+   หน้าต่างโชว์ตารางของอีกโปรแกรมเป็นข้อมูล (ส่งแล้ว ✓ / ยังอยู่ Drive) · ป้ายใน Odoo ชุดเดียวกัน = ส่งจากโปรแกรมไหน อีกโปรแกรมก็เปิดจาก Odoo ตาม */
 var SXL_MIG={now:['furnitech_cabinets','furnitech_parts','xml_history','furnitech_share'],
- prod:['app_settings','imos_orders','imos_mapping','part_index'],dir:'_sxl/odoo/',moved:'_MOVED_TO_ODOO.json',chunk:1500000,maxRows:400,mv:null};
+ prod:['app_settings','imos_orders','imos_mapping','part_index'],dir:'_sxl/odoo/',moved:'_MOVED_TO_ODOO.json',chunk:1500000,maxRows:400,mv:null,
+ use:{furnitech_cabinets:'โมเดลตู้ · ออเดอร์ที่บันทึก (ORD::) · Fitting 3D · หน้าตัด · โมดูล',furnitech_parts:'คลัง Part',xml_history:'ประวัติ XML ออเดอร์',furnitech_share:'ลิงก์ดูงานแบบเดิม (?view=)',
+  app_settings:'ค่าตั้ง StarNexus (Variables · Element …) · Item Id Set · BOM ที่แก้ · กฎของ Production',imos_orders:'Order ที่ส่งเข้า Production (ชิ้นงาน · BOM)',imos_mapping:'แปลงรหัส conid ของอุปกรณ์',part_index:'ดัชนีชิ้นตามบาร์โค้ด · ลิงก์ชิ้นงาน'}};
+/* v1.478 / PV2 v199: โปรแกรมนี้ส่งตารางชุดไหน (StarNexus = now · Production = prod) · อีกชุดของอีกโปรแกรม */
+function sxlMigApp(){try{return (SXL.cfg&&SXL.cfg.app==='Production')?'Production':'StarNexus'}catch(e){return 'StarNexus'}}
+function sxlMigMine(){return sxlMigApp()==='Production'?SXL_MIG.prod:SXL_MIG.now}
+function sxlMigOther(){return sxlMigApp()==='Production'?SXL_MIG.now:SXL_MIG.prod}
 function sxlMigPath(n){return SXL_MIG.dir+n+'.json'}
 /* ป้าย “ส่งเข้าแล้ว” ใน Odoo — ถามทีเดียวทุกตาราง (/web/list ตอบรหัส sha ของไฟล์ที่มี) · อ่านไม่ได้ = ถือว่ายังไม่ย้าย (ใช้ Drive) */
 async function sxlOdbMigLoad(){
@@ -54964,7 +54977,7 @@ async function sxlMovedGet(force){
  SXL_MIG.mv={at:Date.now(),v:v};return v}
 async function sxlMovedGuard(T){
  if(_sxlSnOff('odooMovedGuard')||!T)return null;
- if(SXL_MIG.now.indexOf(T.t)<0&&SXL_MIG.prod.indexOf(T.t)<0)return null;
+ if(SXL_MIG.now.indexOf(T.t)<0&&SXL_MIG.prod.indexOf(T.t)<0)return null;   // ตารางที่ย้ายได้ทั้งสองโปรแกรม
  var v=await sxlMovedGet(false),x=v&&v.tables&&v.tables[T.t];if(!x)return null;
  var when=x.at?(' ('+new Date(x.at).toLocaleString('th-TH')+')'):'';
  if(sxlOdbOn())return 'ตาราง '+T.t+' ย้ายเข้า Odoo แล้ว'+when+' แต่หน้านี้ยังเปิดจาก Google Drive — โหลดหน้าใหม่ (F5) แล้วบันทึกอีกครั้ง (งานนี้ยังไม่ได้บันทึก)';
@@ -54977,12 +54990,17 @@ function sxlMigSame(T,c,a,b){if((a==null||a==='')&&(b==null||b===''))return true
  if(sxlIsJ(T,c)){try{var x=typeof a==='string'?JSON.parse(a):a,y=typeof b==='string'?JSON.parse(b):b;if(JSON.stringify(x)===JSON.stringify(y))return true;return sxlMigStable(x)===sxlMigStable(y)}catch(e){}}
  return false}
 /* แถวทั้งหมดของตารางจาก Drive (รูปแบบไฟล์) — ตารางที่โหลดเข้าโปรแกรม = แถวที่รวม _changes แล้ว · furnitech_share = ไฟล์ละแถวใน _changes */
-async function sxlMigDriveRows(t){
+async function sxlMigDriveRows(t,onp){
  var T=sxlCfg(t),S=SXL.s[t];
  if(sxlLoadable(T)){
   if(sxlRemote(S))throw Error(t+' เปิดจาก Odoo อยู่แล้ว (ข้อมูล Drive ไม่ได้อ่านในรอบนี้)');
-  var g=sxlDfrWait(t);if(g){try{await g}catch(e){}}
-  if(!S.ready)throw Error('ยังอ่าน '+t+' จาก Google Drive ไม่ครบ'+(S.err?(' — '+S.err):'')+' · กด “อ่านไฟล์ล่าสุด” แล้วลองใหม่');
+  var g=(typeof sxlDfrWait==='function')?sxlDfrWait(t):null;if(g){try{await g}catch(e){}}
+  if(!S.ready)throw Error('ยังอ่าน '+t+' จาก Google Drive ไม่ครบ'+(S.err?(' — '+S.err):'')+' · กด “โหลดข้อมูลล่าสุด” แล้วลองใหม่');
+  /* PV2 v199: Order ที่ยังไม่ได้เปิด (แยกไฟล์ v179) เหลือแค่ป้าย — โหลดเต็มจาก Drive ให้ครบก่อนส่ง */
+  if(typeof ordIsLazy==='function'&&typeof ordHydrate==='function'&&t===(typeof ORD_T!=='undefined'?ORD_T:'imos_orders')){
+   var lz=S.rows.filter(ordIsLazy).map(function(r){return String(r[T.key])}),dn=0;
+   for(var i=0;i<lz.length;i+=12){var ch=lz.slice(i,i+12);await ordHydrate(T,S,ch);dn+=ch.length;if(onp)onp('โหลด Order จาก Drive '+dn.toLocaleString()+' / '+lz.length.toLocaleString()+'…')}
+   var left=S.rows.filter(ordIsLazy).length;if(left)throw Error('ยังโหลด Order จาก Drive ไม่ครบ '+left+' รายการ — ลองใหม่อีกครั้ง')}
   return S.rows.map(function(r){return sxlRawToFile(T,sxlStrip(r))})}
  var m=new Map();
  try{var found=await sxlScanDir(SXL.dir),b=found[t];if(b){var rr=await sxlReadTable(T,b.f);(rr.rows||[]).forEach(function(r){m.set(String(r[T.key]),r)})}}catch(e){console.warn('[ย้ายเข้า Odoo] '+t+' ไฟล์ฐาน',e)}
@@ -54992,11 +55010,11 @@ async function sxlMigDriveRows(t){
   if(bad)throw Error('อ่านไฟล์ใน _changes/'+t+' ไม่ได้ '+bad+' ไฟล์ — ลองใหม่อีกครั้ง')}
  return Array.from(m.values()).map(function(r){return sxlRawToFile(T,r)})}
 async function sxlMigOdooRows(t,onp){var rows=[],after=0;
- for(;;){var pg=await sxlOdbRpc('rows',{table:t,after:after});(pg.rows||[]).forEach(function(x){rows.push(x)});if(onp)onp(rows.length);if(!pg.next)break;after=pg.next}
+ for(;;){var pg=await sxlOdbRpc('rows',{table:t,after:after});(pg.rows||[]).forEach(function(x){rows.push(x)});if(onp)onp('อ่านจาก Odoo '+rows.length.toLocaleString()+' แถว…');if(!pg.next)break;after=pg.next}
  return rows}
 /* เทียบ Drive กับ Odoo → แถวที่ต้องส่ง (ใหม่/ต่าง) · เหมือนแล้ว · รหัสที่มีแต่ใน Odoo */
 async function sxlMigPlan(t,onp){
- var T=sxlCfg(t),K=T.key,dr=await sxlMigDriveRows(t),od=await sxlMigOdooRows(t,onp),om=new Map();
+ var T=sxlCfg(t),K=T.key,dr=await sxlMigDriveRows(t,function(m){if(onp)onp(m)}),od=await sxlMigOdooRows(t,onp),om=new Map();
  od.forEach(function(x){om.set(String(x[K]),x)});
  var put=[],same=0,seen=new Set(),diff=null;
  dr.forEach(function(x){var k=String(x[K]);if(x[K]==null||k==='')return;seen.add(k);var o=om.get(k);
@@ -55053,7 +55071,7 @@ async function sxlOdooMigDialog(){
  await sxlOdbMigLoad();
  var info={};((st&&st.tables)||[]).forEach(function(x){info[x.name]=x});
  var drive=!!SXL.dir;   // ต้นทาง = ที่เก็บที่ต่ออยู่ (ใช้จริงคือ Google Drive)
- var NOW=SXL_MIG.now.filter(function(t){return !!sxlCfg(t)}),plans={},aPlan=null,busy=false;
+ var NOW=sxlMigMine().filter(function(t){return !!sxlCfg(t)}),plans={},aPlan=null,busy=false;
  var box=document.createElement('div');box.id='sxlMigBox';
  box.style.cssText='position:fixed;inset:0;z-index:1000002;background:#0009;display:flex;align-items:center;justify-content:center;padding:16px';
  var row=function(t,label,use){var i=info[t]||{},S=SXL.s[t]||{},done=sxlOdbMigOk(t),onO=S.src==='odb';
@@ -55066,18 +55084,15 @@ async function sxlOdooMigDialog(){
  box.innerHTML='<div style="background:#fff;color:#172c40;width:min(980px,98vw);max-height:94vh;overflow:auto;border-radius:14px;padding:18px 20px;font:14px/1.6 system-ui,sans-serif">'
   +'<style>#sxlMigBox button{padding:7px 14px;border-radius:8px;border:1px solid #c5ccd6;background:#fff;color:#172c40;font:inherit;cursor:pointer}#sxlMigBox button.pri{background:#135e73;border-color:#135e73;color:#fff;font-weight:600}#sxlMigBox button:disabled{opacity:.5;cursor:default}#sxlMigBox td{padding:5px 6px;vertical-align:top;border-bottom:1px solid #eef0f4}</style>'
   +'<h3 style="margin:0 0 6px">⬆ ย้ายข้อมูลจาก Google Drive เข้า Odoo</h3>'
-  +'<div style="font-size:13px;opacity:.85">1) ให้เครื่องอื่นปิด StarNexus ก่อน (งานที่บันทึกระหว่างย้ายจะไม่ตามมา) · 2) กด <b>ตรวจ</b> ดูจำนวน · 3) กด <b>ส่งเข้า Odoo</b> · 4) <b>โหลดหน้าใหม่</b> — ตารางที่ส่งแล้วจะเปิดจาก Odoo<br>'
+  +'<div style="font-size:13px;opacity:.85">1) ให้เครื่องอื่นปิด StarNexus และ Production ก่อน (งานที่บันทึกระหว่างย้ายจะไม่ตามมา) · 2) กด <b>ตรวจ</b> ดูจำนวน · 3) กด <b>ส่งเข้า Odoo</b> · 4) <b>โหลดหน้าใหม่</b> — ตารางที่ส่งแล้วจะเปิดจาก Odoo<br>'
   +'ส่งเฉพาะแถวที่ต่างจากใน Odoo · กดซ้ำได้ · ข้อมูลบน Drive ไม่ถูกลบ (ยังเปิดดูย้อนหลังได้ แต่บันทึกที่ Drive ไม่ได้แล้ว)</div>'
   +(drive?'':'<div style="color:#b42d24;margin-top:6px"><b>ยังไม่ได้เชื่อมต่อ Google Drive</b> — ข้อมูลต้นทางอยู่บน Drive: ใส่ URL + กุญแจ (หรือวางรหัสเชื่อมต่อ) ในส่วน ☁ ของหน้าไฟล์กลางก่อน</div>')
   +'<table style="width:100%;border-collapse:collapse;margin-top:10px;font-size:13px" class="migt"><thead><tr style="text-align:left;border-bottom:1px solid #ccd"><th></th><th>ข้อมูล</th><th>Google Drive</th><th>Odoo</th><th>ผลตรวจ / ส่ง</th></tr></thead><tbody>'
-  +row('furnitech_cabinets','furnitech_cabinets','โมเดลตู้ · ออเดอร์ที่บันทึก (ORD::) · Fitting 3D · หน้าตัด · โมดูล')
-  +row('furnitech_parts','furnitech_parts','คลัง Part')
-  +row('xml_history','xml_history','ประวัติ XML ออเดอร์')
-  +row('furnitech_share','furnitech_share','ลิงก์ดูงานแบบเดิม (?view=)')
-  +'<tr data-t="assets"><td><input type="checkbox" data-mig="assets"'+(drive?(sxlOdbMigOk('assets')?'':' checked'):' disabled')+'></td><td><code>textures/ · thumbs/</code><br><small>รูปลายผิว · รูปย่อตู้</small></td><td>—</td><td>'+(sxlOdbMigOk('assets')?'<small style="color:#135e73">ส่งเข้าแล้ว ✓</small>':'')+'</td><td class="mr" data-r="assets"></td></tr>'
+  +NOW.map(function(t){return row(t,t,SXL_MIG.use[t]||'')}).join('')
+  +(sxlMigApp()==='StarNexus'?'<tr data-t="assets"><td><input type="checkbox" data-mig="assets"'+(drive?(sxlOdbMigOk('assets')?'':' checked'):' disabled')+'></td><td><code>textures/ · thumbs/</code><br><small>รูปลายผิว · รูปย่อตู้</small></td><td>—</td><td>'+(sxlOdbMigOk('assets')?'<small style="color:#135e73">ส่งเข้าแล้ว ✓</small>':'')+'</td><td class="mr" data-r="assets"></td></tr>':'')
   +'</tbody></table>'
-  +'<div style="font-size:12px;margin-top:8px;padding:8px 10px;background:#f6f3ea;border-radius:8px">อยู่ Google Drive ต่อ (ใช้ร่วมกับ Production · ย้ายพร้อม Production): '
-  +SXL_MIG.prod.map(function(t){var i=info[t];return '<code>'+t+'</code>'+(i&&i.mode==='odoo'?' <small>(Odoo ตั้งเป็นหลักไว้ แต่ยังไม่ใช้)</small>':'')}).join(' · ')+'</div>'
+  +'<div style="font-size:12px;margin-top:8px;padding:8px 10px;background:#f6f3ea;border-radius:8px">ตารางที่ส่งจากโปรแกรม '+(sxlMigApp()==='Production'?'StarNexus':'Production')+' (ปุ่มเดียวกันในหน้า '+(sxlMigApp()==='Production'?'ไฟล์กลางของ StarNexus':'Google Drive ของ Production')+'): '
+  +sxlMigOther().map(function(t){return '<code>'+t+'</code> '+(sxlOdbMigOk(t)?'<b style="color:#135e73">ส่งแล้ว ✓</b>':'<small>ยังอยู่ Drive</small>')}).join(' · ')+'</div>'
   +'<label style="display:block;margin-top:8px;font-size:13px"><input type="checkbox" id="sxlMigDel" checked> ลบแถวที่มีใน Odoo แต่ไม่มีบน Drive (ของเก่าที่นำเข้าเมื่อ 14/10 แล้วถูกลบ/แก้ชื่อทีหลัง)</label>'
   +'<div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px"><button id="sxlMigChk">ตรวจ (ยังไม่ส่ง)</button><button id="sxlMigGo" class="pri">ส่งเข้า Odoo</button><button id="sxlMigRe" style="display:none">โหลดหน้าใหม่ (เปิดจาก Odoo)</button><button id="sxlMigX">ปิด</button></div>'
   +'<div id="sxlMigLog" style="margin-top:8px;font-size:12px;white-space:pre-wrap"></div></div>';
@@ -55089,12 +55104,12 @@ async function sxlOdooMigDialog(){
  var check=async function(){var ts=sel();if(!ts.length)throw Error('ยังไม่ได้เลือกอะไร');
   for(var t of ts){
    if(t==='assets'){res(t,'กำลังตรวจรูป…');aPlan=await sxlMigAssetsPlan();res(t,'ส่ง <b>'+aPlan.up.length.toLocaleString()+'</b> รูป · มีแล้ว '+aPlan.same.toLocaleString()+'<br><small>Drive '+aPlan.drive.toLocaleString()+' รูป</small>');continue}
-   res(t,'กำลังเทียบ…');plans[t]=await sxlMigPlan(t,function(n){res(t,'อ่านจาก Odoo '+n.toLocaleString()+' แถว…')});res(t,fmt(plans[t]))}
+   res(t,'กำลังเทียบ…');plans[t]=await sxlMigPlan(t,function(m){res(t,esc2(m))});res(t,fmt(plans[t]))}
   log('ตรวจแล้ว — กด “ส่งเข้า Odoo” เพื่อส่งตามนี้')};
  var go=async function(){var ts=sel();if(!ts.length)throw Error('ยังไม่ได้เลือกอะไร');
   for(var t of ts){if(t==='assets'?!aPlan:!plans[t]){await check();break}}
   var del=$('#sxlMigDel').checked,nP=0,nD=0;ts.forEach(function(t){if(plans[t]){nP+=plans[t].put.length;nD+=plans[t].del.length}});
-  if(!confirm('ส่งเข้า Odoo '+nP.toLocaleString()+' แถว'+(del&&nD?(' · ลบใน Odoo '+nD.toLocaleString()+' แถว'):'')+(aPlan&&ts.indexOf('assets')>=0?(' · รูป '+aPlan.up.length.toLocaleString()+' ไฟล์'):'')+'\n\nเครื่องอื่นปิด StarNexus แล้วใช่ไหม?'))return;
+  if(!confirm('ส่งเข้า Odoo '+nP.toLocaleString()+' แถว'+(del&&nD?(' · ลบใน Odoo '+nD.toLocaleString()+' แถว'):'')+(aPlan&&ts.indexOf('assets')>=0?(' · รูป '+aPlan.up.length.toLocaleString()+' ไฟล์'):'')+'\n\nเครื่องอื่นปิด StarNexus และ Production แล้วใช่ไหม?'))return;
   var doneT=[],extra={};
   await sxlLocked(async function(){
    for(var t of ts){
@@ -55103,7 +55118,7 @@ async function sxlOdooMigDialog(){
     var p=plans[t];var n=await sxlMigPush(p,del,function(k){res(t,'ส่ง '+k.toLocaleString()+' / '+p.put.length.toLocaleString()+' แถว…')});
     /* ตรวจซ้ำ: อ่าน Odoo ใหม่ทั้งตารางแล้วเทียบกับ Drive อีกรอบ — ตรงครบจึงเขียนป้าย */
     res(t,'ส่งแล้ว '+n.toLocaleString()+' แถว · ตรวจซ้ำ…');
-    var p2=await sxlMigPlan(t,function(k){res(t,'ตรวจซ้ำ: อ่านจาก Odoo '+k.toLocaleString()+' แถว…')});
+    var p2=await sxlMigPlan(t,function(m){res(t,'ตรวจซ้ำ: '+esc2(m))});
     if(p2.put.length||(del&&p2.del.length)){
      console.warn('[ย้ายเข้า Odoo] ตรวจซ้ำยังต่าง',t,p2.diff,p2.put.length,p2.del.length);
      if(!confirm(t+': ส่งแล้ว แต่ตรวจซ้ำยังต่างจาก Drive '+p2.put.length.toLocaleString()+' แถว'+(del&&p2.del.length?(' · เกิน '+p2.del.length.toLocaleString()):'')
@@ -56200,9 +56215,13 @@ function gasDriveRender(){
   var on=sxlIsGas(SXL.dir);
   var top=document.getElementById('sxLocalTop');
   if(top){ var core=SXL.cfg.tables.filter(function(T){ return T.core&&sxlLoadable(T)&&!SXL.s[T.t].ready; }).length;
-    var t='☁ Google Drive · '+(on?(sxlReadyN()+'/'+sxlLoadN()+' ตาราง'):'ยังไม่เชื่อมต่อ');
+    /* v1.478 / PV2 v199: เปิดผ่าน Odoo — บอกว่าอยู่ Odoo (ย้ายครบแล้วไม่ต้องต่อ Drive · เดิมขึ้น “ยังไม่เชื่อมต่อ” สีส้มทั้งที่ข้อมูลพร้อม) */
+    var _od=(typeof sxlOdbOn==='function'&&sxlOdbOn())?SXL.cfg.tables.filter(function(T){ return sxlLoadable(T)&&SXL.s[T.t]&&sxlRemote(SXL.s[T.t]); }).length:0;
+    var _odAll=!!_od&&SXL.cfg.tables.every(function(T){ return !sxlLoadable(T)||sxlRemote(SXL.s[T.t]); });
+    var t=_od?((_odAll?'☁ Odoo · ':(on?'☁ Odoo + Drive · ':'☁ Odoo · Drive ยังไม่เชื่อมต่อ · '))+sxlReadyN()+'/'+sxlLoadN()+' ตาราง')
+             :('☁ Google Drive · '+(on?(sxlReadyN()+'/'+sxlLoadN()+' ตาราง'):'ยังไม่เชื่อมต่อ'));
     if(top.textContent!==t) top.textContent=t;               // ข้อความเดิมทุกตัวอักษร = ไม่เขียนทับ (Production V2 แบ่งช่วงไว้ย่อตอนจอแคบ)
-    top.style.background=(!on||core)?'#9a4a12':'#135e73'; }
+    top.style.background=((_od?(!_odAll&&!on):!on)||core)?'#9a4a12':'#135e73'; }
   var err=SXL.dirErr?' <span class="sl-bad">'+esc2(SXL.dirErr)+'</span>':'';
   var di=document.getElementById('sxlDirInfo');
   if(di) di.innerHTML=on?('ข้อมูลอยู่บน <b>Google Drive</b> (Apps Script) · StarNexus กับ Production V2 ใช้ชุดเดียวกัน'+err)
