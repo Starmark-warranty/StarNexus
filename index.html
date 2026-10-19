@@ -3250,7 +3250,7 @@
    ===================================================================== */
 /* ---- APP_META: แหล่งความจริงเดียวของเวอร์ชัน (ดูได้จาก console / คลิกชื่อแอป) ---- */
 const APP_META={
-  name:"StarNexus", version:"1.478", build:"2026-10-19/odoo-prod",
+  name:"StarNexus", version:"1.479", build:"2026-10-19/odoo-mark",
   file:"StarNexus.html", basedOn:"Furnitech_V3.html (v3.11)",
   /* ───────── เริ่มนับเวอร์ชันใหม่ที่ 1.001 (21/08/2026) ─────────
      ของเดิมนับมาถึง 42.1 แล้ววิ่งเป็นทศนิยมสองชั้นซึ่งอ่านลำดับยาก
@@ -3258,6 +3258,7 @@ const APP_META={
      ประวัติเก่าเก็บไว้ทั้งหมดตามเลขเดิม ไม่ไล่เขียนใหม่ เพราะเลขในนั้นถูกอ้างถึงไปแล้ว
      รายการที่อยู่ใต้ 1.001 ลงไปจึงเป็นเลขชุดเก่า อ่านต่อกันได้ตามวันที่ */
   changelog:[
+    ["1.479","2026-10-19","FIX ① ลิงก์ดูงานบน Odoo ฝามินิฟิกเป็นสี่เหลี่ยมดำ (ผู้ใช้ 13:32 ออเดอร์ 2610197001_TESTODOO “Minifix ไม่เหมือนเดิม”) — รูปเล็ก ≤ 48,000 ตัวอักษร (ฝามินิฟิก) ฝังในไฟล์ข้อมูลลิงก์เลย ไม่แยกไฟล์ t/ · หน้าดูขอรูปไฟล์แบบ crossOrigin (ส่งต่อไปโดเมนอื่นไม่อนุญาต = ไม่มีลาย แทนผิวดำ) · ปิด SN_OFF.snvTexInline ② ย้ายข้อมูลเข้า Odoo ค้างที่ป้าย “ส่งเข้าแล้ว” (ผู้ใช้ 13:30 กดส่งที่ Odoo จริง: “ชื่อไฟล์ของเว็บดูงานไม่ถูกต้อง: _sxl/odoo/furnitech_cabinets.json”) — Odoo รับเฉพาะชื่อแบบไฟล์เว็บดูงาน · ป้ายย้ายไปที่ v/zxmig<ชื่อย่อ>.bin (รูปเดียวกับไฟล์ลิงก์ดูงาน) · เขียนแล้วอ่านกลับจาก /web/list ทันที ไม่เจอ = บอกชัด ไม่ถือว่าย้าย · อ่านป้ายทั้งที่ใหม่และที่เดิม · ตารางที่ส่งแถวไปแล้วกดส่งซ้ำได้ (ส่งเฉพาะที่ต่าง) · ใช้ร่วมกับ Production V2 v200"],
     ["1.478","2026-10-19","FEAT ย้ายตารางที่ใช้ร่วมกับ Production เข้า Odoo ได้ (ผู้ใช้ 11:08 ส่ง Production ปัจจุบัน + ตัว Odoo 2.0: “ย้ายไป odoo ได้เลย production”) — โมดูลย้ายข้อมูลใช้ร่วม StarNexus + Production V2 v199 (ข้อความเดียวกัน): StarNexus ส่ง furnitech_cabinets · furnitech_parts · xml_history · furnitech_share + รูป · Production ส่ง app_settings · imos_orders · imos_mapping · part_index (โปรแกรมที่อ่านตารางนั้นเต็ม ๆ) · ป้ายใน Odoo ชุดเดียวกัน → ส่งจาก Production แล้ว StarNexus ก็เปิด 4 ตารางนั้นจาก Odoo เอง (โหลดหน้าใหม่) · ย้ายครบทั้งสองโปรแกรม = เปิดใน Odoo ไม่ต้องต่อ Google Drive · หน้าต่างย้ายข้อมูลโชว์ตารางของอีกโปรแกรม (ส่งแล้ว ✓ / ยังอยู่ Drive) · ปุ่มบน “☁ Odoo · n/m ตาราง” เมื่อเปิดผ่าน Odoo (เดิมขึ้น “☁ Google Drive · ยังไม่เชื่อมต่อ” สีส้มทั้งที่อ่านจาก Odoo ครบ) · รูปเจาะ/MPR ไม่เปลี่ยน"],
     ["1.477","2026-10-19","FEAT เปิดผ่าน Odoo ได้ (ย้ายตัวเชื่อม Odoo จากไฟล์ Odoo v1.424–1.434 มาใส่ตัวล่าสุด) + ปุ่มย้ายข้อมูลจาก Google Drive เข้า Odoo (ผู้ใช้ 19/10 10:28–10:40 ส่ง starnexus_1.434_20261019.html: “แอพอัปเดตไม่ทัน · สลับโปรแกรมนี้ก่อน เดี๋ยวค่อยสลับ Production · ทำปุ่มกดส่งเข้า odoo · ฝั่ง odoo ไม่เปลี่ยนแล้ว แก้ฝั่งเราให้ on odoo”) — ตัว Odoo แยกจากเราที่ v1.423 (ไม่มีของ 1.424–1.476 เลย) · ตอนนี้รวมกลับ: เปิดจาก /nexus/starnexus1 (มี window.Nexus) = ① Fitting Global ดึงจาก API ของ AX ผ่าน Odoo (แคช ETag · ปุ่มดึงจาก AX · ดูรายการ) ② ตารางที่ Odoo เป็นหลัก อ่าน/บันทึกที่ Odoo (/table/rows · changes · write · select · replace · ถามของใหม่ทุก 10 วิ) ③ ลิงก์ตู้ / QR / เว็บดูงาน 3D ส่งเข้า Odoo (/nexus/web/) ④ รูปลายผิว/รูปย่อตู้จาก Odoo เมื่อย้ายรูปแล้ว ⑤ ซ่อนปุ่มเลือกไฟล์ของตารางที่อยู่ Odoo — ต่างจากตัว Odoo: ตารางจะเปิดจาก Odoo ต่อเมื่อ Odoo ตั้งเป็นหลัก “และ” ส่งข้อมูลจาก Drive เข้าไปแล้ว (ป้ายใน Odoo _sxl/odoo/<ตาราง>.json ผ่าน /nexus/api/web/put) — เดิมเปิดตามโหมด Odoo ทันที = เห็นข้อมูลเก่า 14/10 · ปุ่ม ⬆ ย้ายข้อมูลเข้า Odoo… (หน้าไฟล์กลาง เฉพาะตอนเปิดผ่าน Odoo): ตรวจ = เทียบทุกแถว Drive กับ Odoo · ส่ง = เฉพาะแถวที่ต่าง + ลบแถวที่ไม่มีบน Drive (เลือกได้) + รูปที่ยังไม่มี → ตรวจซ้ำทั้งตาราง → เขียนป้าย → โหลดหน้าใหม่ = เปิดจาก Odoo · ย้ายรอบนี้เฉพาะตารางของ StarNexus (furnitech_cabinets · furnitech_parts · xml_history · furnitech_share) · app_settings / imos_orders / imos_mapping / part_index ใช้ร่วมกับ Production อยู่ Drive ต่อ (ไม่ใช้แม้ Odoo ตั้งเป็นหลักไว้) · กันบันทึกผิดที่: เครื่องที่ยังเปิดแบบ Drive บันทึกตารางที่ย้ายแล้วไม่ได้ (ป้าย _MOVED_TO_ODOO.json บน Drive) · เปิดนอก Odoo (github.io) = Google Drive เหมือนเดิมทุกอย่าง · ฝั่ง Odoo ไม่ต้องแก้ · ลบรูปลายผิวใน Odoo จากโปรแกรมไม่ได้ (Odoo ไม่มีคำสั่งลบ) · ปิด: SN_OFF.odoo · odooTables · odooMovedGuard"],
     ["1.476","2026-10-18","FIX แผงขวา (แก้ไขชิ้นงาน) เลื่อนลงเองทีละนิดทุกครั้งที่คลิกเปิด/ปิดบาน (ผู้ใช้ 11:16 ส่งภาพตู้ b106: “เปิดปิดบาน เรื่อยๆ แล้วแผงขวาเลื่อนลงเรื่อยครับ”) — ต้นเหตุ: คลิกบาน = เลือกบาน → วาดแผงใหม่ (innerHTML) แล้วช่องบาร์โค้ด f_bcInfo ใกล้หัวแผงถูกเติมทีหลัง สูงขึ้น ~31 px · เบราว์เซอร์ยึดตำแหน่งเลื่อน (scroll anchoring) เลยบวก scrollTop ตามทุกรอบ สะสมไปเรื่อย ๆ (ทดสอบ: 700 → 731 → 762 → 793 …) · ตอนนี้ปิดการยึดตำแหน่งของ #inspBody (overflow-anchor:none) → วาดใหม่กี่รอบก็อยู่ที่เดิม · ปิด SN_OFF.inspAnchor"],
@@ -27534,6 +27535,7 @@ function boardRole(b){
      SN_OFF.altoBlum=1    ลิ้นชักแผงเหล็ก 3D ใช้รางวาดเองแบบง่าย แทนไฟล์ Blum TANDEM 560H (v1.472)
      SN_OFF.under3D=1     ลิ้นชักกล่องไม้ที่ใช้รางรับใต้ ไม่วาดราง Blum TANDEM 3D ใต้กล่อง (โล่งแบบเดิม) (v1.473)
      SN_OFF.underTravel=1 ลิ้นชักรางรับใต้ชักออก 70% ของความลึกเท่าแบบอื่น (ไม่ใช้ค่าตั้ง underOpenPct · ตั้งต้น 80) (v1.474 · v1.475)
+     SN_OFF.snvTexInline=1 ลิงก์ดูงาน: รูปเล็ก (ฝามินิฟิก) แยกเป็นไฟล์ t/ แบบเดิม ไม่ฝังในข้อมูลลิงก์ (v1.479)
      SN_OFF.odoo=1        เปิดผ่าน Odoo ก็ไม่ใช้ Odoo เลย (Fitting Global / ตาราง / เว็บดูงาน) — ทำงานแบบ Google Drive (v1.477)
      SN_OFF.odooTables=1  ไม่เปิดตารางจาก Odoo แม้ส่งข้อมูลเข้าแล้ว (ใช้ Drive) · รูปไม่สลับไป Odoo (v1.477)
      SN_OFF.odooMovedGuard=1 เครื่องที่เปิดแบบ Drive บันทึกตารางที่ย้ายเข้า Odoo แล้วได้ (ไม่กัน — ข้อมูลจะแยกสองที่) (v1.477)
@@ -48345,7 +48347,14 @@ function snvSerialize(opt){
   const tex=t=>{ if(!t||!t.image) return null; if(ti.has(t.uuid)) return ti.get(t.uuid);
     let u=iu.get(t.image);
     if(u===undefined){ let d=null; try{ d=snvImgUrl(t.image,texMax); }catch(e){ console.warn("snv tex:",e); }
-      if(d&&opt.folder){ const ext=/^data:image\/png/.test(d)?".png":".jpg", nm="t/"+snvHash(d)+ext; files.push({path:nm,url:d}); u=nm; } else u=d;
+      /* ───────── v1.479: รูปเล็กฝังในข้อมูลลิงก์ ไม่แยกเป็นไฟล์ t/ ─────────
+         ผู้ใช้ 19/10/2026 13:32 (ลิงก์ดูงานที่ส่งเข้า Odoo จริง · ออเดอร์ 2610197001_TESTODOO): “Minifix ไม่เหมือนเดิม” — ฝามินิฟิกเป็นสี่เหลี่ยมดำ
+         เดิม: ทุกรูปของฉาก (รวมฝามินิฟิก PNG 128×128 ~5 KB) เป็นไฟล์ t/<แฮช>.png แยก หน้าดูโหลดตามหลัง
+               บน GitHub ได้วงส้มถูกต้อง (ทดสอบไฟล์ชุดเดียวกันในเครื่องก็ถูก) · บน Odoo ได้สี่เหลี่ยมดำทั้งแผ่น = รูปมาไม่ครบ/ใช้ทำผิวไม่ได้ (ฝั่งที่ปล่อยไฟล์)
+         ตอนนี้: รูปที่เข้ารหัสแล้วไม่เกิน 48,000 ตัวอักษร (ฝามินิฟิก · รูปเล็กอื่น ๆ) ฝังในไฟล์ข้อมูลลิงก์ v/<รหัส>.bin เลย ไม่ต้องพึ่งไฟล์ t/
+                 ลายไม้ขนาดใหญ่ยังเป็นไฟล์ t/ แบบเดิม (หน้าดูขอรูปแบบ crossOrigin — ถ้าถูกส่งต่อไปโดเมนอื่นที่ไม่อนุญาต = ไม่มีลาย แทนที่จะดำ)
+         ปิด: SN_OFF.snvTexInline=1 */
+      if(d&&opt.folder&&!(d.length<=48000&&!snOff("snvTexInline"))){ const ext=/^data:image\/png/.test(d)?".png":".jpg", nm="t/"+snvHash(d)+ext; files.push({path:nm,url:d}); u=nm; } else u=d;
       iu.set(t.image,u); }
     if(!u) return null;
     const o={u, ws:t.wrapS, wt:t.wrapT, rp:[t.repeat.x,t.repeat.y], of:[t.offset.x,t.offset.y], ce:[t.center.x,t.center.y], ro:t.rotation||0, en:t.encoding, fy:t.flipY?1:0};
@@ -54959,13 +54968,23 @@ var SXL_MIG={now:['furnitech_cabinets','furnitech_parts','xml_history','furnitec
 function sxlMigApp(){try{return (SXL.cfg&&SXL.cfg.app==='Production')?'Production':'StarNexus'}catch(e){return 'StarNexus'}}
 function sxlMigMine(){return sxlMigApp()==='Production'?SXL_MIG.prod:SXL_MIG.now}
 function sxlMigOther(){return sxlMigApp()==='Production'?SXL_MIG.now:SXL_MIG.prod}
-function sxlMigPath(n){return SXL_MIG.dir+n+'.json'}
+/* ───────── v1.479: ป้าย “ส่งเข้าแล้ว” ย้ายไปไว้ที่ v/<รหัส>.bin ─────────
+   ผู้ใช้ 19/10/2026 13:30 (กดส่งเข้า Odoo ที่ Odoo จริง c1stmdev): “เขียนป้าย ‘ส่งเข้าแล้ว’ ของ furnitech_cabinets ใน Odoo ไม่สำเร็จ:
+     ชื่อไฟล์ของเว็บดูงานไม่ถูกต้อง: _sxl/odoo/furnitech_cabinets.json”
+   เดิม: ป้ายเขียนที่ _sxl/odoo/<ตาราง>.json — Odoo รับเฉพาะชื่อแบบไฟล์เว็บดูงาน (view.html · v/ · p/ · t/) จึงปฏิเสธ
+         ส่งแถวของตารางแรกเข้าไปแล้วแต่หยุดตรงป้าย → ตารางถัดไป (furnitech_share 973 แถว · รูป) ไม่ได้ส่ง · ไม่มีตารางไหนสลับไป Odoo
+   ตอนนี้: ป้ายอยู่ที่ v/zxmig<ชื่อย่อ>.bin (รูปเดียวกับไฟล์ข้อมูลลิงก์ดูงาน ที่ Odoo รับอยู่แล้ว · ตัวอักษรชุดเดียวกับรหัสลิงก์)
+           เขียนแล้วอ่านกลับจาก /web/list ทันที — ไม่เจอ = บอกชัด ๆ ไม่ถือว่าย้ายแล้ว · อ่านป้ายทั้งที่ใหม่และที่เดิม */
+var SXL_MIG_ID={furnitech_cabinets:'zxmigcabnt',furnitech_parts:'zxmigparts',xml_history:'zxmigxmhst',furnitech_share:'zxmigshare',
+ app_settings:'zxmigappst',imos_orders:'zxmigimrdr',imos_mapping:'zxmigimmap',part_index:'zxmigptidx',assets:'zxmigasset'};
+function sxlMigPath(n){return 'v/'+(SXL_MIG_ID[n]||('zxmig'+String(n).replace(/[^a-km-np-z2-9]/g,'').slice(0,5)))+'.bin'}
+function sxlMigPathOld(n){return SXL_MIG.dir+n+'.json'}
 /* ป้าย “ส่งเข้าแล้ว” ใน Odoo — ถามทีเดียวทุกตาราง (/web/list ตอบรหัส sha ของไฟล์ที่มี) · อ่านไม่ได้ = ถือว่ายังไม่ย้าย (ใช้ Drive) */
 async function sxlOdbMigLoad(){
  if(_sxlSnOff('odooTables')){SXL_ODB.mig={};return SXL_ODB.mig}
  var names=SXL_MIG.now.concat(SXL_MIG.prod,['assets']),m={};
- try{var r=await window.Nexus.rpc('/web/list',{app:window.NEXUS.app,paths:names.map(sxlMigPath)}),have=(r&&r.have)||{};
-  names.forEach(function(n){if(have[sxlMigPath(n)])m[n]=have[sxlMigPath(n)]})}
+ try{var r=await window.Nexus.rpc('/web/list',{app:window.NEXUS.app,paths:names.map(sxlMigPath).concat(names.map(sxlMigPathOld))}),have=(r&&r.have)||{};   // v1.479: + ที่ใหม่ v/zxmig*.bin
+  names.forEach(function(n){var h=have[sxlMigPath(n)]||have[sxlMigPathOld(n)];if(h)m[n]=h})}
  catch(e){console.warn('[Odoo] อ่านป้ายย้ายข้อมูลไม่ได้ — ใช้ Google Drive ต่อ',e&&e.message)}
  SXL_ODB.mig=m;return m}
 function sxlOdbMigOk(t){return !!(SXL_ODB.mig&&SXL_ODB.mig[t])}
@@ -55034,9 +55053,12 @@ async function sxlMigPush(p,withDel,onp){
 function sxlMigTok(){return (document.querySelector('meta[name=csrf-token]')||{}).content||''}
 async function sxlMigMark(name,info){
  var fd=new FormData();fd.append('app',window.NEXUS.app);fd.append('path',sxlMigPath(name));fd.append('title','StarNexus · ย้ายข้อมูลเข้า Odoo');fd.append('csrf_token',sxlMigTok());
- fd.append('file',new Blob([JSON.stringify(Object.assign({name:name,at:Date.now(),by:SXL.machine||''},info||{}))],{type:'application/json'}),name+'.json');
+ var p=sxlMigPath(name);fd.append('file',new Blob([JSON.stringify(Object.assign({sxlOdooMig:1,name:name,at:Date.now(),by:SXL.machine||''},info||{}))]),p.split('/').pop());   // v1.479: ชื่อไฟล์ = ท้ายที่อยู่ (แบบไฟล์เว็บดูงาน)
  var r=await fetch('/nexus/api/web/put',{method:'POST',body:fd,credentials:'same-origin'}),j={};try{j=await r.json()}catch(e){}
  if(!r.ok||j.error)throw Error('เขียนป้าย “ส่งเข้าแล้ว” ของ '+name+' ใน Odoo ไม่สำเร็จ: '+(j.error||('HTTP '+r.status)));
+ /* v1.479: อ่านกลับทันที — ตอนเปิดโปรแกรมใช้ /web/list ตัวเดียวกันนี้ตัดสินว่าตารางอยู่ Odoo ไหม */
+ var ck=null;try{ck=await window.Nexus.rpc('/web/list',{app:window.NEXUS.app,paths:[p]})}catch(e){ck=null}
+ if(!(ck&&ck.have&&ck.have[p]))throw Error('เขียนป้าย “ส่งเข้าแล้ว” ของ '+name+' แล้ว แต่ Odoo ยังไม่พบไฟล์ '+p+' (/web/list) — ยังไม่สลับตารางนี้ไป Odoo');
  SXL_ODB.mig=SXL_ODB.mig||{};SXL_ODB.mig[name]=1}
 async function sxlMigMarkDrive(names,info){
  if(!SXL.dir)return;
@@ -60311,7 +60333,7 @@ function envTex(){
 
 function loadImages(list){
   return Promise.all((list||[]).map(function(t){ return new Promise(function(res){
-    var im=new Image(); im.onload=function(){ res(im); }; im.onerror=function(){ res(null); }; im.src=t.u; }); })); }
+    var im=new Image(); im.onload=function(){ res(im); }; im.onerror=function(){ res(null); }; if(!/^data:/.test(t.u)) im.crossOrigin="anonymous"; im.src=t.u; }); })); }   /* v1.479: รูปที่ถูกส่งต่อไปโดเมนอื่นแบบไม่อนุญาต = ไม่ใช้ลาย (ไม่ใช่ผิวดำ) */
 
 function build(D,imgs){
   var tex=(D.tex||[]).map(function(t,i){ var im=imgs[i]; if(!im) return null;
