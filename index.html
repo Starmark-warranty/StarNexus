@@ -3250,7 +3250,7 @@
    ===================================================================== */
 /* ---- APP_META: แหล่งความจริงเดียวของเวอร์ชัน (ดูได้จาก console / คลิกชื่อแอป) ---- */
 const APP_META={
-  name:"StarNexus", version:"1.476", build:"2026-10-18/inspscroll",
+  name:"StarNexus", version:"1.477", build:"2026-10-19/odoo",
   file:"StarNexus.html", basedOn:"Furnitech_V3.html (v3.11)",
   /* ───────── เริ่มนับเวอร์ชันใหม่ที่ 1.001 (21/08/2026) ─────────
      ของเดิมนับมาถึง 42.1 แล้ววิ่งเป็นทศนิยมสองชั้นซึ่งอ่านลำดับยาก
@@ -3258,6 +3258,7 @@ const APP_META={
      ประวัติเก่าเก็บไว้ทั้งหมดตามเลขเดิม ไม่ไล่เขียนใหม่ เพราะเลขในนั้นถูกอ้างถึงไปแล้ว
      รายการที่อยู่ใต้ 1.001 ลงไปจึงเป็นเลขชุดเก่า อ่านต่อกันได้ตามวันที่ */
   changelog:[
+    ["1.477","2026-10-19","FEAT เปิดผ่าน Odoo ได้ (ย้ายตัวเชื่อม Odoo จากไฟล์ Odoo v1.424–1.434 มาใส่ตัวล่าสุด) + ปุ่มย้ายข้อมูลจาก Google Drive เข้า Odoo (ผู้ใช้ 19/10 10:28–10:40 ส่ง starnexus_1.434_20261019.html: “แอพอัปเดตไม่ทัน · สลับโปรแกรมนี้ก่อน เดี๋ยวค่อยสลับ Production · ทำปุ่มกดส่งเข้า odoo · ฝั่ง odoo ไม่เปลี่ยนแล้ว แก้ฝั่งเราให้ on odoo”) — ตัว Odoo แยกจากเราที่ v1.423 (ไม่มีของ 1.424–1.476 เลย) · ตอนนี้รวมกลับ: เปิดจาก /nexus/starnexus1 (มี window.Nexus) = ① Fitting Global ดึงจาก API ของ AX ผ่าน Odoo (แคช ETag · ปุ่มดึงจาก AX · ดูรายการ) ② ตารางที่ Odoo เป็นหลัก อ่าน/บันทึกที่ Odoo (/table/rows · changes · write · select · replace · ถามของใหม่ทุก 10 วิ) ③ ลิงก์ตู้ / QR / เว็บดูงาน 3D ส่งเข้า Odoo (/nexus/web/) ④ รูปลายผิว/รูปย่อตู้จาก Odoo เมื่อย้ายรูปแล้ว ⑤ ซ่อนปุ่มเลือกไฟล์ของตารางที่อยู่ Odoo — ต่างจากตัว Odoo: ตารางจะเปิดจาก Odoo ต่อเมื่อ Odoo ตั้งเป็นหลัก “และ” ส่งข้อมูลจาก Drive เข้าไปแล้ว (ป้ายใน Odoo _sxl/odoo/<ตาราง>.json ผ่าน /nexus/api/web/put) — เดิมเปิดตามโหมด Odoo ทันที = เห็นข้อมูลเก่า 14/10 · ปุ่ม ⬆ ย้ายข้อมูลเข้า Odoo… (หน้าไฟล์กลาง เฉพาะตอนเปิดผ่าน Odoo): ตรวจ = เทียบทุกแถว Drive กับ Odoo · ส่ง = เฉพาะแถวที่ต่าง + ลบแถวที่ไม่มีบน Drive (เลือกได้) + รูปที่ยังไม่มี → ตรวจซ้ำทั้งตาราง → เขียนป้าย → โหลดหน้าใหม่ = เปิดจาก Odoo · ย้ายรอบนี้เฉพาะตารางของ StarNexus (furnitech_cabinets · furnitech_parts · xml_history · furnitech_share) · app_settings / imos_orders / imos_mapping / part_index ใช้ร่วมกับ Production อยู่ Drive ต่อ (ไม่ใช้แม้ Odoo ตั้งเป็นหลักไว้) · กันบันทึกผิดที่: เครื่องที่ยังเปิดแบบ Drive บันทึกตารางที่ย้ายแล้วไม่ได้ (ป้าย _MOVED_TO_ODOO.json บน Drive) · เปิดนอก Odoo (github.io) = Google Drive เหมือนเดิมทุกอย่าง · ฝั่ง Odoo ไม่ต้องแก้ · ลบรูปลายผิวใน Odoo จากโปรแกรมไม่ได้ (Odoo ไม่มีคำสั่งลบ) · ปิด: SN_OFF.odoo · odooTables · odooMovedGuard"],
     ["1.476","2026-10-18","FIX แผงขวา (แก้ไขชิ้นงาน) เลื่อนลงเองทีละนิดทุกครั้งที่คลิกเปิด/ปิดบาน (ผู้ใช้ 11:16 ส่งภาพตู้ b106: “เปิดปิดบาน เรื่อยๆ แล้วแผงขวาเลื่อนลงเรื่อยครับ”) — ต้นเหตุ: คลิกบาน = เลือกบาน → วาดแผงใหม่ (innerHTML) แล้วช่องบาร์โค้ด f_bcInfo ใกล้หัวแผงถูกเติมทีหลัง สูงขึ้น ~31 px · เบราว์เซอร์ยึดตำแหน่งเลื่อน (scroll anchoring) เลยบวก scrollTop ตามทุกรอบ สะสมไปเรื่อย ๆ (ทดสอบ: 700 → 731 → 762 → 793 …) · ตอนนี้ปิดการยึดตำแหน่งของ #inspBody (overflow-anchor:none) → วาดใหม่กี่รอบก็อยู่ที่เดิม · ปิด SN_OFF.inspAnchor"],
     ["1.475","2026-10-17","CHANGE ระยะชักลิ้นชักรางรับใต้ในภาพ (ผู้ใช้ 10:50: “ชัก 70% ถูกแล้วครับ” → “ชัก สัก 80 % เฉพาะ INT01”) — v1.474 ชักเต็มระยะราง (HAF-U 350) · ตอนนี้ลิ้นชักรางรับใต้ชัก 80% ของความลึกชุดลิ้นชัก (INT01 ลึก 385 → 308) · ลิ้นชักแบบอื่น (K40 / รับข้าง) 70% เหมือนเดิม · ค่าตั้ง underOpenPct (ตั้งค่า → รางลิ้นชัก) · ปิด SN_OFF.underTravel = 70% แบบอื่น"],
     ["1.474","2026-10-17","FIX รางรับใต้ 3D กล่องไม้ (ผู้ใช้ 08:16 ส่งภาพ INT01 ลิ้นชักเปิด: “1.ระยะที่เปิดออกมาให้สมจริงหน่อยครับ 2.ขยับรางขึ้นให้ตรงกับรูเก่า ส่วนรูด้านลึกไม่ตรงไม่เป็นไร”) — ① ลิ้นชักรางรับใต้ชักออกเท่าระยะชักรางจริง (รางชักออกเต็มระยะ = ความยาวราง ไม่เกินลึกกล่อง −10 · HAF-U กล่อง 367 = 350) แทนสูตรเดิม 70% ของลึกชุดลิ้นชัก (ได้แค่ ~270) ทั้งตอนวาด (viewBoards) อนิเมชันเร็ว และหน้าดูงาน (_doorTfAt) · ลิ้นชักแบบอื่นใช้สูตรเดิม · ปิด SN_OFF.underTravel ② ความสูงราง = รูที่เจาะจริงเสมอ (เดิมรูห่างจาก 9 เกิน 3 มม. เช่น HAF-U railY 23 → ยึดก้นกล่องไว้ ภาพรางต่ำกว่ารู 14 มม.) · ตามลึกยังตรงรูหน้าสุดเหมือนเดิม · ③ ความลึกชุดลิ้นชัก (ฐานของระยะชัก 70% ของลิ้นชักแบบอื่น) วัดตามทิศหน้าตู้และแยกตามตู้ — เดิมวัดแกน Z ของโลก ตู้หมุน 90°/270° จึงชักตามความกว้าง (INT01 หน้าบาน 720 → ชัก 504 กล่องลึก 367 หลุดพ้นตู้) · ตู้ไม่หมุน/หมุน 180° เท่าเดิม · ปิด SN_OFF.dwrAxis · รูเจาะ/MPR ไม่เปลี่ยน"],
@@ -5093,7 +5094,9 @@ function toneOf(b){ return b.tone==null?state.globalTone:b.tone; }
    อ่านโฟลเดอร์ครั้งเดียวต่อการเชื่อม แล้วโหลดรูปเมื่อมีชิ้นขอใช้ครั้งแรก โหลดเสร็จค่อยวาดฉากใหม่ทีเดียว
    ลิงก์ดูอย่างเดียว/QR ไม่มีโฟลเดอร์ Server จึงใช้ลายวาดเองตามเดิม (รูปไม่ถูกเขียนลง _skin เพราะเก็บแบบ non-enumerable) */
 let _texImgC={}, _texImgDir=null, _texImgIdx=null, _texImgT=0;
-function texImgDir(){ try{ return (window.SXL&&window.SXL.dir)||null; }catch(e){ return null; } }
+/* v1.477: เปิดผ่าน Odoo — ย้ายรูปเข้า Odoo แล้ว (ป้าย assets) = รูปลายผิว/รูปย่อจาก Odoo · ยังไม่ย้าย = Google Drive ตามเดิม · ไม่มี Drive = Odoo (Odoo v1.427) */
+function texImgDir(){ try{ if(typeof sxlOdbOn==="function"&&sxlOdbOn()&&typeof SXL_ODB!=="undefined"&&SXL_ODB.mig&&SXL_ODB.mig.assets&&!snOff("odooTables")) return sxlVDir();
+  return (window.SXL&&window.SXL.dir)||(typeof sxlVDir==="function"?sxlVDir():null)||null; }catch(e){ return null; } }
 function _texImgReset(d){ _texImgDir=d; _texImgC={}; _texImgIdx=null; }
 /* เรียกจาก onRender ของไฟล์กลาง — เพิ่งเลือก/เชื่อมโฟลเดอร์ใหม่ รูปต้องขึ้นเองโดยไม่ต้องแตะอะไร */
 function texImgDirCheck(){ const d=texImgDir(); if(d!==_texImgDir){ _texImgReset(d); if(d){ try{ refreshSkins(); }catch(e){} try{ if(PL.on&&PL.items) plPanelGrid(); }catch(e){} } } }   // v1.312: แคตตาล็อกห้องออกแบบโหลดรูปใหม่
@@ -27530,6 +27533,9 @@ function boardRole(b){
      SN_OFF.altoBlum=1    ลิ้นชักแผงเหล็ก 3D ใช้รางวาดเองแบบง่าย แทนไฟล์ Blum TANDEM 560H (v1.472)
      SN_OFF.under3D=1     ลิ้นชักกล่องไม้ที่ใช้รางรับใต้ ไม่วาดราง Blum TANDEM 3D ใต้กล่อง (โล่งแบบเดิม) (v1.473)
      SN_OFF.underTravel=1 ลิ้นชักรางรับใต้ชักออก 70% ของความลึกเท่าแบบอื่น (ไม่ใช้ค่าตั้ง underOpenPct · ตั้งต้น 80) (v1.474 · v1.475)
+     SN_OFF.odoo=1        เปิดผ่าน Odoo ก็ไม่ใช้ Odoo เลย (Fitting Global / ตาราง / เว็บดูงาน) — ทำงานแบบ Google Drive (v1.477)
+     SN_OFF.odooTables=1  ไม่เปิดตารางจาก Odoo แม้ส่งข้อมูลเข้าแล้ว (ใช้ Drive) · รูปไม่สลับไป Odoo (v1.477)
+     SN_OFF.odooMovedGuard=1 เครื่องที่เปิดแบบ Drive บันทึกตารางที่ย้ายเข้า Odoo แล้วได้ (ไม่กัน — ข้อมูลจะแยกสองที่) (v1.477)
      SN_OFF.inspAnchor=1  แผงขวาให้เบราว์เซอร์ยึดตำแหน่งเลื่อนเองแบบเดิม (วาดแผงใหม่ซ้ำ ๆ แล้วเลื่อนลงทีละ ~31 px) (v1.476)
      SN_OFF.dwrAxis=1     ความลึกชุดลิ้นชัก (ระยะชัก 70%) วัดตามแกน Z ของโลก รวมทุกตู้แบบเดิม — ตู้หมุน 90°/270° ชักตามความกว้าง (v1.474)
      SN_OFF.shoeWGrain=1  ชิ้นแปะหน้า/หลังของชั้นรองเท้าไม้ ลายตามกติกาแผ่นหลัง (ลายตั้ง) แบบเดิม (v1.452)
@@ -48508,8 +48514,10 @@ async function snvBuild(opt){
    Token เก็บในเบราว์เซอร์เครื่องนี้เท่านั้น (sxlocaltrial:furnitech:gh) ไม่เข้า settings ไม่ขึ้นไฟล์กลาง ไม่ติดไปกับลิงก์ */
 const GH_KEY="sxlocaltrial:furnitech:gh";
 let _ghCfg=null;
-async function ghCfg(){ if(_ghCfg) return _ghCfg; try{ _ghCfg=await lsGet(GH_KEY,null); }catch(e){} return (_ghCfg=_ghCfg||{}); }
-async function ghSave(c){ _ghCfg=c||{}; try{ await lsSet(GH_KEY,_ghCfg); }catch(e){ console.error(e); } }
+async function ghCfg(){ if(typeof sxlOdbOn==="function"&&sxlOdbOn()) return SXL_ODB.ghc||(SXL_ODB.ghc={odoo:1,owner:"odoo",repo:"web",token:"odoo",branch:"main",base:location.origin+"/nexus/web/",canonOk:1});   // v1.477 (Odoo v1.429): เปิดผ่าน Odoo = ปล่อยเว็บดูงานที่ Odoo
+ if(_ghCfg) return _ghCfg; try{ _ghCfg=await lsGet(GH_KEY,null); }catch(e){} return (_ghCfg=_ghCfg||{}); }
+async function ghSave(c){ if(c&&c.odoo) return;   // v1.477 (Odoo v1.429)
+ _ghCfg=c||{}; try{ await lsSet(GH_KEY,_ghCfg); }catch(e){ console.error(e); } }
 function ghReadyC(c){ return !!(c&&c.owner&&c.repo&&c.token&&!snOff("ghShare")); }
 async function ghReady(){ return ghReadyC(await ghCfg()); }
 function ghPagesBase(c){
@@ -48569,6 +48577,7 @@ function ghErrHtml(e){ return escapeHtml(String((e&&e.message)||e||"")).replace(
    blob ที่ไม่มี commit ชี้ถึงไม่เข้า branch ไม่ขึ้นเว็บ ไม่มีใครเห็น GitHub เก็บกวาดเอง · ผ่านแล้วจำไว้ (ต่อ repo+Token) ไม่ถามซ้ำ */
 const _ghWOk={};
 async function ghWriteProbe(c){
+  if(c&&c.odoo) return {ok:true};   // v1.477 (Odoo v1.429): ที่ปล่อย Odoo — สิทธิ์ตรวจที่ฝั่ง Odoo ตอนส่ง
   const k=String(c.owner)+"/"+String(c.repo)+"|"+String(c.token||"").slice(-8);
   if(_ghWOk[k]) return {ok:true};
   try{ await ghApi(c,"POST","/git/blobs",{content:"StarNexus write test\n",encoding:"utf-8"}); _ghWOk[k]=1; return {ok:true}; }
@@ -48608,6 +48617,7 @@ async function ghCommit(c,T,files,copies,msg,onStep){
   return {changed:entries.length,sha:nc.sha,paths:entries.map(e=>e.path)}; }
 /* ทดสอบ + ตรวจสภาพ repo: สิทธิ์เขียน · branch · มี view.html / legacy.html ไหม · index.html เป็นรุ่นไหน */
 async function ghCheck(c,deep){
+  if(c&&c.odoo) return {full:"Odoo /nexus/web",branch:"main",canPush:true,canWrite:true,priv:false,owner:"odoo",repo:"web",hasView:true,hasIndex:true,hasLegacy:false,nShare:0,indexRedirect:true};   // v1.477 (Odoo v1.429)
   /* v1.344: 404 แยกบอกว่า repo ไม่มี หรือ branch ไม่มี — เดิมรวมเป็นประโยคเดียว ผู้ใช้ไม่รู้ว่าต้องแก้ช่องไหน */
   let info;
   try{ info=await ghApi(c,"GET",""); }
@@ -48699,6 +48709,7 @@ async function ghPrepare(opt){
     prevMap:(prev?Object.assign({},prev.map):null),                                                    /* v1.409: รหัสเดิมรายตู้ */
     msg:"StarNexus: ลิงก์ดู "+(r.D.ord||opt.title||oid)+" · "+(r.D.cabs||[]).length+" ตู้"+(opt.cabs?" (+ลิงก์ตู้)":"")}; }
 async function ghUpload(P,onStep){
+  if(P&&P.c&&P.c.odoo) return sxlWebUpload(P,onStep);   // v1.477 (Odoo v1.429): ที่ปล่อย Odoo
   const step=onStep||(()=>{}), t1=Date.now();
   step("เชื่อม GitHub…",.4);
   let res;
@@ -48813,6 +48824,11 @@ function ghPrevSids(oname){
     if(!oname||snOff("ghKeepSid")) return R;
     /* ① ส่งออเดอร์นี้ไปแล้วในรอบเปิดโปรแกรมนี้ */
     if(_cabSidOrd===oname) Object.keys(CAB_SID||{}).forEach(pid=>add(pid,CAB_SID[pid],"ในเครื่อง"));
+    if(typeof sxlOdbHas==="function"&&(sxlOdbHas("part_index")||sxlOdbHas("imos_orders"))){   // v1.477 (Odoo v1.427): ออเดอร์ที่ส่งไว้แล้วอยู่ใน Odoo
+      try{ if(sxlOdbHas("part_index")){ const r=await SXL_DB.from("part_index").select("*").eq("order_id",oname); if(!r.error) fromPI(r.data,"Odoo/part_index"); }
+        if(sxlOdbHas("imos_orders")&&!R.n){ const r=await SXL_DB.from("imos_orders").select("*").eq("order_id",oname); if(!r.error) fromIO(r.data,"Odoo/imos_orders"); } }
+      catch(e){ console.warn("ghPrevSids: Odoo",e); }
+      return R; }
     if(!(typeof SXL!=="undefined"&&SXL&&SXL.dir)) return R;
     /* ②③ _changes — ไล่สองตารางพร้อมกัน เอาเฉพาะไฟล์ของกลุ่มออเดอร์นี้ */
     const vers=[], ts=nm=>String(nm).split("@")[1]||"";
@@ -51389,6 +51405,10 @@ async function _pidProdData(oid){
       out.push({_tp:3,ID:"P"+n,ID_TEXT:String(r.part_name||""),_cabInst:String(r.cab_inst||""),PARENTID:String(r.product_id||"")}); });
     out.sort((a,b)=>parseInt(a.ID.slice(1),10)-parseInt(b.ID.slice(1),10));
     return out.length?{groups:[{rows:out}],_src:"part_index"}:null; };
+  if(LOC&&typeof sxlOdbHas==="function"&&(sxlOdbHas("imos_orders")||sxlOdbHas("part_index"))){   // v1.477 (Odoo v1.427): อ่านจาก Odoo
+    try{ if(sxlOdbHas("imos_orders")){ const r=await SXL_DB.from("imos_orders").select("order_id,data").eq("order_id",oid); if(r.error) return {retry:true}; const d=pickIO(r.data); if(d) return {data:d}; }
+      if(sxlOdbHas("part_index")){ const r=await SXL_DB.from("part_index").select("*").eq("order_id",oid); if(r.error) return {retry:true}; const d=fromPI(r.data); if(d) return {data:d}; }
+      return {data:null}; }catch(e){ return {retry:true}; } }
   if(LOC){
     if(!SXL.dir) return {retry:true};
     const ts=nm=>String(nm).split("@")[1]||"";
@@ -52215,7 +52235,7 @@ async function sendSupabaseRun(){
   let data=null, db=null, cl=null;
   try{
     /* ① โฟลเดอร์ Server ต้องเขียนได้ก่อน — ไม่งั้นทำทุกขั้นเสร็จแล้วค่อยพังตอนเขียน */
-    if(LOC){
+    if(LOC&&!["imos_orders","part_index","imos_mapping","app_settings"].every(t=>typeof sxlOdbHas==="function"&&sxlOdbHas(t))){   // v1.477 (Odoo v1.427): ปลายทางอยู่ที่ Odoo ครบ = ไม่ต้องใช้โฟลเดอร์/Drive
       await step("ตรวจโฟลเดอร์ Server…",3);
       if(!SXL.dir){ const e=new Error("ยังไม่ได้เชื่อมโฟลเดอร์ Server (เปิดโปรแกรมใหม่แล้วยังไม่ได้กด “เชื่อมตำแหน่งที่จำไว้”)"); e.fix="dir"; throw e; }
       let can=false; try{ can=await sxlCanWrite(); }catch(e){}
@@ -53892,7 +53912,7 @@ function sxlSorted(S,T,ord){var key=JSON.stringify(ord);var hit=S.sort.get(key);
    if(x==null||y==null){if(x==null&&y==null)continue;return (x==null)===o.nf?-1:1}
    var d=sxlCmp(x,y);if(d)return o.asc?d:-d}return a.i-b.i});
  var out=arr.map(function(a){return a.r});if(S.sort.size>12)S.sort.clear();S.sort.set(key,out);return out}
-function sxlExec(st){if(st.op==='write')return sxlWrite(st);var T=sxlCfg(st.table);if(T&&T.lazy)return sxlLazyRead(st);
+function sxlExec(st){if(st.op==='write')return sxlWrite(st);var T=sxlCfg(st.table),_S=SXL.s[st.table];if(_S&&_S.src==='odb'&&_S.wonly)return sxlOdbSelectRun(st);if(T&&T.lazy)return sxlLazyRead(st);   // v1.477 (Odoo v1.427): ตารางที่ไม่ได้โหลด อ่านจาก Odoo
  var _dw=sxlDfrWait(st.table);if(_dw)return _dw.then(function(){return sxlRun(st)},function(){return sxlRun(st)});   // v1.428: ตาราง defer ยังอ่านเบื้องหลังอยู่ — รอแล้วค่อยตอบ
  return sxlRun(st)}
 function sxlProject(T,S,rows,cols){SXL_TBL=T;var star=!cols||String(cols).trim()==='*';
@@ -53991,6 +54011,7 @@ function sxlPrefetch(t){
  p.catch(function(){}); SXL.pre=SXL.pre||{}; SXL.pre[t]={at:Date.now(),p:p}; return p }
 /* v1.348: L0 = รายชื่อไฟล์ที่ไล่มาแล้วนอกคิว (รอบตรวจไฟล์ sxlPollList) — ใช้ชุดนั้นเลย ไม่ไล่ซ้ำในคิว */
 async function sxlScanOver(T,S,only,L0){
+ if(sxlRemote(S))return S.src==='odb'?sxlOdbFresh(T,S):false;   // v1.477 (Odoo v1.427): ตารางที่อยู่ Odoo ไม่มีไฟล์ให้อ่าน
  var d=await sxlOverDir(T.t,false);if(!d)return false;
  var latest={},all={},W=SXL.curW,t0=Date.now(),nE=0,L=L0||null;
  var pre=(!L&&only&&SXL.pre&&SXL.pre[T.t]&&(Date.now()-SXL.pre[T.t].at<180000)&&!_sxlSnOff('sxlPrefetch'))?SXL.pre[T.t]:null;
@@ -54036,6 +54057,10 @@ async function sxlWrite(st){
  if(!T)return sxlE('รุ่นทดลองยังไม่เชื่อมตาราง '+st.table);
  if(st.err)return sxlE(st.err);
  if(T.w&&T.w.deny)return sxlE(T.w.deny,'SXL_DENY',403);
+ /* v1.477 (Odoo v1.426): ตารางที่ Odoo เป็นหลัก บันทึกที่ Odoo · ยังโหลดจาก Odoo ไม่เสร็จ = รอสูงสุด 90 วิ (แบบรอบแรกของ Drive v1.429) */
+ if(S&&S.src==='odb'){ if(!S.wonly&&!S.ready){ var _ow0=Date.now(); while(!S.ready&&S.src==='odb'&&Date.now()-_ow0<90000) await new Promise(function(r){setTimeout(r,200)}) }
+  if(S.src==='odb') return sxlOdbWrite(T,S,st); }
+ { var _mg=await sxlMovedGuard(T); if(_mg) return sxlE(_mg,'SXL_MOVED',409); }   // v1.477: ตารางนี้ย้ายเข้า Odoo แล้ว ไม่บันทึกลง Drive
  if(!SXL.dir)return sxlE('ยังบันทึกไม่ได้ — ต้องเลือกโฟลเดอร์ Server ที่ปุ่ม “ไฟล์กลาง” ก่อน','SXL_NODIR',403);
  if(!await sxlCanWrite())return sxlE('ยังไม่ได้อนุญาตให้บันทึกลงโฟลเดอร์ Server — กดปุ่ม “ไฟล์กลาง” → “เชื่อมตำแหน่งที่จำไว้” แล้วเลือกอนุญาตให้แก้ไข','SXL_NOPERM',403);
  { var _dw=sxlDfrWait(st.table); if(_dw){ try{ await _dw }catch(e){} } }   // v1.428: ตาราง defer ยังอ่านเบื้องหลัง — รอให้ครบก่อนเขียน
@@ -54121,6 +54146,8 @@ async function sxlReplaceBucket(t,bucket,rows){
  if(!T)return sxlE('รุ่นทดลองยังไม่เชื่อมตาราง '+t);
  if(T.w&&T.w.deny)return sxlE(T.w.deny,'SXL_DENY',403);
  if(T.load!==false||T.lazy)return sxlE('แทนทั้งกลุ่มได้เฉพาะตารางที่ไม่ได้อ่านเข้าโปรแกรม ('+t+')');
+ if(S&&S.src==='odb')return sxlOdbReplace(T,S,bucket,rows);   // v1.477 (Odoo v1.427)
+ { var _mg=await sxlMovedGuard(T); if(_mg) return sxlE(_mg,'SXL_MOVED',409); }   // v1.477: ย้ายเข้า Odoo แล้ว ไม่บันทึกลง Drive
  if(!SXL.dir)return sxlE('ยังบันทึกไม่ได้ — ต้องเลือกโฟลเดอร์ Server ที่ปุ่ม “ไฟล์กลาง” ก่อน','SXL_NODIR',403);
  if(!await sxlCanWrite())return sxlE('ยังไม่ได้อนุญาตให้บันทึกลงโฟลเดอร์ Server — กดปุ่ม “ไฟล์กลาง” → “เชื่อมตำแหน่งที่จำไว้” แล้วเลือกอนุญาตให้แก้ไข','SXL_NOPERM',403);
  var tq=Date.now(),W={seq:(SXL.wseq=(SXL.wseq||0)+1),t:t,k:'replace',q:SXL.locked,poll:!!SXL.busy};
@@ -54338,6 +54365,7 @@ function sxlLoadDeferred(ts,inDir,force){
   for(var i=0;i<ts.length;i++){ var T=ts[i], t0=Date.now();
    try{
     var ch=await sxlLocked(async function(){ var S=SXL.s[T.t],c=new Set();
+     if(sxlRemote(S)) return c;   // v1.477: ระหว่างรอคิว ตารางนี้ย้ายไปอ่านจาก Odoo แล้ว
      try{ if(S.src==='file'&&S.handle){ if(await sxlLoadFile(T.t,await S.handle.getFile(),'file',S.handle,force)) c.add(T.t) }
       else if(S.src!=='once'){ var m=inDir&&inDir[T.t]; if(m&&await sxlLoadFile(T.t,m.f,'dir',m.h,force)) c.add(T.t) }
       if(SXL.dir&&S.ready){ try{ if(await sxlScanOver(T,S,null)) c.add(T.t); S.werr='' }catch(e){ S.werr='อ่าน _changes ไม่ได้: '+e.message } } }
@@ -54379,7 +54407,7 @@ async function sxlScanDir(dir){var found={};
 async function sxlPollList(){ var out={inDir:null,over:{},ms:0},t0=Date.now();
  try{ out.inDir=await sxlScanDir(SXL.dir); }catch(e){ out.inDir=null; }                      // พลาด = ในคิวไล่เองแบบเดิม
  var _pa=_sxlSnOff('sxlPollAll');   // v1.428: รอบตรวจดูเฉพาะตาราง live (ปิด = ทุกตารางแบบเดิม)
- var ts=SXL.cfg.tables.filter(function(T){ var S=SXL.s[T.t]; return sxlLoadable(T)&&S&&S.ready&&(_pa||T.live||(SXL.relist&&SXL.relist.has(T.t))); });
+ var ts=SXL.cfg.tables.filter(function(T){ var S=SXL.s[T.t]; return sxlLoadable(T)&&S&&S.ready&&!sxlRemote(S)&&(_pa||T.live||(SXL.relist&&SXL.relist.has(T.t))); });   // v1.477: + ไม่ใช่ตารางของ Odoo
  for(var i=0;i<ts.length;i++){ var T=ts[i]; try{ var d=await sxlOverDir(T.t,false); if(!d) continue;
    var latest={},all={},n=0; for await(var ent of d.entries()){ n++; if(ent[1].kind!=='file')continue; var m=SXL_VER_RE.exec(ent[0]); if(!m)continue;
     (all[m[1]]=all[m[1]]||[]).push(ent[0]); if(!latest[m[1]]||ent[0]>latest[m[1]])latest[m[1]]=ent[0] }
@@ -54419,14 +54447,16 @@ async function sxlSync(force,why){
   try{
    if(SXL.dir&&SXL._prog){SXL._prog('ตรวจไฟล์ในโฟลเดอร์ '+(SXL.dir.name||'Server')+' …',3);await new Promise(function(r){setTimeout(r,30)})}   // v1.299-local.9
    /* v1.428: ตอนเปิด/F5 ข้ามตาราง defer (อ่านเบื้องหลังทีหลัง) · F5 ใช้รายชื่อ _changes ที่จำไว้ แล้วตรวจจริงเบื้องหลัง */
-   if(_dfrOn){ SXL.cfg.tables.forEach(function(T0){ if(T0.defer&&sxlLoadable(T0)&&!SXL.s[T0.t].ready){ _dfrSkip.add(T0.t); _dfrT.push(T0) } }) }
-   var _lsc=(why==='restore'&&SXL.dir)?await sxlLsGet(SXL.cfg.tables.filter(function(T0){ return sxlLoadable(T0)&&!_dfrSkip.has(T0.t) }).map(function(T0){ return T0.t })):null;
-   if(!PL&&SXL.dir&&why!=='poll'&&!_sxlSnOff('sxlParList')){ try{ PL=await sxlListAll(_dfrSkip,_lsc) }catch(e){ PL=null } }   // v1.391: ไล่รายชื่อทุกโฟลเดอร์พร้อมกัน
+   if(_dfrOn){ SXL.cfg.tables.forEach(function(T0){ if(T0.defer&&sxlLoadable(T0)&&!SXL.s[T0.t].ready&&!sxlRemote(SXL.s[T0.t])){ _dfrSkip.add(T0.t); _dfrT.push(T0) } }) }   // v1.477: ตารางที่อยู่ Odoo ไม่อ่านจากโฟลเดอร์/Drive
+   var _rmSkip=new Set(_dfrSkip); SXL.cfg.tables.forEach(function(T0){ if(sxlRemote(SXL.s[T0.t])) _rmSkip.add(T0.t) });   // v1.477
+   var _lsc=(why==='restore'&&SXL.dir)?await sxlLsGet(SXL.cfg.tables.filter(function(T0){ return sxlLoadable(T0)&&!_rmSkip.has(T0.t) }).map(function(T0){ return T0.t })):null;
+   if(!PL&&SXL.dir&&why!=='poll'&&!_sxlSnOff('sxlParList')){ try{ PL=await sxlListAll(_rmSkip,_lsc) }catch(e){ PL=null } }   // v1.391: ไล่รายชื่อทุกโฟลเดอร์พร้อมกัน
    if(SXL.dir){ if(PL&&PL.inDir){ inDir=PL.inDir; SXL.dirErr=''; }                           // v1.348: ไล่มาแล้วนอกคิว
     else { try{inDir=await sxlScanDir(SXL.dir);SXL.dirErr=''}catch(e){SXL.dirErr='อ่านโฟลเดอร์ไม่ได้: '+e.message} } }
    _inDir0=inDir;
-   var _pT=SXL.cfg.tables.filter(function(T0){ return sxlLoadable(T0)&&!_dfrSkip.has(T0.t) }),_pI=0;   /* v1.299-local.8: บอกกล่องโหลดว่ากำลังอ่านไฟล์ไหน · v1.428: ไม่นับตาราง defer */
+   var _pT=SXL.cfg.tables.filter(function(T0){ return sxlLoadable(T0)&&!_rmSkip.has(T0.t) }),_pI=0;   /* v1.299-local.8: บอกกล่องโหลดว่ากำลังอ่านไฟล์ไหน · v1.428: ไม่นับตาราง defer */
    for(var T of SXL.cfg.tables){if(!sxlLoadable(T))continue;var S=SXL.s[T.t];
+    if(sxlRemote(S))continue;                                             // v1.477 (Odoo v1.426): ตารางที่อยู่ Odoo ไม่อ่าน CSV / _changes
     if(_dfrSkip.has(T.t))continue;                                        // v1.428: อ่านเบื้องหลังทีหลัง
     if(why==='poll'&&!_pa&&!T.live&&!(SXL.relist&&SXL.relist.has(T.t)))continue;   // v1.428: รอบตรวจดูเฉพาะตาราง live
     if(SXL._prog){_pI++;var _pf=(S.src==='file'&&S.handle)?null:inDir[T.t];SXL._prog('อ่าน '+(_pf?_pf.f.name+' · '+sxlMB(_pf.f.size):T.t)+' ('+_pI+'/'+_pT.length+')',5+75*(_pI-1)/Math.max(_pT.length,1));await new Promise(function(r){setTimeout(r,30)})}
@@ -54475,20 +54505,24 @@ function sxlNotify(m){try{(SXL.cfg.notify||sxlToast)(m)}catch(e){}sxlStatus(m)}
 function esc2(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
 function sxlStatus(text,bad){var el=document.getElementById('sxLocalStatus');if(el){el.textContent=text;el.style.color=bad?'#b42d24':'inherit'}}
 function sxlMB(n){return n>=1048576?(n/1048576).toFixed(1)+' MB':Math.max(1,Math.round(n/1024))+' KB'}
-var SXL_SRC={dir:'จากโฟลเดอร์',file:'เลือกไฟล์ไว้',once:'ครั้งเดียว ไม่ติดตาม'};
+var SXL_SRC={dir:'จากโฟลเดอร์',file:'เลือกไฟล์ไว้',once:'ครั้งเดียว ไม่ติดตาม',odoo:'จาก AX ผ่าน Odoo',odb:'อ่านและบันทึกที่ Odoo'};   // v1.477: + Odoo (จากตัว Odoo v1.424/1.426)
 function sxlReadyN(){return SXL.cfg.tables.filter(function(T){return sxlLoadable(T)&&SXL.s[T.t].ready}).length}
 function sxlLoadN(){return SXL.cfg.tables.filter(sxlLoadable).length}
 function sxlRender(){
  SXL.cfg.tables.forEach(function(T){var S=SXL.s[T.t],el=document.getElementById('sxl_st_'+T.t);if(!el)return;var h,cls;
+  if(!sxlLoadable(T)&&S.src==='odb'){h='✓ Odoo · '+esc2(T.t)+'<br><small>'+(T.lazy?'เปิดทีละรหัสจาก Odoo · ':'')+'บันทึกลง Odoo · ไม่ต้องโหลดทั้งตาราง</small>'+(S.nW?'<br><small>รอบนี้บันทึกลง Odoo แล้ว '+S.nW.toLocaleString()+' แถว</small>':'')+(S.werr?'<br><small class="sl-bad">'+esc2(S.werr)+'</small>':'');el.innerHTML=h;el.className='sl-st ok';return}   // v1.477 (Odoo v1.427)
   if(!sxlLoadable(T)){h=(T.lazy?'เก็บใน _changes/'+T.t+' · เปิดทีละรหัส ไม่ต้องโหลดทั้งตาราง':'ไม่ต้องโหลด · บันทึกลง _changes/'+T.t)+(S.nW?'<br><small>รอบนี้บันทึกแล้ว '+S.nW+' แถว</small>':'');cls=SXL.canWrite?'ok':'off';el.innerHTML=h;el.className='sl-st '+cls;return}
-  if(S.ready){h='✓ '+esc2(S.name)+' · '+S.rows.length.toLocaleString()+' แถว · '+sxlMB(S.size)+'<br><small>'+(SXL_SRC[S.src]||'')+' · แก้ล่าสุด '+new Date(S.mod).toLocaleString('th-TH')+'</small>'+(sxlLdTxt(T.t)?('<br><small>⏱ '+esc2(sxlLdTxt(T.t))+'</small>'):'');cls='ok';   // v1.391: เวลาโหลดรายตาราง
+  if(S.ready){h='✓ '+esc2(S.name)+' · '+S.rows.length.toLocaleString()+' แถว'+(S.src==='odb'?'':' · '+sxlMB(S.size))+'<br><small>'+(SXL_SRC[S.src]||'')+' · '+(S.src==='odb'?'ล่าสุด ':'แก้ล่าสุด ')+new Date(S.mod).toLocaleString('th-TH')+'</small>'+(S.src!=='odoo'&&S.src!=='odb'&&sxlLdTxt(T.t)?('<br><small>⏱ '+esc2(sxlLdTxt(T.t))+'</small>'):'');cls='ok';   // v1.391: เวลาโหลดรายตาราง
    if(S.over.size)h+='<br><small>+ ของที่บันทึกใน _changes '+S.over.size.toLocaleString()+' ชุด'+(S.nW?' · รอบนี้บันทึกแล้ว '+S.nW+' แถว':'')+'</small>';
+   if(S.src==='odb'&&S.nW)h+='<br><small>รอบนี้บันทึกลง Odoo แล้ว '+S.nW.toLocaleString()+' แถว</small>';   // v1.477
    if(S.werr)h+='<br><small class="sl-bad">'+esc2(S.werr)+'</small>';
    var n=SXL.notes[T.t];if(n)h+='<br><small class="sl-warn">'+esc2(n)+'</small>';
    if(T.t===SXL.cfg.settingsTable&&SXL.settingsPending)h+='<br><small class="sl-warn">ไฟล์เปลี่ยนแล้ว — กด อ่านไฟล์ล่าสุด เพื่อใช้ค่าใหม่</small>'}
+  else if(sxlRemote(S)){h=S.src==='odb'?'กำลังอ่านจาก Odoo …'+(S.oprog?'<br><small>'+esc2(S.oprog)+'</small>':''):'กำลังดึงจาก AX ผ่าน Odoo …';cls='off'}   // v1.477 (Odoo v1.426)
   else if(sxlDfrWait(T.t)){h='⏳ กำลังอ่านเบื้องหลัง (ใช้งานอื่นไปก่อนได้)';cls='off'}   // v1.428
   else{h='ยังไม่ได้เลือก<br><small>'+esc2(T.miss)+'</small>';cls=T.core?'bad':'off'}
-  if(S.err){h+='<br><small class="sl-bad">'+esc2(S.err)+'</small>';if(!S.ready)cls='bad'}
+  if(S.err){h+='<br><small class="sl-bad">'+esc2(S.err)+'</small>';if(!S.ready)cls='bad';
+   if(S.src==='odb')h+='<br><button onclick="sxlOdbLoad(\''+T.t+'\')">ลองอ่านใหม่</button>'}
   el.innerHTML=h;el.className='sl-st '+cls});
  var di=document.getElementById('sxlDirInfo');
  if(di)di.innerHTML=SXL.dir?('โฟลเดอร์: <b>'+esc2(SXL.dir.name)+'</b> · จับคู่ไฟล์ตามชื่อตาราง เช่น '+esc2(SXL.cfg.tables[0].t)+'_rows.csv'+(SXL.dirErr?(' <span class="sl-bad">'+esc2(SXL.dirErr)+'</span>'):'')):'เลือกโฟลเดอร์ที่เก็บ CSV ครั้งเดียว โปรแกรมจับคู่ไฟล์ตามชื่อตารางให้เอง (เช่น '+esc2(SXL.cfg.tables[0].t)+'_rows.csv) · StarNexus กับ Production ใช้โฟลเดอร์เดียวกันได้';
@@ -54498,14 +54532,27 @@ function sxlRender(){
  if(wi)wi.innerHTML=!SXL.dir?'<span class="sl-warn">บันทึก: ต้องเลือกโฟลเดอร์ Server ก่อน (เลือกไฟล์ทีละตัวบันทึกไม่ได้)</span>'
   :SXL.canWrite?'<span class="sl-st ok">บันทึก: ✓ อนุญาตแก้ไขโฟลเดอร์แล้ว</span> · ของที่บันทึกอยู่ในโฟลเดอร์ย่อย <code>_changes</code> · ไฟล์ CSV เดิมไม่ถูกแก้'
   :'<span class="sl-bad">บันทึก: ยังไม่ได้อนุญาตให้แก้ไข — กด “เชื่อมตำแหน่งที่จำไว้” แล้วเลือกอนุญาต</span>';
+ if(wi){var _ob=SXL.cfg.tables.filter(function(T){return SXL.s[T.t].src==='odb'}).map(function(T){return T.t});   // v1.477 (Odoo v1.426/1.427)
+  var _all=SXL.cfg.tables.every(function(T){return !sxlLoadable(T)||sxlRemote(SXL.s[T.t])});
+  if(_ob.length)wi.innerHTML=(_all?'':wi.innerHTML+'<br>')+'<span class="sl-st ok">บันทึกลง Odoo: '+esc2(_ob.join(' · '))+'</span> · '+(_all?'ไม่ต้องใช้ Google Drive':'ตารางนี้ไม่ใช้ Google Drive แล้ว')}
+ try{sxlOdooChrome()}catch(e){}   // v1.477 (Odoo v1.431)
  try{SXL.cfg.onRender&&SXL.cfg.onRender()}catch(e){}}
+/* v1.477 (Odoo v1.431): เปิดผ่าน Odoo ซ่อนปุ่มที่ไม่ใช้ — “เลือกไฟล์” ของตารางที่อยู่บน Odoo · ปุ่มโฟลเดอร์เมื่อทุกตารางอยู่บน Odoo · โชว์ปุ่มย้ายข้อมูลเข้า Odoo · นอก Odoo ไม่แตะ */
+function sxlOdooChrome(){
+ if(!sxlOdooOn())return;var all=true,drv=(typeof gasDriveOnly==='function'&&gasDriveOnly());   // v1.477: Drive อย่างเดียว (v1.432) ซ่อนปุ่มโฟลเดอร์ไว้แล้ว — ไม่โชว์กลับ
+ SXL.cfg.tables.forEach(function(T){if(!sxlLoadable(T))return;var r=sxlRemote(SXL.s[T.t]);if(!r)all=false;
+  var b=document.querySelector('[data-sxl-pick="'+T.t+'"]');if(b)b.style.display=(r||drv)?'none':''});
+ ['sxlDir','sxLocalReconnect'].forEach(function(id){var e=document.getElementById(id);if(e)e.style.display=(all||drv)?'none':''});
+ var up=document.getElementById('sxLocalUpload');if(up&&up.parentElement&&up.parentElement.tagName==='P')up.parentElement.style.display=(all||drv)?'none':'';
+ var mg=document.getElementById('sxlOdooMig');if(mg){mg.style.display=sxlOdbOn()?'':'none';
+  var left=SXL_MIG.now.filter(function(t){var S=SXL.s[t];return S&&S.src!=='odb'});mg.textContent=left.length?'⬆ ย้ายข้อมูลเข้า Odoo…':'✓ ข้อมูล StarNexus อยู่บน Odoo (ดูสถานะ)'}}
 function sxLocalSettings(){sxlRender();document.getElementById('sxLocalPanel').style.display='flex'}
 async function sxlPickDir(){
  if(!window.showDirectoryPicker)throw Error('เบราว์เซอร์นี้เลือกโฟลเดอร์ไม่ได้ — ใช้ Chrome/Edge หรือเลือกหลายไฟล์ครั้งเดียวด้านล่าง');
  var d=await showDirectoryPicker({mode:'readwrite',id:'sxlocal'});SXL.dir=d;SXL.dirErr='';await sxlCanWrite();
  /* ตารางที่โฟลเดอร์นี้มีไฟล์ ให้โฟลเดอร์ชนะไฟล์ที่เลือกแยกไว้รอบก่อน · ตารางที่โฟลเดอร์ไม่มี ใช้ไฟล์เดิมต่อ */
  var found=await sxlScanDir(d);
- for(var t of Object.keys(found)){var S=SXL.s[t];S.src='';S.handle=null;try{await sxlIdbPut('file:'+t,null)}catch(e){}}
+ for(var t of Object.keys(found)){var S=SXL.s[t];if(sxlRemote(S))continue;S.src='';S.handle=null;try{await sxlIdbPut('file:'+t,null)}catch(e){}}   // v1.477 (Odoo v1.426)
  try{await sxlIdbPut('dir',d)}catch(e){}
  var ch=await sxlWithBusy('กำลังโหลดไฟล์กลาง',function(){return sxlSync(true,'pick')});   // v1.299-local.8
  if(Object.keys(found).length&&sxlHideIfReady())return;
@@ -54539,7 +54586,7 @@ async function sxlRestore(ask){var need=0;
   if(p!=='granted'&&ask){try{p=await h.requestPermission({mode:mode||'read'})}catch(e){p='prompt'}}return p==='granted'};
  /* โฟลเดอร์: ขอสิทธิ์แก้ไขก่อน (บันทึกได้) · ไม่ให้ก็ยังอ่านได้ */
  try{var d=await sxlIdbGet('dir');if(d){if(await ok(d,'readwrite')){SXL.dir=d;SXL.canWrite=true}else if(await ok(d,'read')){SXL.dir=d;SXL.canWrite=false}else need++}}catch(e){}
- for(var T of SXL.cfg.tables){try{var h=await sxlIdbGet('file:'+T.t);if(!h&&T.t==='xml_history')h=await sxlIdbGet('xml_history');   // รอบ 1 จำไว้ใต้ชื่อนี้
+ for(var T of SXL.cfg.tables){if(sxlRemote(SXL.s[T.t]))continue;try{var h=await sxlIdbGet('file:'+T.t);if(!h&&T.t==='xml_history')h=await sxlIdbGet('xml_history');   // รอบ 1 จำไว้ใต้ชื่อนี้ · v1.477: ข้ามตารางของ Odoo
   if(h){if(await ok(h,'read')){SXL.s[T.t].src='file';SXL.s[T.t].handle=h}else need++}}catch(e){}}
  var _has=!!SXL.dir||SXL.cfg.tables.some(function(T){return SXL.s[T.t].handle});
  if(_has)await sxlWithBusy('กำลังโหลดไฟล์กลาง',function(){return sxlSync(true,'restore')});else await sxlSync(true,'restore');   // v1.299-local.8
@@ -54549,25 +54596,33 @@ async function sxlRestore(ask){var need=0;
  else sxlStatus('เชื่อมตำแหน่งที่จำไว้แล้ว · พร้อม '+sxlReadyN()+' ตาราง'+(sxlLdTxt()?(' · '+sxlLdTxt()):''))}   // v1.391: + เวลาโหลด
 function sxLocalMount(){if(document.getElementById('sxLocalPanel'))return;var C=SXL.cfg;
  var style=document.createElement('style');style.textContent='#sxLocalPanel{position:fixed;inset:0;z-index:999999;background:#0008;display:none;align-items:center;justify-content:center;padding:20px}#sxLocalPanel .sl-box{background:#fff;color:#172c40;width:min(900px,96vw);max-height:92vh;overflow:auto;padding:22px 24px;border-radius:14px;font:14px/1.6 system-ui,sans-serif;text-align:left}#sxLocalPanel h2{margin:0 0 6px;font-size:20px}#sxLocalPanel p{margin:8px 0}#sxLocalPanel button{padding:8px 12px;margin:4px 4px 4px 0;border:1px solid #93a9b8;border-radius:6px;cursor:pointer;background:transparent;color:inherit;font:inherit}#sxLocalPanel button.pri{background:#135e73;color:#fff;border-color:#135e73;font-weight:600}#sxLocalPanel td,#sxLocalPanel th{padding:8px;text-align:left;vertical-align:top;border-bottom:1px solid #8884}#sxLocalPanel table{width:100%;border-collapse:collapse;margin:8px 0}#sxLocalPanel,#sxLocalPanel p,#sxLocalPanel td,#sxLocalPanel th,#sxLocalPanel button{font-family:system-ui,Sarabun,sans-serif;font-size:14px;line-height:1.55}#sxLocalPanel th{font-weight:600;color:#172c40}#sxLocalPanel td,#sxLocalPanel th,#sxLocalPanel small{white-space:normal;overflow:visible;text-overflow:clip;max-width:none}#sxLocalPanel code{font:13px/1.4 ui-monospace,monospace}#sxLocalPanel small{opacity:.85;font-size:12.5px}#sxLocalPanel .sl-note{font-size:13px}#sxLocalPanel .sl-st.ok{color:#17703a}#sxLocalPanel .sl-st.bad{color:#b42d24}#sxLocalPanel .sl-st.off{opacity:.7}#sxLocalPanel .sl-bad{color:#b42d24}#sxLocalPanel .sl-warn{color:#9a5a00}#sxLocalPanel .sl-core{font-size:11px;background:#135e7322;border-radius:4px;padding:1px 5px;margin-left:4px}#sxLocalPanel .sl-note{font-size:13px;opacity:.85}#sxLocalTop{position:fixed;z-index:5000;background:#135e73;color:#fff;padding:10px 14px;border:0;border-radius:9px;cursor:pointer;font:600 13px system-ui,sans-serif;box-shadow:0 2px 10px #0003;'+(C.btnPos||'bottom:54px;right:16px')+'}'+(C.css||'');document.head.append(style);
- var rows=C.tables.map(function(T){return '<tr><td><code>'+T.t+'</code>'+(T.core?'<span class="sl-core">จำเป็น</span>':'')+'<br><small>'+esc2(T.use)+'</small></td><td id="sxl_st_'+T.t+'" class="sl-st"></td><td style="white-space:nowrap">'+(sxlLoadable(T)?'<button data-sxl-pick="'+T.t+'">เลือกไฟล์</button><input type="file" accept=".csv,text/csv'+(T.xlsx?',.xlsx,.xlsm':'')+'" id="sxl_in_'+T.t+'" data-sxl-once="'+T.t+'" hidden>':'')+'</td></tr>'}).join('')
+ var rows=C.tables.map(function(T){return '<tr><td><code>'+T.t+'</code>'+(T.core?'<span class="sl-core">จำเป็น</span>':'')+'<br><small>'+esc2(T.use)+'</small></td><td id="sxl_st_'+T.t+'" class="sl-st"></td><td style="white-space:nowrap">'+(sxlLoadable(T)?'<button data-sxl-pick="'+T.t+'">เลือกไฟล์</button>'+(T.t==='fitting_global'&&sxlOdooOn()?'<button data-sxl-ax="1">ดึงจาก AX</button>':'')+(T.t==='fitting_global'?'<button data-sxl-view="1">ดูรายการ</button>':'')+'<input type="file" accept=".csv,text/csv'+(T.xlsx?',.xlsx,.xlsm':'')+'" id="sxl_in_'+T.t+'" data-sxl-once="'+T.t+'" hidden>':'')+'</td></tr>'}).join('')
   +(C.extraRows||[]).map(function(x){return '<tr><td><b>'+esc2(x.name)+'</b><br><small>'+esc2(x.use)+'</small></td><td class="sl-st off">'+esc2(x.state)+'</td><td></td></tr>'}).join('');
  var acts=(C.actions||[]).map(function(a,i){return '<button data-sxl-act="'+i+'"'+(a.primary?' class="pri"':'')+'>'+esc2(a.label)+'</button>'}).join('');
- var panel=document.createElement('div');panel.id='sxLocalPanel';panel.innerHTML='<div class="sl-box"><h2>'+esc2(C.title)+'</h2><p>'+C.intro+'</p><div><button id="sxlDir" class="pri">เลือกโฟลเดอร์ Server</button><button id="sxLocalReconnect">เชื่อมตำแหน่งที่จำไว้</button><button id="sxLocalCheck">อ่านไฟล์ล่าสุด</button></div><p class="sl-note" id="sxlDirInfo"></p><p class="sl-note" id="sxlWInfo"></p><table><thead><tr><th>ตาราง</th><th>ไฟล์ที่ใช้</th><th></th></tr></thead><tbody>'+rows+'</tbody></table><p>ถ้าเลือกโฟลเดอร์ไม่ได้ เลือกหลายไฟล์พร้อมกันครั้งเดียว (ไม่ติดตามการแก้ไฟล์): <input id="sxLocalUpload" type="file" multiple accept=".csv,text/csv,.xlsx,.xlsm"></p><p id="sxLocalStatus" role="status" style="white-space:pre-wrap"></p><p class="sl-note">เบราว์เซอร์ให้สิทธิ์ผ่านการเลือกเท่านั้น จึงพิมพ์ Path เองไม่ได้ · ตอนเลือกโฟลเดอร์ เบราว์เซอร์จะถามว่าให้ดูไฟล์และแก้ไขไฟล์ ให้อนุญาตทั้งสองอย่างถึงจะบันทึกได้ · โปรแกรมตรวจไฟล์ทุก 10 วินาที อ่านใหม่เมื่อเปลี่ยน'+(C.note?(' · '+C.note):'')+'</p>'+acts+'<button id="sxLocalClose">ปิด</button></div>';document.body.append(panel);
+ var panel=document.createElement('div');panel.id='sxLocalPanel';panel.innerHTML='<div class="sl-box"><h2>'+esc2(C.title)+'</h2><p>'+C.intro+'</p><div><button id="sxlDir" class="pri">เลือกโฟลเดอร์ Server</button><button id="sxLocalReconnect">เชื่อมตำแหน่งที่จำไว้</button><button id="sxLocalCheck">อ่านไฟล์ล่าสุด</button><button id="sxlOdooMig" style="display:none">⬆ ย้ายข้อมูลเข้า Odoo…</button></div><p class="sl-note" id="sxlDirInfo"></p><p class="sl-note" id="sxlWInfo"></p><table><thead><tr><th>ตาราง</th><th>ไฟล์ที่ใช้</th><th></th></tr></thead><tbody>'+rows+'</tbody></table><p>ถ้าเลือกโฟลเดอร์ไม่ได้ เลือกหลายไฟล์พร้อมกันครั้งเดียว (ไม่ติดตามการแก้ไฟล์): <input id="sxLocalUpload" type="file" multiple accept=".csv,text/csv,.xlsx,.xlsm"></p><p id="sxLocalStatus" role="status" style="white-space:pre-wrap"></p><p class="sl-note">เบราว์เซอร์ให้สิทธิ์ผ่านการเลือกเท่านั้น จึงพิมพ์ Path เองไม่ได้ · ตอนเลือกโฟลเดอร์ เบราว์เซอร์จะถามว่าให้ดูไฟล์และแก้ไขไฟล์ ให้อนุญาตทั้งสองอย่างถึงจะบันทึกได้ · โปรแกรมตรวจไฟล์ทุก 10 วินาที อ่านใหม่เมื่อเปลี่ยน'+(C.note?(' · '+C.note):'')+'</p>'+acts+'<button id="sxLocalClose">ปิด</button></div>';document.body.append(panel);
  var btn=document.createElement('button');btn.id='sxLocalTop';btn.onclick=sxLocalSettings;document.body.append(btn);
  var guard=function(fn){return async function(e){try{await fn(e)}catch(err){if(err&&err.name!=='AbortError')sxlStatus(err.message||String(err),true)}}};
  var hide=function(){panel.style.display='none'};
  document.getElementById('sxLocalClose').onclick=hide;
  document.getElementById('sxlDir').onclick=guard(sxlPickDir);
  document.getElementById('sxLocalReconnect').onclick=guard(function(){return sxlRestore(true)});
- document.getElementById('sxLocalCheck').onclick=guard(async function(){if(!SXL.dir&&!C.tables.some(function(T){return SXL.s[T.t].handle}))throw Error('ยังไม่ได้เลือกโฟลเดอร์หรือไฟล์ที่ติดตามได้ — ไฟล์แบบครั้งเดียวต้องเลือกใหม่เมื่อมีการแก้');
-  SXL.settingsApplied=false;var ch=await sxlSync(true,'check');sxlStatus('อ่านไฟล์ล่าสุดแล้ว · พร้อม '+sxlReadyN()+' ตาราง'+(ch.size?(' · อ่านใหม่: '+Array.from(ch).join(', ')):''))});
+ document.getElementById('sxLocalCheck').onclick=guard(async function(){var _rm=C.tables.some(function(T){return sxlRemote(SXL.s[T.t])});   // v1.477 (Odoo v1.431)
+  if(_rm){try{await sxlOdbPoll()}catch(e){} if(sxlOdooOn()&&SXL.s.fitting_global&&SXL.s.fitting_global.src==='odoo'){try{await sxlOdooFG(false)}catch(e){}}}
+  if(!SXL.dir&&!_rm&&!C.tables.some(function(T){return SXL.s[T.t].handle}))throw Error('ยังไม่ได้เลือกโฟลเดอร์หรือไฟล์ที่ติดตามได้ — ไฟล์แบบครั้งเดียวต้องเลือกใหม่เมื่อมีการแก้');
+  SXL.settingsApplied=false;var ch=SXL.dir?await sxlSync(true,'check'):new Set();sxlStatus((SXL.dir?'อ่านไฟล์ล่าสุดแล้ว':'ตรวจของใหม่จาก Odoo แล้ว')+' · พร้อม '+sxlReadyN()+' ตาราง'+(ch.size?(' · อ่านใหม่: '+Array.from(ch).join(', ')):''))});
+ document.getElementById('sxlOdooMig').onclick=guard(function(){return sxlOdooMigDialog()});   // v1.477
  panel.querySelectorAll('[data-sxl-pick]').forEach(function(b){b.onclick=guard(function(){return sxlPickOne(b.dataset.sxlPick)})});
  panel.querySelectorAll('[data-sxl-once]').forEach(function(inp){inp.onchange=guard(async function(e){var f=e.target.files[0];e.target.value='';if(f)await sxlOnce([f],inp.dataset.sxlOnce)})});
  document.getElementById('sxLocalUpload').onchange=guard(async function(e){var fs=Array.from(e.target.files);e.target.value='';if(fs.length)await sxlOnce(fs)});
  panel.querySelectorAll('[data-sxl-act]').forEach(function(b){b.onclick=guard(function(){return C.actions[+b.dataset.sxlAct].onClick(hide)})});
- setInterval(async function(){if(document.hidden||SXL.busy)return;try{await sxlRefresh()}catch(e){sxlStatus('ตรวจไฟล์ไม่สำเร็จ: '+e.message,true)}},10000);
+ panel.querySelectorAll('[data-sxl-view]').forEach(function(b){b.onclick=guard(function(){sxlFgView()})});   // v1.477 (Odoo v1.425)
+ panel.querySelectorAll('[data-sxl-ax]').forEach(function(b){b.onclick=guard(function(){return sxlOdooFG(true)})});
+ setInterval(async function(){if(document.hidden||SXL.busy)return;try{await sxlRefresh()}catch(e){sxlStatus('ตรวจไฟล์ไม่สำเร็จ: '+e.message,true)}
+  try{await sxlOdbPoll()}catch(e){}},10000);   // v1.477 (Odoo v1.426): + ถาม Odoo ว่ามีของใหม่
  sxlRender();if(C.openAtStart!==false)sxLocalSettings();
- sxlWhenBooted().then(function(){return sxlRestore(false)}).catch(function(){});
+ if(sxlOdooOn()){SXL.s.fitting_global.src='odoo';sxlWhenBooted().then(function(){return sxlOdooFG(false)}).catch(function(){})}   // v1.477 (Odoo v1.424): Fitting Global จาก AX
+ var _odb=sxlOdbClaim();   // v1.477 (Odoo v1.426): รู้ก่อนว่าตารางไหนอยู่ที่ Odoo จะได้ไม่อ่านจาก Drive
+ sxlWhenBooted().then(function(){return _odb}).then(function(){return sxlRestore(false)}).catch(function(){});
 }
 /* fetch ตรงไป Supabase (/rest/v1) → ส่งเข้าไฟล์กลางแทน: POST ตาราง = เพิ่ม/ทับแถว · POST rpc = ฟังก์ชันที่โปรแกรมตั้งไว้ · อย่างอื่นตอบว่าไม่รองรับ */
 var sxLocalFetch=window.fetch.bind(window);
@@ -54585,6 +54640,486 @@ async function sxlRest(u,init,req){
   var q=SXL_DB.from(decodeURIComponent(m[1]));q=/merge-duplicates/i.test(hdr('Prefer'))?q.upsert(rows):q.insert(rows);
   var r=await q;if(r.error)return J(r.status||400,{message:r.error.message,code:r.error.code});return new Response(null,{status:201})}
  return J(501,{message:'รุ่นทดลองไฟล์กลางไม่รองรับคำขอนี้ ('+method+' '+path+')'})}
+/* ═════════ v1.477: ตัวเชื่อม Odoo — ยกมาจากตัว Odoo (starnexus_1.434_20261019.html · v1.424–1.434) ═════════
+   ทำงานเฉพาะตอนเปิดผ่าน Odoo (/nexus/starnexus1 · Odoo ใส่ window.Nexus / window.NEXUS ให้) · เปิดนอก Odoo = ไม่มีผลอะไร
+   แก้จากต้นฉบับ: sxlOdbClaim ต้องมีป้ายส่งเข้าแล้ว (sxlOdbMigOk) · SN_OFF.odoo · โฟลเดอร์รูปเสมือนบอกว่าลบไม่ได้ · ที่เหลือเหมือนเดิมทุกตัวอักษร */
+/* ───────── v1.424: Fitting Global จาก AX ผ่าน Odoo ─────────
+   เปิดผ่าน Odoo (/nexus/<app>) = มี window.Nexus → ดึงรายการอุปกรณ์จาก API ของ AX (odoostarnexusapi/api/accounting/fitting)
+   ผ่านทะเบียน API ของ Odoo (ระบบ ax_star_nexus · endpoint fitting_global) ไม่ต้องเลือกไฟล์ Excel
+   ItemId → item_number · ItemName → product_name/search_name · Unit → unit (ว่าง = EA) · RecId → recid · รหัสซ้ำใช้แถวแรก
+   เปิดผ่าน Odoo: ตารางนี้ถูกจองไว้ให้ AX ตั้งแต่ต้น (src=odoo) ไม่อ่านไฟล์ fitting ในโฟลเดอร์ Server · ดึงไม่สำเร็จ = คืนให้โฟลเดอร์แล้วอ่านไฟล์แทน
+   เปิดเป็นไฟล์เดี่ยวนอก Odoo = ใช้ CSV / Excel ในโฟลเดอร์ Server แบบเดิม */
+var SXL_FG_AX={system:'ax_star_nexus',endpoint:'fitting_global'};
+function sxlOdooOn(){return !_sxlSnOff('odoo')&&typeof window.Nexus==='function'&&!!window.NEXUS&&!!sxlCfg('fitting_global')}   // v1.477: + SN_OFF.odoo
+/* v1.432: Fitting Global ดึงจาก API ของ AX โดยตรง (ผ่านทะเบียน API ของ Odoo) ทุกครั้งที่เปิด — ไม่ผูกกับสำเนาในเมนู แถวที่คัดลอก
+   (ผู้ใช้: หน้าแถวที่คัดลอกจะค่อย ๆ ตัดออก เพื่อทำ API ให้ StarNexus ดึงตรง) · ปุ่ม “ดึงจาก AX” = ดึงสดใหม่ในเครื่องนี้ · v1.430 ที่อ่านสำเนาใน Odoo ถูกถอดออก */
+async function sxlOdooFG(manual){return sxlOdooFGLive(manual)}
+async function sxlOdooFGLive(manual){   // v1.424: ดึงสดจาก AX ผ่านทะเบียน API ของ Odoo (ระบบ ax_star_nexus · endpoint fitting_global)
+ if(!sxlOdooOn())return false;var t='fitting_global',T=sxlCfg(t),S=SXL.s[t];
+ try{
+  if(manual)sxlStatus('กำลังดึง Fitting Global จาก AX …');
+  var cached=null;try{cached=await sxlIdbGet('fg:ax')}catch(e){cached=null}   // v1.434: สำเนาชุดล่าสุดในเครื่อง (ETag) — ถ้า AX ยังชุดเดิม Odoo ตอบ 304 ไม่ต้องโหลด 7 MB ซ้ำ
+  var r=await window.Nexus().ax(Object.assign({},SXL_FG_AX,{fresh:!!manual,etag:(!manual&&cached&&cached.etag&&Array.isArray(cached.rows))?cached.etag:''})),d=r&&r.data;
+  if(r&&r.notModified&&cached){d=null}
+  else{if(!r||r.status!==200)throw Error('AX ตอบ HTTP '+(r&&r.status))}
+  var rows=[],seen=new Set(),dup=0;
+  if(r&&r.notModified&&cached){rows=cached.rows}
+  else{
+  if(d&&!Array.isArray(d)){if(d.Success===false)throw Error(d.Message||'AX ตอบ Success = false');d=d.Data}
+  if(!Array.isArray(d))throw Error('AX ตอบมาไม่ใช่รายการ');
+  var pick=function(o,ks){for(var i=0;i<ks.length;i++){var v=o[ks[i]];if(v!=null&&v!=='')return v}return null};
+  d.forEach(function(o){if(!o||typeof o!=='object')return;
+   var k=pick(o,['ItemId','ItemNumber','ITEMID','DISPLAYPRODUCTNUMBER','item_number']);if(k==null)return;k=String(k).trim();if(!k)return;
+   if(seen.has(k)){dup++;return}seen.add(k);
+   var nm=pick(o,['ItemName','ProductName','SEARCHNAME','NAME','product_name']),u=pick(o,['Unit','UNITID','BOMUNITID','unit']),rc=pick(o,['RecId','RECID','recid']);
+   nm=nm==null?null:String(nm).trim();
+   rows.push({item_number:k,product_name:nm,unit:(u==null?'':String(u).trim())||'EA',search_name:nm,recid:(rc!=null&&isFinite(+rc))?+rc:rc})});
+  if(!rows.length)throw Error('AX ตอบมาแต่ไม่มีรายการที่มีรหัสอุปกรณ์');
+  if(r.etag){try{await sxlIdbPut('fg:ax',{etag:r.etag,rows:rows,at:Date.now()})}catch(e){}}
+  }
+  var size=JSON.stringify(rows).length;
+  await sxlLocked(async function(){
+   Object.assign(S,{ready:true,base:rows,cols:['item_number','product_name','unit','search_name','recid'],name:'AX · '+SXL_FG_AX.system+'/'+SXL_FG_AX.endpoint,
+    sig:'odoo|'+rows.length+'|'+size,size:size,mod:(r&&r.notModified&&cached&&cached.at)||Date.now(),src:'odoo',handle:null,err:''});
+   sxlRebuild(T,S);SXL.notes[t]=dup?('รหัสซ้ำ '+dup+' แถว ใช้แถวแรก'):''});
+  await sxlApply(new Set([t]),'pick');sxlRender();
+  if(manual)sxlStatus('ดึง Fitting Global จาก AX แล้ว · '+rows.length.toLocaleString()+' รายการ');
+  return true}
+ catch(e){var msg='ดึง Fitting Global จาก AX ผ่าน Odoo ไม่สำเร็จ: '+(e&&e.message||e);
+  if(S.ready)S.err=msg+' — ยังใช้ข้อมูลรอบก่อนอยู่';
+  else{if(S.src==='odoo')S.src='';   /* ยังไม่มีข้อมูล → คืนให้โฟลเดอร์ อ่านไฟล์ fitting ในโฟลเดอร์ Server แทน */
+   try{if(SXL.dir)await sxlSync(false,'check')}catch(e2){}
+   if(S.ready)SXL.notes[t]=msg+' — ใช้ไฟล์ '+S.name+' ในโฟลเดอร์แทน';else S.err=msg+' — เลือกไฟล์ CSV / Excel แทนได้'}
+  sxlRender();
+  if(manual)sxlStatus(msg,true);else console.warn('[ไฟล์กลาง] '+msg);
+  return false}}
+/* ═════════ v1.426: ตารางที่ Odoo เป็นหลัก (อ่าน + บันทึกที่ Odoo) ═════════
+   ผู้ดูแลนำเข้าตารางจากโฟลเดอร์ที่ /nexus/migrate แล้วกด “ใช้ Odoo เป็นหลัก” → ตารางนั้นได้ src='odb':
+   · โหลด: /nexus/api/table/rows ทีละหน้า → S.base (รูปเดียวกับที่อ่านจาก CSV) · S.over ว่าง · จำลงแคช พร้อม gen + seq
+     เปิดครั้งถัดไป gen เดิม = ใช้แคช แล้วขอ /table/changes ตั้งแต่ seq ที่มี (แถวที่เปลี่ยน + รายชื่อรหัสที่ยังอยู่ถ้ามีการลบ)
+   · บันทึก: sxlWrite → sxlOdbWrite คิดผลบนแถวในหน่วยความจำแบบเดียวกับ sxlWriteIn แล้วส่งทั้งแถวไป /table/write (รุ่นล่าสุดชนะ)
+   · เครื่องอื่นบันทึก: รอบ 10 วิถาม /table/status · seq ไม่ตรง = ขอส่วนต่าง
+   ไม่อ่าน ไม่เขียนไฟล์ของตารางนี้ในโฟลเดอร์ Server · เปิดเป็นไฟล์เดี่ยวนอก Odoo ไม่มี window.Nexus ทั้งหมดนี้ไม่ทำงาน */
+var SXL_ODB={skip:{fitting_global:1},cacheT:{},claimP:null};
+function sxlOdbHas(t){var S=SXL.s&&SXL.s[t];return !!S&&S.src==='odb'}   // v1.427
+async function sxlOdbWait(t){try{await SXL_ODB.claimP}catch(e){}return sxlOdbHas(t)}   // v1.427: รอคำตอบว่าตารางนี้อยู่ที่ Odoo ไหม
+function sxlRemote(S){return !!S&&(S.src==='odoo'||S.src==='odb')}
+function sxlOdbOn(){return !_sxlSnOff('odoo')&&typeof window.Nexus==='function'&&!!window.NEXUS&&typeof window.Nexus.rpc==='function'}   // v1.477: + SN_OFF.odoo
+function sxlOdbRpc(path,p){return window.Nexus.rpc('/table/'+path,Object.assign({app:window.NEXUS.app},p||{}))}
+/* ถาม Odoo ว่าตารางไหนอยู่ที่ Odoo → จอง (src='odb') ก่อนรอบอ่านไฟล์กลาง แล้วเริ่มโหลดคู่ขนาน · รอคำตอบไม่เกิน 8 วิ */
+function sxlOdbClaim(){
+ if(!sxlOdbOn())return Promise.resolve();
+ /* v1.477: + ป้าย “ส่งเข้าแล้ว” — Odoo ตั้งเป็นหลักแต่ยังไม่ได้ส่งข้อมูลจาก Drive = ใช้ Drive ต่อ (ข้อมูลใน Odoo ยังเป็นชุด 14/10) */
+ var ask=SXL_ODB.claimP=Promise.all([sxlOdbRpc('status'),sxlOdbMigLoad()]).then(function(a){var r=a[0];SXL_ODB.status=r;
+  ((r&&r.tables)||[]).forEach(function(info){var T=sxlCfg(info.name),S=SXL.s[info.name];
+   if(!T||!S||info.mode!=='odoo'||SXL_ODB.skip[info.name])return;
+   if(!sxlOdbMigOk(info.name))return;
+   if(!sxlLoadable(T)){Object.assign(S,{src:'odb',wonly:true,ready:true,handle:null,err:'',name:'Odoo · '+info.name});return}   // v1.427: เขียนอย่างเดียว / เปิดทีละรหัส
+   S.src='odb';S.handle=null;S.ready=false;S.err='';
+   sxlWhenBooted().then(function(){return sxlOdbLoad(info.name,info)}).catch(function(){})});
+  sxlRender()}).catch(function(e){console.warn('[ไฟล์กลาง] ถามตารางของ Odoo ไม่ได้ — ใช้โฟลเดอร์ตามเดิม',e&&e.message)});
+ return Promise.race([ask,new Promise(function(r){setTimeout(r,8000)})])}
+function sxlOdbMerge(T,rows,d){
+ var m=new Map();rows.forEach(function(r){m.set(String(r[T.key]),r)});
+ ((d&&d.rows)||[]).forEach(function(x){var r=sxlFileToRaw(T,x);m.set(String(r[T.key]),r)});
+ if(d&&Array.isArray(d.keys)){var keep=new Set(d.keys.map(String));Array.from(m.keys()).forEach(function(k){if(!keep.has(k))m.delete(k)})}
+ return Array.from(m.values())}
+function sxlOdbCols(T,rows){var cs=new Set(T.need||[]);rows.forEach(function(r){for(var c in r)if(c.indexOf('__')!==0)cs.add(c)});return Array.from(cs)}
+function sxlOdbCacheLater(t){clearTimeout(SXL_ODB.cacheT[t]);SXL_ODB.cacheT[t]=setTimeout(function(){var S=SXL.s[t];if(!S||S.src!=='odb'||!S.ready)return;
+ try{sxlCPut('base',[['odb:'+t,{gen:S.ogen,seq:S.oseq,rows:S.base.map(sxlStrip),at:Date.now()}]])}catch(e){}},3000)}
+async function sxlOdbLoad(t,info){
+ var T=sxlCfg(t),S=SXL.s[t];if(!T||!S||S.src!=='odb'||S.oload)return false;S.oload=true;S.err='';
+ try{
+  if(!info){info=(((await sxlOdbRpc('status')).tables)||[]).find(function(x){return x.name===t});
+   if(!info||info.mode!=='odoo')throw Error('ตารางนี้ไม่ได้ตั้งให้ใช้ Odoo เป็นหลักแล้ว — โหลดหน้าใหม่')}
+  var rows=null,seq=info.seq,c=null,t0=Date.now();
+  try{c=(await sxlCGet('base',['odb:'+t])).get('odb:'+t)}catch(e){c=null}
+  if(c&&c.gen===info.gen&&Array.isArray(c.rows)){rows=c.rows;seq=c.seq}
+  else{rows=[];var after=0;
+   for(;;){var pg=await sxlOdbRpc('rows',{table:t,after:after});
+    (pg.rows||[]).forEach(function(x){rows.push(sxlFileToRaw(T,x))});
+    S.oprog=rows.length.toLocaleString()+' / '+(info.rows||0).toLocaleString()+' แถว';sxlRender();
+    if(!pg.next)break;after=pg.next}}
+  var d=await sxlOdbRpc('changes',{table:t,since:seq});   /* ของที่บันทึกหลังแคช / ระหว่างไล่หน้า */
+  rows=sxlOdbMerge(T,rows,d);
+  await sxlLocked(async function(){
+   Object.assign(S,{ready:true,base:rows,over:new Map(),names:{},cols:sxlOdbCols(T,rows),name:'Odoo · '+t,sig:'odb|'+info.gen,size:0,mod:Date.now(),src:'odb',handle:null,err:'',werr:'',oprog:''});
+   S.ogen=info.gen;S.oseq=d.seq;sxlRebuild(T,S);SXL.notes[t]='';if(T.check){try{SXL.notes[t]=T.check(rows)||''}catch(e){}}});
+  sxlOdbCacheLater(t);
+  try{console.info('[ไฟล์กลาง] '+t+' จาก Odoo '+rows.length+' แถว · '+((Date.now()-t0)/1000).toFixed(1)+' วิ'+(c&&c.gen===info.gen?' (แคช + ส่วนต่าง)':''))}catch(e){}
+  await sxlApply(new Set([t]),'restore');sxlRender();sxlHideIfReady();
+  return true}
+ catch(e){S.err='อ่าน '+t+' จาก Odoo ไม่สำเร็จ: '+(e&&e.message||e)+(S.ready?' — ยังใช้ข้อมูลรอบก่อนอยู่':'');S.oprog='';sxlRender();return false}
+ finally{S.oload=false}}
+/* รอบตรวจ: เครื่องอื่นบันทึกลง Odoo → ดึงเฉพาะส่วนต่างมา */
+async function sxlOdbPoll(){
+ if(!sxlOdbOn()||SXL.locked||SXL.hold>0||SXL_ODB.polling)return;
+ var mine=SXL.cfg.tables.filter(function(T){var S=SXL.s[T.t];return S.src==='odb'&&S.ready&&!S.oload});if(!mine.length)return;
+ SXL_ODB.polling=true;
+ try{var st=((await sxlOdbRpc('status')).tables)||[],ch=new Set();
+  for(var T of mine){var S=SXL.s[T.t],info=st.find(function(x){return x.name===T.t});if(!info)continue;
+   if(info.mode!=='odoo'){S.werr='ผู้ดูแลสลับตารางนี้กลับไปใช้โฟลเดอร์แล้ว — โหลดหน้าใหม่ก่อนบันทึกต่อ';continue}
+   if(info.gen!==S.ogen){await sxlOdbLoad(T.t,info);continue}
+   if(info.seq===S.oseq)continue;
+   var d=await sxlOdbRpc('changes',{table:T.t,since:S.oseq});
+   await sxlLocked(async function(){S.base=sxlOdbMerge(T,S.base,d);S.cols=sxlOdbCols(T,S.base);S.oseq=d.seq;S.mod=Date.now();sxlRebuild(T,S)});
+   ch.add(T.t);sxlOdbCacheLater(T.t)}
+  if(ch.size){await sxlApply(ch,'poll');sxlRender()}}
+ finally{SXL_ODB.polling=false}}
+/* v1.427: อ่านตารางที่ไม่ได้โหลด (เขียนอย่างเดียว / เปิดทีละรหัส) — ส่งเงื่อนไขแบบระบุค่าไปให้ Odoo คัด แล้วกรอง/เรียง/ตัดต่อด้วยตัวถามเดิม */
+async function sxlOdbSelectRun(st){
+ var T=sxlCfg(st.table);if(st.err)return sxlE(st.err);
+ if(!st.eqs&&!st.keys)return sxlE('ตาราง '+st.table+' อ่านจาก Odoo ได้เฉพาะแบบระบุค่า (eq) — ไม่โหลดทั้งตาราง');
+ try{var r=await sxlOdbRpc('select',{table:st.table,eq:st.eqs||[],keys:st.keys||undefined,limit:20000});
+  return sxlRun(st,(r.rows||[]).map(function(x){return sxlFileToRaw(T,x)}))}
+ catch(e){return sxlE('อ่าน '+st.table+' จาก Odoo ไม่สำเร็จ: '+(e&&e.message||e),'SXL_IO',500)}}
+/* v1.427: ทั้งกลุ่มในครั้งเดียว (ดัชนีชิ้นของออเดอร์ c:<ออเดอร์>) — กลุ่มนั้นที่ Odoo เท่ากับชุดใหม่พอดี */
+async function sxlOdbReplace(T,S,bucket,rows){
+ return sxlLocked(async function(){
+  try{var raw=(rows||[]).map(function(p){return sxlToRaw(T,p)});
+   if(raw.some(function(e){return e[T.key]==null}))return sxlE('ต้องมีคอลัมน์ '+T.key+' ทุกแถว (ตาราง '+T.t+')');
+   var o={};o[bucket]=raw.map(function(x){return sxlRawToFile(T,x)});
+   var r=await sxlOdbRpc('write',{table:T.t,replace:o,tab:SXL.machine});
+   if(!S.wonly){S.base=S.base.filter(function(x){return sxlBucketOf(T,x)!==bucket}).concat(raw);S.cols=sxlOdbCols(T,S.base);sxlRebuild(T,S);if(r.prev===S.oseq)S.oseq=r.seq}
+   S.nW=(S.nW||0)+raw.length;setTimeout(sxlRender,0);return {data:null,error:null,count:raw.length,status:201}}
+  catch(e){return sxlE('บันทึกลง Odoo ไม่สำเร็จ: '+(e&&e.message||e),'SXL_IO',500)}})}
+/* v1.427: อ่านส่วนต่างจาก Odoo ทันที (ใช้แทนการอ่านไฟล์ล่าสุดก่อนแก้ — ผู้เรียกถือคิวอยู่แล้ว ห้ามต่อคิวซ้ำ) */
+async function sxlOdbFresh(T,S){
+ if(!S||S.src!=='odb'||S.wonly||!S.ready)return false;
+ try{var d=await sxlOdbRpc('changes',{table:T.t,since:S.oseq});if(d.seq===S.oseq)return false;
+  S.base=sxlOdbMerge(T,S.base,d);S.cols=sxlOdbCols(T,S.base);S.oseq=d.seq;S.mod=Date.now();sxlRebuild(T,S);sxlOdbCacheLater(T.t);return true}
+ catch(e){return false}}
+async function sxlOdbWrite(T,S,st){
+ if(!S.ready)return sxlE('ยังอ่าน '+T.t+' จาก Odoo ไม่ครบ — บันทึกไม่ได้จนกว่าจะอ่านข้อมูลเดิมครบ','SXL_NOBASE',409);
+ var tq=Date.now(),W={seq:(SXL.wseq=(SXL.wseq||0)+1),t:T.t,k:st.wkind,q:SXL.locked,odoo:1};
+ return sxlLocked(async function(){W.wait=Date.now()-tq;SXL.curW=W;var t1=Date.now();
+  try{
+   var now=new Date().toISOString(),K=T.key,kind=st.wkind;
+   var arr=(kind==='insert'||kind==='upsert')?(Array.isArray(st.wdata)?st.wdata:[st.wdata]).map(function(p){var e=sxlToRaw(T,p);if(T.w&&T.w.autoId&&e[K]==null)e[K]=Date.now()*1000+Math.floor(Math.random()*1000);return e}):null;
+   if(arr&&arr.some(function(e){return e[K]==null}))return sxlE('ต้องมีคอลัมน์ '+K+' ทุกแถว (ตาราง '+T.t+')');
+   /* ผลของการเขียน คิดแบบเดียวกับ sxlWriteIn */
+   var idx=sxlIdx(T,S),changes=new Map();
+   if(arr){for(var i=0;i<arr.length;i++){var e=arr[i],k=String(e[K]),prev=changes.get(k),old=prev?prev.nw:(idx.get(k)||null);
+     if(kind==='insert'&&old)return sxlE('duplicate key value violates unique constraint ('+T.t+'.'+K+' = '+k+')','23505',409);
+     var nw=Object.assign(sxlStrip(old)||{},e);if(!old&&nw.created_at==null&&S.cols.indexOf('created_at')>=0)nw.created_at=now;
+     changes.set(k,{old:prev?prev.old:old,nw:nw})}}
+   else{var _src=S.rows;
+    if(S.wonly){if(st.err)return sxlE(st.err);if(!st.eqs&&!st.keys)return sxlE('ตาราง '+T.t+' ลบ/แก้ที่ Odoo ได้เฉพาะแบบระบุค่า (eq)');   // v1.427: ดึงแถวที่ตรงจาก Odoo ก่อน
+     var _q=await sxlOdbRpc('select',{table:T.t,eq:st.eqs||[],keys:st.keys||undefined,limit:20000});_src=(_q.rows||[]).map(function(x){return sxlFileToRaw(T,x)})}
+    SXL_TBL=T;var hit=_src.filter(function(r){return st.f.every(function(f){return f(r)})});
+    var patch=kind==='update'?sxlToRaw(T,st.wdata||{}):null;
+    hit.forEach(function(r){changes.set(String(r[K]),{old:r,nw:patch?Object.assign(sxlStrip(r),patch):null})})}
+   if(!changes.size)return {data:st.ret?[]:null,error:null,count:0,status:200};
+   var put=[],del=[];changes.forEach(function(c,k){if(c.nw)put.push(sxlRawToFile(T,c.nw));else del.push(k)});
+   var tw=Date.now(),r=await sxlOdbRpc('write',{table:T.t,put:put,'delete':del,insert:kind==='insert',tab:SXL.machine});
+   W.wr=1;W.wrMs=Date.now()-tw;
+   if(!S.wonly){var m=new Map();S.base.forEach(function(x){m.set(String(x[K]),x)});
+    changes.forEach(function(c,k){if(c.nw)m.set(k,c.nw);else m.delete(k)});
+    S.base=Array.from(m.values());S.cols=sxlOdbCols(T,S.base);sxlRebuild(T,S);
+    if(r.prev===S.oseq)S.oseq=r.seq}   /* มีคนบันทึกคั่น = ปล่อย seq ไว้ รอบตรวจถัดไปดึงส่วนต่าง (รวมของเราด้วย) */
+   S.nW=(S.nW||0)+changes.size;S.mod=Date.now();S.werr='';sxlOdbCacheLater(T.t);
+   if(T.t===SXL.cfg.settingsTable&&SXL.cfg.settingsKey)SXL.settingsRaw=sxlRawOf(T.t,SXL.cfg.settingsKey);
+   setTimeout(sxlRender,0);
+   var out=[];changes.forEach(function(c){if(c.nw)out.push(c.nw)});
+   return st.ret?sxlShape(st,sxlProject(T,S,out,st.ret),out.length,201):{data:null,error:null,count:null,status:201}}
+  catch(e){W.err=(e&&e.message)||String(e);console.error('[ไฟล์กลาง] บันทึกลง Odoo',T.t,e);
+   if(e&&e.kind==='dup')return sxlE(e.message,'23505',409);
+   S.werr='บันทึกลง Odoo ไม่สำเร็จ: '+W.err;setTimeout(sxlRender,0);
+   return sxlE('บันทึกลง Odoo ไม่สำเร็จ: '+W.err,'SXL_IO',500)}
+  finally{W.ms=Date.now()-t1;if(SXL.curW===W)SXL.curW=null;sxlWLog(W)}})}
+/* ───────── v1.429: ส่งเว็บดูงาน 3D เข้า Odoo (แทน GitHub) ─────────
+   ไฟล์ชุดเดียวกับที่ ghPrepare เตรียมไว้ส่ง GitHub · ถาม Odoo ก่อนว่ามีไฟล์ไหนแล้ว (รหัส git sha เดียวกับที่ GitHub ใช้)
+   onlyIfMissing (รูปผิว) มีแล้ว = ข้าม · เนื้อเหมือนเดิม = ข้าม · ที่เหลือส่ง /nexus/api/web/put ทีละไฟล์ · คืนผลรูปเดียวกับ ghUpload */
+async function sxlWebUpload(P,onStep){
+ const step=onStep||(()=>{}), t1=Date.now();
+ step("ส่งเว็บดูงานเข้า Odoo…",.4);
+ const r0=await window.Nexus.rpc('/web/list',{app:window.NEXUS.app,paths:P.files.map(f=>f.path)}), have=(r0&&r0.have)||{};
+ const title=String((typeof orderId==="function"&&orderId())||String(P.msg||"").replace(/^StarNexus: ลิงก์ดู /,"")).slice(0,200);
+ const tok=(document.querySelector('meta[name=csrf-token]')||{}).content||"";
+ let changed=0,i=0;
+ for(const f of P.files){ i++;
+  if(f.onlyIfMissing&&have[f.path]) continue;
+  const u8=ghU8(f.data), sha=await ghGitSha(u8);
+  if(sha&&have[f.path]===sha) continue;
+  step("ส่ง "+f.path+" ("+Math.max(1,Math.round(u8.length/1024))+" KB)",.4+.55*i/P.files.length);
+  const fd=new FormData();fd.append("app",window.NEXUS.app);fd.append("path",f.path);fd.append("title",title);fd.append("csrf_token",tok);fd.append("file",new Blob([u8]),f.path.split("/").pop());
+  const r=await fetch("/nexus/api/web/put",{method:"POST",body:fd,credentials:"same-origin"});let j={};try{j=await r.json()}catch(e){}
+  if(!r.ok||j.error){const er=new Error("ส่งเว็บดูงานเข้า Odoo ไม่สำเร็จ ("+f.path+"): "+(j.error||("HTTP "+r.status)));er.status=r.status;throw er}
+  changed++; }
+ const base=P.base, _s=ms=>(ms/1000).toFixed(1)+" วิ";
+ const tm="อบ 3D "+_s(P.tBake)+" · Odoo "+_s(Date.now()-t1)+" ("+changed+" ไฟล์ · "+Math.round(P.gzLen/1024)+" KB)"+(P.ppN?(" · แบบผลิต "+P.ppN+" หน้า "+P.ppKB+" KB"):"");
+ return {oid:P.oid, cabSids:P.cabSids, base, link:base+"?view="+P.oid, link2:base+"view.html?view="+P.oid, kb:Math.round(P.gzLen/1024), changed, sha:"odoo", rootOk:true, tm,
+  same:P.same||0, alias:P.alias||0, prev:P.prev||null, prevMap:P.prevMap||null}; }
+/* ───────── v1.427: โฟลเดอร์เสมือนของ Odoo (รูปลายผิว textures/ · รูปย่อตู้ thumbs/ · ไฟล์ AX ax/) ─────────
+   ตัวอ่านรูปเดิมเดินโฟลเดอร์ผ่าน getDirectoryHandle / entries / getFile / createWritable
+   เปิดผ่าน Odoo และไม่ได้เลือกโฟลเดอร์ Server → texImgDir() คืนตัวนี้แทน: รายชื่อจาก /nexus/api/asset/list · อ่านจาก /nexus/assets/<ชนิด>/<ชื่อ> · เขียนรูปย่อด้วย /nexus/api/asset/put */
+function sxlVDir(){if(!sxlOdbOn())return null;return SXL_ODB.vdir||(SXL_ODB.vdir=sxlVRoot())}
+function sxlVRoot(){var subs={},KINDS=['textures','thumbs','ax'];var R={kind:'directory',name:'Odoo',_odoo:1,
+ getDirectoryHandle:async function(n){if(KINDS.indexOf(n)<0)throw new DOMException('ไม่มีโฟลเดอร์ '+n+' ใน Odoo','NotFoundError');return subs[n]||(subs[n]=sxlVKind(n))},
+ getFileHandle:async function(n){throw new DOMException(n,'NotFoundError')},
+ entries:async function*(){for(var i=0;i<KINDS.length;i++)yield [KINDS[i],await R.getDirectoryHandle(KINDS[i])]},
+ values:async function*(){for await(var e of R.entries())yield e[1]},
+ queryPermission:async function(){return 'granted'},requestPermission:async function(){return 'granted'}};return R}
+function sxlVKind(kind){var D={kind:'directory',name:kind,_odoo:1,
+ list:async function(){var r=await window.Nexus.rpc('/asset/list',{app:window.NEXUS.app,kind:kind});return (r&&r.files)||[]},
+ entries:async function*(){var fs=await D.list();for(var i=0;i<fs.length;i++)yield [fs[i].name,sxlVFile(kind,fs[i])]},
+ values:async function*(){for await(var e of D.entries())yield e[1]},
+ keys:async function*(){for await(var e of D.entries())yield e[0]},
+ removeEntry:async function(n){throw Error('ลบรูปใน Odoo จากโปรแกรมไม่ได้ (Odoo ไม่มีคำสั่งลบ) — ลบที่ Odoo เมนู Star Nexus › รูปภาพ')},   // v1.477
+ getFileHandle:async function(n,o){var fs=await D.list(),f=fs.find(function(x){return x.name===n});
+  if(!f){if(!(o&&o.create))throw new DOMException(n,'NotFoundError');f={name:n,size:0,mtime:Date.now()}}return sxlVFile(kind,f)}};return D}
+function sxlVFile(kind,f){return {kind:'file',name:f.name,_odoo:1,
+ getFile:async function(){var r=await fetch('/nexus/assets/'+kind+'/'+encodeURIComponent(f.name),{credentials:'same-origin'});
+  if(!r.ok)throw new DOMException(f.name,'NotFoundError');var b=await r.blob();return new File([b],f.name,{type:b.type,lastModified:f.mtime||Date.now()})},
+ createWritable:async function(){var parts=[];return {write:async function(x){parts.push(x)},abort:async function(){parts=[]},
+  close:async function(){var fd=new FormData();fd.append('app',window.NEXUS.app);fd.append('kind',kind);
+   fd.append('csrf_token',(document.querySelector('meta[name=csrf-token]')||{}).content||'');fd.append('file',new Blob(parts),f.name);
+   var r=await fetch('/nexus/api/asset/put',{method:'POST',body:fd,credentials:'same-origin'}),j={};try{j=await r.json()}catch(e){}
+   if(!r.ok||j.error)throw Error('บันทึกไฟล์ลง Odoo ไม่สำเร็จ: '+(j.error||('HTTP '+r.status)));f.mtime=j.mtime;f.size=j.size}}}}}
+/* ───────── v1.425: ดูรายการ Fitting Global ─────────
+   ตารางนี้ถูกค้นเบื้องหลังอย่างเดียว (ถาด · ท่อนตัด · กระจก) ไม่มีหน้าให้ดูว่าได้อะไรมา
+   ปุ่ม “ดูรายการ” ในแถว fitting_global เปิดรายการชุดที่โปรแกรมใช้อยู่จริง (S.rows) · อ่านอย่างเดียว · แสดงทีละ SXL_FG_LIM แถวแรกที่ตรง */
+var SXL_FG_LIM=300;
+function sxlFgView(){
+ var t='fitting_global',S=SXL.s[t];
+ if(!S||!S.ready){sxlStatus('ยังไม่มีข้อมูล fitting_global — รอดึงจาก AX หรือเลือกไฟล์ก่อน',true);return}
+ var old=document.getElementById('sxlFgView');if(old)old.remove();
+ var all=S.rows.slice().sort(function(a,b){var x=String(a.item_number||''),y=String(b.item_number||'');return x<y?-1:x>y?1:0});
+ var dead=function(r){return /^\s*\(?ยกเลิก\)?/.test(String(r.product_name||''))};
+ var units={};all.forEach(function(r){var u=String(r.unit==null?'':r.unit);units[u]=(units[u]||0)+1});
+ var bs='padding:7px 12px;border:1px solid #93a9b8;border-radius:6px;cursor:pointer;background:transparent;color:inherit;font:inherit';
+ var box=document.createElement('div');box.id='sxlFgView';
+ box.style.cssText='position:fixed;inset:0;z-index:1000000;background:#0008;display:flex;align-items:center;justify-content:center;padding:20px';
+ box.innerHTML='<div style="background:#fff;color:#172c40;width:min(1040px,96vw);height:min(780px,92vh);display:flex;flex-direction:column;padding:18px 20px;border-radius:14px;font:14px/1.55 system-ui,Sarabun,sans-serif;text-align:left">'
+  +'<div style="display:flex;align-items:center;gap:10px"><h2 style="margin:0;font-size:19px;flex:1">Fitting Global · รายการที่โปรแกรมใช้อยู่</h2><button id="sxlFgX" style="'+bs+'">ปิด</button></div>'
+  +'<p id="sxlFgSrc" style="margin:4px 0 10px;color:#506577;font-size:13px"></p>'
+  +'<div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center"><input id="sxlFgQ" type="search" placeholder="ค้นรหัสหรือชื่อ — เว้นวรรคคั่นหลายคำ" style="flex:1;min-width:220px;padding:8px 10px;border:1px solid #93a9b8;border-radius:6px;font:inherit;color:inherit;background:#fff">'
+  +'<select id="sxlFgU" style="padding:8px 10px;border:1px solid #93a9b8;border-radius:6px;font:inherit;color:inherit;background:#fff"><option value="*">ทุกหน่วย</option>'
+  +Object.keys(units).sort().map(function(u){return '<option value="'+esc2(u)+'">'+esc2(u||'(ว่าง)')+' · '+units[u].toLocaleString()+'</option>'}).join('')+'</select>'
+  +'<label style="white-space:nowrap;cursor:pointer"><input type="checkbox" id="sxlFgC"> ซ่อนที่ยกเลิก</label></div>'
+  +'<p id="sxlFgN" role="status" style="margin:8px 0 6px;font-size:13px;color:#506577"></p>'
+  +'<div style="flex:1;overflow:auto;border:1px solid #8884;border-radius:8px"><table style="width:100%;border-collapse:collapse;font-size:13px">'
+  +'<thead><tr>'+['รหัส (item_number)','ชื่อ (product_name)','หน่วย','RecId'].map(function(h,i){return '<th style="position:sticky;top:0;background:#eef3f6;padding:7px 10px;text-align:'+(i===3?'right':'left')+';font-weight:600;border-bottom:1px solid #8886;white-space:nowrap">'+h+'</th>'}).join('')+'</tr></thead>'
+  +'<tbody id="sxlFgB"></tbody></table></div></div>';
+ document.body.append(box);
+ var $q=box.querySelector('#sxlFgQ'),$u=box.querySelector('#sxlFgU'),$c=box.querySelector('#sxlFgC'),$b=box.querySelector('#sxlFgB'),$n=box.querySelector('#sxlFgN');
+ box.querySelector('#sxlFgSrc').textContent=(SXL_SRC[S.src]||'ไฟล์')+' · '+S.name+' · ได้ข้อมูลเมื่อ '+new Date(S.mod).toLocaleString('th-TH')+' · ทั้งหมด '+all.length.toLocaleString()+' รายการ (ชื่อขึ้นต้น ยกเลิก '+all.filter(dead).length.toLocaleString()+')';
+ var td='padding:6px 10px;border-bottom:1px solid #8883;vertical-align:top';
+ var draw=function(){
+  var ws=$q.value.toLowerCase().split(/\s+/).filter(Boolean),u=$u.value,hide=$c.checked,out=[],n=0;
+  for(var i=0;i<all.length;i++){var r=all[i];
+   if(u!=='*'&&String(r.unit==null?'':r.unit)!==u)continue;
+   if(hide&&dead(r))continue;
+   if(ws.length){var hay=(String(r.item_number||'')+' '+String(r.product_name||'')).toLowerCase(),ok=true;for(var j=0;j<ws.length;j++)if(hay.indexOf(ws[j])<0){ok=false;break}if(!ok)continue}
+   n++;if(out.length<SXL_FG_LIM)out.push(r)}
+  $b.innerHTML=out.map(function(r){return '<tr'+(dead(r)?' style="color:#8a97a3"':'')+'><td style="'+td+';font-family:ui-monospace,Consolas,monospace;white-space:nowrap">'+esc2(r.item_number)+'</td><td style="'+td+'">'+esc2(r.product_name)+'</td><td style="'+td+';white-space:nowrap">'+esc2(r.unit)+'</td><td style="'+td+';text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap">'+esc2(r.recid)+'</td></tr>'}).join('')
+   ||'<tr><td colspan="4" style="padding:24px;text-align:center;color:#506577">ไม่พบรายการที่ตรง</td></tr>';
+  $n.textContent='ตรง '+n.toLocaleString()+' รายการ'+(n>out.length?' · แสดง '+out.length.toLocaleString()+' แถวแรก — พิมพ์คำค้นเพิ่มเพื่อให้แคบลง':'');
+  $b.parentNode.parentNode.scrollTop=0};
+ var tm=null;$q.oninput=function(){clearTimeout(tm);tm=setTimeout(draw,150)};$u.onchange=draw;$c.onchange=draw;
+ var close=function(){document.removeEventListener('keydown',key,true);box.remove()};
+ var key=function(e){if(e.key==='Escape'){e.stopPropagation();close()}};
+ document.addEventListener('keydown',key,true);
+ box.querySelector('#sxlFgX').onclick=close;box.onclick=function(e){if(e.target===box)close()};
+ draw();$q.focus()}
+/* ═════════ v1.477: ย้ายข้อมูลจาก Google Drive เข้า Odoo (ปุ่มเดียว) · ตารางที่ส่งเข้าแล้วเท่านั้นที่เปิดจาก Odoo ═════════
+   ผู้ใช้ 19/10 10:28–10:40 (ส่งไฟล์ Odoo v1.434 มา): "สลับโปรแกรมนี้ก่อน เดี๋ยวค่อยไปสลับที่ Production · ทำปุ่มกดส่งเข้า odoo
+     เมื่อส่งเข้าหมดแล้วก็ปิดได้เลย น่าจะใช้บน odoo ยาวๆ · ฝั่ง odoo ไม่เปลี่ยนอะไรแล้ว แก้ฝั่งเราให้ on odoo"
+   เดิม (ตัว Odoo v1.426–1.434): ตารางไหนผู้ดูแลกด “ใช้ Odoo เป็นหลัก” ที่ /nexus/migrate = โปรแกรมเปิดจาก Odoo ทันที
+         แต่ข้อมูลใน Odoo นำเข้าจากโฟลเดอร์ Server เมื่อ 14/10 — งานหลังจากนั้นอยู่บน Google Drive (StarNexus v1.429–1.432 ย้ายไป Drive 12/10)
+         ถ้าเปิดตามโหมดของ Odoo ตรง ๆ = เห็นข้อมูลเก่า 14/10 และบันทึกทับ · part_index / imos_mapping ก็ถูกตั้งเป็น Odoo ไว้แล้ว
+         ขณะที่ Production ยังอ่าน/เขียน Drive = ออเดอร์ที่ส่งจะไม่ถึง Production
+   ตอนนี้:
+   ① ตารางจะเปิดจาก Odoo ต่อเมื่อ (ก) Odoo ตั้งเป็น “ใช้ Odoo เป็นหลัก” และ (ข) มีป้าย “ส่งเข้าแล้ว” ของตารางนั้นใน Odoo
+      ป้าย = ไฟล์เล็กในที่เก็บเว็บของ Odoo (_sxl/odoo/<ตาราง>.json · /nexus/api/web/put — ทางเดียวกับไฟล์เว็บดูงาน ไม่ต้องแก้ฝั่ง Odoo)
+      ยังไม่มีป้าย = ใช้ Google Drive ตามเดิม (ปลอดภัย ไม่แตะข้อมูลเก่าใน Odoo)
+   ② ปุ่ม “⬆ ย้ายข้อมูลเข้า Odoo…” (หน้าไฟล์กลาง · เห็นเฉพาะตอนเปิดผ่าน Odoo):
+      ตรวจ = เทียบทุกแถวของ Drive กับ Odoo (ไม่ส่งอะไร) → บอกจำนวนที่จะส่ง / เหมือนแล้ว / มีใน Odoo แต่ไม่มีใน Drive
+      ส่ง = ส่งเฉพาะแถวที่ต่างไป /table/write (ทีละก้อน ≤ 1.5 MB) · ลบแถวที่ไม่มีใน Drive (เลือกได้) · รูปลายผิว + รูปย่อตู้ที่ยังไม่มี
+      แล้วเขียนป้ายใน Odoo + ป้าย _MOVED_TO_ODOO.json บน Drive → โหลดหน้าใหม่ = ตารางนั้นเปิดจาก Odoo
+      ส่งได้ซ้ำ (ส่งเฉพาะที่ต่าง) จนกว่าจะโหลดหน้าใหม่ · หลังเปิดจาก Odoo แล้ว ปุ่มไม่อ่าน Drive ทับอีก
+   ③ ย้ายรอบนี้เฉพาะตารางของ StarNexus: furnitech_cabinets (โมเดลตู้ + ออเดอร์ ORD::) · furnitech_parts · xml_history · furnitech_share
+      ตารางที่ใช้ร่วมกับ Production (app_settings · imos_orders · imos_mapping · part_index) อยู่ Drive ต่อจนกว่าจะย้าย Production
+      (Item Id Set ที่ส่งไปกับออเดอร์อยู่ใน app_settings · Production เขียน order_base_data_* ลง app_settings)
+   ④ กันบันทึกผิดที่: ตารางที่ย้ายแล้ว ถ้ามีเครื่องที่ยังเปิดแบบ Drive (github.io หรือเปิดค้างก่อนย้าย) กดบันทึก
+      = ไม่บันทึก + บอกให้เปิดผ่าน Odoo (อ่านป้าย _MOVED_TO_ODOO.json บน Drive · แคช 60 วิ)
+   ปิด: SN_OFF.odoo=1 (ไม่ใช้ Odoo เลย · ทำงานแบบ Drive) · SN_OFF.odooTables=1 (ไม่เปิดตารางจาก Odoo แม้ส่งแล้ว) · SN_OFF.odooMovedGuard=1 (ไม่กันบันทึก) */
+var SXL_MIG={now:['furnitech_cabinets','furnitech_parts','xml_history','furnitech_share'],
+ prod:['app_settings','imos_orders','imos_mapping','part_index'],dir:'_sxl/odoo/',moved:'_MOVED_TO_ODOO.json',chunk:1500000,maxRows:400,mv:null};
+function sxlMigPath(n){return SXL_MIG.dir+n+'.json'}
+/* ป้าย “ส่งเข้าแล้ว” ใน Odoo — ถามทีเดียวทุกตาราง (/web/list ตอบรหัส sha ของไฟล์ที่มี) · อ่านไม่ได้ = ถือว่ายังไม่ย้าย (ใช้ Drive) */
+async function sxlOdbMigLoad(){
+ if(_sxlSnOff('odooTables')){SXL_ODB.mig={};return SXL_ODB.mig}
+ var names=SXL_MIG.now.concat(SXL_MIG.prod,['assets']),m={};
+ try{var r=await window.Nexus.rpc('/web/list',{app:window.NEXUS.app,paths:names.map(sxlMigPath)}),have=(r&&r.have)||{};
+  names.forEach(function(n){if(have[sxlMigPath(n)])m[n]=have[sxlMigPath(n)]})}
+ catch(e){console.warn('[Odoo] อ่านป้ายย้ายข้อมูลไม่ได้ — ใช้ Google Drive ต่อ',e&&e.message)}
+ SXL_ODB.mig=m;return m}
+function sxlOdbMigOk(t){return !!(SXL_ODB.mig&&SXL_ODB.mig[t])}
+/* ป้ายบน Drive (_MOVED_TO_ODOO.json) — ตารางไหนย้ายไป Odoo แล้ว · แคช 60 วิ */
+async function sxlMovedGet(force){
+ if(!SXL.dir)return null;
+ var c=SXL_MIG.mv;if(!force&&c&&Date.now()-c.at<60000)return c.v;
+ var v=null;try{var h=await SXL.dir.getFileHandle(SXL_MIG.moved);v=JSON.parse(await (await h.getFile()).text()||'{}')}catch(e){v=null}
+ SXL_MIG.mv={at:Date.now(),v:v};return v}
+async function sxlMovedGuard(T){
+ if(_sxlSnOff('odooMovedGuard')||!T)return null;
+ if(SXL_MIG.now.indexOf(T.t)<0&&SXL_MIG.prod.indexOf(T.t)<0)return null;
+ var v=await sxlMovedGet(false),x=v&&v.tables&&v.tables[T.t];if(!x)return null;
+ var when=x.at?(' ('+new Date(x.at).toLocaleString('th-TH')+')'):'';
+ if(sxlOdbOn())return 'ตาราง '+T.t+' ย้ายเข้า Odoo แล้ว'+when+' แต่หน้านี้ยังเปิดจาก Google Drive — โหลดหน้าใหม่ (F5) แล้วบันทึกอีกครั้ง (งานนี้ยังไม่ได้บันทึก)';
+ return 'ตาราง '+T.t+' ย้ายไปบันทึกที่ Odoo แล้ว'+when+' — ที่นี่ (Google Drive) บันทึกไม่ได้แล้ว · เปิดโปรแกรมผ่าน Odoo'+(v.odoo?(' ('+v.odoo+')'):'')+' แล้วบันทึกอีกครั้ง (งานนี้ยังไม่ได้บันทึก)'}
+/* เทียบค่าแบบไม่สนลำดับคีย์ใน JSON (Odoo อาจเก็บ JSON เรียงคีย์ใหม่) · ว่าง/null = เท่ากัน */
+function sxlMigStable(v){if(v===null||typeof v!=='object')return JSON.stringify(v);if(Array.isArray(v))return '['+v.map(sxlMigStable).join(',')+']';
+ return '{'+Object.keys(v).sort().filter(function(k){return v[k]!==undefined}).map(function(k){return JSON.stringify(k)+':'+sxlMigStable(v[k])}).join(',')+'}'}
+function sxlMigSame(T,c,a,b){if((a==null||a==='')&&(b==null||b===''))return true;if(a==null||b==null)return false;
+ if(typeof a!=='object'&&typeof b!=='object'&&String(a)===String(b))return true;
+ if(sxlIsJ(T,c)){try{var x=typeof a==='string'?JSON.parse(a):a,y=typeof b==='string'?JSON.parse(b):b;if(JSON.stringify(x)===JSON.stringify(y))return true;return sxlMigStable(x)===sxlMigStable(y)}catch(e){}}
+ return false}
+/* แถวทั้งหมดของตารางจาก Drive (รูปแบบไฟล์) — ตารางที่โหลดเข้าโปรแกรม = แถวที่รวม _changes แล้ว · furnitech_share = ไฟล์ละแถวใน _changes */
+async function sxlMigDriveRows(t){
+ var T=sxlCfg(t),S=SXL.s[t];
+ if(sxlLoadable(T)){
+  if(sxlRemote(S))throw Error(t+' เปิดจาก Odoo อยู่แล้ว (ข้อมูล Drive ไม่ได้อ่านในรอบนี้)');
+  var g=sxlDfrWait(t);if(g){try{await g}catch(e){}}
+  if(!S.ready)throw Error('ยังอ่าน '+t+' จาก Google Drive ไม่ครบ'+(S.err?(' — '+S.err):'')+' · กด “อ่านไฟล์ล่าสุด” แล้วลองใหม่');
+  return S.rows.map(function(r){return sxlRawToFile(T,sxlStrip(r))})}
+ var m=new Map();
+ try{var found=await sxlScanDir(SXL.dir),b=found[t];if(b){var rr=await sxlReadTable(T,b.f);(rr.rows||[]).forEach(function(r){m.set(String(r[T.key]),r)})}}catch(e){console.warn('[ย้ายเข้า Odoo] '+t+' ไฟล์ฐาน',e)}
+ var d=await sxlOverDir(t,false);
+ if(d){var ents=[];for await(var e of d.entries()){if(e[1].kind==='file'&&/\.json$/i.test(e[0]))ents.push(e)}
+  var bad=0;await sxlPool(ents,8,async function(e){try{var o=JSON.parse(await (await e[1].getFile()).text());(o.rows||[]).forEach(function(x){var r=sxlFileToRaw(T,x);m.set(String(r[T.key]),r)})}catch(err){bad++}});
+  if(bad)throw Error('อ่านไฟล์ใน _changes/'+t+' ไม่ได้ '+bad+' ไฟล์ — ลองใหม่อีกครั้ง')}
+ return Array.from(m.values()).map(function(r){return sxlRawToFile(T,r)})}
+async function sxlMigOdooRows(t,onp){var rows=[],after=0;
+ for(;;){var pg=await sxlOdbRpc('rows',{table:t,after:after});(pg.rows||[]).forEach(function(x){rows.push(x)});if(onp)onp(rows.length);if(!pg.next)break;after=pg.next}
+ return rows}
+/* เทียบ Drive กับ Odoo → แถวที่ต้องส่ง (ใหม่/ต่าง) · เหมือนแล้ว · รหัสที่มีแต่ใน Odoo */
+async function sxlMigPlan(t,onp){
+ var T=sxlCfg(t),K=T.key,dr=await sxlMigDriveRows(t),od=await sxlMigOdooRows(t,onp),om=new Map();
+ od.forEach(function(x){om.set(String(x[K]),x)});
+ var put=[],same=0,seen=new Set(),diff=null;
+ dr.forEach(function(x){var k=String(x[K]);if(x[K]==null||k==='')return;seen.add(k);var o=om.get(k);
+  if(o){var bad=null;Object.keys(x).some(function(c){if(!sxlMigSame(T,c,x[c],o[c])){bad=c;return true}return false});
+   if(!bad){same++;return}if(!diff)diff={key:k,col:bad}}
+  put.push(x)});
+ var del=[];om.forEach(function(v,k){if(!seen.has(k))del.push(k)});
+ return {t:t,drive:seen.size,odoo:od.length,put:put,del:del,same:same,diff:diff}}
+async function sxlMigPush(p,withDel,onp){
+ var batch=[],bytes=0,sent=0;
+ var send=async function(){if(!batch.length)return;await sxlOdbRpc('write',{table:p.t,put:batch,'delete':[],tab:SXL.machine});sent+=batch.length;batch=[];bytes=0;if(onp)onp(sent)};
+ for(var i=0;i<p.put.length;i++){var x=p.put[i],n=JSON.stringify(x).length;
+  if(batch.length&&(bytes+n>SXL_MIG.chunk||batch.length>=SXL_MIG.maxRows))await send();batch.push(x);bytes+=n}
+ await send();
+ if(withDel)for(var j=0;j<p.del.length;j+=500)await sxlOdbRpc('write',{table:p.t,put:[],'delete':p.del.slice(j,j+500),tab:SXL.machine});
+ return sent}
+function sxlMigTok(){return (document.querySelector('meta[name=csrf-token]')||{}).content||''}
+async function sxlMigMark(name,info){
+ var fd=new FormData();fd.append('app',window.NEXUS.app);fd.append('path',sxlMigPath(name));fd.append('title','StarNexus · ย้ายข้อมูลเข้า Odoo');fd.append('csrf_token',sxlMigTok());
+ fd.append('file',new Blob([JSON.stringify(Object.assign({name:name,at:Date.now(),by:SXL.machine||''},info||{}))],{type:'application/json'}),name+'.json');
+ var r=await fetch('/nexus/api/web/put',{method:'POST',body:fd,credentials:'same-origin'}),j={};try{j=await r.json()}catch(e){}
+ if(!r.ok||j.error)throw Error('เขียนป้าย “ส่งเข้าแล้ว” ของ '+name+' ใน Odoo ไม่สำเร็จ: '+(j.error||('HTTP '+r.status)));
+ SXL_ODB.mig=SXL_ODB.mig||{};SXL_ODB.mig[name]=1}
+async function sxlMigMarkDrive(names,info){
+ if(!SXL.dir)return;
+ var v=(await sxlMovedGet(true))||{};v.v=1;v.tables=v.tables||{};v.odoo=location.origin+location.pathname;
+ names.forEach(function(n){v.tables[n]=Object.assign({at:Date.now(),by:SXL.machine||''},(info&&info[n])||{})});
+ var h=await SXL.dir.getFileHandle(SXL_MIG.moved,{create:true}),w=await h.createWritable();await w.write(JSON.stringify(v,null,1));await w.close();
+ SXL_MIG.mv={at:Date.now(),v:v}}
+/* รูปลายผิว (textures/) + รูปย่อตู้ (thumbs/) บน Drive → Odoo (/nexus/api/asset/put) · มีแล้วขนาดเท่ากัน = ข้าม */
+async function sxlMigAssetsPlan(){
+ var out={up:[],same:0,drive:0};
+ for(var kind of ['textures','thumbs']){
+  var have={};var rl=await window.Nexus.rpc('/asset/list',{app:window.NEXUS.app,kind:kind});((rl&&rl.files)||[]).forEach(function(f){have[f.name]=f.size});
+  var dd=null;try{dd=await SXL.dir.getDirectoryHandle(kind)}catch(e){dd=null}if(!dd)continue;
+  for await(var e of dd.entries()){if(e[1].kind!=='file')continue;out.drive++;var sz=null;
+   try{var L=dd._fs&&dd._fs.L&&dd._fs.L[dd._p];sz=L&&L.files[e[0]]?L.files[e[0]].s:null}catch(_){sz=null}
+   if(have[e[0]]!=null&&(sz==null||+have[e[0]]===+sz)){out.same++;continue}
+   out.up.push({kind:kind,name:e[0],h:e[1]})}}
+ return out}
+async function sxlMigAssetsPush(p,onp){var n=0;
+ await sxlPool(p.up,3,async function(x){
+  var f=await x.h.getFile();if(f&&!(f instanceof Blob)&&typeof f.toBlob==='function')f=await f.toBlob();
+  var fd=new FormData();fd.append('app',window.NEXUS.app);fd.append('kind',x.kind);fd.append('csrf_token',sxlMigTok());fd.append('file',new Blob([f]),x.name);
+  var r=await fetch('/nexus/api/asset/put',{method:'POST',body:fd,credentials:'same-origin'}),j={};try{j=await r.json()}catch(e){}
+  if(!r.ok||j.error)throw Error('ส่งรูป '+x.kind+'/'+x.name+' เข้า Odoo ไม่สำเร็จ: '+(j.error||('HTTP '+r.status)));
+  n++;if(onp)onp(n)});
+ return n}
+/* หน้าต่าง “ย้ายข้อมูลเข้า Odoo” */
+async function sxlOdooMigDialog(){
+ if(!sxlOdbOn())throw Error('ปุ่มนี้ใช้ได้เมื่อเปิดโปรแกรมผ่าน Odoo');
+ if(document.getElementById('sxlMigBox'))return;
+ var st=null;try{st=await sxlOdbRpc('status')}catch(e){throw Error('ถามสถานะตารางจาก Odoo ไม่ได้: '+(e&&e.message||e))}
+ await sxlOdbMigLoad();
+ var info={};((st&&st.tables)||[]).forEach(function(x){info[x.name]=x});
+ var drive=!!SXL.dir;   // ต้นทาง = ที่เก็บที่ต่ออยู่ (ใช้จริงคือ Google Drive)
+ var NOW=SXL_MIG.now.filter(function(t){return !!sxlCfg(t)}),plans={},aPlan=null,busy=false;
+ var box=document.createElement('div');box.id='sxlMigBox';
+ box.style.cssText='position:fixed;inset:0;z-index:1000002;background:#0009;display:flex;align-items:center;justify-content:center;padding:16px';
+ var row=function(t,label,use){var i=info[t]||{},S=SXL.s[t]||{},done=sxlOdbMigOk(t),onO=S.src==='odb';
+  var odoo=i.mode?((i.mode==='odoo'?'ใช้ Odoo เป็นหลัก':'<span style="color:#b42d24">โหมดโฟลเดอร์</span>')+(i.rows!=null?' · '+(+i.rows).toLocaleString()+' แถว':'')):'<span style="color:#b42d24">ไม่มีตารางนี้</span>';
+  var ok=drive&&!onO&&i.mode==='odoo';
+  return '<tr data-t="'+t+'"><td><input type="checkbox" data-mig="'+t+'"'+(ok&&!done?' checked':'')+(ok?'':' disabled')+'></td><td><code>'+esc2(label||t)+'</code><br><small>'+esc2(use)+'</small></td>'
+   +'<td>'+(onO?'<b style="color:#135e73">เปิดจาก Odoo แล้ว ✓</b>':(S.ready?(S.rows.length.toLocaleString()+' แถว'):(sxlLoadable(sxlCfg(t))?'ยังอ่านไม่ครบ':'เปิดทีละรหัส')))+'</td>'
+   +'<td>'+odoo+(done?'<br><small style="color:#135e73">ส่งเข้าแล้ว ✓</small>':'')+(i.mode&&i.mode!=='odoo'?'<br><small>ผู้ดูแลกด “ใช้ Odoo เป็นหลัก” ที่ /nexus/migrate ก่อน</small>':'')+'</td>'
+   +'<td class="mr" data-r="'+t+'"></td></tr>'};
+ box.innerHTML='<div style="background:#fff;color:#172c40;width:min(980px,98vw);max-height:94vh;overflow:auto;border-radius:14px;padding:18px 20px;font:14px/1.6 system-ui,sans-serif">'
+  +'<style>#sxlMigBox button{padding:7px 14px;border-radius:8px;border:1px solid #c5ccd6;background:#fff;color:#172c40;font:inherit;cursor:pointer}#sxlMigBox button.pri{background:#135e73;border-color:#135e73;color:#fff;font-weight:600}#sxlMigBox button:disabled{opacity:.5;cursor:default}#sxlMigBox td{padding:5px 6px;vertical-align:top;border-bottom:1px solid #eef0f4}</style>'
+  +'<h3 style="margin:0 0 6px">⬆ ย้ายข้อมูลจาก Google Drive เข้า Odoo</h3>'
+  +'<div style="font-size:13px;opacity:.85">1) ให้เครื่องอื่นปิด StarNexus ก่อน (งานที่บันทึกระหว่างย้ายจะไม่ตามมา) · 2) กด <b>ตรวจ</b> ดูจำนวน · 3) กด <b>ส่งเข้า Odoo</b> · 4) <b>โหลดหน้าใหม่</b> — ตารางที่ส่งแล้วจะเปิดจาก Odoo<br>'
+  +'ส่งเฉพาะแถวที่ต่างจากใน Odoo · กดซ้ำได้ · ข้อมูลบน Drive ไม่ถูกลบ (ยังเปิดดูย้อนหลังได้ แต่บันทึกที่ Drive ไม่ได้แล้ว)</div>'
+  +(drive?'':'<div style="color:#b42d24;margin-top:6px"><b>ยังไม่ได้เชื่อมต่อ Google Drive</b> — ข้อมูลต้นทางอยู่บน Drive: ใส่ URL + กุญแจ (หรือวางรหัสเชื่อมต่อ) ในส่วน ☁ ของหน้าไฟล์กลางก่อน</div>')
+  +'<table style="width:100%;border-collapse:collapse;margin-top:10px;font-size:13px" class="migt"><thead><tr style="text-align:left;border-bottom:1px solid #ccd"><th></th><th>ข้อมูล</th><th>Google Drive</th><th>Odoo</th><th>ผลตรวจ / ส่ง</th></tr></thead><tbody>'
+  +row('furnitech_cabinets','furnitech_cabinets','โมเดลตู้ · ออเดอร์ที่บันทึก (ORD::) · Fitting 3D · หน้าตัด · โมดูล')
+  +row('furnitech_parts','furnitech_parts','คลัง Part')
+  +row('xml_history','xml_history','ประวัติ XML ออเดอร์')
+  +row('furnitech_share','furnitech_share','ลิงก์ดูงานแบบเดิม (?view=)')
+  +'<tr data-t="assets"><td><input type="checkbox" data-mig="assets"'+(drive?(sxlOdbMigOk('assets')?'':' checked'):' disabled')+'></td><td><code>textures/ · thumbs/</code><br><small>รูปลายผิว · รูปย่อตู้</small></td><td>—</td><td>'+(sxlOdbMigOk('assets')?'<small style="color:#135e73">ส่งเข้าแล้ว ✓</small>':'')+'</td><td class="mr" data-r="assets"></td></tr>'
+  +'</tbody></table>'
+  +'<div style="font-size:12px;margin-top:8px;padding:8px 10px;background:#f6f3ea;border-radius:8px">อยู่ Google Drive ต่อ (ใช้ร่วมกับ Production · ย้ายพร้อม Production): '
+  +SXL_MIG.prod.map(function(t){var i=info[t];return '<code>'+t+'</code>'+(i&&i.mode==='odoo'?' <small>(Odoo ตั้งเป็นหลักไว้ แต่ยังไม่ใช้)</small>':'')}).join(' · ')+'</div>'
+  +'<label style="display:block;margin-top:8px;font-size:13px"><input type="checkbox" id="sxlMigDel" checked> ลบแถวที่มีใน Odoo แต่ไม่มีบน Drive (ของเก่าที่นำเข้าเมื่อ 14/10 แล้วถูกลบ/แก้ชื่อทีหลัง)</label>'
+  +'<div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:10px"><button id="sxlMigChk">ตรวจ (ยังไม่ส่ง)</button><button id="sxlMigGo" class="pri">ส่งเข้า Odoo</button><button id="sxlMigRe" style="display:none">โหลดหน้าใหม่ (เปิดจาก Odoo)</button><button id="sxlMigX">ปิด</button></div>'
+  +'<div id="sxlMigLog" style="margin-top:8px;font-size:12px;white-space:pre-wrap"></div></div>';
+ document.body.appendChild(box);
+ var $=function(s){return box.querySelector(s)},log=function(m,bad){var el=$('#sxlMigLog');el.textContent=m;el.style.color=bad?'#b42d24':'inherit'};
+ var res=function(t,h){var el=box.querySelector('[data-r="'+t+'"]');if(el)el.innerHTML=h};
+ var sel=function(){return Array.from(box.querySelectorAll('[data-mig]')).filter(function(c){return c.checked&&!c.disabled}).map(function(c){return c.dataset.mig})};
+ var fmt=function(p){return 'ส่ง <b>'+p.put.length.toLocaleString()+'</b> · เหมือนแล้ว '+p.same.toLocaleString()+(p.del.length?' · มีแต่ใน Odoo '+p.del.length.toLocaleString():'')+'<br><small>Drive '+p.drive.toLocaleString()+' · Odoo '+p.odoo.toLocaleString()+' แถว</small>'};
+ var check=async function(){var ts=sel();if(!ts.length)throw Error('ยังไม่ได้เลือกอะไร');
+  for(var t of ts){
+   if(t==='assets'){res(t,'กำลังตรวจรูป…');aPlan=await sxlMigAssetsPlan();res(t,'ส่ง <b>'+aPlan.up.length.toLocaleString()+'</b> รูป · มีแล้ว '+aPlan.same.toLocaleString()+'<br><small>Drive '+aPlan.drive.toLocaleString()+' รูป</small>');continue}
+   res(t,'กำลังเทียบ…');plans[t]=await sxlMigPlan(t,function(n){res(t,'อ่านจาก Odoo '+n.toLocaleString()+' แถว…')});res(t,fmt(plans[t]))}
+  log('ตรวจแล้ว — กด “ส่งเข้า Odoo” เพื่อส่งตามนี้')};
+ var go=async function(){var ts=sel();if(!ts.length)throw Error('ยังไม่ได้เลือกอะไร');
+  for(var t of ts){if(t==='assets'?!aPlan:!plans[t]){await check();break}}
+  var del=$('#sxlMigDel').checked,nP=0,nD=0;ts.forEach(function(t){if(plans[t]){nP+=plans[t].put.length;nD+=plans[t].del.length}});
+  if(!confirm('ส่งเข้า Odoo '+nP.toLocaleString()+' แถว'+(del&&nD?(' · ลบใน Odoo '+nD.toLocaleString()+' แถว'):'')+(aPlan&&ts.indexOf('assets')>=0?(' · รูป '+aPlan.up.length.toLocaleString()+' ไฟล์'):'')+'\n\nเครื่องอื่นปิด StarNexus แล้วใช่ไหม?'))return;
+  var doneT=[],extra={};
+  await sxlLocked(async function(){
+   for(var t of ts){
+    if(t==='assets'){var na=await sxlMigAssetsPush(aPlan,function(n){res(t,'ส่งรูป '+n.toLocaleString()+' / '+aPlan.up.length.toLocaleString()+'…')});
+     await sxlMigMark('assets',{files:aPlan.drive});res(t,'<b style="color:#135e73">ส่งแล้ว '+na.toLocaleString()+' รูป ✓</b>');continue}
+    var p=plans[t];var n=await sxlMigPush(p,del,function(k){res(t,'ส่ง '+k.toLocaleString()+' / '+p.put.length.toLocaleString()+' แถว…')});
+    /* ตรวจซ้ำ: อ่าน Odoo ใหม่ทั้งตารางแล้วเทียบกับ Drive อีกรอบ — ตรงครบจึงเขียนป้าย */
+    res(t,'ส่งแล้ว '+n.toLocaleString()+' แถว · ตรวจซ้ำ…');
+    var p2=await sxlMigPlan(t,function(k){res(t,'ตรวจซ้ำ: อ่านจาก Odoo '+k.toLocaleString()+' แถว…')});
+    if(p2.put.length||(del&&p2.del.length)){
+     console.warn('[ย้ายเข้า Odoo] ตรวจซ้ำยังต่าง',t,p2.diff,p2.put.length,p2.del.length);
+     if(!confirm(t+': ส่งแล้ว แต่ตรวจซ้ำยังต่างจาก Drive '+p2.put.length.toLocaleString()+' แถว'+(del&&p2.del.length?(' · เกิน '+p2.del.length.toLocaleString()):'')
+      +(p2.diff?('\n(เช่น รหัส '+p2.diff.key+' ช่อง '+p2.diff.col+' — Odoo อาจเก็บค่าแบบอื่น)'):'')+'\n\nตกลง = ถือว่าย้ายแล้ว เปิดจาก Odoo · ยกเลิก = ยังใช้ Drive (กดส่งใหม่ได้)'))
+      throw Error(t+': ยังไม่เขียนป้าย — ยังใช้ Google Drive ต่อ กดส่งอีกครั้งได้')}
+    await sxlMigMark(t,{rows:p.drive,sent:n,deleted:del?p.del.length:0});doneT.push(t);extra[t]={rows:p.drive};
+    res(t,'<b style="color:#135e73">ส่งแล้ว '+n.toLocaleString()+' แถว'+(del&&p.del.length?' · ลบ '+p.del.length.toLocaleString():'')+' ✓</b><br><small>ตรวจซ้ำ: Odoo '+p2.odoo.toLocaleString()+' แถว ตรงกับ Drive</small>')}
+   if(doneT.length)await sxlMigMarkDrive(doneT,extra)});
+  plans={};aPlan=null;$('#sxlMigRe').style.display='';
+  log('ส่งเข้า Odoo เรียบร้อย — กด “โหลดหน้าใหม่” แล้วตารางที่ส่งจะเปิดจาก Odoo · เครื่องที่ยังเปิดแบบ Drive จะบันทึกตารางนี้ไม่ได้ (มีป้ายบอก)')};
+ var guardB=function(fn){return async function(){if(busy)return;busy=true;box.querySelectorAll('button').forEach(function(b){if(b.id!=='sxlMigX')b.disabled=true});
+  try{await fn()}catch(e){log((e&&e.message)||String(e),true)}finally{busy=false;box.querySelectorAll('button').forEach(function(b){b.disabled=false})}}};
+ $('#sxlMigChk').onclick=guardB(check);$('#sxlMigGo').onclick=guardB(go);
+ $('#sxlMigRe').onclick=function(){location.reload()};
+ $('#sxlMigX').onclick=function(){if(busy&&!confirm('กำลังส่งอยู่ — ปิดหน้าต่างนี้ได้ แต่การส่งจะทำต่อเบื้องหลัง'))return;box.remove()};
+ if(!drive)$('#sxlMigGo').disabled=$('#sxlMigChk').disabled=true}
 function sxlStart(){if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',sxLocalMount);else sxLocalMount()}
 /* ───────── StarNexus · ต่อเข้าไฟล์กลาง (รอบ 5: อ่าน + เขียนกลับ · แกนกลางเดียวกับ Production) ───────── */
 sxlInit({
@@ -54598,7 +55133,7 @@ sxlInit({
   {t:'furnitech_cabinets',core:1,live:1,use:'โมเดลตู้ · Fitting 3D · หน้าตัด · โมดูล · ออเดอร์ที่บันทึกไว้',miss:'ตู้จะออกมาเป็นกล่องโครงเปล่า ไม่มีบาน/ลิ้นชัก/ชั้น/อุปกรณ์'},
   {t:'app_settings',core:1,live:1,use:'Variables · Element (วัสดุ ผิว ขอบ สี Parts) · จับคู่ฟิลด์ XML · Item Id Set',miss:'ใช้ค่าตั้งต้น — สี/วัสดุ/Part ไม่ตรงของจริง',
    check:function(rows){return rows.some(function(x){return x.key==='furnitech_settings'})?'':'ไม่มีแถว key = furnitech_settings ในไฟล์นี้'}},
-  {t:'fitting_global',core:0,defer:1,use:'ค้นรหัสอุปกรณ์ (กระจก ท่อนตัด ถาด ฯลฯ) · ใช้ CSV หรือไฟล์ Excel จาก AX (FittingGlobal_*.xlsm) ก็ได้',miss:'รหัสอุปกรณ์ที่ต้องค้นจากคลังจะว่าง'},
+  {t:'fitting_global',core:0,defer:1,use:'ค้นรหัสอุปกรณ์ (กระจก ท่อนตัด ถาด ฯลฯ) · เปิดผ่าน Odoo = ดึงจาก API ของ AX โดยตรงทุกครั้งที่เปิด · นอก Odoo ใช้ CSV หรือไฟล์ Excel จาก AX (FittingGlobal_*.xlsm)',miss:'รหัสอุปกรณ์ที่ต้องค้นจากคลังจะว่าง'},
   {t:'furnitech_parts',core:0,defer:1,use:'คลัง Part ที่บันทึกแยก',miss:'ไม่กระทบการโหลดตู้'},
   {t:'imos_mapping',core:0,defer:1,use:'รหัสอุปกรณ์ที่ Production แปลได้ · ส่งออกแล้วลงทะเบียนรหัสใหม่ให้',miss:'ส่งออกได้ แต่รหัสอุปกรณ์ใหม่จะไม่ถูกลงทะเบียน'},
   {t:'imos_orders',load:false,use:'ปลายทางของปุ่ม “ส่งเข้าไฟล์กลาง” — Production อ่านจากที่นี่'},
@@ -54608,7 +55143,7 @@ sxlInit({
  notify:function(m){try{toast(m)}catch(e){}},
  /* เปิดลิงก์ตู้ ?view=<รหัส> — อ่านจาก _changes/furnitech_share แทน Supabase */
  rpc:{furnitech_share_get:async function(b){
-  await sxlWaitDir('เปิดลิงก์ตู้ '+(b&&b.p_id||'')+' — กด “เชื่อมตำแหน่งที่จำไว้” หรือ “เลือกโฟลเดอร์ Server” ก่อน');
+  if(!(await sxlOdbWait('furnitech_share')))await sxlWaitDir('เปิดลิงก์ตู้ '+(b&&b.p_id||'')+' — กด “เชื่อมตำแหน่งที่จำไว้” หรือ “เลือกโฟลเดอร์ Server” ก่อน');   // v1.477 (Odoo v1.427)
   var r=await SXL_DB.from('furnitech_share').select('*').eq('id',String(b&&b.p_id||'')).maybeSingle();
   if(r.error)throw Error(r.error.message);var row=r.data;
   if(!row||(row.expires_at&&Date.parse(row.expires_at)<Date.now()))return [];
@@ -55346,6 +55881,8 @@ function gasLs(k,v){ try{ if(v===undefined) return localStorage.getItem(k); if(v
     try{ return await _gasRestore.apply(this,arguments); } finally{ SXL.loading=Math.max(0,(SXL.loading||0)-1); }
   };
   var _gasRestore=async function(ask){
+    /* v1.477: เปิดผ่าน Odoo และทุกตารางที่โหลดอยู่ที่ Odoo แล้ว = ไม่ต้องต่อ Google Drive (ไม่ขึ้นหน้าต่างขอ URL/กุญแจ) */
+    if(!gasOn()&&typeof sxlOdbOn==='function'&&sxlOdbOn()&&SXL.cfg.tables.every(function(T){ return !sxlLoadable(T)||sxlRemote(SXL.s[T.t]); })){ try{ sxlHideIfReady(); sxlRender(); }catch(e){} return; }
     if(!gasOn()){ if(gasDriveOnly()) return gasNoCfg();   /* v1.432: ไม่คืนโฟลเดอร์/ไฟล์ในเครื่องที่จำไว้ */
       var r0=await _restore0.apply(this,arguments); gasMovedCheck(); return r0; }
     SXL.dir=gasFS().root('Server (Google Drive)'); SXL.canWrite=true; SXL.dirErr=''; gasBadge();
@@ -55364,7 +55901,7 @@ function gasLs(k,v){ try{ if(v===undefined) return localStorage.getItem(k); if(v
              Production ไม่มี furnitech_cabinets / xml_history / furnitech_parts ในรายการ → ดาวน์โหลดโมเดลตู้ ประวัติ XML ของ StarNexus
              ทั้งไฟล์ฐาน (หลาย MB) และ _changes ทุกไฟล์ ที่ไม่เคยได้ใช้ (ผู้ใช้ 12/10/2026 16:17 เห็นป้าย “… 0.0 MB / 1.3 MB · 0/120 ไฟล์”
              หลังเปิด Production = _changes/furnitech_cabinets 120 ไฟล์) · ตอนนี้: เฉพาะตารางในรายการที่โหลดจริง (_useT) */
-          var _useT={}; SXL.cfg.tables.forEach(function(T){ if(sxlLoadable(T)&&!_skipT[T.t]) _useT[T.t]=1; });
+          var _useT={}; SXL.cfg.tables.forEach(function(T){ if(sxlLoadable(T)&&!_skipT[T.t]&&!sxlRemote(SXL.s[T.t])) _useT[T.t]=1; });   // v1.477: + ไม่โหลดล่วงหน้าตารางที่อยู่ Odoo
           SXL.dir._fs.prefetch(function(p,n){ if(/^_backup|^_parts/.test(p)) return false; var m=/^_changes\/([^\/]+)$/.exec(p); if(m) return !!_useT[m[1]]; return p===''&&/_rows\.csv$/i.test(n)&&!!_useT[(sxlMatchName(n)||'')]; }).catch(function(){});
         }catch(e){ console.warn('[Drive] warm',e); }
         return sxlSync(true,'restore'); });
@@ -55688,7 +56225,7 @@ function gasDriveUi(){
   box.querySelectorAll('p.sl-note').forEach(function(p){ if(/เบราว์เซอร์ให้สิทธิ์/.test(p.textContent)) p.textContent='โปรแกรมตรวจของใหม่บน Google Drive ทุก 10 วินาที'+(C.note?(' · '+C.note):''); });
   var th=box.querySelectorAll('thead th'); if(th[1]) th[1].textContent='บน Google Drive';
   var ck=document.getElementById('sxLocalCheck');
-  if(ck){ ck.textContent='โหลดข้อมูลล่าสุด'; var oc=ck.onclick; ck.onclick=function(e){ if(!sxlIsGas(SXL.dir)){ sxlStatus('ยังไม่ได้เชื่อมต่อ Google Drive — ใส่ URL + กุญแจ แล้วกด “เชื่อมต่อ”',true); return; } return oc&&oc.call(this,e); }; }
+  if(ck){ ck.textContent='โหลดข้อมูลล่าสุด'; var oc=ck.onclick; ck.onclick=function(e){ if(!sxlIsGas(SXL.dir)&&!(typeof sxlOdbOn==='function'&&sxlOdbOn())){ sxlStatus('ยังไม่ได้เชื่อมต่อ Google Drive — ใส่ URL + กุญแจ แล้วกด “เชื่อมต่อ”',true); return; } return oc&&oc.call(this,e); }; }   // v1.477: เปิดผ่าน Odoo = ถาม Odoo ได้แม้ไม่ต่อ Drive
   var g=document.getElementById('gasBox');
   if(g){ if(intro&&intro.parentNode===box) intro.after(g);
     var h3=g.querySelector('h3'); if(h3&&h3.firstChild&&h3.firstChild.nodeType===3) h3.firstChild.nodeValue='☁ การเชื่อมต่อ Google Drive (Apps Script) ';
