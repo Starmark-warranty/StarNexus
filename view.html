@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="th"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover"><meta name="generator" content="StarNexus 1.481"><title>StarNexus — ดูงาน 3D</title><style>
+<html lang="th"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover"><meta name="generator" content="StarNexus 1.511"><title>StarNexus — ดูงาน 3D</title><style>
 :root{--bg:#e7e8ee;--panel:rgba(255,255,255,.94);--solid:#fff;--ink:#172c40;--dim:#5b6b7c;--line:#d5dae2;--accent:#1e5fa8;--warn:#e8590c;--shadow:0 10px 30px -12px rgba(16,32,56,.35)}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html,body{margin:0;height:100%;background:var(--bg);color:var(--ink);font:14px/1.5 system-ui,-apple-system,"Segoe UI","Noto Sans Thai","Sarabun",sans-serif;overflow:hidden;overscroll-behavior:none}
@@ -223,6 +223,32 @@ body.vwScanTop #vwScan{top:calc(8px + env(safe-area-inset-top))}
 #vwRealAdj .act{justify-content:flex-end}
 #vwRealAdj .vbtn{box-shadow:none;padding:6px 12px;font:inherit}
 #vwRealAdj .vbtn.pri{background:var(--accent);color:#fff;border-color:transparent}
+/* ───────── v1.511: ✏️ หน้าเขียนบนรูป (หลังกด 📷 แคปรูป) — ชั้น 40 เหนือแบบผลิต (30) และหน้าโหลด (20) ───────── */
+#vwMk{position:fixed;inset:0;z-index:40;background:#262c33;display:flex;flex-direction:column;color:var(--ink);user-select:none;-webkit-user-select:none}
+#vwMk.hide{display:none}
+#vwMk button{font:inherit;color:inherit;cursor:pointer}
+#vwMk .mkTop{display:flex;align-items:center;gap:6px;padding:calc(6px + env(safe-area-inset-top)) 8px 6px;background:var(--solid);box-shadow:var(--shadow);flex:none}
+#vwMk .mkTop .mkT{flex:1 1 auto;min-width:0;font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#vwMk .mkTop button,#vwMk .mkB{border:1px solid var(--line);background:var(--bg);border-radius:10px;padding:7px 11px;white-space:nowrap;flex:none;min-width:40px}
+#vwMk button.pri{background:var(--accent);color:#fff;border-color:transparent;font-weight:600}
+#vwMk button:disabled{opacity:.45;cursor:default}
+#vwMk .mkStage{position:relative;flex:1 1 auto;min-height:0;overflow:hidden;touch-action:none}
+#vwMk .mkStage canvas{position:absolute;display:block;touch-action:none}
+#vwMk #mkOv{cursor:crosshair}
+#vwMk .mkTxt{position:absolute;left:8px;right:8px;top:8px;z-index:2;display:flex;gap:6px;background:var(--solid);border-radius:12px;padding:6px;box-shadow:var(--shadow)}
+#vwMk .mkTxt.hide{display:none}
+#vwMk .mkTxt input{flex:1 1 auto;min-width:0;border:1px solid var(--line);border-radius:9px;padding:8px 10px;font:16px/1.3 system-ui,-apple-system,"Segoe UI","Noto Sans Thai","Sarabun",sans-serif;color:var(--ink);background:#fff}
+#vwMk .mkTxt button{border:1px solid var(--line);background:var(--bg);border-radius:9px;padding:0 12px;flex:none}
+#vwMk .mkTxt button.pri{background:var(--accent);color:#fff;border-color:transparent}
+#vwMk .mkBar{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:6px 8px;padding:8px 8px calc(8px + env(safe-area-inset-bottom));background:var(--solid);flex:none}
+#vwMk .seg{display:flex;border:1px solid var(--line);border-radius:11px;overflow:hidden;background:var(--bg)}
+#vwMk .seg button{border:0;background:transparent;padding:7px 11px;white-space:nowrap}
+#vwMk .seg button.on{background:var(--accent);color:#fff}
+#vwMk .mkCols{display:flex;gap:7px;align-items:center}
+#vwMk .mkCols button{width:28px;height:28px;border-radius:50%;border:2px solid rgba(0,0,0,.18);padding:0;box-shadow:0 1px 3px rgba(0,0,0,.25)}
+#vwMk .mkCols button.on{outline:3px solid var(--accent);outline-offset:2px}
+body.mkOn #vwHint{z-index:41;bottom:calc(112px + env(safe-area-inset-bottom))}
+@media (max-width:420px){ #vwMk .mkTop button{padding:6px 8px;min-width:34px} #vwMk .seg button{padding:6px 8px;font-size:13px} #vwMk .mkB{padding:6px 9px;font-size:13px} #vwMk .mkCols button{width:26px;height:26px} }
 </style></head><body>
 <div id="vwCanvas"></div>
 <header id="vwTop"><div class="t"><b id="vwTitle">ดูงาน 3D</b><span id="vwSub"></span></div><div class="sp"></div><button class="vbtn" id="vwCabBtn">☰ ตู้</button></header>
@@ -437,18 +463,18 @@ function resetView(){ var D=S.D, c=D.cam;
   else focusBox(sceneBox(),{th:.85,ph:.95}); }
 
 /* ── v1.456: กลไกบานพับ (สูตรเดียวกับ hingeKinAt / hingeKinPole / hinge3DLinkM ในโปรแกรมหลัก) ── */
-function hkAt(phi){ var H=S.D.hk, T=H&&H.t, n=T?T.length:0; if(!n) return null;
+function hkAt(phi,H){ H=H||S.D.hk; var T=H&&H.t, n=T?T.length:0; if(!n) return null;   // v1.488: H = ตารางกลไกที่ใช้ (บานเฟรมอลู = S.D.hk.alu)
   var x=Math.max(0,Math.min(+phi||0,(n-1)*H.st))/H.st, i=Math.min(Math.floor(x),n-1), j=Math.min(i+1,n-1), f=x-i, A=T[i], B=T[j];
   return [A[0]+(B[0]-A[0])*f, A[1]+(B[1]-A[1])*f, A[2]+(B[2]-A[2])*f, A[3]+(B[3]-A[3])*f]; }
-function hkPole(k,phi){ var H=S.D.hk; if(!H||!H.t||H.t.length<2) return null;
+function hkPole(k,phi){ var H=(k&&k.a&&S.D.hk&&S.D.hk.alu)||S.D.hk; if(!H||!H.t||H.t.length<2) return null;
   var dk=Math.min(Math.max(+phi||0,0),(H.t.length-1)*H.st); if(dk<0.01) return null;
-  var r=hkAt(dk), t=dk*Math.PI/180, c=Math.cos(t), s=Math.sin(t), C=H.C1, tx=r[0]-(C[0]*c+C[1]*s), tz=r[1]-(-C[0]*s+C[1]*c), a=1-c, det=a*a+s*s;
+  var r=hkAt(dk,H), t=dk*Math.PI/180, c=Math.cos(t), s=Math.sin(t), C=H.C1, tx=r[0]-(C[0]*c+C[1]*s), tz=r[1]-(-C[0]*s+C[1]*c), a=1-c, det=a*a+s*s;
   if(!(det>1e-12)) return null;
   var Px=(a*tx+s*tz)/det, Pz=(-s*tx+a*tz)/det, b=k.b; return [b[0]+b[2]*Px+b[4]*Pz, b[1]+b[3]*Px+b[5]*Pz]; }
 var _hkT=null;
-function hkLinkPose(it,phi){ var H=S.D.hk, a=it.hk, L=a[0];
+function hkLinkPose(it,phi){ var a=it.hk, H=(a[17]===1&&S.D.hk&&S.D.hk.alu)||S.D.hk, L=a[0];
   if(!_hkT) _hkT=[new THREE.Matrix4(),new THREE.Matrix4(),new THREE.Vector3(),new THREE.Quaternion(),new THREE.Vector3()];
-  var M=_hkT[0].fromArray(a,1), r=hkAt(phi), A=(L===1)?H.A1:H.A2, ang=r?((L===1)?r[2]:r[3]):0;
+  var M=_hkT[0].fromArray(a,1), r=hkAt(phi,H), A=(L===1)?H.A1:H.A2, ang=r?((L===1)?r[2]:r[3]):0;
   if(Math.abs(ang)>1e-7){ M.multiply(_hkT[1].makeTranslation(A[0],0,A[1])); M.multiply(_hkT[1].makeRotationY(ang)); M.multiply(_hkT[1].makeTranslation(-A[0],0,-A[1])); }
   M.decompose(_hkT[2],_hkT[3],_hkT[4]); it.o.position.copy(_hkT[2]); it.o.quaternion.copy(_hkT[3]); }
 /* ── ท่าของบาน/ลิ้นชัก + แยกประกอบ (สูตรเดียวกับโปรแกรมหลัก) ── */
@@ -807,12 +833,205 @@ function snapShot(){ if(!renderer||!scene||!camera) return;
   if(!cv){ hint("แคปรูปไม่สำเร็จ"); return; }
   var nm=String((S.D&&S.D.t)||"ดูงาน").replace(/[\\\/:*?"<>|\s]+/g,"_").slice(0,60)||"ดูงาน";
   try{ var I=S.cur&&S.D.info&&S.D.info[S.cur]; if(I&&I.pid) nm+="_"+String(I.pid).split(",")[0]; }catch(e){}
-  cv.toBlob(function(bl){ if(!bl){ hint("แคปรูปไม่สำเร็จ"); return; }
+  /* v1.511: แคปแล้วเปิดหน้าเขียนบนรูปก่อน (เดิมส่งออกทันที — ตอนนี้ย้ายไป snapOut) · ปิด SN_OFF.vwMark=1 = ส่งออกทันทีแบบเดิม */
+  if(typeof MK_OFF!=="undefined"&&MK_OFF){ snapOut(cv,nm); return; }
+  mkOpen(cv,nm); }
+function snapTouch(){ return !!(window.matchMedia&&matchMedia("(pointer:coarse)").matches); }
+/* ส่งภาพออก (ย้ายมาจากท้าย snapShot v1.457): มือถือ = หน้าแชร์ (บันทึกลงรูป / ส่งไลน์) · คอม หรือ how="dl" = ดาวน์โหลด PNG
+   done(true) = แชร์/ดาวน์โหลดแล้ว · done(false) = ทำไม่สำเร็จหรือผู้ใช้ปิดหน้าแชร์ */
+function snapOut(cv,nm,how,done){
+  cv.toBlob(function(bl){ if(!bl){ hint("แคปรูปไม่สำเร็จ"); if(done) done(false); return; }
     var file=null; try{ file=new File([bl],nm+".png",{type:"image/png"}); }catch(e){}
-    var touch=!!(window.matchMedia&&matchMedia("(pointer:coarse)").matches);
-    if(touch&&file&&navigator.canShare&&navigator.canShare({files:[file]})){ navigator.share({files:[file],title:nm}).catch(function(){}); return; }
+    if(how!=="dl"&&snapTouch()&&file&&navigator.canShare&&navigator.canShare({files:[file]})){
+      navigator.share({files:[file],title:nm}).then(function(){ if(done) done(true); },function(){ if(done) done(false); }); return; }
     var u=URL.createObjectURL(bl), A=document.createElement("a"); A.href=u; A.download=nm+".png"; document.body.appendChild(A); A.click(); A.remove();
-    setTimeout(function(){ URL.revokeObjectURL(u); },5000); hint("บันทึกภาพแล้ว ("+cv.width+"×"+cv.height+")"); },"image/png"); }
+    setTimeout(function(){ URL.revokeObjectURL(u); },5000); hint("บันทึกภาพแล้ว ("+cv.width+"×"+cv.height+")"); if(done) done(true); },"image/png"); }
+
+/* ───────── v1.511: ✏️ เขียนบนรูปก่อนแชร์ (ปากกา · วงกลม · ข้อความ) ─────────
+   ผู้ใช้ 26/10/2026 15:46 (ส่งรูปหน้าแชร์ของมือถือหลังกด 📷 แคปรูป ในลิงก์ดูงาน 2609170003_FOREST_J_PANTRY):
+     "มันจะมีฟังก์ชันแคปรูป เมื่อกด แคปรูป ให้สามารถพิมพ์ข้อความหรือวงกลม โดยใช้ปากกาได้ทำได้ไหมครับ ก่อนจะแชร์"
+   เดิม (v1.457): กด 📷 → เปิดหน้าแชร์ของมือถือทันที (คอม = ดาวน์โหลด) อยากวงจุดที่ผิดต้องไปเขียนต่อในแอปอื่น
+   ตอนนี้: แคปแล้วเปิดหน้า "เขียนบนรูป" เต็มจอ
+     ✏️ ปากกา = ลากเขียนอิสระ · ⭕ วงกลม = ลากกรอบ ได้วงรีพอดีกรอบ
+     🔤 ข้อความ = แตะจุดที่จะวาง → พิมพ์ในช่องด้านบน (เห็นบนรูปทันที) → ✓ / Enter · แตะข้อความเดิม = แก้ (ลบหมด = เอาออก) · ลากข้อความ = ย้าย
+     สี 6 สี · ขนาด เล็ก/กลาง/ใหญ่ (จำไว้ในเครื่อง) — เลือกสี/ขนาดตอนกำลังพิมพ์ = เปลี่ยนข้อความนั้น · ↶ ย้อน (ทุกอย่างรวมแก้/ย้ายข้อความ) · ล้าง
+     แชร์ ➜ / ⬇ บันทึก = รวมรอยเขียนลงภาพความละเอียดเต็มเท่าที่แคป แล้วส่งออกด้วย snapOut แบบเดิม (แชร์สำเร็จ = ปิดหน้าเขียน · ปิดหน้าแชร์ = อยู่ต่อ)
+     ✕ / ปุ่มย้อนกลับของมือถือ / Esc = ปิดไม่ส่ง
+   รอยเขียนเก็บเป็นพิกัดบนภาพจริง (ไม่ใช่พิกเซลจอ) หมุนจอแล้ววาดใหม่ตรงที่เดิม · ความหนาเส้น/ขนาดตัวอักษรคิดจากขนาดที่เห็นบนจอตอนวาด
+   ชั้น 40 เหนือแบบผลิต (30) · ข้อความ hint ยกขึ้นมาเหนือหน้าเขียนขณะเปิด (body.mkOn)
+   ปิดได้: SN_OFF.vwMark=1 ในโปรแกรมหลัก (ฝังตอนอบหน้าดู) */
+var MK_OFF=0;
+var MK={el:null,cv:null,nm:"",it:[],undo:[],tool:"pen",col:"#e53935",sz:1,f:1,cur:null,drag:null,edit:null,hist:0,busy:false,raf:0};
+var MK_COL=["#e53935","#fdd835","#1e88e5","#43a047","#212121","#ffffff"];
+var MK_SZ=[{n:"เล็ก",w:3,f:17},{n:"กลาง",w:5,f:23},{n:"ใหญ่",w:9,f:32}];
+function mkLS(v){ try{ if(v===undefined){ var s=localStorage.getItem("snv:mk"); return s?JSON.parse(s):null; } localStorage.setItem("snv:mk",JSON.stringify(v)); }catch(e){} return null; }
+function mkFont(px){ return "700 "+Math.max(1,Math.round(px))+'px system-ui,-apple-system,"Segoe UI","Noto Sans Thai","Sarabun",sans-serif'; }
+function mkLight(c){ return c==="#fdd835"||c==="#ffffff"; }
+function mkUI(){
+  if(MK.el) return MK.el;
+  var ov=document.createElement("div"); ov.id="vwMk"; ov.className="hide";
+  ov.innerHTML='<div class="mkTop"><button id="mkX" aria-label="ปิด ไม่ส่งรูป">✕</button><b class="mkT">เขียนบนรูป</b>'
+    +'<button id="mkUndo" aria-label="ย้อน" title="ย้อน (Ctrl+Z)">↶</button><button id="mkDl" title="บันทึกรูปลงเครื่อง">⬇ บันทึก</button><button id="mkGo" class="pri">แชร์ ➜</button></div>'
+    +'<div class="mkStage" id="mkStage"><canvas id="mkOv"></canvas>'
+    +'<div class="mkTxt hide" id="mkTxt"><input id="mkIn" type="text" maxlength="120" enterkeyhint="done" autocomplete="off" placeholder="พิมพ์ข้อความ แล้วกด ✓"><button id="mkOk" class="pri" aria-label="ตกลง">✓</button><button id="mkNo" aria-label="ยกเลิก">✕</button></div></div>'
+    +'<div class="mkBar"><div class="seg" id="mkTool"><button data-k="pen">✏️ ปากกา</button><button data-k="ell">⭕ วงกลม</button><button data-k="txt">🔤 ข้อความ</button></div>'
+    +'<button class="mkB" id="mkSz">ขนาด: กลาง</button><button class="mkB" id="mkClr">ล้าง</button>'
+    +'<div class="mkCols" id="mkCols">'+MK_COL.map(function(c){ return '<button data-c="'+c+'" style="background:'+c+'" aria-label="สี '+c+'"></button>'; }).join("")+'</div></div>';
+  document.body.appendChild(ov); MK.el=ov;
+  $("mkX").onclick=function(){ mkClose(); };
+  $("mkUndo").onclick=mkUndo;
+  $("mkClr").onclick=function(){ mkTxtCommit(); if(!MK.it.length) return; mkSnap(); MK.it=[]; mkDraw(); };
+  $("mkGo").onclick=function(){ mkSend(snapTouch()?"share":"dl"); };
+  $("mkDl").onclick=function(){ mkSend("dl"); };
+  $("mkTool").onclick=function(e){ var b=e.target.closest("button"); if(!b) return; mkTxtCommit(); MK.tool=b.getAttribute("data-k"); mkSync(); };
+  $("mkCols").onclick=function(e){ var b=e.target.closest("button"); if(!b) return; MK.col=b.getAttribute("data-c");
+    if(MK.edit){ MK.edit.c=MK.col; mkDraw(); } mkSync(); };
+  $("mkSz").onclick=function(){ MK.sz=(MK.sz+1)%MK_SZ.length; if(MK.edit){ MK.edit.s=MK_SZ[MK.sz].f/MK.f; mkDraw(); } mkSync(); };
+  $("mkOk").onclick=function(){ mkTxtCommit(); };
+  $("mkNo").onclick=function(){ mkTxtCancel(); };
+  var inp=$("mkIn");
+  inp.addEventListener("input",function(){ if(MK.edit){ MK.edit.t=inp.value; mkDraw(); } });
+  inp.addEventListener("keydown",function(e){ if(e.key==="Enter"){ e.preventDefault(); mkTxtCommit(); } else if(e.key==="Escape"){ e.preventDefault(); e.stopPropagation(); mkTxtCancel(); } });
+  var st=$("mkStage");
+  st.addEventListener("pointerdown",mkDown);
+  st.addEventListener("pointermove",mkMove);
+  st.addEventListener("pointerup",mkUp);
+  st.addEventListener("pointercancel",function(e){ mkUp(e,true); });
+  addEventListener("resize",function(){ if(MK.cv) mkFit(); });
+  addEventListener("popstate",function(){ if(MK.hist){ MK.hist=0; mkClose(true); } });
+  addEventListener("keydown",function(e){ if(!MK.cv) return;
+    if(e.target&&e.target.id==="mkIn") return;
+    if(e.key==="Escape"){ e.preventDefault(); mkClose(); }
+    else if((e.ctrlKey||e.metaKey)&&(e.key==="z"||e.key==="Z")){ e.preventDefault(); mkUndo(); } });
+  return ov; }
+function mkSync(){ if(!MK.el) return;
+  [].forEach.call($("mkTool").children,function(b){ b.classList.toggle("on",b.getAttribute("data-k")===MK.tool); });
+  [].forEach.call($("mkCols").children,function(b){ b.classList.toggle("on",b.getAttribute("data-c")===MK.col); });
+  $("mkSz").textContent="ขนาด: "+MK_SZ[MK.sz].n;
+  $("mkUndo").disabled=!MK.undo.length; $("mkClr").disabled=!MK.it.length;
+  var ov=$("mkOv"); if(ov) ov.style.cursor=MK.tool==="txt"?"text":"crosshair";
+  mkLS({tool:MK.tool,col:MK.col,sz:MK.sz}); }
+function mkOpen(cv,nm){
+  var ov=mkUI(), p=mkLS();
+  if(p){ if(/^(pen|ell|txt)$/.test(p.tool)) MK.tool=p.tool; if(MK_COL.indexOf(p.col)>=0) MK.col=p.col; if(p.sz>=0&&p.sz<MK_SZ.length) MK.sz=p.sz|0; }
+  if(MK.cv&&MK.cv.parentNode) MK.cv.parentNode.removeChild(MK.cv);
+  MK.cv=cv; MK.nm=nm; MK.it=[]; MK.undo=[]; MK.cur=null; MK.drag=null; MK.edit=null; MK.busy=false;
+  cv.id="mkBase"; var st=$("mkStage"); st.insertBefore(cv,st.firstChild);
+  $("mkTxt").classList.add("hide"); $("mkGo").disabled=$("mkDl").disabled=false;
+  var touch=snapTouch(); $("mkGo").textContent=touch?"แชร์ ➜":"⬇ บันทึกรูป"; $("mkDl").style.display=touch?"":"none";
+  ov.classList.remove("hide"); document.body.classList.add("mkOn");
+  if(!MK.hist){ try{ history.pushState({snvMark:1},""); MK.hist=1; }catch(e){} }
+  mkSync(); mkFit();
+  hint("เขียนบนรูปได้เลย — เลือก ✏️ ปากกา · ⭕ วงกลม · 🔤 ข้อความ ด้านล่าง แล้วกด "+(touch?"แชร์":"บันทึกรูป"),3600); }
+function mkClose(fromPop){
+  if(!MK.el) return;
+  MK.el.classList.add("hide"); document.body.classList.remove("mkOn");
+  var inp=$("mkIn"); if(inp) inp.blur();
+  if(MK.cv&&MK.cv.parentNode) MK.cv.parentNode.removeChild(MK.cv);
+  MK.cv=null; MK.it=[]; MK.undo=[]; MK.cur=null; MK.drag=null; MK.edit=null; MK.busy=false;
+  if(MK.hist&&!fromPop){ MK.hist=0; try{ history.back(); }catch(e){} } }
+/* วางภาพให้พอดีพื้นที่ · ผืนวาดรอยเขียน = ขนาดบนจอ × ความละเอียดจอ (วาดเร็ว) · ภาพที่ส่งออกวาดใหม่เต็มขนาดตอนกดส่ง */
+function mkFit(){ if(!MK.cv) return;
+  var st=$("mkStage"), r=st.getBoundingClientRect(), W=MK.cv.width, H=MK.cv.height, pad=8;
+  var f=Math.min((r.width-2*pad)/W,(r.height-2*pad)/H); if(!(f>0)) f=Math.min(1,(r.width||W)/W);
+  var w=Math.max(1,Math.round(W*f)), h=Math.max(1,Math.round(H*f)), L=Math.round((r.width-w)/2), T=Math.round((r.height-h)/2), o=$("mkOv");
+  [MK.cv,o].forEach(function(c){ c.style.width=w+"px"; c.style.height=h+"px"; c.style.left=L+"px"; c.style.top=T+"px"; });
+  var dpr=Math.min(window.devicePixelRatio||1,3); o.width=Math.max(1,Math.round(w*dpr)); o.height=Math.max(1,Math.round(h*dpr));
+  MK.f=w/W; mkDraw(true); }
+function mkDraw(now){
+  if(!now){ if(!MK.raf) MK.raf=requestAnimationFrame(function(){ MK.raf=0; mkDraw(true); }); return; }
+  var o=$("mkOv"); if(!o||!MK.cv) return; var g=o.getContext("2d"), k=o.width/MK.cv.width;
+  g.clearRect(0,0,o.width,o.height);
+  MK.it.forEach(function(it){ mkPaint(g,it,k); });
+  if(MK.cur) mkPaint(g,MK.cur,k);
+  if(MK.edit&&MK.edit._new) mkPaint(g,MK.edit,k);
+  if(MK.edit){ var b=mkTxtBox(MK.edit); g.save(); g.setLineDash([6,4]); g.lineWidth=1.5; g.strokeStyle="rgba(30,95,168,.95)";
+    var hw=Math.max(b.w,MK_SZ[0].f/MK.f*2)/2+b.p;
+    g.strokeRect((MK.edit.x-hw)*k,(MK.edit.y-b.h/2-b.p)*k,2*hw*k,(b.h+2*b.p)*k); g.restore(); }
+  if(MK.el) mkSyncBtns(); }
+function mkSyncBtns(){ var u=$("mkUndo"), c=$("mkClr"); if(u) u.disabled=!MK.undo.length; if(c) c.disabled=!MK.it.length; }
+function mkPaint(g,it,k){
+  g.save(); g.lineCap="round"; g.lineJoin="round"; g.strokeStyle=it.c; g.fillStyle=it.c; g.lineWidth=Math.max(1,it.w*k);
+  if(it.k==="pen"){ var p=it.p;
+    if(p.length<=2){ g.beginPath(); g.arc(p[0]*k,p[1]*k,Math.max(1,it.w*k)/2,0,Math.PI*2); g.fill(); }
+    else{ g.beginPath(); g.moveTo(p[0]*k,p[1]*k);
+      for(var i=2;i<p.length-2;i+=2) g.quadraticCurveTo(p[i]*k,p[i+1]*k,(p[i]+p[i+2])/2*k,(p[i+1]+p[i+3])/2*k);
+      g.lineTo(p[p.length-2]*k,p[p.length-1]*k); g.stroke(); } }
+  else if(it.k==="ell"){ var cx=(it.x0+it.x1)/2, cy=(it.y0+it.y1)/2, rx=Math.abs(it.x1-it.x0)/2, ry=Math.abs(it.y1-it.y0)/2;
+    g.beginPath(); g.ellipse(cx*k,cy*k,Math.max(rx*k,.5),Math.max(ry*k,.5),0,0,Math.PI*2); g.stroke(); }
+  else if(it.k==="txt"&&it.t){ var fs=it.s*k; g.font=mkFont(fs); g.textAlign="center"; g.textBaseline="middle";
+    g.lineWidth=Math.max(2,fs*.2); g.strokeStyle=mkLight(it.c)?"rgba(0,0,0,.85)":"rgba(255,255,255,.95)";
+    g.strokeText(it.t,it.x*k,it.y*k); g.fillText(it.t,it.x*k,it.y*k); }
+  g.restore(); }
+var _mkMc=null;
+function mkTxtBox(it){ if(!_mkMc) _mkMc=document.createElement("canvas").getContext("2d");
+  _mkMc.font=mkFont(it.s); return {w:it.t?_mkMc.measureText(it.t).width:0, h:it.s*1.25, p:8/MK.f}; }
+function mkHitTxt(P){ for(var i=MK.it.length-1;i>=0;i--){ var it=MK.it[i]; if(it.k!=="txt") continue; var b=mkTxtBox(it);
+    if(Math.abs(P.x-it.x)<=b.w/2+b.p&&Math.abs(P.y-it.y)<=b.h/2+b.p) return it; } return null; }
+function mkPt(e){ var o=$("mkOv"), r=o.getBoundingClientRect(); if(!(r.width>0)) return null;
+  return {x:(e.clientX-r.left)/MK.f, y:(e.clientY-r.top)/MK.f}; }
+function mkSnap(){ MK.undo.push(JSON.stringify(MK.it)); if(MK.undo.length>60) MK.undo.shift(); }
+function mkUndo(){ if(MK.edit) mkTxtCancel(); if(!MK.undo.length) return; try{ MK.it=JSON.parse(MK.undo.pop()); }catch(e){} mkDraw(); }
+function mkDown(e){
+  if(!MK.cv||MK.busy) return;
+  if(e.target&&e.target.closest&&e.target.closest("#mkTxt")) return;
+  if(!e.isPrimary){ if(MK.cur){ MK.cur=null; mkDraw(); } MK.drag=null; return; }   // นิ้วที่สอง (ซูม/เลื่อน) = ยกเลิกเส้นที่กำลังลาก
+  var P=mkPt(e); if(!P) return; e.preventDefault();
+  if(MK.edit){ mkTxtCommit(); return; }   // กำลังพิมพ์อยู่แล้วแตะรูป = จบข้อความนั้นก่อน
+  var sz=MK_SZ[MK.sz];
+  try{ e.currentTarget.setPointerCapture(e.pointerId); }catch(er){}
+  if(MK.tool==="pen") MK.cur={k:"pen",c:MK.col,w:sz.w/MK.f,p:[P.x,P.y]};
+  else if(MK.tool==="ell") MK.cur={k:"ell",c:MK.col,w:sz.w/MK.f,x0:P.x,y0:P.y,x1:P.x,y1:P.y};
+  else{ var h=mkHitTxt(P);
+    MK.drag={it:h,P:P,sx:e.clientX,sy:e.clientY,ox:h?h.x:0,oy:h?h.y:0,moved:false,snap:JSON.stringify(MK.it)}; }
+  mkDraw(); }
+function mkMove(e){
+  if(!e.isPrimary) return;
+  if(MK.cur){ var P=mkPt(e); if(!P) return;
+    if(MK.cur.k==="pen"){ var p=MK.cur.p, lx=p[p.length-2], ly=p[p.length-1];
+      if(Math.hypot(P.x-lx,P.y-ly)*MK.f<1.5) return; p.push(P.x,P.y); }
+    else{ MK.cur.x1=P.x; MK.cur.y1=P.y; }
+    mkDraw(); return; }
+  var d=MK.drag; if(d&&d.it){ if(!d.moved&&Math.hypot(e.clientX-d.sx,e.clientY-d.sy)<6) return;
+    var Q=mkPt(e); if(!Q) return; d.moved=true; d.it.x=d.ox+(Q.x-d.P.x); d.it.y=d.oy+(Q.y-d.P.y); mkDraw(); } }
+function mkUp(e,cancel){
+  if(!e.isPrimary) return;
+  if(MK.cur){ var c=MK.cur; MK.cur=null;
+    if(c.k==="ell"&&Math.max(Math.abs(c.x1-c.x0),Math.abs(c.y1-c.y0))*MK.f<8) c=null;   // แตะเฉย ๆ ไม่ได้ลาก = ไม่วาดวง
+    if(c&&!(cancel&&c.k==="ell")){ mkSnap(); MK.it.push(c); }
+    mkDraw(); return; }
+  var d=MK.drag; MK.drag=null; if(!d||cancel) return;
+  if(d.it){ if(d.moved){ MK.undo.push(d.snap); mkDraw(); } else mkTxtOpen(d.it); }
+  else mkTxtOpen(null,d.P); }
+function mkTxtOpen(it,P){
+  var inp=$("mkIn");
+  if(it) MK.edit=it, MK.edit._o={t:it.t,c:it.c,s:it.s}, MK.edit._snap=JSON.stringify(MK.it);
+  else MK.edit={k:"txt",c:MK.col,s:MK_SZ[MK.sz].f/MK.f,x:P.x,y:P.y,t:"",_new:true};
+  inp.value=MK.edit.t||""; $("mkTxt").classList.remove("hide"); mkDraw();
+  /* โฟกัสทันทีในจังหวะที่นิ้วยก (iPhone เปิดคีย์บอร์ดเฉพาะโฟกัสที่เกิดในตัวจัดการแตะ) · สำรองอีกรอบถ้าหลุด */
+  var fc=function(){ try{ inp.focus(); var n=inp.value.length; inp.setSelectionRange(n,n); }catch(e){} };
+  fc(); setTimeout(function(){ if(document.activeElement!==inp&&MK.edit) fc(); },60); }
+function mkTxtClean(it){ delete it._new; delete it._o; delete it._snap; return it; }
+function mkTxtCommit(){ var E=MK.edit; if(!E) return; MK.edit=null;
+  var t=String($("mkIn").value||"").trim(); $("mkTxt").classList.add("hide"); try{ $("mkIn").blur(); }catch(e){}
+  if(E._new){ if(t){ E.t=t; mkSnap(); MK.it.push(mkTxtClean(E)); } }
+  else{ var o=E._o||{}, snap=E._snap;
+    if(!t){ var i=MK.it.indexOf(E); if(i>=0){ MK.undo.push(snap); MK.it.splice(i,1); } }
+    else{ E.t=t; if(t!==o.t||E.c!==o.c||E.s!==o.s) MK.undo.push(snap); }
+    mkTxtClean(E); }
+  mkDraw(); }
+function mkTxtCancel(){ var E=MK.edit; if(!E) return; MK.edit=null;
+  if(!E._new&&E._o){ E.t=E._o.t; E.c=E._o.c; E.s=E._o.s; mkTxtClean(E); }
+  $("mkTxt").classList.add("hide"); try{ $("mkIn").blur(); }catch(e){} mkDraw(); }
+/* รวมภาพแคป + รอยเขียน ที่ความละเอียดเต็ม แล้วส่งออก */
+function mkSend(how){
+  if(!MK.cv||MK.busy) return; mkTxtCommit();
+  var W=MK.cv.width, H=MK.cv.height, out=document.createElement("canvas"); out.width=W; out.height=H;
+  try{ var g=out.getContext("2d"); g.drawImage(MK.cv,0,0); MK.it.forEach(function(it){ mkPaint(g,it,1); }); }
+  catch(e){ console.error("mark:",e); hint("รวมรอยเขียนลงรูปไม่สำเร็จ"); return; }
+  MK.busy=true; $("mkGo").disabled=$("mkDl").disabled=true;
+  snapOut(out,MK.nm,how,function(ok){ MK.busy=false; if(MK.el){ $("mkGo").disabled=$("mkDl").disabled=false; }
+    if(ok&&MK.cv) mkClose(); }); }
 function measPos(){ try{ scanPlace(); }catch(e){}
   var sc=$("vwScan"), el=$("vwMeas"); if(!el) return;
   var r=(sc&&sc.getClientRects().length)?sc.getBoundingClientRect():null;
