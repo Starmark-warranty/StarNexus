@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="th"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover"><meta name="generator" content="StarNexus 1.511"><title>StarNexus — ดูงาน 3D</title><style>
+<html lang="th"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover"><meta name="generator" content="StarNexus 1.512"><title>StarNexus — ดูงาน 3D</title><style>
 :root{--bg:#e7e8ee;--panel:rgba(255,255,255,.94);--solid:#fff;--ink:#172c40;--dim:#5b6b7c;--line:#d5dae2;--accent:#1e5fa8;--warn:#e8590c;--shadow:0 10px 30px -12px rgba(16,32,56,.35)}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html,body{margin:0;height:100%;background:var(--bg);color:var(--ink);font:14px/1.5 system-ui,-apple-system,"Segoe UI","Noto Sans Thai","Sarabun",sans-serif;overflow:hidden;overscroll-behavior:none}
@@ -265,7 +265,7 @@ body.mkOn #vwHint{z-index:41;bottom:calc(112px + env(safe-area-inset-bottom))}
   <div id="vwExtra">
     <button class="vbtn" id="vwAllDoors">เปิดทุกบาน</button>
     <button class="vbtn" id="vwCabDim" title="เปิด/ปิดเส้นบอกขนาดรวมของตู้ (กว้าง × สูง × ลึก)">📐 ขนาดตู้</button>
-    <button class="vbtn" id="vwSnap" title="บันทึกภาพ 3D ตอนนี้เป็น PNG — ไม่มีกล่องข้อความ/ปุ่ม (ป้ายขนาดที่เปิดอยู่ติดไปด้วย)">📷 แคปรูป</button>
+    <button class="vbtn" id="vwSnap" title="แจ้งซ่อม — แคปภาพ 3D ตอนนี้ แล้ววง/เขียนจุดที่ต้องซ่อมก่อนแชร์ (ป้ายขนาดที่เปิดอยู่ติดไปด้วย)">🔧 แจ้งซ่อม</button>
     <button class="vbtn" id="vwGhost">โปร่งใส</button>
     <span class="rng" id="vwExpRow">แยกประกอบ <input type="range" id="vwExp" min="0" max="100" value="0"><span id="vwExpV">0%</span></span>
     <button class="vbtn" id="vwReset">มุมมอง</button>
@@ -568,6 +568,12 @@ function showCabs(force){
   var I=D.info||{}, cabs=D.cabs||[], cur=(S.cur&&I[S.cur])?S.cur:null;
   if(!S.cabOpen){ S.cabOpen={}; if(cabs.length===1) S.cabOpen[cabs[0].k]=true; if(cur) S.cabOpen[I[cur].ci]=true; }
   var dd=function(x){ return x&&x.d?(fmt(x.d[0])+"×"+fmt(x.d[1])+"×"+fmt(x.d[2])):""; };
+  /* ───────── v1.512: กางรายการชิ้นแล้วแผงไม่เด้งขึ้นบน ─────────
+     ผู้ใช้ 26/10/2026 16:32 (รูปแผง “ตู้ในงานนี้ (98)” กาง MWA158-05 อยู่ท้ายรายการ): “ตอนผมกด แตกรายการชิ้นของตู้นั้น มันเลื่อนขึ้นด้านบน แก้ให้มันไม่เด้ง”
+     เดิม: แตะตู้/ชิ้น/ไม่ไฮไลต์ = showCabs(true) วาด innerHTML ใหม่ทั้งแผง → กล่องเลื่อน .bd อันใหม่เริ่มที่บนสุดเสมอ ตู้ท้าย ๆ ต้องเลื่อนลงไปหาใหม่ทุกครั้ง
+     ตอนนี้: แผงที่เปิดอยู่แล้วถูกวาดใหม่ = เก็บตำแหน่งเลื่อนเดิมแล้วคืนให้ (ของเหนือตู้ที่กดไม่เปลี่ยน → ตู้ที่กดอยู่ที่เดิมบนจอ รายการชิ้นกางลงข้างล่าง)
+     เปิดแผงใหม่จากปุ่ม ☰ ตู้ = เริ่มบนสุดเหมือนเดิม */
+  var _ob=box.querySelector(".bd"), _keep=(force===true&&!box.classList.contains("hide")&&_ob)?_ob.scrollTop:null;
   box.innerHTML='<h3>ตู้ในงานนี้ ('+cabs.length+')'+(S.hiIds.length?'<button class="nohi" data-a="nohi" title="เอาสีเน้น ขอบเหลือง และหมุดออก">✕ ไม่ไฮไลต์</button>':'')+'<button class="x" data-x>✕</button></h3>'
     +'<div class="sub">แตะตู้ = ซูม + ดูรายการชิ้น · แตะชิ้น = เน้นชิ้นนั้น</div><div class="bd">'
     +cabs.map(function(c){ var op=!!S.cabOpen[c.k], ps=op?partsOf(c.k):[];
@@ -576,6 +582,7 @@ function showCabs(force){
             return '<div class="partrow'+(id===cur?' on':'')+'" data-id="'+esc(id)+'"><b>'+esc(p0||"—")+'</b><span class="pn">'+esc(x.n||"ชิ้น")+(x.dr?'<em>บาน</em>':'')+'</span><span class="pd">'+esc(dd(x))+'</span></div>'; }).join("")
           +(ps.length?'':'<div class="partrow"><span class="pn">ไม่มีรายการชิ้นของตู้นี้</span></div>')+'</div>'):''); }).join("")+'</div>';
   box.classList.remove("hide");
+  if(_keep!=null){ var _nb=box.querySelector(".bd"); if(_nb) _nb.scrollTop=_keep; }   // v1.512: คืนตำแหน่งเลื่อน
   box.onclick=function(e){ var t=e.target;
     if(t.dataset.x!=null){ box.classList.add("hide"); return; }
     if(t.dataset.a==="nohi"){ hiOff(); showCabs(true); return; }
@@ -664,7 +671,7 @@ function cabDoorKeys(ci){ var D=S.D, s={}; Object.keys(D.key||{}).forEach(functi
 function scanBar(html){ var el=$("vwScan"); if(!el){ el=document.createElement("div"); el.id="vwScan"; document.body.appendChild(el);
     el.addEventListener("click",function(e){ var t=e.target.closest&&e.target.closest('button[data-a="snap"]'); if(t) snapShot(); });   // v1.457: 📷 แคปรูป (ผู้เรียกตั้ง onclick ทับได้ ตัวนี้ไม่หาย)
     try{ var mo=new MutationObserver(function(){ measPos(); }); ["vwCabs","vwInfo"].forEach(function(id){ var x=$(id); if(x) mo.observe(x,{attributes:true,attributeFilter:["class"]}); }); }catch(e){} }   // v1.457: แผงขวาเปิด/ปิด → จัดแถบใหม่
-  el.innerHTML=html+'<button data-a="snap" title="แคปรูป 3D — ไม่มีกล่องข้อความ">📷</button>'; measPos(); return el; }
+  el.innerHTML=html+'<button data-a="snap" title="แจ้งซ่อม — แคปภาพ 3D แล้ววง/เขียนจุดที่ต้องซ่อม">🔧</button>'; measPos(); return el; }   /* v1.512: 📷 → 🔧 แจ้งซ่อม (ชื่อเดียวกับปุ่มหลัก) */
 function scanFocus(pk,quiet){
   var ids=findPart(pk);
   if(!ids.length){ var c0=S.D._alias&&cabByKey(S.D._alias.c);
@@ -870,7 +877,7 @@ function mkLight(c){ return c==="#fdd835"||c==="#ffffff"; }
 function mkUI(){
   if(MK.el) return MK.el;
   var ov=document.createElement("div"); ov.id="vwMk"; ov.className="hide";
-  ov.innerHTML='<div class="mkTop"><button id="mkX" aria-label="ปิด ไม่ส่งรูป">✕</button><b class="mkT">เขียนบนรูป</b>'
+  ov.innerHTML='<div class="mkTop"><button id="mkX" aria-label="ปิด ไม่ส่งรูป">✕</button><b class="mkT">🔧 แจ้งซ่อม</b>'
     +'<button id="mkUndo" aria-label="ย้อน" title="ย้อน (Ctrl+Z)">↶</button><button id="mkDl" title="บันทึกรูปลงเครื่อง">⬇ บันทึก</button><button id="mkGo" class="pri">แชร์ ➜</button></div>'
     +'<div class="mkStage" id="mkStage"><canvas id="mkOv"></canvas>'
     +'<div class="mkTxt hide" id="mkTxt"><input id="mkIn" type="text" maxlength="120" enterkeyhint="done" autocomplete="off" placeholder="พิมพ์ข้อความ แล้วกด ✓"><button id="mkOk" class="pri" aria-label="ตกลง">✓</button><button id="mkNo" aria-label="ยกเลิก">✕</button></div></div>'
@@ -922,7 +929,7 @@ function mkOpen(cv,nm){
   ov.classList.remove("hide"); document.body.classList.add("mkOn");
   if(!MK.hist){ try{ history.pushState({snvMark:1},""); MK.hist=1; }catch(e){} }
   mkSync(); mkFit();
-  hint("เขียนบนรูปได้เลย — เลือก ✏️ ปากกา · ⭕ วงกลม · 🔤 ข้อความ ด้านล่าง แล้วกด "+(touch?"แชร์":"บันทึกรูป"),3600); }
+  hint("วง/เขียนจุดที่ต้องซ่อมได้เลย — เลือก ✏️ ปากกา · ⭕ วงกลม · 🔤 ข้อความ ด้านล่าง แล้วกด "+(touch?"แชร์":"บันทึกรูป"),3600); }   /* v1.512: หัวหน้าเขียน = แจ้งซ่อม */
 function mkClose(fromPop){
   if(!MK.el) return;
   MK.el.classList.add("hide"); document.body.classList.remove("mkOn");
