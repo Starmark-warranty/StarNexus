@@ -3281,7 +3281,7 @@ body[data-theme="dark"] .splash-dots span{background:rgba(255,255,255,.25)}
    ===================================================================== */
 /* ---- APP_META: แหล่งความจริงเดียวของเวอร์ชัน (ดูได้จาก console / คลิกชื่อแอป) ---- */
 const APP_META={
-  name:"StarNexus", version:"1.529", build:"2026-10-27/pull-door",
+  name:"StarNexus", version:"1.530", build:"2026-10-27/pull-var",
   file:"StarNexus.html", basedOn:"Furnitech_V3.html (v3.11)",
   /* ───────── เริ่มนับเวอร์ชันใหม่ที่ 1.001 (21/08/2026) ─────────
      ของเดิมนับมาถึง 42.1 แล้ววิ่งเป็นทศนิยมสองชั้นซึ่งอ่านลำดับยาก
@@ -3289,6 +3289,7 @@ const APP_META={
      ประวัติเก่าเก็บไว้ทั้งหมดตามเลขเดิม ไม่ไล่เขียนใหม่ เพราะเลขในนั้นถูกอ้างถึงไปแล้ว
      รายการที่อยู่ใต้ 1.001 ลงไปจึงเป็นเลขชุดเก่า อ่านต่อกันได้ตามวันที่ */
   changelog:[
+    ["1.530","2026-10-27","UX 🖐 ระยะมือจับอิงตัวแปรของตู้ (ผู้ใช้ 21:30 ภาพ Variables (ตู้นี้) BND214 — $K_Pull_Coordinate_X1–X6 = 35 · Y = 0 จาก Variables กลาง: “จริง ๆ มันต้องอิงค่า Default ไว้ คนที่มาดูหรือตรวจต่อหรือปรับแบบ จะได้ตรวจได้”) — เดิม (1.524–1.529) กล่องมือจับเขียนระยะเป็นตัวเลขตายตัวในมือจับ ตารางตัวแปรของตู้ยังโชว์ 35/0 ซึ่งไม่ใช่ค่าที่ใช้จริง แก้ในตารางก็ไม่ขยับ · ตอนนี้ระยะชี้ไปที่ $K_Pull_Coordinate_X{n}/Y{n} ของบานลำดับ n (แบบเดียวกับมือจับจากออเดอร์) · ระยะเท่าค่าตั้งต้น (35 · Y 0 = 35) = ไม่เขียนทับ ใช้ค่าตั้งต้น · ต่างจากค่าตั้งต้น = เขียนทับเฉพาะตู้นี้ เป็นสูตรอ่านง่าย เช่น X = 35+180 (ปลายมือจับ 35 + ครึ่งยาวมือจับ 360) · ช่องแกนกลาง (UpMiddle ฯลฯ) ไม่เขียน · เอามือจับออก = ล้างค่าที่เขียนทับของบานนั้น · ตรวจ/แก้ได้ที่ Variables (ตู้นี้) › ตัวแปรตัวเลขของตู้นี้ (ช่อง ทับเฉพาะตู้นี้ / ใช้จริง) แล้วมือจับขยับตาม · ชิ้นที่ไม่มีลำดับบาน (แผ่นหน้า FXF) ยังเป็นตัวเลขในมือจับ · FIX ช่องตัวแปรใส่สูตรเลขล้วน (เช่น 35+75) เดิมได้แค่เลขตัวแรก (parseFloat) ตอนนี้คิดสูตร (evalCabExpr/evalCabQuiet)"],
     ["1.529","2026-10-27","FIX+FEAT 🖐 มือจับ: ไม่ลงแผ่นปิด/ฟิลเลอร์ + เลือกรายบานได้ (ผู้ใช้ 21:20 ส่ง starnexus-project (33).json: “พวกแผ่นปิดข้าง Filler WNF TNF BNF แล้วตู้ BND217 มีไม้ Panel L มันเป็นเหมือน Filler · ถ้ามันไม่มีอุปกรณ์บานพับ หรือรางลิ้นชัก หรือโช็คในอนาคต ชิ้นนั้นก็ไม่มีมือจับแน่นอนถูกไหม” · 21:22 ภาพกล่องมือจับ BND217 “2 บาน/ลิ้นชัก”: “ต้องเลือกได้ด้วยว่าบานไหนไม่เอามือจับ อนาคตมีตู้แบบอื่น ๆ แน่นอน”) — ในไฟล์: BND217 Panel L (หน้าหลอก) · BNF001 Filler Front · WNF036 Filler Carcass + Fix Front ได้ H002 ไปด้วย (1.524 นับทุกชิ้นที่ระบบมือจับนับเป็นบาน + แผ่นหน้าที่ชื่อมี front) · ① ตั้งต้นใส่เฉพาะชิ้นที่เปิดได้: มีบานพับ (ข้อมูลบานพับ หรือรูถ้วย Ø30–40 ของงาน FXF) · หน้าลิ้นชักที่มีกล่อง/แผงเหล็ก · (โช็ค/บานยก/บานเลื่อน: connectors lift/flap/slide/shock หรือธง _lift/_slideDoor) · หน้าหลอก/แผงปิดไม่ใส่ — ไม่ต้องติ๊กรับค่ามือจับรายชิ้นตอนสร้างตู้ · ② กล่อง 🖐 มือจับ (ตู้ใบเดียว) มีภาพหน้าตู้: กดที่บาน = ใส่/ไม่ใส่ มือจับ (บานที่ใส่โชว์ตำแหน่งมือจับ · ไม่ใส่ = ลายขีด) · ใช้กับแผ่นหน้าทุกชิ้นของตู้ รวมชิ้นที่ระบบเดาว่าเปิดไม่ได้ (บังคับใส่ได้) · จำต่อบาน (_pullPick) ใส่รุ่นใหม่ทั้งตู้ก็ไม่ลงบานที่ปิดไว้ · ③ มือจับจากกล่องนี้ที่ค้างบนชิ้นที่ไม่ใส่ ล้างเองทุกรอบคิดฉาก (ช่อง K_Pull ของชิ้นนั้น = NoPull) · มือจับจากออเดอร์ (XML) / ตั้งเองทีละบาน (⚙) ไม่แตะ · ลำดับบานของมือจับจาก XML เหมือนเดิม · ④ ระยะตั้งต้น (ผู้ใช้ 21:26 “Knob ขอเป็น 35,35 · มือจับ 2 รู เอาปลายมือจับ 35 อีกด้านก็ 35”): ปุ่ม 35/35 · ก้าน/บาร์ ปลายมือจับห่างขอบ 35 เส้นกลางห่างขอบอีกด้าน 35 · ลิ้นชัก/บานยก 35 จากขอบ (เดิม 50/50 · ปลาย 50 · ข้าง 40 · ลิ้นชัก 45 · ค่า 35 = ระยะตั้งต้นแทน 0000 ในตั้งค่า) · ปิด SN_OFF.plPullMove=1"],
     ["1.528","2026-10-27","FEAT+FIX โหมดสมจริงกับห้องออกแบบ (ผู้ใช้ 21:13 ภาพห้องออกแบบ + ภาพโหมดสมจริง: “โหมดสมจริงน่าจะต้องอยู่ที่โหมดห้องออกแบบ · ตำแหน่งผนังหลังกดโหมดสมจริงในห้องออกแบบ ตู้ต้องอยู่ที่เดิม อันนี้เหมือนตู้เลื่อนออกมา · เพิ่มปุ่มบันทึกภาพตอนอยู่โหมดห้องออกแบบ ไปเอาภาพของโหมดสมจริง · ที่กดบันทึกภาพแสงจริงดูไม่ละเอียดเท่าตอนแคปรูป”) — ① เปิดโหมดสมจริงตอนอยู่ห้องออกแบบ = ห้องจริงใช้ผนัง/ขนาด/ความสูงฝ้าของห้องออกแบบ (เดิมสร้างห้องใหม่รอบกล่องตู้: ผนังซ้าย-ขวาห่างตู้ ≥ 1.1 ม. หน้าตู้โล่ง 2.6 ม. ห้องไม่ตรงกับที่ออกแบบ ตู้มุม/ตู้ชิดผนังข้างจึงดูลอยออกจากผนัง) · หน้าต่างอยู่ผนังซ้ายช่วงที่ไม่มีตู้ (ผนังซ้ายเต็มตู้ = ไม่มีหน้าต่าง) · ② แผงห้องออกแบบ (ท้ายแผง) มีปุ่ม ✨ โหมดสมจริง และ 📷 บันทึกภาพ · ③ 📷 บันทึกภาพ = ภาพโหมดสมจริงแบบที่เห็นบนจอ (เงามุม แสง ห้อง) วาดใหม่ความละเอียดสูง (ด้านยาว ~3,200 px · ไม่ติดเส้นเลือก/ป้าย/ระยะ) บันทึกเป็น JPG — กดจากห้องออกแบบตอนยังไม่เปิดสมจริง = เปิดให้ ถ่าย แล้วกลับมาเหมือนเดิม · มีปุ่มนี้ในแถบโหมดสมจริงด้วย (📸 ภาพแสงจริงแบบยิงแสงยังอยู่) · ปิด SN_OFF.realPlRoom=1 (ห้องสร้างรอบตู้แบบเดิม) · SN_OFF.realSnap=1 (ไม่มีปุ่ม 📷)"],
     ["1.527","2026-10-27","UX+FEAT ใบเสนอราคา/ท็อป (ผู้ใช้ 21:04–21:05: “รายการวัสดุเป็นกระดาษแนวนอน 1 หน้า เว้นแต่มีวัสดุเยอะขึ้นก็ขึ้นหน้า 2 แต่ไม่เอาอะไรมาปนต่อให้ขึ้นหน้า 1 ไปแค่ 1 วัสดุ” · “ดีไซน์หน้าบานต้องเอาแบบบานมาแสดง เช่น Exxx01 บานเรียบก็แค่ 4 เหลี่ยมผืนผ้า Section ข้างก็แค่ 4 เหลี่ยมด้านข้าง” · “กระจกใส่หนาได้ด้วย”) — ① หน้ารวมวัสดุ = A4 แนวนอน หน้าละ 10 ช่อง (5×2) เฉพาะวัสดุ ไม่ปนภาพอื่น · เกิน 10 ขึ้นหน้าใหม่ (หัวหน้า “(ต่อ)”) · ② ดีไซน์หน้าบาน: แยกตามรหัสแบบบาน (ค่า FrontShape เช่น Exxx01 — เดิมแยกตาม Part ลิงก์ FrontShapeP1/P2/P3) · ชื่อ = รหัส + คำอธิบายใน Element · ภาพ = เส้นแบบบาน ด้านหน้า + Section ข้าง (บานเรียบ = สี่เหลี่ยม · ลาย doorReliefMap = เส้นร่อง/ร่องในภาพตัด · เพ · สันเป็นหน้าตัด · ช่องกระจก/เฟรมอลู) แทนภาพถ่าย 3D · ปิด SN_OFF.dwgDoorLine=1 · ③ ผนังเหนือท็อปแบบกระจก เลือกความหนาได้ 4/5/6/8/10/12 มม. (เดิม 6 ตายตัว) — ชื่อในใบเสนอราคา/แบบ · 3D · ราคาทุน/ตร.ม. จำแยกตามชนิด+ความหนา"],
@@ -15332,6 +15333,8 @@ function evalCabExpr(txt,inst,fb,depth){
   const t=String(txt==null?"":txt).trim();
   if(t==="") return fb;
   if(/^-?\d*\.?\d+$/.test(t)) return parseFloat(t);
+  /* v1.530: สูตรเลขล้วน เช่น 35+75 — เดิม parseFloat ได้ 35 (ช่อง “ทับเฉพาะตู้นี้” บอกว่าใส่สูตรได้ แต่สูตรที่ไม่มี $ ตัดเหลือเลขตัวแรก) */
+  if(!/\$/.test(t)&&/^[-+*\/().\d\s]+$/.test(t)&&/\d\s*[-+*\/]/.test(t)){ try{ const r=Function('"use strict";return ('+t+')')(); if(isFinite(r)) return r; }catch(e){} }
   if(!/\$/.test(t)) { const n=parseFloat(t); return isFinite(n)?n:fb; }
   let bad=false;
   const rep=t.replace(/\$[A-Za-z_][A-Za-z0-9_]*/g,m=>{ const v=cabNumVal(m,inst,depth||0); if(v==null){bad=true;return "0";} return "("+v+")"; });
@@ -28892,6 +28895,7 @@ function boardRole(b){
      SN_OFF.dwgDoorLine=1 หน้ารวมวัสดุ ดีไซน์หน้าบานเป็นภาพถ่าย 3D แยกตาม Part ลิงก์ (แบบ 1.521) (v1.527)
      SN_OFF.realPlRoom=1  โหมดสมจริงในห้องออกแบบสร้างห้องรอบตู้แบบเดิม (ไม่ใช้ผนังของห้องออกแบบ) (v1.528)
      SN_OFF.realSnap=1    ไม่มีปุ่ม 📷 บันทึกภาพสมจริงความละเอียดสูง (v1.528)
+     SN_OFF.plPullVar=1   กล่องมือจับเขียนระยะเป็นตัวเลขในมือจับแบบ 1.529 (ไม่อิงตัวแปร K_Pull_Coordinate ของตู้) (v1.530)
      SN_OFF.plPullMove=1  กล่องมือจับตั้งต้นใส่ทุกแผ่นหน้า (รวมแผ่นปิด/ฟิลเลอร์/หน้าหลอก) แบบ 1.524 — ที่กดเลือกรายบานยังใช้ได้ (v1.529)
      SN_OFF.fxfIn=1       ไม่รับไฟล์ FXF ของ imos (ไม่มีปุ่ม 📐 ในหน้า Order · ลากไฟล์ .fxf มาวางที่ฉากตกไปตัวอ่าน DXF แบบเดิม · ชิ้น _fxf ในงานเก่ายังไม่ถูกตัวซ่อมแตะ) (v1.499)
      SN_OFF.fxfMpr=1      ไฟล์เจาะของชิ้นจาก FXF ออกแบบ 1.499 (ร่องเข้าไฟล์ · BM=LS · ไม่มี S_ / SIDE1 · เลขชิ้นนับตามลำดับฉาก · แตกมาโครแบบเดา + ปัด 0.1 สำหรับการนำเข้าครั้งถัดไป — ชิ้นที่นำเข้าไปแล้วรูไม่เปลี่ยน) (v1.500)
@@ -40912,7 +40916,28 @@ function plpPlace(d,info,pm,om){
   if(v!=="Middle"){ if(W<2*nX){ v="Middle"; X=0; } else X=Math.max(nX,Math.min(X,W-nX)); }
   if(h!=="Middle"){ if(L<2*nY){ h="Middle"; Y=0; } else Y=Math.max(nY,Math.min(Y,L-nY)); }
   const pos=(v==="Middle"&&h==="Middle")?"Center":(h==="Middle")?(v+"Middle"):(v==="Middle")?(h+"Middle"):(h+v);
-  return {pos, ori, X:Math.round(X), Y:Math.round(Y)}; }
+  /* v1.530: สูตรอ่านง่ายสำหรับตาราง Variables — ปลายมือจับ E + ครึ่งยาว (เมื่อไม่ถูกบีบด้วยขนาดบาน) */
+  const hr=Math.round(hl*10)/10, Xr=Math.round(X), Yr=Math.round(Y);
+  const Xt=(alongV&&Math.abs(Xr-(E+hl))<0.6)?(E+"+"+hr):String(Xr), Yt=(alongH&&Math.abs(Yr-(E+hl))<0.6)?(E+"+"+hr):String(Yr);
+  return {pos, ori, X:Xr, Y:Yr, Xt, Yt, vMid:v==="Middle", hMid:h==="Middle"}; }
+/* ───────── v1.530: ระยะมือจับอิงตัวแปรของตู้ ─────────
+   ผู้ใช้ 27/10 21:30 (ภาพ Variables (ตู้นี้) BND214 · $K_Pull_Coordinate_X1–X6 = 35 · Y = 0 จาก Variables กลาง):
+     “จริง ๆ มันต้องอิงค่า Default ไว้ คนที่มาดูหรือตรวจต่อหรือปรับแบบ จะได้ตรวจได้”
+   เดิม (1.524–1.529): มือจับเก็บระยะเป็นตัวเลข (X:"215") ตารางตัวแปรยังโชว์ 35/0 ไม่ตรงของจริง แก้ในตารางมือจับก็ไม่ขยับ
+   ตอนนี้: บานที่มีลำดับ n → X = $K_Pull_Coordinate_Xn · Y = $K_Pull_Coordinate_Yn (แบบมือจับจากออเดอร์ · pullLive คิดสด)
+     ค่าที่ต้องการ = ค่าตั้งต้นของตัวแปร (ค่าออเดอร์/Variables กลาง · 0 ที่แกนขอบ = ระยะตั้งต้น 35) → ไม่เขียนทับ
+     ไม่เท่า → เขียนทับเฉพาะตู้นี้ (state.cabVarTxt ที่เดียวกับช่อง “ทับเฉพาะตู้นี้”) เป็นสูตร เช่น 35+180
+     แกนกลาง (ไม่ได้ใช้) → ล้างค่าที่ทับไว้ · ไม่มีลำดับบาน (n = 0) → ตัวเลขในมือจับแบบเดิม */
+function plpCoordTxt(inst){ const cur={}; String((state.cabVarTxt&&state.cabVarTxt[inst])||"").split(/[\n;]+/).forEach(l=>{ const k=l.indexOf("="); if(k>0) cur[l.slice(0,k).trim().replace(/^\$/,"")]=l.slice(k+1).trim(); }); return cur; }
+function plpCoordSave(inst,cur){ state.cabVarTxt=state.cabVarTxt||{}; const txt=Object.keys(cur).map(x=>x+"="+cur[x]).join("\n"); if(txt) state.cabVarTxt[inst]=txt; else delete state.cabVarTxt[inst]; }
+function plpSetCoord(inst,name,want,txt,edge){   // want = null → ล้างอย่างเดียว · คืน "$ชื่อ"
+  const cur=plpCoordTxt(inst), key=Object.keys(cur).find(k=>k.toUpperCase()===String(name).toUpperCase());
+  if(key) delete cur[key]; plpCoordSave(inst,cur);
+  if(want==null) return "$"+name;
+  let base=null; try{ base=cabNumVal(name,inst); }catch(e){}
+  const eff=(base==null)?null:((edge&&Math.abs(+base)<0.01)?(pullZeroDefMM()||0):Math.abs(+base));
+  if(eff!=null&&Math.abs(eff-want)<0.5) return "$"+name;              // = ค่าตั้งต้น → ไม่เขียนทับ
+  cur[name]=String(txt!=null?txt:want); plpCoordSave(inst,cur); return "$"+name; }
 /* ใส่มือจับ — code: รหัส = ใส่ · "" = ไม่มีมือจับ · null = คงรุ่นเดิมของแต่ละบาน แค่จัดตำแหน่งใหม่ */
 function plPullApply(insts,code,pm,om){ const rows=[], seen=new Set();   // v1.529: แยกตัวใส่รายบาน (plPullApplyRows) ไว้ใช้กับการกดเลือกบาน
   (insts||[]).forEach(inst=>plpDoors(inst).forEach(r=>{ if(r&&r.d&&!seen.has(r.d.id)){ seen.add(r.d.id); rows.push(r); } }));
@@ -40928,9 +40953,15 @@ function plPullApplyRows(rows,code,pm,om){
     let c=code;
     if(c==null){ const cur=(d._pulls||[])[0]; if(!cur) return; let lv=null; try{ lv=pullLive(d,cur); }catch(e){}
       c=String((lv&&lv.code)||cur.code||"").trim(); if(!c||pullIsNo(c)) return; }
-    if(!c){ if((d._pulls||[]).length) n++; delete d._pulls; setF("pullField","NoPull"); return; }
+    if(!c){ if((d._pulls||[]).length) n++; delete d._pulls; setF("pullField","NoPull");
+      if(i&&!snOff("plPullVar")){ plpSetCoord(d.cabInst,F("pullXField")+i,null); plpSetCoord(d.cabInst,F("pullYField")+i,null); }   // v1.530: ล้างระยะที่ทับไว้ของบานนี้
+      return; }
     const pl=plpPlace(d,plpInfo(c),pm,om);
-    d._pulls=[{code:c, ori:pl.ori, pos:pl.pos, X:String(pl.X), Y:String(pl.Y), X0:pl.X, Y0:pl.Y, xi:i, _pl:{pm:pm||"auto", om:om||"auto"}}];
+    /* v1.530: บานมีลำดับ = ระยะชี้ไปที่ตัวแปรของตู้ (ตรวจ/แก้ได้ที่ Variables ตู้นี้) · X0/Y0 = ค่าสำรองถ้าตัวแปรไม่มี */
+    let Xs=String(pl.X), Ys=String(pl.Y);
+    if(i&&!snOff("plPullVar")){ try{ Xs=plpSetCoord(d.cabInst,F("pullXField")+i,pl.vMid?null:pl.X,pl.Xt,true); Ys=plpSetCoord(d.cabInst,F("pullYField")+i,pl.hMid?null:pl.Y,pl.Yt,true);
+        if(pl.vMid) Xs="0"; if(pl.hMid) Ys="0"; }catch(e){ console.error("plpCoord:",e); Xs=String(pl.X); Ys=String(pl.Y); } }
+    d._pulls=[{code:c, ori:pl.ori, pos:pl.pos, X:Xs, Y:Ys, X0:pl.X, Y0:pl.Y, xi:i, _pl:{pm:pm||"auto", om:om||"auto"}}];
     setF("pullField",c); setF("pullOriField",pl.ori); setF("pullPosField",pl.pos); n++; }); });
   return n; }
 /* รุ่นที่ใช้อยู่ในขอบเขต — {code: จำนวนบาน} ("" = ไม่มี) */
@@ -44798,6 +44829,7 @@ function evalCabQuiet(txt,inst,fb){
   const t=String(txt==null?"":txt).trim();
   if(t==="") return fb;
   if(/^-?\d*\.?\d+$/.test(t)) return parseFloat(t);
+  if(!/\$/.test(t)&&/^[-+*\/().\d\s]+$/.test(t)&&/\d\s*[-+*\/]/.test(t)){ try{ const r=Function('"use strict";return ('+t+')')(); if(isFinite(r)) return r; }catch(e){} }   // v1.530: สูตรเลขล้วน
   if(!/\$/.test(t)){ const n=parseFloat(t); return isFinite(n)?n:fb; }
   let bad=false;
   const rep=t.replace(/\$[A-Za-z_][A-Za-z0-9_]*/g,m=>{ const v=cabNumVal(m,inst,0); if(v==null){bad=true;return "0";} return "("+v+")"; });
