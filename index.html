@@ -3281,7 +3281,7 @@ body[data-theme="dark"] .splash-dots span{background:rgba(255,255,255,.25)}
    ===================================================================== */
 /* ---- APP_META: แหล่งความจริงเดียวของเวอร์ชัน (ดูได้จาก console / คลิกชื่อแอป) ---- */
 const APP_META={
-  name:"StarNexus", version:"1.523", build:"2026-10-27/kit-fam",
+  name:"StarNexus", version:"1.525", build:"2026-10-27/sec-cut",
   file:"StarNexus.html", basedOn:"Furnitech_V3.html (v3.11)",
   /* ───────── เริ่มนับเวอร์ชันใหม่ที่ 1.001 (21/08/2026) ─────────
      ของเดิมนับมาถึง 42.1 แล้ววิ่งเป็นทศนิยมสองชั้นซึ่งอ่านลำดับยาก
@@ -3289,6 +3289,8 @@ const APP_META={
      ประวัติเก่าเก็บไว้ทั้งหมดตามเลขเดิม ไม่ไล่เขียนใหม่ เพราะเลขในนั้นถูกอ้างถึงไปแล้ว
      รายการที่อยู่ใต้ 1.001 ลงไปจึงเป็นเลขชุดเก่า อ่านต่อกันได้ตามวันที่ */
   changelog:[
+    ["1.525","2026-10-27","UX แบบแนบใบเสนอราคา · Section (ผู้ใช้ 20:56 ภาพด้านหลัง เส้นตัด A/B/C ผ่านกลางตู้ทับเลขวงกลม/รหัส + A ตัดที่ฟิลเลอร์ WNF036/BNF001: “ปรับให้เส้นไม่ต้องอยู่กลางตู้ · พวก BNF กับ WNF ไม่ต้องตัด Section” · “TNF ด้วยครับ”) — ① ฟิลเลอร์ (รหัส BNF/WNF/TNF หรือชนิดฟิลเลอร์ในแคตตาล็อก) และแผ่นปิดข้าง ไม่เป็นจุดตัด ไม่นับในรูปตัดของตู้ข้าง ๆ · ② เส้นตัดอยู่ค่อนซ้ายของตู้ (20% ของช่วงที่ตัด อย่างน้อย 60 มม. จากขอบ) ไม่ผ่านเลขวงกลม/รหัสกลางตู้ · ตู้ 2 บานจึงตัดผ่านบาน ไม่ใช่ร่องกลางระหว่างบาน"],
+    ["1.524","2026-10-27","FEAT ห้องออกแบบ: 🖐 เลือกมือจับแบบรูป (ผู้ใช้ 20:42 “โหมดห้องออกแบบยังขาดเลือกใส่มือจับ … เอาแบบที่เหมือนลูกค้าเลือกมาใส่ได้ ไม่ใช่คนที่เก่งการใช้โปรแกรม”) — เดิมใส่มือจับได้ทีละบาน (เลือกบาน → ⚙ ตั้งมือจับ: รหัส · H/V · พิมพ์ชื่อตำแหน่ง · ระยะ X/Y) · ตอนนี้ปุ่ม 🖐 มือจับ ที่แผงตู้ที่เลือก · 🖐 มือจับทั้งห้อง ที่แผงห้อง · และในกล่องเลือกสี (คลิกขวาที่ตู้) → กล่องรูปมือจับจริง (ภาพ 3D จากรุ่นใน Element → Fittings ชนิดมือจับที่มีสเปครู · ชื่อจาก Fitting Global ถ้าคำอธิบายเป็น “จาก XML” · ระยะรู · ผิว) · การ์ดแรก “ไม่มีมือจับ” · กดรูป = ใส่ทุกบาน/ลิ้นชักของตู้ (ติ๊ก ทุกตู้ = ทั้งห้อง) · ป้าย ✓ ใช้อยู่ n บาน · ตำแหน่ง อัตโนมัติ/ชิดบน/กึ่งกลาง/ชิดล่าง · แนว อัตโนมัติ/นอน/ตั้ง (เปลี่ยนแล้วจัดมือจับเดิมใหม่ทันที) · อัตโนมัติ: ลิ้นชัก = กลางขอบบน แนวนอน · บานเปิดข้าง = ฝั่งตรงข้ามบานพับ แนวตั้ง (ตู้พื้นมุมบน · ตู้ลอยมุมล่าง · บานสูงที่ ~1 ม. จากพื้น) · บานยก = กลางขอบล่าง · ระยะตามความยาวมือจับ ไม่ล้นบาน · เก็บแบบเดียวกับมือจับจากออเดอร์ (_pulls + ช่อง K_Pull/K_Orientation/K_Pull_Position ที่จับคู่ไว้) รูเจาะ/3D/ใบอุปกรณ์/ราคาตามเดิม · ปิด SN_OFF.plPull=1"],
     ["1.523","2026-10-27","FIX ① สีหลุดเข้าแท็บ K_Fitting_Concept ในกล่องเลือกสี (ผู้ใช้ 20:29 ภาพตู้ BND214: “ทำไมมีสีมาอยู่ในกลุ่ม fitting concept” — G08H0452Y · G08H1209Y · N01M0029N ปนกับ EC48/KIT01–03) — ต้นเหตุ: ค่าตั้งต้นของ Family (varFallback) ให้รหัสสีตั้งต้น N01M0029N กับ “ทุก” Family ที่ไม่ใช่ขา/มือจับ รวม Family ชุดอุปกรณ์ → ตู้ที่ออเดอร์ไม่ส่งชุดมาได้ K_Fitting_Concept = N01M0029N + รหัสนี้ถูกเติมเข้าตัวเลือก · แล้วสร้างสีใหม่จากสีต้นแบบ (ctFamsOf) เติมสีใหม่เข้าทุก Family ที่มีสีต้นแบบในตัวเลือก จึงลาม G08H… เข้าไปด้วย · ตอนนี้ Family ชุดอุปกรณ์ (ช่อง kitField) ไม่รับสีตั้งต้น (ใช้ได้เฉพาะ def ที่ไม่ใช่สี) · สร้างสีใหม่ไม่เติมเข้า Family ชุด · ล้างของเดิม: ตัวเลือกที่เป็นสี (ไม่ใช่รหัสชุดใน Element) ออกจาก Family ชุด + ค่าชุดของตู้ที่เป็นรหัสสี (ปิด SN_OFF.kitFamClean=1) ② เปลี่ยนตู้จากกล่องไม้เป็นชุด KIT01 (รางแผงเหล็ก) แล้วพื้น/หลังกล่องไม่เอา Part ตั้งต้น (ผู้ใช้ 20:31 ภาพลิ้นชักพื้น/หลังสีไม้ดิบ: “พอเปลี่ยนจากกล่องไม้เป็น KIT01 Part ไม่ไปเอา Default”) — เดิม applyRailSystem ให้ชิ้นใหม่ใช้ “วัสดุของกล่องเดิม” (matB = รหัสวัสดุชิ้นแรกของกล่องเก่า) — Part ตั้งต้นถูกผูกให้แล้ว แต่วัสดุที่ระบุรหัสตรง ๆ (กล่องไม้จากออเดอร์ = ไม้ดิบ) ทับวัสดุของ Part เสมอ พื้น/หลังแผงเหล็กจึงเป็นไม้ดิบ (ทดสอบ: Part = ค่าตั้งต้น แต่วัสดุจริง = วัสดุกล่องไม้) · ตอนนี้ชนิดกล่องเปลี่ยน (ไม้ ↔ แผงเหล็ก) = ชิ้นใหม่ใช้ Part ของระบบรางในแท็บระบบราง ถ้าไม่ได้ตั้ง = Part ตั้งต้นช่อง “กล่องลิ้นชัก” (ว่าง = แผ่นนอน) · วัสดุกลับเป็นลิงก์ $CarcassBodyMat · ชนิดเดิม (แค่เปลี่ยนสูง/รุ่นรางชนิดเดียวกัน) ยกค่าเดิมเหมือนเดิม (ปิด SN_OFF.kitBoxDef=1)"],
     ["1.522","2026-10-27","FEAT ผนังเหนือท็อป + Section หลายแบบ (ผู้ใช้ 20:02 “ตรงผนังระหว่างตู้ลอยและพื้น ต้องเลือกได้ว่าจะให้มีบัวหินทอปไหม บัวสูงเท่าไหร่ และเลือกได้เป็นผนังกระเบื้อง หรือผนังกระจก หรือกระจกแบบไหน หรือไม่มีผนังมีแต่บัวหิน · Section ตู้ถ้าตู้ในแนวตั้งไม่เหมือนกันต้องมีเพิ่ม เอาให้อยู่หน้าเดียวกันได้ไม่เกิน 3 Section แล้วต้องมีสัญลักษณ์ตัดที่ภาพด้านหน้าด้วยว่าตัด Section มาจากแนวไหน”) — ① แผงห้อง › ท็อป: บัวหิน (ติ๊ก + สูง · หินชนิดเดียวกับท็อป) · ผนังเหนือท็อป ไม่มี / หิน / กระเบื้อง (ขนาด 300×300–600×1200 · สี/รุ่น) / กระจก (ใส · พ่นสี · เงา · ฝ้า · สี/รุ่น) · สูงถึงก้นตู้ลอย หรือกำหนดสูงจากผิวท็อป · ราคาทุน/ตร.ม. ผนังกระเบื้อง/กระจกแยก (จำต่อชนิด) · 3D กระเบื้องมีร่องยาแนว กระจกโปร่ง/เงา · ใบเสนอราคาแยกแถว บัวหิน / ผนัง · ค่าเดิม “วอผนัง” (1.520) ย้ายเป็นผนังหินอัตโนมัติ ② Section: ตัดทุกตู้แล้วจัดกลุ่มตามรูปตัด (ระดับตู้ ลึก สูง จำนวนบาน/ลิ้นชักที่ระนาบผ่าน) — ไม่เหมือนกัน = Section ใหม่ A, B, C … (สูงสุด 6 · หน้าละ 3 ภาพเรียงกัน) · ภาพด้านหน้ามีเส้นตัด + วงกลมอักษร + ลูกศรทิศมอง ที่ตำแหน่งตัดจริง · ภาพแบบวาดบัว/ผนังตามชนิด (กระเบื้อง = ตาราง · กระจก = เส้นเฉียง · หิน = ลายขีด)"],
     ["1.521","2026-10-27","FEAT ใบเสนอราคาแนบแบบ (ผู้ใช้ 19:28 “อยากได้ภาพแปลน ภาพด้านหน้าพร้อม Dimension ภาพ Section … แนบไปในใบเสนอราคา” · 19:31 “ต้องออกหน้ารวมวัสดุแบบนี้ด้วย” · เลือก ครบ 4 ภาพ เส้น CAD ขาวดำ) — คิดจากตู้ในห้องออกแบบ + ท็อป ตอนเปิดหน้าต่าง: ① แปลนทั้งห้อง (ผนังลายขีด · ตู้พื้นทึบ/ตู้ลอยประ · เลขวงกลม = ลำดับในใบ · ระยะตามผนังที่มีตู้ + ขนาดห้อง) ② ด้านหน้าทีละผนัง (ตีนตู้ บาน มือจับ ท็อป วอ · ระยะกว้างตู้พื้น/ตู้ลอย · ระยะสูงตีน–ตู้–ท็อป–ก้นตู้ลอย–บน–ฝ้า) ③ Section ตัดที่ตู้พื้นที่มีตู้ลอยเหนือ (ชิ้นที่ระนาบผ่านจริง) ④ แปลนท็อป (ขนาดทุกชิ้น · วอ · ซิงค์ · วัสดุ/พื้นที่) ⑤ หน้ารวมวัสดุ (แบบหน้าบาน = ภาพบานจริงจาก 3D · สีหน้าบาน/สีโครงจากรูปลายผิว · ท็อป · มือจับ · โครงสร้าง · Fitting · LED) · ติ๊กเลือกแนบได้ในหน้าต่าง · ต่อท้ายใบ หน้า A4 ละ 2 ภาพ · ปิด SN_OFF.plqDwg=1"],
@@ -28817,6 +28819,7 @@ function boardRole(b){
      SN_OFF.plSecMulti=1  แบบแนบใบเสนอราคามี Section ภาพเดียว ไม่มีเส้นตัดในภาพด้านหน้า (แบบ 1.521) (v1.522)
      SN_OFF.kitFamClean=1 ไม่ล้างรหัสสีที่ปนอยู่ใน Family ชุดอุปกรณ์ (ตัวเลือก + ค่าชุดของตู้) (v1.523)
      SN_OFF.kitBoxDef=1   เปลี่ยนกล่องไม้ ↔ แผงเหล็ก แล้วยก Part/วัสดุ/ผิว/ขอบของกล่องเดิมมาแบบเดิม (v1.523)
+     SN_OFF.plPull=1      ห้องออกแบบไม่มีปุ่ม 🖐 มือจับ (เลือกมือจับแบบรูป) (v1.524)
      SN_OFF.fxfIn=1       ไม่รับไฟล์ FXF ของ imos (ไม่มีปุ่ม 📐 ในหน้า Order · ลากไฟล์ .fxf มาวางที่ฉากตกไปตัวอ่าน DXF แบบเดิม · ชิ้น _fxf ในงานเก่ายังไม่ถูกตัวซ่อมแตะ) (v1.499)
      SN_OFF.fxfMpr=1      ไฟล์เจาะของชิ้นจาก FXF ออกแบบ 1.499 (ร่องเข้าไฟล์ · BM=LS · ไม่มี S_ / SIDE1 · เลขชิ้นนับตามลำดับฉาก · แตกมาโครแบบเดา + ปัด 0.1 สำหรับการนำเข้าครั้งถัดไป — ชิ้นที่นำเข้าไปแล้วรูไม่เปลี่ยน) (v1.500)
                           รวมของ v1.501: มาโคร D3_T12 / H1 / L_IT_Box · รูทะลุไปฝั่ง 2 · ขนาด 0.01 · ZA d-ระยะ
@@ -36777,7 +36780,8 @@ function plRoomHtml(r,num){ plCss317();
   const work=grp("work",true,"ขา · ตีนตู้ · ฟิลเลอร์ · ไม้ไฟ · ปิดข้าง",escapeHtml(wsum),
       '<div class="plRow">'+num("legH","ขาตู้พื้น/ตู้สูง สูง",r.legH||0)+'<span class="plNote">0 = วางพื้น · ตีนตู้ PN01 ขึ้นเอง</span></div>'
       +'<div class="plRow" style="margin-top:4px"><label title="ฟิลเลอร์ตู้พื้น/ตู้สูงลงถึงพื้น ตีนตู้จบที่ข้างฟิลเลอร์ · ไม่ติ๊ก = ฟิลเลอร์ยกเท่าขา ตีนตู้วิ่งผ่านหน้า · สั่งรายใบได้ที่แผงตู้ที่เลือก"><input type="checkbox" id="plFFloor"'+(r.fillerFloor?" checked":"")+'> ฟิลเลอร์ลงพื้น (ตีนตู้จบที่ฟิลเลอร์)</label>'
-        +'<button class="ibtn" id="plClrAll" style="margin-left:auto;padding:3px 8px;font-size:11px" title="เลือกสีทีเดียวทั้งออเดอร์ — หน้าบานทุกบาน โครงตู้ ฯลฯ">🎨 สีทั้งออเดอร์</button></div>'
+        +'<button class="ibtn" id="plClrAll" style="margin-left:auto;padding:3px 8px;font-size:11px" title="เลือกสีทีเดียวทั้งออเดอร์ — หน้าบานทุกบาน โครงตู้ ฯลฯ">🎨 สีทั้งออเดอร์</button>'
+        +(snOff("plPull")?'':'<button class="ibtn" id="plPullAll" style="padding:3px 8px;font-size:11px" title="เลือกมือจับทีเดียวทั้งห้อง">🖐 มือจับทั้งห้อง</button>')+'</div>'
       +'<div class="plRow" style="margin-top:4px" title="ไม้ = ตู้ PN01 สีบาน ออกใบตัด · สแตนเลส = ออกเป็น Fitting ตามกฎรายการเส้น (3D ยังวาดตามแนวตู้ สีเทา)">ตีนตู้ <select id="plPlMat"><option value="wood"'+(r.plinthMat!=="stainless"?" selected":"")+'>ไม้ (สีบาน)</option><option value="stainless"'+(r.plinthMat==="stainless"?" selected":"")+'>สแตนเลส (ออกเป็น Fitting)</option></select></div>'
       +'<div class="plRow" style="margin-top:4px"><label title="แผงปิดช่องเหนือตู้แขวนถึงฝ้า (CeilingFiller) ชิดหน้าโครงตู้ ไม่ถึงบาน · ไม่ติ๊ก = ไม่ใส่"><input type="checkbox" id="plCeilOn"'+(r.ceilOn!==false?" checked":"")+'> ฟิลเลอร์บน</label> สูง <input type="number" id="plCeilH" value="'+(+r.ceilH>0?Math.round(+r.ceilH):"")+'" placeholder="ถึงฝ้า" min="0" step="10" style="width:64px"> <span class="plNote">ว่าง = ถึงฝ้า'+(ctm!=null?(' ('+Math.max(Math.round(r.h-ctm),0)+')'):'')+'</span></div>'
       +'<div class="plRow" style="margin-top:4px"><label title="ไม้ไฟวิ่งปิดใต้ตู้ลอย — โครงตู้ลอยหดขึ้นเท่าความหนาไม้ไฟ (ปัดเป็นหลักสิบ) ขนาดตู้เต็มคงเดิม บานยืดลงปิด (ExtendBottom) · ปิดรายใบได้ที่ตู้"><input type="checkbox" id="plLtOn"'+(r.lightOn?" checked":"")+'> ไม้ไฟใต้ตู้ลอย</label> รหัส <input id="plLtCode" value="'+escapeHtml(String(r.lightCode||"WEF253"))+'" style="width:74px"> <span class="plNote">หนา '+plLightT()+' → ยกโครง '+plLightGap()+' · บานยืดลง '+plLightGap()+'</span></div>'
@@ -37511,6 +37515,7 @@ function plPanelRoom(){
       Object.keys(plCabMap()).forEach(i=>{ try{ if(plAutoTT(i)) n++; }catch(e){} }); if(n){ sync(0); plCamPut(cam); } plPanelSel(); plAfterRoom();
       toast("บานเพบน Trim Top "+r.bevelTT+" มม. · ปรับแล้ว "+n+" ตู้ (ตู้ที่ตั้งเองไม่แตะ)"); }; }
   { const ca=s.querySelector("#plClrAll"); if(ca) ca.onclick=ev=>{ const rc=ev.target.getBoundingClientRect(); plColorOpen(null,rc.right+10,rc.top-40); }; }
+  { const pa=s.querySelector("#plPullAll"); if(pa) pa.onclick=ev=>{ const rc=ev.target.getBoundingClientRect(); plPullOpen(null,rc.right+10,rc.top-80); }; }   // v1.524
   s.querySelectorAll(".plSug").forEach(bt=>bt.onclick=async()=>{ r[bt.dataset.k]=+bt.dataset.v; plRoomDraw(); await plAlignAll(true); plPanelRoom(); plAfterRoom(); });
   s.querySelectorAll("input[data-w]").forEach(inp=>inp.onchange=()=>{ r.walls[inp.dataset.w]=inp.checked; plRoomDraw(); plPanelWalls(); plAfterRoom(); });
   s.querySelector("#plFitRoom").onclick=()=>{ plFitRoom(true); plRoomDraw(); plPanelRoom(); plCamRoom(); plAfterRoom(); };
@@ -37551,6 +37556,7 @@ function plPanelSel(){
       +'<button class="ibtn" id="plDup" title="ทำสำเนาทั้งตู้ (สี ขา มือจับ ค่าตู้ครบ) วางต่อข้าง ๆ">⧉ สำเนา</button>'
       +'<button class="ibtn" id="plDupM" title="ทำสำเนาแล้วกลับซ้าย-ขวา — รหัส L⇄R เปลี่ยนให้">⧉⇋ สำเนากลับ</button>'
       +'<button class="ibtn" id="plClr" title="เลือกสีแบบรูปย่อ (คลิกขวาที่ตู้ก็ได้)">🎨 สี</button>'
+      +((!snOff("plPull")&&plpDoors(inst).length)?'<button class="ibtn" id="plPullB" title="เลือกมือจับแบบรูป — ใส่ทุกบาน/ลิ้นชักของตู้นี้ (หรือทุกตู้)">🖐 มือจับ</button>':'')   // v1.524
       +'<button class="ibtn" id="plSwap" title="เปลี่ยนเป็นรุ่นอื่น ขนาดเท่าเดิม ที่เดิม สีเดิม">🔁 รุ่น</button>'
       +((plKindOf(code)==="filler"&&!plIsSide(inst)&&(plLevelOf(code)==="base"||plLevelOf(code)==="tall"))?('<button class="ibtn" id="plFloor" title="ฟิลเลอร์ลงพื้น (ตีนตู้จบที่ฟิลเลอร์) / ยกเท่าขา (ตีนตู้วิ่งผ่านหน้า)">'+(plFillerFloorOf(inst)?'⬆ ยกเท่าขา':'⬇ ลงพื้น')+'</button>'):'')
       +((plLevelOf(code)!=="wall"&&!csmIsCode(code)&&Math.abs(+d.f.ylo||0)>0.5)?('<button class="ibtn" id="plDrop" title="เลื่อนตู้ใบนี้ลงให้ก้น (รวมขา) แตะพื้นพอดี — ตอนนี้'+((+d.f.ylo>0)?'ลอย ':'จม ')+Math.round(Math.abs(+d.f.ylo))+' มม.">⬇ ลงพื้น</button>'):'')   // v1.458
@@ -37607,6 +37613,7 @@ function plPanelSel(){
   q("#plRot").onclick=()=>plRotate(inst);
   if(q("#plDrop")) q("#plDrop").onclick=()=>plDropFloor(inst);                 // v1.458
   q("#plClr").onclick=ev=>{ const r=ev.target.getBoundingClientRect(); plColorOpen(inst,r.right+10,r.top-40); };
+  if(q("#plPullB")) q("#plPullB").onclick=ev=>{ const r=ev.target.getBoundingClientRect(); plPullOpen(inst,r.right+10,r.top-80); };   // v1.524
   q("#plMir").onclick=()=>plMirror(inst);
   q("#plDel").onclick=()=>plDelete(inst);
   if(q("#plFL")) q("#plFL").onclick=()=>plFill(inst,"lo");
@@ -38452,14 +38459,25 @@ function dwgElev(wk,C,SECS){ const r=plRoom(), cabs=(C||dwgCabs()).filter(c=>dwg
    ตอนนี้: ลองตัดที่กลางตู้ทุกใบ (กว้าง ≥ 150 · ตู้ลอยที่มีตู้พื้นใต้ = ใช้จุดของตู้พื้น) → ลายเซ็นรูปตัด = ตู้ทุกใบที่ระนาบผ่าน (ระดับ · ลึก · ก้น · บน · จำนวนบาน/ลิ้นชักที่ผ่าน)
      ลายเซ็นเหมือนกัน = Section เดียวกัน · เรียงความสำคัญ (มีทั้งตู้พื้น+ตู้ลอย ก่อน) เอาสูงสุด 6 แบบ ตั้งชื่อ A, B, C … ตามผนังและตำแหน่งซ้าย→ขวา
      หน้าละ 3 ภาพเรียงกัน (dwgSecFig) · ภาพด้านหน้ามีเส้นตัด + ลูกศรทิศมองที่ตำแหน่งตัดจริง (dwgCutMark) */
+/* ───────── v1.525: ฟิลเลอร์/แผ่นปิดข้าง ไม่ตัด Section ─────────
+   ผู้ใช้ 27/10 20:56 (ภาพด้านหลัง: A ตัดที่ WNF036/BNF001): “พวก BNF กับ WNF ไม่ต้องตัด Section ครับ” · “TNF ด้วยครับ”
+   เดิม (1.522): ทุกใบที่กว้าง ≥ 150 เป็นจุดตัด ฟิลเลอร์ 150 จึงได้ Section ของตัวเอง
+   ตอนนี้: รหัส ?NF ตามด้วยเลข (BNF/WNF/TNF) · ชนิด filler ในแคตตาล็อก · แผ่นปิดข้าง = ไม่ตัด และไม่นับเป็นตู้ที่ระนาบผ่าน */
+function dwgSecSkip(c){ const cd=String((c&&c.code)||"").trim().toUpperCase();
+  if(/^[BWT]NF\d/.test(cd)) return true;
+  try{ if(plKindOf(cd)==="filler") return true; }catch(e){}
+  try{ if(c&&c.inst!=null&&plIsSide(c.inst)) return true; }catch(e){}
+  return false; }
 function dwgSecPick(C){ const r=plRoom(), all=C||dwgCabs(), cand=[];
-  Object.keys(PL_WALLS).forEach((wk,wi)=>{ const W=PL_WALLS[wk], A=W.ax, P=W.pa, on=all.filter(c=>dwgOnWall(c,r,wk)&&c.lv!=="rail"&&c.lv!=="light");
+  Object.keys(PL_WALLS).forEach((wk,wi)=>{ const W=PL_WALLS[wk], A=W.ax, P=W.pa, on=all.filter(c=>dwgOnWall(c,r,wk)&&c.lv!=="rail"&&c.lv!=="light"&&!dwgSecSkip(c));   // v1.525
     const uOf=v=>wk==="back"?v-r.x0:wk==="right"?v-r.z0:wk==="left"?(r.z0+r.d)-v:(r.x0+r.w)-v;
     on.forEach(c0=>{ const w0=c0.f.hi[A]-c0.f.lo[A]; if(w0<150) return; const m0=(c0.f.lo[A]+c0.f.hi[A])/2;
       if(c0.lv==="wall"&&on.some(x=>x.lv!=="wall"&&x.f.hi[A]-x.f.lo[A]>=150&&x.f.lo[A]<m0&&x.f.hi[A]>m0)) return;
       const cross=on.filter(x=>x.f.lo[A]<m0&&x.f.hi[A]>m0); let lo=c0.f.lo[A], hi=c0.f.hi[A];
       cross.filter(x=>x.f.hi[A]-x.f.lo[A]>=150).forEach(x=>{ lo=Math.max(lo,x.f.lo[A]); hi=Math.min(hi,x.f.hi[A]); }); if(hi-lo<20){ lo=c0.f.lo[A]; hi=c0.f.hi[A]; }
-      const cA=(lo+hi)/2;
+      /* v1.525: เส้นตัดไม่อยู่กลางตู้ (ผู้ใช้ 20:56 “ปรับให้เส้นไม่ต้องอยู่กลางตู้”) — กลางตู้มีเลขวงกลม/รหัสกำกับ และตู้ 2 บานเป็นร่องระหว่างบาน
+         ย้ายไปค่อนซ้ายของภาพ (ฝั่ง u น้อย) 20% ของช่วงตัด อย่างน้อย 60 มม. จากขอบ · ช่วงแคบกว่า 120 = กลางช่วงเหมือนเดิม */
+      const _inc=(wk==="back"||wk==="right"), _off=Math.max(60,(hi-lo)*0.2), cA=(hi-lo<120)?(lo+hi)/2:(_inc?lo+_off:hi-_off);
       const sig=cross.map(x=>{ const nf=x.bs.filter(b=>{ if(!dwgIsDoor(b)) return false; const d=worldDims(b), p=[b.x,b.y,b.z]; return p[A]-d[A]/2<cA&&p[A]+d[A]/2>cA; }).length;
         return [x.lv,Math.round((x.f.hi[P]-x.f.lo[P])/10),Math.round(x.f.ylo/10),Math.round(x.f.hi[1]/10),nf].join(":"); }).sort().join("|");
       cand.push({wk, wi, cA, u:uOf(cA), sig, base:c0, score:(cross.some(x=>x.lv==="wall")?2:0)+(cross.some(x=>x.lv!=="wall")?1:0)}); }); });
@@ -40588,6 +40606,7 @@ function plColorOpen(inst,x,y){
     const q=String(PLC.q||"").trim().toUpperCase();
     const opts=f?f.opts.filter(o=>!q||String(o).toUpperCase().indexOf(q)>=0||String(desc(o)).toUpperCase().indexOf(q)>=0):[];
     el.innerHTML='<div class="pcHd"><b style="font-size:13.5px">🎨 สี — '+escapeHtml(code)+'</b>'
+        +(snOff("plPull")?'':'<button class="ibtn" id="pcPull" style="flex:none;width:auto;padding:3px 9px" title="เลือกมือจับแบบรูป">🖐 มือจับ</button>')   // v1.524
         +'<label style="margin-left:auto;display:flex;gap:4px;align-items:center;cursor:pointer" title="ติ๊ก = เลือกสีให้ทีละบาน (FrontColor1, 2, 3 แยกกัน)"><input type="checkbox" id="pcSplit"'+(PLC.split?" checked":"")+'> แยกทีละบาน</label>'
         +(whole?'':'<label style="display:flex;gap:4px;align-items:center;cursor:pointer" title="ตู้ทุกใบในห้องที่มีช่องสีนี้ ได้สีเดียวกัน"><input type="checkbox" id="pcAll"'+(PLC.all?" checked":"")+'> ทุกตู้</label>')
         +'<button class="ibtn" id="pcX" style="flex:none;width:auto;padding:3px 9px">✕</button></div>'
@@ -40600,6 +40619,7 @@ function plColorOpen(inst,x,y){
           :'<div style="grid-column:1/-1;color:var(--ink-dim)">ไม่พบสีที่ค้น</div>')+'</div>')
       :'<div style="padding:14px 12px;color:var(--ink-dim);line-height:1.6">'+(whole?'ออเดอร์นี้':'ตู้ใบนี้')+'ไม่มีช่องสีให้เลือก — ตัวเลือกของ Family ต้องเป็นรหัสที่อยู่ใน Element → Colors หรือ Surfaces</div>');
     el.querySelector("#pcX").onclick=plColorClose;
+    { const pb=el.querySelector("#pcPull"); if(pb) pb.onclick=()=>{ const rc=el.getBoundingClientRect(); plColorClose(); plPullOpen(inst,rc.left,rc.top); }; }   // v1.524
     { const a=el.querySelector("#pcAll"); if(a) a.onchange=ev=>{ PLC.all=ev.target.checked; }; }
     el.querySelector("#pcSplit").onchange=ev=>{ PLC.split=ev.target.checked; gs=plColorGroups(whole?Object.keys(plCabMap()):[String(inst)],PLC.split);
       if(!gs.some(g=>g.key===PLC.fam)) PLC.fam=(gs.find(g=>plGrpKey(g.key)===plGrpKey(PLC.fam))||gs[0]||{}).key||""; draw(); };
@@ -40624,6 +40644,210 @@ function plColorOpen(inst,x,y){
 /* คลิกนอกกล่อง / Esc = ปิด */
 addEventListener("pointerdown",e=>{ if(PLC.el&&!PLC.el.contains(e.target)) plColorClose(); },true);
 addEventListener("keydown",e=>{ if(e.key==="Escape"&&PLC.el) plColorClose(); });
+/* ═════════ v1.524: 🖐 เลือกมือจับในห้องออกแบบ (แบบลูกค้าเลือกเอง) ═════════
+   ผู้ใช้ 27/10 20:42 (ภาพห้องออกแบบ + กล่องเลือกสีตู้ BND214): “โหมดห้องออกแบบยังขาดเลือกใส่มือจับ เพิ่มให้หน่อย
+     เอาแบบที่เหมือนลูกค้าเลือกมาใส่ได้ หมายถึงไม่ใช่คนที่เก่งการใช้โปรแกรม ออกแบบให้เลือกมาใส่ได้”
+   เดิม: ใส่มือจับได้ทางเดียวคือเลือกหน้าบานทีละบาน → ⚙ ตั้งมือจับ (รหัส · แนวรู H/V · พิมพ์ชื่อตำแหน่ง · ระยะ X/Y เป็นตัวเลข) — ต้องรู้ระบบ
+   ตอนนี้: ปุ่ม 🖐 มือจับ (แผงตู้ที่เลือก · แผงห้อง “ทั้งห้อง” · ในกล่องเลือกสี) → กล่องรูปมือจับจริง (ภาพ 3D จากรุ่นใน Element → Fittings)
+     กดรูป = ใส่ให้ทุกบาน/ลิ้นชักของตู้ (ติ๊ก ทุกตู้ = ทั้งห้อง) · การ์ดแรก “ไม่มีมือจับ” · ตำแหน่ง/แนว อัตโนมัติ (แนะนำ) หรือเลือก บน/กลาง/ล่าง · นอน/ตั้ง
+     อัตโนมัติ: ลิ้นชัก = กลางขอบบน แนวนอน · บานเปิดข้าง = ฝั่งตรงข้ามบานพับ แนวตั้ง (ตู้พื้นมุมบน · ตู้ลอยมุมล่าง · บานสูงจากพื้น ~1 ม.)
+                บานยก (บานพับบน) = กลางขอบล่าง · บานพับล่าง = กลางขอบบน · ระยะคิดจากความยาวมือจับจริง (ไม่ล้นขอบบาน)
+     ค่าเก็บแบบเดียวกับมือจับจากออเดอร์ (_pulls ของบาน + ช่อง K_Pull/K_Orientation/K_Pull_Position ของตู้ถ้าจับคู่ไว้) → รูเจาะ/3D/ใบอุปกรณ์/ราคาเหมือนเดิมทุกทาง
+   ปิด: SN_OFF.plPull=1 (ไม่มีปุ่ม) */
+const PLPU={el:null, inst:null, all:false, pm:"auto", om:"auto", q:"", th:{}};
+function plpName(code){ const el=pullFitEl(code); let d=String((el&&el.desc)||"").trim();
+  if(!d||/จาก\s*XML|ตัวอย่าง/i.test(d)){ let n=""; try{ n=costFgName(code)||""; }catch(e){} if(n) d=n; }
+  return d||String(code||""); }
+/* ความยาว/ชนิดของรุ่น — ตามตัววาด 3D (_pull3D) */
+function plpInfo(code){ const def=pullDef(code), el=pullFitEl(code)||{}; let xs=[];
+  try{ xs=parseDrillSpec(_pullSpecC((def&&def.drill)||""),0,0,18).map(h=>h.x); }catch(e){}
+  const span=xs.length?(Math.max.apply(null,xs)-Math.min.apply(null,xs)):0, sty=String(el.pull3D||"").trim().toLowerCase();
+  if(!xs.length){ let pk=[]; try{ pk=parsePocketSpec(_pullSpecC((def&&def.pocket)||""),0,0,18); }catch(e){}
+    const w=pk.length?Math.max.apply(null,pk.map(q=>+q.w||0)):0; return {len:w||100, span:0, knob:false, pocket:true}; }
+  if(/^(flat|แบน|บาร์แบน|plate)$/.test(sty)){ const leg=(+el.pullLeg>=2)?+el.pullLeg:22, fl=+el.pullLen||0;
+    return {len:(fl>=Math.max(span,leg)+1)?fl:((span<1)?Math.max(leg*3,60):(span+leg)), span:Math.round(span), knob:false}; }
+  const knob=/^(knob|ปุ่ม)$/.test(sty)||(!/^(bar|ก้าน)$/.test(sty)&&span<1);
+  if(knob) return {len:(+el.pullDia>=8)?+el.pullDia:32, span:0, knob:true};
+  const dia=(+el.pullDia>=4)?+el.pullDia:12; return {len:(span<1)?Math.max(dia*8,96):(span+40), span:Math.round(span), knob:false}; }
+/* รุ่นที่ใส่ได้จริง (มีสเปครู/Pocket) */
+function plpList(){ let L=[]; try{ ensureSamplePull(); }catch(e){} try{ L=pullDefs().filter(d=>d&&(d.drill||d.pocket)); }catch(e){} return L; }
+/* บาน/ลิ้นชักของตู้ (รวมตู้ที่รวมช่อง) — ใช้ลำดับบานเดียวกับมือจับจากออเดอร์ · แผ่นหน้า FXF ที่ไม่ได้ติดธงบานนับด้วย (เลขชุด 0) */
+function plpDoors(inst){ let rows=[]; try{ rows=cabDoorIndex(inst).slice(); }catch(e){ rows=[]; }
+  let mem=[inst]; try{ mem=varMemberInsts(inst); }catch(e){}
+  const seen=new Set(rows.map(r=>r.d));
+  state.boards.forEach(b=>{ if(!b||seen.has(b)||mem.indexOf(b.cabInst)<0) return;
+    if(b._virtual||b._box||b._pullPart||b.orient!=="front"||!(+b.T>0)) return;
+    const nm=String(b.name||""); if(/back|side|bottom|sub-?front|rail|หลัง|ข้าง|พื้น|คาน/i.test(nm)||!/door|drawer|front|บาน|ลิ้นชัก/i.test(nm)) return;
+    rows.push({d:b,i:0}); });
+  return rows; }
+/* ฝั่งที่ไม่มีบานพับ (บานไม่มีข้อมูลบานพับ) — บานอยู่ซ้ายของตู้ = บานพับซ้าย → มือจับขวา */
+function plpSideGuess(d){ try{ const yw=(+cabYawOf(d.cabInst)||0)*Math.PI/180, lx=b=>(+b.x||0)*Math.cos(yw)-(+b.z||0)*Math.sin(yw);
+    const cs=state.boards.filter(b=>b&&b.cabInst===d.cabInst&&!b._virtual&&!b._door&&(+b.T>0)); if(!cs.length) return "Right";
+    const xs=cs.map(lx), mid=(Math.min.apply(null,xs)+Math.max.apply(null,xs))/2, v=lx(d);
+    return (v<mid-5)?"Right":(v>mid+5)?"Left":"Right"; }catch(e){ return "Right"; } }
+/* ตำแหน่ง/แนว/ระยะ ของมือจับบนบาน d — pm: auto/top/mid/bot · om: auto/H/V */
+function plpPlace(d,info,pm,om){
+  const L=Math.max(+d.L||1,1), W=Math.max(+d.W||1,1), wd=worldDims(d), y0=(+d.y||0)-wd[1]/2, y1=(+d.y||0)+wd[1]/2;
+  const dr=!!(d._dg&&state.boards.some(x=>x&&x._dg===d._dg&&x._box))||/drawer|ลิ้นชัก/i.test(String(d.name||""));
+  const hg=(d.connectors||[]).find(c=>c&&c.type==="hinge"), he=String((hg&&hg.edge)||"").toLowerCase();
+  let lv=""; try{ lv=plLevelOf(String(d.cab||"")); }catch(e){}
+  let v="Up", h="Middle", ori="H";
+  if(dr){ v=(W<120)?"Middle":"Up"; }
+  else if(he==="top"||he==="bottom"){ v=(he==="top")?"Down":"Up"; }
+  else { h=(he==="left")?"Right":(he==="right")?"Left":plpSideGuess(d); ori="V";
+    v=(lv==="wall"||y0>=1200)?"Down":(y1<=1150)?"Up":"Tall"; }
+  if(pm==="top") v="Up"; else if(pm==="mid") v="Middle"; else if(pm==="bot") v="Down";
+  if(om==="H"||om==="V") ori=om;
+  if(info.knob) ori="H";
+  const hl=(+info.len||0)/2, alongV=(ori==="V"&&!info.knob), alongH=(ori==="H"&&!info.knob);
+  let X=0, Y=0;
+  if(v==="Tall"){ v="Down"; X=1000-y0; }
+  else if(v!=="Middle") X=info.knob?50:(alongV?50+hl:45);
+  if(h!=="Middle") Y=info.knob?50:(alongH?50+hl:40);
+  const nX=alongV?hl+10:15, nY=alongH?hl+10:15;
+  if(v!=="Middle"){ if(W<2*nX){ v="Middle"; X=0; } else X=Math.max(nX,Math.min(X,W-nX)); }
+  if(h!=="Middle"){ if(L<2*nY){ h="Middle"; Y=0; } else Y=Math.max(nY,Math.min(Y,L-nY)); }
+  const pos=(v==="Middle"&&h==="Middle")?"Center":(h==="Middle")?(v+"Middle"):(v==="Middle")?(h+"Middle"):(h+v);
+  return {pos, ori, X:Math.round(X), Y:Math.round(Y)}; }
+/* ใส่มือจับ — code: รหัส = ใส่ · "" = ไม่มีมือจับ · null = คงรุ่นเดิมของแต่ละบาน แค่จัดตำแหน่งใหม่ */
+function plPullApply(insts,code,pm,om){
+  const F=k=>String(settings[k]||DEF_SETTINGS[k]).trim(), done=new Set(); let n=0;
+  state.cabColors=state.cabColors||{};
+  (insts||[]).forEach(inst=>{ plpDoors(inst).forEach(({d,i})=>{ if(!d||done.has(d.id)) return; done.add(d.id);
+    const cc=state.cabColors[d.cabInst]=state.cabColors[d.cabInst]||{};
+    const setF=(base,val)=>{ if(!i) return; const f=F(base)+i, fam=xmlFamOf(f);
+      if(fam){ cc[fam]=val; try{ const v=findVar(fam); if(v){ v.options=v.options||[]; if(v.options.indexOf(val)<0) v.options.push(val); } }catch(e){} }
+      if(Object.prototype.hasOwnProperty.call(cc,f)) cc[f]=val; };
+    let c=code;
+    if(c==null){ const cur=(d._pulls||[])[0]; if(!cur) return; let lv=null; try{ lv=pullLive(d,cur); }catch(e){}
+      c=String((lv&&lv.code)||cur.code||"").trim(); if(!c||pullIsNo(c)) return; }
+    if(!c){ if((d._pulls||[]).length) n++; delete d._pulls; setF("pullField","NoPull"); return; }
+    const pl=plpPlace(d,plpInfo(c),pm,om);
+    d._pulls=[{code:c, ori:pl.ori, pos:pl.pos, X:String(pl.X), Y:String(pl.Y), X0:pl.X, Y0:pl.Y, xi:i, _pl:{pm:pm||"auto", om:om||"auto"}}];
+    setF("pullField",c); setF("pullOriField",pl.ori); setF("pullPosField",pl.pos); n++; }); });
+  return n; }
+/* รุ่นที่ใช้อยู่ในขอบเขต — {code: จำนวนบาน} ("" = ไม่มี) */
+function plpUsage(insts){ const u={}, done=new Set();
+  (insts||[]).forEach(inst=>plpDoors(inst).forEach(({d})=>{ if(!d||done.has(d.id)) return; done.add(d.id);
+    const cur=(d._pulls||[])[0]; let c="";
+    if(cur){ try{ const lv=pullLive(d,cur); c=String((lv&&lv.code)||"").trim(); }catch(e){ c=String(cur.code||""); } if(pullIsNo(c)) c=""; }
+    u[c]=(u[c]||0)+1; }));
+  return {u, n:done.size}; }
+/* ── รูปย่อ: มือจับจริงจากตัววาด 3D บนแผ่นบานสั้น ๆ · ไม่มี 3D/ไม่มีรู = รูปวาด 2D ── */
+function plpKey(code){ const el=pullFitEl(code)||{}, def=pullDef(code)||{};
+  return [code,el.pull3D,el.pullFinish,el.pullDia,el.pullH,el.pullLen,el.pullLeg,el.pullT,def.drill,def.pocket].map(v=>String(v==null?"":v)).join("|"); }
+function plpIcon2D(code){ const cv=document.createElement("canvas"); cv.width=cv.height=200; const g=cv.getContext("2d");
+  g.fillStyle="#f3f4f6"; g.fillRect(0,0,200,200); g.fillStyle="#ebe8e2"; g.fillRect(18,40,164,120); g.strokeStyle="#c9c5bd"; g.strokeRect(18.5,40.5,163,119);
+  if(!code){ g.strokeStyle="#9aa0aa"; g.lineWidth=3; g.beginPath(); g.arc(100,100,22,0,Math.PI*2); g.moveTo(84,116); g.lineTo(116,84); g.stroke(); return cv.toDataURL("image/png"); }
+  const info=plpInfo(code), el=pullFitEl(code), P=PULL_FINISH[String(pullFinishOf(el)).toLowerCase()]||{c:"#c9a86a"}, s=Math.min(1.1,140/Math.max(info.len,40));
+  if(info.pocket){ g.fillStyle="#5d6068"; g.fillRect(100-info.len*s/2,94,info.len*s,12); return cv.toDataURL("image/png"); }
+  if(info.knob){ const r=Math.max(info.len*s/2,10), gr=g.createRadialGradient(94,94,2,100,100,r); gr.addColorStop(0,"#fff"); gr.addColorStop(.5,P.c); gr.addColorStop(1,"#555");
+    g.fillStyle=gr; g.beginPath(); g.arc(100,100,r,0,Math.PI*2); g.fill(); return cv.toDataURL("image/png"); }
+  const w=info.len*s, gr=g.createLinearGradient(0,92,0,108); gr.addColorStop(0,"#fff"); gr.addColorStop(.45,P.c); gr.addColorStop(1,"#555");
+  g.fillStyle=gr; g.beginPath(); g.moveTo(100-w/2+6,93); g.lineTo(100+w/2-6,93); g.arc(100+w/2-6,100,7,-Math.PI/2,Math.PI/2); g.lineTo(100-w/2+6,107); g.arc(100-w/2+6,100,7,Math.PI/2,Math.PI*1.5); g.fill();
+  return cv.toDataURL("image/png"); }
+function plpShots(codes){ const out={};
+  if(typeof noGL!=="undefined"&&noGL||!renderer||typeof THREE==="undefined"){ codes.forEach(c=>{ out[c]=plpIcon2D(c); }); return out; }
+  const keep={pr:renderer.getPixelRatio(), sz:renderer.getSize(new THREE.Vector2())}, junk=[];
+  try{ renderer.setPixelRatio(1); renderer.setSize(200,200,false);
+    codes.forEach(code=>{ let url="";
+      try{ const def=pullDef(code), info=plpInfo(code); let hs=[];
+        try{ hs=parseDrillSpec(_pullSpecC((def&&def.drill)||""),0,0,18); }catch(e){}
+        if(!def||!hs.length||settings.pull3D===false){ out[code]=plpIcon2D(code); return; }
+        const Ld=Math.max(info.len*1.6,150), Wd=Math.max(Ld*0.55,90), T=18;
+        const d={id:"__plpv", cab:"", cabInst:"__plpv", name:"Door", L:Ld, W:Wd, T, x:0, y:0, z:0, orient:"front", yaw:0, holes:[]}, add=[];
+        _pull3D(d,{code, ori:"H", pos:"Center", X:0, Y:0},0,hs,{x:0,y:0},false,add);
+        const sc=new THREE.Scene(); sc.background=new THREE.Color("#f3f4f6");
+        sc.add(new THREE.HemisphereLight(0xffffff,0x9a958c,0.75));
+        const dl=new THREE.DirectionalLight(0xffffff,0.85); dl.position.set(0.5,0.9,1.2); sc.add(dl);
+        const dg=new THREE.BoxGeometry(Ld,Wd,T), dm=new THREE.MeshStandardMaterial({color:new THREE.Color("#ebe8e2"), roughness:.65, metalness:0}); junk.push(dg,dm);
+        sc.add(new THREE.Mesh(dg,dm));
+        let zt=T/2;
+        add.forEach(p=>{ let g=null; try{ g=p._shape?shapeLocalGeo(p):new THREE.BoxGeometry(Math.max(+p.L||2,2),Math.max(+p.W||2,2),Math.max(+p.T||2,2)); g.applyMatrix4(orientMatrix(p.orient,p.yaw)); }catch(e){ g=null; }
+          if(!g) return; junk.push(g); const m=new THREE.Mesh(g,p._metal?metalMat(p._metal):(p._hex?hexMat(p._hex):new THREE.MeshStandardMaterial({color:0x999999}))); m.position.set(p.x,p.y,p.z); sc.add(m);
+          zt=Math.max(zt,(+p.z||0)+(+p.T||0)/2); });
+        const S=Math.max(info.len,60)*1.3, fov=26, cam=new THREE.PerspectiveCamera(fov,1,1,20000), tg=new THREE.Vector3(0,0,(T/2+zt)/2);
+        const dist=S/2/Math.tan(fov*Math.PI/360)*1.08, dir=new THREE.Vector3(0.42,0.38,1).normalize();
+        cam.position.copy(tg).addScaledVector(dir,dist); cam.lookAt(tg); cam.updateProjectionMatrix(); cam.updateMatrixWorld(true);
+        renderer.render(sc,cam); url=renderer.domElement.toDataURL("image/png");
+      }catch(e){ console.warn("plpShot:",e); }
+      out[code]=url||plpIcon2D(code); });
+  }catch(e){ console.warn("plpShots:",e); }
+  finally{ junk.forEach(x=>{ try{ x.dispose(); }catch(e){} }); renderer.setPixelRatio(keep.pr); renderer.setSize(keep.sz.x,keep.sz.y,false);
+    try{ camera.aspect=innerWidth/innerHeight; camera.updateProjectionMatrix(); }catch(e){} try{ invalidate(); }catch(e){} }
+  return out; }
+function plPullClose(){ if(PLPU.el){ PLPU.el.remove(); PLPU.el=null; } }
+function plPullCSS(){
+  if($("plpuCSS")) return; const st=document.createElement("style"); st.id="plpuCSS"; st.textContent=
+    "#plPull{position:fixed;z-index:470;width:500px;max-width:94vw;max-height:80vh;display:flex;flex-direction:column;background:var(--solid,#fff);color:var(--ink,#111);border-radius:14px;box-shadow:0 22px 60px -14px rgba(0,0,0,.5);overflow:hidden;font-size:12px}"
+    +"#plPull .ppHd{display:flex;align-items:center;gap:8px;padding:10px 12px;border-bottom:1px solid var(--line)}"
+    +"#plPull .ppOpt{display:flex;gap:6px;flex-wrap:wrap;align-items:center;padding:8px 12px 0}"
+    +"#plPull .ppOpt b{font-weight:600;min-width:46px;color:var(--ink-dim)}"
+    +"#plPull .ppOpt button{padding:3px 10px;border-radius:99px;border:1px solid var(--line);background:none;color:inherit;cursor:pointer;font-size:11.5px}"
+    +"#plPull .ppOpt button.on{background:var(--accent);border-color:var(--accent);color:#fff}"
+    +"#plPull .ppGrid{overflow:auto;padding:10px 12px 12px;display:grid;grid-template-columns:repeat(3,1fr);gap:10px}"
+    +"#plPull .ppT{cursor:pointer;border:2px solid var(--line);border-radius:12px;padding:5px;display:flex;flex-direction:column;gap:3px;min-width:0;background:var(--solid,#fff)}"
+    +"#plPull .ppT:hover{border-color:var(--accent)}#plPull .ppT.on{border-color:var(--accent);box-shadow:0 0 0 2px color-mix(in srgb,var(--accent) 30%,transparent)}"
+    +"#plPull .ppSw{aspect-ratio:1;border-radius:8px;background:#f3f4f6 center/cover no-repeat;display:flex;align-items:center;justify-content:center;color:var(--ink-dim);font-size:10px;text-align:center}"
+    +"#plPull .ppT b{font-size:11.5px;line-height:1.3;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;min-height:30px}"
+    +"#plPull .ppT small{font-size:10px;color:var(--ink-dim);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}"
+    +"#plPull .ppT .ppUse{font-size:10px;color:var(--accent);font-weight:600;min-height:13px}";
+  document.head.appendChild(st); }
+function plPullOpen(inst,x,y){
+  if(snOff("plPull")) return;
+  plPullClose(); try{ plColorClose(); }catch(e){}
+  const whole=!inst; if(whole&&!Object.keys(plCabMap()).length){ toast("ยังไม่มีตู้ในห้อง"); return; }
+  const code=inst?((plBoardsOf(inst).find(b=>b.cab)||{}).cab||""):"ทั้งห้อง";
+  const targets=()=>(whole||PLPU.all)?Object.keys(plCabMap()):[String(inst)];
+  if(PLPU.inst!==inst){ PLPU.q=""; const d0=targets().map(i=>plpDoors(i).map(r=>r.d)).flat().find(d=>d&&(d._pulls||[])[0]&&d._pulls[0]._pl);
+    if(d0){ PLPU.pm=d0._pulls[0]._pl.pm||"auto"; PLPU.om=d0._pulls[0]._pl.om||"auto"; } }
+  PLPU.inst=inst; plPullCSS();
+  const el=document.createElement("div"); el.id="plPull"; document.body.appendChild(el); PLPU.el=el;
+  const W=Math.min(500,innerWidth*0.94), H=Math.min(innerHeight*0.8,640);
+  el.style.left=Math.max(8,Math.min((x!=null?x:innerWidth/2-W/2),innerWidth-W-8))+"px";
+  el.style.top=Math.max(8,Math.min((y!=null?y:100),innerHeight-H-8))+"px";
+  const list=plpList(); let hid=0; try{ hid=Math.max(pullDefs().length-list.length,0); }catch(e){}
+  const apply=(c,msg)=>{ const cam=plCamKeep(); const n=plPullApply(targets(),c,PLPU.pm,PLPU.om); sync(0); plCamPut(cam);
+    try{ if(inst) plSelect(inst); else plPanelSel(); }catch(e){}
+    try{ costSchedule(); }catch(e){}
+    toast(msg+" · "+n+" บาน"+((whole||PLPU.all)?" (ทั้งห้อง)":"")); draw(); };
+  const draw=()=>{
+    const us=plpUsage(targets()), q=String(PLPU.q||"").trim().toLowerCase(), e=v=>escapeHtml(String(v==null?"":v));
+    const items=list.filter(d=>!q||String(d.code).toLowerCase().indexOf(q)>=0||plpName(d.code).toLowerCase().indexOf(q)>=0);
+    const chip=(k,v,lbl,cur,tt)=>'<button data-'+k+'="'+v+'" class="'+(cur===v?"on":"")+'"'+(tt?' title="'+e(tt)+'"':'')+'>'+lbl+'</button>';
+    const card=(c,nm,sub,i)=>{ const n=us.u[c]||0, on=n>0&&(n===us.n);
+      return '<div class="ppT'+(on?" on":"")+'" data-i="'+i+'" title="'+e(c?(c+" · "+nm):nm)+'"><div class="ppSw" data-c="'+e(c)+'">…</div><b>'+e(nm)+'</b><small>'+e(sub)+'</small>'
+        +'<div class="ppUse">'+(n?("✓ ใช้อยู่ "+n+(us.n>1?("/"+us.n):"")+" บาน"):"")+'</div></div>'; };
+    const sub=c=>{ const info=plpInfo(c), el2=pullFitEl(c), fin=(PULL_FINISH[String(pullFinishOf(el2)).toLowerCase()]||{}).th||"";
+      return [c, info.pocket?"เซาะร่องในบาน":info.knob?"ปุ่มจับ":(info.span?("ระยะรู "+info.span):""), fin].filter(Boolean).join(" · "); };
+    el.innerHTML='<div class="ppHd"><b style="font-size:13.5px">🖐 มือจับ — '+e(code)+'</b>'
+        +(whole?'':'<label style="margin-left:auto;display:flex;gap:4px;align-items:center;cursor:pointer" title="ใส่ให้ทุกตู้ในห้องที่มีบาน/ลิ้นชัก"><input type="checkbox" id="ppAll"'+(PLPU.all?" checked":"")+'> ทุกตู้</label>')
+        +'<button class="ibtn" id="ppX" style="flex:none;width:auto;padding:3px 9px'+(whole?';margin-left:auto':'')+'">✕</button></div>'
+      +'<div class="ppOpt"><b>ตำแหน่ง</b>'+chip("pm","auto","อัตโนมัติ",PLPU.pm,"ลิ้นชัก = กลางขอบบน · บานเปิด = ฝั่งตรงข้ามบานพับ (ตู้พื้นมุมบน · ตู้ลอยมุมล่าง · บานสูง ~1 ม. จากพื้น) · บานยก = กลางขอบล่าง")
+        +chip("pm","top","ชิดบน",PLPU.pm)+chip("pm","mid","กึ่งกลาง",PLPU.pm)+chip("pm","bot","ชิดล่าง",PLPU.pm)+'</div>'
+      +'<div class="ppOpt"><b>แนว</b>'+chip("om","auto","อัตโนมัติ",PLPU.om,"ลิ้นชัก/บานยก = นอน · บานเปิดข้าง = ตั้ง")+chip("om","H","นอน",PLPU.om)+chip("om","V","ตั้ง",PLPU.om)
+        +'<span style="margin-left:auto;color:var(--ink-dim)">'+(us.n?(us.n+" บาน/ลิ้นชัก"):"ไม่มีบาน")+'</span></div>'
+      +(list.length>8?('<div style="display:flex;padding:8px 12px 0"><input id="ppQ" placeholder="ค้นรหัส/ชื่อมือจับ ('+list.length+' รุ่น)" value="'+e(PLPU.q)+'" style="flex:1;padding:5px 8px"></div>'):'')
+      +(!us.n?('<div style="padding:16px 12px;color:var(--ink-dim);line-height:1.6">'+(whole?'ห้องนี้':'ตู้ใบนี้')+'ไม่มีบานหรือลิ้นชักให้ใส่มือจับ</div>')
+        :('<div class="ppGrid">'+card("","ไม่มีมือจับ","กดกระเด้ง / เซาะมือจับในตัวบาน",-1)
+          +items.map((d,i)=>card(d.code,plpName(d.code),sub(d.code),i)).join("")
+          +(!list.length?'<div style="grid-column:1/-1;color:var(--ink-dim);line-height:1.6">ยังไม่มีรุ่นมือจับที่ใส่สเปครู — เพิ่มที่ Element → Fittings (ชนิด = มือจับ · ช่องสเปครู เช่น s128,0,5,0,x)</div>':'')
+          +(hid?'<div style="grid-column:1/-1;color:var(--ink-dim);font-size:10.5px;line-height:1.5">อีก '+hid+' รุ่นยังไม่มีสเปครู จึงยังไม่ขึ้นที่นี่ — ใส่สเปครูที่ Element → Fittings แล้วจะเลือกได้</div>':'')+'</div>'));
+    el.querySelector("#ppX").onclick=plPullClose;
+    { const a=el.querySelector("#ppAll"); if(a) a.onchange=ev=>{ PLPU.all=ev.target.checked; draw(); }; }
+    el.querySelectorAll("[data-pm]").forEach(b=>b.onclick=()=>{ PLPU.pm=b.dataset.pm; if(Object.keys(us.u).some(c=>c)) apply(null,"🖐 จัดตำแหน่งมือจับใหม่"); else draw(); });
+    el.querySelectorAll("[data-om]").forEach(b=>b.onclick=()=>{ PLPU.om=b.dataset.om; if(Object.keys(us.u).some(c=>c)) apply(null,"🖐 จัดแนวมือจับใหม่"); else draw(); });
+    { const qi=el.querySelector("#ppQ"); if(qi) qi.oninput=()=>{ PLPU.q=qi.value; const p=qi.selectionStart; draw(); const q2=el.querySelector("#ppQ"); if(q2){ q2.focus(); try{ q2.setSelectionRange(p,p); }catch(e){} } }; }
+    el.querySelectorAll(".ppT").forEach(t=>t.onclick=()=>{ const i=+t.dataset.i; if(i<0) apply("","🖐 เอามือจับออก"); else { const d=items[i]; if(d) apply(d.code,"🖐 มือจับ "+d.code); } });
+    /* รูปย่อ: ทำทีเดียวเฉพาะรุ่นที่ยังไม่มีในแคช */
+    const sws=[...el.querySelectorAll(".ppSw")], need=[...new Set(sws.map(s=>s.dataset.c).filter(c=>c&&!PLPU.th[plpKey(c)]))];
+    if(need.length){ const got=plpShots(need); need.forEach(c=>{ PLPU.th[plpKey(c)]=got[c]||""; }); }
+    sws.forEach(s=>{ const c=s.dataset.c, u=c?PLPU.th[plpKey(c)]:(PLPU.th["__none"]||(PLPU.th["__none"]=plpIcon2D(""))); if(u){ s.style.backgroundImage='url("'+u+'")'; s.textContent=""; } else s.textContent=c; });
+  };
+  draw();
+}
+addEventListener("pointerdown",e=>{ if(PLPU.el&&!PLPU.el.contains(e.target)) plPullClose(); },true);
+addEventListener("keydown",e=>{ if(e.key==="Escape"&&PLPU.el) plPullClose(); });
 /* คลิกขวาในห้องออกแบบ: ไม่มีเมนูช่าง · โดนตู้ = กล่องเลือกสี */
 function plCtx(e){
   if(!PL.on||!renderer||e.target!==renderer.domElement) return;
