@@ -3281,7 +3281,7 @@ body[data-theme="dark"] .splash-dots span{background:rgba(255,255,255,.25)}
    ===================================================================== */
 /* ---- APP_META: แหล่งความจริงเดียวของเวอร์ชัน (ดูได้จาก console / คลิกชื่อแอป) ---- */
 const APP_META={
-  name:"StarNexus", version:"1.518", build:"2026-10-27/quote-co",
+  name:"StarNexus", version:"1.519", build:"2026-10-27/fg-ready",
   file:"StarNexus.html", basedOn:"Furnitech_V3.html (v3.11)",
   /* ───────── เริ่มนับเวอร์ชันใหม่ที่ 1.001 (21/08/2026) ─────────
      ของเดิมนับมาถึง 42.1 แล้ววิ่งเป็นทศนิยมสองชั้นซึ่งอ่านลำดับยาก
@@ -3289,6 +3289,7 @@ const APP_META={
      ประวัติเก่าเก็บไว้ทั้งหมดตามเลขเดิม ไม่ไล่เขียนใหม่ เพราะเลขในนั้นถูกอ้างถึงไปแล้ว
      รายการที่อยู่ใต้ 1.001 ลงไปจึงเป็นเลขชุดเก่า อ่านต่อกันได้ตามวันที่ */
   changelog:[
+    ["1.519","2026-10-27","FIX ① ถาดฟรอยด์ขึ้น “ถาดฟรอยด์ 535x854 — ยังไม่พบรหัส” ทั้งที่ Fitting Global มี 414CT0000158 (ผู้ใช้ 17:08 “ทำไมไม่เจอรหัส ตอนแรกยังเจออยู่เลย”) — เปิดผ่าน Odoo: Fitting Global ดึงจาก AX หลังโปรแกรมบูตเสร็จ แต่ถาดค้นรหัสตั้งแต่ตอนวางตู้ (ตารางยังว่าง) แล้วจำว่า “ไม่เจอ” ไว้ทั้งรอบ → ตัวค้นถาดรอ Fitting Global พร้อมก่อน (สูงสุด 3 นาที) · ทุกครั้งที่ Fitting Global โหลดเสร็จ/เปลี่ยน ล้างผล “ไม่เจอ” ของถาด/กระจก/ท่อนตัด แล้วค้นใหม่ + sync ให้เอง · ข้ามรายการที่ชื่อขึ้นต้น (ยกเลิก) · ขนาดเขียน 535 x 854 / 535×854 ก็เจอ ② หน้า 💰 ราคาทุน: ชื่อสินค้าใช้ชื่อจาก Fitting Global (ชื่อ AX ที่โปรแกรมดึงอยู่แล้ว เช่น FITLG00011 = อุปกรณ์ขาตู้ ชุดขาตู้สีดำ+แป้น ขนาด 100 mm.) — 1.518 ใช้คอลัมน์ name ของ StarStock ซึ่งเป็นคนละชื่อ (no Catalog FE-9070/100 …) (ผู้ใช้ 17:10 “ไปเอาชื่อที่ไหนมาใส่ครับ ในโปรแกรมมันก็ต่อชื่อรายการ AX มาอยู่แล้ว”) · ไม่พบใน Fitting Global ค่อยใช้ชื่อ StarStock · ปิด ① SN_OFF.fgRetry=1"],
     ["1.518","2026-10-27","FEAT ใบเสนอราคา + ราคาทุน (ผู้ใช้ 16:47 ส่ง BO69-0855 Memo + ใบเสนอราคาตัวอย่าง) ① หัวใบ: บริษัท สตาร์มาร์ค แมนูแฟคเชอริ่ง จำกัด · ที่อยู่ · โทร/แฟกซ์ · เลขประจำตัวผู้เสียภาษี ตามตัวอย่าง (เป็นค่าตั้งต้น แก้ได้ · เครื่องที่ยังไม่เคยกรอกชื่อ/ที่อยู่/เลขภาษีเติมให้) + เงื่อนไขตั้งต้นตามเอกสารจริง (ชำระ 40% วันสั่งซื้อ / 60% ก่อนติดตั้ง 7 วัน · ช่องทางชำระ · ไม่รวมงานไฟฟ้า/ประปา) แทนข้อความเดาเดิม (มัดจำ 50%) ② ตัดแถว “ชิ้นส่วน / อุปกรณ์อื่นในงาน” — ชิ้น/อุปกรณ์ที่ไม่อยู่ในตู้ใบไหน (ตู้จากกฎรายการเส้น ชิ้นไม่มีตู้ ฯลฯ) รวมเข้าราคาตู้: ชิดตู้ไหน (≤ 50 มม.) เข้าตู้นั้น · ไม่ชิดตู้ไหน = เฉลี่ยตามราคาตู้ · ในหน้าต่างบอกว่าตู้ไหนบวกเท่าไร (ไม่พิมพ์ลงใบ) ③ หน้า 💰 ราคาทุน: คอลัมน์ชื่อใช้ชื่อสินค้าจาก StarStock (AX) ถ้าพบรหัส · ชื่อเดิมใน SN ที่ต่างกันขึ้นเป็นบรรทัดจาง · ค้นหาด้วยชื่อ AX ได้ · CSV มีคอลัมน์ชื่อ AX · ปิด ② SN_OFF.plqMerge=1 · ปิด ③ SN_OFF.costStkName=1"],
     ["1.517","2026-10-27","UI หน้า Order: ซ่อนปุ่ม 📐 ตู้จาก imos (.fxf) และ 📚 เรียนมาโครจาก imos (ผู้ใช้ 16:27: “ปิด 2 ปุ่มนี้ให้ทีครับ”) — ซ่อนแค่ปุ่ม ลากไฟล์ .fxf / โฟลเดอร์ Imorder มาวางยังใช้ได้ · มาโครที่เรียนไว้ (settings.fxfMacLib) ยังใช้ตอนนำเข้า FXF เหมือนเดิม · ปุ่มกลับมา: SN_OFF.xiImosHide=1"],
     ["1.516","2026-10-27","UI โลโก้ Starmark (ไฟล์เดียวกับโปรแกรมตั้ง Code AX — starmark-warranty.github.io/Code-AX) ① หัวใบเสนอราคา: ขึ้นโลโก้ Starmark เป็นค่าตั้งต้น (เลือกรูปอื่น / ✕ เอาออก / ปุ่ม Starmark กลับมาใช้โลโก้บริษัท) ② หน้าดูงาน 3D (view.html / ไฟล์ดูงาน): หน้าโหลดมีโลโก้ + StarNexus · ดูงาน 3D + แถบวิ่ง แบบหน้าโหลดของ Code AX (เดิมมีแต่กล่อง “กำลังเปิดงาน 3D…”) — ลิงก์เก่าได้ด้วยเมื่อส่งลิงก์ครั้งถัดไป ③ หน้าโหลดโปรแกรม (มีโลโก้อยู่แล้วตั้งแต่ v9.89): ธีมมืดโลโก้เป็นกล่องขาวเหลี่ยมแข็ง → พื้นขาวมุมมนรองโลโก้ แบบ Code AX v1.2.1 · ปิด SN_OFF.snLogo=1"],
@@ -16673,22 +16674,53 @@ function sinkTrayCalc(all){
    หาไม่เจอ = ไม่เดารหัส แต่คืน null ให้ผู้เรียกไปเตือน */
 const _fgTray={};                       // cache: "535x554|9" -> {code,name}|null
 function sinkTrayKey(t){ return t.d+"x"+t.w+"|"+t.bt; }
+/* ───────── v1.519: ถาดฟรอยด์ “ยังไม่พบรหัส” ทั้งที่คลังมีรหัส ─────────
+   ผู้ใช้ 27/10 17:08: ตู้ซิงค์ B90 ขึ้น “ถาดฟรอยด์ 535x854 — ยังไม่พบรหัส” · ตอนแรกยังเจอ · Fitting Global (AX ผ่าน Odoo 17:05:09) มี 414CT0000158
+     “ถาดฟรอยด์ [SINK B90] ขนาด 535x854 mm. [แผ่นหลังตู้ 09 mm.]”
+   พัง: เปิดผ่าน Odoo ตาราง fitting_global ดึงจาก AX หลังบูตเสร็จ (sxlOdooFG ใน sxlWhenBooted) ไม่ใช่ตาราง defer ที่ตัวถามรอให้ได้
+     ตู้ที่โหลดตอนเปิดโปรแกรมคิดถาดก่อนตารางมา → ถามได้ error “ยังไม่ได้เลือกไฟล์” → บรรทัด _fgTray[key]=null จำว่า “ไม่เจอ” ไว้ทั้งรอบ ไม่ถามซ้ำอีก
+     (เปิดเร็ว/ช้าต่างกัน = บางครั้งเจอ บางครั้งไม่เจอ)
+   แก้: ① ตารางยังไม่พร้อม = รอ (เช็คทุก 1.5 วิ สูงสุด 3 นาที) แล้วค่อยถาม — ตัวเรียกไม่รอผลอยู่แล้ว (then → sync) จอไม่ค้าง
+        ② fgOnReady: ทุกครั้งที่ Fitting Global โหลดเสร็จ/เปลี่ยน ล้างผล “ไม่เจอ” ของถาด/กระจก/ท่อนตัด แล้วค้นใหม่ + sync
+        ③ ชื่อขึ้นต้น (ยกเลิก) ไม่เลือก ถ้ามีตัวที่ยังใช้ · ขนาดเขียน 535 x 854 / 535×854 ก็นับ
+   ปิด: SN_OFF.fgRetry=1 = แบบเดิม */
+const _fgTrayBusy=new Set();
+function fgTableReady(){ try{ const S=(typeof SXL!=="undefined"&&SXL&&SXL.s)?SXL.s.fitting_global:null; return !S||!!S.ready; }catch(e){ return true; } }
+async function fgWaitReady(ms){ const t0=Date.now(); while(!fgTableReady()&&Date.now()-t0<ms) await new Promise(r=>setTimeout(r,1500)); return fgTableReady(); }
+function fgOnReady(){
+  if(snOff("fgRetry")) return 0; let n=0;
+  Object.keys(_fgTray).forEach(k=>{ if(!_fgTray[k]&&!_fgTrayBusy.has(k)){ delete _fgTray[k]; n++; } });
+  try{ Object.keys(_glassKindByPre).forEach(k=>{ if(!_glassKindByPre[k]) delete _glassKindByPre[k]; }); }catch(e){}
+  try{ cutCacheClear(); }catch(e){}
+  try{ _costFgN=null; }catch(e){}
+  if(!(state.boards||[]).length) return n;
+  setTimeout(()=>{ try{ _cabFitSig=""; sync(0); }catch(e){ console.error("fgOnReady sync:",e); }
+    try{ cutLookupReady().then(()=>{ try{ _cabFitSig=""; sync(0); }catch(e){} }).catch(()=>{}); }catch(e){} },50);
+  return n; }
 async function sinkTrayLookup(t){
   const key=sinkTrayKey(t); if(_fgTray[key]!==undefined) return _fgTray[key];
-  _fgTray[key]=null;
+  _fgTray[key]=null; _fgTrayBusy.add(key);
   try{
+    if(!snOff("fgRetry")) await fgWaitReady(180000);   // v1.519 ①
     const sb=await getDB(); if(!sb) return null;
     const kw=String(settings.sinkTrayKeyword||"ถาดฟรอยด์").trim();
-    const r=await sb.from("fitting_global").select("item_number,product_name,unit")
+    let r=await sb.from("fitting_global").select("item_number,product_name,unit")
       .ilike("product_name","%"+t.d+"x"+t.w+"%").limit(20);
+    /* v1.519 ③: “535 x 854” · “535×854” · “535X854” */
+    if(!snOff("fgRetry")&&r&&!r.error){   // ค้นแบบหลวมเพิ่ม แล้วรวมกับผลเดิม (ตัวที่เขียน 535x854 อาจเป็นตัวยกเลิก ส่วนตัวใหม่เขียน 535 x 854)
+      const re=new RegExp("(^|[^0-9])"+t.d+"\\s*[x×X*]\\s*"+t.w+"([^0-9]|$)");
+      const r2=await sb.from("fitting_global").select("item_number,product_name,unit").ilike("product_name","%"+t.d+"%"+t.w+"%").limit(300);
+      if(r2&&!r2.error){ const seen=new Set((r.data||[]).map(x=>String(x.item_number))); r={data:(r.data||[]).concat((r2.data||[]).filter(x=>!seen.has(String(x.item_number))&&re.test(String(x.product_name||""))))}; } }
     if(r.error||!r.data||!r.data.length) return null;
     let rows=r.data.filter(x=>String(x.product_name||"").indexOf(kw)>=0);
     if(!rows.length) rows=r.data;
+    if(!snOff("fgRetry")){ const live=rows.filter(x=>!/^\s*"?\s*\(?\s*ยกเลิก/.test(String(x.product_name||""))); if(live.length) rows=live; }   // v1.519 ③
     const tag9=rows.filter(x=>/แผ่นหลัง[^0-9]*0?9/.test(String(x.product_name||"")));
     const pick=(t.bt===9&&tag9.length)?tag9[0]:(rows.find(x=>!/แผ่นหลัง/.test(String(x.product_name||"")))||rows[0]);
     _fgTray[key]={code:String(pick.item_number||"").trim(), name:String(pick.product_name||""), unit:String(pick.unit||"")};
     return _fgTray[key];
   }catch(e){ console.error("sinkTrayLookup:",e); return null; }
+  finally{ _fgTrayBusy.delete(key); }
 }
 function _basketBoards(cx,cy,cz,bw,bh,bd,cabRaw,cabInst,code,fid){
   const tw=15, half=tw/2;
@@ -28740,6 +28772,7 @@ function boardRole(b){
      SN_OFF.xiImosHide=1  หน้า Order กลับมามีปุ่ม 📐 ตู้จาก imos (.fxf) และ 📚 เรียนมาโครจาก imos (v1.517 ซ่อนไว้ — ลากไฟล์มาวางใช้ได้ทั้งสองแบบ)
      SN_OFF.plqMerge=1    ใบเสนอราคากลับมามีแถว “ชิ้นส่วน / อุปกรณ์อื่นในงาน” แยก (ไม่รวมเข้าราคาตู้) (v1.518)
      SN_OFF.costStkName=1 หน้า 💰 ราคาทุน คอลัมน์ชื่อใช้ชื่อใน SN อย่างเดียว ไม่เอาชื่อสินค้าจาก StarStock (v1.518)
+     SN_OFF.fgRetry=1     ถาดฟรอยด์ไม่รอ Fitting Global · โหลด Fitting Global เสร็จไม่ล้างผล “ไม่เจอ” ไม่ค้นใหม่ (แบบก่อน 1.519)
      SN_OFF.fxfIn=1       ไม่รับไฟล์ FXF ของ imos (ไม่มีปุ่ม 📐 ในหน้า Order · ลากไฟล์ .fxf มาวางที่ฉากตกไปตัวอ่าน DXF แบบเดิม · ชิ้น _fxf ในงานเก่ายังไม่ถูกตัวซ่อมแตะ) (v1.499)
      SN_OFF.fxfMpr=1      ไฟล์เจาะของชิ้นจาก FXF ออกแบบ 1.499 (ร่องเข้าไฟล์ · BM=LS · ไม่มี S_ / SIDE1 · เลขชิ้นนับตามลำดับฉาก · แตกมาโครแบบเดา + ปัด 0.1 สำหรับการนำเข้าครั้งถัดไป — ชิ้นที่นำเข้าไปแล้วรูไม่เปลี่ยน) (v1.500)
                           รวมของ v1.501: มาโคร D3_T12 / H1 / L_IT_Box · รูทะลุไปฝั่ง 2 · ขนาด 0.01 · ZA d-ระยะ
@@ -36863,11 +36896,28 @@ function stkCell(kind,x){
    เดิม: คอลัมน์ชื่อ = คำอธิบายใน Element ของ SN — รายการที่ไม่ได้ลง Element ขึ้นเป็นรหัสซ้ำ (414CT0000158 · ETCP001 …) ดูไม่ออกว่าคืออะไร
    ตอนนี้: พบรหัสใน items/info.csv ของ StarStock = ชื่อสินค้า AX เป็นบรรทัดหลัก · ชื่อใน SN ที่ไม่ซ้ำกับชื่อ AX/รหัส ขึ้นเป็นบรรทัดจาง “SN: …”
      ไม่พบใน AX = ชื่อใน SN เหมือนเดิม · ไม่แตะข้อมูล Element · ปิด SN_OFF.costStkName=1 */
-function costAxName(kind,x){ if(snOff("costStkName")) return ""; try{ const r=stkFor(kind,x.key,x.code); return r?String(r.e.name||"").trim():""; }catch(e){ return ""; } }
-function costNameCell(kind,x){ const sn=String(x.name||"").trim(), ax=costAxName(kind,x);
+/* ───────── v1.519: ชื่อ AX เอาจาก Fitting Global ─────────
+   ผู้ใช้ 17:10 (ภาพ FITLG00011 ใน Fitting Global = “อุปกรณ์ขาตู้ ชุดขาตู้สีดำ+แป้น ขนาด 100 mm.” แต่หน้าราคาทุนขึ้น “no Catalog FE-9070/100 Leg length …”):
+     “ไปเอาชื่อที่ไหนมาใส่ครับ ในโปรแกรมมันก็ต่อชื่อรายการ AX มาอยู่แล้ว”
+   เดิม (1.518): ชื่อจากคอลัมน์ name ใน items/info.csv ของ StarStock — เป็นคนละชื่อกับ ItemName ของ AX
+   ตอนนี้: ค้นรหัสใน Fitting Global (ตาราง fitting_global ที่โปรแกรมดึงจาก AX อยู่แล้ว · ทำดัชนีครั้งเดียวต่อชุดข้อมูล) ก่อน
+     ไม่พบ/ตารางยังไม่พร้อม ค่อยใช้ชื่อ StarStock · ปิดทั้งคู่ SN_OFF.costStkName=1 */
+let _costFgN=null;
+function costFgName(code){ const k=String(code||"").replace(/@m$/,"").trim().toUpperCase(); if(!k) return "";
+  let S=null; try{ S=(typeof SXL!=="undefined"&&SXL&&SXL.s)?SXL.s.fitting_global:null; }catch(e){} if(!S||!S.ready) return "";
+  const rows=S.rows||S.base||[], sig=String(S.sig||"")+"|"+rows.length;
+  if(!_costFgN||_costFgN.sig!==sig){ const m=new Map(); rows.forEach(r=>{ const c=String((r&&r.item_number)||"").trim().toUpperCase(); if(c&&!m.has(c)) m.set(c,String(r.product_name||"").replace(/^"+|"+$/g,"").trim()); }); _costFgN={sig,m}; }
+  return _costFgN.m.get(k)||""; }
+function costAxInfo(kind,x){ if(snOff("costStkName")) return {n:"",src:""};
+  let r=null; try{ r=stkFor(kind,x.key,x.code); }catch(e){}
+  const cands=[x.key,x.pid,x.code,r&&r.hit].filter(Boolean);
+  for(const c of cands){ const n=costFgName(c); if(n) return {n,src:"fg"}; }
+  return r&&String(r.e.name||"").trim()?{n:String(r.e.name).trim(),src:"stk"}:{n:"",src:""}; }
+function costAxName(kind,x){ return costAxInfo(kind,x).n; }
+function costNameCell(kind,x){ const sn=String(x.name||"").trim(), ai=costAxInfo(kind,x), ax=ai.n;
   if(!ax) return escapeHtml(sn);
   const same=v=>String(v||"").trim().toUpperCase(), dup=!sn||[ax,x.key,String(x.key||"").replace(/@m$/,""),x.code,x.pid].some(v=>same(v)===same(sn));
-  return '<span title="ชื่อสินค้าใน AX (StarStock)">'+escapeHtml(ax)+'</span>'+(dup?'':('<div style="font-size:10.5px;color:var(--ink-dim)" title="ชื่อใน Element ของ SN">SN: '+escapeHtml(sn)+'</div>')); }
+  return '<span title="'+(ai.src==="fg"?"ชื่อสินค้าใน AX (Fitting Global)":"ชื่อจาก StarStock (ไม่พบรหัสนี้ใน Fitting Global)")+'">'+escapeHtml(ax)+'</span>'+(dup?'':('<div style="font-size:10.5px;color:var(--ink-dim)" title="ชื่อใน Element ของ SN">SN: '+escapeHtml(sn)+'</div>')); }
 const COST_TABS={fit:{n:"Fitting",u:"ราคา/หน่วย"},mat:{n:"ไม้ (แผ่น)",u:"ราคา/ตร.ม."},surf:{n:"ผิว",u:"ราคา/ตร.ม./ด้าน"},edge:{n:"ขอบ",u:"ราคา/เมตร"}};
 function costCfg(){ let c=settings.costs; if(!c||typeof c!=="object") c=settings.costs={};
   ["fit","mat","surf","edge"].forEach(k=>{ if(!c[k]||typeof c[k]!=="object") c[k]={}; });
@@ -37072,7 +37122,7 @@ function costEditor(opt){
   Q("#cpCsv").onclick=()=>{ const L=[...used[tab].values()].filter(x=>!costHas(tab,x.key,x.code));
     if(!L.length){ toast("ไม่มีรายการที่ยังไม่มีราคาใน"+COST_TABS[tab].n); return; }
     const cs=v=>{ const s=String(v==null?"":v); return /[",\r\n]/.test(s)?'"'+s.replace(/"/g,'""')+'"':s; };
-    const csv="รหัส,ชื่อ,ชื่อ AX (StarStock),รหัส Element,หน่วย,ใช้ในงานนี้,ราคา AX (StarStock),ราคา\n"+L.map(x=>{ const r=stkFor(tab,x.key,x.code); return [x.key,x.name,costAxName(tab,x),x.code,x.unit,fmtQ(x,tab),r?stkTxt(r):"",""].map(cs).join(","); }).join("\n");   // v1.514 · v1.518: + ชื่อ AX
+    const csv="รหัส,ชื่อ,ชื่อ AX,รหัส Element,หน่วย,ใช้ในงานนี้,ราคา AX (StarStock),ราคา\n"+L.map(x=>{ const r=stkFor(tab,x.key,x.code); return [x.key,x.name,costAxName(tab,x),x.code,x.unit,fmtQ(x,tab),r?stkTxt(r):"",""].map(cs).join(","); }).join("\n");   // v1.514 · v1.518: + ชื่อ AX
     download("ราคาทุน-"+COST_TABS[tab].n.replace(/[^\wก-๙]+/g,"")+"-ที่ยังไม่มี.csv","\uFEFF"+csv,"text/csv"); };
   paint();
   return ov; }
@@ -57969,6 +58019,7 @@ sxlInit({
   if((ch.has('app_settings')||ch.has('furnitech_cabinets'))&&(state.boards||[]).length){
    try{_skinWarned={}}catch(e){}try{refreshSkins(true)}catch(e){console.error('refreshSkins:',e)}}
   if(ch.has('xml_history')){try{var m=document.getElementById('xmlImportModal');if(m&&getComputedStyle(m).display!=='none')renderXmlImport()}catch(e){}}
+  if(ch.has('fitting_global')){try{if(typeof fgOnReady==='function')fgOnReady()}catch(e){console.error('fgOnReady:',e)}}   /* v1.519: Fitting Global มาทีหลัง (AX ผ่าน Odoo / Drive เบื้องหลัง) → ค้นรหัสที่เคยไม่เจอใหม่ */
   return st},
  onRender:function(){
   try{texImgDirCheck()}catch(e){}   // v1.299-local.7: เพิ่งเชื่อมโฟลเดอร์ → รูปลายผิวใน textures/ ขึ้นเอง
