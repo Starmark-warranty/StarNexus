@@ -3281,7 +3281,7 @@ body[data-theme="dark"] .splash-dots span{background:rgba(255,255,255,.25)}
    ===================================================================== */
 /* ---- APP_META: แหล่งความจริงเดียวของเวอร์ชัน (ดูได้จาก console / คลิกชื่อแอป) ---- */
 const APP_META={
-  name:"StarNexus", version:"1.527", build:"2026-10-27/mat-door",
+  name:"StarNexus", version:"1.528", build:"2026-10-27/real-room",
   file:"StarNexus.html", basedOn:"Furnitech_V3.html (v3.11)",
   /* ───────── เริ่มนับเวอร์ชันใหม่ที่ 1.001 (21/08/2026) ─────────
      ของเดิมนับมาถึง 42.1 แล้ววิ่งเป็นทศนิยมสองชั้นซึ่งอ่านลำดับยาก
@@ -3289,6 +3289,7 @@ const APP_META={
      ประวัติเก่าเก็บไว้ทั้งหมดตามเลขเดิม ไม่ไล่เขียนใหม่ เพราะเลขในนั้นถูกอ้างถึงไปแล้ว
      รายการที่อยู่ใต้ 1.001 ลงไปจึงเป็นเลขชุดเก่า อ่านต่อกันได้ตามวันที่ */
   changelog:[
+    ["1.528","2026-10-27","FEAT+FIX โหมดสมจริงกับห้องออกแบบ (ผู้ใช้ 21:13 ภาพห้องออกแบบ + ภาพโหมดสมจริง: “โหมดสมจริงน่าจะต้องอยู่ที่โหมดห้องออกแบบ · ตำแหน่งผนังหลังกดโหมดสมจริงในห้องออกแบบ ตู้ต้องอยู่ที่เดิม อันนี้เหมือนตู้เลื่อนออกมา · เพิ่มปุ่มบันทึกภาพตอนอยู่โหมดห้องออกแบบ ไปเอาภาพของโหมดสมจริง · ที่กดบันทึกภาพแสงจริงดูไม่ละเอียดเท่าตอนแคปรูป”) — ① เปิดโหมดสมจริงตอนอยู่ห้องออกแบบ = ห้องจริงใช้ผนัง/ขนาด/ความสูงฝ้าของห้องออกแบบ (เดิมสร้างห้องใหม่รอบกล่องตู้: ผนังซ้าย-ขวาห่างตู้ ≥ 1.1 ม. หน้าตู้โล่ง 2.6 ม. ห้องไม่ตรงกับที่ออกแบบ ตู้มุม/ตู้ชิดผนังข้างจึงดูลอยออกจากผนัง) · หน้าต่างอยู่ผนังซ้ายช่วงที่ไม่มีตู้ (ผนังซ้ายเต็มตู้ = ไม่มีหน้าต่าง) · ② แผงห้องออกแบบ (ท้ายแผง) มีปุ่ม ✨ โหมดสมจริง และ 📷 บันทึกภาพ · ③ 📷 บันทึกภาพ = ภาพโหมดสมจริงแบบที่เห็นบนจอ (เงามุม แสง ห้อง) วาดใหม่ความละเอียดสูง (ด้านยาว ~3,200 px · ไม่ติดเส้นเลือก/ป้าย/ระยะ) บันทึกเป็น JPG — กดจากห้องออกแบบตอนยังไม่เปิดสมจริง = เปิดให้ ถ่าย แล้วกลับมาเหมือนเดิม · มีปุ่มนี้ในแถบโหมดสมจริงด้วย (📸 ภาพแสงจริงแบบยิงแสงยังอยู่) · ปิด SN_OFF.realPlRoom=1 (ห้องสร้างรอบตู้แบบเดิม) · SN_OFF.realSnap=1 (ไม่มีปุ่ม 📷)"],
     ["1.527","2026-10-27","UX+FEAT ใบเสนอราคา/ท็อป (ผู้ใช้ 21:04–21:05: “รายการวัสดุเป็นกระดาษแนวนอน 1 หน้า เว้นแต่มีวัสดุเยอะขึ้นก็ขึ้นหน้า 2 แต่ไม่เอาอะไรมาปนต่อให้ขึ้นหน้า 1 ไปแค่ 1 วัสดุ” · “ดีไซน์หน้าบานต้องเอาแบบบานมาแสดง เช่น Exxx01 บานเรียบก็แค่ 4 เหลี่ยมผืนผ้า Section ข้างก็แค่ 4 เหลี่ยมด้านข้าง” · “กระจกใส่หนาได้ด้วย”) — ① หน้ารวมวัสดุ = A4 แนวนอน หน้าละ 10 ช่อง (5×2) เฉพาะวัสดุ ไม่ปนภาพอื่น · เกิน 10 ขึ้นหน้าใหม่ (หัวหน้า “(ต่อ)”) · ② ดีไซน์หน้าบาน: แยกตามรหัสแบบบาน (ค่า FrontShape เช่น Exxx01 — เดิมแยกตาม Part ลิงก์ FrontShapeP1/P2/P3) · ชื่อ = รหัส + คำอธิบายใน Element · ภาพ = เส้นแบบบาน ด้านหน้า + Section ข้าง (บานเรียบ = สี่เหลี่ยม · ลาย doorReliefMap = เส้นร่อง/ร่องในภาพตัด · เพ · สันเป็นหน้าตัด · ช่องกระจก/เฟรมอลู) แทนภาพถ่าย 3D · ปิด SN_OFF.dwgDoorLine=1 · ③ ผนังเหนือท็อปแบบกระจก เลือกความหนาได้ 4/5/6/8/10/12 มม. (เดิม 6 ตายตัว) — ชื่อในใบเสนอราคา/แบบ · 3D · ราคาทุน/ตร.ม. จำแยกตามชนิด+ความหนา"],
     ["1.526","2026-10-27","UX พิมพ์ใบเสนอราคา (ผู้ใช้ 21:00 ภาพท้าย PDF มีลิงก์ https://c1stmdev.stmm.work/nexus/starnexus: “ไม่ต้องแนบ link หลังปริ้น PDF · ที่เป็นแบบ ให้กระดาษเป็นแนวนอน”) — ① ลิงก์/วันที่/ชื่อหน้า ที่เบราว์เซอร์พิมพ์เองตรงขอบกระดาษหายไป — @page ขอบ 0 (เบราว์เซอร์ไม่มีที่วางหัว/ท้ายกระดาษ) แล้วเว้นขอบเอง: ข้าง 12 มม. · บน/ล่าง 12 มม. ทุกหน้า (หัว/ท้ายตารางซ้ำทุกหน้าเมื่อใบยาวหลายหน้า) · ② หน้าแบบ (แปลน · ด้านหน้า · Section · แปลนท็อป) = A4 แนวนอน หน้าละ 1 ภาพเต็มหน้า (เดิม A4 ตั้ง หน้าละ 2 ภาพ) หัวหน้ามีโลโก้/เลขที่/ลูกค้า + “แผ่น n/รวม” · หน้ารวมวัสดุยังเป็นแนวตั้ง · ตัวอย่างบนจอย่อหน้าแนวนอนให้พอดีกรอบ · ปิด SN_OFF.plqDwgLand=1 (แบบหน้าละ 2 ภาพแนวตั้ง)"],
     ["1.525","2026-10-27","UX แบบแนบใบเสนอราคา · Section (ผู้ใช้ 20:56 ภาพด้านหลัง เส้นตัด A/B/C ผ่านกลางตู้ทับเลขวงกลม/รหัส + A ตัดที่ฟิลเลอร์ WNF036/BNF001: “ปรับให้เส้นไม่ต้องอยู่กลางตู้ · พวก BNF กับ WNF ไม่ต้องตัด Section” · “TNF ด้วยครับ”) — ① ฟิลเลอร์ (รหัส BNF/WNF/TNF หรือชนิดฟิลเลอร์ในแคตตาล็อก) และแผ่นปิดข้าง ไม่เป็นจุดตัด ไม่นับในรูปตัดของตู้ข้าง ๆ · ② เส้นตัดอยู่ค่อนซ้ายของตู้ (20% ของช่วงที่ตัด อย่างน้อย 60 มม. จากขอบ) ไม่ผ่านเลขวงกลม/รหัสกลางตู้ · ตู้ 2 บานจึงตัดผ่านบาน ไม่ใช่ร่องกลางระหว่างบาน"],
@@ -18651,7 +18652,29 @@ function _realCabBox(){
   if(!n) return null;
   if(root&&root.position){ out.min.add(root.position); out.max.add(root.position); }
   return out; }
+/* ───────── v1.528: เปิดโหมดสมจริงในห้องออกแบบ = ใช้ห้องที่ออกแบบไว้ ─────────
+   ผู้ใช้ 27/10 21:13: “ตำแหน่งผนังหลังกดโหมดสมจริงในห้องออกแบบ ตู้ต้องอยู่ที่เดิม อันนี้เหมือนตู้เลื่อนออกมา”
+   เดิม (1.463): สร้างห้องใหม่รอบกล่องตู้ทุกครั้ง — ผนังหลังชิดตู้ แต่ผนังซ้าย/ขวาห่างตู้ ≥ 1.1 ม. หน้าตู้โล่ง ≥ 2.6 ม. ฝ้า ≥ 2.7 ม.
+     ห้องจึงคนละขนาดกับห้องออกแบบ ตู้ที่ชิดผนังข้าง/มุม L ห่างผนังออกมา ดูเหมือนตู้เลื่อน
+   ตอนนี้: ห้องออกแบบเปิดอยู่ = ผนังทั้ง 4 ด้าน + ฝ้า ตาม plRoom (x0 z0 w d h) · หน้าต่างผนังซ้ายช่วงที่ไม่มีตู้ชิด (กว้างพอ ≥ 900) ไม่พอ = ผนังทึบ
+   ปิด SN_OFF.realPlRoom=1 */
+function _realPlRoom(bx){
+  if(snOff("realPlRoom")||typeof PL==="undefined"||!PL||!PL.on) return null;
+  const r=plRoom(); if(!(+r.w>300&&+r.d>300)) return null;
+  const rp=(root&&root.position)?root.position:{x:0,y:0,z:0};
+  const x0=+r.x0+rp.x, x1=+r.x0+(+r.w)+rp.x, z0=+r.z0+rp.z, z1=+r.z0+(+r.d)+rp.z, y0=Math.min(rp.y,bx.min.y);
+  const y1=Math.max(y0+(+r.h||2600), bx.max.y+10), W=bx.max.x-bx.min.x, D=bx.max.z-bx.min.z;
+  const wh=Math.min(1500,(y1-y0)-1000), wyc=Math.min(y0+850+wh/2,y1-260-wh/2);
+  /* ช่วงผนังซ้ายที่ไม่มีของชิด (ลึก 700 จากผนัง) */
+  const occ=[]; (state.boards||[]).forEach(b=>{ if(!b||b._virtual||(state.hidden&&state.hidden.includes(b.id))) return; const d=worldDims(b);
+    if((+b.x||0)-d[0]/2+rp.x<x0+700&&(+b.y||0)+d[1]/2+rp.y>y0+400) occ.push([(+b.z||0)-d[2]/2+rp.z-60,(+b.z||0)+d[2]/2+rp.z+60]); });
+  occ.sort((a,b)=>a[0]-b[0]); let best=null, cur=z0+250;
+  occ.concat([[z1-250,z1-250]]).forEach(o=>{ const a=cur, b=Math.min(o[0],z1-250); if(b-a>0&&(!best||b-a>best[1]-best[0])) best=[a,b]; cur=Math.max(cur,o[1]); });
+  const gap=best?best[1]-best[0]:0;
+  const win=(gap>=900)?{zc:(best[0]+best[1])/2, w:Math.min(1600,gap-200), yc:wyc, h:wh}:{zc:(z0+z1)/2, w:0, yc:wyc, h:wh, none:true};
+  return {x0,x1,y0,y1,z0,z1,W,D,bx,win,pl:true}; }
 function _realRoomOf(bx){
+  { const pr=(typeof _realPlRoom==="function")?_realPlRoom(bx):null; if(pr) return pr; }   // v1.528 (หน้าดูงานไม่มี _realPlRoom/PL = ห้องรอบตู้แบบเดิม)
   const W=bx.max.x-bx.min.x, D=bx.max.z-bx.min.z;
   const mx=Math.max(1100,W*.35), x0=bx.min.x-mx, x1=bx.max.x+mx;
   const z0=bx.min.z-3, z1=bx.max.z+Math.max(2600,D*3.2);
@@ -18716,6 +18739,7 @@ function realBuildRoom(){
     box(wg,T,yhi-yt,zr-zl,wallM,X,(yt+yhi)/2,(zl+zr)/2);
     box(wg,T,yt-yb,za-zl,wallM,X,(yb+yt)/2,(zl+za)/2);
     box(wg,T,yt-yb,zr-zb,wallM,X,(yb+yt)/2,(zb+zr)/2);
+    if(!W0.none){   // v1.528: ผนังซ้ายเต็มตู้ = ไม่มีหน้าต่าง (ผนังทึบ)
     const F=55, FD=70;
     box(wg,FD,F,W0.w,frameM,X,yb+F/2,W0.zc); box(wg,FD,F,W0.w,frameM,X,yt-F/2,W0.zc);
     box(wg,FD,W0.h,F,frameM,X,W0.yc,za+F/2); box(wg,FD,W0.h,F,frameM,X,W0.yc,zb-F/2); box(wg,FD,W0.h,40,frameM,X,W0.yc,W0.zc);
@@ -18724,7 +18748,7 @@ function realBuildRoom(){
     gl.receiveShadow=false; gl.userData._rptSkip=true;
     // กล่องฟ้านอกหน้าต่าง: ให้มองจากในห้องเห็นฟ้าสว่าง · ไม่บังแดด · ภาพแสงจริงไม่ใช้ (ฟ้าคิดจริงทางช่องหน้าต่าง)
     const sk=box(wg,300,W0.h+60,W0.w+60,new THREE.MeshBasicMaterial({color:realLin(P.out).multiplyScalar(Math.min(P.win*.22,1.6))}),R.x0-T-152,W0.yc,W0.zc,true);
-    sk.receiveShadow=false; sk.userData._rptSkip=true;
+    sk.receiveShadow=false; sk.userData._rptSkip=true; }
     box(wg,SKT,SK,d,skirtM,R.x0+SKT/2,R.y0+SK/2,cz,true); }
   // ฝ้า + ดาวน์ไลท์
   { const wg=wall("ceil",[0,-1,0],[0,R.y1,0]); box(wg,w+2*T,T,d+2*T,ceilM,cx,R.y1+T/2,cz);
@@ -18944,10 +18968,12 @@ function realBarShow(on){
   el.innerHTML='<span class="rbT">✨ โหมดสมจริง</span><div class="rbSeg">'
     +Object.keys(REAL_PRESETS).map(k=>'<button data-p="'+k+'" title="แสงแบบ'+REAL_PRESETS[k].label+'">'+REAL_PRESETS[k].icon+' '+REAL_PRESETS[k].label+'</button>').join("")+'</div>'
     +(snOff("realPhoto")?'':'<button class="rbB rbPh" id="rbPhoto" title="ยิงแสงจริงทุกพิกเซลจากมุมกล้องนี้ (แสงสะท้อนผนัง/พื้นจริง) ภาพค่อย ๆ ชัด แล้วบันทึกเป็นรูป">📸 ถ่ายภาพแสงจริง</button>')
+    +(snOff("realSnap")?'':'<button class="rbB" id="rbSnap" title="บันทึกภาพแบบที่เห็นบนจอ ความละเอียดสูง (JPG)">📷 บันทึกภาพ</button>')   // v1.528
     +'<span class="rbNote"></span><button class="rbB" id="rbExit" title="กลับมุมมองทำงานปกติ">✕ ออก</button>';
   el.querySelectorAll("[data-p]").forEach(b=>b.onclick=()=>realSetPreset(b.dataset.p));
   const ph=el.querySelector("#rbPhoto"); if(ph) ph.onclick=()=>{ try{ rptOpen(); }catch(e){ console.error(e); toast("เปิดหน้าต่างภาพแสงจริงไม่ได้: "+e.message); } };
   el.querySelector("#rbExit").onclick=()=>realToggle(false);
+  { const sn=el.querySelector("#rbSnap"); if(sn) sn.onclick=()=>realSnapSave(); }   // v1.528
   el.style.display="flex"; realBarSync(); }
 function realSetPreset(p){
   if(!REAL_PRESETS[p]) return;
@@ -18989,8 +19015,46 @@ async function realToggle(on){
     render3D(false);
   }
   const b=$("realBtn"); if(b) b.classList.toggle("sel",REAL.on);
+  try{ if(typeof PL!=="undefined"&&PL&&PL.on) plPanelFoot(); }catch(e){}   // v1.528: ปุ่ม ✨ ในแผงห้องออกแบบ
   invalidate(); }
 
+/* ───────── v1.528: 📷 บันทึกภาพโหมดสมจริง (ละเอียดสูง) ─────────
+   ผู้ใช้ 27/10 21:13: “เพิ่มปุ่มบันทึกภาพตอนอยู่โหมดห้องออกแบบ ไปเอาภาพของโหมดสมจริง · ที่กดบันทึกภาพแสงจริงดูไม่ละเอียดเท่าตอนแคปรูป”
+   เดิม: บันทึกได้ทางเดียวคือ 📸 ภาพแสงจริง (ยิงแสงทีละพิกเซล ภาพเล็ก/มีเม็ด ต้องรอหลายรอบ) — ภาพแคปจอแบบโหมดสมจริงสวยกว่า แต่ติดเท่าขนาดจอ
+   ตอนนี้: วาดภาพโหมดสมจริงเดิมทุกอย่าง (ห้อง แสง เงามุม โทน) ใหม่ที่ความละเอียดสูง — ด้านยาว ~3,200 px (จำกัดตามการ์ดจอ) มุมกล้องเดียวกับจอ
+     ซ่อนเส้นเลือก/กรอบตู้/ป้าย/ระยะของห้องออกแบบ · บันทึก JPG · คืนขนาดตัววาดทันที (จอไม่กระพริบ)
+     กดจากห้องออกแบบตอนยังไม่เปิดสมจริง = เปิด → รอห้อง/เงาพร้อม → ถ่าย → ปิดกลับ · ปิด SN_OFF.realSnap=1 */
+async function realSnapSave(){
+  if(snOff("realSnap")) return;
+  if(!realCanUse()){ toast("เครื่องนี้แสดง 3D ไม่ได้ จึงบันทึกภาพสมจริงไม่ได้"); return; }
+  const was=REAL.on;
+  if(!was){ await realToggle(true); if(!REAL.on) return;
+    for(let i=0;i<4;i++) await new Promise(r=>requestAnimationFrame(()=>r())); await new Promise(r=>setTimeout(r,350)); }
+  const keepPR=renderer.getPixelRatio(), sz=renderer.getSize(new THREE.Vector2()), hid=[];
+  let url="";
+  try{
+    const cw=Math.max(1,sz.x), ch=Math.max(1,sz.y), lim=Math.min(+(renderer.capabilities.maxTextureSize)||4096, 8192);
+    let k=3200/Math.max(cw,ch); k=Math.max(keepPR,Math.min(k,lim/Math.max(cw,ch),4));
+    const Hd=o=>{ if(o&&o.visible){ o.visible=false; hid.push(o); } };
+    [typeof selBox!=="undefined"?selBox:null, typeof cabBox!=="undefined"?cabBox:null, typeof axisLine!=="undefined"?axisLine:null,
+     (typeof PLD!=="undefined"&&PLD)?PLD.grp:null, (typeof _msGrp!=="undefined")?_msGrp:null].forEach(Hd);
+    scene.traverse(o=>{ const u=o.userData||{}; if(o.isSprite||u.label||o.isLine) Hd(o); });
+    renderer.setPixelRatio(k);
+    try{ renderer.shadowMap.needsUpdate=true; }catch(e){}
+    realRender();
+    url=renderer.domElement.toDataURL("image/jpeg",0.95);
+  }catch(e){ console.error("realSnap:",e); }
+  finally{ hid.forEach(o=>o.visible=true); renderer.setPixelRatio(keepPR); try{ _realCmpDispose(); }catch(e){} invalidate(); }
+  if(!was){ try{ await realToggle(false); }catch(e){} }
+  if(!url||url.length<1000){ toast("บันทึกภาพไม่สำเร็จ — การ์ดจออาจไม่พอ ลองย่อหน้าต่างแล้วกดใหม่"); return; }
+  const d=new Date(), p2=x=>String(x).padStart(2,"0");
+  let oid=""; try{ const v=(($("exOrderId")||{}).value||"").trim(); if(v) oid=v.replace(/[\\/:*?"<>|\s]+/g,"_")+"-"; }catch(e){}
+  const name="StarNexus-"+oid+"สมจริง-"+(REAL_PRESETS[REAL.preset]||{}).label+"-"+d.getFullYear()+p2(d.getMonth()+1)+p2(d.getDate())+"-"+p2(d.getHours())+p2(d.getMinutes())+".jpg";
+  try{ const bl=await (await fetch(url)).blob(), a=document.createElement("a"); a.href=URL.createObjectURL(bl); a.download=name;
+    document.body.appendChild(a); a.click(); setTimeout(()=>{ URL.revokeObjectURL(a.href); a.remove(); },1500); }
+  catch(e){ const a=document.createElement("a"); a.href=url; a.download=name; document.body.appendChild(a); a.click(); a.remove(); }
+  window._realSnapLast=url.length;
+  toast("📷 บันทึกภาพ "+name); }
 /* ═════════ v1.463 ②: 📸 ถ่ายภาพแสงจริง (path tracing บนการ์ดจอ) ═════════
    ภาพในโหมดสมจริง ① ยังเป็นการวาดแบบเกม: แสงสะท้อนจากผนัง/พื้นเข้าตู้เป็นค่าประมาณ (ไฟฟ้า + environment map)
    ปุ่มนี้คิดแสงจริง: ยิงเส้นแสงจากกล้องทุกพิกเซล ชนแล้วสะท้อนต่อสูงสุด 5 ทอด (ไม้/ผนัง/พื้นสะท้อนสีกันจริง เงานุ่มตามขนาดแหล่งไฟจริง)
@@ -28824,6 +28888,8 @@ function boardRole(b){
      SN_OFF.plPull=1      ห้องออกแบบไม่มีปุ่ม 🖐 มือจับ (เลือกมือจับแบบรูป) (v1.524)
      SN_OFF.plqDwgLand=1  แบบแนบใบเสนอราคาเป็น A4 ตั้ง หน้าละ 2 ภาพ (แบบ 1.521) (v1.526)
      SN_OFF.dwgDoorLine=1 หน้ารวมวัสดุ ดีไซน์หน้าบานเป็นภาพถ่าย 3D แยกตาม Part ลิงก์ (แบบ 1.521) (v1.527)
+     SN_OFF.realPlRoom=1  โหมดสมจริงในห้องออกแบบสร้างห้องรอบตู้แบบเดิม (ไม่ใช้ผนังของห้องออกแบบ) (v1.528)
+     SN_OFF.realSnap=1    ไม่มีปุ่ม 📷 บันทึกภาพสมจริงความละเอียดสูง (v1.528)
      SN_OFF.fxfIn=1       ไม่รับไฟล์ FXF ของ imos (ไม่มีปุ่ม 📐 ในหน้า Order · ลากไฟล์ .fxf มาวางที่ฉากตกไปตัวอ่าน DXF แบบเดิม · ชิ้น _fxf ในงานเก่ายังไม่ถูกตัวซ่อมแตะ) (v1.499)
      SN_OFF.fxfMpr=1      ไฟล์เจาะของชิ้นจาก FXF ออกแบบ 1.499 (ร่องเข้าไฟล์ · BM=LS · ไม่มี S_ / SIDE1 · เลขชิ้นนับตามลำดับฉาก · แตกมาโครแบบเดา + ปัด 0.1 สำหรับการนำเข้าครั้งถัดไป — ชิ้นที่นำเข้าไปแล้วรูไม่เปลี่ยน) (v1.500)
                           รวมของ v1.501: มาโคร D3_T12 / H1 / L_IT_Box · รูทะลุไปฝั่ง 2 · ขนาด 0.01 · ZA d-ระยะ
@@ -37663,6 +37729,9 @@ function plPanelFoot(){
   s.innerHTML='<div class="plRow"><span>ตู้ในห้อง <b>'+p.n+'</b> ใบ</span><span style="margin-left:auto;font-size:15px;font-weight:800">'+plMoney(p.sum)+'</span></div>'
     +'<div class="plRow" style="margin:6px 0 2px">'+(VIEW_ONLY?'':!snOff("plQuote")?'<button class="ibtn" id="plQuoteBtn" style="flex:1" title="ใบเสนอราคา A4 — ราคาตั้งต้นจากต้นทุนตู้ + กำไร % ของเซลล์ · พิมพ์ / บันทึก PDF">🧾 ใบเสนอราคา</button>':(snOff("plPoster")?'':'<button class="ibtn" id="plPosterBtn" style="flex:1" title="ภาพห้อง 3D + รายการตู้ ขนาด ราคา + แปลน → PNG">🖼 โปสเตอร์ขาย</button>'))   /* v1.515: แทนโปสเตอร์ (SN_OFF.plQuote=1 = โปสเตอร์เดิม) */   // v1.457
     +(snOff("glbExport")?'':'<button class="ibtn" id="plGlbBtn" style="flex:1" title="ห้อง + ตู้ทั้งหมดเป็นไฟล์ 3D (.glb) — เปิดใน Blender แล้วเรนเดอร์เหมือนจริงได้ฟรี">🧊 ส่งออก Blender</button>')+'</div>'   // v1.459
+    +((VIEW_ONLY||!realCanUse())?'':('<div class="plRow" style="margin:0 0 2px">'   // v1.528: ✨ โหมดสมจริง + 📷 บันทึกภาพ อยู่ในห้องออกแบบ
+      +'<button class="ibtn" id="plRealBtn" style="flex:1'+(REAL.on?';background:var(--accent);color:#fff;border-color:var(--accent)':'')+'" title="ห้องจริง แสงจริง ตามห้องที่ออกแบบ — ลากหมุนดูได้">'+(REAL.on?'✕ ออกจากสมจริง':'✨ โหมดสมจริง')+'</button>'
+      +(snOff("realSnap")?'':'<button class="ibtn" id="plSnapBtn" style="flex:1" title="บันทึกภาพสมจริงความละเอียดสูงจากมุมกล้องนี้ (JPG)">📷 บันทึกภาพ</button>')+'</div>'))
     +plFootOpen()   // v1.317
     +(p.miss?'<div style="color:var(--ink-dim);font-size:11px;margin-top:2px">ยังไม่มีราคา '+p.miss+' ใบ — ใส่ได้ที่ 🗂 แคตตาล็อก (ราคารวมยังไม่นับใบพวกนี้)</div>':'')
     +(()=>{ const row=plPlinthRow(), xr=plPlinthXml(), need=plPlinthNeed(); if(!row&&!xr&&!need) return '';
@@ -37678,6 +37747,7 @@ function plPanelFoot(){
   { const pb=s.querySelector("#plPosterBtn"); if(pb) pb.onclick=()=>{ plPosterOpen().catch(e=>{ console.error("poster:",e); toast("เปิดโปสเตอร์ไม่สำเร็จ — ดู console"); }); }; }   // v1.457
   { const qb=s.querySelector("#plQuoteBtn"); if(qb) qb.onclick=()=>{ plQuoteOpen().catch(e=>{ console.error("quote:",e); toast("เปิดใบเสนอราคาไม่สำเร็จ — ดู console"); }); }; }   // v1.515
   { const gb=s.querySelector("#plGlbBtn"); if(gb) gb.onclick=()=>exportGlb({room:true}); }   // v1.459
+  { const rb=s.querySelector("#plRealBtn"); if(rb) rb.onclick=()=>realToggle(); const sb=s.querySelector("#plSnapBtn"); if(sb) sb.onclick=()=>realSnapSave(); }   // v1.528
   plRoomGrpWire(s);
 }
 /* ═════════ v1.457: 🖼 โปสเตอร์ขาย จากห้องออกแบบ ═════════
