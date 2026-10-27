@@ -3281,7 +3281,7 @@ body[data-theme="dark"] .splash-dots span{background:rgba(255,255,255,.25)}
    ===================================================================== */
 /* ---- APP_META: แหล่งความจริงเดียวของเวอร์ชัน (ดูได้จาก console / คลิกชื่อแอป) ---- */
 const APP_META={
-  name:"StarNexus", version:"1.522", build:"2026-10-27/wall-sec",
+  name:"StarNexus", version:"1.523", build:"2026-10-27/kit-fam",
   file:"StarNexus.html", basedOn:"Furnitech_V3.html (v3.11)",
   /* ───────── เริ่มนับเวอร์ชันใหม่ที่ 1.001 (21/08/2026) ─────────
      ของเดิมนับมาถึง 42.1 แล้ววิ่งเป็นทศนิยมสองชั้นซึ่งอ่านลำดับยาก
@@ -3289,6 +3289,7 @@ const APP_META={
      ประวัติเก่าเก็บไว้ทั้งหมดตามเลขเดิม ไม่ไล่เขียนใหม่ เพราะเลขในนั้นถูกอ้างถึงไปแล้ว
      รายการที่อยู่ใต้ 1.001 ลงไปจึงเป็นเลขชุดเก่า อ่านต่อกันได้ตามวันที่ */
   changelog:[
+    ["1.523","2026-10-27","FIX ① สีหลุดเข้าแท็บ K_Fitting_Concept ในกล่องเลือกสี (ผู้ใช้ 20:29 ภาพตู้ BND214: “ทำไมมีสีมาอยู่ในกลุ่ม fitting concept” — G08H0452Y · G08H1209Y · N01M0029N ปนกับ EC48/KIT01–03) — ต้นเหตุ: ค่าตั้งต้นของ Family (varFallback) ให้รหัสสีตั้งต้น N01M0029N กับ “ทุก” Family ที่ไม่ใช่ขา/มือจับ รวม Family ชุดอุปกรณ์ → ตู้ที่ออเดอร์ไม่ส่งชุดมาได้ K_Fitting_Concept = N01M0029N + รหัสนี้ถูกเติมเข้าตัวเลือก · แล้วสร้างสีใหม่จากสีต้นแบบ (ctFamsOf) เติมสีใหม่เข้าทุก Family ที่มีสีต้นแบบในตัวเลือก จึงลาม G08H… เข้าไปด้วย · ตอนนี้ Family ชุดอุปกรณ์ (ช่อง kitField) ไม่รับสีตั้งต้น (ใช้ได้เฉพาะ def ที่ไม่ใช่สี) · สร้างสีใหม่ไม่เติมเข้า Family ชุด · ล้างของเดิม: ตัวเลือกที่เป็นสี (ไม่ใช่รหัสชุดใน Element) ออกจาก Family ชุด + ค่าชุดของตู้ที่เป็นรหัสสี (ปิด SN_OFF.kitFamClean=1) ② เปลี่ยนตู้จากกล่องไม้เป็นชุด KIT01 (รางแผงเหล็ก) แล้วพื้น/หลังกล่องไม่เอา Part ตั้งต้น (ผู้ใช้ 20:31 ภาพลิ้นชักพื้น/หลังสีไม้ดิบ: “พอเปลี่ยนจากกล่องไม้เป็น KIT01 Part ไม่ไปเอา Default”) — เดิม applyRailSystem ให้ชิ้นใหม่ใช้ “วัสดุของกล่องเดิม” (matB = รหัสวัสดุชิ้นแรกของกล่องเก่า) — Part ตั้งต้นถูกผูกให้แล้ว แต่วัสดุที่ระบุรหัสตรง ๆ (กล่องไม้จากออเดอร์ = ไม้ดิบ) ทับวัสดุของ Part เสมอ พื้น/หลังแผงเหล็กจึงเป็นไม้ดิบ (ทดสอบ: Part = ค่าตั้งต้น แต่วัสดุจริง = วัสดุกล่องไม้) · ตอนนี้ชนิดกล่องเปลี่ยน (ไม้ ↔ แผงเหล็ก) = ชิ้นใหม่ใช้ Part ของระบบรางในแท็บระบบราง ถ้าไม่ได้ตั้ง = Part ตั้งต้นช่อง “กล่องลิ้นชัก” (ว่าง = แผ่นนอน) · วัสดุกลับเป็นลิงก์ $CarcassBodyMat · ชนิดเดิม (แค่เปลี่ยนสูง/รุ่นรางชนิดเดียวกัน) ยกค่าเดิมเหมือนเดิม (ปิด SN_OFF.kitBoxDef=1)"],
     ["1.522","2026-10-27","FEAT ผนังเหนือท็อป + Section หลายแบบ (ผู้ใช้ 20:02 “ตรงผนังระหว่างตู้ลอยและพื้น ต้องเลือกได้ว่าจะให้มีบัวหินทอปไหม บัวสูงเท่าไหร่ และเลือกได้เป็นผนังกระเบื้อง หรือผนังกระจก หรือกระจกแบบไหน หรือไม่มีผนังมีแต่บัวหิน · Section ตู้ถ้าตู้ในแนวตั้งไม่เหมือนกันต้องมีเพิ่ม เอาให้อยู่หน้าเดียวกันได้ไม่เกิน 3 Section แล้วต้องมีสัญลักษณ์ตัดที่ภาพด้านหน้าด้วยว่าตัด Section มาจากแนวไหน”) — ① แผงห้อง › ท็อป: บัวหิน (ติ๊ก + สูง · หินชนิดเดียวกับท็อป) · ผนังเหนือท็อป ไม่มี / หิน / กระเบื้อง (ขนาด 300×300–600×1200 · สี/รุ่น) / กระจก (ใส · พ่นสี · เงา · ฝ้า · สี/รุ่น) · สูงถึงก้นตู้ลอย หรือกำหนดสูงจากผิวท็อป · ราคาทุน/ตร.ม. ผนังกระเบื้อง/กระจกแยก (จำต่อชนิด) · 3D กระเบื้องมีร่องยาแนว กระจกโปร่ง/เงา · ใบเสนอราคาแยกแถว บัวหิน / ผนัง · ค่าเดิม “วอผนัง” (1.520) ย้ายเป็นผนังหินอัตโนมัติ ② Section: ตัดทุกตู้แล้วจัดกลุ่มตามรูปตัด (ระดับตู้ ลึก สูง จำนวนบาน/ลิ้นชักที่ระนาบผ่าน) — ไม่เหมือนกัน = Section ใหม่ A, B, C … (สูงสุด 6 · หน้าละ 3 ภาพเรียงกัน) · ภาพด้านหน้ามีเส้นตัด + วงกลมอักษร + ลูกศรทิศมอง ที่ตำแหน่งตัดจริง · ภาพแบบวาดบัว/ผนังตามชนิด (กระเบื้อง = ตาราง · กระจก = เส้นเฉียง · หิน = ลายขีด)"],
     ["1.521","2026-10-27","FEAT ใบเสนอราคาแนบแบบ (ผู้ใช้ 19:28 “อยากได้ภาพแปลน ภาพด้านหน้าพร้อม Dimension ภาพ Section … แนบไปในใบเสนอราคา” · 19:31 “ต้องออกหน้ารวมวัสดุแบบนี้ด้วย” · เลือก ครบ 4 ภาพ เส้น CAD ขาวดำ) — คิดจากตู้ในห้องออกแบบ + ท็อป ตอนเปิดหน้าต่าง: ① แปลนทั้งห้อง (ผนังลายขีด · ตู้พื้นทึบ/ตู้ลอยประ · เลขวงกลม = ลำดับในใบ · ระยะตามผนังที่มีตู้ + ขนาดห้อง) ② ด้านหน้าทีละผนัง (ตีนตู้ บาน มือจับ ท็อป วอ · ระยะกว้างตู้พื้น/ตู้ลอย · ระยะสูงตีน–ตู้–ท็อป–ก้นตู้ลอย–บน–ฝ้า) ③ Section ตัดที่ตู้พื้นที่มีตู้ลอยเหนือ (ชิ้นที่ระนาบผ่านจริง) ④ แปลนท็อป (ขนาดทุกชิ้น · วอ · ซิงค์ · วัสดุ/พื้นที่) ⑤ หน้ารวมวัสดุ (แบบหน้าบาน = ภาพบานจริงจาก 3D · สีหน้าบาน/สีโครงจากรูปลายผิว · ท็อป · มือจับ · โครงสร้าง · Fitting · LED) · ติ๊กเลือกแนบได้ในหน้าต่าง · ต่อท้ายใบ หน้า A4 ละ 2 ภาพ · ปิด SN_OFF.plqDwg=1"],
     ["1.520","2026-10-27","FEAT ห้องออกแบบ: ท็อปเคาน์เตอร์ (ผู้ใช้ 19:28 “เพิ่มให้ในโปรแกรมเราใส่ทอปได้ เลือกว่าเอาทอปหิน ไม้ หนาเท่าไหร่” · เลือก อัตโนมัติคลุมตู้พื้นที่ชิดกัน · ทอปไม้ซื้อมาเหมือนหิน ไม่เข้าใบตัด) — แผงห้อง › ท็อปเคาน์เตอร์: ติ๊กใส่ → วางบนตู้พื้นที่ยืนพื้นทุกช่วงที่ชิดกัน (ตามแนวผนัง/ทิศตู้) · วัสดุ แกรนิต/ควอตซ์/หินสังเคราะห์/ไม้ · หนา · ชื่อสี/รุ่น · สี 3D · ยื่นหน้าเลยบาน · ยื่นข้างปลายที่ไม่ชนผนัง · มุม L ต่อชนให้เอง (ชิ้นยาวกว่าวิ่งถึงผนัง) · วอผนัง ไม่มี / ถึงก้นตู้ลอย / กำหนดสูง · ราคาทุน/ตร.ม. (จำต่อวัสดุ+หนาในเครื่อง) · ใบเสนอราคามีแถวท็อป + วอผนัง เป็น ตร.ม. คิดกำไร % เหมือนตู้ · 3D เป็นของในห้องออกแบบ ไม่ใช่ชิ้นงาน (ไม่เข้าใบตัด/BOM/MPR) · เก็บกับงาน state.room.top · ปิด SN_OFF.plWorktop=1"],
@@ -4594,6 +4595,7 @@ function sync(rebuild,save,cm){
      ชิ้นพวกนี้จึงออกไฟล์เป็น "ไม่ใช้ Part" ทั้งที่ตั้งค่าไว้แล้ว วัสดุกับขอบจึงว่าง
      ไล่เติมทีละจุดเสี่ยงตกหล่นอีก จึงดักที่นี่จุดเดียว ทุกครั้งที่ฉากถูกคิดใหม่
      ติดธงไว้กับชิ้นที่ผ่านการเติมแล้ว ชิ้นที่ผู้ใช้ตั้งใจล้าง Part เองจึงไม่ถูกเติมคืน */
+  try{ kitFamHeal(); }catch(e){ console.error("kitFamHeal:",e); }   // v1.523: ออเดอร์เก่าที่ชุด = รหัสสี (ล้างครั้งเดียว ไม่มีอะไรปนก็ไม่ทำอะไร)
   try{
     let _npd=0;
     if(snOff("autoPart")) throw 0;
@@ -13164,7 +13166,15 @@ function applyRailSystem(inst,dgs,v){
       else { delete bp.railCode; bp.slideType=(v.rail==="รางรับใต้ Blum"?"blumU":v.rail==="รางรับใต้ Häfele"?"hafeleU":"side");
              bp.boxOff=(v.rail==="รางรับใต้ Blum"?(settings.slideOffBlum??10):v.rail==="รางรับใต้ Häfele"?(settings.slideOffHafele??-17):0);   // กล่อง=ราง−off · Blum +10 · Häfele −17 (กล่องใหญ่กว่าราง)
              if(bp.slideType==="blumU"||bp.slideType==="hafeleU") bp.underInner=Math.max(+v.underInner||settings.underSideInner||21,0); else delete bp.underInner; }
-      const matB=(old.find(x=>!x._virtual)||{}).mat||"$CarcassBodyMat";
+      /* ───────── v1.523: เปลี่ยนชนิดกล่อง (ไม้ ↔ แผงเหล็ก) = ชิ้นใหม่ใช้ Part ตั้งต้น ─────────
+         ผู้ใช้ 27/10 20:31 (ภาพลิ้นชักแผงเหล็ก พื้น/หลังเป็นสีไม้ดิบ): “พอเปลี่ยนจากกล่องไม้เป็น KIT01 Part ไม่ไปเอา Default”
+         เดิม: ชิ้นใหม่ได้วัสดุของกล่องเดิม (matB) + ยก Part/ผิว/ขอบตามชื่อชิ้น (v1.051 — ตั้งใจไว้ตอนปรับสูงกล่อง)
+           กล่องไม้ → แผงเหล็ก ชื่อชิ้นไม่ตรงกัน (Drawer Bottom ≠ ALTO Bottom) Part จึงได้ค่าตั้งต้นจากตัวเติม Part ตอน sync
+           แต่วัสดุของกล่องไม้ที่ระบุรหัสตรง ๆ (ไม้ดิบจากออเดอร์) ทับวัสดุของ Part (effLinks) → พื้น/หลังยังเป็นไม้ดิบ ดูเหมือน Part ไม่ไปเอา Default
+         ตอนนี้: ชนิดกล่องเปลี่ยน = ไม่ยกของเดิม · Part ของระบบรางก่อน → Part ตั้งต้นของชิ้น (defaultPartFor: กล่องลิ้นชัก/แผ่นนอน) · วัสดุ = $CarcassBodyMat
+           ชนิดเดิม (ปรับสูง · ไม้ → ไม้ · เหล็ก → เหล็กคนละรุ่น) ยกเหมือนเดิม · ปิด SN_OFF.kitBoxDef=1 */
+      const _kindChg=!snOff("kitBoxDef")&&old.some(x=>!x._virtual)&&(old.some(x=>x._alto)!==!!toAlto);
+      const matB=_kindChg?"$CarcassBodyMat":((old.find(x=>!x._virtual)||{}).mat||"$CarcassBodyMat");
       const mk=(name,L,W,T,orient)=>({id:uid(),name,cab:front.cab,cabInst:inst,L:round(L),W:round(W),T:round(T),
         x:front.x,y:front.y,z:front.z,orient,yaw:0,tone:null,r:0,holes:[],grooves:[],connectors:[],
         mat:matB,surfT:"",surfB:"",edges:["No Edge","No Edge","No Edge","No Edge"],_door:true,_box:true,_dg:dg,_bp:bp});
@@ -13197,7 +13207,7 @@ function applyRailSystem(inst,dgs,v){
          Part ที่เลือกไว้กับผิวที่ผูกไว้จึงหายทุกครั้งที่ปรับกล่อง โดยไม่มีอะไรบอก
          ยกของเดิมมาให้ตามชื่อชิ้น ซึ่งคงที่ทุกระบบราง พื้น หลัง ข้างซ้าย ข้างขวา
          ยกเฉพาะช่องที่คนตั้ง ไม่ยกขนาดหรือตำแหน่ง เพราะสองอย่างนั้นต้องคิดใหม่ตามค่าที่เพิ่งเปลี่ยน */
-      try{
+      if(!_kindChg) try{   // v1.523: ชนิดกล่องเปลี่ยน = ไม่ยกของกล่องเดิม
         const roleOf=n=>String(n||"").replace(/\s*\d+\s*$/,"").replace(/^(K40|ALTO[-_]?S?)\s*/i,"").trim().toLowerCase();
         const keep={}; old.forEach(o=>{ if(o) keep[roleOf(o.name)]=o; });
         pieces.forEach(p2=>{ const o=keep[roleOf(p2.name)]; if(!o) return;
@@ -13208,6 +13218,8 @@ function applyRailSystem(inst,dgs,v){
       if(_rs){                                                               // v1.221: Part ตั้งต้นของราง ชนะ Part เดิม
         const pk2=n=>/Sub-?Front/i.test(n)?"partFront":/Back/i.test(n)?"partBack":/Bottom/i.test(n)?"partBottom":/Side/i.test(n)?"partSide":"";
         pieces.forEach(p2=>{ const k=pk2(String(p2.name||"")); const c=k&&String(_rs[k]||"").trim(); if(c){ p2.part=c; p2._pdone=1; } }); }
+      if(_kindChg) pieces.forEach(p2=>{ if(p2._virtual||String(p2.part||"").trim()) return;   // v1.523: ไม่มี Part ของราง = Part ตั้งต้น
+        try{ const c=defaultPartFor(p2); if(c) p2.part=c; }catch(e){} p2._pdone=1; });
       state.boards=state.boards.filter(x=>!old.includes(x));
       state.boards=state.boards.concat(pieces);
       refitDrawerBox([front,...pieces],carcG);                                   // คำนวณขนาด/ตำแหน่ง/ร่อง/NL จริง
@@ -24414,12 +24426,33 @@ function varFallback(n){
   /* v9.63: Family ที่รับช่อง K_Leg เก็บ "รุ่นขา" ไม่ใช่รหัสสี ถ้าปล่อยให้เติมค่าตั้งต้นสีลงไป
      ตู้ที่ออเดอร์ไม่ได้ส่งรุ่นขามาจะได้รหัสสีเป็นรุ่นขา แล้วกลายเป็นขาเพี้ยนแบบเงียบ ๆ */
   if(nm&&sysFamNames().has(nm)) return "";   // v9.76: รวมมือจับด้วย ไม่ใช่แค่ขา
+  if(nm&&kitFamSet().has(nm)) return "";      // v1.523: Family ชุดอุปกรณ์ไม่ใช่สี
   if(/shape/i.test(nm)) return String(settings.varFbShape||"").trim();
   if(n.type==="Family"||/colou?r|สี/i.test(nm)) return String(settings.varFbColor||"").trim();
   return "";
 }
 /* เติมค่าตั้งต้นให้ "ตู้ใบหนึ่ง" เฉพาะ Family ที่ยังไม่มีค่าของตู้นั้น
    สำคัญตอนโหลด XML: Set ที่ไม่มีฟิลด์นั้น ถ้าปล่อยว่างจะไปหยิบค่ากลางซึ่งเป็นของตู้ใบอื่นในออเดอร์เดียวกัน */
+/* ───────── v1.523: Family ชุดอุปกรณ์ (ช่อง kitField เช่น K_Fitting_Concept) ไม่ใช่สี ─────────
+   ผู้ใช้ 27/10 20:29 (ภาพกล่องเลือกสีตู้ BND214 แท็บ K_Fitting_Concept มี G08H0452Y · G08H1209Y · N01M0029N ปนกับ EC48 · KIT01–03): “ทำไมมีสีมาอยู่ในกลุ่ม fitting concept”
+   ต้นเหตุ 2 ทาง: (1) varFallback ให้รหัสสีตั้งต้นกับทุก Family ที่ไม่ใช่ขา/มือจับ ตู้ที่ออเดอร์ไม่ส่งชุดมาจึงได้ชุด = N01M0029N และรหัสนี้ถูกเติมเข้าตัวเลือก
+     (2) สร้างสีใหม่จากสีต้นแบบ (ctFamsOf) เติมสีใหม่เข้าทุก Family ที่มีสีต้นแบบอยู่ในตัวเลือก → ลามเข้า Family ชุดด้วย
+   ตอนนี้ Family ชุดไม่รับสีตั้งต้น · ไม่ถูกเติมสีใหม่ · ของที่ปนอยู่แล้วล้างตอนโหลดตั้งค่า/ทุกรอบ sync (kitFamHeal · ปิด SN_OFF.kitFamClean=1) */
+function kitFamSet(){ const s=new Set(); try{ const f=String(settings.kitField||DEF_SETTINGS.kitField||"").trim(); if(f){ s.add(f); const m=xmlFamOf(f); if(m) s.add(m); } }catch(e){} return s; }
+/* รหัสนี้ “เป็นสี” ไม่ใช่รหัสชุด — ไม่ใช่ชุดใน Element และ (เป็นสีตั้งต้น · เป็นผิวในคลัง · หรือสีใน Element→Colors ที่ลูกชี้ไปผิวในคลัง) */
+function kitColorish(o){ const c=String(o||"").trim(); if(!c) return false;
+  try{ if(kitOf(c)) return false; }catch(e){}
+  if(c===String(settings.varFbColor||"").trim()) return true;
+  try{ if(surfDef(c)) return true; }catch(e){}
+  try{ return Object.values(colorKidsMap(c)).some(v=>{ const s=String(v||"").trim(); return !!(s&&s[0]!=="$"&&surfDef(s)); }); }catch(e){ return false; } }
+function kitFamHeal(){ if(snOff("kitFamClean")) return 0; let n=0; const ks=kitFamSet(); if(!ks.size) return 0;
+  try{ flattenVars(settings.vars||[]).forEach(f=>{ if(!f||f.type!=="Family"||!ks.has(String(f.name||""))) return;
+      const o0=(f.options||[]).length; f.options=(f.options||[]).filter(o=>!kitColorish(o)); n+=o0-f.options.length;
+      if(kitColorish(f.order)) f.order=""; if(kitColorish(f.def)) f.def=""; }); }catch(e){ console.error("kitFamHeal vars:",e); }
+  try{ Object.keys(state.cabColors||{}).forEach(i=>{ const cc=state.cabColors[i]; if(!cc) return;
+      ks.forEach(k=>{ if(cc[k]!=null&&cc[k]!==""&&kitColorish(cc[k])){ delete cc[k]; n++; } }); }); }catch(e){ console.error("kitFamHeal cab:",e); }
+  if(n) console.log("[v1.523] ล้างสีออกจาก Family ชุดอุปกรณ์ "+n+" จุด");
+  return n; }
 function applyVarFallbackToCab(inst){
   if(settings.varFbOn===false||!inst) return 0;
   state.cabColors=state.cabColors||{};
@@ -24430,10 +24463,12 @@ function applyVarFallbackToCab(inst){
      รวมถึง Family ที่รับช่อง K_Leg ด้วย ตู้ทุกใบในออเดอร์จึงได้รุ่นขาเดียวกันหมดแบบเงียบ ๆ
      ทั้งที่ XML ส่งช่องขามาแค่ไม่กี่ใบ (เคสจริง: 17 ใบ ได้ Screw_90_119 ครบทุกใบ)
      ขากับมือจับมีตัวอ่านเฉพาะทางของตัวเอง ไม่ส่งค่ามา = ไม่ต้องใส่ให้ ถูกต้องอยู่แล้ว */
-  const _sysFam=sysFamNames();
+  const _sysFam=sysFamNames(), _kitFam=kitFamSet();   // v1.523
   flattenVars(settings.vars||[]).filter(v=>v.type==="Family").forEach(f=>{
     if(cc[f.name]!=null&&cc[f.name]!=="") return;
     if(_sysFam.has(String(f.name||""))) return;
+    if(_kitFam.has(String(f.name||""))){ const d=String(f.def||"").trim(); if(!d||kitColorish(d)) return; cc[f.name]=d; n++;   // v1.523: ชุดอุปกรณ์ใช้ได้เฉพาะ def ที่ไม่ใช่สี
+      f.options=f.options||[]; if(!f.options.includes(d)) f.options.push(d); return; }
     const fb=(f.def&&String(f.def).trim())||varFallback(f); if(!fb) return;   // v8.06: def ของตัวแปรนั้นมาก่อน
     cc[f.name]=fb; n++;
     f.options=f.options||[]; if(!f.options.includes(fb)) f.options.push(fb);
@@ -28780,6 +28815,8 @@ function boardRole(b){
      SN_OFF.plWorktop=1   ห้องออกแบบไม่มีท็อปเคาน์เตอร์ (ไม่วาด 3D ไม่ขึ้นแผง ไม่ขึ้นใบเสนอราคา · ค่าใน state.room.top ยังอยู่) (v1.520)
      SN_OFF.plqDwg=1      ใบเสนอราคาไม่แนบแบบ/หน้ารวมวัสดุ (แบบ 1.520) (v1.521)
      SN_OFF.plSecMulti=1  แบบแนบใบเสนอราคามี Section ภาพเดียว ไม่มีเส้นตัดในภาพด้านหน้า (แบบ 1.521) (v1.522)
+     SN_OFF.kitFamClean=1 ไม่ล้างรหัสสีที่ปนอยู่ใน Family ชุดอุปกรณ์ (ตัวเลือก + ค่าชุดของตู้) (v1.523)
+     SN_OFF.kitBoxDef=1   เปลี่ยนกล่องไม้ ↔ แผงเหล็ก แล้วยก Part/วัสดุ/ผิว/ขอบของกล่องเดิมมาแบบเดิม (v1.523)
      SN_OFF.fxfIn=1       ไม่รับไฟล์ FXF ของ imos (ไม่มีปุ่ม 📐 ในหน้า Order · ลากไฟล์ .fxf มาวางที่ฉากตกไปตัวอ่าน DXF แบบเดิม · ชิ้น _fxf ในงานเก่ายังไม่ถูกตัวซ่อมแตะ) (v1.499)
      SN_OFF.fxfMpr=1      ไฟล์เจาะของชิ้นจาก FXF ออกแบบ 1.499 (ร่องเข้าไฟล์ · BM=LS · ไม่มี S_ / SIDE1 · เลขชิ้นนับตามลำดับฉาก · แตกมาโครแบบเดา + ปัด 0.1 สำหรับการนำเข้าครั้งถัดไป — ชิ้นที่นำเข้าไปแล้วรูไม่เปลี่ยน) (v1.500)
                           รวมของ v1.501: มาโคร D3_T12 / H1 / L_IT_Box · รูทะลุไปฝั่ง 2 · ขนาด 0.01 · ZA d-ระยะ
@@ -29567,8 +29604,8 @@ function ctPendingCodes(){                                 // รหัสสี
     if(have.some(h=>h===B||(h.length===B.length+1&&h.startsWith(B)))) return;   // K_N01M0029_… = สี N01M0029N ที่มีแล้ว
     out.add(b); });
   return [...out].sort(); }
-function ctFamsOf(tpl){ const t=String(tpl||"").trim(); if(!t) return [];
-  return flattenVars(settings.vars||[]).filter(n=>n&&n.type==="Family"
+function ctFamsOf(tpl){ const t=String(tpl||"").trim(); if(!t) return []; const _kf=kitFamSet();   // v1.523: ไม่เติมสีใหม่เข้า Family ชุดอุปกรณ์
+  return flattenVars(settings.vars||[]).filter(n=>n&&n.type==="Family"&&!_kf.has(String(n.name||""))
     &&(((n.options||[]).indexOf(t)>=0)||String(n.order||"").trim()===t||String(n.def||"").trim()===t)); }
 function ctPlan(tpl,nc,surfPick){
   const km=colorKidsMap(tpl), links=Object.keys(km);
@@ -33941,6 +33978,7 @@ async function loadSettings(src){ const s=(src&&typeof src==="object")?src:await
   if(!settings.dowelFormulas.some(f=>f.name===settings.dowelFormulaActive)) settings.dowelFormulaActive=settings.dowelFormulas[0].name;
   flattenVars(settings.vars).forEach(n=>{ if(n.article&&!n.order)n.order=n.article;
     if(n.type==="Family"){ n.options=n.options||[]; if(n.order&&!n.options.includes(n.order))n.options.push(n.order); } });
+  try{ kitFamHeal(); }catch(e){ console.error("kitFamHeal:",e); }   // v1.523: ล้างสีที่ปนใน Family ชุดอุปกรณ์
   /* v1.226 · v1.227: ระบบรางต้องมีรางเดิมครบเสมอ (รับข้าง + แผงเหล็ก) — ตรวจทุกครั้งที่โหลดตั้งค่า รวมหลังดึงคลาวด์
      (ธงครั้งเดียวของ 1.226 ค้างในหน่วยความจำ ค่าจากคลาวด์ที่ทับทีหลังจึงไม่เคยถูกเติม) */
   try{ const n=drsImportLegacy({under:false});
@@ -40474,7 +40512,8 @@ function plColorFams(inst){
   const out=[], seen=new Set();
   flattenVars(settings.vars||[]).forEach(f=>{
     if(!f||f.type!=="Family"||!f.name||seen.has(f.name)) return; seen.add(f.name);
-    const opts=famOpts(f).filter(o=>o&&(colors.has(String(o).trim())||surfDef(o)));
+    const _isKit=kitFamSet().has(String(f.name||""));   // v1.523: แท็บชุดอุปกรณ์ไม่โชว์รหัสสี
+    const opts=famOpts(f).filter(o=>o&&(colors.has(String(o).trim())||surfDef(o))&&!(_isKit&&kitColorish(o)));
     if(!opts.length) return;
     const kidsUsed=flattenVars(f.children||[]).some(c=>used.has(c.name));
     if(!kidsUsed&&!String(cc[f.name]||"").trim()) return;
