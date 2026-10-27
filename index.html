@@ -3281,7 +3281,7 @@ body[data-theme="dark"] .splash-dots span{background:rgba(255,255,255,.25)}
    ===================================================================== */
 /* ---- APP_META: แหล่งความจริงเดียวของเวอร์ชัน (ดูได้จาก console / คลิกชื่อแอป) ---- */
 const APP_META={
-  name:"StarNexus", version:"1.526", build:"2026-10-27/quote-print",
+  name:"StarNexus", version:"1.527", build:"2026-10-27/mat-door",
   file:"StarNexus.html", basedOn:"Furnitech_V3.html (v3.11)",
   /* ───────── เริ่มนับเวอร์ชันใหม่ที่ 1.001 (21/08/2026) ─────────
      ของเดิมนับมาถึง 42.1 แล้ววิ่งเป็นทศนิยมสองชั้นซึ่งอ่านลำดับยาก
@@ -3289,6 +3289,7 @@ const APP_META={
      ประวัติเก่าเก็บไว้ทั้งหมดตามเลขเดิม ไม่ไล่เขียนใหม่ เพราะเลขในนั้นถูกอ้างถึงไปแล้ว
      รายการที่อยู่ใต้ 1.001 ลงไปจึงเป็นเลขชุดเก่า อ่านต่อกันได้ตามวันที่ */
   changelog:[
+    ["1.527","2026-10-27","UX+FEAT ใบเสนอราคา/ท็อป (ผู้ใช้ 21:04–21:05: “รายการวัสดุเป็นกระดาษแนวนอน 1 หน้า เว้นแต่มีวัสดุเยอะขึ้นก็ขึ้นหน้า 2 แต่ไม่เอาอะไรมาปนต่อให้ขึ้นหน้า 1 ไปแค่ 1 วัสดุ” · “ดีไซน์หน้าบานต้องเอาแบบบานมาแสดง เช่น Exxx01 บานเรียบก็แค่ 4 เหลี่ยมผืนผ้า Section ข้างก็แค่ 4 เหลี่ยมด้านข้าง” · “กระจกใส่หนาได้ด้วย”) — ① หน้ารวมวัสดุ = A4 แนวนอน หน้าละ 10 ช่อง (5×2) เฉพาะวัสดุ ไม่ปนภาพอื่น · เกิน 10 ขึ้นหน้าใหม่ (หัวหน้า “(ต่อ)”) · ② ดีไซน์หน้าบาน: แยกตามรหัสแบบบาน (ค่า FrontShape เช่น Exxx01 — เดิมแยกตาม Part ลิงก์ FrontShapeP1/P2/P3) · ชื่อ = รหัส + คำอธิบายใน Element · ภาพ = เส้นแบบบาน ด้านหน้า + Section ข้าง (บานเรียบ = สี่เหลี่ยม · ลาย doorReliefMap = เส้นร่อง/ร่องในภาพตัด · เพ · สันเป็นหน้าตัด · ช่องกระจก/เฟรมอลู) แทนภาพถ่าย 3D · ปิด SN_OFF.dwgDoorLine=1 · ③ ผนังเหนือท็อปแบบกระจก เลือกความหนาได้ 4/5/6/8/10/12 มม. (เดิม 6 ตายตัว) — ชื่อในใบเสนอราคา/แบบ · 3D · ราคาทุน/ตร.ม. จำแยกตามชนิด+ความหนา"],
     ["1.526","2026-10-27","UX พิมพ์ใบเสนอราคา (ผู้ใช้ 21:00 ภาพท้าย PDF มีลิงก์ https://c1stmdev.stmm.work/nexus/starnexus: “ไม่ต้องแนบ link หลังปริ้น PDF · ที่เป็นแบบ ให้กระดาษเป็นแนวนอน”) — ① ลิงก์/วันที่/ชื่อหน้า ที่เบราว์เซอร์พิมพ์เองตรงขอบกระดาษหายไป — @page ขอบ 0 (เบราว์เซอร์ไม่มีที่วางหัว/ท้ายกระดาษ) แล้วเว้นขอบเอง: ข้าง 12 มม. · บน/ล่าง 12 มม. ทุกหน้า (หัว/ท้ายตารางซ้ำทุกหน้าเมื่อใบยาวหลายหน้า) · ② หน้าแบบ (แปลน · ด้านหน้า · Section · แปลนท็อป) = A4 แนวนอน หน้าละ 1 ภาพเต็มหน้า (เดิม A4 ตั้ง หน้าละ 2 ภาพ) หัวหน้ามีโลโก้/เลขที่/ลูกค้า + “แผ่น n/รวม” · หน้ารวมวัสดุยังเป็นแนวตั้ง · ตัวอย่างบนจอย่อหน้าแนวนอนให้พอดีกรอบ · ปิด SN_OFF.plqDwgLand=1 (แบบหน้าละ 2 ภาพแนวตั้ง)"],
     ["1.525","2026-10-27","UX แบบแนบใบเสนอราคา · Section (ผู้ใช้ 20:56 ภาพด้านหลัง เส้นตัด A/B/C ผ่านกลางตู้ทับเลขวงกลม/รหัส + A ตัดที่ฟิลเลอร์ WNF036/BNF001: “ปรับให้เส้นไม่ต้องอยู่กลางตู้ · พวก BNF กับ WNF ไม่ต้องตัด Section” · “TNF ด้วยครับ”) — ① ฟิลเลอร์ (รหัส BNF/WNF/TNF หรือชนิดฟิลเลอร์ในแคตตาล็อก) และแผ่นปิดข้าง ไม่เป็นจุดตัด ไม่นับในรูปตัดของตู้ข้าง ๆ · ② เส้นตัดอยู่ค่อนซ้ายของตู้ (20% ของช่วงที่ตัด อย่างน้อย 60 มม. จากขอบ) ไม่ผ่านเลขวงกลม/รหัสกลางตู้ · ตู้ 2 บานจึงตัดผ่านบาน ไม่ใช่ร่องกลางระหว่างบาน"],
     ["1.524","2026-10-27","FEAT ห้องออกแบบ: 🖐 เลือกมือจับแบบรูป (ผู้ใช้ 20:42 “โหมดห้องออกแบบยังขาดเลือกใส่มือจับ … เอาแบบที่เหมือนลูกค้าเลือกมาใส่ได้ ไม่ใช่คนที่เก่งการใช้โปรแกรม”) — เดิมใส่มือจับได้ทีละบาน (เลือกบาน → ⚙ ตั้งมือจับ: รหัส · H/V · พิมพ์ชื่อตำแหน่ง · ระยะ X/Y) · ตอนนี้ปุ่ม 🖐 มือจับ ที่แผงตู้ที่เลือก · 🖐 มือจับทั้งห้อง ที่แผงห้อง · และในกล่องเลือกสี (คลิกขวาที่ตู้) → กล่องรูปมือจับจริง (ภาพ 3D จากรุ่นใน Element → Fittings ชนิดมือจับที่มีสเปครู · ชื่อจาก Fitting Global ถ้าคำอธิบายเป็น “จาก XML” · ระยะรู · ผิว) · การ์ดแรก “ไม่มีมือจับ” · กดรูป = ใส่ทุกบาน/ลิ้นชักของตู้ (ติ๊ก ทุกตู้ = ทั้งห้อง) · ป้าย ✓ ใช้อยู่ n บาน · ตำแหน่ง อัตโนมัติ/ชิดบน/กึ่งกลาง/ชิดล่าง · แนว อัตโนมัติ/นอน/ตั้ง (เปลี่ยนแล้วจัดมือจับเดิมใหม่ทันที) · อัตโนมัติ: ลิ้นชัก = กลางขอบบน แนวนอน · บานเปิดข้าง = ฝั่งตรงข้ามบานพับ แนวตั้ง (ตู้พื้นมุมบน · ตู้ลอยมุมล่าง · บานสูงที่ ~1 ม. จากพื้น) · บานยก = กลางขอบล่าง · ระยะตามความยาวมือจับ ไม่ล้นบาน · เก็บแบบเดียวกับมือจับจากออเดอร์ (_pulls + ช่อง K_Pull/K_Orientation/K_Pull_Position ที่จับคู่ไว้) รูเจาะ/3D/ใบอุปกรณ์/ราคาตามเดิม · ปิด SN_OFF.plPull=1"],
@@ -28822,6 +28823,7 @@ function boardRole(b){
      SN_OFF.kitBoxDef=1   เปลี่ยนกล่องไม้ ↔ แผงเหล็ก แล้วยก Part/วัสดุ/ผิว/ขอบของกล่องเดิมมาแบบเดิม (v1.523)
      SN_OFF.plPull=1      ห้องออกแบบไม่มีปุ่ม 🖐 มือจับ (เลือกมือจับแบบรูป) (v1.524)
      SN_OFF.plqDwgLand=1  แบบแนบใบเสนอราคาเป็น A4 ตั้ง หน้าละ 2 ภาพ (แบบ 1.521) (v1.526)
+     SN_OFF.dwgDoorLine=1 หน้ารวมวัสดุ ดีไซน์หน้าบานเป็นภาพถ่าย 3D แยกตาม Part ลิงก์ (แบบ 1.521) (v1.527)
      SN_OFF.fxfIn=1       ไม่รับไฟล์ FXF ของ imos (ไม่มีปุ่ม 📐 ในหน้า Order · ลากไฟล์ .fxf มาวางที่ฉากตกไปตัวอ่าน DXF แบบเดิม · ชิ้น _fxf ในงานเก่ายังไม่ถูกตัวซ่อมแตะ) (v1.499)
      SN_OFF.fxfMpr=1      ไฟล์เจาะของชิ้นจาก FXF ออกแบบ 1.499 (ร่องเข้าไฟล์ · BM=LS · ไม่มี S_ / SIDE1 · เลขชิ้นนับตามลำดับฉาก · แตกมาโครแบบเดา + ปัด 0.1 สำหรับการนำเข้าครั้งถัดไป — ชิ้นที่นำเข้าไปแล้วรูไม่เปลี่ยน) (v1.500)
                           รวมของ v1.501: มาโคร D3_T12 / H1 / L_IT_Box · รูทะลุไปฝั่ง 2 · ขนาด 0.01 · ZA d-ระยะ
@@ -36837,14 +36839,17 @@ const PLWT_WALLS={none:"ไม่มีผนัง (มีแต่บัวห
 function plWtWallName(T){ T=T||plWt(); const w=T.wall, nm=v=>String(v||"").trim();
   if(w==="stone") return "ผนัง"+plWtName(T);
   if(w==="tile") return "ผนังกระเบื้อง "+String(T.tile||"300x600").replace("x","×")+(nm(T.tileClr)?(" "+nm(T.tileClr)):"");
-  if(w==="glass"){ const g=PLWT_GLASS[T.glass]||PLWT_GLASS.clear; return "ผนัง"+g.n+" หนา 6 มม."+(nm(T.glassClr)?(" "+nm(T.glassClr)):""); }
+  if(w==="glass"){ const g=PLWT_GLASS[T.glass]||PLWT_GLASS.clear; return "ผนัง"+g.n+" หนา "+plWtGlassT(T)+" มม."+(nm(T.glassClr)?(" "+nm(T.glassClr)):""); }   // v1.527: หนาตามที่เลือก
   return ""; }
-function plWtWallT(T){ return T.wall==="stone"?Math.max(+T.t||20,1):T.wall==="tile"?10:T.wall==="glass"?6:0; }
+/* v1.527: ผู้ใช้ 21:05 “กระจกใส่หนาได้ด้วยครับ” — เดิมกระจกหนา 6 ตายตัว · ตอนนี้ T.glassT (ตั้งต้น 6) */
+const PLWT_GLASS_T=[4,5,6,8,10,12];
+function plWtGlassT(T){ const v=+((T||{}).glassT); return (v>=2&&v<=25)?v:6; }
+function plWtWallT(T){ return T.wall==="stone"?Math.max(+T.t||20,1):T.wall==="tile"?10:T.wall==="glass"?plWtGlassT(T):0; }
 function plWtHTxt(L){ const h=L.map(b=>b.h); if(!h.length) return ""; const a=Math.min(...h), b=Math.max(...h); return a===b?String(a):(a+"–"+b); }   // สูงผนังหลายช่วง → “500–650”
-function plWtWallKey(T){ return "wall:"+T.wall+(T.wall==="glass"?(":"+T.glass):""); }
+function plWtWallKey(T){ return "wall:"+T.wall+(T.wall==="glass"?(":"+T.glass+(plWtGlassT(T)!==6?(":"+plWtGlassT(T)):"")):""); }   // v1.527: ราคาจำแยกตามหนา (6 = คีย์เดิม)
 function plWt(){ const r=plRoom(); if(!r.top||typeof r.top!=="object") r.top={}; const T=r.top;
   const d={on:false, mat:"granite", clr:"", color:"", t:20, over:10, side:0, cost:0,
-    up:false, upH:100, wallTo:"wall", wallH:600, glass:"clear", glassClr:"", glassColor:"", tile:"600x300", tileClr:"", tileColor:"#e9e6df", wallCost:0};   // v1.522
+    up:false, upH:100, wallTo:"wall", wallH:600, glass:"clear", glassClr:"", glassColor:"", tile:"600x300", tileClr:"", tileColor:"#e9e6df", wallCost:0, glassT:6};   // v1.522
   Object.keys(d).forEach(k=>{ if(T[k]==null) T[k]=d[k]; }); if(!PLWT_MATS[T.mat]) T.mat="granite";
   if(T.wall==null){ const b=String(T.bs==null?"wall":T.bs); T.wall=b==="none"?"none":"stone"; T.wallTo=b==="h"?"h":"wall"; if(+T.bsH>0) T.wallH=+T.bsH; }   // v1.522: ย้ายจากวอผนังเดิม (T.bs)
   if(!PLWT_WALLS[T.wall]) T.wall="stone"; if(!PLWT_GLASS[T.glass]) T.glass="clear";
@@ -36967,7 +36972,7 @@ function plWtGrpHtml(grp){
       +'<div class="plRow" style="margin-top:6px;padding-top:4px;border-top:1px dashed var(--line)"><label title="บัวหินชิดผนังบนท็อป — หินชนิดเดียวกับท็อป หนาเท่าท็อป"><input type="checkbox" data-tk="up"'+(T.up?" checked":"")+'> บัวหิน</label>'
         +(T.up?inp("upH","สูง (มม.)",T.upH,52,' type="number" step="10"'):'')+'</div>'
       +'<div class="plRow" style="margin-top:4px">ผนังเหนือ'+(T.up?'บัว':'ท็อป')+' '+sel("wall",Object.keys(PLWT_WALLS).map(k=>[k,k==="none"?(T.up?"ไม่มีผนัง (มีแต่บัวหิน)":"ไม่มี"):PLWT_WALLS[k]]),W)+'</div>'
-      +(W==="glass"?('<div class="plRow" style="margin-top:4px;padding-left:12px">ชนิด '+sel("glass",Object.keys(PLWT_GLASS).map(k=>[k,PLWT_GLASS[k].n]),T.glass)+inp("glassClr","สี/รุ่น",T.glassClr,90,' placeholder="เช่น ดำ"')+clr("glassColor",String(T.glassColor||"").trim()||gl.c)+'</div>'):'')
+      +(W==="glass"?('<div class="plRow" style="margin-top:4px;padding-left:12px">ชนิด '+sel("glass",Object.keys(PLWT_GLASS).map(k=>[k,PLWT_GLASS[k].n]),T.glass)+' หนา '+sel("glassT",PLWT_GLASS_T.map(v=>[v,v+" มม."]),plWtGlassT(T))+inp("glassClr","สี/รุ่น",T.glassClr,90,' placeholder="เช่น ดำ"')+clr("glassColor",String(T.glassColor||"").trim()||gl.c)+'</div>'):'')
       +(W==="tile"?('<div class="plRow" style="margin-top:4px;padding-left:12px">ขนาด (กว้าง×สูง) '+sel("tile",PLWT_TILES.map(v=>[v,v.replace("x","×")]),T.tile)+inp("tileClr","สี/รุ่น",T.tileClr,90,' placeholder="เช่น ขาวเงา"')+clr("tileColor",T.tileColor||"#e9e6df")+'</div>'):'')
       +(W!=="none"?('<div class="plRow" style="margin-top:4px;padding-left:12px">สูง '+sel("wallTo",[["wall","ถึงก้นตู้ลอย"],["h","กำหนดสูงจากผิวท็อป"]],T.wallTo)+(T.wallTo==="h"?inp("wallH","",T.wallH,56,' type="number" step="10"')+'มม.':'')+'</div>'):'')
       +'<div class="plRow" style="margin-top:6px;padding-top:4px;border-top:1px dashed var(--line)">'+inp("cost","ราคาทุน/ตร.ม. หิน",cost||"",76,' type="number" step="50" placeholder="0"')+'</div>'
@@ -36976,7 +36981,7 @@ function plWtGrpHtml(grp){
       +'<div class="plNote" style="margin-top:3px">'+(S.slabs.length?e(pieces):'ยังไม่มีตู้พื้นที่ยืนพื้นในห้อง')+' · ไม่เข้าใบตัด (ของสั่งซื้อ)</div>')) ); }
 function plWtWire(s){ if(!s) return; const T=plWt();
   const go=async(k,el)=>{ let v=el.type==="checkbox"?el.checked:el.value;
-    if(["t","over","side","upH","wallH","cost","wallCost"].includes(k)){ v=parseFloat(v); if(!isFinite(v)) v=0; if(k!=="over") v=Math.max(v,0); }
+    if(["t","over","side","upH","wallH","cost","wallCost","glassT"].includes(k)){ v=parseFloat(v); if(!isFinite(v)) v=0; if(k!=="over") v=Math.max(v,0); }
     if(k==="clr"||k==="glassClr"||k==="tileClr") v=String(v||"").slice(0,60);
     const key0=T.mat+"|"+T.t, wk0=plWtWallKey(T); T[k]=v;
     if(k==="mat"){ const M=PLWT_MATS[v]||PLWT_MATS.granite; if(M.t.indexOf(+T.t)<0) T.t=M.t[0]; T.color=""; }
@@ -38146,9 +38151,12 @@ function plqAttHtml(Q,C,A){ if(snOff("plqDwg")||!A) return ""; const at=Q.att||{
     +figs.map(f=>'<div class="fig"><div class="fs">'+f.svg+'</div><div class="ft">'+e(f.title)+'</div></div>').join("")
     +(matH?('<div class="fig mtp"><div class="ft" style="margin:0 0 4px">รายละเอียดวัสดุ</div>'+matH+'</div>'):'')
     +'</div>';
-  const tot=figs.length+(matH?1:0); let k=0;
+  /* v1.527: หน้ารวมวัสดุ = A4 แนวนอน หน้าละ 10 ช่อง (ผู้ใช้ 21:04 “รายการวัสดุเป็นกระดาษแนวนอน 1 หน้า … มีเยอะขึ้นก็ขึ้นหน้า 2 แต่ไม่เอาอะไรมาปนต่อ”)
+     เดิม (1.526): หน้าตั้งแยก · (1.521: ต่อท้ายภาพแปลนท็อปในหน้าเดียวกัน วัสดุตกไปหน้าถัดไปทีละช่อง) */
+  const MT=(at.mat!==false)?((A.mat||[]).filter(Boolean)):[], PER=10, mp=Math.ceil(MT.length/PER), tot=figs.length+mp; let k=0;
   return figs.map(f=>'<section class="dwl">'+hd("แผ่น "+(++k)+"/"+tot)+'<div class="dwf">'+f.svg+'</div><div class="ft">'+e(f.title)+'</div></section>').join("")
-    +(matH?('<section class="mtp2">'+hd("แผ่น "+(++k)+"/"+tot)+'<div class="ft" style="margin:6px 0 4px;text-align:center;font-weight:600;text-decoration:underline">รายละเอียดวัสดุ</div>'+matH+'</section>'):''); }
+    +Array.from({length:mp},(_,i)=>'<section class="dwl dwm">'+hd("แผ่น "+(++k)+"/"+tot)+'<div class="ft" style="margin:2mm 0 3mm">รายละเอียดวัสดุ'+(i?" (ต่อ)":"")+'</div>'
+      +dwgMatHtml(MT.slice(i*PER,(i+1)*PER)).replace('<div class="mtl">','<div class="mtl mtl5">')+'</section>').join(""); }
 function plqHtml(Q,C,K,img,A){
   const e=s=>escapeHtml(String(s==null?"":s)), nl=s=>e(s).replace(/\n/g,"<br>"), cm=v=>String(Math.round((+v||0)/10*10)/10).replace(/\.0$/,"");
   const rowsH=K.rows.map((r,i)=>'<tr><td class="c">'+(i+1)+'</td><td><b>'+e(r.name)+'</b>'+(r.code&&r.code!==r.name?('<div class="sm">'+e(r.code)+'</div>'):'')+'</td>'
@@ -38165,6 +38173,7 @@ function plqHtml(Q,C,K,img,A){
     +'.pw{width:100%;border-collapse:collapse}.pw>thead>tr>td,.pw>tfoot>tr>td,.pw>tbody>tr>td{padding:0;border:0}.psp{height:12mm}'
     +'.dwl{page:dw;break-before:page;page-break-before:always;width:297mm;height:209mm;padding:9mm 12mm 8mm;display:flex;flex-direction:column;overflow:hidden}'
     +'.dwl .dwf{flex:1;min-height:0;border:1px solid #cfd6de;border-radius:6px;padding:3mm;display:flex;align-items:center;justify-content:center}.dwl .dwf svg{display:block;width:100%;height:100%}'
+    +'.dwm .mtl5{display:grid;grid-template-columns:repeat(5,1fr);gap:4mm;align-content:start}.dwm .mi{height:50mm}.dwm .mc{font-size:11px}.dwm .mc b{font-size:12.5px}.mi svg.dsg{width:100%;height:100%;max-width:none}'   // v1.527
     +'.dwl .ft{text-align:center;font-weight:600;font-size:13px;margin-top:3mm;text-decoration:underline}.dwh em{margin-left:auto;font-style:normal;color:#6b7280;font-size:10.5px;white-space:nowrap}'
     +'.mtp2{break-before:page;page-break-before:always;width:210mm;padding:12mm}.dwp2{break-before:page;page-break-before:always;width:186mm;margin:0 auto;padding:12mm 0}'
     +'@media screen{.dwl,.mtp2,.dwp2{width:auto;max-width:210mm;margin:8mm auto 0;border-top:1px dashed #b8c0cc}.dwl{height:auto;aspect-ratio:297/210;padding:5mm 7mm}}'
@@ -38586,10 +38595,82 @@ async function dwgSwatch(b){
 function dwgBoardMat(b){ try{ const el=effLinks(b), bd=blankDims(b), th=coreThickOf(b,bd.T), code=String(matCodeForThick(resolveLink(el.mat,b),th)||"").trim();
     const e=elemByCode(code); let fg=""; try{ fg=costFgName(code); }catch(_){} return {code, t:Math.round(+bd.T||+b.T||0), name:String(elemDesc(e)||fg||code)}; }catch(e){ return null; } }
 /* ── หน้ารวมวัสดุ (การ์ด) ── */
+/* ───────── v1.527: ภาพแบบบาน (ดีไซน์หน้าบาน) ในหน้ารวมวัสดุ — ด้านหน้า + Section ข้าง เป็นเส้น ─────────
+   ผู้ใช้ 27/10 21:04: “ดีไซน์หน้าบานต้องเอาแบบบานมาแสดง เช่น Exxx01 · บานเรียบก็แค่ 4 เหลี่ยมผืนผ้าเลย Section ข้างก็แค่ 4 เหลี่ยมด้านข้าง เพราะบานธรรมดา”
+   เดิม (1.521): แยกตาม Part ลิงก์ของบาน (FrontShapeP1/P2/P3) ภาพ = ถ่าย 3D บานจริง (เห็นลายไม้ ไม่เห็นแบบ)
+   ตอนนี้: แยกตามรหัสแบบบาน (doorShapeCode = ค่า FrontShape ของตู้ เช่น Exxx01) · ชื่อ = รหัสแบบ + คำอธิบายใน Element
+     ภาพ = ด้านหน้า (สี่เหลี่ยมตามสัดส่วนบานจริง) + Section ข้าง (ตัดกลางบานแนวตั้ง · ความหนาขยายให้อ่านได้)
+     บานเรียบ = สี่เหลี่ยมทั้งสองภาพ · มีลาย (doorReliefMap) = เส้นร่องตามระยะจากขอบ + ร่องในภาพตัด
+     เพ (bevel) = เส้นเพ (เพหลังบาน = เส้นประ) + มุมเฉียงในภาพตัด · สันเป็นหน้าตัด (มือจับ J) = เส้นที่ขอบ + รูปหน้าตัด
+     ช่องกระจก (กัดทะลุ) / บานเฟรมอลู = กรอบใน + เส้นกระจก · ภาพตัดเห็นกระจกกลาง */
+function dwgDoorDesign(b){ let code=""; try{ code=doorShapeCode(b)||""; }catch(e){}
+  const link=String((b&&b.part)||"").trim(); if(!code) code=link||"หน้าบาน";
+  let desc=""; try{ const r=(((settings.elements||{}).colors)||[]).find(z=>z&&String(z.code).trim()===code); desc=String((r&&r.desc)||"").trim(); }catch(e){}
+  if(/from\s*XML/i.test(desc)) desc="";
+  return {code, desc}; }
+function dwgDoorSvg(b){ const e=v=>Math.round(v*10)/10;
+  const L=Math.max(+b.L||400,40), W=Math.max(+b.W||700,40), T=Math.max(+b.T||18,1);
+  let prof=null, cut=null, bev=[], es=null;
+  try{ const c=doorShapeCode(b); if(c) prof=doorReliefProfiles()[String(c).toUpperCase()]||null; }catch(e){}
+  try{ cut=doorReliefCutOf(b); }catch(e){}
+  if(!cut&&b._frameDoor) cut={cf:22, frame:true};
+  try{ bev=partBevelList(b)||[]; }catch(e){}
+  try{ es=partEdgeSec(b); }catch(e){}
+  const M=Math.max(L,W), g=M*0.13, Sx=Math.max(1,(W*0.075)/T), ST=T*Sx, X0=L+g, fs=Math.min(M*0.075,L*0.09), pad=M*0.05;
+  const o=[], ln=(x1,y1,x2,y2,w,da)=>o.push('<line x1="'+e(x1)+'" y1="'+e(y1)+'" x2="'+e(x2)+'" y2="'+e(y2)+'" stroke="#2b2f36" stroke-width="'+(w||1)+'" vector-effect="non-scaling-stroke"'+(da?' stroke-dasharray="'+da+'"':'')+'/>');
+  const rc=(x,y,w,h,f,sw)=>o.push('<rect x="'+e(x)+'" y="'+e(y)+'" width="'+e(Math.max(w,0.1))+'" height="'+e(Math.max(h,0.1))+'" fill="'+(f||"none")+'" stroke="#2b2f36" stroke-width="'+(sw||1.2)+'" vector-effect="non-scaling-stroke"/>');
+  const pg=(pts,f)=>o.push('<polygon points="'+pts.map(p=>e(p[0])+","+e(p[1])).join(" ")+'" fill="'+(f||"#ece6da")+'" stroke="#2b2f36" stroke-width="1.2" vector-effect="non-scaling-stroke"/>');
+  const glass=(x,y,w,h)=>{ o.push('<rect x="'+e(x)+'" y="'+e(y)+'" width="'+e(w)+'" height="'+e(h)+'" fill="#e8f3f1" stroke="#2b2f36" stroke-width="0.8" vector-effect="non-scaling-stroke"/>');
+    [[.2,.55],[.27,.62],[.62,.25],[.69,.32]].forEach(p=>ln(x+w*p[0],y+h*p[1],x+w*Math.min(p[0]+.1,1),y+h*(p[1]-.12),0.6)); };
+  /* ── ด้านหน้า ── */
+  rc(0,0,L,W,"#faf9f6",1.5);
+  if(prof){ const ds=[...new Set(prof.pts.map(q=>Math.round(q[0]*10)/10).filter(d=>d>0.5&&d<Math.min(L,W)/2-1))];
+    const inB=(r,d)=>r&&d>=r[0]-0.01&&d<=r[1]+0.01;
+    ds.forEach(d=>{ const v=inB(prof.thrV,d), h=inB(prof.thrH,d);
+      if(v){ ln(d,0,d,W,0.7); ln(L-d,0,L-d,W,0.7); } if(h){ ln(0,d,L,d,0.7); ln(0,W-d,L,W-d,0.7); }
+      if(!v&&!h) rc(d,d,L-2*d,W-2*d,"none",0.7); }); }
+  if(cut&&cut.cf>0&&cut.cf<Math.min(L,W)/2){ glass(cut.cf,cut.cf,L-2*cut.cf,W-2*cut.cf); if(cut.frame) rc(0,0,L,W,"none",2.2); }
+  bev.forEach(v=>{ const w=+v.w||0; if(!(w>0)) return; const da=(v.from==="front")?"6 4":"";
+    if(v.side==="top") ln(0,w,L,w,0.8,da); else if(v.side==="bottom") ln(0,W-w,L,W-w,0.8,da);
+    else if(v.side==="left") ln(w,0,w,W,0.8,da); else if(v.side==="right") ln(L-w,0,L-w,W,0.8,da); });
+  if(es&&es.bx){ const d=Math.min(es.bx.w,M/3);
+    if(es.side==="top") ln(0,d,L,d,1); else if(es.side==="bottom") ln(0,W-d,L,W-d,1); else if(es.side==="left") ln(d,0,d,W,1); else ln(L-d,0,L-d,W,1); }
+  /* ── Section ข้าง (ตัดกลางบานแนวตั้ง · ผิวหน้าอยู่ขวา) ── */
+  const xb=X0, xf=X0+ST, dep=d=>{ if(!prof) return 0; const ps=prof.pts; if(d<=ps[0][0]) return ps[0][1];
+    for(let k=1;k<ps.length;k++){ const a=ps[k-1], q=ps[k]; if(d<=q[0]){ const t=(q[0]-a[0])>1e-9?(d-a[0])/(q[0]-a[0]):1; return a[1]+(q[1]-a[1])*t; } } return ps[ps.length-1][1]; };
+  /* ปลายบน/ล่างของภาพตัด: จุดจากผิวหลังไปผิวหน้า (d = ระยะจากขอบนั้นเข้ามา) · lim = ไม่เกินระยะนี้ (กรอบกระจก) */
+  const endPts=(top,lim)=>{ const yOf=d=>top?d:(W-d), bv=bev.find(v=>v.side===(top?"top":"bottom"));
+    if(bv&&+bv.w>0){ const land=Math.min(+bv.land||0,T)*Sx, w=Math.min(+bv.w,lim||W/2);
+      return (bv.from==="back")?[[xb,yOf(0)],[xb+land,yOf(0)],[xf,yOf(w)]]:[[xb,yOf(w)],[xf-land,yOf(0)],[xf,yOf(0)]]; }
+    if(prof){ const out=[[xb,yOf(0)]]; prof.pts.forEach(q=>{ if(lim&&q[0]>=lim) return; out.push([xf-Math.min(q[1],T*0.9)*Sx,yOf(q[0])]); }); return out; }
+    return [[xb,yOf(0)],[xf,yOf(0)]]; };
+  const flat=y=>[[xb,y],[xf,y]];
+  const wood=(A,B)=>pg(A.concat(B.slice().reverse()),"#ece6da");   // A = ปลายบน (หลัง→หน้า) · B = ปลายล่าง (หลัง→หน้า)
+  const esTB=es&&es.bx&&(es.side==="top"||es.side==="bottom");
+  if(cut&&cut.cf>0&&cut.cf<W/2){ wood(endPts(true,cut.cf),flat(cut.cf)); wood(flat(W-cut.cf),endPts(false,cut.cf));
+    o.push('<rect x="'+e(xb+ST*0.38)+'" y="'+e(cut.cf)+'" width="'+e(ST*0.24)+'" height="'+e(W-2*cut.cf)+'" fill="#cfe7e3" stroke="#2b2f36" stroke-width="0.8" vector-effect="non-scaling-stroke"/>'); }
+  else if(esTB){ const d=Math.min(es.bx.w,W/3), top=es.side==="top";
+    wood(top?flat(d):endPts(true), top?endPts(false):flat(W-d));
+    try{ const lp=es.ls[0], bx=es.bx; pg(lp.map(p=>{ const X=p[0]-bx.x0, Y=(p[1]-bx.y0)/Math.max(bx.h,0.1)*T; return [xb+Y*Sx, top?X:(W-X)]; }),"#ece6da"); }catch(err){} }
+  else wood(endPts(true),endPts(false));
+  /* ป้าย */
+  const ty=W+fs*1.5;
+  o.push('<text x="'+e(L/2)+'" y="'+e(ty)+'" font-size="'+e(fs)+'" text-anchor="middle" fill="#3a3f48">'+Math.round(L)+'×'+Math.round(W)+'</text>');
+  o.push('<text x="'+e(X0+ST/2)+'" y="'+e(ty)+'" font-size="'+e(fs)+'" text-anchor="middle" fill="#3a3f48">หนา '+Math.round(T*10)/10+'</text>');
+  const vw=L+g+Math.max(ST,fs*6)+pad*2, vh=W+fs*2.2+pad*2;
+  return '<svg class="dsg" xmlns="http://www.w3.org/2000/svg" viewBox="'+e(-pad)+' '+e(-pad)+' '+e(vw)+' '+e(vh)+'" preserveAspectRatio="xMidYMid meet" font-family="Sarabun,Leelawadee UI,Tahoma,sans-serif">'+o.join("")+'</svg>'; }
 async function dwgMatTiles(C){ const cabs=(C||dwgCabs()).filter(c=>c.lv!=="rail"&&c.lv!=="light"), tiles=[];
   const doors=[]; cabs.forEach(c=>c.bs.forEach(b=>{ if(dwgIsDoor(b)) doors.push({b,c}); }));
-  /* แบบหน้าบาน: Part ของบาน (สูงสุด 3 แบบ) · ภาพ = บานจริงจาก 3D */
-  const byPart={}; doors.forEach(x=>{ const k=String(x.b.part||"").trim()||"หน้าบาน"; (byPart[k]=byPart[k]||[]).push(x); });
+  /* v1.527: แบบหน้าบาน = รหัสแบบ (Exxx01 …) · ภาพเส้นด้านหน้า + Section (dwgDoorSvg) · บานที่พบบ่อยสุดของแบบนั้นเป็นตัวแทน */
+  if(!snOff("dwgDoorLine")){ const byD={}; doors.forEach(x=>{ if(x.b._box) return; const dd=dwgDoorDesign(x.b); (byD[dd.code]=byD[dd.code]||{dd,L:[]}).L.push(x); });
+    Object.values(byD).sort((a,b)=>b.L.length-a.L.length).slice(0,6).forEach(G=>{
+      const sz={}; G.L.forEach(x=>{ const k=Math.round(+x.b.L||0)+"x"+Math.round(+x.b.W||0); sz[k]=(sz[k]||0)+1; });
+      const kk=Object.keys(sz).sort((a,b)=>sz[b]-sz[a]||(+b.split("x")[0]*+b.split("x")[1])-(+a.split("x")[0]*+a.split("x")[1]))[0];
+      const pick=(G.L.find(x=>Math.round(+x.b.L||0)+"x"+Math.round(+x.b.W||0)===kk)||G.L[0]).b;
+      let svg=""; try{ svg=dwgDoorSvg(pick); }catch(e){ console.error("doorSvg:",e); }
+      tiles.push({h:"ดีไซน์หน้าบาน", svg, t:G.dd.code, s:(G.dd.desc?G.dd.desc+" · ":"")+G.L.length+" บาน"}); }); }
+  /* แบบหน้าบาน: Part ของบาน (สูงสุด 3 แบบ) · ภาพ = บานจริงจาก 3D — v1.527: ใช้เมื่อปิด SN_OFF.dwgDoorLine=1 */
+  const byPart={}; if(snOff("dwgDoorLine")) doors.forEach(x=>{ const k=String(x.b.part||"").trim()||"หน้าบาน"; (byPart[k]=byPart[k]||[]).push(x); });
   Object.keys(byPart).sort((a,b)=>byPart[b].length-byPart[a].length).slice(0,3).forEach(k=>{ const L=byPart[k];
     const pick=L.slice().sort((a,b)=>{ const da=worldDims(a.b), db=worldDims(b.b); return (db[0]*db[1]+db[2]*db[1])-(da[0]*da[1]+da[2]*da[1]); })[0];
     const d=worldDims(pick.b), lo=[pick.b.x-d[0]/2,pick.b.y-d[1]/2,pick.b.z-d[2]/2], hi=[pick.b.x+d[0]/2,pick.b.y+d[1]/2,pick.b.z+d[2]/2];
@@ -38631,7 +38712,7 @@ function dwgIcon(kind){
   if(kind==="led") return '<svg viewBox="0 0 120 80"><rect x="8" y="34" width="104" height="12" rx="3" fill="#f2f2f2" stroke="#8a8f99"/><g fill="#ffd36b">'+[0,1,2,3,4,5,6,7].map(i=>'<rect x="'+(14+i*12.5)+'" y="37" width="6" height="6" rx="1"/>').join("")+'</g></svg>';
   return ""; }
 function dwgMatHtml(tiles){ if(!tiles||!tiles.length) return "";
-  return '<div class="mtl">'+tiles.map(x=>'<div class="mt"><div class="mh">'+escapeHtml(x.h)+'</div><div class="mi">'+(x.img?('<img src="'+x.img+'" alt="">'):(x.icon?dwgIcon(x.icon):'<span class="mx">—</span>'))+'</div>'
+  return '<div class="mtl">'+tiles.map(x=>'<div class="mt"><div class="mh">'+escapeHtml(x.h)+'</div><div class="mi">'+(x.svg?x.svg:x.img?('<img src="'+x.img+'" alt="">'):(x.icon?dwgIcon(x.icon):'<span class="mx">—</span>'))+'</div>'
     +'<div class="mc"><b>'+escapeHtml(x.t||"-")+'</b>'+(x.s?('<span>'+escapeHtml(x.s)+'</span>'):'')+'</div></div>').join("")+'</div>'; }
 /* ทุกภาพของงาน (เรียกตอนเปิดหน้าต่างใบเสนอราคา) */
 function dwgAll(){ const C=dwgCabs(), out=[]; if(!C.length) return out;
