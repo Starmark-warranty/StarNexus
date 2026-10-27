@@ -3281,7 +3281,7 @@ body[data-theme="dark"] .splash-dots span{background:rgba(255,255,255,.25)}
    ===================================================================== */
 /* ---- APP_META: แหล่งความจริงเดียวของเวอร์ชัน (ดูได้จาก console / คลิกชื่อแอป) ---- */
 const APP_META={
-  name:"StarNexus", version:"1.525", build:"2026-10-27/sec-cut",
+  name:"StarNexus", version:"1.526", build:"2026-10-27/quote-print",
   file:"StarNexus.html", basedOn:"Furnitech_V3.html (v3.11)",
   /* ───────── เริ่มนับเวอร์ชันใหม่ที่ 1.001 (21/08/2026) ─────────
      ของเดิมนับมาถึง 42.1 แล้ววิ่งเป็นทศนิยมสองชั้นซึ่งอ่านลำดับยาก
@@ -3289,6 +3289,7 @@ const APP_META={
      ประวัติเก่าเก็บไว้ทั้งหมดตามเลขเดิม ไม่ไล่เขียนใหม่ เพราะเลขในนั้นถูกอ้างถึงไปแล้ว
      รายการที่อยู่ใต้ 1.001 ลงไปจึงเป็นเลขชุดเก่า อ่านต่อกันได้ตามวันที่ */
   changelog:[
+    ["1.526","2026-10-27","UX พิมพ์ใบเสนอราคา (ผู้ใช้ 21:00 ภาพท้าย PDF มีลิงก์ https://c1stmdev.stmm.work/nexus/starnexus: “ไม่ต้องแนบ link หลังปริ้น PDF · ที่เป็นแบบ ให้กระดาษเป็นแนวนอน”) — ① ลิงก์/วันที่/ชื่อหน้า ที่เบราว์เซอร์พิมพ์เองตรงขอบกระดาษหายไป — @page ขอบ 0 (เบราว์เซอร์ไม่มีที่วางหัว/ท้ายกระดาษ) แล้วเว้นขอบเอง: ข้าง 12 มม. · บน/ล่าง 12 มม. ทุกหน้า (หัว/ท้ายตารางซ้ำทุกหน้าเมื่อใบยาวหลายหน้า) · ② หน้าแบบ (แปลน · ด้านหน้า · Section · แปลนท็อป) = A4 แนวนอน หน้าละ 1 ภาพเต็มหน้า (เดิม A4 ตั้ง หน้าละ 2 ภาพ) หัวหน้ามีโลโก้/เลขที่/ลูกค้า + “แผ่น n/รวม” · หน้ารวมวัสดุยังเป็นแนวตั้ง · ตัวอย่างบนจอย่อหน้าแนวนอนให้พอดีกรอบ · ปิด SN_OFF.plqDwgLand=1 (แบบหน้าละ 2 ภาพแนวตั้ง)"],
     ["1.525","2026-10-27","UX แบบแนบใบเสนอราคา · Section (ผู้ใช้ 20:56 ภาพด้านหลัง เส้นตัด A/B/C ผ่านกลางตู้ทับเลขวงกลม/รหัส + A ตัดที่ฟิลเลอร์ WNF036/BNF001: “ปรับให้เส้นไม่ต้องอยู่กลางตู้ · พวก BNF กับ WNF ไม่ต้องตัด Section” · “TNF ด้วยครับ”) — ① ฟิลเลอร์ (รหัส BNF/WNF/TNF หรือชนิดฟิลเลอร์ในแคตตาล็อก) และแผ่นปิดข้าง ไม่เป็นจุดตัด ไม่นับในรูปตัดของตู้ข้าง ๆ · ② เส้นตัดอยู่ค่อนซ้ายของตู้ (20% ของช่วงที่ตัด อย่างน้อย 60 มม. จากขอบ) ไม่ผ่านเลขวงกลม/รหัสกลางตู้ · ตู้ 2 บานจึงตัดผ่านบาน ไม่ใช่ร่องกลางระหว่างบาน"],
     ["1.524","2026-10-27","FEAT ห้องออกแบบ: 🖐 เลือกมือจับแบบรูป (ผู้ใช้ 20:42 “โหมดห้องออกแบบยังขาดเลือกใส่มือจับ … เอาแบบที่เหมือนลูกค้าเลือกมาใส่ได้ ไม่ใช่คนที่เก่งการใช้โปรแกรม”) — เดิมใส่มือจับได้ทีละบาน (เลือกบาน → ⚙ ตั้งมือจับ: รหัส · H/V · พิมพ์ชื่อตำแหน่ง · ระยะ X/Y) · ตอนนี้ปุ่ม 🖐 มือจับ ที่แผงตู้ที่เลือก · 🖐 มือจับทั้งห้อง ที่แผงห้อง · และในกล่องเลือกสี (คลิกขวาที่ตู้) → กล่องรูปมือจับจริง (ภาพ 3D จากรุ่นใน Element → Fittings ชนิดมือจับที่มีสเปครู · ชื่อจาก Fitting Global ถ้าคำอธิบายเป็น “จาก XML” · ระยะรู · ผิว) · การ์ดแรก “ไม่มีมือจับ” · กดรูป = ใส่ทุกบาน/ลิ้นชักของตู้ (ติ๊ก ทุกตู้ = ทั้งห้อง) · ป้าย ✓ ใช้อยู่ n บาน · ตำแหน่ง อัตโนมัติ/ชิดบน/กึ่งกลาง/ชิดล่าง · แนว อัตโนมัติ/นอน/ตั้ง (เปลี่ยนแล้วจัดมือจับเดิมใหม่ทันที) · อัตโนมัติ: ลิ้นชัก = กลางขอบบน แนวนอน · บานเปิดข้าง = ฝั่งตรงข้ามบานพับ แนวตั้ง (ตู้พื้นมุมบน · ตู้ลอยมุมล่าง · บานสูงที่ ~1 ม. จากพื้น) · บานยก = กลางขอบล่าง · ระยะตามความยาวมือจับ ไม่ล้นบาน · เก็บแบบเดียวกับมือจับจากออเดอร์ (_pulls + ช่อง K_Pull/K_Orientation/K_Pull_Position ที่จับคู่ไว้) รูเจาะ/3D/ใบอุปกรณ์/ราคาตามเดิม · ปิด SN_OFF.plPull=1"],
     ["1.523","2026-10-27","FIX ① สีหลุดเข้าแท็บ K_Fitting_Concept ในกล่องเลือกสี (ผู้ใช้ 20:29 ภาพตู้ BND214: “ทำไมมีสีมาอยู่ในกลุ่ม fitting concept” — G08H0452Y · G08H1209Y · N01M0029N ปนกับ EC48/KIT01–03) — ต้นเหตุ: ค่าตั้งต้นของ Family (varFallback) ให้รหัสสีตั้งต้น N01M0029N กับ “ทุก” Family ที่ไม่ใช่ขา/มือจับ รวม Family ชุดอุปกรณ์ → ตู้ที่ออเดอร์ไม่ส่งชุดมาได้ K_Fitting_Concept = N01M0029N + รหัสนี้ถูกเติมเข้าตัวเลือก · แล้วสร้างสีใหม่จากสีต้นแบบ (ctFamsOf) เติมสีใหม่เข้าทุก Family ที่มีสีต้นแบบในตัวเลือก จึงลาม G08H… เข้าไปด้วย · ตอนนี้ Family ชุดอุปกรณ์ (ช่อง kitField) ไม่รับสีตั้งต้น (ใช้ได้เฉพาะ def ที่ไม่ใช่สี) · สร้างสีใหม่ไม่เติมเข้า Family ชุด · ล้างของเดิม: ตัวเลือกที่เป็นสี (ไม่ใช่รหัสชุดใน Element) ออกจาก Family ชุด + ค่าชุดของตู้ที่เป็นรหัสสี (ปิด SN_OFF.kitFamClean=1) ② เปลี่ยนตู้จากกล่องไม้เป็นชุด KIT01 (รางแผงเหล็ก) แล้วพื้น/หลังกล่องไม่เอา Part ตั้งต้น (ผู้ใช้ 20:31 ภาพลิ้นชักพื้น/หลังสีไม้ดิบ: “พอเปลี่ยนจากกล่องไม้เป็น KIT01 Part ไม่ไปเอา Default”) — เดิม applyRailSystem ให้ชิ้นใหม่ใช้ “วัสดุของกล่องเดิม” (matB = รหัสวัสดุชิ้นแรกของกล่องเก่า) — Part ตั้งต้นถูกผูกให้แล้ว แต่วัสดุที่ระบุรหัสตรง ๆ (กล่องไม้จากออเดอร์ = ไม้ดิบ) ทับวัสดุของ Part เสมอ พื้น/หลังแผงเหล็กจึงเป็นไม้ดิบ (ทดสอบ: Part = ค่าตั้งต้น แต่วัสดุจริง = วัสดุกล่องไม้) · ตอนนี้ชนิดกล่องเปลี่ยน (ไม้ ↔ แผงเหล็ก) = ชิ้นใหม่ใช้ Part ของระบบรางในแท็บระบบราง ถ้าไม่ได้ตั้ง = Part ตั้งต้นช่อง “กล่องลิ้นชัก” (ว่าง = แผ่นนอน) · วัสดุกลับเป็นลิงก์ $CarcassBodyMat · ชนิดเดิม (แค่เปลี่ยนสูง/รุ่นรางชนิดเดียวกัน) ยกค่าเดิมเหมือนเดิม (ปิด SN_OFF.kitBoxDef=1)"],
@@ -28820,6 +28821,7 @@ function boardRole(b){
      SN_OFF.kitFamClean=1 ไม่ล้างรหัสสีที่ปนอยู่ใน Family ชุดอุปกรณ์ (ตัวเลือก + ค่าชุดของตู้) (v1.523)
      SN_OFF.kitBoxDef=1   เปลี่ยนกล่องไม้ ↔ แผงเหล็ก แล้วยก Part/วัสดุ/ผิว/ขอบของกล่องเดิมมาแบบเดิม (v1.523)
      SN_OFF.plPull=1      ห้องออกแบบไม่มีปุ่ม 🖐 มือจับ (เลือกมือจับแบบรูป) (v1.524)
+     SN_OFF.plqDwgLand=1  แบบแนบใบเสนอราคาเป็น A4 ตั้ง หน้าละ 2 ภาพ (แบบ 1.521) (v1.526)
      SN_OFF.fxfIn=1       ไม่รับไฟล์ FXF ของ imos (ไม่มีปุ่ม 📐 ในหน้า Order · ลากไฟล์ .fxf มาวางที่ฉากตกไปตัวอ่าน DXF แบบเดิม · ชิ้น _fxf ในงานเก่ายังไม่ถูกตัวซ่อมแตะ) (v1.499)
      SN_OFF.fxfMpr=1      ไฟล์เจาะของชิ้นจาก FXF ออกแบบ 1.499 (ร่องเข้าไฟล์ · BM=LS · ไม่มี S_ / SIDE1 · เลขชิ้นนับตามลำดับฉาก · แตกมาโครแบบเดา + ปัด 0.1 สำหรับการนำเข้าครั้งถัดไป — ชิ้นที่นำเข้าไปแล้วรูไม่เปลี่ยน) (v1.500)
                           รวมของ v1.501: มาโคร D3_T12 / H1 / L_IT_Box · รูทะลุไปฝั่ง 2 · ขนาด 0.01 · ZA d-ระยะ
@@ -38134,12 +38136,19 @@ function plqCalc(Q,L){
 function plqAttHtml(Q,C,A){ if(snOff("plqDwg")||!A) return ""; const at=Q.att||{}, e=s=>escapeHtml(String(s==null?"":s));
   const figs=(A.figs||[]).filter(f=>at[String(f.key).split("_")[0]]!==false), matH=(at.mat!==false)?dwgMatHtml(A.mat):"";
   if(!figs.length&&!matH) return "";
-  const lg=plqLogo(C);
-  return '<div class="pg dwp"><div class="dwh">'+(lg?'<img src="'+e(lg)+'" alt="">':'<b>'+e(C.name||"")+'</b>')
-      +'<div><b>แบบประกอบใบเสนอราคา</b> เลขที่ '+e(Q.no||"-")+(Q.cust?(' · '+e(Q.cust)):'')+(Q.proj?(' · '+e(Q.proj)):'')+'<br><span>หน่วย มม. · แบบเพื่อประกอบการเสนอราคา ขนาดจริงวัดหน้างานอีกครั้งก่อนผลิต</span></div></div>'
+  const lg=plqLogo(C), hd=n=>'<div class="dwh">'+(lg?'<img src="'+e(lg)+'" alt="">':'<b>'+e(C.name||"")+'</b>')
+      +'<div><b>แบบประกอบใบเสนอราคา</b> เลขที่ '+e(Q.no||"-")+(Q.cust?(' · '+e(Q.cust)):'')+(Q.proj?(' · '+e(Q.proj)):'')+'<br><span>หน่วย มม. · แบบเพื่อประกอบการเสนอราคา ขนาดจริงวัดหน้างานอีกครั้งก่อนผลิต</span></div>'+(n?'<em>'+e(n)+'</em>':'')+'</div>';
+  /* ───────── v1.526: หน้าแบบเป็นกระดาษแนวนอน ─────────
+     ผู้ใช้ 27/10 21:00: “ที่เป็นแบบ ให้กระดาษเป็นแนวนอนครับ”
+     เดิม (1.521): ต่อท้ายใบเป็น A4 ตั้ง หน้าละ 2 ภาพ · ตอนนี้ภาพละหน้า A4 แนวนอน (@page dw) ภาพเต็มหน้า · หน้ารวมวัสดุแนวตั้งตามเดิม
+     ปิด SN_OFF.plqDwgLand=1 = หน้าละ 2 ภาพแนวตั้ง (ขอบกระดาษยังเป็นแบบใหม่ ไม่มีลิงก์) */
+  if(snOff("plqDwgLand")) return '<div class="dwp2">'+hd("")
     +figs.map(f=>'<div class="fig"><div class="fs">'+f.svg+'</div><div class="ft">'+e(f.title)+'</div></div>').join("")
     +(matH?('<div class="fig mtp"><div class="ft" style="margin:0 0 4px">รายละเอียดวัสดุ</div>'+matH+'</div>'):'')
-    +'</div>'; }
+    +'</div>';
+  const tot=figs.length+(matH?1:0); let k=0;
+  return figs.map(f=>'<section class="dwl">'+hd("แผ่น "+(++k)+"/"+tot)+'<div class="dwf">'+f.svg+'</div><div class="ft">'+e(f.title)+'</div></section>').join("")
+    +(matH?('<section class="mtp2">'+hd("แผ่น "+(++k)+"/"+tot)+'<div class="ft" style="margin:6px 0 4px;text-align:center;font-weight:600;text-decoration:underline">รายละเอียดวัสดุ</div>'+matH+'</section>'):''); }
 function plqHtml(Q,C,K,img,A){
   const e=s=>escapeHtml(String(s==null?"":s)), nl=s=>e(s).replace(/\n/g,"<br>"), cm=v=>String(Math.round((+v||0)/10*10)/10).replace(/\.0$/,"");
   const rowsH=K.rows.map((r,i)=>'<tr><td class="c">'+(i+1)+'</td><td><b>'+e(r.name)+'</b>'+(r.code&&r.code!==r.name?('<div class="sm">'+e(r.code)+'</div>'):'')+'</td>'
@@ -38152,7 +38161,14 @@ function plqHtml(Q,C,K,img,A){
   const exp=(()=>{ const m=/^(\d{4})-(\d{2})-(\d{2})/.exec(Q.date||""); if(!m||!(+Q.valid>0)) return ""; const d=new Date(+m[1],+m[2]-1,+m[3]+(+Q.valid)), p=n=>String(n).padStart(2,"0"); return plqDateTh(d.getFullYear()+"-"+p(d.getMonth()+1)+"-"+p(d.getDate())); })();
   return '<!doctype html><html lang="th"><head><meta charset="utf-8"><title>'+e(("ใบเสนอราคา "+(Q.no||"")+" "+(Q.cust||"")).trim())+'</title>'
     +'<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;600;700&display=swap" rel="stylesheet">'
-    +'<style>@page{size:A4;margin:12mm}.dwp{page-break-before:always;break-before:page}.dwh{display:flex;gap:12px;align-items:center;border-bottom:2px solid #1f3b57;padding-bottom:5px;margin-bottom:6px;font-size:11.5px}.dwh img{height:30px}.dwh span{color:#6b7280;font-size:10.5px}.fig{page-break-inside:avoid;break-inside:avoid;margin:0 0 5mm}.fig .fs{border:1px solid #cfd6de;border-radius:6px;padding:3px}.fig svg{display:block;width:100%;height:auto;max-height:112mm}.fig .ft{text-align:center;font-weight:600;font-size:12px;margin-top:3px;text-decoration:underline}.mtl{display:grid;grid-template-columns:repeat(5,1fr);gap:5px}.mt{border:1px solid #c9ced6;display:flex;flex-direction:column;page-break-inside:avoid}.mh{background:#e7e9ee;text-align:center;font-weight:700;font-size:11.5px;padding:3px}.mi{height:30mm;display:flex;align-items:center;justify-content:center;padding:4px;border-bottom:1px solid #e1e4ea}.mi img{max-width:100%;max-height:100%;object-fit:contain}.mi svg{width:80%;height:auto}.mx{color:#9ca3af}.mc{padding:4px;text-align:center;font-size:10.5px;line-height:1.3}.mc b{display:block;font-size:11.5px}.mc span{color:#4b5563}*{box-sizing:border-box}html,body{margin:0;background:#fff;color:#1d232b;font:12.5px/1.45 "Sarabun","Leelawadee UI","Tahoma",sans-serif;-webkit-print-color-adjust:exact;print-color-adjust:exact}'
+    +'<style>@page{size:A4;margin:0}@page dw{size:A4 landscape;margin:0}'   /* v1.526: ขอบ 0 = เบราว์เซอร์ไม่พิมพ์ลิงก์/วันที่ที่ขอบกระดาษ · เว้นขอบเองด้วย .pw/.psp (บน-ล่าง ซ้ำทุกหน้า) และ .pg กว้าง 186 กลางหน้า (ข้าง 12) */
+    +'.pw{width:100%;border-collapse:collapse}.pw>thead>tr>td,.pw>tfoot>tr>td,.pw>tbody>tr>td{padding:0;border:0}.psp{height:12mm}'
+    +'.dwl{page:dw;break-before:page;page-break-before:always;width:297mm;height:209mm;padding:9mm 12mm 8mm;display:flex;flex-direction:column;overflow:hidden}'
+    +'.dwl .dwf{flex:1;min-height:0;border:1px solid #cfd6de;border-radius:6px;padding:3mm;display:flex;align-items:center;justify-content:center}.dwl .dwf svg{display:block;width:100%;height:100%}'
+    +'.dwl .ft{text-align:center;font-weight:600;font-size:13px;margin-top:3mm;text-decoration:underline}.dwh em{margin-left:auto;font-style:normal;color:#6b7280;font-size:10.5px;white-space:nowrap}'
+    +'.mtp2{break-before:page;page-break-before:always;width:210mm;padding:12mm}.dwp2{break-before:page;page-break-before:always;width:186mm;margin:0 auto;padding:12mm 0}'
+    +'@media screen{.dwl,.mtp2,.dwp2{width:auto;max-width:210mm;margin:8mm auto 0;border-top:1px dashed #b8c0cc}.dwl{height:auto;aspect-ratio:297/210;padding:5mm 7mm}}'
+    +'.dwp{page-break-before:always;break-before:page}.dwh{display:flex;gap:12px;align-items:center;border-bottom:2px solid #1f3b57;padding-bottom:5px;margin-bottom:6px;font-size:11.5px}.dwh img{height:30px}.dwh span{color:#6b7280;font-size:10.5px}.fig{page-break-inside:avoid;break-inside:avoid;margin:0 0 5mm}.fig .fs{border:1px solid #cfd6de;border-radius:6px;padding:3px}.fig svg{display:block;width:100%;height:auto;max-height:112mm}.fig .ft{text-align:center;font-weight:600;font-size:12px;margin-top:3px;text-decoration:underline}.mtl{display:grid;grid-template-columns:repeat(5,1fr);gap:5px}.mt{border:1px solid #c9ced6;display:flex;flex-direction:column;page-break-inside:avoid}.mh{background:#e7e9ee;text-align:center;font-weight:700;font-size:11.5px;padding:3px}.mi{height:30mm;display:flex;align-items:center;justify-content:center;padding:4px;border-bottom:1px solid #e1e4ea}.mi img{max-width:100%;max-height:100%;object-fit:contain}.mi svg{width:80%;height:auto}.mx{color:#9ca3af}.mc{padding:4px;text-align:center;font-size:10.5px;line-height:1.3}.mc b{display:block;font-size:11.5px}.mc span{color:#4b5563}*{box-sizing:border-box}html,body{margin:0;background:#fff;color:#1d232b;font:12.5px/1.45 "Sarabun","Leelawadee UI","Tahoma",sans-serif;-webkit-print-color-adjust:exact;print-color-adjust:exact}'
     +'.pg{width:186mm;margin:0 auto}.hd{display:flex;gap:14px;align-items:center;border-bottom:2px solid #1f3b57;padding-bottom:8px}.hd img{max-height:56px;max-width:230px;object-fit:contain;object-position:left center}'
     +'.co{flex:1;min-width:0}.co b{font-size:16px;display:block}.co div{color:#4b5563;font-size:11.5px}.tt{text-align:right}.tt h1{margin:0;font-size:22px;color:#1f3b57;letter-spacing:.5px}.tt .en{font-size:11px;color:#6b7280;letter-spacing:2px}'
     +'.meta{display:flex;gap:12px;margin:8px 0}.box{flex:1;border:1px solid #cfd6de;border-radius:6px;padding:7px 10px}.box .l{color:#6b7280;font-size:11px}.kv{display:grid;grid-template-columns:auto 1fr;gap:1px 10px}.kv span:nth-child(odd){color:#6b7280}'
@@ -38162,7 +38178,7 @@ function plqHtml(Q,C,K,img,A){
     +'.sum{display:flex;gap:14px;margin-top:8px;page-break-inside:avoid}.words{flex:1;align-self:flex-end;background:#f3f5f8;border-radius:6px;padding:8px 10px;font-weight:600}'
     +'table.tt2{width:78mm;border-collapse:collapse}table.tt2 td{padding:4px 6px;border-bottom:1px solid #e5e7eb}table.tt2 tr.g td{background:#1f3b57;color:#fff;font-weight:700;font-size:13.5px;border:0}'
     +'.end{page-break-inside:avoid;break-inside:avoid}.note{margin-top:8px;font-size:11.5px;color:#374151;page-break-inside:avoid}.note b{color:#1d232b}.sig{display:flex;gap:16px;margin-top:16px;page-break-inside:avoid}.sig div{flex:1;text-align:center;font-size:11.5px;color:#4b5563}.sig i{display:block;border-bottom:1px solid #9ca3af;height:30px;margin-bottom:3px}'
-    +'</style></head><body><div class="pg">'
+    +'</style></head><body><table class="pw"><thead><tr><td><div class="psp"></div></td></tr></thead><tfoot><tr><td><div class="psp"></div></td></tr></tfoot><tbody><tr><td><div class="pg">'   // v1.526: ขอบบน/ล่างทุกหน้า
     +'<div class="hd">'+(plqLogo(C)?'<img src="'+e(plqLogo(C))+'" alt="">':'')   /* v1.516: ตั้งต้น = โลโก้ Starmark */+'<div class="co"><b>'+e(C.name||"ชื่อบริษัท")+'</b>'+(C.addr?'<div>'+nl(C.addr)+'</div>':'')
       +([C.tel?("โทร. "+e(C.tel)):"",C.email?e(C.email):""].filter(Boolean).length?('<div>'+[C.tel?("โทร. "+e(C.tel)):"",C.email?e(C.email):""].filter(Boolean).join(" · ")+'</div>'):'')+(C.tax?('<div>เลขประจำตัวผู้เสียภาษี '+e(C.tax)+'</div>'):'')+'</div>'   /* v1.518: เรียงแบบหัวใบเสนอราคาของบริษัท — ที่อยู่ / โทร / เลขผู้เสียภาษี คนละบรรทัด */
       +'<div class="tt"><h1>ใบเสนอราคา</h1><div class="en">QUOTATION</div></div></div>'
@@ -38175,7 +38191,7 @@ function plqHtml(Q,C,K,img,A){
     +'<div class="sum"><div class="words">('+e(plqBaht(K.grand))+')</div><table class="tt2">'+tot+'</table></div>'
     +'<div class="end">'+(String(Q.note||"").trim()?'<div class="note"><b>เงื่อนไข / หมายเหตุ</b><br>'+nl(Q.note)+'</div>':'')
     +'<div class="sig"><div><i></i>ผู้เสนอราคา'+(C.sales?('<br>('+e(C.sales)+')'):'<br>')+'<br>วันที่ ........................</div><div><i></i>ผู้อนุมัติ<br><br>วันที่ ........................</div><div><i></i>ลูกค้ายืนยันการสั่งซื้อ<br><br>วันที่ ........................</div></div></div>'   /* .end = เงื่อนไข + ลายเซ็น ขึ้นหน้าใหม่ไปด้วยกัน */
-    +'</div>'+plqAttHtml(Q,C,A)+'</body></html>'; }   /* v1.521: + แบบ/หน้ารวมวัสดุ */
+    +'</div></td></tr></tbody></table>'+plqAttHtml(Q,C,A)+'</body></html>'; }   /* v1.521: + แบบ/หน้ารวมวัสดุ · v1.526: ใบเสนอราคาอยู่ในตารางเว้นขอบ แบบอยู่นอกตาราง (เปลี่ยนแนวกระดาษได้) */
 async function plqShot(){
   if(typeof noGL!=="undefined"&&noGL||!renderer) return "";
   try{ let B={}; try{ B=Object.assign(plpDefBrand(),await lsGet(PLP_LS,{})||{}); }catch(e){ B=plpDefBrand(); }
