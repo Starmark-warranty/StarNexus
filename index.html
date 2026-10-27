@@ -3281,7 +3281,7 @@ body[data-theme="dark"] .splash-dots span{background:rgba(255,255,255,.25)}
    ===================================================================== */
 /* ---- APP_META: แหล่งความจริงเดียวของเวอร์ชัน (ดูได้จาก console / คลิกชื่อแอป) ---- */
 const APP_META={
-  name:"StarNexus", version:"1.528", build:"2026-10-27/real-room",
+  name:"StarNexus", version:"1.529", build:"2026-10-27/pull-door",
   file:"StarNexus.html", basedOn:"Furnitech_V3.html (v3.11)",
   /* ───────── เริ่มนับเวอร์ชันใหม่ที่ 1.001 (21/08/2026) ─────────
      ของเดิมนับมาถึง 42.1 แล้ววิ่งเป็นทศนิยมสองชั้นซึ่งอ่านลำดับยาก
@@ -3289,6 +3289,7 @@ const APP_META={
      ประวัติเก่าเก็บไว้ทั้งหมดตามเลขเดิม ไม่ไล่เขียนใหม่ เพราะเลขในนั้นถูกอ้างถึงไปแล้ว
      รายการที่อยู่ใต้ 1.001 ลงไปจึงเป็นเลขชุดเก่า อ่านต่อกันได้ตามวันที่ */
   changelog:[
+    ["1.529","2026-10-27","FIX+FEAT 🖐 มือจับ: ไม่ลงแผ่นปิด/ฟิลเลอร์ + เลือกรายบานได้ (ผู้ใช้ 21:20 ส่ง starnexus-project (33).json: “พวกแผ่นปิดข้าง Filler WNF TNF BNF แล้วตู้ BND217 มีไม้ Panel L มันเป็นเหมือน Filler · ถ้ามันไม่มีอุปกรณ์บานพับ หรือรางลิ้นชัก หรือโช็คในอนาคต ชิ้นนั้นก็ไม่มีมือจับแน่นอนถูกไหม” · 21:22 ภาพกล่องมือจับ BND217 “2 บาน/ลิ้นชัก”: “ต้องเลือกได้ด้วยว่าบานไหนไม่เอามือจับ อนาคตมีตู้แบบอื่น ๆ แน่นอน”) — ในไฟล์: BND217 Panel L (หน้าหลอก) · BNF001 Filler Front · WNF036 Filler Carcass + Fix Front ได้ H002 ไปด้วย (1.524 นับทุกชิ้นที่ระบบมือจับนับเป็นบาน + แผ่นหน้าที่ชื่อมี front) · ① ตั้งต้นใส่เฉพาะชิ้นที่เปิดได้: มีบานพับ (ข้อมูลบานพับ หรือรูถ้วย Ø30–40 ของงาน FXF) · หน้าลิ้นชักที่มีกล่อง/แผงเหล็ก · (โช็ค/บานยก/บานเลื่อน: connectors lift/flap/slide/shock หรือธง _lift/_slideDoor) · หน้าหลอก/แผงปิดไม่ใส่ — ไม่ต้องติ๊กรับค่ามือจับรายชิ้นตอนสร้างตู้ · ② กล่อง 🖐 มือจับ (ตู้ใบเดียว) มีภาพหน้าตู้: กดที่บาน = ใส่/ไม่ใส่ มือจับ (บานที่ใส่โชว์ตำแหน่งมือจับ · ไม่ใส่ = ลายขีด) · ใช้กับแผ่นหน้าทุกชิ้นของตู้ รวมชิ้นที่ระบบเดาว่าเปิดไม่ได้ (บังคับใส่ได้) · จำต่อบาน (_pullPick) ใส่รุ่นใหม่ทั้งตู้ก็ไม่ลงบานที่ปิดไว้ · ③ มือจับจากกล่องนี้ที่ค้างบนชิ้นที่ไม่ใส่ ล้างเองทุกรอบคิดฉาก (ช่อง K_Pull ของชิ้นนั้น = NoPull) · มือจับจากออเดอร์ (XML) / ตั้งเองทีละบาน (⚙) ไม่แตะ · ลำดับบานของมือจับจาก XML เหมือนเดิม · ④ ระยะตั้งต้น (ผู้ใช้ 21:26 “Knob ขอเป็น 35,35 · มือจับ 2 รู เอาปลายมือจับ 35 อีกด้านก็ 35”): ปุ่ม 35/35 · ก้าน/บาร์ ปลายมือจับห่างขอบ 35 เส้นกลางห่างขอบอีกด้าน 35 · ลิ้นชัก/บานยก 35 จากขอบ (เดิม 50/50 · ปลาย 50 · ข้าง 40 · ลิ้นชัก 45 · ค่า 35 = ระยะตั้งต้นแทน 0000 ในตั้งค่า) · ปิด SN_OFF.plPullMove=1"],
     ["1.528","2026-10-27","FEAT+FIX โหมดสมจริงกับห้องออกแบบ (ผู้ใช้ 21:13 ภาพห้องออกแบบ + ภาพโหมดสมจริง: “โหมดสมจริงน่าจะต้องอยู่ที่โหมดห้องออกแบบ · ตำแหน่งผนังหลังกดโหมดสมจริงในห้องออกแบบ ตู้ต้องอยู่ที่เดิม อันนี้เหมือนตู้เลื่อนออกมา · เพิ่มปุ่มบันทึกภาพตอนอยู่โหมดห้องออกแบบ ไปเอาภาพของโหมดสมจริง · ที่กดบันทึกภาพแสงจริงดูไม่ละเอียดเท่าตอนแคปรูป”) — ① เปิดโหมดสมจริงตอนอยู่ห้องออกแบบ = ห้องจริงใช้ผนัง/ขนาด/ความสูงฝ้าของห้องออกแบบ (เดิมสร้างห้องใหม่รอบกล่องตู้: ผนังซ้าย-ขวาห่างตู้ ≥ 1.1 ม. หน้าตู้โล่ง 2.6 ม. ห้องไม่ตรงกับที่ออกแบบ ตู้มุม/ตู้ชิดผนังข้างจึงดูลอยออกจากผนัง) · หน้าต่างอยู่ผนังซ้ายช่วงที่ไม่มีตู้ (ผนังซ้ายเต็มตู้ = ไม่มีหน้าต่าง) · ② แผงห้องออกแบบ (ท้ายแผง) มีปุ่ม ✨ โหมดสมจริง และ 📷 บันทึกภาพ · ③ 📷 บันทึกภาพ = ภาพโหมดสมจริงแบบที่เห็นบนจอ (เงามุม แสง ห้อง) วาดใหม่ความละเอียดสูง (ด้านยาว ~3,200 px · ไม่ติดเส้นเลือก/ป้าย/ระยะ) บันทึกเป็น JPG — กดจากห้องออกแบบตอนยังไม่เปิดสมจริง = เปิดให้ ถ่าย แล้วกลับมาเหมือนเดิม · มีปุ่มนี้ในแถบโหมดสมจริงด้วย (📸 ภาพแสงจริงแบบยิงแสงยังอยู่) · ปิด SN_OFF.realPlRoom=1 (ห้องสร้างรอบตู้แบบเดิม) · SN_OFF.realSnap=1 (ไม่มีปุ่ม 📷)"],
     ["1.527","2026-10-27","UX+FEAT ใบเสนอราคา/ท็อป (ผู้ใช้ 21:04–21:05: “รายการวัสดุเป็นกระดาษแนวนอน 1 หน้า เว้นแต่มีวัสดุเยอะขึ้นก็ขึ้นหน้า 2 แต่ไม่เอาอะไรมาปนต่อให้ขึ้นหน้า 1 ไปแค่ 1 วัสดุ” · “ดีไซน์หน้าบานต้องเอาแบบบานมาแสดง เช่น Exxx01 บานเรียบก็แค่ 4 เหลี่ยมผืนผ้า Section ข้างก็แค่ 4 เหลี่ยมด้านข้าง” · “กระจกใส่หนาได้ด้วย”) — ① หน้ารวมวัสดุ = A4 แนวนอน หน้าละ 10 ช่อง (5×2) เฉพาะวัสดุ ไม่ปนภาพอื่น · เกิน 10 ขึ้นหน้าใหม่ (หัวหน้า “(ต่อ)”) · ② ดีไซน์หน้าบาน: แยกตามรหัสแบบบาน (ค่า FrontShape เช่น Exxx01 — เดิมแยกตาม Part ลิงก์ FrontShapeP1/P2/P3) · ชื่อ = รหัส + คำอธิบายใน Element · ภาพ = เส้นแบบบาน ด้านหน้า + Section ข้าง (บานเรียบ = สี่เหลี่ยม · ลาย doorReliefMap = เส้นร่อง/ร่องในภาพตัด · เพ · สันเป็นหน้าตัด · ช่องกระจก/เฟรมอลู) แทนภาพถ่าย 3D · ปิด SN_OFF.dwgDoorLine=1 · ③ ผนังเหนือท็อปแบบกระจก เลือกความหนาได้ 4/5/6/8/10/12 มม. (เดิม 6 ตายตัว) — ชื่อในใบเสนอราคา/แบบ · 3D · ราคาทุน/ตร.ม. จำแยกตามชนิด+ความหนา"],
     ["1.526","2026-10-27","UX พิมพ์ใบเสนอราคา (ผู้ใช้ 21:00 ภาพท้าย PDF มีลิงก์ https://c1stmdev.stmm.work/nexus/starnexus: “ไม่ต้องแนบ link หลังปริ้น PDF · ที่เป็นแบบ ให้กระดาษเป็นแนวนอน”) — ① ลิงก์/วันที่/ชื่อหน้า ที่เบราว์เซอร์พิมพ์เองตรงขอบกระดาษหายไป — @page ขอบ 0 (เบราว์เซอร์ไม่มีที่วางหัว/ท้ายกระดาษ) แล้วเว้นขอบเอง: ข้าง 12 มม. · บน/ล่าง 12 มม. ทุกหน้า (หัว/ท้ายตารางซ้ำทุกหน้าเมื่อใบยาวหลายหน้า) · ② หน้าแบบ (แปลน · ด้านหน้า · Section · แปลนท็อป) = A4 แนวนอน หน้าละ 1 ภาพเต็มหน้า (เดิม A4 ตั้ง หน้าละ 2 ภาพ) หัวหน้ามีโลโก้/เลขที่/ลูกค้า + “แผ่น n/รวม” · หน้ารวมวัสดุยังเป็นแนวตั้ง · ตัวอย่างบนจอย่อหน้าแนวนอนให้พอดีกรอบ · ปิด SN_OFF.plqDwgLand=1 (แบบหน้าละ 2 ภาพแนวตั้ง)"],
@@ -4660,6 +4661,7 @@ function sync(rebuild,save,cm){
   try{ applyFrameParts(); }catch(e){ console.error(e); }   // v9.83: บานเฟรมอลู — สี่เส้นตัด 45 + กระจก
   try{ applyLineDisplay(); }catch(e){ console.error("lineDisp:",e); }
   try{ applyCsmPosts(); }catch(e){ console.error("csmPost:",e); }       // v1.368: เสาเหล็ก + ตัวรับชั้น Cosimo (3D + นับใบอุปกรณ์) คิดใหม่ทุกรอบ   // v1.299-local.11: ตีนตู้/แผงปิดบน ไปอยู่ที่จริงใน 3D (ใบตัดยังเป็น 2400 เดิม)
+  try{ plpHeal(); }catch(e){ console.error("plpHeal:",e); }   // v1.529: มือจับจากกล่องเลือกบนชิ้นที่ไม่ใส่ → ล้าง
   try{ applyPullDrills(); }catch(e){ console.error(e); }   // v9.71: รู/Pocket/รูป 3D ของมือจับ คิดใหม่ทุกครั้ง ขยับบานแล้วตามเอง
   try{ applyD33Brackets(); }catch(e){ console.error("d33:",e); }   // v1.333: ฉากพลาสติก D33 ของคาน (3D + นับใบอุปกรณ์ · ไม่เจาะรู)
   try{ applyBackPanelClips(); }catch(e){ console.error("bpClip:",e); }
@@ -28890,6 +28892,7 @@ function boardRole(b){
      SN_OFF.dwgDoorLine=1 หน้ารวมวัสดุ ดีไซน์หน้าบานเป็นภาพถ่าย 3D แยกตาม Part ลิงก์ (แบบ 1.521) (v1.527)
      SN_OFF.realPlRoom=1  โหมดสมจริงในห้องออกแบบสร้างห้องรอบตู้แบบเดิม (ไม่ใช้ผนังของห้องออกแบบ) (v1.528)
      SN_OFF.realSnap=1    ไม่มีปุ่ม 📷 บันทึกภาพสมจริงความละเอียดสูง (v1.528)
+     SN_OFF.plPullMove=1  กล่องมือจับตั้งต้นใส่ทุกแผ่นหน้า (รวมแผ่นปิด/ฟิลเลอร์/หน้าหลอก) แบบ 1.524 — ที่กดเลือกรายบานยังใช้ได้ (v1.529)
      SN_OFF.fxfIn=1       ไม่รับไฟล์ FXF ของ imos (ไม่มีปุ่ม 📐 ในหน้า Order · ลากไฟล์ .fxf มาวางที่ฉากตกไปตัวอ่าน DXF แบบเดิม · ชิ้น _fxf ในงานเก่ายังไม่ถูกตัวซ่อมแตะ) (v1.499)
      SN_OFF.fxfMpr=1      ไฟล์เจาะของชิ้นจาก FXF ออกแบบ 1.499 (ร่องเข้าไฟล์ · BM=LS · ไม่มี S_ / SIDE1 · เลขชิ้นนับตามลำดับฉาก · แตกมาโครแบบเดา + ปัด 0.1 สำหรับการนำเข้าครั้งถัดไป — ชิ้นที่นำเข้าไปแล้วรูไม่เปลี่ยน) (v1.500)
                           รวมของ v1.501: มาโคร D3_T12 / H1 / L_IT_Box · รูทะลุไปฝั่ง 2 · ขนาด 0.01 · ZA d-ระยะ
@@ -40839,7 +40842,36 @@ function plpInfo(code){ const def=pullDef(code), el=pullFitEl(code)||{}; let xs=
 /* รุ่นที่ใส่ได้จริง (มีสเปครู/Pocket) */
 function plpList(){ let L=[]; try{ ensureSamplePull(); }catch(e){} try{ L=pullDefs().filter(d=>d&&(d.drill||d.pocket)); }catch(e){} return L; }
 /* บาน/ลิ้นชักของตู้ (รวมตู้ที่รวมช่อง) — ใช้ลำดับบานเดียวกับมือจับจากออเดอร์ · แผ่นหน้า FXF ที่ไม่ได้ติดธงบานนับด้วย (เลขชุด 0) */
-function plpDoors(inst){ let rows=[]; try{ rows=cabDoorIndex(inst).slice(); }catch(e){ rows=[]; }
+/* ───────── v1.529: มือจับเฉพาะชิ้นที่เปิดได้ + เลือกรายบาน ─────────
+   ผู้ใช้ 27/10 21:20 (ไฟล์ starnexus-project (33).json): “แผ่นปิดข้าง Filler WNF TNF BNF แล้วตู้ BND217 มีไม้ Panel L มันเป็นเหมือน Filler
+     … ถ้ามันไม่มีอุปกรณ์บานพับ หรือรางลิ้นชัก หรือโช็คในอนาคต ชิ้นนั้นก็ไม่มีมือจับแน่นอนถูกไหม” · 21:22 “ต้องเลือกได้ด้วยว่าบานไหนไม่เอามือจับ อนาคตมีตู้แบบอื่น ๆ แน่นอน”
+   เดิม (1.524): เอาทุกชิ้นที่ cabDoorIndex นับเป็นบาน (_door รวมหน้าหลอก) + แผ่นหน้าที่ชื่อมี front → ไฟล์นี้ได้ H002 ที่ Panel L · Filler Front · Filler Carcass/Fix Front
+   ตอนนี้: plpCands = แผ่นหน้าทุกชิ้นของตู้ (ตัวเลือกในภาพหน้าตู้) · plpOn = ใส่มือจับไหม
+     _pullPick true/false = ผู้ใช้กดเลือกเอง (ชนะเสมอ) · ไม่ได้เลือก = plpMovable (มีอุปกรณ์ที่ทำให้เปิดได้):
+     ✓ บานพับ (connectors type hinge) หรือรูถ้วยบานพับ Ø30–40 ที่มากับงาน FXF · ✓ หน้าลิ้นชักที่ในชุด (_dg) มีกล่อง/แผงเหล็ก
+     ✓ (อนาคต) โช็ค/บานยก/บานเลื่อน — connectors type lift/flap/slide/shock หรือธง _lift/_slideDoor
+     ✗ หน้าหลอก/แผงปิด (_panel/_dummy/_noPanel) · ฟิลเลอร์/แผ่นปิด (ไม่มีอุปกรณ์ข้างบน)
+   ไม่แตะ cabDoorIndex (ลำดับบานของมือจับจากออเดอร์ XML เหมือนเดิม) · ปิด SN_OFF.plPullMove=1 (ทุกแผ่นหน้า เว้นที่กดไม่ใส่) */
+function plpMovable(d){
+  if(!d||d._panel||d._dummy||d._noPanel||d._box||d._virtual) return false;
+  const cs=d.connectors||[];
+  if(cs.some(c=>c&&c.type==="hinge")) return true;
+  if(cs.some(c=>c&&/lift|flap|slide|shock|aventos|โช[๊็]?ค/i.test(String(c.type||c.kind||c.code||"")))||d._lift||d._slideDoor) return true;
+  if((d.holes||[]).some(h=>h&&(+h.d>=30)&&(+h.d<=40)&&!h._pullDrill)) return true;   // รูถ้วยบานพับ (งาน FXF ไม่มีข้อมูลบานพับ มีแต่รู)
+  if(d._dg&&state.boards.some(x=>x&&x!==d&&x._dg===d._dg&&(x._box||x._alto))) return true;
+  return false; }
+function plpOn(d){ if(!d) return false; if(d._pullPick===true) return true; if(d._pullPick===false) return false; return snOff("plPullMove")?true:plpMovable(d); }
+/* มือจับที่ใส่จากกล่องเลือกมือจับ (_pl) บนชิ้นที่ไม่ใส่ → ล้าง + ช่อง K_Pull ของชิ้นนั้น = NoPull (ไม่งั้นตัวอ่านช่องเติมกลับ) */
+function plpHeal(){
+  if(snOff("plPull")) return 0; let n=0;
+  try{ const F=k=>String(settings[k]||DEF_SETTINGS[k]).trim();
+    (state.boards||[]).forEach(b=>{ const ps=(b&&b._pulls)||[]; if(!ps.length||!ps.every(p=>p&&p._pl)||plpOn(b)) return;
+      ps.forEach(p=>{ const i=+p.xi||0; if(!i) return; const fam=xmlFamOf(F("pullField")+i); if(fam){ state.cabColors=state.cabColors||{}; const cc=(state.cabColors[b.cabInst]=state.cabColors[b.cabInst]||{}); cc[fam]="NoPull"; } });
+      delete b._pulls; n++; }); }catch(e){ console.error("plpHeal:",e); }
+  if(n) console.log("[v1.529] เอามือจับออกจากชิ้นที่ไม่ใส่มือจับ "+n+" ชิ้น");
+  return n; }
+function plpDoors(inst){ return plpCands(inst).filter(r=>plpOn(r.d)); }   // v1.529: ชิ้นที่ใส่มือจับ
+function plpCands(inst){ let rows=[]; try{ rows=cabDoorIndex(inst).slice(); }catch(e){ rows=[]; }
   let mem=[inst]; try{ mem=varMemberInsts(inst); }catch(e){}
   const seen=new Set(rows.map(r=>r.d));
   state.boards.forEach(b=>{ if(!b||seen.has(b)||mem.indexOf(b.cabInst)<0) return;
@@ -40868,19 +40900,27 @@ function plpPlace(d,info,pm,om){
   if(info.knob) ori="H";
   const hl=(+info.len||0)/2, alongV=(ori==="V"&&!info.knob), alongH=(ori==="H"&&!info.knob);
   let X=0, Y=0;
+  /* v1.529: ระยะจากขอบบาน = 35 (ผู้ใช้ 21:26 “ถ้าเป็น Knob ขอเป็น 35,35 Default · มือจับ 2 รู เอาปลายมือจับ 35 อีกด้านก็ 35”)
+     เดิม (1.524): ปุ่ม 50/50 · ก้าน ปลาย 50 จากขอบ · ห่างข้าง 40 · ลิ้นชัก 45 จากขอบบน
+     ตอนนี้ E = ค่า “ระยะตั้งต้นแทน 0000” ในตั้งค่า (pullZeroDef ตั้งต้น 35): ปุ่ม = E,E · ก้าน/บาร์ = ปลายมือจับห่างขอบ E (ศูนย์ = E + ครึ่งยาว) อีกแกนเส้นกลางมือจับห่างขอบ E
+     บานสูงยังวางศูนย์มือจับสูงจากพื้น ~1 ม. */
+  const E=pullZeroDefMM()||35;
   if(v==="Tall"){ v="Down"; X=1000-y0; }
-  else if(v!=="Middle") X=info.knob?50:(alongV?50+hl:45);
-  if(h!=="Middle") Y=info.knob?50:(alongH?50+hl:40);
+  else if(v!=="Middle") X=info.knob?E:(alongV?E+hl:E);
+  if(h!=="Middle") Y=info.knob?E:(alongH?E+hl:E);
   const nX=alongV?hl+10:15, nY=alongH?hl+10:15;
   if(v!=="Middle"){ if(W<2*nX){ v="Middle"; X=0; } else X=Math.max(nX,Math.min(X,W-nX)); }
   if(h!=="Middle"){ if(L<2*nY){ h="Middle"; Y=0; } else Y=Math.max(nY,Math.min(Y,L-nY)); }
   const pos=(v==="Middle"&&h==="Middle")?"Center":(h==="Middle")?(v+"Middle"):(v==="Middle")?(h+"Middle"):(h+v);
   return {pos, ori, X:Math.round(X), Y:Math.round(Y)}; }
 /* ใส่มือจับ — code: รหัส = ใส่ · "" = ไม่มีมือจับ · null = คงรุ่นเดิมของแต่ละบาน แค่จัดตำแหน่งใหม่ */
-function plPullApply(insts,code,pm,om){
+function plPullApply(insts,code,pm,om){ const rows=[], seen=new Set();   // v1.529: แยกตัวใส่รายบาน (plPullApplyRows) ไว้ใช้กับการกดเลือกบาน
+  (insts||[]).forEach(inst=>plpDoors(inst).forEach(r=>{ if(r&&r.d&&!seen.has(r.d.id)){ seen.add(r.d.id); rows.push(r); } }));
+  return plPullApplyRows(rows,code,pm,om); }
+function plPullApplyRows(rows,code,pm,om){
   const F=k=>String(settings[k]||DEF_SETTINGS[k]).trim(), done=new Set(); let n=0;
   state.cabColors=state.cabColors||{};
-  (insts||[]).forEach(inst=>{ plpDoors(inst).forEach(({d,i})=>{ if(!d||done.has(d.id)) return; done.add(d.id);
+  [rows||[]].forEach(L=>{ L.forEach(({d,i})=>{ if(!d||done.has(d.id)) return; done.add(d.id);
     const cc=state.cabColors[d.cabInst]=state.cabColors[d.cabInst]||{};
     const setF=(base,val)=>{ if(!i) return; const f=F(base)+i, fam=xmlFamOf(f);
       if(fam){ cc[fam]=val; try{ const v=findVar(fam); if(v){ v.options=v.options||[]; if(v.options.indexOf(val)<0) v.options.push(val); } }catch(e){} }
@@ -40943,6 +40983,26 @@ function plpShots(codes){ const out={};
   finally{ junk.forEach(x=>{ try{ x.dispose(); }catch(e){} }); renderer.setPixelRatio(keep.pr); renderer.setSize(keep.sz.x,keep.sz.y,false);
     try{ camera.aspect=innerWidth/innerHeight; camera.updateProjectionMatrix(); }catch(e){} try{ invalidate(); }catch(e){} }
   return out; }
+/* v1.529: ภาพหน้าตู้ (แผ่นหน้าทุกชิ้น) — กดที่บาน = ใส่/ไม่ใส่ มือจับ */
+function plpDoorsSvg(cands){
+  const e=v=>Math.round(v*10)/10, esc=v=>escapeHtml(String(v==null?"":v));
+  let yw=0; try{ yw=(+cabYawOf(cands[0].d.cabInst)||0)*Math.PI/180; }catch(err){}
+  const lx=b=>(+b.x||0)*Math.cos(yw)-(+b.z||0)*Math.sin(yw);
+  const it=cands.map((r,k)=>{ const d=r.d, wd=worldDims(d), w=Math.max(+d.L||wd[0]||10,10), h=Math.max(wd[1]||+d.W||10,10), cx=lx(d), cy=+d.y||0;
+    return {k,d,x0:cx-w/2,x1:cx+w/2,y0:cy-h/2,y1:cy+h/2,cx,cy}; });
+  const X0=Math.min(...it.map(a=>a.x0)), X1=Math.max(...it.map(a=>a.x1)), Y0=Math.min(...it.map(a=>a.y0)), Y1=Math.max(...it.map(a=>a.y1)), pad=Math.max(X1-X0,Y1-Y0)*0.04;
+  const o=['<svg viewBox="'+e(X0-pad)+' 0 '+e(X1-X0+2*pad)+' '+e(Y1-Y0+2*pad)+'" preserveAspectRatio="xMidYMid meet"><defs><pattern id="ppHt" patternUnits="userSpaceOnUse" width="40" height="40" patternTransform="rotate(45)"><line x1="0" y1="0" x2="0" y2="40" stroke="#b3b8c2" stroke-width="10"/></pattern></defs>'];
+  const Y=v=>Y1+pad-v;
+  it.forEach(a=>{ const on=plpOn(a.d), forced=a.d._pullPick!=null;
+    o.push('<g data-di="'+a.k+'" style="cursor:pointer"><title>'+esc(a.d.name||"บาน")+' — '+(on?"ใส่มือจับ":"ไม่ใส่มือจับ")+(forced?" (เลือกเอง)":" (อัตโนมัติ)")+' · กดเพื่อสลับ</title>'
+      +'<rect x="'+e(a.x0+4)+'" y="'+e(Y(a.y1)+4)+'" width="'+e(a.x1-a.x0-8)+'" height="'+e(a.y1-a.y0-8)+'" fill="'+(on?"#ffffff":"url(#ppHt)")+'" stroke="'+(on?"#1f6feb":"#9aa0aa")+'" stroke-width="'+(on?3:1.5)+'" vector-effect="non-scaling-stroke" rx="6"/>');
+    const pu=(a.d._pulls||[])[0];
+    if(on&&pu){ try{ const lv=pullLive(a.d,pu); if(!pullIsNo(lv.code)){ const c=pullCenterOn(a.d,pu,lv), info=plpInfo(lv.code), V=String(lv.ori||"H").toUpperCase()[0]==="V", len=Math.max(info.knob?30:info.len,30), th=Math.max(12,(a.x1-a.x0)*0.025);
+        const mx=a.cx+(+c.x||0), my=a.cy+(+c.y||0);
+        o.push('<rect x="'+e(mx-(V?th/2:len/2))+'" y="'+e(Y(my+(V?len/2:th/2)))+'" width="'+e(V?th:len)+'" height="'+e(V?len:th)+'" rx="'+e(th/2)+'" fill="#3b3f46"/>'); } }catch(err){} }
+    if(!on) o.push('<text x="'+e(a.cx)+'" y="'+e(Y(a.cy))+'" font-size="'+e(Math.min(a.x1-a.x0,a.y1-a.y0)*0.28)+'" text-anchor="middle" dominant-baseline="middle" fill="#6b7280">✕</text>');
+    o.push('</g>'); });
+  return o.join("")+'</svg>'; }
 function plPullClose(){ if(PLPU.el){ PLPU.el.remove(); PLPU.el=null; } }
 function plPullCSS(){
   if($("plpuCSS")) return; const st=document.createElement("style"); st.id="plpuCSS"; st.textContent=
@@ -40958,7 +41018,9 @@ function plPullCSS(){
     +"#plPull .ppSw{aspect-ratio:1;border-radius:8px;background:#f3f4f6 center/cover no-repeat;display:flex;align-items:center;justify-content:center;color:var(--ink-dim);font-size:10px;text-align:center}"
     +"#plPull .ppT b{font-size:11.5px;line-height:1.3;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;min-height:30px}"
     +"#plPull .ppT small{font-size:10px;color:var(--ink-dim);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}"
-    +"#plPull .ppT .ppUse{font-size:10px;color:var(--accent);font-weight:600;min-height:13px}";
+    +"#plPull .ppT .ppUse{font-size:10px;color:var(--accent);font-weight:600;min-height:13px}"
+    +"#plPull .ppDr{padding:8px 12px 0}#plPull .ppDrH{display:flex;gap:8px;align-items:baseline}#plPull .ppDrH span{color:var(--ink-dim);font-size:11px}"
+    +"#plPull .ppDr svg{display:block;width:100%;max-height:170px;margin-top:4px;background:rgba(127,127,127,.08);border-radius:8px}";   // v1.529
   document.head.appendChild(st); }
 function plPullOpen(inst,x,y){
   if(snOff("plPull")) return;
@@ -40974,12 +41036,20 @@ function plPullOpen(inst,x,y){
   el.style.left=Math.max(8,Math.min((x!=null?x:innerWidth/2-W/2),innerWidth-W-8))+"px";
   el.style.top=Math.max(8,Math.min((y!=null?y:100),innerHeight-H-8))+"px";
   const list=plpList(); let hid=0; try{ hid=Math.max(pullDefs().length-list.length,0); }catch(e){}
-  const apply=(c,msg)=>{ const cam=plCamKeep(); const n=plPullApply(targets(),c,PLPU.pm,PLPU.om); sync(0); plCamPut(cam);
+  const apply=(c,msg)=>{ if(c) PLPU.code=c; const cam=plCamKeep(); const n=plPullApply(targets(),c,PLPU.pm,PLPU.om); sync(0); plCamPut(cam);
     try{ if(inst) plSelect(inst); else plPanelSel(); }catch(e){}
     try{ costSchedule(); }catch(e){}
     toast(msg+" · "+n+" บาน"+((whole||PLPU.all)?" (ทั้งห้อง)":"")); draw(); };
+  /* v1.529: กดที่บานในภาพหน้าตู้ = สลับใส่/ไม่ใส่ (จำที่บาน) · ใส่ = รุ่นที่ใช้ในตู้นี้/รุ่นที่เพิ่งเลือก */
+  const toggle=r=>{ if(!r||!r.d) return; const d=r.d, on=!plpOn(d); d._pullPick=on;
+    const cam=plCamKeep();
+    if(on){ let c=PLPU.code||""; if(!c){ const u=plpUsage(targets()).u; c=Object.keys(u).filter(x=>x).sort((a,b)=>u[b]-u[a])[0]||""; }
+      if(c) plPullApplyRows([r],c,PLPU.pm,PLPU.om); else toast("เลือกรุ่นมือจับด้านล่าง แล้วบานนี้จะได้มือจับ"); }
+    else plPullApplyRows([r],"",PLPU.pm,PLPU.om);
+    sync(0); plCamPut(cam); try{ if(inst) plSelect(inst); }catch(e){} draw(); };
   const draw=()=>{
     const us=plpUsage(targets()), q=String(PLPU.q||"").trim().toLowerCase(), e=v=>escapeHtml(String(v==null?"":v));
+    const single=!whole&&!PLPU.all, cands=single?plpCands(String(inst)):[];   // v1.529
     const items=list.filter(d=>!q||String(d.code).toLowerCase().indexOf(q)>=0||plpName(d.code).toLowerCase().indexOf(q)>=0);
     const chip=(k,v,lbl,cur,tt)=>'<button data-'+k+'="'+v+'" class="'+(cur===v?"on":"")+'"'+(tt?' title="'+e(tt)+'"':'')+'>'+lbl+'</button>';
     const card=(c,nm,sub,i)=>{ const n=us.u[c]||0, on=n>0&&(n===us.n);
@@ -40993,9 +41063,10 @@ function plPullOpen(inst,x,y){
       +'<div class="ppOpt"><b>ตำแหน่ง</b>'+chip("pm","auto","อัตโนมัติ",PLPU.pm,"ลิ้นชัก = กลางขอบบน · บานเปิด = ฝั่งตรงข้ามบานพับ (ตู้พื้นมุมบน · ตู้ลอยมุมล่าง · บานสูง ~1 ม. จากพื้น) · บานยก = กลางขอบล่าง")
         +chip("pm","top","ชิดบน",PLPU.pm)+chip("pm","mid","กึ่งกลาง",PLPU.pm)+chip("pm","bot","ชิดล่าง",PLPU.pm)+'</div>'
       +'<div class="ppOpt"><b>แนว</b>'+chip("om","auto","อัตโนมัติ",PLPU.om,"ลิ้นชัก/บานยก = นอน · บานเปิดข้าง = ตั้ง")+chip("om","H","นอน",PLPU.om)+chip("om","V","ตั้ง",PLPU.om)
-        +'<span style="margin-left:auto;color:var(--ink-dim)">'+(us.n?(us.n+" บาน/ลิ้นชัก"):"ไม่มีบาน")+'</span></div>'
+        +'<span style="margin-left:auto;color:var(--ink-dim)" title="ตั้งต้นใส่เฉพาะบานที่มีบานพับ และหน้าลิ้นชักที่มีกล่อง — แผ่นปิด ฟิลเลอร์ หน้าหลอก ไม่ใส่ (เลือกเองได้ที่ภาพหน้าตู้)">'+(us.n?(us.n+" บาน/ลิ้นชัก"):"ยังไม่มีบานที่ใส่")+'</span></div>'
       +(list.length>8?('<div style="display:flex;padding:8px 12px 0"><input id="ppQ" placeholder="ค้นรหัส/ชื่อมือจับ ('+list.length+' รุ่น)" value="'+e(PLPU.q)+'" style="flex:1;padding:5px 8px"></div>'):'')
-      +(!us.n?('<div style="padding:16px 12px;color:var(--ink-dim);line-height:1.6">'+(whole?'ห้องนี้':'ตู้ใบนี้')+'ไม่มีบานหรือลิ้นชักให้ใส่มือจับ</div>')
+      +(cands.length?('<div class="ppDr"><div class="ppDrH"><b>บานที่ใส่มือจับ</b><span>กดที่บาน = ใส่ / ไม่ใส่ · ลายขีด = ไม่ใส่</span></div>'+plpDoorsSvg(cands)+'</div>'):'')   // v1.529
+      +(!(us.n||cands.length)?('<div style="padding:16px 12px;color:var(--ink-dim);line-height:1.6">'+(whole?'ห้องนี้':'ตู้ใบนี้')+'ไม่มีบานหรือลิ้นชักให้ใส่มือจับ</div>')
         :('<div class="ppGrid">'+card("","ไม่มีมือจับ","กดกระเด้ง / เซาะมือจับในตัวบาน",-1)
           +items.map((d,i)=>card(d.code,plpName(d.code),sub(d.code),i)).join("")
           +(!list.length?'<div style="grid-column:1/-1;color:var(--ink-dim);line-height:1.6">ยังไม่มีรุ่นมือจับที่ใส่สเปครู — เพิ่มที่ Element → Fittings (ชนิด = มือจับ · ช่องสเปครู เช่น s128,0,5,0,x)</div>':'')
@@ -41005,6 +41076,7 @@ function plPullOpen(inst,x,y){
     el.querySelectorAll("[data-pm]").forEach(b=>b.onclick=()=>{ PLPU.pm=b.dataset.pm; if(Object.keys(us.u).some(c=>c)) apply(null,"🖐 จัดตำแหน่งมือจับใหม่"); else draw(); });
     el.querySelectorAll("[data-om]").forEach(b=>b.onclick=()=>{ PLPU.om=b.dataset.om; if(Object.keys(us.u).some(c=>c)) apply(null,"🖐 จัดแนวมือจับใหม่"); else draw(); });
     { const qi=el.querySelector("#ppQ"); if(qi) qi.oninput=()=>{ PLPU.q=qi.value; const p=qi.selectionStart; draw(); const q2=el.querySelector("#ppQ"); if(q2){ q2.focus(); try{ q2.setSelectionRange(p,p); }catch(e){} } }; }
+    el.querySelectorAll("[data-di]").forEach(g=>g.onclick=()=>toggle(cands[+g.dataset.di]));   // v1.529
     el.querySelectorAll(".ppT").forEach(t=>t.onclick=()=>{ const i=+t.dataset.i; if(i<0) apply("","🖐 เอามือจับออก"); else { const d=items[i]; if(d) apply(d.code,"🖐 มือจับ "+d.code); } });
     /* รูปย่อ: ทำทีเดียวเฉพาะรุ่นที่ยังไม่มีในแคช */
     const sws=[...el.querySelectorAll(".ppSw")], need=[...new Set(sws.map(s=>s.dataset.c).filter(c=>c&&!PLPU.th[plpKey(c)]))];
