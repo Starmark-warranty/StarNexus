@@ -753,6 +753,13 @@
   background-size:contain;background-repeat:no-repeat;background-position:center;
   mix-blend-mode:multiply;flex-shrink:0;
 }
+/* ───────── v1.516: หน้าโหลดธีมมืด — โลโก้เป็นกล่องขาวเหลี่ยม ─────────
+   เดิม: โลโก้เป็น PNG พื้นขาวทึบ ใช้ mix-blend-mode:multiply ให้พื้นขาวกลืนกับพื้นสว่าง
+   พัง: ธีมมืด (applyTheme ใส่ data-theme ระหว่างบูต ก่อนหน้าโหลดปิด) ได้กล่องขาวเหลี่ยมแข็งกลางพื้นเข้ม (.splash-logo มี animation = ชั้นแยก multiply ไม่ถึงพื้น) ถ้า multiply ติดเมื่อไหร่ตัวหนังสือดำจะจมหายบนพื้นดำ
+   แก้: ธีมมืดเลิก multiply ใช้พื้นขาวมนรองโลโก้ (ทางเดียวกับ Code AX v1.2.1) · แถบ/จุดโหลดเปลี่ยนเป็นสีจางบนพื้นเข้ม */
+body[data-theme="dark"] .brandmark{mix-blend-mode:normal;background-color:#fff;border-radius:12px}
+body[data-theme="dark"] .splash-bar{background:rgba(255,255,255,.12)}
+body[data-theme="dark"] .splash-dots span{background:rgba(255,255,255,.25)}
 #splash{position:fixed;inset:0;z-index:99999;background:var(--solid,#fff);
   display:flex;flex-direction:column;align-items:center;justify-content:center;
   transition:opacity .5s ease;padding:20px}
@@ -3274,7 +3281,7 @@
    ===================================================================== */
 /* ---- APP_META: แหล่งความจริงเดียวของเวอร์ชัน (ดูได้จาก console / คลิกชื่อแอป) ---- */
 const APP_META={
-  name:"StarNexus", version:"1.512", build:"2026-10-26/vw-repair",
+  name:"StarNexus", version:"1.518", build:"2026-10-27/quote-co",
   file:"StarNexus.html", basedOn:"Furnitech_V3.html (v3.11)",
   /* ───────── เริ่มนับเวอร์ชันใหม่ที่ 1.001 (21/08/2026) ─────────
      ของเดิมนับมาถึง 42.1 แล้ววิ่งเป็นทศนิยมสองชั้นซึ่งอ่านลำดับยาก
@@ -3282,6 +3289,12 @@ const APP_META={
      ประวัติเก่าเก็บไว้ทั้งหมดตามเลขเดิม ไม่ไล่เขียนใหม่ เพราะเลขในนั้นถูกอ้างถึงไปแล้ว
      รายการที่อยู่ใต้ 1.001 ลงไปจึงเป็นเลขชุดเก่า อ่านต่อกันได้ตามวันที่ */
   changelog:[
+    ["1.518","2026-10-27","FEAT ใบเสนอราคา + ราคาทุน (ผู้ใช้ 16:47 ส่ง BO69-0855 Memo + ใบเสนอราคาตัวอย่าง) ① หัวใบ: บริษัท สตาร์มาร์ค แมนูแฟคเชอริ่ง จำกัด · ที่อยู่ · โทร/แฟกซ์ · เลขประจำตัวผู้เสียภาษี ตามตัวอย่าง (เป็นค่าตั้งต้น แก้ได้ · เครื่องที่ยังไม่เคยกรอกชื่อ/ที่อยู่/เลขภาษีเติมให้) + เงื่อนไขตั้งต้นตามเอกสารจริง (ชำระ 40% วันสั่งซื้อ / 60% ก่อนติดตั้ง 7 วัน · ช่องทางชำระ · ไม่รวมงานไฟฟ้า/ประปา) แทนข้อความเดาเดิม (มัดจำ 50%) ② ตัดแถว “ชิ้นส่วน / อุปกรณ์อื่นในงาน” — ชิ้น/อุปกรณ์ที่ไม่อยู่ในตู้ใบไหน (ตู้จากกฎรายการเส้น ชิ้นไม่มีตู้ ฯลฯ) รวมเข้าราคาตู้: ชิดตู้ไหน (≤ 50 มม.) เข้าตู้นั้น · ไม่ชิดตู้ไหน = เฉลี่ยตามราคาตู้ · ในหน้าต่างบอกว่าตู้ไหนบวกเท่าไร (ไม่พิมพ์ลงใบ) ③ หน้า 💰 ราคาทุน: คอลัมน์ชื่อใช้ชื่อสินค้าจาก StarStock (AX) ถ้าพบรหัส · ชื่อเดิมใน SN ที่ต่างกันขึ้นเป็นบรรทัดจาง · ค้นหาด้วยชื่อ AX ได้ · CSV มีคอลัมน์ชื่อ AX · ปิด ② SN_OFF.plqMerge=1 · ปิด ③ SN_OFF.costStkName=1"],
+    ["1.517","2026-10-27","UI หน้า Order: ซ่อนปุ่ม 📐 ตู้จาก imos (.fxf) และ 📚 เรียนมาโครจาก imos (ผู้ใช้ 16:27: “ปิด 2 ปุ่มนี้ให้ทีครับ”) — ซ่อนแค่ปุ่ม ลากไฟล์ .fxf / โฟลเดอร์ Imorder มาวางยังใช้ได้ · มาโครที่เรียนไว้ (settings.fxfMacLib) ยังใช้ตอนนำเข้า FXF เหมือนเดิม · ปุ่มกลับมา: SN_OFF.xiImosHide=1"],
+    ["1.516","2026-10-27","UI โลโก้ Starmark (ไฟล์เดียวกับโปรแกรมตั้ง Code AX — starmark-warranty.github.io/Code-AX) ① หัวใบเสนอราคา: ขึ้นโลโก้ Starmark เป็นค่าตั้งต้น (เลือกรูปอื่น / ✕ เอาออก / ปุ่ม Starmark กลับมาใช้โลโก้บริษัท) ② หน้าดูงาน 3D (view.html / ไฟล์ดูงาน): หน้าโหลดมีโลโก้ + StarNexus · ดูงาน 3D + แถบวิ่ง แบบหน้าโหลดของ Code AX (เดิมมีแต่กล่อง “กำลังเปิดงาน 3D…”) — ลิงก์เก่าได้ด้วยเมื่อส่งลิงก์ครั้งถัดไป ③ หน้าโหลดโปรแกรม (มีโลโก้อยู่แล้วตั้งแต่ v9.89): ธีมมืดโลโก้เป็นกล่องขาวเหลี่ยมแข็ง → พื้นขาวมุมมนรองโลโก้ แบบ Code AX v1.2.1 · ปิด SN_OFF.snLogo=1"],
+    ["1.515","2026-10-27","FEAT ห้องออกแบบ: ปุ่ม 🖼 โปสเตอร์ขาย → 🧾 ใบเสนอราคา (ผู้ใช้ 15:15: “ปรับปุ่มโปสเตอร์ขายเป็นปุ่มออกใบเสนอราคาไหม” · เลือก “แทนที่เลย” · “เอาราคาทุนตั้งให้เซลล์ก่อน แล้วมีช่องให้เซลล์ + % ของเขาไปเพิ่ม” · A4 พิมพ์ / PDF) — รายการ = ตู้ในห้อง (รหัส+ขนาด+ต้นทุนเดียวกัน = แถวเดียว ×จำนวน) + ชิ้นส่วนอื่นในงาน · ราคาต่อหน่วย = ต้นทุนตู้ (ไม้ ผิว ขอบ Fitting · รวมราคา AX จาก StarStock) × (1 + กำไร %) ใส่ % ทั้งใบหรือรายแถว · แก้ชื่อรายการได้ · ปัดราคา · ส่วนลด · VAT 7% (บวกเพิ่ม/รวมแล้ว/ไม่มี) · ตัวอักษรบาท · ภาพห้อง 3D · ข้อมูลบริษัท/ผู้เสนอจำในเครื่อง · ลูกค้า/% /ส่วนลด เก็บกับงาน (state.room.quote) · ต้นทุนไม่ครบ = เตือน + ปุ่มใส่ราคา · ต้นทุน/กำไรเห็นเฉพาะในหน้าต่าง ไม่พิมพ์ลงใบ · ลิงก์แชร์ตัดข้อมูลใบเสนอราคา (ชื่อ/โทรลูกค้า กำไร %) ออก · โปสเตอร์เดิมกลับมาได้ด้วย SN_OFF.plQuote=1"],
+    ["1.514","2026-10-27","FEAT 💰 ราคาทุนดึงราคา AX จาก StarStock (ผู้ใช้ 15:14: “SN เข้าถึงราคาได้ไหมครับ จากตัวนี้” BI-Production-Stock-Cabinet/#stock · ตอบ “เติมที่ยังไม่มีใน SN แล้วก็แสดงให้เห็นด้วยว่าราคาใน AX เท่าไหร่”) — อ่าน items/info.csv (ราคาซื้อ/ทุน/ขาย AX) + items/edits.json (ราคาที่ตั้งเองในหน้า STOCK) จาก Google Drive ชุดเดียวกับ StarStock · ราคาที่ใช้ = ตั้งเองใน StarStock → ซื้อ AX → ทุน AX (กติกาเดียวกับ StarStock) · ราคาที่พิมพ์ใน SN / ราคาใน Element ชนะเสมอ · StarStock เติมเฉพาะที่ยังว่าง · แปลงหน่วย: ไม้/ผิว แผ่น → ตร.ม. (ขนาดจากชื่อสินค้า ไม่มี = 1220×2440) · ขอบ/ของตัดยาว ม้วน/เส้น → เมตร (ความยาวจากชื่อ) · หน้า 💰 มีคอลัมน์ “ราคา AX” ทุกแถว (ซื้อ · ทุน · หน่วย AX → ราคาต่อหน่วย SN) · ห้องออกแบบบอกว่าเติมจาก AX กี่รายการ · ใช้ตัวเชื่อมแยก ไม่แตะค่าไฟล์กลาง · ปิด SN_OFF.costStock=1"],
+    ["1.513","2026-10-26","FEAT ส่งลิงก์ดูงานขึ้น GitHub = เขียนไฟล์ชี้ออเดอร์ v/o<เลขออเดอร์ 10 หลัก>.bin → งาน 3D ล่าสุดของออเดอร์ (ผู้ใช้ 17:02: “แสกนบาร์ pack แล้วรู้ว่าใน pack นั้นมีกี่ชิ้น … เมื่อกดชิ้นนั้น ก็กลับเข้าไปดู 3D ได้ ของชิ้นนั้น”) — Scan-Link ยิง Code Pack แล้วได้รายการชิ้นจาก AX (lots/pinfo.csv) ซึ่งไม่มีลิงก์ 3D มีแต่ Barcode (เลขออเดอร์ 10 + ด้าน + เลขชิ้น) → เปิด view.html?view=o<เลขออเดอร์>&p=P<เลขชิ้น> ได้เลย · ออเดอร์ที่ส่งก่อนรุ่นนี้ (31 ออเดอร์บน GitHub) เติมไฟล์ชี้ให้แล้ว · ปิด SN_OFF.ghOrdAlias=1"],
     ["1.512","2026-10-26","UX หน้าดูงาน (ผู้ใช้ 16:32): ① ปุ่ม 📷 แคปรูป เปลี่ยนชื่อเป็น 🔧 แจ้งซ่อม (หน้าเขียนบนรูปขึ้นหัว แจ้งซ่อม · ปุ่มเล็กในแถบชิ้นที่สแกนเป็น 🔧) · ② แผง “ตู้ในงานนี้”: กดกาง/พับรายการชิ้นของตู้ แล้วรายการเด้งกลับขึ้นบนสุด (เดิมวาดแผงใหม่ทั้งแผง ตำแหน่งเลื่อนหาย) — ตอนนี้เก็บตำแหน่งเลื่อนไว้ ตู้ที่กดอยู่ที่เดิม"],
     ["1.511","2026-10-26","FEAT หน้าดูงาน (ลิงก์ GitHub / ไฟล์ดูงาน): กด 📷 แคปรูป แล้วเปิดหน้า “เขียนบนรูป” ก่อนแชร์ — ✏️ ปากกา · ⭕ วงกลม (ลากกรอบ) · 🔤 ข้อความ (แตะจุด พิมพ์ ✓ · แตะข้อความเดิม = แก้ · ลาก = ย้าย) · สี 6 สี · ขนาด เล็ก/กลาง/ใหญ่ · ↶ ย้อน · ล้าง · แชร์ / ⬇ บันทึก รวมรอยเขียนลงภาพความละเอียดเต็ม (ผู้ใช้ 26/10 15:46: “เมื่อกด แคปรูป ให้สามารถพิมพ์ข้อความหรือวงกลม โดยใช้ปากกาได้ … ก่อนจะแชร์”) · ลิงก์ที่ส่งไปแล้วได้ด้วยเมื่อส่งลิงก์ใหม่ครั้งถัดไป (view.html อัปเดตตามโปรแกรม) · ปิด SN_OFF.vwMark=1"],
     ["1.510","2026-10-24","FIX ปุ่ม MPR → Weeke: ไฟล์ .mpr ในโฟลเดอร์ออเดอร์ที่งานตอนนี้ไม่ได้ออกแล้ว (ชิ้นเปลี่ยนฝั่ง/ถูกลบ) เดิมค้างอยู่ — ผู้ใช้เทียบ KYLIE กับ imos ได้ “ตรง 26 · มีแค่ StarNexus 5” = ไฟล์ของ 1.508 (บาน 1007 1030 1037 ฝั่ง 1 ไม่มีรูบานพับ · แผ่นหลัง 2031 2038 รู Ø25) ยิงบาร์ฝั่งนั้นแล้วเครื่องเปิดโปรแกรมเก่าได้ · ตอนนี้ไล่โฟลเดอร์ออเดอร์ก่อนเขียน เจอไฟล์ .mpr ที่ไม่อยู่ในชุดใหม่ = ถาม “ลบไฟล์เก่า” (แบบ imos ที่ล้างโฟลเดอร์ออเดอร์ก่อนเขียน DEL_TARGET_DIR=1) · ลบหลังเขียนครบเท่านั้น · เฉพาะโฟลเดอร์ย่อยของออเดอร์ (SN_OFF.mprSub=1 ไม่ถาม) · ปิด SN_OFF.mprStale=1"],
@@ -28720,6 +28733,13 @@ function boardRole(b){
      SN_OFF.mprRing=1     กล่องรอส่งไฟล์เจาะ (MPR → Weeke) กลับไปใช้กล่องรอกลาง busyOpen แบบเดิม (v1.498)
      SN_OFF.mprStale=1    ปุ่ม “MPR → Weeke” ไม่ไล่หา/ไม่ถามลบไฟล์ .mpr เก่าในโฟลเดอร์ออเดอร์ที่งานตอนนี้ไม่ออกแล้ว (แบบ v1.509) (v1.510)
      SN_OFF.vwMark=1      หน้าดูงาน: กด 📷 แคปรูป แล้วแชร์/ดาวน์โหลดทันทีแบบเดิม ไม่มีหน้าเขียนบนรูป (มีผลกับหน้าดูที่อบหลังตั้งค่านี้) (v1.511)
+     SN_OFF.ghOrdAlias=1  ส่งลิงก์ดูงานไม่เขียนไฟล์ชี้ออเดอร์ v/o<เลขออเดอร์>.bin (Scan-Link ยิง Pack แล้วเปิด 3D ของออเดอร์นี้ไม่ได้ · ไฟล์ชี้เดิมยังชี้งานรอบก่อน) (v1.513)
+     SN_OFF.costStock=1   ราคาทุนไม่ดึงราคา AX จาก StarStock (Google Drive) — ไม่เติมช่องว่าง ไม่มีคอลัมน์ราคา AX (v1.514)
+     SN_OFF.plQuote=1     ห้องออกแบบไม่มีปุ่ม 🧾 ใบเสนอราคา — กลับไปเป็นปุ่ม 🖼 โปสเตอร์ขาย แบบเดิม (v1.515)
+     SN_OFF.snLogo=1      ไม่ใส่โลโก้ Starmark ให้เอง — ใบเสนอราคาไม่มีโลโก้ตั้งต้น · หน้าโหลดหน้าดูงาน 3D เหลือกล่อง “กำลังเปิดงาน” แบบเดิม (v1.516)
+     SN_OFF.xiImosHide=1  หน้า Order กลับมามีปุ่ม 📐 ตู้จาก imos (.fxf) และ 📚 เรียนมาโครจาก imos (v1.517 ซ่อนไว้ — ลากไฟล์มาวางใช้ได้ทั้งสองแบบ)
+     SN_OFF.plqMerge=1    ใบเสนอราคากลับมามีแถว “ชิ้นส่วน / อุปกรณ์อื่นในงาน” แยก (ไม่รวมเข้าราคาตู้) (v1.518)
+     SN_OFF.costStkName=1 หน้า 💰 ราคาทุน คอลัมน์ชื่อใช้ชื่อใน SN อย่างเดียว ไม่เอาชื่อสินค้าจาก StarStock (v1.518)
      SN_OFF.fxfIn=1       ไม่รับไฟล์ FXF ของ imos (ไม่มีปุ่ม 📐 ในหน้า Order · ลากไฟล์ .fxf มาวางที่ฉากตกไปตัวอ่าน DXF แบบเดิม · ชิ้น _fxf ในงานเก่ายังไม่ถูกตัวซ่อมแตะ) (v1.499)
      SN_OFF.fxfMpr=1      ไฟล์เจาะของชิ้นจาก FXF ออกแบบ 1.499 (ร่องเข้าไฟล์ · BM=LS · ไม่มี S_ / SIDE1 · เลขชิ้นนับตามลำดับฉาก · แตกมาโครแบบเดา + ปัด 0.1 สำหรับการนำเข้าครั้งถัดไป — ชิ้นที่นำเข้าไปแล้วรูไม่เปลี่ยน) (v1.500)
                           รวมของ v1.501: มาโคร D3_T12 / H1 / L_IT_Box · รูทะลุไปฝั่ง 2 · ขนาด 0.01 · ZA d-ระยะ
@@ -36724,6 +36744,130 @@ function plRoomHtml(r,num){ plCss317();
      = เมลามีน รวมในราคาแผ่นแล้ว → คิด 0 นับว่ามีราคา (ไม่ต้องใส่ทีละสี · สีใหม่ที่เพิ่มทีหลังก็ได้เอง)
      ตัวอื่น (เช่น G08H… = HPL) ยังต้องใส่ราคาเอง · พิมพ์ราคาเองในตารางชนะกฎนี้เสมอ · ปิดกฎได้ที่ติ๊กในแท็บผิว (settings.costs.melAuto=false)
    ปิดได้: SN_OFF.cost=1 */
+/* ═════════ v1.514: ราคา AX จาก StarStock (Google Drive) ═════════
+   ผู้ใช้ 27/10/2026 15:14 (รูปหน้า 💰 ราคาทุน “ยังไม่มีราคา 28 รายการในงานนี้” + ลิงก์ BI-Production-Stock-Cabinet/#stock): “SN เราเข้าถึงราคาได้ไหมครับ จากตัวนี้”
+     ถามกลับแล้วเลือก: “เติมที่ยังไม่มีใน SN แล้วก็แสดงให้เห็นด้วยว่าราคาใน AX เท่าไหร่ครับ”
+   เดิม: ราคาทุนมีแค่ที่พิมพ์เอง/วางจาก Excel (settings.costs) + ช่อง cost ของ Element — ราคา AX อยู่ในหน้า STOCK ของ StarStock แต่ SN ไม่เห็น
+   ตอนนี้: อ่านไฟล์ชุดเดียวกับหน้า STOCK บน Google Drive (StarSync ส่งจาก AX ทุก 10 นาที)
+     · items/info.csv = item_number · name · unit · price_purch (ซื้อ) · price_cost (ทุน) · price_sales (ขาย) — ราคาต่อ 1 หน่วยของ AX
+     · items/edits.json = ราคาที่ตั้งเองในหน้า STOCK (items[รหัส].price)
+     ราคาที่ใช้ = ตั้งเองใน StarStock → ซื้อ AX → ทุน AX (กติกาเดียวกับ priceOf ของ StarStock) · 0 / ว่าง = ไม่มีราคา
+     ลำดับใน SN: พิมพ์ใน SN (รวมใส่ 0) → เมลามีน (M) → ช่อง cost ของ Element → ราคา AX — StarStock เติมเฉพาะที่ SN ยังว่าง ไม่เขียนทับค่าตั้ง
+     จับคู่รหัส: รหัสที่ใช้เก็บราคา (Purchase ID / รหัส Element) → รหัส Element → Item ID ของ Element (ไม่สนตัวพิมพ์)
+     แปลงหน่วย AX → หน่วยของ SN
+       ไม้ / ผิว (ราคา/ตร.ม.): AX เป็น ตร.ม. = ตรง ๆ · แผ่น (หรือว่าง) = ÷ พื้นที่แผ่นจากชื่อสินค้า (1220x2440 · 4x8 ฟุต …) ไม่มีขนาดในชื่อ = 1220×2440 (บอก “≈”)
+       ขอบ / Fitting ตัดยาว (ราคา/เมตร): AX เป็นเมตร = ตรง ๆ · ม้วน / เส้น / ท่อน = ÷ ความยาวจากชื่อ (100M · 3000MM …) ไม่มี = ไม่เติม (โชว์ราคา AX ให้ดูอย่างเดียว)
+       Fitting ต่อหน่วย = ราคาต่อหน่วย AX ตรง ๆ (หน่วยของ Fitting ใน SN มาจาก Fitting Global ของ AX ชุดเดียวกัน)
+     หน้า 💰: คอลัมน์ “ราคา AX” ทุกแถว (ซื้อ · ทุน · ตั้งเองใน StarStock · หน่วย AX → ราคาต่อหน่วย SN) · ช่องที่ใช้ราคา AX ขึ้นตัวจาง “(AX)” · ⟳ โหลดใหม่ · ⬇ CSV มีราคา AX
+     ห้องออกแบบ: ต้นทุนนับราคา AX ด้วย + บอก “· ราคา AX n” · โหลดเบื้องหลังครั้งแรกที่แผงต้นทุนขึ้น (จำ 10 นาที · ไฟล์เดิม = ใช้ของในเครื่อง IndexedDB ของ GasFS)
+   ตัวเชื่อม: GasFS._FS ตัวแยก (ไม่เรียก GasFS.open / cfgSet — ไม่แตะค่าไฟล์กลาง sxlocaltrial:furnitech:gas ที่ทำให้ SN สลับไปใช้ Drive เป็นไฟล์กลาง)
+     รหัสเชื่อมต่อ = ชุดเดียวกับหน้า STOCK / Scan-Link (ฝังในไฟล์แบบ StarStock v1.20) · เปลี่ยนได้ที่ปุ่ม “รหัสเชื่อมต่อ…” (เก็บในเครื่อง sxlocaltrial:furnitech:stockDrive)
+   ราคาไม่ลงไฟล์งาน/ลิงก์แชร์ (หน้าดูงานไม่มีต้นทุนอยู่แล้ว) · ปิด SN_OFF.costStock=1 */
+const STK_DEF="SNGAS1:eyJ1IjoiaHR0cHM6Ly9zY3JpcHQuZ29vZ2xlLmNvbS9tYWNyb3Mvcy9BS2Z5Y2J4eEI4WktGR0YycU5Ibkk2SzYxSXh3TWJWb28tV3JXQ2ZzRlhuaWxOYzlWc3BobFNFQjZHY2NBVkkxcXJzRmswY1ZXQS9leGVjIiwiayI6ImY5MzkyZjg5MzIwMjQzNzJhOTRjZmFhNTM2YjA0ZGNhOTM1YzFjYTcifQ==";
+const STK_LSK="sxlocaltrial:furnitech:stockDrive";
+const STK={map:null, at:0, u:"", err:"", busy:null, tried:0, ver:0, memo:new Map(), fs:null, subs:new Set()};
+function stkLs(v){ try{ if(v===undefined) return localStorage.getItem(STK_LSK)||""; if(!v) localStorage.removeItem(STK_LSK); else localStorage.setItem(STK_LSK,String(v)); }catch(e){} return ""; }
+function stkConn(){ const s=String(stkLs()||STK_DEF).trim();
+  try{ if(/^SNGAS1:/.test(s)){ const o=JSON.parse(decodeURIComponent(escape(atob(s.slice(7))))); if(o&&o.u&&o.k) return {u:String(o.u),k:String(o.k)}; } }catch(e){}
+  try{ const o=JSON.parse(s); if(o&&o.u&&o.k) return {u:String(o.u),k:String(o.k)}; }catch(e){}
+  return null; }
+function stkTime(ms){ const d=new Date(ms||0), p=n=>String(n).padStart(2,"0"); return p(d.getHours())+":"+p(d.getMinutes()); }
+function stkR(v){ return (Math.round((+v||0)*100)/100).toLocaleString("th-TH",{maximumFractionDigits:2}); }
+/* CSV ของ StarSync (UTF-8 · คั่นด้วย , · อัญประกาศเมื่อจำเป็น · ขึ้นบรรทัดในช่องได้) → [{หัวคอลัมน์: ค่า}] */
+function stkCsv(text){ let s=String(text||""); if(s.charCodeAt(0)===0xFEFF) s=s.slice(1);
+  const rows=[]; let row=[], f="", q=false;
+  for(let i=0;i<s.length;i++){ const ch=s[i];
+    if(q){ if(ch==='"'){ if(s[i+1]==='"'){ f+='"'; i++; } else q=false; } else f+=ch; continue; }
+    if(ch==='"') q=true; else if(ch===","){ row.push(f); f=""; } else if(ch==="\n"||ch==="\r"){ if(ch==="\r"&&s[i+1]==="\n") i++; row.push(f); f=""; if(row.length>1||row[0]!=="") rows.push(row); row=[]; } else f+=ch; }
+  if(f!==""||row.length){ row.push(f); rows.push(row); }
+  const h=(rows.shift()||[]).map(x=>String(x).trim()); return rows.map(r=>{ const o={}; h.forEach((k,j)=>{ o[k]=r[j]==null?"":r[j]; }); return o; }); }
+async function stkLoad(force){
+  if(snOff("costStock")) return null;
+  if(STK.busy) return STK.busy;
+  if(!force&&STK.map&&Date.now()-STK.at<600000) return STK.map;
+  if(!force&&STK.tried&&Date.now()-STK.tried<60000) return STK.map;      // เพิ่งลองไป (ไม่สำเร็จ/สำเร็จ) ไม่เกิน 1 นาที = ไม่ถามซ้ำ
+  const cn=stkConn(); if(!cn){ STK.err="รหัสเชื่อมต่อ Google Drive ของ StarStock ไม่ถูกต้อง"; return null; }
+  if(typeof GasFS==="undefined"||!GasFS._FS){ STK.err="ไฟล์นี้ไม่มีตัวเชื่อม Google Drive (GasFS)"; return null; }
+  STK.tried=Date.now();
+  const run=(async()=>{ try{
+      if(!STK.fs||STK.fs.url!==cn.u||STK.fs.key!==cn.k) STK.fs=new GasFS._FS(cn.u,cn.k,{cache:true});
+      const fs=STK.fs, L=await fs.list("items",true), fi=L&&L.files&&L.files["info.csv"];
+      if(!fi) throw new Error("ไม่พบ items/info.csv บน Google Drive ของ StarStock (StarSync ยังไม่ส่ง?)");
+      const fe=L.files["edits.json"], sig=fi.u+"|"+(fe?fe.u:0);
+      if(STK.map&&STK.u===sig){ STK.at=Date.now(); STK.err=""; return STK.map; }
+      const dec=b=>new TextDecoder().decode(b), num=v=>{ const n=parseFloat(String(v==null?"":v).replace(/[,\s฿]/g,"")); return isFinite(n)&&n>0?n:0; };
+      const info=dec(await fs.readBytes("items","info.csv",fi.u));
+      let ed={}; if(fe){ try{ ed=((JSON.parse(dec(await fs.readBytes("items","edits.json",fe.u)))||{}).items)||{}; }catch(e){ console.warn("StarStock edits.json อ่านไม่ได้:",e); } }
+      const m=new Map();
+      stkCsv(info).forEach(r=>{ const k=String(r.item_number||"").trim(); if(!k) return;
+        m.set(k.toUpperCase(),{code:k,name:String(r.name||""),unit:String(r.unit||"").trim(),pp:num(r.price_purch),pc:num(r.price_cost),ps:num(r.price_sales),ep:0}); });
+      Object.keys(ed).forEach(k=>{ const e=ed[k]; if(!e||e.price==null||e.price==="") return; const K=String(k).trim().toUpperCase();
+        let x=m.get(K); if(!x){ x={code:String(k),name:"",unit:"",pp:0,pc:0,ps:0}; m.set(K,x); } x.ep=num(e.price); x.eby=String(e.by||""); x.eat=String(e.at||""); });
+      STK.map=m; STK.u=sig; STK.at=Date.now(); STK.err=""; STK.ver++; STK.memo.clear();
+      return m; }
+    catch(e){ STK.err="โหลดราคา AX ไม่ได้ — "+((e&&e.message)||e); console.warn("StarStock ราคา:",e); return STK.map; }
+    finally{ STK.busy=null; try{ costSchedule(); }catch(e){} STK.subs.forEach(f=>{ try{ f(); }catch(e){} }); } })();
+  STK.busy=run; return run; }
+const STK_AREA=/^(ตร\.?\s*ม\.?|ตรม\.?|ตารางเมตร|sq\.?\s*m\.?|sqm|m2|m²)$/i, STK_SHEET=/^(แผ่น|sheet|sht|แผ่นละ)$/i;
+const STK_M=/^(ม\.?|เมตร|m|mtr|meter|metre|mt)$/i, STK_LEN=/^(ม้วน|roll|rl|เส้น|ท่อน|bar|len)$/i;
+/* พื้นที่แผ่นจากชื่อ (ตร.ม.): 1220x2440 · 1220*2440 · 4x8 (ฟุต) */
+function stkSheetArea(name){ const s=String(name||"").replace(/,/g,"");
+  let m=s.match(/(\d{3,4}(?:\.\d+)?)\s*[x×*X]\s*(\d{3,4}(?:\.\d+)?)/); if(m){ const a=+m[1], b=+m[2]; if(a>=300&&b>=300&&a<=6000&&b<=6000) return {a:a*b/1e6,t:Math.round(a)+"×"+Math.round(b)}; }
+  m=s.match(/(?:^|[^\d.])([45])\s*[x×*X]\s*(8|9|10)(?![\d.])/); if(m){ const F={4:1220,5:1525,8:2440,9:2745,10:3050}, a=F[m[1]], b=F[m[2]]; return {a:a*b/1e6,t:m[1]+"×"+m[2]+" ฟุต"}; }
+  return null; }
+/* ความยาวต่อม้วน/เส้นจากชื่อ (เมตร): 100M · 200 ม. · 3000MM · L=2500 */
+function stkLenOf(name){ const s=String(name||"").replace(/,/g,"");
+  let m=s.match(/(\d+(?:\.\d+)?)\s*(?:mm|มม\.?)(?![a-z])/i); if(m){ const v=+m[1]/1000; if(v>=0.3&&v<=12) return v; }
+  /* “22 มม.” ห้ามนับเป็น 22 เมตร (ม ตัวแรกของ มม.) — หน่วยเมตรต้องไม่มีอักษรต่อท้าย · ไล่ทุกตัวที่เจอ เอาตัวแรกที่สมเหตุผล */
+  const rm=/(\d+(?:\.\d+)?)\s*(?:mtr|m|เมตร|ม\.?)(?![a-zA-Zก-๙])/gi; let mm2; while((mm2=rm.exec(s))){ const v=+mm2[1]; if(v>=0.3&&v<=1000) return v; }
+  m=s.match(/L\s*=?\s*(\d{3,5})(?!\d)/i); if(m){ const v=+m[1]/1000; if(v>=0.3&&v<=12) return v; }
+  return 0; }
+/* ราคา AX ของรายการ → ราคาต่อหน่วยของ SN (p = 0 = แปลงไม่ได้ · why = เหตุผล · note = วิธีแปลง) */
+function stkConv(kind,key,e){
+  const b=e.ep>0?{v:e.ep,src:"ตั้งเองใน StarStock"}:e.pp>0?{v:e.pp,src:"ราคาซื้อ AX"}:e.pc>0?{v:e.pc,src:"ราคาทุน AX"}:null;
+  if(!b) return {p:0,why:"AX ไม่มีราคา"};
+  const u=String(e.unit||"").trim(), perM=(kind==="edge")||(kind==="fit"&&/@m$/.test(String(key||"")));
+  if(kind==="mat"||kind==="surf"){
+    if(STK_AREA.test(u)) return {p:b.v,src:b.src,base:b.v};
+    if(!u||STK_SHEET.test(u)){ const sa=stkSheetArea(e.name)||{a:1.22*2.44,t:"1220×2440",def:1}; return {p:b.v/sa.a,src:b.src,base:b.v,note:"÷ แผ่น "+(sa.def?"≈ ":"")+sa.t+" ("+stkR(sa.a)+" ตร.ม.)"}; }
+    return {p:0,src:b.src,base:b.v,why:"หน่วย AX “"+u+"” แปลงเป็น ตร.ม. ไม่ได้"}; }
+  if(perM){
+    if(STK_M.test(u)) return {p:b.v,src:b.src,base:b.v};
+    if(STK_LEN.test(u)){ const L=stkLenOf(e.name); if(L) return {p:b.v/L,src:b.src,base:b.v,note:"÷ "+stkR(L)+" ม./"+u}; return {p:0,src:b.src,base:b.v,why:"ไม่รู้ความยาวต่อ"+u+" (ไม่มีในชื่อสินค้า)"}; }
+    return {p:0,src:b.src,base:b.v,why:"หน่วย AX “"+(u||"—")+"” แปลงเป็นเมตรไม่ได้"}; }
+  return {p:b.v,src:b.src,base:b.v}; }
+/* รายการนี้ใน StarStock (null = ไม่พบ / ยังไม่โหลด) — จำผลตาม STK.ver */
+function stkFor(kind,key,code){
+  if(!STK.map||snOff("costStock")) return null;
+  const mk=kind+"\n"+key+"\n"+code; if(STK.memo.has(mk)) return STK.memo.get(mk);
+  const cands=[String(key||"").replace(/@m$/,""),String(code||"")];
+  try{ const L=((settings.elements||{})[kind==="mat"?"materials":kind==="surf"?"surfaces":kind==="edge"?"edges":"fittings"])||[];
+    L.forEach(x=>{ if(!x||!x.code) return; const ids=String(x.itemId||"").split(",").map(s=>s.trim()).filter(Boolean);
+      if(x.code===code||x.code===key||ids.indexOf(String(key||"").replace(/@m$/,""))>=0) ids.forEach(s=>cands.push(s)); }); }catch(e){}
+  let r=null;
+  for(const c of cands){ const K=String(c||"").trim().toUpperCase(); if(K&&STK.map.has(K)){ const e=STK.map.get(K); r=Object.assign({e,hit:e.code},stkConv(kind,key,e)); break; } }
+  STK.memo.set(mk,r); return r; }
+function stkPrice(kind,key,code){ const r=stkFor(kind,key,code); return (r&&r.p>0)?r.p:0; }
+/* ข้อความสั้นของราคา AX (CSV / title) */
+function stkTxt(r){ const e=r.e, u=e.unit||"หน่วย"; return [e.pp?("ซื้อ "+stkR(e.pp)+"/"+u):"", e.pc?("ทุน "+stkR(e.pc)+"/"+u):"", e.ep?("StarStock "+stkR(e.ep)+"/"+u):""].filter(Boolean).join(" · ")+(r.p>0?(" → "+stkR(r.p)):(r.why?(" · "+r.why):"")); }
+/* ช่อง “ราคา AX” ในหน้า 💰 */
+function stkCell(kind,x){
+  if(!STK.map) return '<span style="color:var(--ink-dim)">'+(STK.busy?"…":"—")+'</span>';
+  const r=stkFor(kind,x.key,x.code); if(!r) return '<span style="color:var(--ink-dim)" title="ไม่พบรหัสนี้ใน items/info.csv ของ StarStock">ไม่มีใน AX</span>';
+  const e=r.e, u=escapeHtml(e.unit||"หน่วย"), own=costSrc(kind,x.key,x.code), use=own==="stk";
+  const line1=[e.pp?('ซื้อ <b>'+stkR(e.pp)+'</b>'):'', e.pc?('ทุน '+stkR(e.pc)):'', e.ep?('<span title="ตั้งเองในหน้า STOCK'+(e.eby?(' โดย '+escapeHtml(e.eby)):'')+'">StarStock <b>'+stkR(e.ep)+'</b></span>'):''].filter(Boolean).join(' · ');
+  const line2=r.p>0?('→ <b>'+stkR(r.p)+'</b>/'+escapeHtml(COST_TABS[kind].u.replace(/^ราคา\//,""))+(r.note?(' <span style="color:var(--ink-dim)">'+escapeHtml(r.note)+'</span>'):'')):('<span style="color:#e58a24">'+escapeHtml(r.why||"")+'</span>');
+  return '<div title="'+escapeHtml(e.code+" · "+e.name)+'">'+(line1||'<span style="color:var(--ink-dim)">AX ไม่มีราคา</span>')+(line1?(' <span style="color:var(--ink-dim)">/'+u+'</span>'):'')+'</div>'
+    +'<div style="'+(use?'color:#2b8a3e':'color:var(--ink-dim)')+'">'+line2+(use?' · ใช้อยู่':'')+'</div>'; }
+/* ───────── v1.518: หน้า 💰 ราคาทุน — ชื่อสินค้าจาก StarStock (ผู้ใช้ 16:47 “ในหน้าราคาทุน ชื่อให้เอามาจาก Starstock ได้ปะครับ”) ─────────
+   เดิม: คอลัมน์ชื่อ = คำอธิบายใน Element ของ SN — รายการที่ไม่ได้ลง Element ขึ้นเป็นรหัสซ้ำ (414CT0000158 · ETCP001 …) ดูไม่ออกว่าคืออะไร
+   ตอนนี้: พบรหัสใน items/info.csv ของ StarStock = ชื่อสินค้า AX เป็นบรรทัดหลัก · ชื่อใน SN ที่ไม่ซ้ำกับชื่อ AX/รหัส ขึ้นเป็นบรรทัดจาง “SN: …”
+     ไม่พบใน AX = ชื่อใน SN เหมือนเดิม · ไม่แตะข้อมูล Element · ปิด SN_OFF.costStkName=1 */
+function costAxName(kind,x){ if(snOff("costStkName")) return ""; try{ const r=stkFor(kind,x.key,x.code); return r?String(r.e.name||"").trim():""; }catch(e){ return ""; } }
+function costNameCell(kind,x){ const sn=String(x.name||"").trim(), ax=costAxName(kind,x);
+  if(!ax) return escapeHtml(sn);
+  const same=v=>String(v||"").trim().toUpperCase(), dup=!sn||[ax,x.key,String(x.key||"").replace(/@m$/,""),x.code,x.pid].some(v=>same(v)===same(sn));
+  return '<span title="ชื่อสินค้าใน AX (StarStock)">'+escapeHtml(ax)+'</span>'+(dup?'':('<div style="font-size:10.5px;color:var(--ink-dim)" title="ชื่อใน Element ของ SN">SN: '+escapeHtml(sn)+'</div>')); }
 const COST_TABS={fit:{n:"Fitting",u:"ราคา/หน่วย"},mat:{n:"ไม้ (แผ่น)",u:"ราคา/ตร.ม."},surf:{n:"ผิว",u:"ราคา/ตร.ม./ด้าน"},edge:{n:"ขอบ",u:"ราคา/เมตร"}};
 function costCfg(){ let c=settings.costs; if(!c||typeof c!=="object") c=settings.costs={};
   ["fit","mat","surf","edge"].forEach(k=>{ if(!c[k]||typeof c[k]!=="object") c[k]={}; });
@@ -36737,13 +36881,16 @@ function costElemPrice(kind,key,code){
       if(x.itemId&&String(x.itemId).split(",").map(s=>s.trim()).indexOf(key)>=0) return true;
       const r=/xx/.test(x.code)?re(x.code):null; return !!(r&&(r.test(key)||r.test(code))); });
     return e?costNum(e.cost):0; }catch(e){ return 0; } }
-function costPrice(kind,key,code){ const c=costCfg(), v=c[kind][key]; const n=costNum(v); if(n>0) return n; if(costZero(v)) return 0; if(kind==="surf"&&v==null&&costIsMel(key,code)) return 0; return (kind==="fit")?0:costElemPrice(kind,key,code); }
+function costPrice(kind,key,code){ const c=costCfg(), v=c[kind][key]; const n=costNum(v); if(n>0) return n; if(costZero(v)) return 0; if(kind==="surf"&&v==null&&costIsMel(key,code)) return 0; const ep=(kind==="fit")?0:costElemPrice(kind,key,code); return ep>0?ep:stkPrice(kind,key,code); }   // v1.514: ไม่มีใน SN = ราคา AX จาก StarStock
+/* v1.514: ราคานี้มาจากไหน — sn (พิมพ์ใน SN) · zero (ใส่ 0) · mel (เมลามีน) · elem (ช่อง cost ของ Element) · stk (ราคา AX จาก StarStock) · "" ไม่มี */
+function costSrc(kind,key,code){ const c=costCfg(), v=c[kind][key]; if(costNum(v)>0) return "sn"; if(costZero(v)) return "zero"; if(kind==="surf"&&v==null&&costIsMel(key,code)) return "mel";
+  if(kind!=="fit"&&costElemPrice(kind,key,code)>0) return "elem"; return stkPrice(kind,key,code)>0?"stk":""; }
 /* v1.442: รหัสสี อักษร+เลข 2 หลัก+อักษร (+เลข) — ตัวที่ 4 = M คือเมลามีน (G01M · G02M · N01M) · H = HPL ฯลฯ */
 function costMelToken(code){ const u=String(code||"").toUpperCase(); const m=u.match(/(?:^|[^A-Z0-9])([A-Z]\d{2}[A-Z])\d{3}/); return m?m[1]:""; }
 function costIsMel(key,code){ if(costCfg().melAuto===false) return false; return [key,code].some(v=>{ const t=costMelToken(v); return !!t&&t[3]==="M"; }); }
 /* v1.441: ใส่ 0 ไว้ = มีราคา (รวมในราคาแผ่นแล้ว / ไม่คิดเพิ่ม) */
 function costZero(v){ if(v==null) return false; const x=(typeof v==="object")?v.p:v; return x!==""&&x!=null&&isFinite(+x)&&+x===0; }
-function costHas(kind,key,code){ const v=costCfg()[kind][key]; return costPrice(kind,key,code)>0||costZero(v)||(kind==="surf"&&v==null&&costIsMel(key,code)); }
+function costHas(kind,key,code){ const v=costCfg()[kind][key]; return costPrice(kind,key,code)>0||costZero(v)||(kind==="surf"&&v==null&&costIsMel(key,code)); }   // v1.514: costPrice รวมราคา AX จาก StarStock แล้ว
 /* รายการที่ใช้: ไม้ (ตร.ม.) · ขอบ (ม.) · Fitting (หน่วย / ม.) — key = รหัสที่ใช้เก็บราคา */
 function costItems(boards,fitRows){
   const R={fit:new Map(),mat:new Map(),surf:new Map(),edge:new Map(),unres:0};
@@ -36768,7 +36915,8 @@ function costItems(boards,fitRows){
     add(R.fit,key,{code:String(r.art||base),pid:String(r.purchase||""),name:nm,unit:perM?"ม.":String(r.unit||"ชิ้น"),perM},q); });
   return R; }
 function costCalc(boards,fitRows){ const c=costCfg(), R=costItems(boards,fitRows), o={wood:0,surf:0,edge:0,fit:0,miss:[],R,unres:R.unres};
-  const run=(k,f,w)=>R[k].forEach(x=>{ const p=costPrice(k,x.key,x.code); x.p=p; if(p>0) o[f]+=p*x.qty*(1+(+w||0)/100); else if(!costHas(k,x.key,x.code)) o.miss.push([k,x]); });
+  o.stk=0;   // v1.514: จำนวนรายการที่ใช้ราคา AX จาก StarStock
+  const run=(k,f,w)=>R[k].forEach(x=>{ const p=costPrice(k,x.key,x.code); x.p=p; if(p>0){ o[f]+=p*x.qty*(1+(+w||0)/100); if(costSrc(k,x.key,x.code)==="stk") o.stk++; } else if(!costHas(k,x.key,x.code)) o.miss.push([k,x]); });
   run("mat","wood",c.waste); run("surf","surf",c.surfWaste); run("edge","edge",c.edgeWaste); run("fit","fit",0);
   o.total=o.wood+o.surf+o.edge+o.fit; return o; }
 function costAllBoards(){ try{ return orderGroups().reduce((a,g)=>a.concat(g.boards),[]); }catch(e){ return state.boards.slice(); } }
@@ -36784,12 +36932,14 @@ function costSlot(host,id){ let el=host.querySelector("#"+id); if(el) return el;
   if(r0&&r0.parentNode===host&&r0.nextSibling) host.insertBefore(el,r0.nextSibling); else host.appendChild(el); return el; }
 function costPaint(){
   if(!costOn()) return;
+  if(!snOff("costStock")&&!STK.map&&!STK.busy) stkLoad(false);   // v1.514: ราคา AX โหลดเบื้องหลัง เสร็จแล้ว costSchedule วาดใหม่เอง
   const f=$("plFoot");
   if(f&&f.offsetParent!==null){ const o=costOfAll(), p=plPrice(), nm=o.miss.length, el=costSlot(f,"plCostFoot");
     const gp=p.sum>0?('<span style="margin-left:auto" title="ราคาขายจากแคตตาล็อก − ต้นทุน'+(nm?" (ต้นทุนยังไม่ครบ)":"")+'">กำไรขั้นต้น <b>'+plMoney(p.sum-o.total)+'</b> ('+Math.round((p.sum-o.total)/p.sum*100)+'%)'+(nm?" *":"")+'</span>'):'';
     el.innerHTML='<div class="plRow" style="margin-top:3px"><span>ต้นทุน</span><b style="margin-left:6px;font-size:14px">'+plMoney(o.total)+'</b>'+gp+'</div>'
       +'<div class="plNote">'+escapeHtml(costBreak(o))+'</div>'
       +'<div class="plRow" style="margin-top:3px">'+(nm?('<span style="color:#e58a24;font-size:11px">ยังไม่มีราคา '+nm+' รายการ — ต้นทุนยังไม่ครบ</span>'):'<span class="plNote">ราคาครบทุกรายการ</span>')
+      +(o.stk?('<span class="plNote" style="margin-left:6px" title="รายการที่ SN ยังไม่มีราคา ใช้ราคา AX จาก StarStock (ตั้งเองในหน้า STOCK → ราคาซื้อ → ราคาทุน)">· ราคา AX '+o.stk+'</span>'):'')   /* v1.514 */
       +(o.unres?('<span class="plNote" style="margin-left:6px" title="ชิ้น/ขอบที่ยังเป็นตัวแปร ($…) ไม่รู้รหัสวัสดุจริง">· ยังไม่ผูกวัสดุ '+o.unres+'</span>'):'')
       +'<button class="ibtn" id="plCostEdit" style="margin-left:auto;padding:2px 8px;font-size:11px">💰 '+(nm?'ใส่ราคาที่ขาด…':'ราคาทุน…')+'</button></div>';
     const b=el.querySelector("#plCostEdit"); if(b) b.onclick=()=>costEditor({onlyMissing:nm>0}); }
@@ -36843,6 +36993,7 @@ function costEditor(opt){
       +'<label style="font-size:12px"><input type="checkbox" id="cpUsed"'+(onlyUsed?' checked':'')+'> เฉพาะที่ใช้ใน'+(opt.inst?'ตู้นี้':'งานนี้')+'</label>'
       +'<label style="font-size:12px"><input type="checkbox" id="cpMiss"'+(onlyMissing?' checked':'')+'> เฉพาะที่ยังไม่มีราคา</label></div>'
     +'<div id="cpOpt" style="padding:0 16px 6px;font-size:12px;color:var(--ink-dim)"></div>'
+    +(snOff("costStock")?'':'<div id="cpStk" style="padding:0 16px 6px;font-size:12px;color:var(--ink-dim);display:flex;gap:8px;align-items:center;flex-wrap:wrap"></div>')   /* v1.514 */
     +'<div style="flex:1;overflow:auto;padding:0 16px"><table id="cpTbl" style="width:100%;border-collapse:collapse;font-size:12.5px"></table></div>'
     +'<div id="cpPasteBox" style="display:none;padding:8px 16px;border-top:1px solid var(--line)">'
       +'<div style="font-size:12px;color:var(--ink-dim);margin-bottom:4px">คัดลอก 2 คอลัมน์จาก Excel (รหัส · ราคา) มาวางได้ทีละหลายแถว — รหัสจับคู่ทั้ง Purchase ID และรหัส Element · รหัสที่ยังไม่มีในงานนี้เก็บไว้ใช้ทีหลัง</div>'
@@ -36853,12 +37004,20 @@ function costEditor(opt){
       +'<span id="cpSt" style="margin-left:auto;font-size:12px;color:var(--ink-dim)"></span></div></div>';
   document.body.appendChild(ov);
   const Q=sel=>ov.querySelector(sel), st=Q("#cpSt");
-  const close=()=>{ ov.remove(); try{ costSchedule(); }catch(e){} };
+  const close=()=>{ ov.remove(); STK.subs.delete(onStk); try{ costSchedule(); }catch(e){} };
+  /* v1.514: ราคา AX จาก StarStock — โหลดเสร็จ/เปลี่ยน = วาดตารางใหม่ */
+  const onStk=()=>{ if(ov.isConnected){ opt._noFocus=1; paint(); } }; STK.subs.add(onStk);
+  const paintStk=()=>{ const b=Q("#cpStk"); if(!b) return; const L=rowsOf(tab), hit=L.filter(x=>stkFor(tab,x.key,x.code)).length;
+    b.innerHTML='<span>ราคา AX (StarStock): '+(STK.busy?'⏳ กำลังโหลดจาก Google Drive…':STK.map?('โหลด '+escapeHtml(stkTime(STK.at))+' · พบใน AX '+hit+' / '+L.length+' แถวที่แสดง · ช่องที่ SN ยังว่างใช้ราคานี้ (ตั้งเองใน StarStock → ซื้อ → ทุน)'):(STK.err?('<span style="color:#c92a2a">'+escapeHtml(STK.err)+'</span>'):'ยังไม่ได้โหลด'))+'</span>'
+      +'<button class="ibtn" id="cpStkRe" style="padding:2px 8px;font-size:11px">⟳ โหลดใหม่</button><button class="ibtn" id="cpStkCode" style="padding:2px 8px;font-size:11px" title="รหัสเชื่อมต่อ Google Drive ของ StarStock (SNGAS1:…) — ไม่ใส่ = ใช้ชุดเดียวกับหน้า STOCK">รหัสเชื่อมต่อ…</button>';
+    b.querySelector("#cpStkRe").onclick=()=>{ stkLoad(true); paintStk(); };
+    b.querySelector("#cpStkCode").onclick=()=>{ const cur=stkLs(); const v=prompt("รหัสเชื่อมต่อ Google Drive ของ StarStock (SNGAS1:…)\nเว้นว่าง = ใช้ชุดเดียวกับหน้า STOCK ของ BI-Production-Stock-Cabinet",cur); if(v===null) return; stkLs(String(v).trim()); STK.map=null; STK.u=""; STK.fs=null; stkLoad(true); paintStk(); }; };
+  if(!snOff("costStock")) stkLoad(false);
   ov.addEventListener("click",ev=>{ if(ev.target===ov||(ev.target.dataset&&ev.target.dataset.a==="x")) close(); });
   const fmtQ=(x,k)=>{ const v=x.qty||0; if(!v) return ""; return (k==="fit"&&!x.perM)?Math.round(v).toLocaleString():v.toFixed(v>=100?0:2); };
   const rowsOf=k=>{ const m=new Map(); used[k].forEach((x,key)=>m.set(key,x)); if(!onlyUsed) known[k].forEach((x,key)=>{ if(!m.has(key)) m.set(key,Object.assign({qty:0},x)); });
     let L=[...m.values()]; const qq=q.trim().toLowerCase();
-    if(qq) L=L.filter(x=>[x.key,x.code,x.pid,x.name].some(v=>String(v||"").toLowerCase().indexOf(qq)>=0));
+    if(qq) L=L.filter(x=>[x.key,x.code,x.pid,x.name,costAxName(k,x)].some(v=>String(v||"").toLowerCase().indexOf(qq)>=0));   // v1.518: + ชื่อ AX
     if(onlyMissing) L=L.filter(x=>!costHas(k,x.key,x.code)||x._keep);
     return L.sort((a,b)=>(b.qty>0)-(a.qty>0)||String(a.name||a.key).localeCompare(String(b.name||b.key),"th")); };
   const paintTabs=()=>{ Q("#cpTabs").innerHTML=Object.keys(COST_TABS).map(k=>{ const n=miss(k);
@@ -36876,15 +37035,17 @@ function costEditor(opt){
     const z=Q("#cpZero"); if(z) z.onclick=()=>{ let n=0; rowsOf(tab).forEach(x=>{ if(!costHas(tab,x.key,x.code)){ c[tab][x.key]={p:0,at:today}; x._keep=1; n++; } }); if(n){ costSaveSoon(st); paint(); } toast(n?("ตั้ง 0 (รวมในราคาแผ่น) "+n+" รายการ"):"ไม่มีแถวที่ยังไม่มีราคา"); }; };
   const paint=()=>{ paintTabs(); paintOpt(); const L=rowsOf(tab), T=Q("#cpTbl");
     const th='style="position:sticky;top:0;background:var(--solid,#fff);text-align:left;padding:6px 6px;border-bottom:1px solid var(--line);font-weight:600"';
-    T.innerHTML='<tr><th '+th+'>รหัส</th><th '+th+'>ชื่อ</th><th '+th+'>หน่วย</th><th '+th.replace("left","right")+'>ใช้ใน'+(opt.inst?'ตู้นี้':'งานนี้')+'</th><th '+th+'>'+COST_TABS[tab].u+'</th><th '+th.replace("left","right")+'>รวม</th></tr>'
+    const stkOn=!snOff("costStock");   // v1.514: คอลัมน์ราคา AX
+    T.innerHTML='<tr><th '+th+'>รหัส</th><th '+th+'>ชื่อ</th><th '+th+'>หน่วย</th><th '+th.replace("left","right")+'>ใช้ใน'+(opt.inst?'ตู้นี้':'งานนี้')+'</th>'+(stkOn?'<th '+th+' title="จาก StarStock (Google Drive): ราคาซื้อ · ราคาทุนใน AX ต่อหน่วยของ AX แล้วแปลงเป็นหน่วยของ SN">ราคา AX</th>':'')+'<th '+th+'>'+COST_TABS[tab].u+'</th><th '+th.replace("left","right")+'>รวม</th></tr>'
       +(L.length?L.map((x,i)=>{ const p=costPrice(tab,x.key,x.code), own=costNum(c[tab][x.key]), z0=costZero(c[tab][x.key]), mel=(tab==="surf"&&c[tab][x.key]==null&&costIsMel(x.key,x.code));
         const sub=(x.code&&x.code!==x.key.replace(/@m$/,""))?('<div style="font-size:10.5px;color:var(--ink-dim)">'+escapeHtml(x.code)+'</div>'):'';
         return '<tr data-i="'+i+'" style="border-bottom:1px solid var(--line)"><td style="padding:4px 6px;font-family:var(--mono);font-size:11.5px;word-break:break-all">'+escapeHtml(x.key)+sub+'</td>'
-          +'<td style="padding:4px 6px">'+escapeHtml(String(x.name||""))+'</td><td style="padding:4px 6px;white-space:nowrap">'+escapeHtml(String(x.unit||""))+'</td>'
+          +'<td style="padding:4px 6px">'+costNameCell(tab,x)+'</td><td style="padding:4px 6px;white-space:nowrap">'+escapeHtml(String(x.unit||""))+'</td>'   /* v1.518: ชื่อจาก StarStock */
           +'<td style="padding:4px 6px;text-align:right;font-family:var(--mono)">'+fmtQ(x,tab)+'</td>'
-          +'<td style="padding:3px 6px"><input class="cpIn" data-i="'+i+'" inputmode="decimal" value="'+(own>0?own:(z0?"0":""))+'" placeholder="'+(mel?"0 · เมลามีน (M)":((!own&&!z0&&p>0)?(p+" (Element)"):""))+'" style="width:100px;font-family:var(--mono);padding:3px 6px"></td>'
+          +(stkOn?('<td style="padding:4px 6px;font-size:11px;line-height:1.35">'+stkCell(tab,x)+'</td>'):'')   /* v1.514 */
+          +'<td style="padding:3px 6px"><input class="cpIn" data-i="'+i+'" inputmode="decimal" value="'+(own>0?own:(z0?"0":""))+'" placeholder="'+(mel?"0 · เมลามีน (M)":((!own&&!z0&&p>0)?(stkR(p)+(costSrc(tab,x.key,x.code)==="stk"?" (AX)":" (Element)")):""))+'" style="width:100px;font-family:var(--mono);padding:3px 6px"></td>'
           +'<td class="cpTot" style="padding:4px 6px;text-align:right;font-family:var(--mono)">'+(p>0&&x.qty?plMoney(p*x.qty):(z0?"รวมแล้ว":(mel?"รวมแล้ว (M)":"")))+'</td></tr>'; }).join("")
-        :'<tr><td colspan="6" style="padding:18px 6px;color:var(--ink-dim);text-align:center">'+(onlyMissing?'✓ ไม่มีรายการที่ยังขาดราคา (เอาติ๊ก “เฉพาะที่ยังไม่มีราคา” ออกเพื่อดู/แก้ราคาที่ใส่แล้ว)':'ไม่มีรายการ')+'</td></tr>');
+        :'<tr><td colspan="'+(stkOn?7:6)+'" style="padding:18px 6px;color:var(--ink-dim);text-align:center">'+(onlyMissing?'✓ ไม่มีรายการที่ยังขาดราคา (เอาติ๊ก “เฉพาะที่ยังไม่มีราคา” ออกเพื่อดู/แก้ราคาที่ใส่แล้ว)':'ไม่มีรายการ')+'</td></tr>');
     const ins=[...T.querySelectorAll(".cpIn")];
     ins.forEach((inp,j)=>{ const x=L[+inp.dataset.i];
       inp.oninput=()=>{ const raw=String(inp.value||"").replace(/[,\s฿]/g,""), n=parseFloat(raw); x._keep=1;
@@ -36895,7 +37056,8 @@ function costEditor(opt){
         else if(ev.key==="ArrowUp"){ ev.preventDefault(); const pv=ins[j-1]; if(pv){ pv.focus(); pv.select(); } } }; });
     if(ins[0]&&!opt._noFocus){ setTimeout(()=>{ try{ ins[0].focus(); }catch(e){} },30); }
     const mt=miss("fit")+miss("mat")+miss("surf")+miss("edge");
-    if(!st.textContent||/^ยังไม่มีราคา|^ราคาครบ/.test(st.textContent)) st.textContent=mt?('ยังไม่มีราคา '+mt+' รายการใน'+(opt.inst?'ตู้นี้':'งานนี้')):('ราคาครบทุกรายการใน'+(opt.inst?'ตู้นี้':'งานนี้')); };
+    if(!st.textContent||/^ยังไม่มีราคา|^ราคาครบ/.test(st.textContent)) st.textContent=mt?('ยังไม่มีราคา '+mt+' รายการใน'+(opt.inst?'ตู้นี้':'งานนี้')):('ราคาครบทุกรายการใน'+(opt.inst?'ตู้นี้':'งานนี้'));
+    paintStk(); };
   Q("#cpQ").oninput=e=>{ q=e.target.value; opt._noFocus=1; paint(); };
   Q("#cpUsed").onchange=e=>{ onlyUsed=e.target.checked; paint(); };
   Q("#cpMiss").onchange=e=>{ onlyMissing=e.target.checked; [...used[tab].values()].forEach(x=>delete x._keep); paint(); };
@@ -36910,7 +37072,7 @@ function costEditor(opt){
   Q("#cpCsv").onclick=()=>{ const L=[...used[tab].values()].filter(x=>!costHas(tab,x.key,x.code));
     if(!L.length){ toast("ไม่มีรายการที่ยังไม่มีราคาใน"+COST_TABS[tab].n); return; }
     const cs=v=>{ const s=String(v==null?"":v); return /[",\r\n]/.test(s)?'"'+s.replace(/"/g,'""')+'"':s; };
-    const csv="รหัส,ชื่อ,รหัส Element,หน่วย,ใช้ในงานนี้,ราคา\n"+L.map(x=>[x.key,x.name,x.code,x.unit,fmtQ(x,tab),""].map(cs).join(",")).join("\n");
+    const csv="รหัส,ชื่อ,ชื่อ AX (StarStock),รหัส Element,หน่วย,ใช้ในงานนี้,ราคา AX (StarStock),ราคา\n"+L.map(x=>{ const r=stkFor(tab,x.key,x.code); return [x.key,x.name,costAxName(tab,x),x.code,x.unit,fmtQ(x,tab),r?stkTxt(r):"",""].map(cs).join(","); }).join("\n");   // v1.514 · v1.518: + ชื่อ AX
     download("ราคาทุน-"+COST_TABS[tab].n.replace(/[^\wก-๙]+/g,"")+"-ที่ยังไม่มี.csv","\uFEFF"+csv,"text/csv"); };
   paint();
   return ov; }
@@ -37198,7 +37360,7 @@ function plPanelGaps(){
 function plPanelFoot(){
   const s=$("plFoot"); if(!s) return; const p=plPrice();
   s.innerHTML='<div class="plRow"><span>ตู้ในห้อง <b>'+p.n+'</b> ใบ</span><span style="margin-left:auto;font-size:15px;font-weight:800">'+plMoney(p.sum)+'</span></div>'
-    +'<div class="plRow" style="margin:6px 0 2px">'+((VIEW_ONLY||snOff("plPoster"))?'':'<button class="ibtn" id="plPosterBtn" style="flex:1" title="ภาพห้อง 3D + รายการตู้ ขนาด ราคา + แปลน → PNG">🖼 โปสเตอร์ขาย</button>')   // v1.457
+    +'<div class="plRow" style="margin:6px 0 2px">'+(VIEW_ONLY?'':!snOff("plQuote")?'<button class="ibtn" id="plQuoteBtn" style="flex:1" title="ใบเสนอราคา A4 — ราคาตั้งต้นจากต้นทุนตู้ + กำไร % ของเซลล์ · พิมพ์ / บันทึก PDF">🧾 ใบเสนอราคา</button>':(snOff("plPoster")?'':'<button class="ibtn" id="plPosterBtn" style="flex:1" title="ภาพห้อง 3D + รายการตู้ ขนาด ราคา + แปลน → PNG">🖼 โปสเตอร์ขาย</button>'))   /* v1.515: แทนโปสเตอร์ (SN_OFF.plQuote=1 = โปสเตอร์เดิม) */   // v1.457
     +(snOff("glbExport")?'':'<button class="ibtn" id="plGlbBtn" style="flex:1" title="ห้อง + ตู้ทั้งหมดเป็นไฟล์ 3D (.glb) — เปิดใน Blender แล้วเรนเดอร์เหมือนจริงได้ฟรี">🧊 ส่งออก Blender</button>')+'</div>'   // v1.459
     +plFootOpen()   // v1.317
     +(p.miss?'<div style="color:var(--ink-dim);font-size:11px;margin-top:2px">ยังไม่มีราคา '+p.miss+' ใบ — ใส่ได้ที่ 🗂 แคตตาล็อก (ราคารวมยังไม่นับใบพวกนี้)</div>':'')
@@ -37213,6 +37375,7 @@ function plPanelFoot(){
     +'<div style="color:var(--ink-dim);font-size:11px;margin-top:4px">ตู้ในห้องคือออเดอร์จริงแล้ว — ใบตัด / BOM / ส่งออก ใช้ต่อได้เลย</div></details>';
   { const b=s.querySelector("#plPlSync"); if(b) b.onclick=()=>plPlinthSync(); }
   { const pb=s.querySelector("#plPosterBtn"); if(pb) pb.onclick=()=>{ plPosterOpen().catch(e=>{ console.error("poster:",e); toast("เปิดโปสเตอร์ไม่สำเร็จ — ดู console"); }); }; }   // v1.457
+  { const qb=s.querySelector("#plQuoteBtn"); if(qb) qb.onclick=()=>{ plQuoteOpen().catch(e=>{ console.error("quote:",e); toast("เปิดใบเสนอราคาไม่สำเร็จ — ดู console"); }); }; }   // v1.515
   { const gb=s.querySelector("#plGlbBtn"); if(gb) gb.onclick=()=>exportGlb({room:true}); }   // v1.459
   plRoomGrpWire(s);
 }
@@ -37545,6 +37708,275 @@ async function plPosterOpen(){
 }
 function plpClose(){ if(PLP.el){ PLP.el.remove(); PLP.el=null; } clearTimeout(PLP.tmr);
   if(PLP.dirty){ PLP.dirty=false; try{ autosave(); }catch(e){} } }
+/* ═════════ v1.515: 🧾 ใบเสนอราคา จากห้องออกแบบ (แทนปุ่ม 🖼 โปสเตอร์ขาย) ═════════
+   ผู้ใช้ 27/10/2026 15:15: “ปรับปุ่มโปสเตอร์ขาย เป็นปุ่มออกใบเสนอราคาไหม” · ถามกลับแล้วเลือก
+     ราคาขาย = “เอาราคาทุนตั้งให้เซลล์ก่อน แล้วมีช่องให้เซลล์ + % ของเขาไปเพิ่มครับ” · รูปแบบ = A4 พิมพ์ / PDF · โปสเตอร์ = “แทนที่เลย”
+   เดิม: ปุ่ม 🖼 โปสเตอร์ขาย (v1.457) ทำภาพโฆษณาราคาจากแคตตาล็อก — ใบเสนอราคาต้องไปทำในโปรแกรมอื่น และราคาแคตตาล็อกหลายรุ่นยังเป็น ฿0
+   ตอนนี้: ปุ่ม 🧾 ใบเสนอราคา → หน้าต่างกรอก (ซ้าย) + ภาพ A4 (ขวา) → 🖨 พิมพ์ / บันทึก PDF (หน้าต่างพิมพ์ของเบราว์เซอร์ · ชื่อไฟล์ = เลขที่ + ลูกค้า)
+     รายการ = ตู้ทุกใบในห้อง (plCabMap) รวมฟิลเลอร์/ราวแขวน/แผ่นไม้ไฟ — รหัส + ขนาด + ต้นทุนเดียวกัน = แถวเดียว ×จำนวน
+       + “ชิ้นส่วน / อุปกรณ์อื่นในงาน” = ต้นทุนทั้งงาน − ผลรวมรายตู้ (ตีนตู้ ฟิลเลอร์บน ฯลฯ ที่ไม่อยู่ในตู้ใบไหน) ถ้าเกิน 1 บาท
+     ราคาต่อหน่วย = ต้นทุนตู้ (costCalc เดียวกับห้องออกแบบ: ไม้ ผิว ขอบ Fitting · รวมราคา AX จาก StarStock v1.514) × (1 + กำไร %)
+       กำไร % ทั้งใบ (ตั้งต้น 0 = ราคาทุน — มีคำเตือน) · ใส่ % รายแถวทับได้ · ปัดราคาต่อหน่วยขึ้นหลักสิบ/ร้อย · ส่วนลด (บาท) · VAT 7% บวกเพิ่ม / รวมแล้ว / ไม่มี
+     ต้นทุนยังไม่ครบ = แถบเตือน + ปุ่ม 💰 ใส่ราคาที่ขาด (เปิดหน้าราคาทุนทับ ปิดแล้วคิดใหม่) · ต้นทุน กำไร % กำไรขั้นต้น เห็นเฉพาะในหน้าต่าง ไม่พิมพ์ลงใบ
+     ใบ: หัวบริษัท (โลโก้ ชื่อ ที่อยู่ เลขผู้เสียภาษี โทร) · เลขที่ วันที่ ยืนราคา · ลูกค้า โครงการ · ภาพห้อง 3D (เลือกได้) · ตาราง · รวม ส่วนลด VAT ยอดสุทธิ + ตัวอักษร · เงื่อนไข · ลายเซ็น 3 ช่อง
+     เก็บ: บริษัท/ผู้เสนอราคา = ในเครื่อง (lsSet sxlocaltrial:furnitech:quote · ตั้งต้นโทร/โลโก้จากโปสเตอร์) · ลูกค้า/เลขที่/% /ส่วนลด/เงื่อนไข = state.room.quote ไปกับงาน (autosave ตอนปิด)
+   ไม่แสดงในโหมดดูอย่างเดียว · ไม่แตะข้อมูลตู้/ไฟล์ส่งออก · โปสเตอร์เดิมยังอยู่ครบ: SN_OFF.plQuote=1 = ปุ่มกลับเป็น 🖼 โปสเตอร์ขาย */
+/* ───────── v1.516: โลโก้ Starmark (ไฟล์เดียวกับโปรแกรมตั้ง Code AX / หน้าโหลด .brandmark) ─────────
+   ตัดขอบขาวรอบโลโก้ออก + ย่อสี 128 สี เหลือ ~12 KB — ใช้เป็นโลโก้ตั้งต้นของใบเสนอราคา และหน้าโหลดของหน้าดูงาน 3D (snvHtml)
+   PNG พื้นขาวทึบ: บนพื้นขาว (ใบ A4) ใช้ตรง ๆ · บนพื้นสีอ่อนใช้ mix-blend-mode:multiply · ปิดทั้งหมด SN_OFF.snLogo=1 */
+const SN_LOGO_URL="data:image/png;base64,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";
+const PLQ={el:null, img:"", tmr:0, dirty:false, co:null};
+const PLQ_LS="sxlocaltrial:furnitech:quote";
+/* ───────── v1.518: ข้อมูลบริษัท + เงื่อนไขตั้งต้น ตามเอกสารจริงของ Starmark ─────────
+   ผู้ใช้ 27/10 16:47 ส่ง BO69-0855(ครัว)Memo-A (หน้า 3 “รายละเอียดใบเสนอราคา”): “ใส่ชื่อบริษัทกับเลขใบกำกับภาษีได้เลย”
+   เดิม (v1.515): ช่องบริษัทว่าง · เงื่อนไขเป็นข้อความที่ Claude เดา (มัดจำ 50%)
+   ตอนนี้: ชื่อ/ที่อยู่/โทร-แฟกซ์/เลขผู้เสียภาษี ตามหัวใบเสนอราคาตัวอย่าง (เครื่องที่ช่องบริษัทว่างทั้งหมดได้ค่านี้ · พิมพ์แก้ได้ จำในเครื่อง)
+     เงื่อนไข = ชำระ 40/60 + ช่องทางชำระ (หน้า 3 ของเอกสาร) + ไม่รวมงานไฟฟ้า/ประปา (เงื่อนไขใบสั่งขาย ข้อ 6–7)
+     ใบที่ยังเป็นข้อความเดาเดิมทั้งก้อน (ไม่ได้แก้) เปลี่ยนเป็นข้อความใหม่ให้ · ใบที่แก้เองแล้วไม่แตะ
+   หมายเหตุ: ใบสั่งขาย (หน้า 6) ใช้เลขผู้เสียภาษี 13 หลัก 0745534000876 / โทร 02-114-1956 — ตอนนี้ใช้ตามใบเสนอราคาตามที่ผู้ใช้สั่ง */
+const PLQ_CO_SM={name:"บริษัท สตาร์มาร์ค แมนูแฟคเชอริ่ง จำกัด", addr:"1/109-110 หมู่ 2 ต.ท่าทราย อ.เมือง จ.สมุทรสาคร 74000", tax:"3751007465", tel:"034-490-023-6 แฟกซ์ 034-490-481"};
+const PLQ_NOTE_515="1. ราคานี้ยืนราคาตามวันที่ระบุ\n2. ชำระมัดจำ 50% เมื่อยืนยันการสั่งซื้อ ส่วนที่เหลือชำระก่อนส่งมอบ/ติดตั้ง\n3. ระยะเวลาผลิตและติดตั้งตามที่ตกลงหลังยืนยันแบบ\n4. งานแก้ไขหน้างานที่นอกเหนือจากแบบ คิดราคาเพิ่มตามจริง";   // ข้อความเดาเดิม v1.515–1.517
+const PLQ_NOTE="1. เงื่อนไขการชำระเงิน: ชำระ 40% ณ วันสั่งซื้อ · ชำระ 60% ก่อนกำหนดติดตั้ง 7 วัน\n2. ช่องทางการชำระเงิน: เงินสด / บัตรเครดิต / เช็คสั่งจ่ายในนาม บจก. สตาร์มาร์คแมนูแฟคเชอริ่ง / โอนเงินเข้าบัญชี บจก. สตาร์มาร์คแมนูแฟคเชอริ่ง ธนาคารกรุงเทพ สาขาถนนเศรษฐกิจ 1 สมุทรสาคร บัญชีกระแสรายวัน เลขที่ 072-3-01086-4\n3. ราคานี้ไม่รวมงานระบบไฟฟ้า งานย้ายปลั๊กไฟ และงานระบบประปา";
+function plqDefCo(){ return {name:"", addr:"", tax:"", tel:"", email:"", logo:"", logoOff:false, sales:"", salesTel:""}; }   // v1.516: logo ว่าง + logoOff ไม่ติ๊ก = โลโก้ Starmark
+function plqLogo(C){ return (C&&C.logo)||((C&&C.logoOff)||snOff("snLogo")?"":SN_LOGO_URL); }
+function plqData(){ const r=plRoom(); if(!r.quote||typeof r.quote!=="object") r.quote={};
+  const q=r.quote, oid=((typeof orderId==="function"&&String(orderId()||"").match(/^\d{10}/))||[""])[0];
+  const d=new Date(), p=n=>String(n).padStart(2,"0");
+  const def={no:"QT-"+(oid||(String(d.getFullYear()).slice(2)+p(d.getMonth()+1)+p(d.getDate()))), date:d.getFullYear()+"-"+p(d.getMonth()+1)+"-"+p(d.getDate()), valid:30,
+    cust:"", custAddr:"", custTel:"", proj:"", markup:0, pct:{}, nm:{}, disc:0, vat:"add", round:10, note:PLQ_NOTE, img:true};
+  Object.keys(def).forEach(k=>{ if(q[k]==null) q[k]=(typeof def[k]==="object")?JSON.parse(JSON.stringify(def[k])):def[k]; });
+  if(!q.pct||typeof q.pct!=="object") q.pct={}; if(!q.nm||typeof q.nm!=="object") q.nm={};
+  if(q.note===PLQ_NOTE_515) q.note=PLQ_NOTE;   // v1.518: ข้อความเดาเดิมที่ไม่ได้แก้ → เงื่อนไขจริง
+  return q; }
+/* แถวของใบ: ตู้ในห้อง (รหัส+ขนาด+ต้นทุนเดียวกัน = แถวเดียว) · ต้นทุนตู้รวมชิ้น/อุปกรณ์นอกตู้ที่ปันมาให้แล้ว (v1.518) */
+/* ───────── v1.518: ชิ้น/อุปกรณ์นอกตู้ รวมเข้าราคาตู้ (ผู้ใช้ 16:47 “รายการชิ้นส่วน/อุปกรณ์ในใบเสนอราคาให้ตัดออก แล้วเอารายการอุปกรณ์ราคาของมันผูกไปกับตู้ คิดราคารวมไปในตู้เลย”) ─────────
+   เดิม (v1.515): ต้นทุนทั้งงาน − ผลรวมรายตู้ > 1 บาท = แถว “ชิ้นส่วน / อุปกรณ์อื่นในงาน” แยกหนึ่งแถว
+   ที่มาของส่วนนี้: ชิ้นที่อยู่ในใบตัดแต่ไม่อยู่ในตู้ใบไหนของห้อง (ตู้ที่สร้างจากกฎรายการเส้น _lineCab · ชิ้นไม่มี cabInst) + เศษจากการนับอุปกรณ์ทั้งงาน
+   ตอนนี้: จับเป็นกลุ่มตามใบ (cabInst / รหัสตู้) แล้วคิดต้นทุนของกลุ่ม
+     กลุ่มที่ชิดตู้ (ช่องว่าง ≤ 50 มม.) → เข้าตู้ใบนั้น (ชิดหลายใบ = แบ่งตามราคาตู้) · ไม่ชิดตู้ไหน/ไม่มีตำแหน่ง → เฉลี่ยทุกตู้ตามราคาตู้
+     เศษที่เหลือ (> 0.5 บาท) เฉลี่ยตามราคาตู้เหมือนกัน → ผลรวมราคาทุนในใบ = ต้นทุนทั้งงานเท่าเดิม
+   ไม่มีตู้ในห้องเลย = ยังขึ้นแถวรวมแบบเดิม (ไม่มีตู้ให้ผูก) · ปิด SN_OFF.plqMerge=1 = แถวแยกแบบเดิม */
+function plqExtra(cabs,all){
+  cabs.forEach(c=>{ c.extra=0; c.det=[]; }); if(!cabs.length) return 0;
+  const inCab=new Set(); cabs.forEach(c=>c.bs.forEach(b=>inCab.add(b)));
+  let left=[]; try{ left=costAllBoards().filter(b=>b&&!inCab.has(b)); }catch(e){ left=[]; }
+  const grp={}; left.forEach(b=>{ let k="?"; try{ k=String(b.cabInst||("c:"+cabOf(b))); }catch(e){} (grp[k]=grp[k]||[]).push(b); });
+  let pool=0, sumL=0; const share=(c,v,why)=>{ c.extra+=v; if(v>=0.005) c.det.push(why+" "+plqMoney(v)); };
+  const wOf=c=>Math.max(+c.cost||0,0.01);
+  Object.keys(grp).forEach(k=>{ const gb=grp[k]; let v=0; try{ v=costCalc(gb,costFitRows(gb)).total; }catch(e){ v=0; } if(!(v>0)) return; sumL+=v;
+    let nm=""; try{ nm=String((gb.find(b=>b&&b.cab)||{}).cab||"").trim(); }catch(e){}
+    let f=null; try{ f=plFp(gb); }catch(e){ f=null; }
+    const gap=c=>{ const a=c.fp; if(!f||!a||!isFinite(a.lo[0])||!isFinite(f.lo[0])) return Infinity; let s=0;
+      for(let i=0;i<3;i++){ const g=Math.max(0,a.lo[i]-f.hi[i],f.lo[i]-a.hi[i]); s+=g*g; } return Math.sqrt(s); };
+    const ds=cabs.map(c=>({c,g:gap(c)})).filter(x=>x.g<=50);
+    if(!ds.length){ pool+=v; return; }
+    const gmin=Math.min(...ds.map(x=>x.g)), near=ds.filter(x=>x.g<=gmin+10), tw=near.reduce((a,x)=>a+wOf(x.c),0);
+    near.forEach(x=>share(x.c,v*wOf(x.c)/tw,(nm||"ชิ้นนอกตู้")+" (ชิดตู้)")); });
+  const rest=(all&&isFinite(all.total))?(all.total-cabs.reduce((a,c)=>a+c.cost,0)-sumL):0; if(rest>0.5) pool+=rest;
+  if(pool>0){ const tw=cabs.reduce((a,c)=>a+wOf(c),0); cabs.forEach(c=>share(c,pool*wOf(c)/tw,"อุปกรณ์/ชิ้นส่วนในงาน (เฉลี่ยตามราคาตู้)")); }
+  return pool; }
+function plqLines(){
+  const m=plCabMap(), byKey={}, lines=[]; let sumCost=0, miss=0;
+  /* v1.518: รอบแรกคิดต้นทุนรายตู้ + กรอบตำแหน่ง → ปันชิ้น/อุปกรณ์นอกตู้ (plqExtra) → รอบสองจัดแถว */
+  const cabs=[]; Object.keys(m).forEach(inst=>{ const bs=m[inst]; if(!bs||!bs.length) return;
+    let d=null; try{ d=plLocalDims(inst); }catch(e){} let fp=null; try{ fp=plFp(bs); }catch(e){}
+    const o=costCalc(bs,costFitRows(bs)); cabs.push({inst, bs, d, fp, o, cost:o.total}); });
+  let all=null; try{ all=costOfAll(); }catch(e){}
+  const merge=!snOff("plqMerge")&&cabs.length>0; if(merge) plqExtra(cabs,all); else cabs.forEach(c=>{ c.extra=0; c.det=[]; });
+  cabs.forEach(cb=>{ const inst=cb.inst, bs=cb.bs, d=cb.d, o=cb.o;
+    const code=String((d&&d.f&&d.f.code)||"").trim(); sumCost+=o.total+cb.extra; miss+=o.miss.length;
+    const cut=t=>String(t||"").replace(/\s*[·\-–,|]?\s*\d{2,5}(?:\.\d+)?\s*[x×*X]\s*\d{2,5}(?:\.\d+)?(?:\s*[x×*X]\s*\d{2,5}(?:\.\d+)?)?\s*(?:มม\.?|mm|ซม\.?|cm)?/g,"").replace(/[\s·\-–,|]+$/,"").replace(/^[\s·\-–,|]+/,"").trim();   // ขนาดรุ่นในคำอธิบายไม่ตรงขนาดจริง (แบบโปสเตอร์ v1.460)
+    let en="", gen=""; try{ const e=catalogOf(code)||{}; en=cut(e.name||cabDescGet(code)); gen=cut(cabCodeDesc(code)); }catch(_){}   // en = ชื่อที่ตั้งเอง · gen = ชื่อเดาจากรหัส (B=ตู้พื้น W=ตู้ลอย …)
+    const W=d?Math.round(+d.W||0):0, H=d?Math.round(+d.H||0):0, D=d?Math.round(+d.D||0):0, cost=Math.round((o.total+cb.extra)*100)/100;   // v1.518: + ส่วนที่ปันมา
+    let isF=false; try{ isF=!!code&&plKindOf(code)==="filler"; }catch(_){}
+    /* ชื่อตั้งต้น: ชิ้นแผ่นเดียว (บางสุด ≤ 30 มม. เช่น BFF001 กว้าง 15) ชื่อเดาจากรหัสจะออก “ตู้พื้น” ผิด → ใช้ “แผ่นปิด / แผ่นตกแต่ง” · เซลล์แก้ชื่อรายแถวได้ (Q.nm) */
+    const nm=bs.some(b=>b&&b._csmRail)?"ราวแขวน":bs.some(b=>b&&b._plLightPanel)?"แผ่นไม้ไฟ":isF?(en||"ฟิลเลอร์")
+      :(W&&H&&D&&Math.min(W,H,D)<=30)?(en||"แผ่นปิด / แผ่นตกแต่ง"):(en||gen||code||"ชิ้นงาน");
+    const pk=(code||("#"+inst))+"|"+W+"|"+H+"|"+D, key=pk+"|"+Math.round(cost);   // % รายแถวผูกกับรหัส+ขนาด (pk) — ใส่ราคาทุนเพิ่มทีหลัง % ไม่หาย
+    let x=0; try{ const f=d&&d.f; if(f&&isFinite(f.lo[0])) x=(f.lo[0]+f.hi[0])/2+((f.lo[2]+f.hi[2])/2)*0.001; }catch(_){}
+    let g=byKey[key]; if(!g){ g=byKey[key]={key, pk, code, name:nm, W, H, D, qty:0, cost, miss:0, sx:Infinity, extra:Math.round(cb.extra*100)/100, det:cb.det.slice()}; lines.push(g); }
+    g.qty++; g.miss+=o.miss.length; g.sx=Math.min(g.sx,x); });
+  lines.sort((a,b)=>a.sx-b.sx);
+  if(all){ const rest=Math.round((all.total-sumCost)*100)/100; if(rest>1) lines.push({key:"_rest", pk:"_rest", code:"", name:"ชิ้นส่วน / อุปกรณ์อื่นในงาน", W:0, H:0, D:0, qty:1, cost:rest, miss:0, rest:1});
+    miss=all.miss.length; }
+  return {lines, miss, all}; }
+function plqRound(v,r){ r=+r||1; return r<=1?Math.round(v):Math.ceil(v/r-1e-9)*r; }
+/* ตัวเลข → ตัวอักษรภาษาไทย (บาท/สตางค์) */
+function plqBaht(n){ n=Math.round((+n||0)*100); if(!n) return "ศูนย์บาทถ้วน";
+  const neg=n<0; n=Math.abs(n); const bt=Math.floor(n/100), st=n%100;
+  const D=["","หนึ่ง","สอง","สาม","สี่","ห้า","หก","เจ็ด","แปด","เก้า"], P=["","สิบ","ร้อย","พัน","หมื่น","แสน"];
+  const six=s=>{ s=String(s).replace(/^0+/,""); let o=""; const L=s.length;
+    for(let i=0;i<L;i++){ const d=+s[i], pos=L-i-1; if(!d) continue;
+      if(pos===1&&d===1) o+="สิบ"; else if(pos===1&&d===2) o+="ยี่สิบ"; else if(pos===0&&d===1&&L>1) o+="เอ็ด"; else o+=D[d]+P[pos]; } return o; };
+  const words=v=>{ let s=String(v); const g=[]; while(s.length>6){ g.unshift(s.slice(-6)); s=s.slice(0,-6); } g.unshift(s);
+    return g.map((x,i)=>six(x)+(i<g.length-1?"ล้าน":"")).join(""); };
+  return (neg?"ลบ":"")+(bt?words(bt)+"บาท":"")+(st?words(st)+"สตางค์":"ถ้วน"); }
+function plqDateTh(s){ const m=/^(\d{4})-(\d{2})-(\d{2})/.exec(String(s||"")); if(!m) return String(s||"");
+  return (+m[3])+" "+["ม.ค.","ก.พ.","มี.ค.","เม.ย.","พ.ค.","มิ.ย.","ก.ค.","ส.ค.","ก.ย.","ต.ค.","พ.ย.","ธ.ค."][+m[2]-1]+" "+(+m[1]+543); }
+const plqMoney=v=>(Math.round((+v||0)*100)/100).toLocaleString("th-TH",{minimumFractionDigits:2,maximumFractionDigits:2});
+/* คิดราคาทั้งใบ */
+function plqCalc(Q,L){
+  const rows=L.lines.map(g=>{ const own=Q.pct[g.pk], pct=(own!=null&&own!==""&&isFinite(+own))?+own:(+Q.markup||0);
+    const unit=plqRound(g.cost*(1+pct/100),Q.round), tot=unit*g.qty, nm=String((Q.nm&&Q.nm[g.pk])||"").trim();
+    return Object.assign({},g,{auto:g.name, name:nm||g.name, pct, own:(own!=null&&own!==""), unit, tot}); });
+  const sub=rows.reduce((a,r)=>a+r.tot,0), disc=Math.max(0,+Q.disc||0), after=Math.max(0,sub-disc);
+  let vat=0, pre=after, grand=after;
+  if(Q.vat==="add"){ vat=Math.round(after*7)/100; grand=after+vat; } else if(Q.vat==="incl"){ vat=Math.round(after*700/107)/100; pre=after-vat; }
+  const cost=rows.reduce((a,r)=>a+r.cost*r.qty,0);
+  return {rows, sub, disc, after, vat, pre, grand, cost, gp:(Q.vat==="incl"?pre:after)-cost}; }
+/* หน้า A4 (HTML ทั้งหน้า) — ใช้ทั้งภาพตัวอย่างและตอนพิมพ์ */
+function plqHtml(Q,C,K,img){
+  const e=s=>escapeHtml(String(s==null?"":s)), nl=s=>e(s).replace(/\n/g,"<br>"), cm=v=>String(Math.round((+v||0)/10*10)/10).replace(/\.0$/,"");
+  const rowsH=K.rows.map((r,i)=>'<tr><td class="c">'+(i+1)+'</td><td><b>'+e(r.name)+'</b>'+(r.code&&r.code!==r.name?('<div class="sm">'+e(r.code)+'</div>'):'')+'</td>'
+    +'<td class="c">'+(r.W&&r.H&&r.D?(cm(r.W)+' × '+cm(r.D)+' × '+cm(r.H)):'-')+'</td><td class="c">'+r.qty+'</td><td class="r">'+plqMoney(r.unit)+'</td><td class="r">'+plqMoney(r.tot)+'</td></tr>').join("");
+  const tr=(l,v,b)=>'<tr'+(b?' class="g"':'')+'><td>'+l+'</td><td class="r">'+v+'</td></tr>';
+  const tot=tr("รวมเป็นเงิน",plqMoney(K.sub))+(K.disc?tr("ส่วนลด","-"+plqMoney(K.disc))+tr("ยอดหลังหักส่วนลด",plqMoney(K.after)):"")
+    +(Q.vat==="add"?tr("ภาษีมูลค่าเพิ่ม 7%",plqMoney(K.vat))+tr("ยอดรวมทั้งสิ้น",plqMoney(K.grand),1)
+      :Q.vat==="incl"?tr("มูลค่าก่อนภาษี",plqMoney(K.pre))+tr("ภาษีมูลค่าเพิ่ม 7% (รวมในราคาแล้ว)",plqMoney(K.vat))+tr("ยอดรวมทั้งสิ้น",plqMoney(K.grand),1)
+      :tr("ยอดรวมทั้งสิ้น",plqMoney(K.grand),1));
+  const exp=(()=>{ const m=/^(\d{4})-(\d{2})-(\d{2})/.exec(Q.date||""); if(!m||!(+Q.valid>0)) return ""; const d=new Date(+m[1],+m[2]-1,+m[3]+(+Q.valid)), p=n=>String(n).padStart(2,"0"); return plqDateTh(d.getFullYear()+"-"+p(d.getMonth()+1)+"-"+p(d.getDate())); })();
+  return '<!doctype html><html lang="th"><head><meta charset="utf-8"><title>'+e(("ใบเสนอราคา "+(Q.no||"")+" "+(Q.cust||"")).trim())+'</title>'
+    +'<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;600;700&display=swap" rel="stylesheet">'
+    +'<style>@page{size:A4;margin:12mm}*{box-sizing:border-box}html,body{margin:0;background:#fff;color:#1d232b;font:12.5px/1.45 "Sarabun","Leelawadee UI","Tahoma",sans-serif;-webkit-print-color-adjust:exact;print-color-adjust:exact}'
+    +'.pg{width:186mm;margin:0 auto}.hd{display:flex;gap:14px;align-items:center;border-bottom:2px solid #1f3b57;padding-bottom:8px}.hd img{max-height:56px;max-width:230px;object-fit:contain;object-position:left center}'
+    +'.co{flex:1;min-width:0}.co b{font-size:16px;display:block}.co div{color:#4b5563;font-size:11.5px}.tt{text-align:right}.tt h1{margin:0;font-size:22px;color:#1f3b57;letter-spacing:.5px}.tt .en{font-size:11px;color:#6b7280;letter-spacing:2px}'
+    +'.meta{display:flex;gap:12px;margin:8px 0}.box{flex:1;border:1px solid #cfd6de;border-radius:6px;padding:7px 10px}.box .l{color:#6b7280;font-size:11px}.kv{display:grid;grid-template-columns:auto 1fr;gap:1px 10px}.kv span:nth-child(odd){color:#6b7280}'
+    +'.img{margin:6px 0 10px;border:1px solid #e5e7eb;border-radius:6px;overflow:hidden}.img img{display:block;width:100%;max-height:56mm;object-fit:cover}'
+    +'table.it{width:100%;border-collapse:collapse}table.it th{background:#1f3b57;color:#fff;font-weight:600;padding:6px 6px;font-size:12px}table.it td{border-bottom:1px solid #e5e7eb;padding:3px 6px;vertical-align:top}'
+    +'table.it tr{page-break-inside:avoid}.c{text-align:center;white-space:nowrap}.r{text-align:right;white-space:nowrap}.sm{font-size:10px;color:#6b7280;line-height:1.2}'
+    +'.sum{display:flex;gap:14px;margin-top:8px;page-break-inside:avoid}.words{flex:1;align-self:flex-end;background:#f3f5f8;border-radius:6px;padding:8px 10px;font-weight:600}'
+    +'table.tt2{width:78mm;border-collapse:collapse}table.tt2 td{padding:4px 6px;border-bottom:1px solid #e5e7eb}table.tt2 tr.g td{background:#1f3b57;color:#fff;font-weight:700;font-size:13.5px;border:0}'
+    +'.end{page-break-inside:avoid;break-inside:avoid}.note{margin-top:8px;font-size:11.5px;color:#374151;page-break-inside:avoid}.note b{color:#1d232b}.sig{display:flex;gap:16px;margin-top:16px;page-break-inside:avoid}.sig div{flex:1;text-align:center;font-size:11.5px;color:#4b5563}.sig i{display:block;border-bottom:1px solid #9ca3af;height:30px;margin-bottom:3px}'
+    +'</style></head><body><div class="pg">'
+    +'<div class="hd">'+(plqLogo(C)?'<img src="'+e(plqLogo(C))+'" alt="">':'')   /* v1.516: ตั้งต้น = โลโก้ Starmark */+'<div class="co"><b>'+e(C.name||"ชื่อบริษัท")+'</b>'+(C.addr?'<div>'+nl(C.addr)+'</div>':'')
+      +([C.tel?("โทร. "+e(C.tel)):"",C.email?e(C.email):""].filter(Boolean).length?('<div>'+[C.tel?("โทร. "+e(C.tel)):"",C.email?e(C.email):""].filter(Boolean).join(" · ")+'</div>'):'')+(C.tax?('<div>เลขประจำตัวผู้เสียภาษี '+e(C.tax)+'</div>'):'')+'</div>'   /* v1.518: เรียงแบบหัวใบเสนอราคาของบริษัท — ที่อยู่ / โทร / เลขผู้เสียภาษี คนละบรรทัด */
+      +'<div class="tt"><h1>ใบเสนอราคา</h1><div class="en">QUOTATION</div></div></div>'
+    +'<div class="meta"><div class="box"><div class="l">ลูกค้า</div><b>'+e(Q.cust||"-")+'</b>'+(Q.custAddr?'<div>'+nl(Q.custAddr)+'</div>':'')+(Q.custTel?'<div>โทร '+e(Q.custTel)+'</div>':'')+(Q.proj?'<div>โครงการ / ห้อง: '+e(Q.proj)+'</div>':'')+'</div>'
+      +'<div class="box" style="flex:0 0 66mm"><div class="kv"><span>เลขที่</span><b>'+e(Q.no||"-")+'</b><span>วันที่</span><span>'+e(plqDateTh(Q.date))+'</span>'
+      +(exp?'<span>ยืนราคาถึง</span><span>'+e(exp)+' ('+(+Q.valid)+' วัน)</span>':'')+(C.sales?'<span>ผู้เสนอราคา</span><span>'+e(C.sales)+(C.salesTel?(' · '+e(C.salesTel)):'')+'</span>':'')+'</div></div></div>'
+    +(img?'<div class="img"><img src="'+img+'" alt=""></div>':'')
+    +'<table class="it"><thead><tr><th style="width:9mm">ลำดับ</th><th>รายการ</th><th style="width:34mm">ขนาด ก×ล×ส (ซม.)</th><th style="width:13mm">จำนวน</th><th style="width:25mm">ราคา/หน่วย</th><th style="width:27mm">จำนวนเงิน</th></tr></thead><tbody>'
+      +(rowsH||'<tr><td colspan="6" class="c" style="padding:14px;color:#6b7280">ยังไม่มีตู้ในห้อง</td></tr>')+'</tbody></table>'
+    +'<div class="sum"><div class="words">('+e(plqBaht(K.grand))+')</div><table class="tt2">'+tot+'</table></div>'
+    +'<div class="end">'+(String(Q.note||"").trim()?'<div class="note"><b>เงื่อนไข / หมายเหตุ</b><br>'+nl(Q.note)+'</div>':'')
+    +'<div class="sig"><div><i></i>ผู้เสนอราคา'+(C.sales?('<br>('+e(C.sales)+')'):'<br>')+'<br>วันที่ ........................</div><div><i></i>ผู้อนุมัติ<br><br>วันที่ ........................</div><div><i></i>ลูกค้ายืนยันการสั่งซื้อ<br><br>วันที่ ........................</div></div></div>'   /* .end = เงื่อนไข + ลายเซ็น ขึ้นหน้าใหม่ไปด้วยกัน */
+    +'</div></body></html>'; }
+async function plqShot(){
+  if(typeof noGL!=="undefined"&&noGL||!renderer) return "";
+  try{ let B={}; try{ B=Object.assign(plpDefBrand(),await lsGet(PLP_LS,{})||{}); }catch(e){ B=plpDefBrand(); }
+    B.c1="#eef1f5"; B.c2="#eef1f5";
+    const s=plpShot("hero",1600,760,B), im=await plpImg(s.url); if(!im) return "";
+    const c=document.createElement("canvas"); c.width=im.width; c.height=im.height; c.getContext("2d").drawImage(im,0,0); return c.toDataURL("image/jpeg",0.86); }
+  catch(e){ console.warn("quote shot:",e); return ""; } }
+async function plQuoteOpen(){
+  if(VIEW_ONLY) return;
+  plqClose();
+  let sv={}; try{ sv=await lsGet(PLQ_LS,null); }catch(e){ sv=null; }
+  if(!sv||typeof sv!=="object"){ sv={}; try{ const pb=await lsGet(PLP_LS,{})||{}; if(pb.tel) sv.tel=pb.tel; if(pb.logo) sv.logo=pb.logo; }catch(e){} }   // ครั้งแรก: โทร/โลโก้จากโปสเตอร์
+  const C=PLQ.co=Object.assign(plqDefCo(),sv), Q=plqData(), e=s=>escapeHtml(String(s==null?"":s));
+  if(!C.name&&!C.addr&&!C.tax){ C.name=PLQ_CO_SM.name; C.addr=PLQ_CO_SM.addr; C.tax=PLQ_CO_SM.tax; if(!C.tel) C.tel=PLQ_CO_SM.tel; }   // v1.518: ยังไม่เคยกรอกบริษัท = ข้อมูล Starmark ตามใบเสนอราคาตัวอย่าง (โทรที่ดึงจากโปสเตอร์ไว้ไม่ทับ)
+  PLQ.dirty=false; PLQ.img="";
+  if(!$("plqCSS")){ const st=document.createElement("style"); st.id="plqCSS"; st.textContent=
+    "#plQuote{position:fixed;inset:0;z-index:410;background:rgba(15,18,24,.55);display:flex;align-items:center;justify-content:center;padding:14px}"
+    +"#plQuote .qw{background:var(--solid,#fff);color:var(--ink,#111);border-radius:16px;box-shadow:0 30px 80px -20px rgba(0,0,0,.6);display:flex;width:min(1320px,100%);height:min(920px,100%);overflow:hidden}"
+    +"#plQuote .qf{width:min(540px,46vw);flex:none;display:flex;flex-direction:column;border-right:1px solid var(--line,#ddd)}"
+    +"#plQuote .qh{padding:12px 14px;border-bottom:1px solid var(--line,#ddd);display:flex;align-items:center;gap:8px}"
+    +"#plQuote .qb{flex:1;overflow:auto;padding:10px 14px;display:flex;flex-direction:column;gap:7px;font-size:12.5px}"
+    +"#plQuote .qb label{display:flex;flex-direction:column;gap:2px;color:var(--ink-dim,#666);font-size:11.5px}"
+    +"#plQuote .qb input,#plQuote .qb textarea,#plQuote .qb select{font:inherit;font-size:13px;padding:5px 7px;border:1px solid var(--line,#ccc);border-radius:7px;background:var(--panel,#fff);color:var(--ink,#111)}"
+    +"#plQuote .row{display:flex;gap:8px}#plQuote .row>*{flex:1;min-width:0}"
+    +"#plQuote h5{margin:6px 0 0;font-size:11.5px;color:var(--ink-dim,#777);letter-spacing:.02em}"
+    +"#plQuote .warn{background:#fff4e5;color:#8a4b00;border:1px solid #f5c58a;border-radius:8px;padding:6px 8px;font-size:12px;display:flex;gap:8px;align-items:center}"
+    +"#plQuote .lt{width:100%;border-collapse:collapse;font-size:12px}#plQuote .lt th{text-align:left;color:var(--ink-dim,#666);font-weight:600;padding:3px 4px;border-bottom:1px solid var(--line,#ddd)}"
+    +"#plQuote .lt td{padding:3px 4px;border-bottom:1px solid var(--line,#eee);vertical-align:middle}#plQuote .lt .r{text-align:right;font-family:var(--mono,monospace);white-space:nowrap}"
+    +"#plQuote .lt input{width:58px;padding:2px 5px;font-size:12px;font-family:var(--mono,monospace)}"
+    +"#plQuote .tot{display:grid;grid-template-columns:1fr auto;gap:2px 10px;font-size:12.5px;background:var(--panel,#f6f7f9);border-radius:8px;padding:7px 9px}#plQuote .tot b{font-family:var(--mono,monospace)}"
+    +"#plQuote .ibtn{flex:none;padding:5px 11px;font-size:12px}#plQuote .qa .ibtn[data-a=print]{flex:1;padding:9px 12px;font-size:13px}"
+    +"#plQuote .qa{padding:10px 14px;border-top:1px solid var(--line,#ddd);display:flex;gap:6px;flex-wrap:wrap;align-items:center}"
+    +"#plQuote .qv{flex:1;min-width:0;background:#d9d6d0;overflow:auto;padding:16px;display:flex;justify-content:center}"
+    +"#plQuote .qv iframe{border:0;background:#fff;box-shadow:0 10px 30px -10px rgba(0,0,0,.5);transform-origin:top center;flex:none}";
+    document.head.appendChild(st); }
+  const ov=document.createElement("div"); ov.id="plQuote"; PLQ.el=ov;
+  const inp=(k,lbl,ph,type)=>'<label>'+lbl+'<input data-q="'+k+'" '+(type?('type="'+type+'" '):'')+'value="'+e(Q[k])+'" placeholder="'+e(ph||"")+'"></label>';
+  const cin=(k,lbl,ph)=>'<label>'+lbl+'<input data-c="'+k+'" value="'+e(C[k])+'" placeholder="'+e(ph||"")+'"></label>';
+  ov.innerHTML='<div class="qw"><div class="qf"><div class="qh"><b style="font-size:15px">🧾 ใบเสนอราคา</b><span style="color:var(--ink-dim);font-size:11.5px">ราคาตั้งต้น = ต้นทุนตู้ + กำไร %</span>'
+      +'<button class="ibtn" data-a="x" style="margin-left:auto">ปิด</button></div><div class="qb">'
+    +'<div id="plqWarn"></div>'
+    +'<h5>ราคา</h5><div class="row"><label>กำไร % ทั้งใบ<input data-q="markup" type="number" step="1" value="'+e(Q.markup)+'" style="font-size:16px;font-weight:700"></label>'
+      +'<label>ปัดราคาต่อหน่วย<select data-q="round"><option value="1"'+(+Q.round<=1?" selected":"")+'>ไม่ปัด (ทั้งบาท)</option><option value="10"'+(+Q.round===10?" selected":"")+'>ขึ้นหลักสิบ</option><option value="100"'+(+Q.round===100?" selected":"")+'>ขึ้นหลักร้อย</option></select></label></div>'
+    +'<div class="row"><label>ส่วนลด (บาท)<input data-q="disc" type="number" step="1" min="0" value="'+e(Q.disc)+'"></label>'
+      +'<label>VAT<select data-q="vat"><option value="add"'+(Q.vat==="add"?" selected":"")+'>บวก VAT 7% เพิ่ม</option><option value="incl"'+(Q.vat==="incl"?" selected":"")+'>ราคารวม VAT แล้ว</option><option value="none"'+(Q.vat==="none"?" selected":"")+'>ไม่มี VAT</option></select></label></div>'
+    +'<div style="font-size:11px;color:var(--ink-dim)">ทุน = ค่าวัสดุ (ไม้ ผิว ขอบ Fitting) ยังไม่รวมค่าแรง ขนส่ง ติดตั้ง — ตั้ง % ให้ครอบคลุม · ช่อง % ในตารางใส่ทับรายแถวได้</div>'
+    +'<table class="lt" id="plqLines"></table>'
+    +'<div class="tot" id="plqTot"></div>'
+    +'<h5>ลูกค้า</h5>'+inp("cust","ชื่อลูกค้า","คุณ…")+'<label>ที่อยู่<textarea data-q="custAddr" rows="2">'+e(Q.custAddr)+'</textarea></label>'
+      +'<div class="row">'+inp("custTel","โทร")+inp("proj","โครงการ / ห้อง")+'</div>'
+    +'<h5>ใบเสนอราคา</h5><div class="row">'+inp("no","เลขที่")+inp("date","วันที่","","date")+inp("valid","ยืนราคา (วัน)","","number")+'</div>'
+      +'<label style="flex-direction:row;align-items:center;gap:6px;color:var(--ink);font-size:12.5px"><input type="checkbox" data-q="img"'+(Q.img!==false?" checked":"")+'> ใส่ภาพห้อง 3D (มุมกล้องตามจอตอนนี้) <button class="ibtn" data-a="shot" style="padding:1px 8px;font-size:11px;margin-left:auto">ถ่ายใหม่</button></label>'
+      +'<label>เงื่อนไข / หมายเหตุ<textarea data-q="note" rows="4">'+e(Q.note)+'</textarea></label>'
+    +'<h5>บริษัท · ผู้เสนอราคา (จำในเครื่องนี้)</h5>'+cin("name","ชื่อบริษัท / ร้าน")+'<label>ที่อยู่<textarea data-c="addr" rows="2">'+e(C.addr)+'</textarea></label>'
+      +'<div class="row">'+cin("tax","เลขผู้เสียภาษี")+cin("tel","โทร")+'</div><div class="row">'+cin("email","อีเมล / เว็บ")+'<label>โลโก้<span style="display:flex;gap:4px"><button class="ibtn" data-a="logo" style="flex:1">เลือกรูป…</button><button class="ibtn" data-a="logoSM" title="ใช้โลโก้ Starmark">Starmark</button><button class="ibtn" data-a="logoX" title="เอาโลโก้ออก">✕</button></span></label></div>'
+      +'<div class="row">'+cin("sales","ชื่อผู้เสนอราคา")+cin("salesTel","โทรผู้เสนอราคา")+'</div>'
+    +'</div><div class="qa"><button class="ibtn" data-a="print" style="background:var(--accent);color:#fff;border-color:transparent;font-weight:700">🖨 พิมพ์ / บันทึก PDF</button>'
+      +'<span id="plqSay" style="font-size:11.5px;color:var(--ink-dim)"></span></div></div>'
+    +'<div class="qv" id="plqView"><iframe id="plqFrame" title="ตัวอย่างใบเสนอราคา" style="width:794px;height:1123px"></iframe></div></div>';
+  document.body.appendChild(ov);
+  const say=t=>{ const s=ov.querySelector("#plqSay"); if(s) s.textContent=t||""; };
+  const saveCo=()=>{ try{ lsSet(PLQ_LS,PLQ.co); }catch(e){} };
+  let L=plqLines(), K=null;
+  const fit=()=>{ const v=ov.querySelector("#plqView"), f=ov.querySelector("#plqFrame"); if(!v||!f) return; const k=Math.min(1,(v.clientWidth-32)/794); f.style.transform="scale("+k+")"; f.style.marginBottom=(-(1-k)*1123)+"px"; };
+  const paint=()=>{ K=plqCalc(Q,L);
+    const w=ov.querySelector("#plqWarn"), mk=+Q.markup||0;
+    w.innerHTML=(L.miss?('<div class="warn">⚠ ต้นทุนยังไม่ครบ '+L.miss+' รายการ — ราคาในใบอาจต่ำกว่าจริง<button class="ibtn" data-a="cost" style="margin-left:auto;padding:2px 8px;font-size:11px">💰 ใส่ราคาที่ขาด…</button></div>'):'')
+      +(!mk&&!K.rows.some(r=>r.own&&+r.pct)?'<div class="warn" style="margin-top:4px">ยังไม่ได้ใส่กำไร % — ราคาในใบตอนนี้ = ราคาทุน</div>':'');
+    ov.querySelector("#plqLines").innerHTML='<tr><th>รายการ</th><th class="r">จำนวน</th><th class="r">ทุน/หน่วย</th><th class="r">%</th><th class="r">ราคา/หน่วย</th><th class="r">รวม</th></tr>'
+      +(K.rows.length?K.rows.map(r=>'<tr><td><input data-nk="'+e(r.pk)+'" value="'+e((Q.nm&&Q.nm[r.pk])||"")+'" placeholder="'+e(r.auto)+'" title="ชื่อในใบ — ว่าง = ชื่อตั้งต้น" style="width:100%;font-family:inherit">'+(r.code?('<div style="font-size:10.5px;color:var(--ink-dim)">'+e(r.code)+(r.W?(' · '+r.W+'×'+r.D+'×'+r.H):'')+'</div>'):'')
+        +(r.extra>=0.01?('<div style="font-size:10.5px;color:#2b6cb0" title="'+e((r.det||[]).join("\n"))+'">ทุนรวม ชิ้น/อุปกรณ์นอกตู้ +'+plqMoney(r.extra)+'/ใบ</div>'):'')   /* v1.518: บอกเซลล์ว่าบวกอะไรเข้าตู้นี้ (ไม่พิมพ์ลงใบ) */+(r.miss?' <span title="ต้นทุนตู้นี้ยังขาดราคา '+r.miss+' รายการ" style="color:#e58a24">⚠</span>':'')+'</td>'
+        +'<td class="r">'+r.qty+'</td><td class="r">'+plqMoney(r.cost)+'</td><td class="r"><input data-pk="'+e(r.pk)+'" type="number" step="1" value="'+(r.own?e(Q.pct[r.pk]):"")+'" placeholder="'+e(mk)+'"></td>'
+        +'<td class="r">'+plqMoney(r.unit)+'</td><td class="r">'+plqMoney(r.tot)+'</td></tr>').join(""):'<tr><td colspan="6" style="color:var(--ink-dim);padding:10px 4px">ยังไม่มีตู้ในห้อง</td></tr>');
+    const gpBase=(Q.vat==="incl"?K.pre:K.after), gpPct=gpBase>0?Math.round(K.gp/gpBase*1000)/10:0;
+    ov.querySelector("#plqTot").innerHTML='<span title="ต้นทุน = ค่าวัสดุจากหน้า 💰 ราคาทุน (ไม้ ผิว ขอบ Fitting) — ยังไม่รวมค่าแรง ขนส่ง ติดตั้ง">ต้นทุนวัสดุรวม (ไม่พิมพ์ลงใบ)</span><b>'+plqMoney(K.cost)+'</b><span>ราคาขายรวม</span><b>'+plqMoney(K.sub)+'</b>'
+      +(K.disc?('<span>หลังหักส่วนลด</span><b>'+plqMoney(K.after)+'</b>'):'')
+      +'<span>กำไรขั้นต้น (ก่อน VAT)</span><b style="color:'+(K.gp<0?'#c92a2a':'#2b8a3e')+'">'+plqMoney(K.gp)+' ('+gpPct+'%)</b>'
+      +'<span>ยอดรวมทั้งสิ้นในใบ</span><b style="font-size:14px">'+plqMoney(K.grand)+'</b>';
+    preview(); };
+  const preview=()=>{ clearTimeout(PLQ.tmr); PLQ.tmr=setTimeout(()=>{ const f=ov.querySelector("#plqFrame"); if(!f) return; f.srcdoc=plqHtml(Q,PLQ.co,K||plqCalc(Q,L),Q.img!==false?PLQ.img:""); fit(); },150); };
+  const shoot=async()=>{ say("กำลังถ่ายภาพห้อง…"); PLQ.img=await plqShot(); say(PLQ.img?"":"ถ่ายภาพห้องไม่ได้ (เครื่องนี้แสดง 3D ไม่ได้)"); preview(); };
+  ov.addEventListener("input",ev=>{ const t=ev.target;
+    if(t.dataset.q!=null&&t.type!=="checkbox"&&t.tagName!=="SELECT"){ Q[t.dataset.q]=(t.type==="number")?(t.value===""?"":+t.value):t.value; PLQ.dirty=true; if(["markup","disc"].includes(t.dataset.q)){ K=plqCalc(Q,L); repaintLight(); } else preview(); return; }
+    if(t.dataset.pk!=null){ if(t.value==="") delete Q.pct[t.dataset.pk]; else Q.pct[t.dataset.pk]=+t.value; PLQ.dirty=true; repaintLight(); return; }
+    if(t.dataset.nk!=null){ if(!t.value.trim()) delete Q.nm[t.dataset.nk]; else Q.nm[t.dataset.nk]=t.value; PLQ.dirty=true; K=plqCalc(Q,L); preview(); return; }
+    if(t.dataset.c!=null){ PLQ.co[t.dataset.c]=t.value; saveCo(); preview(); } });
+  /* พิมพ์ % อยู่: วาดตาราง/ยอดใหม่โดยไม่ทิ้งช่องที่กำลังพิมพ์ */
+  const repaintLight=()=>{ const a=document.activeElement, k=a&&(a.dataset.pk||a.dataset.q), pos=a&&a.selectionStart; paint();
+    if(k){ const n=ov.querySelector(a.dataset.pk!=null?('[data-pk="'+CSS.escape(k)+'"]'):('[data-q="'+k+'"]')); if(n){ n.focus(); try{ if(pos!=null) n.setSelectionRange(pos,pos); }catch(_){} } } };
+  ov.addEventListener("change",ev=>{ const t=ev.target;
+    if(t.dataset.q!=null&&(t.type==="checkbox"||t.tagName==="SELECT")){ Q[t.dataset.q]=(t.type==="checkbox")?t.checked:(t.dataset.q==="round"?+t.value:t.value); PLQ.dirty=true;
+      if(t.dataset.q==="img"&&t.checked&&!PLQ.img) shoot(); paint(); } });
+  ov.addEventListener("click",async ev=>{ const b=ev.target.closest("[data-a]"); if(!b) return; const a=b.dataset.a;
+    if(a==="x"){ plqClose(); return; }
+    if(a==="shot"){ shoot(); return; }
+    if(a==="logoX"){ PLQ.co.logo=""; PLQ.co.logoOff=true; saveCo(); preview(); return; }    // v1.516: ✕ = ไม่เอาโลโก้เลย (ไม่เด้งกลับเป็น Starmark)
+    if(a==="logoSM"){ PLQ.co.logo=""; PLQ.co.logoOff=false; saveCo(); preview(); return; }  // v1.516: กลับมาใช้โลโก้ Starmark
+    if(a==="logo"){ const fi=document.createElement("input"); fi.type="file"; fi.accept="image/*";
+      fi.onchange=()=>{ const f=fi.files&&fi.files[0]; if(!f) return; const rd=new FileReader(); rd.onload=async()=>{ let url=String(rd.result||"");
+          try{ const im=await plpImg(url); if(im){ const mx=500, s=Math.min(1,mx/Math.max(im.width,im.height)), c=document.createElement("canvas"); c.width=Math.max(1,Math.round(im.width*s)); c.height=Math.max(1,Math.round(im.height*s)); c.getContext("2d").drawImage(im,0,0,c.width,c.height); url=c.toDataURL("image/png"); } }catch(_){}
+          PLQ.co.logo=url; PLQ.co.logoOff=false; saveCo(); preview(); }; rd.readAsDataURL(f); }; fi.click(); return; }
+    if(a==="cost"){ const co=costEditor({onlyMissing:true}); if(co){   /* ovCard = z 430 อยู่เหนือหน้าต่างนี้ (410) อยู่แล้ว */
+        const iv=setInterval(()=>{ if(!co.isConnected){ clearInterval(iv); if(PLQ.el===ov){ L=plqLines(); paint(); } } },400); } return; }
+    if(a==="print"){ const html=plqHtml(Q,PLQ.co,plqCalc(Q,L),Q.img!==false?PLQ.img:""), fr=document.createElement("iframe");
+      fr.style.cssText="position:fixed;right:0;bottom:0;width:0;height:0;border:0;visibility:hidden"; document.body.appendChild(fr);
+      fr.onload=()=>{ setTimeout(()=>{ try{ fr.contentWindow.focus(); fr.contentWindow.print(); }catch(err){ console.error(err); toast("พิมพ์ไม่ได้ — ลองใหม่"); } setTimeout(()=>fr.remove(),60000); },500); };
+      fr.srcdoc=html; PLQ.dirty=true; say("เลือกเครื่องพิมพ์ หรือ “บันทึกเป็น PDF”"); return; } });
+  ov.addEventListener("mousedown",ev=>{ if(ev.target===ov) plqClose(); });
+  ov.addEventListener("keydown",ev=>{ if(ev.key==="Escape"){ ev.preventDefault(); plqClose(); } ev.stopPropagation(); });   // ปุ่มลัดของโปรแกรม (Del/Ctrl+Z) ไม่ทะลุไปถึงตู้ในห้อง
+  addEventListener("resize",fit);
+  paint();
+  if(Q.img!==false) shoot();
+  if(!snOff("costStock")&&typeof stkLoad==="function"&&!STK.map) stkLoad(false).then(()=>{ if(PLQ.el===ov){ L=plqLines(); paint(); } });   // ราคา AX มาทีหลัง = คิดใหม่
+}
+function plqClose(){ if(PLQ.el){ PLQ.el.remove(); PLQ.el=null; } clearTimeout(PLQ.tmr);
+  if(PLQ.dirty){ PLQ.dirty=false; try{ autosave(); }catch(e){} } }
 /* ═════════ v1.459: 🧊 ส่งออก 3D (.glb) สำหรับ Blender ═════════
    ผู้ใช้ 15/10 12:57: "ปุ่มส่งออกให้ Blender" (เรนเดอร์ภาพเหมือนจริงเองฟรี ไม่ต้องจ่าย AI)
    เดิม: ส่งออกได้แต่ภาพ PNG — Blender เอาไปเรนเดอร์ต่อไม่ได้เพราะไม่มีรูปทรง
@@ -47481,8 +47913,12 @@ async function renderXmlImport(){
       <button class="ibtn" id="xiOrdSave" style="background:var(--accent);color:#fff;border-color:transparent">💾 บันทึก / Save As…</button>
       <button class="ibtn" id="xiFile" title="หรือลากไฟล์ .xml จาก Explorer มาวางที่หน้านี้ได้เลย">📁 โหลดไฟล์ XML <span style="opacity:.6;font-weight:400">· ลากมาวางได้</span></button>
       <button class="ibtn" id="xiCabFile">📦 นำเข้าตู้ (.json)</button>
-      ${snOff("fxfIn")?"":'<button class="ibtn" id="xiFxf" title="ไฟล์ที่ imos ส่งออกด้วยคำสั่ง FXF out — ดูตู้ 3D ตามตำแหน่งจริง พร้อมรูเจาะและร่อง (v1.499) · ลากไฟล์ .fxf มาวางที่หน้านี้หรือที่ฉากก็ได้">📐 ตู้จาก imos (.fxf)</button>'}
-      ${(snOff("fxfIn")||snOff("fxfLearn"))?"":'<button class="ibtn" id="xiFxm" title="เลือกโฟลเดอร์ออเดอร์ใน Imorder ที่ imos กดเจนแล้ว (มีโฟลเดอร์ FXM) หรือ Imorder ทั้งโฟลเดอร์ — โปรแกรมเรียนว่ามาโครแต่ละตัวเจาะรูอะไร แล้วใช้ตอนนำเข้า FXF ครั้งต่อไป (v1.502)">📚 เรียนมาโครจาก imos</button>'}
+      ${/* ───────── v1.517: ซ่อนปุ่ม imos 2 ปุ่ม (ผู้ใช้ 16:27 “ปิด 2 ปุ่มนี้ให้ที”) ─────────
+           เดิม: แถวปุ่มหน้า Order มี 📐 ตู้จาก imos (.fxf) (v1.499) และ 📚 เรียนมาโครจาก imos (v1.502)
+           ตอนนี้: ไม่แสดงทั้งสองปุ่ม — ซ่อนแค่ปุ่ม ไม่ได้ปิดฟีเจอร์: ลากไฟล์ .fxf มาวางที่ฉาก/หน้านี้ยังนำเข้าได้
+           ลากโฟลเดอร์ Imorder มาวางยังเรียนมาโครได้ · มาโครที่เรียนไว้ยังใช้ตอนนำเข้า FXF (คนละสวิตช์กับ fxfIn/fxfLearn)
+           ปุ่มกลับมา: SN_OFF.xiImosHide=1 */""}${(snOff("fxfIn")||!snOff("xiImosHide"))?"":'<button class="ibtn" id="xiFxf" title="ไฟล์ที่ imos ส่งออกด้วยคำสั่ง FXF out — ดูตู้ 3D ตามตำแหน่งจริง พร้อมรูเจาะและร่อง (v1.499) · ลากไฟล์ .fxf มาวางที่หน้านี้หรือที่ฉากก็ได้">📐 ตู้จาก imos (.fxf)</button>'}
+      ${(snOff("fxfIn")||snOff("fxfLearn")||!snOff("xiImosHide"))?"":'<button class="ibtn" id="xiFxm" title="เลือกโฟลเดอร์ออเดอร์ใน Imorder ที่ imos กดเจนแล้ว (มีโฟลเดอร์ FXM) หรือ Imorder ทั้งโฟลเดอร์ — โปรแกรมเรียนว่ามาโครแต่ละตัวเจาะรูอะไร แล้วใช้ตอนนำเข้า FXF ครั้งต่อไป (v1.502)">📚 เรียนมาโครจาก imos</button>'}
       <button class="ibtn" id="xiMat" title="บังคับวัสดุ (Family ลูก Material) ให้ทุกตู้ในออเดอร์นี้ — เช่นเปลี่ยน PB เป็น HMR ทั้งออเดอร์">🧪 วัสดุทั้งออเดอร์${omSummary()?` <span style="color:var(--accent);font-weight:700">· ${escapeHtml(omSummary())}</span>`:""}</button>
     </div>
     <div class="xi-cols">
@@ -49956,7 +50392,10 @@ function shareId(){ let s2=""; const A="abcdefghijkmnpqrstuvwxyz23456789";
 function sharePayloadBase(){
   return { v:1, globalTone:state.globalTone,
            cabColors:state.cabColors, cabNums:state.cabNums, cabVarTxt:state.cabVarTxt,
-           cabDX:state.cabDX, bcSeq:state.bcSeq, bcMax:state.bcMax, orderLines:state.orderLines, cabDP:state.cabDP,cabFrontEdge:state.cabFrontEdge,cabFrontDir:state.cabFrontDir,room:state.room||null, orderMat:state.orderMat||{} };   /* v1.337 */
+           cabDX:state.cabDX, bcSeq:state.bcSeq, bcMax:state.bcMax, orderLines:state.orderLines, cabDP:state.cabDP,cabFrontEdge:state.cabFrontEdge,cabFrontDir:state.cabFrontDir,room:(state.room&&state.room.quote)?Object.assign({},state.room,{quote:undefined}):(state.room||null), orderMat:state.orderMat||{} };   /* v1.337 */
+  /* ───────── v1.515: ลิงก์แชร์ไม่พาใบเสนอราคาไปด้วย ─────────
+     state.room.quote (v1.515) เก็บชื่อ/ที่อยู่/โทรลูกค้า กำไร % ส่วนลด — เดิม payload แชร์ส่ง state.room ทั้งก้อน = คนเปิดลิงก์เห็นได้
+     ตัด quote ออกเฉพาะตอนแชร์ (undefined = JSON ไม่เขียนคีย์) · บันทึกออเดอร์/ไฟล์ .json ยังเก็บครบ · ลายเซ็นลิงก์ไม่เปลี่ยนเพราะแก้ใบเสนอราคา */
 }
 /* v1.173: ฝังสีผิวจริงลงไปกับชิ้นตอนอัปโหลด ราว 60 ไบต์ต่อชิ้น
    ปลายทางที่ไม่ได้ล็อกอินอ่าน settings ไม่ได้ ถ้าไม่ฝังไปด้วยจะเห็นตู้เป็นโทนไม้มาตรฐานทั้งใบ
@@ -50385,6 +50824,17 @@ async function ghPrepare(opt){
   const gz=await snvGzip(JSON.stringify(r.D));
   files.push({path:"view.html",data:snvHtml("StarNexus",null,null)});
   files.push({path:"v/"+oid+".bin",data:gz});
+  /* ───────── v1.513: ไฟล์ชี้ออเดอร์ v/o<เลขออเดอร์ 10 หลัก>.bin ─────────
+     ผู้ใช้ 26/10/2026 17:02 (หน้าไซต์ยิง QR บาร์โค้ด Pack ก่อน): “แสกนบาร์ pack แล้วรู้ว่าใน pack นั้นมีกี่ชิ้น จากนั้นดูรายการในชิ้นได้
+       เมื่อกดชิ้นนั้น ก็กลับเข้าไปดู 3D ได้ ของชิ้นนั้น” · 17:10 “ทำใน Github … Odoo ไม่ต้อง”
+     Scan-Link ได้รายการชิ้นใน Pack จาก AX (StarSync → lots/pinfo.csv: Code Pack · Code Part · Barcode) แต่ AX ไม่มีช่องเก็บลิงก์ 3D
+       (ลิงก์ชิ้นอยู่ใน Production V2 / part_index ซึ่งมือถือหน้าไซต์อ่านไม่ได้) และรหัสลิงก์ (oid) สุ่มใหม่ทุกครั้งที่ส่ง
+     ตอนนี้: ส่งลิงก์ทุกครั้งเขียนไฟล์ชี้ {alias:oid} ชื่อตามเลขออเดอร์ (ตัวเดียวกับ 10 หลักแรกของบาร์โค้ดชิ้น · orderBarcodePrefix)
+       → Scan-Link เปิด view.html?view=o<เลขออเดอร์>&p=P<เลขชิ้น> ได้จาก Barcode ของ AX ตรง ๆ · ส่งลิงก์ใหม่ = ไฟล์ชี้ย้ายไปงานใหม่เอง
+       หน้าดูงานรู้จักไฟล์ชี้อยู่แล้ว (แบบเดียวกับลิงก์ตู้บนสติกเกอร์ · ไม่มี c = เปิดทั้งออเดอร์ แล้ว &p= เน้นชิ้น)
+     ชื่อออเดอร์ไม่ได้ขึ้นต้นด้วยเลข 10 หลัก = ไม่เขียน (บาร์โค้ดชิ้นของออเดอร์นั้นก็ไม่มีเลขออเดอร์ให้จับคู่) · ปิด SN_OFF.ghOrdAlias=1 */
+  if(!snOff("ghOrdAlias")){ const op=orderBarcodePrefix();
+    if(/^\d{10}$/.test(op)) files.push({path:"v/o"+op+".bin",data:JSON.stringify({alias:oid,ord:String(r.D.ord||orderId()||""),t:String(opt.title||""),at:r.D.at})}); }
   if(pp) files.push({path:"p/"+oid+".bin",data:pp.gz});
   for(const f of r.files){ const bl=await (await fetch(f.url)).arrayBuffer(); files.push({path:f.path,data:new Uint8Array(bl),onlyIfMissing:true}); }
   /* ───────── v1.397: รหัสลิงก์ตู้เดิมของออเดอร์ (ghPrevSids ค้นไปพร้อมกับอบ 3D) ─────────
@@ -50656,11 +51106,16 @@ function snvHtml(title,dataB64,preview,paperB64){   // v1.359: paperB64 = แบ
   const css=snvTpl("snvTplCss"), body=snvTpl("snvTplBody"), js=snvTpl("snvTplJs").replace("/*__RV_INJECT__*/",()=>snvRealInject()).replace("/*__MK_INJECT__*/",()=>snOff("vwMark")?"var MK_OFF=1;":"var MK_OFF=0;");   /* v1.511: สวิตช์ปิดหน้าเขียนบนรูป (SN_OFF.vwMark) ฝังตอนอบหน้าดู */   // v1.464: ✨ โหมดสมจริงในหน้าดูงาน
   if(!css||!body||!js) throw new Error("ไม่พบแม่แบบหน้าดูงานในไฟล์โปรแกรม (snvTpl*)");
   const pv=preview?('<img id="vwPrev" alt="ภาพตัวอย่างงาน" src="'+preview+'">'):"";
+  /* ───────── v1.516: หน้าโหลดหน้าดูงาน 3D มีโลโก้ Starmark แบบหน้าโหลดของ Code AX ─────────
+     เดิม: ระหว่างโหลดข้อมูลงาน เห็นแค่กล่อง “กำลังเปิดงาน 3D…” (+ ภาพตัวอย่าง) ไม่มีชื่อบริษัท — คนหน้างาน/ลูกค้าเปิดจาก QR ไม่รู้ว่าหน้าของใคร
+     ตอนนี้: โลโก้ (เด้งเข้า) + StarNexus · ดูงาน 3D + แถบวิ่ง เหนือภาพตัวอย่าง/กล่องสถานะเดิม · โลโก้ฝังลง view.html (~16 KB) ไม่ต้องโหลดจากที่อื่น
+     SN_OFF.snLogo=1 = หน้าโหลดแบบเดิม (class nologo ซ่อนโลโก้/ข้อความ/แถบ) */
+  const _lgOff=snOff("snLogo"), css2=css.replace("__SNLOGO__",()=>_lgOff?"data:,":SN_LOGO_URL), body2=_lgOff?body.replace('<div id="vwLoad">','<div id="vwLoad" class="nologo">'):body;
   return '<!doctype html>\n<html lang="th"><head><meta charset="utf-8">'
     +'<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">'
     +'<meta name="generator" content="StarNexus '+escapeHtml(APP_META.version)+'">'
-    +'<title>'+escapeHtml(title||"ดูงาน 3D")+' — ดูงาน 3D</title><style>'+css+'</style></head><body>'
-    +body.replace("__PREVIEW__",()=>pv)
+    +'<title>'+escapeHtml(title||"ดูงาน 3D")+' — ดูงาน 3D</title><style>'+css2+'</style></head><body>'
+    +body2.replace("__PREVIEW__",()=>pv)
     +'<script>'+three+'<\/script>'
     +(dataB64?('<script id="snvData" type="application/octet-stream">'+dataB64+'<\/script>'):'')
     +(paperB64?('<script id="snvPaper" type="application/octet-stream">'+paperB64+'<\/script>'):'')
@@ -62425,7 +62880,16 @@ button{font:inherit;color:inherit}
 #vwMeas b{font-family:ui-monospace,Menlo,Consolas,monospace;font-size:15px}
 #vwLoad{position:fixed;inset:0;z-index:20;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:14px;background:var(--bg);padding:16px}
 #vwLoad.hide{display:none}
-#vwLoad img{max-width:min(920px,100%);max-height:60vh;border-radius:12px;box-shadow:var(--shadow);object-fit:contain}
+#vwLoad img{max-width:min(920px,100%);max-height:52vh;border-radius:12px;box-shadow:var(--shadow);object-fit:contain}
+#vwLoad .lg{width:230px;max-width:70vw;height:50px;background:url(__SNLOGO__) center/contain no-repeat;mix-blend-mode:multiply;animation:vwLogoIn .8s cubic-bezier(.34,1.4,.64,1) both}
+#vwLoad .lsub{font-size:10.5px;color:var(--dim);letter-spacing:3px;text-transform:uppercase;margin-top:-8px;font-family:ui-monospace,Menlo,Consolas,monospace;text-align:center;animation:vwFadeUp .7s ease .45s both}
+#vwLoad .lbar{width:140px;height:2px;background:rgba(0,0,0,.08);border-radius:2px;overflow:hidden;margin-top:-4px;animation:vwFadeUp .7s ease .6s both}
+#vwLoad .lbar i{display:block;height:100%;width:40%;background:linear-gradient(90deg,var(--accent),#00a2ff);border-radius:2px;animation:vwBar 1.3s cubic-bezier(.4,0,.2,1) infinite}
+#vwLoad.err .lbar,#vwLoad.nologo .lg,#vwLoad.nologo .lsub,#vwLoad.nologo .lbar{display:none}
+@keyframes vwLogoIn{from{opacity:0;transform:scale(.7) translateY(20px)}to{opacity:1;transform:none}}
+@keyframes vwFadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+@keyframes vwBar{from{transform:translateX(-100%)}to{transform:translateX(250%)}}
+@media(prefers-reduced-motion:reduce){#vwLoad .lg,#vwLoad .lsub,#vwLoad .lbar,#vwLoad .lbar i{animation:none}}
 #vwLoad .box{display:flex;align-items:center;gap:10px;background:var(--solid);border-radius:14px;padding:12px 16px;box-shadow:var(--shadow);max-width:560px}
 #vwLoad .spin{width:18px;height:18px;border-radius:50%;border:2.5px solid var(--line);border-top-color:var(--accent);animation:vwspin .7s linear infinite;flex:none}
 #vwLoad.err .spin{display:none}
@@ -62648,7 +63112,7 @@ body.mkOn #vwHint{z-index:41;bottom:calc(112px + env(safe-area-inset-bottom))}
     <button class="vbtn" id="vwPaperBtn" style="display:none">📄 แบบผลิต</button>
   </div>
 </footer>
-<div id="vwLoad">__PREVIEW__<div class="box"><div class="spin"></div><div class="msg">กำลังเปิดงาน 3D…</div></div><div class="nojs">ถ้าหน้านี้ค้างที่ภาพนิ่ง ให้เปิดลิงก์/ไฟล์นี้ด้วย Chrome หรือ Safari (เปิดในเบราว์เซอร์) เพื่อหมุนดู 3D</div></div>
+<div id="vwLoad"><div class="lg" role="img" aria-label="Starmark"></div><div class="lsub">StarNexus · ดูงาน 3D</div><div class="lbar"><i></i></div>__PREVIEW__<div class="box"><div class="spin"></div><div class="msg">กำลังเปิดงาน 3D…</div></div><div class="nojs">ถ้าหน้านี้ค้างที่ภาพนิ่ง ให้เปิดลิงก์/ไฟล์นี้ด้วย Chrome หรือ Safari (เปิดในเบราว์เซอร์) เพื่อหมุนดู 3D</div></div>
 </script>
 <script type="text/plain" id="snvTplJs">
 /* StarNexus Viewer — หน้าดูงาน 3D แบบดูอย่างเดียว (สร้างจากโปรแกรม StarNexus)
