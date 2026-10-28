@@ -3281,7 +3281,7 @@ body[data-theme="dark"] .splash-dots span{background:rgba(255,255,255,.25)}
    ===================================================================== */
 /* ---- APP_META: แหล่งความจริงเดียวของเวอร์ชัน (ดูได้จาก console / คลิกชื่อแอป) ---- */
 const APP_META={
-  name:"StarNexus", version:"1.531", build:"2026-10-28/pl-tidy",
+  name:"StarNexus", version:"1.532", build:"2026-10-28/cut-tray",
   file:"StarNexus.html", basedOn:"Furnitech_V3.html (v3.11)",
   /* ───────── เริ่มนับเวอร์ชันใหม่ที่ 1.001 (21/08/2026) ─────────
      ของเดิมนับมาถึง 42.1 แล้ววิ่งเป็นทศนิยมสองชั้นซึ่งอ่านลำดับยาก
@@ -3289,6 +3289,7 @@ const APP_META={
      ประวัติเก่าเก็บไว้ทั้งหมดตามเลขเดิม ไม่ไล่เขียนใหม่ เพราะเลขในนั้นถูกอ้างถึงไปแล้ว
      รายการที่อยู่ใต้ 1.001 ลงไปจึงเป็นเลขชุดเก่า อ่านต่อกันได้ตามวันที่ */
   changelog:[
+    ["1.532","2026-10-28","FEAT 🥄 ถาดช้อนในลิ้นชักลูกเล็ก (ผู้ใช้ 08:14 project 58 + ภาพถาด + AX ACCDT00007 “ถาดช้อน A16 สีเทา ตู้ 60 ขนาด 508x472 mm. ไม่บาก”: “ผมเรียกว่าลูกเล็ก มีให้เลือกใส่ถาดช้อนได้ ถาดสูงสัก 60–70 ทำเป็น 3D โหมดปกติคลิกขวาเลือกใส่ได้ทีละลูก แต่ลูกที่สูง 148 ใส่ไม่ได้ · กล่องไม้เอาไว้ก่อน · รหัสออกตามนั้นที่ราง 500 ตู้ 600 · มีตู้ 450 600 900 ลบขนาดจากตู้ 60 ไปก็จะเจอของ 450 กับ 900 · ด้านลึกคงไว้ · รางอื่นใส่ไม่ได้”) — คลิกขวาที่หน้าลิ้นชัก (หรือชิ้นกล่อง/ตัวถาด) → 🥄 ใส่ถาดช้อน / เอาถาดช้อนออก · ใส่ได้เมื่อ: กล่องแผงข้างเหล็ก · ราง 500 · ลูกเล็ก (แผ่นหลังกล่อง ≤ 100 เช่น 63) · ตู้กว้างตรงตาราง (450 → 358×472 · 600 → 508×472 ACCDT00007 · 900 → 808×472 = กว้างตู้ − 92) · ไม่เข้าเงื่อนไข = ปุ่มจางบอกเหตุผล (ลูกสูง 148 / รางอื่น / ตู้กว้างอื่น) · กล่องไม้ยังไม่ขึ้น · ถาด = ชิ้นเสมือนกลุ่มเดียวกับลิ้นชัก (เปิดบานแล้วเลื่อนออกตาม) วางบนพื้นกล่อง กลางระหว่างแผ่นหลังกล่องกับหลังหน้าบาน สูง 60 (ไม่โผล่พ้นแผงข้างเหล็กสูง 80 ของลูกเล็ก · ตั้งได้) · 3D พลาสติกเทา ขอบปีก + ช่องแบ่งตามภาพ · ใบเบิก 1 ถาด = 1 ชิ้น · รหัส 450/900 ยังไม่รู้ → ค้นจาก AX (fitting_global ชื่อมี “ถาดช้อน” + ขนาด) ไม่เจอ = วาด 3D แต่ไม่ลงรายการเบิก (ไม่เดารหัส) · ตั้งค่า → ลิ้นชัก: ตารางขนาด/รหัส · รางที่ใส่ได้ · สูงถาด · ปิด SN_OFF.cutTray=1"],
     ["1.531","2026-10-28","UI จัดระเบียบแผงห้องออกแบบ (ผู้ใช้ 28/10 07:54 ภาพแผงห้อง: “จัดระเบียบ UI ให้เข้าที่หน่อยครับ”) — เดิม หัวแผงตกบรรทัด (ห้อง/ออกแบบ + คำแนะนำสองบรรทัด) · ปุ่ม 🎨 สีทั้งออเดอร์ / 🖐 มือจับทั้งห้อง เบียดอยู่ท้ายแถวฟิลเลอร์ลงพื้น ข้อความในปุ่มตกสามบรรทัด · ป้ายกับช่องกรอกยาวไม่เท่ากันจึงไม่ตรงแนว · ปุ่มยืดเต็มแถว (.ibtn flex:1) · ปุ่ม 💰 ใส่ราคาที่ขาด ตกลงมาเต็มแถว · เปิดรายละเอียดแล้วแถบล่างดันส่วนบนจนเหลือนิดเดียว · ตอนนี้: หัวแผง = ชื่อ + ✓ เสร็จ บรรทัดเดียว คำแนะนำบรรทัดล่าง · ปุ่มทั้งห้อง (🎨 สี / 🖐 มือจับ) ขึ้นมาอยู่ใต้หัวห้อง · ทุกกลุ่มเป็นสองคอลัมน์ ป้ายซ้ายกว้างเท่ากัน ช่องกรอกขวา หมายเหตุอยู่ใต้ช่อง · กลุ่มที่พับโชว์สรุปบรรทัดที่สอง (เปิดแล้วซ่อนสรุป) · แถบล่าง = ตู้ในห้อง + ราคาขาย / ต้นทุน / แถบเตือนราคาคู่ปุ่ม 💰 / ปุ่ม 4 ตัวเป็นตาราง 2×2 · แถบล่างสูงไม่เกิน 48% ของจอ (เลื่อนในตัว) · ตู้ที่เลือก: รหัส + ราคาบรรทัดแรก ขนาดบรรทัดสอง · ก/ส/ล + ปรับขนาด แถวเดียว · ปุ่มคำสั่งเป็นตาราง 3 คอลัมน์ · ฟิลเลอร์/แผ่นปิดข้าง ใช้คอลัมน์ป้ายเดียวกัน · id ปุ่ม/ช่องเดิมทุกตัว (การทำงานไม่เปลี่ยน) · ปิด SN_OFF.plTidy=1 = หน้าตาแบบ 1.530"],
     ["1.530","2026-10-27","UX 🖐 ระยะมือจับอิงตัวแปรของตู้ (ผู้ใช้ 21:30 ภาพ Variables (ตู้นี้) BND214 — $K_Pull_Coordinate_X1–X6 = 35 · Y = 0 จาก Variables กลาง: “จริง ๆ มันต้องอิงค่า Default ไว้ คนที่มาดูหรือตรวจต่อหรือปรับแบบ จะได้ตรวจได้”) — เดิม (1.524–1.529) กล่องมือจับเขียนระยะเป็นตัวเลขตายตัวในมือจับ ตารางตัวแปรของตู้ยังโชว์ 35/0 ซึ่งไม่ใช่ค่าที่ใช้จริง แก้ในตารางก็ไม่ขยับ · ตอนนี้ระยะชี้ไปที่ $K_Pull_Coordinate_X{n}/Y{n} ของบานลำดับ n (แบบเดียวกับมือจับจากออเดอร์) · ระยะเท่าค่าตั้งต้น (35 · Y 0 = 35) = ไม่เขียนทับ ใช้ค่าตั้งต้น · ต่างจากค่าตั้งต้น = เขียนทับเฉพาะตู้นี้ เป็นสูตรอ่านง่าย เช่น X = 35+180 (ปลายมือจับ 35 + ครึ่งยาวมือจับ 360) · ช่องแกนกลาง (UpMiddle ฯลฯ) ไม่เขียน · เอามือจับออก = ล้างค่าที่เขียนทับของบานนั้น · ตรวจ/แก้ได้ที่ Variables (ตู้นี้) › ตัวแปรตัวเลขของตู้นี้ (ช่อง ทับเฉพาะตู้นี้ / ใช้จริง) แล้วมือจับขยับตาม · ชิ้นที่ไม่มีลำดับบาน (แผ่นหน้า FXF) ยังเป็นตัวเลขในมือจับ · FIX ช่องตัวแปรใส่สูตรเลขล้วน (เช่น 35+75) เดิมได้แค่เลขตัวแรก (parseFloat) ตอนนี้คิดสูตร (evalCabExpr/evalCabQuiet)"],
     ["1.529","2026-10-27","FIX+FEAT 🖐 มือจับ: ไม่ลงแผ่นปิด/ฟิลเลอร์ + เลือกรายบานได้ (ผู้ใช้ 21:20 ส่ง starnexus-project (33).json: “พวกแผ่นปิดข้าง Filler WNF TNF BNF แล้วตู้ BND217 มีไม้ Panel L มันเป็นเหมือน Filler · ถ้ามันไม่มีอุปกรณ์บานพับ หรือรางลิ้นชัก หรือโช็คในอนาคต ชิ้นนั้นก็ไม่มีมือจับแน่นอนถูกไหม” · 21:22 ภาพกล่องมือจับ BND217 “2 บาน/ลิ้นชัก”: “ต้องเลือกได้ด้วยว่าบานไหนไม่เอามือจับ อนาคตมีตู้แบบอื่น ๆ แน่นอน”) — ในไฟล์: BND217 Panel L (หน้าหลอก) · BNF001 Filler Front · WNF036 Filler Carcass + Fix Front ได้ H002 ไปด้วย (1.524 นับทุกชิ้นที่ระบบมือจับนับเป็นบาน + แผ่นหน้าที่ชื่อมี front) · ① ตั้งต้นใส่เฉพาะชิ้นที่เปิดได้: มีบานพับ (ข้อมูลบานพับ หรือรูถ้วย Ø30–40 ของงาน FXF) · หน้าลิ้นชักที่มีกล่อง/แผงเหล็ก · (โช็ค/บานยก/บานเลื่อน: connectors lift/flap/slide/shock หรือธง _lift/_slideDoor) · หน้าหลอก/แผงปิดไม่ใส่ — ไม่ต้องติ๊กรับค่ามือจับรายชิ้นตอนสร้างตู้ · ② กล่อง 🖐 มือจับ (ตู้ใบเดียว) มีภาพหน้าตู้: กดที่บาน = ใส่/ไม่ใส่ มือจับ (บานที่ใส่โชว์ตำแหน่งมือจับ · ไม่ใส่ = ลายขีด) · ใช้กับแผ่นหน้าทุกชิ้นของตู้ รวมชิ้นที่ระบบเดาว่าเปิดไม่ได้ (บังคับใส่ได้) · จำต่อบาน (_pullPick) ใส่รุ่นใหม่ทั้งตู้ก็ไม่ลงบานที่ปิดไว้ · ③ มือจับจากกล่องนี้ที่ค้างบนชิ้นที่ไม่ใส่ ล้างเองทุกรอบคิดฉาก (ช่อง K_Pull ของชิ้นนั้น = NoPull) · มือจับจากออเดอร์ (XML) / ตั้งเองทีละบาน (⚙) ไม่แตะ · ลำดับบานของมือจับจาก XML เหมือนเดิม · ④ ระยะตั้งต้น (ผู้ใช้ 21:26 “Knob ขอเป็น 35,35 · มือจับ 2 รู เอาปลายมือจับ 35 อีกด้านก็ 35”): ปุ่ม 35/35 · ก้าน/บาร์ ปลายมือจับห่างขอบ 35 เส้นกลางห่างขอบอีกด้าน 35 · ลิ้นชัก/บานยก 35 จากขอบ (เดิม 50/50 · ปลาย 50 · ข้าง 40 · ลิ้นชัก 45 · ค่า 35 = ระยะตั้งต้นแทน 0000 ในตั้งค่า) · ปิด SN_OFF.plPullMove=1"],
@@ -3972,7 +3973,7 @@ const DEF_SETTINGS={ frontSetMax:6, dowelD:8, dowelDepth:28, dowelMateDepth:12, 
   boxScrewCode:"SCREW5", boxScrewName:"สกรูยึดกล่องลิ้นชัก Ø5", screwCode:"SCREW5", screwName:"สกรู Ø5", altoMapA:"350:552.35.362, 400:552.35.363, 450:552.35.364, 500:552.35.365", altoMapW:"350:552.35.762, 400:552.35.763, 450:552.35.764, 500:552.35.765",
   /* v7.88: ซีรีส์ราง Kitchen 4.0 — โครงเดียวกับ ALTO แต่มีสีเดียว (ไม่มีตัวเลือกสี) */
   k40Code:"KITCHEN40_H80", k40Name:"ราง Kitchen 4.0", k40SideH:80, k40BackH:63, k40PanelT:16,
-  k40HMap:"63:KITCHEN40_H80, 148:KITCHEN40_H150", altoHMapA:"", altoHMapW:"",
+  k40HMap:"63:KITCHEN40_H80, 148:KITCHEN40_H150", altoHMapA:"", altoHMapW:"", cutTrayMap:"450:358x472, 600:508x472:ACCDT00007, 900:808x472", cutTrayRail:500, cutTrayH:60, cutTrayKeyword:"ถาดช้อน", /* v1.532: ถาดช้อนลูกเล็ก */
   k40BotMinusW:35, k40BackMinusW:38, k40BotMinusD:10, k40DrillRear:41, k40DrillH:37,
   k40FrontDrill:"37,32,5,12 ; -37,32,5,12",
   k40Map:"350:K40-350, 400:K40-400, 450:K40-450, 500:K40-500", slideMap:"250:FITDW00388, 300:FITDW00389, 350:FITDW00369, 400:FITDW00375, 450:FITDW00390, 500:FITDW00391",
@@ -4667,6 +4668,7 @@ function sync(rebuild,save,cm){
   try{ applyPullDrills(); }catch(e){ console.error(e); }   // v9.71: รู/Pocket/รูป 3D ของมือจับ คิดใหม่ทุกครั้ง ขยับบานแล้วตามเอง
   try{ applyD33Brackets(); }catch(e){ console.error("d33:",e); }   // v1.333: ฉากพลาสติก D33 ของคาน (3D + นับใบอุปกรณ์ · ไม่เจาะรู)
   try{ applyBackPanelClips(); }catch(e){ console.error("bpClip:",e); }
+  try{ applyCutTrays(); }catch(e){ console.error("cutTray:",e); }   // v1.532: ถาดช้อนในลิ้นชักลูกเล็ก (ชิ้นเสมือน · เลื่อนตามลิ้นชัก)
   try{ applyShoeRacks(); }catch(e){ console.error("shoeRack:",e); }   // v1.420: ชั้นวางรองเท้าเหล็ก (รูพินตลอดแนว + ชั้นเอียง + พิน คิดใหม่ทุกรอบ)   // v1.334: ตัวยึดแผ่นหลังพลาสติก (ตู้ที่มีคานหลังแผ่นหลัง ≥3 · แผ่นหลัง ≤12)
   /* v39.3: จับเวลาคิดฉากไว้เสมอ — ช้าเกิน 150ms ค่อยรายงานใน console ว่าเวลาหายไปไหน
      จะได้เลิกเดากันว่า "หน่วงเพราะอะไร" · ดูได้จากแจ้งเตือน/console: ⏱ */
@@ -6788,6 +6790,7 @@ function shapeLocalGeo(b){
     g.applyMatrix4(MB);
     g.applyMatrix4(new THREE.Matrix4().copy(orientMatrix(b.orient,b.yaw)).invert());
     return g; }
+  if(b._shape==="cutTray") return cutTrayGeo(Math.max(+b.L||100,40),Math.max(+b.W||100,40),Math.max(T,10));   // v1.532: ถาดช้อน
   if(b._shape==="flatPull") return pullFlatGeo(b);                                    // v1.446: มือจับบาร์แบน
   throw new Error("unknown shape");
 }
@@ -16719,6 +16722,7 @@ function fgOnReady(){
   try{ Object.keys(_glassKindByPre).forEach(k=>{ if(!_glassKindByPre[k]) delete _glassKindByPre[k]; }); }catch(e){}
   try{ cutCacheClear(); }catch(e){}
   try{ _costFgN=null; }catch(e){}
+  try{ Object.keys(_ctFg).forEach(k=>{ if(!_ctFg[k]) delete _ctFg[k]; }); }catch(e){}   // v1.532: ถาดช้อนที่ค้นไม่เจอตอนตารางยังไม่มา → ค้นใหม่
   if(!(state.boards||[]).length) return n;
   setTimeout(()=>{ try{ _cabFitSig=""; sync(0); }catch(e){ console.error("fgOnReady sync:",e); }
     try{ cutLookupReady().then(()=>{ try{ _cabFitSig=""; sync(0); }catch(e){} }).catch(()=>{}); }catch(e){} },50);
@@ -28896,6 +28900,7 @@ function boardRole(b){
      SN_OFF.dwgDoorLine=1 หน้ารวมวัสดุ ดีไซน์หน้าบานเป็นภาพถ่าย 3D แยกตาม Part ลิงก์ (แบบ 1.521) (v1.527)
      SN_OFF.realPlRoom=1  โหมดสมจริงในห้องออกแบบสร้างห้องรอบตู้แบบเดิม (ไม่ใช้ผนังของห้องออกแบบ) (v1.528)
      SN_OFF.realSnap=1    ไม่มีปุ่ม 📷 บันทึกภาพสมจริงความละเอียดสูง (v1.528)
+     SN_OFF.cutTray=1     ไม่มีถาดช้อนในลิ้นชัก (ไม่วาด ไม่นับใบเบิก เมนูคลิกขวาไม่ขึ้น · ธง _cutTray ยังอยู่ที่หน้าลิ้นชัก) (v1.532)
      SN_OFF.plTidy=1      แผงห้องออกแบบหน้าตาแบบ 1.530 (ไม่จัดสองคอลัมน์ · ปุ่มสี/มือจับทั้งห้องอยู่ในกลุ่มขา · ปุ่มท้ายแผงสองแถว) (v1.531)
      SN_OFF.plPullVar=1   กล่องมือจับเขียนระยะเป็นตัวเลขในมือจับแบบ 1.529 (ไม่อิงตัวแปร K_Pull_Coordinate ของตู้) (v1.530)
      SN_OFF.plPullMove=1  กล่องมือจับตั้งต้นใส่ทุกแผ่นหน้า (รวมแผ่นปิด/ฟิลเลอร์/หน้าหลอก) แบบ 1.524 — ที่กดเลือกรายบานยังใช้ได้ (v1.529)
@@ -34291,6 +34296,10 @@ function renderSettings(){
       <b>ตามแบบ Häfele</b> (สองแถวห่าง LW−27 · สูง 61.5+a และ +32): <code>sLW-27,61.5,2.5,12 ; sLW-27,93.5,2.5,12</code>
     </div>
     <div style="font-size:11px;opacity:.62;margin-top:2px">กด <b>บันทึกค่า</b> แล้ว “รูหน้าบาน” และ “สูงแถวรูจากก้นกล่อง” จะถูกเขียนลง Element → Fittings ของซีรีส์นั้นให้อัตโนมัติ แล้วเจาะใหม่ทั้งฉากทันที<br>ส่วน <b>ตารางความยาว→รหัสสินค้า (lenMap)</b> และ <b>ระยะรูแผ่นข้างตามความยาวราง (drillMap)</b> ยังแก้ที่ Element เพราะเป็นข้อมูลรายสินค้า · ถ้า drillMap มีค่าของความยาวนั้นอยู่ ระบบจะใช้ค่านั้นก่อน ช่อง “รูหลัง = NL − ค่านี้” เป็นตัวสำรองเมื่อ drillMap ไม่ครอบคลุม · ปรับรายลูกได้ที่คลิกขวา → เปลี่ยนระบบราง</div>
+    <div class="sumh" style="margin-top:12px">🥄 ถาดช้อน — ลิ้นชักลูกเล็ก แผงข้างเหล็ก (v1.532)</div>
+    <div style="display:grid;grid-template-columns:2fr 1fr 1fr;gap:8px">${txt("cutTrayMap","ตู้กว้าง:ถาด กว้างxลึก:รหัส — คั่นด้วย , (รหัสว่าง = ค้นจาก AX ตามขนาด)")}${num("cutTrayRail","ใส่ได้เฉพาะรางยาว (มม.)")}${num("cutTrayH","สูงถาดใน 3D (มม.)")}</div>
+    <div style="font-size:11px;opacity:.62;margin:2px 0 6px;line-height:1.6">คลิกขวาที่หน้าลิ้นชัก → 🥄 ใส่ถาดช้อน (ทีละลูก) · ใส่ได้เฉพาะ<b>ลูกเล็ก</b> (แผ่นหลังกล่องสูง ≤ 100 เช่น 63) รางยาวตามที่ตั้ง และตู้กว้างตรงตาราง ±3 ·
+      ลูกสูง (148) / รางอื่น / กล่องไม้ ยังใส่ไม่ได้ · ถาดที่หารหัสไม่เจอ วาด 3D แต่ไม่ลงรายการเบิก</div>
     <div class="sumh" style="margin-top:12px">บานพับ — หมายเหตุ / ชื่อรหัส</div>
     <div style="font-size:11px;opacity:.62;margin-top:2px">รูถ้วยเจาะที่ผิวหลังบาน · ตำแหน่งตามความสูงบานใช้สูตรเดียวกับเดือย (เลือกในกล่องใส่บานพับ) · เดือยยึด 2 รู วางตามความสูง ±ครึ่งระยะห่าง</div>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">${txt("hingeName","ชื่อบานพับในสรุป/ส่งออก")}${txt("hingeCode","รหัสบานพับ (Element → Fittings) เช่น HINGE")}</div>
@@ -45820,6 +45829,141 @@ function applyShoeRacks(){
   if(add.length) state.boards=state.boards.concat(add);
   return add.length;
 }
+/* ═════════ v1.532: 🥄 ถาดช้อนในลิ้นชักลูกเล็ก (แผงข้างเหล็ก ราง 500) ═════════
+   ผู้ใช้ 28/10/2026 08:14 (project 58 · ภาพถาดพลาสติกเทา + ลิ้นชัก BND214 เปิด + AX ACCDT00007 “ถาดช้อน A16 สีเทา ตู้ 60 ขนาด 508x472 mm. ไม่บาก”):
+     “ผมเรียกว่าลูกเล็กแล้วกันนะครับ มีให้เลือกใส่ถาดช้อนได้ ขนาดตามที่ส่งให้ ถาดสูงสัก 60–70 มม. ทำเป็น 3D
+      โหมดปกติให้คลิกขวาเลือกใส่ได้ทีละลูก แต่ลูกที่สูง 148 ใส่ไม่ได้ · กล่องไม้มีก็มีให้ใส่ แต่เอาไว้ก่อน
+      รหัสออกตามนั้นที่รางลึก 500 ตู้กว้าง 600 · ปกติมีตู้ 450 600 900 — ลบขนาดจากตู้ 60 ไป ก็จะเจอของตู้ 450 กับ 900 (ด้านกว้าง)
+      ด้านลึกคงไว้สำหรับราง 500 · รางอื่น ๆ ใส่ไม่ได้”
+   เดิม: ไม่มีของในลิ้นชัก — ถาดช้อนต้องไปเพิ่มเองในใบเบิก ภาพ 3D ลิ้นชักโล่ง
+   ตอนนี้:
+     · ธง _cutTray=1 ที่หน้าลิ้นชัก (ชิ้นจริง → ไปกับไฟล์งาน / ออเดอร์ / โมเดลตู้ / Ctrl+Z เอง ไม่ต้องเพิ่มช่องใน state)
+     · applyCutTrays() ทุกรอบ sync: ล้างถาดเดิม (_trayPart) แล้ววางใหม่จากธง → ปรับขนาดตู้/เปลี่ยนรางแล้วถาดตาม
+       ไม่เข้าเงื่อนไขแล้ว (เช่นเปลี่ยนเป็นราง 450) = ไม่วาด ไม่นับ แต่ธงยังอยู่ (คลิกขวา “เอาถาดช้อนออก” ได้)
+     · เงื่อนไข (cutTrayInfo): กล่องแผงข้างเหล็ก (_alto) · รางยาวเท่า settings.cutTrayRail (500)
+       · ลูกเล็ก = แผ่นหลังกล่องสูง ≤ 100 (K40 63 = H80 ใส่ได้ · 148 = H150 ใส่ไม่ได้)
+       · ตู้กว้าง (วัดโครงตามแกนตู้) ตรงตาราง settings.cutTrayMap ±3: 450:358x472 · 600:508x472:ACCDT00007 · 900:808x472
+         (กว้างถาด = กว้างตู้ − 92 ตามตัวอย่างตู้ 600 · ลึก 472 ทุกขนาดสำหรับราง 500)
+       · กล่องไม้: ยังไม่เปิด (ผู้ใช้ “เอาไว้ก่อน”) — เมนูไม่ขึ้น
+     · ถาด = ชิ้นเสมือน _dg เดียวกับลิ้นชัก (viewBoards เลื่อนออกพร้อมลิ้นชักตอนเปิดบาน) · ไม่มี _door/_box (ตัวหาหน้าบาน/กล่องไม่หยิบผิด)
+       วางบนพื้นกล่อง กลางความกว้างพื้น · ลึก = กลางระหว่างหน้าแผ่นหลังกล่องกับหลังหน้าบาน · สูง settings.cutTrayH (60 — ผู้ใช้ “60–70” · ลูกเล็ก H80 ผิวพื้นกล่องถึงขอบแผงข้างเหล็กราว 64 · 65 จะโผล่พ้นขอบ)
+       3D _shape "cutTray" (cutTrayGeo): พื้น + ผนัง + ปีกขอบบน 12 + ช่องแบ่ง ซ้าย ~62% เป็นช่องยาว · ขวา 2 ช่องยาว + ช่องสั้นด้านหน้า · พลาสติกเทา
+     · รหัส: ตารางมีรหัส → ใช้เลย · ว่าง → cutTrayLookup ค้น fitting_global (AX) ชื่อมี settings.cutTrayKeyword (“ถาดช้อน”) + ขนาด กว้างxลึก
+       (ชอบ “ไม่บาก” / “เทา” · ข้ามตัว “ยกเลิก”) เจอแล้ว sync ใหม่ · ไม่เจอ = วาด 3D แต่ไม่ลงรายการเบิก (ไม่เดารหัส)
+     · ใบเบิก (fittingAgg): 1 ถาด = 1 ชิ้น ชื่อจาก Element → ชื่อ AX → “ถาดช้อน กว้าง×ลึก”
+   ปิด: SN_OFF.cutTray=1 (ไม่วาด ไม่นับ เมนูไม่ขึ้น · ธงยังอยู่) · SN_OFF.cutTrayFg=1 = ไม่ค้นรหัสจาก AX */
+const _ctFg={}, _ctFgP={};                 // ผลค้นรหัส AX: "508x472" → {code,name} | null · ตัวที่กำลังค้น
+function cutTrayMap(){ const out=[];
+  String(settings.cutTrayMap||DEF_SETTINGS.cutTrayMap||"").split(/[,\n;]+/).forEach(s=>{
+    const m=String(s).trim().match(/^(\d+(?:\.\d+)?)\s*:\s*(\d+(?:\.\d+)?)\s*[x×X*]\s*(\d+(?:\.\d+)?)\s*(?::\s*(\S*))?$/); if(!m) return;
+    out.push({cab:+m[1], w:+m[2], d:+m[3], code:String(m[4]||"").trim()}); });
+  return out; }
+function cutTrayH(){ const v=+settings.cutTrayH; return (v>=20&&v<=150)?v:60; }
+function cutTrayRail(){ const v=+settings.cutTrayRail; return v>0?v:500; }
+/* หน้าลิ้นชักของชิ้นที่คลิก — หน้าลิ้นชักเอง · ชิ้นกล่อง · ตัวถาด */
+function cutTrayFront(b){ if(!b) return null; if(b._door&&!b._box&&b._dg) return b; if(!b._dg) return null;
+  return state.boards.find(x=>x&&x._dg===b._dg&&(x.cabInst||"")===(b.cabInst||"")&&x._door&&!x._box&&!x._dummy)||null; }
+/* {front, has, ok, reason, steel, rail, bot, back, backH, cabW, spec} */
+function cutTrayInfo(b){
+  const f=cutTrayFront(b); if(!f) return null;
+  const inst=f.cabInst, bx=state.boards.filter(x=>x&&x._dg===f._dg&&(x.cabInst||"")===(inst||"")&&x._box);
+  const I={front:f, has:!!f._cutTray, ok:false, reason:"", steel:false};
+  if(!bx.length){ I.reason="หน้าบานนี้ไม่มีกล่องลิ้นชัก"; return I; }
+  const al=bx.find(x=>+x._alto>0); I.steel=!!al;
+  if(!al){ I.reason="กล่องไม้ — ยังไม่เปิดให้ใส่ถาดช้อน"; return I; }
+  I.rail=Math.round(+al._alto);
+  if(Math.abs(I.rail-cutTrayRail())>1){ I.reason="ราง "+I.rail+" มม. — ถาดช้อนใส่ได้เฉพาะราง "+cutTrayRail(); return I; }
+  const bot=bx.find(x=>x.orient==="flat"&&!x._virtual), back=bx.find(x=>x.orient==="front"&&!x._virtual);
+  if(!bot){ I.reason="ไม่เจอพื้นกล่องลิ้นชัก"; return I; }
+  I.bot=bot; I.back=back||null; I.backH=back?Math.round(worldDims(back)[1]):0;
+  if(back&&I.backH>100){ I.reason="ลูกสูง (แผ่นหลัง "+I.backH+") ใส่ไม่ได้ — ใส่ได้เฉพาะลูกเล็ก"; return I; }
+  let W=0; try{ const s=_dxSpan(inst,_dxAxes(inst).ax); if(s) W=Math.round(s.hi-s.lo); }catch(e){}
+  I.cabW=W;
+  const T=cutTrayMap(), S=T.find(r=>Math.abs(r.cab-W)<=3);
+  if(!S){ I.reason="ตู้กว้าง "+W+" — ถาดช้อนมีเฉพาะตู้ "+T.map(r=>r.cab).join(" / "); return I; }
+  I.spec=S;
+  const P=cutTrayPose(I); I.pose=P;
+  if(S.w>P.wB+0.5){ I.reason="ถาด "+S.w+" กว้างกว่าพื้นกล่อง "+Math.round(P.wB); return I; }
+  if(S.d>P.room+15){ I.reason="ถาดลึก "+S.d+" ยาวกว่าช่องในกล่อง "+Math.round(P.room); return I; }
+  I.ok=true; return I; }
+/* ตำแหน่งถาด — แกนตู้ (หมุนตามตู้) · กลางความกว้างพื้นกล่อง · กลางระหว่างหน้าแผ่นหลังกล่องกับหลังหน้าบาน */
+function cutTrayPose(I){
+  const inst=I.front.cabInst, A=_dxAxes(inst), fw=A.fw, ax=A.ax, H=cutTrayH();
+  const ext=(b,v)=>{ const d=worldDims(b); return Math.abs(v[0])*d[0]+Math.abs(v[1])*d[1]+Math.abs(v[2])*d[2]; };
+  const pr=b=>_dot([b.x,b.y,b.z],fw), bot=I.bot, bd=worldDims(bot);
+  let r0=pr(bot)-ext(bot,fw)/2, r1=pr(bot)+ext(bot,fw)/2;
+  if(I.back) r0=Math.max(r0,pr(I.back)+ext(I.back,fw)/2);
+  r1=Math.min(r1,pr(I.front)-ext(I.front,fw)/2);
+  const dm=(r0+r1)/2-pr(bot);
+  return {x:round(bot.x+fw[0]*dm), y:round(bot.y+bd[1]/2+H/2+0.5), z:round(bot.z+fw[2]*dm), yaw:A.yaw, room:r1-r0, wB:ext(bot,ax)}; }
+function cutTrayLookup(w,d){ const key=w+"x"+d;
+  if(_ctFg[key]!==undefined) return Promise.resolve(_ctFg[key]);
+  if(_ctFgP[key]) return _ctFgP[key];
+  return (_ctFgP[key]=(async()=>{ let res=null;
+    try{
+      if(!snOff("fgRetry")) await fgWaitReady(180000);
+      const sb=await getDB();
+      if(sb){ const kw=String(settings.cutTrayKeyword||"ถาดช้อน").trim()||"ถาดช้อน";
+        const r=await sb.from("fitting_global").select("item_number,product_name,unit").ilike("product_name","%"+kw+"%").limit(500);
+        const re=new RegExp("(^|[^0-9])"+w+"\\s*[x×X*]\\s*"+d+"([^0-9]|$)");
+        const rows=((r&&!r.error&&r.data)||[]).filter(x=>re.test(String(x.product_name||""))&&!/^\s*"?\s*\(?\s*ยกเลิก/.test(String(x.product_name||"")));
+        const sc=x=>{ const n=String(x.product_name||""); return (/ไม่บาก/.test(n)?2:0)+(/เทา/.test(n)?1:0); };
+        rows.sort((a,b)=>sc(b)-sc(a));
+        if(rows.length) res={code:String(rows[0].item_number||"").trim(), name:String(rows[0].product_name||"").replace(/^"+|"+$/g,"").trim()}; }
+    }catch(e){ console.error("cutTrayLookup:",e); }
+    _ctFg[key]=res; delete _ctFgP[key];
+    if(res){ console.log("🥄 ถาดช้อน "+key+" → "+res.code+" · "+res.name); try{ _cabFitSig=""; sync(0); }catch(e){} }
+    return res; })()); }
+function cutTrayCode(S){ if(!S) return ""; if(S.code) return S.code;
+  const k=S.w+"x"+S.d, c=_ctFg[k];
+  if(c===undefined&&!snOff("cutTrayFg")) cutTrayLookup(S.w,S.d);
+  return (c&&c.code)||""; }
+function applyCutTrays(){
+  if(state.boards.some(b=>b&&b._trayPart)) state.boards=state.boards.filter(b=>!(b&&b._trayPart));
+  if(snOff("cutTray")) return 0;
+  const fr=state.boards.filter(b=>b&&b._cutTray&&b._door&&!b._box); if(!fr.length) return 0;
+  const add=[];
+  fr.forEach(f=>{ try{
+    if(!f._dg){ delete f._cutTray; return; }                               // ถอดกล่องไปแล้ว (unbox) → ไม่มีที่วาง
+    const I=cutTrayInfo(f);
+    if(!I||!I.ok){ const w=(I&&I.reason)||"?"; applyCutTrays._w=applyCutTrays._w||{}; const k=f.id+"|"+w;
+      if(!applyCutTrays._w[k]){ applyCutTrays._w[k]=1; console.warn("🥄 ถาดช้อน "+(f.cab||"")+" "+(f.name||"")+": "+w+" — ไม่วาด/ไม่นับ (ธงยังอยู่)"); } return; }
+    const S=I.spec, P=I.pose, H=cutTrayH(), code=cutTrayCode(S);
+    add.push({ id:(f.cabInst||"")+":tray:"+f._dg, name:(code?(code+" · "):"")+"ถาดช้อน "+S.w+"×"+S.d,
+      cab:f.cab, cabInst:f.cabInst, _dg:f._dg, L:S.w, W:S.d, T:H, x:P.x, y:P.y, z:P.z, orient:"flat", yaw:P.yaw||0,
+      tone:null, r:0, holes:[], grooves:[], connectors:[], mat:"$CarcassBodyMat", surfT:"", surfB:"", edges:["No Edge","No Edge","No Edge","No Edge"],
+      _virtual:true, _trayPart:true, _trayCode:code, _trayW:S.w, _trayD:S.d, _shape:"cutTray", _hex:"#98a1ab" });   // สีเทาอมฟ้าตามภาพถาด (hexMat · ไม่ใช้ metalMat("plasticGrey") เพราะ metalMat แปลงชื่อเป็นตัวเล็กแล้วหา plasticGrey ไม่เจอ → ได้สีทองเหลือง)
+  }catch(e){ console.error("cutTray:",e); } });
+  if(add.length) state.boards=state.boards.concat(add);
+  return add.length; }
+/* 3D ถาด: local x = กว้าง (L) · y = ลึก (W · +y = หลังลิ้นชัก) · z = สูง (T · +z = บน) — ชิ้นนอน (flat) ตัววาดหมุนให้ */
+function cutTrayGeo(L,W,H){
+  const gs=[], bx=(sx,sy,sz,cx,cy,cz)=>{ const g=new THREE.BoxGeometry(Math.max(sx,.5),Math.max(sy,.5),Math.max(sz,.5)); g.translate(cx,cy,cz); gs.push(g); };
+  const z0=-H/2, z1=H/2, tw=2.5, rim=12, fl=2;
+  bx(L,W,2, 0,0,z0+1);                                                   // พื้นถาด
+  bx(L,tw,H, 0,-W/2+tw/2,0); bx(L,tw,H, 0,W/2-tw/2,0);                   // ผนังหน้า / หลัง
+  bx(tw,W-2*tw,H, -L/2+tw/2,0,0); bx(tw,W-2*tw,H, L/2-tw/2,0,0);         // ผนังซ้าย / ขวา
+  bx(L,rim,fl, 0,-W/2+rim/2,z1-fl/2); bx(L,rim,fl, 0,W/2-rim/2,z1-fl/2);   // ปีกขอบบน
+  bx(rim,W-2*rim,fl, -L/2+rim/2,0,z1-fl/2); bx(rim,W-2*rim,fl, L/2-rim/2,0,z1-fl/2);
+  const xi0=-L/2+rim, xi1=L/2-rim, yi0=-W/2+rim, yi1=W/2-rim, Wi=yi1-yi0;
+  const dt=3, dh=Math.max(H-8,6), dz=z0+2+dh/2, xs=xi0+(xi1-xi0)*0.62;
+  bx(dt,Wi,dh, xs,0,dz);                                                 // แบ่งซ้าย | ขวา
+  const k=Math.max(2,Math.round((xs-xi0)/80));
+  for(let i=1;i<k;i++) bx(dt,Wi,dh, xi0+(xs-xi0)*i/k,0,dz);              // ซ้าย: ช่องยาวหน้า–หลัง ~80
+  const yc=yi0+Wi*0.32;                                                  // ขวา: ช่องสั้นด้านหน้า (−y) + 2 ช่องยาวด้านหลัง
+  bx(xi1-xs,dt,dh, (xs+xi1)/2,yc,dz);
+  bx(dt,yi1-yc,dh, (xs+xi1)/2,(yc+yi1)/2,dz);
+  return mergeGeos(gs); }
+/* คลิกขวา → ใส่ / เอาออก ทีละลูก */
+function cutTrayToggle(b){
+  const I=cutTrayInfo(b); if(!I){ toast("คลิกขวาที่หน้าลิ้นชัก (หรือกล่องลิ้นชัก) เพื่อใส่ถาดช้อน"); return; }
+  if(I.has){ delete I.front._cutTray; sync(0); toast("🥄 เอาถาดช้อนออกแล้ว"); return; }
+  if(!I.ok){ toast("🥄 "+I.reason); return; }
+  I.front._cutTray=1; sync(0);
+  const S=I.spec, c=cutTrayCode(S), sz=S.w+"×"+S.d+" สูง "+cutTrayH();
+  if(c){ toast("🥄 ใส่ถาดช้อน "+c+" · "+sz); return; }
+  toast("🥄 ใส่ถาดช้อน "+sz+" — กำลังค้นรหัสจาก AX…");
+  cutTrayLookup(S.w,S.d).then(r=>{ toast(r?("🥄 ถาดช้อน "+sz+" → "+r.code):("🥄 ถาดช้อน "+S.w+"×"+S.d+" — ไม่พบรหัสใน AX · วาด 3D แต่ยังไม่ลงรายการเบิก (ใส่รหัสได้ที่ ตั้งค่า → ลิ้นชัก → ถาดช้อน)")); }); }
 /* รูปมองจากข้างตู้ (หน้าตู้อยู่ขวา) + ตารางระยะ */
 function shoeRackPreviewHTML(G,P,Lay,extra){
   const e=s=>escapeHtml(String(s));
@@ -49902,6 +50046,15 @@ function showCtx(x,y,id){ctxTarget=id;ctxX=x;ctxY=y;const m=$("ctxMenu");
       show('[data-act="symfixclr"]', tb&&(tb.connectors||[]).some(c=>c&&(c.type==="dowel"||c.type==="minifix")));
       show('[data-act="symfix"]',    tb&&!tb._door&&!tb._virtual&&!tb._fitPart);
     }
+    /* v1.532: 🥄 ถาดช้อน — คลิกหน้าลิ้นชัก / ชิ้นกล่อง / ตัวถาด · ลูกเหล็กที่ใส่ไม่ได้ = ปุ่มจาง + เหตุผล · กล่องไม้ไม่ขึ้น */
+    { let I=null; try{ I=(tb&&!snOff("cutTray"))?cutTrayInfo(tb):null; }catch(e){ console.error("cutTrayInfo:",e); I=null; }
+      const el=m.querySelector("#ctxCutTray"), on=!!(I&&(I.has||I.steel));
+      show("#ctxCutTray", on);
+      if(el){ el.disabled=false; el.style.opacity=""; el.title=""; }
+      if(el&&on){ const sp=el.querySelector("span"), S=I.spec;
+        if(!I.has&&!I.ok){ el.disabled=true; el.style.opacity=".55"; el.title=I.reason; }
+        if(sp) sp.textContent=I.has?("🥄 เอาถาดช้อนออก"+(S?(" ("+S.w+"×"+S.d+")"):""))
+          :(I.ok?("🥄 ใส่ถาดช้อน"+(cutTrayCode(S)?(" "+cutTrayCode(S)):"")+" ("+S.w+"×"+S.d+")"):("🥄 ถาดช้อน — "+I.reason)); } }
     { const J=tb?topJoin(tb):null;
       show('[data-act="topjoin"]', !!J);
       const el=m.querySelector('[data-act="topjoin"] span');
@@ -51603,6 +51756,7 @@ function bindCtx(){
     if(a==="csedit"){ try{ CurvedShelf.editBoard(b); }catch(err){ console.error(err); toast("เปิดกล่องโค้งไม่สำเร็จ"); } return; }
     if(a==="adddoor"){ try{ addDoor(); }catch(err){ console.error(err); toast("เพิ่มหน้าบานไม่สำเร็จ: "+err.message); } return; }
     if(a==="pintouch"){ try{ pinToTouching(b,(ev&&ev.clientX)||null,(ev&&ev.clientY)||null); }catch(err){ console.error(err); toast("ตรึงไม่สำเร็จ: "+err.message); } return; }
+    if(a==="cuttray"){ try{ cutTrayToggle(b); }catch(err){ console.error(err); toast("ถาดช้อนไม่สำเร็จ — ดู console"); } return; }   // v1.532
     if(a==="mkbox"){ try{ plainFrontToDrawer(b); }catch(err){ console.error(err); toast("ใส่กล่องไม่สำเร็จ — ดู console"); } return; }
     if(a==="unbox"){ try{ drawerToPlainFront(b); }catch(err){ console.error(err); toast("ถอดกล่องไม่สำเร็จ — ดู console"); } return; }
     if(a==="rackfront"){ try{ const r=makeRackFront(b);
@@ -51890,7 +52044,7 @@ function snvMeta(){
     /* v1.346: กรอบของชิ้นสำหรับปุ่มวัดในหน้าดู (แตะชิ้น → เส้นบอกขนาด DIM) — จุดกลาง + ทิศแกนยาว/กว้าง/หนา แบบเดียวกับที่โปรแกรมวาดชิ้น */
     try{ const M=orientMatrix(b.orient,b.yaw), a=[[1,0,0],[0,1,0],[0,0,1]].map(v=>new THREE.Vector3(v[0],v[1],v[2]).transformDirection(M));
       o.x=[r1(b.x),r1(b.y),r1(b.z)]; o.ax=[].concat(...a.map(v=>[r4(v.x),r4(v.y),r4(v.z)])); }catch(e){}
-    if(b._virtual){ o.v=1; const f=b._fit||b._pull||b._d33Part||b._bpcPart||b._shoeCode||""; if(f) o.f=String(f);
+    if(b._virtual){ o.v=1; const f=b._fit||b._pull||b._d33Part||b._bpcPart||b._shoeCode||b._trayCode||"";   /* v1.532: + ถาดช้อน */ if(f) o.f=String(f);
       if(b._csmPost||(b._csmPart&&/:arm$/.test(String(b.id)))) o.pg=1; }   // v1.382: เสา Cosimo มีหน้าแบบเสา (แตะเสา → 📄 แบบเสานี้)
     else { o.m=rs(L.mat); o.st=rs(L.surfT); o.sb=rs(L.surfB); const e=(L.edges||[]).map(rs); if(e.some(Boolean)) o.e=e;
       if(pm[b.id]) o.pid=pm[b.id].map(x=>"P"+x).join(","); if(b.part) o.pt=String(b.part); }
@@ -54721,6 +54875,12 @@ function fittingAgg(boards){   // รวมเดือย + พินรอง�
       (m[k]||(m[k]={art:k,dia:pin?(+b.L||5):"",kind:pin?"pin":"fit3d",
         name:(el&&el.desc)||(pin?(settings.pinName||"พินรับชั้น"):"ชั้นวางรองเท้าเหล็ก"),
         unit:(el&&el.unit)||(pin?"ตัว":"แผ่น"),count:0})).count+=1; }); }
+  /* v1.532: ถาดช้อน — 1 ถาด = 1 ชิ้น · ถาดที่ยังไม่มีรหัส (ค้น AX ไม่เจอ) ไม่ลงรายการ (ไม่เดารหัส) */
+  if(!snOff("cutTray")){ const _fl=(((settings.elements||{}).fittings)||[]);
+    boards.forEach(b=>{ if(!b||!b._trayPart) return; const k=String(b._trayCode||"").trim(); if(!k) return;
+      const el=_fl.find(x=>x.code===k); let fg=null; try{ fg=_ctFg[(b._trayW||0)+"x"+(b._trayD||0)]; }catch(e){}
+      let ax=""; try{ ax=costFgName(k); }catch(e){}
+      (m[k]||(m[k]={art:k,dia:"",kind:"fit3d",name:(el&&el.desc)||(fg&&fg.name)||ax||("ถาดช้อน "+b._trayW+"×"+b._trayD),unit:(el&&el.unit)||"ชิ้น",count:0})).count+=1; }); }
   // ราวแขวนผ้า: 1 ราว = 1 ตัว · รหัสจริง/Purchase ID map ตามความยาวจากซีรีส์ใน Element → Fittings (lenMap) เหมือนราง Drawer
   { const fd=(settings.elements&&settings.elements.fittings)||[];
     boards.forEach(b=>{ if(!b._hangRail)return; const series=b._hrCode||settings.hangRailCode||"HANGRAIL";
@@ -63847,6 +64007,7 @@ const CurvedShelf = (function(){
   <button data-act="rackfront"><span>🧺 เปลี่ยนเป็นหน้าบานตะแกรงชัก (ถอดบานพับ · เลื่อนไปกับตะแกรง)</span></button>
   <button data-act="mkbox"><span>🗃 ใส่กล่องลิ้นชักหลังบานนี้ (บานเดิมคงขนาด)</span></button>
   <button data-act="unbox"><span>🗃 ถอดกล่องลิ้นชัก — เหลือหน้าบานเปล่า (บานเดิมคงขนาด)</span></button>
+  <button data-act="cuttray" id="ctxCutTray"><span>🥄 ใส่ถาดช้อน (ลูกเล็ก)</span></button>
   <button data-act="symfix"><span>⊕ ชุดยึดหัวท้ายเท่ากัน (เดือยนำ · มินิฟิกตาม 32)</span></button>
   <button data-act="symfixclr"><span>⊖ ถอดชุดยึดของชิ้นนี้ (พร้อมรูคู่)</span></button>
   <button data-act="pintouch"><span>📌 ตรึงผิวกับชิ้นที่ชนอยู่ (ยืดตามเมื่อชิ้นนั้นขยับ)</span></button>
