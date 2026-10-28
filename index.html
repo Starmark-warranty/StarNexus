@@ -3281,7 +3281,7 @@ body[data-theme="dark"] .splash-dots span{background:rgba(255,255,255,.25)}
    ===================================================================== */
 /* ---- APP_META: แหล่งความจริงเดียวของเวอร์ชัน (ดูได้จาก console / คลิกชื่อแอป) ---- */
 const APP_META={
-  name:"StarNexus", version:"1.541", build:"2026-10-28/scenes",
+  name:"StarNexus", version:"1.542", build:"2026-10-28/uiz-bar",
   file:"StarNexus.html", basedOn:"Furnitech_V3.html (v3.11)",
   /* ───────── เริ่มนับเวอร์ชันใหม่ที่ 1.001 (21/08/2026) ─────────
      ของเดิมนับมาถึง 42.1 แล้ววิ่งเป็นทศนิยมสองชั้นซึ่งอ่านลำดับยาก
@@ -3289,6 +3289,7 @@ const APP_META={
      ประวัติเก่าเก็บไว้ทั้งหมดตามเลขเดิม ไม่ไล่เขียนใหม่ เพราะเลขในนั้นถูกอ้างถึงไปแล้ว
      รายการที่อยู่ใต้ 1.001 ลงไปจึงเป็นเลขชุดเก่า อ่านต่อกันได้ตามวันที่ */
   changelog:[
+    ["1.542","2026-10-28","FIX แถบ 🎬 ฉากไปซ้อนใต้แผงห้องออกแบบ (ผู้ใช้ 20:10 ภาพ) — เครื่องที่ตั้งขนาดหน้าจอ (zoom --uiz) ของลอยทุกชิ้นถูกย่อ/ขยาย แต่ตำแหน่งที่คิดจากกรอบแผงเป็นพิกเซลจอจริง ใส่กลับเป็น left ของชิ้นที่ถูก zoom จึงคลาดไปตามสัดส่วน (ย่อ 90% = เลื่อนเข้าไปใต้แผง) · ตอนนี้วัดสัดส่วน zoom ของชิ้นนั้นจริงแล้วหารกลับ (uiZoomOf) — แถบฉาก · หน้าต่างแก้ฉาก · หน้าต่าง 🖱 ความไวเมาส์"],
     ["1.541","2026-10-28","FEAT (ผู้ใช้ 19:36) — ① ฝ้าเพดาน: “มองมุมล่างมันต้องเห็นฝ้า” — ห้องออกแบบมีแผ่นฝ้าที่ความสูงห้อง (ห้องวาดปิดรอบ = ตามผิวในผนัง · ห้องสี่เหลี่ยม = เต็มห้อง) ฝ้าหลุมเจาะเป็นช่องมองขึ้นไปเห็นหลุม · เห็นเฉพาะกล้องอยู่ต่ำกว่าฝ้า (มองเงย/มุมล่าง/ในห้อง) มองจากบน/มุมแปลนไม่บัง · กล้องต่ำกว่าพื้น = พื้นหาย มองทะลุขึ้นไปเห็นฝ้า · ติ๊ก แสดงฝ้า ที่กลุ่มขนาดห้อง · SN_OFF.plCeilMesh=1 · ② 🎬 ฉาก (Scene) แบบ SketchUp: แถบแท็บฉากบนจอ (ปุ่ม 🎬 ใต้ลูกเต๋าเปิด/ปิด) · ＋ ฉาก = เก็บมุมกล้องตอนนี้ · คลิกแท็บ = กล้องเลื่อนไปมุมนั้น (เลนส์เลื่อนตาม) · คลิกขวา/ดับเบิลคลิกแท็บ = เปลี่ยนชื่อ · มุมเลนส์ 15–100° (ปกติ 42°) · เส้นตั้งตรง (มุมมอง 2 จุด — ผนัง/ขอบตู้ตั้งตรง) · 📷 อัปเดตมุม · ◀ ▶ เลื่อนลำดับ · ลบ · 🔭 = เลนส์/มุมมอง 2 จุดของกล้องตอนนี้ · PageUp/PageDown ไล่ฉาก · ฉากไปกับ Save Order / ไฟล์ .json / ทำงานต่อ (ไม่อยู่ใน Ctrl+Z) · Order → ใหม่ ล้างฉาก (เก็บห้องไว้ = เก็บฉากด้วย) · SN_OFF.scenes=1 / cam2p=1"],
     ["1.540","2026-10-28","FEAT ห้องออกแบบ (ผู้ใช้ 17:06) — ① กด TOP บนลูกเต๋า = ภาพแปลนแบบตอนวาดผนัง: ป้ายความยาวทุกช่วงผนังที่วาด + เลขผนัง (ไม่ต้องเปิดปุ่ม เลข) · ห้องสี่เหลี่ยมมีป้ายความยาวผนังแต่ละด้าน · หมุนกล้องออก = ป้ายหาย · SN_OFF.plPlanLbl=1 · ② Ctrl+Z / Ctrl+Y (Ctrl+Shift+Z) และปุ่ม ↶ ↷ ย้อน/ทำซ้ำงานห้องได้แล้ว (เดิมย้อนได้แต่ตู้) — วาด/ลบผนัง แก้ยาวช่วง ประตู หน้าต่าง เสา ฝ้า ปลั๊ก/ท่อ สีผนัง/พื้น ขนาดห้อง ล็อกห้อง อยู่ในประวัติเดียวกับตู้ ย้อนทีละขั้นตามลำดับที่ทำ · ระหว่างวาดผนัง Ctrl+Z = ถอยจุด · SN_OFF.plUndo=1 · ③ 💾 บันทึกห้อง / 📂 เปิดห้องที่บันทึก (แผงห้อง ใต้ปุ่มล็อกห้อง): เก็บทั้งห้อง (ไม่มีตู้) ลงไฟล์กลาง app_settings คีย์ plroom:<ชื่อ> — ทุกเครื่องที่ใช้ Server เดียวกันเห็น · ค้นชื่อได้ · เปิดใช้ = แทนห้องตอนนี้ (ตู้อยู่ที่เดิม) · ชื่อซ้ำ = ถามก่อนทับ · ลบได้ · 🧹 ล้างตู้ · เก็บห้อง: เริ่มออเดอร์ใหม่แต่ห้องอยู่ครบ (เอาห้องเดิมไปปรับใช้บ้านหลังอื่น) หรือล้างแค่ตู้ (ออเดอร์เดิม) · Order → ใหม่ (หน้าเปล่า) ตอนมีห้องที่วาดไว้ = ถามก่อน มีปุ่ม 🏠 ใหม่ · เก็บห้องไว้ (เดิมห้องหายเงียบ ๆ ถ้าไม่มีตู้) · ปุ่ม ล้าง บอกว่าห้องยังอยู่ · SN_OFF.plRoomLib=1"],
     ["1.539","2026-10-28","FEAT ห้องออกแบบ (ผู้ใช้ 16:58 + 17:00) — ① เลือกผนังทีละช่วงแล้วลบ: คลิกผนัง (ไม่ลาก) = เลือก ขอบผนังเป็นเส้นฟ้า แผงซ้ายบอกยาว (แก้ได้แบบยืด CAD) หนา สูง · 🗑 ลบผนังช่วงนี้ หรือกด Del (ถามก่อน) · Esc = เลิกเลือก · ผนังที่วาดแบบปิดรอบ = เปิดรอบตรงช่วงนั้น (ที่เหลือเป็นเส้นเดียว) · เส้นเปิด = แยกเป็น 2 เส้น (หนา/สูง/ด้าน/สีตามเดิม) · ผนังห้องสี่เหลี่ยม = ปิดผนังด้านนั้น · ประตู/หน้าต่าง/ปลั๊กบนช่วงที่ลบหายไปด้วย ของบนช่วงอื่นอยู่ที่เดิม · ลากเริ่มบนผนังยังหมุนกล้องได้ · ห้องล็อก = เลือกไม่ได้ · ปิด SN_OFF.plWallSel=1 · แก้ด้วย: ลบผนังทั้งเส้นจากแผงห้อง ประตู/หน้าต่างบนเส้นถัดไปเคยเลื่อนไปติดผิดเส้น ตอนนี้เลขเส้นเลื่อนตาม และของบนเส้นที่ลบหายไปด้วย · ② 🖱 ปุ่มใต้ลูกเต๋า = ความไวเมาส์ ลากหมุน / ล้อซูม 0.25–2.5× (ค่าเดิม 1×) จำไว้ในเครื่อง · SN_OFF.orbSens=1 · ③ หน้าต่างไม่มีขอบรองยื่นด้านในแล้ว (SN_OFF.plWinNoSill=1 = มีแบบเดิม) · ④ 🪟 หน้าต่างบานเดี่ยว (การ์ดใหม่ 600×1200 สูงจากพื้น 900): กรอบบาน มือจับฝั่งตรงข้ามบานพับ เส้นประบอกฝั่งบานพับ · สลับบานพับด้วย R / ที่แผง · หน้าต่างทุกแบบมีช่อง ห่างฝ้า (ขอบบนถึงหัวผนัง — แก้แล้วเลื่อนทั้งบาน สูงเท่าเดิม) ใส่ตามแบบลูกค้า เช่น สูง 2450 ห่างพื้น 210 ห่างฝ้า 320 · ⑤ ตู้ที่เลือก: แถว ห่างซ้าย/ขวา (ใต้ห่างผนัง) — ระยะถึงผนังหรือตู้ข้าง ๆ ที่ใกล้สุด (เลขเดียวกับเส้นแดง/ปุ่มปิดช่อง) ใส่ค่าใหม่ ตู้เลื่อนตามแนวผนัง อีกด้านเปลี่ยนตาม · ใส่เกินช่องรวม = เตือน · SN_OFF.plSideOff=1 · ⑥ 🔔 แจ้งเตือนเวอร์ชันใหม่: Deploy ทุกครั้งส่ง version.json ขึ้นคู่ index.html · โปรแกรมอ่าน 20 วิหลังเปิด ทุก 5 นาที และตอนกลับมาที่แท็บ · บนเว็บใหม่กว่าเครื่องนี้ = แถบฟ้ากลางล่างจอ “มีโปรแกรมเวอร์ชันใหม่ … Save งานแล้วกด F5” ปุ่ม 🔄 โหลดใหม่ (มีงานในจอ = ถามก่อน · กู้งานได้ที่ ↩ ทำงานต่อจากงานล่าสุด) / ภายหลัง (ซ่อน 30 นาที) + ลงกระดิ่งแจ้งเตือนครั้งเดียว · กดแล้วยังเป็นรุ่นเดิม = บอกให้รอเว็บอัปเดตแล้ว Ctrl+F5 · เปิดจากไฟล์ในเครื่อง = อ่านจาก GitHub Pages ปุ่มเป็น 🌐 เปิดเว็บ · หน้าดูงานไม่เตือน · SN_OFF.appUpd=1"],
@@ -20173,6 +20174,7 @@ function orbSensPop(btn){ let p=$("orbSensPop"); if(p){ p.remove(); return; }
     +'<div style="color:var(--ink-dim,#6b7280);font-size:11px;margin-top:6px">น้อย = ช้าลง ละเอียดขึ้น · มาก = เร็วขึ้น · จำไว้ในเครื่องนี้</div>'
     +'<div style="display:flex;gap:6px;margin-top:9px"><button class="ibtn" data-a="reset" style="flex:1;justify-content:center">ค่าเดิม 1×</button><button class="ibtn" data-a="close" style="flex:1;justify-content:center">✓ ปิด</button></div>';
   document.body.appendChild(p);
+  { const z=uiZoomOf(p); p.style.left=""; p.style.top=Math.round((rc.bottom+6)/z)+"px"; p.style.right=Math.max(Math.round((innerWidth-rw.right)/z),8)+"px"; }   // v1.542
   const save=()=>{ try{ lsSet("sxlocaltrial:furnitech:orbitRot",ORB_SENS.rot); lsSet("sxlocaltrial:furnitech:orbitZoom",ORB_SENS.zoom); }catch(e){} };
   const show=k=>{ const v=p.querySelector('[data-v="'+k+'"]'); if(v) v.textContent=(+ORB_SENS[k]).toFixed(2)+"×"; };
   p.querySelectorAll('input[type="range"]').forEach(r=>{ r.oninput=()=>{ const k=r.dataset.k; ORB_SENS[k]=Math.min(Math.max(+r.value||1,0.25),2.5); show(k); }; r.onchange=save; });
@@ -20193,6 +20195,10 @@ function orbSensPop(btn){ let p=$("orbSensPop"); if(p){ p.remove(); return; }
    ปิด SN_OFF.scenes=1 · SN_OFF.cam2p=1 */
 const SCN={act:null, show:null, tm:0, fov0:42};
 const CAM2P={on:false};
+/* ───────── v1.542: ตำแหน่งชิ้นลอยเมื่อจอตั้งขนาด (body[data-uiz] > * { zoom }) ─────────
+   ผู้ใช้ 20:10: “ปุ่มฉากมันไปซ้อนแผง” — getBoundingClientRect ได้พิกเซลจอจริง แต่ style.left ของชิ้นที่ถูก zoom คูณ zoom อีกรอบ
+   วัดจริง: ตั้ง left 1000px แล้วอ่านตำแหน่งบนจอ = สัดส่วน zoom ของชิ้นนั้น (ใช้ได้ทั้ง Chrome รุ่นเก่า/ใหม่ที่คิด zoom ต่างกัน) */
+function uiZoomOf(el){ try{ const s0=el.style.left; el.style.left="1000px"; const z=el.getBoundingClientRect().left/1000; el.style.left=s0; return (z>0.2&&z<5)?z:1; }catch(e){ return 1; } }
 function scnList(){ if(typeof state==="undefined") return []; if(!Array.isArray(state.scenes)) state.scenes=[]; return state.scenes; }
 function scnGet(id){ return scnList().find(s=>s&&s.id===id)||null; }
 function scnFov(){ return (typeof plBaseFov==="function")?plBaseFov():((typeof camera!=="undefined"&&camera)?camera.fov:42); }
@@ -20240,7 +20246,7 @@ function scnPlace(b){ if(!b) return; let L=12, R=innerWidth-12;
   ["list","plPanel"].forEach(id=>{ const e=$(id); if(!e) return; const cs=getComputedStyle(e); if(cs.display==="none"||cs.visibility==="hidden") return;
     const rc=e.getBoundingClientRect(); if(rc.width>20&&rc.left<innerWidth/2&&rc.top<innerHeight/2&&rc.bottom>60) L=Math.max(L,rc.right+10); });
   const vc=$("viewCube"); if(vc){ const rc=vc.getBoundingClientRect(); if(rc.width>0&&rc.left>L) R=Math.min(R,rc.left-10); }
-  b.style.left=Math.round(L)+"px"; b.style.maxWidth=Math.max(Math.round(R-L),180)+"px"; }
+  const z=uiZoomOf(b); b.style.left=Math.round(L/z)+"px"; b.style.maxWidth=Math.max(Math.round((R-L)/z),180)+"px"; }   // v1.542: หาร zoom
 function scnBarRender(){ let b=$("scnBar"); if(!scnBarOn()){ if(b) b.remove(); scnPopClose(); return; }
   scnCss(); if(!b){ b=document.createElement("div"); b.id="scnBar"; document.body.appendChild(b); }
   const L=scnList();
@@ -20270,6 +20276,7 @@ function scnPopOpen(anchor,s){ scnPopClose(); if(snOff("scenes")) return; scnCss
     +(s?'<div class="scnBtns"><button data-a="left" title="เลื่อนไปซ้าย">◀</button><button data-a="right" title="เลื่อนไปขวา">▶</button><span style="flex:1"></span><button data-a="del" style="color:#d33">🗑 ลบฉาก</button></div>':'')
     +'<div class="scnBtns" style="justify-content:flex-end"><button data-a="close">✓ ปิด</button></div>';
   document.body.appendChild(p);
+  { const z=uiZoomOf(p); p.style.left=Math.round(Math.max(8,Math.min(rc.left,innerWidth-296*z))/z)+"px"; p.style.top=Math.round((rc.bottom+6)/z)+"px"; }   // v1.542
   const q=x=>p.querySelector(x), fr=q("#scnFov"), fvl=q("#scnFovV");
   const setF=v=>{ camFovSet(v); if(fvl) fvl.textContent=Math.round(v)+"°"; if(fr) fr.value=Math.round(v); if(s) s.fov=Math.round(v); };
   if(fr){ fr.oninput=()=>setF(+fr.value); fr.onchange=()=>{ scnSave(); scnBarRender(); }; }
