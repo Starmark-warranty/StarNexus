@@ -3281,7 +3281,7 @@ body[data-theme="dark"] .splash-dots span{background:rgba(255,255,255,.25)}
    ===================================================================== */
 /* ---- APP_META: แหล่งความจริงเดียวของเวอร์ชัน (ดูได้จาก console / คลิกชื่อแอป) ---- */
 const APP_META={
-  name:"StarNexus", version:"1.532", build:"2026-10-28/cut-tray",
+  name:"StarNexus", version:"1.533", build:"2026-10-28/draw-wall",
   file:"StarNexus.html", basedOn:"Furnitech_V3.html (v3.11)",
   /* ───────── เริ่มนับเวอร์ชันใหม่ที่ 1.001 (21/08/2026) ─────────
      ของเดิมนับมาถึง 42.1 แล้ววิ่งเป็นทศนิยมสองชั้นซึ่งอ่านลำดับยาก
@@ -3289,6 +3289,7 @@ const APP_META={
      ประวัติเก่าเก็บไว้ทั้งหมดตามเลขเดิม ไม่ไล่เขียนใหม่ เพราะเลขในนั้นถูกอ้างถึงไปแล้ว
      รายการที่อยู่ใต้ 1.001 ลงไปจึงเป็นเลขชุดเก่า อ่านต่อกันได้ตามวันที่ */
   changelog:[
+    ["1.533","2026-10-28","FEAT ✏ วาดผนังจากแปลน ในห้องออกแบบ (ผู้ใช้ 14:04: “อยากได้สร้างผนังออกเหมือนลากเส้น แล้ว Extrude ขึ้นจากเส้นเป็นผนัง ตามแบบบ้านลูกค้า เริ่มมองจาก plan ด้านบน ลองทำเครื่องมือมาให้ลองใช้”) — เดิม ห้องเป็นกล่องสี่เหลี่ยม (กว้าง×ลึก×สูง + ติ๊กผนัง 4 ด้าน) ห้อง L / มุมหัก / ผนังเอียง ทำไม่ได้ · ตอนนี้ ปุ่ม ✏ วาดผนังจากแปลน (กลุ่ม “ผนังที่วาด” ในแผงห้อง) → กล้องมองจากบน + กริด 500 + แถบเครื่องมือ: คลิกวางจุดบนพื้น · ตั้งฉาก 90° (O สลับ · Shift ค้าง = เอียง) · ดูดจุดปลาย/ตรงแนวจุดอื่น/ความยาวลงกริด · พิมพ์ตัวเลข+Enter = ช่วงนี้ยาวเท่านั้นตามทิศเมาส์ · คลิกจุดแรก/⭘ = ปิดรอบ · ดับเบิลคลิก/คลิกขวา/Enter = จบเส้น · Backspace ถอยจุด · Esc ออก · ผนัง Extrude ขึ้น 3D ทันที หนา/สูงตั้งได้ (ตั้งต้น 100 / สูงห้อง) · เส้น = ผิวในห้อง (หนาออกนอก) หรือกลางผนัง · มุมต่อแบบ miter ทุกองศา · กล้องอยู่นอกผนัง = ซ่อนผนังนั้นแบบผนังห้องเดิม · วาดเส้นแรกเสร็จ = ปิดผนังห้องสี่เหลี่ยมเดิม + พื้นห้องครอบผนังที่วาด · แผงห้องแก้หนา/สูง/ยาวแต่ละช่วง (ยืดแบบ CAD ผนังที่อยู่เลยปลายช่วงเลื่อนตาม) · ⇄ สลับด้านหนา · 🗑 ลบ · ลากตู้ไปชิดผนังที่วาดช่วงที่ตรงแนวแกน = ดูดติดผิวใน หันหน้าเข้าห้อง (ชิดปลายช่วง/ตู้ข้าง ๆ · ลงกริด) · เก็บใน state.room.dw (ไปกับไฟล์งาน/ออเดอร์) · ยังไม่ทำ: ตู้บนผนังเอียง · ช่องว่าง/ฟิลเลอร์/ท็อป/โหมดสมจริง/แบบแนบใบเสนอราคา (ยังอิงห้องสี่เหลี่ยม) · ประตู/หน้าต่าง · ปิด SN_OFF.plDrawWall=1"],
     ["1.532","2026-10-28","FEAT 🥄 ถาดช้อนในลิ้นชักลูกเล็ก (ผู้ใช้ 08:14 project 58 + ภาพถาด + AX ACCDT00007 “ถาดช้อน A16 สีเทา ตู้ 60 ขนาด 508x472 mm. ไม่บาก”: “ผมเรียกว่าลูกเล็ก มีให้เลือกใส่ถาดช้อนได้ ถาดสูงสัก 60–70 ทำเป็น 3D โหมดปกติคลิกขวาเลือกใส่ได้ทีละลูก แต่ลูกที่สูง 148 ใส่ไม่ได้ · กล่องไม้เอาไว้ก่อน · รหัสออกตามนั้นที่ราง 500 ตู้ 600 · มีตู้ 450 600 900 ลบขนาดจากตู้ 60 ไปก็จะเจอของ 450 กับ 900 · ด้านลึกคงไว้ · รางอื่นใส่ไม่ได้”) — คลิกขวาที่หน้าลิ้นชัก (หรือชิ้นกล่อง/ตัวถาด) → 🥄 ใส่ถาดช้อน / เอาถาดช้อนออก · ใส่ได้เมื่อ: กล่องแผงข้างเหล็ก · ราง 500 · ลูกเล็ก (แผ่นหลังกล่อง ≤ 100 เช่น 63) · ตู้กว้างตรงตาราง (450 → 358×472 · 600 → 508×472 ACCDT00007 · 900 → 808×472 = กว้างตู้ − 92) · ไม่เข้าเงื่อนไข = ปุ่มจางบอกเหตุผล (ลูกสูง 148 / รางอื่น / ตู้กว้างอื่น) · กล่องไม้ยังไม่ขึ้น · ถาด = ชิ้นเสมือนกลุ่มเดียวกับลิ้นชัก (เปิดบานแล้วเลื่อนออกตาม) วางบนพื้นกล่อง กลางระหว่างแผ่นหลังกล่องกับหลังหน้าบาน สูง 60 (ไม่โผล่พ้นแผงข้างเหล็กสูง 80 ของลูกเล็ก · ตั้งได้) · 3D พลาสติกเทา ขอบปีก + ช่องแบ่งตามภาพ · ใบเบิก 1 ถาด = 1 ชิ้น · รหัส 450/900 ยังไม่รู้ → ค้นจาก AX (fitting_global ชื่อมี “ถาดช้อน” + ขนาด) ไม่เจอ = วาด 3D แต่ไม่ลงรายการเบิก (ไม่เดารหัส) · ตั้งค่า → ลิ้นชัก: ตารางขนาด/รหัส · รางที่ใส่ได้ · สูงถาด · ปิด SN_OFF.cutTray=1"],
     ["1.531","2026-10-28","UI จัดระเบียบแผงห้องออกแบบ (ผู้ใช้ 28/10 07:54 ภาพแผงห้อง: “จัดระเบียบ UI ให้เข้าที่หน่อยครับ”) — เดิม หัวแผงตกบรรทัด (ห้อง/ออกแบบ + คำแนะนำสองบรรทัด) · ปุ่ม 🎨 สีทั้งออเดอร์ / 🖐 มือจับทั้งห้อง เบียดอยู่ท้ายแถวฟิลเลอร์ลงพื้น ข้อความในปุ่มตกสามบรรทัด · ป้ายกับช่องกรอกยาวไม่เท่ากันจึงไม่ตรงแนว · ปุ่มยืดเต็มแถว (.ibtn flex:1) · ปุ่ม 💰 ใส่ราคาที่ขาด ตกลงมาเต็มแถว · เปิดรายละเอียดแล้วแถบล่างดันส่วนบนจนเหลือนิดเดียว · ตอนนี้: หัวแผง = ชื่อ + ✓ เสร็จ บรรทัดเดียว คำแนะนำบรรทัดล่าง · ปุ่มทั้งห้อง (🎨 สี / 🖐 มือจับ) ขึ้นมาอยู่ใต้หัวห้อง · ทุกกลุ่มเป็นสองคอลัมน์ ป้ายซ้ายกว้างเท่ากัน ช่องกรอกขวา หมายเหตุอยู่ใต้ช่อง · กลุ่มที่พับโชว์สรุปบรรทัดที่สอง (เปิดแล้วซ่อนสรุป) · แถบล่าง = ตู้ในห้อง + ราคาขาย / ต้นทุน / แถบเตือนราคาคู่ปุ่ม 💰 / ปุ่ม 4 ตัวเป็นตาราง 2×2 · แถบล่างสูงไม่เกิน 48% ของจอ (เลื่อนในตัว) · ตู้ที่เลือก: รหัส + ราคาบรรทัดแรก ขนาดบรรทัดสอง · ก/ส/ล + ปรับขนาด แถวเดียว · ปุ่มคำสั่งเป็นตาราง 3 คอลัมน์ · ฟิลเลอร์/แผ่นปิดข้าง ใช้คอลัมน์ป้ายเดียวกัน · id ปุ่ม/ช่องเดิมทุกตัว (การทำงานไม่เปลี่ยน) · ปิด SN_OFF.plTidy=1 = หน้าตาแบบ 1.530"],
     ["1.530","2026-10-27","UX 🖐 ระยะมือจับอิงตัวแปรของตู้ (ผู้ใช้ 21:30 ภาพ Variables (ตู้นี้) BND214 — $K_Pull_Coordinate_X1–X6 = 35 · Y = 0 จาก Variables กลาง: “จริง ๆ มันต้องอิงค่า Default ไว้ คนที่มาดูหรือตรวจต่อหรือปรับแบบ จะได้ตรวจได้”) — เดิม (1.524–1.529) กล่องมือจับเขียนระยะเป็นตัวเลขตายตัวในมือจับ ตารางตัวแปรของตู้ยังโชว์ 35/0 ซึ่งไม่ใช่ค่าที่ใช้จริง แก้ในตารางก็ไม่ขยับ · ตอนนี้ระยะชี้ไปที่ $K_Pull_Coordinate_X{n}/Y{n} ของบานลำดับ n (แบบเดียวกับมือจับจากออเดอร์) · ระยะเท่าค่าตั้งต้น (35 · Y 0 = 35) = ไม่เขียนทับ ใช้ค่าตั้งต้น · ต่างจากค่าตั้งต้น = เขียนทับเฉพาะตู้นี้ เป็นสูตรอ่านง่าย เช่น X = 35+180 (ปลายมือจับ 35 + ครึ่งยาวมือจับ 360) · ช่องแกนกลาง (UpMiddle ฯลฯ) ไม่เขียน · เอามือจับออก = ล้างค่าที่เขียนทับของบานนั้น · ตรวจ/แก้ได้ที่ Variables (ตู้นี้) › ตัวแปรตัวเลขของตู้นี้ (ช่อง ทับเฉพาะตู้นี้ / ใช้จริง) แล้วมือจับขยับตาม · ชิ้นที่ไม่มีลำดับบาน (แผ่นหน้า FXF) ยังเป็นตัวเลขในมือจับ · FIX ช่องตัวแปรใส่สูตรเลขล้วน (เช่น 35+75) เดิมได้แค่เลขตัวแรก (parseFloat) ตอนนี้คิดสูตร (evalCabExpr/evalCabQuiet)"],
@@ -28900,6 +28901,7 @@ function boardRole(b){
      SN_OFF.dwgDoorLine=1 หน้ารวมวัสดุ ดีไซน์หน้าบานเป็นภาพถ่าย 3D แยกตาม Part ลิงก์ (แบบ 1.521) (v1.527)
      SN_OFF.realPlRoom=1  โหมดสมจริงในห้องออกแบบสร้างห้องรอบตู้แบบเดิม (ไม่ใช้ผนังของห้องออกแบบ) (v1.528)
      SN_OFF.realSnap=1    ไม่มีปุ่ม 📷 บันทึกภาพสมจริงความละเอียดสูง (v1.528)
+     SN_OFF.plDrawWall=1  ไม่มีเครื่องมือวาดผนังในห้องออกแบบ (ไม่มีปุ่ม ไม่วาดผนังที่วาด ไม่ดูดตู้ · ข้อมูลยังอยู่ใน state.room.dw) (v1.533)
      SN_OFF.cutTray=1     ไม่มีถาดช้อนในลิ้นชัก (ไม่วาด ไม่นับใบเบิก เมนูคลิกขวาไม่ขึ้น · ธง _cutTray ยังอยู่ที่หน้าลิ้นชัก) (v1.532)
      SN_OFF.plTidy=1      แผงห้องออกแบบหน้าตาแบบ 1.530 (ไม่จัดสองคอลัมน์ · ปุ่มสี/มือจับทั้งห้องอยู่ในกลุ่มขา · ปุ่มท้ายแผงสองแถว) (v1.531)
      SN_OFF.plPullVar=1   กล่องมือจับเขียนระยะเป็นตัวเลขในมือจับแบบ 1.529 (ไม่อิงตัวแปร K_Pull_Coordinate ของตู้) (v1.530)
@@ -35501,6 +35503,8 @@ const PL_WALLS={
   right:{ax:2, pa:0, s:-1, yaw:270, lbl:"ขวา"},
   front:{ax:0, pa:2, s:-1, yaw:180, lbl:"หน้า"} };
 const PL_SNAP=80, PL_PULL=450, PL_GAPMAX=200;
+/* v1.533: สถานะเครื่องมือวาดผนัง (ฟังก์ชันอยู่เหนือ plBind) */
+const PLW={on:false, pts:null, cur:null, hit:null, buf:"", ortho:true, prev:null, gridObj:null, bar:null, tip:null, last:null, mx:0, my:0, ev:null, raf:0, lbl:{}};
 function plRoomDef(){ return {x0:0, z0:0, w:3600, d:3000, h:2600, wallBot:1550, wallTop:0, legH:100,
   plinthMat:"wood", ceilOn:true, ceilH:0, lightOn:false, lightCode:"WEF253", lightT:19, bevelTT:30, lightFill:true, sideFloor:true, sideCeil:false,   // v1.313 · v1.316 · v1.317
   walls:{back:true, left:true, right:true, front:false}}; }
@@ -35635,9 +35639,9 @@ function plCamRoom(){
 /* ---------- วาดห้อง (อยู่บน scene ไม่ใช่ root — render3D ล้าง root ทุกรอบ) ---------- */
 function plRoomDraw(){
   if(typeof scene==="undefined"||!scene) return;
-  if(PL.grp){ scene.remove(PL.grp); PL.grp.traverse(o=>{ if(o.geometry) o.geometry.dispose(); if(o.material&&o.material.dispose) o.material.dispose(); }); PL.grp=null; }
+  if(PL.grp){ scene.remove(PL.grp); PL.grp.traverse(o=>{ if(o.geometry&&!o.isSprite) o.geometry.dispose(); if(o.material&&o.material.dispose&&!(o.material.userData&&o.material.userData.keep)) o.material.dispose(); }); PL.grp=null; }   // v1.533: ป้ายความยาวผนังที่วาดใช้วัสดุแคช (keep) · Sprite ใช้ geometry กลาง
   try{ plDimDraw(); }catch(e){}                                              // v1.310
-  if(!PL.on){ invalidate(); return; }
+  if(!PL.on){ try{ if(PLW.on) plwHalt(); }catch(e){} invalidate(); return; }   // v1.533: ปิดห้องออกแบบระหว่างวาดผนัง = เลิกวาด
   const r=plRoom(), g=new THREE.Group(); g.name="plRoom"; const T=100;
   const fl=new THREE.Mesh(new THREE.PlaneGeometry(r.w,r.d), new THREE.MeshBasicMaterial({color:0xb9a47c,transparent:true,opacity:.30,depthWrite:false}));
   fl.rotation.x=-Math.PI/2; fl.position.set(r.x0+r.w/2,0.8,r.z0+r.d/2); fl.renderOrder=-1; g.add(fl);
@@ -35670,6 +35674,7 @@ function plRoomDraw(){
       ln.computeLineDistances(); g.add(ln); }); };
   if(+r.wallBot>0) guide(+r.wallBot,0x1e88e5);
   if(+r.wallTop>0) guide(+r.wallTop,0xef6c00);
+  try{ plwAddMeshes(g); }catch(e){ console.error("plw:",e); }   // v1.533: ผนังที่วาดจากแปลน
   scene.add(g); PL.grp=g; invalidate();
 }
 /* ---------- แคตตาล็อก → รายการในแผง ---------- */
@@ -36184,8 +36189,12 @@ function plDragApply(){
     const dist=(c[W.pa]-plFace(r,k))*W.s; if(dist<-300) return;
     const along=c[W.ax], rg=plRange(r,W.ax); if(along<rg[0]-300||along>rg[1]+300) return;
     if(dist<g.D/2+PL_PULL&&dist<best){ best=dist; wk=k; } });
+  /* v1.533: ผนังที่วาด (ช่วงตรงแนวแกน) ดูดตู้ด้วย — ใกล้กว่าผนังห้องสี่เหลี่ยม = ใช้ผนังที่วาด */
+  let plwH=null; if(!snOff("plDrawWall")){ try{ plwH=plwMagnet(c,g.D,wk?best:Infinity); }catch(e){ console.error("plwMag:",e); } }
+  if(plwH) wk=null;
   plOffMark(g.inst,(wk&&wk===g.wall0)?(g.off0||0):0);
-  if(wk){
+  if(plwH){ plSetYaw(g.inst,plwH.yaw); plwPutOn(g.inst,plwH,c,g.nb); }
+  else if(wk){
     const W=PL_WALLS[wk]; plSetYaw(g.inst,W.yaw);
     const f=plFp(plBoardsOf(g.inst)), len=f.hi[W.ax]-f.lo[W.ax];
     plPutOnWall(g.inst,wk,c[W.ax]-len/2,true,g.nb);
@@ -36201,7 +36210,7 @@ function plDragApply(){
   g.wall=wk;
   _fastFrame=true; try{ render3D(false); }finally{ _fastFrame=false; }
   try{ updateSelBox(); }catch(e){}
-  const tip=$("plDragTip"); if(tip){ const o=wk?plOffOf(g.inst):0; tip.textContent=wk?("ติดผนัง"+PL_WALLS[wk].lbl+(o>0?(" · ห่างผนัง "+o):"")):"วางอิสระ"; }
+  const tip=$("plDragTip"); if(tip){ const o=wk?plOffOf(g.inst):0; tip.textContent=plwH?("ติดผนังที่วาด "+plwH.lbl):(wk?("ติดผนัง"+PL_WALLS[wk].lbl+(o>0?(" · ห่างผนัง "+o):"")):"วางอิสระ"); }   // v1.533
 }
 function plDragUp(){
   const g=PL.drag; if(!g) return; PL.drag=null;
@@ -36216,6 +36225,318 @@ function plDragUp(){
   if(g.rail) setTimeout(()=>{ try{ toast(csmRailMsg(g.inst)); }catch(e){} },0);   // v1.390
 }
 function plDragApplyLast(g){ const keep=PL.drag; PL.drag=g; try{ plDragApply(); }finally{ PL.drag=keep; } }
+/* ═════════ v1.533: ✏ วาดผนังจากแปลน (ห้องออกแบบ) ═════════
+   ผู้ใช้ 28/10/2026 14:04 (ภาพห้องออกแบบว่าง): “ห้องออกแบบ เขาอยากได้สร้างผนังออกเหมือนลากเส้น แล้ว Extrude ขึ้นจากเส้นเป็นผนัง ตามแบบบ้านลูกค้า
+     ทำได้ไหม เริ่มมองจาก plan ด้านบน ลองทำเครื่องมือมาให้ผมลองใช้ที”
+   เดิม: ห้องเป็นกล่องสี่เหลี่ยม (กว้าง × ลึก × สูง + ติ๊กผนังหลัง/ซ้าย/ขวา/หน้า) — ห้อง L ห้องมีมุมหัก ผนังเอียง ทำไม่ได้
+   ตอนนี้ (ตัวลองใช้):
+     · ปุ่ม ✏ วาดผนังจากแปลน (กลุ่ม “ผนังที่วาด” ในแผงห้อง) → กล้องมองจากบน (plwCamTop) + กริด 500 + แถบเครื่องมือด้านบน (#plwBar)
+     · คลิกวางจุดบนพื้น (y=0) · plwSnap: ดูดจุดปลายเดิม/มุมห้อง (ระยะ ~1.2% ของระยะกล้อง) → ตั้งฉาก 90° (O สลับ · Shift ค้าง = เอียง)
+       → ตรงแนวกับจุดอื่น (x หรือ z เท่ากัน) → ไม่งั้นความยาวลงกริด (ค่าสแนปแถบล่าง นับจากจุดก่อนหน้า)
+       พิมพ์ตัวเลขแล้ว Enter = ช่วงนี้ยาวเท่านั้นตามทิศเมาส์ · คลิกจุดแรก/⭘ = ปิดรอบ · ดับเบิลคลิก/คลิกขวา/Enter = จบเส้น · Backspace = ถอยจุด · Esc = ออก
+       ตัวรับเมาส์/คีย์ลงทะเบียนตอนโหลดสคริปต์ (capture บน window) จึงทำงานก่อนตัวลากตู้ (plDragDown) และปุ่ม Del/Backspace ลบตู้ของห้องออกแบบ (plBind)
+       → ระหว่างวาด คลิกซ้ายไม่หมุนกล้อง/ไม่ลากตู้ · คลิกขวาลาก = เลื่อนจอ · ล้อ = ซูม ได้ตามเดิม
+     · ข้อมูล state.room.dw = [{id, pts:[[x,z]…], closed, t หนา, h สูง, al "in" (เส้น = ผิวในห้อง หนาออกนอก) | "c" (กลางผนัง), flip}] → ไปกับไฟล์งาน/ออเดอร์ (state.room)
+       ค่าตั้งต้นของเส้นใหม่: state.room.dwT (100) · dwH (สูงห้อง) · dwAl
+     · 3D (plwAddMeshes ใน plRoomDraw): ทีละช่วง = รอยเท้า 4 มุม (plwFoot: เส้นในกับเส้นนอก ต่อมุมแบบ miter ทุกองศา · มุมแหลมมาก = ตัดตรง) → ExtrudeGeometry สูง h
+       ด้านใน (plwInSign): ปิดรอบ = ตามทิศการวาด (พื้นที่มีเครื่องหมาย) · ไม่ปิด = ฝั่งที่เป็นพื้นที่ของเส้น / เส้นตรงเส้นเดียว = ฝั่งกลางห้อง · ⇄ สลับได้รายเส้น
+       กล้องอยู่นอกผิวนอกผนัง = ไม่วาดผนังนั้น (แบบผนังห้องเดิม) ยกเว้นตอนวาด/มองจากบน · ป้ายความยาวแต่ละช่วงขึ้นตอนวาด · เส้นแนวก้นตู้ลอย/แนวบนบนผิวใน
+     · วาดเส้นแรกเสร็จ: ปิดผนังห้องสี่เหลี่ยมเดิมให้ + พื้นห้อง (x0 z0 w d) ครอบผนังที่วาด (เปิดผนังเดิมกลับได้ที่ “ขนาดห้อง · ผนัง”)
+     · แผงห้อง (plwGrpHtml): ผนังแต่ละเส้น แก้หนา/สูง/เส้น=ผิวใน|กลาง · ยาวแต่ละช่วง (plwSetSeg ยืดแบบ CAD — จุดที่อยู่เลยปลายช่วงเลื่อนตาม ห้องยังตั้งฉาก) · ⇄ สลับด้านหนา · 🗑 ลบ
+     · ลากตู้ (plDragApply → plwMagnet/plwPutOn): ช่วงที่ตรงแนวแกน ดูดตู้เข้าผิวใน หันหน้าเข้าห้อง · ชิดปลายช่วง/ขอบตู้ข้าง ๆ ภายใน 80 · ไม่งั้นลงกริด
+       (ยังไม่กันตู้ทับกันแบบผนังห้องเดิม)
+     ยังไม่ทำ: ตู้บนผนังเอียง · ช่องว่าง/ฟิลเลอร์ · ท็อป · โหมดสมจริง · แบบแนบใบเสนอราคา (ยังใช้ห้องสี่เหลี่ยม) · ประตู/หน้าต่าง · Ctrl+Z (ห้องไม่อยู่ในประวัติย้อนกลับ)
+   ปิด: SN_OFF.plDrawWall=1 (ไม่มีปุ่ม ไม่วาดผนังที่วาด ไม่ดูดตู้ · ข้อมูลยังอยู่ใน state.room.dw) */
+function plwOn(){ return !!(PLW.on&&PL.on); }
+function plwList(){ const r=plRoom(); if(!Array.isArray(r.dw)) r.dw=[]; return r.dw; }
+function plwDefT(){ const v=+plRoom().dwT; return (v>=10&&v<=1000)?v:100; }
+function plwDefH(){ const r=plRoom(), v=+r.dwH; return v>=200?v:(+r.h||2600); }
+function plwAl(){ return plRoom().dwAl==="c"?"c":"in"; }
+function plwSegs(w){ const P=(w&&w.pts)||[], n=P.length, S=[]; for(let i=0;i<n-1;i++) S.push([P[i],P[i+1]]); if(w&&w.closed&&n>=3) S.push([P[n-1],P[0]]); return S; }
+function plwLen(sg){ return Math.hypot(sg[1][0]-sg[0][0],sg[1][1]-sg[0][1]); }
+/* ด้านในห้อง: +1 = ซ้ายของทิศที่วาด (ระนาบ x,z) · −1 = ขวา */
+function plwInSign(w){ const P=(w&&w.pts)||[]; let A=0;
+  for(let i=0;i<P.length;i++){ const a=P[i], b=P[(i+1)%P.length]; A+=a[0]*b[1]-b[0]*a[1]; }
+  let s;
+  if(Math.abs(A)>1000) s=A>0?1:-1;
+  else { const r=plRoom(), c=[r.x0+r.w/2, r.z0+r.d/2], a=P[0]||[0,0], b=P[P.length-1]||a;
+    s=((b[0]-a[0])*(c[1]-a[1])-(b[1]-a[1])*(c[0]-a[0]))>=0?1:-1; }
+  return (w&&w.flip)?-s:s; }
+/* รอยเท้าทีละช่วง: q = [ในต้น, ในปลาย, นอกปลาย, นอกต้น] · ni = ทิศเข้าห้อง · oi/oo = ระยะเลื่อนผิวใน/ผิวนอกตามทิศออกนอก */
+function plwFoot(w){
+  const S=plwSegs(w), t=Math.max(+w.t||plwDefT(),1), s=plwInSign(w), al=(w.al==="c")?"c":"in";
+  const oi=al==="c"?-t/2:0, oo=al==="c"?t/2:t;
+  const G=S.map(([a,b])=>{ const dx=b[0]-a[0], dz=b[1]-a[1], L=Math.hypot(dx,dz)||1, d=[dx/L,dz/L], ni=[-d[1]*s,d[0]*s]; return {a,b,d,ni,no:[-ni[0],-ni[1]],L}; });
+  const n=G.length, closed=!!w.closed&&n>=3;
+  const off=(g,o,p)=>[p[0]+g.no[0]*o, p[1]+g.no[1]*o];
+  const meet=(g1,g2,o,v)=>{ const p1=off(g1,o,g1.a), p2=off(g2,o,g2.a), cr=g1.d[0]*g2.d[1]-g1.d[1]*g2.d[0];
+    if(Math.abs(cr)<1e-6) return off(g2,o,v);
+    const u=((p2[0]-p1[0])*g2.d[1]-(p2[1]-p1[1])*g2.d[0])/cr, m=[p1[0]+g1.d[0]*u, p1[1]+g1.d[1]*u];
+    return (Math.hypot(m[0]-v[0],m[1]-v[1])>Math.max(Math.abs(o),1)*6)?null:m; };   // มุมแหลมมาก → ตัดตรง
+  return G.map((g,i)=>{ const pv=i>0?G[i-1]:(closed?G[n-1]:null), nx=i<n-1?G[i+1]:(closed?G[0]:null);
+    const sI=(pv&&meet(pv,g,oi,g.a))||off(g,oi,g.a), sO=(pv&&meet(pv,g,oo,g.a))||off(g,oo,g.a);
+    const eI=(nx&&meet(g,nx,oi,g.b))||off(g,oi,g.b), eO=(nx&&meet(g,nx,oo,g.b))||off(g,oo,g.b);
+    return {a:g.a, b:g.b, d:g.d, ni:g.ni, L:g.L, oi, oo, q:[sI,eI,eO,sO]}; }); }
+function plwBounds(){ let b=null; plwList().forEach(w=>(w.pts||[]).forEach(p=>{ if(!b) b={x0:p[0],x1:p[0],z0:p[1],z1:p[1]};
+  b.x0=Math.min(b.x0,p[0]); b.x1=Math.max(b.x1,p[0]); b.z0=Math.min(b.z0,p[1]); b.z1=Math.max(b.z1,p[1]); })); return b; }
+function plwLblSz(){ const r=plRoom(); return Math.min(Math.max(Math.max(+r.w||3000,+r.d||3000)*0.026,60),240); }
+function plwLabel(t,sz){ let m=PLW.lbl[t];
+  if(!m){ const c=document.createElement("canvas"); c.width=256; c.height=80; const g=c.getContext("2d");
+    const rr=(x,y,w,h,r)=>{ g.beginPath(); g.moveTo(x+r,y); g.arcTo(x+w,y,x+w,y+h,r); g.arcTo(x+w,y+h,x,y+h,r); g.arcTo(x,y+h,x,y,r); g.arcTo(x,y,x+w,y,r); g.closePath(); };
+    g.fillStyle="rgba(255,255,255,.94)"; g.strokeStyle="#c2410c"; g.lineWidth=5; rr(4,4,248,72,18); g.fill(); g.stroke();
+    g.fillStyle="#7c2d12"; g.font="bold 42px 'IBM Plex Mono',monospace"; g.textAlign="center"; g.textBaseline="middle"; g.fillText(t,128,43);
+    const tex=new THREE.CanvasTexture(c); m=PLW.lbl[t]=new THREE.SpriteMaterial({map:tex,depthTest:false,depthWrite:false,transparent:true}); m.userData.keep=1; }
+  const s=new THREE.Sprite(m); s.scale.set(sz*3.2,sz,1); s.renderOrder=999; return s; }
+function plwShapeGeo(q){ const sh=new THREE.Shape(); q.forEach((p,k)=>{ if(k) sh.lineTo(p[0],-p[1]); else sh.moveTo(p[0],-p[1]); }); sh.closePath(); return sh; }
+/* ผนังที่วาด → กลุ่มห้อง (เรียกใน plRoomDraw) */
+function plwAddMeshes(g){
+  if(snOff("plDrawWall")) return; const L=plwList(); if(!L.length) return;
+  const r=plRoom(), sz=plwLblSz();
+  L.forEach((w,wi)=>{ const H0=Math.max(+w.h||plwDefH(),10), H=PLW.on?Math.min(H0,60):H0;   // ตอนวาด = ผนังเตี้ย 60 อ่านเป็นแปลน (กล้องมุมบนแบบ perspective ผนังสูงจะบังจุดบนพื้น)
+    plwFoot(w).forEach((f,si)=>{ let geo=null;
+      try{ geo=new THREE.ExtrudeGeometry(plwShapeGeo(f.q),{depth:H,bevelEnabled:false}); geo.rotateX(-Math.PI/2); }catch(e){ console.error("plw geo:",e); return; }
+      const mat=new THREE.MeshStandardMaterial({color:0xd6cebd,roughness:.95,side:THREE.DoubleSide});
+      const m=new THREE.Mesh(geo,mat); m.userData.plw=[wi,si];
+      const el=new THREE.LineSegments(new THREE.EdgesGeometry(geo,20), new THREE.LineBasicMaterial({color:0x8f8470}));
+      const mx=(f.a[0]+f.b[0])/2, mz=(f.a[1]+f.b[1])/2, no=[-f.ni[0],-f.ni[1]], oo=f.oo;
+      const vis=cam=>{ if(PLW.on||(typeof orbit!=="undefined"&&orbit.phi<0.35)) return true; return ((cam.position.x-mx)*no[0]+(cam.position.z-mz)*no[1])<=oo+1; };
+      m.onBeforeRender=(rd,sc,cam)=>{ const on=vis(cam); mat.colorWrite=on; mat.depthWrite=on; };
+      el.onBeforeRender=(rd,sc,cam)=>{ el.material.colorWrite=vis(cam); };
+      g.add(m); g.add(el);
+      /* เส้นแนวก้นตู้ลอย (ฟ้า) / แนวบน (ส้ม) บนผิวใน */
+      if(!PLW.on) [[+r.wallBot,0x1e88e5],[+r.wallTop,0xef6c00]].forEach(([y,col])=>{ if(!(y>0)||y>=H) return;
+        const A=new THREE.Vector3(f.q[0][0]+f.ni[0]*2,y,f.q[0][1]+f.ni[1]*2), B=new THREE.Vector3(f.q[1][0]+f.ni[0]*2,y,f.q[1][1]+f.ni[1]*2);
+        const ln=new THREE.Line(new THREE.BufferGeometry().setFromPoints([A,B]), new THREE.LineDashedMaterial({color:col,dashSize:60,gapSize:40,transparent:true,opacity:.9}));
+        ln.computeLineDistances(); g.add(ln); });
+      if(PLW.on&&f.L>=1){ const sp=plwLabel(String(Math.round(f.L)),sz); sp.position.set(mx+f.ni[0]*sz*1.1,H+20,mz+f.ni[1]*sz*1.1); g.add(sp); }
+    }); }); }
+/* ── ตอนวาด: เส้น/จุด/รอยเท้าของเส้นที่กำลังวาด ── */
+function plwDispose(o){ o.traverse(x=>{ if(x.geometry&&!x.isSprite) x.geometry.dispose(); if(x.material&&!(x.material.userData&&x.material.userData.keep)) x.material.dispose(); }); }
+function plwPrevDraw(){
+  if(PLW.prev){ scene.remove(PLW.prev); plwDispose(PLW.prev); PLW.prev=null; }
+  if(!plwOn()||typeof scene==="undefined"||!scene){ try{ invalidate(); }catch(e){} return; }
+  const g=new THREE.Group(); g.name="plwPrev";
+  const P=(PLW.pts||[]).slice(), cur=PLW.cur, all=P.concat((cur&&P.length)?[cur]:[]), y=4, V=p=>new THREE.Vector3(p[0],y,p[1]);
+  if(all.length>=2){
+    try{ plwFoot({pts:all, closed:false, t:plwDefT(), al:plwAl()}).forEach(f=>{ const ge=new THREE.ShapeGeometry(plwShapeGeo(f.q)); ge.rotateX(-Math.PI/2);
+        const me=new THREE.Mesh(ge,new THREE.MeshBasicMaterial({color:0xf59e0b,transparent:true,opacity:.45,depthTest:false,side:THREE.DoubleSide})); me.position.y=y-1; me.renderOrder=997; g.add(me); }); }catch(e){}
+    const ln=new THREE.Line(new THREE.BufferGeometry().setFromPoints(all.map(V)), new THREE.LineBasicMaterial({color:0xc2410c,depthTest:false})); ln.renderOrder=998; g.add(ln);
+    const sz=plwLblSz();
+    for(let i=0;i<all.length-1;i++){ const a=all[i], b=all[i+1], L=Math.hypot(b[0]-a[0],b[1]-a[1]); if(L<1) continue;
+      const sp=plwLabel(String(Math.round(L)),sz); sp.position.set((a[0]+b[0])/2,y+5,(a[1]+b[1])/2); g.add(sp); } }
+  const dots=all.length?all:(cur?[cur]:[]);
+  if(dots.length){ const pm=new THREE.Points(new THREE.BufferGeometry().setFromPoints(dots.map(V)), new THREE.PointsMaterial({color:0xc2410c,size:9,sizeAttenuation:false,depthTest:false})); pm.renderOrder=999; g.add(pm); }
+  if(PLW.hit){ const hm=new THREE.Points(new THREE.BufferGeometry().setFromPoints([V(PLW.hit)]), new THREE.PointsMaterial({color:0x16a34a,size:17,sizeAttenuation:false,depthTest:false})); hm.renderOrder=999; g.add(hm); }
+  scene.add(g); PLW.prev=g; invalidate(); }
+function plwGrid(on){
+  if(PLW.gridObj){ scene.remove(PLW.gridObj); plwDispose(PLW.gridObj); PLW.gridObj=null; }
+  if(!on||typeof scene==="undefined"||!scene) return;
+  const r=plRoom(), b=plwBounds(), x0=Math.min(r.x0,b?b.x0:r.x0), x1=Math.max(r.x0+r.w,b?b.x1:r.x0+r.w), z0=Math.min(r.z0,b?b.z0:r.z0), z1=Math.max(r.z0+r.d,b?b.z1:r.z0+r.d);
+  const span=Math.ceil((Math.max(x1-x0,z1-z0)+8000)/1000)*1000, gh=new THREE.GridHelper(span,span/500,0xa8a29e,0xd6d3d1);
+  gh.position.set(Math.round((x0+x1)/2/500)*500,1.5,Math.round((z0+z1)/2/500)*500);
+  try{ gh.material.transparent=true; gh.material.opacity=.55; gh.material.depthWrite=false; }catch(e){}
+  gh.renderOrder=-2; scene.add(gh); PLW.gridObj=gh; }
+/* กล้องมองจากบน ผนังหลังอยู่บนจอ (แบบแปลน) */
+function plwCamTop(){
+  const r=plRoom(), b=plwBounds(), x0=Math.min(r.x0,b?b.x0:r.x0), x1=Math.max(r.x0+r.w,b?b.x1:r.x0+r.w), z0=Math.min(r.z0,b?b.z0:r.z0), z1=Math.max(r.z0+r.d,b?b.z1:r.z0+r.d);
+  let pr=0; try{ pr=PL.panel?PL.panel.getBoundingClientRect().right:0; }catch(e){}
+  const top=150, bot=56, Wp=Math.max(innerWidth-pr-20,200), Hp=Math.max(innerHeight-top-bot,200), tf=Math.tan(camera.fov*Math.PI/360);
+  const sx=Math.max(x1-x0,1500)+1200, sz=Math.max(z1-z0,1500)+1200;
+  const R=Math.max((sz/2)/tf*(innerHeight/Hp), (sx/2)/(tf*camera.aspect)*(innerWidth/Wp));
+  const wpp=2*R*tf/innerHeight, dxp=(pr+Wp/2)-innerWidth/2, dyp=(top+Hp/2)-innerHeight/2;
+  const c=new THREE.Vector3((x0+x1)/2-dxp*wpp,0,(z0+z1)/2-dyp*wpp);
+  modelRadius=Math.max(modelRadius,R/4); const EPS=.0015; orbit.phiMin=EPS;
+  const TW=Math.PI*2, dth=((((0-orbit.theta)%TW)+TW+Math.PI)%TW)-Math.PI;
+  try{ _vcTw={t0:performance.now(), dur:420, th0:orbit.theta, dth, ph0:orbit.phi, ph1:EPS, r0:orbit.radius, r1:R, tg0:orbit.target.clone(), tg1:c}; }
+  catch(e){ orbit.target.copy(c); orbit.theta=0; orbit.phi=EPS; orbit.radius=R; }
+  orbit.dTheta=orbit.dPhi=orbit.dRadius=0; invalidate(); }
+/* จุดที่ดูดได้: จุดของผนังที่วาด · จุดของเส้นนี้ (ยกเว้นจุดล่าสุด) · มุมห้องสี่เหลี่ยม (ถ้ายังเปิดผนังอยู่) */
+function plwSnapPts(){ const C=[];
+  plwList().forEach(w=>(w.pts||[]).forEach(p=>C.push(p)));
+  (PLW.pts||[]).slice(0,-1).forEach(p=>C.push(p));
+  const r=plRoom(); if(Object.keys(r.walls||{}).some(k=>r.walls[k])) [[r.x0,r.z0],[r.x0+r.w,r.z0],[r.x0+r.w,r.z0+r.d],[r.x0,r.z0+r.d]].forEach(p=>C.push(p));
+  return C; }
+function plwSnap(raw,ev){ const p=[raw[0],raw[1]]; PLW.hit=null;
+  const tol=Math.max(30,((typeof orbit!=="undefined"&&orbit.radius)||3000)*0.012), C=plwSnapPts();
+  let best=null, bd=tol; C.forEach(q=>{ const d=Math.hypot(q[0]-p[0],q[1]-p[1]); if(d<bd){ bd=d; best=q; } });
+  if(best){ PLW.hit=best; return [best[0],best[1]]; }
+  const P=PLW.pts||[], last=P.length?P[P.length-1]:null, G=plGrid()||10, ortho=PLW.ortho&&!(ev&&ev.shiftKey);
+  const align=a=>{ let bb=tol, v=null; C.forEach(q=>{ const d=Math.abs(q[a]-p[a]); if(d<bb){ bb=d; v=q[a]; } }); if(v!=null){ p[a]=v; return true; } return false; };
+  if(!last){ [0,1].forEach(a=>{ if(!align(a)) p[a]=Math.round(p[a]/G)*G; }); return p; }
+  if(ortho){ const a=(Math.abs(p[0]-last[0])>=Math.abs(p[1]-last[1]))?0:1; p[1-a]=last[1-a];
+    if(!align(a)) p[a]=last[a]+Math.round((p[a]-last[a])/G)*G; return p; }
+  const dx=p[0]-last[0], dz=p[1]-last[1], L=Math.hypot(dx,dz);
+  if(L>0){ const Lr=Math.max(Math.round(L/G)*G,G); p[0]=last[0]+dx/L*Lr; p[1]=last[1]+dz/L*Lr; }
+  return p; }
+function plwTip(){ const t=PLW.tip; if(!t) return; const P=PLW.pts||[], last=P[P.length-1], cur=PLW.cur; let s="";
+  if(last&&cur){ const dx=cur[0]-last[0], dz=cur[1]-last[1], L=Math.hypot(dx,dz);
+    if(L>0.5) s=Math.round(L).toLocaleString("en-US")+" มม. · "+Math.round(((Math.atan2(-dz,dx)*180/Math.PI)+360)%360)+"°"; }
+  else if(!P.length) s="คลิกจุดเริ่ม";
+  if(PLW.buf) s+=(s?" · ":"")+"⌨ "+PLW.buf+" ↵";
+  if(PLW.hit) s+=" · ◎ จุด";
+  t.textContent=s; t.style.left=(PLW.mx+16)+"px"; t.style.top=(PLW.my+16)+"px"; }
+function plwTypeLen(){ const v=parseFloat(PLW.buf); PLW.buf=""; const P=PLW.pts||[];
+  if(!(v>0)) return; if(!P.length){ toast("คลิกจุดเริ่มก่อน แล้วพิมพ์ความยาว"); return; }
+  const last=P[P.length-1], cur=PLW.cur||[last[0]+1,last[1]]; let dx=cur[0]-last[0], dz=cur[1]-last[1], L=Math.hypot(dx,dz);
+  if(L<1){ dx=1; dz=0; L=1; }
+  const p=[Math.round((last[0]+dx/L*v)*10)/10, Math.round((last[1]+dz/L*v)*10)/10]; P.push(p); PLW.cur=p; }
+function plwFinish(close){ const P=PLW.pts||[]; PLW.pts=null; PLW.buf=""; PLW.last=null;
+  if(P.length>=2){ const L=plwList(), first=!L.length, cl=!!close&&P.length>=3;
+    L.push({id:uid(), pts:P.map(p=>[Math.round(p[0]*10)/10,Math.round(p[1]*10)/10]), closed:cl, t:plwDefT(), h:plwDefH(), al:plwAl(), flip:false});
+    if(first) plwFirstFit();
+    plRoomDraw(); plPanelRoom(); plAfterRoom();
+    toast("✏ ผนัง "+L.length+" · "+(cl?P.length:P.length-1)+" ช่วง"+(cl?" · ปิดรอบ":"")+" — วาดเส้นต่อได้ · Esc = เสร็จ"); }
+  else if(P.length===1) toast("ยกเลิกเส้นที่มีจุดเดียว");
+  plwPrevDraw(); plwTip(); }
+/* เส้นแรก: ปิดผนังห้องสี่เหลี่ยมเดิม + พื้นห้องครอบผนังที่วาด */
+function plwFirstFit(){ const r=plRoom(), b=plwBounds(), on=Object.keys(r.walls||{}).filter(k=>r.walls[k]);
+  if(b&&b.x1-b.x0>=500&&b.z1-b.z0>=500){ r.x0=Math.round(b.x0); r.z0=Math.round(b.z0); r.w=Math.round(b.x1-b.x0); r.d=Math.round(b.z1-b.z0); }
+  if(on.length){ on.forEach(k=>{ r.walls[k]=false; }); setTimeout(()=>{ try{ toast("ปิดผนังห้องสี่เหลี่ยมเดิมให้แล้ว · พื้นห้องครอบผนังที่วาด — เปิดกลับได้ที่ ขนาดห้อง · ผนัง"); }catch(e){} },1800); } }
+function plwCss(){ if(document.getElementById("plwCSS")) return; const st=document.createElement("style"); st.id="plwCSS";
+  st.textContent="#plwBar{position:fixed;top:60px;left:50%;transform:translateX(-50%);z-index:330;background:var(--solid,#fff);color:var(--ink,#111);border-radius:12px;box-shadow:0 14px 40px -12px rgba(0,0,0,.45);padding:8px 12px;font-size:12.5px;max-width:min(880px,calc(100vw - 24px))}"
+    +"#plwBar .r1{display:flex;flex-wrap:wrap;align-items:center;gap:6px 10px}"
+    +"#plwBar .r1 b{font-size:14px;margin-right:2px}"
+    +"#plwBar label{display:inline-flex;align-items:center;gap:4px;white-space:nowrap}"
+    +"#plwBar input[type=number]{width:64px;padding:3px 5px}"
+    +"#plwBar .ibtn{flex:none;width:auto;height:auto;min-height:0;padding:4px 10px;font-size:12px;white-space:nowrap}"
+    +"#plwBar .ibtn.on{background:var(--accent);color:#fff;border-color:var(--accent)}"
+    +"#plwBar .r2{color:var(--ink-dim);font-size:11px;margin-top:5px;line-height:1.45}"
+    +"#plwTip{position:fixed;z-index:331;pointer-events:none;background:rgba(124,45,18,.92);color:#fff;border-radius:6px;padding:2px 8px;font:600 12px/1.6 var(--mono,monospace);white-space:nowrap}"
+    +"#plwTip:empty{display:none}";
+  document.head.appendChild(st); }
+function plwBarOpen(){ if(PLW.bar) PLW.bar.remove(); if(PLW.tip) PLW.tip.remove(); plwCss();
+  const b=document.createElement("div"); b.id="plwBar";
+  b.innerHTML='<div class="r1"><b>✏ วาดผนัง</b>'
+    +'<label title="ความหนาผนังเส้นใหม่ (มม.)">หนา <input type="number" id="plwT" value="'+plwDefT()+'" min="10" step="10"></label>'
+    +'<label title="ความสูงผนังเส้นใหม่ (มม.)">สูง <input type="number" id="plwH" value="'+plwDefH()+'" min="200" step="50"></label>'
+    +'<label title="เส้นที่วาดคือผิวในห้อง (ผนังหนาออกด้านนอก) หรือกึ่งกลางผนัง">เส้น = <select id="plwAl"><option value="in"'+(plwAl()==="in"?" selected":"")+'>ผิวในห้อง</option><option value="c"'+(plwAl()==="c"?" selected":"")+'>กลางผนัง</option></select></label>'
+    +'<label title="O = สลับ · กด Shift ค้างไว้ = เส้นเอียงชั่วคราว"><input type="checkbox" id="plwOr"'+(PLW.ortho?" checked":"")+'> ตั้งฉาก 90°</label>'
+    +'<button class="ibtn" id="plwUndo" title="Backspace">↶ ถอยจุด</button>'
+    +'<button class="ibtn" id="plwClose" title="หรือคลิกที่จุดแรก">⭘ ปิดรอบ</button>'
+    +'<button class="ibtn" id="plwEnd" title="Enter · ดับเบิลคลิก · คลิกขวา">✓ จบเส้น</button>'
+    +'<button class="ibtn on" id="plwExit" title="Esc">✕ เสร็จ</button></div>'
+    +'<div class="r2">คลิกวางจุด · พิมพ์ความยาว (มม.) แล้ว Enter = ช่วงนี้ยาวเท่านั้นตามทิศเมาส์ · คลิกจุดแรก = ปิดห้อง · ดับเบิลคลิก / คลิกขวา / Enter = จบเส้น · Backspace = ถอยจุด · คลิกขวาลาก = เลื่อนจอ · ล้อเมาส์ = ซูม</div>';
+  document.body.appendChild(b); PLW.bar=b;
+  try{ const pr=PL.panel?PL.panel.getBoundingClientRect().right:0; b.style.left=Math.round(pr+(innerWidth-pr)/2)+"px"; b.style.maxWidth=Math.max(Math.round(innerWidth-pr-24),320)+"px"; }catch(e){}
+  const q=s=>b.querySelector(s), r=plRoom();
+  q("#plwT").onchange=e=>{ const v=+e.target.value; if(v>=10&&v<=1000){ r.dwT=v; plwPrevDraw(); } else e.target.value=plwDefT(); };
+  q("#plwH").onchange=e=>{ const v=+e.target.value; if(v>=200) r.dwH=v; else e.target.value=plwDefH(); };
+  q("#plwAl").onchange=e=>{ r.dwAl=e.target.value==="c"?"c":"in"; plwPrevDraw(); };
+  q("#plwOr").onchange=e=>{ PLW.ortho=!!e.target.checked; };
+  q("#plwUndo").onclick=()=>{ if(PLW.pts&&PLW.pts.length) PLW.pts.pop(); plwPrevDraw(); plwTip(); };
+  q("#plwClose").onclick=()=>{ if(PLW.pts&&PLW.pts.length>=3) plwFinish(true); else toast("ปิดรอบได้เมื่อมีอย่างน้อย 3 จุด"); };
+  q("#plwEnd").onclick=()=>plwFinish(false);
+  q("#plwExit").onclick=()=>plwStop();
+  b.addEventListener("keydown",e=>{ if(e.key==="Enter"&&e.target&&e.target.tagName==="INPUT") e.target.blur(); });
+  const t=document.createElement("div"); t.id="plwTip"; document.body.appendChild(t); PLW.tip=t; }
+function plwStart(){
+  if(snOff("plDrawWall")||!PL.on) return;
+  if(typeof isLocked==="function"&&isLocked()){ try{ guardEdit("วาดผนังในห้องออกแบบ"); }catch(e){} return; }
+  PLW.on=true; PLW.pts=null; PLW.cur=null; PLW.buf=""; PLW.hit=null; PLW.last=null;
+  try{ plSelect(null); }catch(e){} try{ plColorClose(); }catch(e){} try{ plPullClose(); }catch(e){}
+  PLW.catWas=!!(PL.cat&&PL.cat.style.display!=="none"); if(PLW.catWas){ try{ plCatShow(false,true); }catch(e){} }   // จอวาดกว้างขึ้น (ไม่จำเป็นค่าที่ผู้ใช้ตั้ง)
+  plwBarOpen(); plwGrid(true); plwCamTop();
+  try{ renderer.domElement.style.cursor="crosshair"; }catch(e){}
+  plRoomDraw(); plwPrevDraw(); plPanelRoom(); }
+/* เลิกวาด (ไม่บันทึกเส้นค้าง) — ใช้ตอนปิดห้องออกแบบด้วย */
+function plwHalt(){ PLW.on=false; PLW.pts=null; PLW.cur=null; PLW.buf=""; PLW.hit=null; PLW.last=null;
+  if(PLW.bar){ PLW.bar.remove(); PLW.bar=null; } if(PLW.tip){ PLW.tip.remove(); PLW.tip=null; }
+  plwGrid(false); plwPrevDraw(); try{ renderer.domElement.style.cursor=""; }catch(e){}
+  if(PLW.catWas){ PLW.catWas=false; try{ if(PL.on) plCatShow(true,true); }catch(e){} } }
+function plwStop(){ if(!PLW.on) return; if(PLW.pts&&PLW.pts.length>=2) plwFinish(false);
+  plwHalt(); if(PL.on){ plRoomDraw(); plPanelRoom(); } }
+/* ── ตัวรับเมาส์/คีย์ (capture บน window ลงทะเบียนตอนโหลด → ก่อนตัวลากตู้/ปุ่มลบตู้ของห้องออกแบบ) ── */
+function plwDown(e){ if(!plwOn()||typeof renderer==="undefined"||!renderer||e.target!==renderer.domElement||e.button!==0) return;
+  e.stopImmediatePropagation(); e.preventDefault();
+  try{ const ae=document.activeElement; if(ae&&ae!==document.body&&ae.blur) ae.blur(); }catch(err){}   // ปุ่มที่กดค้างโฟกัสไว้ไม่แย่งคีย์ตัวเลข/Enter
+  PLW.mx=e.clientX; PLW.my=e.clientY;
+  const p0=plFloorPt(e,0); if(!p0) return; const p=plwSnap([p0.x,p0.z],e);
+  const now=performance.now(), L=PLW.last; PLW.last={t:now,x:e.clientX,y:e.clientY};
+  if(L&&now-L.t<380&&Math.abs(L.x-e.clientX)+Math.abs(L.y-e.clientY)<6){ PLW.last=null; plwFinish(false); return; }   // ดับเบิลคลิก = จบเส้น
+  const P=PLW.pts||(PLW.pts=[]);
+  if(P.length>=3&&Math.hypot(P[0][0]-p[0],P[0][1]-p[1])<0.5){ plwFinish(true); return; }                     // คลิกจุดแรก = ปิดรอบ
+  if(P.length&&Math.hypot(P[P.length-1][0]-p[0],P[P.length-1][1]-p[1])<1) return;
+  P.push(p); PLW.buf=""; PLW.cur=p; plwPrevDraw(); plwTip(); }
+function plwMove(e){ if(!plwOn()||typeof renderer==="undefined"||!renderer||e.target!==renderer.domElement) return;
+  PLW.mx=e.clientX; PLW.my=e.clientY; PLW.ev={clientX:e.clientX, clientY:e.clientY, shiftKey:e.shiftKey};
+  if(!PLW.raf) PLW.raf=requestAnimationFrame(()=>{ PLW.raf=0; const ev=PLW.ev; if(!ev||!plwOn()) return; const p0=plFloorPt(ev,0); if(!p0) return;
+    PLW.cur=plwSnap([p0.x,p0.z],ev); plwPrevDraw(); plwTip(); }); }
+function plwKey(e){ if(!plwOn()) return; const t=e.target; if(t&&/INPUT|TEXTAREA|SELECT/.test(t.tagName)) return;
+  if(t&&t.closest&&t.closest("#askModal,#fieldsModal,.modal")) return;                // หน้าต่างถาม/ยืนยันเปิดอยู่ — ปล่อยให้หน้าต่างนั้นรับคีย์
+  if(e.ctrlKey||e.metaKey||e.altKey) return;
+  const k=e.key; let used=true;
+  if(/^[0-9]$/.test(k)||(k==="."&&PLW.buf.indexOf(".")<0)) PLW.buf+=k;
+  else if(k==="Backspace"||k==="Delete"){ if(PLW.buf) PLW.buf=PLW.buf.slice(0,-1); else if(PLW.pts&&PLW.pts.length) PLW.pts.pop(); }
+  else if(k==="Enter"){ if(PLW.buf) plwTypeLen(); else { plwFinish(false); return void(e.preventDefault(),e.stopImmediatePropagation()); } }
+  else if(k==="Escape"){ if(PLW.buf) PLW.buf=""; else { e.preventDefault(); e.stopImmediatePropagation(); plwStop(); return; } }
+  else if(k==="o"||k==="O"){ PLW.ortho=!PLW.ortho; const c=PLW.bar&&PLW.bar.querySelector("#plwOr"); if(c) c.checked=PLW.ortho; }
+  else used=false;
+  if(used){ e.preventDefault(); e.stopImmediatePropagation(); plwPrevDraw(); plwTip(); } }
+function plwCtx(e){ if(!plwOn()||typeof renderer==="undefined"||!renderer||e.target!==renderer.domElement) return;
+  e.preventDefault(); e.stopImmediatePropagation();
+  if(typeof pPan!=="undefined"&&pPan){ pPan=false; return; }                // คลิกขวาลาก = เลื่อนจอ ไม่ใช่จบเส้น
+  plwFinish(false); }
+addEventListener("pointerdown",plwDown,true);
+addEventListener("pointermove",plwMove,true);
+addEventListener("keydown",plwKey,true);
+addEventListener("contextmenu",plwCtx,true);
+/* ── แผงห้อง: กลุ่ม “ผนังที่วาด” ── */
+function plwGrpHtml(grp){ if(snOff("plDrawWall")) return "";
+  const L=plwList(), tot=L.reduce((s,w)=>s+plwSegs(w).reduce((a,sg)=>a+plwLen(sg),0),0);
+  const sum=L.length?(L.length+" เส้น · ยาวรวม "+(tot/1000).toFixed(2)+" ม."):"ยังไม่มี — วาดตามแบบบ้านลูกค้า";
+  const F=(lbl,ctl)=>(typeof plF531==="function"&&!snOff("plTidy"))?plF531(lbl,ctl):('<div class="plRow" style="margin-top:4px">'+lbl+' '+ctl+'</div>');
+  let body='<div class="plRow" style="margin-top:4px"><button class="ibtn" id="plwGo" style="flex:1;width:100%;justify-content:center;padding:6px 8px;font-weight:600'+(PLW.on?';background:var(--accent);color:#fff;border-color:var(--accent)':'')+'">'
+      +(PLW.on?'✕ เลิกวาดผนัง':'✏ วาดผนังจากแปลน (มองจากบน)')+'</button></div>'
+    +'<div class="plNote" style="margin-top:4px">คลิกวางจุดตามแบบบ้าน · พิมพ์ความยาวแล้ว Enter · ผนังขึ้นเป็น 3D เอง · ลากตู้ไปชิดผนังที่วาด (ช่วงที่ตรงแนว) แล้วดูดติดเอง</div>';
+  L.forEach((w,i)=>{ const S=plwSegs(w);
+    body+='<div class="plwW" data-wi="'+i+'" style="border-top:1px dashed var(--line);margin-top:7px;padding-top:5px">'
+      +'<div class="plRow"><b>ผนัง '+(i+1)+'</b><span class="plNote">'+S.length+' ช่วง'+(w.closed?' · ปิดรอบ':'')+'</span><span style="flex:1"></span>'
+      +'<button class="ibtn" data-plwa="flip" title="สลับด้านความหนา (ในห้อง ⇄ นอกห้อง)">⇄ ด้าน</button><button class="ibtn" data-plwa="del" title="ลบผนังเส้นนี้" style="color:#d33">🗑</button></div>'
+      +F("หนา / สูง",'<input type="number" data-plwk="t" value="'+(+w.t||plwDefT())+'" step="10" style="width:60px"> <input type="number" data-plwk="h" value="'+(+w.h||plwDefH())+'" step="50" style="width:66px"><span class="plU">มม.</span>')
+      +F("เส้นที่วาด",'<select data-plwk="al"><option value="in"'+(w.al!=="c"?" selected":"")+'>= ผิวในห้อง</option><option value="c"'+(w.al==="c"?" selected":"")+'>= กลางผนัง</option></select>')
+      +F("ยาวแต่ละช่วง",S.map((sg,j)=>'<label title="ช่วง '+(j+1)+' · แก้แล้วผนังที่อยู่เลยปลายช่วงเลื่อนตาม (ยืดแบบ CAD)" style="display:inline-flex;align-items:center;gap:2px">'+(j+1)
+            +' <input type="number" data-plwseg="'+j+'" value="'+Math.round(plwLen(sg))+'" step="10" style="width:62px"></label>').join(""))
+      +'</div>'; });
+  return grp("dw", true, "✏ ผนังที่วาด (แปลน)", escapeHtml(sum), body); }
+/* แก้ความยาวช่วง j = ยืดแบบ CAD: จุดทุกจุดของเส้นนี้ที่อยู่ “เลยปลายช่วง” ตามทิศช่วง เลื่อนตามเท่ากัน
+   (ห้องสี่เหลี่ยม/ห้อง L ยังตั้งฉากครบ — ผนังฝั่งตรงข้ามเลื่อนออก ผนังที่ขนานยาวขึ้น) · ช่วงปิดรอบแก้ได้เหมือนกัน */
+function plwSetSeg(wi,j,v){ const w=plwList()[wi]; if(!w||!(v>0)) return; const P=w.pts, n=P.length, S=plwSegs(w); if(!S[j]) return;
+  const ia=j, ib=(j+1)%n, a=P[ia], b=P[ib], L=Math.hypot(b[0]-a[0],b[1]-a[1]); if(L<0.1) return;
+  const d=[(b[0]-a[0])/L,(b[1]-a[1])/L], dl=v-L, pb=b[0]*d[0]+b[1]*d[1];
+  for(let i=0;i<n;i++){ if(i===ia) continue; const pr=P[i][0]*d[0]+P[i][1]*d[1]; if(pr<pb-0.5&&i!==ib) continue;
+    P[i]=[Math.round((P[i][0]+d[0]*dl)*10)/10, Math.round((P[i][1]+d[1]*dl)*10)/10]; }
+  plRoomDraw(); plPanelRoom(); plAfterRoom(); }
+function plwWire(s){ if(!s||snOff("plDrawWall")) return;
+  ["#plwGo","#plwGo2"].forEach(id=>{ const go=s.querySelector(id); if(go) go.onclick=()=>{ if(PLW.on) plwStop(); else plwStart(); }; });
+  s.querySelectorAll(".plwW").forEach(el=>{ const wi=+el.dataset.wi, w=plwList()[wi]; if(!w) return;
+    el.querySelectorAll("[data-plwk]").forEach(inp=>inp.onchange=()=>{ const k=inp.dataset.plwk;
+      if(k==="al") w.al=inp.value==="c"?"c":"in";
+      else { const v=+inp.value; if(k==="t"&&v>=10&&v<=1000) w.t=v; else if(k==="h"&&v>=200) w.h=v; else { inp.value=w[k]; return; } }
+      plRoomDraw(); plAfterRoom(); });
+    el.querySelectorAll("[data-plwseg]").forEach(inp=>inp.onchange=()=>plwSetSeg(wi,+inp.dataset.plwseg,+inp.value));
+    const fl=el.querySelector('[data-plwa="flip"]'); if(fl) fl.onclick=()=>{ w.flip=!w.flip; plRoomDraw(); plAfterRoom(); toast("สลับด้านความหนาผนัง "+(wi+1)); };
+    const del=el.querySelector('[data-plwa="del"]'); if(del) del.onclick=async()=>{
+      if(!(await dialog({title:"ลบผนัง "+(wi+1)+" ("+plwSegs(w).length+" ช่วง)?",ok:"ลบ"}))) return;
+      const L=plwList(), k=L.indexOf(w); if(k>=0) L.splice(k,1); plRoomDraw(); plPanelRoom(); plAfterRoom(); }; }); }
+/* ── ลากตู้เข้าผนังที่วาด (ช่วงตรงแนวแกน) ── */
+function plwMagnet(c,D,lim){ const L=plwList(); if(!L.length) return null; let best=null, bd=lim;
+  L.forEach((w,wi)=>plwFoot(w).forEach((f,si)=>{
+    const ax=Math.abs(f.d[0])>0.9999?0:(Math.abs(f.d[1])>0.9999?2:-1); if(ax<0) return;   // เฉพาะช่วงที่ตรงแนวแกน
+    const pa=ax===0?2:0, ip=pa===2?1:0, ia=ax===0?0:1, s=f.ni[ip]>0?1:-1;
+    const face=f.a[ip]-s*f.oi;                                                // ผิวใน = เส้น + (ทิศออกนอก × oi)
+    const dist=((pa===2?c[2]:c[0])-face)*s; if(dist<-300) return;
+    const along=ax===0?c[0]:c[2], a0=Math.min(f.a[ia],f.b[ia]), a1=Math.max(f.a[ia],f.b[ia]);
+    if(along<a0-300||along>a1+300) return;
+    if(dist<D/2+PL_PULL&&dist<bd){ bd=dist; best={wi,si,ax,pa,s,face,a0,a1,yaw:pa===2?(s>0?0:180):(s>0?90:270),lbl:(wi+1)+"."+(si+1)}; } }));
+  return best; }
+function plwPutOn(inst,H,c,nb){ const f=plFp(plBoardsOf(inst)), ax=H.ax, pa=H.pa, len=f.hi[ax]-f.lo[ax];
+  let a=(ax===0?c[0]:c[2])-len/2, bd=PL_SNAP, sn=null;
+  const tryS=v=>{ const d=Math.abs(v-a); if(d<bd){ bd=d; sn=v; } };
+  tryS(H.a0); tryS(H.a1-len);
+  (nb||[]).filter(n=>plYOver(n,f)&&Math.abs((H.s>0?n.lo[pa]:n.hi[pa])-H.face)<80).forEach(n=>{ tryS(n.hi[ax]); tryS(n.lo[ax]-len); });
+  a=(sn!=null)?sn:plGridAt(a,H.a0);
+  const back=H.s>0?f.lo[pa]:f.hi[pa], d=[0,0,0]; d[ax]=a-f.lo[ax]; d[pa]=H.face-back;
+  plShift(inst,d); }
 function plBind(){
   if(PL.bound) return; PL.bound=true;
   addEventListener("pointerdown",plDragDown,true);
@@ -36930,9 +37251,10 @@ function plRoomHtml531(r,num){ plCss317(); plCss531();
   const head='<div class="plRow"><h4>ห้อง (มม.)</h4><span class="plGrow"></span>'
       +'<button class="ibtn" id="plFitRoom" title="ย้ายและขยายห้องให้คลุมตู้ที่มีอยู่ในฉาก">⤢ ครอบตู้ที่มี</button>'
       +'<button class="ibtn" id="plCam" title="กล้องมองมุมห้อง">🎥 มุมห้อง</button></div>'
-    +'<div class="plBar'+(snOff("plPull")?' plOdd':'')+'" style="margin-top:7px">'
+    +'<div class="plBar'+(((1+(snOff("plPull")?0:1)+(snOff("plDrawWall")?0:1))%2)?' plOdd':'')+'" style="margin-top:7px">'   /* v1.533: + ✏ วาดผนัง (เลขคี่ = ตัวท้ายเต็มแถว) */
       +'<button class="ibtn" id="plClrAll" title="เลือกสีทีเดียวทั้งออเดอร์ — หน้าบานทุกบาน โครงตู้ ฯลฯ">🎨 สีทั้งออเดอร์</button>'
-      +(snOff("plPull")?'':'<button class="ibtn" id="plPullAll" title="เลือกมือจับทีเดียวทั้งห้อง">🖐 มือจับทั้งห้อง</button>')+'</div>';
+      +(snOff("plPull")?'':'<button class="ibtn" id="plPullAll" title="เลือกมือจับทีเดียวทั้งห้อง">🖐 มือจับทั้งห้อง</button>')
+      +(snOff("plDrawWall")?'':('<button class="ibtn" id="plwGo2" title="มองจากบน คลิกวางจุดตามแบบบ้าน แล้วผนังขึ้นเป็น 3D"'+(PLW.on?' style="background:var(--accent);color:#fff;border-color:var(--accent)"':'')+'>'+(PLW.on?'✕ เลิกวาดผนัง':'✏ วาดผนังจากแปลน')+'</button>'))+'</div>';   // v1.533
   const size=grp("size",false,"ขนาดห้อง · ผนัง · Dim",Math.round(r.w)+"×"+Math.round(r.d)+"×"+Math.round(r.h),
       '<div class="plDim3">'+[["w","กว้าง"],["d","ลึก"],["h","สูง"]].map(a=>'<label>'+a[1]+' '+nin(a[0],r[a[0]])+'</label>').join("")+'</div>'
       +F("ผนัง",Object.keys(PL_WALLS).map(k=>'<label class="plCk"><input type="checkbox" data-w="'+k+'"'+(r.walls[k]?" checked":"")+'> '+PL_WALLS[k].lbl+'</label>').join(""))
@@ -36961,7 +37283,7 @@ function plRoomHtml531(r,num){ plCss317(); plCss531();
       +'<div class="plNote" style="margin-top:5px">'
         +(+r.wallTop>0?('ตู้ลอยสูง <b style="color:var(--ink)">'+(r.wallTop-r.wallBot)+'</b> มม. · ตู้สูงหัวเสมอแนวบน · '):'แนวบน 0 = ไม่คุม (ตู้ลอยใช้ความสูงโมเดล) · ')
         +'ห่างท็อป 550–650 (เหนือเตา ≥ 650) · แก้ค่าแล้วตู้ในห้องขยับ/ปรับสูงตามทันที</div>');
-  return head+size+work+line+(snOff("plWorktop")?"":plWtGrpHtml531(grp)); }
+  return head+size+work+line+(snOff("plWorktop")?"":plWtGrpHtml531(grp))+plwGrpHtml(grp); }   // v1.533: + ผนังที่วาด
 /* ท็อปเคาน์เตอร์ · ผนังเหนือท็อป — ค่า/การคิดเหมือน plWtGrpHtml (1.520–1.527) จัดเป็นสองคอลัมน์ · data-tk เดิม (plWtWire ใช้ต่อ) */
 function plWtGrpHtml531(grp){
   const T=plWt(), M=PLWT_MATS[T.mat]||PLWT_MATS.granite, S=plWtSlabs(), sm=plWtSum(S), e=v=>escapeHtml(String(v==null?"":v)), F=plF531;
@@ -37063,7 +37385,7 @@ function plRoomHtml(r,num){ plCss317();
       +'<div class="plNote" style="margin-top:3px">'
         +(+r.wallTop>0?('ตู้ลอยสูง <b style="color:var(--ink)">'+(r.wallTop-r.wallBot)+'</b> มม. · ตู้สูงหัวเสมอแนวบน · '):'แนวบน 0 = ไม่คุม (ตู้ลอยใช้ความสูงโมเดล) · ')
         +'ห่างท็อป 550–650 (เหนือเตา ≥ 650) · แก้ค่าแล้วตู้ในห้องขยับ/ปรับสูงตามทันที</div>');
-  return head+size+work+line+(snOff("plWorktop")?"":plWtGrpHtml(grp)); }   // v1.520: + ท็อปเคาน์เตอร์
+  return head+size+work+line+(snOff("plWorktop")?"":plWtGrpHtml(grp))+plwGrpHtml(grp); }   // v1.520: + ท็อปเคาน์เตอร์ · v1.533: + ผนังที่วาด
 /* ═════════ v1.520: ท็อปเคาน์เตอร์ในห้องออกแบบ ═════════
    ผู้ใช้ 27/10/2026 19:28 (ส่ง BO69-0855 Memo: แบบทอป Granite Black India หนา 20 · วอผนังสูง 600 · Worktop plan 948/1654):
      “เพิ่มให้ในโปรแกรมเราใส่ทอปได้ เลือกว่า เอา ทอป หิน ไม้ หนาเท่าไหร่ด้วยครับ”
@@ -37793,6 +38115,7 @@ function plPanelRoom(){
   { const a=s.querySelector("#plDimGap"), b=s.querySelector("#plDimSize"); if(a) a.onchange=()=>plDimOptSet("gap",a.checked); if(b) b.onchange=()=>plDimOptSet("size",b.checked); }   // v1.310
   plPanelWalls();
   try{ plWtWire(s); }catch(e){ console.error("plWtWire:",e); }   // v1.520
+  try{ plwWire(s); }catch(e){ console.error("plwWire:",e); }       // v1.533
 }
 function plAfterRoom(){ try{ autosave(); }catch(e){} plPanelGaps(); }
 function plPanelWalls(){ const ws=$("plWall"); if(!ws) return; const r=plRoom();
