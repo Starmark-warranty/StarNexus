@@ -3281,7 +3281,7 @@ body[data-theme="dark"] .splash-dots span{background:rgba(255,255,255,.25)}
    ===================================================================== */
 /* ---- APP_META: แหล่งความจริงเดียวของเวอร์ชัน (ดูได้จาก console / คลิกชื่อแอป) ---- */
 const APP_META={
-  name:"StarNexus", version:"1.536", build:"2026-10-28/room-col",
+  name:"StarNexus", version:"1.537", build:"2026-10-28/floor-pat",
   file:"StarNexus.html", basedOn:"Furnitech_V3.html (v3.11)",
   /* ───────── เริ่มนับเวอร์ชันใหม่ที่ 1.001 (21/08/2026) ─────────
      ของเดิมนับมาถึง 42.1 แล้ววิ่งเป็นทศนิยมสองชั้นซึ่งอ่านลำดับยาก
@@ -3289,6 +3289,7 @@ const APP_META={
      ประวัติเก่าเก็บไว้ทั้งหมดตามเลขเดิม ไม่ไล่เขียนใหม่ เพราะเลขในนั้นถูกอ้างถึงไปแล้ว
      รายการที่อยู่ใต้ 1.001 ลงไปจึงเป็นเลขชุดเก่า อ่านต่อกันได้ตามวันที่ */
   changelog:[
+    ["1.537","2026-10-28","FEAT 🖌 พื้นห้องเลือกแบบพื้นได้ (ผู้ใช้ 15:56: “พื้นเลือกได้ไหมว่าเอาไม้ปาเก้ กระเบื้อง”) — หน้าต่าง 🖌 แท็บพื้นห้องมีหมวด “แบบพื้น”: เรียบ (สีเดียว) · กระเบื้อง (300×300 … 1200×1200 มีร่องยาแนว) · ไม้ปาร์เก้ก้างปลา · ไม้ปาร์เก้ลายสาน · ไม้พื้นแผ่นยาว — ลายวาดในโปรแกรม (ไม่ต้องหารูป) ซ้ำตามขนาดจริงเป็น มม. · เลือกขนาดแผ่น + ⟳ หมุนแนว 90° · สีพื้นฐาน/เลือกเอง/หลอดดูดสี = สีของลาย (ไม้มีแถว “สีไม้” 8 สีเพิ่ม) · กระเบื้องสีแต่ละแผ่นต่างกันนิด ๆ ยาแนวอ่อน/เข้มตามสีกระเบื้อง · ไม้มีลายเสี้ยนและสีแผ่นต่างกัน · เก็บใน state.room.paint.floor {pat, sz, rot, c} · ปิด SN_OFF.plFloorPat=1"],
     ["1.536","2026-10-28","FEAT+FIX ห้องออกแบบ (ผู้ใช้ 15:22 · project 59) — ① ▮ เสา: แท็บ 🚪 มีการ์ดเสา 400×400 สูงถึงฝ้า ลากลงจอได้ · ลากแล้วดูดผิวเสาชนผิวผนัง (ผนังห้อง/ผนังที่วาด) และแนวเสาอื่น มีเส้นช่วยสีเขียว · ไม่ดูด = ระยะจากผนังลงกริด · แผงซ้ายแก้กว้าง/ลึก/สูง + “วัดจากมุม” หลังซ้าย/หลังขวา/หน้าซ้าย/หน้าขวา แล้วใส่ระยะผิวผนังถึงผิวเสาสองด้าน · R หมุน 90 · เสานับเป็นสิ่งกีดขวางของช่องฟิลเลอร์ · ② สแนปวาดผนัง: แนวจุดอื่น (แกน X/Z) มีเส้นประสีเขียวให้เห็น · ปลายเส้นแตะผนังเดิม (ตั้งฉาก = ชนเส้นผนังพอดี · เอียง = จุดใกล้สุดบนเส้น) มีจุดฟ้า + “⊥ แตะผนัง” · ระยะดูดตามพิกเซลจอ (ซูมไกลก็ดูดเท่าเดิม) · ③ FIX ปิดช่องซ้าย/ขวา: เดิมคิดถึงขอบห้องสี่เหลี่ยม (ผนังที่วาดเว้าเข้ามาไม่นับ → “ปิดช่องขวา 4500”) · ตอนนี้ผนังที่วาด + เสาที่ตัดแนวลึกของตู้เป็นขอบช่อง (project 59 = 150) · ④ FIX บัวหิน/ผนังเหนือบัวหาย: เดิมนับเฉพาะผนังห้องสี่เหลี่ยมที่เปิดอยู่ · ตอนนี้ผนังที่วาดแนวตรงที่หลังตู้ชิด (≤ 60) ก็ใส่บัว/ผนัง และปลายท็อปชนผนังที่วาดได้ · เพิ่ม “ปลายชนผนัง ☑ซ้าย ☑ขวา”: บัวข้าง + ผนังข้างวิ่งตามผนังข้างจากผนังหลังถึงหน้าท็อป (มุม L ที่มีท็อปอีกชิ้นไม่ใส่ซ้ำ) · ตั้งต้นเปิดทั้งสองข้าง · ⑤ หน้ารายละเอียดวัสดุ (ผู้ใช้ 15:33 “อยากได้สี่เหลี่ยมเท่าเดิมเสมอ เหมือนไฟล์ที่ส่งให้แต่แรก”): เดิมคอลัมน์ 1fr ถูกคำยาวที่ตัดไม่ได้ (K_N01M0029_StarmarkWhite_Embos) ดันให้กว้างไม่เท่ากัน + ช่องภาพสูง 50 มม.ตายตัว (จอย่อหน้า A4 แล้วช่องสูงเกินหน้า) · ตอนนี้ตาราง 5×2 เต็มหน้าเสมอ (ช่องเท่ากันทุกช่อง มี 1 รายการหรือ 10 รายการก็ขนาดเดิม แบบใบ BO69-0855) · หัวช่องบรรทัดเดียว · ข้อความล่าง 32% ของช่อง ตัดคำยาวขึ้นบรรทัดใหม่ · ปิด SN_OFF.plCol=1 / plwGuide=1 / plGapWalls=1 / plWtDw=1 / plWtSide=1"],
     ["1.535","2026-10-28","FEAT 🚪 ประตู · หน้าต่าง · บันได ในห้องออกแบบ (ผู้ใช้ 14:45: “เพิ่มพวกหน้าต่าง ประตู บันได ให้ลากลงมาเหมือนลากตู้ได้ไหมครับ”) — แคตตาล็อกขวามีแท็บ 🚪 ประตู·หน้าต่าง·บันได: ประตูบานเปิด 900×2050 · บานคู่ 1600×2050 · บานเลื่อน 1800×2100 · ช่องเปิด 900×2100 · หน้าต่างบานเปิด 1000×1200 (สูงจากพื้น 900) · หน้าต่างบานเลื่อน 1800×1200 · บันไดตรง กว้าง 900 ยาว 3300 สูงเท่าห้อง · กดค้างที่การ์ดแล้วลากลงจอ (หรือคลิก = วางบนผนังที่เห็นตรงกลาง) · ประตู/หน้าต่างติดผนังที่เมาส์ชี้ (ผนังห้องเดิมหรือผนังที่วาด ทุกองศา · มุมบน = ผนังที่ใกล้สุด) เลื่อนตามแนวผนัง ลงกริด/ชิดปลายผนัง · คลิกการ์ด = วางบนผนังกลางจอตรงที่ว่าง · เจาะช่องผนังจริงตามขนาด (ผนังที่วาด + ผนังห้องเดิม) · ประตูมีวงกบ บาน มือจับ เส้นวงเปิดบนพื้น (เห็นในมุมบนแบบแปลน) · หน้าต่างมีกรอบ กระจก ขอบรองด้านใน · บันไดขั้นละ ~175 · คลิกเลือก = แผงซ้ายแก้กว้าง/สูง/สูงจากพื้น/บานพับซ้าย-ขวา/เปิดเข้า-ออก/ห่างต้นผนัง · R = หมุนบันได/สลับบานพับ · Del = ลบ · เก็บใน state.room.obj (ไปกับไฟล์งาน/ออเดอร์) · ยังไม่ทำ: โหมดสมจริง/แบบแนบใบเสนอราคา · ปิด SN_OFF.plObj=1"],
     ["1.534","2026-10-28","FIX+FEAT ห้องออกแบบ (ผู้ใช้ 14:45 ภาพผนังที่วาดจางตอนซูมไกล): ① ซูมไกลแล้วงานจาง — เดิมหมอกฉากเริ่มที่ระยะคงที่จากกล้อง (1.6 × ขนาดงาน ≥ 6 ม.) ห้องที่ยังไม่มีตู้คิดขนาดงานจาก 6 ม. ตายตัว ถอยกล้องไกลแล้วผนัง/ตู้จมหมอก · ตอนนี้หมอกเริ่มหลังตัวงานเสมอ (ระยะกล้องถึงจุดหมุน + ขนาดงาน · ขนาดงานรวมห้อง/ผนังที่วาดตอนเปิดห้องออกแบบ) = งานไม่จางทุกระยะซูม · ไกล ๆ ข้างหลังยังจางเป็นฉาก (ปิด SN_OFF.fogFollow=1) · ② พื้นห้องตามผนังที่วาด — เดิมครอบเฉพาะเส้นแรก วาดเพิ่มทีหลังพื้นอยู่ผิดที่ · ตอนนี้ปิดผนังห้องสี่เหลี่ยมอยู่ = พื้นครอบผนังที่วาดทุกเส้นทุกครั้ง · ③ 🖌 สีผนัง·พื้น (ปุ่มในแผงห้อง · ปุ่ม 🖌 ที่ผนังที่วาดแต่ละเส้น): สีพื้นฐาน 22 สี · เลือกเอง · 💧 หลอดดูดสี (EyeDropper ของ Chrome/Edge ดูดสีได้ทั้งจอ รวมนอกโปรแกรม) · 🖼 อัปโหลดรูป (กระเบื้อง/วอลเปเปอร์/พื้นไม้) ย่อเหลือ ≤1024 px เก็บในห้องนี้ (state.room.texLib — แยกจากคลังวัสดุตู้ ไม่ปนกัน) ตั้งขนาดรูปจริงเป็น มม. ได้ · ผนังทั้งหมด / พื้น / ผนังที่วาดรายเส้น (ทับสีผนังทั้งหมด) · ปิด SN_OFF.plPaint=1"],
@@ -28918,6 +28919,7 @@ function boardRole(b){
      SN_OFF.dwgDoorLine=1 หน้ารวมวัสดุ ดีไซน์หน้าบานเป็นภาพถ่าย 3D แยกตาม Part ลิงก์ (แบบ 1.521) (v1.527)
      SN_OFF.realPlRoom=1  โหมดสมจริงในห้องออกแบบสร้างห้องรอบตู้แบบเดิม (ไม่ใช้ผนังของห้องออกแบบ) (v1.528)
      SN_OFF.realSnap=1    ไม่มีปุ่ม 📷 บันทึกภาพสมจริงความละเอียดสูง (v1.528)
+     SN_OFF.plFloorPat=1  พื้นห้องไม่มีแบบพื้น (กระเบื้อง/ปาร์เก้/ไม้แผ่นยาว) — พื้นที่ตั้งลายไว้เป็นสีเรียบ (v1.537)
      SN_OFF.plCol=1       ไม่มีเสาในแท็บ 🚪 และไม่วาดเสา (ข้อมูลยังอยู่ใน state.room.obj) (v1.536)
      SN_OFF.plwGuide=1    สแนปวาดผนังแบบ 1.533 (ไม่มีเส้นช่วย/แตะผนัง) (v1.536)
      SN_OFF.plGapWalls=1  ช่องฟิลเลอร์ซ้าย/ขวาคิดถึงขอบห้องสี่เหลี่ยมแบบเดิม (ไม่นับผนังที่วาด/เสา) (v1.536)
@@ -36592,7 +36594,79 @@ function plwFloorFit(){
   const v=[Math.round(b.x0),Math.round(b.z0),Math.round(b.x1-b.x0),Math.round(b.z1-b.z0)];
   if(v[0]===r.x0&&v[1]===r.z0&&v[2]===r.w&&v[3]===r.d) return false;
   r.x0=v[0]; r.z0=v[1]; r.w=v[2]; r.d=v[3]; return true; }
-const PLPT={el:null, tgt:null, img:{}, tex:{}};
+const PLPT={el:null, tgt:null, img:{}, tex:{}, pat:{}, prev:{}};   // v1.537: pat = ผืนลายพื้น · prev = รูปตัวอย่างบนปุ่ม
+/* ═════════ v1.537: แบบพื้น — กระเบื้อง · ไม้ปาร์เก้ · ไม้พื้นแผ่นยาว ═════════
+   ผู้ใช้ 28/10 15:56 (ภาพหน้าต่าง 🖌 พื้นห้อง): “พื้นเลือกได้ไหม ว่าเอาไม้ปาเก้ กระเบื้อง ให้ด้วยครับ”
+   เดิม: พื้นได้แค่สีเดียว หรืออัปโหลดรูปเอง
+   ตอนนี้: state.room.paint.floor = {pat, sz:"กว้างxยาว", rot:0|90, c:สีหลัก} → plptPatCanvas วาดผืนลาย 1 รอบซ้ำ (มม.) บน canvas แล้วปูซ้ำบนพื้นตามขนาดห้อง (plptPatTex)
+     tile  กระเบื้อง: ผืน 2×2 แผ่น · สีแต่ละแผ่นต่างกัน ±3% + จุดเม็ดเล็ก · ร่องยาแนว 3 มม. (สีอ่อน = ยาแนวเทา · สีเข้ม = ยาแนวอ่อน)
+     herr  ปาร์เก้ก้างปลา: ไม้ w×L (L = n·w) วางขั้นบันได — โครงตาข่าย (1,1)·w กับ (n,−n)·w → ผืนสี่เหลี่ยม 2n·w × 2n·w ซ้ำได้ไม่มีรอยต่อ · สีแผ่นตาม (i − n·j) mod 2n
+     bask  ปาร์เก้ลายสาน: ช่อง L×L มีไม้ n แผ่น สลับแนวแบบตาหมากรุก · ผืน 2L × 2L
+     plank ไม้พื้นแผ่นยาว: แถวกว้าง w ยาว L เหลื่อม 0 · ½ · ¼ · ¾ ทุก 4 แถว · ผืน 3L × 4w (แถวละ 3 แผ่นสีต่างกัน)
+     ไม้ทุกแบบ: สีแผ่นต่างกัน ±7% + เสี้ยนตามแนวยาว + เส้นรอยต่อ · สุ่มแบบตั้งเมล็ด (วาดใหม่ได้ลายเดิม) · หมุน 90° = วาดสลับแกน
+   ปิด SN_OFF.plFloorPat=1 (พื้นที่ตั้งลายไว้ = สีเรียบตาม c) */
+const PLPT_PAT={
+  tile :{n:"กระเบื้อง", sz:["300x300","400x400","600x600","800x800","600x1200","1200x600","1200x1200"], d:"600x600", c:"#e6e1d8"},
+  herr :{n:"ปาร์เก้ก้างปลา", wood:1, sz:["70x350","90x450","100x500","120x600"], d:"90x450", c:"#c8a273"},
+  bask :{n:"ปาร์เก้ลายสาน", wood:1, sz:["70x350","90x450","100x400"], d:"70x350", c:"#b08355"},
+  plank:{n:"ไม้พื้นแผ่นยาว", wood:1, sz:["150x900","190x1200","200x1500","240x1800"], d:"190x1200", c:"#c8a273"} };
+const PLPT_WOOD=[["#e3d6c0","ไม้ขาว"],["#d9bf94","เมเปิล"],["#c8a273","โอ๊ค"],["#b08355","โอ๊คเข้ม"],["#a9784f","สัก"],["#8a5a3b","มะค่า"],["#6b4a33","วอลนัท"],["#9a8f84","ไม้เทา"]];
+function plptRng(seed){ let s=(seed>>>0)||1; return ()=>{ s^=s<<13; s>>>=0; s^=s>>>17; s^=s<<5; s>>>=0; return s/4294967296; }; }
+function plptShade(hex,f){ const c=new THREE.Color(hex), h={}; c.getHSL(h); c.setHSL(h.h,h.s,Math.min(Math.max(h.l*f,0),1)); return "#"+c.getHexString(); }
+function plptPatCanvas(pat,c,sz,rot,maxPx){ const P=PLPT_PAT[pat]; if(!P) return null;
+  const v=String(sz||P.d).split("x").map(Number), a=Math.max(v[0]||300,20), bL=Math.max(v[1]||a,20); c=/^#[0-9a-f]{6}$/i.test(c||"")?c:P.c;
+  let uw, uh, n=1;
+  if(pat==="tile"){ uw=2*a; uh=2*bL; }
+  else if(pat==="herr"){ n=Math.max(2,Math.round(bL/a)); uw=uh=2*n*a; }
+  else if(pat==="bask"){ n=Math.max(2,Math.round(bL/a)); uw=uh=2*n*a; }
+  else { uw=3*bL; uh=4*a; }
+  const M=maxPx||1024, s=Math.min(M/uw,M/uh), cw=Math.max(8,Math.round((rot?uh:uw)*s)), ch=Math.max(8,Math.round((rot?uw:uh)*s));
+  const cv=document.createElement("canvas"); cv.width=cw; cv.height=ch; const g=cv.getContext("2d");
+  const sx=cw/(rot?uh:uw), sy=ch/(rot?uw:uh);                                    // px ต่อ มม. (ปัดเศษ canvas แล้ว)
+  if(rot) g.setTransform(0,sy,sx,0,0,0); else g.setTransform(sx,0,0,sy,0,0);     // หมุน 90 = สลับแกน x↔y
+  const ppm=Math.min(sx,sy), R=plptRng(((pat.length*7919)^(parseInt(c.slice(1),16)||1)^(a*31+bL))>>>0);
+  const wood=(x,y,w,h,col,seed,alongX)=>{ const r=plptRng(seed);
+    g.fillStyle=col; g.fillRect(x,y,w,h);
+    const L=alongX?w:h, T=alongX?h:w, nl=4+Math.floor(r()*4);
+    for(let i=0;i<nl;i++){ const o=T*(0.08+r()*0.84), amp=T*0.06*r(), ph=r()*6.28;
+      g.strokeStyle=plptShade(col,0.78+r()*0.12); g.globalAlpha=0.18+r()*0.22; g.lineWidth=Math.max(0.6/ppm,T*0.02*(0.5+r())); g.beginPath();
+      for(let k=0;k<=12;k++){ const u=L*k/12, vv=o+amp*Math.sin(ph+k*0.9); if(alongX){ if(k) g.lineTo(x+u,y+vv); else g.moveTo(x+u,y+vv); } else { if(k) g.lineTo(x+vv,y+u); else g.moveTo(x+vv,y+u); } }
+      g.stroke(); }
+    g.globalAlpha=0.55; g.strokeStyle=plptShade(col,0.6); g.lineWidth=Math.max(0.9/ppm,0.6); g.strokeRect(x,y,w,h); g.globalAlpha=1; };
+  const jit=(col,k,amp)=>{ const r=plptRng(k*2654435761>>>0); r(); return plptShade(col,1+(r()-0.5)*2*amp); };
+  if(pat==="tile"){ const L=new THREE.Color(c), hs={}; L.getHSL(hs); const gr=hs.l>0.55?plptShade(c,0.72):plptShade(c,1.45), gw=Math.max(3,1.2/ppm);
+    g.fillStyle=gr; g.fillRect(0,0,uw,uh);
+    for(let i=0;i<2;i++) for(let j=0;j<2;j++){ const x=i*a, y=j*bL, col=jit(c,i*2+j+7,0.03); g.fillStyle=col; g.fillRect(x+gw/2,y+gw/2,a-gw,bL-gw);
+      const r=plptRng(i*97+j*13+5); for(let k=0;k<Math.min(400,a*bL/900);k++){ g.fillStyle="rgba(0,0,0,"+(r()*0.05)+")"; g.fillRect(x+gw/2+r()*(a-gw),y+gw/2+r()*(bL-gw),Math.max(1/ppm,2),Math.max(1/ppm,2)); } } }
+  else if(pat==="herr"){ const w=a, Lp=n*a, U=2*n;
+    for(let j=-4;j<=4;j++) for(let i=-3*n-4;i<=3*n+4;i++){ const ox=(i+j*n)*w, oy=(i-j*n)*w, key=(((i-n*j)%U)+U)%U;
+      if(ox<uw&&ox+Lp>0&&oy<uh&&oy+w>0) wood(ox,oy,Lp,w,jit(c,key*2+1,0.07),key*31+1,true);
+      const vx=ox+Lp, vy=oy+w-Lp; if(vx<uw&&vx+w>0&&vy<uh&&vy+Lp>0) wood(vx,vy,w,Lp,jit(c,key*2+2,0.07),key*31+2,false); } }
+  else if(pat==="bask"){ const Lp=n*a;
+    for(let qx=0;qx<2;qx++) for(let qy=0;qy<2;qy++){ const hz=(qx+qy)%2===0;
+      for(let k=0;k<n;k++){ const key=(qx*2+qy)*n+k+1; if(hz) wood(qx*Lp,qy*Lp+k*a,Lp,a,jit(c,key,0.07),key*17,true); else wood(qx*Lp+k*a,qy*Lp,a,Lp,jit(c,key,0.07),key*17,false); } } }
+  else { const offs=[0,0.5,0.25,0.75];
+    for(let rI=0;rI<4;rI++) for(let k=-1;k<=3;k++){ const x=offs[rI]*bL+k*bL, key=rI*3+(((k%3)+3)%3)+1; wood(x,rI*a,bL,a,jit(c,key,0.07),key*23,true); } }
+  g.setTransform(1,0,0,1,0,0);
+  return {cv, uw:rot?uh:uw, uh:rot?uw:uh}; }
+function plptPatTex(sp,W,D){ const key=[sp.pat,sp.c,sp.sz,sp.rot?90:0].join("|"); let P=PLPT.pat[key];
+  if(!P){ P=plptPatCanvas(sp.pat,sp.c,sp.sz,!!sp.rot,1024); if(!P) return null; PLPT.pat[key]=P; }
+  const rx=W/P.uw, ry=D/P.uh, k="pat|"+key+"|"+rx.toFixed(6)+"|"+ry.toFixed(6); let t=PLPT.tex[k]; if(t) return t;
+  t=new THREE.CanvasTexture(P.cv); t.wrapS=t.wrapT=THREE.RepeatWrapping; t.repeat.set(rx,ry); t.encoding=THREE.sRGBEncoding; t.anisotropy=8; t.needsUpdate=true;
+  return (PLPT.tex[k]=t); }
+function plptPatPrev(pat,c,sz){ const k=[pat,c,sz].join("|"); if(PLPT.prev[k]) return PLPT.prev[k];
+  let url=""; try{ if(pat==="flat"){ const cv=document.createElement("canvas"); cv.width=cv.height=8; const g=cv.getContext("2d"); g.fillStyle=c; g.fillRect(0,0,8,8); url=cv.toDataURL(); }
+    else { const P=plptPatCanvas(pat,c,sz,false,160); if(P) url=P.cv.toDataURL("image/png"); } }catch(e){}
+  return (PLPT.prev[k]=url); }
+/* สีใหม่ของเป้าหมาย: พื้นที่มีลายอยู่ = เปลี่ยนสีลาย (คงแบบ/ขนาด/แนว) */
+function plptKeepPat(tgt,c){ const own=plptOwn(tgt)||{}; return (own.pat&&PLPT_PAT[own.pat]&&tgt&&tgt.k==="floor"&&tgt.wi==null)?{pat:own.pat, sz:own.sz, rot:own.rot||0, c}:{c}; }
+function plptPatHtml(own,e){ if(snOff("plFloorPat")) return ""; const cur=own.pat&&PLPT_PAT[own.pat]?own.pat:(own.tex?"":"flat");
+  const L=[["flat","เรียบ (สีเดียว)"]].concat(Object.keys(PLPT_PAT).map(k=>[k,PLPT_PAT[k].n])), P=PLPT_PAT[own.pat];
+  const col=k=>/^#[0-9a-f]{6}$/i.test(own.c||"")?own.c:(PLPT_PAT[k]?PLPT_PAT[k].c:"#d8c8a8");
+  return '<div class="h">แบบพื้น</div><div class="fp">'+L.map(([k,n])=>'<button data-pat="'+k+'" class="'+(cur===k?"on":"")+'" title="'+e(n)+'"><span style="background-image:url(\''+plptPatPrev(k,k===cur?col(k):(PLPT_PAT[k]?PLPT_PAT[k].c:col(k)),k===cur&&own.sz?own.sz:(PLPT_PAT[k]?PLPT_PAT[k].d:""))+'\')"></span><i>'+e(n)+'</i></button>').join("")+'</div>'
+    +(P?('<div class="row" style="margin-top:7px">'+(P.wood?'ไม้ กว้าง×ยาว':'แผ่น')+' <select data-a="sz">'+P.sz.map(s=>'<option value="'+s+'"'+(s===(own.sz||P.d)?" selected":"")+'>'+s.replace("x","×")+' มม.</option>').join("")+'</select>'
+      +'<button class="ibtn" data-a="rot" title="หมุนแนวลาย 90°">⟳ หมุนแนว 90°</button></div>'):'')
+    +(P&&P.wood?('<div class="h">สีไม้</div><div class="sw">'+PLPT_WOOD.map(([c,n])=>'<button data-c="'+c+'" title="'+e(n+" "+c)+'" style="background:'+c+'" class="'+(String(own.c||"").toLowerCase()===c?"on":"")+'"></button>').join("")+'</div>'):''); }
 const PLPT_BASE=[["#f7f5f0","ขาว"],["#efe9dc","ขาวนวล"],["#e8dcc2","ครีม"],["#d8c8a8","เบจ"],["#cbb894","ทราย"],["#c9c3b6","เกรจ"],
   ["#d9d9d6","เทาอ่อน"],["#a9aaa6","เทา"],["#b6b3ad","ปูนเปลือย"],["#5f6062","เทาเข้ม"],["#3a3b3d","ชาร์โคล"],["#1f1f20","ดำ"],
   ["#b7c2a8","เขียวเสจ"],["#8a8f6a","เขียวมะกอก"],["#cfe3d7","เขียวมิ้นท์"],["#c9dbe8","ฟ้าอ่อน"],["#2f3e55","กรมท่า"],["#e9c8bf","ชมพูนู้ด"],
@@ -36626,7 +36700,9 @@ function plptApply(m,tgt,mode){ if(snOff("plPaint")||!m||!m.material) return; co
   if(sp.c){ try{ mat.color.set(sp.c); }catch(e){} } }
 function plptFloor(fl,r){ if(snOff("plPaint")) return; const sp=plptSpec({k:"floor"}); if(!sp) return;
   const mat=new THREE.MeshBasicMaterial({color:0xffffff, side:THREE.DoubleSide});   // ไม่รับแสง = สีตรงกับที่เลือก (พื้นหงายรับแสงบน 3 ดวง สีเพี้ยนสว่างจนเกือบขาว)
-  if(sp.tex){ const e=plptLib().find(x=>x.id===sp.tex), mm=Math.max(+(e&&e.mm)||600,10), tx=e?plptTex(e.id,(+r.w||1)/mm,(+r.d||1)/mm,"floor"):null;
+  if(sp.pat&&PLPT_PAT[sp.pat]&&!snOff("plFloorPat")){ let tx=null; try{ tx=plptPatTex(sp,(+r.w||1),(+r.d||1)); }catch(e){ console.error("plptPat:",e); }   // v1.537: แบบพื้น
+    if(tx) mat.map=tx; else mat.color.set(sp.c||"#b9a47c").convertSRGBToLinear(); }
+  else if(sp.tex){ const e=plptLib().find(x=>x.id===sp.tex), mm=Math.max(+(e&&e.mm)||600,10), tx=e?plptTex(e.id,(+r.w||1)/mm,(+r.d||1)/mm,"floor"):null;
     if(tx) mat.map=tx; else mat.color.set(sp.c||"#b9a47c").convertSRGBToLinear(); }
   else mat.color.set(sp.c).convertSRGBToLinear();                                // จอแสดงผลแบบ sRGB — แปลงก่อน สีบนจอจึงตรงกับช่องสีที่เลือก
   try{ fl.material.dispose(); }catch(e){} fl.material=mat; fl.receiveShadow=true; fl.renderOrder=0; }
@@ -36655,7 +36731,13 @@ function plptCss(){ if(document.getElementById("plptCSS")) return; const st=docu
     +"#plPaint .tx .t .mm input{width:52px;padding:1px 3px;font-size:10.5px}"
     +"#plPaint .tx .t .mm button{margin-left:auto;border:0;background:none;cursor:pointer;color:#d33;font-size:12px;padding:0 2px}"
     +"#plPaint .up{display:flex;align-items:center;justify-content:center;border:1.5px dashed var(--line);border-radius:9px;aspect-ratio:1;cursor:pointer;color:var(--ink-dim);font-size:11px;text-align:center;padding:4px}"
-    +"#plPaint .note{font-size:10.5px;color:var(--ink-dim);line-height:1.5;margin-top:6px}";
+    +"#plPaint .note{font-size:10.5px;color:var(--ink-dim);line-height:1.5;margin-top:6px}"
+    +"#plPaint .fp{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:6px}"                       // v1.537: ปุ่มแบบพื้น
+    +"#plPaint .fp button{display:flex;flex-direction:column;gap:3px;align-items:stretch;padding:3px;border:2px solid transparent;border-radius:9px;background:none;color:inherit;cursor:pointer;min-width:0}"
+    +"#plPaint .fp button.on{border-color:var(--accent)}"
+    +"#plPaint .fp span{aspect-ratio:1;border-radius:6px;border:1px solid rgba(0,0,0,.15);background:#ddd center/60% repeat}"
+    +"#plPaint .fp i{font-style:normal;font-size:10px;line-height:1.2;text-align:center;color:var(--ink-dim)}"
+    +"#plPaint .fp button.on i{color:var(--ink);font-weight:700}";
   document.head.appendChild(st); }
 function plptClose(){ if(PLPT.el){ PLPT.el.remove(); PLPT.el=null; } }
 function plptOpen(tgt,x,y){
@@ -36667,6 +36749,7 @@ function plptOpen(tgt,x,y){
     el.innerHTML='<div class="hd"><b>🖌 สี / รูป — '+e(plptTgtName(tg))+'</b><button class="ibtn" data-a="x" style="margin-left:auto">✕</button></div>'
       +'<div class="bd">'
       +'<div class="tg">'+cand.map((c,i)=>'<button data-tg="'+i+'" class="'+((c.wi!=null?tg.wi===c.wi:(tg.wi==null&&tg.k===c.k))?"on":"")+'">'+e(plptTgtName(c))+'</button>').join("")+'</div>'
+      +((tg.wi==null&&tg.k==="floor")?plptPatHtml(own,e):'')                                    // v1.537: แบบพื้น
       +'<div class="h">สีพื้นฐาน</div><div class="sw">'+PLPT_BASE.map(([c,n])=>'<button data-c="'+c+'" title="'+e(n+" "+c)+'" style="background:'+c+'" class="'+(cur===c?"on":"")+'"></button>').join("")+'</div>'
       +'<div class="h">เลือกเอง</div><div class="row"><input type="color" data-a="pick" value="'+e(/^#[0-9a-f]{6}$/i.test(own.c||"")?own.c:"#d6cebd")+'" title="เลือกสี">'
         +'<button class="ibtn" data-a="eye" title="ดูดสีจากที่ไหนก็ได้บนจอ (รวมนอกโปรแกรม เช่น รูปที่ลูกค้าส่งมา) — Chrome / Edge">💧 หลอดดูดสี</button>'
@@ -36681,11 +36764,16 @@ function plptOpen(tgt,x,y){
     const q=s=>el.querySelector(s);
     q('[data-a="x"]').onclick=plptClose;
     el.querySelectorAll("[data-tg]").forEach(b=>b.onclick=()=>{ PLPT.tgt=cand[+b.dataset.tg]; draw(); });
-    el.querySelectorAll(".sw button").forEach(b=>b.onclick=()=>{ plptSet(PLPT.tgt,{c:b.dataset.c}); draw(); });
-    q('[data-a="pick"]').onchange=ev=>{ plptSet(PLPT.tgt,{c:ev.target.value}); draw(); };
+    el.querySelectorAll(".sw button").forEach(b=>b.onclick=()=>{ plptSet(PLPT.tgt,plptKeepPat(PLPT.tgt,b.dataset.c)); draw(); });   // v1.537: พื้นมีลาย = เปลี่ยนสีลาย
+    el.querySelectorAll("[data-pat]").forEach(b=>b.onclick=()=>{ const k=b.dataset.pat, o=plptOwn(PLPT.tgt)||{}, P=PLPT_PAT[k];
+      const keepC=/^#[0-9a-f]{6}$/i.test(o.c||"")&&(!P||!o.pat||!!PLPT_PAT[o.pat]&&!!PLPT_PAT[o.pat].wood===!!P.wood)?o.c:null;   // สลับไม้↔กระเบื้อง = ใช้สีตั้งต้นของแบบนั้น
+      plptSet(PLPT.tgt,P?{pat:k, sz:(o.pat===k&&o.sz)?o.sz:P.d, rot:o.pat===k?(o.rot||0):0, c:keepC||P.c}:{c:/^#[0-9a-f]{6}$/i.test(o.c||"")?o.c:"#d8c8a8"}); draw(); });
+    { const s=q('[data-a="sz"]'); if(s) s.onchange=()=>{ const o=plptOwn(PLPT.tgt)||{}; if(o.pat){ plptSet(PLPT.tgt,Object.assign({},o,{sz:s.value})); draw(); } }; }
+    { const b=q('[data-a="rot"]'); if(b) b.onclick=()=>{ const o=plptOwn(PLPT.tgt)||{}; if(o.pat){ plptSet(PLPT.tgt,Object.assign({},o,{rot:o.rot?0:90})); draw(); } }; }
+    q('[data-a="pick"]').onchange=ev=>{ plptSet(PLPT.tgt,plptKeepPat(PLPT.tgt,ev.target.value)); draw(); };
     q('[data-a="eye"]').onclick=async()=>{
       if(!("EyeDropper" in window)){ toast("เบราว์เซอร์นี้ยังไม่มีหลอดดูดสี — ใช้ Chrome หรือ Edge รุ่นใหม่ (หรืออัปโหลดรูปแทน)"); return; }
-      try{ const res=await new window.EyeDropper().open(); if(res&&res.sRGBHex){ plptSet(PLPT.tgt,{c:String(res.sRGBHex).toLowerCase()}); if(PLPT.el) draw(); toast("💧 "+plptTgtName(PLPT.tgt)+" = "+res.sRGBHex); } }
+      try{ const res=await new window.EyeDropper().open(); if(res&&res.sRGBHex){ plptSet(PLPT.tgt,plptKeepPat(PLPT.tgt,String(res.sRGBHex).toLowerCase())); if(PLPT.el) draw(); toast("💧 "+plptTgtName(PLPT.tgt)+" = "+res.sRGBHex); } }
       catch(err){ /* กด Esc = ยกเลิก */ } };
     el.querySelectorAll(".tx .t").forEach(tEl=>{ const id=tEl.dataset.id, ent=lib.find(x=>x.id===id); if(!ent) return;
       tEl.querySelector('[data-a="use"]').onclick=()=>{ plptSet(PLPT.tgt,{tex:id}); draw(); };
