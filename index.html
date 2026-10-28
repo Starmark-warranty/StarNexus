@@ -3281,7 +3281,7 @@ body[data-theme="dark"] .splash-dots span{background:rgba(255,255,255,.25)}
    ===================================================================== */
 /* ---- APP_META: แหล่งความจริงเดียวของเวอร์ชัน (ดูได้จาก console / คลิกชื่อแอป) ---- */
 const APP_META={
-  name:"StarNexus", version:"1.530", build:"2026-10-27/pull-var",
+  name:"StarNexus", version:"1.531", build:"2026-10-28/pl-tidy",
   file:"StarNexus.html", basedOn:"Furnitech_V3.html (v3.11)",
   /* ───────── เริ่มนับเวอร์ชันใหม่ที่ 1.001 (21/08/2026) ─────────
      ของเดิมนับมาถึง 42.1 แล้ววิ่งเป็นทศนิยมสองชั้นซึ่งอ่านลำดับยาก
@@ -3289,6 +3289,7 @@ const APP_META={
      ประวัติเก่าเก็บไว้ทั้งหมดตามเลขเดิม ไม่ไล่เขียนใหม่ เพราะเลขในนั้นถูกอ้างถึงไปแล้ว
      รายการที่อยู่ใต้ 1.001 ลงไปจึงเป็นเลขชุดเก่า อ่านต่อกันได้ตามวันที่ */
   changelog:[
+    ["1.531","2026-10-28","UI จัดระเบียบแผงห้องออกแบบ (ผู้ใช้ 28/10 07:54 ภาพแผงห้อง: “จัดระเบียบ UI ให้เข้าที่หน่อยครับ”) — เดิม หัวแผงตกบรรทัด (ห้อง/ออกแบบ + คำแนะนำสองบรรทัด) · ปุ่ม 🎨 สีทั้งออเดอร์ / 🖐 มือจับทั้งห้อง เบียดอยู่ท้ายแถวฟิลเลอร์ลงพื้น ข้อความในปุ่มตกสามบรรทัด · ป้ายกับช่องกรอกยาวไม่เท่ากันจึงไม่ตรงแนว · ปุ่มยืดเต็มแถว (.ibtn flex:1) · ปุ่ม 💰 ใส่ราคาที่ขาด ตกลงมาเต็มแถว · เปิดรายละเอียดแล้วแถบล่างดันส่วนบนจนเหลือนิดเดียว · ตอนนี้: หัวแผง = ชื่อ + ✓ เสร็จ บรรทัดเดียว คำแนะนำบรรทัดล่าง · ปุ่มทั้งห้อง (🎨 สี / 🖐 มือจับ) ขึ้นมาอยู่ใต้หัวห้อง · ทุกกลุ่มเป็นสองคอลัมน์ ป้ายซ้ายกว้างเท่ากัน ช่องกรอกขวา หมายเหตุอยู่ใต้ช่อง · กลุ่มที่พับโชว์สรุปบรรทัดที่สอง (เปิดแล้วซ่อนสรุป) · แถบล่าง = ตู้ในห้อง + ราคาขาย / ต้นทุน / แถบเตือนราคาคู่ปุ่ม 💰 / ปุ่ม 4 ตัวเป็นตาราง 2×2 · แถบล่างสูงไม่เกิน 48% ของจอ (เลื่อนในตัว) · ตู้ที่เลือก: รหัส + ราคาบรรทัดแรก ขนาดบรรทัดสอง · ก/ส/ล + ปรับขนาด แถวเดียว · ปุ่มคำสั่งเป็นตาราง 3 คอลัมน์ · ฟิลเลอร์/แผ่นปิดข้าง ใช้คอลัมน์ป้ายเดียวกัน · id ปุ่ม/ช่องเดิมทุกตัว (การทำงานไม่เปลี่ยน) · ปิด SN_OFF.plTidy=1 = หน้าตาแบบ 1.530"],
     ["1.530","2026-10-27","UX 🖐 ระยะมือจับอิงตัวแปรของตู้ (ผู้ใช้ 21:30 ภาพ Variables (ตู้นี้) BND214 — $K_Pull_Coordinate_X1–X6 = 35 · Y = 0 จาก Variables กลาง: “จริง ๆ มันต้องอิงค่า Default ไว้ คนที่มาดูหรือตรวจต่อหรือปรับแบบ จะได้ตรวจได้”) — เดิม (1.524–1.529) กล่องมือจับเขียนระยะเป็นตัวเลขตายตัวในมือจับ ตารางตัวแปรของตู้ยังโชว์ 35/0 ซึ่งไม่ใช่ค่าที่ใช้จริง แก้ในตารางก็ไม่ขยับ · ตอนนี้ระยะชี้ไปที่ $K_Pull_Coordinate_X{n}/Y{n} ของบานลำดับ n (แบบเดียวกับมือจับจากออเดอร์) · ระยะเท่าค่าตั้งต้น (35 · Y 0 = 35) = ไม่เขียนทับ ใช้ค่าตั้งต้น · ต่างจากค่าตั้งต้น = เขียนทับเฉพาะตู้นี้ เป็นสูตรอ่านง่าย เช่น X = 35+180 (ปลายมือจับ 35 + ครึ่งยาวมือจับ 360) · ช่องแกนกลาง (UpMiddle ฯลฯ) ไม่เขียน · เอามือจับออก = ล้างค่าที่เขียนทับของบานนั้น · ตรวจ/แก้ได้ที่ Variables (ตู้นี้) › ตัวแปรตัวเลขของตู้นี้ (ช่อง ทับเฉพาะตู้นี้ / ใช้จริง) แล้วมือจับขยับตาม · ชิ้นที่ไม่มีลำดับบาน (แผ่นหน้า FXF) ยังเป็นตัวเลขในมือจับ · FIX ช่องตัวแปรใส่สูตรเลขล้วน (เช่น 35+75) เดิมได้แค่เลขตัวแรก (parseFloat) ตอนนี้คิดสูตร (evalCabExpr/evalCabQuiet)"],
     ["1.529","2026-10-27","FIX+FEAT 🖐 มือจับ: ไม่ลงแผ่นปิด/ฟิลเลอร์ + เลือกรายบานได้ (ผู้ใช้ 21:20 ส่ง starnexus-project (33).json: “พวกแผ่นปิดข้าง Filler WNF TNF BNF แล้วตู้ BND217 มีไม้ Panel L มันเป็นเหมือน Filler · ถ้ามันไม่มีอุปกรณ์บานพับ หรือรางลิ้นชัก หรือโช็คในอนาคต ชิ้นนั้นก็ไม่มีมือจับแน่นอนถูกไหม” · 21:22 ภาพกล่องมือจับ BND217 “2 บาน/ลิ้นชัก”: “ต้องเลือกได้ด้วยว่าบานไหนไม่เอามือจับ อนาคตมีตู้แบบอื่น ๆ แน่นอน”) — ในไฟล์: BND217 Panel L (หน้าหลอก) · BNF001 Filler Front · WNF036 Filler Carcass + Fix Front ได้ H002 ไปด้วย (1.524 นับทุกชิ้นที่ระบบมือจับนับเป็นบาน + แผ่นหน้าที่ชื่อมี front) · ① ตั้งต้นใส่เฉพาะชิ้นที่เปิดได้: มีบานพับ (ข้อมูลบานพับ หรือรูถ้วย Ø30–40 ของงาน FXF) · หน้าลิ้นชักที่มีกล่อง/แผงเหล็ก · (โช็ค/บานยก/บานเลื่อน: connectors lift/flap/slide/shock หรือธง _lift/_slideDoor) · หน้าหลอก/แผงปิดไม่ใส่ — ไม่ต้องติ๊กรับค่ามือจับรายชิ้นตอนสร้างตู้ · ② กล่อง 🖐 มือจับ (ตู้ใบเดียว) มีภาพหน้าตู้: กดที่บาน = ใส่/ไม่ใส่ มือจับ (บานที่ใส่โชว์ตำแหน่งมือจับ · ไม่ใส่ = ลายขีด) · ใช้กับแผ่นหน้าทุกชิ้นของตู้ รวมชิ้นที่ระบบเดาว่าเปิดไม่ได้ (บังคับใส่ได้) · จำต่อบาน (_pullPick) ใส่รุ่นใหม่ทั้งตู้ก็ไม่ลงบานที่ปิดไว้ · ③ มือจับจากกล่องนี้ที่ค้างบนชิ้นที่ไม่ใส่ ล้างเองทุกรอบคิดฉาก (ช่อง K_Pull ของชิ้นนั้น = NoPull) · มือจับจากออเดอร์ (XML) / ตั้งเองทีละบาน (⚙) ไม่แตะ · ลำดับบานของมือจับจาก XML เหมือนเดิม · ④ ระยะตั้งต้น (ผู้ใช้ 21:26 “Knob ขอเป็น 35,35 · มือจับ 2 รู เอาปลายมือจับ 35 อีกด้านก็ 35”): ปุ่ม 35/35 · ก้าน/บาร์ ปลายมือจับห่างขอบ 35 เส้นกลางห่างขอบอีกด้าน 35 · ลิ้นชัก/บานยก 35 จากขอบ (เดิม 50/50 · ปลาย 50 · ข้าง 40 · ลิ้นชัก 45 · ค่า 35 = ระยะตั้งต้นแทน 0000 ในตั้งค่า) · ปิด SN_OFF.plPullMove=1"],
     ["1.528","2026-10-27","FEAT+FIX โหมดสมจริงกับห้องออกแบบ (ผู้ใช้ 21:13 ภาพห้องออกแบบ + ภาพโหมดสมจริง: “โหมดสมจริงน่าจะต้องอยู่ที่โหมดห้องออกแบบ · ตำแหน่งผนังหลังกดโหมดสมจริงในห้องออกแบบ ตู้ต้องอยู่ที่เดิม อันนี้เหมือนตู้เลื่อนออกมา · เพิ่มปุ่มบันทึกภาพตอนอยู่โหมดห้องออกแบบ ไปเอาภาพของโหมดสมจริง · ที่กดบันทึกภาพแสงจริงดูไม่ละเอียดเท่าตอนแคปรูป”) — ① เปิดโหมดสมจริงตอนอยู่ห้องออกแบบ = ห้องจริงใช้ผนัง/ขนาด/ความสูงฝ้าของห้องออกแบบ (เดิมสร้างห้องใหม่รอบกล่องตู้: ผนังซ้าย-ขวาห่างตู้ ≥ 1.1 ม. หน้าตู้โล่ง 2.6 ม. ห้องไม่ตรงกับที่ออกแบบ ตู้มุม/ตู้ชิดผนังข้างจึงดูลอยออกจากผนัง) · หน้าต่างอยู่ผนังซ้ายช่วงที่ไม่มีตู้ (ผนังซ้ายเต็มตู้ = ไม่มีหน้าต่าง) · ② แผงห้องออกแบบ (ท้ายแผง) มีปุ่ม ✨ โหมดสมจริง และ 📷 บันทึกภาพ · ③ 📷 บันทึกภาพ = ภาพโหมดสมจริงแบบที่เห็นบนจอ (เงามุม แสง ห้อง) วาดใหม่ความละเอียดสูง (ด้านยาว ~3,200 px · ไม่ติดเส้นเลือก/ป้าย/ระยะ) บันทึกเป็น JPG — กดจากห้องออกแบบตอนยังไม่เปิดสมจริง = เปิดให้ ถ่าย แล้วกลับมาเหมือนเดิม · มีปุ่มนี้ในแถบโหมดสมจริงด้วย (📸 ภาพแสงจริงแบบยิงแสงยังอยู่) · ปิด SN_OFF.realPlRoom=1 (ห้องสร้างรอบตู้แบบเดิม) · SN_OFF.realSnap=1 (ไม่มีปุ่ม 📷)"],
@@ -28895,6 +28896,7 @@ function boardRole(b){
      SN_OFF.dwgDoorLine=1 หน้ารวมวัสดุ ดีไซน์หน้าบานเป็นภาพถ่าย 3D แยกตาม Part ลิงก์ (แบบ 1.521) (v1.527)
      SN_OFF.realPlRoom=1  โหมดสมจริงในห้องออกแบบสร้างห้องรอบตู้แบบเดิม (ไม่ใช้ผนังของห้องออกแบบ) (v1.528)
      SN_OFF.realSnap=1    ไม่มีปุ่ม 📷 บันทึกภาพสมจริงความละเอียดสูง (v1.528)
+     SN_OFF.plTidy=1      แผงห้องออกแบบหน้าตาแบบ 1.530 (ไม่จัดสองคอลัมน์ · ปุ่มสี/มือจับทั้งห้องอยู่ในกลุ่มขา · ปุ่มท้ายแผงสองแถว) (v1.531)
      SN_OFF.plPullVar=1   กล่องมือจับเขียนระยะเป็นตัวเลขในมือจับแบบ 1.529 (ไม่อิงตัวแปร K_Pull_Coordinate ของตู้) (v1.530)
      SN_OFF.plPullMove=1  กล่องมือจับตั้งต้นใส่ทุกแผ่นหน้า (รวมแผ่นปิด/ฟิลเลอร์/หน้าหลอก) แบบ 1.524 — ที่กดเลือกรายบานยังใช้ได้ (v1.529)
      SN_OFF.fxfIn=1       ไม่รับไฟล์ FXF ของ imos (ไม่มีปุ่ม 📐 ในหน้า Order · ลากไฟล์ .fxf มาวางที่ฉากตกไปตัวอ่าน DXF แบบเดิม · ชิ้น _fxf ในงานเก่ายังไม่ถูกตัวซ่อมแตะ) (v1.499)
@@ -36838,7 +36840,183 @@ function plFootOpen(){ const sum=[]; let warn=false;
   try{ const m=plPrice().miss; if(m) sum.push("ยังไม่มีราคา "+m+" ใบ"); }catch(e){}
   return '<details class="plGrp" data-g="foot"'+((plGrpOpen("foot",false)||warn)?' open':'')+'><summary>รายละเอียด<small>'+escapeHtml(sum.join(" · "))+(warn?' ⚠':'')+'</small></summary>'; }
 function plRoomGrpWire(s){ s.querySelectorAll("details.plGrp[data-g]").forEach(d=>{ d.ontoggle=()=>plGrpSave(d.dataset.g,d.open); }); }
+/* ───────── v1.531: จัดระเบียบแผงห้องออกแบบ ─────────
+   ผู้ใช้ 28/10/2026 07:54 (ภาพแผงห้องออกแบบ): “จัดระเบียบ UI ให้เข้าที่หน่อยครับ”
+   เดิม (ถึง 1.530):
+     · หัวแผง “🏠 ห้องออกแบบ” + คำแนะนำ + ปุ่มเสร็จ อยู่แถวเดียวในแผงกว้าง 350 → ชื่อตกเป็น “ห้อง / ออกแบบ” คำแนะนำสองบรรทัด
+     · ปุ่ม 🎨 สีทั้งออเดอร์ + 🖐 มือจับทั้งห้อง (1.524) ต่อท้ายแถว “ฟิลเลอร์ลงพื้น” → ข้อความในปุ่มตกสามบรรทัด และไม่เกี่ยวกับกลุ่มขา/ตีนตู้
+     · ป้ายแต่ละแถวยาวไม่เท่ากัน (ขาตู้พื้น/ตู้สูง สูง · ตีนตู้ · ฟิลเลอร์บน สูง …) ช่องกรอกจึงไม่ตรงแนว แถวยาวตกบรรทัดคนละแบบ
+     · .ibtn ตั้งต้น flex:1 → ปุ่มเล็ก (ครอบตู้ที่มี · แนะนำ 1500 · 💰 ใส่ราคาที่ขาด) ยืดเต็มแถว
+     · ชื่อกลุ่มยาว + สรุปถูกตัด “…” ในบรรทัดเดียว
+     · เปิด “รายละเอียด” แล้วแถบล่างสูงขึ้นจนส่วนบน (ขนาดห้อง / ตู้ที่เลือก) เหลือไม่กี่บรรทัด
+   ตอนนี้:
+     · หัวแผง = ชื่อ + ✓ เสร็จ บรรทัดเดียว · คำแนะนำบรรทัดล่างตัวเล็ก
+     · แถว “ห้อง (มม.)” = ครอบตู้ที่มี / มุมห้อง ปุ่มเล็ก · ใต้ลงมา 🎨 สีทั้งออเดอร์ | 🖐 มือจับทั้งห้อง กว้างเท่ากัน
+     · ทุกกลุ่มเป็นสองคอลัมน์ (plF531): ป้ายซ้ายกว้าง 112 px · ช่องกรอก/ติ๊กขวา · หมายเหตุอยู่ใต้ช่อง (plNB)
+     · กลุ่มที่พับ = สรุปบรรทัดที่สองเต็มกว้าง · กลุ่มที่เปิด = ซ่อนสรุป (เห็นค่าในกลุ่มอยู่แล้ว)
+     · แถบล่าง (plFootTop531): ตู้ในห้อง + ราคาขาย · ต้นทุน · แถบเตือนราคา (ข้อความซ้าย ปุ่ม 💰 ขวา) · ปุ่ม 4 ตัวตาราง 2×2 · สูงไม่เกิน 48vh เลื่อนในตัว
+     · ตู้ที่เลือก: รหัส + ราคา / ขนาด · ก ส ล + ปรับขนาด แถวเดียว · ปุ่มคำสั่งตาราง 3 คอลัมน์ · แถว “ฟิลเลอร์” “แผ่นปิดข้าง” ใช้คอลัมน์ป้าย (plTidyRows)
+     id ปุ่ม/ช่อง/data-k/data-tk เดิมทุกตัว → ตัวต่อสาย (plPanelRoom · plWtWire · plPanelFoot · plPanelSel) ใช้ได้เหมือนเดิม
+   ปิด: SN_OFF.plTidy=1 = หน้าตาแบบ 1.530 (โค้ดเดิมยังอยู่ครบ) */
+function plCss531(){ if(document.getElementById("plCSS531")) return; const st=document.createElement("style"); st.id="plCSS531";
+  st.textContent="#plPanel .ibtn{flex:none;width:auto;height:auto;min-height:0;padding:4px 9px;font-size:11.5px;line-height:1.35;white-space:nowrap;border-radius:7px}"
+    +"#plPanel .ibtn.on{background:var(--accent);color:#fff;border-color:var(--accent)}"
+    +"#plPanel .plHead{display:flex;flex-direction:column;gap:3px;padding:10px 12px 8px}"
+    +"#plPanel .plHT{display:flex;align-items:center;gap:8px}"
+    +"#plPanel .plHT b{font-size:14.5px;white-space:nowrap}"
+    +"#plPanel .plHT .ibtn{margin-left:auto;padding:5px 12px;font-weight:600}"
+    +"#plPanel .plHint{color:var(--ink-dim);font-size:10.5px;line-height:1.45}"
+    +"#plPanel .plGrow{flex:1}"
+    +"#plPanel .plBar{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:6px;margin-top:8px}"
+    +"#plPanel .plBar .ibtn{width:100%;justify-content:center;padding:7px 6px;font-size:12px}"
+    +"#plPanel .plBar.plOdd>.ibtn:last-child{grid-column:1/-1}"
+    +"#plPanel .plF{display:grid;grid-template-columns:112px minmax(0,1fr);column-gap:8px;align-items:start;margin-top:6px}"
+    +"#plPanel .plF>.plL{display:flex;align-items:center;gap:5px;min-width:0;min-height:26px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}"
+    +"#plPanel .plF>.plC{display:flex;flex-wrap:wrap;align-items:center;gap:4px 6px;min-width:0;min-height:26px}"
+    +"#plPanel .plF .plNote{line-height:1.4}"
+    +"#plPanel .plF .plNB{flex-basis:100%}"
+    +"#plPanel .plCk{display:inline-flex;align-items:center;gap:5px;cursor:pointer;white-space:nowrap}"
+    +"#plPanel .plCk input{margin:0}"
+    +"#plPanel .plU{color:var(--ink-dim);font-size:11px}"
+    +"#plPanel .plSw{display:inline-block;width:10px;height:3px;border-radius:2px;flex:none}"
+    +"#plPanel .plDim3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px;margin-top:4px}"
+    +"#plPanel .plDim3 label{display:flex;align-items:center;gap:4px;min-width:0}"
+    +"#plPanel .plDim3 input{width:100%!important;min-width:0}"
+    +"#plPanel .plDiv{border-top:1px dashed var(--line);margin:9px 0 3px}"
+    +"#plPanel .plF input:not([type=checkbox]):not([type=color]),#plPanel .plF select,#plPanel .plDim3 input{height:26px;box-sizing:border-box;padding:2px 5px}"
+    +"#plPanel .plF select{max-width:100%;min-width:0}"
+    +"#plPanel details.plGrp>summary{flex-wrap:wrap;row-gap:1px;color:var(--ink);font-size:12.5px}"
+    +"#plPanel details.plGrp:not([open])>summary small{flex-basis:100%;padding-left:16px;color:var(--ink-dim)}"
+    +"#plPanel details.plGrp[open]>summary small{display:none}"
+    +"#plPanel details.plGrp[open]{padding-bottom:6px}"
+    +"#plFoot{flex:none;max-height:42vh;overflow:auto}"
+    +"#plPanel .plSum b{font-size:13px}"
+    +"#plPanel .plSale{margin-left:auto;color:var(--ink-dim);font-size:11.5px}"
+    +"#plPanel .plSale b{color:var(--ink);font-size:15px;font-weight:800;margin-left:4px}"
+    +"#plPanel .plCostRow{display:grid!important;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:6px}"
+    +"#plPanel .plCostRow .plCostT{min-width:0;line-height:1.45}"
+    +"#plPanel .plCostRow .ibtn{margin-left:0!important}"
+    +"#plPanel .plSelHd{display:block!important}"
+    +"#plPanel .plSelL1{display:flex;align-items:center;gap:6px;min-width:0}"
+    +"#plPanel .plSelL1 b{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}"
+    +"#plPanel .plSelPr{margin-left:auto;font-weight:700;white-space:nowrap}"
+    +"#plPanel .plSz{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr)) auto;gap:6px}"
+    +"#plPanel .plSz label{display:flex;align-items:center;gap:3px;min-width:0}"
+    +"#plPanel .plSz input{width:100%!important;min-width:0}"
+    +"#plPanel .plAct{display:grid!important;grid-template-columns:repeat(3,minmax(0,1fr));gap:5px}"
+    +"#plPanel .plAct .ibtn{width:100%;justify-content:center;padding:5px 4px}"
+    +"#plSelSec .plF{grid-template-columns:76px minmax(0,1fr)}"
+    +"#plSelSec .plF>.plC>.ibtn{flex:1 1 0;min-width:0;justify-content:center;padding:4px 5px}"
+    +"#plSelSec #plDp{flex:1;min-width:0;width:auto!important}";
+  document.head.appendChild(st); }
+/* แถวสองคอลัมน์: ป้าย (ข้อความ หรือ ติ๊ก+ข้อความ) | ช่องกรอก · tip = ข้อความเมื่อชี้ */
+function plF531(lbl,ctl,tip,cls){ return '<div class="plF'+(cls?(" "+cls):"")+'"'+(tip?(' title="'+escapeHtml(tip)+'"'):'')+'><div class="plL">'+lbl+'</div><div class="plC">'+(ctl||"")+'</div></div>'; }
+function plRoomHtml531(r,num){ plCss317(); plCss531();
+  const grp=(k,def,title,sum,body)=>'<details class="plGrp" data-g="'+k+'"'+(plGrpOpen(k,def)?' open':'')+'><summary>'+title+'<small>'+sum+'</small></summary>'+body+'</details>';
+  const sg=plSuggest(), o=plDimOpt(), ctm=plCeilTopMode(), F=plF531;
+  const chip=(k,v,t)=>'<button class="ibtn plSug" data-k="'+k+'" data-v="'+v+'" title="'+escapeHtml(t)+'">แนะนำ '+v+'</button>';
+  const nin=(k,v,w)=>'<input type="number" data-k="'+k+'" value="'+Math.round(v)+'" step="50"'+(w?(' style="width:'+w+'px"'):'')+'>';
+  const mm='<span class="plU">มม.</span>', note=(x,nb)=>'<span class="plNote'+(nb===false?'':' plNB')+'">'+x+'</span>';
+  const ck=(id,on,lbl)=>'<label class="plCk"><input type="checkbox" id="'+id+'"'+(on?" checked":"")+'> '+lbl+'</label>';
+  const head='<div class="plRow"><h4>ห้อง (มม.)</h4><span class="plGrow"></span>'
+      +'<button class="ibtn" id="plFitRoom" title="ย้ายและขยายห้องให้คลุมตู้ที่มีอยู่ในฉาก">⤢ ครอบตู้ที่มี</button>'
+      +'<button class="ibtn" id="plCam" title="กล้องมองมุมห้อง">🎥 มุมห้อง</button></div>'
+    +'<div class="plBar'+(snOff("plPull")?' plOdd':'')+'" style="margin-top:7px">'
+      +'<button class="ibtn" id="plClrAll" title="เลือกสีทีเดียวทั้งออเดอร์ — หน้าบานทุกบาน โครงตู้ ฯลฯ">🎨 สีทั้งออเดอร์</button>'
+      +(snOff("plPull")?'':'<button class="ibtn" id="plPullAll" title="เลือกมือจับทีเดียวทั้งห้อง">🖐 มือจับทั้งห้อง</button>')+'</div>';
+  const size=grp("size",false,"ขนาดห้อง · ผนัง · Dim",Math.round(r.w)+"×"+Math.round(r.d)+"×"+Math.round(r.h),
+      '<div class="plDim3">'+[["w","กว้าง"],["d","ลึก"],["h","สูง"]].map(a=>'<label>'+a[1]+' '+nin(a[0],r[a[0]])+'</label>').join("")+'</div>'
+      +F("ผนัง",Object.keys(PL_WALLS).map(k=>'<label class="plCk"><input type="checkbox" data-w="'+k+'"'+(r.walls[k]?" checked":"")+'> '+PL_WALLS[k].lbl+'</label>').join(""))
+      +F("Dim 3D",'<label class="plCk"><input type="checkbox" id="plDimGap"'+(o.gap?' checked':'')+'> <span style="color:#e5484d">■</span> ระยะถึงผนัง/ตู้ข้าง</label>'
+        +'<label class="plCk"><input type="checkbox" id="plDimSize"'+(o.size?' checked':'')+'> <span style="color:#8a93a6">■</span> ขนาดตู้</label>',"เส้นบอกระยะในฉาก 3D ตอนลาก/เลือกตู้"));
+  const wsum=["ขา "+Math.round(+r.legH||0), r.plinthMat==="stainless"?"ตีนตู้สแตนเลส":"ตีนตู้ไม้", r.ceilOn!==false?"ฟิลเลอร์บน":"", r.lightOn?("ไม้ไฟ "+String(r.lightCode||"")):"",
+      "ปิดข้าง"+(r.sideFloor!==false?" ลงพื้น":"")+(r.sideCeil?" ถึงฝ้า":"")].filter(Boolean).join(" · ");
+  const work=grp("work",true,"ขา · ตีนตู้ · ฟิลเลอร์ · ไม้ไฟ · ปิดข้าง",escapeHtml(wsum),
+      F("ขาตู้พื้น/ตู้สูง",nin("legH",r.legH||0)+mm+note("0 = วางพื้น · ตีนตู้ PN01 ขึ้นเอง"),"ขาตู้พื้น/ตู้สูง สูง (มม.)")
+      +F("ตีนตู้",'<select id="plPlMat"><option value="wood"'+(r.plinthMat!=="stainless"?" selected":"")+'>ไม้ (สีบาน)</option><option value="stainless"'+(r.plinthMat==="stainless"?" selected":"")+'>สแตนเลส (ออกเป็น Fitting)</option></select>',
+        "ไม้ = ตู้ PN01 สีบาน ออกใบตัด · สแตนเลส = ออกเป็น Fitting ตามกฎรายการเส้น (3D ยังวาดตามแนวตู้ สีเทา)")
+      +F(ck("plFFloor",r.fillerFloor,"ฟิลเลอร์ลงพื้น"),note("ตีนตู้จบที่ฟิลเลอร์",false),"ฟิลเลอร์ตู้พื้น/ตู้สูงลงถึงพื้น ตีนตู้จบที่ข้างฟิลเลอร์ · ไม่ติ๊ก = ฟิลเลอร์ยกเท่าขา ตีนตู้วิ่งผ่านหน้า · สั่งรายใบได้ที่แผงตู้ที่เลือก")
+      +F(ck("plCeilOn",r.ceilOn!==false,"ฟิลเลอร์บน"),'สูง <input type="number" id="plCeilH" value="'+(+r.ceilH>0?Math.round(+r.ceilH):"")+'" placeholder="ถึงฝ้า" min="0" step="10" style="width:64px">'+mm
+          +note('ว่าง = ถึงฝ้า'+(ctm!=null?(' ('+Math.max(Math.round(r.h-ctm),0)+')'):'')),"แผงปิดช่องเหนือตู้แขวนถึงฝ้า (CeilingFiller) ชิดหน้าโครงตู้ ไม่ถึงบาน · ไม่ติ๊ก = ไม่ใส่")
+      +F(ck("plLtOn",r.lightOn,"ไม้ไฟใต้ตู้ลอย"),'รหัส <input id="plLtCode" value="'+escapeHtml(String(r.lightCode||"WEF253"))+'" style="width:84px">'
+          +note('หนา '+plLightT()+' → ยกโครง '+plLightGap()+' · บานยืดลง '+plLightGap()),"ไม้ไฟวิ่งปิดใต้ตู้ลอย — โครงตู้ลอยหดขึ้นเท่าความหนาไม้ไฟ (ปัดเป็นหลักสิบ) ขนาดตู้เต็มคงเดิม บานยืดลงปิด (ExtendBottom) · ปิดรายใบได้ที่ตู้")
+      +(r.lightOn?F("",'<label class="plCk" style="white-space:normal"><input type="checkbox" id="plLtFill"'+(r.lightFill!==false?' checked':'')+'> ไม้ไฟวิ่งสุดฟิลเลอร์ (ยกโครงฟิลเลอร์เท่าตู้)</label>',
+          "ติ๊ก = ไม้ไฟวิ่งยาวใต้ฟิลเลอร์ไปถึงขอบนอก โครงฟิลเลอร์ยกขึ้นเท่าตู้ · ไม่ติ๊ก = ฟิลเลอร์ลงเต็มถึงก้นบาน ไม้ไฟจบที่ข้างฟิลเลอร์ · แผ่นปิดข้างไม่ยก ปิดปลายไม้ไฟเสมอ · สั่งรายใบได้ที่ฟิลเลอร์ที่เลือก"):'')
+      +F("แผ่นปิดข้าง",ck("plSdFloor",r.sideFloor!==false,"ตู้พื้น/สูง ลงพื้น")+ck("plSdCeil",r.sideCeil,"ตู้ลอย/สูง ถึงฝ้า")
+          +note("ไม่ติ๊ก = แผ่นเท่าตู้ + ไม้ปิดปลายตีนตู้ / ฟิลเลอร์บน"),"แผ่นปิดข้างตู้ (BFF/WFF/TFF) — ใส่ที่ตู้ที่เลือก ◀ ซ้าย / ขวา ▶ · ไม่ติ๊ก = แผ่นยาวเท่าตู้ แล้วไม้ปิดปลายตีนตู้/ฟิลเลอร์บนขึ้นเอง (กันช่อง) · สั่งรายแผ่นได้ที่แผ่นที่เลือก")
+      +F("บานเพบน",'Trim Top <input type="number" id="plBvTT" value="'+Math.max(+r.bevelTT||0,0)+'" min="0" step="5" style="width:56px">'+mm,
+          "บานที่ Part ตั้ง เพ ขอบบน (เช่น ECxx01) — ใส่ Trim Top ให้เอง แก้รายใบได้ที่ตู้ที่เลือก · 0 = ไม่ใส่"));
+  const line=grp("line",true,"แนวตู้ลอย / ตู้สูง","ก้น "+Math.round(+r.wallBot||0)+" · บน "+(+r.wallTop>0?Math.round(+r.wallTop):"ไม่คุม"),
+      F('<i class="plSw" style="background:#1e88e5"></i>ก้นตู้ลอยจากพื้น',nin("wallBot",r.wallBot)+chip("wallBot",sg.bot,"ท็อปเคาน์เตอร์ "+sg.counter+(sg.baseTop?" (ตู้พื้นสูงสุด "+sg.baseTop+" + ท็อป 40)":" (ยังไม่มีตู้พื้น ใช้ 900)")+" + ระยะผนังกันเปื้อน 600"),"ก้นตู้ลอยสูงจากพื้น (มม.)")
+      +F('<i class="plSw" style="background:#ef6c00"></i>แนวบนตู้ลอย/สูง',nin("wallTop",r.wallTop||0)+chip("wallTop",sg.top,"จาก"+sg.src),"แนวบนตู้ลอย/ตู้สูง (มม.) · 0 = ไม่คุม")
+      +'<div class="plNote" style="margin-top:5px">'
+        +(+r.wallTop>0?('ตู้ลอยสูง <b style="color:var(--ink)">'+(r.wallTop-r.wallBot)+'</b> มม. · ตู้สูงหัวเสมอแนวบน · '):'แนวบน 0 = ไม่คุม (ตู้ลอยใช้ความสูงโมเดล) · ')
+        +'ห่างท็อป 550–650 (เหนือเตา ≥ 650) · แก้ค่าแล้วตู้ในห้องขยับ/ปรับสูงตามทันที</div>');
+  return head+size+work+line+(snOff("plWorktop")?"":plWtGrpHtml531(grp)); }
+/* ท็อปเคาน์เตอร์ · ผนังเหนือท็อป — ค่า/การคิดเหมือน plWtGrpHtml (1.520–1.527) จัดเป็นสองคอลัมน์ · data-tk เดิม (plWtWire ใช้ต่อ) */
+function plWtGrpHtml531(grp){
+  const T=plWt(), M=PLWT_MATS[T.mat]||PLWT_MATS.granite, S=plWtSlabs(), sm=plWtSum(S), e=v=>escapeHtml(String(v==null?"":v)), F=plF531;
+  const sum=!T.on?"ไม่ใส่":(plWtName(T)+" "+T.t+" มม. · "+sm.n+" ชิ้น "+sm.a+" ตร.ม."+(sm.nu?(" · บัว "+sm.u):"")+(sm.nw?(" · ผนัง "+sm.w):""));
+  const dl='<datalist id="plWtTl">'+M.t.map(v=>'<option value="'+v+'">').join("")+'</datalist>';
+  const inp=(k,v,w,extra)=>'<input data-tk="'+k+'" value="'+e(v)+'" style="width:'+(w||60)+'px"'+(extra||"")+'>';
+  const sel=(k,opts,cur)=>'<select data-tk="'+k+'">'+opts.map(o=>'<option value="'+e(o[0])+'"'+(String(o[0])===String(cur)?" selected":"")+'>'+e(o[1])+'</option>').join("")+'</select>';
+  const clr=(k,v)=>'<input type="color" data-tk="'+k+'" value="'+e(v)+'" style="width:30px;height:22px;padding:0;border:0;background:none" title="สีในภาพ 3D">';
+  const ck=(k,on,lbl)=>'<label class="plCk"><input type="checkbox" data-tk="'+k+'"'+(on?" checked":"")+'> '+lbl+'</label>';
+  const mm='<span class="plU">มม.</span>', bt='<span class="plU">บาท/ตร.ม.</span>';
+  const pieces=S.slabs.map((s,i)=>'ชิ้น '+(i+1)+' '+s.len+'×'+s.dep).concat(S.bs.map(b=>(b.kind==="up"?'บัว ':'ผนัง ')+b.len+'×'+b.h)).join(" · ");
+  const cost=+T.cost||0, wc=+T.wallCost||0, stoneA=sm.a+sm.u+(T.wall==="stone"?sm.w:0), tot=Math.round(stoneA*cost+(T.wall==="tile"||T.wall==="glass"?sm.w*wc:0));
+  const W=T.wall, gl=PLWT_GLASS[T.glass]||PLWT_GLASS.clear;
+  return grp("wt",!!T.on,"ท็อปเคาน์เตอร์ · ผนังเหนือท็อป",e(sum),
+    '<div class="plRow" style="margin-top:2px" title="วางท็อปบนตู้พื้นที่ยืนพื้นทุกช่วงที่ชิดกันให้เอง · ย้าย/เพิ่ม/ลบตู้แล้วท็อปตามเอง">'+ck("on",T.on,"ใส่ท็อปบนตู้พื้น (อัตโนมัติ)")+'</div>'
+    +(!T.on?'':(
+      F("วัสดุ",sel("mat",Object.keys(PLWT_MATS).map(k=>[k,PLWT_MATS[k].n]),T.mat))
+      +F("หนา",inp("t",T.t,64,' type="number" step="1" list="plWtTl"')+mm+dl)
+      +F("สี/รุ่น",inp("clr",T.clr,130,' placeholder="เช่น ดำอินเดีย"')+clr("color",String(T.color||"").trim()||M.c))
+      +F("ยื่นหน้า",inp("over",T.over,56,' type="number" step="5"')+mm+'<span class="plNote">เลยหน้าบาน</span>')
+      +F("ยื่นข้าง",inp("side",T.side,56,' type="number" step="5"')+mm+'<span class="plNote">ปลายที่ไม่ชนผนัง</span>',"ปลายท็อปที่ไม่ชนผนัง")
+      +'<div class="plDiv"></div>'
+      +F(ck("up",T.up,"บัวหิน"),T.up?('สูง '+inp("upH",T.upH,56,' type="number" step="10"')+mm):'<span class="plNote">ไม่มีบัว</span>',"บัวหินชิดผนังบนท็อป — หินชนิดเดียวกับท็อป หนาเท่าท็อป")
+      +F("ผนังเหนือ"+(T.up?'บัว':'ท็อป'),sel("wall",Object.keys(PLWT_WALLS).map(k=>[k,k==="none"?(T.up?"ไม่มีผนัง (มีแต่บัวหิน)":"ไม่มี"):PLWT_WALLS[k]]),W))
+      +(W==="glass"?(F("ชนิดกระจก",sel("glass",Object.keys(PLWT_GLASS).map(k=>[k,PLWT_GLASS[k].n]),T.glass))
+          +F("หนากระจก",sel("glassT",PLWT_GLASS_T.map(v=>[v,v+" มม."]),plWtGlassT(T)))
+          +F("สี/รุ่นกระจก",inp("glassClr",T.glassClr,110,' placeholder="เช่น ดำ"')+clr("glassColor",String(T.glassColor||"").trim()||gl.c))):'')
+      +(W==="tile"?(F("ขนาดกระเบื้อง",sel("tile",PLWT_TILES.map(v=>[v,v.replace("x","×")]),T.tile)+'<span class="plNote">กว้าง×สูง</span>')
+          +F("สี/รุ่นกระเบื้อง",inp("tileClr",T.tileClr,110,' placeholder="เช่น ขาวเงา"')+clr("tileColor",T.tileColor||"#e9e6df"))):'')
+      +(W!=="none"?F("สูงผนัง",sel("wallTo",[["wall","ถึงก้นตู้ลอย"],["h","กำหนดสูงจากผิวท็อป"]],T.wallTo)+(T.wallTo==="h"?(inp("wallH",T.wallH,60,' type="number" step="10"')+mm):'')):'')
+      +'<div class="plDiv"></div>'
+      +F("ราคาทุนหิน",inp("cost",cost||"",80,' type="number" step="50" placeholder="0"')+bt,"ราคาทุน/ตร.ม. หิน (ท็อป · บัว · ผนังหิน) — จำต่อ วัสดุ|หนา ในเครื่อง")
+      +((W==="tile"||W==="glass")?F("ราคาทุน"+(W==="tile"?"กระเบื้อง":"กระจก"),inp("wallCost",wc||"",80,' type="number" step="50" placeholder="0"')+bt,"ราคาทุน/ตร.ม. "+(W==="tile"?"กระเบื้อง":gl.n)):'')
+      +'<div class="plNote" style="margin-top:4px">'+((cost>0&&(!(W==="tile"||W==="glass")||wc>0))?('รวม ≈ '+plMoney(tot)):'<span style="color:#e58a24">ยังไม่ใส่ราคาครบ</span>')+(T.up||W==="stone"?' · บัว/ผนังหินคิดราคาเดียวกับท็อป':'')+'</div>'
+      +'<div class="plNote" style="margin-top:3px">'+(S.slabs.length?e(pieces):'ยังไม่มีตู้พื้นที่ยืนพื้นในห้อง')+' · ไม่เข้าใบตัด (ของสั่งซื้อ)</div>')) ); }
+/* หน้าต่างเลือกสี/มือจับเปิดขวาของแผง (เดิม = ขวาของปุ่ม + 10 → ปุ่มอยู่กลางแผง หน้าต่างทับแผงครึ่งหนึ่ง) */
+function plPopX531(rc){ const P=PL&&PL.panel; return ((P&&!snOff("plTidy"))?Math.max(rc.right,P.getBoundingClientRect().right):rc.right)+10; }
+/* แถบล่างส่วนบน: ตู้ในห้อง + ราคาขาย · ปุ่ม (ใบเสนอราคา / Blender / สมจริง / บันทึกภาพ) ตาราง 2 คอลัมน์ — เงื่อนไขเดียวกับ plPanelFoot เดิม */
+function plFootTop531(p){ const B=[];
+  if(!VIEW_ONLY){ if(!snOff("plQuote")) B.push('<button class="ibtn" id="plQuoteBtn" title="ใบเสนอราคา A4 — ราคาตั้งต้นจากต้นทุนตู้ + กำไร % ของเซลล์ · พิมพ์ / บันทึก PDF">🧾 ใบเสนอราคา</button>');
+    else if(!snOff("plPoster")) B.push('<button class="ibtn" id="plPosterBtn" title="ภาพห้อง 3D + รายการตู้ ขนาด ราคา + แปลน → PNG">🖼 โปสเตอร์ขาย</button>'); }
+  if(!snOff("glbExport")) B.push('<button class="ibtn" id="plGlbBtn" title="ห้อง + ตู้ทั้งหมดเป็นไฟล์ 3D (.glb) — เปิดใน Blender แล้วเรนเดอร์เหมือนจริงได้ฟรี">🧊 ส่งออก Blender</button>');
+  if(!VIEW_ONLY&&realCanUse()){ B.push('<button class="ibtn'+(REAL.on?' on':'')+'" id="plRealBtn" title="ห้องจริง แสงจริง ตามห้องที่ออกแบบ — ลากหมุนดูได้">'+(REAL.on?'✕ ออกจากสมจริง':'✨ โหมดสมจริง')+'</button>');
+    if(!snOff("realSnap")) B.push('<button class="ibtn" id="plSnapBtn" title="บันทึกภาพสมจริงความละเอียดสูงจากมุมกล้องนี้ (JPG)">📷 บันทึกภาพ</button>'); }
+  return '<div class="plRow plSum"><span>ตู้ในห้อง <b>'+p.n+'</b> ใบ</span><span class="plSale" title="ราคาขายรวมจากแคตตาล็อก (ใบที่ยังไม่ใส่ราคาไม่นับ)">ราคาขาย<b>'+plMoney(p.sum)+'</b></span></div>'
+    +(B.length?('<div class="plBar'+(B.length%2?' plOdd':'')+'">'+B.join("")+'</div>'):''); }
+/* ตู้ที่เลือก: แถว “ฟิลเลอร์” / “แผ่นปิดข้าง” / DP · Trim Top / ห่างผนัง → สองคอลัมน์ (ย้ายโหนดเดิม ไม่สร้างปุ่ม/ช่องใหม่ → ตัวต่อสายยังจับได้) */
+function plTidyRows(host){ if(!host||snOff("plTidy")) return;
+  const mk=(lbl,tip,mt)=>{ const f=document.createElement("div"); f.className="plF"; if(tip) f.title=tip; f.style.marginTop=mt||"6px";
+    const L=document.createElement("div"); L.className="plL"; L.textContent=lbl; const C=document.createElement("div"); C.className="plC"; f.appendChild(L); f.appendChild(C); return [f,C]; };
+  const isKey=n=>!!(n&&n.tagName==="LABEL"&&n.firstChild&&n.firstChild.nodeType===3&&/^(DP|Trim Top|ห่างผนัง)$/.test(n.firstChild.textContent.trim()));
+  [...host.children].forEach(row=>{ if(!row.classList||!row.classList.contains("plRow")||!row.classList.contains("plBtns")) return;
+    const t0=row.firstChild;
+    if(t0&&t0.nodeType===3){ const lbl=t0.textContent.trim(); if(!/^(ฟิลเลอร์|แผ่นปิดข้าง)$/.test(lbl)) return;
+      const [f,C]=mk(lbl,row.title,row.style.marginTop); row.removeChild(t0); while(row.firstChild) C.appendChild(row.firstChild); row.replaceWith(f); return; }
+    /* แถว <label>ป้าย <input></label> … (DP · Trim Top · ห่างผนัง) → ป้ายละแถว · ของที่ตามหลัง (หมายเหตุ / ปุ่มหน้าเสมอ) อยู่ในช่องขวาของป้ายก่อนหน้า */
+    if(!isKey(row.firstElementChild)) return;
+    const out=[]; let C=null;
+    [...row.childNodes].forEach(n=>{ if(isKey(n)){ const r=mk(n.firstChild.textContent.trim(),n.title||row.title,out.length?"4px":row.style.marginTop); out.push(r[0]); C=r[1];
+        n.removeChild(n.firstChild); while(n.firstChild) C.appendChild(n.firstChild); }
+      else if(C&&!(n.nodeType===3&&!n.textContent.trim())) C.appendChild(n); });
+    const fr=document.createDocumentFragment(); out.forEach(x=>fr.appendChild(x)); row.replaceWith(fr); }); }
 function plRoomHtml(r,num){ plCss317();
+  if(!snOff("plTidy")) return plRoomHtml531(r,num);   // v1.531: จัดสองคอลัมน์ (ปิด SN_OFF.plTidy=1 = แบบเดิมข้างล่าง)
   const grp=(k,def,title,sum,body)=>'<details class="plGrp" data-g="'+k+'"'+(plGrpOpen(k,def)?' open':'')+'><summary>'+title+'<small>'+sum+'</small></summary>'+body+'</details>';
   const sg=plSuggest(), o=plDimOpt(), ctm=plCeilTopMode();
   const chip=(k,v,t)=>'<button class="ibtn plSug" data-k="'+k+'" data-v="'+v+'" title="'+escapeHtml(t)+'" style="padding:2px 7px;font-size:11px">แนะนำ '+v+'</button>';
@@ -37308,10 +37486,10 @@ function costPaint(){
     const gp=p.sum>0?('<span style="margin-left:auto" title="ราคาขายจากแคตตาล็อก − ต้นทุน'+(nm?" (ต้นทุนยังไม่ครบ)":"")+'">กำไรขั้นต้น <b>'+plMoney(p.sum-o.total)+'</b> ('+Math.round((p.sum-o.total)/p.sum*100)+'%)'+(nm?" *":"")+'</span>'):'';
     el.innerHTML='<div class="plRow" style="margin-top:3px"><span>ต้นทุน</span><b style="margin-left:6px;font-size:14px">'+plMoney(o.total)+'</b>'+gp+'</div>'
       +'<div class="plNote">'+escapeHtml(costBreak(o))+'</div>'
-      +'<div class="plRow" style="margin-top:3px">'+(nm?('<span style="color:#e58a24;font-size:11px">ยังไม่มีราคา '+nm+' รายการ — ต้นทุนยังไม่ครบ</span>'):'<span class="plNote">ราคาครบทุกรายการ</span>')
+      +'<div class="plRow plCostRow" style="margin-top:3px"><span class="plCostT">'/* v1.531: ข้อความเตือนรวมก้อนเดียว (ซ้าย) · ปุ่ม 💰 (ขวา) */+(nm?((snOff("plTidy")?'<span style="color:#e58a24;font-size:11px">ยังไม่มีราคา '+nm+' รายการ — ต้นทุนยังไม่ครบ</span>':('<span style="color:#e58a24;font-size:11px;font-weight:600">⚠ ยังไม่มีราคา '+nm+' รายการ</span><br><span class="plNote">ต้นทุนยังไม่ครบ</span>'))):'<span class="plNote">ราคาครบทุกรายการ</span>')
       +(o.stk?('<span class="plNote" style="margin-left:6px" title="รายการที่ SN ยังไม่มีราคา ใช้ราคา AX จาก StarStock (ตั้งเองในหน้า STOCK → ราคาซื้อ → ราคาทุน)">· ราคา AX '+o.stk+'</span>'):'')   /* v1.514 */
       +(o.unres?('<span class="plNote" style="margin-left:6px" title="ชิ้น/ขอบที่ยังเป็นตัวแปร ($…) ไม่รู้รหัสวัสดุจริง">· ยังไม่ผูกวัสดุ '+o.unres+'</span>'):'')
-      +'<button class="ibtn" id="plCostEdit" style="margin-left:auto;padding:2px 8px;font-size:11px">💰 '+(nm?'ใส่ราคาที่ขาด…':'ราคาทุน…')+'</button></div>';
+      +'</span><button class="ibtn" id="plCostEdit" style="margin-left:auto;padding:2px 8px;font-size:11px">💰 '+(nm?'ใส่ราคาที่ขาด…':'ราคาทุน…')+'</button></div>';
     const b=el.querySelector("#plCostEdit"); if(b) b.onclick=()=>costEditor({onlyMissing:nm>0}); }
   const s=$("plSelSec"), inst=plSelInst();
   if(s&&inst&&!csmIsRailInst(inst)){ const o=costOfCab(inst), el=costSlot(s,"plCabCost");
@@ -37487,9 +37665,12 @@ function plPanelOpen(){
   const catHtml='<div class="plSec" style="padding-bottom:4px"><div class="plRow"><h4>แคตตาล็อก</h4><input id="plQ" placeholder="ค้นรหัส/ชื่อ" style="flex:1;min-width:0;padding:4px 6px">'
     +'<select id="plWall" title="ตู้ที่กดจากแคตตาล็อกไปลงผนังไหน"></select></div><div class="plTabs" id="plTabs"></div></div>'
     +'<div id="plGrid"></div>';
-  p.innerHTML='<div class="plSec" style="display:flex;align-items:center;gap:8px"><b style="font-size:14px">🏠 ห้องออกแบบ</b>'
+  const tdy531=!snOff("plTidy"); if(tdy531) plCss531();   // v1.531: หัวแผงบรรทัดเดียว · คำแนะนำบรรทัดล่าง
+  p.innerHTML=(tdy531?('<div class="plSec plHead"><div class="plHT"><b>🏠 ห้องออกแบบ</b><button class="ibtn" id="plClose" title="ออกจากห้องออกแบบ (ตู้ยังอยู่ในออเดอร์)">✓ เสร็จ</button></div>'
+      +'<div class="plHint">ลากตู้ = แม่เหล็กติดผนัง · คลิกขวา = สี · R หมุน · Del ลบ</div></div>'):
+    ('<div class="plSec" style="display:flex;align-items:center;gap:8px"><b style="font-size:14px">🏠 ห้องออกแบบ</b>'
     +'<span style="color:var(--ink-dim);font-size:11px">ลากตู้ = แม่เหล็กติดผนัง · คลิกขวา = สี · R หมุน · Del ลบ</span>'
-    +'<button class="ibtn" id="plClose" style="margin-left:auto">เสร็จ</button></div>'
+    +'<button class="ibtn" id="plClose" style="margin-left:auto">เสร็จ</button></div>'))
     +'<div id="plTop" style="flex:none;max-height:56vh;overflow:auto;border-bottom:1px solid var(--line)"><div class="plSec" id="plRoomSec"></div><div class="plSec" id="plSelSec"></div><div class="plSec" id="plGapSec" style="border-bottom:0"></div><div class="plSec" id="plCsmSec" style="border-top:1px solid var(--line);border-bottom:0;display:none"></div></div>'
     +(catR?'':catHtml)
     +'<div class="plSec" id="plFoot" style="border-top:1px solid var(--line);border-bottom:0"></div>';
@@ -37594,8 +37775,8 @@ function plPanelRoom(){
   { const bt=s.querySelector("#plBvTT"); if(bt) bt.onchange=()=>{ r.bevelTT=Math.max(Math.round(+bt.value||0),0); const cam=plCamKeep(); let n=0;
       Object.keys(plCabMap()).forEach(i=>{ try{ if(plAutoTT(i)) n++; }catch(e){} }); if(n){ sync(0); plCamPut(cam); } plPanelSel(); plAfterRoom();
       toast("บานเพบน Trim Top "+r.bevelTT+" มม. · ปรับแล้ว "+n+" ตู้ (ตู้ที่ตั้งเองไม่แตะ)"); }; }
-  { const ca=s.querySelector("#plClrAll"); if(ca) ca.onclick=ev=>{ const rc=ev.target.getBoundingClientRect(); plColorOpen(null,rc.right+10,rc.top-40); }; }
-  { const pa=s.querySelector("#plPullAll"); if(pa) pa.onclick=ev=>{ const rc=ev.target.getBoundingClientRect(); plPullOpen(null,rc.right+10,rc.top-80); }; }   // v1.524
+  { const ca=s.querySelector("#plClrAll"); if(ca) ca.onclick=ev=>{ const rc=ev.target.getBoundingClientRect(); plColorOpen(null,plPopX531(rc),rc.top-40); }; }   // v1.531: เปิดขวาของแผง
+  { const pa=s.querySelector("#plPullAll"); if(pa) pa.onclick=ev=>{ const rc=ev.target.getBoundingClientRect(); plPullOpen(null,plPopX531(rc),rc.top-80); }; }   // v1.524
   s.querySelectorAll(".plSug").forEach(bt=>bt.onclick=async()=>{ r[bt.dataset.k]=+bt.dataset.v; plRoomDraw(); await plAlignAll(true); plPanelRoom(); plAfterRoom(); });
   s.querySelectorAll("input[data-w]").forEach(inp=>inp.onchange=()=>{ r.walls[inp.dataset.w]=inp.checked; plRoomDraw(); plPanelWalls(); plAfterRoom(); });
   s.querySelector("#plFitRoom").onclick=()=>{ plFitRoom(true); plRoomDraw(); plPanelRoom(); plCamRoom(); plAfterRoom(); };
@@ -37622,17 +37803,21 @@ function plPanelSel(){
         _li.onchange=()=>{ const v=parseFloat(_li.value); if(isFinite(v)&&v>=50&&Math.round(v)!==csmRailCLenOf(_rb)) _setL(v); }; }
       if(_lr) _lr.onclick=ev=>{ ev.preventDefault(); _setL(0); }; }   /* v1.393 */ plPanelGaps(); plPanelFoot(); return; }   // v1.390: ราวแขวน
   const d=plLocalDims(inst), code=d.f.code, sizes=plSizesOf(code,d.W), wk=plWallOf(inst,d.f), g=csmIsCode(code)?null:plGapsOf(inst), pr=catPrice(code,d.W);   // v1.368: ช่อง Cosimo ไม่มีปุ่มปิดช่อง/แผ่นปิดข้าง (ช่องข้าง = เสา)
-  s.innerHTML='<div class="plRow"><h4>ตู้ที่เลือก</h4><b style="margin-left:4px">'+escapeHtml(code)+'</b>'
+  const tdy531=!snOff("plTidy");   // v1.531: รหัส + ราคา / ขนาด (สองบรรทัด) · ก ส ล แถวเดียว · ปุ่มตาราง 3 คอลัมน์
+  s.innerHTML=(tdy531?('<div class="plRow plSelHd"><div class="plSelL1"><h4>ตู้ที่เลือก</h4><b title="'+escapeHtml(code)+'">'+escapeHtml(code)+'</b>'
+      +'<span class="plSelPr">'+(pr>0?plMoney(pr):'<span style="color:var(--ink-dim);font-weight:400">ยังไม่ใส่ราคา</span>')+'</span></div>'
+      +'<div class="plNote" style="font-size:11px">'+d.W+'×'+d.H+'×'+d.D+' มม.'+(wk?(' · ผนัง'+PL_WALLS[wk].lbl):' · ไม่ติดผนัง')+'</div></div>'):
+    ('<div class="plRow"><h4>ตู้ที่เลือก</h4><b style="margin-left:4px">'+escapeHtml(code)+'</b>'
       +'<span style="color:var(--ink-dim)">'+d.W+'×'+d.H+'×'+d.D+(wk?(' · ผนัง'+PL_WALLS[wk].lbl):' · ไม่ติดผนัง')+'</span>'
-      +'<span style="margin-left:auto;font-weight:700">'+(pr>0?plMoney(pr):'<span style="color:var(--ink-dim);font-weight:400">ยังไม่ใส่ราคา</span>')+'</span></div>'
+      +'<span style="margin-left:auto;font-weight:700">'+(pr>0?plMoney(pr):'<span style="color:var(--ink-dim);font-weight:400">ยังไม่ใส่ราคา</span>')+'</span></div>'))
     +(()=>{ const e=catalogOf(code)||{}; const dl=(k,spec,cur)=>{ const l=catSizes(spec,cur); return '<datalist id="plDl'+k+'">'+l.map(v=>'<option value="'+v+'">').join("")+'</datalist>'; };
       const inp=(k,lbl,v,spec)=>'<label title="'+(String(spec||"").trim()?('ขนาดที่ขาย: '+escapeHtml(String(spec))):'ปรับได้อิสระ')+'">'+lbl+' <input type="number" id="pl'+k+'" list="plDl'+k+'" value="'+v+'" step="10" style="width:76px'
         +(plSizeOk(code,k.toLowerCase(),v)?'':';border-color:#e58a24')+'"></label>'+dl(k,spec,v);
       const warn=["w","h","d"].filter(k=>!plSizeOk(code,k,d[k.toUpperCase()]));
-      return '<div class="plRow" style="margin-top:6px">'+inp("W","ก",d.W,e.w)+inp("H","ส",d.H,e.h)+inp("D","ล",d.D,e.d)
+      return '<div class="plRow plSz" style="margin-top:6px">'+inp("W","ก",d.W,e.w)+inp("H","ส",d.H,e.h)+inp("D","ล",d.D,e.d)
         +'<button class="ibtn" id="plApply" style="padding:3px 8px;font-size:11px">ปรับขนาด</button></div>'
         +(warn.length?'<div style="color:#e58a24;font-size:10.5px;margin-top:2px">⚠ นอกขนาดที่ขายในแคตตาล็อก: '+warn.map(k=>({w:"กว้าง",h:"สูง",d:"ลึก"})[k]).join(" ")+'</div>':''); })()
-    +'<div class="plRow plBtns" style="margin-top:6px">'
+    +'<div class="plRow plBtns plAct" style="margin-top:6px">'
       +'<button class="ibtn" id="plDup" title="ทำสำเนาทั้งตู้ (สี ขา มือจับ ค่าตู้ครบ) วางต่อข้าง ๆ">⧉ สำเนา</button>'
       +'<button class="ibtn" id="plDupM" title="ทำสำเนาแล้วกลับซ้าย-ขวา — รหัส L⇄R เปลี่ยนให้">⧉⇋ สำเนากลับ</button>'
       +'<button class="ibtn" id="plClr" title="เลือกสีแบบรูปย่อ (คลิกขวาที่ตู้ก็ได้)">🎨 สี</button>'
@@ -37640,8 +37825,8 @@ function plPanelSel(){
       +'<button class="ibtn" id="plSwap" title="เปลี่ยนเป็นรุ่นอื่น ขนาดเท่าเดิม ที่เดิม สีเดิม">🔁 รุ่น</button>'
       +((plKindOf(code)==="filler"&&!plIsSide(inst)&&(plLevelOf(code)==="base"||plLevelOf(code)==="tall"))?('<button class="ibtn" id="plFloor" title="ฟิลเลอร์ลงพื้น (ตีนตู้จบที่ฟิลเลอร์) / ยกเท่าขา (ตีนตู้วิ่งผ่านหน้า)">'+(plFillerFloorOf(inst)?'⬆ ยกเท่าขา':'⬇ ลงพื้น')+'</button>'):'')
       +((plLevelOf(code)!=="wall"&&!csmIsCode(code)&&Math.abs(+d.f.ylo||0)>0.5)?('<button class="ibtn" id="plDrop" title="เลื่อนตู้ใบนี้ลงให้ก้น (รวมขา) แตะพื้นพอดี — ตอนนี้'+((+d.f.ylo>0)?'ลอย ':'จม ')+Math.round(Math.abs(+d.f.ylo))+' มม.">⬇ ลงพื้น</button>'):'')   // v1.458
-      +'<button class="ibtn" id="plRot" title="หมุน 90° (R)">⟳</button><button class="ibtn" id="plMir" title="กลับซ้าย-ขวา (รหัส L⇄R)">⇋ กลับ</button>'
-      +'<button class="ibtn" id="plDel" title="ลบ (Del)" style="color:#d33">ลบ</button></div>'
+      +'<button class="ibtn" id="plRot" title="หมุน 90° (R)">'+(tdy531?'⟳ หมุน':'⟳')+'</button><button class="ibtn" id="plMir" title="กลับซ้าย-ขวา (รหัส L⇄R)">⇋ กลับ</button>'
+      +'<button class="ibtn" id="plDel" title="ลบ (Del)" style="color:#d33">'+(tdy531?'🗑 ลบ':'ลบ')+'</button></div>'
     +(csmIsCode(code)?csmSelHtml(inst):'')                                   // v1.368
     +(()=>{ const dp=plDpVal(inst), tt=plDpTT(inst), bev=plTopBevel(inst), md=plTTMode(inst), lv2=plLevelOf(code), rr=plRoom();   // v1.313
       return '<div class="plRow plBtns" style="margin-top:6px"><label title="Design Parameter ของตู้ใบนี้ เช่น TT30mm_ExtendBottom20mm — คำสั่งปรับบาน (กฎอยู่ที่ ตั้งค่า → Design Parameter) · ว่าง = Standard">DP <input id="plDp" value="'+escapeHtml(dp)+'" placeholder="Standard" style="width:140px;font-family:var(--mono);font-size:11px"></label>'
@@ -37665,6 +37850,7 @@ function plPanelSel(){
         +((lv3==="base"||lv3==="tall")?('<button class="ibtn" id="plSdBot" title="ลงพื้น = บังขาตู้ ไม่ต้องปิดปลายตีนตู้ · เท่าตู้ = ไม้ปิดปลายตีนตู้ขึ้นเอง">'+(bm==="floor"?'⬆ เท่าตู้ (+ไม้ปิดตีนตู้)':'⬇ ลงพื้น')+'</button>'):'')
         +((lv3==="wall"||lv3==="tall")?('<button class="ibtn" id="plSdTop" title="ถึงฝ้า = บังฟิลเลอร์บน · เท่าตู้ = ไม้ปิดปลายฟิลเลอร์บนขึ้นเอง">'+(tm==="ceil"?'⬇ เท่าตู้ (+ไม้ปิดฟิลเลอร์บน)':'⬆ ถึงฝ้า')+'</button>'):'')
         +'<span style="font-size:10.5px;color:var(--ink-dim)">'+escapeHtml(plSideNote(inst).replace(/^ · /,""))+((tm==="ceil"&&!(cy>0))?' (ยังไม่มีฟิลเลอร์บน)':'')+'</span></div>'; })():'');
+  if(tdy531) plTidyRows(s);   // v1.531: แถวฟิลเลอร์ / แผ่นปิดข้าง → สองคอลัมน์
   const q=id=>s.querySelector(id);
   s.querySelectorAll(".csmYR").forEach(bt=>bt.onclick=()=>csmYRefSet(bt.dataset.yr));   // v1.372: ผิวใกล้ / กลางชั้น / ผิวไกล
   if(q("#csmY")) q("#csmY").onchange=ev=>{ const v=+ev.target.value; if(!(v>=0)) return; const f2=plFp(plBoardsOf(inst)), dy=v-csmItemY(f2); if(Math.abs(dy)<0.05) return;   // v1.370: ชิ้น Cosimo ยกขึ้นลง · v1.372: เทียบผิวที่เลือก
@@ -37692,8 +37878,8 @@ function plPanelSel(){
   q("#plDupM").onclick=()=>plDup(inst,true);
   q("#plRot").onclick=()=>plRotate(inst);
   if(q("#plDrop")) q("#plDrop").onclick=()=>plDropFloor(inst);                 // v1.458
-  q("#plClr").onclick=ev=>{ const r=ev.target.getBoundingClientRect(); plColorOpen(inst,r.right+10,r.top-40); };
-  if(q("#plPullB")) q("#plPullB").onclick=ev=>{ const r=ev.target.getBoundingClientRect(); plPullOpen(inst,r.right+10,r.top-80); };   // v1.524
+  q("#plClr").onclick=ev=>{ const r=ev.target.getBoundingClientRect(); plColorOpen(inst,plPopX531(r),r.top-40); };   // v1.531: เปิดขวาของแผง
+  if(q("#plPullB")) q("#plPullB").onclick=ev=>{ const r=ev.target.getBoundingClientRect(); plPullOpen(inst,plPopX531(r),r.top-80); };   // v1.524
   q("#plMir").onclick=()=>plMirror(inst);
   q("#plDel").onclick=()=>plDelete(inst);
   if(q("#plFL")) q("#plFL").onclick=()=>plFill(inst,"lo");
@@ -37733,13 +37919,14 @@ function plPanelGaps(){
 }
 function plPanelFoot(){
   const s=$("plFoot"); if(!s) return; const p=plPrice();
-  s.innerHTML='<div class="plRow"><span>ตู้ในห้อง <b>'+p.n+'</b> ใบ</span><span style="margin-left:auto;font-size:15px;font-weight:800">'+plMoney(p.sum)+'</span></div>'
+  const tdy531=!snOff("plTidy");   // v1.531: ตู้ในห้อง + ราคาขาย · ปุ่มตาราง 2×2 (plFootTop531)
+  s.innerHTML=(tdy531?plFootTop531(p):('<div class="plRow"><span>ตู้ในห้อง <b>'+p.n+'</b> ใบ</span><span style="margin-left:auto;font-size:15px;font-weight:800">'+plMoney(p.sum)+'</span></div>'
     +'<div class="plRow" style="margin:6px 0 2px">'+(VIEW_ONLY?'':!snOff("plQuote")?'<button class="ibtn" id="plQuoteBtn" style="flex:1" title="ใบเสนอราคา A4 — ราคาตั้งต้นจากต้นทุนตู้ + กำไร % ของเซลล์ · พิมพ์ / บันทึก PDF">🧾 ใบเสนอราคา</button>':(snOff("plPoster")?'':'<button class="ibtn" id="plPosterBtn" style="flex:1" title="ภาพห้อง 3D + รายการตู้ ขนาด ราคา + แปลน → PNG">🖼 โปสเตอร์ขาย</button>'))   /* v1.515: แทนโปสเตอร์ (SN_OFF.plQuote=1 = โปสเตอร์เดิม) */   // v1.457
     +(snOff("glbExport")?'':'<button class="ibtn" id="plGlbBtn" style="flex:1" title="ห้อง + ตู้ทั้งหมดเป็นไฟล์ 3D (.glb) — เปิดใน Blender แล้วเรนเดอร์เหมือนจริงได้ฟรี">🧊 ส่งออก Blender</button>')+'</div>'   // v1.459
     +((VIEW_ONLY||!realCanUse())?'':('<div class="plRow" style="margin:0 0 2px">'   // v1.528: ✨ โหมดสมจริง + 📷 บันทึกภาพ อยู่ในห้องออกแบบ
       +'<button class="ibtn" id="plRealBtn" style="flex:1'+(REAL.on?';background:var(--accent);color:#fff;border-color:var(--accent)':'')+'" title="ห้องจริง แสงจริง ตามห้องที่ออกแบบ — ลากหมุนดูได้">'+(REAL.on?'✕ ออกจากสมจริง':'✨ โหมดสมจริง')+'</button>'
       +(snOff("realSnap")?'':'<button class="ibtn" id="plSnapBtn" style="flex:1" title="บันทึกภาพสมจริงความละเอียดสูงจากมุมกล้องนี้ (JPG)">📷 บันทึกภาพ</button>')+'</div>'))
-    +plFootOpen()   // v1.317
+    ))+plFootOpen()   // v1.317
     +(p.miss?'<div style="color:var(--ink-dim);font-size:11px;margin-top:2px">ยังไม่มีราคา '+p.miss+' ใบ — ใส่ได้ที่ 🗂 แคตตาล็อก (ราคารวมยังไม่นับใบพวกนี้)</div>':'')
     +(()=>{ const row=plPlinthRow(), xr=plPlinthXml(), need=plPlinthNeed(); if(!row&&!xr&&!need) return '';
       const have=Math.round(+((row||xr||{}).qty)||0), bad=!xr&&need!==have;
