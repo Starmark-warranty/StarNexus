@@ -3281,7 +3281,7 @@ body[data-theme="dark"] .splash-dots span{background:rgba(255,255,255,.25)}
    ===================================================================== */
 /* ---- APP_META: แหล่งความจริงเดียวของเวอร์ชัน (ดูได้จาก console / คลิกชื่อแอป) ---- */
 const APP_META={
-  name:"StarNexus", version:"1.534", build:"2026-10-28/room-paint",
+  name:"StarNexus", version:"1.535", build:"2026-10-28/room-obj",
   file:"StarNexus.html", basedOn:"Furnitech_V3.html (v3.11)",
   /* ───────── เริ่มนับเวอร์ชันใหม่ที่ 1.001 (21/08/2026) ─────────
      ของเดิมนับมาถึง 42.1 แล้ววิ่งเป็นทศนิยมสองชั้นซึ่งอ่านลำดับยาก
@@ -3289,6 +3289,7 @@ const APP_META={
      ประวัติเก่าเก็บไว้ทั้งหมดตามเลขเดิม ไม่ไล่เขียนใหม่ เพราะเลขในนั้นถูกอ้างถึงไปแล้ว
      รายการที่อยู่ใต้ 1.001 ลงไปจึงเป็นเลขชุดเก่า อ่านต่อกันได้ตามวันที่ */
   changelog:[
+    ["1.535","2026-10-28","FEAT 🚪 ประตู · หน้าต่าง · บันได ในห้องออกแบบ (ผู้ใช้ 14:45: “เพิ่มพวกหน้าต่าง ประตู บันได ให้ลากลงมาเหมือนลากตู้ได้ไหมครับ”) — แคตตาล็อกขวามีแท็บ 🚪 ประตู·หน้าต่าง·บันได: ประตูบานเปิด 900×2050 · บานคู่ 1600×2050 · บานเลื่อน 1800×2100 · ช่องเปิด 900×2100 · หน้าต่างบานเปิด 1000×1200 (สูงจากพื้น 900) · หน้าต่างบานเลื่อน 1800×1200 · บันไดตรง กว้าง 900 ยาว 3300 สูงเท่าห้อง · กดค้างที่การ์ดแล้วลากลงจอ (หรือคลิก = วางบนผนังที่เห็นตรงกลาง) · ประตู/หน้าต่างติดผนังที่เมาส์ชี้ (ผนังห้องเดิมหรือผนังที่วาด ทุกองศา · มุมบน = ผนังที่ใกล้สุด) เลื่อนตามแนวผนัง ลงกริด/ชิดปลายผนัง · คลิกการ์ด = วางบนผนังกลางจอตรงที่ว่าง · เจาะช่องผนังจริงตามขนาด (ผนังที่วาด + ผนังห้องเดิม) · ประตูมีวงกบ บาน มือจับ เส้นวงเปิดบนพื้น (เห็นในมุมบนแบบแปลน) · หน้าต่างมีกรอบ กระจก ขอบรองด้านใน · บันไดขั้นละ ~175 · คลิกเลือก = แผงซ้ายแก้กว้าง/สูง/สูงจากพื้น/บานพับซ้าย-ขวา/เปิดเข้า-ออก/ห่างต้นผนัง · R = หมุนบันได/สลับบานพับ · Del = ลบ · เก็บใน state.room.obj (ไปกับไฟล์งาน/ออเดอร์) · ยังไม่ทำ: โหมดสมจริง/แบบแนบใบเสนอราคา · ปิด SN_OFF.plObj=1"],
     ["1.534","2026-10-28","FIX+FEAT ห้องออกแบบ (ผู้ใช้ 14:45 ภาพผนังที่วาดจางตอนซูมไกล): ① ซูมไกลแล้วงานจาง — เดิมหมอกฉากเริ่มที่ระยะคงที่จากกล้อง (1.6 × ขนาดงาน ≥ 6 ม.) ห้องที่ยังไม่มีตู้คิดขนาดงานจาก 6 ม. ตายตัว ถอยกล้องไกลแล้วผนัง/ตู้จมหมอก · ตอนนี้หมอกเริ่มหลังตัวงานเสมอ (ระยะกล้องถึงจุดหมุน + ขนาดงาน · ขนาดงานรวมห้อง/ผนังที่วาดตอนเปิดห้องออกแบบ) = งานไม่จางทุกระยะซูม · ไกล ๆ ข้างหลังยังจางเป็นฉาก (ปิด SN_OFF.fogFollow=1) · ② พื้นห้องตามผนังที่วาด — เดิมครอบเฉพาะเส้นแรก วาดเพิ่มทีหลังพื้นอยู่ผิดที่ · ตอนนี้ปิดผนังห้องสี่เหลี่ยมอยู่ = พื้นครอบผนังที่วาดทุกเส้นทุกครั้ง · ③ 🖌 สีผนัง·พื้น (ปุ่มในแผงห้อง · ปุ่ม 🖌 ที่ผนังที่วาดแต่ละเส้น): สีพื้นฐาน 22 สี · เลือกเอง · 💧 หลอดดูดสี (EyeDropper ของ Chrome/Edge ดูดสีได้ทั้งจอ รวมนอกโปรแกรม) · 🖼 อัปโหลดรูป (กระเบื้อง/วอลเปเปอร์/พื้นไม้) ย่อเหลือ ≤1024 px เก็บในห้องนี้ (state.room.texLib — แยกจากคลังวัสดุตู้ ไม่ปนกัน) ตั้งขนาดรูปจริงเป็น มม. ได้ · ผนังทั้งหมด / พื้น / ผนังที่วาดรายเส้น (ทับสีผนังทั้งหมด) · ปิด SN_OFF.plPaint=1"],
     ["1.533","2026-10-28","FEAT ✏ วาดผนังจากแปลน ในห้องออกแบบ (ผู้ใช้ 14:04: “อยากได้สร้างผนังออกเหมือนลากเส้น แล้ว Extrude ขึ้นจากเส้นเป็นผนัง ตามแบบบ้านลูกค้า เริ่มมองจาก plan ด้านบน ลองทำเครื่องมือมาให้ลองใช้”) — เดิม ห้องเป็นกล่องสี่เหลี่ยม (กว้าง×ลึก×สูง + ติ๊กผนัง 4 ด้าน) ห้อง L / มุมหัก / ผนังเอียง ทำไม่ได้ · ตอนนี้ ปุ่ม ✏ วาดผนังจากแปลน (กลุ่ม “ผนังที่วาด” ในแผงห้อง) → กล้องมองจากบน + กริด 500 + แถบเครื่องมือ: คลิกวางจุดบนพื้น · ตั้งฉาก 90° (O สลับ · Shift ค้าง = เอียง) · ดูดจุดปลาย/ตรงแนวจุดอื่น/ความยาวลงกริด · พิมพ์ตัวเลข+Enter = ช่วงนี้ยาวเท่านั้นตามทิศเมาส์ · คลิกจุดแรก/⭘ = ปิดรอบ · ดับเบิลคลิก/คลิกขวา/Enter = จบเส้น · Backspace ถอยจุด · Esc ออก · ผนัง Extrude ขึ้น 3D ทันที หนา/สูงตั้งได้ (ตั้งต้น 100 / สูงห้อง) · เส้น = ผิวในห้อง (หนาออกนอก) หรือกลางผนัง · มุมต่อแบบ miter ทุกองศา · กล้องอยู่นอกผนัง = ซ่อนผนังนั้นแบบผนังห้องเดิม · วาดเส้นแรกเสร็จ = ปิดผนังห้องสี่เหลี่ยมเดิม + พื้นห้องครอบผนังที่วาด · แผงห้องแก้หนา/สูง/ยาวแต่ละช่วง (ยืดแบบ CAD ผนังที่อยู่เลยปลายช่วงเลื่อนตาม) · ⇄ สลับด้านหนา · 🗑 ลบ · ลากตู้ไปชิดผนังที่วาดช่วงที่ตรงแนวแกน = ดูดติดผิวใน หันหน้าเข้าห้อง (ชิดปลายช่วง/ตู้ข้าง ๆ · ลงกริด) · เก็บใน state.room.dw (ไปกับไฟล์งาน/ออเดอร์) · ยังไม่ทำ: ตู้บนผนังเอียง · ช่องว่าง/ฟิลเลอร์/ท็อป/โหมดสมจริง/แบบแนบใบเสนอราคา (ยังอิงห้องสี่เหลี่ยม) · ประตู/หน้าต่าง · ปิด SN_OFF.plDrawWall=1"],
     ["1.532","2026-10-28","FEAT 🥄 ถาดช้อนในลิ้นชักลูกเล็ก (ผู้ใช้ 08:14 project 58 + ภาพถาด + AX ACCDT00007 “ถาดช้อน A16 สีเทา ตู้ 60 ขนาด 508x472 mm. ไม่บาก”: “ผมเรียกว่าลูกเล็ก มีให้เลือกใส่ถาดช้อนได้ ถาดสูงสัก 60–70 ทำเป็น 3D โหมดปกติคลิกขวาเลือกใส่ได้ทีละลูก แต่ลูกที่สูง 148 ใส่ไม่ได้ · กล่องไม้เอาไว้ก่อน · รหัสออกตามนั้นที่ราง 500 ตู้ 600 · มีตู้ 450 600 900 ลบขนาดจากตู้ 60 ไปก็จะเจอของ 450 กับ 900 · ด้านลึกคงไว้ · รางอื่นใส่ไม่ได้”) — คลิกขวาที่หน้าลิ้นชัก (หรือชิ้นกล่อง/ตัวถาด) → 🥄 ใส่ถาดช้อน / เอาถาดช้อนออก · ใส่ได้เมื่อ: กล่องแผงข้างเหล็ก · ราง 500 · ลูกเล็ก (แผ่นหลังกล่อง ≤ 100 เช่น 63) · ตู้กว้างตรงตาราง (450 → 358×472 · 600 → 508×472 ACCDT00007 · 900 → 808×472 = กว้างตู้ − 92) · ไม่เข้าเงื่อนไข = ปุ่มจางบอกเหตุผล (ลูกสูง 148 / รางอื่น / ตู้กว้างอื่น) · กล่องไม้ยังไม่ขึ้น · ถาด = ชิ้นเสมือนกลุ่มเดียวกับลิ้นชัก (เปิดบานแล้วเลื่อนออกตาม) วางบนพื้นกล่อง กลางระหว่างแผ่นหลังกล่องกับหลังหน้าบาน สูง 60 (ไม่โผล่พ้นแผงข้างเหล็กสูง 80 ของลูกเล็ก · ตั้งได้) · 3D พลาสติกเทา ขอบปีก + ช่องแบ่งตามภาพ · ใบเบิก 1 ถาด = 1 ชิ้น · รหัส 450/900 ยังไม่รู้ → ค้นจาก AX (fitting_global ชื่อมี “ถาดช้อน” + ขนาด) ไม่เจอ = วาด 3D แต่ไม่ลงรายการเบิก (ไม่เดารหัส) · ตั้งค่า → ลิ้นชัก: ตารางขนาด/รหัส · รางที่ใส่ได้ · สูงถาด · ปิด SN_OFF.cutTray=1"],
@@ -28916,6 +28917,7 @@ function boardRole(b){
      SN_OFF.dwgDoorLine=1 หน้ารวมวัสดุ ดีไซน์หน้าบานเป็นภาพถ่าย 3D แยกตาม Part ลิงก์ (แบบ 1.521) (v1.527)
      SN_OFF.realPlRoom=1  โหมดสมจริงในห้องออกแบบสร้างห้องรอบตู้แบบเดิม (ไม่ใช้ผนังของห้องออกแบบ) (v1.528)
      SN_OFF.realSnap=1    ไม่มีปุ่ม 📷 บันทึกภาพสมจริงความละเอียดสูง (v1.528)
+     SN_OFF.plObj=1       ไม่มีประตู/หน้าต่าง/บันไดในห้องออกแบบ (แท็บไม่ขึ้น ไม่วาด ไม่เจาะผนัง · ข้อมูลยังอยู่ใน state.room.obj) (v1.535)
      SN_OFF.plPaint=1     ไม่มีสีผนัง/พื้นห้อง (ปุ่ม 🖌 ไม่ขึ้น · ผนัง/พื้นสีตั้งต้น · ข้อมูลยังอยู่ใน state.room.paint) (v1.534)
      SN_OFF.fogFollow=1   หมอกฉากแบบเดิม (เริ่มที่ระยะคงที่จากกล้อง — ซูมไกลแล้วงานจาง) (v1.534)
      SN_OFF.plDrawWall=1  ไม่มีเครื่องมือวาดผนังในห้องออกแบบ (ไม่มีปุ่ม ไม่วาดผนังที่วาด ไม่ดูดตู้ · ข้อมูลยังอยู่ใน state.room.dw) (v1.533)
@@ -35521,6 +35523,7 @@ const PL_WALLS={
   front:{ax:0, pa:2, s:-1, yaw:180, lbl:"หน้า"} };
 const PL_SNAP=80, PL_PULL=450, PL_GAPMAX=200;
 /* v1.533: สถานะเครื่องมือวาดผนัง (ฟังก์ชันอยู่เหนือ plBind) */
+const PLO={sel:null, drag:null, raf:0, pend:null, ev:null};   // v1.535: ประตู/หน้าต่าง/บันได (ฟังก์ชัน plo* อยู่เหนือกลุ่มผนังที่วาด)
 const PLW={on:false, pts:null, cur:null, hit:null, buf:"", ortho:true, prev:null, gridObj:null, bar:null, tip:null, last:null, mx:0, my:0, ev:null, raf:0, lbl:{}};
 function plRoomDef(){ return {x0:0, z0:0, w:3600, d:3000, h:2600, wallBot:1550, wallTop:0, legH:100,
   plinthMat:"wood", ceilOn:true, ceilH:0, lightOn:false, lightCode:"WEF253", lightT:19, bevelTT:30, lightFill:true, sideFloor:true, sideCeil:false,   // v1.313 · v1.316 · v1.317
@@ -35679,6 +35682,7 @@ function plRoomDraw(){
                    :new THREE.MeshStandardMaterial({color:0xcfc6b4,roughness:.95,transparent:true,opacity:.55,depthWrite:false,side:THREE.DoubleSide});
     const m=new THREE.Mesh(new THREE.BoxGeometry(sz[0],sz[1],sz[2]),mat); m.position.set(p[0],p[1],p[2]);
     try{ plptApply(m,{k:"wall"},"box"); }catch(e){ console.error("plptApply:",e); }   // v1.534: สี/รูปผนัง
+    try{ ploRectHoles(m,k,r); }catch(e){ console.error("ploRectHoles:",e); }        // v1.535: เจาะช่องประตู/หน้าต่าง
     /* กล้องอยู่นอกห้องฝั่งผนังนี้ → จางลงจนแทบใส จะได้มองเข้าไปเห็นตู้ · v1.379: ทึบ = ซ่อนทั้งแผ่น */
     m.onBeforeRender=solid?((rd,sc,cam)=>{ const v=(cam.position.getComponent(W.pa)-plFace(r,k))*W.s; const on=v>0; mat.colorWrite=on; mat.depthWrite=on; })
                           :((rd,sc,cam)=>{ const v=(cam.position.getComponent(W.pa)-plFace(r,k))*W.s; mat.opacity=v>0?.55:.08; });
@@ -35695,6 +35699,7 @@ function plRoomDraw(){
   if(+r.wallBot>0) guide(+r.wallBot,0x1e88e5);
   if(+r.wallTop>0) guide(+r.wallTop,0xef6c00);
   try{ plwAddMeshes(g); }catch(e){ console.error("plw:",e); }   // v1.533: ผนังที่วาดจากแปลน
+  try{ ploAddMeshes(g); }catch(e){ console.error("plo:",e); }   // v1.535: ประตู · หน้าต่าง · บันได
   scene.add(g); PL.grp=g; invalidate();
 }
 /* ---------- แคตตาล็อก → รายการในแผง ---------- */
@@ -35765,7 +35770,8 @@ async function plAdd(code,W,opt){ opt=opt||{};
 }
 function plSelect(inst){
   if(!inst){ state.selectedCab=null; state.selectedId=null; }
-  else { const bs=plBoardsOf(inst); state.selectedCab=String(inst); state.selectedId=(bs.find(b=>!b._virtual)||bs[0]||{}).id||null; }
+  else { if(PLO.sel){ PLO.sel=null; try{ plRoomDraw(); }catch(e){} }   // v1.535: เลือกตู้ = เลิกเลือกประตู/หน้าต่าง
+    const bs=plBoardsOf(inst); state.selectedCab=String(inst); state.selectedId=(bs.find(b=>!b._virtual)||bs[0]||{}).id||null; }
   try{ cabSelClear(); }catch(e){}
   try{ updateSelBox(); }catch(e){} try{ renderList(); }catch(e){}
   plPanelSel();
@@ -36314,7 +36320,7 @@ function plwAddMeshes(g){
   const r=plRoom(), sz=plwLblSz();
   L.forEach((w,wi)=>{ const H0=Math.max(+w.h||plwDefH(),10), H=PLW.on?Math.min(H0,60):H0;   // ตอนวาด = ผนังเตี้ย 60 อ่านเป็นแปลน (กล้องมุมบนแบบ perspective ผนังสูงจะบังจุดบนพื้น)
     plwFoot(w).forEach((f,si)=>{ let geo=null;
-      try{ geo=new THREE.ExtrudeGeometry(plwShapeGeo(f.q),{depth:H,bevelEnabled:false}); geo.rotateX(-Math.PI/2); }catch(e){ console.error("plw geo:",e); return; }
+      try{ geo=ploWallGeo(f,H,(PLW.on||snOff("plObj"))?[]:ploOpenings("w:"+wi+":"+si)); }catch(e){ console.error("plw geo:",e); return; }   // v1.535: เจาะช่องประตู/หน้าต่าง
       const mat=new THREE.MeshStandardMaterial({color:0xd6cebd,roughness:.95,side:THREE.DoubleSide});
       const m=new THREE.Mesh(geo,mat); m.userData.plw=[wi,si];
       try{ plptApply(m,{wi},"ext"); }catch(e){ console.error("plptApply:",e); }   // v1.534: สีผนังเส้นนี้ / ผนังทั้งหมด
@@ -36640,6 +36646,266 @@ function plptUpload(f){ return new Promise(res=>{ const rd=new FileReader();
   rd.onerror=()=>{ toast("อ่านไฟล์ไม่สำเร็จ"); res(null); }; rd.readAsDataURL(f); }); }
 addEventListener("pointerdown",e=>{ if(PLPT.el&&!PLPT.el.contains(e.target)&&!(e.target&&e.target.closest&&e.target.closest("#askModal,.modal"))) plptClose(); },true);
 addEventListener("keydown",e=>{ if(e.key==="Escape"&&PLPT.el){ plptClose(); } });
+/* ═════════ v1.535: 🚪 ประตู · หน้าต่าง · บันได ในห้องออกแบบ ═════════
+   ผู้ใช้ 28/10/2026 14:45: “เพิ่มพวกหน้าต่าง ประตู บันได ให้ลากลงมา เหมือนลากตู้ได้ไหมครับ”
+   เดิม: ห้องมีแต่ผนัง/พื้น · ประตูหน้าต่างไม่มี ต้องเว้นที่ในใจ
+   ตอนนี้:
+     · แคตตาล็อกขวา แท็บ 🚪 (ploGrid): การ์ด 7 แบบ (PLO_T) — กดค้างลากลงจอ 3D (ploTileDown → ลากต่อแบบของในห้อง) · คลิก = วางให้เอง (ploAddAuto)
+     · ข้อมูล state.room.obj = [{id, k ชนิด, w กว้าง, h สูง, sill สูงจากพื้น (หน้าต่าง), d ยาว (บันได), wk ผนังที่ติด ("r:back" | "w:<เส้น>:<ช่วง>"), t ศูนย์ห่างต้นผนัง,
+       x z yaw (ตำแหน่งสำรอง/บันได), hinge "L"|"R" (มองจากในห้อง), swing "in"|"out"}] → ไปกับไฟล์งาน/ออเดอร์ (state.room)
+     · ผนัง (ploFrames): ผนังห้องสี่เหลี่ยมที่เปิดอยู่ + ทุกช่วงของผนังที่วาด → เส้นผิวใน a + d·t · ทิศเข้าห้อง ni · หนาจาก oi ถึง oo (ทิศออกนอก)
+       ประตู/หน้าต่าง = อยู่กลางความหนาผนัง หันหน้าเข้าห้อง · ลาก (ploDragApply) = ติดผนังที่เมาส์ชี้ (ploWallAt · มุมบน/ชี้พื้น = ผนังที่ใกล้สุด ≤ 700) ทุกองศา เลื่อนตามแนว · ระยะห่างต้นผนังลงกริด · ชิดปลายผนัง ≤ 80
+       ไม่มีผนังใกล้ = วางอิสระ (ไม่เจาะ) · บันได = วางบนพื้นอิสระลงกริด · R หมุน 90°
+     · เจาะผนัง (ploWallGeo): ช่วงผนังที่มีช่อง → แบ่งเป็นท่อน (ก่อนช่อง/ใต้ช่อง/เหนือช่อง/หลังช่อง) แล้ว Extrude ทีละท่อน · ผนังห้องเดิม (กล่อง) มีช่อง = สร้างใหม่แบบเดียวกัน (ploRectHoles)
+       ตอนวาดผนัง (PLW.on) ไม่เจาะ/ไม่วาดของ (ผนังเตี้ยแบบแปลน)
+     · 3D (ploAddMeshes): ประตู = วงกบ + บาน + มือจับ + เส้นวงเปิดบนพื้น · บานคู่ 2 บาน · บานเลื่อน 2 บานเหลื่อม · หน้าต่าง = กรอบ + กระจก + ขอบรองด้านใน (+ เสากลาง ≥ 1000) · บานเลื่อน 2 บาน
+       บันได = ขั้นละ ~175 (สูง/จำนวนขั้น) ทึบถึงพื้น · ทุกชิ้นมีกล่องคลิก (มองไม่เห็น) · เลือกอยู่ = กรอบฟ้า
+     · คลิก (ploDown — capture บน window ลงทะเบียนตอนโหลด ก่อนตัวลากตู้): โดนของในห้อง (และไม่มีตู้บังหน้า) = เลือก + ลากได้ · แผงซ้าย (ploPanel) แก้ขนาด/บานพับ/ทิศเปิด/ห่างต้นผนัง · หมุน · ลบ
+       Del/Backspace = ลบ · R = หมุนบันได / สลับบานพับประตู · Esc = เลิกเลือก · เลือกตู้ = เลิกเลือกของ (plSelect)
+     ยังไม่ทำ: โหมดสมจริง · แบบแนบใบเสนอราคา · ประตู/หน้าต่างในใบตัด/ราคา (เป็นของประกอบภาพ ไม่ใช่ชิ้นงาน)
+   ปิด: SN_OFF.plObj=1 */
+const PLO_T={
+  door :{n:"ประตูบานเปิด", ic:"🚪", w:900,  h:2050, wall:1, hole:1},
+  door2:{n:"ประตูบานคู่", ic:"🚪", w:1600, h:2050, wall:1, hole:1},
+  slide:{n:"ประตูบานเลื่อน", ic:"🚪", w:1800, h:2100, wall:1, hole:1},
+  open :{n:"ช่องเปิด (ไม่มีวงกบ)", ic:"⬜", w:900, h:2100, wall:1, hole:1},
+  win  :{n:"หน้าต่างบานเปิด", ic:"🪟", w:1000, h:1200, sill:900, wall:1, hole:1},
+  winw :{n:"หน้าต่างบานเลื่อน", ic:"🪟", w:1800, h:1200, sill:900, wall:1, hole:1},
+  stair:{n:"บันไดตรง", ic:"🪜", w:900, d:3300} };
+function ploList(){ const r=plRoom(); if(!Array.isArray(r.obj)) r.obj=[]; return r.obj; }
+function ploGet(id){ return ploList().find(o=>o&&o.id===id)||null; }
+function ploFrames(){ const out=[], r=plRoom(), T=100;
+  Object.keys(PL_WALLS).forEach(k=>{ if(!r.walls[k]) return; const W=PL_WALLS[k], face=plFace(r,k);
+    const a=W.ax===0?[r.x0,face]:[face,r.z0], d=W.ax===0?[1,0]:[0,1], L=W.ax===0?r.w:r.d, ni=W.pa===2?[0,W.s]:[W.s,0];   // วัดจากมุมในห้อง
+    out.push({key:"r:"+k, rk:k, a, d, L, ni, oi:0, oo:T, H:+r.h||2600, ex:W.ax===0?T:0, lbl:"ผนัง"+W.lbl}); });   // ex = กล่องผนังหน้า/หลังยื่นเลยมุมข้างละ T
+  if(!snOff("plDrawWall")) plwList().forEach((w,wi)=>{ const H=Math.max(+w.h||plwDefH(),10);
+    plwFoot(w).forEach((f,si)=>{ out.push({key:"w:"+wi+":"+si, wi, si, a:f.a, d:f.d, L:f.L, ni:f.ni, oi:f.oi, oo:f.oo, H, q:f.q, lbl:"ผนัง "+(wi+1)+"."+(si+1)}); }); });
+  return out; }
+function ploFrameOf(o,FR){ if(!o||!o.wk) return null; return (FR||ploFrames()).find(F=>F.key===o.wk)||null; }
+/* ตำแหน่ง/ทิศ: ติดผนัง = กลางความหนาผนัง แกน x ของชิ้นตามผนัง แกน z ชี้เข้าห้อง */
+function ploPose(o,F){
+  if(F&&PLO_T[o.k]&&PLO_T[o.k].wall){ const t=Math.min(Math.max(+o.t||0,o.w/2),Math.max(F.L-o.w/2,o.w/2)), mid=(F.oi+F.oo)/2, no=[-F.ni[0],-F.ni[1]];
+    return {x:F.a[0]+F.d[0]*t+no[0]*mid, z:F.a[1]+F.d[1]*t+no[1]*mid, rot:Math.atan2(F.ni[0],F.ni[1]), th:Math.max(F.oo-F.oi,40), F, t}; }
+  return {x:+o.x||0, z:+o.z||0, rot:(+o.yaw||0)*Math.PI/180, th:120, F:null}; }
+function ploOpenings(key){ if(snOff("plObj")) return [];
+  return ploList().filter(o=>o&&o.wk===key&&PLO_T[o.k]&&PLO_T[o.k].hole).map(o=>{ const y0=Math.max(+o.sill||0,0); return {t0:o.t-o.w/2, t1:o.t+o.w/2, y0, y1:y0+o.h}; }); }
+/* ผนังหนึ่งช่วง (รอยเท้า q + เส้น a·d·ni) สูง H เจาะช่อง ops → Geometry ก้อนเดียว */
+function ploWallGeo(f,H,ops){
+  const mk=(q,y0,y1)=>{ const g=new THREE.ExtrudeGeometry(plwShapeGeo(q),{depth:Math.max(y1-y0,0.5),bevelEnabled:false}); g.rotateX(-Math.PI/2);
+    if(y0){ g.translate(0,y0,0); const na=g.attributes.normal, ua=g.attributes.uv;                   // ท่อนเหนือช่อง: v ด้านข้างนับจากพื้นจริง ลายกระเบื้องต่อกับท่อนอื่น
+      if(na&&ua){ for(let i=0;i<ua.count;i++) if(Math.abs(na.getY(i))<0.5) ua.setY(i,ua.getY(i)-y0); ua.needsUpdate=true; } }
+    return g; };
+  if(!ops||!ops.length) return mk(f.q,0,H);
+  const A=f.a, D=f.d, NO=[-f.ni[0],-f.ni[1]], oi=f.oi, oo=f.oo;
+  const P=(t,o)=>[A[0]+D[0]*t+NO[0]*o, A[1]+D[1]*t+NO[1]*o], pr=p=>(p[0]-A[0])*D[0]+(p[1]-A[1])*D[1];
+  const lo=Math.max(pr(f.q[0]),pr(f.q[3]))+5, hi=Math.min(pr(f.q[1]),pr(f.q[2]))-5;
+  const L=ops.map(o=>({t0:Math.max(o.t0,lo), t1:Math.min(o.t1,hi), y0:Math.max(o.y0,0), y1:Math.min(o.y1,H)})).filter(o=>o.t1-o.t0>5&&o.y1-o.y0>5).sort((a,b)=>a.t0-b.t0);
+  const M=[]; L.forEach(o=>{ const l=M[M.length-1]; if(l&&o.t0<=l.t1){ l.t1=Math.max(l.t1,o.t1); l.y0=Math.min(l.y0,o.y0); l.y1=Math.max(l.y1,o.y1); } else M.push(Object.assign({},o)); });
+  if(!M.length) return mk(f.q,0,H);
+  const gs=[mk([f.q[0],P(M[0].t0,oi),P(M[0].t0,oo),f.q[3]],0,H)];
+  M.forEach((o,i)=>{ const q=[P(o.t0,oi),P(o.t1,oi),P(o.t1,oo),P(o.t0,oo)];
+    if(o.y0>1) gs.push(mk(q,0,o.y0)); if(o.y1<H-1) gs.push(mk(q,o.y1,H));
+    const nx=M[i+1]; if(nx) gs.push(mk([P(o.t1,oi),P(nx.t0,oi),P(nx.t0,oo),P(o.t1,oo)],0,H)); });
+  const l=M[M.length-1]; gs.push(mk([P(l.t1,oi),f.q[1],f.q[2],P(l.t1,oo)],0,H));
+  return mergeGeos(gs)||mk(f.q,0,H); }
+/* ผนังห้องสี่เหลี่ยมเดิม (กล่อง) ที่มีประตู/หน้าต่าง → สร้างใหม่แบบเจาะช่อง (พิกัดโลก · ตำแหน่ง 0) */
+function ploRectHoles(m,k,r){ if(snOff("plObj")||PLW.on) return; const ops=ploOpenings("r:"+k); if(!ops.length) return;
+  const F=ploFrames().find(x=>x.key==="r:"+k); if(!F) return;
+  const NO=[-F.ni[0],-F.ni[1]], P=(t,o)=>[F.a[0]+F.d[0]*t+NO[0]*o, F.a[1]+F.d[1]*t+NO[1]*o];
+  const e=F.ex||0, f={a:F.a, d:F.d, ni:F.ni, oi:F.oi, oo:F.oo, q:[P(-e,F.oi),P(F.L+e,F.oi),P(F.L+e,F.oo),P(-e,F.oo)]};
+  const g=ploWallGeo(f,+r.h||2600,ops); if(!g) return;
+  try{ m.geometry.dispose(); }catch(e){} m.geometry=g; m.position.set(0,0,0);
+  if(m.material&&m.material.map) try{ plptUvMM(g); }catch(e){} }                 // ผนังใส่รูป (v1.534): UV เป็นมม.ตามพิกัดจริง ทุกท่อนต่อกัน
+/* ── 3D ของในห้อง ── */
+function ploAddMeshes(g){
+  if(snOff("plObj")||PLW.on) return; const L=ploList(); if(!L.length) return;
+  const FR=ploFrames(), r=plRoom();
+  const M=(c,o)=>new THREE.MeshStandardMaterial(Object.assign({color:c,roughness:.7,metalness:0},o||{}));
+  L.forEach(o=>{ const T=PLO_T[o.k]; if(!T) return;
+    const F=T.wall?ploFrameOf(o,FR):null, P=ploPose(o,F), G=new THREE.Group(); G.position.set(P.x,0,P.z); G.rotation.y=P.rot; G.userData.plo=o.id;
+    const box=(sx,sy,sz,x,y,z,mat)=>{ const m=new THREE.Mesh(new THREE.BoxGeometry(Math.max(sx,1),Math.max(sy,1),Math.max(sz,1)),mat); m.position.set(x,y,z); m.castShadow=true; G.add(m); return m; };
+    const line=(pts,col)=>{ const l=new THREE.Line(new THREE.BufferGeometry().setFromPoints(pts.map(p=>new THREE.Vector3(p[0],p[1],p[2]))),new THREE.LineBasicMaterial({color:col||0x8a7a5c})); G.add(l); return l; };
+    const w=Math.max(+o.w||T.w,100), h=Math.max(+o.h||T.h||2000,100), th=P.th, y0=Math.max(+o.sill||0,0);
+    const frameM=M(0xf3f0ea), leafM=M(0xc39a6b), glassM=new THREE.MeshStandardMaterial({color:0x9fc7d8,roughness:.1,metalness:0,transparent:true,opacity:.35,depthWrite:false}), metalM=M(0x8f9399,{metalness:.6,roughness:.35});
+    const hs=o.hinge==="R"?1:-1, sw=o.swing==="out"?-1:1;
+    if(o.k==="door"||o.k==="door2"){ const fw=40;
+      box(fw,h,th,-w/2+fw/2,h/2,0,frameM); box(fw,h,th,w/2-fw/2,h/2,0,frameM); box(w,fw,th,0,h-fw/2,0,frameM);
+      const lw=w-2*fw-4, lh=h-fw-8, zf=sw*(th/2-19);
+      const leaf=(x0,len,hside)=>{ box(len,lh,38,x0,lh/2+4,zf,leafM);
+        box(16,16,70,x0-hside*(len/2-60),1000,zf+sw*38,metalM);                                     // มือจับฝั่งตรงข้ามบานพับ
+        const hx=x0+hside*len/2, zr=sw*th/2, pts=[[hx,3,zr]];
+        for(let i=0;i<=18;i++){ const a=i/18*Math.PI/2; pts.push([hx-hside*len*Math.cos(a),3,zr+sw*len*Math.sin(a)]); }
+        pts.push([hx,3,zr]); line(pts,0x9a8a6a); };
+      if(o.k==="door") leaf(0,lw,hs); else { const half=lw/2; leaf(-half/2,half,-1); leaf(half/2,half,1); } }
+    else if(o.k==="slide"){ const fw=40, pw=(w-2*fw)/2+40, ph=h-fw-10;
+      box(fw,h,th,-w/2+fw/2,h/2,0,frameM); box(fw,h,th,w/2-fw/2,h/2,0,frameM); box(w,fw,th,0,h-fw/2,0,frameM);
+      box(pw,ph,30,-(w-2*fw)/4+20,ph/2+5,14,leafM); box(pw,ph,30,(w-2*fw)/4-20,ph/2+5,-14,leafM);
+      line([[-w/2+fw+60,3,th/2+60],[w/2-fw-60,3,th/2+60]],0x9a8a6a); }
+    else if(o.k==="win"||o.k==="winw"){ const fw=50, fd=Math.min(th,120);
+      box(fw,h,fd,-w/2+fw/2,y0+h/2,0,frameM); box(fw,h,fd,w/2-fw/2,y0+h/2,0,frameM); box(w,fw,fd,0,y0+h-fw/2,0,frameM); box(w,fw,fd,0,y0+fw/2,0,frameM);
+      if(o.k==="win"){ box(w-2*fw,h-2*fw,6,0,y0+h/2,0,glassM); if(w>=1000) box(36,h-2*fw,fd*0.8,0,y0+h/2,0,frameM); }
+      else { const pw=(w-2*fw)/2+30; box(pw,h-2*fw,6,-(w-2*fw)/4+15,y0+h/2,10,glassM); box(pw,h-2*fw,6,(w-2*fw)/4-15,y0+h/2,-10,glassM); box(40,h-2*fw,fd*0.7,0,y0+h/2,0,frameM); }
+      box(w+80,20,80,0,y0-10,th/2+30,frameM); }                                                    // ขอบรองด้านใน
+    else if(o.k==="stair"){ const H=Math.max(+o.h||+r.h||2600,300), D=Math.max(+o.d||T.d,600), n=Math.max(3,Math.round(H/175)), rise=H/n, run=D/n, stM=M(0xc8a273);
+      const edM=new THREE.LineBasicMaterial({color:0x8a6a44});
+      for(let i=0;i<n;i++){ const hh=(i+1)*rise, m=box(w,hh,run,0,hh/2,-D/2+(i+0.5)*run,stM); const el=new THREE.LineSegments(new THREE.EdgesGeometry(m.geometry),edM); el.position.copy(m.position); G.add(el); }
+      /* เส้นทิศขึ้น (ตามลูกนอน) + หัวลูกศรที่ขั้นบนสุด — มุมบนอ่านแบบแปลน */
+      const ap=[]; for(let i=0;i<n;i++){ const y=(i+1)*rise+3, z0=-D/2+i*run; ap.push([0,y,z0+run*0.15],[0,y,z0+run*0.85]); }
+      line(ap,0x7c2d12); const zt=D/2-run*0.15, yt=H+3; line([[-w*0.18,yt,zt-run*0.6],[0,yt,zt],[w*0.18,yt,zt-run*0.6]],0x7c2d12); }
+    /* กล่องคลิก (มองไม่เห็น) + กรอบเลือก */
+    const pk=o.k==="stair"?[w,Math.max(+o.h||+r.h||2600,300),Math.max(+o.d||T.d,600),0]:[w,h,th+40,y0];
+    const pick=new THREE.Mesh(new THREE.BoxGeometry(pk[0],pk[1],pk[2]),new THREE.MeshBasicMaterial({visible:false}));
+    pick.position.set(0,pk[3]+pk[1]/2,0); pick.userData.ploPick=1; pick.userData.plo=o.id; G.add(pick);
+    if(PLO.sel===o.id){ const sel=new THREE.LineSegments(new THREE.EdgesGeometry(pick.geometry),new THREE.LineBasicMaterial({color:0x2563eb,depthTest:false})); sel.position.copy(pick.position); sel.renderOrder=999; G.add(sel); }
+    g.add(G); }); }
+/* ── วาง / เลือก / ลาก ── */
+function ploNew(k){ const T=PLO_T[k], r=plRoom(); if(!T) return null;
+  const o={id:uid(), k, w:T.w, h:k==="stair"?(+r.h||2600):T.h, sill:T.sill||0, d:T.d||0, wk:null, t:0, x:r.x0+r.w/2, z:r.z0+r.d/2, yaw:0, hinge:"L", swing:"in"};
+  if(!T.sill) delete o.sill; if(!T.d) delete o.d; return o; }
+function ploLocked(){ try{ return typeof guardEdit==="function"&&guardEdit("ประตู/หน้าต่าง"); }catch(e){ return false; } }   // ล็อกออเดอร์/ลิงก์ดู = แก้ไม่ได้ (เตือนเอง)
+/* ช่องอื่นบนผนังเดียวกันที่ทับกัน (เว้นห่าง < gap) */
+function ploClash(o,wk,t,gap){ return ploList().find(x=>x&&x!==o&&x.wk===wk&&PLO_T[x.k]&&PLO_T[x.k].wall&&Math.abs((+x.t||0)-t)<((+x.w||0)+(+o.w||0))/2+(gap||0))||null; }
+/* คลิกการ์ด = วางบนผนังที่ใกล้จุดกลางจอสุดที่ยังมีที่ว่าง (ไม่ทับช่องเดิม เว้น 100) · บันได = กลางห้อง */
+function ploAddAuto(k){ if(ploLocked()) return null; const o=ploNew(k); if(!o) return null; const T=PLO_T[k];
+  if(T.wall){ const c=orbit.target, G=plGrid()||10, FR=ploFrames().filter(F=>F.L>=o.w+100)
+      .map(F=>({F, dd:Math.hypot(F.a[0]+F.d[0]*F.L/2-c.x, F.a[1]+F.d[1]*F.L/2-c.z)})).sort((x,y)=>x.dd-y.dd);
+    let put=null;
+    for(const {F} of FR){ const n=Math.ceil(F.L/G), mid=F.L/2;
+      for(let i=0;i<=n&&!put;i++) for(const sg of [1,-1]){ const t=mid+sg*i*G; if(t<o.w/2+50||t>F.L-o.w/2-50) continue; if(!ploClash(o,F.key,t,100)){ put={F,t}; break; } }
+      if(put) break; }
+    if(put){ o.wk=put.F.key; o.t=Math.round(put.t); const P=ploPose(o,put.F); o.x=Math.round(P.x); o.z=Math.round(P.z); o.yaw=Math.round(P.rot*180/Math.PI); }
+    else toast(FR.length?"ผนังเต็มแล้ว — วางไว้กลางห้อง ลากไปวางเองได้":"ยังไม่มีผนังให้ติด — วางไว้กลางห้อง ลากไปชิดผนังได้"); }
+  ploList().push(o); PLO.sel=o.id; try{ plSelect(null); }catch(e){} PLO.sel=o.id;
+  plRoomDraw(); plPanelSel(); ploReveal(); plAfterRoom(); toast(T.ic+" วาง"+T.n+(o.wk?(" บน"+((ploFrameOf(o)||{}).lbl||"ผนัง")):"")+" — ลากเลื่อนได้ · Del = ลบ"); return o; }
+/* ผนังใต้เมาส์: ยิงเรย์ใส่ระนาบกลางความหนาของทุกช่วงผนัง (ข้ามผนังที่กล้องอยู่นอกห้องฝั่งนั้น = ผนังถูกซ่อน ยกเว้นมุมบน) → ใกล้กล้องสุด
+   ไม่โดนผนัง (เช่นมุมบนแบบแปลน) = ผนังที่ใกล้จุดบนพื้นใต้เมาส์ ≤ 700 · ไม่มีเลย = {p จุดบนพื้น} */
+function ploWallAt(ev,o,FR){
+  const rc=rayFrom(ev), ro=rc.ray.origin, rd=rc.ray.direction, top=(typeof orbit!=="undefined"&&orbit.phi<0.35); let best=null;
+  FR.forEach(F=>{ if(F.L<o.w+20) return; const mid=(F.oi+F.oo)/2, nx=F.ni[0], nz=F.ni[1], px=F.a[0]-nx*mid, pz=F.a[1]-nz*mid;
+    const side=(ro.x-px)*nx+(ro.z-pz)*nz; if(!top&&side<-(F.oo-F.oi)/2-1) return;
+    const den=rd.x*nx+rd.z*nz; if(Math.abs(den)<1e-6) return; const sd=-side/den; if(sd<=0) return;
+    const hy=ro.y+rd.y*sd; if(hy<0||hy>F.H) return;
+    const t=(ro.x+rd.x*sd-F.a[0])*F.d[0]+(ro.z+rd.z*sd-F.a[1])*F.d[1]; if(t<-200||t>F.L+200) return;
+    if(!best||sd<best.sd) best={F,t,sd}; });
+  if(best) return best;
+  const p=plFloorPt(ev,0); if(!p) return null; let bd=700;
+  FR.forEach(F=>{ if(F.L<o.w+20) return; const v=[p.x-F.a[0],p.z-F.a[1]], t=v[0]*F.d[0]+v[1]*F.d[1]; if(t<-300||t>F.L+300) return;
+    const dist=Math.abs(v[0]*F.ni[0]+v[1]*F.ni[1]+(F.oi+F.oo)/2); if(dist<bd){ bd=dist; best={F,t}; } });
+  return best||{p}; }
+function ploPick(e){ if(!PL.grp) return null; const picks=[]; PL.grp.traverse(x=>{ if(x.userData&&x.userData.ploPick) picks.push(x); }); if(!picks.length) return null;
+  const rc=rayFrom(e), h=rc.intersectObjects(picks,false)[0]; if(!h) return null;
+  let cab=null; try{ cab=pickFromHits(rc.intersectObjects(meshes.map(m=>m.mesh),false)); }catch(err){}
+  if(cab&&cab.distance<h.distance-1) return null;                              // ตู้อยู่หน้ากว่า = คลิกตู้
+  return {id:h.object.userData.plo, point:h.point}; }
+function ploDown(e){
+  if(snOff("plObj")||!PL.on||PLW.on||typeof renderer==="undefined"||!renderer||e.target!==renderer.domElement||e.button!==0||e.shiftKey||e.altKey) return;
+  if(state.tool==="measure"||state.tool==="stretch"||state.view!=="assembled") return;
+  const hit=ploPick(e);
+  if(!hit){ if(PLO.sel){ PLO.sel=null; try{ plRoomDraw(); }catch(err){} setTimeout(plPanelSel,0); } return; }
+  e.stopImmediatePropagation(); e.preventDefault();
+  try{ renderer.domElement.setPointerCapture(e.pointerId); }catch(err){}
+  const o=ploGet(hit.id); if(!o) return;
+  try{ plSelect(null); }catch(err){} PLO.sel=o.id;
+  if(typeof isLocked==="function"&&isLocked()){ plRoomDraw(); plPanelSel(); ploReveal(); return; }
+  const F0=ploFrameOf(o), P=ploPose(o,F0), y=Math.max(hit.point.y,0), p=plFloorPt(e,y);
+  let dt=0; if(F0){ const w=ploWallAt(e,o,[F0]); if(w&&w.F) dt=(+o.t||0)-w.t; }
+  PLO.drag={id:o.id, off:p?[P.x-p.x,P.z-p.z]:[0,0], y, wk0:o.wk, dt, sx:e.clientX, sy:e.clientY, moved:false};
+  plRoomDraw(); plPanelSel(); ploReveal(); }
+function ploMove(e){
+  if(PLO.pend&&!PLO.pend.id&&typeof renderer!=="undefined"&&renderer){            // ลากการ์ดจากแคตตาล็อกเข้าจอ
+    const el=document.elementFromPoint(e.clientX,e.clientY);
+    if(el===renderer.domElement&&!(typeof isLocked==="function"&&isLocked())){ const p=plFloorPt(e,0), o=ploNew(PLO.pend.k); if(p&&o){ o.x=Math.round(p.x); o.z=Math.round(p.z); ploList().push(o);
+        PLO.pend.id=o.id; try{ plSelect(null); }catch(err){} PLO.sel=o.id; PLO.drag={id:o.id, off:[0,0], y:0, wk0:null, dt:0, sx:e.clientX, sy:e.clientY, moved:true, fromCat:true}; } } }
+  const g=PLO.drag; if(!g) return;
+  e.stopImmediatePropagation();
+  if(!g.moved&&Math.abs(e.clientX-g.sx)+Math.abs(e.clientY-g.sy)<5) return;
+  g.moved=true; PLO.ev={clientX:e.clientX, clientY:e.clientY};
+  if(!PLO.raf) PLO.raf=requestAnimationFrame(()=>{ PLO.raf=0; ploDragApply(); }); }
+function ploDragApply(){ const g=PLO.drag, ev=PLO.ev; if(!g||!ev) return; const o=ploGet(g.id); if(!o) return;
+  const T=PLO_T[o.k], G=plGrid()||10; let tip="";
+  if(T.wall){ const w=ploWallAt(ev,o,ploFrames()); if(!w) return;
+    if(w.F){ const F=w.F, t=w.t+(F.key===g.wk0?g.dt:0), hi=F.L-o.w; let e0=t-o.w/2;
+      if(Math.abs(e0)<80) e0=0; else if(Math.abs(e0-hi)<80) e0=hi; else e0=Math.round(e0/G)*G;
+      e0=Math.min(Math.max(e0,0),Math.max(hi,0)); o.wk=F.key; o.t=Math.round((e0+o.w/2)*10)/10;
+      const P=ploPose(o,F); o.x=Math.round(P.x); o.z=Math.round(P.z); o.yaw=Math.round(P.rot*180/Math.PI);
+      const cl=ploClash(o,F.key,o.t,0);
+      tip=T.ic+" "+F.lbl+" · ห่างต้นผนัง "+Math.round(e0)+" · ห่างปลาย "+Math.round(F.L-e0-o.w)+(cl?(" · ⚠ ทับ"+((PLO_T[cl.k]||{}).n||"")):""); }
+    else { const p=w.p; o.wk=null; o.x=Math.round(p.x/G)*G; o.z=Math.round(p.z/G)*G; tip=T.ic+" ยังไม่ติดผนัง — ชี้ที่ผนังหรือลากเข้าใกล้ผนัง"; } }
+  else { const p=plFloorPt(ev,g.y||0); if(!p) return; o.x=Math.round((p.x+g.off[0])/G)*G; o.z=Math.round((p.z+g.off[1])/G)*G; tip=T.ic+" "+T.n+" · หมุนด้วย R"; }
+  plRoomDraw(); const tp=$("plDragTip"); if(tp) tp.textContent=tip; }
+function ploUp(e){
+  if(PLO.pend){ const pd=PLO.pend; PLO.pend=null;
+    if(!pd.id){ if(Math.abs(e.clientX-pd.sx)+Math.abs(e.clientY-pd.sy)<8) ploAddAuto(pd.k); return; } }
+  const g=PLO.drag; if(!g) return; PLO.drag=null;
+  if(PLO.raf){ cancelAnimationFrame(PLO.raf); PLO.raf=0; ploDragApply(); }
+  const tp=$("plDragTip"); if(tp) tp.textContent="";
+  if(g.moved){ plAfterRoom(); } plRoomDraw(); plPanelSel(); if(g.fromCat) ploReveal(); }
+function ploReveal(){ setTimeout(()=>{ const s=$("plSelSec"); if(s&&s.scrollIntoView) try{ s.scrollIntoView({block:"nearest"}); }catch(e){} },0); }   // แผงซ้ายเลื่อนให้เห็นตัวแก้ขนาด
+function ploDel(id){ if(ploLocked()) return; const L=ploList(), k=L.findIndex(o=>o.id===id); if(k<0) return; const o=L[k]; L.splice(k,1); if(PLO.sel===id) PLO.sel=null;
+  plRoomDraw(); plPanelSel(); plAfterRoom(); toast("ลบ"+((PLO_T[o.k]||{}).n||"")+"แล้ว"); }
+function ploRot(o){ if(!o||ploLocked()) return; if(o.k==="stair"){ o.yaw=(((+o.yaw||0)+90)%360); }
+  else if(o.k==="door"||o.k==="door2"){ o.hinge=o.hinge==="R"?"L":"R"; }
+  plRoomDraw(); plPanelSel(); plAfterRoom(); }
+function ploKey(e){ if(snOff("plObj")||!PL.on||PLW.on||!PLO.sel) return; const t=e.target;
+  if(t&&/INPUT|TEXTAREA|SELECT/.test(t.tagName)) return; if(t&&t.closest&&t.closest("#askModal,#fieldsModal,.modal")) return;
+  if(e.ctrlKey||e.metaKey||e.altKey) return; const o=ploGet(PLO.sel); if(!o){ PLO.sel=null; return; }
+  if(e.key==="Delete"||e.key==="Backspace"){ e.preventDefault(); e.stopImmediatePropagation(); ploDel(o.id); }
+  else if(e.key==="r"||e.key==="R"){ e.preventDefault(); e.stopImmediatePropagation(); ploRot(o); }
+  else if(e.key==="Escape"){ e.preventDefault(); e.stopImmediatePropagation(); PLO.sel=null; plRoomDraw(); plPanelSel(); } }
+addEventListener("pointerdown",ploDown,true);
+addEventListener("pointermove",ploMove,true);
+addEventListener("pointerup",ploUp,true);
+addEventListener("keydown",ploKey,true);
+/* ── แคตตาล็อก: แท็บ 🚪 ── */
+function ploIcon(k){ const s='<svg viewBox="0 0 80 80" width="70" height="70" fill="none" stroke="currentColor" stroke-width="3" stroke-linejoin="round">', e='</svg>';
+  if(k==="door") return s+'<rect x="20" y="8" width="40" height="66" fill="rgba(200,162,115,.25)"/><circle cx="52" cy="44" r="3" fill="currentColor"/><path d="M8 74h64"/>'+e;
+  if(k==="door2") return s+'<rect x="10" y="8" width="60" height="66" fill="rgba(200,162,115,.25)"/><path d="M40 8v66"/><circle cx="34" cy="44" r="3" fill="currentColor"/><circle cx="46" cy="44" r="3" fill="currentColor"/>'+e;
+  if(k==="slide") return s+'<rect x="8" y="8" width="64" height="66"/><rect x="12" y="12" width="32" height="60" fill="rgba(200,162,115,.25)"/><rect x="36" y="14" width="32" height="58" fill="rgba(200,162,115,.18)"/><path d="M20 42h14M30 38l4 4-4 4"/>'+e;
+  if(k==="open") return s+'<path d="M20 74V10h40v64" stroke-dasharray="6 5"/><path d="M8 74h64"/>'+e;
+  if(k==="win") return s+'<rect x="12" y="16" width="56" height="44" fill="rgba(159,199,216,.35)"/><path d="M40 16v44"/><path d="M8 64h64"/>'+e;
+  if(k==="winw") return s+'<rect x="8" y="18" width="64" height="40" fill="rgba(159,199,216,.35)"/><path d="M40 18v40"/><path d="M18 38h14M28 34l4 4-4 4"/><path d="M6 62h68"/>'+e;
+  return s+'<path d="M10 70h14V56h14V42h14V28h14V14" /><path d="M10 70h60V14"/>'+e; }
+function ploGrid(tabs,grid){
+  const have=new Set((PL.items||[]).map(x=>x.kind));
+  const ks=[["","ทั้งหมด"]].concat(CAT_KINDS.filter(k=>have.has(k[0]))).concat([["_room","🚪 ประตู · หน้าต่าง · บันได"]]);
+  tabs.innerHTML=ks.map(k=>'<button data-t="'+k[0]+'" class="'+(k[0]===PL.tab?"on":"")+'">'+k[1]+'</button>').join("");
+  tabs.querySelectorAll("button").forEach(bt=>bt.onclick=()=>{ PL.tab=bt.dataset.t; plPanelGrid(); });
+  { const cn=$("plCatN"); if(cn) cn.textContent=Object.keys(PLO_T).length+" แบบ"; }
+  const K=Object.keys(PLO_T);
+  grid.innerHTML='<div style="grid-column:1/-1;color:var(--ink-dim);font-size:11px;line-height:1.5">กดค้างที่การ์ดแล้วลากลงจอ (ประตู/หน้าต่างดูดติดผนังที่ใกล้สุด เจาะช่องผนังให้) · คลิก = วางบนผนังกลางจอ · คลิกของในห้อง = แก้ขนาด · Del ลบ · R หมุน/สลับบานพับ</div>'
+    +K.map(k=>{ const T=PLO_T[k]; return '<div class="plCard" data-k="'+k+'" title="'+escapeHtml(T.n)+'"><div class="plTh" style="color:var(--ink)">'+ploIcon(k)+'</div><b style="font-family:inherit">'+escapeHtml(T.n)+'</b>'
+      +'<small>'+(k==="stair"?("กว้าง "+T.w+" · ยาว "+T.d):(T.w+"×"+T.h+(T.sill?(" · สูงจากพื้น "+T.sill):"")))+'</small></div>'; }).join("");
+  grid.querySelectorAll(".plCard").forEach(cd=>{ const k=cd.dataset.k;
+    cd.addEventListener("pointerdown",ev=>{ if(ev.button!==0) return; ev.preventDefault(); PLO.pend={k, sx:ev.clientX, sy:ev.clientY, id:null}; }); }); }
+/* ── แผงซ้าย: ของที่เลือก ── */
+function ploPanel(s){ const o=ploGet(PLO.sel); if(!o){ PLO.sel=null; return; } const T=PLO_T[o.k]||{n:o.k,ic:"•"}, F=ploFrameOf(o);
+  const fr=(lbl,ctl,tip)=>(typeof plF531==="function"&&!snOff("plTidy"))?plF531(lbl,ctl,tip):('<div class="plRow" style="margin-top:5px">'+lbl+' '+ctl+'</div>');
+  const num=(k,v,st,w)=>'<input type="number" data-pok="'+k+'" value="'+Math.round(+v||0)+'" step="'+(st||10)+'" style="width:'+(w||70)+'px"><span class="plU">มม.</span>';
+  const stair=o.k==="stair", door=o.k==="door"||o.k==="door2";
+  let h='<div class="plRow"><h4>'+T.ic+' '+escapeHtml(T.n)+'</h4><span class="plNote" style="margin-left:auto">'+(F?escapeHtml(F.lbl):(T.wall?"ยังไม่ติดผนัง":"วางบนพื้น"))+'</span></div>'
+    +fr("กว้าง",num("w",o.w,10))
+    +fr(stair?"สูง (ถึงชั้นบน)":"สูง",num("h",o.h,10))
+    +(T.sill!=null||o.sill!=null?fr("สูงจากพื้น",num("sill",o.sill,10),"ขอบล่างหน้าต่างสูงจากพื้น"):"")
+    +(stair?fr("ยาว (ระยะเดิน)",num("d",o.d,50)+'<span class="plNote plNB">'+Math.max(3,Math.round((+o.h||2600)/175))+' ขั้น · ลูกตั้ง '+Math.round((+o.h||2600)/Math.max(3,Math.round((+o.h||2600)/175)))+' · ลูกนอน '+Math.round((+o.d||3300)/Math.max(3,Math.round((+o.h||2600)/175)))+'</span>'):"")
+    +(door?fr("บานพับ",'<select data-pok="hinge"><option value="L"'+(o.hinge!=="R"?" selected":"")+'>ซ้าย (มองจากในห้อง)</option><option value="R"'+(o.hinge==="R"?" selected":"")+'>ขวา</option></select>'):"")
+    +(door?fr("เปิด",'<select data-pok="swing"><option value="in"'+(o.swing!=="out"?" selected":"")+'>เข้าห้อง</option><option value="out"'+(o.swing==="out"?" selected":"")+'>ออกนอกห้อง</option></select>'):"")
+    +(F?fr("ห่างต้นผนัง",num("off",(+o.t||0)-o.w/2,10)+'<span class="plNote plNB">ผนังยาว '+Math.round(F.L)+' · ห่างปลาย '+Math.round(F.L-(+o.t||0)-o.w/2)+'</span>',"ระยะจากต้นช่วงผนังถึงขอบชิ้น"):"")
+    +'<div class="plRow plBtns" style="margin-top:8px">'+((stair||door)?'<button class="ibtn" id="ploRot">'+(stair?'⟳ หมุน 90°':'⇋ สลับบานพับ')+' (R)</button>':'')
+      +'<button class="ibtn" id="ploDel" style="color:#d33">🗑 ลบ (Del)</button><button class="ibtn" id="ploDone">✓ เสร็จ</button></div>';
+  s.innerHTML=h;
+  s.querySelectorAll("[data-pok]").forEach(inp=>inp.onchange=()=>{ const k=inp.dataset.pok; if(ploLocked()){ plPanelSel(); return; }
+    if(k==="hinge"||k==="swing") o[k]=inp.value;
+    else { const v=+inp.value; if(!isFinite(v)) return;
+      if(k==="w"&&v>=200) { const e0=(+o.t||0)-o.w/2; o.w=Math.round(v); if(F) o.t=e0+o.w/2; }
+      else if(k==="h"&&v>=200) o.h=Math.round(v);
+      else if(k==="sill"&&v>=0) o.sill=Math.round(v);
+      else if(k==="d"&&v>=300) o.d=Math.round(v);
+      else if(k==="off"&&F) o.t=Math.min(Math.max(v,0),Math.max(F.L-o.w,0))+o.w/2;
+      else { plPanelSel(); return; } }
+    plRoomDraw(); plPanelSel(); plAfterRoom(); });
+  { const b=s.querySelector("#ploRot"); if(b) b.onclick=()=>ploRot(o); }
+  { const b=s.querySelector("#ploDel"); if(b) b.onclick=()=>ploDel(o.id); }
+  { const b=s.querySelector("#ploDone"); if(b) b.onclick=()=>{ PLO.sel=null; plRoomDraw(); plPanelSel(); }; } }
 /* ── แผงห้อง: กลุ่ม “ผนังที่วาด” ── */
 function plwGrpHtml(grp){ if(snOff("plDrawWall")) return "";
   const L=plwList(), tot=L.reduce((s,w)=>s+plwSegs(w).reduce((a,sg)=>a+plwLen(sg),0),0);
@@ -38287,7 +38553,9 @@ function plPanelWalls(){ const ws=$("plWall"); if(!ws) return; const r=plRoom();
   ws.innerHTML=Object.keys(PL_WALLS).map(k=>'<option value="'+k+'"'+(k===PL.wall?" selected":"")+(r.walls[k]?"":" disabled")+'>ลงผนัง'+PL_WALLS[k].lbl+'</option>').join(""); }
 function plPanelSel(){
   try{ plDimDraw(); }catch(e){}                                              // v1.310
-  const s=$("plSelSec"); if(!s) return; const inst=plSelInst();
+  const s=$("plSelSec"); if(!s) return;
+  if(!snOff("plObj")&&PLO.sel&&ploGet(PLO.sel)){ try{ ploPanel(s); }catch(e){ console.error("ploPanel:",e); } plPanelGaps(); plPanelFoot(); return; }   // v1.535: เลือกประตู/หน้าต่าง/บันไดอยู่
+  const inst=plSelInst();
   if(!inst){ s.innerHTML='<h4>ตู้ที่เลือก</h4><div style="color:var(--ink-dim);margin-top:4px">คลิกตู้ในจอเพื่อเลือก · กดรูปในแคตตาล็อกเพื่อวางใบใหม่</div>'; plPanelGaps(); plPanelFoot(); return; }
   if(!snOff("csmRail")&&csmIsRailInst(inst)){ s.innerHTML=csmRailSelHtml(inst); const _d=s.querySelector("#plDel"); if(_d) _d.onclick=()=>plDelete(inst);
     { const _rp=s.querySelector("#csmRailPaper"), _rb=csmRailOf(inst); if(_rp&&_rb) _rp.onclick=()=>{ try{ ShopPaper.open({board:_rb.id, scope:"scene"}); }catch(e){ console.error("csmRailPaper:",e); toast("เปิดแบบผลิตไม่สำเร็จ"); } };
@@ -39533,10 +39801,11 @@ async function exportGlb(opt){
 }
 function plPanelGrid(){
   const tabs=$("plTabs"), grid=$("plGrid"); if(!tabs||!grid) return;
+  if(!snOff("plObj")&&PL.tab==="_room"){ try{ ploGrid(tabs,grid); }catch(e){ console.error("ploGrid:",e); } return; }   // v1.535: แท็บประตู/หน้าต่าง/บันได
   if(!PL.items){ grid.innerHTML='<div style="grid-column:1/-1;color:var(--ink-dim)">กำลังอ่านคลังตู้…</div>'; try{ plGridWait("กำลังอ่านคลังตู้…",0,0); }catch(e){} return; }
   const have=new Set(PL.items.map(x=>x.kind));
-  const ks=[["","ทั้งหมด"]].concat(CAT_KINDS.filter(k=>have.has(k[0])));
-  if(PL.tab&&!have.has(PL.tab)) PL.tab="";
+  const ks=[["","ทั้งหมด"]].concat(CAT_KINDS.filter(k=>have.has(k[0]))).concat(snOff("plObj")?[]:[["_room","🚪 ประตู · หน้าต่าง · บันได"]]);   // v1.535
+  if(PL.tab&&PL.tab!=="_room"&&!have.has(PL.tab)) PL.tab="";
   tabs.innerHTML=ks.map(k=>'<button data-t="'+k[0]+'" class="'+(k[0]===PL.tab?"on":"")+'">'+k[1]+'</button>').join("");
   tabs.querySelectorAll("button").forEach(bt=>bt.onclick=()=>{ PL.tab=bt.dataset.t; plPanelGrid(); });
   const q=String(PL.q||"").trim().toUpperCase();
