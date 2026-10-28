@@ -3281,7 +3281,7 @@ body[data-theme="dark"] .splash-dots span{background:rgba(255,255,255,.25)}
    ===================================================================== */
 /* ---- APP_META: แหล่งความจริงเดียวของเวอร์ชัน (ดูได้จาก console / คลิกชื่อแอป) ---- */
 const APP_META={
-  name:"StarNexus", version:"1.533", build:"2026-10-28/draw-wall",
+  name:"StarNexus", version:"1.534", build:"2026-10-28/room-paint",
   file:"StarNexus.html", basedOn:"Furnitech_V3.html (v3.11)",
   /* ───────── เริ่มนับเวอร์ชันใหม่ที่ 1.001 (21/08/2026) ─────────
      ของเดิมนับมาถึง 42.1 แล้ววิ่งเป็นทศนิยมสองชั้นซึ่งอ่านลำดับยาก
@@ -3289,6 +3289,7 @@ const APP_META={
      ประวัติเก่าเก็บไว้ทั้งหมดตามเลขเดิม ไม่ไล่เขียนใหม่ เพราะเลขในนั้นถูกอ้างถึงไปแล้ว
      รายการที่อยู่ใต้ 1.001 ลงไปจึงเป็นเลขชุดเก่า อ่านต่อกันได้ตามวันที่ */
   changelog:[
+    ["1.534","2026-10-28","FIX+FEAT ห้องออกแบบ (ผู้ใช้ 14:45 ภาพผนังที่วาดจางตอนซูมไกล): ① ซูมไกลแล้วงานจาง — เดิมหมอกฉากเริ่มที่ระยะคงที่จากกล้อง (1.6 × ขนาดงาน ≥ 6 ม.) ห้องที่ยังไม่มีตู้คิดขนาดงานจาก 6 ม. ตายตัว ถอยกล้องไกลแล้วผนัง/ตู้จมหมอก · ตอนนี้หมอกเริ่มหลังตัวงานเสมอ (ระยะกล้องถึงจุดหมุน + ขนาดงาน · ขนาดงานรวมห้อง/ผนังที่วาดตอนเปิดห้องออกแบบ) = งานไม่จางทุกระยะซูม · ไกล ๆ ข้างหลังยังจางเป็นฉาก (ปิด SN_OFF.fogFollow=1) · ② พื้นห้องตามผนังที่วาด — เดิมครอบเฉพาะเส้นแรก วาดเพิ่มทีหลังพื้นอยู่ผิดที่ · ตอนนี้ปิดผนังห้องสี่เหลี่ยมอยู่ = พื้นครอบผนังที่วาดทุกเส้นทุกครั้ง · ③ 🖌 สีผนัง·พื้น (ปุ่มในแผงห้อง · ปุ่ม 🖌 ที่ผนังที่วาดแต่ละเส้น): สีพื้นฐาน 22 สี · เลือกเอง · 💧 หลอดดูดสี (EyeDropper ของ Chrome/Edge ดูดสีได้ทั้งจอ รวมนอกโปรแกรม) · 🖼 อัปโหลดรูป (กระเบื้อง/วอลเปเปอร์/พื้นไม้) ย่อเหลือ ≤1024 px เก็บในห้องนี้ (state.room.texLib — แยกจากคลังวัสดุตู้ ไม่ปนกัน) ตั้งขนาดรูปจริงเป็น มม. ได้ · ผนังทั้งหมด / พื้น / ผนังที่วาดรายเส้น (ทับสีผนังทั้งหมด) · ปิด SN_OFF.plPaint=1"],
     ["1.533","2026-10-28","FEAT ✏ วาดผนังจากแปลน ในห้องออกแบบ (ผู้ใช้ 14:04: “อยากได้สร้างผนังออกเหมือนลากเส้น แล้ว Extrude ขึ้นจากเส้นเป็นผนัง ตามแบบบ้านลูกค้า เริ่มมองจาก plan ด้านบน ลองทำเครื่องมือมาให้ลองใช้”) — เดิม ห้องเป็นกล่องสี่เหลี่ยม (กว้าง×ลึก×สูง + ติ๊กผนัง 4 ด้าน) ห้อง L / มุมหัก / ผนังเอียง ทำไม่ได้ · ตอนนี้ ปุ่ม ✏ วาดผนังจากแปลน (กลุ่ม “ผนังที่วาด” ในแผงห้อง) → กล้องมองจากบน + กริด 500 + แถบเครื่องมือ: คลิกวางจุดบนพื้น · ตั้งฉาก 90° (O สลับ · Shift ค้าง = เอียง) · ดูดจุดปลาย/ตรงแนวจุดอื่น/ความยาวลงกริด · พิมพ์ตัวเลข+Enter = ช่วงนี้ยาวเท่านั้นตามทิศเมาส์ · คลิกจุดแรก/⭘ = ปิดรอบ · ดับเบิลคลิก/คลิกขวา/Enter = จบเส้น · Backspace ถอยจุด · Esc ออก · ผนัง Extrude ขึ้น 3D ทันที หนา/สูงตั้งได้ (ตั้งต้น 100 / สูงห้อง) · เส้น = ผิวในห้อง (หนาออกนอก) หรือกลางผนัง · มุมต่อแบบ miter ทุกองศา · กล้องอยู่นอกผนัง = ซ่อนผนังนั้นแบบผนังห้องเดิม · วาดเส้นแรกเสร็จ = ปิดผนังห้องสี่เหลี่ยมเดิม + พื้นห้องครอบผนังที่วาด · แผงห้องแก้หนา/สูง/ยาวแต่ละช่วง (ยืดแบบ CAD ผนังที่อยู่เลยปลายช่วงเลื่อนตาม) · ⇄ สลับด้านหนา · 🗑 ลบ · ลากตู้ไปชิดผนังที่วาดช่วงที่ตรงแนวแกน = ดูดติดผิวใน หันหน้าเข้าห้อง (ชิดปลายช่วง/ตู้ข้าง ๆ · ลงกริด) · เก็บใน state.room.dw (ไปกับไฟล์งาน/ออเดอร์) · ยังไม่ทำ: ตู้บนผนังเอียง · ช่องว่าง/ฟิลเลอร์/ท็อป/โหมดสมจริง/แบบแนบใบเสนอราคา (ยังอิงห้องสี่เหลี่ยม) · ประตู/หน้าต่าง · ปิด SN_OFF.plDrawWall=1"],
     ["1.532","2026-10-28","FEAT 🥄 ถาดช้อนในลิ้นชักลูกเล็ก (ผู้ใช้ 08:14 project 58 + ภาพถาด + AX ACCDT00007 “ถาดช้อน A16 สีเทา ตู้ 60 ขนาด 508x472 mm. ไม่บาก”: “ผมเรียกว่าลูกเล็ก มีให้เลือกใส่ถาดช้อนได้ ถาดสูงสัก 60–70 ทำเป็น 3D โหมดปกติคลิกขวาเลือกใส่ได้ทีละลูก แต่ลูกที่สูง 148 ใส่ไม่ได้ · กล่องไม้เอาไว้ก่อน · รหัสออกตามนั้นที่ราง 500 ตู้ 600 · มีตู้ 450 600 900 ลบขนาดจากตู้ 60 ไปก็จะเจอของ 450 กับ 900 · ด้านลึกคงไว้ · รางอื่นใส่ไม่ได้”) — คลิกขวาที่หน้าลิ้นชัก (หรือชิ้นกล่อง/ตัวถาด) → 🥄 ใส่ถาดช้อน / เอาถาดช้อนออก · ใส่ได้เมื่อ: กล่องแผงข้างเหล็ก · ราง 500 · ลูกเล็ก (แผ่นหลังกล่อง ≤ 100 เช่น 63) · ตู้กว้างตรงตาราง (450 → 358×472 · 600 → 508×472 ACCDT00007 · 900 → 808×472 = กว้างตู้ − 92) · ไม่เข้าเงื่อนไข = ปุ่มจางบอกเหตุผล (ลูกสูง 148 / รางอื่น / ตู้กว้างอื่น) · กล่องไม้ยังไม่ขึ้น · ถาด = ชิ้นเสมือนกลุ่มเดียวกับลิ้นชัก (เปิดบานแล้วเลื่อนออกตาม) วางบนพื้นกล่อง กลางระหว่างแผ่นหลังกล่องกับหลังหน้าบาน สูง 60 (ไม่โผล่พ้นแผงข้างเหล็กสูง 80 ของลูกเล็ก · ตั้งได้) · 3D พลาสติกเทา ขอบปีก + ช่องแบ่งตามภาพ · ใบเบิก 1 ถาด = 1 ชิ้น · รหัส 450/900 ยังไม่รู้ → ค้นจาก AX (fitting_global ชื่อมี “ถาดช้อน” + ขนาด) ไม่เจอ = วาด 3D แต่ไม่ลงรายการเบิก (ไม่เดารหัส) · ตั้งค่า → ลิ้นชัก: ตารางขนาด/รหัส · รางที่ใส่ได้ · สูงถาด · ปิด SN_OFF.cutTray=1"],
     ["1.531","2026-10-28","UI จัดระเบียบแผงห้องออกแบบ (ผู้ใช้ 28/10 07:54 ภาพแผงห้อง: “จัดระเบียบ UI ให้เข้าที่หน่อยครับ”) — เดิม หัวแผงตกบรรทัด (ห้อง/ออกแบบ + คำแนะนำสองบรรทัด) · ปุ่ม 🎨 สีทั้งออเดอร์ / 🖐 มือจับทั้งห้อง เบียดอยู่ท้ายแถวฟิลเลอร์ลงพื้น ข้อความในปุ่มตกสามบรรทัด · ป้ายกับช่องกรอกยาวไม่เท่ากันจึงไม่ตรงแนว · ปุ่มยืดเต็มแถว (.ibtn flex:1) · ปุ่ม 💰 ใส่ราคาที่ขาด ตกลงมาเต็มแถว · เปิดรายละเอียดแล้วแถบล่างดันส่วนบนจนเหลือนิดเดียว · ตอนนี้: หัวแผง = ชื่อ + ✓ เสร็จ บรรทัดเดียว คำแนะนำบรรทัดล่าง · ปุ่มทั้งห้อง (🎨 สี / 🖐 มือจับ) ขึ้นมาอยู่ใต้หัวห้อง · ทุกกลุ่มเป็นสองคอลัมน์ ป้ายซ้ายกว้างเท่ากัน ช่องกรอกขวา หมายเหตุอยู่ใต้ช่อง · กลุ่มที่พับโชว์สรุปบรรทัดที่สอง (เปิดแล้วซ่อนสรุป) · แถบล่าง = ตู้ในห้อง + ราคาขาย / ต้นทุน / แถบเตือนราคาคู่ปุ่ม 💰 / ปุ่ม 4 ตัวเป็นตาราง 2×2 · แถบล่างสูงไม่เกิน 48% ของจอ (เลื่อนในตัว) · ตู้ที่เลือก: รหัส + ราคาบรรทัดแรก ขนาดบรรทัดสอง · ก/ส/ล + ปรับขนาด แถวเดียว · ปุ่มคำสั่งเป็นตาราง 3 คอลัมน์ · ฟิลเลอร์/แผ่นปิดข้าง ใช้คอลัมน์ป้ายเดียวกัน · id ปุ่ม/ช่องเดิมทุกตัว (การทำงานไม่เปลี่ยน) · ปิด SN_OFF.plTidy=1 = หน้าตาแบบ 1.530"],
@@ -17973,7 +17974,7 @@ function makeRenderer(){
   r.shadowMap.type=THREE.PCFSoftShadowMap; r.outputEncoding=THREE.sRGBEncoding;
   return r;
 }
-let sceneFog=null;
+let sceneFog=null, _fogDiag=6000;   // v1.534: ขนาดงานล่าสุด (หมอกตามระยะกล้อง)
 function initScene(){
   scene=new THREE.Scene(); scene.background=new THREE.Color(themeSceneBg());
   sceneFog=new THREE.Fog(themeSceneBg(),4000,11000);
@@ -18038,10 +18039,23 @@ function fitSceneFog(){
     mn=Math.min(mn,b.x-d[0]/2); mx=Math.max(mx,b.x+d[0]/2);
     mnY=Math.min(mnY,b.y-d[1]/2); mxY=Math.max(mxY,b.y+d[1]/2);
     mnZ=Math.min(mnZ,b.z-d[2]/2); mxZ=Math.max(mxZ,b.z+d[2]/2); n++; });
+  /* v1.534: ห้องออกแบบเปิดอยู่ = นับห้อง/ผนังที่วาดเป็นตัวงานด้วย (ห้องเปล่ายังไม่มีตู้ก็รู้ขนาดจริง) */
+  try{ if(typeof PL!=="undefined"&&PL.on){ const r=plRoom(), P=[[r.x0,0,r.z0],[r.x0+r.w,+r.h||2600,r.z0+r.d]];
+      (r.dw||[]).forEach(w=>(w.pts||[]).forEach(p=>{ P.push([p[0],+w.h||0,p[1]]); }));
+      P.forEach(q=>{ mn=Math.min(mn,q[0]); mx=Math.max(mx,q[0]); mnY=Math.min(mnY,q[1]); mxY=Math.max(mxY,q[1]); mnZ=Math.min(mnZ,q[2]); mxZ=Math.max(mxZ,q[2]); n++; }); } }catch(e){}
   const diag=n?Math.hypot(mx-mn,mxY-mnY,mxZ-mnZ):6000;
   const near=Math.max(diag*1.6,6000), far=Math.max(near*2.4,near+8000);
-  sceneFog.near=near; sceneFog.far=far;
+  sceneFog.near=near; sceneFog.far=far; _fogDiag=diag;
 }
+/* ───────── v1.534: หมอกตามระยะกล้อง ─────────
+   ผู้ใช้ 28/10 14:45 (ภาพผนังที่วาดจางตอนซูมออก): “แก้ zoom ไกลแล้วจาง เป็นไม่จางเสมอครับ”
+   เดิม (v26.9): near = 1.6 × ขนาดงาน (≥ 6 ม.) วัดจากกล้อง — ถอยกล้องออกไกลกว่านั้น ทั้งงานจมหมอก · ห้องที่ยังไม่มีตู้ = ขนาดงาน 6 ม. ตายตัว
+   ตอนนี้: ทุกเฟรม near = ระยะกล้องถึงจุดหมุน + 0.9 × ขนาดงาน (ขนาดงานรวมห้อง/ผนังที่วาดตอนเปิดห้องออกแบบ) → ตัวงานอยู่หน้าหมอกเสมอ ทุกระยะซูม
+   far = near × 2.2 (≥ near + 2 × ขนาดงาน + 8 ม.) — ของไกล ๆ หลังงาน (พื้น/กริด) ยังจางเป็นฉากเหมือนเดิม · ปิด SN_OFF.fogFollow=1 */
+function fogFollow(){
+  if(!sceneFog||typeof scene==="undefined"||!scene||scene.fog!==sceneFog||snOff("fogFollow")) return;
+  const d=Math.max(+_fogDiag||6000,1000), near=Math.max(orbit.radius+d*0.9,6000), far=Math.max(near*2.2,near+d*2+8000);
+  if(Math.abs(sceneFog.near-near)>1||Math.abs(sceneFog.far-far)>1){ sceneFog.near=near; sceneFog.far=far; } }
 function applyEco(){
   try{ fitSceneFog(); }catch(e){}
   scene.fog = (state.eco||settings.sceneFog===false)?null:sceneFog;
@@ -21185,6 +21199,7 @@ function animate(){requestAnimationFrame(animate);
   const r=orbit.radius;
   camera.position.set(orbit.target.x+r*Math.sin(orbit.phi)*Math.sin(orbit.theta),orbit.target.y+r*Math.cos(orbit.phi),orbit.target.z+r*Math.sin(orbit.phi)*Math.cos(orbit.theta));
   camera.lookAt(orbit.target);
+  try{ fogFollow(); }catch(e){}                                                // v1.534: หมอกเริ่มหลังตัวงานเสมอ (ซูมไกลแล้วไม่จาง)
   try{ scaleMeasureGizmos(); }catch(e){}
   if(REAL.on){ try{ realRender(); }catch(e){ console.error("realRender:",e); try{ renderer.setRenderTarget(null); }catch(_){} renderer.render(scene,camera); } }   // v1.463: โหมดสมจริง (ห้อง + เงามุม + ACES)
   else renderer.render(scene,camera);
@@ -28901,6 +28916,8 @@ function boardRole(b){
      SN_OFF.dwgDoorLine=1 หน้ารวมวัสดุ ดีไซน์หน้าบานเป็นภาพถ่าย 3D แยกตาม Part ลิงก์ (แบบ 1.521) (v1.527)
      SN_OFF.realPlRoom=1  โหมดสมจริงในห้องออกแบบสร้างห้องรอบตู้แบบเดิม (ไม่ใช้ผนังของห้องออกแบบ) (v1.528)
      SN_OFF.realSnap=1    ไม่มีปุ่ม 📷 บันทึกภาพสมจริงความละเอียดสูง (v1.528)
+     SN_OFF.plPaint=1     ไม่มีสีผนัง/พื้นห้อง (ปุ่ม 🖌 ไม่ขึ้น · ผนัง/พื้นสีตั้งต้น · ข้อมูลยังอยู่ใน state.room.paint) (v1.534)
+     SN_OFF.fogFollow=1   หมอกฉากแบบเดิม (เริ่มที่ระยะคงที่จากกล้อง — ซูมไกลแล้วงานจาง) (v1.534)
      SN_OFF.plDrawWall=1  ไม่มีเครื่องมือวาดผนังในห้องออกแบบ (ไม่มีปุ่ม ไม่วาดผนังที่วาด ไม่ดูดตู้ · ข้อมูลยังอยู่ใน state.room.dw) (v1.533)
      SN_OFF.cutTray=1     ไม่มีถาดช้อนในลิ้นชัก (ไม่วาด ไม่นับใบเบิก เมนูคลิกขวาไม่ขึ้น · ธง _cutTray ยังอยู่ที่หน้าลิ้นชัก) (v1.532)
      SN_OFF.plTidy=1      แผงห้องออกแบบหน้าตาแบบ 1.530 (ไม่จัดสองคอลัมน์ · ปุ่มสี/มือจับทั้งห้องอยู่ในกลุ่มขา · ปุ่มท้ายแผงสองแถว) (v1.531)
@@ -35642,9 +35659,11 @@ function plRoomDraw(){
   if(PL.grp){ scene.remove(PL.grp); PL.grp.traverse(o=>{ if(o.geometry&&!o.isSprite) o.geometry.dispose(); if(o.material&&o.material.dispose&&!(o.material.userData&&o.material.userData.keep)) o.material.dispose(); }); PL.grp=null; }   // v1.533: ป้ายความยาวผนังที่วาดใช้วัสดุแคช (keep) · Sprite ใช้ geometry กลาง
   try{ plDimDraw(); }catch(e){}                                              // v1.310
   if(!PL.on){ try{ if(PLW.on) plwHalt(); }catch(e){} invalidate(); return; }   // v1.533: ปิดห้องออกแบบระหว่างวาดผนัง = เลิกวาด
+  try{ plwFloorFit(); }catch(e){ console.error("plwFloorFit:",e); }   // v1.534: ปิดผนังห้องสี่เหลี่ยมอยู่ = พื้นครอบผนังที่วาดทุกเส้น
   const r=plRoom(), g=new THREE.Group(); g.name="plRoom"; const T=100;
   const fl=new THREE.Mesh(new THREE.PlaneGeometry(r.w,r.d), new THREE.MeshBasicMaterial({color:0xb9a47c,transparent:true,opacity:.30,depthWrite:false}));
   fl.rotation.x=-Math.PI/2; fl.position.set(r.x0+r.w/2,0.8,r.z0+r.d/2); fl.renderOrder=-1; g.add(fl);
+  try{ plptFloor(fl,r); }catch(e){ console.error("plptFloor:",e); }    // v1.534: สี/รูปพื้นห้อง
   { const pts=[[r.x0,r.z0],[r.x0+r.w,r.z0],[r.x0+r.w,r.z0+r.d],[r.x0,r.z0+r.d],[r.x0,r.z0]].map(p=>new THREE.Vector3(p[0],1.2,p[1]));
     g.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints(pts), new THREE.LineBasicMaterial({color:0x8a7a5c}))); }
   Object.keys(PL_WALLS).forEach(k=>{ if(!r.walls[k]) return; const W=PL_WALLS[k];
@@ -35659,6 +35678,7 @@ function plRoomDraw(){
     const mat=solid?new THREE.MeshStandardMaterial({color:0xd6cebd,roughness:.95,side:THREE.FrontSide})
                    :new THREE.MeshStandardMaterial({color:0xcfc6b4,roughness:.95,transparent:true,opacity:.55,depthWrite:false,side:THREE.DoubleSide});
     const m=new THREE.Mesh(new THREE.BoxGeometry(sz[0],sz[1],sz[2]),mat); m.position.set(p[0],p[1],p[2]);
+    try{ plptApply(m,{k:"wall"},"box"); }catch(e){ console.error("plptApply:",e); }   // v1.534: สี/รูปผนัง
     /* กล้องอยู่นอกห้องฝั่งผนังนี้ → จางลงจนแทบใส จะได้มองเข้าไปเห็นตู้ · v1.379: ทึบ = ซ่อนทั้งแผ่น */
     m.onBeforeRender=solid?((rd,sc,cam)=>{ const v=(cam.position.getComponent(W.pa)-plFace(r,k))*W.s; const on=v>0; mat.colorWrite=on; mat.depthWrite=on; })
                           :((rd,sc,cam)=>{ const v=(cam.position.getComponent(W.pa)-plFace(r,k))*W.s; mat.opacity=v>0?.55:.08; });
@@ -36297,6 +36317,7 @@ function plwAddMeshes(g){
       try{ geo=new THREE.ExtrudeGeometry(plwShapeGeo(f.q),{depth:H,bevelEnabled:false}); geo.rotateX(-Math.PI/2); }catch(e){ console.error("plw geo:",e); return; }
       const mat=new THREE.MeshStandardMaterial({color:0xd6cebd,roughness:.95,side:THREE.DoubleSide});
       const m=new THREE.Mesh(geo,mat); m.userData.plw=[wi,si];
+      try{ plptApply(m,{wi},"ext"); }catch(e){ console.error("plptApply:",e); }   // v1.534: สีผนังเส้นนี้ / ผนังทั้งหมด
       const el=new THREE.LineSegments(new THREE.EdgesGeometry(geo,20), new THREE.LineBasicMaterial({color:0x8f8470}));
       const mx=(f.a[0]+f.b[0])/2, mz=(f.a[1]+f.b[1])/2, no=[-f.ni[0],-f.ni[1]], oo=f.oo;
       const vis=cam=>{ if(PLW.on||(typeof orbit!=="undefined"&&orbit.phi<0.35)) return true; return ((cam.position.x-mx)*no[0]+(cam.position.z-mz)*no[1])<=oo+1; };
@@ -36480,6 +36501,145 @@ addEventListener("pointerdown",plwDown,true);
 addEventListener("pointermove",plwMove,true);
 addEventListener("keydown",plwKey,true);
 addEventListener("contextmenu",plwCtx,true);
+/* ═════════ v1.534: พื้นห้องตามผนังที่วาด · 🖌 สีผนัง/พื้นห้อง ═════════
+   ผู้ใช้ 28/10/2026 14:45: “เพิ่มให้มีหลอดดูดสี แล้วไปเลือกนอกโปรแกรม … หรือไม่ก็ให้อัพรูปสีเข้า แต่ก็มีให้เลือกสีพื้นฐานไว้ได้
+     แต่แยกหมวด อย่าให้อัพรูปไปปนกับสีของวัสดุตู้” (+ ภาพ: วาดผนังเพิ่มแล้วพื้นห้องอยู่คนละที่กับผนัง)
+   พื้น (plwFloorFit): ผนังห้องสี่เหลี่ยมปิดหมด + มีผนังที่วาด → x0 z0 w d = กรอบจุดผนังที่วาดทุกเส้น (เดิม 1.533 ครอบแค่เส้นแรก) · เรียกทุกครั้งที่วาดห้อง
+   สี (plpt*): state.room.paint = {wall:{c|tex}, floor:{c|tex}} · ผนังที่วาดรายเส้น w.paint (ทับผนังทั้งหมด)
+     state.room.texLib = [{id, n ชื่อไฟล์, src dataURL JPEG ≤1024 px, mm ขนาดจริงของรูป}] — ของห้องนี้เท่านั้น ไปกับไฟล์งาน/ออเดอร์ · ไม่แตะคลังวัสดุ/ลายผิวของตู้
+     หน้าต่าง #plPaint: เป้าหมาย (ผนังทั้งหมด · พื้น · ผนังเส้นนี้) · สีพื้นฐาน · เลือกเอง (input color) · 💧 หลอดดูดสี (window.EyeDropper — Chrome/Edge ดูดได้ทั้งจอรวมนอกเบราว์เซอร์)
+       · รูปของห้อง (อัปโหลด/ตั้งขนาด มม./ลบ) · ↺ ค่าตั้งต้น
+     วาด: ผนังห้องเดิม (Box — UV เป็น มม.) · ผนังที่วาด (Extrude — UV เป็น มม. อยู่แล้ว) → map ซ้ำทุก “ขนาดรูป มม.” · พื้น = วัสดุทึบไม่รับแสง สี/รูปตรงตามที่เลือก (ไม่ตั้ง = พื้นโปร่งแบบเดิม)
+     ยังไม่ทำ: โหมดสมจริง (ยังใช้ผนัง/พื้นของตัวเอง) · สีเพดาน
+   ปิด: SN_OFF.plPaint=1 */
+function plwFloorFit(){
+  if(snOff("plDrawWall")) return false; const r=plRoom();
+  if(Object.keys(r.walls||{}).some(k=>r.walls[k])) return false;
+  const b=plwBounds(); if(!b||b.x1-b.x0<300||b.z1-b.z0<300) return false;
+  const v=[Math.round(b.x0),Math.round(b.z0),Math.round(b.x1-b.x0),Math.round(b.z1-b.z0)];
+  if(v[0]===r.x0&&v[1]===r.z0&&v[2]===r.w&&v[3]===r.d) return false;
+  r.x0=v[0]; r.z0=v[1]; r.w=v[2]; r.d=v[3]; return true; }
+const PLPT={el:null, tgt:null, img:{}, tex:{}};
+const PLPT_BASE=[["#f7f5f0","ขาว"],["#efe9dc","ขาวนวล"],["#e8dcc2","ครีม"],["#d8c8a8","เบจ"],["#cbb894","ทราย"],["#c9c3b6","เกรจ"],
+  ["#d9d9d6","เทาอ่อน"],["#a9aaa6","เทา"],["#b6b3ad","ปูนเปลือย"],["#5f6062","เทาเข้ม"],["#3a3b3d","ชาร์โคล"],["#1f1f20","ดำ"],
+  ["#b7c2a8","เขียวเสจ"],["#8a8f6a","เขียวมะกอก"],["#cfe3d7","เขียวมิ้นท์"],["#c9dbe8","ฟ้าอ่อน"],["#2f3e55","กรมท่า"],["#e9c8bf","ชมพูนู้ด"],
+  ["#c47a5a","อิฐ"],["#c8a273","ไม้โอ๊ค"],["#a9784f","ไม้สัก"],["#6b4a33","ไม้วอลนัท"]];
+function plptLib(){ const r=plRoom(); if(!Array.isArray(r.texLib)) r.texLib=[]; return r.texLib; }
+function plptSpec(tgt){ const r=plRoom();
+  if(tgt&&tgt.wi!=null){ const w=plwList()[tgt.wi]; if(w&&w.paint&&(w.paint.c||w.paint.tex)) return w.paint; return plptSpec({k:"wall"}); }
+  const p=(r.paint&&typeof r.paint==="object")?r.paint[(tgt&&tgt.k)||"wall"]:null; return (p&&(p.c||p.tex))?p:null; }
+function plptOwn(tgt){ if(tgt&&tgt.wi!=null){ const w=plwList()[tgt.wi]; return (w&&w.paint)||null; } const r=plRoom(); return (r.paint&&r.paint[(tgt&&tgt.k)||"wall"])||null; }
+function plptSet(tgt,val){ const r=plRoom();
+  if(tgt&&tgt.wi!=null){ const w=plwList()[tgt.wi]; if(!w) return; if(val) w.paint=val; else delete w.paint; }
+  else { if(!r.paint||typeof r.paint!=="object") r.paint={}; const k=(tgt&&tgt.k)||"wall"; if(val) r.paint[k]=val; else delete r.paint[k]; }
+  plRoomDraw(); plAfterRoom(); }
+function plptTgtName(tgt){ return (tgt&&tgt.wi!=null)?("ผนัง "+(tgt.wi+1)+" (เฉพาะเส้นนี้)"):((tgt&&tgt.k)==="floor"?"พื้นห้อง":"ผนังทั้งหมด"); }
+/* รูปของห้อง → Image (โหลดเสร็จแล้ววาดห้องใหม่) */
+function plptImg(id){ const e=plptLib().find(x=>x.id===id); if(!e) return null; let I=PLPT.img[id];
+  if(!I||I.src!==e.src){ const im=new Image(); I=PLPT.img[id]={src:e.src, img:im, ok:false}; im.onload=()=>{ I.ok=true; try{ plRoomDraw(); }catch(err){} }; im.src=e.src; }
+  return I.ok?I.img:null; }
+function plptTex(id,rx,ry,key){ const im=plptImg(id); if(!im) return null; const k=id+"|"+key+"|"+rx.toFixed(6)+"|"+ry.toFixed(6);
+  let t=PLPT.tex[k]; if(t) return t;
+  t=new THREE.Texture(im); t.wrapS=t.wrapT=THREE.RepeatWrapping; t.repeat.set(rx,ry); t.encoding=THREE.sRGBEncoding; t.anisotropy=4; t.needsUpdate=true;
+  return (PLPT.tex[k]=t); }
+/* UV ของกล่องเป็น มม. ตามตำแหน่ง (แบบ tiltBox) — รูปซ้ำตามขนาดจริง ไม่ยืดตามขนาดผนัง */
+function plptUvMM(g){ try{ const pa=g.attributes.position, na=g.attributes.normal, ua=g.attributes.uv;
+  for(let i=0;i<pa.count;i++){ const nx=Math.abs(na.getX(i)), ny=Math.abs(na.getY(i));
+    if(nx>0.5) ua.setXY(i,pa.getZ(i),pa.getY(i)); else if(ny>0.5) ua.setXY(i,pa.getX(i),pa.getZ(i)); else ua.setXY(i,pa.getX(i),pa.getY(i)); }
+  ua.needsUpdate=true; }catch(e){} }
+function plptApply(m,tgt,mode){ if(snOff("plPaint")||!m||!m.material) return; const sp=plptSpec(tgt); if(!sp) return; const mat=m.material;
+  if(sp.tex){ const e=plptLib().find(x=>x.id===sp.tex), mm=Math.max(+(e&&e.mm)||600,10), tx=e?plptTex(e.id,1/mm,1/mm,"mm"):null;
+    if(tx){ if(mode==="box") plptUvMM(m.geometry); mat.map=tx; mat.color.set("#ffffff"); mat.needsUpdate=true; return; } }
+  if(sp.c){ try{ mat.color.set(sp.c); }catch(e){} } }
+function plptFloor(fl,r){ if(snOff("plPaint")) return; const sp=plptSpec({k:"floor"}); if(!sp) return;
+  const mat=new THREE.MeshBasicMaterial({color:0xffffff, side:THREE.DoubleSide});   // ไม่รับแสง = สีตรงกับที่เลือก (พื้นหงายรับแสงบน 3 ดวง สีเพี้ยนสว่างจนเกือบขาว)
+  if(sp.tex){ const e=plptLib().find(x=>x.id===sp.tex), mm=Math.max(+(e&&e.mm)||600,10), tx=e?plptTex(e.id,(+r.w||1)/mm,(+r.d||1)/mm,"floor"):null;
+    if(tx) mat.map=tx; else mat.color.set(sp.c||"#b9a47c").convertSRGBToLinear(); }
+  else mat.color.set(sp.c).convertSRGBToLinear();                                // จอแสดงผลแบบ sRGB — แปลงก่อน สีบนจอจึงตรงกับช่องสีที่เลือก
+  try{ fl.material.dispose(); }catch(e){} fl.material=mat; fl.receiveShadow=true; fl.renderOrder=0; }
+/* ── หน้าต่างเลือกสี/รูป ── */
+function plptCss(){ if(document.getElementById("plptCSS")) return; const st=document.createElement("style"); st.id="plptCSS";
+  st.textContent="#plPaint{position:fixed;z-index:470;width:380px;max-width:94vw;max-height:80vh;display:flex;flex-direction:column;background:var(--solid,#fff);color:var(--ink,#111);border-radius:14px;box-shadow:0 22px 60px -14px rgba(0,0,0,.5);overflow:hidden;font-size:12.5px}"
+    +"#plPaint .hd{display:flex;align-items:center;gap:8px;padding:10px 12px;border-bottom:1px solid var(--line)}"
+    +"#plPaint .hd b{font-size:13.5px}"
+    +"#plPaint .bd{overflow:auto;padding:4px 12px 12px}"
+    +"#plPaint .tg{display:flex;gap:4px;flex-wrap:wrap;margin:8px 0 2px}"
+    +"#plPaint .tg button{padding:3px 10px;border-radius:99px;border:1px solid var(--line);background:none;color:inherit;cursor:pointer;font-size:11.5px}"
+    +"#plPaint .tg button.on{background:var(--accent);border-color:var(--accent);color:#fff}"
+    +"#plPaint .h{font-size:11px;font-weight:700;color:var(--ink-dim);margin:10px 0 5px}"
+    +"#plPaint .sw{display:grid;grid-template-columns:repeat(8,1fr);gap:5px}"
+    +"#plPaint .sw button{aspect-ratio:1;border-radius:7px;border:1px solid rgba(0,0,0,.18);cursor:pointer;padding:0}"
+    +"#plPaint .sw button.on{outline:2px solid var(--accent);outline-offset:1px}"
+    +"#plPaint .row{display:flex;align-items:center;gap:8px;flex-wrap:wrap}"
+    +"#plPaint .row input[type=color]{width:38px;height:28px;padding:0;border:1px solid var(--line);border-radius:6px;background:none;cursor:pointer}"
+    +"#plPaint .ibtn{flex:none;width:auto;height:auto;min-height:0;padding:4px 10px;font-size:12px;white-space:nowrap}"
+    +"#plPaint .tx{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px}"
+    +"#plPaint .tx .t{border:2px solid transparent;border-radius:9px;padding:3px;display:flex;flex-direction:column;gap:3px;min-width:0}"
+    +"#plPaint .tx .t.on{border-color:var(--accent)}"
+    +"#plPaint .tx .im{aspect-ratio:1;border-radius:7px;background:#ddd center/cover no-repeat;cursor:pointer}"
+    +"#plPaint .tx .t small{font-size:10px;color:var(--ink-dim);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}"
+    +"#plPaint .tx .t .mm{display:flex;align-items:center;gap:3px;font-size:10px;color:var(--ink-dim)}"
+    +"#plPaint .tx .t .mm input{width:52px;padding:1px 3px;font-size:10.5px}"
+    +"#plPaint .tx .t .mm button{margin-left:auto;border:0;background:none;cursor:pointer;color:#d33;font-size:12px;padding:0 2px}"
+    +"#plPaint .up{display:flex;align-items:center;justify-content:center;border:1.5px dashed var(--line);border-radius:9px;aspect-ratio:1;cursor:pointer;color:var(--ink-dim);font-size:11px;text-align:center;padding:4px}"
+    +"#plPaint .note{font-size:10.5px;color:var(--ink-dim);line-height:1.5;margin-top:6px}";
+  document.head.appendChild(st); }
+function plptClose(){ if(PLPT.el){ PLPT.el.remove(); PLPT.el=null; } }
+function plptOpen(tgt,x,y){
+  if(snOff("plPaint")) return; plptClose(); plptCss(); try{ plColorClose(); }catch(e){} try{ plPullClose(); }catch(e){}
+  PLPT.tgt=tgt||{k:"wall"};
+  const el=document.createElement("div"); el.id="plPaint"; document.body.appendChild(el); PLPT.el=el;
+  const draw=()=>{ const tg=PLPT.tgt, own=plptOwn(tg)||{}, cur=String(own.c||"").toLowerCase(), lib=plptLib(), e=s=>escapeHtml(String(s==null?"":s));
+    const cand=[{k:"wall"},{k:"floor"}].concat(tg.wi!=null?[tg]:[]);
+    el.innerHTML='<div class="hd"><b>🖌 สี / รูป — '+e(plptTgtName(tg))+'</b><button class="ibtn" data-a="x" style="margin-left:auto">✕</button></div>'
+      +'<div class="bd">'
+      +'<div class="tg">'+cand.map((c,i)=>'<button data-tg="'+i+'" class="'+((c.wi!=null?tg.wi===c.wi:(tg.wi==null&&tg.k===c.k))?"on":"")+'">'+e(plptTgtName(c))+'</button>').join("")+'</div>'
+      +'<div class="h">สีพื้นฐาน</div><div class="sw">'+PLPT_BASE.map(([c,n])=>'<button data-c="'+c+'" title="'+e(n+" "+c)+'" style="background:'+c+'" class="'+(cur===c?"on":"")+'"></button>').join("")+'</div>'
+      +'<div class="h">เลือกเอง</div><div class="row"><input type="color" data-a="pick" value="'+e(/^#[0-9a-f]{6}$/i.test(own.c||"")?own.c:"#d6cebd")+'" title="เลือกสี">'
+        +'<button class="ibtn" data-a="eye" title="ดูดสีจากที่ไหนก็ได้บนจอ (รวมนอกโปรแกรม เช่น รูปที่ลูกค้าส่งมา) — Chrome / Edge">💧 หลอดดูดสี</button>'
+        +'<span style="font-family:var(--mono);color:var(--ink-dim)">'+e(own.c||(own.tex?"(รูป)":"ค่าตั้งต้น"))+'</span></div>'
+      +'<div class="h">รูปของห้องนี้ (กระเบื้อง · วอลเปเปอร์ · พื้นไม้) — แยกจากสีวัสดุตู้</div>'
+      +'<div class="tx">'+lib.map(t=>'<div class="t'+(own.tex===t.id?" on":"")+'" data-id="'+e(t.id)+'"><div class="im" data-a="use" style="background-image:url(\''+t.src+'\')" title="ใช้รูปนี้"></div>'
+          +'<small title="'+e(t.n)+'">'+e(t.n||"รูป")+'</small><div class="mm">ขนาด <input type="number" data-a="mm" value="'+(+t.mm||600)+'" min="10" step="10" title="รูปนี้กว้างจริงกี่ มม. (ซ้ำตามขนาดนี้)">มม.<button data-a="del" title="ลบรูปออกจากห้อง">🗑</button></div></div>').join("")
+        +'<label class="up" title="อัปโหลดรูป (ย่อเหลือ ≤ 1024 px เก็บในงานนี้)">🖼<br>อัปโหลดรูป…<input type="file" accept="image/*" data-a="up" hidden></label></div>'
+      +'<div class="row" style="margin-top:12px"><button class="ibtn" data-a="reset">'+(tg.wi!=null?'↺ ใช้สีผนังทั้งหมด':'↺ ค่าตั้งต้น')+'</button></div>'
+      +'<div class="note">💧 หลอดดูดสีใช้ได้ใน Chrome / Edge — กดแล้วคลิกจุดไหนก็ได้บนจอ (รวมหน้าต่างโปรแกรมอื่น) · รูปเก็บในงานนี้เท่านั้น ไม่เข้าคลังวัสดุตู้</div>'
+      +'</div>';
+    const q=s=>el.querySelector(s);
+    q('[data-a="x"]').onclick=plptClose;
+    el.querySelectorAll("[data-tg]").forEach(b=>b.onclick=()=>{ PLPT.tgt=cand[+b.dataset.tg]; draw(); });
+    el.querySelectorAll(".sw button").forEach(b=>b.onclick=()=>{ plptSet(PLPT.tgt,{c:b.dataset.c}); draw(); });
+    q('[data-a="pick"]').onchange=ev=>{ plptSet(PLPT.tgt,{c:ev.target.value}); draw(); };
+    q('[data-a="eye"]').onclick=async()=>{
+      if(!("EyeDropper" in window)){ toast("เบราว์เซอร์นี้ยังไม่มีหลอดดูดสี — ใช้ Chrome หรือ Edge รุ่นใหม่ (หรืออัปโหลดรูปแทน)"); return; }
+      try{ const res=await new window.EyeDropper().open(); if(res&&res.sRGBHex){ plptSet(PLPT.tgt,{c:String(res.sRGBHex).toLowerCase()}); if(PLPT.el) draw(); toast("💧 "+plptTgtName(PLPT.tgt)+" = "+res.sRGBHex); } }
+      catch(err){ /* กด Esc = ยกเลิก */ } };
+    el.querySelectorAll(".tx .t").forEach(tEl=>{ const id=tEl.dataset.id, ent=lib.find(x=>x.id===id); if(!ent) return;
+      tEl.querySelector('[data-a="use"]').onclick=()=>{ plptSet(PLPT.tgt,{tex:id}); draw(); };
+      tEl.querySelector('[data-a="mm"]').onchange=ev=>{ const v=+ev.target.value; if(v>=10){ ent.mm=Math.round(v); plRoomDraw(); plAfterRoom(); } };
+      tEl.querySelector('[data-a="del"]').onclick=async()=>{ if(!(await dialog({title:"ลบรูป “"+(ent.n||"รูป")+"” ออกจากห้อง?",ok:"ลบ"}))) return;
+        const L=plptLib(), k=L.indexOf(ent); if(k>=0) L.splice(k,1);
+        const r=plRoom(); ["wall","floor"].forEach(kk=>{ if(r.paint&&r.paint[kk]&&r.paint[kk].tex===id) delete r.paint[kk]; });
+        plwList().forEach(w=>{ if(w.paint&&w.paint.tex===id) delete w.paint; });
+        plRoomDraw(); plAfterRoom(); draw(); }; });
+    q('[data-a="up"]').onchange=ev=>{ const f=ev.target.files&&ev.target.files[0]; if(!f) return; plptUpload(f).then(ent=>{ if(ent){ plptSet(PLPT.tgt,{tex:ent.id}); if(PLPT.el) draw(); } }); };
+    q('[data-a="reset"]').onclick=()=>{ plptSet(PLPT.tgt,null); draw(); };
+  };
+  draw();
+  const W=380, H=Math.min(el.offsetHeight||520,innerHeight*0.8);
+  el.style.left=Math.max(8,Math.min(+x||380,innerWidth-W-8))+"px"; el.style.top=Math.max(60,Math.min(+y||120,innerHeight-H-8))+"px"; }
+/* อัปโหลดรูป → ย่อ ≤ 1024 px JPEG → เก็บใน state.room.texLib */
+function plptUpload(f){ return new Promise(res=>{ const rd=new FileReader();
+  rd.onload=()=>{ const im=new Image(); im.onload=()=>{ try{ const M=1024, k=Math.min(1,M/Math.max(im.naturalWidth||1,im.naturalHeight||1));
+        const cv=document.createElement("canvas"); cv.width=Math.max(1,Math.round(im.naturalWidth*k)); cv.height=Math.max(1,Math.round(im.naturalHeight*k));
+        cv.getContext("2d").drawImage(im,0,0,cv.width,cv.height);
+        const ent={id:uid(), n:String(f.name||"รูป").replace(/\.[a-z0-9]+$/i,"").slice(0,40), src:cv.toDataURL("image/jpeg",0.85), mm:600};
+        plptLib().push(ent); plAfterRoom(); toast("🖼 เพิ่มรูป “"+ent.n+"” ในห้องนี้ ("+cv.width+"×"+cv.height+") — ตั้งขนาดจริง (มม.) ใต้รูปได้"); res(ent); }
+      catch(e){ console.error("plptUpload:",e); toast("อ่านรูปไม่สำเร็จ"); res(null); } };
+    im.onerror=()=>{ toast("ไฟล์นี้ไม่ใช่รูปที่เปิดได้"); res(null); }; im.src=rd.result; };
+  rd.onerror=()=>{ toast("อ่านไฟล์ไม่สำเร็จ"); res(null); }; rd.readAsDataURL(f); }); }
+addEventListener("pointerdown",e=>{ if(PLPT.el&&!PLPT.el.contains(e.target)&&!(e.target&&e.target.closest&&e.target.closest("#askModal,.modal"))) plptClose(); },true);
+addEventListener("keydown",e=>{ if(e.key==="Escape"&&PLPT.el){ plptClose(); } });
 /* ── แผงห้อง: กลุ่ม “ผนังที่วาด” ── */
 function plwGrpHtml(grp){ if(snOff("plDrawWall")) return "";
   const L=plwList(), tot=L.reduce((s,w)=>s+plwSegs(w).reduce((a,sg)=>a+plwLen(sg),0),0);
@@ -36491,6 +36651,7 @@ function plwGrpHtml(grp){ if(snOff("plDrawWall")) return "";
   L.forEach((w,i)=>{ const S=plwSegs(w);
     body+='<div class="plwW" data-wi="'+i+'" style="border-top:1px dashed var(--line);margin-top:7px;padding-top:5px">'
       +'<div class="plRow"><b>ผนัง '+(i+1)+'</b><span class="plNote">'+S.length+' ช่วง'+(w.closed?' · ปิดรอบ':'')+'</span><span style="flex:1"></span>'
+      +(snOff("plPaint")?'':('<button class="ibtn" data-plwa="paint" title="สี/รูปเฉพาะผนังเส้นนี้ (ทับสีผนังทั้งหมด)"'+((w.paint&&(w.paint.c||w.paint.tex))?(' style="box-shadow:inset 0 -3px 0 '+(w.paint.c||"#999")+'"'):'')+'>🖌</button>'))   // v1.534
       +'<button class="ibtn" data-plwa="flip" title="สลับด้านความหนา (ในห้อง ⇄ นอกห้อง)">⇄ ด้าน</button><button class="ibtn" data-plwa="del" title="ลบผนังเส้นนี้" style="color:#d33">🗑</button></div>'
       +F("หนา / สูง",'<input type="number" data-plwk="t" value="'+(+w.t||plwDefT())+'" step="10" style="width:60px"> <input type="number" data-plwk="h" value="'+(+w.h||plwDefH())+'" step="50" style="width:66px"><span class="plU">มม.</span>')
       +F("เส้นที่วาด",'<select data-plwk="al"><option value="in"'+(w.al!=="c"?" selected":"")+'>= ผิวในห้อง</option><option value="c"'+(w.al==="c"?" selected":"")+'>= กลางผนัง</option></select>')
@@ -36508,6 +36669,7 @@ function plwSetSeg(wi,j,v){ const w=plwList()[wi]; if(!w||!(v>0)) return; const 
   plRoomDraw(); plPanelRoom(); plAfterRoom(); }
 function plwWire(s){ if(!s||snOff("plDrawWall")) return;
   ["#plwGo","#plwGo2"].forEach(id=>{ const go=s.querySelector(id); if(go) go.onclick=()=>{ if(PLW.on) plwStop(); else plwStart(); }; });
+  { const pg=s.querySelector("#plptGo"); if(pg) pg.onclick=ev=>{ const rc=ev.currentTarget.getBoundingClientRect(); plptOpen({k:"wall"},plPopX531(rc),rc.top-40); }; }   // v1.534
   s.querySelectorAll(".plwW").forEach(el=>{ const wi=+el.dataset.wi, w=plwList()[wi]; if(!w) return;
     el.querySelectorAll("[data-plwk]").forEach(inp=>inp.onchange=()=>{ const k=inp.dataset.plwk;
       if(k==="al") w.al=inp.value==="c"?"c":"in";
@@ -36515,6 +36677,7 @@ function plwWire(s){ if(!s||snOff("plDrawWall")) return;
       plRoomDraw(); plAfterRoom(); });
     el.querySelectorAll("[data-plwseg]").forEach(inp=>inp.onchange=()=>plwSetSeg(wi,+inp.dataset.plwseg,+inp.value));
     const fl=el.querySelector('[data-plwa="flip"]'); if(fl) fl.onclick=()=>{ w.flip=!w.flip; plRoomDraw(); plAfterRoom(); toast("สลับด้านความหนาผนัง "+(wi+1)); };
+    const pt=el.querySelector('[data-plwa="paint"]'); if(pt) pt.onclick=ev=>{ const rc=ev.currentTarget.getBoundingClientRect(); plptOpen({wi},plPopX531(rc),rc.top-40); };   // v1.534
     const del=el.querySelector('[data-plwa="del"]'); if(del) del.onclick=async()=>{
       if(!(await dialog({title:"ลบผนัง "+(wi+1)+" ("+plwSegs(w).length+" ช่วง)?",ok:"ลบ"}))) return;
       const L=plwList(), k=L.indexOf(w); if(k>=0) L.splice(k,1); plRoomDraw(); plPanelRoom(); plAfterRoom(); }; }); }
@@ -37251,10 +37414,11 @@ function plRoomHtml531(r,num){ plCss317(); plCss531();
   const head='<div class="plRow"><h4>ห้อง (มม.)</h4><span class="plGrow"></span>'
       +'<button class="ibtn" id="plFitRoom" title="ย้ายและขยายห้องให้คลุมตู้ที่มีอยู่ในฉาก">⤢ ครอบตู้ที่มี</button>'
       +'<button class="ibtn" id="plCam" title="กล้องมองมุมห้อง">🎥 มุมห้อง</button></div>'
-    +'<div class="plBar'+(((1+(snOff("plPull")?0:1)+(snOff("plDrawWall")?0:1))%2)?' plOdd':'')+'" style="margin-top:7px">'   /* v1.533: + ✏ วาดผนัง (เลขคี่ = ตัวท้ายเต็มแถว) */
+    +'<div class="plBar'+(((1+(snOff("plPull")?0:1)+(snOff("plDrawWall")?0:1)+(snOff("plPaint")?0:1))%2)?' plOdd':'')+'" style="margin-top:7px">'   /* v1.533: + ✏ วาดผนัง (เลขคี่ = ตัวท้ายเต็มแถว) */
       +'<button class="ibtn" id="plClrAll" title="เลือกสีทีเดียวทั้งออเดอร์ — หน้าบานทุกบาน โครงตู้ ฯลฯ">🎨 สีทั้งออเดอร์</button>'
       +(snOff("plPull")?'':'<button class="ibtn" id="plPullAll" title="เลือกมือจับทีเดียวทั้งห้อง">🖐 มือจับทั้งห้อง</button>')
-      +(snOff("plDrawWall")?'':('<button class="ibtn" id="plwGo2" title="มองจากบน คลิกวางจุดตามแบบบ้าน แล้วผนังขึ้นเป็น 3D"'+(PLW.on?' style="background:var(--accent);color:#fff;border-color:var(--accent)"':'')+'>'+(PLW.on?'✕ เลิกวาดผนัง':'✏ วาดผนังจากแปลน')+'</button>'))+'</div>';   // v1.533
+      +(snOff("plDrawWall")?'':('<button class="ibtn" id="plwGo2" title="มองจากบน คลิกวางจุดตามแบบบ้าน แล้วผนังขึ้นเป็น 3D"'+(PLW.on?' style="background:var(--accent);color:#fff;border-color:var(--accent)"':'')+'>'+(PLW.on?'✕ เลิกวาดผนัง':'✏ วาดผนังจากแปลน')+'</button>'))
+      +(snOff("plPaint")?'':'<button class="ibtn" id="plptGo" title="สีผนัง / พื้นห้อง — สีพื้นฐาน · หลอดดูดสี · อัปโหลดรูป (แยกจากสีวัสดุตู้)">🖌 สีผนัง · พื้น</button>')+'</div>';   // v1.534   // v1.533
   const size=grp("size",false,"ขนาดห้อง · ผนัง · Dim",Math.round(r.w)+"×"+Math.round(r.d)+"×"+Math.round(r.h),
       '<div class="plDim3">'+[["w","กว้าง"],["d","ลึก"],["h","สูง"]].map(a=>'<label>'+a[1]+' '+nin(a[0],r[a[0]])+'</label>').join("")+'</div>'
       +F("ผนัง",Object.keys(PL_WALLS).map(k=>'<label class="plCk"><input type="checkbox" data-w="'+k+'"'+(r.walls[k]?" checked":"")+'> '+PL_WALLS[k].lbl+'</label>').join(""))
