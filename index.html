@@ -3281,7 +3281,7 @@ body[data-theme="dark"] .splash-dots span{background:rgba(255,255,255,.25)}
    ===================================================================== */
 /* ---- APP_META: แหล่งความจริงเดียวของเวอร์ชัน (ดูได้จาก console / คลิกชื่อแอป) ---- */
 const APP_META={
-  name:"StarNexus", version:"1.540", build:"2026-10-28/room-lib",
+  name:"StarNexus", version:"1.541", build:"2026-10-28/scenes",
   file:"StarNexus.html", basedOn:"Furnitech_V3.html (v3.11)",
   /* ───────── เริ่มนับเวอร์ชันใหม่ที่ 1.001 (21/08/2026) ─────────
      ของเดิมนับมาถึง 42.1 แล้ววิ่งเป็นทศนิยมสองชั้นซึ่งอ่านลำดับยาก
@@ -3289,6 +3289,7 @@ const APP_META={
      ประวัติเก่าเก็บไว้ทั้งหมดตามเลขเดิม ไม่ไล่เขียนใหม่ เพราะเลขในนั้นถูกอ้างถึงไปแล้ว
      รายการที่อยู่ใต้ 1.001 ลงไปจึงเป็นเลขชุดเก่า อ่านต่อกันได้ตามวันที่ */
   changelog:[
+    ["1.541","2026-10-28","FEAT (ผู้ใช้ 19:36) — ① ฝ้าเพดาน: “มองมุมล่างมันต้องเห็นฝ้า” — ห้องออกแบบมีแผ่นฝ้าที่ความสูงห้อง (ห้องวาดปิดรอบ = ตามผิวในผนัง · ห้องสี่เหลี่ยม = เต็มห้อง) ฝ้าหลุมเจาะเป็นช่องมองขึ้นไปเห็นหลุม · เห็นเฉพาะกล้องอยู่ต่ำกว่าฝ้า (มองเงย/มุมล่าง/ในห้อง) มองจากบน/มุมแปลนไม่บัง · กล้องต่ำกว่าพื้น = พื้นหาย มองทะลุขึ้นไปเห็นฝ้า · ติ๊ก แสดงฝ้า ที่กลุ่มขนาดห้อง · SN_OFF.plCeilMesh=1 · ② 🎬 ฉาก (Scene) แบบ SketchUp: แถบแท็บฉากบนจอ (ปุ่ม 🎬 ใต้ลูกเต๋าเปิด/ปิด) · ＋ ฉาก = เก็บมุมกล้องตอนนี้ · คลิกแท็บ = กล้องเลื่อนไปมุมนั้น (เลนส์เลื่อนตาม) · คลิกขวา/ดับเบิลคลิกแท็บ = เปลี่ยนชื่อ · มุมเลนส์ 15–100° (ปกติ 42°) · เส้นตั้งตรง (มุมมอง 2 จุด — ผนัง/ขอบตู้ตั้งตรง) · 📷 อัปเดตมุม · ◀ ▶ เลื่อนลำดับ · ลบ · 🔭 = เลนส์/มุมมอง 2 จุดของกล้องตอนนี้ · PageUp/PageDown ไล่ฉาก · ฉากไปกับ Save Order / ไฟล์ .json / ทำงานต่อ (ไม่อยู่ใน Ctrl+Z) · Order → ใหม่ ล้างฉาก (เก็บห้องไว้ = เก็บฉากด้วย) · SN_OFF.scenes=1 / cam2p=1"],
     ["1.540","2026-10-28","FEAT ห้องออกแบบ (ผู้ใช้ 17:06) — ① กด TOP บนลูกเต๋า = ภาพแปลนแบบตอนวาดผนัง: ป้ายความยาวทุกช่วงผนังที่วาด + เลขผนัง (ไม่ต้องเปิดปุ่ม เลข) · ห้องสี่เหลี่ยมมีป้ายความยาวผนังแต่ละด้าน · หมุนกล้องออก = ป้ายหาย · SN_OFF.plPlanLbl=1 · ② Ctrl+Z / Ctrl+Y (Ctrl+Shift+Z) และปุ่ม ↶ ↷ ย้อน/ทำซ้ำงานห้องได้แล้ว (เดิมย้อนได้แต่ตู้) — วาด/ลบผนัง แก้ยาวช่วง ประตู หน้าต่าง เสา ฝ้า ปลั๊ก/ท่อ สีผนัง/พื้น ขนาดห้อง ล็อกห้อง อยู่ในประวัติเดียวกับตู้ ย้อนทีละขั้นตามลำดับที่ทำ · ระหว่างวาดผนัง Ctrl+Z = ถอยจุด · SN_OFF.plUndo=1 · ③ 💾 บันทึกห้อง / 📂 เปิดห้องที่บันทึก (แผงห้อง ใต้ปุ่มล็อกห้อง): เก็บทั้งห้อง (ไม่มีตู้) ลงไฟล์กลาง app_settings คีย์ plroom:<ชื่อ> — ทุกเครื่องที่ใช้ Server เดียวกันเห็น · ค้นชื่อได้ · เปิดใช้ = แทนห้องตอนนี้ (ตู้อยู่ที่เดิม) · ชื่อซ้ำ = ถามก่อนทับ · ลบได้ · 🧹 ล้างตู้ · เก็บห้อง: เริ่มออเดอร์ใหม่แต่ห้องอยู่ครบ (เอาห้องเดิมไปปรับใช้บ้านหลังอื่น) หรือล้างแค่ตู้ (ออเดอร์เดิม) · Order → ใหม่ (หน้าเปล่า) ตอนมีห้องที่วาดไว้ = ถามก่อน มีปุ่ม 🏠 ใหม่ · เก็บห้องไว้ (เดิมห้องหายเงียบ ๆ ถ้าไม่มีตู้) · ปุ่ม ล้าง บอกว่าห้องยังอยู่ · SN_OFF.plRoomLib=1"],
     ["1.539","2026-10-28","FEAT ห้องออกแบบ (ผู้ใช้ 16:58 + 17:00) — ① เลือกผนังทีละช่วงแล้วลบ: คลิกผนัง (ไม่ลาก) = เลือก ขอบผนังเป็นเส้นฟ้า แผงซ้ายบอกยาว (แก้ได้แบบยืด CAD) หนา สูง · 🗑 ลบผนังช่วงนี้ หรือกด Del (ถามก่อน) · Esc = เลิกเลือก · ผนังที่วาดแบบปิดรอบ = เปิดรอบตรงช่วงนั้น (ที่เหลือเป็นเส้นเดียว) · เส้นเปิด = แยกเป็น 2 เส้น (หนา/สูง/ด้าน/สีตามเดิม) · ผนังห้องสี่เหลี่ยม = ปิดผนังด้านนั้น · ประตู/หน้าต่าง/ปลั๊กบนช่วงที่ลบหายไปด้วย ของบนช่วงอื่นอยู่ที่เดิม · ลากเริ่มบนผนังยังหมุนกล้องได้ · ห้องล็อก = เลือกไม่ได้ · ปิด SN_OFF.plWallSel=1 · แก้ด้วย: ลบผนังทั้งเส้นจากแผงห้อง ประตู/หน้าต่างบนเส้นถัดไปเคยเลื่อนไปติดผิดเส้น ตอนนี้เลขเส้นเลื่อนตาม และของบนเส้นที่ลบหายไปด้วย · ② 🖱 ปุ่มใต้ลูกเต๋า = ความไวเมาส์ ลากหมุน / ล้อซูม 0.25–2.5× (ค่าเดิม 1×) จำไว้ในเครื่อง · SN_OFF.orbSens=1 · ③ หน้าต่างไม่มีขอบรองยื่นด้านในแล้ว (SN_OFF.plWinNoSill=1 = มีแบบเดิม) · ④ 🪟 หน้าต่างบานเดี่ยว (การ์ดใหม่ 600×1200 สูงจากพื้น 900): กรอบบาน มือจับฝั่งตรงข้ามบานพับ เส้นประบอกฝั่งบานพับ · สลับบานพับด้วย R / ที่แผง · หน้าต่างทุกแบบมีช่อง ห่างฝ้า (ขอบบนถึงหัวผนัง — แก้แล้วเลื่อนทั้งบาน สูงเท่าเดิม) ใส่ตามแบบลูกค้า เช่น สูง 2450 ห่างพื้น 210 ห่างฝ้า 320 · ⑤ ตู้ที่เลือก: แถว ห่างซ้าย/ขวา (ใต้ห่างผนัง) — ระยะถึงผนังหรือตู้ข้าง ๆ ที่ใกล้สุด (เลขเดียวกับเส้นแดง/ปุ่มปิดช่อง) ใส่ค่าใหม่ ตู้เลื่อนตามแนวผนัง อีกด้านเปลี่ยนตาม · ใส่เกินช่องรวม = เตือน · SN_OFF.plSideOff=1 · ⑥ 🔔 แจ้งเตือนเวอร์ชันใหม่: Deploy ทุกครั้งส่ง version.json ขึ้นคู่ index.html · โปรแกรมอ่าน 20 วิหลังเปิด ทุก 5 นาที และตอนกลับมาที่แท็บ · บนเว็บใหม่กว่าเครื่องนี้ = แถบฟ้ากลางล่างจอ “มีโปรแกรมเวอร์ชันใหม่ … Save งานแล้วกด F5” ปุ่ม 🔄 โหลดใหม่ (มีงานในจอ = ถามก่อน · กู้งานได้ที่ ↩ ทำงานต่อจากงานล่าสุด) / ภายหลัง (ซ่อน 30 นาที) + ลงกระดิ่งแจ้งเตือนครั้งเดียว · กดแล้วยังเป็นรุ่นเดิม = บอกให้รอเว็บอัปเดตแล้ว Ctrl+F5 · เปิดจากไฟล์ในเครื่อง = อ่านจาก GitHub Pages ปุ่มเป็น 🌐 เปิดเว็บ · หน้าดูงานไม่เตือน · SN_OFF.appUpd=1"],
     ["1.538","2026-10-28","FEAT ห้องออกแบบ (ผู้ใช้ 16:04) — ① เลขผนัง: ป้ายวงกลมเลขช่วงผนังที่วาด (1…n · หลายเส้น = เส้น.ช่วง ตรงกับช่อง “ยาวแต่ละช่วง” ในแผง) ขึ้นตอนวาดผนัง และเมื่อเปิดปุ่ม “เลข” แถบล่าง · ② Dim ของในห้อง: ลาก/เลือกเสา ฝ้า ท่อที่ขึ้นจากพื้น = เส้นบอกระยะสี่ทิศถึงผิวผนัง/เสาที่ใกล้สุด · ประตู หน้าต่าง ปลั๊ก ท่อบนผนัง = ระยะตามแนวผนังถึงต้น/ปลายผนัง · เสาลาก/เลือกได้ในโหมดวาดผนัง (มุมบนแบบแปลน) และลากการ์ดเสาลงแปลนได้ · ③ 🔒 ล็อกห้อง (ปุ่มหัวแผงห้อง): ผนังที่วาด ขนาดห้อง ประตู หน้าต่าง บันได เสา ฝ้า ปลั๊ก ท่อ ไม่ถูกเลือก/ลาก/ลบ/แก้ (คลิกทะลุไปที่ตู้) · วางตู้/เฟอร์ได้ตามปกติ · state.room.lock · ④ ▭ ฝ้าลด / ฝ้าหลุม: การ์ดในแท็บของในห้อง ลากวางเป็นพื้นที่สี่เหลี่ยม ตั้งกว้าง/ลึก/ระดับฝ้าจากพื้น/ระยะจากมุม (แบบเสา) · ต่ำกว่าฝ้าห้อง = ฝ้าลด (กล่องโปร่ง) · สูงกว่า = ฝ้าหลุม (กรอบฟ้า) · ป้ายระดับฝ้า · คลิกตู้ใต้ฝ้าได้ (ตู้ชนะ) · ยังไม่ผูกกับฟิลเลอร์บน · ⑤ 🔌 ปลั๊กไฟ · 🚰 ท่อน้ำดี Ø20 · ⭕ ท่อน้ำเสีย Ø55: ลากติดผนัง (ความสูงตามจุดที่ชี้บนผนัง · ศูนย์ห่างต้นผนัง) หรือลากลงพื้น = ขึ้นจากพื้น (ศูนย์ห่างผนังตามมุมที่เลือก) · แผงแก้ขนาด/สูงจากพื้น/ระยะ · ปุ่มย้ายขึ้นจากพื้น/ติดผนังใกล้สุด · ไม่เจาะผนัง · แท็บแคตตาล็อกเปลี่ยนชื่อเป็น “🚪 ของในห้อง” แบ่งหมวด ประตู·หน้าต่าง / โครงสร้าง / งานระบบ · ⑥ มุมแปลน (ผู้ใช้ 16:17 “กดลูกเต๋าที่ TOP ให้เป็นมุมแปลน แล้วให้เห็นสัญลักษณ์บานเปิด”): เดิมกด TOP ในห้องที่ยังไม่มีตู้ = “ยังไม่มีชิ้นงานในฉาก” ไม่ไปไหน (vcFit นับแต่ตู้) → ห้องออกแบบนับกรอบห้องด้วย · กล้องมองลงตรง (phi < 0.3) = มุมแปลน: เลนส์แคบ 12° ถอยกล้องตามสัดส่วนตอนวางกล้อง (ระยะซูม/เลื่อน/สแนปคิดเหมือนเดิม · ตู้สูงไม่เอียงออกนอกแนว · SN_OFF.plPlanFov=1 = เลนส์เดิม) · ผนังตัดที่ 1,100 (ผนังห้อง + ผนังที่วาด) · ประตูบานเปิดวาดบานเปิด 90° + เส้นโค้งวงเปิดสีเข้มเหนือแนวตัด · บานคู่ 2 วง · บานเลื่อน 2 แผ่นเหลื่อม · หน้าต่าง = เส้นผิวผนัง 2 เส้น + เส้นกระจก · ฝ้า = กรอบอย่างเดียว · หมุนกล้องออก = กลับเป็น 3D เต็ม · ปิด SN_OFF.plPlanView=1 · ปิด SN_OFF.plRoomLock=1 / ploDim=1 / plwNum=1 / plCeil=1 / plUtil=1"],
@@ -19989,7 +19990,8 @@ function vcInit(){
   wrap.innerHTML='<canvas width="'+VC_PX+'" height="'+VC_PX+'"></canvas>'
     +'<div class="vcBtns"><button type="button" class="vcHome" title="มุมมองเริ่มต้น + ซูมพอดีทั้งฉาก">⌂</button>'
     +'<button type="button" class="vcFit" title="ซูมพอดีทั้งฉาก (มุมเดิม)">⤢</button>'
-    +(snOff("orbSens")?'':'<button type="button" class="vcSens" title="ความไวเมาส์ — ลากหมุน / ล้อซูม (v1.539)">🖱</button>')+'</div>';
+    +(snOff("orbSens")?'':'<button type="button" class="vcSens" title="ความไวเมาส์ — ลากหมุน / ล้อซูม (v1.539)">🖱</button>')
+    +(snOff("scenes")?'':'<button type="button" class="vcScn" title="ฉาก (Scene) — แถบมุมกล้องที่เก็บไว้ แบบ SketchUp · มุมเลนส์ (v1.541)">🎬</button>')+'</div>';
   const st=document.createElement("style");
   st.textContent="#viewCube{position:fixed;top:calc(var(--tb,48px) + 10px);right:12px;z-index:35;width:"+VC_PX+"px;display:flex;flex-direction:column;align-items:center;gap:4px;user-select:none;-webkit-user-select:none}"
     +"#insp.show ~ #viewCube{right:calc(var(--side,248px) + 12px)}"
@@ -20038,6 +20040,8 @@ function vcInit(){
   wrap.querySelector(".vcFit").onclick=()=>vcGoAngles(orbit.theta,orbit.phi);
   { const _sb=wrap.querySelector(".vcSens"); if(_sb) _sb.onclick=ev=>{ ev.stopPropagation(); orbSensPop(_sb); }; }   // v1.539
   try{ orbSensLoad(); }catch(e){}
+  { const _cb=wrap.querySelector(".vcScn"); if(_cb) _cb.onclick=ev=>{ ev.stopPropagation(); scnToggle(); }; }   // v1.541
+  try{ scnInit(); }catch(e){ console.error("scnInit:",e); }
   vcRender();
 }
 /* ส่วนของกล่องที่เมาส์ชี้: แกนที่ติดขอบ = ชิดหน้านั้น (หนา .38) · แกนที่ไม่ติด = กินช่วงกลาง */
@@ -20144,6 +20148,7 @@ function vcStep(){
   const w=_vcTw, k=Math.min(1,(performance.now()-w.t0)/w.dur), e=k<.5?2*k*k:1-Math.pow(-2*k+2,2)/2;
   orbit.theta=w.th0+w.dth*e; orbit.phi=w.ph0+(w.ph1-w.ph0)*e; orbit.radius=w.r0+(w.r1-w.r0)*e;
   orbit.target.lerpVectors(w.tg0,w.tg1,e);
+  if(w.fv1!=null) try{ camFovSet(w.fv0+(w.fv1-w.fv0)*e); }catch(err){}   /* v1.541: ไปฉาก = เลนส์เลื่อนตาม */
   if(k>=1) _vcTw=null;
   _dirty=true;
 }
@@ -20176,6 +20181,122 @@ function orbSensPop(btn){ let p=$("orbSensPop"); if(p){ p.remove(); return; }
   setTimeout(()=>{ const off=ev=>{ if(!document.body.contains(p)){ removeEventListener("pointerdown",off,true); return; }
       if(p.contains(ev.target)||btn.contains(ev.target)) return; p.remove(); removeEventListener("pointerdown",off,true); };
     addEventListener("pointerdown",off,true); },0); }
+/* ═════════ v1.541: 🎬 ฉาก (Scene) แบบ SketchUp + มุมเลนส์ + มุมมอง 2 จุด ═════════
+   ผู้ใช้ 28/10 19:36: “เพิ่มฉาก Scene เหมือนกับ Sketchup ได้ไหมครับ มุมกล้องของภาพเปอร์ที่ปรับได้ด้วยแต่ละ Scene ทำได้ไหม”
+   เดิมมีแค่ลูกเต๋า (มุมมาตรฐาน) กับ ⌂ — มุมสวย ๆ ที่หมุนไว้ให้ลูกค้าดูหายทุกครั้งที่ขยับ · เลนส์ล็อก 42° เปลี่ยนไม่ได้
+   ตอนนี้: state.scenes = [{id,name,t:[x,y,z],th,ph,r,fov,two}] (ไปกับ Save Order / .json / autosave · ไม่อยู่ใน Ctrl+Z)
+     แถบ #scnBar บนจอ (ซ้ายบน ถัดแผงซ้าย) · ＋ ฉาก = เก็บมุมตอนนี้ · คลิกแท็บ = เลื่อนกล้องไป (_vcTw + fv0/fv1 เลนส์เลื่อนตาม)
+     คลิกขวา/ดับเบิลคลิก = หน้าต่างแก้ (ชื่อ · มุมเลนส์ 15–100° · เส้นตั้งตรง · อัปเดตมุม · ◀ ▶ · ลบ) · 🔭 = แก้กล้องตอนนี้ · PageUp/PageDown ไล่ฉาก
+     มุมเลนส์: camFovSet — อยู่มุมแปลนอยู่ (PL._fov0) = เปลี่ยนค่าที่จะคืน + ตัวคูณถอยกล้อง แทนการแตะ camera.fov
+     มุมมอง 2 จุด (CAM2P): กล้องมองแนวราบ (lookAt ที่ความสูงกล้อง) แล้วเลื่อนกรอบภาพขึ้น/ลง (setViewOffset) ให้จุดหมุนอยู่กลางจอ — เส้นตั้งตรงไม่เอียง
+       มองลงชัน/มุมแปลน (phi < 0.35) = ปกติ · ภาพสมจริงแบบ path trace (RPT) ยังใช้มุมมองปกติ
+   ปิด SN_OFF.scenes=1 · SN_OFF.cam2p=1 */
+const SCN={act:null, show:null, tm:0, fov0:42};
+const CAM2P={on:false};
+function scnList(){ if(typeof state==="undefined") return []; if(!Array.isArray(state.scenes)) state.scenes=[]; return state.scenes; }
+function scnGet(id){ return scnList().find(s=>s&&s.id===id)||null; }
+function scnFov(){ return (typeof plBaseFov==="function")?plBaseFov():((typeof camera!=="undefined"&&camera)?camera.fov:42); }
+function camFovSet(v){ v=Math.min(Math.max(+v||42,10),110); if(typeof camera==="undefined"||!camera) return;
+  if(typeof PL!=="undefined"&&PL._fov0){ PL._fov0=v; PL._planK=Math.tan(v*Math.PI/360)/Math.tan(PLAN_FOV*Math.PI/360)*1.1; }
+  else { camera.fov=v; camera.updateProjectionMatrix(); }
+  try{ const cb=document.querySelector("#scnBar .scnCam"); if(cb) cb.textContent="🔭 "+Math.round(v)+"°"+(CAM2P.on&&!snOff("cam2p")?" 2P":""); }catch(e){}   // ป้ายเลนส์บนแถบตามจริง (ไปฉาก = เลนส์ค่อย ๆ เลื่อน)
+  try{ invalidate(); }catch(e){} }
+function cam2pApply(){ const on=CAM2P.on&&!snOff("cam2p")&&orbit.phi>0.35&&orbit.phi<Math.PI-0.35&&!(typeof PL!=="undefined"&&PL._plan);
+  if(!on){ if(camera.view&&camera.view.enabled) camera.clearViewOffset(); return; }
+  const p=camera.position, t=orbit.target, hd=Math.hypot(t.x-p.x,t.z-p.z); if(hd<1) return;
+  camera.lookAt(t.x,p.y,t.z);
+  const yt=Math.max(-1.8,Math.min(1.8,((t.y-p.y)/hd)/Math.tan(camera.fov*Math.PI/360)));
+  camera.setViewOffset(camera.aspect,1,0,-yt/2,camera.aspect,1); }
+function scnCap(){ return {t:orbit.target.toArray().map(v=>Math.round(v*10)/10), th:+orbit.theta.toFixed(5), ph:+orbit.phi.toFixed(5), r:Math.round(orbit.radius*10)/10,
+  fov:Math.round(scnFov()*10)/10, two:!!CAM2P.on&&!snOff("cam2p")}; }
+function scnSave(){ try{ autosaveSoon(); }catch(e){ try{ autosave(); }catch(e2){} } }
+function scnAfterLoad(){ SCN.act=null; setTimeout(()=>{ try{ scnBarRender(); }catch(e){} },0); }
+function scnAdd(){ if(snOff("scenes")) return null; const first=!SCN.tip; SCN.tip=1; const L=scnList(), names=new Set(L.map(s=>s.name)); let n=L.length+1; while(names.has("ฉาก "+n)) n++;
+  const s=Object.assign({id:"sc"+Date.now().toString(36)+Math.random().toString(36).slice(2,5), name:"ฉาก "+n}, scnCap());
+  L.push(s); SCN.act=s.id; if(SCN.show===false) SCN.show=null; scnSave(); scnBarRender();
+  if(first) toast("🎬 เพิ่ม "+s.name+" — คลิกแท็บเพื่อกลับมามุมนี้ · คลิกขวาที่แท็บ = ชื่อ / มุมเลนส์ / ลบ"); return s; }   // บอกครั้งแรกครั้งเดียว (ข้อความบนจอทับแถบฉาก)
+function scnGo(s,instant){ if(!s) return; SCN.act=s.id; const tg=new THREE.Vector3().fromArray(Array.isArray(s.t)?s.t:[0,0,0]);
+  const EPS=.0015, ph=Math.max(EPS,Math.min(Math.PI-EPS,+s.ph||1)); if(ph<.12||ph>Math.PI-.12) orbit.phiMin=EPS;
+  const R=Math.max(+s.r||orbit.radius,ZOOM_MIN_R); modelRadius=Math.max(modelRadius,R/20);
+  const TW=Math.PI*2, th=+s.th||0, dth=((((th-orbit.theta)%TW)+TW+Math.PI)%TW)-Math.PI;
+  CAM2P.on=!!s.two&&!snOff("cam2p");
+  if(instant){ _vcTw=null; orbit.theta=th; orbit.phi=ph; orbit.radius=R; orbit.target.copy(tg); camFovSet(+s.fov||SCN.fov0); }
+  else _vcTw={t0:performance.now(), dur:650, th0:orbit.theta, dth, ph0:orbit.phi, ph1:ph, r0:orbit.radius, r1:R, tg0:orbit.target.clone(), tg1:tg, fv0:scnFov(), fv1:+s.fov||scnFov()};
+  orbit.dTheta=orbit.dPhi=orbit.dRadius=0; orbit.zAnchor=null; try{ invalidate(); }catch(e){} scnBarRender(); }
+function scnBarOn(){ if(snOff("scenes")||(typeof VIEW_ONLY!=="undefined"&&VIEW_ONLY)) return false; return SCN.show===true||(SCN.show!==false&&scnList().length>0); }
+function scnCss(){ if($("scnCss")) return; const st=document.createElement("style"); st.id="scnCss";
+  st.textContent="#scnBar{position:fixed;z-index:34;top:calc(var(--tb,46px) + 8px);left:312px;display:flex;align-items:center;gap:3px;overflow-x:auto;padding:3px;border-radius:10px;background:var(--solid,#fff);border:.5px solid var(--line,#c9ced8);box-shadow:0 2px 10px rgba(0,0,0,.08);scrollbar-width:thin}"
+    +"#scnBar button{flex:none;height:26px;padding:0 10px;border-radius:7px;border:.5px solid transparent;background:transparent;color:var(--ink,#1c2330);font-size:12px;cursor:pointer;white-space:nowrap}"
+    +"#scnBar button:hover{border-color:var(--line,#c9ced8);background:var(--card2,#f3f4f7)}"
+    +"#scnBar .scnTab.on{background:var(--accent,#007aff);color:#fff;border-color:transparent}#scnBar .scnTab i{font-style:normal;font-size:10px;opacity:.8;margin-left:3px}"
+    +"#scnBar .scnT{padding:0 4px 0 6px;font-size:14px}#scnBar .scnAdd{color:var(--accent,#007aff);font-weight:600}#scnBar .scnX{padding:0 7px;opacity:.6}"
+    +"#scnPop{position:fixed;z-index:36;width:280px;padding:10px 12px;border-radius:10px;border:.5px solid var(--line,#c9ced8);background:var(--solid,#fff);color:var(--ink,#1c2330);box-shadow:0 8px 28px rgba(0,0,0,.18);font-size:12px}"
+    +"#scnPop .scnPH{font-weight:700;margin-bottom:6px}#scnPop .scnPH input{width:100%;box-sizing:border-box;font:600 13px system-ui,sans-serif;padding:5px 8px;border:1px solid var(--line,#c9ced8);border-radius:7px}"
+    +"#scnPop .scnRow{display:flex;justify-content:space-between;margin-top:6px}#scnPop input[type=range]{width:100%;margin:4px 0 0}"
+    +"#scnPop .scnHint{color:var(--ink-dim,#6b7280);font-size:10.5px;line-height:1.5;margin-top:2px}#scnPop .scnCk{display:flex;gap:6px;align-items:flex-start;margin-top:8px;line-height:1.45;cursor:pointer}"
+    +"#scnPop .scnBtns{display:flex;gap:6px;margin-top:8px;align-items:center}#scnPop .scnBtns button{flex:none;padding:5px 9px;border-radius:7px;border:.5px solid var(--line,#c9ced8);background:var(--card2,#f3f4f7);color:inherit;font-size:12px;cursor:pointer}";
+  document.head.appendChild(st); }
+function scnPlace(b){ if(!b) return; let L=12, R=innerWidth-12;
+  ["list","plPanel"].forEach(id=>{ const e=$(id); if(!e) return; const cs=getComputedStyle(e); if(cs.display==="none"||cs.visibility==="hidden") return;
+    const rc=e.getBoundingClientRect(); if(rc.width>20&&rc.left<innerWidth/2&&rc.top<innerHeight/2&&rc.bottom>60) L=Math.max(L,rc.right+10); });
+  const vc=$("viewCube"); if(vc){ const rc=vc.getBoundingClientRect(); if(rc.width>0&&rc.left>L) R=Math.min(R,rc.left-10); }
+  b.style.left=Math.round(L)+"px"; b.style.maxWidth=Math.max(Math.round(R-L),180)+"px"; }
+function scnBarRender(){ let b=$("scnBar"); if(!scnBarOn()){ if(b) b.remove(); scnPopClose(); return; }
+  scnCss(); if(!b){ b=document.createElement("div"); b.id="scnBar"; document.body.appendChild(b); }
+  const L=scnList();
+  b.innerHTML='<span class="scnT" title="ฉาก (Scene) — มุมกล้องที่เก็บไว้ · PageUp/PageDown ไล่ฉาก">🎬</span>'
+    +L.map(s=>'<button class="scnTab'+(s.id===SCN.act?' on':'')+'" data-id="'+escapeHtml(String(s.id))+'" title="'+escapeHtml(String(s.name||""))+' · เลนส์ '+Math.round(+s.fov||42)+'°'+(s.two?' · 2 จุด':'')+' — คลิก = ไปมุมนี้ · คลิกขวา/ดับเบิลคลิก = แก้">'+escapeHtml(String(s.name||""))+(s.two?'<i>2P</i>':'')+'</button>').join("")
+    +'<button class="scnAdd" title="เก็บมุมกล้องตอนนี้เป็นฉากใหม่">＋ ฉาก</button>'
+    +'<button class="scnCam" title="มุมเลนส์ / มุมมอง 2 จุด ของกล้องตอนนี้">🔭 '+Math.round(scnFov())+'°'+(CAM2P.on&&!snOff("cam2p")?' 2P':'')+'</button>'
+    +'<button class="scnX" title="ซ่อนแถบฉาก (เปิดได้ที่ปุ่ม 🎬 ใต้ลูกเต๋า)">✕</button>';
+  b.querySelectorAll(".scnTab").forEach(bt=>{ const s=scnGet(bt.dataset.id); if(!s) return;
+    bt.onclick=()=>scnGo(s);
+    bt.oncontextmenu=ev=>{ ev.preventDefault(); if(SCN.act!==s.id) scnGo(s); setTimeout(()=>{ const nb=document.querySelector('#scnBar .scnTab[data-id="'+CSS.escape(String(s.id))+'"]'); scnPopOpen(nb||bt,s); },0); };
+    bt.ondblclick=ev=>{ ev.preventDefault(); const nb=document.querySelector('#scnBar .scnTab[data-id="'+CSS.escape(String(s.id))+'"]'); scnPopOpen(nb||bt,s); }; });
+  b.querySelector(".scnAdd").onclick=()=>scnAdd();
+  b.querySelector(".scnCam").onclick=ev=>scnPopOpen(ev.currentTarget,null);
+  b.querySelector(".scnX").onclick=()=>{ SCN.show=false; try{ lsSet("sxlocaltrial:furnitech:scnBar",false); }catch(e){} scnBarRender(); };
+  scnPlace(b); }
+function scnPopClose(){ const p=$("scnPop"); if(p) p.remove(); }
+function scnPopOpen(anchor,s){ scnPopClose(); if(snOff("scenes")) return; scnCss();
+  const p=document.createElement("div"); p.id="scnPop"; const rc=(anchor&&anchor.getBoundingClientRect)?anchor.getBoundingClientRect():{left:320,bottom:100};
+  p.style.left=Math.max(8,Math.min(rc.left,innerWidth-296))+"px"; p.style.top=Math.round(rc.bottom+6)+"px";
+  const fv=Math.round(scnFov());
+  p.innerHTML=(s?('<div class="scnPH"><input id="scnName" maxlength="40" value="'+escapeHtml(String(s.name||""))+'" title="ชื่อฉาก"></div>'):'<div class="scnPH">🔭 กล้องตอนนี้</div>')
+    +'<div class="scnRow"><span>มุมเลนส์ (ภาพเปอร์สเปกทีฟ)</span><b id="scnFovV">'+fv+'°</b></div><input type="range" id="scnFov" min="15" max="100" step="1" value="'+fv+'">'
+    +'<div class="scnHint">น้อย = เลนส์แคบ ภาพแบน (เหมือนถ่ายไกล) · มาก = มุมกว้าง ห้องดูกว้าง ขอบภาพยืด · ปกติ 42°</div>'
+    +(snOff("cam2p")?'':('<label class="scnCk"><input type="checkbox" id="scn2p"'+(CAM2P.on?' checked':'')+'><span>เส้นตั้งตรง (มุมมอง 2 จุด)<br><span class="scnHint">ผนัง/ขอบตู้ตั้งตรงไม่เอียงเข้าหากัน · กล้องมองแนวราบ (มองลงชันมาก = ปกติ)</span></span></label>'))
+    +'<div class="scnBtns">'+(s?'<button data-a="upd" title="ฉากนี้ใช้มุมกล้องตอนนี้แทน">📷 อัปเดตมุม</button>':'')+'<button data-a="add">＋ เป็นฉากใหม่</button><button data-a="def" title="เลนส์ปกติ 42°">42°</button></div>'
+    +(s?'<div class="scnBtns"><button data-a="left" title="เลื่อนไปซ้าย">◀</button><button data-a="right" title="เลื่อนไปขวา">▶</button><span style="flex:1"></span><button data-a="del" style="color:#d33">🗑 ลบฉาก</button></div>':'')
+    +'<div class="scnBtns" style="justify-content:flex-end"><button data-a="close">✓ ปิด</button></div>';
+  document.body.appendChild(p);
+  const q=x=>p.querySelector(x), fr=q("#scnFov"), fvl=q("#scnFovV");
+  const setF=v=>{ camFovSet(v); if(fvl) fvl.textContent=Math.round(v)+"°"; if(fr) fr.value=Math.round(v); if(s) s.fov=Math.round(v); };
+  if(fr){ fr.oninput=()=>setF(+fr.value); fr.onchange=()=>{ scnSave(); scnBarRender(); }; }
+  { const c=q("#scn2p"); if(c) c.onchange=()=>{ CAM2P.on=c.checked; if(s) s.two=c.checked; try{ invalidate(); }catch(e){} scnSave(); scnBarRender(); }; }
+  { const n=q("#scnName"); if(n){ n.onchange=()=>{ const v=String(n.value||"").trim().slice(0,40); if(v){ s.name=v; scnSave(); scnBarRender(); } else n.value=s.name; };
+      n.onkeydown=ev=>{ if(ev.key==="Enter"){ ev.preventDefault(); n.blur(); } }; } }
+  p.querySelectorAll("[data-a]").forEach(bt=>bt.onclick=async()=>{ const a=bt.dataset.a, L=scnList();
+    if(a==="close") scnPopClose();
+    else if(a==="def"){ setF(SCN.fov0); scnSave(); scnBarRender(); }
+    else if(a==="add"){ scnPopClose(); scnAdd(); }
+    else if(a==="upd"&&s){ Object.assign(s,scnCap()); SCN.act=s.id; scnSave(); scnBarRender(); toast("📷 อัปเดต "+s.name+" เป็นมุมกล้องตอนนี้"); }
+    else if((a==="left"||a==="right")&&s){ const i=L.indexOf(s), j=a==="left"?i-1:i+1; if(i<0||j<0||j>=L.length) return; L.splice(i,1); L.splice(j,0,s); scnSave(); scnBarRender(); }
+    else if(a==="del"&&s){ if(!(await dialog({title:"ลบ "+s.name+"?", ok:"ลบ"}))) return; const i=L.indexOf(s); if(i>=0) L.splice(i,1); if(SCN.act===s.id) SCN.act=null; scnPopClose(); scnSave(); scnBarRender(); toast("ลบ "+s.name+" แล้ว"); } });
+  setTimeout(()=>{ const off=ev=>{ if(!document.body.contains(p)){ removeEventListener("pointerdown",off,true); return; }
+      if(p.contains(ev.target)||(ev.target&&ev.target.closest&&ev.target.closest("#scnBar,#askModal"))) return; p.remove(); removeEventListener("pointerdown",off,true); };
+    addEventListener("pointerdown",off,true); },0); }
+function scnToggle(){ SCN.show=!scnBarOn(); try{ lsSet("sxlocaltrial:furnitech:scnBar",SCN.show); }catch(e){} scnBarRender();
+  if(SCN.show&&!scnList().length) toast("🎬 กด ＋ ฉาก เพื่อเก็บมุมกล้องตอนนี้ — แบบ Scene ของ SketchUp"); }
+function scnInit(){ if(SCN.tm||snOff("scenes")) return;
+  try{ SCN.fov0=(typeof camera!=="undefined"&&camera&&camera.fov)||42; }catch(e){}
+  try{ Promise.resolve(lsGet("sxlocaltrial:furnitech:scnBar",null)).then(v=>{ if(v===true||v===false) SCN.show=v; scnBarRender(); }).catch(()=>{}); }catch(e){}
+  SCN.tm=setInterval(()=>{ const b=$("scnBar"); if(b) scnPlace(b); },700); }
+function scnKey(e){ if(snOff("scenes")||e.ctrlKey||e.metaKey||e.altKey||(e.key!=="PageDown"&&e.key!=="PageUp")) return; const t=e.target;
+  if(t&&/INPUT|TEXTAREA|SELECT/.test(t.tagName)) return; if(t&&t.closest&&t.closest(".modal,#askModal,#fieldsModal")) return;
+  const L=scnList(); if(!L.length||(typeof VIEW_ONLY!=="undefined"&&VIEW_ONLY)) return; e.preventDefault(); e.stopImmediatePropagation();
+  let i=L.findIndex(s=>s.id===SCN.act); i=e.key==="PageDown"?(i+1)%L.length:(i<=0?L.length-1:i-1); scnGo(L[i]); }
+addEventListener("keydown",scnKey,true);
 let pMode=null,pLX=0,pLY=0,pPan=false,_lastPick=null;
 /* ───────── v1.357: เลือกไว้หลายชิ้นอยู่ — ตัดสินว่า "คลิก" หรือ "ลากหมุนกล้อง" ตอนปล่อยเมาส์ ─────────
    ปกติกดลงบนชิ้น = เลือกชิ้นนั้นทันที (ลากต่อ = หมุนกล้อง) ชุดที่ Ctrl+คลิกไว้ห้าแผ่นจึงหายทุกครั้งที่ลากหมุนดูงาน
@@ -21240,6 +21361,7 @@ function animate(){requestAnimationFrame(animate);
   if(r*3>camera.far){ camera.far=r*3; camera.updateProjectionMatrix(); }
   camera.position.set(orbit.target.x+r*Math.sin(orbit.phi)*Math.sin(orbit.theta),orbit.target.y+r*Math.cos(orbit.phi),orbit.target.z+r*Math.sin(orbit.phi)*Math.cos(orbit.theta));
   camera.lookAt(orbit.target);
+  if(CAM2P.on||(camera.view&&camera.view.enabled)) try{ cam2pApply(); }catch(e){}   // v1.541: มุมมอง 2 จุด (เส้นตั้งตรง)
   try{ fogFollow(); }catch(e){}                                                // v1.534: หมอกเริ่มหลังตัวงานเสมอ (ซูมไกลแล้วไม่จาง)
   try{ scaleMeasureGizmos(); }catch(e){}
   if(REAL.on){ try{ realRender(); }catch(e){ console.error("realRender:",e); try{ renderer.setRenderTarget(null); }catch(_){} renderer.render(scene,camera); } }   // v1.463: โหมดสมจริง (ห้อง + เงามุม + ACES)
@@ -24310,7 +24432,7 @@ const SCENE_KEY="sxlocaltrial:boardforge:v1"+(SX_TAB?(":"+SX_TAB):"");
    openSharedIfAny เรียก sync(1) ซึ่งเซฟอัตโนมัติ = สแนปช็อตตู้ใบเดียวทับออเดอร์ทั้งใบ
    เปิดลิงก์เช็คจากหน้าตรวจลิงก์ทีหนึ่ง แล้วรีเฟรชแท็บงาน งาน 37 ตู้เหลือตู้เดียว
    v36.3 คิดเผื่อกรณีสองแท็บทำงานไว้แล้ว แต่ลิงก์ดูอย่างเดียวเป็นกรณีที่สามที่ยังไม่มีใครกัน */
-async function autosave(){ if(state.editing||VIEW_ONLY||_alignHold>0)return;   /* v1.265 */ try{ await store.set(SCENE_KEY,JSON.stringify({boards:state.boards,globalTone:state.globalTone,cabColors:state.cabColors,cabNums:state.cabNums,cabVarTxt:state.cabVarTxt,cabDX:state.cabDX,bcSeq:state.bcSeq,bcMax:state.bcMax,orderLines:state.orderLines,cabDP:state.cabDP,cabFrontEdge:state.cabFrontEdge,cabFrontDir:state.cabFrontDir,room:state.room||null,orderMat:state.orderMat||{},pidLock:state.pidLock||null})); }catch(e){} }   /* v1.337: + orderMat · v1.411: + pidLock */
+async function autosave(){ if(state.editing||VIEW_ONLY||_alignHold>0)return;   /* v1.265 */ try{ await store.set(SCENE_KEY,JSON.stringify({boards:state.boards,globalTone:state.globalTone,cabColors:state.cabColors,cabNums:state.cabNums,cabVarTxt:state.cabVarTxt,cabDX:state.cabDX,bcSeq:state.bcSeq,bcMax:state.bcMax,orderLines:state.orderLines,cabDP:state.cabDP,cabFrontEdge:state.cabFrontEdge,cabFrontDir:state.cabFrontDir,room:state.room||null,scenes:state.scenes||[],orderMat:state.orderMat||{},pidLock:state.pidLock||null})); }catch(e){} }   /* v1.337: + orderMat · v1.411: + pidLock */
 /* ───────── v1.127: การบันทึกอัตโนมัติกินเวลาเกือบครึ่งของรอบคิดฉาก ─────────
    ตัวบันทึกแปลงข้อมูลทั้งฉากเป็นข้อความใหม่ทุกครั้งที่คิดฉาก ทั้งชิ้น รู ร่อง อุปกรณ์
    ออเดอร์ร้อยสามสิบห้าชิ้นจึงกินสองวินาทีต่อรอบ วัดได้จริงในงานจริง
@@ -28957,6 +29079,9 @@ function boardRole(b){
      SN_OFF.dwgDoorLine=1 หน้ารวมวัสดุ ดีไซน์หน้าบานเป็นภาพถ่าย 3D แยกตาม Part ลิงก์ (แบบ 1.521) (v1.527)
      SN_OFF.realPlRoom=1  โหมดสมจริงในห้องออกแบบสร้างห้องรอบตู้แบบเดิม (ไม่ใช้ผนังของห้องออกแบบ) (v1.528)
      SN_OFF.realSnap=1    ไม่มีปุ่ม 📷 บันทึกภาพสมจริงความละเอียดสูง (v1.528)
+     SN_OFF.plCeilMesh=1  ห้องออกแบบไม่มีแผ่นฝ้าเพดาน · กล้องต่ำกว่าพื้นยังเห็นพื้น (v1.541)
+     SN_OFF.scenes=1      ไม่มีแถบ 🎬 ฉาก (Scene) / ปุ่ม 🎬 ใต้ลูกเต๋า / PageUp-PageDown (ฉากที่เก็บในออเดอร์ยังอยู่) (v1.541)
+     SN_OFF.cam2p=1       ไม่มีมุมมอง 2 จุด (เส้นตั้งตรง) — ฉากที่ติ๊กไว้กลับเป็นมุมมองปกติ (v1.541)
      SN_OFF.plPlanLbl=1   มุมแปลน (TOP) ไม่มีป้ายความยาวผนัง/เลขผนังอัตโนมัติ (v1.540)
      SN_OFF.plUndo=1      Ctrl+Z ย้อนแต่ตู้แบบเดิม (ห้องไม่อยู่ในประวัติ) (v1.540)
      SN_OFF.plRoomLib=1   ไม่มีปุ่ม 💾 บันทึกห้อง / 📂 เปิดห้อง / 🧹 ล้างตู้เก็บห้อง · Order → ใหม่ ไม่ถามเรื่องห้อง (v1.540)
@@ -35718,6 +35843,38 @@ function plCamRoom(){
   orbit.dTheta=orbit.dPhi=orbit.dRadius=0; invalidate();
 }
 /* ---------- วาดห้อง (อยู่บน scene ไม่ใช่ root — render3D ล้าง root ทุกรอบ) ---------- */
+/* ═════════ v1.541: ฝ้าเพดาน ═════════
+   ผู้ใช้ 28/10 19:36 (ภาพมองเงยจากมุมล่าง เห็นผนังแต่ด้านบนโล่งเป็นพื้นหลัง): “มองมุมล่าง มันต้องเห็นฝ้า”
+   เดิมห้องออกแบบมีพื้น + ผนัง ไม่มีฝ้า · ฝ้าลด/ฝ้าหลุม (1.538) เป็นกล่องโปร่งลอยอยู่เฉย ๆ
+   ตอนนี้: แผ่นฝ้าที่ความสูงห้อง หันหน้าลง (FrontSide) — กล้องอยู่สูงกว่าฝ้า/มุมแปลน = ไม่วาด (ไม่บังการมองจากบน)
+     รูปฝ้า = ผนังที่วาดแบบปิดรอบเส้นที่พื้นที่มากสุด (มุมผิวใน q[0] ทุกช่วง · สูง = min(ห้อง, ผนังเส้นนั้น)) · ไม่มี = กรอบห้องสี่เหลี่ยม
+     ฝ้าหลุม (ระดับสูงกว่าฝ้าห้อง) ที่อยู่ในรูปฝ้า = เจาะช่อง · สีจาก paint.ceil ถ้ามี (ตั้งต้น #dedad2 ขาวนวลอมเทา — ไม่กลืนกับพื้นหลังจอ) · r.ceilShow=false (ติ๊กที่แผง) = ไม่มีฝ้า
+   พื้น: กล้องต่ำกว่าพื้น (มุมล่าง) = ไม่วาดพื้น มองทะลุขึ้นไปเห็นฝ้า · ปิด SN_OFF.plCeilMesh=1 */
+function plCeilIn(p,P){ let c=false; for(let i=0,j=P.length-1;i<P.length;j=i++){ const a=P[i], b=P[j];
+    if(((a[1]>p[1])!==(b[1]>p[1]))&&(p[0]<(b[0]-a[0])*(p[1]-a[1])/((b[1]-a[1])||1e-9)+a[0])) c=!c; } return c; }
+function plCeilMesh(g,r){ if(snOff("plCeilMesh")||PLW.on||r.ceilShow===false) return null;
+  const H=+r.h||2600; let P=null, y=H, best=0;
+  plwList().forEach(w=>{ if(!w||!w.closed) return; let q=null; try{ q=plwFoot(w).map(f=>f.q[0]); }catch(e){ return; } if(!q||q.length<3) return;
+    let A=0; for(let i=0;i<q.length;i++){ const a=q[i], b=q[(i+1)%q.length]; A+=a[0]*b[1]-b[0]*a[1]; } A=Math.abs(A)/2;
+    if(A>best){ best=A; P=q; y=Math.min(H, Math.max(+w.h||plwDefH(),100)); } });
+  if(!P){ const any=Object.keys(r.walls||{}).some(k=>r.walls[k])||plwList().length>0; if(!any) return null;
+    P=[[r.x0,r.z0],[r.x0+r.w,r.z0],[r.x0+r.w,r.z0+r.d],[r.x0,r.z0+r.d]]; }
+  const sh=new THREE.Shape(); P.forEach((p,i)=>{ if(i) sh.lineTo(p[0],p[1]); else sh.moveTo(p[0],p[1]); }); sh.closePath();
+  if(!snOff("plObj")) ploList().forEach(o=>{ if(!o||o.k!=="ceil"||!(+o.h>y+1)) return; const hw=(+o.w||1500)/2, hd=(+o.d||1500)/2, x=+o.x, z=+o.z;
+    if(![[x-hw,z-hd],[x+hw,z-hd],[x+hw,z+hd],[x-hw,z+hd]].every(c=>plCeilIn(c,P))) return;
+    const ho=new THREE.Path(); ho.moveTo(x-hw,z-hd); ho.lineTo(x+hw,z-hd); ho.lineTo(x+hw,z+hd); ho.lineTo(x-hw,z+hd); ho.closePath(); sh.holes.push(ho); });
+  const geo=new THREE.ShapeGeometry(sh); geo.rotateX(Math.PI/2);                  // รูป (x,z) → พื้นราบ หน้าหันลง
+  let col="#dedad2";   /* ขาวนวลอมเทา — ฝ้าจริงในห้องดูมืดกว่าผนัง · #f3f1ec เดิมกลืนกับพื้นหลังจอ */ try{ const sp=plptSpec({k:"ceil"}); if(sp&&sp.c) col=sp.c; }catch(e){}
+  const mat=new THREE.MeshBasicMaterial({color:new THREE.Color(col).convertSRGBToLinear(), side:THREE.DoubleSide});   // เห็น/ไม่เห็นตัดสินด้วยความสูงกล้อง (ไม่พึ่งทิศหน้า)
+  const m=new THREE.Mesh(geo,mat); m.position.y=y; m.userData.plCeil=1;
+  const vis=cam=>!plPlanOn()&&cam.position.y<y-1;
+  m.onBeforeRender=(rd,sc,cam)=>{ const on=vis(cam); mat.colorWrite=on; mat.depthWrite=on; };
+  /* ขอบฝ้า (เส้นรอบรูป + ขอบช่องฝ้าหลุม) — ฝ้าสีเรียบ ไม่มีเส้นจะดูเหมือนพื้นหลัง */
+  const lm=new THREE.LineBasicMaterial({color:0xa9a294});
+  [sh.getPoints()].concat(sh.holes.map(h=>h.getPoints())).forEach(pts=>{ if(pts.length<2) return;
+    const ln=new THREE.LineLoop(new THREE.BufferGeometry().setFromPoints(pts.map(q=>new THREE.Vector3(q.x,y-2,q.y))),lm);
+    ln.onBeforeRender=(rd,sc,cam)=>{ lm.colorWrite=vis(cam); }; ln.userData.plCeil=2; g.add(ln); });
+  g.add(m); return m; }
 function plRoomDraw(){
   if(typeof scene==="undefined"||!scene) return;
   if(PL.grp){ scene.remove(PL.grp); PL.grp.traverse(o=>{ if(o.geometry&&!o.isSprite) o.geometry.dispose(); if(o.material&&o.material.dispose&&!(o.material.userData&&o.material.userData.keep)) o.material.dispose(); }); PL.grp=null; }   // v1.533: ป้ายความยาวผนังที่วาดใช้วัสดุแคช (keep) · Sprite ใช้ geometry กลาง
@@ -35727,6 +35884,9 @@ function plRoomDraw(){
   const r=plRoom(), g=new THREE.Group(); g.name="plRoom"; const T=100;
   const fl=new THREE.Mesh(new THREE.PlaneGeometry(r.w,r.d), new THREE.MeshBasicMaterial({color:0xb9a47c,transparent:true,opacity:.30,depthWrite:false}));
   fl.rotation.x=-Math.PI/2; fl.position.set(r.x0+r.w/2,0.8,r.z0+r.d/2); fl.renderOrder=-1; g.add(fl);
+  fl.onBeforeRender=(rd,sc,cam)=>{ const M=fl.material; if(!M) return; if(M.userData._dw==null) M.userData._dw=!!M.depthWrite;   /* v1.541: กล้องต่ำกว่าพื้น = ไม่วาดพื้น (มองขึ้นเห็นฝ้า) */
+    const on=snOff("plCeilMesh")||cam.position.y>0; M.colorWrite=on; M.depthWrite=on&&M.userData._dw; };
+  try{ plCeilMesh(g,r); }catch(e){ console.error("plCeilMesh:",e); }                   // v1.541: ฝ้าเพดาน
   try{ plptFloor(fl,r); }catch(e){ console.error("plptFloor:",e); }    // v1.534: สี/รูปพื้นห้อง
   { const pts=[[r.x0,r.z0],[r.x0+r.w,r.z0],[r.x0+r.w,r.z0+r.d],[r.x0,r.z0+r.d],[r.x0,r.z0]].map(p=>new THREE.Vector3(p[0],1.2,p[1]));
     g.add(new THREE.Line(new THREE.BufferGeometry().setFromPoints(pts), new THREE.LineBasicMaterial({color:0x8a7a5c}))); }
@@ -38319,6 +38479,7 @@ function plRoomHtml531(r,num){ plCss317(); plCss531();
   const size=grp("size",false,"ขนาดห้อง · ผนัง · Dim",Math.round(r.w)+"×"+Math.round(r.d)+"×"+Math.round(r.h),
       '<div class="plDim3">'+[["w","กว้าง"],["d","ลึก"],["h","สูง"]].map(a=>'<label>'+a[1]+' '+nin(a[0],r[a[0]])+'</label>').join("")+'</div>'
       +F("ผนัง",Object.keys(PL_WALLS).map(k=>'<label class="plCk"><input type="checkbox" data-w="'+k+'"'+(r.walls[k]?" checked":"")+'> '+PL_WALLS[k].lbl+'</label>').join(""))
+      +(snOff("plCeilMesh")?'':F("ฝ้าเพดาน",'<label class="plCk"><input type="checkbox" id="plCeilShow"'+(r.ceilShow!==false?' checked':'')+'> แสดงฝ้า</label>',"แผ่นฝ้าที่ความสูงห้อง — เห็นตอนกล้องอยู่ต่ำกว่าฝ้า (มองเงย/มุมล่าง/ในห้อง) · มองจากบนไม่บัง (v1.541)"))
       +F("Dim 3D",'<label class="plCk"><input type="checkbox" id="plDimGap"'+(o.gap?' checked':'')+'> <span style="color:#e5484d">■</span> ระยะถึงผนัง/ตู้ข้าง</label>'
         +'<label class="plCk"><input type="checkbox" id="plDimSize"'+(o.size?' checked':'')+'> <span style="color:#8a93a6">■</span> ขนาดตู้</label>',"เส้นบอกระยะในฉาก 3D ตอนลาก/เลือกตู้"));
   const wsum=["ขา "+Math.round(+r.legH||0), r.plinthMat==="stainless"?"ตีนตู้สแตนเลส":"ตีนตู้ไม้", r.ceilOn!==false?"ฟิลเลอร์บน":"", r.lightOn?("ไม้ไฟ "+String(r.lightCode||"")):"",
@@ -39184,6 +39345,7 @@ function plPanelRoom(){
   { const pa=s.querySelector("#plPullAll"); if(pa) pa.onclick=ev=>{ const rc=ev.target.getBoundingClientRect(); plPullOpen(null,plPopX531(rc),rc.top-80); }; }   // v1.524
   s.querySelectorAll(".plSug").forEach(bt=>bt.onclick=async()=>{ r[bt.dataset.k]=+bt.dataset.v; plRoomDraw(); await plAlignAll(true); plPanelRoom(); plAfterRoom(); });
   s.querySelectorAll("input[data-w]").forEach(inp=>inp.onchange=()=>{ r.walls[inp.dataset.w]=inp.checked; plRoomDraw(); plPanelWalls(); plAfterRoom(); });
+  { const c=s.querySelector("#plCeilShow"); if(c) c.onchange=()=>{ r.ceilShow=c.checked; plRoomDraw(); plAfterRoom(); }; }   // v1.541: ฝ้าเพดาน
   s.querySelector("#plFitRoom").onclick=()=>{ plFitRoom(true); plRoomDraw(); plPanelRoom(); plCamRoom(); plAfterRoom(); };
   s.querySelector("#plCam").onclick=()=>plCamRoom();
   { const a=s.querySelector("#plrlSave"), b=s.querySelector("#plrlOpen"), c=s.querySelector("#plrlNew");   // v1.540
@@ -39531,7 +39693,7 @@ function plpShot(kind,w,h,B){
   const hid=[]; const H=o=>{ if(o&&o.visible){ o.visible=false; hid.push(o); } };
   [selBox,cabBox,axisLine,grid,(typeof PLD!=="undefined"&&PLD)?PLD.grp:null,(typeof _msGrp!=="undefined")?_msGrp:null].forEach(H);
   root.traverse(o=>{ const u=o.userData||{}; if(o.isSprite||u.label) H(o); else if(B.noEdge&&kind==="hero"&&u.edge) H(o); });
-  if(PL.grp) PL.grp.traverse(o=>{ if(o.material&&o.material.isLineDashedMaterial) H(o); });
+  if(PL.grp) PL.grp.traverse(o=>{ if(o.material&&o.material.isLineDashedMaterial) H(o); else if(o.userData&&o.userData.plCeil) H(o); });   // v1.541: ภาพแนบใบเสนอราคาไม่มีฝ้า (หน้าตาเดิม)
   let cam=null, url="";
   try{
     if(kind==="plan"){ const r=plRoom(), T=100, x0=r.x0-T, x1=r.x0+r.w+T, z0=r.z0-T, z1=r.z0+r.d+T, cx=(x0+x1)/2, cz=(z0+z1)/2;
@@ -40547,7 +40709,7 @@ async function exportGlb(opt){
     if(opt.room!==false&&typeof PL!=="undefined"&&PL.on&&PL.grp){
       PL.grp.traverse(o=>{ if(!o.isMesh||!o.geometry) return; const c=(o.material&&o.material.color)?o.material.color.clone():new THREE.Color(0xd6cebd);
         const flat=(o.geometry.type==="PlaneGeometry");
-        add(o,new THREE.MeshStandardMaterial({color:flat?new THREE.Color(0xcfc4ae):c,roughness:.9,metalness:0,side:THREE.DoubleSide}),flat?"พื้นห้อง":"ผนัง"); }); }
+        add(o,new THREE.MeshStandardMaterial({color:flat?new THREE.Color(0xcfc4ae):c,roughness:.9,metalness:0,side:THREE.DoubleSide}),flat?"พื้นห้อง":((o.userData&&o.userData.plCeil)?"ฝ้าเพดาน":"ผนัง")); }); }   // v1.541: ชื่อฝ้าในไฟล์ .glb
     if(!n){ toast("ไม่มีชิ้นงานในฉากให้ส่งออก"); return null; }
     try{ if(bz){ bz.step("เขียนไฟล์ .glb ("+n+" วัตถุ)…",45); await bz.tick(); } }catch(e){}
     const ex=new THREE.GLTFExporter();
@@ -42909,7 +43071,7 @@ async function cloudSaveOrder(){
     else bz.step("กำลังบันทึก…",55); }catch(e){} };
   try{ const db=await getDB(); const id="ORD::"+oid;
     const exEl=$("exOrderId"); if(exEl){ exEl.value=oid; }   // ตั้งชื่อออเดอร์ในฉากให้ตรงไฟล์ที่เซฟ
-    const data={order:true,orderId:oid,boards:JSON.parse(JSON.stringify(state.boards)),globalTone:state.globalTone,cabColors:state.cabColors,cabNums:state.cabNums,cabVarTxt:state.cabVarTxt,cabDX:state.cabDX,orderLines:state.orderLines,cabDP:state.cabDP,cabFrontEdge:state.cabFrontEdge,cabFrontDir:state.cabFrontDir,room:state.room||null,orderMat:state.orderMat||{},pidLock:state.pidLock||null};   /* v1.337: + วัสดุทั้งออเดอร์ · v1.411: + ล็อกเลขชิ้น */
+    const data={order:true,orderId:oid,boards:JSON.parse(JSON.stringify(state.boards)),globalTone:state.globalTone,cabColors:state.cabColors,cabNums:state.cabNums,cabVarTxt:state.cabVarTxt,cabDX:state.cabDX,orderLines:state.orderLines,cabDP:state.cabDP,cabFrontEdge:state.cabFrontEdge,cabFrontDir:state.cabFrontDir,room:state.room||null,scenes:state.scenes||[],orderMat:state.orderMat||{},pidLock:state.pidLock||null};   /* v1.337: + วัสดุทั้งออเดอร์ · v1.411: + ล็อกเลขชิ้น */
     if(bz){ _wStep(); await bz.tick(); _tm=setInterval(_wStep,300); }
     const r=await db.from("furnitech_cabinets").upsert({id,name:id,part_count:state.boards.length,data,updated_at:new Date().toISOString()},{onConflict:"id"}); if(r.error)throw r.error;
     if(_tm){ clearInterval(_tm); _tm=0; }
@@ -42949,7 +43111,7 @@ async function newOrder(opts){
   const _keepRoom=(keepRm&&state.room)?JSON.parse(JSON.stringify(state.room)):null;   // v1.540
   state.boards=[]; state.selectedId=null; state.selectedCab=null; cabSelClear(); state.hidden=[];
   state.cabColors={}; state.cabNums={}; state.cabVarTxt={}; state.cabDX={};
-  state.bcSeq={}; state.bcMax={}; state.orderLines=[]; state.room=_keepRoom; state.cabDP={}; state.orderMat={};   /* v1.337 */
+  state.bcSeq={}; state.bcMax={}; state.orderLines=[]; state.room=_keepRoom; state.scenes=_keepRoom?(state.scenes||[]):[]; try{ scnAfterLoad(); }catch(e){}   /* v1.541: เก็บห้อง = เก็บฉาก */ state.cabDP={}; state.orderMat={};   /* v1.337 */
   state.pidLock=null; _pidAdopt={}; _pidProdP={};                                                        /* v1.411 */
   state.doorPick=[]; state.doorProg={}; state.explode=0;
   try{ if(typeof clearMeasure==="function") clearMeasure(); }catch(e){}
@@ -42974,7 +43136,7 @@ async function cloudLoadOrder(oid){
     remapRuleRefs(norm,idMap); remapHoleSrc(norm,idMap); healHoleSrc(norm);
     state.boards=norm; if(src.globalTone!=null)state.globalTone=src.globalTone; if(src.cabColors)state.cabColors=src.cabColors;
     if(src.cabNums)state.cabNums=src.cabNums; if(src.cabVarTxt)state.cabVarTxt=src.cabVarTxt; if(src.cabDX)state.cabDX=src.cabDX;
-    state.orderLines=src.orderLines||[]; state.room=src.room||null; state.cabDP=src.cabDP||{}; state.orderMat=src.orderMat||{};   /* v1.337 */                  // v28.3/v30.5
+    state.orderLines=src.orderLines||[]; state.room=src.room||null; state.scenes=Array.isArray(src.scenes)?src.scenes:[]; try{ scnAfterLoad(); }catch(e){}   /* v1.541 */ state.cabDP=src.cabDP||{}; state.orderMat=src.orderMat||{};   /* v1.337 */                  // v28.3/v30.5
     state.pidLock=src.pidLock||null; _pidAdopt={}; _pidProdP={};                                         /* v1.411: ล็อกเลขชิ้นของออเดอร์นี้ (ไม่มี = ไปอ่านจาก Production ตอนเปิดหน้าส่งออก) */
     /* v7.16: ออเดอร์ที่เซฟไว้ก่อนหน้านี้มีค่าผิดฝังอยู่ (ชั้นลึกเกิน ทะลุแผ่นหลัง)
        เพราะตอนสร้าง refitInterior ข้ามไปตอนตู้หมุน · เปิดกลับมาก็ต้องซ่อมให้ด้วย
@@ -50627,7 +50789,7 @@ async function renderLoader(){
         remapRuleRefs(state.boards,idMap); remapHoleSrc(state.boards,idMap); healHoleSrc(state.boards);
         if(saved.globalTone!=null)state.globalTone=saved.globalTone; if(saved.cabColors)state.cabColors=saved.cabColors;
         if(saved.cabNums)state.cabNums=saved.cabNums; if(saved.cabVarTxt)state.cabVarTxt=saved.cabVarTxt; if(saved.cabDX)state.cabDX=saved.cabDX;
-        state.orderLines=saved.orderLines||[]; state.room=saved.room||null; state.cabDP=saved.cabDP||{}; state.orderMat=saved.orderMat||{};   /* v1.337 */          // v28.3/v30.5
+        state.orderLines=saved.orderLines||[]; state.room=saved.room||null; state.scenes=Array.isArray(saved.scenes)?saved.scenes:[]; try{ scnAfterLoad(); }catch(e){}   /* v1.541 */ state.cabDP=saved.cabDP||{}; state.orderMat=saved.orderMat||{};   /* v1.337 */          // v28.3/v30.5
         if(saved.bcSeq)state.bcSeq=saved.bcSeq; if(saved.bcMax)state.bcMax=saved.bcMax;   // v9.22: เลขบาร์โค้ดที่จำไว้
         state.pidLock=saved.pidLock||null;                                                  // v1.411: เลขชิ้นที่ล็อกหลังส่ง Production
     if(saved.cabDX)state.cabDX=saved.cabDX;                                          // v11.2
@@ -56039,7 +56201,7 @@ function exportJSON(){
   /* v11.2: ไฟล์โปรเจกต์เคยเก็บแค่ชิ้นงาน ค่าที่ผูกกับตู้ (เส้นโปรไฟล์ · สี · ตัวแปร) จึงหายไปกับไฟล์
      เปิดไฟล์กลับมาแล้วเส้นโปรไฟล์หายทั้งงาน เพราะตัวสร้างเส้นไม่เจอรายการว่าตู้ไหนติดอะไรไว้ */
   download("starnexus-project.json",JSON.stringify({boards:state.boards,globalTone:state.globalTone,
-    bcSeq:state.bcSeq,bcMax:state.bcMax,orderLines:state.orderLines,cabDP:state.cabDP,cabFrontEdge:state.cabFrontEdge,cabFrontDir:state.cabFrontDir,room:state.room||null,orderMat:state.orderMat||{},   /* v1.337 */
+    bcSeq:state.bcSeq,bcMax:state.bcMax,orderLines:state.orderLines,cabDP:state.cabDP,cabFrontEdge:state.cabFrontEdge,cabFrontDir:state.cabFrontDir,room:state.room||null,scenes:state.scenes||[],orderMat:state.orderMat||{},   /* v1.337 · v1.541 ฉาก */
     pidLock:state.pidLock||null,   /* v1.411 */
     cabDX:state.cabDX,cabColors:state.cabColors,cabNums:state.cabNums,cabVarTxt:state.cabVarTxt},null,2),
     "application/json");
@@ -58673,7 +58835,7 @@ function readFile(f){const r=new FileReader();
     if(o.cabDX)state.cabDX=o.cabDX;
     if(o.bcSeq)state.bcSeq=o.bcSeq; if(o.bcMax)state.bcMax=o.bcMax;
     state.pidLock=o.pidLock||null; _pidAdopt={}; _pidProdP={};                                             // v1.411
-    state.orderLines=o.orderLines||[]; state.room=o.room||null; state.cabDP=o.cabDP||{}; state.orderMat=o.orderMat||{};   /* v1.337 */                      // v28.3/v30.5
+    state.orderLines=o.orderLines||[]; state.room=o.room||null; state.scenes=Array.isArray(o.scenes)?o.scenes:[]; try{ scnAfterLoad(); }catch(e){}   /* v1.541 */ state.cabDP=o.cabDP||{}; state.orderMat=o.orderMat||{};   /* v1.337 */                      // v28.3/v30.5
     state.selectedId=null;buildGTones();sync(1); refreshSkins();   // v1.065
     try{ const _nh=adjShelfSideHeal(); if(_nh){ sync(0); toast("ชั้นปรับ "+_nh+" แผ่นยาวเต็มช่อง — ร่นข้างละ 1 มม. ตามค่าที่ตั้งไว้ให้แล้ว"); } }catch(e){ console.error("adjShelfSideHeal:",e); }   // v1.414
     try{ symfixHealStale(); }catch(e){ console.error("symfixHeal:",e); }   /* v1.403 */
