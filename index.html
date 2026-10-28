@@ -3281,7 +3281,7 @@ body[data-theme="dark"] .splash-dots span{background:rgba(255,255,255,.25)}
    ===================================================================== */
 /* ---- APP_META: แหล่งความจริงเดียวของเวอร์ชัน (ดูได้จาก console / คลิกชื่อแอป) ---- */
 const APP_META={
-  name:"StarNexus", version:"1.539", build:"2026-10-28/wall-del",
+  name:"StarNexus", version:"1.540", build:"2026-10-28/room-lib",
   file:"StarNexus.html", basedOn:"Furnitech_V3.html (v3.11)",
   /* ───────── เริ่มนับเวอร์ชันใหม่ที่ 1.001 (21/08/2026) ─────────
      ของเดิมนับมาถึง 42.1 แล้ววิ่งเป็นทศนิยมสองชั้นซึ่งอ่านลำดับยาก
@@ -3289,6 +3289,7 @@ const APP_META={
      ประวัติเก่าเก็บไว้ทั้งหมดตามเลขเดิม ไม่ไล่เขียนใหม่ เพราะเลขในนั้นถูกอ้างถึงไปแล้ว
      รายการที่อยู่ใต้ 1.001 ลงไปจึงเป็นเลขชุดเก่า อ่านต่อกันได้ตามวันที่ */
   changelog:[
+    ["1.540","2026-10-28","FEAT ห้องออกแบบ (ผู้ใช้ 17:06) — ① กด TOP บนลูกเต๋า = ภาพแปลนแบบตอนวาดผนัง: ป้ายความยาวทุกช่วงผนังที่วาด + เลขผนัง (ไม่ต้องเปิดปุ่ม เลข) · ห้องสี่เหลี่ยมมีป้ายความยาวผนังแต่ละด้าน · หมุนกล้องออก = ป้ายหาย · SN_OFF.plPlanLbl=1 · ② Ctrl+Z / Ctrl+Y (Ctrl+Shift+Z) และปุ่ม ↶ ↷ ย้อน/ทำซ้ำงานห้องได้แล้ว (เดิมย้อนได้แต่ตู้) — วาด/ลบผนัง แก้ยาวช่วง ประตู หน้าต่าง เสา ฝ้า ปลั๊ก/ท่อ สีผนัง/พื้น ขนาดห้อง ล็อกห้อง อยู่ในประวัติเดียวกับตู้ ย้อนทีละขั้นตามลำดับที่ทำ · ระหว่างวาดผนัง Ctrl+Z = ถอยจุด · SN_OFF.plUndo=1 · ③ 💾 บันทึกห้อง / 📂 เปิดห้องที่บันทึก (แผงห้อง ใต้ปุ่มล็อกห้อง): เก็บทั้งห้อง (ไม่มีตู้) ลงไฟล์กลาง app_settings คีย์ plroom:<ชื่อ> — ทุกเครื่องที่ใช้ Server เดียวกันเห็น · ค้นชื่อได้ · เปิดใช้ = แทนห้องตอนนี้ (ตู้อยู่ที่เดิม) · ชื่อซ้ำ = ถามก่อนทับ · ลบได้ · 🧹 ล้างตู้ · เก็บห้อง: เริ่มออเดอร์ใหม่แต่ห้องอยู่ครบ (เอาห้องเดิมไปปรับใช้บ้านหลังอื่น) หรือล้างแค่ตู้ (ออเดอร์เดิม) · Order → ใหม่ (หน้าเปล่า) ตอนมีห้องที่วาดไว้ = ถามก่อน มีปุ่ม 🏠 ใหม่ · เก็บห้องไว้ (เดิมห้องหายเงียบ ๆ ถ้าไม่มีตู้) · ปุ่ม ล้าง บอกว่าห้องยังอยู่ · SN_OFF.plRoomLib=1"],
     ["1.539","2026-10-28","FEAT ห้องออกแบบ (ผู้ใช้ 16:58 + 17:00) — ① เลือกผนังทีละช่วงแล้วลบ: คลิกผนัง (ไม่ลาก) = เลือก ขอบผนังเป็นเส้นฟ้า แผงซ้ายบอกยาว (แก้ได้แบบยืด CAD) หนา สูง · 🗑 ลบผนังช่วงนี้ หรือกด Del (ถามก่อน) · Esc = เลิกเลือก · ผนังที่วาดแบบปิดรอบ = เปิดรอบตรงช่วงนั้น (ที่เหลือเป็นเส้นเดียว) · เส้นเปิด = แยกเป็น 2 เส้น (หนา/สูง/ด้าน/สีตามเดิม) · ผนังห้องสี่เหลี่ยม = ปิดผนังด้านนั้น · ประตู/หน้าต่าง/ปลั๊กบนช่วงที่ลบหายไปด้วย ของบนช่วงอื่นอยู่ที่เดิม · ลากเริ่มบนผนังยังหมุนกล้องได้ · ห้องล็อก = เลือกไม่ได้ · ปิด SN_OFF.plWallSel=1 · แก้ด้วย: ลบผนังทั้งเส้นจากแผงห้อง ประตู/หน้าต่างบนเส้นถัดไปเคยเลื่อนไปติดผิดเส้น ตอนนี้เลขเส้นเลื่อนตาม และของบนเส้นที่ลบหายไปด้วย · ② 🖱 ปุ่มใต้ลูกเต๋า = ความไวเมาส์ ลากหมุน / ล้อซูม 0.25–2.5× (ค่าเดิม 1×) จำไว้ในเครื่อง · SN_OFF.orbSens=1 · ③ หน้าต่างไม่มีขอบรองยื่นด้านในแล้ว (SN_OFF.plWinNoSill=1 = มีแบบเดิม) · ④ 🪟 หน้าต่างบานเดี่ยว (การ์ดใหม่ 600×1200 สูงจากพื้น 900): กรอบบาน มือจับฝั่งตรงข้ามบานพับ เส้นประบอกฝั่งบานพับ · สลับบานพับด้วย R / ที่แผง · หน้าต่างทุกแบบมีช่อง ห่างฝ้า (ขอบบนถึงหัวผนัง — แก้แล้วเลื่อนทั้งบาน สูงเท่าเดิม) ใส่ตามแบบลูกค้า เช่น สูง 2450 ห่างพื้น 210 ห่างฝ้า 320 · ⑤ ตู้ที่เลือก: แถว ห่างซ้าย/ขวา (ใต้ห่างผนัง) — ระยะถึงผนังหรือตู้ข้าง ๆ ที่ใกล้สุด (เลขเดียวกับเส้นแดง/ปุ่มปิดช่อง) ใส่ค่าใหม่ ตู้เลื่อนตามแนวผนัง อีกด้านเปลี่ยนตาม · ใส่เกินช่องรวม = เตือน · SN_OFF.plSideOff=1 · ⑥ 🔔 แจ้งเตือนเวอร์ชันใหม่: Deploy ทุกครั้งส่ง version.json ขึ้นคู่ index.html · โปรแกรมอ่าน 20 วิหลังเปิด ทุก 5 นาที และตอนกลับมาที่แท็บ · บนเว็บใหม่กว่าเครื่องนี้ = แถบฟ้ากลางล่างจอ “มีโปรแกรมเวอร์ชันใหม่ … Save งานแล้วกด F5” ปุ่ม 🔄 โหลดใหม่ (มีงานในจอ = ถามก่อน · กู้งานได้ที่ ↩ ทำงานต่อจากงานล่าสุด) / ภายหลัง (ซ่อน 30 นาที) + ลงกระดิ่งแจ้งเตือนครั้งเดียว · กดแล้วยังเป็นรุ่นเดิม = บอกให้รอเว็บอัปเดตแล้ว Ctrl+F5 · เปิดจากไฟล์ในเครื่อง = อ่านจาก GitHub Pages ปุ่มเป็น 🌐 เปิดเว็บ · หน้าดูงานไม่เตือน · SN_OFF.appUpd=1"],
     ["1.538","2026-10-28","FEAT ห้องออกแบบ (ผู้ใช้ 16:04) — ① เลขผนัง: ป้ายวงกลมเลขช่วงผนังที่วาด (1…n · หลายเส้น = เส้น.ช่วง ตรงกับช่อง “ยาวแต่ละช่วง” ในแผง) ขึ้นตอนวาดผนัง และเมื่อเปิดปุ่ม “เลข” แถบล่าง · ② Dim ของในห้อง: ลาก/เลือกเสา ฝ้า ท่อที่ขึ้นจากพื้น = เส้นบอกระยะสี่ทิศถึงผิวผนัง/เสาที่ใกล้สุด · ประตู หน้าต่าง ปลั๊ก ท่อบนผนัง = ระยะตามแนวผนังถึงต้น/ปลายผนัง · เสาลาก/เลือกได้ในโหมดวาดผนัง (มุมบนแบบแปลน) และลากการ์ดเสาลงแปลนได้ · ③ 🔒 ล็อกห้อง (ปุ่มหัวแผงห้อง): ผนังที่วาด ขนาดห้อง ประตู หน้าต่าง บันได เสา ฝ้า ปลั๊ก ท่อ ไม่ถูกเลือก/ลาก/ลบ/แก้ (คลิกทะลุไปที่ตู้) · วางตู้/เฟอร์ได้ตามปกติ · state.room.lock · ④ ▭ ฝ้าลด / ฝ้าหลุม: การ์ดในแท็บของในห้อง ลากวางเป็นพื้นที่สี่เหลี่ยม ตั้งกว้าง/ลึก/ระดับฝ้าจากพื้น/ระยะจากมุม (แบบเสา) · ต่ำกว่าฝ้าห้อง = ฝ้าลด (กล่องโปร่ง) · สูงกว่า = ฝ้าหลุม (กรอบฟ้า) · ป้ายระดับฝ้า · คลิกตู้ใต้ฝ้าได้ (ตู้ชนะ) · ยังไม่ผูกกับฟิลเลอร์บน · ⑤ 🔌 ปลั๊กไฟ · 🚰 ท่อน้ำดี Ø20 · ⭕ ท่อน้ำเสีย Ø55: ลากติดผนัง (ความสูงตามจุดที่ชี้บนผนัง · ศูนย์ห่างต้นผนัง) หรือลากลงพื้น = ขึ้นจากพื้น (ศูนย์ห่างผนังตามมุมที่เลือก) · แผงแก้ขนาด/สูงจากพื้น/ระยะ · ปุ่มย้ายขึ้นจากพื้น/ติดผนังใกล้สุด · ไม่เจาะผนัง · แท็บแคตตาล็อกเปลี่ยนชื่อเป็น “🚪 ของในห้อง” แบ่งหมวด ประตู·หน้าต่าง / โครงสร้าง / งานระบบ · ⑥ มุมแปลน (ผู้ใช้ 16:17 “กดลูกเต๋าที่ TOP ให้เป็นมุมแปลน แล้วให้เห็นสัญลักษณ์บานเปิด”): เดิมกด TOP ในห้องที่ยังไม่มีตู้ = “ยังไม่มีชิ้นงานในฉาก” ไม่ไปไหน (vcFit นับแต่ตู้) → ห้องออกแบบนับกรอบห้องด้วย · กล้องมองลงตรง (phi < 0.3) = มุมแปลน: เลนส์แคบ 12° ถอยกล้องตามสัดส่วนตอนวางกล้อง (ระยะซูม/เลื่อน/สแนปคิดเหมือนเดิม · ตู้สูงไม่เอียงออกนอกแนว · SN_OFF.plPlanFov=1 = เลนส์เดิม) · ผนังตัดที่ 1,100 (ผนังห้อง + ผนังที่วาด) · ประตูบานเปิดวาดบานเปิด 90° + เส้นโค้งวงเปิดสีเข้มเหนือแนวตัด · บานคู่ 2 วง · บานเลื่อน 2 แผ่นเหลื่อม · หน้าต่าง = เส้นผิวผนัง 2 เส้น + เส้นกระจก · ฝ้า = กรอบอย่างเดียว · หมุนกล้องออก = กลับเป็น 3D เต็ม · ปิด SN_OFF.plPlanView=1 · ปิด SN_OFF.plRoomLock=1 / ploDim=1 / plwNum=1 / plCeil=1 / plUtil=1"],
     ["1.537","2026-10-28","FEAT 🖌 พื้นห้องเลือกแบบพื้นได้ (ผู้ใช้ 15:56: “พื้นเลือกได้ไหมว่าเอาไม้ปาเก้ กระเบื้อง”) — หน้าต่าง 🖌 แท็บพื้นห้องมีหมวด “แบบพื้น”: เรียบ (สีเดียว) · กระเบื้อง (300×300 … 1200×1200 มีร่องยาแนว) · ไม้ปาร์เก้ก้างปลา · ไม้ปาร์เก้ลายสาน · ไม้พื้นแผ่นยาว — ลายวาดในโปรแกรม (ไม่ต้องหารูป) ซ้ำตามขนาดจริงเป็น มม. · เลือกขนาดแผ่น + ⟳ หมุนแนว 90° · สีพื้นฐาน/เลือกเอง/หลอดดูดสี = สีของลาย (ไม้มีแถว “สีไม้” 8 สีเพิ่ม) · กระเบื้องสีแต่ละแผ่นต่างกันนิด ๆ ยาแนวอ่อน/เข้มตามสีกระเบื้อง · ไม้มีลายเสี้ยนและสีแผ่นต่างกัน · เก็บใน state.room.paint.floor {pat, sz, rot, c} · ปิด SN_OFF.plFloorPat=1"],
@@ -4947,7 +4948,7 @@ let undoStack=[], redoStack=[], lastSnap=null;
    เปลี่ยนสีในช่อง Variables หรือวางคุณสมบัติตู้แล้วกด Ctrl+Z ชิ้นย้อน แต่สีกับค่าปรับบานค้างของใหม่ ไม่ตรงกัน */
 const SNAP_CAB_KEYS=["cabColors","cabDP","cabVarTxt","cabFrontEdge","cabFrontDir","orderMat"];   // v1.337: + วัสดุทั้งออเดอร์ (Ctrl+Z ย้อนพร้อมความหนาชิ้น)
 function snap(){ const cab={}; SNAP_CAB_KEYS.forEach(k=>{ if(state[k]) cab[k]=state[k]; });
-  return JSON.stringify({boards:state.boards,globalTone:state.globalTone,cab:cab}); }
+  return JSON.stringify({boards:state.boards,globalTone:state.globalTone,cab:cab,room:snOff("plUndo")?undefined:(state.room||null)}); }   /* v1.540: + ห้อง (Ctrl+Z ย้อนผนัง/ประตู/หน้าต่างได้) */
 // รูที่ชิ้นอื่นมาเจาะฝากไว้ (src=เจ้าของ): ถ้าเจ้าของถูกลบไม่ว่าทางไหน รูต้องหายตาม — กวาดกลางทุกครั้งที่ commit
 /* v37.8: h.src ส่วนใหญ่คือ "id ของชิ้นที่เป็นเจ้าของรู" แต่ไม่ใช่ทุกตัว
    รูของระบบบางชุดใช้ src เป็น "ป้ายชื่อผัง" ไม่ใช่ id ของชิ้น (หูแขวนกระจก = "glasshanger")
@@ -5219,10 +5220,12 @@ function runOverlapCheck(){
 }
 function clearOverlapHL(){ if(state.overlapIds&&state.overlapIds.length){ state.overlapIds=[]; render3D(false); } }
 function restoreSnap(str){ const o=JSON.parse(str); state.boards=o.boards; state.globalTone=o.globalTone;
+  let _rmR=false; if(Object.prototype.hasOwnProperty.call(o,"room")&&!snOff("plUndo")){ state.room=o.room||null; _rmR=true; }   /* v1.540: ห้องย้อนตาม (ภาพเก่าก่อน 1.540 ไม่มีห้อง = ห้องอยู่ที่เดิม) */
   if(o.cab) SNAP_CAB_KEYS.forEach(k=>{ state[k]=o.cab[k]||{}; });   /* v1.297 */
   if(!selBoard())state.selectedId=null; buildGTones();
   try{ autoMateMarkClean(); }catch(e){}   /* v1.425: ทุกจุดในประวัติเจาะรูคู่ไว้แล้วก่อนเก็บ — ย้อนแล้วไม่ต้องยิงใหม่ทั้งฉาก */
-  sync(0,1,0); }
+  sync(0,1,0);
+  if(_rmR) try{ plUndoRoomRedraw(); }catch(e){ console.error("plUndo:",e); } }
 function undo(){ if(_alignHold>0) return; if(moveSession)cancelMove(); if(!undoStack.length)return; redoStack.push(snap()); const prev=undoStack.pop(); restoreSnap(prev); lastSnap=prev; refreshUndoUI(); toast("ย้อนกลับ"); }
 function redo(){ if(_alignHold>0) return; if(!redoStack.length)return; undoStack.push(snap()); const nxt=redoStack.pop(); restoreSnap(nxt); lastSnap=nxt; refreshUndoUI(); toast("ทำซ้ำ"); }
 function refreshUndoUI(){ const u=$("undoBtn"),r=$("redoBtn"); if(u)u.disabled=!undoStack.length; if(r)r.disabled=!redoStack.length; }
@@ -28954,6 +28957,9 @@ function boardRole(b){
      SN_OFF.dwgDoorLine=1 หน้ารวมวัสดุ ดีไซน์หน้าบานเป็นภาพถ่าย 3D แยกตาม Part ลิงก์ (แบบ 1.521) (v1.527)
      SN_OFF.realPlRoom=1  โหมดสมจริงในห้องออกแบบสร้างห้องรอบตู้แบบเดิม (ไม่ใช้ผนังของห้องออกแบบ) (v1.528)
      SN_OFF.realSnap=1    ไม่มีปุ่ม 📷 บันทึกภาพสมจริงความละเอียดสูง (v1.528)
+     SN_OFF.plPlanLbl=1   มุมแปลน (TOP) ไม่มีป้ายความยาวผนัง/เลขผนังอัตโนมัติ (v1.540)
+     SN_OFF.plUndo=1      Ctrl+Z ย้อนแต่ตู้แบบเดิม (ห้องไม่อยู่ในประวัติ) (v1.540)
+     SN_OFF.plRoomLib=1   ไม่มีปุ่ม 💾 บันทึกห้อง / 📂 เปิดห้อง / 🧹 ล้างตู้เก็บห้อง · Order → ใหม่ ไม่ถามเรื่องห้อง (v1.540)
      SN_OFF.plWallSel=1   คลิกผนังในห้องออกแบบไม่เลือก/ลบทีละช่วง (ลบผนังทั้งเส้นจากแผงห้องแบบเดิม) (v1.539)
      SN_OFF.orbSens=1     ไม่มีปุ่ม 🖱 ความไวเมาส์ใต้ลูกเต๋า · ลากหมุน/ซูมความไวเดิม (v1.539)
      SN_OFF.plWinNoSill=1 หน้าต่างในห้องออกแบบมีขอบรองยื่นด้านในแบบเดิม (v1.539)
@@ -35746,6 +35752,10 @@ function plRoomDraw(){
     const el=new THREE.LineSegments(new THREE.EdgesGeometry(m.geometry), solid?new THREE.LineBasicMaterial({color:0x8f8470}):new THREE.LineBasicMaterial({color:0x7d7260,transparent:true,opacity:.8}));
     el.position.copy(m.position); g.add(el);
   });
+  /* v1.540: มุมแปลน — ป้ายความยาวผนังห้องสี่เหลี่ยมแต่ละด้าน (ด้านในห้อง เหนือแนวตัด) */
+  if(plPlanLbl()) try{ const sz=plwLblSz(); Object.keys(PL_WALLS).forEach(k=>{ if(!r.walls[k]) return; const W=PL_WALLS[k], L=W.ax===0?r.w:r.d;
+      const p=[r.x0+r.w/2, Math.min(PLAN_CUT,+r.h||2600)+20, r.z0+r.d/2]; p[W.pa]=plFace(r,k)+W.s*sz*1.1;
+      const sp=plwLabel(String(Math.round(L)),sz); sp.position.set(p[0],p[1],p[2]); sp.userData.plPlanLbl=k; g.add(sp); }); }catch(e){ console.error("plPlanLbl:",e); }
   /* v1.307: เส้นแนวบนผนัง — ฟ้า = ก้นตู้ลอย · ส้ม = แนวบนตู้ลอย/ตู้สูง */
   const guide=(y,col)=>{ Object.keys(PL_WALLS).forEach(k=>{ if(!r.walls[k]) return; const W=PL_WALLS[k], rg=plRange(r,W.ax);
       const a=[0,y,0], b=[0,y,0]; a[W.ax]=rg[0]; b[W.ax]=rg[1]; a[W.pa]=b[W.pa]=plFace(r,k)+W.s*2;
@@ -36395,7 +36405,7 @@ function plwAddMeshes(g){
         const A=new THREE.Vector3(f.q[0][0]+f.ni[0]*2,y,f.q[0][1]+f.ni[1]*2), B=new THREE.Vector3(f.q[1][0]+f.ni[0]*2,y,f.q[1][1]+f.ni[1]*2);
         const ln=new THREE.Line(new THREE.BufferGeometry().setFromPoints([A,B]), new THREE.LineDashedMaterial({color:col,dashSize:60,gapSize:40,transparent:true,opacity:.9}));
         ln.computeLineDistances(); g.add(ln); });
-      if(PLW.on&&f.L>=1){ const sp=plwLabel(String(Math.round(f.L)),sz); sp.position.set(mx+f.ni[0]*sz*1.1,H+20,mz+f.ni[1]*sz*1.1); g.add(sp); }
+      if((PLW.on||plPlanLbl())&&f.L>=1){ const sp=plwLabel(String(Math.round(f.L)),sz);   /* v1.540: มุมแปลนมีป้ายความยาวเหมือนตอนวาด */ sp.position.set(mx+f.ni[0]*sz*1.1,H+20,mz+f.ni[1]*sz*1.1); g.add(sp); }
     }); }); }
 /* ── ตอนวาด: เส้น/จุด/รอยเท้าของเส้นที่กำลังวาด ── */
 function plwDispose(o){ o.traverse(x=>{ if(x.geometry&&!x.isSprite) x.geometry.dispose(); if(x.material&&!(x.material.userData&&x.material.userData.keep)) x.material.dispose(); }); }
@@ -37425,11 +37435,11 @@ function plwNumLbl(t,sz){ PLW.num=PLW.num||{}; let m=PLW.num[t];
     g.fillStyle="#ffffff"; g.font="bold "+(t.length>2?44:60)+"px 'IBM Plex Mono',monospace"; g.textAlign="center"; g.textBaseline="middle"; g.fillText(t,64,68);
     m=PLW.num[t]=new THREE.SpriteMaterial({map:new THREE.CanvasTexture(c),depthTest:false,depthWrite:false,transparent:true}); m.userData.keep=1; }
   const s=new THREE.Sprite(m); s.scale.set(sz,sz,1); s.renderOrder=999; return s; }
-function plwNumMeshes(g){ if(snOff("plwNum")||snOff("plDrawWall")) return; if(!(PLW.on||(typeof state!=="undefined"&&state.showLabels))) return;
+function plwNumMeshes(g){ if(snOff("plwNum")||snOff("plDrawWall")) return; if(!(PLW.on||plPlanLbl()||(typeof state!=="undefined"&&state.showLabels))) return;   // v1.540: มุมแปลน = มีเลขผนังเอง
   const L=plwList(); if(!L.length) return; const sz=plwLblSz()*0.9, many=L.length>1;
   L.forEach((w,wi)=>{ try{ plwFoot(w).forEach((f,si)=>{ const A=f.q[0], B=f.q[1], off=sz*1.2, sp=plwNumLbl(many?((wi+1)+"."+(si+1)):String(si+1),sz);
-      const L=Math.hypot(B[0]-A[0],B[1]-A[1]), sh=PLW.on?Math.min(sz*2.4,L*0.3):0;   // ตอนวาด: เลื่อนพ้นป้ายความยาวกลางช่วง
-      sp.position.set((A[0]+B[0])/2+f.d[0]*sh+f.ni[0]*off, PLW.on?90:40, (A[1]+B[1])/2+f.d[1]*sh+f.ni[1]*off); sp.userData.plwNum=[wi,si]; g.add(sp); }); }catch(e){} }); }
+      const L=Math.hypot(B[0]-A[0],B[1]-A[1]), sh=(PLW.on||plPlanLbl())?Math.min(sz*2.4,L*0.3):0;   // ตอนวาด: เลื่อนพ้นป้ายความยาวกลางช่วง
+      sp.position.set((A[0]+B[0])/2+f.d[0]*sh+f.ni[0]*off, plPlanLbl()?PLAN_CUT+40:(PLW.on?90:40), (A[1]+B[1])/2+f.d[1]*sh+f.ni[1]*off); sp.userData.plwNum=[wi,si]; g.add(sp); }); }catch(e){} }); }
 /* ── ② Dim ── */
 function ploDimSegs(self){ const S=[];
   ploFrames().forEach(F=>{ if(F.q){ S.push([F.q[0],F.q[1]]); return; } const e=F.ex||0, P=t=>[F.a[0]+F.d[0]*t, F.a[1]+F.d[1]*t]; S.push([P(-e),P(F.L+e)]); });
@@ -38305,7 +38315,7 @@ function plRoomHtml531(r,num){ plCss317(); plCss531();
       +'<button class="ibtn" id="plClrAll" title="เลือกสีทีเดียวทั้งออเดอร์ — หน้าบานทุกบาน โครงตู้ ฯลฯ">🎨 สีทั้งออเดอร์</button>'
       +(snOff("plPull")?'':'<button class="ibtn" id="plPullAll" title="เลือกมือจับทีเดียวทั้งห้อง">🖐 มือจับทั้งห้อง</button>')
       +(snOff("plDrawWall")?'':('<button class="ibtn" id="plwGo2" title="มองจากบน คลิกวางจุดตามแบบบ้าน แล้วผนังขึ้นเป็น 3D"'+(PLW.on?' style="background:var(--accent);color:#fff;border-color:var(--accent)"':'')+'>'+(PLW.on?'✕ เลิกวาดผนัง':'✏ วาดผนังจากแปลน')+'</button>'))
-      +(snOff("plPaint")?'':'<button class="ibtn" id="plptGo" title="สีผนัง / พื้นห้อง — สีพื้นฐาน · หลอดดูดสี · อัปโหลดรูป (แยกจากสีวัสดุตู้)">🖌 สีผนัง · พื้น</button>')+plLockBtn()+'</div>';   /* v1.538: 🔒 ล็อกห้อง */   // v1.534   // v1.533
+      +(snOff("plPaint")?'':'<button class="ibtn" id="plptGo" title="สีผนัง / พื้นห้อง — สีพื้นฐาน · หลอดดูดสี · อัปโหลดรูป (แยกจากสีวัสดุตู้)">🖌 สีผนัง · พื้น</button>')+plLockBtn()+'</div>'+plRoomLibBar();   /* v1.540: 💾 📂 🧹 */   /* v1.538: 🔒 ล็อกห้อง */   // v1.534   // v1.533
   const size=grp("size",false,"ขนาดห้อง · ผนัง · Dim",Math.round(r.w)+"×"+Math.round(r.d)+"×"+Math.round(r.h),
       '<div class="plDim3">'+[["w","กว้าง"],["d","ลึก"],["h","สูง"]].map(a=>'<label>'+a[1]+' '+nin(a[0],r[a[0]])+'</label>').join("")+'</div>'
       +F("ผนัง",Object.keys(PL_WALLS).map(k=>'<label class="plCk"><input type="checkbox" data-w="'+k+'"'+(r.walls[k]?" checked":"")+'> '+PL_WALLS[k].lbl+'</label>').join(""))
@@ -39176,12 +39186,118 @@ function plPanelRoom(){
   s.querySelectorAll("input[data-w]").forEach(inp=>inp.onchange=()=>{ r.walls[inp.dataset.w]=inp.checked; plRoomDraw(); plPanelWalls(); plAfterRoom(); });
   s.querySelector("#plFitRoom").onclick=()=>{ plFitRoom(true); plRoomDraw(); plPanelRoom(); plCamRoom(); plAfterRoom(); };
   s.querySelector("#plCam").onclick=()=>plCamRoom();
+  { const a=s.querySelector("#plrlSave"), b=s.querySelector("#plrlOpen"), c=s.querySelector("#plrlNew");   // v1.540
+    if(a) a.onclick=()=>plRoomLibSave(); if(b) b.onclick=()=>plRoomLibOpen(); if(c) c.onclick=()=>plClearCabsKeepRoom(); }
   { const a=s.querySelector("#plDimGap"), b=s.querySelector("#plDimSize"); if(a) a.onchange=()=>plDimOptSet("gap",a.checked); if(b) b.onchange=()=>plDimOptSet("size",b.checked); }   // v1.310
   plPanelWalls();
   try{ plWtWire(s); }catch(e){ console.error("plWtWire:",e); }   // v1.520
   try{ plwWire(s); }catch(e){ console.error("plwWire:",e); }       // v1.533
 }
-function plAfterRoom(){ try{ autosave(); }catch(e){} plPanelGaps(); }
+/* ═════════ v1.540: ↶ ↷ งานห้องอยู่ในประวัติเดียวกับตู้ ═════════
+   ผู้ใช้ 28/10 17:06: “เพิ่มคำสั่ง undo หรือ Ctrl+Z กับเดินหน้าให้ด้วย ผนังตอนนี้ย้อนกลับหน้าออกแบบไม่ได้ เดินหน้าก็ไม่ได้”
+   เดิม snap() เก็บแต่ boards/สี/ค่าตู้ — ภาพประวัติเกิดตอน commit (sync) เท่านั้น งานห้อง (ผนังที่วาด ประตู หน้าต่าง …) ไม่ผ่าน sync จึงไม่มีในประวัติ
+   ตอนนี้ snap() มี state.room ด้วย และทุกจุดที่แก้ห้องจบที่ plAfterRoom → plUndoMark() เก็บภาพ (แบบเดียวกับท้าย commit) ลำดับเดียวกับงานตู้
+   ย้อน = restoreSnap คืนห้องแล้ววาดห้อง/แผงใหม่ · ระหว่างวาดผนัง Ctrl+Z = ถอยจุด (เหมือน Backspace) ยังไม่จบเส้นจึงยังไม่เป็นประวัติ
+   ปิด SN_OFF.plUndo=1 = แบบเดิม */
+function plUndoMark(){ if(snOff("plUndo")||typeof snap!=="function") return false; if(_alignHold>0||VIEW_ONLY) return false;
+  const cur=snap(); if(cur===lastSnap) return false;
+  if(lastSnap!=null) undoStack.push(lastSnap); lastSnap=cur; redoStack.length=0; if(undoStack.length>120) undoStack.shift(); refreshUndoUI(); return true; }
+function plUndoRoomRedraw(){ if(typeof PL==="undefined"||!PL.on) return;
+  if(PL.wpick&&!plwsOk(PL.wpick)) PL.wpick=null; if(PLO.sel&&!ploGet(PLO.sel)) PLO.sel=null; PLO.drag=null;
+  plRoomDraw(); plPanelRoom(); plPanelSel(); try{ plPanelGrid(); }catch(e){} }
+function plUndoKey(e){ if(snOff("plUndo")||typeof PL==="undefined"||!PL.on||!PLW.on) return; if(!(e.ctrlKey||e.metaKey)||e.code!=="KeyZ"||e.shiftKey) return;
+  const t=e.target; if(t&&/INPUT|TEXTAREA|SELECT/.test(t.tagName)) return;
+  if(PLW.pts&&PLW.pts.length){ e.preventDefault(); e.stopImmediatePropagation(); PLW.pts.pop(); plwPrevDraw(); plwTip(); } }
+addEventListener("keydown",plUndoKey,true);
+function plPlanLbl(){ return !snOff("plPlanLbl")&&plPlanOn(); }   // v1.540: มุมแปลนมีป้ายความยาว/เลขผนังเอง
+/* ═════════ v1.540: 💾 บันทึกห้อง / 📂 เปิดห้อง / 🧹 ล้างตู้ เก็บห้อง ═════════
+   ผู้ใช้ 28/10 17:06: “ควรมีระบบ SAVE ห้องเอาไว้ด้วย เหมือน SAVE order ที่ยังไม่มีตู้ หรือเคลียร์ตู้แต่ไม่เคลียร์ห้อง แล้วปรับห้องจากของที่มี เพื่อใช้ได้กับบ้านหลังอื่น ๆ”
+   เดิมห้องอยู่ในออเดอร์เท่านั้น (state.room ไปกับ Save Order) · Order → ใหม่ ล้างห้องทิ้งเสมอ แม้ไม่มีตู้ก็ไม่ถาม
+   ตอนนี้: ห้องเก็บแยกในไฟล์กลาง ตาราง app_settings คีย์ "plroom:<ชื่อ>" ค่า = {v,name,at,sum,room} (ตาราง furnitech_cabinets ไม่ใช้ — รายการโมเดลตู้ 20 กว่าจุดกรองเฉพาะ ORD:: SECT:: ฯลฯ)
+     📂 เปิดใช้ = แทนห้องตอนนี้ (ตู้ในฉากอยู่ที่เดิม · Ctrl+Z ย้อนได้) · 🧹 ล้างตู้ เก็บห้อง = newOrder({keepRoom}) หรือล้างแค่ตู้
+     Order → ใหม่ มีห้องวาดไว้ = ถามก่อน มีทางเลือก 🏠 ใหม่ · เก็บห้องไว้ · ปิด SN_OFF.plRoomLib=1 */
+const PLRL_PFX="plroom:";
+function plRoomHas(r){ r=r||(typeof state!=="undefined"?state.room:null); return !!(r&&(((r.dw||[]).length)||((r.obj||[]).length))); }
+function plRoomSum(r){ if(!r) return ""; const dw=r.dw||[], nO=(r.obj||[]).length, rc=Object.keys(r.walls||{}).filter(k=>r.walls[k]).length;
+  const nS=dw.reduce((s,w)=>s+plwSegs(w).length,0);
+  return Math.round(+r.w||0)+"×"+Math.round(+r.d||0)+"×"+Math.round(+r.h||0)+(dw.length?(" · ผนังวาด "+dw.length+" เส้น "+nS+" ช่วง"):"")+(rc?(" · ผนังสี่เหลี่ยม "+rc+" ด้าน"):"")+(nO?(" · ประตู/หน้าต่าง/ของ "+nO+" ชิ้น"):""); }
+function plRoomLibDate(at){ const d=new Date(at||0); if(!(d.getTime()>0)) return ""; const p=n=>String(n).padStart(2,"0");
+  return p(d.getDate())+"/"+p(d.getMonth()+1)+"/"+d.getFullYear()+" "+p(d.getHours())+":"+p(d.getMinutes()); }
+function plRoomLibBar(){ if(snOff("plRoomLib")) return ""; const r=(typeof state!=="undefined"&&state.room)||{};
+  return '<div class="plBar plOdd" style="margin-top:6px">'
+    +'<button class="ibtn" id="plrlSave" title="เก็บห้องนี้ (ผนัง ประตู หน้าต่าง เสา ฝ้า ปลั๊ก สีผนัง/พื้น ขนาด ค่าห้อง — ไม่เก็บตู้) ลงไฟล์กลาง เอาไปใช้กับออเดอร์อื่น/บ้านหลังอื่นได้">💾 บันทึกห้อง</button>'
+    +'<button class="ibtn" id="plrlOpen" title="รายการห้องที่บันทึกไว้ในไฟล์กลาง — เปิดใช้ = แทนห้องตอนนี้ (ตู้อยู่ที่เดิม)">📂 เปิดห้องที่บันทึก</button>'
+    +'<button class="ibtn" id="plrlNew" title="ล้างตู้ทั้งหมดแต่เก็บห้องไว้ — เริ่มออเดอร์ใหม่ (เอาห้องนี้ไปปรับใช้บ้านหลังอื่น) หรือล้างแค่ตู้">🧹 ล้างตู้ · เก็บห้อง</button></div>'
+    +(r.libName?('<div class="plNote" style="margin-top:3px">ห้องนี้มาจาก/บันทึกเป็น “'+escapeHtml(String(r.libName))+'”</div>'):''); }
+async function plRoomLibList(){ const db=await getDB(); const res=await db.from("app_settings").select("key,value").like("key",PLRL_PFX+"%"); if(res.error) throw res.error;
+  return (res.data||[]).map(x=>{ let v=x&&x.value; try{ if(typeof v==="string") v=JSON.parse(v); }catch(e){ v=null; } return (v&&v.room)?Object.assign({key:x.key},v):null; })
+    .filter(Boolean).sort((a,b)=>String(b.at||"").localeCompare(String(a.at||""))); }
+async function plRoomLibSave(){ if(snOff("plRoomLib")) return false; const r=plRoom();
+  let def=r.libName||""; if(!def){ try{ const oe=$("exOrderId"); if(oe&&String(oe.value||"").trim()) def="ห้อง "+String(oe.value).trim(); }catch(e){} }
+  const nm0=await dialog({title:"💾 บันทึกห้อง — เอาไปใช้กับออเดอร์อื่นได้", input:true, value:def, placeholder:"ชื่อห้อง เช่น บ้านคุณเอ · ครัวชั้น 1", ok:"บันทึก",
+    html:'<div style="font-size:12px;line-height:1.6;color:var(--ink-dim)">'+escapeHtml(plRoomSum(r))+'<br>เก็บผนัง ประตู หน้าต่าง เสา ฝ้า ปลั๊ก/ท่อ สีผนัง/พื้น ขนาดห้อง และค่าห้อง (ขา ฟิลเลอร์ ไม้ไฟ …) — <b>ไม่เก็บตู้</b> · ลงไฟล์กลาง ทุกเครื่องเห็น</div>'});
+  if(nm0==null) return false; const nm=String(nm0).trim().replace(/\s+/g," ").slice(0,80); if(!nm){ toast("ใส่ชื่อห้องก่อน"); return false; }
+  const key=PLRL_PFX+nm;
+  try{ const db=await getDB();
+    const ex=await db.from("app_settings").select("key").eq("key",key).maybeSingle();
+    if(ex&&ex.data&&!(await dialog({title:"มีห้องชื่อ “"+nm+"” อยู่แล้ว — บันทึกทับ?", ok:"บันทึกทับ"}))) return false;
+    const room=JSON.parse(JSON.stringify(r)); delete room.libName;
+    const val={v:1, name:nm, at:new Date().toISOString(), sum:plRoomSum(room), room};
+    const res=await db.from("app_settings").upsert({key, value:JSON.stringify(val)},{onConflict:"key"}); if(res&&res.error) throw res.error;
+    r.libName=nm; try{ autosave(); }catch(e){} try{ plPanelRoom(); }catch(e){}
+    toast("💾 บันทึกห้อง “"+nm+"” แล้ว — เปิดใช้ได้ที่ 📂 เปิดห้องที่บันทึก (ทุกเครื่องที่ใช้ไฟล์กลางเดียวกัน)"); return true; }
+  catch(e){ console.error("plRoomLibSave:",e); toast("บันทึกห้องไม่สำเร็จ: "+((e&&e.message)||e)); return false; } }
+async function plRoomLibLoad(x){ if(!x||!x.room) return false; if(ploLocked()) return false;
+  if(typeof isLocked==="function"&&isLocked()){ try{ guardEdit("เปิดห้องที่บันทึก"); }catch(e){} return false; }
+  const nCab=Object.keys(plCabMap()).length;
+  if(plRoomHas()&&!(await dialog({title:"เปิดห้อง “"+(x.name||"")+"” แทนห้องตอนนี้?", ok:"เปิดใช้",
+      html:'<div style="font-size:12.5px;line-height:1.6">ห้องตอนนี้ (ผนัง ประตู หน้าต่าง …) ถูกแทนทั้งหมด'+(nCab?(' · ตู้ในฉาก '+nCab+' ใบอยู่ที่เดิม (อาจต้องลากเข้าผนังใหม่)'):'')+'<br><span style="opacity:.7">เผลอกด Ctrl+Z ย้อนได้</span></div>'}))) return false;
+  const room=JSON.parse(JSON.stringify(x.room)); room.libName=x.name||"";
+  state.room=room; PL.wpick=null; PLO.sel=null; PLO.drag=null;
+  try{ if(PLW.on) plwStop(); }catch(e){}
+  plRoomDraw(); plPanelRoom(); plPanelSel(); try{ plPanelGrid(); }catch(e){} try{ plCamRoom(); }catch(e){} plAfterRoom();
+  toast("📂 เปิดห้อง “"+(x.name||"")+"” แล้ว"+(nCab?" — ตู้ในฉากอยู่ที่เดิม":"")); return true; }
+async function plRoomLibDel(x){ if(!x) return false;
+  if(!(await dialog({title:"ลบห้อง “"+(x.name||"")+"” ออกจากไฟล์กลาง?", ok:"ลบ", html:'<div style="font-size:12.5px">ทุกเครื่องจะไม่เห็นห้องนี้อีก · ออเดอร์ที่ใช้ห้องนี้ไปแล้วไม่กระทบ</div>'}))) return false;
+  try{ const db=await getDB(); const res=await db.from("app_settings").delete().eq("key",x.key); if(res&&res.error) throw res.error; toast("ลบห้อง “"+(x.name||"")+"” แล้ว"); return true; }
+  catch(e){ console.error("plRoomLibDel:",e); toast("ลบห้องไม่สำเร็จ: "+((e&&e.message)||e)); return false; } }
+async function plRoomLibFill(m,quick){ const box=m.querySelector("#plrlList"); if(!box) return;
+  if(!quick||!m._list){ try{ m._list=await plRoomLibList(); }catch(e){ console.error("plRoomLib:",e); box.innerHTML='<div style="padding:14px;color:#d33">อ่านรายการห้องไม่ได้: '+escapeHtml(String((e&&e.message)||e))+'</div>'; return; } }
+  const q=String((m.querySelector("#plrlQ")||{}).value||"").trim().toLowerCase();
+  const L=m._list.filter(x=>!q||String(x.name||"").toLowerCase().indexOf(q)>=0);
+  if(!L.length){ box.innerHTML='<div style="padding:14px;color:var(--ink-dim)">'+(m._list.length?'ไม่พบชื่อที่ค้น':'ยังไม่มีห้องที่บันทึก — กด 💾 บันทึกห้อง')+'</div>'; return; }
+  box.innerHTML=L.map((x,i)=>'<div class="plrlRow" data-i="'+i+'" style="display:flex;align-items:center;gap:8px;padding:8px 10px;border-bottom:.5px solid var(--line)">'
+    +'<div style="flex:1;min-width:0"><b>'+escapeHtml(String(x.name||""))+'</b><div style="font-size:11px;color:var(--ink-dim);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">'+escapeHtml(plRoomSum(x.room))+' · '+escapeHtml(plRoomLibDate(x.at))+'</div></div>'
+    +'<button class="ibtn" data-a="use" style="flex:none;width:auto;padding:5px 14px;background:var(--accent);color:#fff;border-color:transparent">เปิดใช้</button>'
+    +'<button class="ibtn" data-a="del" title="ลบห้องนี้ออกจากไฟล์กลาง" style="flex:none;width:auto;padding:5px 9px;color:#d33">🗑</button></div>').join("");
+  box.querySelectorAll(".plrlRow").forEach(row=>{ const x=L[+row.dataset.i];
+    row.querySelector('[data-a="use"]').onclick=async()=>{ if(await plRoomLibLoad(x)) m.remove(); };
+    row.querySelector('[data-a="del"]').onclick=async()=>{ if(await plRoomLibDel(x)) plRoomLibFill(m); }; }); }
+async function plRoomLibOpen(){ if(snOff("plRoomLib")) return; let m=$("plRoomLib"); if(m) m.remove();
+  m=document.createElement("div"); m.className="modal show"; m.id="plRoomLib";
+  m.innerHTML='<div class="card" style="width:min(680px,94vw)"><div class="mh"><h3>📂 ห้องที่บันทึกไว้</h3><button class="closeX" data-x>&times;</button></div>'
+    +'<div class="mbody"><div style="display:flex;gap:8px;align-items:center;margin-bottom:8px"><input id="plrlQ" placeholder="🔍 ค้นหาชื่อห้อง…" autocomplete="off" style="flex:1;min-width:0;font-size:12.5px;padding:6px 9px;border:1px solid var(--line);border-radius:7px">'
+    +'<button class="ibtn" id="plrlSave2" style="flex:none;width:auto;padding:6px 12px">💾 บันทึกห้องตอนนี้…</button></div>'
+    +'<div id="plrlList" style="max-height:min(60vh,520px);overflow:auto;border:.5px solid var(--line);border-radius:8px"><div style="padding:14px;color:var(--ink-dim)">กำลังโหลด…</div></div>'
+    +'<div style="font-size:11px;color:var(--ink-dim);margin-top:6px;line-height:1.6">เก็บในไฟล์กลาง (ตาราง app_settings) — ทุกเครื่องที่ใช้ข้อมูลชุดเดียวกันเห็นเหมือนกัน · เปิดใช้ = แทนห้องตอนนี้ ตู้ในฉากอยู่ที่เดิม · ปรับห้องแล้ว 💾 บันทึกเป็นชื่อใหม่ได้</div></div></div>';
+  document.body.appendChild(m);
+  const close=()=>m.remove();
+  m.querySelector("[data-x]").onclick=close; m.addEventListener("pointerdown",ev=>{ if(ev.target===m) close(); });
+  m.querySelector("#plrlSave2").onclick=async()=>{ if(await plRoomLibSave()) plRoomLibFill(m); };
+  m.querySelector("#plrlQ").oninput=()=>plRoomLibFill(m,true);
+  await plRoomLibFill(m); }
+async function plClearCabsKeepRoom(){ if(typeof isLocked==="function"&&isLocked()){ try{ guardEdit("ล้างตู้"); }catch(e){} return false; }
+  const n=(state.boards||[]).filter(b=>b&&!b._virtual).length;
+  const res=await dialog({title:"ล้างตู้ทั้งหมด · เก็บห้องไว้?", ok:"🆕 ล้างตู้ + เริ่มออเดอร์ใหม่", extra:{label:"ล้างแค่ตู้ (ออเดอร์เดิม)", id:"cabs"},
+    html:'<div style="font-size:12.5px;line-height:1.7">ตู้/ชิ้นในฉาก <b>'+n+'</b> ชิ้นหายทั้งหมด · <b>ห้องอยู่ครบ</b> (ผนัง ประตู หน้าต่าง เสา ฝ้า ปลั๊ก สีผนัง/พื้น)<br>'
+      +'<b>ล้างตู้ + เริ่มออเดอร์ใหม่</b> = ล้างเลขออเดอร์ สีรายตู้ ตัวแปรรายตู้ ด้วย (เอาห้องนี้ไปใช้บ้านหลังอื่น)<br><b>ล้างแค่ตู้</b> = ออเดอร์/เลขเดิม<br>'
+      +'<span style="opacity:.7">ออเดอร์ที่ยังไม่ได้ Save ให้ Save ก่อน · เผลอกด Ctrl+Z เอาคืนได้</span></div>'});
+  if(!res) return false;
+  if(res==="cabs"){ state.boards=[]; state.selectedId=null; state.selectedCab=null; try{ cabSelClear(); }catch(e){} sync(1); toast("🧹 ล้างตู้แล้ว — ห้องอยู่ครบ (ออเดอร์เดิม)"); }
+  else if(!(await newOrder({force:true, keepRoom:true}))) return false;
+  PL.wpick=null; PLO.sel=null; try{ plRoomDraw(); plPanelRoom(); plPanelSel(); }catch(e){ console.error("plClearCabs:",e); }
+  return true; }
+function plAfterRoom(){ try{ plUndoMark(); }catch(e){ console.error("plUndo:",e); } try{ autosave(); }catch(e){} plPanelGaps(); }   // v1.540: + เก็บประวัติ Ctrl+Z
 function plPanelWalls(){ const ws=$("plWall"); if(!ws) return; const r=plRoom();
   const on=Object.keys(PL_WALLS).filter(k=>r.walls[k]); if(on.indexOf(PL.wall)<0) PL.wall=on[0]||"back";
   ws.innerHTML=Object.keys(PL_WALLS).map(k=>'<option value="'+k+'"'+(k===PL.wall?" selected":"")+(r.walls[k]?"":" disabled")+'>ลงผนัง'+PL_WALLS[k].lbl+'</option>').join(""); }
@@ -42817,26 +42933,31 @@ async function newOrder(opts){
   if(state.editing){ toast("กำลังแก้โมเดลอยู่ — กดเสร็จก่อน"); return false; }
   if(typeof isLocked==="function" && isLocked()){ guardEdit("เริ่มออเดอร์ใหม่"); return false; }
   const n=(state.boards||[]).filter(b=>b&&!b._virtual).length;
-  if(n && !opts.force){
-    const ok=await dialog({title:"เริ่มออเดอร์ใหม่ (หน้าเปล่า)?",
+  const rmHas=!snOff("plRoomLib")&&plRoomHas();   /* v1.540: มีห้องที่วาดไว้ = ถามก่อน (เดิมไม่มีตู้ = ห้องหายเงียบ ๆ) · เลือกเก็บห้องไว้ได้ */
+  let keepRm=!!opts.keepRoom;
+  if((n||rmHas) && !opts.force){
+    const ok=await dialog({title:n?"เริ่มออเดอร์ใหม่ (หน้าเปล่า)?":"เริ่มออเดอร์ใหม่ — ล้างห้องที่วาดไว้ด้วย?", extra:rmHas?{label:"🏠 ใหม่ · เก็บห้องไว้", id:"keep"}:null,
       html:'<div style="font-size:13px;line-height:1.75;color:var(--ink-dim)">'
-        +'ฉากตอนนี้มี <b>'+n+'</b> ชิ้น จะถูกล้างทิ้งทั้งหมด พร้อมกับ<br>'
+        +(n?('ฉากตอนนี้มี <b>'+n+'</b> ชิ้น จะถูกล้างทิ้งทั้งหมด พร้อมกับ<br>'):'ฉากยังไม่มีตู้ · ออเดอร์ใหม่ล้าง<br>')
         +'เลขออเดอร์ · ตัวแปรรายตู้ ($D4 ฯลฯ) · สีรายตู้ · ลำดับบาร์โค้ด · บรรทัดสั่งของ<br><br>'
         +'<b>ยังไม่ได้บันทึกใช่ไหม?</b> กดยกเลิกแล้วไปที่ Order → บันทึก / Save As… ก่อน<br>'
+        +(rmHas?'<b>ห้องที่วาดไว้</b> (ผนัง ประตู หน้าต่าง ฯลฯ) ล้างด้วย — กด <b>🏠 ใหม่ · เก็บห้องไว้</b> ถ้าจะใช้ห้องเดิมกับออเดอร์ใหม่<br>':'')
         +'<span style="opacity:.7">ถ้าเผลอ กด ย้อนกลับ (Ctrl+Z) เอาชิ้นคืนได้</span></div>',
       ok:"ล้างแล้วเริ่มใหม่"});
-    if(!ok) return false;
+    if(!ok) return false; if(ok==="keep") keepRm=true;
   }
+  const _keepRoom=(keepRm&&state.room)?JSON.parse(JSON.stringify(state.room)):null;   // v1.540
   state.boards=[]; state.selectedId=null; state.selectedCab=null; cabSelClear(); state.hidden=[];
   state.cabColors={}; state.cabNums={}; state.cabVarTxt={}; state.cabDX={};
-  state.bcSeq={}; state.bcMax={}; state.orderLines=[]; state.room=null; state.cabDP={}; state.orderMat={};   /* v1.337 */
+  state.bcSeq={}; state.bcMax={}; state.orderLines=[]; state.room=_keepRoom; state.cabDP={}; state.orderMat={};   /* v1.337 */
   state.pidLock=null; _pidAdopt={}; _pidProdP={};                                                        /* v1.411 */
   state.doorPick=[]; state.doorProg={}; state.explode=0;
   try{ if(typeof clearMeasure==="function") clearMeasure(); }catch(e){}
   { const el=$("exOrderId"); if(el) el.value=""; }
   try{ _gClip=null; }catch(e){}
   buildGTones(); sync(1);
-  toast("เริ่มออเดอร์ใหม่ — หน้าเปล่า · ตั้งเลขออเดอร์ได้ที่ Order");
+  if(_keepRoom&&typeof PL!=="undefined"&&PL.on){ try{ PL.wpick=null; PLO.sel=null; plRoomDraw(); plPanelRoom(); plPanelSel(); }catch(e){ console.error("newOrder keepRoom:",e); } }
+  toast(_keepRoom?"เริ่มออเดอร์ใหม่ — เก็บห้องเดิมไว้ · ตั้งเลขออเดอร์ได้ที่ Order":"เริ่มออเดอร์ใหม่ — หน้าเปล่า · ตั้งเลขออเดอร์ได้ที่ Order");
   return true;
 }
 /* ───────── v38.3: เปิดออเดอร์ที่บันทึกไว้ ก็ต้องมีกล่องรอเหมือนตอนโหลด XML ─────────
@@ -58380,7 +58501,8 @@ function bindChrome(){
   addEventListener("pointerdown",e=>{ if(!e.target.closest("#varCtx"))varCtxHide(); },true);
   addEventListener("keydown",e=>{ if(e.key==="Escape" && closeTopModal()) e.preventDefault(); }, true);
   $("addBtn").onclick=()=>addBoard();
-  $("newBtn").onclick=async()=>{if(await dialog({title:"ล้างชิ้นงานทั้งหมด?",ok:"ล้าง"})){state.boards=[];state.selectedId=null;sync(1);}};
+  $("newBtn").onclick=async()=>{if(await dialog({title:"ล้างชิ้นงานทั้งหมด?",ok:"ล้าง",   /* v1.540: บอกว่าห้องที่วาดไว้ยังอยู่ */
+      html:(!snOff("plRoomLib")&&plRoomHas())?'<div style="font-size:12.5px;line-height:1.6">ตู้/ชิ้นในฉากหายทั้งหมด · <b>ห้องที่วาดไว้ยังอยู่</b> (ผนัง ประตู หน้าต่าง)</div>':""})){state.boards=[];state.selectedId=null;sync(1);}};
   $("importBtn").onclick=()=>$("fileInput").click();
   $("fileInput").addEventListener("change",e=>{const f=e.target.files[0];if(f)readFile(f);e.target.value="";});
   $("importXmlBtn").onclick=()=>showXmlImport();
