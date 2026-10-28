@@ -3281,7 +3281,7 @@ body[data-theme="dark"] .splash-dots span{background:rgba(255,255,255,.25)}
    ===================================================================== */
 /* ---- APP_META: แหล่งความจริงเดียวของเวอร์ชัน (ดูได้จาก console / คลิกชื่อแอป) ---- */
 const APP_META={
-  name:"StarNexus", version:"1.544", build:"2026-10-28/sec-beyond",
+  name:"StarNexus", version:"1.545", build:"2026-10-28/sec-legs",
   file:"StarNexus.html", basedOn:"Furnitech_V3.html (v3.11)",
   /* ───────── เริ่มนับเวอร์ชันใหม่ที่ 1.001 (21/08/2026) ─────────
      ของเดิมนับมาถึง 42.1 แล้ววิ่งเป็นทศนิยมสองชั้นซึ่งอ่านลำดับยาก
@@ -3289,6 +3289,7 @@ const APP_META={
      ประวัติเก่าเก็บไว้ทั้งหมดตามเลขเดิม ไม่ไล่เขียนใหม่ เพราะเลขในนั้นถูกอ้างถึงไปแล้ว
      รายการที่อยู่ใต้ 1.001 ลงไปจึงเป็นเลขชุดเก่า อ่านต่อกันได้ตามวันที่ */
   changelog:[
+    ["1.545","2026-10-28","FEAT รูปตัด Section เห็นขาตู้ (ผู้ใช้ 20:31 “ตัดให้เห็นขาด้วย Section”) — เดิมขาตู้เป็นชิ้นเสมือน (ไม่มีหนา) รูปตัดจึงมีตู้ลอยเหนือพื้นเฉย ๆ · ตอนนี้ขาของตู้ที่ถูกตัด: เส้นตัดผ่าน = ถมเทา · อยู่เลยเส้นตัดฝั่งที่มอง = กรอบเส้น (กว้างตามโมเดลขาใน Fitting Studio · ไม่มีโมเดล = 40) สูงจากพื้นถึงก้นตู้ · ตีนตู้ / ฟิลเลอร์บน (ชิ้นแสดงผลของแถวรายการเส้น) ที่เส้นตัดผ่านก็ขึ้นในรูปตัดด้วย · ปิด SN_OFF.secLegs=1"],
     ["1.544","2026-10-28","FEAT แบบแนบใบเสนอราคา · รูปตัด Section (ผู้ใช้ 20:26 ภาพรูปตัด A-A/B-B: “จริง ๆ มันต้องเห็นเส้นของแผ่นข้างอีกฝั่ง พวกรางก็ต้องเห็น”) — เดิมวาดเฉพาะชิ้นที่ระนาบตัดผ่าน (เทาทึบ) · ตอนนี้วาดของที่อยู่เลยเส้นตัดไปทางลูกศรมองด้วย: ชิ้นทุกชิ้นของตู้ที่ถูกตัด (แผ่นข้างอีกฝั่ง ผนังกั้น ข้างกล่องลิ้นชัก บาน) = เส้นบางสีเทา ไม่ถม · รางลิ้นชัก (รูป 3D รับข้าง/รับใต้/แผงเหล็ก) = กรอบเทาอ่อน · ชิ้นที่ถูกตัดยังถมทับอยู่ข้างหน้าเหมือนเดิม · ปิด SN_OFF.secBeyond=1"],
     ["1.543","2026-10-28","FIX ตู้สูงไม่มีฟิลเลอร์บน (ผู้ใช้ 20:21 ภาพตู้สูงเดี่ยวในห้อง) — ตัวเลือกตู้ที่ได้ฟิลเลอร์บน (ceilPlan) นับเฉพาะตู้แขวน (ไม่มีขา · ก้นสูงกว่า 1,000) ตู้สูงยืนพื้นมีขาจึงหลุดทั้งหมด · ห้องที่มีแต่ตู้สูง ระดับฝ้าอัตโนมัติ = 0 → ไม่มีฟิลเลอร์บนเลย · ตอนนี้ตู้สูง (โครงสูง ≥ 1,500 และหัวตู้สูง ≥ 1,700 · มีบาน/กล่องจริง · ไม่ใช่แผ่นปิดข้าง · ไม่มีตู้ซ้อนข้างบน) นับเป็นตู้ชั้นบนด้วย — อยู่แนวเดียวกับตู้แขวนบนผนังเดียวกัน · ไม่มีตู้แขวน = สูงฟิลเลอร์ = ฝ้า − หัวตู้สูง · ใช้ทั้งห้องออกแบบและ 3D ของงาน XML ที่มีแถว CeilingFiller · ปิด SN_OFF.ceilTall=1"],
     ["1.542","2026-10-28","FIX แถบ 🎬 ฉากไปซ้อนใต้แผงห้องออกแบบ (ผู้ใช้ 20:10 ภาพ) — เครื่องที่ตั้งขนาดหน้าจอ (zoom --uiz) ของลอยทุกชิ้นถูกย่อ/ขยาย แต่ตำแหน่งที่คิดจากกรอบแผงเป็นพิกเซลจอจริง ใส่กลับเป็น left ของชิ้นที่ถูก zoom จึงคลาดไปตามสัดส่วน (ย่อ 90% = เลื่อนเข้าไปใต้แผง) · ตอนนี้วัดสัดส่วน zoom ของชิ้นนั้นจริงแล้วหารกลับ (uiZoomOf) — แถบฉาก · หน้าต่างแก้ฉาก · หน้าต่าง 🖱 ความไวเมาส์"],
@@ -29088,6 +29089,7 @@ function boardRole(b){
      SN_OFF.dwgDoorLine=1 หน้ารวมวัสดุ ดีไซน์หน้าบานเป็นภาพถ่าย 3D แยกตาม Part ลิงก์ (แบบ 1.521) (v1.527)
      SN_OFF.realPlRoom=1  โหมดสมจริงในห้องออกแบบสร้างห้องรอบตู้แบบเดิม (ไม่ใช้ผนังของห้องออกแบบ) (v1.528)
      SN_OFF.realSnap=1    ไม่มีปุ่ม 📷 บันทึกภาพสมจริงความละเอียดสูง (v1.528)
+     SN_OFF.secLegs=1     รูปตัด Section ไม่มีขาตู้ / ตีนตู้ / ฟิลเลอร์บน (v1.545)
      SN_OFF.secBeyond=1   รูปตัด Section วาดแค่ชิ้นที่ถูกตัด (ไม่มีเส้นแผ่นข้างอีกฝั่ง/ราง) (v1.544)
      SN_OFF.ceilTall=1    ฟิลเลอร์บนนับเฉพาะตู้แขวนแบบเดิม (ตู้สูงไม่ได้) (v1.543)
      SN_OFF.plCeilMesh=1  ห้องออกแบบไม่มีแผ่นฝ้าเพดาน · กล้องต่ำกว่าพื้นยังเห็นพื้น (v1.541)
@@ -40486,6 +40488,20 @@ function dwgSecData(s){ const r=plRoom(), all=dwgCabs(), wk=s.wk, W=PL_WALLS[wk]
   const sl=wt.slabs.filter(x=>x.wk===wk&&x.lo[A]<=cA&&x.hi[A]>=cA), vt=wt.bs.filter(x=>x.wk===wk&&x.lo[A]<=cA&&x.hi[A]>=cA);
   const cr=on.filter(c=>c.f.lo[A]<=cA&&c.f.hi[A]>=cA);
   let maxD=400; parts.forEach(q=>{ maxD=Math.max(maxD,q.d1); }); sl.forEach(x=>{ maxD=Math.max(maxD,Math.abs(dOf(W.s>0?x.hi[P]:x.lo[P]))); });
+  /* ───────── v1.545: ขาตู้ + ตีนตู้/ฟิลเลอร์บนในรูปตัด ─────────
+     ผู้ใช้ 28/10 20:31: “ตัดให้เห็นขาด้วย Section” — ขาเป็นชิ้นเสมือน (L/W/T 10 · _virtual) ตัวกรองชิ้นตัดข้ามไป ตู้จึงลอยเหนือพื้น
+     ขา: กว้าง = กรอบโมเดลขา (fitModelBBox ของ rule.model) ไม่มี = 40 · สูง พื้น → ก้นโครงตู้ (ชิ้นจริงต่ำสุด · กรอบตู้ f.ylo รวมขาเป็น 0) · ตัดผ่าน = ถม · เลยเส้นตัดฝั่งที่มอง = กรอบ
+     ตีนตู้/ฟิลเลอร์บน = ชิ้น _lineDisp ที่เส้นตัดผ่านและอยู่ในช่วงลึกของรูป · ปิด SN_OFF.secLegs=1 */
+  const legs=[], lines=[];
+  if(!snOff("secLegs")){ const sgL=(wk==="back"||wk==="right")?1:-1;
+    cr.forEach(c=>{ let top=Infinity; c.bs.forEach(x=>{ if(!x||x._virtual||!(+x.T>0)||x._door) return; top=Math.min(top,x.y-worldDims(x)[1]/2); }); if(!(top>=5&&top<400)) return;   /* ก้นโครงตู้ (กรอบตู้รวมขา ylo = 0) */
+    c.bs.forEach(b=>{ if(!plIsLeg(b)) return; let w=40;
+      try{ const mc=b.rule&&b.rule.model; if(mc&&(settings.fitModels||{})[mc]){ const bb=fitModelBBox(mc); const v=Math.max(bb.x1-bb.x0,bb.z1-bb.z0); if(v>=8&&v<=200) w=v; } }catch(e){}
+      const p=[b.x,b.y,b.z], a0=p[A]-w/2, a1=p[A]+w/2, cut=a0<=cA&&a1>=cA; if(!cut&&(sgL>0?a1<cA:a0>cA)) return;
+      const d0=dOf(p[P]-w/2), d1=dOf(p[P]+w/2); legs.push({d0:Math.min(d0,d1),d1:Math.max(d0,d1),y0:0,y1:top,cut}); }); });
+    (state.boards||[]).forEach(b=>{ if(!b||!b._lineDisp||!(+b.T>0)) return; const d=worldDims(b), p=[b.x,b.y,b.z]; if(!(p[A]-d[A]/2<=cA&&p[A]+d[A]/2>=cA)) return;
+      const d0=dOf(p[P]-d[P]/2), d1=dOf(p[P]+d[P]/2); if(Math.max(d0,d1)<-5||Math.min(d0,d1)>maxD+150) return;
+      lines.push({d0:Math.min(d0,d1),d1:Math.max(d0,d1),y0:b.y-d[1]/2,y1:b.y+d[1]/2}); }); }
   /* ───────── v1.544: ของที่อยู่เลยเส้นตัดไปทางลูกศรมอง ─────────
      ผู้ใช้ 28/10 20:26 (ภาพรูปตัด A-A · B-B): “จริง ๆ มันต้องเห็นเส้นของแผ่นข้างอีกฝั่ง พวกรางก็ต้องเห็น”
      เดิมวาดเฉพาะชิ้นที่ระนาบตัดผ่าน — ภาพตัดตู้ลิ้นชักเหลือแต่กล่องลอย ๆ ไม่เห็นแผ่นข้างตู้ฝั่งไกลและรางที่รับกล่อง
@@ -40502,7 +40518,7 @@ function dwgSecData(s){ const r=plRoom(), all=dwgCabs(), wk=s.wk, W=PL_WALLS[wk]
         const key=String(o.userData.id)+"|"+((o.parent&&o.parent.uuid)||""); const g=G.get(key); if(g) g.union(bx); else G.set(key,bx); });
       G.forEach(bx=>{ const lo=bx.min.toArray(), hi=bx.max.toArray(); if(sg>0?hi[A]<cA:lo[A]>cA) return;
         const d0=dOf(lo[P]), d1=dOf(hi[P]); rails.push({d0:Math.min(d0,d1),d1:Math.max(d0,d1),y0:lo[1],y1:hi[1]}); }); }catch(e){ console.error("secRail:",e); } }
-  return {s, W, A, P, dOf, parts, sl, vt, cr, maxD, beyond, rails}; }
+  return {s, W, A, P, dOf, parts, sl, vt, cr, maxD, beyond, rails, legs, lines}; }
 function dwgSecFig(secs){ if(!secs||!secs.length) return null; const r=plRoom(), H=+r.h||2600, Tw=100, gap=Math.max(H*0.24,560);
   const D=secs.map(dwgSecData), wds=D.map(d=>Tw+d.maxD+250), xs=[]; let acc=0; wds.forEach((w,i)=>{ xs.push(acc+Tw); acc+=w+(i<wds.length-1?gap:0); });
   const o=dwgNew("ds"+secs[0].lbl,0,-H,acc,0,760,470,78), k=o.k, hb=o.hatch("w",7), hs=o.hatch("s",4,"#9aa0aa"), T=plWt();
@@ -40510,6 +40526,8 @@ function dwgSecFig(secs){ if(!secs||!secs.length) return null; const r=plRoom(),
     o.R(ox-Tw,-H,ox,0,{w:1,fill:hb}); o.L(ox-Tw,0,ox+d.maxD+250,0,1.6); o.L(ox,-H,ox+d.maxD+250,-H,0.6,DWG_THIN,"8 4");
     (d.beyond||[]).forEach(q=>o.R(ox+q.d0,-q.y1,ox+q.d1,-q.y0,{w:0.45,col:"#8a8f99"}));   // v1.544: แผ่นข้างอีกฝั่ง ฯลฯ (เลยเส้นตัด)
     (d.rails||[]).forEach(q=>o.R(ox+q.d0,-q.y1,ox+q.d1,-q.y0,{w:0.6,fill:"#e4e7eb",col:"#4b5260"}));   // v1.544: รางลิ้นชัก
+    (d.legs||[]).forEach(q=>o.R(ox+q.d0,-q.y1,ox+q.d1,-q.y0,q.cut?{w:0.8,fill:"#9aa0aa",col:"#3a3f48"}:{w:0.6,col:"#5b6070"}));   // v1.545: ขาตู้
+    (d.lines||[]).forEach(q=>o.R(ox+q.d0,-q.y1,ox+q.d1,-q.y0,{w:0.9,fill:"#d6d9de"}));   // v1.545: ตีนตู้ / ฟิลเลอร์บน
     d.parts.slice().sort((a,b)=>(a.dr?1:0)-(b.dr?1:0)).forEach(q=>o.R(ox+q.d0,-q.y1,ox+q.d1,-q.y0,{w:q.b._pullPart?0.6:0.9,fill:q.b._pullPart?"#c9a54a":(q.dr?"#fff":"#d6d9de")}));
     const span=x=>{ const a=d.dOf(W.s>0?x.lo[P]:x.hi[P]), b=d.dOf(W.s>0?x.hi[P]:x.lo[P]); return [Math.min(a,b),Math.max(a,b)]; };
     d.sl.forEach(x=>{ const q=span(x); o.R(ox+q[0],-x.hi[1],ox+q[1],-x.lo[1],{w:2.2,fill:"#3b3d42",col:"#1d1d1f"}); });
