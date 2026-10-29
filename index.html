@@ -3281,7 +3281,7 @@ body[data-theme="dark"] .splash-dots span{background:rgba(255,255,255,.25)}
    ===================================================================== */
 /* ---- APP_META: แหล่งความจริงเดียวของเวอร์ชัน (ดูได้จาก console / คลิกชื่อแอป) ---- */
 const APP_META={
-  name:"StarNexus", version:"1.546", build:"2026-10-28/appliances",
+  name:"StarNexus", version:"1.547", build:"2026-10-29/room-cabs",
   file:"StarNexus.html", basedOn:"Furnitech_V3.html (v3.11)",
   /* ───────── เริ่มนับเวอร์ชันใหม่ที่ 1.001 (21/08/2026) ─────────
      ของเดิมนับมาถึง 42.1 แล้ววิ่งเป็นทศนิยมสองชั้นซึ่งอ่านลำดับยาก
@@ -3289,6 +3289,7 @@ const APP_META={
      ประวัติเก่าเก็บไว้ทั้งหมดตามเลขเดิม ไม่ไล่เขียนใหม่ เพราะเลขในนั้นถูกอ้างถึงไปแล้ว
      รายการที่อยู่ใต้ 1.001 ลงไปจึงเป็นเลขชุดเก่า อ่านต่อกันได้ตามวันที่ */
   changelog:[
+    ["1.547","2026-10-29","FEAT 💾 บันทึกห้อง เก็บตู้ไปด้วย (ผู้ใช้ 29/10 08:19 “การ SAVE ห้องมันต้องเหมือน SAVE order คือถ้าเขาใส่ตู้ไปแล้ว ตู้ต้องติดอยู่ในห้องด้วย”) — เดิม (1.540) บันทึกห้องเก็บแค่ผนัง/ประตู/หน้าต่าง/ของในห้อง ไม่เก็บตู้ เปิดกลับมาตู้หายหมด · ตอนนี้กล่องบันทึกห้องมีช่องติ๊ก “เก็บตู้ในห้อง N ใบไปด้วย” (ติ๊กไว้ให้แล้ว) เก็บก้อนเดียวกับ Save Order ทุกช่อง (ชิ้น สีรายตู้ ตัวแปรรายตู้ DP วัสดุทั้งออเดอร์ บรรทัดสั่งของ ฉาก 🎬 เลขออเดอร์ ฯลฯ — orderDataNow() ใช้ร่วมกับ cloudSaveOrder จะได้ไม่ตกหล่นเวลามีช่องใหม่) · 📂 เปิดห้องที่มีตู้ = ถามว่า 🏠 เปิดห้อง + ตู้ (แทนฉากทั้งหมด เหมือนเปิดออเดอร์ — ใช้ตัวเปิดออเดอร์เดิม ซ่อมผิว/ความลึกชั้นเหมือนกัน · เลขออเดอร์กลับเป็นเลขตอนบันทึก) หรือ “เฉพาะห้อง” (แบบเดิม ตู้ในฉากอยู่ที่เดิม — เอาห้องไปใช้บ้านหลังอื่น) · รายการห้องบอกจำนวนตู้ · ห้องที่บันทึกก่อน 1.547 (ไม่มีตู้) เปิดแบบเดิม · ปิด SN_OFF.plRoomCabs=1"],
     ["1.546","2026-10-28","FEAT ห้องออกแบบ: เครื่องใช้ในครัว (ผู้ใช้ 20:31 + 20:35 “เพิ่ม Sink ลากมาใส่ทอปได้ · Hood ลากไปใส่ตู้ hood ได้ แต่ hood น่าจะมี 3 แบบ · เตา ถังขยะ ถังแก๊ส · ไมโครเวฟลอยตัว เตาอบ Built-in · เดี๋ยวเพิ่มรุ่นทีหลังได้ด้วย”) — แท็บ 🚪 ของในห้อง หมวดใหม่ เครื่องใช้ในครัว: 🚰 ซิงค์ 1 หลุม (มีที่พักจาน) / 2 หลุม + ก๊อก · 🔥 เตาฝังแก๊ส 2 หัว / อินดักชั่น 2 หัว = ลากชี้ท็อปหรือตู้พื้น วางบนผิวท็อป หันตามตู้ กลางลึกตู้ ใกล้กลางตู้ (≤ 80) ดูดเข้ากลาง · 🌀 ฮู้ด 3 แบบ: ฝังใต้ตู้ (เทเลสโคปิก — ตัวเครื่องในตู้ แผงดึงโผล่ใต้ตู้) · บางติดใต้ตู้ (Slim — หลังชิดหลังตู้ ยื่นออกหน้า) = ลากชี้ตู้ลอย (ตู้ hood) แล้วติดก้นตู้ กลางตู้ · กระโจมติดผนัง = ติดผนังแบบหน้าต่าง (สูงจากพื้น 1,550) ปล่องขึ้นถึงฝ้า · ⬛ เตาอบฝัง (Built-in) = ลากชี้ตู้ หน้าเตาเสมอหน้าบาน กลางตู้ (ตู้พื้น = ใต้หัวตู้ 30 · ตู้สูง = ความสูงตามที่ชี้) · 📦 ไมโครเวฟตั้งพื้น = บนท็อป/ตู้ หลังชิดผนัง · 🗑 ถังขยะ · 🛢 ถังแก๊ส 15 กก. = วางพื้น · ชี้ไม่โดนตู้ = ตามพื้น (บอกให้ชี้ตู้) · คลิกการ์ด = วางให้เองที่ตู้ที่เหมาะใกล้จุดกลางจอ · R หมุน · แผงซ้าย: รุ่น · รหัสสินค้า · กว้าง/ลึก/สูง · สูงจากพื้น · แก้ขนาดแล้วจัดเข้าตู้ใหม่ · 💾 บันทึกเป็นรุ่น (ชื่อ · รหัส · ขนาด) เก็บใน settings.plAppl (ตั้งค่า + ไฟล์กลาง) ขึ้นเป็นการ์ดลากใช้ได้ · เลือกรุ่นในแผงเปลี่ยนขนาดตามรุ่น · ลบรุ่นได้ · Ctrl+Z ย้อนได้ · ปิด SN_OFF.plAppl=1"],
     ["1.545","2026-10-28","FEAT รูปตัด Section เห็นขาตู้ (ผู้ใช้ 20:31 “ตัดให้เห็นขาด้วย Section”) — เดิมขาตู้เป็นชิ้นเสมือน (ไม่มีหนา) รูปตัดจึงมีตู้ลอยเหนือพื้นเฉย ๆ · ตอนนี้ขาของตู้ที่ถูกตัด: เส้นตัดผ่าน = ถมเทา · อยู่เลยเส้นตัดฝั่งที่มอง = กรอบเส้น (กว้างตามโมเดลขาใน Fitting Studio · ไม่มีโมเดล = 40) สูงจากพื้นถึงก้นตู้ · ตีนตู้ / ฟิลเลอร์บน (ชิ้นแสดงผลของแถวรายการเส้น) ที่เส้นตัดผ่านก็ขึ้นในรูปตัดด้วย · ปิด SN_OFF.secLegs=1"],
     ["1.544","2026-10-28","FEAT แบบแนบใบเสนอราคา · รูปตัด Section (ผู้ใช้ 20:26 ภาพรูปตัด A-A/B-B: “จริง ๆ มันต้องเห็นเส้นของแผ่นข้างอีกฝั่ง พวกรางก็ต้องเห็น”) — เดิมวาดเฉพาะชิ้นที่ระนาบตัดผ่าน (เทาทึบ) · ตอนนี้วาดของที่อยู่เลยเส้นตัดไปทางลูกศรมองด้วย: ชิ้นทุกชิ้นของตู้ที่ถูกตัด (แผ่นข้างอีกฝั่ง ผนังกั้น ข้างกล่องลิ้นชัก บาน) = เส้นบางสีเทา ไม่ถม · รางลิ้นชัก (รูป 3D รับข้าง/รับใต้/แผงเหล็ก) = กรอบเทาอ่อน · ชิ้นที่ถูกตัดยังถมทับอยู่ข้างหน้าเหมือนเดิม · ปิด SN_OFF.secBeyond=1"],
@@ -29090,6 +29091,7 @@ function boardRole(b){
      SN_OFF.dwgDoorLine=1 หน้ารวมวัสดุ ดีไซน์หน้าบานเป็นภาพถ่าย 3D แยกตาม Part ลิงก์ (แบบ 1.521) (v1.527)
      SN_OFF.realPlRoom=1  โหมดสมจริงในห้องออกแบบสร้างห้องรอบตู้แบบเดิม (ไม่ใช้ผนังของห้องออกแบบ) (v1.528)
      SN_OFF.realSnap=1    ไม่มีปุ่ม 📷 บันทึกภาพสมจริงความละเอียดสูง (v1.528)
+     SN_OFF.plRoomCabs=1  💾 บันทึกห้องไม่เก็บตู้ / 📂 เปิดห้องไม่ถามเปิดพร้อมตู้ (แบบ 1.540) (v1.547)
      SN_OFF.plAppl=1      ไม่มีหมวดเครื่องใช้ในครัว (ซิงค์ เตา ฮู้ด เตาอบ ไมโครเวฟ ถังขยะ ถังแก๊ส) ในแท็บของในห้อง (v1.546)
      SN_OFF.secLegs=1     รูปตัด Section ไม่มีขาตู้ / ตีนตู้ / ฟิลเลอร์บน (v1.545)
      SN_OFF.secBeyond=1   รูปตัด Section วาดแค่ชิ้นที่ถูกตัด (ไม่มีเส้นแผ่นข้างอีกฝั่ง/ราง) (v1.544)
@@ -39601,8 +39603,8 @@ function plRoomLibDate(at){ const d=new Date(at||0); if(!(d.getTime()>0)) return
   return p(d.getDate())+"/"+p(d.getMonth()+1)+"/"+d.getFullYear()+" "+p(d.getHours())+":"+p(d.getMinutes()); }
 function plRoomLibBar(){ if(snOff("plRoomLib")) return ""; const r=(typeof state!=="undefined"&&state.room)||{};
   return '<div class="plBar plOdd" style="margin-top:6px">'
-    +'<button class="ibtn" id="plrlSave" title="เก็บห้องนี้ (ผนัง ประตู หน้าต่าง เสา ฝ้า ปลั๊ก สีผนัง/พื้น ขนาด ค่าห้อง — ไม่เก็บตู้) ลงไฟล์กลาง เอาไปใช้กับออเดอร์อื่น/บ้านหลังอื่นได้">💾 บันทึกห้อง</button>'
-    +'<button class="ibtn" id="plrlOpen" title="รายการห้องที่บันทึกไว้ในไฟล์กลาง — เปิดใช้ = แทนห้องตอนนี้ (ตู้อยู่ที่เดิม)">📂 เปิดห้องที่บันทึก</button>'
+    +'<button class="ibtn" id="plrlSave" title="เก็บห้องนี้ (ผนัง ประตู หน้าต่าง เสา ฝ้า ปลั๊ก สีผนัง/พื้น ขนาด ค่าห้อง) + ตู้ที่วางไว้ เหมือน Save Order ลงไฟล์กลาง — ติ๊กออกได้ถ้าจะเก็บแค่ห้อง (เอาไปใช้บ้านหลังอื่น)">💾 บันทึกห้อง</button>'
+    +'<button class="ibtn" id="plrlOpen" title="รายการห้องที่บันทึกไว้ในไฟล์กลาง — ห้องที่มีตู้ เลือกได้ว่าเปิดห้อง + ตู้ (แทนฉาก เหมือนเปิดออเดอร์) หรือเฉพาะห้อง (ตู้ในฉากอยู่ที่เดิม)">📂 เปิดห้องที่บันทึก</button>'
     +'<button class="ibtn" id="plrlNew" title="ล้างตู้ทั้งหมดแต่เก็บห้องไว้ — เริ่มออเดอร์ใหม่ (เอาห้องนี้ไปปรับใช้บ้านหลังอื่น) หรือล้างแค่ตู้">🧹 ล้างตู้ · เก็บห้อง</button></div>'
     +(r.libName?('<div class="plNote" style="margin-top:3px">ห้องนี้มาจาก/บันทึกเป็น “'+escapeHtml(String(r.libName))+'”</div>'):''); }
 async function plRoomLibList(){ const db=await getDB(); const res=await db.from("app_settings").select("key,value").like("key",PLRL_PFX+"%"); if(res.error) throw res.error;
@@ -39611,28 +39613,74 @@ async function plRoomLibList(){ const db=await getDB(); const res=await db.from(
 async function plRoomLibSave(){ if(snOff("plRoomLib")) return false; const r=plRoom();
   let def=r.libName||""; if(!def){ try{ const oe=$("exOrderId"); if(oe&&String(oe.value||"").trim()) def="ห้อง "+String(oe.value).trim(); }catch(e){} }
   const nm0=await dialog({title:"💾 บันทึกห้อง — เอาไปใช้กับออเดอร์อื่นได้", input:true, value:def, placeholder:"ชื่อห้อง เช่น บ้านคุณเอ · ครัวชั้น 1", ok:"บันทึก",
-    html:'<div style="font-size:12px;line-height:1.6;color:var(--ink-dim)">'+escapeHtml(plRoomSum(r))+'<br>เก็บผนัง ประตู หน้าต่าง เสา ฝ้า ปลั๊ก/ท่อ สีผนัง/พื้น ขนาดห้อง และค่าห้อง (ขา ฟิลเลอร์ ไม้ไฟ …) — <b>ไม่เก็บตู้</b> · ลงไฟล์กลาง ทุกเครื่องเห็น</div>'});
+    html:'<div style="font-size:12px;line-height:1.6;color:var(--ink-dim)">'+escapeHtml(plRoomSum(r))+'<br>เก็บผนัง ประตู หน้าต่าง เสา ฝ้า ปลั๊ก/ท่อ สีผนัง/พื้น ขนาดห้อง และค่าห้อง (ขา ฟิลเลอร์ ไม้ไฟ …) · ลงไฟล์กลาง ทุกเครื่องเห็น</div>'+plRoomLibCabChk()});   /* v1.547: + ติ๊กเก็บตู้ */
+  const withCab=plRoomLibCabOn();   /* v1.547: อ่านช่องติ๊กก่อนกล่องถามอันถัดไปจะเขียนทับ */
   if(nm0==null) return false; const nm=String(nm0).trim().replace(/\s+/g," ").slice(0,80); if(!nm){ toast("ใส่ชื่อห้องก่อน"); return false; }
-  const key=PLRL_PFX+nm;
+  const key=PLRL_PFX+nm; let bz=null;   // v1.547: กล่องรอตอนเขียนห้อง + ตู้
   try{ const db=await getDB();
     const ex=await db.from("app_settings").select("key").eq("key",key).maybeSingle();
     if(ex&&ex.data&&!(await dialog({title:"มีห้องชื่อ “"+nm+"” อยู่แล้ว — บันทึกทับ?", ok:"บันทึกทับ"}))) return false;
     const room=JSON.parse(JSON.stringify(r)); delete room.libName;
-    const val={v:1, name:nm, at:new Date().toISOString(), sum:plRoomSum(room), room};
+    const ord=withCab?plRoomLibOrd():null;   // v1.547: ก้อนเดียวกับ Save Order (ไม่รวม room — อยู่ที่ val.room แล้ว)
+    const val={v:ord?2:1, name:nm, at:new Date().toISOString(), sum:plRoomSum(room)+(ord?(" · ตู้ "+ord.ncab+" ใบ"):""), room};
+    if(ord){ val.ord=ord.data; val.ncab=ord.ncab; val.nb=ord.nb; }
+    try{ if(ord&&typeof busyOpen==="function"&&!snOff("saveBusy")){ bz=busyOpen("กำลังบันทึกห้อง “"+nm+"”"); bz.step("เขียนห้อง + ตู้ "+ord.ncab+" ใบ ("+ord.nb+" ชิ้น) ลงไฟล์กลาง…",45); await bz.tick(); } }catch(e){ bz=null; }
     const res=await db.from("app_settings").upsert({key, value:JSON.stringify(val)},{onConflict:"key"}); if(res&&res.error) throw res.error;
     r.libName=nm; try{ autosave(); }catch(e){} try{ plPanelRoom(); }catch(e){}
-    toast("💾 บันทึกห้อง “"+nm+"” แล้ว — เปิดใช้ได้ที่ 📂 เปิดห้องที่บันทึก (ทุกเครื่องที่ใช้ไฟล์กลางเดียวกัน)"); return true; }
-  catch(e){ console.error("plRoomLibSave:",e); toast("บันทึกห้องไม่สำเร็จ: "+((e&&e.message)||e)); return false; } }
+    toast("💾 บันทึกห้อง “"+nm+"” แล้ว"+(ord?(" พร้อมตู้ "+ord.ncab+" ใบ"):"")+" — เปิดใช้ได้ที่ 📂 เปิดห้องที่บันทึก (ทุกเครื่องที่ใช้ไฟล์กลางเดียวกัน)"); return true; }
+  catch(e){ console.error("plRoomLibSave:",e); toast("บันทึกห้องไม่สำเร็จ: "+((e&&e.message)||e)); return false; }
+  finally{ try{ if(bz) bz.done(); }catch(e){} } }
 async function plRoomLibLoad(x){ if(!x||!x.room) return false; if(ploLocked()) return false;
   if(typeof isLocked==="function"&&isLocked()){ try{ guardEdit("เปิดห้องที่บันทึก"); }catch(e){} return false; }
   const nCab=Object.keys(plCabMap()).length;
-  if(plRoomHas()&&!(await dialog({title:"เปิดห้อง “"+(x.name||"")+"” แทนห้องตอนนี้?", ok:"เปิดใช้",
+  let _asked=false;   // v1.547: ห้องที่บันทึกพร้อมตู้ — ถามก่อนว่าเปิดห้อง + ตู้ หรือเฉพาะห้อง
+  if(plRoomLibHasCab(x)){ const ch=await plRoomLibAsk(x,nCab); if(!ch) return false; if(ch!=="room") return await plRoomLibLoadAll(x); _asked=true; }
+  if(!_asked&&plRoomHas()&&!(await dialog({title:"เปิดห้อง “"+(x.name||"")+"” แทนห้องตอนนี้?", ok:"เปิดใช้",
       html:'<div style="font-size:12.5px;line-height:1.6">ห้องตอนนี้ (ผนัง ประตู หน้าต่าง …) ถูกแทนทั้งหมด'+(nCab?(' · ตู้ในฉาก '+nCab+' ใบอยู่ที่เดิม (อาจต้องลากเข้าผนังใหม่)'):'')+'<br><span style="opacity:.7">เผลอกด Ctrl+Z ย้อนได้</span></div>'}))) return false;
   const room=JSON.parse(JSON.stringify(x.room)); room.libName=x.name||"";
   state.room=room; PL.wpick=null; PLO.sel=null; PLO.drag=null;
   try{ if(PLW.on) plwStop(); }catch(e){}
   plRoomDraw(); plPanelRoom(); plPanelSel(); try{ plPanelGrid(); }catch(e){} try{ plCamRoom(); }catch(e){} plAfterRoom();
   toast("📂 เปิดห้อง “"+(x.name||"")+"” แล้ว"+(nCab?" — ตู้ในฉากอยู่ที่เดิม":"")); return true; }
+/* ═════════ v1.547: 💾 บันทึกห้อง เก็บตู้ไปด้วย ═════════
+   ผู้ใช้ 29/10 08:19: “การ SAVE ห้องมันต้องเหมือน SAVE order ครับ คือถ้าเขาใส่ตู้ไปแล้ว ตู้ต้องติดอยู่ในห้องด้วย”
+   เดิม (1.540) ค่าที่เก็บ = {v:1,name,at,sum,room} ห้องอย่างเดียว — วางตู้แล้วบันทึกห้อง เปิดกลับมาตู้หายหมด
+   ตอนนี้: กล่องบันทึกมีช่องติ๊ก “เก็บตู้ไปด้วย” (ติ๊กไว้ให้ · มีตู้ในฉากเท่านั้น) → {v:2, …, ord:ก้อนเดียวกับ Save Order ไม่รวม room, ncab, nb}
+     ก้อนมาจาก orderDataNow() ตัวเดียวกับ cloudSaveOrder — ช่องใหม่ที่ผูกออเดอร์ไม่ตกหล่น
+   เปิด: ห้องที่มีตู้ = ถาม 🏠 เปิดห้อง + ตู้ (แทนฉากทั้งหมด ผ่าน cloudLoadOrder(oid,{src}) ตัวเปิดออเดอร์เดิม — ซ่อมผิว/ความลึกชั้น ฉาก 🎬 เลขออเดอร์ตอนบันทึก)
+     หรือ “เฉพาะห้อง” (แบบ 1.540 ตู้ในฉากอยู่ที่เดิม — เอาห้องไปใช้บ้านหลังอื่น) · Ctrl+Z ย้อนได้ (plAfterRoom เก็บภาพประวัติ)
+   ห้องที่บันทึกก่อนนี้ (v1 ไม่มี ord) เปิดแบบเดิม · ปิด SN_OFF.plRoomCabs=1 = ไม่เก็บตู้ / ไม่ถาม */
+function plRoomLibNb(){ return (state.boards||[]).filter(b=>b&&!b._virtual).length; }
+function plRoomLibCabChk(){ if(snOff("plRoomCabs")) return ""; const nb=plRoomLibNb(); if(!nb) return ""; const n=Object.keys(plCabMap()).length;
+  return '<label style="display:flex;gap:8px;align-items:center;margin-top:9px;padding:8px 10px;border:1px solid var(--line);border-radius:8px;font-size:12.5px;line-height:1.5;cursor:pointer;color:var(--ink)">'
+    +'<input type="checkbox" id="plrlCabs" checked style="width:auto;flex:none;margin:0">'
+    +'<span>เก็บตู้ในห้อง <b>'+n+' ใบ</b> ('+nb+' ชิ้น) ไปด้วย — เปิดห้องแล้วตู้อยู่ครบ เหมือน Save Order<br><span style="opacity:.7">ติ๊กออก = เก็บแค่ห้อง (เอาไปใช้บ้านหลังอื่น)</span></span></label>'; }
+function plRoomLibCabOn(){ const c=document.getElementById("plrlCabs"); return !!(c&&c.isConnected&&c.checked); }
+function plRoomLibOrd(){ if(snOff("plRoomCabs")) return null; const nb=plRoomLibNb(); if(!nb) return null;
+  const oe=$("exOrderId"), oid=String((oe&&oe.value)||"").trim();
+  const data=JSON.parse(JSON.stringify(orderDataNow(oid))); delete data.room;
+  return {data, ncab:Object.keys(plCabMap()).length, nb}; }
+function plRoomLibHasCab(x){ return !snOff("plRoomCabs")&&!!(x&&x.ord&&Array.isArray(x.ord.boards)&&x.ord.boards.length); }
+function plRoomLibBadge(x){ if(!plRoomLibHasCab(x)) return "";
+  return ' <span style="display:inline-block;margin-left:6px;padding:1px 7px;border-radius:9px;font-size:10.5px;font-weight:600;background:rgba(37,99,235,.12);color:#2563eb;vertical-align:1px">🗄 ตู้ '+(+x.ncab||"?")+' ใบ</span>'; }
+async function plRoomLibAsk(x,nCab){ const nb=plRoomLibNb(), oid=String((x.ord&&x.ord.orderId)||"").trim();
+  return await dialog({title:"เปิดห้อง “"+(x.name||"")+"” — บันทึกไว้พร้อมตู้ "+(+x.ncab||"?")+" ใบ", ok:"🏠 เปิดห้อง + ตู้", extra:{label:"เฉพาะห้อง (ไม่เอาตู้)", id:"room"},
+    html:'<div style="font-size:12.5px;line-height:1.75"><b>🏠 เปิดห้อง + ตู้</b> = แทนฉากตอนนี้ทั้งหมด เหมือนเปิดออเดอร์'
+      +(nb?(' — ตู้/ชิ้นในฉากตอนนี้ <b>'+nb+'</b> ชิ้นหาย <span style="opacity:.75">(ยังไม่ได้ Save ให้ยกเลิกแล้ว Save ก่อน)</span>'):'')+'<br>'
+      +(oid?('&nbsp;&nbsp;เลขออเดอร์กลับเป็น <b>'+escapeHtml(oid)+'</b> (ตอนบันทึกห้อง) — Save Order ทับเลขนี้ · เปลี่ยนชื่อตอน Save = Save As<br>'):'&nbsp;&nbsp;เลขออเดอร์ว่าง — Save Order ตั้งเลขรันใหม่ให้<br>')
+      +'<b>เฉพาะห้อง</b> = ใช้แค่ผนัง ประตู หน้าต่าง ฯลฯ'+(nCab?(' · ตู้ในฉาก '+nCab+' ใบอยู่ที่เดิม'):'')+' (เอาห้องไปใช้บ้านหลังอื่น)<br>'
+      +'<span style="opacity:.7">เผลอกด Ctrl+Z ย้อนได้</span></div>'}); }
+async function plRoomLibLoadAll(x){ if(!plRoomLibHasCab(x)) return false;
+  const room=JSON.parse(JSON.stringify(x.room)); room.libName=x.name||"";
+  const src=JSON.parse(JSON.stringify(x.ord)); src.room=room;
+  try{ if(PLW.on) plwStop(); }catch(e){}
+  PL.wpick=null; PLO.sel=null; PLO.drag=null;
+  const nm=x.name||"", oid=String(src.orderId||"").trim();
+  const ok=await cloudLoadOrder(oid,{src, title:"กำลังเปิดห้อง “"+nm+"” + ตู้",
+    done:n=>"📂 เปิดห้อง “"+nm+"” แล้ว — ตู้ "+(+x.ncab||"")+" ใบ ("+n+" ชิ้น) อยู่ครบ"+(oid?(" · ออเดอร์ "+oid):" · ยังไม่มีเลขออเดอร์")});
+  if(!ok) return false;
+  if(typeof PL!=="undefined"&&PL.on){ try{ plRoomDraw(); plPanelRoom(); plPanelSel(); plPanelGrid(); plCamRoom(); }catch(e){ console.error("plRoomLibLoadAll:",e); } }
+  plAfterRoom(); return true; }
 async function plRoomLibDel(x){ if(!x) return false;
   if(!(await dialog({title:"ลบห้อง “"+(x.name||"")+"” ออกจากไฟล์กลาง?", ok:"ลบ", html:'<div style="font-size:12.5px">ทุกเครื่องจะไม่เห็นห้องนี้อีก · ออเดอร์ที่ใช้ห้องนี้ไปแล้วไม่กระทบ</div>'}))) return false;
   try{ const db=await getDB(); const res=await db.from("app_settings").delete().eq("key",x.key); if(res&&res.error) throw res.error; toast("ลบห้อง “"+(x.name||"")+"” แล้ว"); return true; }
@@ -39643,7 +39691,7 @@ async function plRoomLibFill(m,quick){ const box=m.querySelector("#plrlList"); i
   const L=m._list.filter(x=>!q||String(x.name||"").toLowerCase().indexOf(q)>=0);
   if(!L.length){ box.innerHTML='<div style="padding:14px;color:var(--ink-dim)">'+(m._list.length?'ไม่พบชื่อที่ค้น':'ยังไม่มีห้องที่บันทึก — กด 💾 บันทึกห้อง')+'</div>'; return; }
   box.innerHTML=L.map((x,i)=>'<div class="plrlRow" data-i="'+i+'" style="display:flex;align-items:center;gap:8px;padding:8px 10px;border-bottom:.5px solid var(--line)">'
-    +'<div style="flex:1;min-width:0"><b>'+escapeHtml(String(x.name||""))+'</b><div style="font-size:11px;color:var(--ink-dim);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">'+escapeHtml(plRoomSum(x.room))+' · '+escapeHtml(plRoomLibDate(x.at))+'</div></div>'
+    +'<div style="flex:1;min-width:0"><b>'+escapeHtml(String(x.name||""))+'</b>'+plRoomLibBadge(x)+'<div style="font-size:11px;color:var(--ink-dim);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">'+escapeHtml(plRoomSum(x.room))+' · '+escapeHtml(plRoomLibDate(x.at))+'</div></div>'
     +'<button class="ibtn" data-a="use" style="flex:none;width:auto;padding:5px 14px;background:var(--accent);color:#fff;border-color:transparent">เปิดใช้</button>'
     +'<button class="ibtn" data-a="del" title="ลบห้องนี้ออกจากไฟล์กลาง" style="flex:none;width:auto;padding:5px 9px;color:#d33">🗑</button></div>').join("");
   box.querySelectorAll(".plrlRow").forEach(row=>{ const x=L[+row.dataset.i];
@@ -39655,7 +39703,7 @@ async function plRoomLibOpen(){ if(snOff("plRoomLib")) return; let m=$("plRoomLi
     +'<div class="mbody"><div style="display:flex;gap:8px;align-items:center;margin-bottom:8px"><input id="plrlQ" placeholder="🔍 ค้นหาชื่อห้อง…" autocomplete="off" style="flex:1;min-width:0;font-size:12.5px;padding:6px 9px;border:1px solid var(--line);border-radius:7px">'
     +'<button class="ibtn" id="plrlSave2" style="flex:none;width:auto;padding:6px 12px">💾 บันทึกห้องตอนนี้…</button></div>'
     +'<div id="plrlList" style="max-height:min(60vh,520px);overflow:auto;border:.5px solid var(--line);border-radius:8px"><div style="padding:14px;color:var(--ink-dim)">กำลังโหลด…</div></div>'
-    +'<div style="font-size:11px;color:var(--ink-dim);margin-top:6px;line-height:1.6">เก็บในไฟล์กลาง (ตาราง app_settings) — ทุกเครื่องที่ใช้ข้อมูลชุดเดียวกันเห็นเหมือนกัน · เปิดใช้ = แทนห้องตอนนี้ ตู้ในฉากอยู่ที่เดิม · ปรับห้องแล้ว 💾 บันทึกเป็นชื่อใหม่ได้</div></div></div>';
+    +'<div style="font-size:11px;color:var(--ink-dim);margin-top:6px;line-height:1.6">เก็บในไฟล์กลาง (ตาราง app_settings) — ทุกเครื่องที่ใช้ข้อมูลชุดเดียวกันเห็นเหมือนกัน · ห้องที่บันทึกพร้อมตู้ = เลือกเปิดห้อง + ตู้ (แทนฉาก เหมือนเปิดออเดอร์) หรือเฉพาะห้อง (ตู้ในฉากอยู่ที่เดิม) · ปรับห้องแล้ว 💾 บันทึกเป็นชื่อใหม่ได้</div></div></div>';
   document.body.appendChild(m);
   const close=()=>m.remove();
   m.querySelector("[data-x]").onclick=close; m.addEventListener("pointerdown",ev=>{ if(ev.target===m) close(); });
@@ -43289,6 +43337,12 @@ async function nextOrderNo(){
   return pre+(mx+1)+"_";
 }
 /* ----- ออเดอร์ทั้งฉาก บนคลาวด์ (Save As เลขผลิต/ชื่อใหม่ · เปิดกลับมาแก้ได้) — id นำหน้า ORD:: ----- */
+/* ───────── v1.547: ก้อนข้อมูลออเดอร์ (Save Order) ใช้ร่วมกับ 💾 บันทึกห้องพร้อมตู้ ─────────
+   เดิมก้อนนี้เขียนไว้ในบรรทัดเดียวกลาง cloudSaveOrder — บันทึกห้องพร้อมตู้ต้องเก็บเหมือนกันทุกช่อง
+   ถ้าก๊อปไปเขียนอีกที่ วันหน้าเพิ่มช่องใหม่ (แบบ cabDP) แล้วลืมอีกที่ = ห้องที่บันทึกหายช่องนั้นเงียบ ๆ
+   ช่องใหม่ที่ผูกกับออเดอร์ ใส่ที่นี่ที่เดียว (ทางเปิด = cloudLoadOrder ซึ่งห้องพร้อมตู้ก็ใช้ตัวเดียวกัน) */
+function orderDataNow(oid){
+  return {order:true,orderId:oid,boards:JSON.parse(JSON.stringify(state.boards)),globalTone:state.globalTone,cabColors:state.cabColors,cabNums:state.cabNums,cabVarTxt:state.cabVarTxt,cabDX:state.cabDX,orderLines:state.orderLines,cabDP:state.cabDP,cabFrontEdge:state.cabFrontEdge,cabFrontDir:state.cabFrontDir,room:state.room||null,scenes:state.scenes||[],orderMat:state.orderMat||{},pidLock:state.pidLock||null}; }
 async function cloudSaveOrder(){
   if(VIEW_ONLY){ toast("ลิงก์ดูอย่างเดียว — บันทึกขึ้นคลาวด์ไม่ได้"); return; }   // v27.3
 
@@ -43319,7 +43373,7 @@ async function cloudSaveOrder(){
     else bz.step("กำลังบันทึก…",55); }catch(e){} };
   try{ const db=await getDB(); const id="ORD::"+oid;
     const exEl=$("exOrderId"); if(exEl){ exEl.value=oid; }   // ตั้งชื่อออเดอร์ในฉากให้ตรงไฟล์ที่เซฟ
-    const data={order:true,orderId:oid,boards:JSON.parse(JSON.stringify(state.boards)),globalTone:state.globalTone,cabColors:state.cabColors,cabNums:state.cabNums,cabVarTxt:state.cabVarTxt,cabDX:state.cabDX,orderLines:state.orderLines,cabDP:state.cabDP,cabFrontEdge:state.cabFrontEdge,cabFrontDir:state.cabFrontDir,room:state.room||null,scenes:state.scenes||[],orderMat:state.orderMat||{},pidLock:state.pidLock||null};   /* v1.337: + วัสดุทั้งออเดอร์ · v1.411: + ล็อกเลขชิ้น */
+    const data=orderDataNow(oid);   /* v1.337: + วัสดุทั้งออเดอร์ · v1.411: + ล็อกเลขชิ้น · v1.547: ย้ายไป orderDataNow (ใช้ร่วมกับ 💾 บันทึกห้อง) */
     if(bz){ _wStep(); await bz.tick(); _tm=setInterval(_wStep,300); }
     const r=await db.from("furnitech_cabinets").upsert({id,name:id,part_count:state.boards.length,data,updated_at:new Date().toISOString()},{onConflict:"id"}); if(r.error)throw r.error;
     if(_tm){ clearInterval(_tm); _tm=0; }
@@ -43374,11 +43428,15 @@ async function newOrder(opts){
    v30.2 ใส่กล่องรอให้เฉพาะทางโหลด XML เข้าฉาก แต่ทาง "เปิดแก้" เงียบสนิท
    ทั้งที่ทำงานหนักกว่าอีก — ดึงก้อนจากคลาวด์ แล้วไล่ซ่อมผิว+ความลึกชั้นทีละใบ
    ออเดอร์เจ็ดสิบกว่าใบจึงค้างอยู่กับฉากเดิมหลายวินาทีโดยไม่มีอะไรบอก บางคนกดซ้ำ */
-async function cloudLoadOrder(oid){
-  let _bz=null;
-  try{ try{ _bz=busyOpen("กำลังเปิดออเดอร์ “"+oid+"”"); _bz.step("ติดต่อคลาวด์…",4); await _bz.tick(); }catch(e){}
-    const db=await getDB(); const r=await db.from("furnitech_cabinets").select("data").eq("id","ORD::"+oid).single(); if(r.error)throw r.error;
-    const src=(r.data&&r.data.data)||{}; const boards=src.boards||[]; if(!boards.length){toast("ออเดอร์ว่าง");return false;}
+/* v1.547: pre = {src ก้อนข้อมูล, title, done(n) ข้อความจบ} — 📂 เปิดห้องพร้อมตู้ส่งก้อนที่อ่านมาแล้วเข้ามา ไม่อ่านไฟล์กลางซ้ำ
+   ทางอื่นเรียก cloudLoadOrder(oid) เหมือนเดิม */
+async function cloudLoadOrder(oid,pre){
+  let _bz=null; const _pre=(pre&&pre.src)?pre:null;
+  try{ try{ _bz=busyOpen(_pre&&_pre.title?_pre.title:"กำลังเปิดออเดอร์ “"+oid+"”"); _bz.step(_pre?"เตรียมข้อมูล…":"ติดต่อคลาวด์…",4); await _bz.tick(); }catch(e){}
+    let src=_pre?_pre.src:null;
+    if(!src){ const db=await getDB(); const r=await db.from("furnitech_cabinets").select("data").eq("id","ORD::"+oid).single(); if(r.error)throw r.error;
+      src=(r.data&&r.data.data)||{}; }
+    const boards=src.boards||[]; if(!boards.length){toast("ออเดอร์ว่าง");return false;}
     if(_bz){ _bz.step("เตรียมชิ้น "+boards.length+" ชิ้น",18); await _bz.tick(); }
     const idMap={}; const norm=boards.map(b=>{ const nid=uid(); if(b.id!=null)idMap[b.id]=nid; return Object.assign({yaw:0,tone:null,r:0},JSON.parse(JSON.stringify(b)),{id:nid}); });
     remapRuleRefs(norm,idMap); remapHoleSrc(norm,idMap); healHoleSrc(norm);
@@ -43412,9 +43470,9 @@ async function cloudLoadOrder(oid){
     try{ symfixHealStale(); }catch(e){ console.error("symfixHeal:",e); }   /* v1.403 */
     if(_fixed) toast("ปรับความหนาผิว + ความลึกชั้นให้ "+_fixed+" ตู้ (ค่าเดิมฝังมาจากตอนสร้าง)");
     const m=$("cloudModal"); if(m)m.classList.remove("show");
-    toast("📂 เปิดออเดอร์ “"+oid+"” แล้ว ("+norm.length+" ชิ้น) — แก้แล้วบันทึกทับ หรือ Save As ชื่อใหม่ได้");
+    toast(_pre&&_pre.done?_pre.done(norm.length):("📂 เปิดออเดอร์ “"+oid+"” แล้ว ("+norm.length+" ชิ้น) — แก้แล้วบันทึกทับ หรือ Save As ชื่อใหม่ได้"));   // v1.547
     return true;
-  }catch(e){ toast("เปิดออเดอร์ไม่สำเร็จ: "+sbErr(e)); return false; }
+  }catch(e){ toast((_pre?"เปิดห้องไม่สำเร็จ: ":"เปิดออเดอร์ไม่สำเร็จ: ")+sbErr(e)); return false; }
   finally{ try{ if(_bz) _bz.done(); }catch(e){} }
 }
 async function cloudDeleteOrder(oid){ const db=await getDB(); const r=await db.from("furnitech_cabinets").delete().eq("id","ORD::"+oid); if(r.error)throw r.error; }
