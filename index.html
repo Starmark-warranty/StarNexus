@@ -933,6 +933,8 @@ body[data-theme="dark"] .splash-dots span{background:rgba(255,255,255,.25)}
   <!-- v32.2: แถวเลือกโทนไม้รวมถูกเอาออก — สีจริงมาจาก Element → Surfaces แล้ว
        ตัวเลือกนี้ทับสีจริงทั้งฉากด้วยโทนสมมุติ กดโดนทีเดียวสีที่ตั้งไว้หายหมด
        state.globalTone ยังอยู่เป็นสีสำรองของชิ้นที่ยังไม่ได้ผูก Surface -->
+  <!-- v1.549: 🤖 ผู้ช่วย AI — สร้างตู้ · แก้ค่าตั้ง · เพิ่มสี (SNAI) -->
+  <button class="chip" id="aiBtn" title="🤖 ผู้ช่วย AI — พิมพ์สั่งสร้างตู้ · แก้ค่าตั้ง · เพิ่มสี (ใส่คีย์ Claude/OpenAI/Gemini ที่ ⚙ ในหน้าผู้ช่วย · ไม่มีคีย์ = สั่งแบบง่ายได้)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.8 4.7L18.5 9.5l-4.7 1.8L12 16l-1.8-4.7L5.5 9.5l4.7-1.8z"/><path d="M19 15l.8 2.2L22 18l-2.2.8L19 21l-.8-2.2L16 18l2.2-.8z"/></svg>ผู้ช่วย</button>
   <button class="chip" id="grainBtn" title="แสดงแนวลายไม้ — ตามรหัสผิวที่ขึ้นต้นด้วย G (บังคับรายชิ้นได้ในแผงขวา)"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>ลายไม้</button>
   <button class="chip" id="labelBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M11 8h2v8M9 16h6" stroke-width="1.6"/></svg>เลข</button>
   <button class="chip sel" id="shadowBtn"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>แสง·เงา</button>
@@ -3281,7 +3283,7 @@ body[data-theme="dark"] .splash-dots span{background:rgba(255,255,255,.25)}
    ===================================================================== */
 /* ---- APP_META: แหล่งความจริงเดียวของเวอร์ชัน (ดูได้จาก console / คลิกชื่อแอป) ---- */
 const APP_META={
-  name:"StarNexus", version:"1.548", build:"2026-10-29/top-select",
+  name:"StarNexus", version:"1.553", build:"2026-10-29/ai-lite",
   file:"StarNexus.html", basedOn:"Furnitech_V3.html (v3.11)",
   /* ───────── เริ่มนับเวอร์ชันใหม่ที่ 1.001 (21/08/2026) ─────────
      ของเดิมนับมาถึง 42.1 แล้ววิ่งเป็นทศนิยมสองชั้นซึ่งอ่านลำดับยาก
@@ -3289,6 +3291,11 @@ const APP_META={
      ประวัติเก่าเก็บไว้ทั้งหมดตามเลขเดิม ไม่ไล่เขียนใหม่ เพราะเลขในนั้นถูกอ้างถึงไปแล้ว
      รายการที่อยู่ใต้ 1.001 ลงไปจึงเป็นเลขชุดเก่า อ่านต่อกันได้ตามวันที่ */
   changelog:[
+    ["1.553","2026-10-29","FIX ผู้ช่วย AI · รุ่นตั้งต้นของ Gemini = gemini-3.5-flash-lite (ผู้ใช้ 13:05 “เรียก Ai ไม่สำเร็จ” หมดเวลา 90 วิ กับ gemini-3.8-flash · ตรวจแล้ว: คีย์ใช้ได้ · เน็ตถึง Google · เปิดผ่าน Odoo เรียก Google ได้ — fetch ตรงจาก Console ไป 3.5-flash-lite ตอบ ok ทันที) · ป้าย “Gemini (Odoo)” = ตัวแปลคำ gasWord (v1.495) เปลี่ยน Google → Odoo บนจอ ไม่ใช่โค้ดถูกแก้ · รุ่นที่ตั้งเองในช่อง Model ยังชนะค่าตั้งต้น"],
+    ["1.552","2026-10-29","FIX ผู้ช่วย AI ตอบไม่ทัน (ผู้ใช้ 12:06 ภาพ “หมดเวลา 60 วิ” กับ สร้างตู้ 600x720x560 ชั้น 1) — ① เดิมทุกข้อความแนบค่าตั้งทั้ง 384 ค่า + สี 150 รหัส (~20,000 ตัวอักษร) → ส่งเฉพาะค่าตั้งที่คำตรงกับข้อความ (relevantKeys ≤ 40 · ดู 3 ข้อความล่าสุด) · รายการสีแนบเฉพาะเมื่อพูดถึงสี/ผิว/ขอบ ② Gemini 3.x Flash ขอ thinkingLevel LOW (ค่าตั้งต้น MEDIUM · MINIMAL ใช้กับ 3.8 ไม่ได้) · รุ่นที่ตอบ 400 เรื่อง thinking = ส่งซ้ำแบบไม่ใส่แล้วจำไว้ ③ หมดเวลาส่ง 60 → 90 วิ"],
+    ["1.551","2026-10-29","FEAT ผู้ช่วย AI · นับจำนวนครั้ง + หมดเวลา (ผู้ใช้ 11:57 ภาพ “กำลังทดสอบ…” ค้าง: “ทดสอบ นานเลย เพิ่ม จำนวนครั้ง ให้ คนอื่นๆ รู้ด้วยครับในโปรแกรม”) — ① แถบ 📊 ใต้ช่องพิมพ์ + ป้ายหัวแผง: วันนี้ใช้ไป n / โควตา · เหลือ · รีเซ็ต HH:MM น. (เที่ยงคืนแปซิฟิก) · นับในเครื่อง localStorage snAI:use:v1 ต่อ ผู้ให้บริการ|รุ่น · โควตาตั้งต้น Gemini Flash 20 / Flash-Lite 500 แก้ได้ที่ ⚙ (0 = ไม่จำกัด) · ครบโควตา = เตือนก่อนส่ง · API ตอบ 429/quota = แจ้งภาษาไทยว่าโควตาหมด + เวลารีเซ็ต ② ทดสอบ/ส่ง แสดงวินาทีที่รอ · หมดเวลา ทดสอบ 30 วิ ส่ง 60 วิ (เดิมรอไม่มีกำหนด) · นับเฉพาะคำขอที่สำเร็จ ③ (ผู้ใช้ 12:00 “ผู้ช่วย โดนทับเวลาอยู่โหมดออกแบบ”) แผงผู้ช่วยวางตัวเองถัดจากแผงซ้าย (#list/#plPanel) ก่อนแผงขวา (#plCat/#insp) แบบ scnPlace · ที่ไม่พอหรือห้องออกแบบเปิด = ยกชั้น 325 เหนือแผงห้อง (320)"],
+    ["1.550","2026-10-29","FIX ผู้ช่วย AI · Gemini (ผู้ใช้ 11:54 ภาพ: “models/gemini-2.5-flash is no longer available to new users”) — รุ่นตั้งต้นของ Gemini เปลี่ยนเป็น gemini-3.8-flash ตามที่ Google แจ้ง · ถ้า API ตอบว่าให้ใช้รุ่นอื่น ข้อความ error จะบอกชื่อรุ่นที่ต้องใส่ในช่อง Model ให้เลย (รุ่นที่ผู้ใช้ตั้งเองไว้ใน ⚙ ยังชนะค่าตั้งต้นเสมอ)"],
+    ["1.549","2026-10-29","FEAT 🤖 ผู้ช่วย AI (ผู้ใช้ 29/10 11:26 “เพิ่มฟังก์ชั่นช่วยเขียนตู้ หรือ ตั้งค่า เพิ่มสี อื่นๆ ได้ไหมครับ ทำไว้รอใส่คีย์”) — ปุ่ม 🤖 ผู้ช่วย ที่แถบล่าง · พิมพ์สั่งภาษาไทย → AI ตอบเป็นคำสั่งให้กดยืนยันทีละข้อ: create_cabinet = เปิดฟอร์มสร้างตู้ที่กรอกค่าให้ (genCabinet(preset) + aiPresetFields · ปุ่มเดิมไม่ส่ง preset = เหมือนเดิม) · set_setting = แก้ค่าตั้งเฉพาะคีย์ที่มีจริง ชนิดตรงของเดิม กดย้อนได้ (คีย์ที่ชื่อมี key/token/pass/cloud/url ห้ามแตะ) · add_color = เปิด colorFromTemplateDialog แล้วกรอกรหัสสีใหม่ให้ · รองรับ Claude/OpenAI/Gemini เรียกตรงจากเบราว์เซอร์ · คีย์เก็บ localStorage snAI:cfg:v1 เท่านั้น (ไม่อยู่ใน settings จึงไม่ขึ้นคลาวด์/ไม่ติดไฟล์) · ไม่มีคีย์ = โหมดออฟไลน์ อ่านคำสั่งง่ายด้วย regex (ตู้ 800x720x560 ชั้น 2 · backset = 18 · หา เดือย · สีใหม่ XXX)"],
     ["1.548","2026-10-29","FEAT+FIX ห้องออกแบบ (ผู้ใช้ 29/10 08:56–09:00 ภาพครัว: “เลือกผนังแยกได้ไหม — อยากเลือกแล้วกดลบได้ ใต้ Hood” · “อยากให้คลิกทอปเพื่อดูขนาดได้เหมือนคลิกตู้แล้ว Dim ขึ้น” · “กดโหมดสมจริงแล้ว Prop หาย”) — ① คลิกท็อป (ไม่ลาก) = เลือกท็อปชิ้นนั้น ขอบฟ้า + Dim ยาว/ลึก/หนา + แผงซ้ายบอกขนาด/พื้นที่ · คลิกซ้ำ = เลือกตู้ข้างใต้ · ลากจากท็อปยังลากตู้ได้เหมือนเดิม ② คลิกบัว/ผนังเหนือท็อป = เลือกทีละช่วง (แบ่งตามขอบตู้ลอย + ขอบฮู้ด) + Dim ยาว/สูง · Del หรือ ✂ = ตัดช่วงนั้นออก (เช่น ผนังกระจกใต้ฮู้ด) — พื้นที่/ราคา/แบบตามไปเอง · Ctrl+Z ย้อนได้ · แผงห้อง › ท็อป ↩ คืนที่ตัดทั้งหมด · เดิมผนังเหนือท็อปเป็นแผ่นยาวตลอดแนว เลือก/ลบไม่ได้ ③ โหมดสมจริงในห้องออกแบบเห็นเครื่องใช้ในครัว (ซิงค์ เตา ฮู้ด เตาอบ ไมโครเวฟ ถังแก๊ส ฯลฯ) และปลั๊ก/ท่อ — เดิมซ่อนกลุ่มห้องออกแบบทั้งกลุ่ม (ผนัง/ประตู/ของ) เพราะโหมดสมจริงสร้างห้องเอง ของในห้องเลยหายไปด้วย · ภาพแสงจริงก็เห็น · ปิด SN_OFF.plWtSel=1 / SN_OFF.realProps=1"],
     ["1.547","2026-10-29","FEAT 💾 บันทึกห้อง เก็บตู้ไปด้วย (ผู้ใช้ 29/10 08:19 “การ SAVE ห้องมันต้องเหมือน SAVE order คือถ้าเขาใส่ตู้ไปแล้ว ตู้ต้องติดอยู่ในห้องด้วย”) — เดิม (1.540) บันทึกห้องเก็บแค่ผนัง/ประตู/หน้าต่าง/ของในห้อง ไม่เก็บตู้ เปิดกลับมาตู้หายหมด · ตอนนี้กล่องบันทึกห้องมีช่องติ๊ก “เก็บตู้ในห้อง N ใบไปด้วย” (ติ๊กไว้ให้แล้ว) เก็บก้อนเดียวกับ Save Order ทุกช่อง (ชิ้น สีรายตู้ ตัวแปรรายตู้ DP วัสดุทั้งออเดอร์ บรรทัดสั่งของ ฉาก 🎬 เลขออเดอร์ ฯลฯ — orderDataNow() ใช้ร่วมกับ cloudSaveOrder จะได้ไม่ตกหล่นเวลามีช่องใหม่) · 📂 เปิดห้องที่มีตู้ = ถามว่า 🏠 เปิดห้อง + ตู้ (แทนฉากทั้งหมด เหมือนเปิดออเดอร์ — ใช้ตัวเปิดออเดอร์เดิม ซ่อมผิว/ความลึกชั้นเหมือนกัน · เลขออเดอร์กลับเป็นเลขตอนบันทึก) หรือ “เฉพาะห้อง” (แบบเดิม ตู้ในฉากอยู่ที่เดิม — เอาห้องไปใช้บ้านหลังอื่น) · รายการห้องบอกจำนวนตู้ · ห้องที่บันทึกก่อน 1.547 (ไม่มีตู้) เปิดแบบเดิม · ปิด SN_OFF.plRoomCabs=1"],
     ["1.546","2026-10-28","FEAT ห้องออกแบบ: เครื่องใช้ในครัว (ผู้ใช้ 20:31 + 20:35 “เพิ่ม Sink ลากมาใส่ทอปได้ · Hood ลากไปใส่ตู้ hood ได้ แต่ hood น่าจะมี 3 แบบ · เตา ถังขยะ ถังแก๊ส · ไมโครเวฟลอยตัว เตาอบ Built-in · เดี๋ยวเพิ่มรุ่นทีหลังได้ด้วย”) — แท็บ 🚪 ของในห้อง หมวดใหม่ เครื่องใช้ในครัว: 🚰 ซิงค์ 1 หลุม (มีที่พักจาน) / 2 หลุม + ก๊อก · 🔥 เตาฝังแก๊ส 2 หัว / อินดักชั่น 2 หัว = ลากชี้ท็อปหรือตู้พื้น วางบนผิวท็อป หันตามตู้ กลางลึกตู้ ใกล้กลางตู้ (≤ 80) ดูดเข้ากลาง · 🌀 ฮู้ด 3 แบบ: ฝังใต้ตู้ (เทเลสโคปิก — ตัวเครื่องในตู้ แผงดึงโผล่ใต้ตู้) · บางติดใต้ตู้ (Slim — หลังชิดหลังตู้ ยื่นออกหน้า) = ลากชี้ตู้ลอย (ตู้ hood) แล้วติดก้นตู้ กลางตู้ · กระโจมติดผนัง = ติดผนังแบบหน้าต่าง (สูงจากพื้น 1,550) ปล่องขึ้นถึงฝ้า · ⬛ เตาอบฝัง (Built-in) = ลากชี้ตู้ หน้าเตาเสมอหน้าบาน กลางตู้ (ตู้พื้น = ใต้หัวตู้ 30 · ตู้สูง = ความสูงตามที่ชี้) · 📦 ไมโครเวฟตั้งพื้น = บนท็อป/ตู้ หลังชิดผนัง · 🗑 ถังขยะ · 🛢 ถังแก๊ส 15 กก. = วางพื้น · ชี้ไม่โดนตู้ = ตามพื้น (บอกให้ชี้ตู้) · คลิกการ์ด = วางให้เองที่ตู้ที่เหมาะใกล้จุดกลางจอ · R หมุน · แผงซ้าย: รุ่น · รหัสสินค้า · กว้าง/ลึก/สูง · สูงจากพื้น · แก้ขนาดแล้วจัดเข้าตู้ใหม่ · 💾 บันทึกเป็นรุ่น (ชื่อ · รหัส · ขนาด) เก็บใน settings.plAppl (ตั้งค่า + ไฟล์กลาง) ขึ้นเป็นการ์ดลากใช้ได้ · เลือกรุ่นในแผงเปลี่ยนขนาดตามรุ่น · ลบรุ่นได้ · Ctrl+Z ย้อนได้ · ปิด SN_OFF.plAppl=1"],
@@ -13296,8 +13303,8 @@ async function adjustDrawerGroup(b){
   state.selectedId=front?front.id:b.id; sync(0);
   toast("ปรับลิ้นชักแล้ว ("+grp.length+" ชิ้น)");
 }
-async function genCabinet(){
-  const v=await promptFields("สร้างตู้ (พารามิเตอร์)",[
+async function genCabinet(preset){   // v1.549: preset = ค่าที่ผู้ช่วย AI กรอกให้ (ปุ่มเดิมเรียกแบบไม่ส่งอะไร = เหมือนเดิม)
+  const v=await promptFields("สร้างตู้ (พารามิเตอร์)"+(preset&&!(preset instanceof Event)?" · 🤖 ผู้ช่วยกรอกให้":""),aiPresetFields([
     {key:"code",label:"รหัสตู้ (Cabinet Code)",type:"text",value:"",placeholder:"เช่น BND001"},
     {key:"kind",label:"รูปแบบ",type:"toggle",options:["ตู้","แผ่นเดี่ยว"],value:"ตู้"},
     {key:"plane",label:"วางแผ่น",type:"toggle",options:["นอน (ทอป/ใต้ตู้)","ตั้ง·ปิดข้าง","ตั้ง·หน้า"],value:"นอน (ทอป/ใต้ตู้)",showIf:c=>c.kind==="แผ่นเดี่ยว"},
@@ -13314,7 +13321,7 @@ async function genCabinet(){
     {key:"left",label:"แผ่นหลัง · ด้านซ้าย",type:"toggle",showIf:c=>c.kind==="ตู้",options:["ฝังใน","ทับ"],value:"ฝังใน"},
     {key:"right",label:"แผ่นหลัง · ด้านขวา",type:"toggle",showIf:c=>c.kind==="ตู้",options:["ฝังใน","ทับ"],value:"ฝังใน"},
     {key:"top",label:"แผ่นหลัง · ด้านบน",type:"toggle",showIf:c=>c.kind==="ตู้",options:["ฝังใน","ทับ"],value:"ฝังใน"},
-    {key:"bottom",label:"แผ่นหลัง · ด้านล่าง",type:"toggle",showIf:c=>c.kind==="ตู้",options:["ฝังใน","ทับ"],value:"ฝังใน"}]);
+    {key:"bottom",label:"แผ่นหลัง · ด้านล่าง",type:"toggle",showIf:c=>c.kind==="ตู้",options:["ฝังใน","ทับ"],value:"ฝังใน"}],preset));
   if(!v)return;
   syncUid();   // กัน id ใหม่ชนกับชิ้นที่มีอยู่ในฉาก
   const code=(v.code&&v.code.trim())||"";
@@ -66065,6 +66072,378 @@ const CurvedShelf = (function(){
   }
   return { init, generate, geom, readParams, makeBoards, sheets:buildSheets, sheetsFrom, sceneCount, fromBoards, editBoard };
 })();
+
+/* ═════════ v1.549: 🤖 ผู้ช่วย AI — ช่วยสร้างตู้ · แก้ค่าตั้ง · เพิ่มสี (ทำไว้รอใส่คีย์) ═════════
+   ผู้ใช้ 29/10 11:26 “เพิ่มฟังก์ชั่นช่วยเขียนตู้ หรือ ตั้งค่า เพิ่มสี อื่นๆ ได้ไหมครับ ทำไว้รอใส่คีย์”
+   ● เปิดจากปุ่ม 🤖 ผู้ช่วย ที่แถบล่าง · พิมพ์สั่งเป็นภาษาไทย → AI ตอบเป็น "คำสั่ง" ให้กดยืนยันทีละข้อ
+     AI ไม่แตะฉากเอง — ทุกอย่างผ่านทางเดิมของโปรแกรม:
+       create_cabinet → genCabinet(preset) เปิดฟอร์มสร้างตู้ที่กรอกค่าไว้ให้ (คนกดตกลงเอง)
+       set_setting    → แก้ settings[key] เฉพาะคีย์ที่มีอยู่จริง ชนิดตรงกับของเดิม · กดย้อนได้
+       add_color      → colorFromTemplateDialog(template) แล้วกรอกรหัสสีใหม่ให้ (คนกด 🎨 สร้างสี เอง)
+   ● คีย์: เก็บใน localStorage ของเบราว์เซอร์เครื่องนี้ (กุญแจ snAI:cfg:v1) เท่านั้น
+     ห้ามย้ายไปไว้ใน settings — settings ขึ้นคลาวด์และติดไปกับไฟล์ คีย์จะหลุด
+   ● ยังไม่ใส่คีย์ = โหมดออฟไลน์ อ่านคำสั่งแบบง่ายด้วย regex (ตู้ 800x720x560 ชั้น 2 · backset 18 · สีใหม่ N03P0001N)
+   ● รองรับ Claude / OpenAI / Gemini — เรียกตรงจากเบราว์เซอร์ ไม่มีเซิร์ฟเวอร์กลาง */
+function aiPresetFields(fields,preset){   // ใช้กับ promptFields: เอาค่าจาก preset ทับ value ตั้งต้น (ค่าที่ไม่ผ่านตรวจ = ทิ้ง ใช้ค่าเดิม)
+  if(!preset||typeof preset!=="object"||(typeof Event!=="undefined"&&preset instanceof Event)) return fields;
+  return fields.map(f=>{ if(!f||!f.key||!Object.prototype.hasOwnProperty.call(preset,f.key)) return f;
+    let v=preset[f.key]; if(v==null||v==="") return f;
+    if(f.type==="toggle"){ v=String(v); if((f.options||[]).indexOf(v)<0) return f; }
+    else if(f.type==="text"){ v=String(v).slice(0,60); }
+    else if(!f.type){ v=parseFloat(v); if(!isFinite(v)) return f; }
+    else return f;
+    return Object.assign({},f,{value:v}); });
+}
+const SNAI=(function(){
+  const LSK="snAI:cfg:v1";
+  const PROV={
+    anthropic:{name:"Claude (Anthropic)", model:"claude-sonnet-5-5", hint:"sk-ant-…", url:"console.anthropic.com"},
+    openai:   {name:"ChatGPT (OpenAI)",   model:"gpt-4.1-mini",      hint:"sk-…",     url:"platform.openai.com"},
+    gemini:   {name:"Gemini (Google)",    model:"gemini-3.5-flash-lite",   /* v1.553: 3.8-flash เงียบเกิน 90 วิ ทั้งที่ 3.5-flash-lite ตอบทันทีจากหน้าเดียวกัน (ผู้ใช้ทดสอบ 13:31) · v1.550: 2.5-flash ปิดรับผู้ใช้ใหม่ */  hint:"AIza…",    url:"aistudio.google.com"}
+  };
+  const BAD=/(key|token|secret|pass|cloud|supa|url|^_)/i;   // ค่าตั้งที่ผู้ช่วยห้ามแตะ
+  let cfg=loadCfg(), hist=[], busy=false, root=null, labels=null;
+  function loadCfg(){ try{ const o=JSON.parse(localStorage.getItem(LSK)||"{}")||{};
+      return {prov:PROV[o.prov]?o.prov:"anthropic", models:(o.models&&typeof o.models==="object")?o.models:{}, keys:(o.keys&&typeof o.keys==="object")?o.keys:{}, quota:(o.quota&&typeof o.quota==="object")?o.quota:{}}; }
+    catch(e){ return {prov:"anthropic",models:{},keys:{},quota:{}}; } }
+  function saveCfg(){ try{ localStorage.setItem(LSK,JSON.stringify(cfg)); }catch(e){ toast("บันทึกคีย์ไม่ได้ — เบราว์เซอร์นี้ปิด localStorage"); } }
+  const key=()=>String(cfg.keys[cfg.prov]||"").trim();
+  const model=()=>String(cfg.models[cfg.prov]||"").trim()||PROV[cfg.prov].model;
+  const H=s=>escapeHtml(String(s==null?"":s));
+
+  /* ---------- v1.551: นับจำนวนครั้งต่อวัน ----------
+     โควตาฟรีของ Google นับต่อโปรเจกต์ รีเซ็ตเที่ยงคืนเวลาแปซิฟิก (= บ่าย 2 โมงไทยช่วงหน้าร้อน · บ่าย 3 โมงช่วงหน้าหนาว)
+     API ไม่บอกว่าเหลือกี่ครั้ง จึงนับเองในเครื่อง (localStorage snAI:use:v1) — เครื่องอื่นที่ใช้คีย์เดียวกันไม่ถูกนับรวม
+     ตั้งต้น: Gemini Flash 20 · Flash-Lite 500 (ตัวเลขที่ผู้ใช้รายงานในฟอรัม Google ต.ค. 2026) · แก้เองได้ที่ ⚙ ช่องโควตา */
+  const USK="snAI:use:v1";
+  const QUOTA_DEF=[[/^gemini-.*flash-lite/i,500],[/^gemini-/i,20]];
+  function ptParts(){ const p={}; new Intl.DateTimeFormat("en-US",{timeZone:"America/Los_Angeles",hour12:false,year:"numeric",month:"2-digit",day:"2-digit",hour:"2-digit",minute:"2-digit",second:"2-digit"})
+    .formatToParts(new Date()).forEach(x=>{ p[x.type]=x.value; }); return p; }
+  function ptDay(){ try{ const p=ptParts(); return p.year+"-"+p.month+"-"+p.day; }catch(e){ return new Date().toISOString().slice(0,10); } }
+  function resetAt(){ try{ const p=ptParts(), sec=((+p.hour)%24)*3600+(+p.minute)*60+(+p.second);
+      const d=new Date(Date.now()+(86400-sec)*1000); return String(d.getHours()).padStart(2,"0")+":"+String(d.getMinutes()).padStart(2,"0"); }catch(e){ return "?"; } }
+  const umk=()=>cfg.prov+"|"+model();
+  function useGet(){ let o={}; try{ o=JSON.parse(localStorage.getItem(USK)||"{}")||{}; }catch(e){}
+    if(o.day!==ptDay()) o={day:ptDay(),n:{}}; o.n=o.n||{}; return o; }
+  function useAdd(set){ const o=useGet(), k=umk(); o.n[k]=(set!=null)?set:((o.n[k]||0)+1);
+    try{ localStorage.setItem(USK,JSON.stringify(o)); }catch(e){} useUI(); return o.n[k]; }
+  const used=()=>useGet().n[umk()]||0;
+  function quota(){ const q=(cfg.quota||{})[umk()]; if(q!=null&&q!=="") return Math.max(0,+q||0);
+    if(cfg.prov!=="gemini") return 0; const r=QUOTA_DEF.find(x=>x[0].test(model())); return r?r[1]:0; }
+  function useText(){ const n=used(), q=quota();
+    return "วันนี้ใช้ไป "+n+(q?" / "+q:"")+" ครั้ง"+(q&&n<q?" · เหลือ "+(q-n):"")+(q&&n>=q?" · ⚠ ครบโควตาแล้ว":"")
+      +(cfg.prov==="gemini"?" · รีเซ็ต "+resetAt()+" น.":"")+" · นับเฉพาะเครื่องนี้"; }
+  function useUI(){ if(!root) return; const u=root.querySelector("#snaiUse"); if(!u) return;
+    if(!key()){ u.style.display="none"; return; } u.style.display="";
+    const n=used(), q=quota(); u.textContent="📊 "+useText();
+    u.style.color=q&&n>=q?"#b42318":(q&&n>=q*0.8?"#b45309":"var(--ink-faint)"); pill(); }
+  /* fetch ที่มีหมดเวลา — เดิมรอไม่มีกำหนด ทดสอบแล้วค้าง “กำลังทดสอบ…” ไม่รู้ว่ายังทำงานอยู่ไหม */
+  async function fx(url,init,ms){ const ac=(typeof AbortController!=="undefined")?new AbortController():null;
+    const tm=ac?setTimeout(()=>ac.abort(),ms||60000):0;
+    try{ return await fetch(url,Object.assign({},init,ac?{signal:ac.signal}:{})); }
+    catch(e){ if(e&&e.name==="AbortError") throw new Error("หมดเวลา "+Math.round((ms||60000)/1000)+" วิ — AI ตอบช้าหรือเน็ตหลุด ลองใหม่ หรือเปลี่ยนเป็นรุ่น flash-lite ที่เร็วกว่า");
+      throw new Error("ต่อเน็ตไปหา AI ไม่ได้ ("+(e&&e.message||e)+")"); }
+    finally{ if(tm) clearTimeout(tm); } }
+  async function chk(r){ const j=await r.json().catch(()=>({}));
+    if(r.ok){ useAdd(); return j; }
+    const em=(j.error&&j.error.message)||("HTTP "+r.status), nm=/use\s+models\/([\w.\-]+)/i.exec(em);
+    if(r.status===429||/quota|RESOURCE_EXHAUSTED|rate.?limit/i.test(em)){ const q=quota(); if(q&&used()<q) useAdd(q);
+      throw new Error("โควตาหมดแล้ว — ผู้ให้บริการปฏิเสธเพราะใช้ครบตามที่ได้"+(cfg.prov==="gemini"?" · รีเซ็ตประมาณ "+resetAt()+" น. · หรือเปลี่ยนรุ่นเป็น flash-lite ที่ ⚙":"")+"\n("+em.slice(0,160)+")"); }
+    throw new Error(em+(nm?"\n👉 แก้ช่อง Model ที่ ⚙ เป็น "+nm[1]+" แล้วกดบันทึก":"")); }
+
+  /* ---------- ค่าตั้งที่แก้ได้ + ความหมาย (อ่านจากหน้าตั้งค่าจริง ไม่ต้องดูแลรายการซ้ำ) ---------- */
+  function getLabels(){ if(labels) return labels; const m={};
+    try{ const body=$("setBody"); if(body&&!body.querySelector("[data-sk]")) renderSettings();
+      if(body) body.querySelectorAll("[data-sk]").forEach(inp=>{ const f=inp.closest(".fld"), lb=f&&f.querySelector("label");
+        m[inp.dataset.sk]=lb?lb.textContent.replace(/\s+/g," ").trim().slice(0,90):""; }); }catch(e){ console.error("snai labels:",e); }
+    return (labels=m); }
+  function settingKeys(){ const out={};
+    const add=k=>{ if(!k||BAD.test(k)||out[k]) return; const v=(settings[k]!==undefined)?settings[k]:DEF_SETTINGS[k], t=typeof v;
+      if(t==="number"||t==="boolean") out[k]=t;
+      else if(t==="string"&&v.length<=200&&!/\n/.test(v)) out[k]=t; };
+    Object.keys(DEF_SETTINGS).forEach(add); Object.keys(getLabels()).forEach(add); return out; }
+  function coerce(k,v){ const t=settingKeys()[k]; if(!t) return {err:"ไม่มีค่าตั้ง “"+k+"” หรือเป็นค่าที่ผู้ช่วยแก้ไม่ได้"};
+    if(t==="number"){ const n=parseFloat(v); return isFinite(n)?{v:n}:{err:"“"+k+"” ต้องเป็นตัวเลข"}; }
+    if(t==="boolean"){ if(typeof v==="boolean") return {v}; const s=String(v).trim().toLowerCase();
+      if(/^(true|1|on|yes|เปิด|ใช่)$/.test(s)) return {v:true}; if(/^(false|0|off|no|ปิด|ไม่)$/.test(s)) return {v:false};
+      return {err:"“"+k+"” ต้องเป็น เปิด/ปิด"}; }
+    const s=String(v==null?"":v); return (/\n/.test(s)||s.length>200)?{err:"ข้อความยาวเกิน"}:{v:s}; }
+  const showVal=v=>typeof v==="boolean"?(v?"เปิด":"ปิด"):String(v==null?"—":v);
+
+  /* ---------- บริบทที่ส่งให้ AI ---------- */
+  function sceneCtx(){ const B=state.boards||[], cabs={};
+    B.forEach(b=>{ if(!b||b._virtual) return; const k=b.cabInst||"-"; (cabs[k]=cabs[k]||{code:b.cab||"",n:0}).n++; });
+    const ls=Object.values(cabs).slice(0,30).map(c=>(c.code||"(ไม่มีรหัส)")+" ×"+c.n);
+    const s=selBoard();
+    return "ชิ้นในฉาก "+B.length+" · ตู้ "+Object.keys(cabs).length+(ls.length?" ["+ls.join(", ")+"]":"")
+      +(s?(" · ชิ้นที่เลือก: "+(s.name||"")+" "+s.L+"×"+s.W+"×"+s.T+(s.cab?" (ตู้ "+s.cab+")":"")):""); }
+  /* v1.552: ส่งเฉพาะที่เกี่ยวกับคำสั่ง (ผู้ใช้ 12:06 ภาพ “หมดเวลา 60 วิ”) — เดิมแนบค่าตั้งทั้ง 384 ค่า + สี 150 รหัส ทุกข้อความ (~20,000 ตัวอักษร)
+     รุ่นที่คิดก่อนตอบต้องอ่านทั้งก้อนทุกครั้ง ช้าจนเกิน 60 วิ และกินโควตา token · ตอนนี้ให้คะแนนค่าตั้งตามคำในข้อความ ส่งไม่เกิน 40 ค่า
+     ส่วนรายการสีส่งเฉพาะตอนข้อความพูดถึงสี/ผิว/ขอบ */
+  const SPLIT=/[\s,.;:()\/=+\-"'“”·|]+/;
+  /* คำหัวเรื่องภาษาไทย — ไทยไม่เว้นวรรค “ระยะเดือยห่าง” จึงไม่ตรงกับป้าย “ระยะห่างเดือย” ทั้งคำ · จับที่หัวเรื่องร่วมกันแทน */
+  const TOPIC=["เดือย","มินิฟิก","บานพับ","ถ้วย","แผ่นหลัง","ร่อง","ชั้น","ลิ้นชัก","กล่อง","ราง","คาน","ขาตู้","ขา","ทอป","หน้าบาน","บาน","ขอบ","สกรู","รูมาร์ค","รู","ไฟ","led","ฟิลเลอร์","ตะแกรง","กระจก","มือจับ","ผนัง","ผิว","ลายไม้","หูแขวน","ถาด","ซิงค์","ฮูด","ราคา","ตัด","ส่งออก","xml"];
+  function relevantKeys(q){ const L=getLabels(), K=settingKeys(), s=String(q||"").toLowerCase(), words=s.split(SPLIT).filter(w=>w.length>=2&&!/^\d+(x\d+)*$/.test(w)), out=[];
+    const tops=TOPIC.filter(t=>s.indexOf(t)>=0);
+    Object.keys(K).forEach(k=>{ const kl=k.toLowerCase(), lb=String(L[k]||"").toLowerCase(); let sc=0;
+      if(s.indexOf(kl)>=0) sc+=10;
+      words.forEach(w=>{ if(kl.indexOf(w)>=0) sc+=3; if(lb.indexOf(w)>=0) sc+=2; });
+      lb.split(SPLIT).forEach(t=>{ if(t.length>=3&&!/^\d+$/.test(t)&&s.indexOf(t)>=0) sc+=1; });
+      tops.forEach(t=>{ if(lb.indexOf(t)>=0) sc+=2; });   // ภาษาไทยไม่เว้นวรรค: คำในป้ายที่โผล่ในข้อความ
+      if(sc) out.push([k,sc]); });
+    return out.sort((a,b)=>b[1]-a[1]).slice(0,40).map(x=>x[0]); }
+  const wantColor=q=>/สี|ผิว|ขอบ|ลาย|colou?r|surface|edge|\bN\d{2}/i.test(String(q||""));
+  function colorCtx(q){ if(!wantColor(q)) return "(ไม่ได้แนบมา — ข้อความไม่ได้พูดถึงสี)";
+    const c=((settings.elements&&settings.elements.colors)||[]).filter(x=>x&&x.code&&String(x.kids||"").trim());
+    return c.slice(0,80).map(x=>x.code+(x.desc?"="+String(x.desc).slice(0,24):"")).join(", ")+(c.length>80?" …อีก "+(c.length-80):"")||"(ยังไม่มี)"; }
+  function settingsCtx(q){ const L=getLabels(), K=settingKeys(), ks=relevantKeys(q);
+    if(!ks.length) return "(ไม่เจอค่าตั้งที่ตรงกับข้อความ — ถ้าผู้ใช้อยากแก้ค่าตั้ง ให้ถามว่าเรื่องอะไร หรือให้พิมพ์ชื่อเรื่อง เช่น เดือย บานพับ แผ่นหลัง)";
+    return ks.map(k=>{ const v=settings[k]!==undefined?settings[k]:DEF_SETTINGS[k];
+      return k+"|"+K[k]+"|"+String(v).slice(0,40)+(L[k]?"|"+L[k]:""); }).join("\n"); }
+  function sysPrompt(q){
+    return [
+"คุณคือผู้ช่วยในโปรแกรม StarNexus Cabinet (ออกแบบตู้บิวท์อิน หน่วย มม.) ตอบภาษาไทย สั้น กระชับ",
+"ตอบเป็น JSON อย่างเดียวเท่านั้น ห้ามมีข้อความนอก JSON:",
+'{"reply":"ข้อความถึงผู้ใช้","actions":[...]}',
+"action ที่ใช้ได้ (ถ้าแค่ตอบคำถามให้ actions เป็น []):",
+'1) {"type":"create_cabinet","params":{"code":"BND001","kind":"ตู้|แผ่นเดี่ยว","W":600,"H":720,"D":560,"T":16,"Tb":9,"backset":16,"sh":1,"topJoin":"ฝังใน (ข้างเต็มสูง)|ทับข้าง","mode":"เพิ่มเข้าฉาก|แทนที่ทั้งฉาก","plane":"นอน (ทอป/ใต้ตู้)|ตั้ง·ปิดข้าง|ตั้ง·หน้า"}}',
+"   ใส่เฉพาะค่าที่ผู้ใช้บอกหรืออนุมานได้ชัด ที่เหลือโปรแกรมใช้ค่าตั้งต้น · sh = จำนวนชั้นตาย · หลายตู้ = หลาย action · ห้ามใช้ แทนที่ทั้งฉาก ถ้าผู้ใช้ไม่ได้สั่ง",
+'2) {"type":"set_setting","key":"<คีย์จากรายการค่าตั้งด้านล่าง>","value":<ค่า>}',
+"   ใช้เฉพาะคีย์ที่อยู่ในรายการ ห้ามคิดคีย์ขึ้นเอง ถ้าหาไม่เจอหรือไม่แน่ใจให้ถามกลับ",
+'3) {"type":"add_color","code":"<รหัสสีใหม่>","template":"<รหัสสีตัวอย่างจากรายการสี>","desc":"คำอธิบาย"}',
+"   เปิดหน้าสร้างสีตามตัวอย่าง (คัดลอกค่าลูกแล้วเปลี่ยนผิว/ขอบตามรหัสใหม่) · ไม่รู้ตัวอย่างให้ละ template",
+"ผู้ใช้จะกดยืนยันทุก action เอง — reply บอกสั้น ๆ ว่าจะทำอะไร · โจทย์กำกวม (เช่นไม่บอกขนาด) ให้ถามกลับโดยไม่ใส่ action",
+"","--- ฉากตอนนี้ ---",sceneCtx(),
+"","--- สีที่ตั้งค่าลูกครบแล้ว (ใช้เป็น template ได้) ---",colorCtx(q),
+"","--- ค่าตั้งที่น่าจะเกี่ยวกับข้อความ (คัดมาจากทั้งหมด "+Object.keys(settingKeys()).length+" ค่า · key|ชนิด|ค่าปัจจุบัน|ความหมาย) ---",settingsCtx(q)].join("\n"); }
+
+  /* ---------- เรียก AI (ตรงจากเบราว์เซอร์) ---------- */
+  const _noThink={};
+  async function callLLM(sys,msgs,ms){ const k=key(), m=model(); let r,j;
+    if(cfg.prov==="anthropic"){
+      r=await fx("https://api.anthropic.com/v1/messages",{method:"POST",headers:{"content-type":"application/json","x-api-key":k,
+        "anthropic-version":"2023-06-01","anthropic-dangerous-direct-browser-access":"true"},
+        body:JSON.stringify({model:m,max_tokens:2000,system:[{type:"text",text:sys}],messages:msgs})},ms);
+      j=await chk(r); return (j.content||[]).filter(c=>c&&c.type==="text").map(c=>c.text).join(""); }
+    if(cfg.prov==="openai"){
+      r=await fx("https://api.openai.com/v1/chat/completions",{method:"POST",headers:{"content-type":"application/json","authorization":"Bearer "+k},
+        body:JSON.stringify({model:m,response_format:{type:"json_object"},messages:[{role:"system",content:sys}].concat(msgs)})},ms);
+      j=await chk(r); return (((j.choices||[])[0]||{}).message||{}).content||""; }
+    /* v1.552: Gemini 3.x Flash คิดระดับ MEDIUM เป็นค่าตั้งต้น — งานนี้แค่แปลงคำสั่งเป็น JSON ขอ LOW พอ (MINIMAL ใช้กับ 3.8/3.7 ไม่ได้ = 400)
+       รุ่นที่ไม่รับ thinkingLevel = ตอบ 400 ที่พูดถึง thinking → ส่งซ้ำแบบไม่ใส่ แล้วจำไว้ไม่ใส่อีก */
+    const gu="https://generativelanguage.googleapis.com/v1beta/models/"+encodeURIComponent(m)+":generateContent";
+    const lv=(!_noThink[m]&&/^gemini-3/i.test(m)&&!/lite|pro/i.test(m))?"LOW":"";
+    const gb=t=>({method:"POST",headers:{"content-type":"application/json","x-goog-api-key":k},
+      body:JSON.stringify({systemInstruction:{parts:[{text:sys}]},
+        generationConfig:Object.assign({responseMimeType:"application/json"},t?{thinkingConfig:{thinkingLevel:t}}:{}),
+        contents:msgs.map(x=>({role:x.role==="assistant"?"model":"user",parts:[{text:x.content}]}))})});
+    r=await fx(gu,gb(lv),ms);
+    if(lv&&r.status===400){ const t=await r.clone().text().catch(()=>""); if(/thinking/i.test(t)){ _noThink[m]=1; r=await fx(gu,gb(""),ms); } }
+    j=await chk(r); return ((((j.candidates||[])[0]||{}).content||{}).parts||[]).map(p=>p.text||"").join(""); }
+  function parseReply(txt){ let s=String(txt||"").trim().replace(/^```(?:json)?\s*/i,"").replace(/```\s*$/,"");
+    const a=s.indexOf("{"), b=s.lastIndexOf("}");
+    if(a>=0&&b>a){ try{ const o=JSON.parse(s.slice(a,b+1));
+      return {reply:String(o.reply||""),actions:Array.isArray(o.actions)?o.actions.filter(x=>x&&typeof x==="object").slice(0,12):[]}; }catch(e){} }
+    return {reply:s,actions:[]}; }
+
+  /* ---------- โหมดออฟไลน์ (ยังไม่มีคีย์) ---------- */
+  function offline(t){ const s=String(t||"").replace(/[×*]/g,"x"), acts=[];
+    const d=s.match(/(\d{2,4})\s*x\s*(\d{2,4})(?:\s*x\s*(\d{2,4}))?/i);
+    if(d&&/ตู้|แผ่น|cab|สร้าง/i.test(s)){ const p={W:+d[1],H:+d[2]}; if(d[3]) p.D=+d[3];
+      const sh=s.match(/ชั้น(?:ตาย)?\s*(\d{1,2})(?!\d)|(?:^|[^\dx])(\d{1,2})\s*ชั้น/i); if(sh) p.sh=+(sh[1]||sh[2]);   // ไม่ให้ 560 ชั้น 2 กลายเป็นชั้น 560
+      const cd=s.match(/รหัส\s*([A-Za-z0-9_\-]+)/); if(cd) p.code=cd[1];
+      const th=s.match(/หนา\s*(\d+(?:\.\d+)?)/); if(th) p.T=+th[1];
+      if(/แผ่นเดี่ยว|แผ่นเดียว/.test(s)) p.kind="แผ่นเดี่ยว";
+      if(/แทนที่|ล้างฉาก/.test(s)) p.mode="แทนที่ทั้งฉาก";
+      acts.push({type:"create_cabinet",params:p}); }
+    const K=settingKeys(), re=/([A-Za-z][A-Za-z0-9_]{2,})\s*(?:=|:|เป็น)?\s*(-?\d+(?:\.\d+)?|true|false|เปิด|ปิด)(?=\s|,|$)/g; let m;
+    while((m=re.exec(s))){ if(K[m[1]]) acts.push({type:"set_setting",key:m[1],value:m[2]}); }
+    const c=s.match(/สี(?:ใหม่)?\s*([A-Za-z0-9][A-Za-z0-9_\-]{3,39})/); if(c) acts.push({type:"add_color",code:c[1]});
+    if(acts.length) return {reply:"โหมดออฟไลน์ (ยังไม่ได้ใส่คีย์) — อ่านคำสั่งได้ "+acts.length+" ข้อ กดปุ่มเพื่อทำทีละข้อ",actions:acts};
+    const q=s.replace(/^\s*(หา|ค้นหา|ค้น|ค่าตั้ง)\s*/,"").trim();
+    if(q&&q!==s.trim()){ const L=getLabels(), ql=q.toLowerCase();
+      const hit=Object.keys(K).filter(k=>k.toLowerCase().indexOf(ql)>=0||String(L[k]||"").toLowerCase().indexOf(ql)>=0).slice(0,15);
+      return {reply:hit.length?("ค่าตั้งที่มีคำว่า “"+q+"”:\n"+hit.map(k=>"• "+k+" = "+showVal(settings[k])+(L[k]?"  — "+L[k]:"")).join("\n")+"\n\nแก้ได้โดยพิมพ์ เช่น  "+hit[0]+" = ค่าใหม่")
+        :"ไม่เจอค่าตั้งที่มีคำว่า “"+q+"”",actions:[]}; }
+    return {reply:"ยังไม่ได้ใส่คีย์ AI (กด ⚙ ด้านบน) — ตอนนี้สั่งแบบง่ายได้:\n• สร้างตู้ 800x720x560 ชั้น 2 รหัส BND001\n• backset = 18   (ชื่อคีย์ = ค่า)\n• หา เดือย   (ค้นหาค่าตั้ง)\n• สีใหม่ N03P0001N",actions:[]}; }
+
+  /* ---------- ทำตามคำสั่ง ---------- */
+  function afterSettings(){ labels=null;
+    try{ applyTheme(); }catch(e){} try{ applyUIScale(); }catch(e){} try{ render3D(false); }catch(e){}
+    try{ if($("setModal")&&$("setModal").classList.contains("show")) renderSettings(); }catch(e){} }
+  function describe(a){
+    if(a.type==="create_cabinet"){ const p=a.params||{};
+      return "📦 "+(p.kind==="แผ่นเดี่ยว"?"สร้างแผ่นเดี่ยว ":"สร้างตู้ ")+[p.W||"?",p.H||"?",p.D||"?"].join("×")
+        +(p.code?" · "+p.code:"")+(p.sh!=null?" · ชั้นตาย "+p.sh:"")+(p.T?" · หนา "+p.T:"")+(p.mode==="แทนที่ทั้งฉาก"?" · ⚠ แทนที่ทั้งฉาก":""); }
+    if(a.type==="set_setting"){ const L=getLabels(), k=String(a.key||"");
+      return "⚙ "+k+(L[k]?" ("+L[k]+")":"")+" : "+showVal(settings[k])+" → "+showVal(a.value); }
+    if(a.type==="add_color") return "🎨 สร้างสี "+(a.code||"?")+(a.template?" ตามตัวอย่าง "+a.template:"")+(a.desc?" · "+a.desc:"");
+    return "⚠ ไม่รู้จักคำสั่ง "+(a.type||""); }
+  async function run(a){
+    if(a.type==="create_cabinet"){ const p=Object.assign({},a.params||{});
+      if(!p.mode) p.mode=(state.boards||[]).length?"เพิ่มเข้าฉาก":"แทนที่ทั้งฉาก";
+      const n0=(state.boards||[]).length, ref0=state.boards; show(false);
+      await genCabinet(p);
+      return (state.boards!==ref0||state.boards.length!==n0)?{msg:"สร้างแล้ว"}:{msg:"ยกเลิกในฟอร์ม",cancel:true}; }
+    if(a.type==="set_setting"){ const k=String(a.key||""), c=coerce(k,a.value); if(c.err) throw new Error(c.err);
+      const had=Object.prototype.hasOwnProperty.call(settings,k), old=settings[k];
+      settings[k]=c.v; await lsSet("sxlocaltrial:furnitech:settings",settings); afterSettings();
+      return {msg:showVal(old)+" → "+showVal(c.v), undo:async()=>{ if(had) settings[k]=old; else delete settings[k];
+        await lsSet("sxlocaltrial:furnitech:settings",settings); afterSettings(); }}; }
+    if(a.type==="add_color"){ const code=String(a.code||"").trim();
+      if(!/^[A-Za-z0-9][A-Za-z0-9_\-]{2,39}$/.test(code)) throw new Error("รหัสสีไม่ถูกต้อง: “"+code+"”");
+      show(false); colorFromTemplateDialog(String(a.template||"").trim());
+      const ds=$("ctDesc"), nw=$("ctNew");
+      if(ds&&a.desc){ ds.value=String(a.desc).slice(0,80); ds.dispatchEvent(new Event("input")); }
+      if(nw){ nw.value=code; nw.dispatchEvent(new Event("input")); }
+      return {msg:"เปิดหน้าสร้างสีแล้ว — ตรวจตารางแล้วกด 🎨 สร้างสี"}; }
+    throw new Error("ไม่รู้จักคำสั่ง “"+(a.type||"")+"”"); }
+
+  /* ---------- หน้าจอ ---------- */
+  function css(){ if($("snaiCss")) return; const st=document.createElement("style"); st.id="snaiCss";
+    st.textContent=`
+#snaiPanel{position:fixed;left:min(calc(var(--side,300px) + 12px),calc(100vw - 412px));bottom:calc(var(--sb) + 10px);z-index:60;width:min(400px,calc(100vw - 28px));height:min(560px,calc(100vh - var(--tb) - var(--sb) - 30px));
+  display:none;flex-direction:column;background:var(--panel-strong);backdrop-filter:blur(26px) saturate(1.8);-webkit-backdrop-filter:blur(26px) saturate(1.8);
+  border:.5px solid var(--line-strong);border-radius:var(--radius-lg);box-shadow:var(--shadow);overflow:hidden;font-size:13px}
+#snaiPanel.show{display:flex}
+#snaiPanel.up{background:var(--solid)}
+#snaiPanel .sh{display:flex;align-items:center;gap:8px;padding:10px 12px;border-bottom:.5px solid var(--line)}
+#snaiPanel .sh b{font-size:13.5px}
+#snaiPanel .pill{font-size:10.5px;padding:2px 8px;border-radius:20px;background:var(--accent-soft);color:var(--accent);font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:170px}
+#snaiPanel .pill.off{background:rgba(232,144,31,.16);color:#b45309}
+#snaiPanel .ib{border:0;background:transparent;color:var(--ink-dim);cursor:pointer;border-radius:6px;padding:4px 7px;font-size:13px}
+#snaiPanel .ib:hover{background:rgba(0,0,0,.07);color:var(--ink)}
+#snaiCfg{display:none;padding:10px 12px;border-bottom:.5px solid var(--line);background:var(--card2)}
+#snaiCfg.show{display:block}
+#snaiCfg label{display:block;font-size:11px;color:var(--ink-faint);font-weight:600;margin:6px 0 3px}
+#snaiCfg .nameinp{font-size:12.5px;padding:6px 9px;font-weight:500}
+#snaiCfg .note{font-size:11px;color:var(--ink-dim);line-height:1.55;margin-top:8px}
+#snaiCfg .row2{display:flex;gap:6px;margin-top:8px}
+#snaiLog{flex:1;overflow-y:auto;padding:10px 12px;display:flex;flex-direction:column;gap:8px}
+#snaiLog .m{max-width:92%;padding:8px 11px;border-radius:12px;line-height:1.55;white-space:pre-wrap;word-break:break-word}
+#snaiLog .m.u{align-self:flex-end;background:var(--accent);color:#fff;border-bottom-right-radius:4px}
+#snaiLog .m.a{align-self:flex-start;background:var(--card);border:.5px solid var(--line);border-bottom-left-radius:4px}
+#snaiLog .m.e{align-self:flex-start;background:rgba(255,95,87,.12);color:#b42318;border:.5px solid rgba(255,95,87,.35)}
+#snaiLog .act{display:flex;align-items:center;gap:6px;margin-top:6px;padding:6px 8px;border-radius:8px;background:var(--card2);border:.5px solid var(--line);white-space:normal;font-size:12px}
+#snaiLog .act .t{flex:1;min-width:0}
+#snaiLog .act .st{font-size:11px;color:var(--ink-faint)}
+#snaiLog .act button{flex:none;font-size:11.5px;padding:4px 10px}
+#snaiQuick{display:flex;gap:5px;flex-wrap:wrap;padding:0 12px 6px}
+#snaiUse{font-size:11px;padding:0 12px 6px;color:var(--ink-faint)}
+#snaiQuick button{font-size:11px;padding:3px 8px}
+#snaiIn{display:flex;gap:6px;padding:8px 12px 12px;border-top:.5px solid var(--line)}
+#snaiIn textarea{flex:1;resize:none;height:54px;font-family:var(--font);font-size:13px;padding:7px 9px;border-radius:9px;border:.5px solid var(--line-strong);background:var(--solid);color:var(--ink)}
+#snaiIn textarea:focus{outline:2px solid var(--accent);outline-offset:-1px}
+#snaiIn button{flex:none;align-self:stretch;padding:0 14px}`;
+    document.head.appendChild(st); }
+  function build(){ if(root) return root; css();
+    root=document.createElement("div"); root.id="snaiPanel";
+    root.innerHTML='<div class="sh"><b>🤖 ผู้ช่วย</b><span class="pill" id="snaiPill"></span>'
+      +'<button class="ib" id="snaiClr" title="ล้างบทสนทนา" style="margin-left:auto">🧹</button>'
+      +'<button class="ib" id="snaiGear" title="ตั้งค่าคีย์ AI">⚙</button><button class="ib" id="snaiX" title="ปิด">✕</button></div>'
+      +'<div id="snaiCfg"><label>ผู้ให้บริการ</label><select class="nameinp" id="snaiProv" style="width:100%">'
+        +Object.keys(PROV).map(p=>'<option value="'+p+'">'+H(PROV[p].name)+'</option>').join("")+'</select>'
+      +'<label>รุ่น (Model) — เว้นว่าง = ค่าตั้งต้น</label><input class="nameinp" id="snaiModel" style="width:100%;font-family:var(--mono)">'
+      +'<label>โควตาต่อวัน (ครั้ง) — เว้นว่าง = ค่าตั้งต้น · 0 = ไม่จำกัด</label><input class="nameinp" id="snaiQuota" type="number" min="0" step="1" style="width:100%;font-family:var(--mono)">'
+      +'<label>API Key</label><input class="nameinp" id="snaiKey" type="password" autocomplete="off" spellcheck="false" style="width:100%;font-family:var(--mono)">'
+      +'<div class="row2"><button class="ibtn" id="snaiSave" style="flex:1;background:var(--accent);color:#fff;border-color:transparent">บันทึก</button>'
+        +'<button class="ibtn" id="snaiTest" style="flex:1">ทดสอบ</button><button class="ibtn" id="snaiDel" style="flex:1">ลบคีย์</button></div>'
+      +'<div class="note" id="snaiNote"></div></div>'
+      +'<div id="snaiLog"></div>'
+      +'<div id="snaiQuick"></div><div id="snaiUse"></div>'
+      +'<div id="snaiIn"><textarea id="snaiTxt" placeholder="พิมพ์สั่ง เช่น สร้างตู้แขวน 800x720x350 ชั้น 2 · Enter = ส่ง · Shift+Enter = ขึ้นบรรทัด"></textarea>'
+      +'<button class="ibtn" id="snaiGo" style="background:var(--brand-orange);color:#fff;border-color:transparent">ส่ง</button></div>';
+    document.body.appendChild(root);
+    const q=s=>root.querySelector(s);
+    q("#snaiX").onclick=()=>show(false);
+    q("#snaiGear").onclick=()=>{ q("#snaiCfg").classList.toggle("show"); fillCfg(); };
+    q("#snaiClr").onclick=()=>{ hist=[]; q("#snaiLog").innerHTML=""; hello(); };
+    q("#snaiProv").onchange=()=>{ cfg.prov=q("#snaiProv").value; fillCfg(); };
+    q("#snaiSave").onclick=()=>{ readCfg(); saveCfg(); fillCfg(); pill(); toast(key()?"บันทึกคีย์ "+PROV[cfg.prov].name+" แล้ว (เก็บในเครื่องนี้)":"บันทึกแล้ว — ยังไม่มีคีย์ ใช้โหมดออฟไลน์"); };
+    q("#snaiDel").onclick=()=>{ delete cfg.keys[cfg.prov]; saveCfg(); fillCfg(); pill(); toast("ลบคีย์ "+PROV[cfg.prov].name+" แล้ว"); };
+    q("#snaiTest").onclick=async()=>{ readCfg(); saveCfg(); pill(); if(!key()){ toast("ยังไม่ได้ใส่คีย์"); return; }
+      const n=q("#snaiNote"), tb=q("#snaiTest"), t0=Date.now(), sec=()=>Math.round((Date.now()-t0)/1000);
+      tb.disabled=true; n.textContent="กำลังทดสอบ… 0 วิ (นับ 1 ครั้ง)";
+      const tk=setInterval(()=>{ n.textContent="กำลังทดสอบ… "+sec()+" วิ"+(sec()>=8?" — รุ่นที่คิดก่อนตอบอาจใช้ 10-20 วิ":""); },1000);
+      try{ const t=await callLLM('ตอบเป็น JSON เท่านั้น: {"reply":"ok","actions":[]}',[{role:"user",content:"ทดสอบ"}],30000);
+        n.innerHTML='<span style="color:#2f9e44">✓ ใช้ได้</span> · '+H(model())+' · '+sec()+' วิ · ตอบ: '+H(String(t).slice(0,60))+'<br>'+H(useText()); }
+      catch(e){ n.innerHTML='<span style="color:#b42318">✕ '+H(e.message||e)+'</span>'; }
+      finally{ clearInterval(tk); tb.disabled=false; } };
+    const tx=q("#snaiTxt");
+    tx.onkeydown=e=>{ if(e.key==="Enter"&&!e.shiftKey&&!e.isComposing){ e.preventDefault(); send(); } e.stopPropagation(); };
+    tx.onkeyup=e=>e.stopPropagation();
+    q("#snaiGo").onclick=()=>send();
+    q("#snaiQuick").innerHTML=["สร้างตู้ 600x720x560 ชั้น 1","หา backset","สีใหม่ "].map(s=>'<button class="chip">'+H(s)+'</button>').join("");
+    q("#snaiQuick").querySelectorAll("button").forEach(b=>b.onclick=()=>{ tx.value=b.textContent; tx.focus(); });
+    pill(); hello(); return root; }
+  function fillCfg(){ const q=s=>root.querySelector(s), P=PROV[cfg.prov];
+    q("#snaiProv").value=cfg.prov; q("#snaiModel").value=cfg.models[cfg.prov]||""; q("#snaiModel").placeholder=P.model;
+    q("#snaiKey").value=cfg.keys[cfg.prov]||""; q("#snaiKey").placeholder=P.hint;
+    { const qv=(cfg.quota||{})[umk()]; q("#snaiQuota").value=(qv!=null?qv:""); const d=(cfg.prov==="gemini")?((QUOTA_DEF.find(x=>x[0].test(model()))||[0,0])[1]):0; q("#snaiQuota").placeholder=d?String(d):"0 = ไม่จำกัด"; }
+    q("#snaiNote").innerHTML="สร้างคีย์ได้ที่ <b>"+H(P.url)+"</b><br>🔒 คีย์เก็บในเบราว์เซอร์เครื่องนี้เท่านั้น — ไม่อยู่ในค่าตั้ง · ไม่ขึ้นคลาวด์ · ไม่ติดไปกับไฟล์หรือลิงก์ดู"
+      +"<br>แต่ใครใช้เบราว์เซอร์นี้ได้ก็ใช้คีย์ได้ — ตั้งวงเงินที่หน้าผู้ให้บริการไว้ด้วย"; }
+  function readCfg(){ const q=s=>root.querySelector(s); cfg.prov=q("#snaiProv").value;
+    const k=String(q("#snaiKey").value||"").trim(), m=String(q("#snaiModel").value||"").trim();
+    if(k) cfg.keys[cfg.prov]=k; else delete cfg.keys[cfg.prov];
+    if(m) cfg.models[cfg.prov]=m; else delete cfg.models[cfg.prov];
+    const qv=String(q("#snaiQuota").value||"").trim(); cfg.quota=cfg.quota||{};   // ผูกกับ ผู้ให้บริการ|รุ่น (อ่านหลังตั้งรุ่นแล้ว)
+    if(qv!=="") cfg.quota[umk()]=Math.max(0,Math.round(+qv)||0); else delete cfg.quota[umk()]; useUI(); }
+  function pill(){ const p=root&&root.querySelector("#snaiPill"); if(!p) return;
+    if(key()){ const n=used(), qq=quota(); p.className="pill"+(qq&&n>=qq?" off":""); p.textContent=PROV[cfg.prov].name.split(" ")[0]+" · "+model()+" · "+n+(qq?"/"+qq:"")+" ครั้ง";
+      p.title=useText(); }
+    else { p.className="pill off"; p.textContent="ยังไม่ใส่คีย์ · ออฟไลน์"; } }
+  function hello(){ addMsg("a",key()?"สั่งได้เลยครับ — สร้างตู้ · แก้ค่าตั้ง · เพิ่มสี ทุกคำสั่งจะให้กดยืนยันก่อนทำ"
+    :"ยังไม่ได้ใส่คีย์ AI — กด ⚙ เพื่อใส่ (Claude / OpenAI / Gemini)\nระหว่างนี้สั่งแบบง่ายได้ เช่น “สร้างตู้ 800x720x560 ชั้น 2” · “backset = 18” · “หา เดือย” · “สีใหม่ N03P0001N”"); }
+  function addMsg(who,text,actions){ const log=root.querySelector("#snaiLog"), d=document.createElement("div");
+    d.className="m "+who; d.textContent=text||(actions&&actions.length?"":"(ไม่มีข้อความ)");
+    (actions||[]).forEach(a=>{ const r=document.createElement("div"); r.className="act";
+      const ok=a.type==="create_cabinet"||a.type==="set_setting"||a.type==="add_color";
+      r.innerHTML='<span class="t">'+H(describe(a))+'<br><span class="st"></span></span>'
+        +(ok?'<button class="ibtn go" style="background:var(--accent);color:#fff;border-color:transparent">ทำ</button>':'');
+      const st=r.querySelector(".st"), go=r.querySelector(".go");
+      if(go) go.onclick=async()=>{ go.disabled=true; st.style.color=""; st.textContent="กำลังทำ…";
+        try{ const res=await run(a)||{}; st.textContent=(res.cancel?"— ":"✓ ")+(res.msg||"เสร็จ");
+          if(res.cancel){ go.disabled=false; go.textContent="ทำอีกครั้ง"; return; }
+          if(res.undo){ go.disabled=false; go.textContent="↶ ย้อน"; go.style.background=""; go.style.color="";
+            go.onclick=async()=>{ go.disabled=true; try{ await res.undo(); st.textContent="↶ ย้อนแล้ว"; go.remove(); }catch(e){ st.textContent="✕ "+(e.message||e); go.disabled=false; } }; }
+          else go.remove(); }
+        catch(e){ console.error("snai run:",e); st.style.color="#b42318"; st.textContent="✕ "+(e.message||e); go.disabled=false; }
+        finally{ if(!root.classList.contains("show")) show(true); } };
+      d.appendChild(r); });
+    log.appendChild(d); log.scrollTop=log.scrollHeight; return d; }
+  async function send(){ const tx=root.querySelector("#snaiTxt"), t=String(tx.value||"").trim(); if(!t||busy) return;
+    tx.value=""; addMsg("u",t);
+    if(!key()){ const o=offline(t); addMsg("a",o.reply,o.actions); return; }
+    { const n=used(), q=quota(); if(q&&n>=q) addMsg("e","⚠ วันนี้ใช้ครบ "+q+" ครั้งตามโควตาแล้ว — ลองส่งให้ แต่อาจถูกปฏิเสธ · รีเซ็ต "+resetAt()+" น. · หรือกด ⚙ เปลี่ยนรุ่นเป็น flash-lite"); }
+    busy=true; const go=root.querySelector("#snaiGo"); go.disabled=true; const wait=addMsg("a","กำลังคิด… 0 วิ"), t0=Date.now();
+    const tk=setInterval(()=>{ wait.textContent="กำลังคิด… "+Math.round((Date.now()-t0)/1000)+" วิ"; },1000);
+    hist.push({role:"user",content:t}); if(hist.length>16) hist=hist.slice(-16); if(hist[0].role!=="user") hist.shift();
+    try{ const q3=hist.filter(x=>x.role==="user").slice(-3).map(x=>x.content).join("\n");   // 3 ข้อความล่าสุด = คำตอบต่อเนื่อง (เช่น “ใช่ 18”) ยังได้ค่าตั้งชุดเดิม
+      const raw=await callLLM(sysPrompt(q3),hist,90000); const o=parseReply(raw);
+      hist.push({role:"assistant",content:raw||"{}"}); wait.remove(); addMsg("a",o.reply,o.actions); }
+    catch(e){ hist.pop(); wait.remove(); addMsg("e","เรียก AI ไม่สำเร็จ: "+(e.message||e)+"\n(ตรวจคีย์/รุ่นที่ ⚙ · หรือเน็ต)"); }
+    finally{ clearInterval(tk); busy=false; go.disabled=false; tx.focus(); } }
+  /* v1.551: หลบแผงห้องออกแบบ (ผู้ใช้ 12:00 ภาพ: “ผู้ช่วย โดนทับเวลาอยู่โหมดออกแบบ”)
+     #plPanel/#plCat อยู่ชั้น 320 ผู้ช่วยอยู่ 60 จึงจมใต้แผงห้อง · วางตัวเองถัดจากแผงซ้าย (#list/#plPanel) ก่อนแผงขวา (#plCat/#insp)
+     แบบเดียวกับ scnPlace() ของแถบ 🎬 · ที่ไม่พอ = ชิดขวาแล้วยกชั้นเป็น 325 (ยังต่ำกว่ากล่อง ovCard 430) */
+  function place(){ if(!root||!root.classList.contains("show")) return; let L=12, R=innerWidth-12;
+    const vis=e=>{ if(!e) return null; const cs=getComputedStyle(e); if(cs.display==="none"||cs.visibility==="hidden") return null; const rc=e.getBoundingClientRect(); return rc.width>20?rc:null; };
+    ["list","plPanel"].forEach(id=>{ const rc=vis($(id)); if(rc&&rc.left<innerWidth/2) L=Math.max(L,rc.right+12); });
+    ["plCat","insp"].forEach(id=>{ const rc=vis($(id)); if(rc&&rc.left>innerWidth/2) R=Math.min(R,rc.left-12); });
+    let z=1; try{ z=uiZoomOf(root)||1; }catch(e){}
+    const W=root.getBoundingClientRect().width||400, over=(L+W>R);
+    const x=over?Math.max(12,R-W):L;
+    root.style.left=Math.round(x/z)+"px"; const up=!!(over||vis($("plPanel"))); root.style.zIndex=up?"325":""; root.classList.toggle("up",up); }
+  let _plTm=0;
+  function show(on){ build(); if(on==null) on=!root.classList.contains("show");
+    root.classList.toggle("show",!!on); const b=$("aiBtn"); if(b) b.classList.toggle("sel",!!on);
+    clearInterval(_plTm); _plTm=0;
+    if(on){ place(); _plTm=setInterval(place,800);   // แผงห้องเปิด/ปิด/พับได้ตลอด ไม่มีเหตุการณ์ให้ฟัง — ตามดูเบา ๆ ตอนผู้ช่วยเปิดอยู่
+      labels=null; pill(); useUI(); setTimeout(()=>{ try{ root.querySelector("#snaiTxt").focus(); }catch(e){} },30); } }
+  function init(){ bind("aiBtn",()=>show()); try{ addEventListener("resize",place); }catch(e){} }
+  return { init, show, offline, parseReply, coerce, settingKeys, relevantKeys, run, sysPrompt, used, quota, resetAt, _cfg:()=>cfg };
+})();
+try{ SNAI.init(); }catch(e){ console.error("SNAI.init:",e); }
 
 </script>
 <!-- library modal -->
