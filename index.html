@@ -3283,7 +3283,7 @@ body[data-theme="dark"] .splash-dots span{background:rgba(255,255,255,.25)}
    ===================================================================== */
 /* ---- APP_META: แหล่งความจริงเดียวของเวอร์ชัน (ดูได้จาก console / คลิกชื่อแอป) ---- */
 const APP_META={
-  name:"StarNexus", version:"1.563", build:"2026-10-30/imove-3d",
+  name:"StarNexus", version:"1.564", build:"2026-10-30/foil-tray-aibtn",
   file:"StarNexus.html", basedOn:"Furnitech_V3.html (v3.11)",
   /* ───────── เริ่มนับเวอร์ชันใหม่ที่ 1.001 (21/08/2026) ─────────
      ของเดิมนับมาถึง 42.1 แล้ววิ่งเป็นทศนิยมสองชั้นซึ่งอ่านลำดับยาก
@@ -3291,6 +3291,7 @@ const APP_META={
      ประวัติเก่าเก็บไว้ทั้งหมดตามเลขเดิม ไม่ไล่เขียนใหม่ เพราะเลขในนั้นถูกอ้างถึงไปแล้ว
      รายการที่อยู่ใต้ 1.001 ลงไปจึงเป็นเลขชุดเก่า อ่านต่อกันได้ตามวันที่ */
   changelog:[
+    ["1.564","2026-10-30","FEAT ① ถาดฟอยด์ใต้ซิงค์ 3D สมจริง (ผู้ใช้ 12:47 ภาพตู้ซิงค์ “ถาดฟรอดทำ 3 D สมจริงได้ไหม”) — เดิมยืมกล่องตะแกรง 5 แผ่นหนา 15 สีเขียวโปร่ง (ไม่มีสี/วัสดุ) · ตอนนี้เป็นถาดอลูมิเนียมชิ้นเดียว (foilTray): พื้นหนา 1.2 + ร่องนูนตามยาวทุก 28 มม. + ขอบยกรอบตัวสูงตามช่อง “ความสูงถาด” (sinkTrayH) + ขอบม้วนกลมด้านบน + มุมมน 16 · ผิวอลูมิเนียมปัด (สะท้อนแสง มีเงา) · ขนาด/ตำแหน่ง/รหัส/BOM เดิมทุกอย่าง (sinkTrayCalc · 1 ชุด · ไม่เข้าใบตัด) · ปิด SN_OFF.foilTray3d = กล่องแบบเดิม ② UI ไฮไลต์ปุ่ม ✨ ผู้ช่วย ในแถบล่าง (ผู้ใช้ 12:49) — พื้นไล่สีม่วง→ฟ้า (ไม่ซ้ำกับปุ่มที่เปิดอยู่ซึ่งเป็นน้ำเงินเข้ม) ตัวขาวหนา ดาวสีเหลือง เรืองแสงเป็นจังหวะ 5 รอบตอนเปิดโปรแกรมแล้วนิ่ง (ไม่ขยับถ้าเครื่องตั้งลดภาพเคลื่อนไหว) · แถบล่างย่อเหลือไอคอนยังเห็นสีไฮไลต์ · ปิด SN_OFF.aiBtnHi"],
     ["1.563","2026-10-30","FEAT 3D ตะแกรงดึงลงตู้ลอย Häfele iMove (ผู้ใช้ 12:11 ส่งภาพสินค้า + แบบขนาด + ไฟล์งานตู้ WNR113 ที่ใส่ ตระแกรง_504_68_913: “เพิ่ม 3D ตะแกรง imove ให้มี”) — เดิมรหัสนี้วาดเป็นกล่องตะแกรง 5 แผ่น (500×400×280 จากคลัง) ไม่เหมือนของจริง · ตอนนี้รหัสที่มี 504_68 / 504.68 / 504_69 / imove (settings.imoveCodes) วาดเป็นชุด iMove ตามแบบผู้ผลิต: กว้างเท่าช่องในระหว่างแผ่นข้าง (565 ในตู้ 600) · ลึก 267 จากผิวแผ่นหลัง · สูง 380 (1 ถาด) / 565 (2 ถาด · รหัส x2x) · ฐานกลไกสูงจากพื้นตู้ 25 (settings.imoveZ หรือ “วางจากแผ่นพื้นตู้” ถ้ามากกว่า) — ถาด + ราวมือจับหน้า + มือจับกลาง + ฐานกลไกซ้าย/ขวา + แขนคู่ขนานฝั่งละ 2 · สีตามรหัส 504.68.<สี>: 3 เทาเข้ม · 6 ขาว · 9 เงิน · เตือนใน console ถ้าลึกในตู้ < 270 หรือสูงไม่พอ · โหมดเปิดบาน: คลิกที่ชุด = ดึงลงมาหน้าตู้ (ลง ~340 ออกหน้า ~300 ถาดยังขนานพื้น · บานยังปิดอยู่ = เปิดบานให้ก่อน) คลิกอีกครั้ง = ดันกลับ · ทั้งชุดเป็นชิ้นเสมือน _fitId เดียว = 1 ชุดในรายการอุปกรณ์ ไม่เข้าใบตัด · ปิดได้ SN_OFF.imove (กลับเป็นกล่องแบบเดิม)"],
     ["1.562","2026-10-30","FEAT ห้องออกแบบ + ผู้ช่วย (ผู้ใช้ 30/10 11:24–11:42) — ① เลือกหลายตู้: Ctrl+คลิก เพิ่ม/เอาออก · Ctrl+ลากกรอบ (ซ้าย→ขวา = ทั้งใบในกรอบ · ขวา→ซ้าย = แตะกรอบ) · Ctrl+A / ปุ่ม ⬚ เลือกทั้งหมด · ลากใบไหนก็ได้ = ย้ายทั้งชุด (ลงกริด · ขอบชุดดูดผนัง · Alt อิสระ) · Esc เลิก · Del ลบทั้งชุด (ถามก่อน) · กรอบฟ้ารายตู้ · ซิงค์/เตา/ฮู้ด/เตาอบที่ติดตู้ย้าย+หมุนตามตู้ (ลากทีละใบด้วย — เดิมค้างที่เดิม) ② ลายหินอ่อนท็อป/บัว/ผนังหิน: วัสดุ “หินอ่อน” + ช่อง “ลาย” 6 แบบวาดเอง (Carrara · Calacatta · Nero Marquina · Bardiglio · Crema Marfil · Emperador · สีพื้น/สีเส้นปรับได้) หรืออัปโหลดรูปหินจริง (≤ 2048 px · ขนาดลาย มม.) · UV พิกัดโลก ลายต่อกันข้ามชิ้น · ภาพแสงจริงเห็นลาย · หน้ารวมวัสดุใบเสนอราคาใช้ลายจริง ③ ปุ่ม 🎬 Render แทน 🧊 ส่งออก Blender: เลือกฉาก 🎬 + มุมตอนนี้ · 📸 แสงจริง (path tracing ทีละฉาก) หรือ ⚡ เร็ว · ขนาด/ความเนียน/แสง · ⏹ หยุดได้ · ⬇ บันทึก · 🤖 AI แต่งต่อรายภาพ (Gemini หาชื่อรุ่นภาพเอง / OpenAI images/edits · คีย์เดียวกับผู้ช่วย · สั่งให้คงแบบตู้) ④ ⚡ ทำให้เลย: AI ตอบแล้วกดทำตามลำดับเอง + กดตกลงฟอร์มให้ (ไม่ทำให้: ส่งคำขอ/ลบตู้/แทนที่ทั้งฉาก) · สวิตช์ ⚡ หัวแผง ⑤ ปุ่ม ✏ สอนผู้ช่วย กับ 📮 ขอฟีเจอร์ แถวเดียวกัน ⑥ FIX แถบล่างล้นจอ 1920 ที่ 100% (ธีม/⚙ ตั้งค่า ตกขอบ เพราะซ่อนแถบเลื่อน): ย่ออัตโนมัติทีละขั้น (ซ่อนป้ายเล็ก → ปุ่มรองเหลือไอคอน → ทั้งหมด) ยังล้น = แถบเลื่อนบาง + ล้อเมาส์ ⑦ เอาปุ่ม ประกอบ|แยกชิ้น ออกจากแถบล่าง (ไม่ได้ใช้แล้ว) ⑧ ท็อปจบสวย (ไฟล์ครัว L ของผู้ใช้ 11:55): ซิงค์/เตา/ไมโครเวฟขึ้นผิวท็อปเอง (เดิมจมใต้ท็อป 20 มม.) · มุม L/บัว/ผนังหิน เส้นเฉพาะขอบนอก ไม่มีเส้นรอยต่อ · ท็อปจบที่ผิวผนัง (เดิมตามแผง Fix Front ตู้มุม BCL055 ทะลุผนังซ้าย 267 มม.) · ปิดได้ SN_OFF.plMulti / plMarble / plRender / aiAuto / sbFit / viewSegHide / plWtClamp / plWtSeam / plaTopY"],
     ["1.561","2026-10-30","FEAT 🤖 ผู้ช่วย AI พาไปหาฟังก์ชัน + แจ้งเมื่อไม่มี (ผู้ใช้ 30/10 10:42 “ถ้าจะทำให้ Api แนะนำ ไปหาฟังก์ชั่นที่เขาต้องการ แล้วถ้าไม่มี ให้แจ้งมาถึงผมทำอย่างไร” · เลือก: แจ้งในโปรแกรมอย่างเดียว · ทุกคนเห็นหน้า 📮 admin จัดการ · ชี้อย่างเดียวไม่กดแทน) — ① action ใหม่ goto: AI ส่งที่หมายจากแผนที่ฟังก์ชัน (แถบบน bar: · แถบล่าง sb: · คลิกขวา ctx: · แผงห้องออกแบบ pl: · ตั้งค่า set:) โปรแกรมเปิดบริบทให้ก่อน (เปิดห้อง/กางกลุ่ม/เลือกชิ้นแล้วเปิดเมนูคลิกขวา/เปิดตั้งค่าไปหมวดนั้น) แล้ววงแหวนส้มกะพริบ + ป้าย “กดตรงนี้ — …” คนกดเอง · ตำแหน่งหาร uiZoomOf · ชั้นอยู่เหนือของที่ชี้ 5 ชั้น · โหมดออฟไลน์ “หา …” ก็ชี้ปุ่มที่ตรงคำได้ ② action ใหม่ request: ไม่มีฟังก์ชันจริง ๆ = การ์ด “ยังไม่มีฟังก์ชันนี้ — 📮 ส่งคำขอ” แก้ข้อความก่อนส่งได้ · ทุกคำตอบมีปุ่ม 📮 ขอฟีเจอร์ คู่กับ ✏ สอน · พิมพ์ “ขอฟีเจอร์: …” ได้ไม่เปลืองโควตา · เก็บแถว AIREQ:: ใน furnitech_cabinets (cloudListCabs กรองออก) · เรื่องคล้ายกัน = ถาม 👍 ขอด้วย (+1) ③ หน้า 📮 คำขอฟีเจอร์: กรองสถานะ ใหม่/รับทราบ/ทำแล้ว (vX)/ไม่ทำ/ของฉัน · ผู้ดูแลแก้สถานะ ตอบ ลบ · 📋 คัดลอกเป็น Markdown ไปวางแชท Claude ④ แจ้งผู้ดูแล: ทุก 5 นาที + ตอนกลับมาที่หน้าจอ → 🔔 + ป้ายเลขที่ปุ่ม 🤖 · คนขอเห็นสถานะ/คำตอบตอนเปิดผู้ช่วยครั้งถัดไป · เดิมทุกเครื่องชื่อ “ทดลองไฟล์กลาง” และ sxCan เปิดให้ทุกคน → ตั้งชื่อเครื่องครั้งเดียว (snAI:me:v1) + รายชื่อผู้ดูแลเก็บที่แถว AIREQ::_cfg (👑 ตั้งฉันเป็นผู้ดูแล) · ปิดได้ SN_OFF.aiGoto / SN_OFF.aiReq"],
@@ -6832,6 +6833,7 @@ function shapeLocalGeo(b){
   if(b._shape==="imBasket") return imoveGeo(b,"basket");   // v1.563: iMove ถาด + ราวมือจับ
   if(b._shape==="imHouse") return imoveGeo(b,"house");     // v1.563: iMove ฐานกลไก
   if(b._shape==="imArm") return imoveGeo(b,"arm");         // v1.563: iMove แขน (จุดหมุน = ศูนย์ชิ้น)
+  if(b._shape==="foilTray") return foilTrayGeo(b);         // v1.564: ถาดฟอยด์ใต้ซิงค์ อลูมิเนียม
   if(b._shape==="cutTray") return cutTrayGeo(Math.max(+b.L||100,40),Math.max(+b.W||100,40),Math.max(T,10));   // v1.532: ถาดช้อน
   if(b._shape==="flatPull") return pullFlatGeo(b);                                    // v1.446: มือจับบาร์แบน
   throw new Error("unknown shape");
@@ -16987,6 +16989,33 @@ function imoveAnimate(key,from,to,ms){
       else { ax.set(Math.cos(th),0,-Math.sin(th)); q.setFromAxisAngle(ax,-(P.a-P0.a)*Math.PI/180); s.o.quaternion.copy(q).multiply(s.q); } });   // แขนหมุนรอบแกนกว้างตู้ที่จุดหมุน
     invalidate(); if(k>=1){ fin(); return; } _imAnim=requestAnimationFrame(step); };
   _imAnim=requestAnimationFrame(step); }
+/* ═════════ v1.564: ถาดฟอยด์ใต้ซิงค์ 3D สมจริง (ผู้ใช้ 30/10 12:47 ส่งภาพตู้ซิงค์เปิดบาน: “ถาดฟรอดทำ 3 D สมจริงได้ไหม”) ═════════
+   เดิม (v9.21): ยืม _basketBoards ของตะแกรงมาวาด = กล่อง 5 แผ่น หนาแผ่นละ 15 ไม่มีสี/วัสดุ → ตกไปเป็นวัสดุโปร่งสีเขียว (ชิ้นเสมือนที่ไม่มีสี)
+     ในภาพเห็นเป็นกล่องแก้วเขียว ขอบหนาเท่าไม้ ไม่เหมือนถาดอลูมิเนียมจริง
+   ตอนนี้: ชิ้นเดียว _shape foilTray (orient front · L = กว้าง · W = สูง · T = ลึก — ขนาด/ตำแหน่งจาก sinkTrayCalc เหมือนเดิม)
+     พื้นอลูมิเนียมหนา 1.2 + ร่องนูนตามยาว (หน้า→หลัง) ทุก 28 มม. + ขอบยกรอบตัว (สูง = sinkTrayH) + ขอบม้วนกลมด้านบน Ø4.4 + มุมมน 16
+     ผิว _metal "#d6d9dc" (อลูมิเนียมปัด · metalMat สะท้อนแสง มีเงา ไม่ตีเส้นขอบ)
+   รหัส/ราคา/BOM ไม่เปลี่ยน (_fit · _fitId เดียว = 1 ชุด · _virtual ไม่เข้าใบตัด) · ปิด SN_OFF.foilTray3d = กล่องแบบเดิม */
+function foilTrayBoards(cx,cy,cz,w,h,d,cabRaw,cabInst,code,fid){
+  return [{id:uid(),name:code+" · ถาดอลูมิเนียม",orient:"front",cab:cabRaw||undefined,cabInst,
+    L:round(w),W:round(h),T:round(d),x:round(cx),y:round(cy),z:round(cz),yaw:0,tone:null,r:0,holes:[],grooves:[],connectors:[],
+    mat:"$CarcassBodyMat",surfT:"",surfB:"",edges:["No Edge","No Edge","No Edge","No Edge"],
+    _virtual:true,_fitPart:true,_autoFit:true,_basket:true,_fit:code,_fitId:fid,_shape:"foilTray",_metal:"#d6d9dc"}]; }
+const _ftGeoC={};
+function foilTrayGeo(b){ const L=Math.max(+b.L||100,40), H=Math.max(+b.W||30,5), D=Math.max(+b.T||100,40);
+  const key=Math.round(L)+"|"+Math.round(H)+"|"+Math.round(D); if(_ftGeoC[key]) return _ftGeoC[key].clone();
+  const t=1.2, r=Math.max(Math.min(16,L/4,D/4),2), gs=[];
+  /* รูปบนระนาบพื้น (x, −z) อัดขึ้นตามแกน y — rotateX(−90°): shape y → −z · ทิศอัด → +y */
+  const up=(sh,depth,y0)=>{ const g=new THREE.ExtrudeGeometry(sh,{depth,bevelEnabled:false,curveSegments:8}); g.rotateX(-Math.PI/2); g.translate(0,y0,0); return g; };
+  gs.push(up(roundedRectShape(L,D,r),t,-H/2));                                        // พื้นถาด
+  const ring=roundedRectShape(L,D,r); ring.holes.push(roundedRectShape(L-2*t,D-2*t,Math.max(r-t,1)));
+  gs.push(up(ring,Math.max(H-t,1),-H/2+t));                                           // ขอบยกรอบตัว
+  { const per=roundedRectShape(L-t,D-t,Math.max(r-t/2,1)).getSpacedPoints(140); per.pop();
+    const cur=new THREE.CatmullRomCurve3(per.map(p=>new THREE.Vector3(p.x,H/2-0.6,-p.y)),true);
+    gs.push(new THREE.TubeGeometry(cur,180,2.2,8,true)); }                            // ขอบม้วนด้านบน
+  const rl=Math.max(D-2*r-12,10), y=-H/2+t+0.7;
+  for(let x=-L/2+r+10;x<=L/2-r-10;x+=28){ const g=new THREE.BoxGeometry(6,2,rl); g.translate(x,y+0.3,0); gs.push(g); }   // ร่องนูนตามยาว
+  const out=mergeGeos(gs); _ftGeoC[key]=out; return out.clone(); }
 function _basketBoards(cx,cy,cz,bw,bh,bd,cabRaw,cabInst,code,fid){
   const tw=15, half=tw/2;
   const mk=(nm,L,W,T,x,y,z)=>({id:uid(),name:code+" · "+nm,orient:"front",cab:cabRaw||undefined,cabInst,
@@ -17979,6 +18008,8 @@ function applyCabFittings(){
         const fid=uid();
         try{ _fitAligned(all,()=>{
               const t2=sinkTrayCalc(all)||t;                    // คิดพิกัดตอนขนานแกน จะได้ตรงกับที่วัด
+              /* v1.564: ถาดอลูมิเนียม 3D (foilTray) แทนกล่องตะแกรงเขียวโปร่ง — ขนาด/ตำแหน่งเดิมจาก sinkTrayCalc · ปิด SN_OFF.foilTray3d */
+              if(!snOff("foilTray3d")) return foilTrayBoards(t2.xc,t2.yc,t2.zc,t2.w,t2.h,t2.d,cabRaw,all[0].cabInst||null,code,fid);
               return _basketBoards(t2.xc,t2.yc,t2.zc,t2.w,t2.h,t2.d,cabRaw,all[0].cabInst||null,code,fid);
             }).forEach(b=>{ b._fit=code; b._sinkTray=true;
                 b.name=String(b.name||"").replace(/ตะแกรง/g,"ถาดฟรอยด์");   // v9.30: ยืมรูปทรงตะแกรงมาวาด แต่ชื่อชิ้นต้องเป็นถาด
@@ -29399,6 +29430,8 @@ function boardRole(b){
      SN_OFF.plWtSeam=1    ท็อป/บัว/ผนังหินมีเส้นขอบทีละชิ้น (เห็นรอยต่อมุม L แบบเดิม) (v1.562)
      SN_OFF.plaTopY=1     ซิงค์/เตา/ไมโครเวฟ ไม่ปรับระดับตามผิวท็อปเอง (v1.562)
      SN_OFF.imove=1       ตะแกรงดึงลง iMove วาดเป็นกล่องตะแกรง 5 แผ่นแบบเดิม · คลิกดึงลงไม่ได้ (v1.563)
+     SN_OFF.foilTray3d=1  ถาดฟอยด์ใต้ซิงค์ วาดเป็นกล่อง 5 แผ่นสีเขียวโปร่งแบบเดิม (v1.564)
+     SN_OFF.aiBtnHi=1     ปุ่ม ✨ ผู้ช่วย ในแถบล่างเป็นสีเดียวกับปุ่มอื่น (ไม่ไฮไลต์) (v1.564)
      SN_OFF.plMulti=1     ห้องออกแบบเลือกได้ทีละตู้ (ไม่มี Ctrl+คลิก/กรอบ/Ctrl+A) · ลากตู้แล้วซิงค์/ฮู้ดไม่ตาม (v1.562)
      SN_OFF.plMarble=1    ท็อป/บัว/ผนังหินเป็นสีเรียบ ไม่มีลายหินอ่อน (ค่าที่เลือกไว้ยังอยู่) (v1.562)
      SN_OFF.plRender=1    แผงห้องออกแบบกลับมีปุ่ม 🧊 ส่งออก Blender แทน 🎬 Render (v1.562)
@@ -37325,6 +37358,20 @@ setTimeout(()=>{ try{ if(snOff("viewSegHide")) return;
     if(!$("viewSegHideCss")){ const st=document.createElement("style"); st.id="viewSegHideCss"; st.textContent="#viewSeg,#viewSeg + .sb-sep{display:none!important}"; document.head.appendChild(st); }
     if(state.view!=="assembled"){ const b=document.querySelector('#viewSeg button[data-v="assembled"]'); if(b) b.click(); }
     sbFitSoon(); }catch(e){ console.error("viewSegHide:",e); } },0);
+/* ───────── v1.564: ไฮไลต์ปุ่ม ✨ ผู้ช่วย ในแถบล่าง (ผู้ใช้ 30/10 12:49 “Highlight ปุ่มผู้ช่วยให้ด้วยครับ” + ภาพปุ่ม) ─────────
+   เดิม: #aiBtn เป็น .chip เหมือนปุ่มอื่นทุกตัว (พื้นขาว ตัวหนังสือเทา) กลืนไปกับแถบล่าง คนไม่รู้ว่ามีผู้ช่วย
+   ตอนนี้: class aiHi — พื้นไล่สีม่วง→ฟ้า (#6d4aff → #2f8cff · ไม่ใช้น้ำเงินเข้มเพราะซ้ำกับปุ่มเปิดอยู่ เช่น ตาราง/ประหยัด) ตัวขาวหนา ดาวสีเหลือง · เรืองแสงเป็นจังหวะ 5 รอบตอนเปิดแล้วนิ่ง
+     (ไม่ให้ขยับตลอดเวลา — กินเครื่องและรบกวนสายตา) · เครื่องตั้ง “ลดภาพเคลื่อนไหว” = ไม่ขยับเลย
+     #aiBtn.aiHi ชนะ .chip.sel / sbc2 / sbc3 (id + class) → ย่อแถบเหลือไอคอนก็ยังเห็นสี · ปิด SN_OFF.aiBtnHi */
+setTimeout(()=>{ try{ if(snOff("aiBtnHi")) return; const b=$("aiBtn"); if(!b) return;
+    if(!$("aiBtnHiCss")){ const st=document.createElement("style"); st.id="aiBtnHiCss";
+      st.textContent=["#aiBtn.aiHi{background:linear-gradient(115deg,#6d4aff 0%,#4f63ff 50%,#2f8cff 100%);color:#fff;border-color:transparent;font-weight:600;box-shadow:0 1px 7px rgba(93,74,255,.42);animation:aiHiGlow 2.4s ease-in-out 5}",
+        "#aiBtn.aiHi:hover{color:#fff;filter:brightness(1.12)}",
+        "#aiBtn.aiHi svg{stroke:#ffd36b}",
+        "@keyframes aiHiGlow{0%,100%{box-shadow:0 1px 7px rgba(93,74,255,.42),0 0 0 0 rgba(109,74,255,0)}50%{box-shadow:0 1px 9px rgba(93,74,255,.5),0 0 0 4px rgba(109,74,255,.25)}}",
+        "@media (prefers-reduced-motion:reduce){#aiBtn.aiHi{animation:none}}"].join("\n");
+      document.head.appendChild(st); }
+    b.classList.add("aiHi"); sbFitSoon(); }catch(e){ console.error("aiBtnHi:",e); } },0);
 addEventListener("pointerdown",e=>{ try{ plmsDown(e); }catch(err){ console.error("plms:",err); } },true);   /* v1.562: Ctrl+คลิก/ลากกรอบ ในห้องออกแบบ (ก่อน plwDown/ploDown/plDragDown) */
 addEventListener("keydown",e=>{ try{ plmsKey(e); }catch(err){ console.error("plmsKey:",err); } },true);       /* v1.562: Ctrl+A · Esc · Del · R เมื่อเลือกหลายตู้ */
 addEventListener("pointerdown",plwDown,true);
