@@ -3283,7 +3283,7 @@ body[data-theme="dark"] .splash-dots span{background:rgba(255,255,255,.25)}
    ===================================================================== */
 /* ---- APP_META: แหล่งความจริงเดียวของเวอร์ชัน (ดูได้จาก console / คลิกชื่อแอป) ---- */
 const APP_META={
-  name:"StarNexus", version:"1.570", build:"2026-10-30/ai-render-drawer",
+  name:"StarNexus", version:"1.572", build:"2026-10-30/vr-walk",
   file:"StarNexus.html", basedOn:"Furnitech_V3.html (v3.11)",
   /* ───────── เริ่มนับเวอร์ชันใหม่ที่ 1.001 (21/08/2026) ─────────
      ของเดิมนับมาถึง 42.1 แล้ววิ่งเป็นทศนิยมสองชั้นซึ่งอ่านลำดับยาก
@@ -3291,6 +3291,8 @@ const APP_META={
      ประวัติเก่าเก็บไว้ทั้งหมดตามเลขเดิม ไม่ไล่เขียนใหม่ เพราะเลขในนั้นถูกอ้างถึงไปแล้ว
      รายการที่อยู่ใต้ 1.001 ลงไปจึงเป็นเลขชุดเก่า อ่านต่อกันได้ตามวันที่ */
   changelog:[
+    ["1.572","2026-10-30","FEAT 🥽 ลิงก์ดูงาน = เดินดูในห้องที่ออกแบบ (ผู้ใช้ 15:15 “มีแบบว่า Link เข้าไปดู 3D ในห้องออกแบบ เหมือนคนใส่แว่น VR เลย ทำได้ไหมครับ” · เลือกครบ 3 แบบ: แว่น VR · มือถือ + Cardboard · มือถือ/คอมไม่ใส่แว่น) — ① ลิงก์/ไฟล์ดูงานมีห้องที่ออกแบบไปด้วย (ผนัง ประตู หน้าต่าง พื้น ฝ้า ท็อป เครื่องใช้ — เดิมมีแต่ตู้ลอยในที่ว่าง) · ผนัง/ประตู/หน้าต่าง/ฝ้าฝั่งกล้องซ่อนเองตอนหมุนดูจากนอกห้อง ② ปุ่ม 🥽 VR ในหน้าดูงาน: 🚶 เดินในห้อง (ระดับสายตา 1.6 ม. · ลากมอง · แตะพื้นเดินไป · ⬆ ค้างเดิน · ล้อ/W A S D · 🧭 หมุนตามมือถือ) · 📱 แว่นกระดาษ (จอแบ่งซ้าย-ขวา หันหัวมอง แตะค้างเดิน เต็มจอแนวนอน) · 🥽 แว่น VR (WebXR — เปิดลิงก์ในเบราว์เซอร์ของแว่น เช่น Meta Quest: ขนาดจริง ชี้พื้นกดไกย้ายที่ โยกปุ่มหมุน 30°) · 🔗 ลิงก์เข้าโหมดเดินเลย (&walk=1) · AI RENDER: “สั่งเพิ่ม” ที่ขอเพิ่มของตกแต่งบอก AI เป็นข้อยกเว้น (เดิมชนกับ “ห้ามเพิ่ม” AI ไม่ทำ) · ปิดได้ SN_OFF.snvRoom / rndNoteEx"],
+    ["1.571","2026-10-30","FEAT 📐 มองตรง (ผู้ใช้ 15:12 “มีมุมภาพหน้าตรงที่มองตรงๆ เลย ไม่เป็น Per มีไหมครับ ข้าง บน ด้วย” · เลือก: 3D มองตรงจริง + เก็บเป็นฉาก) — ปุ่ม 📐 ใต้ลูกเต๋า: หน้า · หลัง · ซ้าย · ขวา · บน = ภาพสี/วัสดุจริงแบบไม่มีเพอร์สเปกทีฟ (เส้นขนานไม่ลู่ ข้างตู้ไม่โผล่ ตู้หน้า-หลังขนาดเท่ากัน) · คลิกหน้าลูกเต๋า/ลากหมุนระหว่างมองตรง = ภาพขนาน (แบบ SketchUp Parallel Projection) · ＋ เก็บเป็นฉาก (แท็บมี 📐 · ไปฉาก = มองตรงเอง) ใช้กับ 🎬 AI RENDER/ใบเสนอราคาได้ · ⌂ หรือ ✕ = กลับมุมปกติ · FIX ประตู/หน้าต่างของผนังที่ซ่อน (กล้องอยู่นอกห้องฝั่งนั้น) ซ่อนตามผนัง เดิมลอยบังตู้ · ทำด้วยเลนส์แคบ 1° + ถอยกล้องตามสัดส่วน (กลไกเดียวกับมุมแปลน 1.538) + ระนาบตัดใกล้/ไกลตามระยะ (ไม่กระพริบ) — ทุกอย่างที่ใช้กล้องเดิม (คลิกเลือก ลาก Dim โหมดสมจริง Render) ทำงานเหมือนเดิม · ปิดได้ SN_OFF.viewOrtho / ploWallHide"],
     ["1.570","2026-10-30","FIX/FEAT (ผู้ใช้ 14:50 + project (2)) — ① FIX หน้าลิ้นชักจมเข้าตู้หลังเปลี่ยนจากบานอลูเป็นบานไม้ (“บานลิ้นชักมีอาการหุบเข้าหลัง”): บานอลูตั้งความหนา = หน้าตัด 60 โดยคงศูนย์บาน → เปลี่ยนกลับไม้ (19.4) ตัวปรับหนาคงผิวหลัง → ผิวหลังค้างในตู้ 20.3 (BND217 · BAD161 จม 23.5) · v1.488 ดึงบานทับออกมาชนหน้าตู้แล้วแต่ยกเว้นหน้าลิ้นชัก/แผงหน้า → ตอนนี้รวมหน้าลิ้นชัก (_dg) และแผงหน้า (_panel/_dummy) ที่ขอบเป็น “ทับ” จม 5–80 มม. ไม่อยู่หลังบานอื่น ไม่ใช่ลิ้นชักใน · กล่องลิ้นชักไม่ขยับ (คิดจากหน้าตู้อยู่แล้ว) ② FEAT ปุ่ม 🎬 Render → 🎬 AI RENDER: ตัวเลือกใหม่ (ตั้งต้น) “AI — ภาพฉาก → Gemini” ถ่ายภาพฉากที่ติ๊กแบบเร็ว (ไม่ path tracing ในเครื่อง) แล้วส่งให้ AI พร้อมคำสั่งคงแบบตู้ทันทีทีละภาพ ผลขึ้นในการ์ด · ไม่มีคีย์/คีย์ฟรีโดนปฏิเสธ = ภาพฉากยังอยู่ ปุ่ม 🍌 Gemini เว็บ สีเหลือง และภาพที่เหลือไม่ส่งซ้ำ · แสงจริงในเครื่อง/ภาพเร็ว ยังเลือกได้ · ปิดได้ SN_OFF.ddDrawer / rndAi"],
     ["1.569","2026-10-30","FEAT ห้องออกแบบ (ผู้ใช้ 14:28) — ① ไมโครเวฟตั้งพื้นวางในช่องโล่งของตู้ได้ (“อยากใส่ไมโครเวฟที่ช่องนั้น แบบลอยตัว” ภาพตู้ 600×760×550 ช่องเปิดเหนือลิ้นชัก): ลากไมโครเวฟไปชี้ช่องที่ไม่มีบาน/หน้าลิ้นชักบัง = วางบนพื้นช่อง กลางช่อง หน้าเครื่องถอยจากหน้าตู้ 20 (ช่องตื้น = ชิดหลัง) · ช่องเตี้ย/แคบกว่าเครื่อง = เตือนในป้าย · หาช่องจากชิ้นจริง (ข้างตู้ · หลัง · พื้น/ชั้น · หน้าบาน/หน้าลิ้นชัก) · แผงบอก “ในช่อง <รหัส>” · ไม่มีเส้นระยะหน้า/หลังท็อป และไม่ขึ้นบนแปลนท็อปในใบเสนอราคา · ลากกลับขึ้นท็อปได้ ② FIX ตีนตู้ไม่เปลี่ยนสีตามสีหน้าบาน (“ต้องไปแก้ความสูงหรือเปลี่ยนเป็นสแตนเลสแล้วกลับมาไม้ถึงจะเปลี่ยน”) — สีตีนตู้คิดจาก FrontColor ของตู้พื้น แต่คิดใหม่เฉพาะตอนจัดแนว/แก้ความสูง/เปลี่ยนวัสดุ/ออกจากห้อง → ตอนนี้ทุกครั้งที่ฉากอัปเดต ถ้าสีหน้าบานส่วนใหญ่ของตู้พื้นไม่ตรงสีแถวตีนตู้ = ทำตีนตู้ใหม่ให้เอง (รอ 0.35 วิ · ไม่ทำระหว่าง Ctrl+Z/ทำซ้ำ · ออเดอร์ XML ที่มีแถว Plinth เองไม่ยุ่ง) · ปิดได้ SN_OFF.plaNiche / plPlinthColor"],
     ["1.568","2026-10-30","FEAT 🎬 Render · 🍌 Gemini เว็บ (ฟรี) (ผู้ใช้ 14:02 ภาพการ์ด per1 “You exceeded your current quota …” — “ต่อ banana ให้มันเจนได้ปะครับ ที่ฟรี 2 ครั้ง”) — ภาพฟรีรายวันของ Nano Banana มีเฉพาะในเว็บ/แอป Gemini ส่วนคีย์ API แบบฟรีได้โควตาสร้างภาพ 0 (หน้าราคา Google: Free Tier = Not available ทุกรุ่นภาพ) จึงต่อตรงจากโปรแกรมไม่ได้ → ปุ่มใหม่บนการ์ดภาพ 🍌 Gemini เว็บ (ฟรี): คัดลอกภาพ (PNG ≤ 1600 px) + เปิด gemini.google.com · 📋 คัดลอกคำสั่ง (คงแบบตู้ เหมือนปุ่ม AI แต่งต่อ) · เอาภาพผลกลับ: 📥 วางภาพผล (อ่านคลิปบอร์ด) / Ctrl+V ในหน้า Render / ลากไฟล์มาวางบนการ์ด / 📂 เลือกไฟล์ → ขึ้นเป็นภาพ AI ของการ์ดนั้น บันทึกได้เหมือนเดิม · ไม่ใช้คีย์ · FIX ข้อความ 429 ภาษาอังกฤษยาวถูกตัด → บอกไทย: คีย์ฟรี (โควตาภาพ 0) / โควตาวันนี้หมด (รีเซ็ตราว 14:00–15:00 น.) / เกินชั่วคราว รอกี่วินาที + ปุ่ม 🍌 เป็นสีเหลือง · หารุ่นภาพอัตโนมัติรวมชื่อที่มี banana · FEAT ภาพเข้าใบเสนอราคา (ผู้ใช้ 14:09 “ส่งรูป + Prompt ไปให้ Gemini ให้ User เจนอีกที แล้วเอากลับมาอัพ เพื่อใส่เข้าใบเสนอราคา”): การ์ด Render มีปุ่ม 🧾 ใส่ใบเสนอราคา (ภาพ AI / ภาพเรนเดอร์ · กดซ้ำ = เอาออก · ภาพใหม่ = อัปเดต) · หน้า 🧾 ใบเสนอราคา มีหัวข้อ ภาพประกอบ (Render / AI): ภาพย่อ ⭐ ขึ้นก่อน ✕ ลบ · 📂 เพิ่มภาพ (ไฟล์ที่ดาวน์โหลดจาก Gemini) · 🎬 เปิด Render · ภาพแรกขึ้นหัวใบแทนภาพ 3D · แนบภาพเต็มหน้า A4 แนวนอน หลังใบ (มีหมายเหตุ ภาพจำลอง) · เก็บใน state.qPics (JPEG ≤ 1600 px สูงสุด 6 ภาพ) ไปกับ Save Order / .json / autosave · ไม่เข้า Ctrl+Z และลิงก์แชร์ · ปิดได้ SN_OFF.rndWeb / rndQuota / plqPics"],
@@ -19258,7 +19260,8 @@ function realPlProps(g){ if(!g) return;
   if(snOff("realProps")){ if(g.visible) g.visible=false; return; }
   let any=false;
   g.children.forEach(c=>{ const id=c.userData&&c.userData.plo, o=(id&&typeof ploGet==="function")?ploGet(id):null, T=o?PLO_T[o.k]:null, keep=!!(T&&(T.appl||T.util||(T.hole&&typeof REAL!=="undefined"&&REAL.room&&REAL.room.plWalls)));   /* v1.566: + ประตู/หน้าต่างที่วาง (ห้องจริง) */
-    if(keep){ any=true; if(!c.visible){ c.visible=true; }
+    if(keep&&typeof ploCamOk==="function"&&!ploCamOk(c)){ if(c.visible) c.visible=false; }   /* v1.571: ประตู/หน้าต่างของผนังฝั่งกล้อง (ผนังถูกซ่อน) ซ่อนตาม */
+    else if(keep){ any=true; if(!c.visible){ c.visible=true; }
       c.traverse(x=>{ if(x.userData&&x.userData.ploSelLine&&x.visible){ x.visible=false; x.userData._realHid=1; }
         if(T.hole&&x.isMesh&&x.material&&x.material.transparent&&x.material.opacity<0.6) x.userData._rptSkip=1; }); }   /* v1.566: กระจกประตู/หน้าต่างไม่บังแสงในภาพแสงจริง */
     else if(c.visible){ c.visible=false; c.userData._realHid=1; } });
@@ -20393,7 +20396,8 @@ function vcInit(){
     +'<div class="vcBtns"><button type="button" class="vcHome" title="มุมมองเริ่มต้น + ซูมพอดีทั้งฉาก">⌂</button>'
     +'<button type="button" class="vcFit" title="ซูมพอดีทั้งฉาก (มุมเดิม)">⤢</button>'
     +(snOff("orbSens")?'':'<button type="button" class="vcSens" title="ความไวเมาส์ — ลากหมุน / ล้อซูม (v1.539)">🖱</button>')
-    +(snOff("scenes")?'':'<button type="button" class="vcScn" title="ฉาก (Scene) — แถบมุมกล้องที่เก็บไว้ แบบ SketchUp · มุมเลนส์ (v1.541)">🎬</button>')+'</div>';
+    +(snOff("scenes")?'':'<button type="button" class="vcScn" title="ฉาก (Scene) — แถบมุมกล้องที่เก็บไว้ แบบ SketchUp · มุมเลนส์ (v1.541)">🎬</button>')
+    +(snOff("viewOrtho")?'':'<button type="button" class="vcOrtho" title="📐 มองตรง — หน้า / ข้าง / บน ไม่มีเพอร์สเปกทีฟ (v1.571)">📐</button>')+'</div>';
   const st=document.createElement("style");
   st.textContent="#viewCube{position:fixed;top:calc(var(--tb,48px) + 10px);right:12px;z-index:35;width:"+VC_PX+"px;display:flex;flex-direction:column;align-items:center;gap:4px;user-select:none;-webkit-user-select:none}"
     +"#insp.show ~ #viewCube{right:calc(var(--side,248px) + 12px)}"
@@ -20401,6 +20405,7 @@ function vcInit(){
     +"#viewCube .vcBtns{display:flex;gap:6px}"
     +"#viewCube button{width:30px;height:26px;border-radius:8px;border:.5px solid var(--line,#c9ced8);background:var(--solid,#fff);color:var(--ink,#1c2330);font-size:15px;line-height:1;cursor:pointer;opacity:.85}"
     +"#viewCube button:hover{opacity:1;border-color:var(--accent,#007aff)}"
+    +"#viewCube button.on,#voPop .ibtn.on{background:var(--accent,#007aff);color:#fff;border-color:transparent;opacity:1}"   /* v1.571 */
     +"body.viewOnly.mobileView #viewCube{transform:scale(.8);transform-origin:top right}"
     +"#viewAxes{position:fixed;left:12px;bottom:60px;width:"+VC_AX+"px;height:"+VC_AX+"px;z-index:34;pointer-events:none}";
   document.head.appendChild(st); document.body.appendChild(wrap);
@@ -20438,11 +20443,12 @@ function vcInit(){
     if(k===_vc.hov) return; _vc.hov=k; vcHighlight(d); vcRender(); });
   cv.addEventListener("pointerleave",()=>{ _vc.hov=null; vcHighlight(null); vcRender(); });
   cv.addEventListener("click",e=>{ const d=pick(e); if(d) vcGoDir(d); });
-  wrap.querySelector(".vcHome").onclick=()=>vcGoAngles(.85,.95);
+  wrap.querySelector(".vcHome").onclick=()=>{ try{ voSet(false,true); }catch(e){} vcGoAngles(.85,.95); };   /* v1.571: ⌂ = กลับมุมปกติด้วย */
   wrap.querySelector(".vcFit").onclick=()=>vcGoAngles(orbit.theta,orbit.phi);
   { const _sb=wrap.querySelector(".vcSens"); if(_sb) _sb.onclick=ev=>{ ev.stopPropagation(); orbSensPop(_sb); }; }   // v1.539
   try{ orbSensLoad(); }catch(e){}
   { const _cb=wrap.querySelector(".vcScn"); if(_cb) _cb.onclick=ev=>{ ev.stopPropagation(); scnToggle(); }; }   // v1.541
+  { const _ob=wrap.querySelector(".vcOrtho"); if(_ob) _ob.onclick=ev=>{ ev.stopPropagation(); voPop(_ob); }; }   // v1.571
   try{ scnInit(); }catch(e){ console.error("scnInit:",e); }
   vcRender();
 }
@@ -20501,6 +20507,48 @@ function vcAxesDraw(cam){
     g.lineWidth=3*k; g.strokeStyle="rgba(255,255,255,.85)"; g.strokeText(a.t,lx,ly); g.fillText(a.t,lx,ly);
     g.globalAlpha=1; });
 }
+/* ═════════ v1.571: 📐 มองตรง — ภาพหน้า/ข้าง/บน ไม่มีเพอร์สเปกทีฟ ═════════
+   ผู้ใช้ 30/10 15:12 (ภาพฉาก per1 2P): “มีมุมภาพหน้าตรงที่มองตรงๆ เลย ไม่เป็น Per มีไหมครับ ข้าง บน ด้วย แบบมองตรงๆ จริงๆ เลย” → เลือก “3D มองตรงจริง + เก็บเป็นฉาก”
+   เดิม: กล้อง 3D เป็นเพอร์สเปกทีฟอย่างเดียว (ลูกเต๋าหน้า/ข้าง = มุมตรงแต่ยังลู่) · มุม TOP ในห้องออกแบบใช้เลนส์แคบ 12° (1.538) เกือบแปลน
+   ตอนนี้: VO.on = เลนส์แคบ VO_FOV 1° + ถอยกล้อง ×VO.k (= tan(เลนส์ปกติ/2) ÷ tan(0.5°) ≈ 44 เท่าที่ 42°) → ภาพเหมือนออร์โธ (ต่างขนาดหน้า-หลังตู้ < 0.3%)
+     ใช้กลไกเดียวกับมุมแปลน: plCamMul() คูณระยะ · plBaseFov() = เลนส์ปกติ (vcFit/ฉาก/ซูมคิดเหมือนเดิม) · ไม่เปลี่ยนชนิดกล้อง
+     → คลิกเลือก ลาก Dim โหมดสมจริง Render/AI RENDER ใช้กล้องตัวเดิมได้หมด
+     ระนาบใกล้/ไกลตามระยะทุกเฟรม (ใกล้ = ระยะ − 1.5×ขนาดงาน) — กล้องอยู่ไกล 100+ ม. ถ้าใกล้ยัง 5 มม. ความลึกจะไม่พอ ผิวกระพริบ
+     มุมมอง 2 จุดปิดระหว่างมองตรง (ขนานอยู่แล้ว) · ผนังห้องฝั่งกล้องซ่อนเองเหมือนเดิม (ดูจากตำแหน่งกล้อง)
+     ปุ่ม 📐 ใต้ลูกเต๋า → หน้า/หลัง/ซ้าย/ขวา/บน (vcGoDir · ซูมพอดี) · ＋ เก็บเป็นฉาก (s.ortho=1 · ชื่อ “📐 หน้า”) · ✕ / ⌂ = กลับปกติ
+     ฉาก: scnCap เก็บ ortho · scnGo เปิด/ปิดมองตรงตามฉาก · แท็บมี 📐 · ป้ายเลนส์บนแถบ = “📐 มองตรง”
+   ปิด SN_OFF.viewOrtho=1 (ฉาก ortho เปิดเป็นมุมปกติ) */
+var VO={on:false, fov0:0, k:1, dir:""};
+const VO_FOV=1;
+const VO_DIRS=[["หน้า",[0,0,1],"มองเข้าผนังหลัง (ฝั่งหน้าตู้ ตามลูกเต๋า หน้า)"],["หลัง",[0,0,-1],"มองจากด้านหลัง"],["ซ้าย",[-1,0,0],"มองจากฝั่งซ้าย → เห็นผนังขวา"],["ขวา",[1,0,0],"มองจากฝั่งขวา → เห็นผนังซ้าย"],["บน",[0,1,0],"มองลงตรง (แปลน)"]];
+function voK(f){ return Math.tan((+f||42)*Math.PI/360)/Math.tan(VO_FOV*Math.PI/360); }
+function voOn(){ return !!VO.on&&!snOff("viewOrtho"); }
+function voSet(on,quiet){ on=!!on&&!snOff("viewOrtho"); if(typeof camera==="undefined"||!camera||on===VO.on) return;
+  if(on){ let base=camera.fov; if(typeof PL!=="undefined"&&PL._fov0){ base=PL._fov0; PL._fov0=0; PL._planK=0; }   // อยู่มุมแปลน (เลนส์ 12°) = เอาเลนส์ปกติเป็นฐาน
+    VO.fov0=base; VO.k=voK(base); VO.on=true; camera.fov=VO_FOV; CAM2P.on=false; try{ if(camera.view&&camera.view.enabled) camera.clearViewOffset(); }catch(e){} }
+  else { VO.on=false; camera.fov=VO.fov0||42; VO.fov0=0; VO.k=1; VO.dir=""; camera.near=5; if(typeof PL!=="undefined") PL._plan=false; }   // _plan=false → plPlanCheck คิดมุมแปลนใหม่รอบหน้า
+  camera.updateProjectionMatrix(); try{ invalidate(); }catch(e){} try{ scnBarRender(); }catch(e){} try{ voMark(); }catch(e){}
+  if(!quiet) toast(on?"📐 มองตรง (ไม่มีเพอร์สเปกทีฟ) — ⌂ หรือ 📐 → ✕ = กลับมุมปกติ":"🔭 กลับมุมมองปกติ"); }
+function voGo(name){ const d=VO_DIRS.find(x=>x[0]===name); if(!d) return; voSet(true,true); VO.dir=name; vcGoDir(d[1]); voMark(); }
+function voMark(){ const b=document.querySelector("#viewCube .vcOrtho"); if(b) b.classList.toggle("on",!!VO.on);
+  const p=$("voPop"); if(p){ p.querySelectorAll("[data-vo]").forEach(x=>x.classList.toggle("on",VO.on&&x.dataset.vo===VO.dir)); const t=p.querySelector('[data-a="tog"]'); if(t) t.textContent=VO.on?"✕ กลับมุมปกติ":"📐 มองตรงมุมนี้"; } }
+function voPop(btn){ let p=$("voPop"); if(p){ p.remove(); return; } try{ const o=$("orbSensPop"); if(o) o.remove(); }catch(e){}
+  p=document.createElement("div"); p.id="voPop";
+  const rc=btn.getBoundingClientRect(), rw=(btn.closest("#viewCube")||btn).getBoundingClientRect();
+  p.style.cssText="position:fixed;z-index:36;top:"+Math.round(rc.bottom+6)+"px;right:"+Math.max(Math.round(innerWidth-rw.right),8)+"px;width:252px;padding:10px 12px;border-radius:10px;border:.5px solid var(--line,#c9ced8);background:var(--solid,#fff);color:var(--ink,#1c2330);box-shadow:0 6px 24px rgba(0,0,0,.18);font:12px var(--font)";
+  p.innerHTML='<div style="font-weight:700">📐 มองตรง <span style="font-weight:400;color:var(--ink-dim,#6b7280)">ไม่มีเพอร์สเปกทีฟ</span></div>'
+    +'<div style="display:grid;grid-template-columns:repeat(5,1fr);gap:4px;margin-top:8px">'+VO_DIRS.map(d=>'<button class="ibtn" data-vo="'+d[0]+'" title="'+d[2]+'" style="padding:6px 0;justify-content:center;font-size:12px">'+d[0]+'</button>').join("")+'</div>'
+    +'<div style="color:var(--ink-dim,#6b7280);font-size:11px;margin-top:6px;line-height:1.5">ซ้าย/ขวา = ยืนฝั่งนั้นมอง (ขวา → เห็นตู้ผนังซ้าย) · ระหว่างมองตรง คลิกหน้าลูกเต๋า/ลากหมุนได้ ภาพยังขนาน</div>'
+    +'<div style="display:flex;gap:6px;margin-top:9px"><button class="ibtn" data-a="scn" style="flex:1;justify-content:center"'+(snOff("scenes")?' disabled':'')+'>＋ เก็บเป็นฉาก</button><button class="ibtn" data-a="tog" style="flex:1;justify-content:center"></button></div>';
+  document.body.appendChild(p);
+  { const z=uiZoomOf(p); p.style.left=""; p.style.top=Math.round((rc.bottom+6)/z)+"px"; p.style.right=Math.max(Math.round((innerWidth-rw.right)/z),8)+"px"; }
+  p.querySelectorAll("[data-vo]").forEach(b=>b.onclick=()=>voGo(b.dataset.vo));
+  p.querySelector('[data-a="tog"]').onclick=()=>{ if(VO.on) voSet(false); else { voSet(true); VO.dir=""; voMark(); } };
+  p.querySelector('[data-a="scn"]').onclick=()=>{ if(!VO.on){ voSet(true,true); voMark(); }
+    const s=scnAdd(); if(!s) return; const names=new Set(scnList().filter(x=>x!==s).map(x=>x.name)); let nm="📐 "+(VO.dir||"มองตรง"), k=2; while(names.has(nm)) nm="📐 "+(VO.dir||"มองตรง")+" "+(k++);
+    s.name=nm; s.ortho=1; scnSave(); scnBarRender(); toast("🎬 เก็บฉาก “"+nm+"” แล้ว — ใช้กับ 🎬 AI RENDER ได้"); };
+  voMark();
+  setTimeout(()=>{ const off=e=>{ if(!p.isConnected){ removeEventListener("pointerdown",off,true); return; } if(!p.contains(e.target)&&!(e.target.closest&&e.target.closest(".vcOrtho"))){ p.remove(); removeEventListener("pointerdown",off,true); } }; addEventListener("pointerdown",off,true); },0); }
 /* ทิศ (ชิ้นส่วนจาก cube) → มุมกล้อง · กดบน/ล่างตรง ๆ ให้หน้าตู้ (+Z) อยู่ด้านล่างจอเหมือนแปลน */
 function vcGoDir(d){
   const v=new THREE.Vector3(d[0],d[1],d[2]).normalize();
@@ -20604,18 +20652,19 @@ function scnList(){ if(typeof state==="undefined") return []; if(!Array.isArray(
 function scnGet(id){ return scnList().find(s=>s&&s.id===id)||null; }
 function scnFov(){ return (typeof plBaseFov==="function")?plBaseFov():((typeof camera!=="undefined"&&camera)?camera.fov:42); }
 function camFovSet(v){ v=Math.min(Math.max(+v||42,10),110); if(typeof camera==="undefined"||!camera) return;
-  if(typeof PL!=="undefined"&&PL._fov0){ PL._fov0=v; PL._planK=Math.tan(v*Math.PI/360)/Math.tan(PLAN_FOV*Math.PI/360)*1.1; }
+  if(typeof VO!=="undefined"&&VO.on){ VO.fov0=v; VO.k=voK(v); }   /* v1.571: มองตรง = เปลี่ยนเลนส์ฐาน (ระยะถอยคิดใหม่) */
+  else if(typeof PL!=="undefined"&&PL._fov0){ PL._fov0=v; PL._planK=Math.tan(v*Math.PI/360)/Math.tan(PLAN_FOV*Math.PI/360)*1.1; }
   else { camera.fov=v; camera.updateProjectionMatrix(); }
-  try{ const cb=document.querySelector("#scnBar .scnCam"); if(cb) cb.textContent="🔭 "+Math.round(v)+"°"+(CAM2P.on&&!snOff("cam2p")?" 2P":""); }catch(e){}   // ป้ายเลนส์บนแถบตามจริง (ไปฉาก = เลนส์ค่อย ๆ เลื่อน)
+  try{ const cb=document.querySelector("#scnBar .scnCam"); if(cb) cb.textContent=(typeof VO!=="undefined"&&VO.on)?"📐 มองตรง":("🔭 "+Math.round(v)+"°"+(CAM2P.on&&!snOff("cam2p")?" 2P":""));   /* v1.571 */ }catch(e){}   // ป้ายเลนส์บนแถบตามจริง (ไปฉาก = เลนส์ค่อย ๆ เลื่อน)
   try{ invalidate(); }catch(e){} }
-function cam2pApply(){ const on=CAM2P.on&&!snOff("cam2p")&&orbit.phi>0.35&&orbit.phi<Math.PI-0.35&&!(typeof PL!=="undefined"&&PL._plan);
+function cam2pApply(){ const on=CAM2P.on&&!snOff("cam2p")&&orbit.phi>0.35&&orbit.phi<Math.PI-0.35&&!(typeof PL!=="undefined"&&PL._plan)&&!(typeof VO!=="undefined"&&VO.on);   /* v1.571 */
   if(!on){ if(camera.view&&camera.view.enabled) camera.clearViewOffset(); return; }
   const p=camera.position, t=orbit.target, hd=Math.hypot(t.x-p.x,t.z-p.z); if(hd<1) return;
   camera.lookAt(t.x,p.y,t.z);
   const yt=Math.max(-1.8,Math.min(1.8,((t.y-p.y)/hd)/Math.tan(camera.fov*Math.PI/360)));
   camera.setViewOffset(camera.aspect,1,0,-yt/2,camera.aspect,1); }
 function scnCap(){ return {t:orbit.target.toArray().map(v=>Math.round(v*10)/10), th:+orbit.theta.toFixed(5), ph:+orbit.phi.toFixed(5), r:Math.round(orbit.radius*10)/10,
-  fov:Math.round(scnFov()*10)/10, two:!!CAM2P.on&&!snOff("cam2p"), vis:scnVisCap()}; }   /* v1.565: + ตู้ที่แสดง (ไม่มี = เห็นหมด) */
+  fov:Math.round(scnFov()*10)/10, two:!!CAM2P.on&&!snOff("cam2p")&&!(typeof VO!=="undefined"&&VO.on), vis:scnVisCap(), ortho:(typeof VO!=="undefined"&&VO.on)?1:undefined}; }   /* v1.571: + มองตรง */   /* v1.565: + ตู้ที่แสดง (ไม่มี = เห็นหมด) */
 function scnSave(){ try{ autosaveSoon(); }catch(e){ try{ autosave(); }catch(e2){} } }
 function scnAfterLoad(){ SCN.act=null; SCN.vis=null;   /* v1.565 */ setTimeout(()=>{ try{ scnBarRender(); }catch(e){} },0); }
 function scnAdd(){ if(snOff("scenes")) return null; const first=!SCN.tip; SCN.tip=1; const L=scnList(), names=new Set(L.map(s=>s.name)); let n=L.length+1; while(names.has("ฉาก "+n)) n++;
@@ -20626,7 +20675,8 @@ function scnGo(s,instant){ if(!s) return; SCN.act=s.id; const tg=new THREE.Vecto
   const EPS=.0015, ph=Math.max(EPS,Math.min(Math.PI-EPS,+s.ph||1)); if(ph<.12||ph>Math.PI-.12) orbit.phiMin=EPS;
   const R=Math.max(+s.r||orbit.radius,ZOOM_MIN_R); modelRadius=Math.max(modelRadius,R/20);
   const TW=Math.PI*2, th=+s.th||0, dth=((((th-orbit.theta)%TW)+TW+Math.PI)%TW)-Math.PI;
-  CAM2P.on=!!s.two&&!snOff("cam2p");
+  try{ voSet(!!s.ortho,true); if(s.ortho) VO.dir=""; }catch(e){}   /* v1.571: ฉากมองตรง */
+  CAM2P.on=!!s.two&&!snOff("cam2p")&&!VO.on;
   if(!snOff("scnVis")) scnVisSet(s.vis,true);   /* v1.565: ตู้ที่แสดงของฉากนั้น */
   if(instant){ _vcTw=null; orbit.theta=th; orbit.phi=ph; orbit.radius=R; orbit.target.copy(tg); camFovSet(+s.fov||SCN.fov0); }
   else _vcTw={t0:performance.now(), dur:650, th0:orbit.theta, dth, ph0:orbit.phi, ph1:ph, r0:orbit.radius, r1:R, tg0:orbit.target.clone(), tg1:tg, fv0:scnFov(), fv1:+s.fov||scnFov()};
@@ -20653,10 +20703,10 @@ function scnBarRender(){ let b=$("scnBar"); if(!scnBarOn()){ if(b) b.remove(); s
   scnCss(); if(!b){ b=document.createElement("div"); b.id="scnBar"; document.body.appendChild(b); }
   const L=scnList();
   b.innerHTML='<span class="scnT" title="ฉาก (Scene) — มุมกล้องที่เก็บไว้ · PageUp/PageDown ไล่ฉาก">🎬</span>'
-    +L.map(s=>'<button class="scnTab'+(s.id===SCN.act?' on':'')+'" data-id="'+escapeHtml(String(s.id))+'" title="'+escapeHtml(String(s.name||""))+' · เลนส์ '+Math.round(+s.fov||42)+'°'+(s.two?' · 2 จุด':'')+' — คลิก = ไปมุมนี้ · คลิกขวา/ดับเบิลคลิก = แก้">'+escapeHtml(String(s.name||""))+(s.two?'<i>2P</i>':'')+scnVisTag(s.vis)+'</button>').join("")
+    +L.map(s=>'<button class="scnTab'+(s.id===SCN.act?' on':'')+'" data-id="'+escapeHtml(String(s.id))+'" title="'+escapeHtml(String(s.name||""))+' · เลนส์ '+Math.round(+s.fov||42)+'°'+(s.two?' · 2 จุด':'')+' — คลิก = ไปมุมนี้ · คลิกขวา/ดับเบิลคลิก = แก้">'+escapeHtml(String(s.name||""))+(s.two?'<i>2P</i>':'')+(s.ortho&&!snOff("viewOrtho")?'<i>📐</i>':'')+scnVisTag(s.vis)+'</button>').join("")
     +(SCN.vis&&!snOff("scnVis")?('<button class="scnVis" title="ตอนนี้ซ่อน '+SCNLY.filter(x=>SCN.vis[x[0]]===0).map(x=>x[1]).join(' · ')+' — คลิก = แสดงทั้งหมด (ฉากยังจำไว้ ไปฉากนั้นอีกครั้งจะซ่อนเหมือนเดิม)">🙈 '+SCNLY.filter(x=>SCN.vis[x[0]]===0).map(x=>x[1].replace(' + ท็อป','')).join('·')+' ✕</button>'):'')   /* v1.565 */
     +'<button class="scnAdd" title="เก็บมุมกล้องตอนนี้เป็นฉากใหม่">＋ ฉาก</button>'
-    +'<button class="scnCam" title="มุมเลนส์ / มุมมอง 2 จุด ของกล้องตอนนี้">🔭 '+Math.round(scnFov())+'°'+(CAM2P.on&&!snOff("cam2p")?' 2P':'')+'</button>'
+    +'<button class="scnCam" title="มุมเลนส์ / มุมมอง 2 จุด ของกล้องตอนนี้">'+((typeof VO!=="undefined"&&VO.on)?'📐 มองตรง':('🔭 '+Math.round(scnFov())+'°'+(CAM2P.on&&!snOff("cam2p")?' 2P':'')))+'</button>'
     +'<button class="scnX" title="ซ่อนแถบฉาก (เปิดได้ที่ปุ่ม 🎬 ใต้ลูกเต๋า)">✕</button>';
   b.querySelectorAll(".scnTab").forEach(bt=>{ const s=scnGet(bt.dataset.id); if(!s) return;
     bt.onclick=()=>scnGo(s);
@@ -21814,10 +21864,13 @@ function animate(){requestAnimationFrame(animate);
   try{ plPlanCheck(); }catch(e){}                                              // v1.538: มองลงตรงในห้องออกแบบ = มุมแปลน (เลนส์แคบ)
   const r=orbit.radius*(typeof plCamMul==="function"?plCamMul():1);           // v1.538: มุมแปลน = ถอยกล้องตามเลนส์ (orbit.radius ยังเป็นระยะของเลนส์ปกติ ตัวอื่นคิดเหมือนเดิม)
   if(r*3>camera.far){ camera.far=r*3; camera.updateProjectionMatrix(); }
+  if(typeof VO!=="undefined"&&VO.on){ const ex=Math.max(+_fogDiag||6000,4000)*1.5, nr=Math.max(5,r-ex), fr2=r+ex*2;   /* v1.571: มองตรง กล้องไกล = ระนาบใกล้ตามระยะ (ความลึกพอ ไม่กระพริบ) */
+    if(Math.abs(camera.near-nr)>1||camera.far<fr2){ camera.near=nr; camera.far=Math.max(camera.far,fr2); camera.updateProjectionMatrix(); } }
   camera.position.set(orbit.target.x+r*Math.sin(orbit.phi)*Math.sin(orbit.theta),orbit.target.y+r*Math.cos(orbit.phi),orbit.target.z+r*Math.sin(orbit.phi)*Math.cos(orbit.theta));
   camera.lookAt(orbit.target);
   if(CAM2P.on||(camera.view&&camera.view.enabled)) try{ cam2pApply(); }catch(e){}   // v1.541: มุมมอง 2 จุด (เส้นตั้งตรง)
   try{ fogFollow(); }catch(e){}                                                // v1.534: หมอกเริ่มหลังตัวงานเสมอ (ซูมไกลแล้วไม่จาง)
+  try{ ploCamVis(); }catch(e){}                                                // v1.571: ประตู/หน้าต่างซ่อนตามผนัง
   try{ scaleMeasureGizmos(); }catch(e){}
   if(REAL.on){ try{ realRender(); }catch(e){ console.error("realRender:",e); try{ renderer.setRenderTarget(null); }catch(_){} renderer.render(scene,camera); } }   // v1.463: โหมดสมจริง (ห้อง + เงามุม + ACES)
   else renderer.render(scene,camera);
@@ -29572,6 +29625,10 @@ function boardRole(b){
      SN_OFF.plaNiche=1    ไมโครเวฟวางได้แค่บนท็อปแบบเดิม (ไม่ดูดเข้าช่องโล่งในตู้) (v1.569)
      SN_OFF.ddDrawer=1    หน้าลิ้นชัก/แผงหน้าที่จมเข้าตู้ไม่ดึงออก (ดึงเฉพาะบานแบบ v1.488) (v1.570)
      SN_OFF.rndAi=1       ปุ่มกลับเป็น 🎬 Render (ไม่มีโหมด AI ภาพฉาก → Gemini) (v1.570)
+     SN_OFF.viewOrtho=1   ไม่มีปุ่ม 📐 มองตรง · ฉากที่เก็บแบบมองตรงเปิดเป็นมุมปกติ (v1.571)
+     SN_OFF.ploWallHide=1 ประตู/หน้าต่างแสดงตลอด แม้ผนังที่ติดถูกซ่อน (กล้องอยู่นอกห้อง) แบบเดิม (v1.571)
+     SN_OFF.snvRoom=1     ลิงก์/ไฟล์ดูงานไม่ส่งห้องที่ออกแบบ (ตู้อย่างเดียวแบบเดิม · ปุ่ม 🥽 VR ยังเดินได้รอบตู้) (v1.572)
+     SN_OFF.rndNoteEx=1   AI RENDER “สั่งเพิ่ม” ไม่บอกข้อยกเว้นของตกแต่ง (คำสั่งแบบเดิม) (v1.572)
      SN_OFF.plPlinthColor=1 ตีนตู้เปลี่ยนสีเฉพาะตอนจัดแนว/แก้ความสูง/เปลี่ยนวัสดุแบบเดิม (v1.569)
      SN_OFF.plMulti=1     ห้องออกแบบเลือกได้ทีละตู้ (ไม่มี Ctrl+คลิก/กรอบ/Ctrl+A) · ลากตู้แล้วซิงค์/ฮู้ดไม่ตาม (v1.562)
      SN_OFF.plMarble=1    ท็อป/บัว/ผนังหินเป็นสีเรียบ ไม่มีลายหินอ่อน (ค่าที่เลือกไว้ยังอยู่) (v1.562)
@@ -36419,6 +36476,7 @@ function plRoomDraw(){
     g.add(m);
     const el=new THREE.LineSegments(ploWallEdges(m.geometry,m.userData.wallF), solid?new THREE.LineBasicMaterial({color:0x8f8470}):new THREE.LineBasicMaterial({color:0x7d7260,transparent:true,opacity:.8}));
     el.position.copy(m.position); g.add(el);
+    m.userData.wcKey=el.userData.wcKey="r:"+k;   /* v1.572: หน้าดูงานซ่อนผนังฝั่งกล้อง */
   });
   /* v1.540: มุมแปลน — ป้ายความยาวผนังห้องสี่เหลี่ยมแต่ละด้าน (ด้านในห้อง เหนือแนวตัด) */
   if(plPlanLbl()) try{ const sz=plwLblSz(); Object.keys(PL_WALLS).forEach(k=>{ if(!r.walls[k]) return; const W=PL_WALLS[k], L=W.ax===0?r.w:r.d;
@@ -37087,7 +37145,7 @@ function plwAddMeshes(g){
       const vis=cam=>{ if(PLW.on||(typeof orbit!=="undefined"&&orbit.phi<0.35)) return true; return ((cam.position.x-mx)*no[0]+(cam.position.z-mz)*no[1])<=oo+1; };
       m.onBeforeRender=(rd,sc,cam)=>{ const on=vis(cam); mat.colorWrite=on; mat.depthWrite=on; };
       el.onBeforeRender=(rd,sc,cam)=>{ el.material.colorWrite=vis(cam); };
-      g.add(m); g.add(el);
+      g.add(m); g.add(el); m.userData.wcKey=el.userData.wcKey="w:"+wi+":"+si;   /* v1.572 */
       /* เส้นแนวก้นตู้ลอย (ฟ้า) / แนวบน (ส้ม) บนผิวใน */
       if(!PLW.on) [[+r.wallBot,0x1e88e5],[+r.wallTop,0xef6c00]].forEach(([y,col])=>{ if(!(y>0)||y>=H) return;
         const A=new THREE.Vector3(f.q[0][0]+f.ni[0]*2,y,f.q[0][1]+f.ni[1]*2), B=new THREE.Vector3(f.q[1][0]+f.ni[0]*2,y,f.q[1][1]+f.ni[1]*2);
@@ -37953,7 +38011,18 @@ function ploAddMeshes(g){
     const pick=new THREE.Mesh(new THREE.BoxGeometry(pk[0],pk[1],pk[2]),new THREE.MeshBasicMaterial({visible:false}));
     pick.position.set(0,pk[3]+pk[1]/2,pk[4]||0); /* v1.546: ฮู้ดติดผนังอยู่หน้าผนัง */ pick.userData.ploPick=1; pick.userData.plo=o.id; G.add(pick);
     if(PLO.sel===o.id){ const sel=new THREE.LineSegments(new THREE.EdgesGeometry(pick.geometry),new THREE.LineBasicMaterial({color:0x2563eb,depthTest:false})); sel.position.copy(pick.position); sel.renderOrder=999; sel.userData.ploSelLine=1; G.add(sel); }   /* v1.548: โหมดสมจริงซ่อนขอบที่เลือก */
+    if(F&&T.wall&&!snOff("ploWallHide")) G.userData.ploF={a:F.a, no:[-F.ni[0],-F.ni[1]], lim:String(F.key).indexOf("r:")===0?0:((+F.oo||0)+1)};   /* v1.571: ซ่อนตามผนัง (ploCamVis) */
     g.add(G); }); }
+/* ───────── v1.571: ประตู/หน้าต่าง ซ่อนตามผนังที่ติด ─────────
+   เดิม: ผนัง (ห้องสี่เหลี่ยม/ที่วาด) ซ่อนเองเมื่อกล้องอยู่นอกห้องฝั่งนั้น แต่ประตู/หน้าต่างที่เจาะผนังนั้นยังวาด → ลอยอยู่กลางอากาศ บังตู้
+     (เห็นชัดตอน 📐 มองตรง ซ้าย/ขวา · ภาพมุมสูงของผู้ใช้ก็มีวงกบประตูลอยที่ผนังขวา)
+   ตอนนี้: ทุกเฟรมก่อนวาด ใช้กติกาเดียวกับผนัง (ห้องสี่เหลี่ยม = เลยผิวใน · ผนังวาด = เลยผิวนอก) · มุมบน/ตอนวาดผนัง = เห็นหมดเหมือนผนัง · ปิด SN_OFF.ploWallHide=1 */
+function ploCamOk(G){ const f=G&&G.userData&&G.userData.ploF; if(!f||snOff("ploWallHide")||typeof camera==="undefined") return true;
+  if((typeof PLW!=="undefined"&&PLW.on)||(typeof orbit!=="undefined"&&orbit.phi<0.35)) return true;
+  const c=camera.position; return ((c.x-f.a[0])*f.no[0]+(c.z-f.a[1])*f.no[1])<=f.lim; }
+function ploCamVis(){ if(typeof PL==="undefined"||!PL.grp||snOff("ploWallHide")||typeof camera==="undefined") return;
+  if(typeof REAL!=="undefined"&&REAL.on) return;   /* โหมดสมจริง: realPlProps ตัดสินเอง (ใช้ ploCamOk) */
+  PL.grp.children.forEach(G=>{ if(!(G.userData&&G.userData.ploF)) return; const on=ploCamOk(G); if(G.visible!==on) G.visible=on; }); }
 /* ═════════ v1.546: เครื่องใช้ในครัว ═════════
    ผู้ใช้ 28/10 20:31: “เพิ่ม Sink ลากมาใส่ทอปได้ แล้ว Hood ก็ลากไปใส่ตู้ hood ได้ แต่ hood น่าจะมี 3 แบบ · เตาด้วย ถังขยะ ถังแก๊ส”
    20:35: “ไมโครเวฟลอยตัว เตา Built แล้วเดี๋ยวเพิ่มรุ่นทีหลังได้ด้วย”
@@ -38726,11 +38795,13 @@ function ploUtilPanel(s,o){ const T=PLO_T[o.k]||{}, F=ploFrameOf(o), r=plRoom(),
 const PLAN_CUT=1100;
 function plPlanOn(){ return !snOff("plPlanView")&&typeof PL!=="undefined"&&PL.on&&!PLW.on&&!!PL._plan; }
 const PLAN_FOV=12;   // มุมแปลน: เลนส์แคบ + ถอยกล้อง ×k (plCamMul ตอนวางกล้องใน animate) → ตู้สูง/ตู้ลอยไม่เอียงออกนอกแนว ดูเกือบเป็นแปลนตั้งฉาก
-function plCamMul(){ return (typeof PL!=="undefined"&&PL._fov0&&PL._planK)?PL._planK:1; }
-function plBaseFov(){ return (typeof PL!=="undefined"&&PL._fov0)||((typeof camera!=="undefined"&&camera)?camera.fov:42); }
+function plCamMul(){ if(typeof VO!=="undefined"&&VO.on) return VO.k||1;   /* v1.571: มองตรง */
+  return (typeof PL!=="undefined"&&PL._fov0&&PL._planK)?PL._planK:1; }
+function plBaseFov(){ if(typeof VO!=="undefined"&&VO.on&&VO.fov0) return VO.fov0;   /* v1.571 */
+  return (typeof PL!=="undefined"&&PL._fov0)||((typeof camera!=="undefined"&&camera)?camera.fov:42); }
 function plPlanCheck(){ if(typeof PL==="undefined"||typeof orbit==="undefined") return; const top=!snOff("plPlanView")&&PL.on&&!PLW.on&&orbit.phi<0.3;
   if(top===!!PL._plan) return; PL._plan=top;
-  try{ if(top&&camera&&!PL._fov0&&!snOff("plPlanFov")){ PL._planK=Math.tan(camera.fov*Math.PI/360)/Math.tan(PLAN_FOV*Math.PI/360)*1.1; PL._fov0=camera.fov; camera.fov=PLAN_FOV; camera.updateProjectionMatrix(); }   // ×1.1 = เว้นขอบรอบห้องนิด
+  try{ if(top&&camera&&!PL._fov0&&!snOff("plPlanFov")&&!(typeof VO!=="undefined"&&VO.on)){   /* v1.571: มองตรงอยู่ = เลนส์ 1° แล้ว ไม่สลับเป็น 12° */ PL._planK=Math.tan(camera.fov*Math.PI/360)/Math.tan(PLAN_FOV*Math.PI/360)*1.1; PL._fov0=camera.fov; camera.fov=PLAN_FOV; camera.updateProjectionMatrix(); }   // ×1.1 = เว้นขอบรอบห้องนิด
     else if(!top&&camera&&PL._fov0){ camera.fov=PL._fov0; PL._fov0=0; PL._planK=0; camera.updateProjectionMatrix(); } }catch(e){ console.error("plPlanFov:",e); }
   if(PL.on){ try{ plRoomDraw(); }catch(e){ console.error("plPlan:",e); } }
   setTimeout(()=>{ try{ invalidate(); }catch(e){} },0); }
@@ -55188,6 +55259,36 @@ function snvImgUrl(img,max){
   const g=c.getContext("2d"); g.drawImage(img,0,0,c.width,c.height);
   let alpha=false; try{ const d=g.getImageData(0,0,c.width,c.height).data; for(let i=3;i<d.length;i+=4*7){ if(d[i]<250){ alpha=true; break; } } }catch(e){}
   return alpha?c.toDataURL("image/png"):c.toDataURL("image/jpeg",.84); }
+/* ═════════ v1.572: ห้องที่ออกแบบไปกับลิงก์/ไฟล์ดูงาน ═════════
+   ผู้ใช้ 30/10 15:15: “มีแบบว่า Link เข้าไปดู 3D ในห้องออกแบบ เหมือนคนใส่แว่น VR เลย ทำได้ไหมครับ” → เลือก แว่น VR + มือถือ Cardboard + มือถือ/คอม
+   เดิม: snvSerialize อบเฉพาะ root (ตู้) — ห้อง (PL.grp ผนัง ประตู หน้าต่าง พื้น ฝ้า เครื่องใช้) และท็อป (PL.wtGrp) อยู่นอก root
+         และมีเฉพาะตอนเปิดห้องออกแบบ → ลิงก์เห็นตู้ลอยในที่ว่าง เดินดูในห้องไม่ได้
+   ตอนนี้: snvRoomOut — ไม่ได้อยู่ในห้องออกแบบ / อยู่มุมแปลน (ผนังตัด 1100) = วาดห้องชั่วคราว (PL.on) แล้วคืน
+     ข้าม: กล่องคลิก (ploPick) · กรอบเลือก · เส้นประแนวตู้ลอย · ป้าย (Sprite ข้ามอยู่แล้ว) · บังคับทุกชิ้นให้เห็น (ประตูที่ซ่อนตามผนัง/โหมดสมจริง) แล้วคืน
+     n.wc = กติกาซ่อนฝั่งกล้อง (ผนัง “r:” เลยผิวใน · “w:” เลยผิวนอก · ประตู/หน้าต่างตามผนัง · ฝ้า ["c",สูง] กล้องสูงกว่า = ซ่อน)
+     D.rm = กรอบห้อง (x0 z0 w d h) ให้โหมดเดินรู้ขอบ · ปิด SN_OFF.snvRoom=1 */
+function snvRoomMeta(){ try{ if(snOff("snvRoom")||typeof state==="undefined"||!state.room) return undefined; const r=plRoom();
+  if(!(+r.w>0&&+r.d>0)) return undefined; return {x0:Math.round(+r.x0||0), z0:Math.round(+r.z0||0), w:Math.round(+r.w), d:Math.round(+r.d), h:Math.round(+r.h||2600), y0:0}; }catch(e){ return undefined; } }
+function snvRoomOut(node){ if(snOff("snvRoom")||typeof PL==="undefined"||typeof state==="undefined"||!state.room) return null;
+  const on0=!!PL.on, plan0=!!PL._plan, mk=!on0||!PL.grp||plan0, fixed=[];
+  try{
+    if(mk){ PL.on=true; PL._plan=false; try{ plRoomDraw(); }catch(e){ console.warn("snv room draw:",e); } try{ plWtDraw(true); }catch(e){ console.warn("snv wt draw:",e); } }
+    let FR=[]; try{ FR=ploFrames(); }catch(e){}
+    const out=[];
+    [PL.grp,PL.wtGrp].forEach(g=>{ if(!g) return;
+      g.traverse(o=>{ const u=o.userData||(o.userData={});
+        if(u.ploPick||u.ploSelLine||(o.material&&o.material.isLineDashedMaterial)){ u.snvSkip=1; fixed.push([o,"skip"]); return; }
+        if(!o.visible){ o.visible=true; fixed.push([o,"vis"]); }
+        let wc=null;
+        if(u.ploF) wc=[u.ploF.a[0],u.ploF.a[1],u.ploF.no[0],u.ploF.no[1],u.ploF.lim];
+        else if(u.wcKey){ const F=FR.find(f=>f.key===u.wcKey); if(F) wc=[F.a[0],F.a[1],-F.ni[0],-F.ni[1],/^r:/.test(u.wcKey)?0:(+F.oo||0)+1]; }
+        else if(u.plCeil){ const bb=new THREE.Box3().setFromObject(o); wc=["c",Math.round(isFinite(bb.max.y)?bb.max.y:o.position.y)]; }   // ฝ้า (รวมเส้นขอบที่วางตำแหน่ง 0) = ความสูงจริง
+        if(wc){ u.snvWc=wc.map(v=>typeof v==="number"?Math.round(v*10)/10:v); fixed.push([o,"wc"]); } });
+      g.updateMatrixWorld(true); const n=node(g); if(n) out.push(n); });
+    return out.length?out:null;
+  } finally {
+    fixed.forEach(([o,k])=>{ if(k==="skip") delete o.userData.snvSkip; else if(k==="wc") delete o.userData.snvWc; else if(k==="vis") o.visible=false; });
+    if(mk){ PL.on=on0; PL._plan=plan0; try{ plRoomDraw(); }catch(e){} try{ plWtDraw(true); }catch(e){} try{ invalidate(); }catch(e){} } } }
 function snvSerialize(opt){
   opt=opt||{}; const texMax=opt.texMax||1024;
   const G=[],M=[],T=[], gi=new Map(), mi=new Map(), ti=new Map(), iu=new Map(), files=[];
@@ -55245,6 +55346,7 @@ function snvSerialize(opt){
     if(Math.abs(_s.x-1)>1e-6||Math.abs(_s.y-1)>1e-6||Math.abs(_s.z-1)>1e-6) n.s=[r4(_s.x),r4(_s.y),r4(_s.z)];
     if(o.renderOrder) n.ro=o.renderOrder; if(!o.visible) n.v=0; if(o.castShadow) n.cs=1; if(o.receiveShadow) n.rs=1; if(o.frustumCulled===false) n.fc=0;
     if(o.userData&&o.userData.id) n.id=o.userData.id;
+    if(o.userData&&o.userData.snvWc) n.wc=o.userData.snvWc;   /* v1.572: ผนัง/ฝ้าของห้อง — หน้าดูซ่อนเมื่อกล้องอยู่นอกห้องฝั่งนั้น */
     /* v1.456: บานพับ 3D ในหน้าดูงาน — แขน/ฐาน (hf) อยู่กับแผ่นข้าง ไม่หมุนตามบาน · ข้อต่อ (hk = [ข้อต่อที่, กรอบแขน 16 ค่า]) จัดท่าตามมุมบาน */
     if(o.userData&&o.userData._hkFix) n.hf=1;
     if(o.userData&&o.userData._hk&&o.userData._hk.m) n.hk=[o.userData._hk.L].concat(o.userData._hk.m.map(r4)).concat(o.userData._hk.a?[1]:[]);   // v1.488: ช่อง 17 = 1 → กลไกบานพับเฟรมอลู
@@ -55254,7 +55356,8 @@ function snvSerialize(opt){
     return n; };
   root.updateMatrixWorld(true);
   const obj=root.children.map(node).filter(Boolean);
-  return {geo:G,mat:M,tex:T,obj,files}; }
+  let room=null; try{ room=snvRoomOut(node); }catch(e){ console.warn("snv room:",e); }   /* v1.572 */
+  return {geo:G,mat:M,tex:T,obj,files,room}; }
 /* ข้อมูลประกอบที่หน้าดูต้องใช้ — คิดด้วยฟังก์ชันเดียวกับโปรแกรม ท่าบาน/ลิ้นชัก/แยกประกอบจึงตรงกันทุกประการ */
 /* ───────── v1.457: กรอบรวมของตู้ (ขนาดรวมแบบรูปสินค้า) ─────────
    ต่างจาก cabWHD (ขนาดโครงตู้ส่ง Production — ไม่นับบาน/ชิ้นแสดงผล): ตัวนี้นับทุกชิ้นที่เห็นของตู้ รวมบาน ขา ตีนตู้
@@ -55371,7 +55474,7 @@ async function snvBuild(opt){
       root:{p:root.position.toArray()}, bg:0xe7e8ee,   /* v1.443: พื้นเทาเสมอ ไม่ตามธีมจอคนส่ง */
       cam:{t:orbit.target.toArray().map(v=>Math.round(v*10)/10), th:orbit.theta, ph:orbit.phi, r:orbit.radius, mr:modelRadius, fov:(typeof plBaseFov==="function")?plBaseFov():camera.fov},
       light:{hemi:hemiLight?[hemiLight.color.getHex(),hemiLight.groundColor.getHex(),hemiLight.intensity]:null, key:lt(keyLight), fill:lt(fillLight), rim:lt(rimLight)},
-      geo:sc.geo, mat:sc.mat, tex:sc.tex, obj:sc.obj}, meta);
+      geo:sc.geo, mat:sc.mat, tex:sc.tex, obj:sc.obj, room:sc.room||undefined, rm:snvRoomMeta()}, meta);   /* v1.572: + ห้อง */
     return {D, files:sc.files, preview:prev};
   } finally {
     Object.assign(state,{eco:keep.eco,ghost:keep.ghost,doorOpen:keep.doorOpen,doorPick:keep.doorPick,doorProg:keep.doorProg,explode:keep.explode,hidden:keep.hidden,view:keep.view,selectedId:keep.sel,showGrain:keep.grain});
@@ -68615,7 +68718,7 @@ const RND=(function(){
     const m=(j&&j.error&&(j.error.message||(typeof j.error==="string"?j.error:"")))||("HTTP "+r.status); throw new Error(String(m).slice(0,300)); }
   function aiKey(){ let c={}; try{ c=SNAI._cfg()||{}; }catch(e){} return String(((c.keys||{})[O.ai])||"").trim(); }
   const PROMPT="Turn this 3D visualization of built-in furniture into a photorealistic interior photograph. Keep EXACTLY the same camera angle, framing, room layout, cabinet positions, sizes and proportions, the number of doors and drawers, door divisions, handles, colors and material finishes (wood decor, countertop and backsplash pattern), walls and floor. Do not add, remove, move or redesign any cabinet, door, drawer, handle or appliance, and do not add any text or watermark. Only improve realism: natural soft lighting and shadows, realistic material textures and reflections, professional architectural photography look.";
-  function prompt(){ const n=String(O.note||"").trim(); return PROMPT+(n?("\nAdditional instructions from the designer (Thai): "+n):""); }
+  function prompt(){ const n=String(O.note||"").trim(); return PROMPT+(n?("\nAdditional instructions from the designer (Thai): "+n+(snOff("rndNoteEx")?"":"\nIf these designer instructions ask to add or change decor (plants, baskets, small objects, lighting mood), that is an allowed exception to the rules above — still keep every cabinet, door, drawer, handle, countertop and appliance exactly unchanged.")):""); }   /* v1.572: สั่งเพิ่ม “เพิ่มตะกร้า/ต้นไม้” เดิมชนกับ “Do not add” → AI ไม่ทำ · บอกเป็นข้อยกเว้นของตกแต่ง (ตู้ยังห้ามแตะ) · SN_OFF.rndNoteEx=1 = แบบเดิม */
   function ratio(w,h){ const r=(w||16)/(h||9), L=[["21:9",21/9],["16:9",16/9],["3:2",1.5],["4:3",4/3],["5:4",1.25],["1:1",1],["4:5",.8],["3:4",.75],["2:3",2/3],["9:16",9/16]];
     let b=L[0], d=1e9; L.forEach(x=>{ const e=Math.abs(Math.log(r/x[1])); if(e<d){ d=e; b=x; } }); return b[0]; }
   async function gemModel(key){ if(O.gm) return O.gm;
@@ -69523,6 +69626,16 @@ body.vwScanTop #vwScan{top:calc(8px + env(safe-area-inset-top))}
 #vwMk .mkCols button{width:28px;height:28px;border-radius:50%;border:2px solid rgba(0,0,0,.18);padding:0;box-shadow:0 1px 3px rgba(0,0,0,.25)}
 #vwMk .mkCols button.on{outline:3px solid var(--accent);outline-offset:2px}
 body.mkOn #vwHint{z-index:41;bottom:calc(112px + env(safe-area-inset-bottom))}
+/* v1.572: 🥽 VR · เดินในห้อง · แว่นกระดาษ */
+#vwVrSheet{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(64px + env(safe-area-inset-bottom));z-index:45;width:min(420px,calc(100vw - 24px));display:flex;flex-direction:column;gap:6px;padding:12px}
+#vwVrSheet .vrH{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:2px}
+#vwVrSheet .vrO{display:flex;flex-direction:column;align-items:flex-start;gap:2px;text-align:left;padding:10px 12px;border-radius:12px;border:1px solid rgba(0,0,0,.12);background:#fff;color:#1c2330;font:inherit;cursor:pointer}
+#vwVrSheet .vrO span{font-size:12px;color:#6b7280;line-height:1.45}#vwVrSheet .vrO:disabled{opacity:.55;cursor:default}#vwVrSheet .vrO:not(:disabled):hover{border-color:#2f8cff}
+body.vwWalk #vwBar,body.vwWalk #vwZoom,body.vwWalk #vwCabs,body.vwWalk #vwInfo{display:none!important}
+#vwWalkHud{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(14px + env(safe-area-inset-bottom));z-index:46;display:flex;gap:8px;flex-wrap:wrap;justify-content:center;max-width:calc(100vw - 20px)}
+#vwWalkHud .vbtn{box-shadow:0 4px 14px rgba(0,0,0,.18)}#vwWalkHud .wkGo{min-width:96px;font-weight:700;touch-action:none;user-select:none;-webkit-user-select:none}
+body.vwCb #vwTop,body.vwCb #vwHint{display:none!important}body.vwCb #vwWalkHud{bottom:auto;top:8px;opacity:.75}
+
 @media (max-width:420px){ #vwMk .mkTop button{padding:6px 8px;min-width:34px} #vwMk .seg button{padding:6px 8px;font-size:13px} #vwMk .mkB{padding:6px 9px;font-size:13px} #vwMk .mkCols button{width:26px;height:26px} }
 </script>
 <script type="text/plain" id="snvTplBody">
@@ -69536,6 +69649,7 @@ body.mkOn #vwHint{z-index:41;bottom:calc(112px + env(safe-area-inset-bottom))}
 <div id="vwLbl"></div>
 <footer id="vwBar">
   <div class="seg" id="vwTool"><button data-t="sel" class="on">👆 ดูชิ้น</button><button data-t="meas">📏 วัด</button><button data-t="door">🚪 เปิดบาน</button></div>
+  <button class="vbtn" id="vwVR" title="🥽 เดินดูในห้อง · แว่นกระดาษ · แว่น VR">🥽 VR</button>
   <button class="vbtn" id="vwReal" title="✨ โหมดสมจริง — ดูตู้ในห้องจริง แสงกลางวัน / เย็น / กลางคืน">✨ สมจริง</button>
   <button class="vbtn" id="vwMore" aria-label="เครื่องมือเพิ่มเติม">⋯ เพิ่มเติม</button>
   <div id="vwExtra">
@@ -69563,7 +69677,7 @@ body.mkOn #vwHint{z-index:41;bottom:calc(112px + env(safe-area-inset-bottom))}
 (function(){
 "use strict";
 var $=function(id){ return document.getElementById(id); };
-var S={D:null,items:[],byId:{},prog:{},anim:{},ex:0,ghost:false,shadows:false,grid:false,light:"room",eco:false,   // v1.350: ตั้งต้น แสงในห้อง · ไม่มีเงาแข็ง · ปิดตาราง
+var S={D:null,wcs:[],roomG:null,items:[],byId:{},prog:{},anim:{},ex:0,ghost:false,shadows:false,grid:false,light:"room",eco:false,   // v1.350: ตั้งต้น แสงในห้อง · ไม่มีเงาแข็ง · ปิดตาราง
   tool:"sel",sel:null,meas:[],dirty:true,allOpen:false,
   fade:false,hiIds:[],hiMats:[],pulse:0,pin:null,led:[],ledOn:true};   // v1.346: เน้นชิ้น (จางของอื่น · เส้นขอบ · หมุด · กะพริบ) · v1.396: led = แถบเรืองแสงไฟราง
 var renderer,scene,camera,root,floor,grid,hemi,keyL,fillL,rimL,selBox,measLine,measDots=[],envTexC=null;
@@ -69658,7 +69772,8 @@ function build(D,imgs){
     if(n.p) o.position.fromArray(n.p); if(n.q) o.quaternion.fromArray(n.q); if(n.s) o.scale.fromArray(n.s);
     if(n.ro) o.renderOrder=n.ro; if(n.v===0) o.visible=false; if(n.cs) o.castShadow=true; if(n.rs) o.receiveShadow=true; if(n.fc===0) o.frustumCulled=false;
     if(n.id) o.userData.id=n.id;
-    if(n.lg){ o.userData.led=1; S.led.push(o); }                                 // v1.396: ไฟราง LED (ปุ่ม 💡)
+    if(n.lg){ o.userData.led=1; S.led.push(o); }
+    if(n.wc){ o.userData.wc=n.wc; S.wcs.push(o); }   /* v1.572: ผนัง/ฝ้าของห้อง ซ่อนฝั่งกล้อง (wcTick) */                                 // v1.396: ไฟราง LED (ปุ่ม 💡)
     if(isGrain(n)){ o.visible=false; o.userData.grain=1; }
     (n.ch||[]).forEach(function(c){ var co=mk(c); if(co) o.add(co); });
     return o; }
@@ -69666,6 +69781,8 @@ function build(D,imgs){
   (D.obj||[]).forEach(function(n){ var o=mk(n); root.add(o);
     var id=n.id||null, it={o:o,id:id,px:o.position.x,py:o.position.y,pz:o.position.z,q:o.quaternion.clone(),hf:n.hf?1:0,hk:n.hk||null,sk:(n.sk!=null)?n.sk:null};   // v1.456: บานพับ (แขน/ฐาน · ข้อต่อ) · v1.461: sk = ท่อนรางลูกปืน
     S.items.push(it); if(id){ (S.byId[id]=S.byId[id]||[]).push(it); } });
+  /* v1.572: ห้องที่ออกแบบ (ผนัง ประตู หน้าต่าง พื้น ฝ้า ท็อป เครื่องใช้) — พิกัดโลก อยู่นอก root */
+  if(D.room&&D.room.length){ S.roomG=new THREE.Group(); S.roomG.name="snvRoom"; D.room.forEach(function(n){ var o=mk(n); if(o) S.roomG.add(o); }); scene.add(S.roomG); }
   S.mats=mats; }
 
 function sceneBox(ids){ var b=new THREE.Box3(), t=new THREE.Box3();
@@ -69715,6 +69832,7 @@ function fitGround(){
   orbit.mr=Math.max(orbit.mr,Math.max(s.x,s.y,s.z)*0.7+150); }
 
 function camApply(){
+  if(WK.on){ wkApply(); return; }   /* v1.572: โหมดเดิน กล้องอยู่ที่ตัวคน ไม่ใช่วงโคจร */
   orbit.ph=Math.max(.02,Math.min(Math.PI-.02,orbit.ph)); orbit.r=Math.max(40,Math.min(orbit.mr*22,orbit.r));
   var r=orbit.r, t=orbit.t;
   camera.position.set(t.x+r*Math.sin(orbit.ph)*Math.sin(orbit.th),t.y+r*Math.cos(orbit.ph),t.z+r*Math.sin(orbit.ph)*Math.cos(orbit.th));
@@ -70400,27 +70518,31 @@ function bindControls(el){
   function pan(dx,dy){ var h=el.clientHeight||innerHeight, k=2*orbit.r*Math.tan(camera.fov*Math.PI/360)/h;
     var right=new THREE.Vector3().setFromMatrixColumn(camera.matrix,0), up=new THREE.Vector3().setFromMatrixColumn(camera.matrix,1);
     orbit.t.addScaledVector(right,-dx*k).addScaledVector(up,dy*k); camApply(); }
-  el.addEventListener("pointerdown",function(e){ el.setPointerCapture(e.pointerId); ptrs[e.pointerId]={x:e.clientX,y:e.clientY};
+  el.addEventListener("pointerdown",function(e){ el.setPointerCapture(e.pointerId); ptrs[e.pointerId]={x:e.clientX,y:e.clientY}; if(WK.on&&WK.mode==="cb") WK.hold=1;   /* v1.572: แว่นกระดาษ แตะค้าง = เดิน */
     var ids=Object.keys(ptrs);
     if(ids.length===1){ down={x:e.clientX,y:e.clientY,t:performance.now(),btn:e.button,shift:e.shiftKey}; last={x:e.clientX,y:e.clientY}; moved=false; }
     else if(ids.length===2){ var a=ptrs[ids[0]], b=ptrs[ids[1]]; pinch={d:Math.hypot(a.x-b.x,a.y-b.y),mx:(a.x+b.x)/2,my:(a.y+b.y)/2}; moved=true; } });
   el.addEventListener("pointermove",function(e){ if(!ptrs[e.pointerId]) return; ptrs[e.pointerId]={x:e.clientX,y:e.clientY};
     var ids=Object.keys(ptrs);
+    if(ids.length>=2&&pinch&&WK.on) return;   /* v1.572 */
     if(ids.length>=2&&pinch){ var a=ptrs[ids[0]], b=ptrs[ids[1]], d=Math.hypot(a.x-b.x,a.y-b.y), mx=(a.x+b.x)/2, my=(a.y+b.y)/2;
       if(d>10&&pinch.d>10){ orbit.r*=pinch.d/d; } pan(mx-pinch.mx,my-pinch.my); pinch={d:d,mx:mx,my:my}; camApply(); return; }
     if(!last) return; var dx=e.clientX-last.x, dy=e.clientY-last.y; last={x:e.clientX,y:e.clientY};
     if(down&&Math.hypot(e.clientX-down.x,e.clientY-down.y)>6) moved=true;
     if(!moved) return;
+    if(WK.on){ if(WK.mode!=="cb") wkLook(dx,dy); return; }   /* v1.572: โหมดเดิน = ลากเพื่อมอง */
     if(down&&(down.btn===2||down.btn===1||down.shift)) pan(dx,dy);
     else { orbit.th-=dx*.0065; orbit.ph-=dy*.0065; camApply(); } });
-  function up(e){ var wasTap=down&&!moved&&(performance.now()-down.t<600)&&Object.keys(ptrs).length===1&&down.btn===0;
+  function up(e){ if(WK.on&&WK.mode==="cb") WK.hold=0;   /* v1.572 */
+    var wasTap=down&&!moved&&(performance.now()-down.t<600)&&Object.keys(ptrs).length===1&&down.btn===0;
     delete ptrs[e.pointerId]; if(Object.keys(ptrs).length<2) pinch=null;
     if(Object.keys(ptrs).length===0){ if(wasTap) onTap(e); down=null; last=null; }
     else { var id=Object.keys(ptrs)[0]; last={x:ptrs[id].x,y:ptrs[id].y}; } }
   el.addEventListener("pointerup",up); el.addEventListener("pointercancel",function(e){ delete ptrs[e.pointerId]; pinch=null; down=null; last=null; });
   el.addEventListener("contextmenu",function(e){ e.preventDefault(); });
-  el.addEventListener("wheel",function(e){ e.preventDefault(); orbit.r*=Math.pow(1.0015,e.deltaY); camApply(); },{passive:false}); }
+  el.addEventListener("wheel",function(e){ e.preventDefault(); if(WK.on){ wkMove(-e.deltaY*1.5); return; } orbit.r*=Math.pow(1.0015,e.deltaY); camApply(); },{passive:false}); }   /* v1.572: โหมดเดิน ล้อ = เดินหน้า/ถอย */
 function onTap(e){
+  if(WK.on&&(WK.mode==="cb"||S.tool!=="door")){ if(WK.mode!=="cb") wkTap(e); return; }   /* v1.572: โหมดเดิน แตะพื้น = เดินไป (เครื่องมือ 🚪 ยังเปิดบานได้) */
   var ex=$("vwExtra"); if(ex&&ex.classList.contains("open")){ ex.classList.remove("open"); $("vwMore").classList.remove("on"); }   // v1.346: แตะฉาก = พับแผงเพิ่มเติม
   var h=pick(e);
   if(S.tool==="meas"){ if(h&&h.id&&showDim(h.id)) return; dimClear(); return; }   // v1.346: แตะชิ้น → DIM (เดิมแตะสองจุด)
@@ -70936,15 +71058,154 @@ function rptCollect(){
   return {n:n,pos:pos,nrm:nrm,uvs:uvs,mid:mid,flg:flg,mats:mats,imgs:imgs}; }
 
 function loop(){ requestAnimationFrame(loop);
+  if(XR.ses) return;   /* v1.572: แว่น VR วาดใน setAnimationLoop เอง */
   var now=performance.now();
   if(S.pulse){ if(now<S.pulse){ var k=.5+.5*Math.sin(now/130); S.hiMats.forEach(function(m){ if(m.emissive) m.emissiveIntensity=.45+.75*k; }); S.dirty=true; }
     else { S.hiMats.forEach(function(m){ if(m.emissive) m.emissiveIntensity=.85; }); S.pulse=0; S.dirty=true; } }   // v1.346: กะพริบช่วงแรกให้ตาหาเจอ
   if(!S.dirty) return; S.dirty=false;
   if(measDots.length){ var s=Math.max(orbit.r/260,2); measDots.forEach(function(d){ d.scale.set(s,s,s); }); }
-  if(CD.on) cdCheck();                                                     // v1.457: ด้านที่หันหากล้อง/ตู้ที่มองเห็นเปลี่ยน → วาดเส้นขนาดตู้ใหม่
+  if(CD.on) cdCheck();
+  try{ wcTick(); }catch(e){}                                                // v1.572: ผนัง/ฝ้าฝั่งกล้องซ่อน                                                     // v1.457: ด้านที่หันหากล้อง/ตู้ที่มองเห็นเปลี่ยน → วาดเส้นขนาดตู้ใหม่
   if(REAL.on){ try{ rvRender(); }catch(e){ console.error("rvRender:",e); try{ renderer.setRenderTarget(null); }catch(_){} renderer.render(scene,camera); } }   // v1.464: ✨ โหมดสมจริง
+  else if(WK.on&&WK.mode==="cb") wkStereo();                               // v1.572: แว่นกระดาษ จอแบ่งซ้าย-ขวา
   else renderer.render(scene,camera);
   if(DIM.lab.length) dimTick(); if(S.pin) pinTick(); if(CD.lab.length) cdTick(); }
+
+/* ═════════ v1.572: 🥽 VR · 🚶 เดินในห้อง · 📱 แว่นกระดาษ ═════════
+   ผู้ใช้ 30/10 15:15: “Link เข้าไปดู 3D ในห้องออกแบบ เหมือนคนใส่แว่น VR” · เลือก: แว่น VR · มือถือ + Cardboard · มือถือ/คอมไม่ใส่แว่น
+   🚶 เดิน (WK): กล้องที่ตัวคน สูงสายตา 1,600 · เลนส์ 72° · ลากมอง (yaw/pitch) · แตะพื้น = เดินไป (ชนตู้ = หยุดหน้าตู้ 650) · ⬆ ค้าง / W S A D / ล้อ = เดิน · ← → หมุน
+     ขอบเดิน = กรอบห้อง (D.rm) − 120 · ไม่มีห้อง = รอบตู้ 1.8 ม. · ยืนเริ่ม = ถอยจากจุดที่มองอยู่ 1.8 ม. หันทางเดิม · 🧭 = หมุนตามมือถือ (deviceorientation · iPhone ขออนุญาต)
+   📱 แว่นกระดาษ: โหมดเดิน + ไจโร + เต็มจอแนวนอน + วาดสองตา (ห่าง 64 มม. จอแบ่งซ้าย/ขวา) · แตะค้าง = เดินไปทางที่มอง
+   🥽 แว่น VR (XR): WebXR immersive-vr (local-floor) · กล้องอยู่ใน dolly ขยาย ×1000 (มม.↔ม.) ระนาบใกล้ 2 ซม. · setAnimationLoop
+     ไก (select) = ย้ายไปจุดที่ชี้บนพื้น (วงฟ้า) · โยกปุ่มซ้าย/ขวา = หมุน 30° รอบหัว · ออกจากแว่น = กลับมุมเดิม
+   ผนัง/ฝ้า/ประตูหน้าต่างของห้อง: wcTick ซ่อนฝั่งกล้องเหมือนโปรแกรม (อยู่ในห้อง/ในแว่น = เห็นหมด) */
+var WK={on:false,mode:"",pos:new THREE.Vector3(),yaw:0,pitch:0,eye:1600,fov0:0,near0:0,gyro:false,ori:null,goff:null,go:null,keys:{},hold:0,raf:0,t:0,orb:null};
+var XR={ok:false,ses:null,dolly:null,ctr:[],mark:null,latch:false,cam0:null};
+var _wkE=new THREE.Euler(0,0,0,"YXZ"), _wkQ=new THREE.Quaternion(), _wkQy=new THREE.Quaternion(), _wkQ0=new THREE.Quaternion(), _wkY=new THREE.Vector3(0,1,0), _wkZ=new THREE.Vector3(0,0,1),
+    _wkQ1=new THREE.Quaternion(-Math.sqrt(.5),0,0,Math.sqrt(.5)), _cbL=new THREE.PerspectiveCamera(), _cbR=new THREE.PerspectiveCamera();
+function wcTick(){ if(!S.wcs||!S.wcs.length) return; var c=camera.position, xr=!!XR.ses, top=!WK.on&&!xr&&orbit.ph<0.35;
+  for(var i=0;i<S.wcs.length;i++){ var o=S.wcs[i], w=o.userData.wc, on;
+    if(xr) on=true; else if(w[0]==="c") on=c.y<w[1]-1; else on=top||((c.x-w[0])*w[2]+(c.z-w[1])*w[3])<=w[4];
+    if(o.visible!==on) o.visible=on; } }
+function wkBox(){ var R=S.D&&S.D.rm, y=(R&&R.y0)||0;
+  if(R&&R.w>0&&R.d>0) return {x0:R.x0+120,x1:R.x0+R.w-120,z0:R.z0+120,z1:R.z0+R.d-120,y:y};
+  var b=sceneBox(), m=1800; return {x0:b.min.x-m,x1:b.max.x+m,z0:b.min.z-m,z1:b.max.z+m,y:isFinite(b.min.y)?Math.min(b.min.y,0):0}; }
+function wkClamp(p){ var B=wkBox(); p.x=Math.max(B.x0,Math.min(B.x1,p.x)); p.z=Math.max(B.z0,Math.min(B.z1,p.z)); return p; }
+function wkStart(){ var th=orbit.th, t=orbit.t, p=new THREE.Vector3(t.x+Math.sin(th)*1800,0,t.z+Math.cos(th)*1800); wkClamp(p);
+  var dx=t.x-p.x, dz=t.z-p.z; return {p:p,yaw:(Math.hypot(dx,dz)>50)?Math.atan2(-dx,-dz):th}; }
+function wkOriQ(q){ var o=WK.ori, d=Math.PI/180, sa=(screen.orientation&&screen.orientation.angle!=null)?screen.orientation.angle:(+window.orientation||0);
+  _wkE.set((o.b||0)*d,(o.a||0)*d,-(o.g||0)*d,"YXZ"); q.setFromEuler(_wkE); q.multiply(_wkQ1); q.multiply(_wkQ0.setFromAxisAngle(_wkZ,-sa*d)); return q; }
+function wkApply(){ var B=wkBox(); camera.position.set(WK.pos.x,B.y+WK.eye,WK.pos.z);
+  if(WK.gyro&&WK.ori){ wkOriQ(_wkQ); if(WK.goff==null){ var e=new THREE.Euler().setFromQuaternion(_wkQ,"YXZ"); WK.goff=WK.yaw-e.y; }
+    _wkQy.setFromAxisAngle(_wkY,WK.goff); camera.quaternion.copy(_wkQy).multiply(_wkQ); }
+  else camera.quaternion.setFromEuler(_wkE.set(WK.pitch,WK.yaw,0,"YXZ"));
+  camera.updateMatrixWorld(); S.dirty=true; }
+function wkFwd(){ var v=new THREE.Vector3(0,0,-1).applyQuaternion(camera.quaternion); v.y=0; if(v.lengthSq()<1e-6) v.set(-Math.sin(WK.yaw),0,-Math.cos(WK.yaw)); return v.normalize(); }
+function wkMove(dist,side){ var f=wkFwd(), r=new THREE.Vector3(-f.z,0,f.x); WK.pos.addScaledVector(f,dist||0).addScaledVector(r,side||0); wkClamp(WK.pos); WK.go=null; wkApply(); }
+function wkLook(dx,dy){ if(WK.gyro&&WK.ori){ WK.goff=(WK.goff||0)+dx*.004; } else { WK.yaw+=dx*.004; WK.pitch=Math.max(-1.35,Math.min(1.35,WK.pitch+dy*.004)); } wkApply(); }
+function wkTap(e){ var r=renderer.domElement.getBoundingClientRect(), v=new THREE.Vector2(((e.clientX-r.left)/r.width)*2-1,-((e.clientY-r.top)/r.height)*2+1), rc=new THREE.Raycaster(); rc.setFromCamera(v,camera);
+  var B=wkBox(), o=rc.ray.origin, d=rc.ray.direction; if(d.y>-0.02){ hint("แตะที่พื้นเพื่อเดินไปตรงนั้น"); return; }
+  var t=(B.y-o.y)/d.y, p=o.clone().addScaledVector(d,t);
+  var hs=rc.intersectObjects(scene.children,true).filter(function(h){ var ob=h.object; while(ob){ if(!ob.visible) return false; ob=ob.parent; } return h.object.isMesh&&h.object!==XR.mark&&!(h.object.userData&&h.object.userData.wc&&h.object.userData.wc[0]==="c"); });
+  if(hs.length&&hs[0].distance<t-50){ var hp=hs[0].point, back=new THREE.Vector3(o.x-hp.x,0,o.z-hp.z); if(back.lengthSq()>1){ back.normalize(); p.set(hp.x+back.x*650,0,hp.z+back.z*650); } }
+  wkClamp(p); WK.go=new THREE.Vector3(p.x,0,p.z); }
+function wkTick(){ if(!WK.on){ WK.raf=0; return; } WK.raf=requestAnimationFrame(wkTick);
+  var now=performance.now(), dt=Math.min(.2,(now-(WK.t||now))/1000); WK.t=now;   /* เครื่องช้า (เฟรมห่าง) ยังเดินเร็วเท่าเดิม */
+  var k=WK.keys, sp=1400, mv=0, sd=0, ch=false;
+  if(k.w||k.arrowup||WK.hold) mv+=1; if(k.s||k.arrowdown) mv-=1; if(k.a) sd-=1; if(k.d) sd+=1;
+  if(k.arrowleft){ WK.yaw+=1.6*dt; ch=true; } if(k.arrowright){ WK.yaw-=1.6*dt; ch=true; }
+  if(mv||sd){ var f=wkFwd(), r=new THREE.Vector3(-f.z,0,f.x); WK.pos.addScaledVector(f,mv*sp*dt).addScaledVector(r,sd*sp*dt); wkClamp(WK.pos); WK.go=null; ch=true; }
+  if(WK.go){ var dx=WK.go.x-WK.pos.x, dz=WK.go.z-WK.pos.z, dd=Math.hypot(dx,dz), st=sp*1.3*dt; if(dd<=st){ WK.pos.x=WK.go.x; WK.pos.z=WK.go.z; WK.go=null; } else { WK.pos.x+=dx/dd*st; WK.pos.z+=dz/dd*st; } ch=true; }
+  if(WK.gyro&&WK.ori) ch=true;
+  if(ch) wkApply(); }
+function wkOri(e){ if(e.alpha==null&&e.beta==null) return; WK.ori={a:e.alpha,b:e.beta,g:e.gamma}; }
+function wkGyro(on){ if(on&&!WK.gyro){ var go=function(){ addEventListener("deviceorientation",wkOri,true); WK.gyro=true; WK.goff=null; wkHud(); };
+    if(typeof DeviceOrientationEvent!=="undefined"&&typeof DeviceOrientationEvent.requestPermission==="function"){
+      DeviceOrientationEvent.requestPermission().then(function(r){ if(r==="granted") go(); else hint("ไม่ได้รับอนุญาตใช้การหมุนมือถือ — ลากนิ้วเพื่อมองแทน",3200); }).catch(function(){ hint("ไม่ได้รับอนุญาตใช้การหมุนมือถือ",3000); }); }
+    else go(); }
+  else if(!on&&WK.gyro){ removeEventListener("deviceorientation",wkOri,true); WK.gyro=false; WK.ori=null; WK.goff=null; if(WK.on){ var e=new THREE.Euler().setFromQuaternion(camera.quaternion,"YXZ"); WK.yaw=e.y; WK.pitch=Math.max(-1.35,Math.min(1.35,e.x)); wkApply(); } wkHud(); } }
+function wkStereo(){ var sz=renderer.getSize(new THREE.Vector2()), w=sz.x/2, h=sz.y; camera.updateMatrixWorld();
+  [[_cbL,-1,0],[_cbR,1,w]].forEach(function(v){ var c=v[0]; c.fov=camera.fov; c.aspect=w/Math.max(h,1); c.near=camera.near; c.far=camera.far; c.updateProjectionMatrix();
+    c.position.copy(camera.position); c.quaternion.copy(camera.quaternion); c.translateX(v[1]*32); c.updateMatrixWorld();
+    renderer.setScissorTest(true); renderer.setScissor(v[2],0,w,h); renderer.setViewport(v[2],0,w,h); renderer.render(scene,c); });
+  renderer.setScissorTest(false); renderer.setViewport(0,0,sz.x,sz.y); }
+function wkHud(){ var h=$("vwWalkHud"); if(!WK.on){ if(h) h.remove(); return; } if(!h){ h=document.createElement("div"); h.id="vwWalkHud"; document.body.appendChild(h); }
+  var mob=("ontouchstart" in window)||(navigator.maxTouchPoints>0);
+  h.innerHTML=WK.mode==="cb"?'<button class="vbtn" data-w="x">✕ ออกจากแว่น</button>'
+    :'<button class="vbtn wkGo" data-w="go">⬆ เดิน</button>'+(mob?'<button class="vbtn'+(WK.gyro?' on':'')+'" data-w="gy">🧭 หมุนตามมือถือ</button>':'')
+     +'<button class="vbtn" data-w="cb">📱 แว่นกระดาษ</button><button class="vbtn" data-w="x">✕ ออก</button>';
+  [].forEach.call(h.querySelectorAll("[data-w]"),function(b){ var a=b.dataset.w;
+    if(a==="go"){ var st=function(e){ e.preventDefault(); WK.hold=1; }, sp=function(){ WK.hold=0; };
+      b.addEventListener("pointerdown",st); b.addEventListener("pointerup",sp); b.addEventListener("pointerleave",sp); b.addEventListener("pointercancel",sp); b.addEventListener("contextmenu",function(e){ e.preventDefault(); }); }
+    else b.onclick=function(){ if(a==="x") wkExit(); else if(a==="gy") wkGyro(!WK.gyro); else if(a==="cb") wkEnter("cb"); }; }); }
+function wkEnter(mode){ if(XR.ses) return; if(typeof REAL!=="undefined"&&REAL.on){ try{ rvToggle(false); }catch(e){} }
+  if(!WK.on){ WK.fov0=camera.fov; WK.near0=camera.near; WK.orb={th:orbit.th,ph:orbit.ph,r:orbit.r,t:orbit.t.clone()}; var st=wkStart(); WK.pos.copy(st.p); WK.yaw=st.yaw; WK.pitch=-0.12; }
+  WK.on=true; WK.mode=mode||"walk"; camera.fov=(WK.mode==="cb")?85:72; camera.near=30; camera.updateProjectionMatrix();
+  document.body.classList.add("vwWalk"); document.body.classList.toggle("vwCb",WK.mode==="cb"); vrSheet(false); try{ closeInfo(); }catch(e){}
+  if(WK.mode==="cb"){ wkGyro(true); try{ var de=document.documentElement; if(de.requestFullscreen&&!document.fullscreenElement) de.requestFullscreen().then(function(){ try{ screen.orientation.lock("landscape").catch(function(){}); }catch(e){} }).catch(function(){}); }catch(e){} }
+  wkHud(); wkApply(); if(!WK.raf){ WK.t=0; wkTick(); }
+  hint(WK.mode==="cb"?"ใส่มือถือในแว่น · หันหัวเพื่อมอง · แตะค้างเพื่อเดิน":("ลากเพื่อมอง · แตะพื้นเพื่อเดินไป · ปุ่ม ⬆ ค้าง = เดินหน้า"+(matchMedia("(pointer:fine)").matches?" · W A S D / ล้อเมาส์":"")),4200); }
+function wkExit(){ if(!WK.on) return; wkGyro(false); WK.on=false; WK.keys={}; WK.hold=0; WK.go=null;
+  camera.fov=WK.fov0||camera.fov; camera.near=WK.near0||5; camera.updateProjectionMatrix();
+  document.body.classList.remove("vwWalk","vwCb"); try{ if(document.fullscreenElement&&document.exitFullscreen) document.exitFullscreen(); }catch(e){}
+  try{ if(screen.orientation&&screen.orientation.unlock) screen.orientation.unlock(); }catch(e){}
+  wkHud(); var sz=renderer.getSize(new THREE.Vector2()); renderer.setScissorTest(false); renderer.setViewport(0,0,sz.x,sz.y);
+  if(WK.orb){ orbit.th=WK.orb.th; orbit.ph=WK.orb.ph; orbit.r=WK.orb.r; orbit.t.copy(WK.orb.t); } camApply(); }
+/* ── 🥽 แว่น VR (WebXR) ── */
+function xrHead(){ return new THREE.Vector3().setFromMatrixPosition(camera.matrixWorld); }
+function xrRayHit(c){ c.updateMatrixWorld(); var o=new THREE.Vector3().setFromMatrixPosition(c.matrixWorld), d=new THREE.Vector3(0,0,-1).transformDirection(c.matrixWorld), B=wkBox();
+  if(d.y>-0.05) return null; var t=(B.y-o.y)/d.y; if(!(t>0)) return null; return wkClamp(o.clone().addScaledVector(d,t)); }
+function xrTeleport(c){ var p=xrRayHit(c); if(!p||!XR.dolly) return; var h=xrHead(); XR.dolly.position.x+=p.x-h.x; XR.dolly.position.z+=p.z-h.z; }
+function xrControllers(){ if(XR.ctr.length) return;
+  for(var i=0;i<2;i++){ var c=renderer.xr.getController(i); XR.dolly.add(c);
+    var ln=new THREE.Line(new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(0,0,0),new THREE.Vector3(0,0,-1)]),new THREE.LineBasicMaterial({color:0x2f8cff})); ln.scale.z=6; c.add(ln);
+    c.addEventListener("selectstart",function(){ this.userData.sel=true; });
+    c.addEventListener("selectend",function(){ this.userData.sel=false; xrTeleport(this); if(XR.mark) XR.mark.visible=false; });
+    XR.ctr.push(c); }
+  XR.mark=new THREE.Mesh(new THREE.RingGeometry(140,200,40).rotateX(-Math.PI/2),new THREE.MeshBasicMaterial({color:0x2f8cff,transparent:true,opacity:.9,depthTest:false})); XR.mark.renderOrder=999; XR.mark.visible=false; scene.add(XR.mark); }
+function xrFrame(t,frame){ if(!XR.ses) return;
+  var sel=null; XR.ctr.forEach(function(c){ if(c.userData.sel) sel=c; });
+  if(XR.mark){ var p=sel?xrRayHit(sel):null; XR.mark.visible=!!p; if(p) XR.mark.position.set(p.x,wkBox().y+3,p.z); }
+  try{ var srcs=XR.ses.inputSources||[], x=0; for(var i=0;i<srcs.length;i++){ var gp=srcs[i].gamepad; if(gp&&gp.axes&&gp.axes.length){ var ax=(gp.axes.length>=4)?gp.axes[2]:gp.axes[0]; if(Math.abs(ax)>Math.abs(x)) x=ax; } }
+    if(Math.abs(x)>.7&&!XR.latch){ XR.latch=true; var h=xrHead(), ang=(x>0?-1:1)*Math.PI/6, off=new THREE.Vector3(XR.dolly.position.x-h.x,0,XR.dolly.position.z-h.z).applyAxisAngle(_wkY,ang);
+      XR.dolly.position.x=h.x+off.x; XR.dolly.position.z=h.z+off.z; XR.dolly.rotation.y+=ang; }
+    else if(Math.abs(x)<.3) XR.latch=false; }catch(e){}
+  wcTick(); renderer.render(scene,camera); }
+function xrEnter(){ if(!navigator.xr||XR.ses) return; if(WK.on) wkExit(); if(typeof REAL!=="undefined"&&REAL.on){ try{ rvToggle(false); }catch(e){} }
+  navigator.xr.requestSession("immersive-vr",{optionalFeatures:["local-floor","bounded-floor"]}).then(function(ses){
+    XR.ses=ses; var st=wkStart(), B=wkBox(); vrSheet(false);
+    if(!XR.dolly){ XR.dolly=new THREE.Group(); XR.dolly.name="xrDolly"; scene.add(XR.dolly); }
+    XR.cam0={near:camera.near,far:camera.far,fov:camera.fov,pos:camera.position.clone(),q:camera.quaternion.clone()};
+    XR.dolly.position.set(st.p.x,B.y,st.p.z); XR.dolly.rotation.set(0,st.yaw,0); XR.dolly.scale.setScalar(1000);
+    XR.dolly.add(camera); camera.position.set(0,0,0); camera.quaternion.identity(); camera.near=0.02; camera.far=200; camera.updateProjectionMatrix();
+    renderer.xr.enabled=true; renderer.xr.setReferenceSpaceType("local-floor"); xrControllers();
+    ses.addEventListener("end",xrEnd); return renderer.xr.setSession(ses).then(function(){ renderer.setAnimationLoop(xrFrame); }); })
+  .catch(function(e){ console.error("xr:",e); XR.ses=null; hint("เข้าโหมดแว่น VR ไม่ได้: "+((e&&e.message)||e),4200); }); }
+function xrEnd(){ renderer.setAnimationLoop(null); XR.ses=null; renderer.xr.enabled=false; if(XR.mark) XR.mark.visible=false;
+  scene.add(camera); var c=XR.cam0||{}; camera.near=c.near||5; camera.far=c.far||60000; camera.fov=c.fov||camera.fov; camera.updateProjectionMatrix();
+  var sz=renderer.getSize(new THREE.Vector2()); renderer.setViewport(0,0,sz.x,sz.y); camApply(); S.dirty=true; }
+/* ── เมนู 🥽 ── */
+function vrSheet(on){ var el=$("vwVrSheet"); if(on===false||(on==null&&el)){ if(el) el.remove(); return; } if(el) return;
+  el=document.createElement("section"); el.id="vwVrSheet"; el.className="sheet";
+  el.innerHTML='<div class="vrH"><b>🥽 เดินดูในห้อง</b><button class="vbtn" data-v="x" aria-label="ปิด">✕</button></div>'
+    +'<button class="vrO" data-v="walk"><b>🚶 เดินในห้อง</b><span>มือถือ/คอม — ลากเพื่อมอง · แตะพื้นเพื่อเดินไป · สูงระดับสายตา 1.6 ม.</span></button>'
+    +'<button class="vrO" data-v="cb"><b>📱 แว่นกระดาษ (Cardboard)</b><span>ใส่มือถือในแว่น · หันหัวเพื่อมอง · แตะค้างเพื่อเดิน</span></button>'
+    +'<button class="vrO" data-v="xr"'+(XR.ok?'':' disabled')+'><b>🥽 แว่น VR (Meta Quest ฯลฯ)</b><span>'+(XR.ok?'ขนาดจริงรอบตัว · ชี้พื้นแล้วกดไกเพื่อย้าย · โยกปุ่มซ้าย/ขวาเพื่อหมุน':'เปิดลิงก์นี้ในเบราว์เซอร์ของแว่น VR (เช่น Meta Quest Browser) แล้วกดปุ่มนี้')+'</span></button>'
+    +'<button class="vrO" data-v="link"><b>🔗 คัดลอกลิงก์เข้าโหมดเดินเลย</b><span>ส่งให้ลูกค้า — เปิดแล้วยืนอยู่ในห้องทันที</span></button>';
+  document.body.appendChild(el);
+  [].forEach.call(el.querySelectorAll("[data-v]"),function(b){ b.onclick=function(){ var v=b.dataset.v;
+    if(v==="x") vrSheet(false); else if(v==="walk") wkEnter("walk"); else if(v==="cb") wkEnter("cb"); else if(v==="xr") xrEnter();
+    else if(v==="link"){ var u=location.href; try{ var U=new URL(location.href); U.searchParams.set("walk","1"); u=U.toString(); }catch(e){}
+      var ok=function(){ hint("คัดลอกลิงก์แล้ว — เปิดแล้วเข้าโหมดเดินทันที",3200); };
+      try{ navigator.clipboard.writeText(u).then(ok,function(){ prompt("คัดลอกลิงก์นี้",u); }); }catch(e){ prompt("คัดลอกลิงก์นี้",u); } } }; }); }
+function vrInit(){ var b=$("vwVR"); if(b) b.onclick=function(){ vrSheet(); };
+  addEventListener("keydown",function(e){ if(!WK.on) return; var t=e.target; if(t&&/^(INPUT|TEXTAREA|SELECT)$/.test(t.tagName)) return; var k=String(e.key||"").toLowerCase();
+    if(k==="escape"){ wkExit(); return; } if(/^(w|a|s|d|arrowup|arrowdown|arrowleft|arrowright)$/.test(k)){ WK.keys[k]=true; e.preventDefault(); } });
+  addEventListener("keyup",function(e){ var k=String(e.key||"").toLowerCase(); if(WK.keys[k]) delete WK.keys[k]; });
+  addEventListener("blur",function(){ WK.keys={}; WK.hold=0; });
+  try{ if(navigator.xr&&navigator.xr.isSessionSupported) navigator.xr.isSessionSupported("immersive-vr").then(function(ok){ XR.ok=!!ok; },function(){}); }catch(e){}
+  try{ var q=new URLSearchParams(location.search); if(q.get("walk")==="1") setTimeout(function(){ wkEnter("walk"); },400); else if(q.get("vr")==="1") vrSheet(true); }catch(e){} }
+try{ window.__snvVR={WK:WK,XR:XR,enter:wkEnter,exit:wkExit,move:wkMove,look:wkLook,tap:wkTap,xr:xrEnter,rayHit:xrRayHit,stereo:wkStereo,sheet:vrSheet,box:wkBox,wc:function(){ return S.wcs; },room:function(){ return S.roomG; }}; }catch(e){}
 
 function start(){
   status("กำลังโหลดข้อมูลงาน…");
@@ -70960,11 +71221,11 @@ function start(){
     status("กำลังโหลดรูปผิว…");
     return loadImages(D.tex).then(function(imgs){
       status("กำลังประกอบ 3D…");
-      build(D,imgs); fitGround(); setLight(S.light); setGrid(S.grid);
+      build(D,imgs); fitGround(); if(S.roomG){ if(floor) floor.position.y-=3; if(grid) grid.position.y-=3; }   /* v1.572: พื้นห้องจริงอยู่บน */ setLight(S.light); setGrid(S.grid);
       if(S.led.length&&$("vwLed")) $("vwLed").style.display="";                // v1.396: มีไฟราง = มีปุ่ม   // v1.350: แสงในห้อง · ปิดตาราง
       var c=D.cam||{}; orbit.th=(c.th!=null?c.th:.85); orbit.ph=(c.ph!=null?c.ph:.95); orbit.r=c.r||2000; orbit.mr=Math.max(orbit.mr,c.mr||0);
       if(c.t) orbit.t.fromArray(c.t); else { var b=sceneBox(); b.getCenter(orbit.t); }
-      camApply(); applyPose(); bindControls(renderer.domElement); bindUI(); loop();
+      camApply(); applyPose(); bindControls(renderer.domElement); bindUI(); try{ vrInit(); }catch(e){ console.error("vr:",e); } loop();   /* v1.572 */
       $("vwTitle").textContent=D.t||D.ord||"ดูงาน 3D";
       $("vwSub").textContent=[D.ord&&D.ord!==D.t?D.ord:"",(D.cabs||[]).length+" ตู้",D.at?new Date(D.at).toLocaleDateString("th-TH",{day:"numeric",month:"short",year:"numeric"}):"","ดูอย่างเดียว"].filter(Boolean).join(" · ");
       document.title=(D.t||D.ord||"ดูงาน")+" — ดูงาน 3D";
