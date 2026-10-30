@@ -3283,7 +3283,7 @@ body[data-theme="dark"] .splash-dots span{background:rgba(255,255,255,.25)}
    ===================================================================== */
 /* ---- APP_META: แหล่งความจริงเดียวของเวอร์ชัน (ดูได้จาก console / คลิกชื่อแอป) ---- */
 const APP_META={
-  name:"StarNexus", version:"1.568", build:"2026-10-30/gemini-web",
+  name:"StarNexus", version:"1.569", build:"2026-10-30/micro-niche-plinth",
   file:"StarNexus.html", basedOn:"Furnitech_V3.html (v3.11)",
   /* ───────── เริ่มนับเวอร์ชันใหม่ที่ 1.001 (21/08/2026) ─────────
      ของเดิมนับมาถึง 42.1 แล้ววิ่งเป็นทศนิยมสองชั้นซึ่งอ่านลำดับยาก
@@ -3291,6 +3291,7 @@ const APP_META={
      ประวัติเก่าเก็บไว้ทั้งหมดตามเลขเดิม ไม่ไล่เขียนใหม่ เพราะเลขในนั้นถูกอ้างถึงไปแล้ว
      รายการที่อยู่ใต้ 1.001 ลงไปจึงเป็นเลขชุดเก่า อ่านต่อกันได้ตามวันที่ */
   changelog:[
+    ["1.569","2026-10-30","FEAT ห้องออกแบบ (ผู้ใช้ 14:28) — ① ไมโครเวฟตั้งพื้นวางในช่องโล่งของตู้ได้ (“อยากใส่ไมโครเวฟที่ช่องนั้น แบบลอยตัว” ภาพตู้ 600×760×550 ช่องเปิดเหนือลิ้นชัก): ลากไมโครเวฟไปชี้ช่องที่ไม่มีบาน/หน้าลิ้นชักบัง = วางบนพื้นช่อง กลางช่อง หน้าเครื่องถอยจากหน้าตู้ 20 (ช่องตื้น = ชิดหลัง) · ช่องเตี้ย/แคบกว่าเครื่อง = เตือนในป้าย · หาช่องจากชิ้นจริง (ข้างตู้ · หลัง · พื้น/ชั้น · หน้าบาน/หน้าลิ้นชัก) · แผงบอก “ในช่อง <รหัส>” · ไม่มีเส้นระยะหน้า/หลังท็อป และไม่ขึ้นบนแปลนท็อปในใบเสนอราคา · ลากกลับขึ้นท็อปได้ ② FIX ตีนตู้ไม่เปลี่ยนสีตามสีหน้าบาน (“ต้องไปแก้ความสูงหรือเปลี่ยนเป็นสแตนเลสแล้วกลับมาไม้ถึงจะเปลี่ยน”) — สีตีนตู้คิดจาก FrontColor ของตู้พื้น แต่คิดใหม่เฉพาะตอนจัดแนว/แก้ความสูง/เปลี่ยนวัสดุ/ออกจากห้อง → ตอนนี้ทุกครั้งที่ฉากอัปเดต ถ้าสีหน้าบานส่วนใหญ่ของตู้พื้นไม่ตรงสีแถวตีนตู้ = ทำตีนตู้ใหม่ให้เอง (รอ 0.35 วิ · ไม่ทำระหว่าง Ctrl+Z/ทำซ้ำ · ออเดอร์ XML ที่มีแถว Plinth เองไม่ยุ่ง) · ปิดได้ SN_OFF.plaNiche / plPlinthColor"],
     ["1.568","2026-10-30","FEAT 🎬 Render · 🍌 Gemini เว็บ (ฟรี) (ผู้ใช้ 14:02 ภาพการ์ด per1 “You exceeded your current quota …” — “ต่อ banana ให้มันเจนได้ปะครับ ที่ฟรี 2 ครั้ง”) — ภาพฟรีรายวันของ Nano Banana มีเฉพาะในเว็บ/แอป Gemini ส่วนคีย์ API แบบฟรีได้โควตาสร้างภาพ 0 (หน้าราคา Google: Free Tier = Not available ทุกรุ่นภาพ) จึงต่อตรงจากโปรแกรมไม่ได้ → ปุ่มใหม่บนการ์ดภาพ 🍌 Gemini เว็บ (ฟรี): คัดลอกภาพ (PNG ≤ 1600 px) + เปิด gemini.google.com · 📋 คัดลอกคำสั่ง (คงแบบตู้ เหมือนปุ่ม AI แต่งต่อ) · เอาภาพผลกลับ: 📥 วางภาพผล (อ่านคลิปบอร์ด) / Ctrl+V ในหน้า Render / ลากไฟล์มาวางบนการ์ด / 📂 เลือกไฟล์ → ขึ้นเป็นภาพ AI ของการ์ดนั้น บันทึกได้เหมือนเดิม · ไม่ใช้คีย์ · FIX ข้อความ 429 ภาษาอังกฤษยาวถูกตัด → บอกไทย: คีย์ฟรี (โควตาภาพ 0) / โควตาวันนี้หมด (รีเซ็ตราว 14:00–15:00 น.) / เกินชั่วคราว รอกี่วินาที + ปุ่ม 🍌 เป็นสีเหลือง · หารุ่นภาพอัตโนมัติรวมชื่อที่มี banana · FEAT ภาพเข้าใบเสนอราคา (ผู้ใช้ 14:09 “ส่งรูป + Prompt ไปให้ Gemini ให้ User เจนอีกที แล้วเอากลับมาอัพ เพื่อใส่เข้าใบเสนอราคา”): การ์ด Render มีปุ่ม 🧾 ใส่ใบเสนอราคา (ภาพ AI / ภาพเรนเดอร์ · กดซ้ำ = เอาออก · ภาพใหม่ = อัปเดต) · หน้า 🧾 ใบเสนอราคา มีหัวข้อ ภาพประกอบ (Render / AI): ภาพย่อ ⭐ ขึ้นก่อน ✕ ลบ · 📂 เพิ่มภาพ (ไฟล์ที่ดาวน์โหลดจาก Gemini) · 🎬 เปิด Render · ภาพแรกขึ้นหัวใบแทนภาพ 3D · แนบภาพเต็มหน้า A4 แนวนอน หลังใบ (มีหมายเหตุ ภาพจำลอง) · เก็บใน state.qPics (JPEG ≤ 1600 px สูงสุด 6 ภาพ) ไปกับ Save Order / .json / autosave · ไม่เข้า Ctrl+Z และลิงก์แชร์ · ปิดได้ SN_OFF.rndWeb / rndQuota / plqPics"],
     ["1.567","2026-10-30","FEAT ใบเสนอราคา หน้ารวมวัสดุ (ผู้ใช้ 13:30) — ① เนื้อไม้: รูปจริง PB · PB-HMR · MDF · MDF-HMR (รูปที่ผู้ใช้ส่ง ฝังในไฟล์) แยกช่องโครงตู้/หน้าบาน (เนื้อเดียวกัน = ช่องเดียว) · ดูเนื้อจากรหัส/ชื่อวัสดุ (MDF/HDF · HMR/MR/กันชื้น · PB/Particle) · หาไม่เจอ = รูปไอคอนเดิม (เดิมช่องเดียว “โครงสร้าง” เป็นไอคอน) ② อุปกรณ์: บานพับ กับ ราง แยกช่อง (มีถึงแสดง) + จำนวน + มีหลายรุ่น = บอก +n แบบ (เดิมรวมช่องเดียว “Fitting”) ③ สีหน้าบาน/สีโครงตู้ หัวช่อง = รหัสสี (Family ของตู้ เช่น MK630 · AK1 · AA7) บรรทัดล่าง = คำอธิบายสี (เดิมขึ้นรหัสผิว K_N01M0029_… ยาว) · สีหน้าบานหลายสี = ช่องละสี (สูงสุด 4) · ปิดได้ SN_OFF.dwgCore / dwgFitSplit / dwgColorCode"],
     ["1.566","2026-10-30","FEAT ห้องออกแบบ (ผู้ใช้ 13:13–13:21) — ① 🎬 Render / ✨ โหมดสมจริง ใช้ห้องที่ออกแบบจริง: ผนังที่เปิดอยู่ = ผนังจริงเจาะช่องประตู/หน้าต่างตามที่วาง + สี/รูปผนังตาม 🖌 · ประตู/หน้าต่างขึ้นในโหมดสมจริง (กระจกไม่บังแสง · นอกหน้าต่างเป็นฟ้า) · แดด/ฟ้าในภาพแสงจริงเข้าทางหน้าต่างที่ใหญ่สุดที่วาง · พื้นตามแบบพื้น/สีที่ตั้ง (เดิมสร้างห้องเอง หน้าต่างผนังซ้าย ผนังครีม พื้นโอ๊ค ไม่ตรงห้องที่ออกแบบ) · ภาพแสงจริงรองรับมุมมอง 2 จุด (เส้นตั้งตรง) กรอบภาพตรงจอ ② ระยะเครื่องใช้บนท็อป: ช่อง ห่างหน้าท็อป / ห่างหลัง ในแผง (แก้ได้ · ↺ กลาง) ติดตัวชิ้นเวลาลาก/ย้ายตู้ + เส้นระยะหน้า-หลัง-ปลายท็อปตอนเลือก ③ ถาดฟอยด์ลายนูนเป็นเม็ดแบบแผ่นฟอยด์จริง (ลายสี + normal map) แทนร่องตามยาว ④ FIX ผนังที่มีประตู/หน้าต่าง มีเส้นรอยต่อตั้งจากพื้นถึงฝ้าที่ขอบช่อง (ผนังต่อจากหลายท่อน) → เส้นขอบเหลือเฉพาะขอบช่องจริง ⑤ สีวงกบ/กรอบหน้าต่าง · สีบานประตู · ลายบานประตู 6 แบบ (เรียบ · เซาะร่องนอน 3 เส้น · ลูกฟัก 2 ช่อง · ลูกฟัก 4 ช่อง · กระจกช่องตั้ง · ระแนงตั้ง) · ปิดได้ SN_OFF.realPlWalls / plaDepth / foilTex / plWallSeam / ploStyle"],
@@ -4582,6 +4583,7 @@ function bind(id,fn,ev){ const e=(typeof id==="string")?$(id):id; if(e) e[ev||"o
 let _alignHold=0;
 function sync(rebuild,save,cm){
   try{ topDropUndo(true); }catch(e){ console.error("topDropUndo:",e); }
+  try{ if(typeof plPlinthColorSoon==="function") plPlinthColorSoon(); }catch(e){}   /* v1.569: ตีนตู้ตามสีหน้าบาน (เช็กหลังฉากนิ่ง 0.35 วิ) */
   try{ skinTrimHeal(); }catch(e){ console.error("skinTrim:",e); }      // v1.451: ชิ้นตั้งที่จมเข้าทอป/พื้นนอกเท่าผิว → ตัดให้ชนผิว (บนรูปทรงปกติ ก่อนตัวคิดบาน/ชั้น)   // v1.447: ยกชิ้นที่ดรอปไว้คืนเสมอขอบก่อน — ตัวคิดบาน/ชั้น/ราว/ตรึงผิว เห็นรูปทรงปกติเหมือนเดิม
   try{ healStrayShelves(); }catch(e){ console.error("healShelf:",e); }   // v1.265: ชั้นที่หันผิดแกนในตู้ที่หมุน (ซ่อมครั้งเดียว ไม่เจอก็ไม่ทำอะไร)
   const channelInsts=[...new Set(state.boards.filter(b=>b.rule&&b.rule.channelRail).map(b=>b.cabInst))];
@@ -5252,6 +5254,7 @@ function runOverlapCheck(){
 }
 function clearOverlapHL(){ if(state.overlapIds&&state.overlapIds.length){ state.overlapIds=[]; render3D(false); } }
 function restoreSnap(str){ const o=JSON.parse(str); state.boards=o.boards; state.globalTone=o.globalTone;
+  try{ plPlinthColorSoon.skip=Date.now()+1500; }catch(e){}   /* v1.569: ย้อน/ทำซ้ำ ไม่ทำตีนตู้ใหม่ (ไม่ล้างประวัติทำซ้ำ) */
   let _rmR=false; if(Object.prototype.hasOwnProperty.call(o,"room")&&!snOff("plUndo")){ state.room=o.room||null; _rmR=true; }   /* v1.540: ห้องย้อนตาม (ภาพเก่าก่อน 1.540 ไม่มีห้อง = ห้องอยู่ที่เดิม) */
   if(o.cab) SNAP_CAB_KEYS.forEach(k=>{ state[k]=o.cab[k]||{}; });   /* v1.297 */
   if(!selBoard())state.selectedId=null; buildGTones();
@@ -29552,6 +29555,8 @@ function boardRole(b){
      SN_OFF.rndWeb=1      🎬 Render ไม่มีปุ่ม 🍌 Gemini เว็บ (ฟรี) · ไม่รับวาง/ลากภาพผลกลับ (v1.568)
      SN_OFF.rndQuota=1    🎬 Render AI แต่งต่อ โควตาเต็ม (429) ขึ้นข้อความอังกฤษของ Google แบบเดิม (v1.568)
      SN_OFF.plqPics=1     ใบเสนอราคาไม่มีภาพประกอบ Render/AI (ไม่มีปุ่ม 🧾 บนการ์ด Render · ภาพที่เก็บไว้ยังอยู่) (v1.568)
+     SN_OFF.plaNiche=1    ไมโครเวฟวางได้แค่บนท็อปแบบเดิม (ไม่ดูดเข้าช่องโล่งในตู้) (v1.569)
+     SN_OFF.plPlinthColor=1 ตีนตู้เปลี่ยนสีเฉพาะตอนจัดแนว/แก้ความสูง/เปลี่ยนวัสดุแบบเดิม (v1.569)
      SN_OFF.plMulti=1     ห้องออกแบบเลือกได้ทีละตู้ (ไม่มี Ctrl+คลิก/กรอบ/Ctrl+A) · ลากตู้แล้วซิงค์/ฮู้ดไม่ตาม (v1.562)
      SN_OFF.plMarble=1    ท็อป/บัว/ผนังหินเป็นสีเรียบ ไม่มีลายหินอ่อน (ค่าที่เลือกไว้ยังอยู่) (v1.562)
      SN_OFF.plRender=1    แผงห้องออกแบบกลับมีปุ่ม 🧊 ส่งออก Blender แทน 🎬 Render (v1.562)
@@ -36823,6 +36828,20 @@ function plPlinthColor(rule){
   let b="", n=0; Object.keys(cnt).forEach(k=>{ if(cnt[k]>n){ n=cnt[k]; b=k; } }); return b;
 }
 let _plPlBusy=false;
+/* ───────── v1.569: ตีนตู้เปลี่ยนสีตามสีหน้าบานทันที ─────────
+   ผู้ใช้ 30/10 14:28: “ขาตู้ ตอนนี้ พอเปลี่ยนสีหน้าบาน มันไม่เปลี่ยนตาม นอกจากจะไปกระตุ้นฉาก เช่น แก้ความสูงหรือเปลี่ยนเป็นแสตนเลส แล้วกลับมาเลือกไม้ ถึงจะเปลี่ยนสี”
+   เดิม: สีแถวตีนตู้ (_planner) = plPlinthColor (FrontColor ส่วนใหญ่ของตู้พื้น) คิดเฉพาะใน plPlinthSync ซึ่งเรียกตอนจัดแนว · แก้ความสูงขา · เปลี่ยนวัสดุตีนตู้ · ออกจากห้อง
+     เปลี่ยนสีหน้าบาน (plSetColorGroup → sync) ไม่ได้เรียก → ตีนตู้ค้างสีเก่า
+   ตอนนี้: sync() เรียก plPlinthColorSoon ทุกครั้ง → รอ 0.35 วิ (ฉากนิ่ง) → มีแถวตีนตู้ของห้องออกแบบ · ไม่ใช่สแตนเลส · สีที่ควรเป็น ≠ สีแถว = plPlinthSync()
+     plPlinthSync เองเรียก sync อีกรอบ → สีตรงแล้วจึงไม่วน · ไม่ทำตอน Ctrl+Z/ทำซ้ำ (restoreSnap ตั้ง skip) · แก้โมเดล/ดูอย่างเดียว/จัดแนวอยู่ = ข้าม
+     ตัวจับเวลาเก็บเป็น property ของฟังก์ชัน (ไม่ใช้ let ระดับไฟล์ — sync ถูกเรียกตอนบูตก่อนถึงบรรทัดนี้ = TDZ)
+   ปิด SN_OFF.plPlinthColor=1 */
+function plPlinthColorSoon(){ if(snOff("plPlinthColor")) return; const F=plPlinthColorSoon; clearTimeout(F.t);
+  F.t=setTimeout(()=>{ try{ if(Date.now()<(F.skip||0)||_plPlBusy||state.editing||VIEW_ONLY||_alignHold>0) return;
+      const row=plPlinthRow(); if(!row||plPlinthXml()||!state.room) return; if(plRoom().plinthMat==="stainless") return;
+      const rule=plPlinthRule(); if(!rule) return; const col=plPlinthColor(rule)||"-"; if(col===row.color) return;
+      plPlinthSync().then(()=>{ try{ if(typeof PL!=="undefined"&&PL.on) plPanelFoot(); }catch(e){} }).catch(e=>console.error("plinth color:",e)); }
+    catch(e){ console.error("plinth color:",e); } },350); }
 async function plPlinthSync(){
   if(_plPlBusy) return null; if(plPlinthXml()) return {xml:true};
   const r=plRoom(), H=Math.max(+r.legH||0,0), stn=r.plinthMat==="stainless", rule=stn?null:plPlinthRule();   // v1.313: สแตนเลส = ไม่มีตู้ไม้
@@ -37770,7 +37789,7 @@ const PLO_T={
   hood2:{n:"ฮู้ดบางติดใต้ตู้ (Slim)", ic:"🌀", w:600, h:90, d:480, appl:"under"},
   hood3:{n:"ฮู้ดกระโจมติดผนัง", ic:"🌀", w:900, h:550, d:480, sill:1550, wall:1, appl:"wall"},
   oven :{n:"เตาอบฝัง (Built-in)", ic:"⬛", w:595, h:595, d:560, appl:"cab"},
-  micro:{n:"ไมโครเวฟตั้งพื้น", ic:"📦", w:480, h:280, d:360, appl:"top"},
+  micro:{n:"ไมโครเวฟตั้งพื้น", ic:"📦", w:480, h:280, d:360, appl:"top", niche:true},   /* v1.569: niche = วางในช่องโล่งของตู้ได้ */
   bin  :{n:"ถังขยะ", ic:"🗑", w:300, h:600, d:300, appl:"floor"},
   gas  :{n:"ถังแก๊ส 15 กก.", ic:"🛢", w:360, h:620, d:360, appl:"floor"} };   // v1.536: เสา (อิสระ · กว้าง = แนว X · ลึก = แนว Z · สูงตั้งต้นถึงฝ้า)
 function ploList(){ const r=plRoom(); if(!Array.isArray(r.obj)) r.obj=[]; return r.obj; }
@@ -37979,7 +37998,53 @@ function plaTopAt(ev,H){ let best=null; try{ const rc=rayFrom(ev), ro=rc.ray.ori
   return null; }
 function plaAlong(o,H,v){ const A=H.fc.A, cA=(H.c.lo[A]+H.c.hi[A])/2, G=plGrid()||10; return Math.abs(v-cA)<=80?cA:Math.round(v/G)*G; }
 function plaSet(o,H,along,depth,y){ const A=H.fc.A, P=H.fc.P, p=[0,0,0]; p[A]=along; p[P]=depth; o.x=Math.round(p[0]*10)/10; o.z=Math.round(p[2]*10)/10; o.y=Math.round(y); o.yaw=H.fc.yaw; o.host=H.inst; }
-function plaPutTop(o,S){ const H=S.H; o.y=Math.round(S.y);
+/* ═════════ v1.569: ไมโครเวฟวางในช่องโล่งของตู้ (ลอยตัว) ═════════
+   ผู้ใช้ 30/10 14:28 (ภาพตู้พื้น 600×760×550 มีช่องเปิดเหนือลิ้นชัก ไมโครเวฟวางบนท็อปข้าง ๆ): “อยากใส่ ไม่โครเวฟ ที่ ช่อง นั้นครับ แบบลอยตัว”
+   เดิม: ไมโครเวฟ (appl top) วางได้แค่บนท็อป/ตู้พื้น (plaTopAt) — ชี้ที่ตู้ = ไปอยู่บนท็อปเหนือตู้นั้น
+   ตอนนี้ (ชนิดที่มี niche:true): ชี้ที่ตัวตู้ (เรย์โดนชิ้นตู้ ไม่ใช่ผิวท็อป) และตู้มีช่องโล่ง → วางในช่อง
+     plaNiches(inst) หาช่องจากชิ้นจริงในพิกัดโลก (ตู้หมุนได้ · แกนกว้าง A / ลึก P / ทิศหน้า s จาก plaFace):
+       ข้างตู้ = บางตามแกนกว้าง สูง ≥ 60% ตู้ → ช่องใน inLo..inHi + ขอบหน้าโครง front · หลัง = บางตามแกนลึก สูง ≥ 60% อยู่ครึ่งหลัง → ผิวใน back
+       พื้น/ชั้น = บางตามแกนสูง คลุมกว้าง ≥ 50% และลึก ≥ 40% · ช่อง = ผิวบนชั้นหนึ่ง → ผิวล่างชั้นถัดไป (ไม่มี = บนโครง)
+       หน้าบาน/หน้าลิ้นชัก/แผงหน้า = บางตามแกนลึก อยู่แนวหน้าโครง (±25) — ที่ความสูงไหนบังรวมกันเกินครึ่งความกว้าง = ทึบ
+       ช่องโล่ง = เปิดตั้งแต่พื้นช่องขึ้นไปจนเจอส่วนทึบ/ชั้นถัดไป สูง ≥ 120 (ตู้ BND217: ลิ้นชักล่าง + ช่องเปิด 401–710 + แผงบน)
+     plaPutNiche: กลางช่อง · ยืนบนพื้นช่อง · หน้าเครื่องถอยจากขอบหน้าโครง 20 (ช่องตื้นกว่าเครื่อง = ชิดหลัง 5 ยื่นออกหน้า) · o.inCab=1
+     plaPutTop (ลากกลับขึ้นท็อป) ล้าง inCab · plaResnap: ยังอยู่ในช่อง = จัดใหม่ในช่องเดิม · ช่องหาย = ขึ้นท็อปเหนือตู้
+     ในช่อง = ไม่มีช่อง/เส้น “ห่างหน้าท็อป/หลัง” (plaDepthRef) และไม่วาดบนแปลนท็อปของใบเสนอราคา
+   ปิด SN_OFF.plaNiche=1 (ไมโครเวฟที่วางไว้แล้วอยู่ที่เดิม) */
+function plaNiches(inst){ inst=String(inst); const H=plaHostInfo(inst,null); if(!H) return [];
+  const A=H.fc.A, P=H.fc.P, s=H.fc.s, c=H.c, CH=c.hi[1]-c.lo[1], cA=(c.lo[A]+c.hi[A])/2, cP=(c.lo[P]+c.hi[P])/2;
+  const B=plBoardsOf(inst).filter(b=>b&&!b._virtual&&!b._lineDisp&&(+b.T>0)&&!plIsLeg(b)).map(b=>{ const d=worldDims(b), p=[b.x,b.y,b.z];
+    return {d, lo:[0,1,2].map(i=>p[i]-d[i]/2), hi:[0,1,2].map(i=>p[i]+d[i]/2)}; });
+  const sides=B.filter(q=>q.d[A]<=40&&q.d[1]>=CH*0.6&&q.d[P]>=(c.hi[P]-c.lo[P])*0.5);
+  let inLo=c.lo[A], inHi=c.hi[A]; sides.forEach(q=>{ if((q.lo[A]+q.hi[A])/2<cA) inLo=Math.max(inLo,q.hi[A]); else inHi=Math.min(inHi,q.lo[A]); });
+  if(!(inHi-inLo>100)){ inLo=c.lo[A]+18; inHi=c.hi[A]-18; } const IW=inHi-inLo;
+  const front=sides.length?(s>0?Math.max(...sides.map(q=>q.hi[P])):Math.min(...sides.map(q=>q.lo[P]))):(s>0?c.hi[P]:c.lo[P]);
+  const backs=B.filter(q=>q.d[P]<=30&&q.d[A]>=IW*0.5&&q.d[1]>=CH*0.6&&(s>0?q.hi[P]<cP:q.lo[P]>cP));
+  const back=backs.length?(s>0?Math.max(...backs.map(q=>q.hi[P])):Math.min(...backs.map(q=>q.lo[P]))):(s>0?c.lo[P]:c.hi[P]);
+  const DP=Math.abs(front-back), ovA=q=>Math.min(q.hi[A],inHi)-Math.max(q.lo[A],inLo);
+  if(sides.length<2) return [];   /* แผ่นเดี่ยว (แผ่นปิด/ฟิลเลอร์) ไม่ใช่ตู้ที่มีช่อง */
+  /* หน้าบาน/หน้าลิ้นชัก/แผงหน้า = บางตามแกนลึก อยู่แนวหน้าโครง — คิดรวมกันทั้งแถว (บานคู่ใบละครึ่งช่อง) ที่ระดับสูง y บังเกินครึ่งความกว้าง = ทึบ */
+  const fronts=B.filter(q=>q.d[P]<=40&&ovA(q)>0&&(s>0?q.hi[P]>=front-25:q.lo[P]<=front+25));
+  const blocked=y=>{ const iv=fronts.filter(q=>q.lo[1]<=y&&q.hi[1]>=y).map(q=>[Math.max(q.lo[A],inLo),Math.min(q.hi[A],inHi)]).sort((a,b)=>a[0]-b[0]); let cov=0, e=inLo;
+    iv.forEach(v=>{ const a=Math.max(v[0],e); if(v[1]>a){ cov+=v[1]-a; e=v[1]; } }); return cov>=IW*0.5; };
+  const hz=B.filter(q=>q.d[1]<=40&&ovA(q)>=IW*0.5&&q.d[P]>=DP*0.4).sort((a,b)=>a.hi[1]-b.hi[1]); if(!hz.length) return [];
+  const out=[];
+  hz.map(q=>q.hi[1]).forEach(fl=>{ if(out.some(n=>Math.abs(n.floor-fl)<1)) return;
+    const up=hz.filter(q=>q.lo[1]>=fl+50).map(q=>q.lo[1]), ce=up.length?Math.min(...up):c.hi[1]; if(ce-fl<120) return;
+    let y=fl+2; while(y<fl+40&&y<ce&&blocked(y)) y+=4; if(blocked(y)) return;           /* ช่องต้องเปิดตั้งแต่พื้นช่อง (เผื่อหน้าลิ้นชักเหลื่อม ≤ 40) */
+    while(y<ce-1&&!blocked(y)) y+=4; const top=Math.min(y,ce), h=top-fl; if(h<120) return;   /* เพดาน = ชั้นถัดไป หรือขอบล่างแผงหน้า/คิ้วบน */
+    out.push({inst, A, P, s, floor:Math.round(fl*10)/10, ceil:Math.round(top*10)/10, h:Math.round(h), inLo, inHi, w:Math.round(IW), front, back, d:Math.round(DP)}); });
+  return out; }
+function plaNicheAt(H,y){ if(!H||snOff("plaNiche")) return null; const L=plaNiches(H.inst); if(!L.length) return null;
+  let best=null, bd=Infinity; L.forEach(n=>{ const dd=(y>=n.floor-60&&y<=n.ceil+60)?0:Math.min(Math.abs(y-n.floor),Math.abs(y-n.ceil)); if(dd<bd){ bd=dd; best=n; } });
+  return bd===0?best:null; }
+function plaPutNiche(o,H,N){ const T=PLO_T[o.k]||{}, d=Math.max(+o.d||T.d||0,20), s=N.s;
+  let depth=N.front-s*(20+d/2); const lim=N.back+s*(5+d/2); if(s>0?depth<lim:depth>lim) depth=lim;   /* ช่องตื้น = ชิดหลัง ยื่นหน้า */
+  plaSet(o,H,(N.inLo+N.inHi)/2,depth,N.floor); o.inCab=1; }
+function plaNicheTip(o,N){ const T=PLO_T[o.k]||{}, w=+o.w||T.w, h=+o.h||T.h, d=+o.d||T.d, wr=[];
+  if(N.h<h) wr.push("ช่องเตี้ยกว่าเครื่อง "+Math.round(h-N.h)); if(N.w<w) wr.push("ช่องแคบกว่าเครื่อง "+Math.round(w-N.w)); if(N.d<d+20) wr.push("ช่องตื้น ยื่นออกหน้า "+Math.max(0,Math.round(d+5-N.d)));
+  return "ในช่อง ก "+N.w+" × ส "+N.h+" × ล "+N.d+(wr.length?(" · ⚠ "+wr.join(" · ")):""); }
+function plaPutTop(o,S){ const H=S.H; o.y=Math.round(S.y); delete o.inCab;   /* v1.569: บนท็อป = ไม่อยู่ในช่อง */
   if(!H){ const G=plGrid()||10; o.x=Math.round(S.x/G)*G; o.z=Math.round(S.z/G)*G; o.host=null; return; }
   const A=H.fc.A, P=H.fc.P, s=H.fc.s, c=H.c, along=plaAlong(o,H,A===0?S.x:S.z);
   let depth=o.k==="micro"?((s>0?c.lo[P]:c.hi[P])+s*((+o.d||360)/2+30)):((c.lo[P]+c.hi[P])/2);
@@ -37994,7 +38059,10 @@ function plaPutCab(o,H,keepY){ const A=H.fc.A, P=H.fc.P, s=H.fc.s, c=H.c, f=H.f,
   y=Math.min(Math.max(y,c.lo[1]),Math.max(c.hi[1]-h,c.lo[1]));
   plaSet(o,H,along,front-s*(+o.d||560)/2,y); }
 function plaDrag(o,ev){ const T=PLO_T[o.k], md=T.appl, H=plaHostAt(ev), nm=T.ic+" "+((o.mdl&&o.mdl.n)||T.n);
-  if(md==="top"){ const S=plaTopAt(ev,H); if(S){ plaPutTop(o,S); return {tip:nm+" · "+(S.H?("บน "+S.H.f.code):"บนท็อป")+" · ผิวสูง "+Math.round(o.y)+" · R หมุน"}; } }
+  if(md==="top"){ const S=plaTopAt(ev,H);
+    if(T.niche&&H&&H.pt&&H.pt.y<H.c.hi[1]-15&&(!S||(S.H===H&&S.x===H.pt.x)||(S.dist!=null&&H.dist<S.dist-5))){ const N=plaNicheAt(H,H.pt.y);   /* v1.569: เรย์โดนตัวตู้ (ไม่ใช่ผิวท็อป) ที่มีช่องโล่ง = วางในช่อง */
+      if(N){ plaPutNiche(o,H,N); return {tip:nm+" · "+H.f.code+" "+plaNicheTip(o,N)+" · ตั้งสูง "+Math.round(o.y)}; } }
+    if(S){ plaPutTop(o,S); return {tip:nm+" · "+(S.H?("บน "+S.H.f.code):"บนท็อป")+" · ผิวสูง "+Math.round(o.y)+" · R หมุน"+(T.niche&&!snOff("plaNiche")?" · ชี้ช่องโล่งในตู้ = วางในช่อง":"")}; } }
   else if(md==="under"){ if(H&&H.up){ plaPutUnder(o,H); return {tip:nm+" · ใต้ "+H.f.code+" · ก้นตู้สูง "+Math.round(o.y)}; } }
   else if(md==="cab"){ if(H){ plaPutCab(o,H); return {tip:nm+" · ฝังใน "+H.f.code+" · สูงจากพื้น "+Math.round(o.y)}; } }
   const p=plFloorPt(ev,0); if(!p) return null; const G=plGrid()||10; o.x=Math.round(p.x/G)*G; o.z=Math.round(p.z/G)*G; o.y=md==="under"?1550:0; o.host=null;
@@ -38013,6 +38081,7 @@ function plaAuto(o){ const md=PLO_T[o.k].appl, c=orbit.target; let best=null, bd
 /* แก้ขนาดในแผง = จัดเข้าตู้เดิมใหม่ (หน้าเสมอ/ชิดหลัง/กลาง) */
 function plaResnap(o){ const T=PLO_T[o.k]; if(!o.host||!T||!T.appl) return; const H=plaHostInfo(o.host,null); if(!H){ o.host=null; return; }
   H.pt=new THREE.Vector3(+o.x||0,(+o.y||0)+(+o.h||0)/2,+o.z||0);
+  if(T.appl==="top"&&o.inCab&&T.niche){ const N=plaNicheAt(H,(+o.y||0)+5); if(N){ plaPutNiche(o,H,N); return; } const q=plaSlabAt(+o.x,+o.z); plaPutTop(o,{x:+o.x,z:+o.z,y:q?q.hi[1]:H.c.hi[1],H}); return; }   /* v1.569 */
   if(T.appl==="top") plaPutTop(o,{x:+o.x,z:+o.z,y:+o.y,H}); else if(T.appl==="under") plaPutUnder(o,H); else if(T.appl==="cab") plaPutCab(o,H,true); }
 /* ═════════ v1.566: ระยะเครื่องใช้บนท็อป — ห่างหน้าท็อป / ห่างหลัง (ผู้ใช้ 30/10 13:14 ภาพเตาบนท็อป: “เพิ่มระยะจากหน้าทอป หรือ หลัง ยังไงครับระยะ”) ═════════
    เดิม: เตา/ซิงค์ วางกึ่งกลางความลึกตู้เสมอ (plaPutTop) แก้ระยะหน้า-หลังไม่ได้ ไม่มีเส้นระยะ
@@ -38021,7 +38090,7 @@ function plaResnap(o){ const T=PLO_T[o.k]; if(!o.host||!T||!T.appl) return; cons
      เส้นระยะสีน้ำเงินบนผิวท็อป (ตอนเลือก/ลาก): หน้า · หลัง · ปลายท็อปซ้าย/ขวา
      ขอบท็อป = แผ่นท็อปใต้เครื่อง (plaSlabAt) · ไม่มีท็อป = หน้า/หลังโครงตู้ · ปิด SN_OFF.plaDepth */
 function plaFrontEdge(H,x,z){ const P=H.fc.P, s=H.fc.s, q=plaSlabAt(x,z); return q?(s>0?q.hi[P]:q.lo[P]):(s>0?H.c.hi[P]:H.c.lo[P]); }
-function plaDepthRef(o){ if(snOff("plaDepth")||!o||!o.host) return null; const T=PLO_T[o.k]; if(!T||T.appl!=="top") return null;
+function plaDepthRef(o){ if(snOff("plaDepth")||!o||!o.host||o.inCab) return null;   /* v1.569: ในช่องตู้ = ไม่มีระยะหน้า/หลังท็อป */ const T=PLO_T[o.k]; if(!T||T.appl!=="top") return null;
   const H=plaHostInfo(o.host,null); if(!H) return null; const A=H.fc.A, P=H.fc.P, s=H.fc.s, x=+o.x, z=+o.z, q=plaSlabAt(x,z);
   const fr=q?(s>0?q.hi[P]:q.lo[P]):(s>0?H.c.hi[P]:H.c.lo[P]), bk=q?(s>0?q.lo[P]:q.hi[P]):(s>0?H.c.lo[P]:H.c.hi[P]);
   const cur=P===0?x:z, a=A===0?x:z, hd=Math.max(+o.d||T.d||0,0)/2, hw=Math.max(+o.w||T.w||0,0)/2;
@@ -38088,7 +38157,7 @@ function plaPanel(s,o){ const T=PLO_T[o.k]||{}, F=ploFrameOf(o), md=T.appl;
   const fr=(lbl,ctl,tip)=>(typeof plF531==="function"&&!snOff("plTidy"))?plF531(lbl,ctl,tip):('<div class="plRow" style="margin-top:5px">'+lbl+' '+ctl+'</div>');
   const num=(k,v,st,w)=>'<input type="number" data-pok="'+k+'" value="'+Math.round(+v||0)+'" step="'+(st||10)+'" style="width:'+(w||64)+'px">';
   const lib=plaLib().filter(m=>m&&m.k===o.k), cur=(o.mdl&&lib.some(m=>m.id===o.mdl.id))?o.mdl.id:"";
-  let hostTxt=""; try{ if(o.host&&plCabMap()[o.host]) hostTxt=({top:"บน ",under:"ใต้ ",cab:"ใน "}[md]||"")+plFp(plBoardsOf(o.host)).code; }catch(e){}
+  let hostTxt=""; try{ if(o.host&&plCabMap()[o.host]) hostTxt=(o.inCab?"ในช่อง ":({top:"บน ",under:"ใต้ ",cab:"ใน "}[md]||""))+plFp(plBoardsOf(o.host)).code;   /* v1.569 */ }catch(e){}
   let h='<div class="plRow"><h4>'+T.ic+' '+escapeHtml((o.mdl&&o.mdl.n)||T.n||"")+'</h4><span class="plNote" style="margin-left:auto">'+escapeHtml(F?F.lbl:(hostTxt||(md==="floor"?"วางพื้น":"ยังไม่ติดตู้ — ลากไปชี้ตู้")))+'</span></div>'
     +fr("รุ่น",'<select data-pok="mdl"><option value="">'+escapeHtml(T.n||"")+' (ค่าตั้งต้น)</option>'+lib.map(m=>'<option value="'+escapeHtml(String(m.id))+'"'+(m.id===cur?" selected":"")+'>'+escapeHtml(String(m.n||""))+'</option>').join("")+'</select>')
     +fr("รหัสสินค้า",'<input type="text" data-pok="code" value="'+escapeHtml(String(o.code||""))+'" placeholder="ไม่บังคับ" style="width:150px">')
@@ -38101,7 +38170,7 @@ function plaPanel(s,o){ const T=PLO_T[o.k]||{}, F=ploFrameOf(o), md=T.appl;
       +'<button class="ibtn" id="plaSave" title="เก็บชื่อ รหัส ขนาด เป็นรุ่น — ขึ้นเป็นการ์ดในแคตตาล็อก ใช้ได้ทุกเครื่อง">💾 บันทึกเป็นรุ่น</button>'
       +(cur?'<button class="ibtn" id="plaDelM" title="เอารุ่นนี้ออกจากรายการรุ่น (ชิ้นที่วางแล้วยังอยู่)">✕ ลบรุ่นจากรายการ</button>':'')
       +'<button class="ibtn" id="ploDel" style="color:#d33">🗑 ลบ (Del)</button><button class="ibtn" id="ploDone">✓ เสร็จ</button></div>'
-    +'<div class="plNote" style="margin-top:4px">'+({top:"ลากไปชี้ท็อป/ตู้พื้น — หันตามตู้ ใกล้กลางตู้ดูดเข้ากลาง",under:"ลากไปชี้ตู้ลอย (ตู้ฮู้ด) — ติดก้นตู้ กลางตู้",cab:"ลากไปชี้ตู้ — หน้าเสมอหน้าบาน กลางตู้",wall:"ลากไปชี้ผนัง — ปล่องขึ้นถึงฝ้า",floor:"ลากบนพื้น · R หมุน"}[md]||"")+' · ภาพอย่างเดียว ไม่เข้าใบตัด/ใบเสนอราคา</div>';
+    +'<div class="plNote" style="margin-top:4px">'+(T.niche&&!snOff("plaNiche")?"ชี้ช่องโล่งในตู้ (ไม่มีบานบัง) = วางในช่อง · ":"")+({top:"ลากไปชี้ท็อป/ตู้พื้น — หันตามตู้ ใกล้กลางตู้ดูดเข้ากลาง",under:"ลากไปชี้ตู้ลอย (ตู้ฮู้ด) — ติดก้นตู้ กลางตู้",cab:"ลากไปชี้ตู้ — หน้าเสมอหน้าบาน กลางตู้",wall:"ลากไปชี้ผนัง — ปล่องขึ้นถึงฝ้า",floor:"ลากบนพื้น · R หมุน"}[md]||"")+' · ภาพอย่างเดียว ไม่เข้าใบตัด/ใบเสนอราคา</div>';
   s.innerHTML=h;
   s.querySelectorAll("[data-pok]").forEach(inp=>inp.onchange=()=>{ const k=inp.dataset.pok; if(ploLocked()){ plPanelSel(); return; }
     if(k==="mdl"){ if(inp.value) plaUseModel(o,inp.value); else { o.w=T.w; o.h=T.h; o.d=T.d; delete o.mdl; o.code=""; } plaResnap(o); }
@@ -39848,6 +39917,8 @@ function plWtSum(S){ S=S||plWtSlabs(); const r2=v=>Math.round(v*100)/100, sum=L=
         → ช่วงที่ยื่นเลยผิวผนังห้อง (ผนังเปิดอยู่) ตัดที่ผิวผนัง แล้วนับเป็นปลายชนผนังตามปกติ · ปิด SN_OFF.plWtClamp=1 */
 function plaTopFollow(S){ if(snOff("plaTopY")||typeof state==="undefined"||!state.room||!Array.isArray(state.room.obj)) return false; let ch=false;
   state.room.obj.forEach(o=>{ const T=(typeof PLO_T!=="undefined")?PLO_T[o&&o.k]:null; if(!T||T.appl!=="top") return; const x=+o.x, z=+o.z; if(!isFinite(x)||!isFinite(z)) return;
+    if(o.inCab){ try{ const H=o.host!=null?plaHostInfo(String(o.host),null):null, N=H&&typeof plaNicheAt==="function"?plaNicheAt(H,(+o.y||0)+5):null;   /* v1.569: ในช่องตู้ = ยืนพื้นช่อง (ไม่ยกขึ้นท็อป) */
+        if(N&&Math.abs((+o.y||0)-N.floor)>0.5){ o.y=N.floor; ch=true; } }catch(e){} return; }
     let y=null; ((S&&S.slabs)||[]).forEach(q=>{ if(x>=q.lo[0]-1&&x<=q.hi[0]+1&&z>=q.lo[2]-1&&z<=q.hi[2]+1&&(y==null||q.hi[1]>y)) y=q.hi[1]; });
     if(y==null&&o.host!=null){ try{ const H=plaHostInfo(String(o.host),null); if(H&&!H.up) y=H.c.hi[1]; }catch(e){} }
     if(y!=null&&Math.abs((+o.y||0)-y)>0.5){ o.y=Math.round(y*10)/10; ch=true; } });
@@ -41944,7 +42015,7 @@ function dwgWorktop(C){ let wt={slabs:[],bs:[]}; try{ wt=plWtSlabs(); }catch(e){
      ตอนนี้: มีเครื่องใช้บนท็อปในห้อง (state.room.obj appl top) → วาดตามของจริง ตำแหน่ง/ขนาด/ทิศ + ชื่อรุ่น (ถ้าบันทึกรุ่น) หรือชื่อชนิดแบบสั้น
        ซิงค์ = กรอบขอบ + ปากอ่าง · ซิงค์ใต้ท็อป = กรอบประ (ขอบอ่างใต้ท็อป) + ช่องเจาะเส้นทึบ · เตา = กรอบทึบ + วงหัวเตา · ไมโครเวฟ = กรอบ
        ไม่มีเครื่องใช้เลย → เดาแบบเดิม แต่ไม่ใช้ชื่อกลุ่มรหัส (cabCodeDesc) แล้ว · ปิด SN_OFF.dwgApplLbl = แบบเดิมทุกอย่าง */
-  const _ap=snOff("dwgApplLbl")?[]:((state.room&&Array.isArray(state.room.obj))?state.room.obj.filter(ob=>ob&&PLO_T[ob.k]&&PLO_T[ob.k].appl==="top"&&isFinite(+ob.x)&&isFinite(+ob.z)):[]), _apN=_ap.length;
+  const _ap=snOff("dwgApplLbl")?[]:((state.room&&Array.isArray(state.room.obj))?state.room.obj.filter(ob=>ob&&PLO_T[ob.k]&&PLO_T[ob.k].appl==="top"&&!ob.inCab&&isFinite(+ob.x)&&isFinite(+ob.z)):[]), _apN=_ap.length;
   const _circ=(cx,cy,rr)=>o.els.push('<circle cx="'+(+cx).toFixed(1)+'" cy="'+(+cy).toFixed(1)+'" r="'+(+rr).toFixed(1)+'" fill="none" stroke="'+DWG_INK+'" stroke-width="0.7" vector-effect="non-scaling-stroke"/>');
   _ap.forEach(ob=>{ const T=PLO_T[ob.k], q=(((+ob.yaw||0)%360)+360)%360, rot=q*Math.PI/180, sw=q===90||q===270, w=Math.max(+ob.w||T.w,20), d=Math.max(+ob.d||T.d,20), fw=sw?d:w, fd=sw?w:d, x=+ob.x, z=+ob.z;
     const L2W=(lx,lz)=>[x+lx*Math.cos(rot)+lz*Math.sin(rot), z-lx*Math.sin(rot)+lz*Math.cos(rot)], nm=String((ob.mdl&&ob.mdl.n)||T.s||T.n||"");
