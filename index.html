@@ -3283,7 +3283,7 @@ body[data-theme="dark"] .splash-dots span{background:rgba(255,255,255,.25)}
    ===================================================================== */
 /* ---- APP_META: แหล่งความจริงเดียวของเวอร์ชัน (ดูได้จาก console / คลิกชื่อแอป) ---- */
 const APP_META={
-  name:"StarNexus", version:"1.569", build:"2026-10-30/micro-niche-plinth",
+  name:"StarNexus", version:"1.570", build:"2026-10-30/ai-render-drawer",
   file:"StarNexus.html", basedOn:"Furnitech_V3.html (v3.11)",
   /* ───────── เริ่มนับเวอร์ชันใหม่ที่ 1.001 (21/08/2026) ─────────
      ของเดิมนับมาถึง 42.1 แล้ววิ่งเป็นทศนิยมสองชั้นซึ่งอ่านลำดับยาก
@@ -3291,6 +3291,7 @@ const APP_META={
      ประวัติเก่าเก็บไว้ทั้งหมดตามเลขเดิม ไม่ไล่เขียนใหม่ เพราะเลขในนั้นถูกอ้างถึงไปแล้ว
      รายการที่อยู่ใต้ 1.001 ลงไปจึงเป็นเลขชุดเก่า อ่านต่อกันได้ตามวันที่ */
   changelog:[
+    ["1.570","2026-10-30","FIX/FEAT (ผู้ใช้ 14:50 + project (2)) — ① FIX หน้าลิ้นชักจมเข้าตู้หลังเปลี่ยนจากบานอลูเป็นบานไม้ (“บานลิ้นชักมีอาการหุบเข้าหลัง”): บานอลูตั้งความหนา = หน้าตัด 60 โดยคงศูนย์บาน → เปลี่ยนกลับไม้ (19.4) ตัวปรับหนาคงผิวหลัง → ผิวหลังค้างในตู้ 20.3 (BND217 · BAD161 จม 23.5) · v1.488 ดึงบานทับออกมาชนหน้าตู้แล้วแต่ยกเว้นหน้าลิ้นชัก/แผงหน้า → ตอนนี้รวมหน้าลิ้นชัก (_dg) และแผงหน้า (_panel/_dummy) ที่ขอบเป็น “ทับ” จม 5–80 มม. ไม่อยู่หลังบานอื่น ไม่ใช่ลิ้นชักใน · กล่องลิ้นชักไม่ขยับ (คิดจากหน้าตู้อยู่แล้ว) ② FEAT ปุ่ม 🎬 Render → 🎬 AI RENDER: ตัวเลือกใหม่ (ตั้งต้น) “AI — ภาพฉาก → Gemini” ถ่ายภาพฉากที่ติ๊กแบบเร็ว (ไม่ path tracing ในเครื่อง) แล้วส่งให้ AI พร้อมคำสั่งคงแบบตู้ทันทีทีละภาพ ผลขึ้นในการ์ด · ไม่มีคีย์/คีย์ฟรีโดนปฏิเสธ = ภาพฉากยังอยู่ ปุ่ม 🍌 Gemini เว็บ สีเหลือง และภาพที่เหลือไม่ส่งซ้ำ · แสงจริงในเครื่อง/ภาพเร็ว ยังเลือกได้ · ปิดได้ SN_OFF.ddDrawer / rndAi"],
     ["1.569","2026-10-30","FEAT ห้องออกแบบ (ผู้ใช้ 14:28) — ① ไมโครเวฟตั้งพื้นวางในช่องโล่งของตู้ได้ (“อยากใส่ไมโครเวฟที่ช่องนั้น แบบลอยตัว” ภาพตู้ 600×760×550 ช่องเปิดเหนือลิ้นชัก): ลากไมโครเวฟไปชี้ช่องที่ไม่มีบาน/หน้าลิ้นชักบัง = วางบนพื้นช่อง กลางช่อง หน้าเครื่องถอยจากหน้าตู้ 20 (ช่องตื้น = ชิดหลัง) · ช่องเตี้ย/แคบกว่าเครื่อง = เตือนในป้าย · หาช่องจากชิ้นจริง (ข้างตู้ · หลัง · พื้น/ชั้น · หน้าบาน/หน้าลิ้นชัก) · แผงบอก “ในช่อง <รหัส>” · ไม่มีเส้นระยะหน้า/หลังท็อป และไม่ขึ้นบนแปลนท็อปในใบเสนอราคา · ลากกลับขึ้นท็อปได้ ② FIX ตีนตู้ไม่เปลี่ยนสีตามสีหน้าบาน (“ต้องไปแก้ความสูงหรือเปลี่ยนเป็นสแตนเลสแล้วกลับมาไม้ถึงจะเปลี่ยน”) — สีตีนตู้คิดจาก FrontColor ของตู้พื้น แต่คิดใหม่เฉพาะตอนจัดแนว/แก้ความสูง/เปลี่ยนวัสดุ/ออกจากห้อง → ตอนนี้ทุกครั้งที่ฉากอัปเดต ถ้าสีหน้าบานส่วนใหญ่ของตู้พื้นไม่ตรงสีแถวตีนตู้ = ทำตีนตู้ใหม่ให้เอง (รอ 0.35 วิ · ไม่ทำระหว่าง Ctrl+Z/ทำซ้ำ · ออเดอร์ XML ที่มีแถว Plinth เองไม่ยุ่ง) · ปิดได้ SN_OFF.plaNiche / plPlinthColor"],
     ["1.568","2026-10-30","FEAT 🎬 Render · 🍌 Gemini เว็บ (ฟรี) (ผู้ใช้ 14:02 ภาพการ์ด per1 “You exceeded your current quota …” — “ต่อ banana ให้มันเจนได้ปะครับ ที่ฟรี 2 ครั้ง”) — ภาพฟรีรายวันของ Nano Banana มีเฉพาะในเว็บ/แอป Gemini ส่วนคีย์ API แบบฟรีได้โควตาสร้างภาพ 0 (หน้าราคา Google: Free Tier = Not available ทุกรุ่นภาพ) จึงต่อตรงจากโปรแกรมไม่ได้ → ปุ่มใหม่บนการ์ดภาพ 🍌 Gemini เว็บ (ฟรี): คัดลอกภาพ (PNG ≤ 1600 px) + เปิด gemini.google.com · 📋 คัดลอกคำสั่ง (คงแบบตู้ เหมือนปุ่ม AI แต่งต่อ) · เอาภาพผลกลับ: 📥 วางภาพผล (อ่านคลิปบอร์ด) / Ctrl+V ในหน้า Render / ลากไฟล์มาวางบนการ์ด / 📂 เลือกไฟล์ → ขึ้นเป็นภาพ AI ของการ์ดนั้น บันทึกได้เหมือนเดิม · ไม่ใช้คีย์ · FIX ข้อความ 429 ภาษาอังกฤษยาวถูกตัด → บอกไทย: คีย์ฟรี (โควตาภาพ 0) / โควตาวันนี้หมด (รีเซ็ตราว 14:00–15:00 น.) / เกินชั่วคราว รอกี่วินาที + ปุ่ม 🍌 เป็นสีเหลือง · หารุ่นภาพอัตโนมัติรวมชื่อที่มี banana · FEAT ภาพเข้าใบเสนอราคา (ผู้ใช้ 14:09 “ส่งรูป + Prompt ไปให้ Gemini ให้ User เจนอีกที แล้วเอากลับมาอัพ เพื่อใส่เข้าใบเสนอราคา”): การ์ด Render มีปุ่ม 🧾 ใส่ใบเสนอราคา (ภาพ AI / ภาพเรนเดอร์ · กดซ้ำ = เอาออก · ภาพใหม่ = อัปเดต) · หน้า 🧾 ใบเสนอราคา มีหัวข้อ ภาพประกอบ (Render / AI): ภาพย่อ ⭐ ขึ้นก่อน ✕ ลบ · 📂 เพิ่มภาพ (ไฟล์ที่ดาวน์โหลดจาก Gemini) · 🎬 เปิด Render · ภาพแรกขึ้นหัวใบแทนภาพ 3D · แนบภาพเต็มหน้า A4 แนวนอน หลังใบ (มีหมายเหตุ ภาพจำลอง) · เก็บใน state.qPics (JPEG ≤ 1600 px สูงสุด 6 ภาพ) ไปกับ Save Order / .json / autosave · ไม่เข้า Ctrl+Z และลิงก์แชร์ · ปิดได้ SN_OFF.rndWeb / rndQuota / plqPics"],
     ["1.567","2026-10-30","FEAT ใบเสนอราคา หน้ารวมวัสดุ (ผู้ใช้ 13:30) — ① เนื้อไม้: รูปจริง PB · PB-HMR · MDF · MDF-HMR (รูปที่ผู้ใช้ส่ง ฝังในไฟล์) แยกช่องโครงตู้/หน้าบาน (เนื้อเดียวกัน = ช่องเดียว) · ดูเนื้อจากรหัส/ชื่อวัสดุ (MDF/HDF · HMR/MR/กันชื้น · PB/Particle) · หาไม่เจอ = รูปไอคอนเดิม (เดิมช่องเดียว “โครงสร้าง” เป็นไอคอน) ② อุปกรณ์: บานพับ กับ ราง แยกช่อง (มีถึงแสดง) + จำนวน + มีหลายรุ่น = บอก +n แบบ (เดิมรวมช่องเดียว “Fitting”) ③ สีหน้าบาน/สีโครงตู้ หัวช่อง = รหัสสี (Family ของตู้ เช่น MK630 · AK1 · AA7) บรรทัดล่าง = คำอธิบายสี (เดิมขึ้นรหัสผิว K_N01M0029_… ยาว) · สีหน้าบานหลายสี = ช่องละสี (สูงสุด 4) · ปิดได้ SN_OFF.dwgCore / dwgFitSplit / dwgColorCode"],
@@ -28480,7 +28481,14 @@ function doorDepthHeal(){
   (state.boards||[]).forEach(b=>{ if(!b||!b.cabInst) return; let a=byInst.get(b.cabInst); if(!a){ a=[]; byInst.set(b.cabInst,a); } a.push(b); });
   byInst.forEach((bs,inst)=>{
     const ax=_tdAxes(inst); if(!ax) return; const D=ax.D, K=["x","y","z"][D];
-    const doors=bs.filter(b=>b._door&&!b._box&&!b._virtual&&!b._dg&&!b._inner&&!b._panel&&!b._dummy&&b.orient==="front"&&_ddOverlay(b));
+    /* ───────── v1.570: หน้าลิ้นชัก / แผงหน้า ก็จมแบบเดียวกัน ─────────
+       ผู้ใช้ 30/10 14:50 (project (2)): “บานลิ้นชักมีอาการหุบเข้าหลัง เปลี่ยนจากบานอลู เป็น บานไม้”
+       ตรวจ: BND217 Drawer Front 1 / Panel L หนา 19.4 ผิวหลังอยู่ในตู้ 20.3 · BAD161 หน้าลิ้นชัก 3 ใบ 23.5 (บานพับทั้งงาน 0 — v1.488 ดึงแล้ว)
+       = รอบเดียวกับ v1.488 (อลูหนา 60 คงศูนย์ → ไม้ 19.4 คงผิวหลัง = จม (60−19.4)/2) แต่ตัวกรองเดิมตัดหน้าลิ้นชัก (_dg) กับแผงหน้า (_panel/_dummy) ทิ้ง
+       ตอนนี้รวมด้วย: ขอบเป็น “ทับ” · จม 5–80 (ต่ำกว่า 5 ไม่แตะ — ค่าเดิมจากคลังบางรุ่นถอย 3.2) · ไม่อยู่หลังบาน/หน้าอื่นของตู้เดียวกัน (กันลิ้นชักในที่ไม่มีธง _inner)
+       กล่องลิ้นชักคิดความลึกจากผิวหลังหน้าลิ้นชัก — ดึงหน้าออก ราง/กล่องได้ที่ว่างคืน ไม่สั้นลง · ปิด SN_OFF.ddDrawer=1 */
+    const _ddX=!snOff("ddDrawer");
+    const doors=bs.filter(b=>b._door&&!b._box&&!b._virtual&&!b._inner&&b.orient==="front"&&_ddOverlay(b)&&(_ddX?true:(!b._dg&&!b._panel&&!b._dummy)));
     if(!doors.length) return;
     const sides=bs.filter(b=>b.orient==="side"&&!b._door&&!b._virtual&&(+b.T>0)&&!isBackPanel(b));
     if(sides.length<2) return;
@@ -28493,7 +28501,13 @@ function doorDepthHeal(){
       const front=(out>0)?Math.max(...tall.map(s=>_tdExt(s)[D][1])):Math.min(...tall.map(s=>_tdExt(s)[D][0]));
       const back=(out>0)?eb[D][0]:eb[D][1];
       const sunk=Math.round((front-back)*out*100)/100;                            // + = ผิวหลังบานอยู่ในตู้
-      if(!(sunk>1&&sunk<=80)) return;
+      const _xt=!!(b._dg||b._panel||b._dummy);                                     /* v1.570: หน้าลิ้นชัก/แผงหน้า */
+      if(!(sunk>(_xt?5:1)&&sunk<=80)) return;
+      if(_xt){ const oA=[0,1,2].filter(i=>i!==D), bF=(out>0)?eb[D][1]:eb[D][0];
+        const hid=bs.some(f=>{ if(f===b||!f._door||f._box||f._virtual||f.orient!=="front") return false; const ef=_tdExt(f);
+          if(!oA.every(i=>Math.min(ef[i][1],eb[i][1])-Math.max(ef[i][0],eb[i][0])>10)) return false;
+          const fB=(out>0)?ef[D][0]:ef[D][1]; return (fB-bF)*out>=-1; });                    // มีบาน/หน้าอื่นบังอยู่ข้างหน้า = ลิ้นชักใน → ไม่แตะ
+        if(hid) return; }
       b[K]=Math.round(((+b[K]||0)+out*sunk)*100)/100; n++;
       rep.push({ตู้:b.cab||inst, บาน:b.name||b.id, เลื่อนออก:sunk, หนา:b.T}); });
   });
@@ -29556,6 +29570,8 @@ function boardRole(b){
      SN_OFF.rndQuota=1    🎬 Render AI แต่งต่อ โควตาเต็ม (429) ขึ้นข้อความอังกฤษของ Google แบบเดิม (v1.568)
      SN_OFF.plqPics=1     ใบเสนอราคาไม่มีภาพประกอบ Render/AI (ไม่มีปุ่ม 🧾 บนการ์ด Render · ภาพที่เก็บไว้ยังอยู่) (v1.568)
      SN_OFF.plaNiche=1    ไมโครเวฟวางได้แค่บนท็อปแบบเดิม (ไม่ดูดเข้าช่องโล่งในตู้) (v1.569)
+     SN_OFF.ddDrawer=1    หน้าลิ้นชัก/แผงหน้าที่จมเข้าตู้ไม่ดึงออก (ดึงเฉพาะบานแบบ v1.488) (v1.570)
+     SN_OFF.rndAi=1       ปุ่มกลับเป็น 🎬 Render (ไม่มีโหมด AI ภาพฉาก → Gemini) (v1.570)
      SN_OFF.plPlinthColor=1 ตีนตู้เปลี่ยนสีเฉพาะตอนจัดแนว/แก้ความสูง/เปลี่ยนวัสดุแบบเดิม (v1.569)
      SN_OFF.plMulti=1     ห้องออกแบบเลือกได้ทีละตู้ (ไม่มี Ctrl+คลิก/กรอบ/Ctrl+A) · ลากตู้แล้วซิงค์/ฮู้ดไม่ตาม (v1.562)
      SN_OFF.plMarble=1    ท็อป/บัว/ผนังหินเป็นสีเรียบ ไม่มีลายหินอ่อน (ค่าที่เลือกไว้ยังอยู่) (v1.562)
@@ -39599,7 +39615,7 @@ function plPopX531(rc){ const P=PL&&PL.panel; return ((P&&!snOff("plTidy"))?Math
 function plFootTop531(p){ const B=[];
   if(!VIEW_ONLY){ if(!snOff("plQuote")) B.push('<button class="ibtn" id="plQuoteBtn" title="ใบเสนอราคา A4 — ราคาตั้งต้นจากต้นทุนตู้ + กำไร % ของเซลล์ · พิมพ์ / บันทึก PDF">🧾 ใบเสนอราคา</button>');
     else if(!snOff("plPoster")) B.push('<button class="ibtn" id="plPosterBtn" title="ภาพห้อง 3D + รายการตู้ ขนาด ราคา + แปลน → PNG">🖼 โปสเตอร์ขาย</button>'); }
-  if(!VIEW_ONLY&&realCanUse()&&!snOff("plRender")) B.push('<button class="ibtn" id="plRendBtn" title="เรนเดอร์ทุกฉาก 🎬 ที่ตั้งไว้ — แสงจริงในเครื่อง แล้วให้ AI แต่งต่อได้ทีละภาพ">🎬 Render</button>');   /* v1.562: แทน 🧊 ส่งออก Blender (ผู้ใช้ “เอาออกเลย”) */
+  if(!VIEW_ONLY&&realCanUse()&&!snOff("plRender")) B.push('<button class="ibtn" id="plRendBtn" title="ส่งภาพฉาก 🎬 ที่เลือกให้ AI (Gemini) แต่งเป็นภาพสมจริงทันที — หรือเลือกเรนเดอร์แสงจริงในเครื่อง">'+(typeof rndLbl==="function"?rndLbl():"🎬 Render")+'</button>');   /* v1.562: แทน 🧊 ส่งออก Blender (ผู้ใช้ “เอาออกเลย”) */
   else if(!snOff("glbExport")) B.push('<button class="ibtn" id="plGlbBtn" title="ห้อง + ตู้ทั้งหมดเป็นไฟล์ 3D (.glb) — เปิดใน Blender แล้วเรนเดอร์เหมือนจริงได้ฟรี">🧊 ส่งออก Blender</button>');
   if(!VIEW_ONLY&&realCanUse()){ B.push('<button class="ibtn'+(REAL.on?' on':'')+'" id="plRealBtn" title="ห้องจริง แสงจริง ตามห้องที่ออกแบบ — ลากหมุนดูได้">'+(REAL.on?'✕ ออกจากสมจริง':'✨ โหมดสมจริง')+'</button>');
     if(!snOff("realSnap")) B.push('<button class="ibtn" id="plSnapBtn" title="บันทึกภาพสมจริงความละเอียดสูงจากมุมกล้องนี้ (JPG)">📷 บันทึกภาพ</button>'); }
@@ -41018,7 +41034,7 @@ function plPanelFoot(){
   const tdy531=!snOff("plTidy");   // v1.531: ตู้ในห้อง + ราคาขาย · ปุ่มตาราง 2×2 (plFootTop531)
   s.innerHTML=(tdy531?plFootTop531(p):('<div class="plRow"><span>ตู้ในห้อง <b>'+p.n+'</b> ใบ</span><span style="margin-left:auto;font-size:15px;font-weight:800">'+plMoney(p.sum)+'</span></div>'
     +'<div class="plRow" style="margin:6px 0 2px">'+(VIEW_ONLY?'':!snOff("plQuote")?'<button class="ibtn" id="plQuoteBtn" style="flex:1" title="ใบเสนอราคา A4 — ราคาตั้งต้นจากต้นทุนตู้ + กำไร % ของเซลล์ · พิมพ์ / บันทึก PDF">🧾 ใบเสนอราคา</button>':(snOff("plPoster")?'':'<button class="ibtn" id="plPosterBtn" style="flex:1" title="ภาพห้อง 3D + รายการตู้ ขนาด ราคา + แปลน → PNG">🖼 โปสเตอร์ขาย</button>'))   /* v1.515: แทนโปสเตอร์ (SN_OFF.plQuote=1 = โปสเตอร์เดิม) */   // v1.457
-    +((!VIEW_ONLY&&realCanUse()&&!snOff("plRender"))?'<button class="ibtn" id="plRendBtn" style="flex:1" title="เรนเดอร์ทุกฉาก 🎬 ที่ตั้งไว้ — แสงจริงในเครื่อง แล้วให้ AI แต่งต่อได้ทีละภาพ">🎬 Render</button>':snOff("glbExport")?'':'<button class="ibtn" id="plGlbBtn" style="flex:1" title="ห้อง + ตู้ทั้งหมดเป็นไฟล์ 3D (.glb) — เปิดใน Blender แล้วเรนเดอร์เหมือนจริงได้ฟรี">🧊 ส่งออก Blender</button>')+'</div>'   // v1.459
+    +((!VIEW_ONLY&&realCanUse()&&!snOff("plRender"))?'<button class="ibtn" id="plRendBtn" style="flex:1" title="ส่งภาพฉาก 🎬 ที่เลือกให้ AI (Gemini) แต่งเป็นภาพสมจริงทันที — หรือเลือกเรนเดอร์แสงจริงในเครื่อง">'+(typeof rndLbl==="function"?rndLbl():"🎬 Render")+'</button>':snOff("glbExport")?'':'<button class="ibtn" id="plGlbBtn" style="flex:1" title="ห้อง + ตู้ทั้งหมดเป็นไฟล์ 3D (.glb) — เปิดใน Blender แล้วเรนเดอร์เหมือนจริงได้ฟรี">🧊 ส่งออก Blender</button>')+'</div>'   // v1.459
     +((VIEW_ONLY||!realCanUse())?'':('<div class="plRow" style="margin:0 0 2px">'   // v1.528: ✨ โหมดสมจริง + 📷 บันทึกภาพ อยู่ในห้องออกแบบ
       +'<button class="ibtn" id="plRealBtn" style="flex:1'+(REAL.on?';background:var(--accent);color:#fff;border-color:var(--accent)':'')+'" title="ห้องจริง แสงจริง ตามห้องที่ออกแบบ — ลากหมุนดูได้">'+(REAL.on?'✕ ออกจากสมจริง':'✨ โหมดสมจริง')+'</button>'
       +(snOff("realSnap")?'':'<button class="ibtn" id="plSnapBtn" style="flex:1" title="บันทึกภาพสมจริงความละเอียดสูงจากมุมกล้องนี้ (JPG)">📷 บันทึกภาพ</button>')+'</div>'))
@@ -41698,9 +41714,9 @@ async function plQuoteOpen(){
         +'<div style="display:flex;gap:3px;align-items:center;padding:3px 4px;background:var(--solid,#fff);font-size:10.5px"><span style="flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="'+e(p.name)+'">'+(i?'':'⭐ ')+e(p.name)+'</span>'
         +(i?'<button class="ibtn" data-a="picUp" data-i="'+i+'" title="ขึ้นเป็นภาพแรก" style="padding:0 5px;font-size:10.5px;flex:none">⭐</button>':'')
         +'<button class="ibtn" data-a="picX" data-i="'+i+'" title="เอาออกจากใบเสนอราคา" style="padding:0 5px;font-size:10.5px;flex:none">✕</button></div></div>').join("")+'</div>')
-      :'<div style="font-size:11.5px;color:var(--ink-dim);line-height:1.6">ยังไม่มี — 🎬 Render แล้วกด <b>🧾 ใส่ใบเสนอราคา</b> บนการ์ดภาพ (ภาพ AI / Gemini เว็บ) หรือ 📂 เพิ่มภาพที่ดาวน์โหลดมา</div>')
+      :'<div style="font-size:11.5px;color:var(--ink-dim);line-height:1.6">ยังไม่มี — 🎬 AI RENDER แล้วกด <b>🧾 ใส่ใบเสนอราคา</b> บนการ์ดภาพ (ภาพ AI / Gemini เว็บ) หรือ 📂 เพิ่มภาพที่ดาวน์โหลดมา</div>')
       +'<div style="display:flex;gap:6px;flex-wrap:wrap;align-items:center;margin:4px 0"><button class="ibtn" data-a="picAdd" '+sb+'>📂 เพิ่มภาพ…</button>'
-      +((typeof RND!=="undefined"&&!snOff("plRender"))?'<button class="ibtn" data-a="picRnd" '+sb+'>🎬 เปิด Render</button>':'')
+      +((typeof RND!=="undefined"&&!snOff("plRender"))?'<button class="ibtn" data-a="picRnd" '+sb+'>🎬 เปิด AI RENDER</button>':'')
       +'<span style="font-size:11px;color:var(--ink-dim)">'+P.length+'/'+PLQ_PIC_MAX+' ภาพ</span></div>'
       +(P.length?('<label style="flex-direction:row;align-items:center;gap:6px;color:var(--ink);font-size:12.5px"><input type="checkbox" data-q="picTop"'+(Q.picTop!==false?" checked":"")+'> ภาพแรก (⭐) ขึ้นหัวใบแทนภาพห้อง 3D</label>'
         +'<label style="flex-direction:row;align-items:center;gap:6px;color:var(--ink);font-size:12.5px"><input type="checkbox" data-q="picPage"'+(Q.picPage!==false?" checked":"")+'> แนบภาพเต็มหน้า (A4 แนวนอน) ต่อท้ายใบ</label>'):''); };
@@ -67835,7 +67851,7 @@ const SNAI=(function(){
        ชี้อย่างเดียว ไม่กดแทน (ผู้ใช้เลือก) · ตำแหน่งหาร uiZoomOf (body[data-uiz] ซูมลูกของ body) · ชั้น = ชั้นของที่ชี้ + 5 (เมนูคลิกขวา 130 → 135 · แผงห้อง 320 → 325 · ตั้งค่า 90 → 95)
        ผู้ช่วยบังของที่ชี้ = ซ่อนผู้ช่วยระหว่างชี้ · ปิด SN_OFF.aiGoto */
   const GO_LSK="snAI:gomap:v1";
-  const GO_SEED={"plClose":{"l":"✓ เสร็จ","g":""},"plFitRoom":{"l":"⤢ ครอบตู้ที่มี","g":""},"plCam":{"l":"🎥 มุมห้อง","g":""},"plClrAll":{"l":"🎨 สีทั้งออเดอร์","g":""},"plPullAll":{"l":"🖐 มือจับทั้งห้อง","g":""},"plwGo2":{"l":"✏ วาดผนังจากแปลน","g":""},"plptGo":{"l":"🖌 สีผนัง · พื้น","g":""},"plRoomLock":{"l":"🔓 ล็อกห้อง","g":""},"plrlSave":{"l":"💾 บันทึกห้อง","g":""},"plrlOpen":{"l":"📂 เปิดห้องที่บันทึก","g":""},"plrlNew":{"l":"🧹 ล้างตู้ · เก็บห้อง","g":""},"plCeilShow":{"l":"แสดงฝ้า","g":"ขนาดห้อง · ผนัง · Dim"},"plDimGap":{"l":"■ ระยะถึงผนัง/ตู้ข้าง","g":"ขนาดห้อง · ผนัง · Dim"},"plDimSize":{"l":"■ ขนาดตู้","g":"ขนาดห้อง · ผนัง · Dim"},"plPlMat":{"l":"ตีนตู้","g":"ขา · ตีนตู้ · ฟิลเลอร์ · ไม้ไฟ"},"plFFloor":{"l":"ฟิลเลอร์ลงพื้น","g":"ขา · ตีนตู้ · ฟิลเลอร์ · ไม้ไฟ"},"plCeilOn":{"l":"ฟิลเลอร์บน","g":"ขา · ตีนตู้ · ฟิลเลอร์ · ไม้ไฟ"},"plCeilH":{"l":"ฟิลเลอร์บน","g":"ขา · ตีนตู้ · ฟิลเลอร์ · ไม้ไฟ"},"plLtOn":{"l":"ไม้ไฟใต้ตู้ลอย","g":"ขา · ตีนตู้ · ฟิลเลอร์ · ไม้ไฟ"},"plLtCode":{"l":"ไม้ไฟใต้ตู้ลอย","g":"ขา · ตีนตู้ · ฟิลเลอร์ · ไม้ไฟ"},"plSdFloor":{"l":"ตู้พื้น/สูง ลงพื้น","g":"ขา · ตีนตู้ · ฟิลเลอร์ · ไม้ไฟ"},"plSdCeil":{"l":"ตู้ลอย/สูง ถึงฝ้า","g":"ขา · ตีนตู้ · ฟิลเลอร์ · ไม้ไฟ"},"plBvTT":{"l":"บานเพบน","g":"ขา · ตีนตู้ · ฟิลเลอร์ · ไม้ไฟ"},"plwGo":{"l":"✏ วาดผนังจากแปลน (มองจากบน)","g":"✏ ผนังที่วาด (แปลน)"},"plApply":{"l":"ปรับขนาด","g":"ตู้ที่เลือก"},"plDup":{"l":"⧉ สำเนา","g":"ตู้ที่เลือก"},"plDupM":{"l":"⧉⇋ สำเนากลับ","g":"ตู้ที่เลือก"},"plClr":{"l":"🎨 สี","g":"ตู้ที่เลือก"},"plSwap":{"l":"🔁 รุ่น","g":"ตู้ที่เลือก"},"plRot":{"l":"⟳ หมุน","g":"ตู้ที่เลือก"},"plMir":{"l":"⇋ กลับ","g":"ตู้ที่เลือก"},"plDel":{"l":"🗑 ลบ","g":"ตู้ที่เลือก"},"plDp":{"l":"DP","g":"ตู้ที่เลือก"},"plTT":{"l":"Trim Top","g":"ตู้ที่เลือก"},"plOff":{"l":"ห่างผนัง","g":"ตู้ที่เลือก"},"plFL":{"l":"◀ ปิดช่องซ้าย","g":"ตู้ที่เลือก"},"plFR":{"l":"ปิดช่องขวา ▶","g":"ตู้ที่เลือก"},"plSdL":{"l":"◀ ซ้าย","g":"ตู้ที่เลือก"},"plSdR":{"l":"ขวา ▶","g":"ตู้ที่เลือก"},"plAlignAll":{"l":"จัดแนวทั้งห้อง","g":""},"plCostEdit":{"l":"💰 ใส่ราคาที่ขาด","g":"ท้ายแผง"},"plQuoteBtn":{"l":"🧾 ใบเสนอราคา","g":"ท้ายแผง"},"plRendBtn":{"l":"🎬 Render","g":"ท้ายแผง"},"plRealBtn":{"l":"✨ โหมดสมจริง","g":"ท้ายแผง"},"plSnapBtn":{"l":"📷 บันทึกภาพ","g":"ท้ายแผง"},"@size":{"l":"ขนาดห้อง · ผนัง · Dim","g":"กลุ่ม"},"@work":{"l":"ขา · ตีนตู้ · ฟิลเลอร์ · ไม้ไฟ · ปิดข้าง","g":"กลุ่ม"},"@line":{"l":"แนวตู้ลอย / ตู้สูง","g":"กลุ่ม"},"@wt":{"l":"ท็อปเคาน์เตอร์ · ผนังเหนือท็อป","g":"กลุ่ม"},"@dw":{"l":"✏ ผนังที่วาด (แปลน)","g":"กลุ่ม"},"@foot":{"l":"รายละเอียด","g":"กลุ่ม"},"plCatHide":{"l":"ซ่อน ▸","g":"แคตตาล็อก"},"plWall":{"l":"ตู้ที่กดจากแคตตาล็อกไปลงผนังไหน","g":"แคตตาล็อก"}};
+  const GO_SEED={"plClose":{"l":"✓ เสร็จ","g":""},"plFitRoom":{"l":"⤢ ครอบตู้ที่มี","g":""},"plCam":{"l":"🎥 มุมห้อง","g":""},"plClrAll":{"l":"🎨 สีทั้งออเดอร์","g":""},"plPullAll":{"l":"🖐 มือจับทั้งห้อง","g":""},"plwGo2":{"l":"✏ วาดผนังจากแปลน","g":""},"plptGo":{"l":"🖌 สีผนัง · พื้น","g":""},"plRoomLock":{"l":"🔓 ล็อกห้อง","g":""},"plrlSave":{"l":"💾 บันทึกห้อง","g":""},"plrlOpen":{"l":"📂 เปิดห้องที่บันทึก","g":""},"plrlNew":{"l":"🧹 ล้างตู้ · เก็บห้อง","g":""},"plCeilShow":{"l":"แสดงฝ้า","g":"ขนาดห้อง · ผนัง · Dim"},"plDimGap":{"l":"■ ระยะถึงผนัง/ตู้ข้าง","g":"ขนาดห้อง · ผนัง · Dim"},"plDimSize":{"l":"■ ขนาดตู้","g":"ขนาดห้อง · ผนัง · Dim"},"plPlMat":{"l":"ตีนตู้","g":"ขา · ตีนตู้ · ฟิลเลอร์ · ไม้ไฟ"},"plFFloor":{"l":"ฟิลเลอร์ลงพื้น","g":"ขา · ตีนตู้ · ฟิลเลอร์ · ไม้ไฟ"},"plCeilOn":{"l":"ฟิลเลอร์บน","g":"ขา · ตีนตู้ · ฟิลเลอร์ · ไม้ไฟ"},"plCeilH":{"l":"ฟิลเลอร์บน","g":"ขา · ตีนตู้ · ฟิลเลอร์ · ไม้ไฟ"},"plLtOn":{"l":"ไม้ไฟใต้ตู้ลอย","g":"ขา · ตีนตู้ · ฟิลเลอร์ · ไม้ไฟ"},"plLtCode":{"l":"ไม้ไฟใต้ตู้ลอย","g":"ขา · ตีนตู้ · ฟิลเลอร์ · ไม้ไฟ"},"plSdFloor":{"l":"ตู้พื้น/สูง ลงพื้น","g":"ขา · ตีนตู้ · ฟิลเลอร์ · ไม้ไฟ"},"plSdCeil":{"l":"ตู้ลอย/สูง ถึงฝ้า","g":"ขา · ตีนตู้ · ฟิลเลอร์ · ไม้ไฟ"},"plBvTT":{"l":"บานเพบน","g":"ขา · ตีนตู้ · ฟิลเลอร์ · ไม้ไฟ"},"plwGo":{"l":"✏ วาดผนังจากแปลน (มองจากบน)","g":"✏ ผนังที่วาด (แปลน)"},"plApply":{"l":"ปรับขนาด","g":"ตู้ที่เลือก"},"plDup":{"l":"⧉ สำเนา","g":"ตู้ที่เลือก"},"plDupM":{"l":"⧉⇋ สำเนากลับ","g":"ตู้ที่เลือก"},"plClr":{"l":"🎨 สี","g":"ตู้ที่เลือก"},"plSwap":{"l":"🔁 รุ่น","g":"ตู้ที่เลือก"},"plRot":{"l":"⟳ หมุน","g":"ตู้ที่เลือก"},"plMir":{"l":"⇋ กลับ","g":"ตู้ที่เลือก"},"plDel":{"l":"🗑 ลบ","g":"ตู้ที่เลือก"},"plDp":{"l":"DP","g":"ตู้ที่เลือก"},"plTT":{"l":"Trim Top","g":"ตู้ที่เลือก"},"plOff":{"l":"ห่างผนัง","g":"ตู้ที่เลือก"},"plFL":{"l":"◀ ปิดช่องซ้าย","g":"ตู้ที่เลือก"},"plFR":{"l":"ปิดช่องขวา ▶","g":"ตู้ที่เลือก"},"plSdL":{"l":"◀ ซ้าย","g":"ตู้ที่เลือก"},"plSdR":{"l":"ขวา ▶","g":"ตู้ที่เลือก"},"plAlignAll":{"l":"จัดแนวทั้งห้อง","g":""},"plCostEdit":{"l":"💰 ใส่ราคาที่ขาด","g":"ท้ายแผง"},"plQuoteBtn":{"l":"🧾 ใบเสนอราคา","g":"ท้ายแผง"},"plRendBtn":{"l":"🎬 AI RENDER","g":"ท้ายแผง"},"plRealBtn":{"l":"✨ โหมดสมจริง","g":"ท้ายแผง"},"plSnapBtn":{"l":"📷 บันทึกภาพ","g":"ท้ายแผง"},"@size":{"l":"ขนาดห้อง · ผนัง · Dim","g":"กลุ่ม"},"@work":{"l":"ขา · ตีนตู้ · ฟิลเลอร์ · ไม้ไฟ · ปิดข้าง","g":"กลุ่ม"},"@line":{"l":"แนวตู้ลอย / ตู้สูง","g":"กลุ่ม"},"@wt":{"l":"ท็อปเคาน์เตอร์ · ผนังเหนือท็อป","g":"กลุ่ม"},"@dw":{"l":"✏ ผนังที่วาด (แปลน)","g":"กลุ่ม"},"@foot":{"l":"รายละเอียด","g":"กลุ่ม"},"plCatHide":{"l":"ซ่อน ▸","g":"แคตตาล็อก"},"plWall":{"l":"ตู้ที่กดจากแคตตาล็อกไปลงผนังไหน","g":"แคตตาล็อก"}};
   const cssq=x=>String(x).replace(/["\\]/g,"\\$&");
   function goLbl(el){ if(!el) return ""; let t=String(el.textContent||"").replace(/\s+/g," ").trim();
     if(!t||t.length<2) t=String(el.getAttribute("title")||el.getAttribute("aria-label")||"").split(/ — |\n|\(/)[0].trim();
@@ -68497,14 +68513,24 @@ try{ SNAI.init(); }catch(e){ console.error("SNAI.init:",e); }
        OpenAI — images/edits (multipart · รุ่น gpt-image ล่าสุดจาก /v1/models ไม่งั้น gpt-image-1)
      ใช้คีย์เดียวกับ 🤖 ผู้ช่วย (localStorage snAI:cfg:v1 ผ่าน SNAI._cfg) ไม่เก็บซ้ำ · ค่าหน้า Render จำในเครื่อง lsSet sxlocaltrial:furnitech:render
      คีย์ฟรีของ Gemini สร้างภาพไม่ได้ (ต.ค. 2026 ต้องเปิด billing) — บอกในหน้า + ข้อความ error ของผู้ให้บริการ */
+/* ═════════ v1.570: 🎬 AI RENDER — ส่งภาพฉากให้ AI ทันที ไม่ต้องเรนเดอร์แสงจริงในเครื่อง ═════════
+   ผู้ใช้ 30/10 14:50: “ตรงปุ่ม render เปลี่ยนชื่อเป็นปุ่ม AI RENDER แล้วอยากให้ API เรา เอาภาพ Scene ที่เลือกไปให้ Gemini เลย ไม่ต้องเรนเดอร์ ผ่านเครื่องตัวเอง แล้วส่งให้ Gemini พร้อม Prompt เลย”
+   เดิม (1.562): ตัวเรนเดอร์ตั้งต้น 📸 แสงจริง (path tracing ฉากละ 1–5 นาที) → ได้ภาพแล้วต้องกด 🤖 AI แต่งต่อ ทีละการ์ด
+   ตอนนี้: ปุ่ม 🎬 AI RENDER (rndLbl) · ตัวเรนเดอร์ใหม่ eng "ai" (ตั้งต้น · ค่าที่จำไว้เดิมย้ายมา ai ครั้งเดียวด้วย O.engV)
+     ไล่ฉากที่ติ๊ก → ภาพเร็วแบบโหมดสมจริง (fastShot ฉากละไม่กี่วินาที) → คืนกล้อง/ฉาก → aiAll: ส่งทีละภาพด้วย enhance (คำสั่งคงแบบตู้ + สั่งเพิ่ม)
+     ผลขึ้นในการ์ดทันที (กำลังแต่ง… → ภาพ AI) · ไม่มีคีย์ = เก็บภาพฉากไว้ บอกให้ใส่คีย์/ใช้ 🍌 · คีย์ฟรี/โควตาวันหมด (e.free) = หยุดส่งภาพที่เหลือ (ได้ error เดิมทุกภาพ) ปุ่ม 🍌 สีเหลือง
+     📸 แสงจริงในเครื่อง / ⚡ ภาพเร็วไม่ส่ง AI ยังเลือกได้เหมือนเดิม · ปิด SN_OFF.rndAi=1 (ปุ่ม 🎬 Render · ไม่มีตัวเลือก ai) */
+function rndLbl(){ return snOff("rndAi")?"🎬 Render":"🎬 AI RENDER"; }
 const RND=(function(){
   const LSK="sxlocaltrial:furnitech:render";
-  const DEF={eng:"pt", px:1600, spp:128, preset:"", ai:"gemini", gm:"", om:"", note:"", cur:false, off:{}, aiOpen:false};
+  const DEF={eng:"ai", engV:1, px:1600, spp:128, preset:"", ai:"gemini", gm:"", om:"", note:"", cur:false, off:{}, aiOpen:false};   /* v1.570: ตั้งต้น ai */
   let O=Object.assign({},DEF), loaded=false, res=[], busy=false, stop=false, ov=null, pill=null;
   const H=s=>escapeHtml(String(s==null?"":s));
   const sleep=ms=>new Promise(r=>setTimeout(r,ms));
   const frames=n=>new Promise(r=>{ let k=0; const f=()=>{ if(++k>=n) r(); else requestAnimationFrame(f); }; requestAnimationFrame(f); });
-  async function load(){ if(loaded) return; loaded=true; try{ const v=await lsGet(LSK,null); if(v&&typeof v==="object") O=Object.assign({},DEF,v); }catch(e){} if(!O.off||typeof O.off!=="object") O.off={}; }
+  async function load(){ if(loaded) return; loaded=true; try{ const v=await lsGet(LSK,null); if(v&&typeof v==="object"){ O=Object.assign({},DEF,v);
+      if(!v.engV){ O.engV=1; if(!snOff("rndAi")) O.eng="ai"; } } }catch(e){} if(!O.off||typeof O.off!=="object") O.off={};   /* v1.570: ค่าที่จำไว้ก่อนมี AI RENDER (pt) → ai ครั้งเดียว · เลือกกลับเองได้ */
+    if(O.eng==="ai"&&snOff("rndAi")) O.eng="fast"; }
   function save(){ try{ lsSet(LSK,O); }catch(e){} }
   function scenes(){ try{ return scnList().filter(s=>s&&Array.isArray(s.t)); }catch(e){ return []; } }
   function fname(nm,tag,ext){ const d=new Date(), p2=x=>String(x).padStart(2,"0"); let oid="";
@@ -68545,6 +68571,7 @@ const RND=(function(){
     let url="", w=RPT.W, h=RPT.H; if(!stop&&RPT.gl&&RPT.frame){ rptShow(true); url=RPT.cv.toDataURL("image/jpeg",0.93); }
     rptClose(); if(stop) return null; if(!url||url.length<1000) throw new Error("ไม่ได้ภาพ"); return {url,w,h}; }
   async function run(list){ if(busy||!list||!list.length) return; busy=true; stop=false; const n=list.length; let ok=0, err=null;
+    const aiMode=O.eng==="ai"&&!snOff("rndAi"), made=[];   /* v1.570: AI RENDER = ภาพเร็ว แล้วส่ง AI */
     const keep=scnCap(), keepAct=SCN.act, wasReal=REAL.on, keepPre=REAL.preset;
     if(ov) ov.style.display="none"; pillShow("🎬 กำลังเตรียมห้อง/แสง…");
     try{
@@ -68553,7 +68580,7 @@ const RND=(function(){
       for(let i=0;i<n&&!stop;i++){ const s=list[i]; pillTxt("🎬 "+(i+1)+"/"+n+" · "+s.name);
         scnGo(s,true); await frames(3); await sleep(200);
         try{ const r=O.eng==="pt"?await ptShot(i,n,s.name):fastShot();
-          if(r){ res.unshift({id:"r"+Date.now().toString(36)+i, name:s.name, eng:O.eng, url:r.url, w:r.w, h:r.h, at:Date.now(), ai:null}); ok++; } }
+          if(r){ res.unshift({id:"r"+Date.now().toString(36)+i, name:s.name, eng:O.eng, url:r.url, w:r.w, h:r.h, at:Date.now(), ai:null}); made.push(res[0]); ok++; } }
         catch(e){ err=e; console.error("render:",e); if(O.eng==="pt") break; } } }
     catch(e){ err=e; console.error("render:",e); }
     finally{
@@ -68562,7 +68589,22 @@ const RND=(function(){
       if(!wasReal){ try{ await realToggle(false); }catch(e){} }
       if(REAL.preset!==keepPre&&REAL_PRESETS[keepPre]){ try{ realSetPreset(keepPre); }catch(e){} }
       pillHide(); busy=false; if(ov){ ov.style.display=""; draw(); }
-      toast(stop?("⏹ หยุดแล้ว — ได้ "+ok+" ภาพ"):err?("เรนเดอร์ได้ "+ok+"/"+n+" ภาพ · ⚠ "+(err.message||err)):("🎬 เรนเดอร์เสร็จ "+ok+" ภาพ")); }
+      if(!(aiMode&&made.length&&!stop&&!err)) toast(stop?("⏹ หยุดแล้ว — ได้ "+ok+" ภาพ"):err?("เรนเดอร์ได้ "+ok+"/"+n+" ภาพ · ⚠ "+(err.message||err)):("🎬 เรนเดอร์เสร็จ "+ok+" ภาพ")); }
+    if(aiMode&&made.length&&!stop) await aiAll(made.slice().reverse());   /* v1.570: ตามลำดับฉาก */
+    return ok; }
+  /* v1.570: ส่งภาพฉากทั้งชุดให้ AI ทีละภาพ — ผลขึ้นในการ์ดทันที */
+  async function aiAll(L){ const key=aiKey(), P=O.ai==="openai"?"OpenAI":"Gemini";
+    if(!key){ L.forEach(it=>{ it.ai={err:"ยังไม่มีคีย์ "+P+" — ใส่ที่ 🤖 ผู้ช่วย → ⚙ แล้วกด 🤖 AI แต่งต่อ · หรือกด 🍌 Gemini เว็บ (ฟรี) ส่งภาพนี้ไปเจนเอง", free:true}; }); draw();
+      toast("🎬 ได้ภาพฉาก "+L.length+" ภาพ — ยังไม่มีคีย์ "+P+" จึงยังไม่ได้ส่ง AI"); return 0; }
+    busy=true; let ok=0, i=0, last=null;
+    try{ for(const it of L){ i++; if(!ov) break;
+        it.ai={busy:true}; draw();
+        try{ const r=await enhance(it); it.ai={url:r.url, model:r.model}; ok++; }
+        catch(e){ last=e; console.warn("AI render:",(e&&e.message)||e); it.ai={err:String((e&&e.message)||e), free:!!(e&&e.free)};
+          if(e&&e.free){ L.slice(i).forEach(x=>{ x.ai={err:"ยังไม่ได้ส่ง — คีย์นี้สร้างภาพไม่ได้ตอนนี้ (ดูการ์ด “"+it.name+"”) · กด 🍌 Gemini เว็บ (ฟรี)", free:true}; }); break; } }
+        draw(); } }
+    finally{ busy=false; draw(); }
+    toast(ok===L.length?("🎬 AI RENDER เสร็จ "+ok+" ภาพ — ตรวจรายละเอียดตู้ก่อนส่งลูกค้า"):("🎬 AI ได้ "+ok+"/"+L.length+" ภาพ"+(last?(" · ⚠ "+String(last.message||last).slice(0,80)):"")));
     return ok; }
   /* ---------- 🤖 AI แต่งต่อ ---------- */
   async function fx(url,init,ms){ const ac=new AbortController(), tm=setTimeout(()=>ac.abort(),ms||180000);
@@ -68708,7 +68750,7 @@ const RND=(function(){
     if(ov&&ov.isConnected){ ov.style.display=""; draw(); return; }
     const C=ovCard(980,92); ov=C.ov; ov.setAttribute("data-rnd","1");
     ov.innerHTML='<div style="'+C.cardCSS+'"><div style="display:flex;align-items:center;gap:10px;padding:12px 16px;border-bottom:.5px solid var(--line)">'
-      +'<b style="font-size:15px">🎬 Render</b><span class="muted" style="font-size:11.5px">เรนเดอร์ทุกฉาก 🎬 ที่ตั้งไว้ · แล้วให้ AI แต่งต่อได้ทีละภาพ</span>'
+      +'<b style="font-size:15px">'+rndLbl()+'</b><span class="muted" style="font-size:11.5px">'+(snOff("rndAi")?'เรนเดอร์ทุกฉาก 🎬 ที่ตั้งไว้ · แล้วให้ AI แต่งต่อได้ทีละภาพ':'ส่งภาพฉาก 🎬 ที่เลือกให้ AI แต่งเป็นภาพสมจริง — ไม่ต้องเรนเดอร์ในเครื่อง')+'</span>'
       +'<button class="ibtn" id="rnX" '+C.xbtn+'>✕ ปิด</button></div><div id="rnB" style="padding:12px 16px;overflow:auto;flex:1;min-height:0;font-size:12.5px"></div></div>';
     document.body.appendChild(ov); ov.querySelector("#rnX").onclick=()=>{ ov.remove(); ov=null; };
     webDrop(ov); webWire();   /* v1.568: เอาภาพจาก Gemini เว็บกลับ (ลากวาง · Ctrl+V) */
@@ -68717,7 +68759,7 @@ const RND=(function(){
     return '<div class="rnC" data-id="'+H(it.id)+'" style="border:.5px solid var(--line);border-radius:10px;overflow:hidden;background:var(--card2)">'
       +'<img src="'+it.url+'" alt="" style="display:block;width:100%;aspect-ratio:'+(it.w||16)+'/'+(it.h||9)+';object-fit:cover;background:#111">'
       +'<div style="padding:7px 9px 4px;display:flex;gap:6px;align-items:center"><b style="flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">'+H(it.name)+'</b>'
-      +'<span class="muted" style="font-size:10.5px;white-space:nowrap">'+(it.eng==="pt"?"📸 แสงจริง":"⚡ เร็ว")+' · '+it.w+'×'+it.h+'</span></div>'
+      +'<span class="muted" style="font-size:10.5px;white-space:nowrap">'+(it.eng==="pt"?"📸 แสงจริง":it.eng==="ai"?"🎬 ภาพฉาก":"⚡ เร็ว")+' · '+it.w+'×'+it.h+'</span></div>'
       +'<div style="padding:0 9px 8px;display:flex;gap:6px;flex-wrap:wrap"><button class="ibtn rnD" style="font-size:11.5px;padding:3px 9px;white-space:nowrap">⬇ บันทึก</button>'
       +'<button class="ibtn rnA" style="font-size:11.5px;padding:3px 9px;white-space:nowrap"'+(a.busy?' disabled':'')+'>'+(a.busy?'🤖 กำลังแต่ง…':(a.url?'🤖 แต่งใหม่':'🤖 AI แต่งต่อ'))+'</button>'
       +(a.url?'':qBtn(it,"r"))   /* v1.568: ยังไม่มีภาพ AI = ใส่ภาพเรนเดอร์ได้ */
@@ -68739,12 +68781,12 @@ const RND=(function(){
         :'<div class="muted" style="line-height:1.6;margin-bottom:4px">ยังไม่มีฉาก — ปิดหน้านี้ หมุนกล้องไปมุมที่ต้องการ แล้วกด 🎬 ใต้ลูกเต๋า (มุมขวาบน) เพื่อเพิ่มฉาก</div>')
       +'<label style="display:flex;gap:8px;align-items:center;padding:3px 0;cursor:pointer"><input type="checkbox" id="rnCur"'+(curOn?' checked':'')+(S.length?'':' disabled')+'> 📷 มุมกล้องตอนนี้</label></div>'
       +'<div><div style="font-weight:700;margin-bottom:4px">ตั้งค่า</div>'
-      +row("ตัวเรนเดอร์",'<select id="rnEng" class="nameinp" style="width:auto">'+opt("pt",O.eng,"📸 แสงจริง (path tracing · สวยสุด)")+opt("fast",O.eng,"⚡ เร็ว (ภาพโหมดสมจริง)")+'</select>')
+      +row("ตัวเรนเดอร์",'<select id="rnEng" class="nameinp" style="width:auto">'+(snOff("rndAi")?'':opt("ai",O.eng,"🤖 AI — ภาพฉาก → "+(O.ai==="openai"?"OpenAI":"Gemini")+" (ไม่เรนเดอร์ในเครื่อง)"))+opt("pt",O.eng,"📸 แสงจริงในเครื่อง (path tracing · นาน)")+opt("fast",O.eng,"⚡ ภาพเร็ว (ไม่ส่ง AI)")+'</select>')
       +row("ขนาดภาพ",'<select id="rnPx" class="nameinp" style="width:auto">'+[1280,1600,1920,2560].map(v=>opt(v,O.px,v+" px"+(v===1920?" (Full HD)":""))).join("")+'</select>')
       +(O.eng==="pt"?row("ความเนียน",'<select id="rnSpp" class="nameinp" style="width:auto">'+[[64,"64 รอบ · เร็ว"],[128,"128 รอบ"],[256,"256 รอบ · เนียน"],[512,"512 รอบ · นาน"]].map(x=>opt(x[0],O.spp,x[1])).join("")+'</select>'):'')
       +row("แสง",'<select id="rnPre" class="nameinp" style="width:auto">'+opt("",O.preset,"ตามโหมดสมจริงตอนนี้")+PR.map(k=>opt(k,O.preset,(REAL_PRESETS[k].icon||"")+" "+REAL_PRESETS[k].label)).join("")+'</select>')
-      +'<div class="muted" style="font-size:11px;line-height:1.55;margin-top:6px">'+(O.eng==="pt"?"แสงจริงคำนวณบนการ์ดจอทีละฉาก ฉากละราว 1–5 นาทีแล้วแต่เครื่อง · ระหว่างนั้นใช้โปรแกรมไม่ได้ (กด ⏹ หยุดได้)":"ภาพโหมดสมจริงความละเอียดสูง ฉากละไม่กี่วินาที แต่แสงเงาไม่ละเอียดเท่าแสงจริง")+'</div></div></div>'
-      +'<div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:12px 0 4px"><button class="ibtn" id="rnGo" style="background:var(--accent);color:#fff;border-color:transparent;padding:8px 18px"'+(n?'':' disabled')+'>▶ เรนเดอร์ '+n+' ภาพ</button>'
+      +'<div class="muted" style="font-size:11px;line-height:1.55;margin-top:6px">'+(O.eng==="pt"?"แสงจริงคำนวณบนการ์ดจอทีละฉาก ฉากละราว 1–5 นาทีแล้วแต่เครื่อง · ระหว่างนั้นใช้โปรแกรมไม่ได้ (กด ⏹ หยุดได้)":O.eng==="ai"?"ถ่ายภาพฉากที่ติ๊ก (ฉากละไม่กี่วินาที) แล้วส่งให้ AI พร้อมคำสั่งคงแบบตู้ทันที ผลขึ้นในการ์ดด้านล่าง · คีย์ต้องเปิด billing (คีย์ฟรีสร้างภาพไม่ได้ → ใช้ 🍌 Gemini เว็บ บนการ์ด)":"ภาพโหมดสมจริงความละเอียดสูง ฉากละไม่กี่วินาที แต่แสงเงาไม่ละเอียดเท่าแสงจริง")+'</div></div></div>'
+      +'<div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:12px 0 4px"><button class="ibtn" id="rnGo" style="background:var(--accent);color:#fff;border-color:transparent;padding:8px 18px"'+((n&&!busy)?'':' disabled')+'>'+(busy?'⏳ กำลังทำ…':(O.eng==="ai"&&!snOff("rndAi"))?('▶ AI RENDER '+n+' ภาพ'):('▶ เรนเดอร์ '+n+' ภาพ'))+'</button>'   /* v1.570 */
       +(res.length?'<button class="ibtn" id="rnAll">⬇ บันทึกทั้งหมด ('+res.length+')</button><button class="ibtn" id="rnClr">🧹 ล้างผล</button>':'')+'</div>'
       +'<details id="rnAiD" data-gas-drive="1" style="margin:8px 0;border:.5px solid var(--line);border-radius:10px;padding:6px 10px"'+(O.aiOpen?' open':'')+'><summary style="cursor:pointer;font-weight:600">🤖 AI แต่งต่อ — '+(O.ai==="openai"?"OpenAI":"Gemini")+(has(O.ai)?' · มีคีย์แล้ว':' · <span style="color:#b45309">ยังไม่มีคีย์</span>')+'</summary>'
       +row("ผู้ให้บริการ",'<select id="rnAi" class="nameinp" style="width:auto">'+opt("gemini",O.ai,"Gemini (Google)"+(has("gemini")?"":" — ยังไม่มีคีย์"))+opt("openai",O.ai,"OpenAI"+(has("openai")?"":" — ยังไม่มีคีย์"))+'</select>')
