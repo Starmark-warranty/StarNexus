@@ -3283,7 +3283,7 @@ body[data-theme="dark"] .splash-dots span{background:rgba(255,255,255,.25)}
    ===================================================================== */
 /* ---- APP_META: แหล่งความจริงเดียวของเวอร์ชัน (ดูได้จาก console / คลิกชื่อแอป) ---- */
 const APP_META={
-  name:"StarNexus", version:"1.564", build:"2026-10-30/foil-tray-aibtn",
+  name:"StarNexus", version:"1.565", build:"2026-10-30/sinks-scene-layers",
   file:"StarNexus.html", basedOn:"Furnitech_V3.html (v3.11)",
   /* ───────── เริ่มนับเวอร์ชันใหม่ที่ 1.001 (21/08/2026) ─────────
      ของเดิมนับมาถึง 42.1 แล้ววิ่งเป็นทศนิยมสองชั้นซึ่งอ่านลำดับยาก
@@ -3291,6 +3291,7 @@ const APP_META={
      ประวัติเก่าเก็บไว้ทั้งหมดตามเลขเดิม ไม่ไล่เขียนใหม่ เพราะเลขในนั้นถูกอ้างถึงไปแล้ว
      รายการที่อยู่ใต้ 1.001 ลงไปจึงเป็นเลขชุดเก่า อ่านต่อกันได้ตามวันที่ */
   changelog:[
+    ["1.565","2026-10-30","FEAT ห้องออกแบบ (ผู้ใช้ 12:57 + 13:01) — ① ซิงค์ใต้ท็อป 1 หลุม (sinku 540×440 ลึก 200): อ่างอยู่ใต้ท็อป ท็อปเจาะช่องตามปากอ่าง (w−40 × d−40 มุม 15 · เห็นสันหิน) + ก๊อกบนท็อป ② ซิงค์ 1 หลุมบนท็อป ไม่มีที่พักจาน (sink1 500×450 ลึก 180): ขอบสเตนเลส + อ่างลึกจริงลงในช่องเจาะ — ทั้งสองแบบท็อปเจาะรูจริง (plWtHoles/plWtHoleGeo · ลายหินต่อเนื่อง · ย้ายซิงค์ช่องตาม) ③ เตาอินดักชั่น 2 หัว 30 ซม. HAFELE LUCIEN 495.06.095 (hobd 290×520×68 · กระจกดำ วงหน้า-หลัง แผงสัมผัส โลโก้ · รหัสใส่ให้เอง) ④ FIX ใบเสนอราคา แปลนท็อป ขึ้น “ซิงค์” ทุกตู้ BA… (ตารางรหัส BA = ตู้พื้น · ซิงค์) → วาดตามเครื่องใช้ที่วางจริง ตำแหน่ง/ขนาด/ชื่อรุ่น (ซิงค์ = ปากอ่าง · ใต้ท็อป = ช่องเจาะ · เตา = วงหัวเตา) ไม่มีเครื่องใช้ค่อยเดาแบบเดิมโดยไม่ใช้ชื่อกลุ่มรหัส ⑤ ฉาก 🎬 เลือกแสดง ตู้ลอย / ตู้พื้น + ท็อป / ตู้สูง ต่อฉาก (s.vis · หน้าต่างแก้ฉาก/🔭 · ป้าย 🙈 บนแท็บ · 🙈 แสดงทั้งหมด บนแถบ · ใช้กับ Render ด้วย) ⑥ FIX ท็อปวิ่งเข้าผนัง: ปลายแนวตู้ห่างผนัง ≤ 150 (เดิม 60) = ชนผนัง ท็อป/บัววิ่งถึงผนัง · มุม L ที่ไม่ถึงกัน ≤ 150 ยืดชนกัน · ปิดได้ SN_OFF.plWtHole / dwgApplLbl / scnVis / plWtWallGap"],
     ["1.564","2026-10-30","FEAT ① ถาดฟอยด์ใต้ซิงค์ 3D สมจริง (ผู้ใช้ 12:47 ภาพตู้ซิงค์ “ถาดฟรอดทำ 3 D สมจริงได้ไหม”) — เดิมยืมกล่องตะแกรง 5 แผ่นหนา 15 สีเขียวโปร่ง (ไม่มีสี/วัสดุ) · ตอนนี้เป็นถาดอลูมิเนียมชิ้นเดียว (foilTray): พื้นหนา 1.2 + ร่องนูนตามยาวทุก 28 มม. + ขอบยกรอบตัวสูงตามช่อง “ความสูงถาด” (sinkTrayH) + ขอบม้วนกลมด้านบน + มุมมน 16 · ผิวอลูมิเนียมปัด (สะท้อนแสง มีเงา) · ขนาด/ตำแหน่ง/รหัส/BOM เดิมทุกอย่าง (sinkTrayCalc · 1 ชุด · ไม่เข้าใบตัด) · ปิด SN_OFF.foilTray3d = กล่องแบบเดิม ② UI ไฮไลต์ปุ่ม ✨ ผู้ช่วย ในแถบล่าง (ผู้ใช้ 12:49) — พื้นไล่สีม่วง→ฟ้า (ไม่ซ้ำกับปุ่มที่เปิดอยู่ซึ่งเป็นน้ำเงินเข้ม) ตัวขาวหนา ดาวสีเหลือง เรืองแสงเป็นจังหวะ 5 รอบตอนเปิดโปรแกรมแล้วนิ่ง (ไม่ขยับถ้าเครื่องตั้งลดภาพเคลื่อนไหว) · แถบล่างย่อเหลือไอคอนยังเห็นสีไฮไลต์ · ปิด SN_OFF.aiBtnHi"],
     ["1.563","2026-10-30","FEAT 3D ตะแกรงดึงลงตู้ลอย Häfele iMove (ผู้ใช้ 12:11 ส่งภาพสินค้า + แบบขนาด + ไฟล์งานตู้ WNR113 ที่ใส่ ตระแกรง_504_68_913: “เพิ่ม 3D ตะแกรง imove ให้มี”) — เดิมรหัสนี้วาดเป็นกล่องตะแกรง 5 แผ่น (500×400×280 จากคลัง) ไม่เหมือนของจริง · ตอนนี้รหัสที่มี 504_68 / 504.68 / 504_69 / imove (settings.imoveCodes) วาดเป็นชุด iMove ตามแบบผู้ผลิต: กว้างเท่าช่องในระหว่างแผ่นข้าง (565 ในตู้ 600) · ลึก 267 จากผิวแผ่นหลัง · สูง 380 (1 ถาด) / 565 (2 ถาด · รหัส x2x) · ฐานกลไกสูงจากพื้นตู้ 25 (settings.imoveZ หรือ “วางจากแผ่นพื้นตู้” ถ้ามากกว่า) — ถาด + ราวมือจับหน้า + มือจับกลาง + ฐานกลไกซ้าย/ขวา + แขนคู่ขนานฝั่งละ 2 · สีตามรหัส 504.68.<สี>: 3 เทาเข้ม · 6 ขาว · 9 เงิน · เตือนใน console ถ้าลึกในตู้ < 270 หรือสูงไม่พอ · โหมดเปิดบาน: คลิกที่ชุด = ดึงลงมาหน้าตู้ (ลง ~340 ออกหน้า ~300 ถาดยังขนานพื้น · บานยังปิดอยู่ = เปิดบานให้ก่อน) คลิกอีกครั้ง = ดันกลับ · ทั้งชุดเป็นชิ้นเสมือน _fitId เดียว = 1 ชุดในรายการอุปกรณ์ ไม่เข้าใบตัด · ปิดได้ SN_OFF.imove (กลับเป็นกล่องแบบเดิม)"],
     ["1.562","2026-10-30","FEAT ห้องออกแบบ + ผู้ช่วย (ผู้ใช้ 30/10 11:24–11:42) — ① เลือกหลายตู้: Ctrl+คลิก เพิ่ม/เอาออก · Ctrl+ลากกรอบ (ซ้าย→ขวา = ทั้งใบในกรอบ · ขวา→ซ้าย = แตะกรอบ) · Ctrl+A / ปุ่ม ⬚ เลือกทั้งหมด · ลากใบไหนก็ได้ = ย้ายทั้งชุด (ลงกริด · ขอบชุดดูดผนัง · Alt อิสระ) · Esc เลิก · Del ลบทั้งชุด (ถามก่อน) · กรอบฟ้ารายตู้ · ซิงค์/เตา/ฮู้ด/เตาอบที่ติดตู้ย้าย+หมุนตามตู้ (ลากทีละใบด้วย — เดิมค้างที่เดิม) ② ลายหินอ่อนท็อป/บัว/ผนังหิน: วัสดุ “หินอ่อน” + ช่อง “ลาย” 6 แบบวาดเอง (Carrara · Calacatta · Nero Marquina · Bardiglio · Crema Marfil · Emperador · สีพื้น/สีเส้นปรับได้) หรืออัปโหลดรูปหินจริง (≤ 2048 px · ขนาดลาย มม.) · UV พิกัดโลก ลายต่อกันข้ามชิ้น · ภาพแสงจริงเห็นลาย · หน้ารวมวัสดุใบเสนอราคาใช้ลายจริง ③ ปุ่ม 🎬 Render แทน 🧊 ส่งออก Blender: เลือกฉาก 🎬 + มุมตอนนี้ · 📸 แสงจริง (path tracing ทีละฉาก) หรือ ⚡ เร็ว · ขนาด/ความเนียน/แสง · ⏹ หยุดได้ · ⬇ บันทึก · 🤖 AI แต่งต่อรายภาพ (Gemini หาชื่อรุ่นภาพเอง / OpenAI images/edits · คีย์เดียวกับผู้ช่วย · สั่งให้คงแบบตู้) ④ ⚡ ทำให้เลย: AI ตอบแล้วกดทำตามลำดับเอง + กดตกลงฟอร์มให้ (ไม่ทำให้: ส่งคำขอ/ลบตู้/แทนที่ทั้งฉาก) · สวิตช์ ⚡ หัวแผง ⑤ ปุ่ม ✏ สอนผู้ช่วย กับ 📮 ขอฟีเจอร์ แถวเดียวกัน ⑥ FIX แถบล่างล้นจอ 1920 ที่ 100% (ธีม/⚙ ตั้งค่า ตกขอบ เพราะซ่อนแถบเลื่อน): ย่ออัตโนมัติทีละขั้น (ซ่อนป้ายเล็ก → ปุ่มรองเหลือไอคอน → ทั้งหมด) ยังล้น = แถบเลื่อนบาง + ล้อเมาส์ ⑦ เอาปุ่ม ประกอบ|แยกชิ้น ออกจากแถบล่าง (ไม่ได้ใช้แล้ว) ⑧ ท็อปจบสวย (ไฟล์ครัว L ของผู้ใช้ 11:55): ซิงค์/เตา/ไมโครเวฟขึ้นผิวท็อปเอง (เดิมจมใต้ท็อป 20 มม.) · มุม L/บัว/ผนังหิน เส้นเฉพาะขอบนอก ไม่มีเส้นรอยต่อ · ท็อปจบที่ผิวผนัง (เดิมตามแผง Fix Front ตู้มุม BCL055 ทะลุผนังซ้าย 267 มม.) · ปิดได้ SN_OFF.plMulti / plMarble / plRender / aiAuto / sbFit / viewSegHide / plWtClamp / plWtSeam / plaTopY"],
@@ -19935,9 +19936,9 @@ function render3D(refit){
   const labelScale=Math.max(28,Math.max(...state.boards.map(b=>Math.max(b.L,b.W)))*0.11);
 
   if(state.view==="assembled"){
-    const _vb=viewBoards();                                // v7.28: สำเนาที่ผ่านมุมมอง "เปิดบาน" (ปิดอยู่ = ตัวเดิมทุกชิ้น)
+    const _vb=viewBoards(), _lyH0=scnLyHid(), _lyH=_lyH0;   /* v1.565: ฉากซ่อนตู้ระดับไหน */                                // v7.28: สำเนาที่ผ่านมุมมอง "เปิดบาน" (ปิดอยู่ = ตัวเดิมทุกชิ้น)
     /* v7.28.2: เส้นแกนบานพับ — เห็นชัดว่าโปรแกรมหมุนรอบขอบไหน ถ้าบานหลุดจะรู้ทันทีว่าแกนผิดหรือทิศผิด */
-    _vb.forEach(b=>{ if(!b._pivotW||b._pivotW.k)return; if(state.hidden&&state.hidden.includes(b.id))return;   // v1.456: บานที่ขยับตามกลไกบานพับ จุดหมุนเปลี่ยนตามมุม (ลอยหน้าบาน) — ไม่วาดเส้นแกน เห็นตัวบานพับจริงแทน
+    _vb.forEach(b=>{ if(!b._pivotW||b._pivotW.k)return; if(state.hidden&&state.hidden.includes(b.id))return; if(_lyH0&&_lyH0.has(String(b.cabInst)))return;   // v1.456: บานที่ขยับตามกลไกบานพับ จุดหมุนเปลี่ยนตามมุม (ลอยหน้าบาน) — ไม่วาดเส้นแกน เห็นตัวบานพับจริงแทน
       const P=b._pivotW, hh=Math.max(P.h,60)/2+20;
       const lg=new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(P.x,P.y-hh,P.z),new THREE.Vector3(P.x,P.y+hh,P.z)]);
       const ln=new THREE.Line(lg,new THREE.LineBasicMaterial({color:0xe6a44b,transparent:true,opacity:.9}));
@@ -19946,6 +19947,7 @@ function render3D(refit){
     const _gFillOwn=new Set((state.boards||[]).filter(x=>x&&x._framePart&&!x._frameSec&&x._frameOwner).map(x=>x._frameOwner));
     _vb.forEach((b,i)=>{
       if(state.hidden&&state.hidden.includes(b.id))return;   // ชิ้นที่ซ่อน
+      if(_lyH&&_lyH.has(String(b.cabInst)))return;          // v1.565: ฉากซ่อนตู้ระดับนี้ (ตู้ลอย/ตู้พื้น/ตู้สูง)
       if(b._lineHide)return;                                 // v1.299-local.11: ต้นทางรายการเส้น (ออกใบตัด) — 3D ใช้ชิ้นแสดงผลแทน
       if(b._noPanel||b._frameDoor){                          // v9.83: บานเฟรม = ไม่มีแผ่นบานจริง · v8.93: ลิ้นชักในที่สั่งไม่เอาหน้าบาน — เก็บชิ้นไว้เป็นตัวอ้างอิงผัง แต่ไม่วาด ไม่ผลิต
         /* v1.488: บานเฟรมอลู — แผ่นบานไม่วาด (เดิมข้ามทั้งตัว บานพับจึงไม่เคยขึ้นเลย) · วาดบานพับเฟรมอลู 71T950A ที่ขอบบานพับ (โชว์อย่างเดียว ไม่คลิก) */
@@ -20538,9 +20540,9 @@ function cam2pApply(){ const on=CAM2P.on&&!snOff("cam2p")&&orbit.phi>0.35&&orbit
   const yt=Math.max(-1.8,Math.min(1.8,((t.y-p.y)/hd)/Math.tan(camera.fov*Math.PI/360)));
   camera.setViewOffset(camera.aspect,1,0,-yt/2,camera.aspect,1); }
 function scnCap(){ return {t:orbit.target.toArray().map(v=>Math.round(v*10)/10), th:+orbit.theta.toFixed(5), ph:+orbit.phi.toFixed(5), r:Math.round(orbit.radius*10)/10,
-  fov:Math.round(scnFov()*10)/10, two:!!CAM2P.on&&!snOff("cam2p")}; }
+  fov:Math.round(scnFov()*10)/10, two:!!CAM2P.on&&!snOff("cam2p"), vis:scnVisCap()}; }   /* v1.565: + ตู้ที่แสดง (ไม่มี = เห็นหมด) */
 function scnSave(){ try{ autosaveSoon(); }catch(e){ try{ autosave(); }catch(e2){} } }
-function scnAfterLoad(){ SCN.act=null; setTimeout(()=>{ try{ scnBarRender(); }catch(e){} },0); }
+function scnAfterLoad(){ SCN.act=null; SCN.vis=null;   /* v1.565 */ setTimeout(()=>{ try{ scnBarRender(); }catch(e){} },0); }
 function scnAdd(){ if(snOff("scenes")) return null; const first=!SCN.tip; SCN.tip=1; const L=scnList(), names=new Set(L.map(s=>s.name)); let n=L.length+1; while(names.has("ฉาก "+n)) n++;
   const s=Object.assign({id:"sc"+Date.now().toString(36)+Math.random().toString(36).slice(2,5), name:"ฉาก "+n}, scnCap());
   L.push(s); SCN.act=s.id; if(SCN.show===false) SCN.show=null; scnSave(); scnBarRender();
@@ -20550,6 +20552,7 @@ function scnGo(s,instant){ if(!s) return; SCN.act=s.id; const tg=new THREE.Vecto
   const R=Math.max(+s.r||orbit.radius,ZOOM_MIN_R); modelRadius=Math.max(modelRadius,R/20);
   const TW=Math.PI*2, th=+s.th||0, dth=((((th-orbit.theta)%TW)+TW+Math.PI)%TW)-Math.PI;
   CAM2P.on=!!s.two&&!snOff("cam2p");
+  if(!snOff("scnVis")) scnVisSet(s.vis,true);   /* v1.565: ตู้ที่แสดงของฉากนั้น */
   if(instant){ _vcTw=null; orbit.theta=th; orbit.phi=ph; orbit.radius=R; orbit.target.copy(tg); camFovSet(+s.fov||SCN.fov0); }
   else _vcTw={t0:performance.now(), dur:650, th0:orbit.theta, dth, ph0:orbit.phi, ph1:ph, r0:orbit.radius, r1:R, tg0:orbit.target.clone(), tg1:tg, fv0:scnFov(), fv1:+s.fov||scnFov()};
   orbit.dTheta=orbit.dPhi=orbit.dRadius=0; orbit.zAnchor=null; try{ invalidate(); }catch(e){} scnBarRender(); }
@@ -20575,7 +20578,8 @@ function scnBarRender(){ let b=$("scnBar"); if(!scnBarOn()){ if(b) b.remove(); s
   scnCss(); if(!b){ b=document.createElement("div"); b.id="scnBar"; document.body.appendChild(b); }
   const L=scnList();
   b.innerHTML='<span class="scnT" title="ฉาก (Scene) — มุมกล้องที่เก็บไว้ · PageUp/PageDown ไล่ฉาก">🎬</span>'
-    +L.map(s=>'<button class="scnTab'+(s.id===SCN.act?' on':'')+'" data-id="'+escapeHtml(String(s.id))+'" title="'+escapeHtml(String(s.name||""))+' · เลนส์ '+Math.round(+s.fov||42)+'°'+(s.two?' · 2 จุด':'')+' — คลิก = ไปมุมนี้ · คลิกขวา/ดับเบิลคลิก = แก้">'+escapeHtml(String(s.name||""))+(s.two?'<i>2P</i>':'')+'</button>').join("")
+    +L.map(s=>'<button class="scnTab'+(s.id===SCN.act?' on':'')+'" data-id="'+escapeHtml(String(s.id))+'" title="'+escapeHtml(String(s.name||""))+' · เลนส์ '+Math.round(+s.fov||42)+'°'+(s.two?' · 2 จุด':'')+' — คลิก = ไปมุมนี้ · คลิกขวา/ดับเบิลคลิก = แก้">'+escapeHtml(String(s.name||""))+(s.two?'<i>2P</i>':'')+scnVisTag(s.vis)+'</button>').join("")
+    +(SCN.vis&&!snOff("scnVis")?('<button class="scnVis" title="ตอนนี้ซ่อน '+SCNLY.filter(x=>SCN.vis[x[0]]===0).map(x=>x[1]).join(' · ')+' — คลิก = แสดงทั้งหมด (ฉากยังจำไว้ ไปฉากนั้นอีกครั้งจะซ่อนเหมือนเดิม)">🙈 '+SCNLY.filter(x=>SCN.vis[x[0]]===0).map(x=>x[1].replace(' + ท็อป','')).join('·')+' ✕</button>'):'')   /* v1.565 */
     +'<button class="scnAdd" title="เก็บมุมกล้องตอนนี้เป็นฉากใหม่">＋ ฉาก</button>'
     +'<button class="scnCam" title="มุมเลนส์ / มุมมอง 2 จุด ของกล้องตอนนี้">🔭 '+Math.round(scnFov())+'°'+(CAM2P.on&&!snOff("cam2p")?' 2P':'')+'</button>'
     +'<button class="scnX" title="ซ่อนแถบฉาก (เปิดได้ที่ปุ่ม 🎬 ใต้ลูกเต๋า)">✕</button>';
@@ -20584,6 +20588,7 @@ function scnBarRender(){ let b=$("scnBar"); if(!scnBarOn()){ if(b) b.remove(); s
     bt.oncontextmenu=ev=>{ ev.preventDefault(); if(SCN.act!==s.id) scnGo(s); setTimeout(()=>{ const nb=document.querySelector('#scnBar .scnTab[data-id="'+CSS.escape(String(s.id))+'"]'); scnPopOpen(nb||bt,s); },0); };
     bt.ondblclick=ev=>{ ev.preventDefault(); const nb=document.querySelector('#scnBar .scnTab[data-id="'+CSS.escape(String(s.id))+'"]'); scnPopOpen(nb||bt,s); }; });
   b.querySelector(".scnAdd").onclick=()=>scnAdd();
+  { const v=b.querySelector(".scnVis"); if(v) v.onclick=()=>scnVisSet(null); }   /* v1.565 */
   b.querySelector(".scnCam").onclick=ev=>scnPopOpen(ev.currentTarget,null);
   b.querySelector(".scnX").onclick=()=>{ SCN.show=false; try{ lsSet("sxlocaltrial:furnitech:scnBar",false); }catch(e){} scnBarRender(); };
   scnPlace(b); }
@@ -20596,6 +20601,9 @@ function scnPopOpen(anchor,s){ scnPopClose(); if(snOff("scenes")) return; scnCss
     +'<div class="scnRow"><span>มุมเลนส์ (ภาพเปอร์สเปกทีฟ)</span><b id="scnFovV">'+fv+'°</b></div><input type="range" id="scnFov" min="15" max="100" step="1" value="'+fv+'">'
     +'<div class="scnHint">น้อย = เลนส์แคบ ภาพแบน (เหมือนถ่ายไกล) · มาก = มุมกว้าง ห้องดูกว้าง ขอบภาพยืด · ปกติ 42°</div>'
     +(snOff("cam2p")?'':('<label class="scnCk"><input type="checkbox" id="scn2p"'+(CAM2P.on?' checked':'')+'><span>เส้นตั้งตรง (มุมมอง 2 จุด)<br><span class="scnHint">ผนัง/ขอบตู้ตั้งตรงไม่เอียงเข้าหากัน · กล้องมองแนวราบ (มองลงชันมาก = ปกติ)</span></span></label>'))
+    +(snOff("scnVis")?'':('<div class="scnRow" style="margin-top:8px"><span>แสดงใน'+(s?'ฉากนี้':'มุมตอนนี้ (ชั่วคราว)')+'</span></div><div>'
+      +SCNLY.map(([kk,tt])=>'<label class="scnCk" style="display:inline-flex;margin:4px 12px 0 0"><input type="checkbox" class="scnLy" data-k="'+kk+'"'+((((s?s.vis:SCN.vis)||{})[kk]===0)?'':' checked')+'><span>'+tt+'</span></label>').join("")
+      +'<div class="scnHint">เช่น ฉากแปลน: เอาติ๊กตู้ลอยออก จะเห็นท็อปกับตู้พื้น · ไปฉากอื่นที่ไม่ได้ซ่อน = กลับมาเห็นหมด</div></div>'))
     +'<div class="scnBtns">'+(s?'<button data-a="upd" title="ฉากนี้ใช้มุมกล้องตอนนี้แทน">📷 อัปเดตมุม</button>':'')+'<button data-a="add">＋ เป็นฉากใหม่</button><button data-a="def" title="เลนส์ปกติ 42°">42°</button></div>'
     +(s?'<div class="scnBtns"><button data-a="left" title="เลื่อนไปซ้าย">◀</button><button data-a="right" title="เลื่อนไปขวา">▶</button><span style="flex:1"></span><button data-a="del" style="color:#d33">🗑 ลบฉาก</button></div>':'')
     +'<div class="scnBtns" style="justify-content:flex-end"><button data-a="close">✓ ปิด</button></div>';
@@ -20604,6 +20612,8 @@ function scnPopOpen(anchor,s){ scnPopClose(); if(snOff("scenes")) return; scnCss
   const q=x=>p.querySelector(x), fr=q("#scnFov"), fvl=q("#scnFovV");
   const setF=v=>{ camFovSet(v); if(fvl) fvl.textContent=Math.round(v)+"°"; if(fr) fr.value=Math.round(v); if(s) s.fov=Math.round(v); };
   if(fr){ fr.oninput=()=>setF(+fr.value); fr.onchange=()=>{ scnSave(); scnBarRender(); }; }
+  p.querySelectorAll(".scnLy").forEach(c=>c.onchange=()=>{ const v={}; p.querySelectorAll(".scnLy").forEach(x=>{ v[x.dataset.k]=x.checked?1:0; }); const n=scnVisNorm(v);   /* v1.565: ตู้ที่แสดงในฉาก */
+    if(s){ if(n) s.vis=n; else delete s.vis; scnSave(); } scnVisSet(n); });
   { const c=q("#scn2p"); if(c) c.onchange=()=>{ CAM2P.on=c.checked; if(s) s.two=c.checked; try{ invalidate(); }catch(e){} scnSave(); scnBarRender(); }; }
   { const n=q("#scnName"); if(n){ n.onchange=()=>{ const v=String(n.value||"").trim().slice(0,40); if(v){ s.name=v; scnSave(); scnBarRender(); } else n.value=s.name; };
       n.onkeydown=ev=>{ if(ev.key==="Enter"){ ev.preventDefault(); n.blur(); } }; } }
@@ -20628,6 +20638,30 @@ function scnKey(e){ if(snOff("scenes")||e.ctrlKey||e.metaKey||e.altKey||(e.key!=
   const L=scnList(); if(!L.length||(typeof VIEW_ONLY!=="undefined"&&VIEW_ONLY)) return; e.preventDefault(); e.stopImmediatePropagation();
   let i=L.findIndex(s=>s.id===SCN.act); i=e.key==="PageDown"?(i+1)%L.length:(i<=0?L.length-1:i-1); scnGo(L[i]); }
 addEventListener("keydown",scnKey,true);
+/* ═════════ v1.565: ฉากเลือกแสดง ตู้ลอย / ตู้พื้น / ตู้สูง (ผู้ใช้ 30/10 13:01 “เพิ่มให้มี เลือกซีน ตู้ลอยกับตู้พื้น หมายถึง เลือกแสดงได้” + ภาพฉาก “แปลน”) ═════════
+   เดิม: ฉาก 🎬 เก็บแค่มุมกล้อง/เลนส์/2 จุด — ฉากแปลนมองลงมาเห็นแต่หลังตู้ลอย บังท็อปกับตู้พื้นทั้งแถว
+   ตอนนี้: ฉากเก็บ s.vis = {wall,base,tall} (0 = ซ่อน · ไม่มี = เห็นหมด) แบบ Layer ของ SketchUp
+     ไปฉาก (scnGo) = ใช้ค่าของฉากนั้น · ค้างจนไปฉากอื่น/กด “🙈 … แสดงทั้งหมด” บนแถบฉาก · หน้าต่างแก้ฉาก (คลิกขวา/ดับเบิลคลิกแท็บ) มีช่องติ๊ก
+     หน้าต่าง 🔭 กล้องตอนนี้ = ซ่อนชั่วคราว (＋ เป็นฉากใหม่ จะจำไปด้วย) · ใช้กับ 🎬 Render ด้วย (เรนเดอร์ตามฉาก)
+     ซ่อน = ไม่วาดชิ้นของตู้ระดับนั้น (render3D) · ตู้พื้น = รวมท็อป + เครื่องใช้บนท็อป/ฝังตู้/วางพื้น · ตู้ลอย = รวมฮู้ด · ระดับตู้จาก plLevelOf(รหัส)
+     ไม่แตะ state.hidden (ซ่อน/Isolate ของผู้ใช้) · ปิด SN_OFF.scnVis */
+const SCNLY=[["wall","ตู้ลอย"],["base","ตู้พื้น + ท็อป"],["tall","ตู้สูง"]];
+function scnVisNorm(v){ return (v&&(v.wall===0||v.base===0||v.tall===0))?{wall:v.wall===0?0:1, base:v.base===0?0:1, tall:v.tall===0?0:1}:null; }
+function scnVisCap(){ try{ return SCN.vis?Object.assign({},SCN.vis):undefined; }catch(e){ return undefined; } }
+function scnLyOff(k){ try{ return !snOff("scnVis")&&!!SCN.vis&&SCN.vis[k]===0; }catch(e){ return false; } }
+function scnApplHid(o){ const T=(typeof PLO_T!=="undefined")?PLO_T[o&&o.k]:null; if(!T||!T.appl) return false;
+  return (T.appl==="under"||T.appl==="wall")?scnLyOff("wall"):scnLyOff("base"); }
+/* ชุด cabInst ที่ต้องซ่อนตามฉาก (null = ไม่ซ่อนอะไร) — ระดับตู้จากรหัสของชิ้นที่มีรหัส (ชิ้นเสมือนบางชิ้นไม่มี cab) */
+function scnLyHid(){ let V=null; try{ V=snOff("scnVis")?null:SCN.vis; }catch(e){ return null; } if(!V) return null;
+  const code={}; (state.boards||[]).forEach(b=>{ if(b&&b.cabInst!=null&&b.cab&&!code[b.cabInst]) code[b.cabInst]=b.cab; });
+  const out=new Set(); Object.keys(code).forEach(i=>{ let L="other"; try{ L=plLevelOf(code[i]); }catch(e){} if(V[L]===0) out.add(String(i)); });
+  return out.size?out:null; }
+function scnVisSet(v,quiet){ const n=scnVisNorm(v), same=JSON.stringify(n)===JSON.stringify(SCN.vis||null); SCN.vis=n; if(same) return;
+  try{ render3D(false); }catch(e){ console.error("scnVis:",e); }
+  try{ if(typeof PL!=="undefined"&&PL.on){ plRoomDraw(); plWtDraw(true); } }catch(e){ console.error("scnVis pl:",e); }
+  if(!quiet) try{ scnBarRender(); }catch(e){} }
+function scnVisTag(v){ const n=scnVisNorm(v); return n?('<i title="ซ่อน '+SCNLY.filter(x=>n[x[0]]===0).map(x=>x[1]).join(" · ")+'">🙈</i>'):''; }
+
 let pMode=null,pLX=0,pLY=0,pPan=false,_lastPick=null;
 /* ───────── v1.357: เลือกไว้หลายชิ้นอยู่ — ตัดสินว่า "คลิก" หรือ "ลากหมุนกล้อง" ตอนปล่อยเมาส์ ─────────
    ปกติกดลงบนชิ้น = เลือกชิ้นนั้นทันที (ลากต่อ = หมุนกล้อง) ชุดที่ Ctrl+คลิกไว้ห้าแผ่นจึงหายทุกครั้งที่ลากหมุนดูงาน
@@ -29432,6 +29466,10 @@ function boardRole(b){
      SN_OFF.imove=1       ตะแกรงดึงลง iMove วาดเป็นกล่องตะแกรง 5 แผ่นแบบเดิม · คลิกดึงลงไม่ได้ (v1.563)
      SN_OFF.foilTray3d=1  ถาดฟอยด์ใต้ซิงค์ วาดเป็นกล่อง 5 แผ่นสีเขียวโปร่งแบบเดิม (v1.564)
      SN_OFF.aiBtnHi=1     ปุ่ม ✨ ผู้ช่วย ในแถบล่างเป็นสีเดียวกับปุ่มอื่น (ไม่ไฮไลต์) (v1.564)
+     SN_OFF.plWtHole=1    ท็อปไม่เจาะช่องซิงค์ (ซิงค์ใต้ท็อป/ซิงค์เดี่ยวบนท็อป) (v1.565)
+     SN_OFF.dwgApplLbl=1  แปลนท็อปในใบเสนอราคา เดากรอบซิงค์จากตู้แบบเดิม (v1.565)
+     SN_OFF.scnVis=1      ฉาก 🎬 ไม่มีเลือกแสดง ตู้ลอย/ตู้พื้น/ตู้สูง (v1.565)
+     SN_OFF.plWtWallGap=1 ปลายท็อปถึงผนังเฉพาะช่องไม่เกิน 60 มม. · ไม่ปิดช่องมุม L (แบบเดิม) (v1.565)
      SN_OFF.plMulti=1     ห้องออกแบบเลือกได้ทีละตู้ (ไม่มี Ctrl+คลิก/กรอบ/Ctrl+A) · ลากตู้แล้วซิงค์/ฮู้ดไม่ตาม (v1.562)
      SN_OFF.plMarble=1    ท็อป/บัว/ผนังหินเป็นสีเรียบ ไม่มีลายหินอ่อน (ค่าที่เลือกไว้ยังอยู่) (v1.562)
      SN_OFF.plRender=1    แผงห้องออกแบบกลับมีปุ่ม 🧊 ส่งออก Blender แทน 🎬 Render (v1.562)
@@ -36294,6 +36332,7 @@ function plRoomDraw(){
   try{ plwAddMeshes(g); }catch(e){ console.error("plw:",e); }   // v1.533: ผนังที่วาดจากแปลน
   try{ plwNumMeshes(g); }catch(e){ console.error("plwNum:",e); }   // v1.538: เลขช่วงผนัง
   try{ ploAddMeshes(g); }catch(e){ console.error("plo:",e); }   // v1.535: ประตู · หน้าต่าง · บันได
+  try{ if(PL.wtGrp||plWtHoles().length) plWtDraw(); }catch(e){ console.error("plWtDraw:",e); }   /* v1.565: ย้าย/เพิ่ม/ลบซิงค์ → ช่องเจาะท็อปตาม (ไม่เปลี่ยน = ไม่วาดใหม่ เพราะ sig) */
   try{ plwsMark(g); }catch(e){ console.error("plwsMark:",e); }   // v1.539: ขอบฟ้าผนังที่เลือก
   scene.add(g); PL.grp=g; invalidate();
 }
@@ -37639,8 +37678,11 @@ const PLO_T={
   /* v1.546: เครื่องใช้ในครัว — appl = วิธีวาง: top บนท็อป/ตู้ · under ใต้ตู้ลอย · cab ฝังหน้าตู้ · wall ติดผนัง · floor บนพื้น (o.y = ระดับก้น · ซิงค์/เตา h = หนาตัวเครื่อง) */
   sink :{n:"ซิงค์ 1 หลุม", ic:"🚰", w:800, h:200, d:480, appl:"top"},
   sink2:{n:"ซิงค์ 2 หลุม", ic:"🚰", w:1000, h:200, d:500, appl:"top"},
+  sink1:{n:"ซิงค์ 1 หลุม (ไม่มีที่พัก)", s:"ซิงค์ 1 หลุม", ic:"🚰", w:500, h:180, d:450, appl:"top"},    // v1.565: บนท็อป · h = ลึกอ่าง
+  sinku:{n:"ซิงค์ใต้ท็อป 1 หลุม", s:"ซิงค์ใต้ท็อป", ic:"🚰", w:540, h:200, d:440, appl:"top"},          // v1.565: ฝังใต้ท็อป · ท็อปเจาะช่อง
   hob  :{n:"เตาฝังแก๊ส 2 หัว", ic:"🔥", w:750, h:60, d:430, appl:"top"},
   hobi :{n:"เตาอินดักชั่น 2 หัว", ic:"🔥", w:600, h:60, d:520, appl:"top"},
+  hobd :{n:"เตาอินดักชั่น 2 หัว 30 ซม. HAFELE LUCIEN", s:"เตาอินดักชั่น 30 ซม.", ic:"🔥", w:290, h:68, d:520, appl:"top", code:"495.06.095"},   // v1.565: ผู้ใช้ 12:57 (29 × 52 × 6.8 ซม.)
   hood1:{n:"ฮู้ดฝังใต้ตู้ (เทเลสโคปิก)", ic:"🌀", w:600, h:180, d:280, appl:"under"},
   hood2:{n:"ฮู้ดบางติดใต้ตู้ (Slim)", ic:"🌀", w:600, h:90, d:480, appl:"under"},
   hood3:{n:"ฮู้ดกระโจมติดผนัง", ic:"🌀", w:900, h:550, d:480, sill:1550, wall:1, appl:"wall"},
@@ -37694,7 +37736,7 @@ function ploRectHoles(m,k,r){ if(snOff("plObj")||PLW.on) return; const ops=ploOp
   if(m.material&&m.material.map) try{ plptUvMM(g); }catch(e){} }                 // ผนังใส่รูป (v1.534): UV เป็นมม.ตามพิกัดจริง ทุกท่อนต่อกัน
 /* ── 3D ของในห้อง ── */
 function ploAddMeshes(g){
-  if(snOff("plObj")) return; const L=ploList().filter(o=>o&&(!PLW.on||o.k==="col")&&(o.k!=="col"||!snOff("plCol"))); if(!L.length) return;
+  if(snOff("plObj")) return; const L=ploList().filter(o=>o&&(!PLW.on||o.k==="col")&&(o.k!=="col"||!snOff("plCol"))&&!scnApplHid(o));   /* v1.565: ฉากซ่อนตู้พื้น/ตู้ลอย = ซ่อนเครื่องใช้ระดับนั้น */ if(!L.length) return;
   try{ ploDimDraw(g); }catch(e){ console.error("ploDim:",e); }              // v1.538: Dim ของที่ลาก/เลือกอยู่   // v1.536: ตอนวาดผนังเห็นแต่เสา (เตี้ย)
   if(PLO.drag&&PLO.guides) PLO.guides.forEach(G=>{ try{ plwDashLine(g,G[0],G[1],G[2],G[3],8); }catch(e){} });   // v1.536: เส้นช่วยตอนลากเสา
   const FR=ploFrames(), r=plRoom();
@@ -37794,6 +37836,9 @@ function plaIcon(k,s,e){ const F='fill="rgba(160,170,180,.35)"';
   if(k==="sink2") return s+'<rect x="4" y="28" width="72" height="26" rx="3"/><rect x="8" y="32" width="30" height="18" rx="3" '+F+'/><rect x="42" y="32" width="30" height="18" rx="3" '+F+'/><path d="M40 28v-12h10"/>'+e;
   if(k==="hob") return s+'<rect x="6" y="24" width="68" height="32" rx="3" fill="rgba(30,30,30,.85)"/><circle cx="26" cy="40" r="9" stroke="#ddd"/><circle cx="54" cy="40" r="9" stroke="#ddd"/><circle cx="26" cy="40" r="3" fill="#ddd" stroke="none"/><circle cx="54" cy="40" r="3" fill="#ddd" stroke="none"/>'+e;
   if(k==="hobi") return s+'<rect x="6" y="24" width="68" height="32" rx="3" fill="rgba(30,30,30,.85)"/><circle cx="26" cy="40" r="10" stroke="#bbb" stroke-dasharray="3 2"/><circle cx="54" cy="40" r="10" stroke="#bbb" stroke-dasharray="3 2"/>'+e;
+  if(k==="sink1") return s+'<rect x="14" y="26" width="52" height="32" rx="4"/><rect x="20" y="32" width="40" height="21" rx="4" '+F+'/><path d="M40 26v-10h10"/>'+e;   // v1.565
+  if(k==="sinku") return s+'<path d="M4 30h72" stroke-width="5"/><rect x="16" y="32" width="48" height="26" rx="6" stroke-dasharray="5 3" '+F+'/><path d="M40 28v-12h10"/>'+e;   // v1.565: ใต้ท็อป
+  if(k==="hobd") return s+'<rect x="25" y="6" width="30" height="68" rx="3" fill="rgba(30,30,30,.85)"/><circle cx="40" cy="25" r="10" stroke="#ccc"/><circle cx="40" cy="50" r="10" stroke="#ccc"/>'+e;   // v1.565
   if(k==="hood1") return s+'<rect x="10" y="10" width="60" height="36"/><rect x="12" y="46" width="56" height="7" '+F+'/><path d="M16 60h48" stroke-dasharray="4 3"/>'+e;
   if(k==="hood2") return s+'<rect x="16" y="10" width="48" height="34"/><rect x="8" y="44" width="64" height="9" '+F+'/>'+e;
   if(k==="hood3") return s+'<rect x="34" y="6" width="12" height="28" '+F+'/><path d="M12 54L28 34H52L68 54Z" '+F+'/><path d="M10 54h60"/>'+e;
@@ -37863,7 +37908,7 @@ function plaResnap(o){ const T=PLO_T[o.k]; if(!o.host||!T||!T.appl) return; cons
   if(T.appl==="top") plaPutTop(o,{x:+o.x,z:+o.z,y:+o.y,H}); else if(T.appl==="under") plaPutUnder(o,H); else if(T.appl==="cab") plaPutCab(o,H,true); }
 function plaPk(o,T,th){ const w=Math.max(+o.w||T.w,20), h=Math.max(+o.h||T.h,5), d=Math.max(+o.d||T.d,20), y=Math.max(+o.y||0,0);
   if(T.appl==="wall") return [w,h,d,Math.max(+o.sill||0,0),th/2+d/2];
-  if(o.k==="sink"||o.k==="sink2"||o.k==="hob"||o.k==="hobi") return [w,40,d,y-10,0];
+  if(/^(sink|sink2|sink1|sinku|hob|hobi|hobd)$/.test(o.k)) return [w,40,d,y-10,0];   /* v1.565: + ซิงค์เดี่ยว/ใต้ท็อป/เตา 30 ซม. */
   if(o.k==="hood1") return [w,60,d,y-40,0]; if(o.k==="hood2") return [w,h,d,y-h,0];
   return [w,h,d,y,0]; }
 function plaMesh(o,T,G,box,M,th,r){ const w=Math.max(+o.w||T.w,20), h=Math.max(+o.h||T.h,5), d=Math.max(+o.d||T.d,20), k=o.k;
@@ -37879,6 +37924,25 @@ function plaMesh(o,T,G,box,M,th,r){ const w=Math.max(+o.w||T.w,20), h=Math.max(+
     bx.forEach(cx=>{ box(bw,1,bd,cx,y0+3.5,cz,bowlM); box(bw-24,1,bd-24,cx,y0+4.2,cz,M(0x7d848c,{metalness:.5,roughness:.45})); cyl(22,22,1.5,cx,y0+5.2,cz,dark); });
     if(!two) for(let i=0;i<7;i++) box(w*0.3,1.2,6,w*0.27,y0+3.6,cz-bd/2+bd*(i+0.5)/7,bowlM);
     const fx=two?0:-w*0.2, fz=-d/2+45; cyl(16,18,40,fx,y0+23,fz,steel); cyl(11,11,260,fx,y0+170,fz,steel); box(20,20,190,fx,y0+300,fz+95,steel); box(14,34,14,fx,y0+285,fz+185,steel); return; }
+  /* v1.565: ซิงค์ 1 หลุมบนท็อป (sink1) / ซิงค์ใต้ท็อป (sinku) — อ่างลึกจริงลงไปในช่องเจาะท็อป · ก๊อก · ท่อน้ำทิ้ง */
+  if(k==="sink1"||k==="sinku"){ const sp=plaSinkSpec(o), bw=sp.open[0], bd=sp.open[1], cz=sp.cz, Wt=(typeof plWtOn==="function"&&plWtOn())?Math.max(+plWt().t||20,1):0, yTop=k==="sinku"?y0-Wt:y0;
+    const inner=M(0xb9bfc6,{metalness:.6,roughness:.34}), bowl=new THREE.Mesh(plaBowlGeo(bw,bd,sp.r,sp.depth),inner); bowl.position.set(0,yTop,cz); bowl.castShadow=true; bowl.receiveShadow=true; G.add(bowl);
+    cyl(40,40,1.2,0,yTop-sp.depth+0.8,cz+bd*0.2,steel); cyl(24,24,1.6,0,yTop-sp.depth+1.4,cz+bd*0.2,dark);
+    if(k==="sink1"){ const rim=plaRR(0,0,w,d,18); rim.holes.push(plaRR(0,-cz,bw,bd,sp.r,new THREE.Path()));
+      const g=new THREE.ExtrudeGeometry(rim,{depth:3,bevelEnabled:false,curveSegments:10}); g.rotateX(-Math.PI/2); g.translate(0,y0,0); const m=new THREE.Mesh(g,steel); m.castShadow=true; G.add(m); }
+    const fz=k==="sinku"?(cz-bd/2-55):(-d/2+38);
+    cyl(16,18,40,0,y0+20,fz,steel); cyl(11,11,260,0,y0+170,fz,steel); box(20,20,190,0,y0+300,fz+95,steel); box(14,34,14,0,y0+285,fz+185,steel); return; }
+  /* v1.565: เตาอินดักชั่น 2 หัว 30 ซม. HAFELE LUCIEN 495.06.095 (ผู้ใช้ 12:57 ส่งหน้าสินค้า 29 × 52 × 6.8 ซม.) — กระจกดำ วงหัวเตาหน้า-หลัง แผงสัมผัสด้านหน้า โลโก้มุมขวาล่าง */
+  if(k==="hobd"){ const gt=5, yS=y0+gt+0.3, rg=M(0xd9dbde,{roughness:.45}), R=Math.min(w*0.3,90); box(w,gt,d,0,y0+gt/2,0,black);
+    [-0.24,0.123].forEach(f=>{ const ring=new THREE.Mesh(new THREE.RingGeometry(R-2.4,R,72),rg); ring.rotation.x=-Math.PI/2; ring.position.set(0,yS,f*d); G.add(ring);
+      const tk=new THREE.Mesh(new THREE.PlaneGeometry(22,1.4),rg); tk.rotation.x=-Math.PI/2; tk.position.set(-w/2+18,yS,f*d+2); G.add(tk); });
+    const cz2=d*0.39; box(w*0.32,0.6,4,-w*0.02,yS,cz2+10,M(0x9da1a7)); [-0.38,-0.27,0.24,0.36].forEach(fx=>{ const c=cyl(5,5,0.6,fx*w,yS,cz2-12,rg); c.castShadow=false; });
+    try{ if(!window._plaHobLogo){ const cv=document.createElement("canvas"); cv.width=256; cv.height=48; const c2=cv.getContext("2d");
+        c2.fillStyle="#e9e9e9"; c2.font="bold 32px Arial,Helvetica,sans-serif"; c2.textAlign="right"; c2.textBaseline="middle"; c2.fillText("HÄFELE",252,26);
+        const tx=new THREE.CanvasTexture(cv); try{ tx.encoding=THREE.sRGBEncoding; }catch(e){}
+        window._plaHobLogo=new THREE.MeshBasicMaterial({map:tx,transparent:true,depthWrite:false}); window._plaHobLogo.userData.keep=1; }   // ใช้ซ้ำ ไม่ทิ้งตอนวาดห้องใหม่
+      const lg=new THREE.Mesh(new THREE.PlaneGeometry(60,11),window._plaHobLogo); lg.rotation.x=-Math.PI/2; lg.position.set(w/2-40,yS+0.1,d/2-14); G.add(lg); }catch(e){}
+    return; }
   if(k==="hob"||k==="hobi"){ box(w,8,d,0,y0+4,0,black); const xs=[-w/4,w/4];
     if(k==="hob"){ xs.forEach(x=>{ cyl(62,62,6,x,y0+11,-10,dark); cyl(42,42,10,x,y0+16,-10,steel); cyl(26,26,6,x,y0+23,-10,dark); box(150,6,10,x,y0+21,-10,dark); box(10,6,150,x,y0+21,-10,dark); });
       [-1,1].forEach(sg=>cyl(16,16,14,sg*55,y0+15,d/2-45,steel)); }
@@ -37906,7 +37970,7 @@ function plaPanel(s,o){ const T=PLO_T[o.k]||{}, F=ploFrameOf(o), md=T.appl;
     +fr("รุ่น",'<select data-pok="mdl"><option value="">'+escapeHtml(T.n||"")+' (ค่าตั้งต้น)</option>'+lib.map(m=>'<option value="'+escapeHtml(String(m.id))+'"'+(m.id===cur?" selected":"")+'>'+escapeHtml(String(m.n||""))+'</option>').join("")+'</select>')
     +fr("รหัสสินค้า",'<input type="text" data-pok="code" value="'+escapeHtml(String(o.code||""))+'" placeholder="ไม่บังคับ" style="width:150px">')
     +fr("กว้าง × ลึก",num("w",o.w)+' × '+num("d",o.d)+'<span class="plU">มม.</span>')
-    +fr(/^(sink|sink2|hob|hobi)$/.test(o.k)?"หนาตัวเครื่อง":"สูง",num("h",o.h)+'<span class="plU">มม.</span>')
+    +fr(/^(sink1|sinku)$/.test(o.k)?"ลึกอ่าง":/^(sink|sink2|hob|hobi|hobd)$/.test(o.k)?"หนาตัวเครื่อง":"สูง",num("h",o.h)+'<span class="plU">มม.</span>')
     +(md==="wall"?fr("ก้นฮู้ดสูงจากพื้น",num("sill",o.sill)+'<span class="plU">มม.</span>'):fr(md==="under"?"ก้นตู้ (ระดับติด)":"ระดับวาง (จากพื้น)",num("y",o.y)+'<span class="plU">มม.</span>'))
     +(F?fr("ห่างต้นผนัง",num("off",(+o.t||0)-o.w/2)+'<span class="plNote plNB">ผนังยาว '+Math.round(F.L)+'</span>'):"")
     +'<div class="plRow plBtns" style="margin-top:8px">'+(md!=="wall"?'<button class="ibtn" id="ploRot">⟳ หมุน (R)</button>':'')
@@ -37935,7 +37999,7 @@ async function plaSaveModel(o){ const T=PLO_T[o.k]; if(!T) return false;
   const v=await promptFields("💾 บันทึกเป็นรุ่น — "+T.n,[
     {key:"n",type:"text",label:"ชื่อรุ่น (ขึ้นบนการ์ด) เช่น Franke 1 หลุม ที่พักซ้าย",value:(o.mdl&&o.mdl.n)||""},
     {key:"code",type:"text",label:"รหัสสินค้า / ยี่ห้อ (ไม่บังคับ)",value:o.code||""},
-    {key:"w",label:"กว้าง (มม.)",value:Math.round(+o.w||T.w)},{key:"d",label:"ลึก (มม.)",value:Math.round(+o.d||T.d)},{key:"h",label:/^(sink|sink2|hob|hobi)$/.test(o.k)?"หนาตัวเครื่อง (มม.)":"สูง (มม.)",value:Math.round(+o.h||T.h)}]);
+    {key:"w",label:"กว้าง (มม.)",value:Math.round(+o.w||T.w)},{key:"d",label:"ลึก (มม.)",value:Math.round(+o.d||T.d)},{key:"h",label:/^(sink1|sinku)$/.test(o.k)?"ลึกอ่าง (มม.)":/^(sink|sink2|hob|hobi|hobd)$/.test(o.k)?"หนาตัวเครื่อง (มม.)":"สูง (มม.)",value:Math.round(+o.h||T.h)}]);
   if(!v) return false; const n=String(v.n||"").trim().slice(0,60); if(!n){ toast("ใส่ชื่อรุ่นก่อน"); return false; }
   const L=plaLib(); let m=L.find(x=>x&&x.k===o.k&&x.n===n);
   if(m&&!(await dialog({title:"มีรุ่น “"+n+"” แล้ว — บันทึกทับ?",ok:"บันทึกทับ"}))) return false;
@@ -37954,7 +38018,7 @@ function ploNew(k){ const T=PLO_T[k], r=plRoom(); if(!T) return null;
   if(k==="col"){ delete o.hinge; delete o.swing; o.ref="bl"; }
   if(k==="ceil"||k==="ceilu"){ o.k="ceil"; o.h=Math.round((+r.h||2600)+(k==="ceilu"?200:-300)); delete o.hinge; delete o.swing; o.ref="bl"; }   // v1.538
   if(T.util){ delete o.hinge; delete o.swing; o.ref="bl"; }
-  if(T.appl){ delete o.hinge; delete o.swing; if(T.appl!=="wall") o.y=0; }   // v1.546                   // v1.538                // v1.536: เสาวัดระยะจากมุมหลังซ้ายเป็นค่าตั้งต้น
+  if(T.appl){ delete o.hinge; delete o.swing; if(T.appl!=="wall") o.y=0; if(T.code) o.code=T.code; }   /* v1.565: รุ่นที่มีรหัสในตัว (เตา HAFELE LUCIEN) */   // v1.546                   // v1.538                // v1.536: เสาวัดระยะจากมุมหลังซ้ายเป็นค่าตั้งต้น
   return o; }
 function ploLocked(){ if(plRoomLocked()){ toast("🔒 ห้องล็อกอยู่ — กด 🔒 ห้องล็อกอยู่ (หัวแผงห้อง) เพื่อปลดล็อกก่อน"); return true; }   // v1.538
   try{ return typeof guardEdit==="function"&&guardEdit("ประตู/หน้าต่าง"); }catch(e){ return false; } }   // ล็อกออเดอร์/ลิงก์ดู = แก้ไม่ได้ (เตือนเอง)
@@ -38182,7 +38246,7 @@ function ploGrid(tabs,grid){   // v1.538: แบ่งหมวด · การ�
   tabs.innerHTML=ks.map(k=>'<button data-t="'+k[0]+'" class="'+(k[0]===PL.tab?"on":"")+'">'+k[1]+'</button>').join("");
   tabs.querySelectorAll("button").forEach(bt=>bt.onclick=()=>{ PL.tab=bt.dataset.t; plPanelGrid(); });
   const ok=k=>!!PLO_T[k]&&!(PLO_T[k].appl&&snOff("plAppl"))&&!(k==="col"&&snOff("plCol"))&&!((k==="ceil"||k==="ceilu")&&snOff("plCeil"))&&!(PLO_T[k].util&&snOff("plUtil"));
-  const GR=[["ประตู · หน้าต่าง",["door","door2","slide","open","win","win1","winw"]],["โครงสร้าง · ฝ้า",["stair","col","ceil","ceilu"]],["งานระบบ",["plug","wat","drn"]],["เครื่องใช้ในครัว",["sink","sink2","hob","hobi","hood1","hood2","hood3","oven","micro","bin","gas"]]];   // v1.546
+  const GR=[["ประตู · หน้าต่าง",["door","door2","slide","open","win","win1","winw"]],["โครงสร้าง · ฝ้า",["stair","col","ceil","ceilu"]],["งานระบบ",["plug","wat","drn"]],["เครื่องใช้ในครัว",["sink","sink2","sink1","sinku","hob","hobi","hobd","hood1","hood2","hood3","oven","micro","bin","gas"]]];   // v1.546
   const K=GR.reduce((a,g)=>a.concat(g[1].filter(ok)),[]);
   { const cn=$("plCatN"); if(cn) cn.textContent=K.length+" แบบ"; }
   const lk=plRoomLocked();
@@ -39562,13 +39626,14 @@ function plWtSlabs(){
         cur.a1=Math.max(cur.a1,c.hi[A]); cur.back=s>0?Math.min(cur.back,back(c)):Math.max(cur.back,back(c)); cur.front=s>0?Math.max(cur.front,front(c)):Math.min(cur.front,front(c));
         cur.y=Math.max(cur.y,c.top); cur.insts.push(c.inst); return; }
       cur={wk, a0:c.lo[A], a1:c.hi[A], back:back(c), front:front(c), y:c.top, insts:[c.inst]}; runs.push(cur); }); });
-  const face=k=>plFace(r,k), DW=snOff("plWtDw")?[]:plWtDwSegs();   // v1.536: ผนังที่วาด
+  const face=k=>plFace(r,k), DW=snOff("plWtDw")?[]:plWtDwSegs();
+  const _wtGap=snOff("plWtWallGap")?60:Math.max(+settings.plWtWallGap||150,60);   /* v1.565: ปลายแนวตู้ห่างผนังไม่เกินนี้ = ท็อปวิ่งถึงผนัง (เดิม 60) */   // v1.536: ผนังที่วาด
   /* v1.562: ช่วงตู้ยื่นเลยผิวผนังห้อง (แผงหน้าตู้มุมยื่นทะลุผนัง) → ท็อปจบที่ผิวผนัง แล้วนับเป็นปลายชนผนัง */
   if(!snOff("plWtClamp")) runs.forEach(R=>{ const en=PL_WALLS[R.wk].ax===0?["left","right"]:["back","front"];
     if(r.walls[en[0]]&&R.a0<face(en[0])) R.a0=face(en[0]); if(r.walls[en[1]]&&R.a1>face(en[1])) R.a1=face(en[1]); });
   runs.forEach(R=>{ const W=PL_WALLS[R.wk], A=W.ax, P=W.pa, s=W.s, rOn=!!r.walls[R.wk]&&Math.abs(R.back-face(R.wk))<=60, dF=rOn?null:plWtDwBack(DW,A,P,s,R), onW=rOn||dF!=null, f0=rOn?face(R.wk):dF;
     const ends=A===0?["left","right"]:(R.wk==="left"||R.wk==="right"?["back","front"]:["back","front"]);
-    const eLo=(!!r.walls[ends[0]]&&Math.abs(R.a0-face(ends[0]))<=60)?face(ends[0]):plWtDwEnd(DW,A,P,-1,R), eHi=(!!r.walls[ends[1]]&&Math.abs(R.a1-face(ends[1]))<=60)?face(ends[1]):plWtDwEnd(DW,A,P,1,R);
+    const eLo=(!!r.walls[ends[0]]&&Math.abs(R.a0-face(ends[0]))<=_wtGap)?face(ends[0]):plWtDwEnd(DW,A,P,-1,R), eHi=(!!r.walls[ends[1]]&&Math.abs(R.a1-face(ends[1]))<=_wtGap)?face(ends[1]):plWtDwEnd(DW,A,P,1,R);
     const atLo=eLo!=null, atHi=eHi!=null;
     const sd=Math.max(+T.side||0,0), ov=+T.over||0;
     const a0=atLo?eLo:R.a0-sd, a1=atHi?eHi:R.a1+sd;
@@ -39577,6 +39642,16 @@ function plWtSlabs(){
     out.slabs.push({wk:R.wk, ax:A, pa:P, s, lo, hi, onW, f0, atLo, atHi, run:R, trimLo:null, trimHi:null}); });
   /* มุม L: ชิ้นยาวกว่าได้ก่อน · ชิ้นที่ทับตัดปลายให้ชนขอบชิ้นที่ได้ก่อน */
   const S=out.slabs.slice().sort((a,b)=>(b.hi[b.ax]-b.lo[b.ax])-(a.hi[a.ax]-a.lo[a.ax]));
+  /* ───────── v1.565: ท็อปวิ่งเข้าผนัง / ปิดช่องมุม L (ผู้ใช้ 30/10 13:01 ภาพมุมห้อง: “ตรงนี้ที่ต้องให้ทอปมันวิ่งเข้าผนังครับ มันมีช่องว่าง”) ─────────
+     ① ปลายแนวตู้ห่างผนังห้องที่เปิดอยู่ ≤ plWtWallGap (ตั้งต้น 150 มม. · เดิม 60) = ปลายชนผนัง → ท็อป/บัววิ่งถึงผิวผนัง (eLo/eHi ด้านบน)
+        เช่น ตู้มุม BCL055 เริ่มที่ x 80 (แผ่นข้างตู้ ไม่มีฟิลเลอร์) → เดิมท็อปเริ่ม 80 เหลือช่องถึงผนัง 80 มม. + บัวหลังไม่ชนบัวข้าง
+     ② มุม L: ชิ้นที่ตั้งฉากกันแต่ไม่ถึงกัน (ช่องระหว่างหน้าท็อปแนวหนึ่งกับต้นแนวอีกด้าน ≤ plWtWallGap) → ยืดชิ้นสั้นไปชนชิ้นยาว แล้วนับเป็นมุม L (บัว/ผนังตัดชนกันแบบเดิม)
+     ปิด SN_OFF.plWtWallGap = แบบเดิม (60 มม. · ไม่ปิดช่องมุม) */
+  if(!snOff("plWtWallGap")) for(let i=0;i<S.length;i++) for(let j=i+1;j<S.length;j++){ const a=S[i], b=S[j]; if(a.ax===b.ax) continue;
+    const A=b.ax, B=a.ax; if(Math.min(a.hi[B],b.hi[B])-Math.max(a.lo[B],b.lo[B])<=1) continue;          // แนวขวางต้องทับกัน
+    if(Math.min(a.hi[A],b.hi[A])-Math.max(a.lo[A],b.lo[A])>1) continue;                                  // ทับกันอยู่แล้ว = ตัดปลายตามปกติ
+    const g0=b.lo[A]-a.hi[A], g1=a.lo[A]-b.hi[A];
+    if(g0>0&&g0<=_wtGap){ b.lo[A]=a.hi[A]; b.trimLo=a; } else if(g1>0&&g1<=_wtGap){ b.hi[A]=a.lo[A]; b.trimHi=a; } }
   for(let i=0;i<S.length;i++) for(let j=i+1;j<S.length;j++){ const a=S[i], b=S[j]; if(a.ax===b.ax) continue;
     const ov=[0,2].every(k=>Math.min(a.hi[k],b.hi[k])-Math.max(a.lo[k],b.lo[k])>1); if(!ov) continue;
     const A=b.ax, o0=Math.max(a.lo[A],b.lo[A]), o1=Math.min(a.hi[A],b.hi[A]);
@@ -39643,6 +39718,38 @@ function plaTopFollow(S){ if(snOff("plaTopY")||typeof state==="undefined"||!stat
     if(y==null&&o.host!=null){ try{ const H=plaHostInfo(String(o.host),null); if(H&&!H.up) y=H.c.hi[1]; }catch(e){} }
     if(y!=null&&Math.abs((+o.y||0)-y)>0.5){ o.y=Math.round(y*10)/10; ch=true; } });
   return ch; }
+/* ═════════ v1.565: ซิงค์ 1 หลุมบนท็อป (sink1) · ซิงค์ใต้ท็อป (sinku) · ช่องเจาะท็อป (ผู้ใช้ 30/10 12:57 ส่งภาพซิงค์ใต้ท็อป: “1.เพิ่มหลุมซิงค์ ใต้ ทอป แบบซิงค์ เดี่ยว 2.เพิ่มซิงค์ เดี่ยวแบบบนทอป”) ═════════
+   เดิม: ซิงค์มีแค่ 1 หลุม+ที่พักจาน / 2 หลุม วาดแบนบนผิวท็อป (อ่างเป็นแผ่นบาง ๆ ไม่ลึกลงไป) · ไม่มีแบบฝังใต้ท็อป
+   ตอนนี้ plaSinkSpec(o) บอกปากอ่าง/ช่องเจาะ:
+     sinku = ขอบอ่าง o.w×o.d ซ่อนอยู่ใต้ท็อป · ปากอ่าง = w−40 × d−40 มุม 15 = ช่องเจาะท็อป (เห็นสันหินรอบช่อง) · ก๊อกบนท็อปหลังช่อง
+     sink1 = ขอบสเตนเลสบนท็อป o.w×o.d · อ่าง w−70 × d−110 เยื้องหน้า 15 (ขอบหลังกว้างไว้ก๊อก) · ท็อปเจาะใหญ่กว่าอ่าง 10 (ขอบบังไว้)
+     อ่างลึกจริง o.h ลงไปใต้ผิว + ท่อน้ำทิ้ง · ท็อปเจาะช่องจริง: plWtHoles → plWtHoleGeo (แผ่นท็อปเป็นรูปปิดมีรู อัดหนาเท่าท็อป · ลายหินอ่อนต่อเนื่อง)
+   ปิด: SN_OFF.plWtHole = ท็อปไม่เจาะ (ซิงค์ใต้ท็อปจะมองไม่เห็นอ่าง) */
+function plaSinkSpec(o){ if(!o) return null; const w=Math.max(+o.w||0,120), d=Math.max(+o.d||0,120), h=Math.max(+o.h||0,60);
+  if(o.k==="sinku") return {kind:"u", open:[w-40,d-40], r:15, cut:[w-40,d-40], cz:0, depth:h};
+  if(o.k==="sink1"){ const bw=Math.max(w-70,80), bd=Math.max(d-110,80); return {kind:"t", open:[bw,bd], r:20, cut:[bw+10,bd+10], cz:15, depth:h}; }
+  return null; }
+/* สี่เหลี่ยมมุมมนศูนย์ (cx,cy) — Shape (ไม่ส่ง P) หรือ Path (ใช้เป็นรู) */
+function plaRR(cx,cy,w,h,r,P){ const p=P||new THREE.Shape(), x0=cx-w/2, x1=cx+w/2, y0=cy-h/2, y1=cy+h/2; r=Math.max(Math.min(r,w/2-0.5,h/2-0.5),0.5);
+  p.moveTo(x0+r,y0); p.lineTo(x1-r,y0); p.absarc(x1-r,y0+r,r,-Math.PI/2,0,false); p.lineTo(x1,y1-r); p.absarc(x1-r,y1-r,r,0,Math.PI/2,false);
+  p.lineTo(x0+r,y1); p.absarc(x0+r,y1-r,r,Math.PI/2,Math.PI,false); p.lineTo(x0,y0+r); p.absarc(x0+r,y0+r,r,Math.PI,Math.PI*1.5,false); return p; }
+/* ช่องเจาะของเครื่องใช้หนึ่งชิ้น (พิกัดโลก · ทิศ 0/90/180/270 · แกนหน้าของชิ้น = local z หมุนตาม yaw) */
+function plWtHoleOf(o,sp){ sp=sp||plaSinkSpec(o); if(!sp||!sp.cut) return null; const q=(((+o.yaw||0)%360)+360)%360, rot=q*Math.PI/180, sw=q===90||q===270;
+  const cw=sw?sp.cut[1]:sp.cut[0], cd=sw?sp.cut[0]:sp.cut[1], cx=(+o.x||0)+Math.sin(rot)*sp.cz, cz=(+o.z||0)+Math.cos(rot)*sp.cz;
+  return {x0:cx-cw/2, x1:cx+cw/2, z0:cz-cd/2, z1:cz+cd/2, r:sp.r, k:o.k, id:o.id}; }
+function plWtHoles(){ if(snOff("plWtHole")||typeof state==="undefined"||!state.room||!Array.isArray(state.room.obj)) return [];
+  return state.room.obj.map(o=>(o&&(o.k==="sinku"||o.k==="sink1")&&!scnApplHid(o))?plWtHoleOf(o):null).filter(Boolean); }
+/* แผ่นท็อปมีรู: รูปปิดบนระนาบ (x, −z) อัดหนา t แล้วหมุนนอน — rotateX(−90°): shape y → −z · ทิศอัด → +y · mesh อยู่ที่ 0,0,0 (พิกัดโลก) */
+function plWtHoleGeo(s,H){ const x0=s.lo[0], x1=s.hi[0], z0=s.lo[2], z1=s.hi[2], t=Math.max(s.hi[1]-s.lo[1],0.5);
+  const sh=new THREE.Shape(); sh.moveTo(x0,-z1); sh.lineTo(x1,-z1); sh.lineTo(x1,-z0); sh.lineTo(x0,-z0); sh.closePath();
+  const loops=[]; H.forEach(h=>{ const a=Math.max(h.x0,x0+3), b=Math.min(h.x1,x1-3), c=Math.max(h.z0,z0+3), d=Math.min(h.z1,z1-3); if(b-a<20||d-c<20) return;
+    const p=plaRR((a+b)/2,-(c+d)/2,b-a,d-c,h.r,new THREE.Path()); sh.holes.push(p); loops.push(p.getPoints(10).map(v=>[v.x,-v.y])); });
+  if(!sh.holes.length) return null;
+  const g=new THREE.ExtrudeGeometry(sh,{depth:t,bevelEnabled:false,curveSegments:10}); g.rotateX(-Math.PI/2); g.translate(0,s.lo[1],0); return {g,loops}; }
+/* อ่างซิงค์: ผนังรอบ (วงแหวนมุมมน หนา t) + ก้น · ขอบบนที่ y = 0 ลงไป −dep · ศูนย์ (0,0) */
+function plaBowlGeo(bw,bd,r,dep,t){ t=t||1.2; const up=(sh,depth,y0)=>{ const g=new THREE.ExtrudeGeometry(sh,{depth,bevelEnabled:false,curveSegments:10}); g.rotateX(-Math.PI/2); g.translate(0,y0,0); return g; };
+  const ring=plaRR(0,0,bw+2*t,bd+2*t,r+t); ring.holes.push(plaRR(0,0,bw,bd,r,new THREE.Path()));
+  return mergeGeos([up(ring,dep,-dep), up(plaRR(0,0,bw+2*t,bd+2*t,r+t),t,-dep-t)]); }
 function plWtOutline(g,B,col){ const grp={}, pts=[], E=0.5;
   B.forEach(b=>{ const k=(b.kind?(b.kind==="up"?"u":"w"):"s")+"|"+Math.round(b.lo[1])+"|"+Math.round(b.hi[1]); (grp[k]=grp[k]||[]).push(b); });
   Object.keys(grp).forEach(k=>{ const L=grp[k], y0=L[0].lo[1], y1=L[0].hi[1];
@@ -39669,10 +39776,10 @@ function plWtDraw(force){
   if(typeof scene==="undefined"||!scene) return;
   const kill=()=>{ if(PL.wtGrp){ scene.remove(PL.wtGrp); PL.wtGrp.traverse(o=>{ if(o.geometry) o.geometry.dispose(); if(o.material&&o.material.dispose){ if(o.material.map&&o.material.map._plClone) o.material.map.dispose(); o.material.dispose(); } }); PL.wtGrp=null; PL.wtSig=""; } };
   if(PL&&PL.on&&!plWtOn()&&plaTopFollow(null)) setTimeout(()=>{ try{ plRoomDraw(); }catch(e){} },0);   /* v1.562: ไม่มีท็อป = เครื่องใช้ลงหลังตู้ */
-  if(!PL.on||!plWtOn()){ if(PL.wtGrp){ kill(); invalidate(); } if(PL.tpick){ PL.tpick=null; try{ plwtSelDraw(); }catch(e){} } return; }   // v1.548
+  if(!PL.on||!plWtOn()||scnLyOff("base")){ if(PL.wtGrp){ kill(); invalidate(); }   /* v1.565: ฉากซ่อนตู้พื้น = ซ่อนท็อป */ if(PL.tpick){ PL.tpick=null; try{ plwtSelDraw(); }catch(e){} } return; }   // v1.548
   const T=plWt(), S=plWtSlabs(), M=PLWT_MATS[T.mat]||PLWT_MATS.granite, col=String(T.color||"").trim()||M.c;
-  const _pm=plmSpec(T), _pt=_pm?plmTex(_pm):null;   /* v1.562: ลายหินอ่อน (ไม่มี = สีเรียบเดิม) */
-  const sig=JSON.stringify([_pm?[_pm.kind,_pm.key||_pm.id,_pm.base||"",_pm.vein||"",_pm.mm,!!_pt]:0,col,T.mat,T.wall,T.glass,T.glassColor,T.tile,T.tileColor,S.slabs.map(s=>[s.lo,s.hi].flat().map(v=>Math.round(v))),S.bs.map(s=>[s.kind,s.lo,s.hi].flat().map(v=>typeof v==="number"?Math.round(v):v))]);
+  const _pm=plmSpec(T), _pt=_pm?plmTex(_pm):null, _holes=plWtHoles();   /* v1.565: + ช่องเจาะซิงค์ */   /* v1.562: ลายหินอ่อน (ไม่มี = สีเรียบเดิม) */
+  const sig=JSON.stringify([_pm?[_pm.kind,_pm.key||_pm.id,_pm.base||"",_pm.vein||"",_pm.mm,!!_pt]:0,col,T.mat,T.wall,T.glass,T.glassColor,T.tile,T.tileColor,S.slabs.map(s=>[s.lo,s.hi].flat().map(v=>Math.round(v))),S.bs.map(s=>[s.kind,s.lo,s.hi].flat().map(v=>typeof v==="number"?Math.round(v):v)),_holes.map(h=>[h.x0,h.x1,h.z0,h.z1].map(v=>Math.round(v)))]);
   if(plaTopFollow(S)) setTimeout(()=>{ try{ plRoomDraw(); }catch(e){} },0);   /* v1.562: ซิงค์/เตา/ไมโครเวฟ ขึ้นผิวท็อปเอง */
   if(!force&&PL.wtGrp&&PL.wtSig===sig) return;
   kill(); if(!S.slabs.length&&!S.bs.length) return;
@@ -39687,7 +39794,9 @@ function plWtDraw(force){
     tx._plClone=1; tx.needsUpdate=true; tx.repeat.set(Math.max(s.len,1)/tw, Math.max(s.h,1)/th);
     return new THREE.MeshStandardMaterial({map:tx, roughness:.35, metalness:0}); };
   [...S.slabs,...S.bs].forEach(s=>{ const sz=[0,1,2].map(k=>Math.max(s.hi[k]-s.lo[k],0.5)), c=[0,1,2].map(k=>(s.lo[k]+s.hi[k])/2);
-    const mesh=new THREE.Mesh(new THREE.BoxGeometry(sz[0],sz[1],sz[2]),matOf(s)); mesh.position.set(c[0],c[1],c[2]); if(_pt&&mesh.material===stone) plmUv(mesh.geometry,c); mesh.userData.plWorktop=1; mesh.userData.plWtP=s;   /* v1.548: คลิกเลือกชิ้น */ mesh.castShadow=true; mesh.receiveShadow=true; g.add(mesh);
+    const _hs=(!s.kind&&_holes.length)?_holes.filter(h=>h.x1>s.lo[0]+1&&h.x0<s.hi[0]-1&&h.z1>s.lo[2]+1&&h.z0<s.hi[2]-1):[], _hg=_hs.length?plWtHoleGeo(s,_hs):null;   /* v1.565: แผ่นที่มีช่องซิงค์ = รูปปิดมีรู */
+    const mesh=new THREE.Mesh(_hg?_hg.g:new THREE.BoxGeometry(sz[0],sz[1],sz[2]),matOf(s)); if(!_hg) mesh.position.set(c[0],c[1],c[2]); if(_pt&&mesh.material===stone) plmUv(mesh.geometry,_hg?[0,0,0]:c);
+    if(_hg) _hg.loops.forEach(L=>{ const ln=new THREE.LineLoop(new THREE.BufferGeometry().setFromPoints(L.map(p=>new THREE.Vector3(p[0],s.hi[1]+0.4,p[1]))),new THREE.LineBasicMaterial({color:edgeCol})); ln.userData.edge=1; g.add(ln); }); mesh.userData.plWorktop=1; mesh.userData.plWtP=s;   /* v1.548: คลิกเลือกชิ้น */ mesh.castShadow=true; mesh.receiveShadow=true; g.add(mesh);
     if(!(s.mat==="glass")&&(s.mat==="tile"||snOff("plWtSeam"))){ const el=new THREE.LineSegments(new THREE.EdgesGeometry(mesh.geometry), new THREE.LineBasicMaterial({color:s.mat==="tile"?0x9a948a:edgeCol})); el.position.copy(mesh.position); el.userData.edge=1; g.add(el); } });
   if(!snOff("plWtSeam")){ try{ plWtOutline(g,[...S.slabs,...S.bs].filter(s=>s.mat!=="glass"&&s.mat!=="tile"),edgeCol); }catch(e){ console.error("plWtOutline:",e); } }   /* v1.562: เส้นเฉพาะขอบนอก (มุม L ไม่มีเส้นรอยต่อ) */
   scene.add(g); PL.wtGrp=g; PL.wtSig=sig; invalidate();
@@ -41637,9 +41746,27 @@ function dwgWorktop(C){ let wt={slabs:[],bs:[]}; try{ wt=plWtSlabs(); }catch(e){
   cabs.filter(c=>c.lv==="base"||c.lv==="tall").forEach(c=>o.R(c.f.lo[0],c.f.lo[2],c.f.hi[0],c.f.hi[2],{w:0.5,dash:"4 3",col:DWG_THIN}));
   wt.slabs.forEach(s=>o.R(s.lo[0],s.lo[2],s.hi[0],s.hi[2],{w:1.4,fill:"#e4e5e8"}));
   wt.bs.slice().sort((a,b)=>(a.kind==="up"?1:0)-(b.kind==="up"?1:0)).forEach(b=>{ o.R(b.lo[0],b.lo[2],b.hi[0],b.hi[2],{w:b.kind==="up"?1:0.6,fill:b.kind==="up"||b.mat==="stone"?"#3b3d42":(b.mat==="glass"?"#9fc9c3":"#bdb7ad")}); });   // v1.522
+  /* ───────── v1.565: แปลนท็อป (ใบเสนอราคา) — ป้ายตามเครื่องใช้ที่วางจริง (ผู้ใช้ 30/10 12:57 “ตอนที่ออกใบเสนอราคา ภาพทอปหิน แก้คำให้ออกถูกด้วย ตอนนี้ออกซิงค์หมด”) ─────────
+     เดิม: เดาซิงค์จากตู้ — ตู้พื้นที่อยู่ใน sinkTrayCabs หรือชื่อมีคำ ซิงค์/sink · ไม่มีชื่อในแคตตาล็อก/คำอธิบาย → ตกไปที่ cabCodeDesc
+       ซึ่งตารางรหัส CABCODE_MAP_DEF ให้ "BA" = “ตู้พื้น · ซิงค์” → ตู้รหัส BA… ทุกใบ (BAT070 ซิงค์จริง · BAD161 ลิ้นชัก · BAL214 …) ขึ้นกรอบ “ซิงค์” หมด
+     ตอนนี้: มีเครื่องใช้บนท็อปในห้อง (state.room.obj appl top) → วาดตามของจริง ตำแหน่ง/ขนาด/ทิศ + ชื่อรุ่น (ถ้าบันทึกรุ่น) หรือชื่อชนิดแบบสั้น
+       ซิงค์ = กรอบขอบ + ปากอ่าง · ซิงค์ใต้ท็อป = กรอบประ (ขอบอ่างใต้ท็อป) + ช่องเจาะเส้นทึบ · เตา = กรอบทึบ + วงหัวเตา · ไมโครเวฟ = กรอบ
+       ไม่มีเครื่องใช้เลย → เดาแบบเดิม แต่ไม่ใช้ชื่อกลุ่มรหัส (cabCodeDesc) แล้ว · ปิด SN_OFF.dwgApplLbl = แบบเดิมทุกอย่าง */
+  const _ap=snOff("dwgApplLbl")?[]:((state.room&&Array.isArray(state.room.obj))?state.room.obj.filter(ob=>ob&&PLO_T[ob.k]&&PLO_T[ob.k].appl==="top"&&isFinite(+ob.x)&&isFinite(+ob.z)):[]), _apN=_ap.length;
+  const _circ=(cx,cy,rr)=>o.els.push('<circle cx="'+(+cx).toFixed(1)+'" cy="'+(+cy).toFixed(1)+'" r="'+(+rr).toFixed(1)+'" fill="none" stroke="'+DWG_INK+'" stroke-width="0.7" vector-effect="non-scaling-stroke"/>');
+  _ap.forEach(ob=>{ const T=PLO_T[ob.k], q=(((+ob.yaw||0)%360)+360)%360, rot=q*Math.PI/180, sw=q===90||q===270, w=Math.max(+ob.w||T.w,20), d=Math.max(+ob.d||T.d,20), fw=sw?d:w, fd=sw?w:d, x=+ob.x, z=+ob.z;
+    const L2W=(lx,lz)=>[x+lx*Math.cos(rot)+lz*Math.sin(rot), z-lx*Math.sin(rot)+lz*Math.cos(rot)], nm=String((ob.mdl&&ob.mdl.n)||T.s||T.n||"");
+    if(ob.k==="sinku"){ o.R(x-fw/2,z-fd/2,x+fw/2,z+fd/2,{w:0.6,dash:"4 3",rx:6}); const H=plWtHoleOf(ob); if(H) o.R(H.x0,H.z0,H.x1,H.z1,{w:1.1,fill:"#fff",rx:H.r/k}); }
+    else if(/^sink/.test(ob.k)){ o.R(x-fw/2,z-fd/2,x+fw/2,z+fd/2,{w:0.9,rx:6,fill:"#f4f5f7"});
+      if(ob.k==="sink1"){ const H=plWtHoleOf(ob); if(H) o.R(H.x0+5,H.z0+5,H.x1-5,H.z1-5,{w:0.6,rx:4}); }
+      else { const two=ob.k==="sink2", bw=two?w*0.42:w*0.52, bd=d*0.7; (two?[-w*0.23,w*0.23]:[-w*0.2]).forEach(bx=>{ const c=L2W(bx,d*0.05), hw=(sw?bd:bw)/2, hd=(sw?bw:bd)/2; o.R(c[0]-hw,c[1]-hd,c[0]+hw,c[1]+hd,{w:0.6,rx:4}); }); } }
+    else { o.R(x-fw/2,z-fd/2,x+fw/2,z+fd/2,{w:0.9,rx:3,fill:ob.k==="micro"?"#f4f5f7":"#d9dadd"});
+      const zs=ob.k==="hobd"?[[0,-0.24*d],[0,0.123*d]]:(/^hob/.test(ob.k)?[[-w/4,-10],[w/4,-10]]:[]), rr=ob.k==="hobd"?Math.min(w*0.3,90):(ob.k==="hob"?62:92);
+      zs.forEach(p=>{ const c=L2W(p[0],p[1]); _circ(c[0],c[1],rr); }); }
+    o.T(x,z+3*k,nm,{px:7,bg:1}); });
   /* ซิงค์ */
   const sinkSet=String(settings.sinkTrayCabs||"").split(/[;,\s]+/).map(x=>x.trim().toUpperCase()).filter(Boolean);
-  cabs.filter(c=>c.lv==="base").forEach(c=>{ let nm=""; try{ nm=String((catalogOf(c.code)||{}).name||cabDescGet(c.code)||cabCodeDesc(c.code)||""); }catch(e){}
+  cabs.filter(c=>c.lv==="base"&&!_apN).forEach(c=>{ let nm=""; try{ nm=String((catalogOf(c.code)||{}).name||cabDescGet(c.code)||(snOff("dwgApplLbl")?cabCodeDesc(c.code):"")||""); }catch(e){}
     if(sinkSet.indexOf(String(c.code).toUpperCase())<0&&!/ซิงค์|sink/i.test(nm)) return;
     const W=PL_WALLS[c.wk]; if(!W) return; const A=W.ax, P=W.pa, len=Math.min((c.f.hi[A]-c.f.lo[A])*0.82,780), dep=Math.min((c.f.hi[P]-c.f.lo[P])*0.8,480);
     const ca=(c.f.lo[A]+c.f.hi[A])/2, cp=(c.f.lo[P]+c.f.hi[P])/2+W.s*20, lo=[0,0,0], hi=[0,0,0]; lo[A]=ca-len/2; hi[A]=ca+len/2; lo[P]=cp-dep/2; hi[P]=cp+dep/2;
