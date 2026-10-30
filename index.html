@@ -3283,7 +3283,7 @@ body[data-theme="dark"] .splash-dots span{background:rgba(255,255,255,.25)}
    ===================================================================== */
 /* ---- APP_META: แหล่งความจริงเดียวของเวอร์ชัน (ดูได้จาก console / คลิกชื่อแอป) ---- */
 const APP_META={
-  name:"StarNexus", version:"1.557", build:"2026-10-29/ai-memory",
+  name:"StarNexus", version:"1.561", build:"2026-10-30/ai-goto-req",
   file:"StarNexus.html", basedOn:"Furnitech_V3.html (v3.11)",
   /* ───────── เริ่มนับเวอร์ชันใหม่ที่ 1.001 (21/08/2026) ─────────
      ของเดิมนับมาถึง 42.1 แล้ววิ่งเป็นทศนิยมสองชั้นซึ่งอ่านลำดับยาก
@@ -3291,6 +3291,10 @@ const APP_META={
      ประวัติเก่าเก็บไว้ทั้งหมดตามเลขเดิม ไม่ไล่เขียนใหม่ เพราะเลขในนั้นถูกอ้างถึงไปแล้ว
      รายการที่อยู่ใต้ 1.001 ลงไปจึงเป็นเลขชุดเก่า อ่านต่อกันได้ตามวันที่ */
   changelog:[
+    ["1.561","2026-10-30","FEAT 🤖 ผู้ช่วย AI พาไปหาฟังก์ชัน + แจ้งเมื่อไม่มี (ผู้ใช้ 30/10 10:42 “ถ้าจะทำให้ Api แนะนำ ไปหาฟังก์ชั่นที่เขาต้องการ แล้วถ้าไม่มี ให้แจ้งมาถึงผมทำอย่างไร” · เลือก: แจ้งในโปรแกรมอย่างเดียว · ทุกคนเห็นหน้า 📮 admin จัดการ · ชี้อย่างเดียวไม่กดแทน) — ① action ใหม่ goto: AI ส่งที่หมายจากแผนที่ฟังก์ชัน (แถบบน bar: · แถบล่าง sb: · คลิกขวา ctx: · แผงห้องออกแบบ pl: · ตั้งค่า set:) โปรแกรมเปิดบริบทให้ก่อน (เปิดห้อง/กางกลุ่ม/เลือกชิ้นแล้วเปิดเมนูคลิกขวา/เปิดตั้งค่าไปหมวดนั้น) แล้ววงแหวนส้มกะพริบ + ป้าย “กดตรงนี้ — …” คนกดเอง · ตำแหน่งหาร uiZoomOf · ชั้นอยู่เหนือของที่ชี้ 5 ชั้น · โหมดออฟไลน์ “หา …” ก็ชี้ปุ่มที่ตรงคำได้ ② action ใหม่ request: ไม่มีฟังก์ชันจริง ๆ = การ์ด “ยังไม่มีฟังก์ชันนี้ — 📮 ส่งคำขอ” แก้ข้อความก่อนส่งได้ · ทุกคำตอบมีปุ่ม 📮 ขอฟีเจอร์ คู่กับ ✏ สอน · พิมพ์ “ขอฟีเจอร์: …” ได้ไม่เปลืองโควตา · เก็บแถว AIREQ:: ใน furnitech_cabinets (cloudListCabs กรองออก) · เรื่องคล้ายกัน = ถาม 👍 ขอด้วย (+1) ③ หน้า 📮 คำขอฟีเจอร์: กรองสถานะ ใหม่/รับทราบ/ทำแล้ว (vX)/ไม่ทำ/ของฉัน · ผู้ดูแลแก้สถานะ ตอบ ลบ · 📋 คัดลอกเป็น Markdown ไปวางแชท Claude ④ แจ้งผู้ดูแล: ทุก 5 นาที + ตอนกลับมาที่หน้าจอ → 🔔 + ป้ายเลขที่ปุ่ม 🤖 · คนขอเห็นสถานะ/คำตอบตอนเปิดผู้ช่วยครั้งถัดไป · เดิมทุกเครื่องชื่อ “ทดลองไฟล์กลาง” และ sxCan เปิดให้ทุกคน → ตั้งชื่อเครื่องครั้งเดียว (snAI:me:v1) + รายชื่อผู้ดูแลเก็บที่แถว AIREQ::_cfg (👑 ตั้งฉันเป็นผู้ดูแล) · ปิดได้ SN_OFF.aiGoto / SN_OFF.aiReq"],
+    ["1.560","2026-10-29","FEAT ดึงถาด LeMans II ทีละถาด 2 จังหวะ (ผู้ใช้ 15:10 “ให้หมุนได้ทีละถาด แล้วทำให้เหมือนของจริง 2 จังหวะ”) — โหมดเปิดบาน คลิกที่ถาด: ปิด → ① สวิงออก → ② ดึงออกสุด → เก็บเข้า · state.lmProg ต่อถาด (0/0.5/1) · ท่าสุดท้ายถอดจากแบบผู้ผลิต: หมุนรอบเสา 164.7° แล้วหัวเล็กของถาดมาอยู่หน้าเสา (ห่างทางช่องบาน 105 · ออกหน้า 150 มม. ปรับตามความยาวถาด) กลับด้านตามช่องบาน · viewBoards ขยับเฉพาะภาพ · อนิเมชันขยับก้อนเดิม (lemansAnimate) แบบเดียวกับกางบาน แล้ววาดใหม่ครั้งเดียวตอนจบ · ชิ้นที่ขยับ = ถาด/ราว/แขน (_lmKey) เสาอยู่กับที่"],
+    ["1.559","2026-10-29","FIX 3D LeMans II (ผู้ใช้ 15:06 ส่งแบบมองบนของผู้ผลิต: “ยังไม่เหมือน แล้ว 3D มันโดนคานตั้ง ด้านหน้า”) — ① ทรงถาดลอกจากแบบ: หัวเล็กด้านช่องบานยื่นถึงหน้า · พูใหญ่ในปีกตาย · ขอบหลังเว้าสองพู · หน้าฝั่งปีกตายถอยเข้า · splineThru ผ่านจุด (u,v) ปรับขนาดตามช่อง กลับซ้าย/ขวาตามช่องบาน ② ถาดถอยหลังพ้นคานตั้งด้านหน้า (หาแผ่นตั้งในตู้ที่ตื้น <250 ชิดหน้า → ระยะลึกของคาน + 8) · ลึกถาด lemansD 450 ไม่เกินช่องในถึงแผ่นหลัง ③ ยาวถาดเต็มช่องระหว่างแผ่นข้าง (lemansMaxL 830 → 960) ④ เสาหมุนย้ายไปขอบช่องบานฝั่งปีกตาย ถัดคานตั้ง (ตามแบบ) · แขนยึดชี้เข้าถาด"],
+    ["1.558","2026-10-29","FEAT 3D ตะแกรงสวิงเข้ามุม Kessebohmer LeMans II 541.32.280 (ผู้ใช้ 14:56 ส่งฉาก BCL068 + ลิงก์สินค้า: “ทำ 3D ตระแกรงให้ที”) — เดิมวาดเป็นกล่อง 5 แผ่นในช่องบาน · ตอนนี้รหัสที่เข้า lemansCodes (ตั้งต้น 541_32,541.32,545_32,lemans,เลอมัง,สวิง) วาดเป็นถาดรูปไต: พื้นขาวกันลื่น + ขอบเตี้ย (lmTray) · ราวโครเมียม 2 ชั้น + ซี่ตั้ง (lmRail · TubeGeometry) · เสาสวิง Ø25 · แขนยึดถาด · ถาดยาวตามช่องในระหว่างแผ่นข้าง (สูงสุด lemansMaxL 830) กินเข้าปีกตาย ปลายด้านช่องบานชิดขอบบาน · ทิศตามช่องบาน (ช่องขวา = ยื่นเข้าซ้าย = รุ่นขวา) · สูงขอบ lemansRailH 90 · ชั้นที่ 2 ใช้ bPitch เดิม · ทั้งชุด _fitId เดียว = BOM นับ 1 ชุด (เดิมนับ 2) · ปิดได้ SN_OFF.lemans"],
     ["1.557","2026-10-29","FEAT 🧠 ความจำของทีมสำหรับผู้ช่วย AI (ผู้ใช้ 14:15 “มีฟีเจอร์ให้ Api จดจำไหม เช่นอันที่มันตอบว่าไม่ได้แต่จริง ๆ ทำได้ แล้วเก็บเป็น memory จาก User อื่น ๆ ด้วย หาที่เก็บบน odoo ได้ไหม ตารางไหน”) — เก็บในตาราง furnitech_cabinets (getDB เดียวกับ Library = Odoo เมื่อเปิดผ่าน Odoo) แถวละบทเรียน id AIMEM::<เวลา>-<สุ่ม> แบบ FIT3D::/SECT:: · data {text,q,by=SX.user.display_name,ts} · cloudListCabs ตัด AIMEM:: ออกจากรายการตู้ · ได้มาจาก ✏ สอนผู้ช่วย ใต้คำตอบ AI · พิมพ์ “จำไว้: …” (ไม่เรียก AI) · หน้า 🧠 (ค้น/เพิ่ม/ลบ — ลบได้เฉพาะเจ้าของหรือ admin · _cloudKill) · ส่งให้ AI เฉพาะบทเรียนที่เกี่ยว ≤12 ข้อ/2,500 ตัวอักษร + ใหม่สุด 3 ข้อ · แคช 2 นาที"],
     ["1.556","2026-10-29","FIX ผู้ช่วย AI หาเมนูเพิ่มบานไม่เจอ (ผู้ใช้ 14:12 ภาพ “⚠ ไม่มีคำสั่ง adddoor” แล้วมือจับพังต่อ “ตู้ 5555 ไม่มีบาน”: “มีคำสั่งเพิ่มบานอยู่นะ”) — AI ส่งชื่อ adddoor (ตัด ctx: ทิ้ง) · toolOf หาแบบยืดหยุ่น: ตรงตัว → เติม/ตัด ctx: → ชื่อเรียกง่าย TOOL_ALIAS (door_add/add_door/drawer_add → ctx:adddoor · hinge_add · leg_add · add_shelf ฯลฯ) → เทียบแบบไม่สน _ - : · prompt ย้ำให้สะกดตรง รวม ctx: และสั่งเพิ่มบานก่อนมือจับ/บานพับ"],
     ["1.555","2026-10-29","FEAT 🏗 AI Model — สร้างตู้ใหม่จากต้นแบบ (ผู้ใช้ 14:00 “1. เลือก Model ต้นแบบ 2. อธิบายเรื่องที่ต้องการปรับแก้ 3. ให้ AI เอาสกิลการใช้งานฟังก์ชันมาสร้างตู้ใหม่ 4. ตั้งชื่อ บันทึกใน Library” · เลือก: เห็นแผนก่อนแล้วทำต่อเนื่อง · วางข้างตู้ในฉากเดิม · AI เสนอชื่อแก้ได้) — ปุ่ม 🏗 หัวแผงผู้ช่วย: ① รหัสจาก cloudListCabs (datalist · ตั้งต้น = รหัสตู้ที่เลือก) ② คำอธิบาย → cloudLoadCab(code,true) ต่อท้ายฉาก · ส่งโครงสร้างแผ่น (structCtx ≤70 แผ่น) + คำสั่ง + คู่มือ · AI ตอบ actions tool + newCode/desc ③ แผนติ๊กเลือกได้ · ทำทีละขั้น runTool(auto) ฟอร์ม promptFields กดตกลงให้หลังโชว์ 0.7 วิ (dialog/ovCard รอคนกด) · แถบความคืบหน้าบนจอ · พังขั้นไหนหยุด ทำต่อได้ ④ saveCabModel เดิม กรอกรหัส/คำอธิบายให้ คนกดบันทึกเอง · runTool รอหน้าต่าง ovCard ชั้น 430 ด้วย (เดิมรอแค่ promptFields)"],
@@ -4008,6 +4012,7 @@ const DEF_SETTINGS={ frontSetMax:6, dowelD:8, dowelDepth:28, dowelMateDepth:12, 
   dowelSizeMode:true, dowelBackRelease:0, dowelFlipFront:false, dowelSizeRule:DEF_DOWEL_RULE,
   dowelFormulas:[{name:"มาตรฐาน",rule:DEF_DOWEL_RULE}], dowelFormulaActive:"มาตรฐาน", mfFormulaActive:"มาตรฐาน", cloudAutoSave:true,
   backset:16, backGroove:true, backOver:4.5, backClear:0.5,
+  lemansCodes:"541_32,541.32,545_32,lemans,เลอมัง,สวิง", lemansMaxL:960, lemansD:450, lemansRailH:90,   // v1.558: ตะแกรงสวิง LeMans II — รหัสที่วาดเป็นถาดรูปไต · ยาวถาดสูงสุด · สูงขอบถาด (มม.)
   railAutoGap:500,   // v1.292: คานขวางในโครง ห่างกันไม่เกินกี่ มม. ก่อนต้องเพิ่มคาน
   ledStripGapMax:40, ledStripMaxL:5000,   // v1.294: เส้นไฟข้ามรอยที่ชั้นตัดรางได้ไม่เกินกี่ มม. · ยาวสุดต่อเส้น (ม้วน)
   drawerBotThick:9, drawerBotLift:11, drawerBotOver:4.5, drawerBotClear:0.5, drawerBotMacroOn:true, drawerBotPipeNotch:false, drawerBotPipeW:40, drawerBotPipeH:25,
@@ -6819,6 +6824,8 @@ function shapeLocalGeo(b){
     g.applyMatrix4(MB);
     g.applyMatrix4(new THREE.Matrix4().copy(orientMatrix(b.orient,b.yaw)).invert());
     return g; }
+  if(b._shape==="lmTray") return lemansGeo(b,"tray");   // v1.558: LeMans II ถาด
+  if(b._shape==="lmRail") return lemansGeo(b,"rail");   // v1.558: LeMans II ราวโครเมียม
   if(b._shape==="cutTray") return cutTrayGeo(Math.max(+b.L||100,40),Math.max(+b.W||100,40),Math.max(T,10));   // v1.532: ถาดช้อน
   if(b._shape==="flatPull") return pullFlatGeo(b);                                    // v1.446: มือจับบาร์แบน
   throw new Error("unknown shape");
@@ -16781,6 +16788,98 @@ async function sinkTrayLookup(t){
   }catch(e){ console.error("sinkTrayLookup:",e); return null; }
   finally{ _fgTrayBusy.delete(key); }
 }
+/* ═════════ v1.558: Kessebohmer LeMans II — ชิ้นเสมือนสำหรับวาด 3D (ไม่ใช่ไม้ · ไม่ออกใบตัด) ═════════
+   ต่อถาด: ① พื้นถาดขาว (_shape lmTray · พื้น + ขอบเตี้ย) ② ราวโครเมียม (_shape lmRail · ราว 2 ชั้น + ซี่ตั้ง)
+   ชุดเดียว: ③ เสาหมุน Ø25 โครเมียม ที่มุมหน้าฝั่งช่องบาน สูงคลุมทุกชั้น (เฉพาะถาดแรก) ④ แขนยึดถาดกับเสา ทุกถาด
+   ชิ้นนอน (flat): local x = ยาวถาด (L) · y = ลึก (W · +y = หลังตู้) · z = สูง (T) */
+function lemansIs(code){ if(snOff("lemans")) return false; const c=String(code||"").toLowerCase();
+  return String(settings.lemansCodes||"541_32,541.32,545_32,lemans,เลอมัง,สวิง").split(/[,;]+/).map(x=>x.trim().toLowerCase()).filter(Boolean).some(k=>c.indexOf(k)>=0); }
+function lemansBoards(cx,cy,cz,L,H,D,openR,cabRaw,cabInst,code,fid,postH,postX,postZ,idx){
+  const base={cab:cabRaw||undefined,cabInst,yaw:0,tone:null,r:0,holes:[],grooves:[],connectors:[],mat:"$CarcassBodyMat",surfT:"",surfB:"",
+    edges:["No Edge","No Edge","No Edge","No Edge"],_virtual:true,_fitPart:true,_autoFit:true,_basket:true,_lemans:true,_lmR:!!openR,_fit:code,_fitId:fid};
+  const mk=(nm,o)=>Object.assign({id:uid(),name:code+" · "+nm},base,o);
+  const out=[
+    mk("ถาด (พื้นขาวกันลื่น)",{orient:"flat",L:round(L),W:round(D),T:round(H),x:round(cx),y:round(cy),z:round(cz),_shape:"lmTray",_hex:"#f3f3f0"}),
+    mk("ราวโครเมียม",{orient:"flat",L:round(L),W:round(D),T:round(H),x:round(cx),y:round(cy),z:round(cz),_shape:"lmRail",_metal:"chrome"})];
+  const px=(postX!=null)?postX:(openR?cx-L/2+L*0.44:cx+L/2-L*0.44), pz=(postZ!=null)?postZ:(cz+D/2-14);   // หน้าตู้ = +z
+  const ah=18;
+  out.push(mk("แขนยึดถาด",{orient:"front",L:22,W:ah,T:70,x:round(px),y:round(cy-H/2+ah/2+6),z:round(pz-40),_metal:"chrome"}));
+  /* v1.560: ชิ้นที่ขยับตอนดึงถาด (ถาด · ราว · แขน) — กุญแจต่อถาด + จุดเสาหมุน + สเกลเทียบแบบ */
+  const key=String(cabInst||"")+"|lm:"+fid+":"+(idx||0);
+  const tipX=openR?cx+L/2:cx-L/2, tipZ=cz+D/2-0.07*D;   // หัวเล็กของถาด (ฝั่งช่องบาน ชิดหน้า) ตอนปิด
+  out.forEach(b=>{ b._lmKey=key; b._lmPx=round(px); b._lmPz=round(pz); b._lmS=+(L/942).toFixed(4); b._lmTx=round(tipX); b._lmTz=round(tipZ); b._lmD=round(D); });
+  if(postH>0){ const ph=postH;
+    out.push(mk("เสาสวิง Ø25",{orient:"flat",L:25,W:25,T:round(ph),x:round(px),y:round(cy-H/2+ph/2),z:round(pz),_shape:"cyl",_metal:"chrome"})); }
+  return out; }
+const _lmGeoC={};
+/* v1.559: ทรงถาดตามแบบของผู้ผลิต (ผู้ใช้ 15:06 ส่งแบบมองบน LeMans II: “ยังไม่เหมือน”)
+   ลอกจุดจากภาพแบบ (W ≈ 990 · ลึก ≥500 · 1 px ≈ 3 มม.) ท่าปิด: u = 0 ปลายด้านช่องบาน (หัวเล็ก ยื่นถึงหน้า) → 1 ปลายปีกตาย (พูใหญ่)
+   v = 0 หน้าตู้ → 1 หลังตู้ · หลังเว้าเป็นสองพู · หน้าฝั่งปีกตายถอยเข้า ~25% · มีรอยบากใกล้เสาหมุน */
+function lemansOutlineUV(){   // ปิดรอบ: ขอบหลัง (ลอกแบบ) แล้ววนกลับทางหน้า
+  const back=[[.0,.05],[.01,.2],[.035,.38],[.075,.53],[.13,.62],[.2,.68],[.27,.7],[.33,.705],[.39,.69],[.43,.665],[.46,.66],[.5,.69],[.56,.71],[.63,.72],
+    [.7,.715],[.77,.69],[.84,.645],[.9,.58],[.95,.5],[.985,.41],[1,.33],[.99,.26],[.96,.205],[.9,.18],[.82,.185],[.74,.18],[.68,.16],[.63,.12],[.585,.07],
+    [.55,.04],[.5,.025],[.42,.015],[.33,.01],[.22,.008],[.12,.008],[.04,.01]];
+  return back; }
+function lemansShape(L,W,mirror){ const P=lemansOutlineUV();
+  const xs=P.map(p=>p[0]), ys=P.map(p=>p[1]), u0=Math.min(...xs), u1=Math.max(...xs), v0=Math.min(...ys), v1=Math.max(...ys);
+  const pts=P.map(p=>{ const u=(p[0]-u0)/(u1-u0), v=(p[1]-v0)/(v1-v0);
+    return new THREE.Vector2(mirror?(L/2-u*L):(-L/2+u*L), -W/2+v*W); });
+  if(mirror) pts.reverse();                                  // คงทิศวนเดิม (Extrude ต้องการรูปปิดทิศเดียวกัน)
+  const sh=new THREE.Shape(); sh.moveTo(pts[0].x,pts[0].y); sh.splineThru(pts.slice(1).concat([pts[0]])); return sh; }
+function lemansGeo(b,part){ const L=Math.max(+b.L||200,100), W=Math.max(+b.W||200,100), H=Math.max(+b.T||60,30);
+  const mir=!!b._lmR, k=part+"|"+Math.round(L)+"|"+Math.round(W)+"|"+Math.round(H)+"|"+(mir?1:0); if(_lmGeoC[k]) return _lmGeoC[k].clone();
+  const sh=lemansShape(L,W,mir), z0=-H/2, gs=[];
+  if(part==="tray"){
+    const g=new THREE.ExtrudeGeometry(sh,{depth:5,bevelEnabled:false,curveSegments:18}); g.translate(0,0,z0); gs.push(g);
+    const pts=sh.getPoints(20), sx=(L/2-3)/(L/2), sy=(W/2-3)/(W/2);
+    const ring=new THREE.Shape(pts); ring.holes.push(new THREE.Path(pts.map(p=>new THREE.Vector2(p.x*sx,p.y*sy)).reverse()));
+    const g2=new THREE.ExtrudeGeometry(ring,{depth:16,bevelEnabled:false,curveSegments:18}); g2.translate(0,0,z0+5); gs.push(g2);
+  } else {
+    const per=sh.getSpacedPoints(180); per.pop();
+    const loop=z=>new THREE.CatmullRomCurve3(per.map(p=>new THREE.Vector3(p.x,p.y,z)),true);
+    const zA=z0+H*0.55, zB=H/2-3;
+    gs.push(new THREE.TubeGeometry(loop(zA),180,2.6,8,true));
+    gs.push(new THREE.TubeGeometry(loop(zB),180,3.2,8,true));
+    let acc=0, last=per[0]; const step=95, hgt=zB-(z0+21);
+    for(let i=1;i<=per.length;i++){ const p=per[i%per.length]; acc+=p.distanceTo(last); last=p;
+      if(acc>=step){ acc=0; const c=new THREE.CylinderGeometry(2,2,hgt,8); c.rotateX(Math.PI/2); c.translate(p.x,p.y,z0+21+hgt/2); gs.push(c); } }
+  }
+  const out=mergeGeos(gs); _lmGeoC[k]=out; return out.clone(); }
+/* ═════════ v1.560: ดึงถาด LeMans II ทีละถาด 2 จังหวะ (ผู้ใช้ 15:10 “ให้หมุนได้ทีละถาด แล้วทำให้เหมือนของจริง 2 จังหวะ”) ═════════
+   โหมดเปิดบาน → คลิกที่ถาด: ปิด → ① สวิงออก (ครึ่งทาง) → ② ดึงออกสุด → ปิด · state.lmProg[กุญแจถาด] = 0 · 0.5 · 1
+   ท่าสุดท้ายถอดจากแบบผู้ผลิต (ภาพถาดล่าง · ช่องบานซ้าย): หมุน 164.7° (x → หน้าตู้) แล้วหัวเล็กมาอยู่หน้าเสา (ห่างทางช่องบาน 105 · ออกหน้า 150 มม.)
+   ท่ากลาง = ครึ่งทางของทั้งมุมและระยะ · ช่องบานขวา = กลับด้านแกน x · ขยับเฉพาะภาพ (viewBoards) ตำแหน่งจริงของชิ้นไม่เปลี่ยน */
+/* ท่าสุดท้ายตามแบบ: หมุน 164.7° แล้วหัวเล็กของถาดมาอยู่หน้าเสาหมุน (ห่างไปทางช่องบาน 105 · ออกหน้า 150 มม. ที่ถาดยาว 942) */
+const LM_OPEN={deg:164.7, tipX:105, tipZ:150};
+function lemansPose(b,t){ const m=b._lmR?-1:1, s=+b._lmS||1;
+  const at=(deg,dx,dz)=>{ const r=lemansXY(b._lmTx,b._lmTz,b._lmPx,b._lmPz,{deg,tx:0,tz:0});   // หมุนแล้วเลื่อนให้หัวเล็กไปอยู่จุดเป้า
+    return {deg, tx:b._lmPx+dx-r[0], tz:b._lmPz+dz-r[1]}; };
+  const D=+b._lmD||450;
+  const K1=at(-m*90,-m*(D+12),110);                              // ① สวิงออก: ตัวถาดชี้ตรงออกหน้าตู้ อยู่ฝั่งช่องบานถัดตัวบาน (ตามแบบ) พ้นหน้าตู้
+  const K2=at(-m*LM_OPEN.deg,-m*LM_OPEN.tipX*s,LM_OPEN.tipZ*s);  // ② ดึงออกสุด: หมุนต่อทางเดิมจนได้ท่าตามแบบ
+  const L=(A,B,k)=>({deg:A.deg+(B.deg-A.deg)*k, tx:A.tx+(B.tx-A.tx)*k, tz:A.tz+(B.tz-A.tz)*k});
+  return t<=0.5?L({deg:0,tx:0,tz:0},K1,t/0.5):L(K1,K2,(t-0.5)/0.5); }   // deg = หมุนแบบ yaw ของโปรแกรม (x → −z เป็นบวก)
+function lemansXY(x,z,px,pz,P){ const r=P.deg*Math.PI/180, c=Math.cos(r), sn=Math.sin(r), dx=x-px, dz=z-pz;
+  return [px+dx*c+dz*sn+P.tx, pz-dx*sn+dz*c+P.tz]; }
+function lemansT(b){ const v=(state.lmProg||{})[b._lmKey]; return Math.max(0,Math.min(+v||0,1)); }
+function lemansXf(b,t){ const P=lemansPose(b,t), q=lemansXY(b.x,b.z,b._lmPx,b._lmPz,P);
+  return Object.assign({},b,{x:round(q[0]), z:round(q[1]), yaw:((((b.yaw||0)+P.deg)%360)+360)%360}); }
+let _lmAnim=null;
+function lemansAnimate(key,from,to,ms){
+  state.lmProg=state.lmProg||{}; if(_lmAnim) cancelAnimationFrame(_lmAnim);
+  const bs={}; state.boards.forEach(b=>{ if(b&&b._lmKey===key) bs[b.id]=b; });
+  const snap=[]; root.children.forEach(o=>{ const id=o.userData&&o.userData.id; if(id&&bs[id]) snap.push({o,b:bs[id],px:o.position.x,pz:o.position.z,q:o.quaternion.clone()}); });
+  const fin=()=>{ _lmAnim=null; _fastFrame=false; state.lmProg[key]=to; render3D(false); };
+  if(!snap.length||snOff("doorFast")){ fin(); return; }
+  const t0=performance.now(), ax=new THREE.Vector3(0,1,0), q=new THREE.Quaternion(); ms=ms||620;
+  const step=now=>{ const k=Math.min((now-t0)/ms,1), e=k<.5?4*k*k*k:1-Math.pow(-2*k+2,3)/2, t=from+(to-from)*e;
+    snap.forEach(s=>{ const A=lemansPose(s.b,from), B=lemansPose(s.b,t), ra=A.deg*Math.PI/180;
+      const x0=s.px-A.tx-s.b._lmPx, z0=s.pz-A.tz-s.b._lmPz, c=Math.cos(ra), sn=Math.sin(ra);
+      const dx=c*x0-sn*z0, dz=sn*x0+c*z0, p=lemansXY(s.b._lmPx+dx,s.b._lmPz+dz,s.b._lmPx,s.b._lmPz,B);   // ถอดท่าเดิม → ท่าใหม่
+      s.o.position.x=p[0]; s.o.position.z=p[1];
+      q.setFromAxisAngle(ax,(B.deg-A.deg)*Math.PI/180); s.o.quaternion.copy(q).multiply(s.q); });
+    invalidate(); if(k>=1){ fin(); return; } _lmAnim=requestAnimationFrame(step); };
+  _lmAnim=requestAnimationFrame(step); }
 function _basketBoards(cx,cy,cz,bw,bh,bd,cabRaw,cabInst,code,fid){
   const tw=15, half=tw/2;
   const mk=(nm,L,W,T,x,y,z)=>({id:uid(),name:code+" · "+nm,orient:"front",cab:cabRaw||undefined,cabInst,
@@ -17686,6 +17785,37 @@ function applyCabFittings(){
           const pitch=(def.bPitch>0)?def.bPitch:((def.fromBot>0)?def.fromBot:(def.bh+50));
           const n=Math.max(1,(def.cabQty&&def.cabQty[cab])||def.bQty||1);
           const clr=Math.max(+settings.basketColClear||10,0);
+          /* ───────── v1.558: ตะแกรงสวิงเข้ามุม Kessebohmer LeMans II (ผู้ใช้ 14:56 “ทำ 3D ตระแกรงให้ที” + ลิงก์ 541.32.280) ─────────
+             ของจริงไม่ใช่กล่องในช่องบาน: ถาด 2 ชั้นรูปไต ยาวกินเข้าไปในปีกตาย (blind) ของตู้เข้ามุม แล้วสวิงออกทางช่องบาน
+             → ยาวตามช่องในระหว่างแผ่นข้าง (ไม่บีบเท่าช่องบานแบบตะแกรงทั่วไป) สูงสุด lemansMaxL · ปลายด้านช่องบานชิดขอบบาน
+             ทิศ: ช่องบานอยู่ขวาของตู้ = ถาดยื่นเข้าปีกซ้าย (รุ่นขวา 541.32.280) · สลับข้างเองตามช่องบาน
+             สูงขอบถาด lemansRailH (ของจริงขอบเตี้ย) · ชั้นถัดไปใช้ระยะ bPitch เดิม · ทั้งชุดใช้ _fitId เดียว = นับ 1 ชุดใน BOM
+             รหัสที่นับเป็น LeMans: settings.lemansCodes (คั่นด้วย ,) · ปิดได้ SN_OFF.lemans */
+          if(lemansIs(def.code)){
+            const sd2=carc.filter(z=>z.orient==="side"&&!isRail(z)&&z.zoneLo==null).slice().sort((a,b)=>a.x-b.x);
+            if(sd2.length>=2){
+              const sLo=sd2[0].x+worldDims(sd2[0])[0]/2, sHi=sd2[sd2.length-1].x-worldDims(sd2[sd2.length-1])[0]/2;
+              const ds=doorSpan||{lo:sLo,hi:sHi,cx:(sLo+sHi)/2};
+              const openR=ds.cx>(sLo+sHi)/2;
+              /* v1.559: คานตั้งด้านหน้า (เสาแบ่ง/Guide Col ที่ตื้นกว่าตู้ ชิดหน้า) — ถาดต้องถอยหลังพ้นคาน (ผู้ใช้ 15:06 “3D มันโดนคานตั้ง ด้านหน้า”) */
+              const fZ=A2.frontZ;
+              const stD=carc.filter(z=>z.orient==="side"&&z!==sd2[0]&&z!==sd2[sd2.length-1]&&!isRail(z)).reduce((m,z)=>{ const d=worldDims(z)[2];
+                return (d<250&&z.z+d/2>fZ-30)?Math.max(m,fZ-(z.z-d/2)):m; },0);
+              const fOff=(stD>0?stD:0)+8;
+              const bk=carc.filter(z=>z.orient==="front"&&/back/i.test(String(z.name||""))).reduce((m,z)=>Math.max(m,z.z+worldDims(z)[2]/2),-Infinity);
+              const inD=isFinite(bk)?(fZ-bk):def.bd;
+              const Ltr=Math.max(Math.min(sHi-sLo-2*clr, +settings.lemansMaxL||960),200);
+              const Dtr=Math.max(Math.min(+settings.lemansD||450, inD-fOff-12, def.bd),200);
+              const Htr=Math.max(Math.min(def.bh, +settings.lemansRailH||90),30);
+              const cxT=openR?(sHi-clr-Ltr/2):(sLo+clr+Ltr/2), czT=fZ-fOff-Dtr/2;
+              const postX=openR?(ds.lo+30):(ds.hi-30), postZ=fZ-fOff-14;   // เสาหมุน: ขอบช่องบานฝั่งปีกตาย ถัดคานตั้ง
+              const fidSet=uid();
+              for(let i=0;i<n;i++){ const cyT=(cy0-def.bh/2+Htr/2)+pitch*i;
+                if(i>0 && isFinite(topY) && (cyT+Htr/2)>topY-2) break;
+                lemansBoards(cxT, cyT, czT, Ltr, Htr, Dtr, openR, cabRaw, cabInstVal, def.code+" #"+(i+1), fidSet,
+                  i===0?Math.min(pitch*(n-1)+Htr+60, isFinite(topY)?topY-(cyT-Htr/2):1e9):0, postX, postZ, i)
+                  .forEach(b=>{ b._fit=def.code; out.push(b); }); }
+              return; } }
           const bw=isFinite(innerW) ? Math.min(def.bw, Math.max(round(innerW-2*clr),60)) : def.bw;   // กว้างเกินตู้ -> ย่อลงพอดี
           let made=0, skip=0;
           for(let i=0;i<n;i++){ const cy=cy0+pitch*i;
@@ -18189,6 +18319,7 @@ function viewBoards(){
   const dTf={};
   const _tvC={};   // v1.474: ระยะชักรางรับใต้ต่อชุดลิ้นชัก (คิดครั้งเดียวต่อรอบ)
   const out=state.boards.map(b=>{
+    if(b._lmKey){ const t=lemansT(b); return t>0.002?lemansXf(b,t):b; }   // v1.560: ถาด LeMans ดึงออกทีละถาด
     const p=pOf(b); if(p<=0.002) return b;
     if(b._dg){ const g=_dwrSpanOf(dg,b); const D=Math.max(g.z1-g.z0,40);
       /* ───────── v15.5: ลิ้นชักต้องเลื่อนออกทาง "หน้าตู้ใบนั้น" ─────────
@@ -20407,6 +20538,11 @@ function bindPointer(dom){
          และเลือกชิ้นพวกนั้นไม่ได้เลยตราบใดที่ยังอยู่ในโหมดเปิดบาน ต้องปิดโหมดก่อนทุกครั้ง
          ตัวสั่งเปิดปิดควรเป็นสิ่งที่มองเห็นจากด้านหน้า ซึ่งก็คือหน้าลิ้นชัก ไม่ใช่ของข้างใน
          ของข้างในกลับไปเลือกได้ตามปกติ ส่วนการเลื่อนออกยังเลื่อนทั้งชุดเหมือนเดิม */
+      if(tb&&tb._lmKey){   // v1.560: ถาด LeMans — คลิกทีละครั้ง ปิด → สวิงออก → ดึงออกสุด → ปิด
+        const k=tb._lmKey, cur=(state.lmProg||{})[k]||0, nx=cur<0.25?0.5:(cur<0.75?1:0);
+        lemansAnimate(k,cur,nx);   // ไม่เลือกชิ้น — กรอบเลือกวาดตามท่าปิด จะลอยผิดที่ตอนถาดดึงออก
+        toast(nx===0.5?"🧺 ถาดสวิงออก (จังหวะ 1) — คลิกอีกครั้งดึงออกสุด":nx===1?"🧺 ดึงถาดออกสุด (จังหวะ 2) — คลิกอีกครั้งเก็บเข้า":"🧺 เก็บถาดเข้าตู้แล้ว");
+        pMode="rot"; return; }
       const mv=tb&&!tb._box&&!tb._panel&&!tb._dummy&&(tb._dg||tb._door);
       if(mv){ const key=tb._dg?((tb.cabInst||"")+"|dg:"+tb._dg):tb.id;   // v9.01: ผูกกับตู้ใบนั้น
         state.doorPick=state.doorPick||[];
@@ -29122,6 +29258,8 @@ function boardRole(b){
      SN_OFF.realPlRoom=1  โหมดสมจริงในห้องออกแบบสร้างห้องรอบตู้แบบเดิม (ไม่ใช้ผนังของห้องออกแบบ) (v1.528)
      SN_OFF.realSnap=1    ไม่มีปุ่ม 📷 บันทึกภาพสมจริงความละเอียดสูง (v1.528)
      SN_OFF.plWtSel=1     คลิกท็อป/ผนังเหนือท็อปไม่เลือก · ไม่มี Dim ท็อป · ไม่ตัดผนังเหนือท็อปทีละช่วง (ที่ตัดไว้กลับมาครบ) (v1.548)
+     SN_OFF.aiGoto=1      ผู้ช่วย AI ไม่มี action goto (ไม่ชี้ปุ่ม · ส่งรายการเมนูแบบเดิม) (v1.561)
+     SN_OFF.aiReq=1       ผู้ช่วย AI ไม่มี 📮 คำขอฟีเจอร์ (ไม่มีปุ่ม/หน้า/การแจ้งผู้ดูแล) (v1.561)
      SN_OFF.realProps=1   โหมดสมจริงในห้องออกแบบซ่อนเครื่องใช้ในครัว/ปลั๊กแบบเดิม (v1.548)
      SN_OFF.plRoomCabs=1  💾 บันทึกห้องไม่เก็บตู้ / 📂 เปิดห้องไม่ถามเปิดพร้อมตู้ (แบบ 1.540) (v1.547)
      SN_OFF.plAppl=1      ไม่มีหมวดเครื่องใช้ในครัว (ซิงค์ เตา ฮู้ด เตาอบ ไมโครเวฟ ถังขยะ ถังแก๊ส) ในแท็บของในห้อง (v1.546)
@@ -35423,7 +35561,7 @@ async function cabLibSync(){
    ตอนนี้ดึงเป็นหน้า หน้าละ 1000 จนครบ (ไฟล์กลางอยู่ในหน่วยความจำ เร็วอยู่แล้ว · Supabase ก็ไม่ชนเพดาน 1000 แถวต่อครั้ง) สูงสุด 20000
    เรียงรอง id ด้วย ไม่ให้แถวที่เวลาเท่ากันซ้ำ/หล่นระหว่างหน้า · ปิดได้ SN_OFF.cabListAll (กลับไปตัด 300 แบบเดิม) */
 async function cloudListCabs(){ const db=await getDB();
-  const q=()=>db.from("furnitech_cabinets").select("id,name,part_count,updated_at").not("id","like","FIT3D::%").not("id","like","ORD::%").not("id","like","SECT::%").not("id","like","MOD::%").not("id","like","AIMEM::%").order("updated_at",{ascending:false});
+  const q=()=>db.from("furnitech_cabinets").select("id,name,part_count,updated_at").not("id","like","FIT3D::%").not("id","like","ORD::%").not("id","like","SECT::%").not("id","like","MOD::%").not("id","like","AIMEM::%").not("id","like","AIREQ::%").order("updated_at",{ascending:false});   /* v1.561: + AIREQ:: คำขอฟีเจอร์ของผู้ช่วย AI */
   if(snOff("cabListAll")){ const {data,error}=await q().limit(300); if(error)throw error; return data||[]; }
   const PG=1000, out=[], seen=new Set();
   for(let from=0; from<20000; from+=PG){
@@ -66224,14 +66362,19 @@ const SNAI=(function(){
 "   ชื่อ tool ต้องสะกดตรงตามรายการ รวม ctx: นำหน้า (เช่น ctx:adddoor = เพิ่มหน้าบาน/ลิ้นชัก) · ใส่มือจับ/บานพับได้ต่อเมื่อมีบานแล้ว = สั่งเพิ่มบานก่อน",
 "   values ใช้ key ตามฟอร์มที่แนบไว้ (ถ้ามี) · ตัวเลือก toggle ต้องสะกดตรงตัวเลือก · ไม่รู้ key ให้ใช้คำในป้ายช่องแทน · งานหลายขั้น = หลาย action เรียงลำดับ",
 '5) {"type":"select","cab":"<รหัสตู้ หรือ #ลำดับ>"} — เลือกตู้',
+'6) {"type":"goto","target":"<ที่หมายจาก แผนที่ฟังก์ชัน>","note":"กดตรงนี้แล้วเลือก … (สั้น ๆ)","cab":"<เฉพาะ ctx:>","index":1} — พาไปชี้ปุ่ม/เมนูบนจอ (ชี้อย่างเดียว ผู้ใช้กดเอง)',
+"   ใช้เมื่อมีปุ่ม/เมนูทำเรื่องนั้นแต่ไม่มี tool ตรง หรือผู้ใช้ถามว่าอยู่ไหน/ทำยังไง · target คัดลอกจาก แผนที่ฟังก์ชัน หรือ ctx:<ชื่อ> จากรายการคำสั่ง หรือ set:<key> จากรายการค่าตั้ง เท่านั้น ห้ามคิดขึ้นเอง",
+'7) {"type":"request","title":"ชื่อฟีเจอร์สั้น ๆ","detail":"อยากทำอะไร เพื่ออะไร","area":"ตู้/ชิ้นงาน|บาน/ลิ้นชัก|ห้องออกแบบ|ส่งออก/ผลิต|ค่าตั้ง|ผู้ช่วย AI|อื่น ๆ"} — ส่งคำขอฟีเจอร์ถึงผู้ดูแล (ผู้ใช้กดส่งเอง)',
+"   ใช้เฉพาะเมื่อไม่มีทั้ง tool เมนู คู่มือ และความจำของทีมที่ทำเรื่องนั้นได้จริง ๆ · reply บอกตรง ๆ ว่ายังไม่มีฟังก์ชันนี้ แล้วใส่ request 1 ข้อ",
 "ผู้ใช้จะกดยืนยันทุก action เอง — reply บอกสั้น ๆ ว่าจะทำอะไร · โจทย์กำกวม (เช่นไม่บอกขนาด หรือมีหลายตู้แต่ไม่บอกว่าตู้ไหน) ให้ถามกลับโดยไม่ใส่ action",
-"ถ้าไม่มีคำสั่งที่ตรง ให้บอกทางไปเมนูจาก “รายการคำสั่ง” หรือ “เมนูอื่น” เท่านั้น (เช่น คลิกขวาที่บาน → …) ห้ามเดาเมนูที่ไม่มีในรายการ และห้ามตอบแค่ว่าทำไม่ได้",
+(snOff("aiGoto")?"ถ้าไม่มีคำสั่งที่ตรง ให้บอกทางไปเมนูจาก “รายการคำสั่ง” หรือ “เมนูอื่น” เท่านั้น (เช่น คลิกขวาที่บาน → …) ห้ามเดาเมนูที่ไม่มีในรายการ และห้ามตอบแค่ว่าทำไม่ได้"
+  :"ลำดับการเลือก: มี tool ทำได้ → ใช้ tool · มีปุ่ม/เมนูแต่ไม่มี tool → reply บอกทาง + ใส่ goto ชี้ให้ (ห้ามเดาเมนูที่ไม่มีในแผนที่) · ไม่มีจริง ๆ → reply บอกว่ายังไม่มี"+(snOff("aiReq")?"":" + ใส่ request")+" · ห้ามตอบแค่ว่าทำไม่ได้"),   /* v1.561: + goto / request */
 "","--- คู่มือของทีม (หัวข้อที่เกี่ยว · ทำตามคู่มือนี้ก่อนความรู้ทั่วไป) ---",guideCtx(q),
 "","--- ความจำของทีม (บทเรียนที่ผู้ใช้ยืนยันแล้ว · เชื่อสิ่งนี้ก่อนความรู้ทั่วไป ห้ามตอบขัดกับบทเรียน) ---",memCtx(q),
 "","--- ตู้ในฉาก ---",cabCtx(),
 "","--- รายการคำสั่ง (ชื่อ [ชิ้นเป้าหมาย] หน้าที่ · ทางเมนู) ---",toolsCtx(q),
 "","--- แคตตาล็อกห้องออกแบบ (ใช้กับ room_add) ---",catalogCtx(q),
-"","--- เมนูอื่น (ใช้บอกทาง) ---",menuCtx(),
+"",(snOff("aiGoto")?"--- เมนูอื่น (ใช้บอกทาง) ---":"--- แผนที่ฟังก์ชัน (target ของ goto · ที่หมาย=ป้ายบนจอ) ---"),goCtx(q),   /* v1.561: เดิม menuCtx() */
 "","--- สีที่ตั้งค่าลูกครบแล้ว (ใช้เป็น template ได้) ---",colorCtx(q),
 "","--- ค่าตั้งที่น่าจะเกี่ยวกับข้อความ (คัดมาจากทั้งหมด "+Object.keys(settingKeys()).length+" ค่า · key|ชนิด|ค่าปัจจุบัน|ความหมาย) ---",settingsCtx(q)].join("\n"); }
 
@@ -66281,9 +66424,12 @@ const SNAI=(function(){
     const q=s.replace(/^\s*(หา|ค้นหา|ค้น|ค่าตั้ง)\s*/,"").trim();
     if(q&&q!==s.trim()){ const L=getLabels(), ql=q.toLowerCase();
       const hit=Object.keys(K).filter(k=>k.toLowerCase().indexOf(ql)>=0||String(L[k]||"").toLowerCase().indexOf(ql)>=0).slice(0,15);
-      return {reply:hit.length?("ค่าตั้งที่มีคำว่า “"+q+"”:\n"+hit.map(k=>"• "+k+" = "+showVal(settings[k])+(L[k]?"  — "+L[k]:"")).join("\n")+"\n\nแก้ได้โดยพิมพ์ เช่น  "+hit[0]+" = ค่าใหม่")
-        :"ไม่เจอค่าตั้งที่มีคำว่า “"+q+"”",actions:[]}; }
-    return {reply:"ยังไม่ได้ใส่คีย์ AI (กด ⚙ ด้านบน) — ตอนนี้สั่งแบบง่ายได้:\n• สร้างตู้ 800x720x560 ชั้น 2 รหัส BND001\n• backset = 18   (ชื่อคีย์ = ค่า)\n• หา เดือย   (ค้นหาค่าตั้ง)\n• สีใหม่ N03P0001N\n• จำไว้: … (สอนผู้ช่วย · ทุกคนในทีมได้ด้วย)",actions:[]}; }
+      /* v1.561: + ปุ่ม/เมนูที่ป้ายมีคำนี้ → 👉 ชี้ให้ดู (ไม่ต้องมีคีย์) */
+      const gh=snOff("aiGoto")?[]:goFind(q).slice(0,6);
+      if(!hit.length&&!gh.length) return {reply:"ไม่เจอค่าตั้งหรือปุ่มที่มีคำว่า “"+q+"”"+(snOff("aiReq")?"":"\nถ้าโปรแกรมยังไม่มี พิมพ์  ขอฟีเจอร์: …  เพื่อส่งคำขอถึงผู้ดูแล"),actions:[]};
+      return {reply:(hit.length?("ค่าตั้งที่มีคำว่า “"+q+"”:\n"+hit.map(k=>"• "+k+" = "+showVal(settings[k])+(L[k]?"  — "+L[k]:"")).join("\n")+"\n\nแก้ได้โดยพิมพ์ เช่น  "+hit[0]+" = ค่าใหม่"):"ไม่เจอค่าตั้งที่มีคำว่า “"+q+"”")
+        +(gh.length?"\n\nปุ่ม/เมนูที่เกี่ยว — กด 👉 ให้ชี้ที่จอ:":""),actions:gh.map(e=>({type:"goto",target:e.id}))}; }
+    return {reply:"ยังไม่ได้ใส่คีย์ AI (กด ⚙ ด้านบน) — ตอนนี้สั่งแบบง่ายได้:\n• สร้างตู้ 800x720x560 ชั้น 2 รหัส BND001\n• backset = 18   (ชื่อคีย์ = ค่า)\n• หา เดือย   (ค้นหาค่าตั้ง)\n• สีใหม่ N03P0001N\n• จำไว้: … (สอนผู้ช่วย · ทุกคนในทีมได้ด้วย)"+(snOff("aiReq")?"":"\n• ขอฟีเจอร์: … (ส่งคำขอถึงผู้ดูแล)"),actions:[]}; }
 
   /* ═════════ v1.554: ผู้ช่วยใช้คำสั่งของโปรแกรมได้ (ผู้ใช้ 13:38 “ทำอย่างไรให้มันฉลาดใช้ ฟังก์ชั่นในโปรแกรม”) ═════════
      ภาพ: AI ตอบ “คำสั่งปรับประเภทชั้นยังไม่รองรับ” — เดิมมีแค่ 3 action · ผู้ใช้เลือก: ชั้น/แผ่นกั้น/แผ่นหลัง · บาน/ลิ้นชัก/มือจับ ·
@@ -66651,7 +66797,17 @@ const SNAI=(function(){
      ● ลบได้: เจ้าของบทเรียน หรือคนที่มีสิทธิ์ admin */
   const MEM_PFX="AIMEM::";
   const MEM={rows:null, t:0, busy:null};
-  const meName=()=>{ try{ return String((SX&&SX.user&&(SX.user.display_name||SX.user.name||SX.user.login))||"").trim()||"ไม่ระบุชื่อ"; }catch(e){ return "ไม่ระบุชื่อ"; } };
+  /* ───────── v1.561: ชื่อคนใช้ ─────────
+     เดิมอ่าน SX.user อย่างเดียว แต่บล็อกไฟล์กลางท้ายไฟล์ตั้ง SX.user = “ทดลองไฟล์กลาง” ให้ทุกเครื่อง (เปิดผ่าน Odoo ก็เหมือนกัน)
+     ความจำ/คำขอทุกแถวจึงเป็นชื่อเดียวกัน · “ขอด้วย +1” นับคนไม่ได้ · ไม่รู้ว่าเครื่องไหนเป็นผู้ดูแล
+     ตอนนี้: ล็อกอินจริง (ไม่ใช่ local-trial) → ชื่อนั้น · Odoo ส่ง NEXUS.user มา → ชื่อนั้น · ไม่มี → ชื่อที่ตั้งไว้ในเครื่องนี้ (snAI:me:v1 ถามครั้งเดียวตอนส่งคำขอ)
+     ไม่มีสักอย่าง = ชื่อเดิม (ทดลองไฟล์กลาง) เหมือน 1.557 */
+  const ME_LSK="snAI:me:v1";
+  const sxName=()=>{ try{ const u=SX&&SX.user; if(u&&u.id!=="local-trial") return String(u.display_name||u.name||u.login||"").trim(); }catch(e){} return ""; };
+  const nexusName=()=>{ try{ const N=window.NEXUS, u=N&&N.user; return String((typeof u==="string")?u:(u&&(u.name||u.display_name||u.login))||"").trim().slice(0,40); }catch(e){ return ""; } };
+  const myName=()=>{ try{ return String(localStorage.getItem(ME_LSK)||"").trim().slice(0,40); }catch(e){ return ""; } };
+  const meName=()=>{ const n=sxName()||nexusName()||myName(); if(n) return n;
+    try{ return String((SX&&SX.user&&(SX.user.display_name||SX.user.name||SX.user.login))||"").trim()||"ไม่ระบุชื่อ"; }catch(e){ return "ไม่ระบุชื่อ"; } };
   const canAdmin=()=>{ try{ return !!sxCan("admin"); }catch(e){ return false; } };
   async function memLoad(force){
     if(!force&&MEM.rows&&Date.now()-MEM.t<120000) return MEM.rows;
@@ -66721,6 +66877,409 @@ const SNAI=(function(){
       try{ await memAdd(t,""); q("#mmT").value=""; draw(); toast("🧠 จำแล้ว"); }catch(e){ toast("บันทึกไม่สำเร็จ: "+(e.message||e)); } finally{ q("#mmAdd").disabled=false; } };
     draw(); memLoad(true).then(draw); }
 
+  /* ═════════ v1.561: 👉 goto — พาไปชี้ปุ่ม/เมนูบนจอ (ผู้ใช้ 30/10 10:42 “ถ้าจะทำให้ Api แนะนำ ไปหาฟังก์ชั่นที่เขาต้องการ”) ═════════
+     เดิม (1.554) ไม่มี tool ตรง = AI บอกทางเป็นข้อความ “คลิกขวาที่บาน → …” ผู้ใช้ยังต้องหาปุ่มเอง และ AI เดาชื่อเมนูผิดได้
+     ● แผนที่ฟังก์ชัน goMap() อ่านจากหน้าจอจริงทุกครั้ง (ไม่ต้องดูแลรายการซ้ำ):
+         bar:<id>  ปุ่มแถบบน · sb:<id> / sb:t=<เครื่องมือ> / sb:v=<มุมมอง> แถบล่าง · ctx:<data-act> เมนูคลิกขวา
+         pl:<id> / pl:@<กลุ่ม>  แผงห้องออกแบบ — แผงมีเฉพาะตอนเปิดห้อง จึงจำไว้ในเครื่อง (snAI:gomap:v1) ทับบน GO_SEED (เก็บจากแผงจริงของ 1.561)
+         set:<key> ช่องค่าตั้ง · set:<หัวข้อ> หัวข้อในตั้งค่า · set:@<หมวด> แท็บหมวด
+       ส่งให้ AI เฉพาะที่เกี่ยวกับคำสั่ง (ห้อง/ตั้งค่าให้คะแนนตามคำ) — บทเรียน v1.552 ข้อความยาวแล้วช้า
+     ● runGoto: เปิดบริบทที่ต้องมีก่อน (เปิดห้อง + กางกลุ่ม · เลือกชิ้นแล้ว showCtx ที่ชิ้นนั้น · openSettings แล้วไปแท็บหมวด) → scrollIntoView
+       → วงแหวนส้มกะพริบ + ป้าย “กดตรงนี้ — note” ตามตำแหน่งของจริงทุกเฟรม · กดของจริง / ✕ / Esc / 20 วิ = หาย · ของหายจากจอ 1 วิ = หาย
+       ชี้อย่างเดียว ไม่กดแทน (ผู้ใช้เลือก) · ตำแหน่งหาร uiZoomOf (body[data-uiz] ซูมลูกของ body) · ชั้น = ชั้นของที่ชี้ + 5 (เมนูคลิกขวา 130 → 135 · แผงห้อง 320 → 325 · ตั้งค่า 90 → 95)
+       ผู้ช่วยบังของที่ชี้ = ซ่อนผู้ช่วยระหว่างชี้ · ปิด SN_OFF.aiGoto */
+  const GO_LSK="snAI:gomap:v1";
+  const GO_SEED={"plClose":{"l":"✓ เสร็จ","g":""},"plFitRoom":{"l":"⤢ ครอบตู้ที่มี","g":""},"plCam":{"l":"🎥 มุมห้อง","g":""},"plClrAll":{"l":"🎨 สีทั้งออเดอร์","g":""},"plPullAll":{"l":"🖐 มือจับทั้งห้อง","g":""},"plwGo2":{"l":"✏ วาดผนังจากแปลน","g":""},"plptGo":{"l":"🖌 สีผนัง · พื้น","g":""},"plRoomLock":{"l":"🔓 ล็อกห้อง","g":""},"plrlSave":{"l":"💾 บันทึกห้อง","g":""},"plrlOpen":{"l":"📂 เปิดห้องที่บันทึก","g":""},"plrlNew":{"l":"🧹 ล้างตู้ · เก็บห้อง","g":""},"plCeilShow":{"l":"แสดงฝ้า","g":"ขนาดห้อง · ผนัง · Dim"},"plDimGap":{"l":"■ ระยะถึงผนัง/ตู้ข้าง","g":"ขนาดห้อง · ผนัง · Dim"},"plDimSize":{"l":"■ ขนาดตู้","g":"ขนาดห้อง · ผนัง · Dim"},"plPlMat":{"l":"ตีนตู้","g":"ขา · ตีนตู้ · ฟิลเลอร์ · ไม้ไฟ"},"plFFloor":{"l":"ฟิลเลอร์ลงพื้น","g":"ขา · ตีนตู้ · ฟิลเลอร์ · ไม้ไฟ"},"plCeilOn":{"l":"ฟิลเลอร์บน","g":"ขา · ตีนตู้ · ฟิลเลอร์ · ไม้ไฟ"},"plCeilH":{"l":"ฟิลเลอร์บน","g":"ขา · ตีนตู้ · ฟิลเลอร์ · ไม้ไฟ"},"plLtOn":{"l":"ไม้ไฟใต้ตู้ลอย","g":"ขา · ตีนตู้ · ฟิลเลอร์ · ไม้ไฟ"},"plLtCode":{"l":"ไม้ไฟใต้ตู้ลอย","g":"ขา · ตีนตู้ · ฟิลเลอร์ · ไม้ไฟ"},"plSdFloor":{"l":"ตู้พื้น/สูง ลงพื้น","g":"ขา · ตีนตู้ · ฟิลเลอร์ · ไม้ไฟ"},"plSdCeil":{"l":"ตู้ลอย/สูง ถึงฝ้า","g":"ขา · ตีนตู้ · ฟิลเลอร์ · ไม้ไฟ"},"plBvTT":{"l":"บานเพบน","g":"ขา · ตีนตู้ · ฟิลเลอร์ · ไม้ไฟ"},"plwGo":{"l":"✏ วาดผนังจากแปลน (มองจากบน)","g":"✏ ผนังที่วาด (แปลน)"},"plApply":{"l":"ปรับขนาด","g":"ตู้ที่เลือก"},"plDup":{"l":"⧉ สำเนา","g":"ตู้ที่เลือก"},"plDupM":{"l":"⧉⇋ สำเนากลับ","g":"ตู้ที่เลือก"},"plClr":{"l":"🎨 สี","g":"ตู้ที่เลือก"},"plSwap":{"l":"🔁 รุ่น","g":"ตู้ที่เลือก"},"plRot":{"l":"⟳ หมุน","g":"ตู้ที่เลือก"},"plMir":{"l":"⇋ กลับ","g":"ตู้ที่เลือก"},"plDel":{"l":"🗑 ลบ","g":"ตู้ที่เลือก"},"plDp":{"l":"DP","g":"ตู้ที่เลือก"},"plTT":{"l":"Trim Top","g":"ตู้ที่เลือก"},"plOff":{"l":"ห่างผนัง","g":"ตู้ที่เลือก"},"plFL":{"l":"◀ ปิดช่องซ้าย","g":"ตู้ที่เลือก"},"plFR":{"l":"ปิดช่องขวา ▶","g":"ตู้ที่เลือก"},"plSdL":{"l":"◀ ซ้าย","g":"ตู้ที่เลือก"},"plSdR":{"l":"ขวา ▶","g":"ตู้ที่เลือก"},"plAlignAll":{"l":"จัดแนวทั้งห้อง","g":""},"plCostEdit":{"l":"💰 ใส่ราคาที่ขาด","g":"ท้ายแผง"},"plQuoteBtn":{"l":"🧾 ใบเสนอราคา","g":"ท้ายแผง"},"plGlbBtn":{"l":"🧊 ส่งออก Blender","g":"ท้ายแผง"},"plRealBtn":{"l":"✨ โหมดสมจริง","g":"ท้ายแผง"},"plSnapBtn":{"l":"📷 บันทึกภาพ","g":"ท้ายแผง"},"@size":{"l":"ขนาดห้อง · ผนัง · Dim","g":"กลุ่ม"},"@work":{"l":"ขา · ตีนตู้ · ฟิลเลอร์ · ไม้ไฟ · ปิดข้าง","g":"กลุ่ม"},"@line":{"l":"แนวตู้ลอย / ตู้สูง","g":"กลุ่ม"},"@wt":{"l":"ท็อปเคาน์เตอร์ · ผนังเหนือท็อป","g":"กลุ่ม"},"@dw":{"l":"✏ ผนังที่วาด (แปลน)","g":"กลุ่ม"},"@foot":{"l":"รายละเอียด","g":"กลุ่ม"},"plCatHide":{"l":"ซ่อน ▸","g":"แคตตาล็อก"},"plWall":{"l":"ตู้ที่กดจากแคตตาล็อกไปลงผนังไหน","g":"แคตตาล็อก"}};
+  const cssq=x=>String(x).replace(/["\\]/g,"\\$&");
+  function goLbl(el){ if(!el) return ""; let t=String(el.textContent||"").replace(/\s+/g," ").trim();
+    if(!t||t.length<2) t=String(el.getAttribute("title")||el.getAttribute("aria-label")||"").split(/ — |\n|\(/)[0].trim();
+    return t.replace(/…$/,"").slice(0,44); }
+  function goPlLocal(){ try{ return JSON.parse(localStorage.getItem(GO_LSK)||"{}")||{}; }catch(e){ return {}; } }
+  function goPlMap(){ return Object.assign({},GO_SEED,goPlLocal()); }
+  function goHarvestPl(){ try{ const box=$("plPanel"); if(!box) return null; const M={};
+      const grpOf=el=>{ const d=el.closest("details.plGrp"), s=d&&d.querySelector(":scope>summary"); if(!s) return "";
+        const c=s.cloneNode(true); c.querySelectorAll("small").forEach(x=>x.remove()); return c.textContent.replace(/\s+/g," ").trim().slice(0,30); };
+      [box,$("plCat")].forEach(r=>{ if(!r) return;
+        r.querySelectorAll("button[id],select[id],input[id]").forEach(el=>{ const id=el.id; if(!id||/^snai/i.test(id)) return;
+          let l=""; if(el.tagName==="BUTTON") l=goLbl(el);
+          else { const lb=el.closest("label"); l=lb?lb.textContent:""; if(!String(l).trim()){ const f=el.closest(".plF"), L=f&&f.querySelector(".plL"); l=L?L.textContent:(el.title||""); } }
+          l=String(l).replace(/\s+/g," ").trim().slice(0,44); if(l.length<2) return;
+          l=l.replace(/\s*\d[\d,.]*\s*/g," ").replace(/\s+/g," ").trim();   /* ตัดตัวเลขที่เปลี่ยนตามงาน (ปิดช่องขวา 2800 ▶) */
+          M[id]={l, g:(r.id==="plCat"?"แคตตาล็อก":(el.closest("#plSelSec")?"ตู้ที่เลือก":(el.closest("#plFoot")?"ท้ายแผง":grpOf(el))))}; });
+        r.querySelectorAll("details.plGrp[data-g]").forEach(d=>{ const s=d.querySelector(":scope>summary"); if(!s) return;
+          const c=s.cloneNode(true); c.querySelectorAll("small").forEach(x=>x.remove()); const l=c.textContent.replace(/\s+/g," ").trim().slice(0,44);
+          if(l) M["@"+d.dataset.g]={l, g:"กลุ่ม"}; }); });
+      const o=Object.assign(goPlLocal(),M), ks=Object.keys(o); if(ks.length>260) ks.slice(0,ks.length-260).forEach(k=>delete o[k]);
+      localStorage.setItem(GO_LSK,JSON.stringify(o)); return M; }catch(e){ return null; } }
+  function goSetHeads(){ const out=[]; try{ const body=$("setBody"); if(!body) return out;
+      if(!body.querySelector("[data-sk]")) renderSettings();   /* แบบเดียวกับ getLabels — เรนเดอร์ครั้งแรกเท่านั้น ไม่ทับหน้าตั้งค่าที่กำลังแก้ */
+      body.querySelectorAll(".setGrp").forEach(g=>{ const h=g.querySelector(":scope>.sumh"), t=h&&h.textContent.replace(/\s+/g," ").trim();
+        if(t) out.push({t:t.slice(0,60), c:((typeof SET_CATS!=="undefined"&&SET_CATS.find(c=>c.key===g.dataset.cat))||{}).label||""}); }); }catch(e){}
+    return out; }
+  let _gm=null, _gmT=0;
+  function goMap(){ if(_gm&&Date.now()-_gmT<1500) return _gm; const out=[], seen={}; const add=(id,l,g)=>{ l=String(l||"").trim(); if(!l||seen[id]) return; seen[id]=1; out.push({id,l:l.slice(0,44),g:g||""}); };
+    try{ $$("#titlebar button[id]").forEach(b=>add("bar:"+b.id,goLbl(b),"แถบบน")); }catch(e){}
+    try{ $$("#statusbar button[id]").forEach(b=>add("sb:"+b.id,goLbl(b),"แถบล่าง")); }catch(e){}
+    try{ $$("#toolSeg button[data-t]").forEach(b=>add("sb:t="+b.dataset.t,goLbl(b),"แถบล่าง · เครื่องมือ")); }catch(e){}
+    try{ $$("#viewSeg button[data-v]").forEach(b=>add("sb:v="+b.dataset.v,goLbl(b),"แถบล่าง · มุมมอง")); }catch(e){}
+    try{ $$("#ctxMenu button[data-act]").forEach(b=>add("ctx:"+b.dataset.act,goLbl(b),"คลิกขวาที่ชิ้น")); }catch(e){}
+    if(typeof PL!=="undefined"&&PL.on) goHarvestPl();
+    const P=goPlMap(); Object.keys(P).forEach(id=>{ const x=P[id]||{}; add("pl:"+id,x.l,"ห้องออกแบบ"+(x.g?" · "+x.g:"")); });
+    try{ (typeof SET_CATS!=="undefined"?SET_CATS:[]).forEach(c=>add("set:@"+c.key,c.label,"⚙ ตั้งค่า · หมวด")); }catch(e){}
+    goSetHeads().forEach(h=>add("set:"+h.t,h.t,"⚙ ตั้งค่า"+(h.c?" · "+h.c:"")));
+    _gm=out; _gmT=Date.now(); return out; }
+  function goScore(e,s){ const l=e.l.toLowerCase(), g=e.g.toLowerCase(); let n=0;   /* ป้ายตรงคำ > กลุ่มตรงคำ (ไม่งั้น “ห้องออกแบบ” ได้ทุกปุ่มในแผงห้องเท่ากัน) */
+    TOPIC.forEach(w=>{ if(s.indexOf(w)>=0){ if(l.indexOf(w)>=0) n+=2; else if(g.indexOf(w)>=0) n+=1; } });
+    l.split(SPLIT).forEach(w=>{ if(w.length>=3&&s.indexOf(w)>=0) n+=1; });
+    if(s.length>=2&&l.indexOf(s)>=0) n+=4; else if(s.length>=2&&g.indexOf(s)>=0) n+=1; return n; }
+  function goFind(q){ const s=String(q||"").toLowerCase().trim(); if(!s) return [];
+    const L=goMap().map(e=>[e,goScore(e,s)]).filter(x=>x[1]>0).sort((a,b)=>b[1]-a[1]), top=L.length?L[0][1]:0;
+    return L.filter(x=>x[1]>=Math.max(1,top/2)).map(x=>x[0]); }
+  function goCtx(q){ if(snOff("aiGoto")) return menuCtx();
+    const M=goMap(), s=String(q||"").toLowerCase();
+    const line=a=>a.map(e=>e.id+"="+e.l.replace(/[=·]/g," ")).join(" · ");
+    const tools=new Set(allTools().map(t=>t.id));
+    const roomOn=(typeof PL!=="undefined"&&PL.on)||/ห้อง|ผนัง|แปลน|ฝ้า|พื้น|ท็อป|ทอป|ประตู|หน้าต่าง|เครื่องใช้|ซิงค์|ฮู้ด|ฮูด|ปลั๊ก|เสา|แคตตาล็อก/.test(s);
+    const best=(rx,keep,max)=>M.filter(e=>rx.test(e.id)).map(e=>[e,goScore(e,s)]).filter(x=>keep||x[1]>0).sort((a,b)=>b[1]-a[1]).slice(0,max).map(x=>x[0]);
+    const pl=best(/^pl:/,roomOn,roomOn?40:10), st=best(/^set:(?!@)/,false,10);
+    return ["แถบบน: "+line(M.filter(e=>/^bar:/.test(e.id))),
+      "แถบล่าง: "+line(M.filter(e=>/^sb:/.test(e.id))),
+      "คลิกขวาที่ชิ้น (นอกรายการคำสั่ง): "+line(M.filter(e=>/^ctx:/.test(e.id)&&!tools.has(e.id))),
+      "ctx:<ชื่อ> ในรายการคำสั่งเป็น target ได้ทุกตัว — โปรแกรมเลือกชิ้นแล้วเปิดเมนูคลิกขวาให้ (ใส่ cab/index แบบ tool ได้)",
+      pl.length?("แผงห้องออกแบบ (โปรแกรมเปิดห้องให้เอง): "+pl.map(e=>e.id+"="+e.l.replace(/[=·]/g," ")+(e.g&&e.g!=="ห้องออกแบบ"?"["+e.g.replace(/^ห้องออกแบบ · /,"")+"]":"")).join(" · "))
+        :"แผงห้องออกแบบ: (ไม่ได้แนบ — ข้อความไม่ได้พูดถึงห้อง) ปุ่มเปิดห้อง = bar:planBtn",
+      "⚙ ตั้งค่า แท็บหมวด: "+line(M.filter(e=>/^set:@/.test(e.id))),
+      st.length?("⚙ ตั้งค่า หัวข้อที่เกี่ยว (หนึ่งบรรทัดหนึ่ง target):\n"+st.map(e=>e.id).join("\n")):"",
+      "⚙ ช่องค่าตั้งทีละช่อง: set:<key> (key จากรายการค่าตั้งด้านล่าง)"].filter(Boolean).join("\n"); }
+  function goParse(t){ const s=String(t==null?"":t).trim(); if(!s) return null;
+    const m=/^(bar|sb|ctx|pl|set|id)\s*[:：]\s*([\s\S]+)$/i.exec(s);
+    if(m) return {k:m[1].toLowerCase(), v:m[2].trim()};
+    if(/^#[\w\-]+$/.test(s)) return {k:"id", v:s.slice(1)};
+    try{ if(document.querySelector('#ctxMenu button[data-act="'+cssq(s)+'"]')) return {k:"ctx",v:s}; }catch(e){}
+    if(document.getElementById(s)) return {k:"id",v:s};
+    return null; }
+  function goLabel(t){ const g=goParse(t); if(!g) return String(t||"?");
+    const id=g.k==="id"?null:(g.k+":"+g.v), e=id&&goMap().find(x=>x.id===id); if(e) return (e.g?e.g+" → ":"")+e.l;
+    if(g.k==="set"){ const lb=getLabels()[g.v]; return "⚙ ตั้งค่า → "+(lb?String(lb).slice(0,50):g.v); }
+    const el=goSimple(g); return el?goLbl(el):String(t); }
+  function goSimple(g){ if(g.k==="bar"||g.k==="sb"||g.k==="id"){ const mm=/^([tv])=(.+)$/.exec(g.v);
+      if(mm) return document.querySelector((mm[1]==="t"?"#toolSeg":"#viewSeg")+' button[data-'+mm[1]+'="'+cssq(mm[2])+'"]');
+      return document.getElementById(g.v.replace(/^#/,"")); }
+    return null; }
+  const goVis=el=>{ if(!el||!el.isConnected) return false; const r=el.getBoundingClientRect(); if(r.width<2||r.height<2) return false;
+    try{ return getComputedStyle(el).visibility!=="hidden"; }catch(e){ return true; } };
+  function goZ(el){ let z=0; for(let e=el;e&&e!==document.body&&e.nodeType===1;e=e.parentElement){ try{ const cs=getComputedStyle(e), v=parseInt(cs.zIndex,10); if(isFinite(v)&&cs.position!=="static") z=Math.max(z,v); }catch(_){} } return z; }
+  function goOpenDetails(el){ for(let d=el&&el.closest&&el.closest("details");d;d=d.parentElement&&d.parentElement.closest("details")){ if(!d.open){ d.open=true; try{ if(d.dataset&&d.dataset.g) plGrpSave(d.dataset.g,true); }catch(e){} } } }
+  function boardScreen(b){ try{ const dom=renderer&&renderer.domElement, rc=dom&&dom.getBoundingClientRect(); if(!rc||!rc.width) return null;
+      const m=(meshes||[]).find(x=>x&&x.id===b.id&&!x.groove), v=new THREE.Vector3(b.x,b.y,b.z); if(m&&m.mesh) m.mesh.getWorldPosition(v);
+      v.project(camera); if(!(v.z<1)||!isFinite(v.x)) return {x:rc.left+rc.width/2,y:rc.top+rc.height/2};
+      return {x:Math.min(rc.right-20,Math.max(rc.left+20,rc.left+(v.x+1)/2*rc.width)), y:Math.min(rc.bottom-20,Math.max(rc.top+20,rc.top+(1-v.y)/2*rc.height))}; }catch(e){ return null; } }
+  const GO={ring:null,lab:null,raf:0,tm:0,off:null};
+  function goStop(){ if(GO.raf) cancelAnimationFrame(GO.raf); if(GO.tm) clearTimeout(GO.tm); if(GO.off) GO.off();
+    [GO.ring,GO.lab].forEach(x=>{ if(x&&x.parentNode) x.parentNode.removeChild(x); }); GO.ring=GO.lab=null; GO.raf=GO.tm=0; GO.off=null; }
+  function goRing(get,note,reshow){ goStop(); css();
+    const ring=document.createElement("div"), lab=document.createElement("div");
+    ring.className="snaiRing"; lab.className="snaiRingL"; ring.setAttribute("data-snai","1"); lab.setAttribute("data-snai","1");
+    lab.innerHTML='<span>👉 กดตรงนี้'+(note?' — '+H(note):'')+'</span><button type="button" title="ปิด">✕</button>';
+    document.body.appendChild(ring); document.body.appendChild(lab);
+    let zm=1; try{ zm=uiZoomOf(ring)||1; }catch(e){}
+    let lost=0, cur=null, zz=66;
+    const end=ok=>{ goStop(); if(!ok&&reshow) show(true); };
+    const tick=()=>{ const el=get();
+      if(el!==cur){ cur=el; zz=Math.max(66,(el?goZ(el):0)+5); ring.style.zIndex=lab.style.zIndex=String(zz); }
+      if(!goVis(el)){ ring.style.display=lab.style.display="none"; if(++lost>60){ end(false); return; } }
+      else { lost=0; ring.style.display=lab.style.display=""; const r=el.getBoundingClientRect(), p=6;
+        const x0=Math.max(1,r.left-p), y0=Math.max(1,r.top-p), x1=Math.min(innerWidth-1,r.right+p), y1=Math.min(innerHeight-1,r.bottom+p);   /* ปุ่มแถบบนชิดขอบจอ — วงแหวนไม่ล้นนอกจอ */
+        ring.style.left=(x0/zm)+"px"; ring.style.top=(y0/zm)+"px"; ring.style.width=((x1-x0)/zm)+"px"; ring.style.height=((y1-y0)/zm)+"px";
+        const lr=lab.getBoundingClientRect(), below=(r.bottom+p+8+lr.height<innerHeight-6);
+        const x=Math.max(8,Math.min(innerWidth-lr.width-8,r.left+r.width/2-lr.width/2)), y=below?(r.bottom+p+8):Math.max(6,r.top-p-8-lr.height);
+        lab.style.left=(x/zm)+"px"; lab.style.top=(y/zm)+"px"; }
+      GO.raf=requestAnimationFrame(tick); };
+    const down=e=>{ const el=get(); if(lab.contains(e.target)){ e.preventDefault(); e.stopPropagation(); end(false); return; }
+      if(el&&(el===e.target||el.contains(e.target))) end(true); };
+    const key=e=>{ if(e.key==="Escape") end(false); };
+    addEventListener("pointerdown",down,true); addEventListener("keydown",key,true);
+    GO.off=()=>{ removeEventListener("pointerdown",down,true); removeEventListener("keydown",key,true); };
+    GO.ring=ring; GO.lab=lab; GO.tm=setTimeout(()=>end(false),20000); tick(); }
+  async function runGoto(a){
+    if(snOff("aiGoto")) throw new Error("ปิดการชี้ปุ่มไว้ (SN_OFF.aiGoto)");
+    const g=goParse(a.target); if(!g) throw new Error("ไม่รู้จักที่หมาย “"+String(a.target||"")+"” — ให้ AI เลือกจากแผนที่ฟังก์ชัน");
+    await sleep(60);   /* ให้การกดปุ่ม 👉 จบก่อน — ตัวรับ pointerdown ระดับ window ปิดเมนูคลิกขวา */
+    let get=null, nm=goLabel(a.target);
+    if(g.k==="ctx"){ const act=g.v.replace(/^ctx[:_]/i,""), sel='#ctxMenu button[data-act="'+cssq(act)+'"]';
+      if(!document.querySelector(sel)) throw new Error("ไม่มีเมนูคลิกขวา “"+act+"”");
+      const cab=findCab(a.cab); if(!cab) throw new Error((a.cab?"ไม่เจอตู้ “"+a.cab+"”":"ยังไม่ได้เลือกตู้")+" — คลิกตู้ก่อน แล้วคลิกขวา → “"+goLbl(document.querySelector(sel))+"”");
+      const b=pickBoard(cab,CTX_NEED[act]||"cab",a.index); selectB(b); await sleep(120);
+      const p=boardScreen(b)||{x:innerWidth/2,y:innerHeight/2}; showCtx(p.x,p.y,b.id); await sleep(60);
+      get=()=>{ const m=$("ctxMenu"); return (m&&m.classList.contains("show"))?document.querySelector(sel):null; };
+      const el=get(); if(!goVis(el)){ try{ hideCtx(); }catch(e){} throw new Error("เมนู “"+goLbl(el)+"” ไม่ขึ้นกับชิ้นนี้ ("+(b.name||"")+")"); }
+      try{ el.scrollIntoView({block:"nearest"}); }catch(e){} }
+    else if(g.k==="pl"){
+      if(!(typeof PL!=="undefined"&&PL.on)){ await plToggle(true); await sleep(450); }
+      goHarvestPl(); const v=g.v;
+      get=()=>v.charAt(0)==="@"?document.querySelector('#plPanel details.plGrp[data-g="'+cssq(v.slice(1))+'"]>summary'):document.getElementById(v);
+      let el=get(); if(!el) throw new Error("ไม่เจอ “"+nm+"” ในแผงห้องออกแบบตอนนี้"+(/^plSel|plDp/i.test(v)?" — เลือกตู้ในห้องก่อน":""));
+      goOpenDetails(el);
+      if(!goVis(el)&&el.closest&&el.closest("#plCat")){ try{ plCatShow(true); }catch(e){} await sleep(250); }
+      el=get(); if(!goVis(el)) throw new Error("“"+nm+"” ไม่แสดงบนจอตอนนี้");
+      try{ el.scrollIntoView({block:"nearest"}); }catch(e){} }
+    else if(g.k==="set"){
+      if(typeof VIEW_ONLY!=="undefined"&&VIEW_ONLY) throw new Error("ลิงก์ดูอย่างเดียว เปิดตั้งค่าไม่ได้");
+      const sm=$("setModal"); if(!(sm&&sm.classList.contains("show"))){ openSettings(); await sleep(150); }
+      const body=$("setBody"), v=g.v, n=x=>String(x||"").replace(/\s+/g," ").trim().toLowerCase();
+      const find=()=>{ if(v.charAt(0)==="@") return body.querySelector('.setNav button[data-k="'+cssq(v.slice(1))+'"]');
+        let el=null; try{ el=body.querySelector('[data-sk="'+cssq(v)+'"]')||(/^[\w\-]+$/.test(v)?body.querySelector("#"+v):null); }catch(e){}
+        if(el) return el.closest(".fld")||el.closest("label")||el;
+        const hs=Array.prototype.slice.call(body.querySelectorAll(".setGrp>.sumh"));
+        return hs.find(h=>n(h.textContent)===n(v))||hs.find(h=>n(h.textContent).indexOf(n(v))>=0)||hs.find(h=>n(v).indexOf(n(h.textContent))>=0&&n(h.textContent).length>=4)||null; };
+      const el0=find(); if(!el0) throw new Error("ไม่เจอ “"+v+"” ในหน้าตั้งค่า");
+      const se=body.querySelector(".setSearch"); if(se&&se.value){ se.value=""; se.dispatchEvent(new Event("input")); }
+      const grp=el0.closest(".setGrp"), nb=grp&&body.querySelector('.setNav button[data-k="'+cssq(grp.dataset.cat)+'"]');
+      if(nb&&!nb.classList.contains("sel")) nb.click();
+      get=()=>{ const m=$("setModal"); return (m&&m.classList.contains("show"))?find():null; };
+      const el=get(); if(!goVis(el)) throw new Error("“"+v+"” ไม่แสดงในหน้าตั้งค่าตอนนี้");
+      try{ el.scrollIntoView({block:"center"}); }catch(e){} }
+    else { get=()=>goSimple(g); const el=get();
+      if(!el) throw new Error("ไม่เจอปุ่ม “"+String(a.target)+"” บนจอ");
+      if(!goVis(el)) throw new Error("ปุ่ม “"+goLbl(el)+"” ไม่แสดงในโหมดตอนนี้");
+      try{ el.scrollIntoView({block:"nearest",inline:"center"}); }catch(e){} }
+    await sleep(140);
+    const el=get(), rc=el&&el.getBoundingClientRect(), pr=(root&&root.classList.contains("show"))?root.getBoundingClientRect():null;
+    const over=!!(rc&&pr&&!(rc.right<pr.left-8||rc.left>pr.right+8||rc.bottom<pr.top-8||rc.top>pr.bottom+8));
+    if(over) show(false);
+    goRing(get,String(a.note||"").replace(/\s+/g," ").trim().slice(0,140),over);
+    return {msg:"ชี้ที่ “"+nm+"” แล้ว — กดเองตรงที่กะพริบ", again:true, keepHidden:over}; }
+
+
+  /* ═════════ v1.561: 📮 คำขอฟีเจอร์ — ไม่มีฟังก์ชัน = แจ้งถึงผู้ดูแล (ผู้ใช้ 30/10 10:42 “แล้วถ้าไม่มี ให้แจ้งมาถึงผม”) ═════════
+     เดิม AI ตอบว่า “ทำไม่ได้” แล้วจบ ไม่มีใครรู้ว่ามีคนอยากได้ (ความจำ 🧠 แก้ได้แค่กรณีที่จริง ๆ ทำได้)
+     ● ที่มา: ① AI ตอบ action request (การ์ด “ยังไม่มีฟังก์ชันนี้”) ② ปุ่ม 📮 ขอฟีเจอร์ ใต้ทุกคำตอบ ③ พิมพ์ “ขอฟีเจอร์: …” (ไม่เรียก AI) ④ หน้า 📮 ＋ ขอใหม่
+       คนกดส่งเองเสมอ · แก้ชื่อ/รายละเอียด/หมวดได้ก่อนส่ง · เรื่องคล้ายของเดิม (ตัวอักษรคู่ซ้ำกัน ≥ 45%) = ถามก่อนว่า 👍 ขอด้วย (+1) ไหม
+     ● ที่เก็บ: ตาราง furnitech_cabinets แบบ AIMEM:: — แถว “AIREQ::<เวลา>-<สุ่ม>” · data {title, detail, area, q, ai, by, ts, ver, status, votes[], reply, rBy, rTs, doneVer}
+       รายชื่อผู้ดูแลที่รับแจ้ง = แถว AIREQ::_cfg {admins[]} (ทุกเครื่องเห็นตรงกัน ไม่ต้องดันค่าตั้งขึ้นคลาวด์) · cloudListCabs กรอง AIREQ:: ออก
+     ● สิทธิ์: ทุกคนเห็นทุกคำขอ + ขอด้วย · ผู้ดูแล (อยู่ในรายชื่อ — ถ้ายังไม่ตั้ง = ทุกคนที่ sxCan admin) แก้สถานะ ใหม่/รับทราบ/ทำแล้ว (vX)/ไม่ทำ ตอบ ลบ · คนขอถอนคำขอของตัวเองได้ตอนยัง “ใหม่”
+     ● แจ้ง: ผู้ดูแลที่อยู่ในรายชื่อ → เปิดโปรแกรม 25 วิ + ทุก 5 นาที + กลับมาที่แท็บ อ่านคำขอใหม่ → 🔔 (notiAdd) + ป้ายเลขที่ 🤖 / 📮
+       คนขอ → สถานะ/คำตอบเปลี่ยน = 🔔 + ข้อความในผู้ช่วยตอนเปิดครั้งถัดไป · เปิดหน้า 📮 = อ่านแล้ว ป้ายเลขหาย · ปิด SN_OFF.aiReq */
+  const REQ_PFX="AIREQ::", REQ_CFG="AIREQ::_cfg", REQ_ST=["ใหม่","รับทราบ","ทำแล้ว","ไม่ทำ"], REQ_AREA=["ตู้/ชิ้นงาน","บาน/ลิ้นชัก","ห้องออกแบบ","ส่งออก/ผลิต","ค่าตั้ง","ผู้ช่วย AI","อื่น ๆ"];
+  const REQ_COL={"ใหม่":"#e58a24","รับทราบ":"#2f6fdb","ทำแล้ว":"#2f9e44","ไม่ทำ":"#8a8f98"};
+  const SEEN_LSK="snAI:reqSeen:v1";
+  const REQ={rows:null,cfg:null,t:0,busy:null,err:null,n:0};
+  const viewOnly=()=>typeof VIEW_ONLY!=="undefined"&&!!VIEW_ONLY;
+  const stText=x=>x.status==="ทำแล้ว"?("ทำแล้ว"+(x.doneVer?" (v"+String(x.doneVer).replace(/^v/i,"")+")":"")):(x.status||"ใหม่");
+  const fmtTs=t=>{ const d=new Date(t||0); if(!isFinite(d)) return ""; const p=n=>String(n).padStart(2,"0"); return d.getFullYear()+"-"+p(d.getMonth()+1)+"-"+p(d.getDate())+" "+p(d.getHours())+":"+p(d.getMinutes()); };
+  async function reqLoad(force){
+    if(!force&&REQ.rows&&Date.now()-REQ.t<60000) return REQ.rows;
+    if(REQ.busy) return REQ.busy;
+    REQ.busy=(async()=>{ try{ const db=await getDB();
+        const r=await db.from("furnitech_cabinets").select("id,data,updated_at").like("id",REQ_PFX+"%").limit(2000); if(r.error) throw r.error;
+        let cfg={}; const rows=[];
+        (r.data||[]).forEach(x=>{ const d=(x&&x.data)||{}; if(x.id===REQ_CFG){ if(!d.deleted) cfg=d; return; }
+          if(d.deleted||!String(d.title||"").trim()) return;
+          rows.push(Object.assign({},d,{id:x.id, votes:Array.isArray(d.votes)?d.votes.filter(Boolean):[], status:REQ_ST.indexOf(d.status)>=0?d.status:"ใหม่"})); });
+        REQ.rows=rows.sort((a,b)=>String(b.ts||"").localeCompare(String(a.ts||""))); REQ.cfg=cfg; REQ.t=Date.now(); REQ.err=null; }
+      catch(e){ REQ.err=e; if(!REQ.rows) REQ.rows=[]; if(!REQ.cfg) REQ.cfg={}; }
+      finally{ REQ.busy=null; } return REQ.rows; })();
+    return REQ.busy; }
+  const reqAdmins=()=>(REQ.cfg&&Array.isArray(REQ.cfg.admins))?REQ.cfg.admins.map(x=>String(x||"").trim()).filter(Boolean):[];
+  const isReqAdmin=()=>{ if(!canAdmin()) return false; const A=reqAdmins(); return !A.length||A.indexOf(meName())>=0; };
+  const reqNotiMe=()=>{ const A=reqAdmins(); return A.length>0&&A.indexOf(meName())>=0; };
+  async function reqPut(id,data){ if(viewOnly()) throw new Error("ลิงก์ดูอย่างเดียว — บันทึกคำขอไม่ได้");
+    const db=await getDB(); const r=await db.from("furnitech_cabinets").upsert({id,name:id,part_count:0,data,updated_at:new Date().toISOString()},{onConflict:"id"});
+    if(r.error) throw r.error; }
+  async function reqFresh(id){ try{ const db=await getDB(); const r=await db.from("furnitech_cabinets").select("id,data").eq("id",id).limit(1);
+      const x=r&&!r.error&&(r.data||[])[0]; return x&&x.data&&!x.data.deleted?x.data:null; }catch(e){ return null; } }
+  function strip(row){ const o=Object.assign({},row); delete o.id; return o; }
+  async function reqPatch(row,fn){   /* อ่านแถวล่าสุดก่อนเขียน — สองคนกด “ขอด้วย” ใกล้กันไม่ทับกัน */
+    const cur=(await reqFresh(row.id))||strip(row), next=fn(Object.assign({},cur,{votes:Array.isArray(cur.votes)?cur.votes.slice():[]}))||cur;
+    await reqPut(row.id,next); const i=(REQ.rows||[]).findIndex(x=>x.id===row.id), nr=Object.assign({},next,{id:row.id});
+    if(i>=0) REQ.rows[i]=nr; return nr; }
+  async function reqAdd(o){ const by=meName(), ts=new Date().toISOString(), id=REQ_PFX+Date.now().toString(36)+"-"+Math.random().toString(36).slice(2,6);
+    const data={title:String(o.title||"").trim().slice(0,80), detail:String(o.detail||"").trim().slice(0,1500), area:String(o.area||"อื่น ๆ").slice(0,30),
+      q:String(o.q||"").trim().slice(0,400), ai:String(o.ai||"").trim().slice(0,600), by, ts, ver:String((typeof APP_META!=="undefined"&&APP_META.version)||""),
+      status:"ใหม่", votes:[by], reply:"", rBy:"", rTs:"", doneVer:""};
+    await reqPut(id,data); (REQ.rows=REQ.rows||[]).unshift(Object.assign({},data,{id})); return id; }
+  async function reqVote(row,on){ const me=meName();
+    return reqPatch(row,d=>{ const v=d.votes.filter(x=>x!==me); if(on) v.push(me); else if(d.by===me) v.push(me); d.votes=v; return d; }); }
+  async function reqDel(row){ const me=meName();
+    if(!isReqAdmin()&&!(row.by===me&&row.status==="ใหม่")) throw new Error("ลบได้เฉพาะผู้ดูแล (หรือคนขอ ตอนสถานะยังเป็น “ใหม่”)");
+    await _cloudKill(row.id,{data:Object.assign(strip(row),{deleted:true,_ts:new Date().toISOString()})});
+    REQ.rows=(REQ.rows||[]).filter(x=>x.id!==row.id); }
+  async function reqSetAdmins(list){ const A=[...new Set((list||[]).map(x=>String(x||"").trim()).filter(Boolean))].slice(0,20);
+    await reqPut(REQ_CFG,{admins:A,by:meName(),ts:new Date().toISOString()}); REQ.cfg={admins:A}; return A; }
+  function bigr(s){ s=String(s||"").toLowerCase().replace(/[\s.,;:!?()\[\]{}"'“”‘’\/\\|+*=_\-–—·…]+/g,""); const o=new Set(); for(let i=0;i<s.length-1;i++) o.add(s.slice(i,i+2)); return o; }
+  function simTxt(a,b){ const A=bigr(a), B=bigr(b); if(!A.size||!B.size) return 0; let n=0; A.forEach(x=>{ if(B.has(x)) n++; }); return 2*n/(A.size+B.size); }
+  function reqDups(o){ return (REQ.rows||[]).map(x=>[x, simTxt(o.title,x.title)*0.7+simTxt(o.title+" "+o.detail,x.title+" "+(x.detail||""))*0.3+(o.area&&o.area===x.area?0.08:0)])
+      .filter(p=>p[1]>=0.45).sort((a,b)=>b[1]-a[1]).slice(0,3).map(p=>p[0]); }
+  async function ensureName(){ if(sxName()||nexusName()||myName()) return true;
+    const v=await promptFields("👤 ชื่อของคุณ — ให้ผู้ดูแลรู้ว่าใครขอ",[
+      {type:"note",label:"ถามครั้งเดียว · เก็บในเบราว์เซอร์เครื่องนี้ · ใช้กับคำขอฟีเจอร์ / ขอด้วย / ความจำของทีม (แก้ได้ที่หน้า 📮)"},
+      {key:"name",type:"text",label:"ชื่อที่ทีมเรียก",value:""}]);
+    const n=v&&String(v.name||"").trim().slice(0,40); if(!n) return false;
+    try{ localStorage.setItem(ME_LSK,n); }catch(e){} return true; }
+  async function reqDialog(pre){ pre=pre||{};
+    if(snOff("aiReq")) throw new Error("ปิดคำขอฟีเจอร์ไว้ (SN_OFF.aiReq)");
+    if(viewOnly()) throw new Error("ลิงก์ดูอย่างเดียว — ส่งคำขอไม่ได้");
+    const wasOn=!!(root&&root.classList.contains("show")); show(false);   /* ฟอร์มชั้น 120 — ผู้ช่วยตอนอยู่ห้องออกแบบชั้น 325 จะบัง (แบบเดียวกับ ✏ สอน) */
+    const hid=pre.ov&&pre.ov.style.display!=="none"; if(hid) pre.ov.style.display="none";
+    try{
+      if(!(await ensureName())) return {msg:"ยกเลิก — ยังไม่ได้ตั้งชื่อ",cancel:true};
+      const v=await promptFields("📮 ส่งคำขอฟีเจอร์ถึงผู้ดูแล",[
+        {type:"note",label:"ส่งให้ผู้ดูแลรู้ว่ามีคนอยากได้เรื่องนี้ · ทุกคนในทีมเห็นที่หน้า 📮 และกด “ขอด้วย” ได้ · ส่งในชื่อ <b>"+escapeHtml(meName())+"</b>"
+          +(pre.q?"<br>คำถามเดิม: "+escapeHtml(String(pre.q).slice(0,160)):"")},
+        {key:"title",type:"text",label:"ชื่อฟีเจอร์ (สั้น ๆ)",value:String(pre.title||"").slice(0,80)},
+        {key:"detail",type:"area",rows:4,label:"อยากให้ทำอะไร เพื่ออะไร (ยิ่งละเอียด ผู้ดูแลยิ่งทำได้ตรง)",value:String(pre.detail||pre.q||"").slice(0,1200)},
+        {key:"area",type:"select",label:"หมวด",options:REQ_AREA,value:pickOpt(REQ_AREA,pre.area)||"อื่น ๆ"}]);
+      if(!v) return {msg:"ยกเลิก",cancel:true};
+      const o={title:String(v.title||"").trim(), detail:String(v.detail||"").trim(), area:String(v.area||"อื่น ๆ"), q:pre.q, ai:pre.ai};
+      if(!o.title) throw new Error("ยังไม่ได้ใส่ชื่อฟีเจอร์");
+      await reqLoad(true); if(REQ.err) throw new Error("อ่านคำขอเดิมไม่ได้ — ต้องเชื่อมไฟล์กลาง/Odoo อยู่ ("+(REQ.err.message||REQ.err)+")");
+      const dup=reqDups(o);
+      if(dup.length){
+        const ch=await dialog({title:"มีคนขอเรื่องคล้ายกันแล้ว",ok:"👍 ขอด้วย (+1)",extra:{label:"ส่งเป็นคำขอใหม่",id:"new"},
+          html:'<div style="font-size:12.5px;line-height:1.6">'+dup.map((x,i)=>'<label style="display:flex;gap:8px;align-items:flex-start;padding:6px 0;border-bottom:.5px solid var(--line);cursor:pointer">'
+            +'<input type="radio" name="snaiDup" value="'+H(x.id)+'"'+(i?'':' checked')+' style="margin-top:3px"><span><b>'+H(x.title)+'</b><br><span class="muted" style="font-size:11px">'
+            +H(stText(x))+' · 👍 '+x.votes.length+' · '+H(x.area||"")+' · '+H(x.by||"")+'</span>'
+            +(x.status==="ทำแล้ว"?'<br><span style="color:#2f9e44;font-size:11.5px">✓ มีแล้วตั้งแต่ v'+H(String(x.doneVer||"?").replace(/^v/i,""))+' — ถ้าไม่เห็น ลองโหลดโปรแกรมใหม่ (F5)</span>':'')
+            +(x.reply?'<br><span style="font-size:11.5px">💬 '+H(String(x.reply).slice(0,120))+'</span>':'')+'</span></label>').join("")+'</div>'});
+        if(ch===null) return {msg:"ยกเลิก",cancel:true};
+        if(ch===true){ const pk=document.querySelector('#askHtml input[name="snaiDup"]:checked'), row=dup.find(x=>pk&&x.id===pk.value)||dup[0];
+          const nr=await reqVote(row,true); return {msg:"👍 ขอด้วยแล้ว — “"+nr.title+"” ("+nr.votes.length+" คนขอ · "+stText(nr)+")"}; } }
+      await reqAdd(o); badge();
+      return {msg:"📮 ส่งคำขอแล้ว — ผู้ดูแลจะเห็นที่ 🔔 · ดูสถานะที่ปุ่ม 📮"}; }
+    finally{ if(hid) pre.ov.style.display=""; if(wasOn) show(true); } }
+  /* ---------- แจ้งเตือน ---------- */
+  function seenGet(){ try{ return JSON.parse(localStorage.getItem(SEEN_LSK)||"{}")||{}; }catch(e){ return {}; } }
+  function seenPut(o){ try{ const ks=Object.keys(o); if(ks.length>900) ks.slice(0,ks.length-900).forEach(k=>delete o[k]); localStorage.setItem(SEEN_LSK,JSON.stringify(o)); }catch(e){} }
+  function reqUnseen(){ const R=REQ.rows||[], me=meName(), S=seenGet(), adm=reqNotiMe(), out=[];
+    R.forEach(x=>{ if(adm&&x.status==="ใหม่"&&x.by!==me&&!S["n:"+x.id]) out.push({k:"n",x});
+      if(x.by===me&&x.rTs&&S["r:"+x.id]!==x.rTs) out.push({k:"r",x}); });
+    return out; }
+  function reqMarkSeen(list){ const S=seenGet(); (list||reqUnseen()).forEach(u=>{ S[u.k+":"+u.x.id]=u.k==="n"?1:u.x.rTs; }); seenPut(S); badge(); }
+  function badge(){ const n=snOff("aiReq")?0:reqUnseen().length; REQ.n=n;
+    const set=(el,cls)=>{ if(!el) return; let s=el.querySelector("."+cls);
+      if(!s){ s=document.createElement("span"); s.className=cls; s.style.cssText="margin-left:4px;min-width:16px;padding:0 5px;border-radius:9px;background:#e58a24;color:#fff;font:600 10.5px/16px var(--mono);text-align:center;display:none"; el.appendChild(s); }
+      s.textContent=n?String(Math.min(n,99)):""; s.style.display=n?"inline-block":"none"; };
+    set($("aiBtn"),"snaiReqN"); set(root&&root.querySelector("#snaiReq"),"snaiReqN"); }
+  let _rqLast=0;
+  async function reqTick(manual){ if(snOff("aiReq")||viewOnly()) return; if(!manual&&Date.now()-_rqLast<55000) return; _rqLast=Date.now();
+    await reqLoad(true); if(REQ.err) return;
+    const U=reqUnseen(), S=seenGet(); let nNew=0;
+    U.forEach(u=>{ const k="t:"+u.k+":"+u.x.id, st=u.k==="n"?"1":String(u.x.rTs); if(S[k]===st) return; S[k]=st;
+      if(u.k==="n"){ nNew++; notiAdd("info","📮 คำขอฟีเจอร์ใหม่: “"+u.x.title+"” — "+(u.x.by||"?")+" ("+(u.x.area||"")+")"); }
+      else notiAdd("info","📮 คำขอ “"+u.x.title+"” ของคุณ: "+stText(u.x)+(u.x.reply?" · ผู้ดูแลตอบ: "+String(u.x.reply).slice(0,100):"")); });
+    seenPut(S); badge();
+    if(nNew) toast("📮 มีคำขอฟีเจอร์ใหม่ "+nNew+" รายการ — เปิด 🤖 ผู้ช่วย → 📮"); }
+  async function reqMine(){   /* คนขอเห็นสถานะ/คำตอบตอนเปิดผู้ช่วย */
+    if(snOff("aiReq")||viewOnly()||!root) return; await reqLoad(); if(REQ.err) return;
+    const mine=reqUnseen().filter(u=>u.k==="r"); if(!mine.length) return;
+    mine.forEach(u=>addMsg("a","📮 คำขอของคุณ “"+u.x.title+"” — สถานะ: "+stText(u.x)+(u.x.reply?"\n💬 "+(u.x.rBy||"ผู้ดูแล")+": "+u.x.reply:"")));
+    reqMarkSeen(mine); }
+  function reqStart(){ if(snOff("aiReq")||viewOnly()) return;
+    setTimeout(()=>{ reqTick(true).catch(()=>{}); },25000);
+    setInterval(()=>{ reqTick(true).catch(()=>{}); },5*60000);
+    addEventListener("visibilitychange",()=>{ if(document.visibilityState==="visible") reqTick(false).catch(()=>{}); }); }
+  /* ---------- หน้า 📮 ---------- */
+  function reqMd(R){ const L=["# คำขอฟีเจอร์ StarNexus ("+R.length+" รายการ · ส่งออก "+fmtTs(Date.now())+" · v"+((typeof APP_META!=="undefined"&&APP_META.version)||"?")+")",""];
+    R.forEach((x,i)=>{ L.push("## "+(i+1)+". "+x.title+" — "+stText(x)+" · 👍 "+x.votes.length);
+      L.push("- หมวด: "+(x.area||"-")+" · ขอโดย: "+(x.by||"?")+(x.votes.length>1?" (+ "+x.votes.filter(v=>v!==x.by).join(", ")+")":"")+" · "+fmtTs(x.ts)+(x.ver?" · โปรแกรม v"+x.ver:""));
+      if(x.detail) L.push("- รายละเอียด: "+String(x.detail).replace(/\s*\n\s*/g," / "));
+      if(x.q) L.push("- คำถามเดิมในผู้ช่วย: "+String(x.q).replace(/\s*\n\s*/g," / "));
+      if(x.ai) L.push("- AI ตอบ: "+String(x.ai).replace(/\s*\n\s*/g," / "));
+      if(x.reply) L.push("- ผู้ดูแลตอบ ("+(x.rBy||"?")+"): "+String(x.reply).replace(/\s*\n\s*/g," / "));
+      L.push(""); });
+    return L.join("\n"); }
+  async function copyTxt(t){ try{ await navigator.clipboard.writeText(t); return true; }catch(e){}
+    try{ const ta=document.createElement("textarea"); ta.value=t; ta.style.cssText="position:fixed;left:-9999px;top:0"; document.body.appendChild(ta); ta.select(); const ok=document.execCommand("copy"); ta.remove(); return ok; }catch(e){ return false; } }
+  let _rm=null;
+  function reqManager(){
+    if(snOff("aiReq")){ toast("ปิดคำขอฟีเจอร์ไว้ (SN_OFF.aiReq)"); return; }
+    if(_rm&&_rm.isConnected){ _rm.style.display=""; return; }
+    const _C=ovCard(860,90), ov=_C.ov; ov.setAttribute("data-snai","1"); _rm=ov;
+    const F={st:"",q:"",sort:"new"};
+    ov.innerHTML='<div style="'+_C.cardCSS+'"><div style="display:flex;align-items:center;gap:10px;padding:12px 16px;border-bottom:.5px solid var(--line);flex-wrap:wrap">'
+      +'<b style="font-size:15px">📮 คำขอฟีเจอร์</b><span class="muted" style="font-size:11.5px">ฟังก์ชันที่ผู้ช่วยหาไม่เจอ · ทุกคนเห็นและกด “ขอด้วย” ได้ · ผู้ดูแลแก้สถานะ/ตอบ</span>'
+      +'<span style="flex:1"></span><button class="ibtn" id="rqMe" style="font-size:11.5px;padding:3px 9px" title="ชื่อที่ใช้ส่งคำขอ/ขอด้วย — เก็บในเครื่องนี้"></button>'
+      +'<button class="ibtn" id="rqX" '+_C.xbtn+'>✕ ปิด</button></div>'
+      +'<div id="rqAdm" style="padding:8px 16px;border-bottom:.5px solid var(--line);font-size:12px;display:flex;gap:8px;align-items:center;flex-wrap:wrap"></div>'
+      +'<div style="padding:8px 16px;border-bottom:.5px solid var(--line);display:flex;gap:6px;align-items:center;flex-wrap:wrap">'
+      +'<div class="seg" id="rqSt" style="display:inline-flex;flex-wrap:wrap">'+[["","ทั้งหมด"]].concat(REQ_ST.map(x=>[x,x]),[["mine","ของฉัน"]]).map(p=>'<button type="button" data-v="'+H(p[0])+'"'+(p[0]===""?' class="sel"':'')+'>'+H(p[1])+'</button>').join("")+'</div>'
+      +'<input id="rqQ" class="nameinp" placeholder="ค้นหา" style="flex:1;min-width:120px">'
+      +'<select id="rqSort" class="nameinp" style="width:auto"><option value="new">ใหม่สุดก่อน</option><option value="vote">ขอมากสุดก่อน</option></select>'
+      +'<button class="ibtn" id="rqR" title="โหลดใหม่">↻</button><button class="ibtn" id="rqMd" title="คัดลอกรายการที่เห็นเป็น Markdown — วางในแชท Claude ให้ทำต่อได้">📋 Markdown</button>'
+      +'<button class="ibtn" id="rqNew" style="background:var(--accent);color:#fff;border-color:transparent">＋ ขอฟีเจอร์</button></div>'
+      +'<div id="rqL" style="padding:6px 16px 12px;overflow:auto;flex:1;min-height:0;font-size:12.5px"></div></div>';
+    document.body.appendChild(ov); const q=x=>ov.querySelector(x);
+    q("#rqQ").onkeydown=e=>e.stopPropagation(); q("#rqQ").onkeyup=e=>e.stopPropagation();
+    const busyBtn=async(b,fn)=>{ b.disabled=true; try{ await fn(); }catch(e){ toast(e.message||String(e)); } finally{ if(b.isConnected) b.disabled=false; } };
+    const hideRun=async fn=>{ const was=!!(root&&root.classList.contains("show")); ov.style.display="none"; if(was) show(false);   /* ฟอร์มชั้น 120 อยู่ใต้หน้านี้ (430) และใต้ผู้ช่วยตอนอยู่ห้อง (325) */
+      try{ return await fn(); } finally{ ov.style.display=""; if(was) show(true); } };
+    const view=()=>{ const me=meName(), s=F.q.toLowerCase();
+      let R=(REQ.rows||[]).filter(x=>(!F.st||(F.st==="mine"?(x.by===me||x.votes.indexOf(me)>=0):x.status===F.st))
+        &&(!s||(x.title+" "+(x.detail||"")+" "+(x.by||"")+" "+(x.area||"")+" "+(x.reply||"")).toLowerCase().indexOf(s)>=0));
+      if(F.sort==="vote") R=R.slice().sort((a,b)=>(b.votes.length-a.votes.length)||String(b.ts||"").localeCompare(String(a.ts||"")));
+      return R; };
+    const drawAdm=()=>{ const A=reqAdmins(), me=meName(), box=q("#rqAdm"), adm=isReqAdmin();
+      q("#rqMe").textContent="👤 "+me+" ✏";
+      box.innerHTML=A.length?('<span>👑 ผู้ดูแลที่รับแจ้ง: <b>'+H(A.join(", "))+'</b>'+(A.indexOf(me)>=0?' <span style="color:#2f9e44">(คุณ — เครื่องนี้รับ 🔔)</span>':'')+'</span>'
+          +(adm?'<button class="ibtn" id="rqAdmEd" style="font-size:11px;padding:2px 8px">แก้รายชื่อ</button>':''))
+        :('<span style="color:#b45309">⚠ ยังไม่ได้ตั้งผู้ดูแลที่รับแจ้ง — คำขอใหม่ยังไม่เด้ง 🔔 ที่ใคร</span>'
+          +(canAdmin()?'<button class="ibtn" id="rqAdmMe" style="font-size:11px;padding:2px 9px;background:var(--accent);color:#fff;border-color:transparent">👑 ตั้งฉัน ('+H(me)+') เป็นผู้ดูแล</button>':''));
+      const bm=q("#rqAdmMe"); if(bm) bm.onclick=()=>busyBtn(bm,async()=>{ if(!(await hideRun(ensureName))) return; await reqSetAdmins([meName()]); reqMarkSeen(); drawAdm(); draw(); toast("👑 ตั้ง "+meName()+" เป็นผู้ดูแลแล้ว — เครื่องนี้จะได้ 🔔 เมื่อมีคำขอใหม่"); });
+      const be=q("#rqAdmEd"); if(be) be.onclick=()=>busyBtn(be,async()=>{ const v=await hideRun(()=>promptFields("👑 ผู้ดูแลที่รับแจ้งคำขอ",[
+          {type:"note",label:"ชื่อต้องตรงกับชื่อที่แต่ละเครื่องตั้งไว้ (ปุ่ม 👤 ในหน้านี้) · คั่นด้วยจุลภาค · ว่าง = ไม่มีใครรับแจ้ง และทุกคนแก้สถานะได้"},
+          {key:"a",type:"text",label:"รายชื่อ",value:reqAdmins().join(", ")}])); if(!v) return;
+        await reqSetAdmins(String(v.a||"").split(/[,，]/)); drawAdm(); draw(); badge(); toast("บันทึกรายชื่อผู้ดูแลแล้ว"); }); };
+    const draw=()=>{ const R=view(), me=meName(), adm=isReqAdmin(), L=q("#rqL");
+      if(!REQ.rows){ L.innerHTML='<div class="muted" style="padding:16px 0">กำลังโหลด…</div>'; return; }
+      if(REQ.err&&!REQ.rows.length){ L.innerHTML='<div style="padding:16px 0;color:#b42318">อ่านคำขอไม่ได้ — '+H(REQ.err.message||REQ.err)+'<br><span class="muted">ต้องเชื่อมไฟล์กลาง / Google Drive / Odoo อยู่</span></div>'; return; }
+      L.innerHTML=R.length?R.map(x=>{ const mine=x.by===me, voted=x.votes.indexOf(me)>=0, col=REQ_COL[x.status]||"#8a8f98";
+        return '<div class="rqI" data-id="'+H(x.id)+'" style="padding:9px 0;border-bottom:.5px solid var(--line)">'
+          +'<div style="display:flex;gap:8px;align-items:flex-start"><div style="flex:1;min-width:0">'
+          +'<b style="font-size:13.5px">'+H(x.title)+'</b> <span style="font-size:10.5px;padding:1px 7px;border-radius:9px;background:'+col+';color:#fff;white-space:nowrap">'+H(stText(x))+'</span>'
+          +' <span class="muted" style="font-size:10.5px">'+H(x.area||"")+'</span>'
+          +'<div class="muted" style="font-size:10.5px;margin-top:2px">'+H(x.by||"?")+' · '+H(fmtTs(x.ts))+(x.ver?' · v'+H(x.ver):'')+(x.votes.length>1?' · ขอด้วย: '+H(x.votes.filter(v=>v!==x.by).join(", ")):'')+'</div>'
+          +(x.detail?'<div style="white-space:pre-wrap;line-height:1.55;margin-top:4px">'+H(x.detail)+'</div>':'')
+          +((x.q||x.ai)?'<details style="margin-top:3px"><summary class="muted" style="font-size:11px;cursor:pointer">คำถามเดิม / AI ตอบ</summary><div style="font-size:11.5px;white-space:pre-wrap;line-height:1.5;padding:4px 0 0 10px">'
+            +(x.q?'<b>ถาม:</b> '+H(x.q)+'\n':'')+(x.ai?'<b>AI:</b> '+H(x.ai):'')+'</div></details>':'')
+          +(x.reply?'<div style="margin-top:5px;padding:6px 9px;border-radius:8px;background:var(--card2);border:.5px solid var(--line);white-space:pre-wrap;line-height:1.5">💬 <b>'+H(x.rBy||"ผู้ดูแล")+'</b> <span class="muted" style="font-size:10.5px">'+H(fmtTs(x.rTs))+'</span>\n'+H(x.reply)+'</div>':'')
+          +'</div><div style="flex:none;display:flex;flex-direction:column;gap:4px;align-items:flex-end">'
+          +'<button class="ibtn rqV" style="font-size:11.5px;padding:3px 9px'+(voted?';background:var(--accent-soft);color:var(--accent)':'')+'"'+(mine?' disabled title="คุณเป็นคนขอ"':'')+'>👍 '+x.votes.length+(mine?'':(voted?' · ถอน':' · ขอด้วย'))+'</button>'
+          +(adm?'<select class="nameinp rqS" style="font-size:11.5px;padding:2px 6px;width:auto">'+REQ_ST.map(st=>'<option'+(st===x.status?' selected':'')+'>'+H(st)+'</option>').join("")+'</select>'
+            +'<button class="ibtn rqA" style="font-size:11px;padding:2px 8px">💬 ตอบ</button>':'')
+          +((adm||(mine&&x.status==="ใหม่"))?'<button class="ibtn rqD" style="font-size:11px;padding:2px 8px">'+(adm?'ลบ':'ถอนคำขอ')+'</button>':'')
+          +'</div></div></div>'; }).join("")
+        :'<div class="muted" style="padding:16px 0">'+((REQ.rows||[]).length?"ไม่มีคำขอที่ตรงกับตัวกรอง":"ยังไม่มีคำขอ — กด ＋ ขอฟีเจอร์ หรือกด 📮 ใต้คำตอบของผู้ช่วย")+'</div>';
+      const rowOf=el=>{ const it=el.closest(".rqI"); return it&&(REQ.rows||[]).find(x=>x.id===it.dataset.id); };
+      L.querySelectorAll(".rqV").forEach(b=>b.onclick=()=>busyBtn(b,async()=>{ const x=rowOf(b); if(!x) return; if(!(await hideRun(ensureName))) return;
+        await reqVote(x,x.votes.indexOf(meName())<0); draw(); }));
+      L.querySelectorAll(".rqS").forEach(sl=>sl.onchange=()=>busyBtn(sl,async()=>{ const x=rowOf(sl); if(!x) return; const st=sl.value;
+        let extra={};
+        if(st==="ทำแล้ว"){ const v=await hideRun(()=>promptFields("✓ ทำแล้ว — “"+String(x.title).slice(0,40)+"”",[
+            {key:"ver",type:"text",label:"ทำในเวอร์ชัน",value:String((typeof APP_META!=="undefined"&&APP_META.version)||"")},
+            {key:"reply",type:"area",rows:3,label:"ตอบคนขอ (วิธีใช้ / อยู่เมนูไหน)",value:x.reply||""}]));
+          if(!v){ sl.value=x.status; return; } extra={doneVer:String(v.ver||"").trim().replace(/^v/i,""), reply:String(v.reply||"").trim()}; }
+        const nr=await reqPatch(x,d=>Object.assign(d,{status:st,rBy:meName(),rTs:new Date().toISOString()},extra)); reqMarkSeen(); draw(); toast("สถานะ “"+nr.title+"” → "+stText(nr)); }));
+      L.querySelectorAll(".rqA").forEach(b=>b.onclick=()=>busyBtn(b,async()=>{ const x=rowOf(b); if(!x) return;
+        const v=await hideRun(()=>promptFields("💬 ตอบคำขอ — “"+String(x.title).slice(0,40)+"”",[{key:"reply",type:"area",rows:4,label:"ข้อความถึงคนขอ (เห็นทุกคน)",value:x.reply||""}]));
+        if(!v) return; await reqPatch(x,d=>Object.assign(d,{reply:String(v.reply||"").trim(),rBy:meName(),rTs:new Date().toISOString()})); draw(); }));
+      L.querySelectorAll(".rqD").forEach(b=>b.onclick=()=>busyBtn(b,async()=>{ const x=rowOf(b); if(!x) return;
+        const ok=await hideRun(()=>dialog({title:(isReqAdmin()?"ลบคำขอนี้?":"ถอนคำขอนี้?"),ok:"ลบ",html:'<div style="font-size:12.5px">“'+H(x.title)+'” · 👍 '+x.votes.length+'</div>'}));
+        if(!ok) return; await reqDel(x); draw(); toast("ลบคำขอแล้ว"); })); };
+    q("#rqX").onclick=()=>{ ov.remove(); _rm=null; };
+    q("#rqMe").onclick=async()=>{ const v=await hideRun(()=>promptFields("👤 ชื่อของคุณในเครื่องนี้",[
+        {type:"note",label:(sxName()||nexusName())?"ตอนนี้ใช้ชื่อจากการล็อกอิน ("+escapeHtml(sxName()||nexusName())+") — ชื่อนี้ใช้เมื่อไม่ได้ล็อกอิน":"ใช้กับคำขอฟีเจอร์ / ขอด้วย / ความจำของทีม · คำขอเดิมยังเป็นชื่อเก่า"},
+        {key:"name",type:"text",label:"ชื่อที่ทีมเรียก",value:myName()}]));
+      if(!v) return; const n=String(v.name||"").trim().slice(0,40); try{ if(n) localStorage.setItem(ME_LSK,n); else localStorage.removeItem(ME_LSK); }catch(e){}
+      drawAdm(); draw(); badge(); };
+    q("#rqSt").querySelectorAll("button").forEach(b=>b.onclick=()=>{ q("#rqSt").querySelectorAll("button").forEach(x=>x.classList.toggle("sel",x===b)); F.st=b.dataset.v; draw(); });
+    q("#rqQ").oninput=()=>{ F.q=String(q("#rqQ").value||"").trim(); draw(); };
+    q("#rqSort").onchange=()=>{ F.sort=q("#rqSort").value; draw(); };
+    q("#rqR").onclick=async()=>{ REQ.rows=null; draw(); await reqLoad(true); reqMarkSeen(); drawAdm(); draw(); };
+    q("#rqMd").onclick=async()=>{ const R=view(); if(!R.length){ toast("ไม่มีรายการให้คัดลอก"); return; }
+      toast((await copyTxt(reqMd(R)))?"📋 คัดลอก "+R.length+" คำขอเป็น Markdown แล้ว — วางในแชท Claude ได้เลย":"คัดลอกไม่ได้ — เบราว์เซอร์ไม่ให้เข้าคลิปบอร์ด"); };
+    q("#rqNew").onclick=()=>busyBtn(q("#rqNew"),async()=>{ const r=await reqDialog({ov}); if(r&&!r.cancel){ toast(r.msg); draw(); } });
+    drawAdm(); draw(); reqLoad(true).then(()=>{ reqMarkSeen(); drawAdm(); draw(); }); }
+
   /* ---------- ทำตามคำสั่ง ---------- */
   function afterSettings(){ labels=null;
     try{ applyTheme(); }catch(e){} try{ applyUIScale(); }catch(e){} try{ render3D(false); }catch(e){}
@@ -66738,6 +67297,8 @@ const SNAI=(function(){
         +(T&&T.need!=="none"?" · ตู้ "+(a.cab||"ที่เลือก")+(nm?" · "+nm+"ที่ "+(a.index||1):""):"")
         +(Object.keys(V).length?" · "+Object.keys(V).map(k=>k+"="+V[k]).join(", ").slice(0,120):""); }
     if(a.type==="select") return "👆 เลือกตู้ "+(a.cab||"?");
+    if(a.type==="goto") return goParse(a.target)?("👉 ชี้ที่ "+goLabel(a.target)+(a.note?" — "+String(a.note).slice(0,90):"")+(a.cab?" · ตู้ "+a.cab:"")):("⚠ ไม่รู้จักที่หมาย "+(a.target||""));   /* v1.561 */
+    if(a.type==="request") return "📮 ยังไม่มีฟังก์ชันนี้ — ส่งคำขอ “"+String(a.title||"ฟีเจอร์ใหม่").slice(0,60)+"” ถึงผู้ดูแล"+(a.area?" · "+a.area:"");   /* v1.561 */
     return "⚠ ไม่รู้จักคำสั่ง "+(a.type||""); }
   async function run(a){
     if(a.type==="create_cabinet"){ const p=Object.assign({},a.params||{});
@@ -66759,6 +67320,8 @@ const SNAI=(function(){
       return {msg:"เปิดหน้าสร้างสีแล้ว — ตรวจตารางแล้วกด 🎨 สร้างสี"}; }
     if(a.type==="tool") return runTool(a);
     if(a.type==="select") return runSelect(a);
+    if(a.type==="goto") return runGoto(a);   /* v1.561 */
+    if(a.type==="request") return reqDialog({title:a.title,detail:a.detail,area:a.area,q:a._q,ai:a._ai});   /* v1.561 */
     throw new Error("ไม่รู้จักคำสั่ง “"+(a.type||"")+"”"); }
 
   /* ---------- หน้าจอ ---------- */
@@ -66796,7 +67359,12 @@ const SNAI=(function(){
 #snaiIn{display:flex;gap:6px;padding:8px 12px 12px;border-top:.5px solid var(--line)}
 #snaiIn textarea{flex:1;resize:none;height:54px;font-family:var(--font);font-size:13px;padding:7px 9px;border-radius:9px;border:.5px solid var(--line-strong);background:var(--solid);color:var(--ink)}
 #snaiIn textarea:focus{outline:2px solid var(--accent);outline-offset:-1px}
-#snaiIn button{flex:none;align-self:stretch;padding:0 14px}`;
+#snaiIn button{flex:none;align-self:stretch;padding:0 14px}
+#snaiLog .act.req{border-color:rgba(229,138,36,.55);background:rgba(229,138,36,.08)}
+.snaiRing{position:fixed;left:0;top:0;pointer-events:none;border:3px solid #e58a24;border-radius:10px;box-sizing:border-box;animation:snaiPulse 1s ease-in-out infinite}
+@keyframes snaiPulse{0%,100%{box-shadow:0 0 0 3px rgba(229,138,36,.28),0 0 12px rgba(229,138,36,.45)}50%{box-shadow:0 0 0 9px rgba(229,138,36,.08),0 0 26px rgba(229,138,36,.8)}}
+.snaiRingL{position:fixed;left:0;top:0;pointer-events:none;max-width:330px;display:flex;gap:6px;align-items:flex-start;background:#e58a24;color:#fff;font-size:12.5px;font-weight:600;line-height:1.45;padding:6px 7px 6px 11px;border-radius:9px;box-shadow:0 6px 20px rgba(0,0,0,.25)}
+.snaiRingL button{pointer-events:auto;flex:none;border:0;background:rgba(255,255,255,.25);color:#fff;border-radius:5px;cursor:pointer;font-size:11px;padding:1px 6px}`;   /* v1.561: + วงแหวนชี้ปุ่ม · การ์ดคำขอ */
     document.head.appendChild(st); }
   function build(){ if(root) return root; css();
     root=document.createElement("div"); root.id="snaiPanel";
@@ -66804,6 +67372,7 @@ const SNAI=(function(){
       +'<button class="ib" id="snaiClr" title="ล้างบทสนทนา" style="margin-left:auto">🧹</button>'
       +'<button class="ib" id="snaiModel" title="🏗 AI Model — เลือกตู้ต้นแบบใน Library → บอกสิ่งที่จะแก้ → AI สร้างตู้ใหม่ด้วยคำสั่งของโปรแกรม → บันทึกลง Library">🏗</button>'
       +'<button class="ib" id="snaiMem" title="🧠 ความจำของทีม — บทเรียนที่สอนผู้ช่วยไว้ (เก็บบน Odoo · ใช้ร่วมกันทุกคน)">🧠</button>'
+      +(snOff("aiReq")?'':'<button class="ib" id="snaiReq" title="📮 คำขอฟีเจอร์ — เรื่องที่ผู้ช่วยหาไม่เจอ ส่งถึงผู้ดูแล · ทุกคนเห็นและกดขอด้วยได้">📮</button>')   /* v1.561 */
       +'<button class="ib" id="snaiGuide" title="📘 คู่มือผู้ช่วย — สอนวิธีทำงานของทีม (Markdown)">📘</button>'
       +'<button class="ib" id="snaiGear" title="ตั้งค่าคีย์ AI">⚙</button><button class="ib" id="snaiX" title="ปิด">✕</button></div>'
       +'<div id="snaiCfg"><label>ผู้ให้บริการ</label><select class="nameinp" id="snaiProv" style="width:100%">'
@@ -66828,6 +67397,7 @@ const SNAI=(function(){
     q("#snaiGuide").onclick=()=>guideEdit();
     q("#snaiModel").onclick=()=>modelWizard();
     q("#snaiMem").onclick=()=>memManager();
+    if(q("#snaiReq")) q("#snaiReq").onclick=()=>reqManager();   /* v1.561 */
     q("#snaiDel").onclick=()=>{ delete cfg.keys[cfg.prov]; saveCfg(); fillCfg(); pill(); toast("ลบคีย์ "+PROV[cfg.prov].name+" แล้ว"); };
     q("#snaiTest").onclick=async()=>{ readCfg(); saveCfg(); pill(); if(!key()){ toast("ยังไม่ได้ใส่คีย์"); return; }
       const n=q("#snaiNote"), tb=q("#snaiTest"), t0=Date.now(), sec=()=>Math.round((Date.now()-t0)/1000);
@@ -66843,7 +67413,7 @@ const SNAI=(function(){
     q("#snaiGo").onclick=()=>send();
     q("#snaiQuick").innerHTML=["สร้างตู้ 600x720x560 ชั้น 1","หา backset","สีใหม่ "].map(s=>'<button class="chip">'+H(s)+'</button>').join("");
     q("#snaiQuick").querySelectorAll("button").forEach(b=>b.onclick=()=>{ tx.value=b.textContent; tx.focus(); });
-    pill(); hello(); return root; }
+    pill(); hello(); badge(); return root; }
   function fillCfg(){ const q=s=>root.querySelector(s), P=PROV[cfg.prov];
     q("#snaiProv").value=cfg.prov; q("#snaiModel").value=cfg.models[cfg.prov]||""; q("#snaiModel").placeholder=P.model;
     q("#snaiKey").value=cfg.keys[cfg.prov]||""; q("#snaiKey").placeholder=P.hint;
@@ -66860,23 +67430,26 @@ const SNAI=(function(){
     if(key()){ const n=used(), qq=quota(); p.className="pill"+(qq&&n>=qq?" off":""); p.textContent=PROV[cfg.prov].name.split(" ")[0]+" · "+model()+" · "+n+(qq?"/"+qq:"")+" ครั้ง";
       p.title=useText(); }
     else { p.className="pill off"; p.textContent="ยังไม่ใส่คีย์ · ออฟไลน์"; } }
-  function hello(){ addMsg("a",key()?"สั่งได้เลยครับ — สร้างตู้ · แก้ค่าตั้ง · เพิ่มสี ทุกคำสั่งจะให้กดยืนยันก่อนทำ"
+  function hello(){ addMsg("a",key()?"สั่งได้เลยครับ — สร้างตู้ · แก้ค่าตั้ง · เพิ่มสี ทุกคำสั่งจะให้กดยืนยันก่อนทำ"+(snOff("aiGoto")?"":"\nถามได้ว่าปุ่ม/เมนูอยู่ไหน — ผู้ช่วยชี้ให้ที่จอ 👉")+(snOff("aiReq")?"":"\nเรื่องที่โปรแกรมยังทำไม่ได้ ส่งคำขอถึงผู้ดูแลได้ 📮")
     :"ยังไม่ได้ใส่คีย์ AI — กด ⚙ เพื่อใส่ (Claude / OpenAI / Gemini)\nระหว่างนี้สั่งแบบง่ายได้ เช่น “สร้างตู้ 800x720x560 ชั้น 2” · “backset = 18” · “หา เดือย” · “สีใหม่ N03P0001N”"); }
   function addMsg(who,text,actions){ const log=root.querySelector("#snaiLog"), d=document.createElement("div");
     d.className="m "+who; d.textContent=text||(actions&&actions.length?"":"(ไม่มีข้อความ)");
     (actions||[]).forEach(a=>{ const r=document.createElement("div"); r.className="act";
-      const ok=a.type==="create_cabinet"||a.type==="set_setting"||a.type==="add_color"||(a.type==="tool"&&!!toolOf(a.tool))||a.type==="select";
+      const ok=a.type==="create_cabinet"||a.type==="set_setting"||a.type==="add_color"||(a.type==="tool"&&!!toolOf(a.tool))||a.type==="select"
+        ||(a.type==="goto"&&!snOff("aiGoto")&&!!goParse(a.target))||(a.type==="request"&&!snOff("aiReq"));   /* v1.561: + goto / request */
+      if(a.type==="request") r.className="act req";
       r.innerHTML='<span class="t">'+H(describe(a))+'<br><span class="st"></span></span>'
-        +(ok?'<button class="ibtn go" style="background:var(--accent);color:#fff;border-color:transparent">ทำ</button>':'');
+        +(ok?'<button class="ibtn go" style="background:var(--accent);color:#fff;border-color:transparent">'+(a.type==="goto"?"👉 ชี้ให้ดู":(a.type==="request"?"📮 ส่งคำขอ…":"ทำ"))+'</button>':'');
       const st=r.querySelector(".st"), go=r.querySelector(".go");
-      if(go) go.onclick=async()=>{ go.disabled=true; st.style.color=""; st.textContent="กำลังทำ…";
-        try{ const res=await run(a)||{}; st.textContent=(res.cancel?"— ":"✓ ")+(res.msg||"เสร็จ");
-          if(res.cancel){ go.disabled=false; go.textContent="ทำอีกครั้ง"; return; }
+      if(go) go.onclick=async()=>{ go.disabled=true; st.style.color=""; st.textContent="กำลังทำ…"; let res=null;
+        try{ res=await run(a)||{}; st.textContent=(res.cancel?"— ":"✓ ")+(res.msg||"เสร็จ");
+          if(res.again){ go.disabled=false; go.textContent="👉 ชี้อีกครั้ง"; return; }   /* v1.561: goto กดซ้ำได้ */
+          if(res.cancel){ go.disabled=false; go.textContent=(a.type==="request"?"📮 ส่งคำขอ…":"ทำอีกครั้ง"); return; }
           if(res.undo){ go.disabled=false; go.textContent="↶ ย้อน"; go.style.background=""; go.style.color="";
             go.onclick=async()=>{ go.disabled=true; try{ await res.undo(); st.textContent="↶ ย้อนแล้ว"; go.remove(); }catch(e){ st.textContent="✕ "+(e.message||e); go.disabled=false; } }; }
           else go.remove(); }
         catch(e){ console.error("snai run:",e); st.style.color="#b42318"; st.textContent="✕ "+(e.message||e); go.disabled=false; }
-        finally{ if(!root.classList.contains("show")) show(true); } };
+        finally{ if(!root.classList.contains("show")&&!(res&&res.keepHidden)) show(true); } };   /* v1.561: goto ที่ต้องหลบผู้ช่วย = ไม่เปิดกลับมาทับ */
       d.appendChild(r); });
     log.appendChild(d); log.scrollTop=log.scrollHeight; return d; }
   async function send(){ const tx=root.querySelector("#snaiTxt"), t=String(tx.value||"").trim(); if(!t||busy) return;
@@ -66884,6 +67457,8 @@ const SNAI=(function(){
     { const m=/^\s*(?:จำไว้|จำว่า|จดไว้|remember)\s*[:：]?\s*([\s\S]+)$/i.exec(t);   // v1.557: สอนตรง ๆ ไม่เรียก AI
       if(m){ try{ await memAdd(m[1],""); addMsg("a","🧠 จำแล้ว — ทุกคนในทีมที่ใช้ผู้ช่วยจะได้บทเรียนนี้\n“"+m[1].trim()+"”"); }
         catch(e){ addMsg("e","บันทึกความจำไม่สำเร็จ: "+(e.message||e)+"\n(ต้องเชื่อมคลาวด์/Odoo อยู่)"); } return; } }
+    { const m=snOff("aiReq")?null:/^\s*(?:ขอฟีเจอร์|ขอฟังก์ชัน|ขอฟังก์ชั่น|อยากได้ฟีเจอร์|feature\s*request)\s*[:：]?\s*([\s\S]+)$/i.exec(t);   /* v1.561: ขอตรง ๆ ไม่เรียก AI */
+      if(m){ const x=m[1].trim(); addMsg("a","📮 กดส่งคำขอด้านล่าง — แก้ชื่อ/รายละเอียดได้ก่อนส่ง",[{type:"request",title:x.split(/\n/)[0].slice(0,80),detail:x,_q:t}]); return; } }
     if(!key()){ const o=offline(t); addMsg("a",o.reply,o.actions); return; }
     { const n=used(), q=quota(); if(q&&n>=q) addMsg("e","⚠ วันนี้ใช้ครบ "+q+" ครั้งตามโควตาแล้ว — ลองส่งให้ แต่อาจถูกปฏิเสธ · รีเซ็ต "+resetAt()+" น. · หรือกด ⚙ เปลี่ยนรุ่นเป็น flash-lite"); }
     busy=true; const go=root.querySelector("#snaiGo"); go.disabled=true; const wait=addMsg("a","กำลังคิด… 0 วิ"), t0=Date.now();
@@ -66892,10 +67467,18 @@ const SNAI=(function(){
     try{ const q3=hist.filter(x=>x.role==="user").slice(-3).map(x=>x.content).join("\n");   // 3 ข้อความล่าสุด = คำตอบต่อเนื่อง (เช่น “ใช่ 18”) ยังได้ค่าตั้งชุดเดิม
       try{ await memLoad(); }catch(e){}
       const raw=await callLLM(sysPrompt(q3),hist,90000); const o=parseReply(raw);
-      hist.push({role:"assistant",content:raw||"{}"}); wait.remove(); const d=addMsg("a",o.reply,o.actions);
+      hist.push({role:"assistant",content:raw||"{}"}); wait.remove();
+      (o.actions||[]).forEach(a=>{ if(a&&a.type==="request"){ a._q=t; a._ai=o.reply; } });   /* v1.561: คำขอเก็บคำถามเดิม + คำตอบ AI */
+      const d=addMsg("a",o.reply,o.actions);
       { const tb=document.createElement("div"); tb.style.cssText="margin-top:6px;text-align:right";   // v1.557: ✏ สอน — ตอบผิด/บอกว่าทำไม่ได้แต่ทำได้
         tb.innerHTML='<button class="ibtn" style="font-size:11px;padding:2px 9px" title="AI ตอบผิดหรือบอกว่าทำไม่ได้แต่ทำได้? สอนแล้วจำเป็นความจำของทีม">✏ สอนผู้ช่วย</button>';
-        tb.firstChild.onclick=()=>teach(t,o.reply); d.appendChild(tb); } }
+        tb.firstChild.onclick=()=>teach(t,o.reply);
+        if(!snOff("aiReq")){ const rb=document.createElement("button"); rb.className="ibtn"; rb.style.cssText="font-size:11px;padding:2px 9px;margin-left:6px";   /* v1.561: 📮 คู่กับ ✏ */
+          rb.title="AI บอกว่ามี แต่จริง ๆ โปรแกรมยังทำไม่ได้? ส่งคำขอถึงผู้ดูแล"; rb.textContent="📮 ขอฟีเจอร์";
+          const ra=(o.actions||[]).find(a=>a&&a.type==="request")||{};
+          rb.onclick=async()=>{ try{ const r=await reqDialog({title:ra.title,detail:ra.detail,area:ra.area,q:t,ai:o.reply}); if(r&&!r.cancel) addMsg("a",r.msg); }catch(e){ addMsg("e",e.message||String(e)); } };
+          tb.appendChild(rb); }
+        d.appendChild(tb); } }
     catch(e){ hist.pop(); wait.remove(); addMsg("e","เรียก AI ไม่สำเร็จ: "+(e.message||e)+"\n(ตรวจคีย์/รุ่นที่ ⚙ · หรือเน็ต)"); }
     finally{ clearInterval(tk); busy=false; go.disabled=false; tx.focus(); } }
   /* v1.551: หลบแผงห้องออกแบบ (ผู้ใช้ 12:00 ภาพ: “ผู้ช่วย โดนทับเวลาอยู่โหมดออกแบบ”)
@@ -66914,9 +67497,12 @@ const SNAI=(function(){
     root.classList.toggle("show",!!on); const b=$("aiBtn"); if(b) b.classList.toggle("sel",!!on);
     clearInterval(_plTm); _plTm=0;
     if(on){ place(); _plTm=setInterval(place,800); memLoad().catch(()=>{});   // แผงห้องเปิด/ปิด/พับได้ตลอด ไม่มีเหตุการณ์ให้ฟัง — ตามดูเบา ๆ ตอนผู้ช่วยเปิดอยู่
-      labels=null; pill(); useUI(); setTimeout(()=>{ try{ root.querySelector("#snaiTxt").focus(); }catch(e){} },30); } }
-  function init(){ bind("aiBtn",()=>show()); try{ addEventListener("resize",place); }catch(e){} }
-  return { init, show, offline, parseReply, coerce, settingKeys, relevantKeys, run, sysPrompt, prefill, allTools, cabList, _toolOf:toolOf, guideCtx, guideEdit, modelWizard, memLoad, memAdd, memCtx, memManager, structCtx, used, quota, resetAt, _cfg:()=>cfg };
+      labels=null; pill(); useUI(); setTimeout(()=>{ try{ root.querySelector("#snaiTxt").focus(); }catch(e){} },30);
+      if(typeof PL!=="undefined"&&PL.on&&!snOff("aiGoto")) goHarvestPl();   /* v1.561: จำปุ่มในแผงห้อง */
+      reqMine().catch(()=>{}); } }
+  function init(){ bind("aiBtn",()=>show()); try{ addEventListener("resize",place); }catch(e){} try{ reqStart(); }catch(e){ console.error("snai req:",e); } }   /* v1.561: + เฝ้าคำขอฟีเจอร์ */
+  return { init, show, offline, parseReply, coerce, settingKeys, relevantKeys, run, sysPrompt, prefill, allTools, cabList, _toolOf:toolOf, guideCtx, guideEdit, modelWizard, memLoad, memAdd, memCtx, memManager, structCtx, used, quota, resetAt, _cfg:()=>cfg,
+    goMap, goCtx, goFind, goParse, runGoto, goStop, goHarvestPl, reqLoad, reqAdd, reqVote, reqDups, reqDialog, reqManager, reqTick, reqMd, reqSetAdmins, meName, _req:()=>REQ };   /* v1.561 */
 })();
 try{ SNAI.init(); }catch(e){ console.error("SNAI.init:",e); }
 
