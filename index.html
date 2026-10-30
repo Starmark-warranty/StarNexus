@@ -3283,7 +3283,7 @@ body[data-theme="dark"] .splash-dots span{background:rgba(255,255,255,.25)}
    ===================================================================== */
 /* ---- APP_META: แหล่งความจริงเดียวของเวอร์ชัน (ดูได้จาก console / คลิกชื่อแอป) ---- */
 const APP_META={
-  name:"StarNexus", version:"1.567", build:"2026-10-30/quote-materials",
+  name:"StarNexus", version:"1.568", build:"2026-10-30/gemini-web",
   file:"StarNexus.html", basedOn:"Furnitech_V3.html (v3.11)",
   /* ───────── เริ่มนับเวอร์ชันใหม่ที่ 1.001 (21/08/2026) ─────────
      ของเดิมนับมาถึง 42.1 แล้ววิ่งเป็นทศนิยมสองชั้นซึ่งอ่านลำดับยาก
@@ -3291,6 +3291,7 @@ const APP_META={
      ประวัติเก่าเก็บไว้ทั้งหมดตามเลขเดิม ไม่ไล่เขียนใหม่ เพราะเลขในนั้นถูกอ้างถึงไปแล้ว
      รายการที่อยู่ใต้ 1.001 ลงไปจึงเป็นเลขชุดเก่า อ่านต่อกันได้ตามวันที่ */
   changelog:[
+    ["1.568","2026-10-30","FEAT 🎬 Render · 🍌 Gemini เว็บ (ฟรี) (ผู้ใช้ 14:02 ภาพการ์ด per1 “You exceeded your current quota …” — “ต่อ banana ให้มันเจนได้ปะครับ ที่ฟรี 2 ครั้ง”) — ภาพฟรีรายวันของ Nano Banana มีเฉพาะในเว็บ/แอป Gemini ส่วนคีย์ API แบบฟรีได้โควตาสร้างภาพ 0 (หน้าราคา Google: Free Tier = Not available ทุกรุ่นภาพ) จึงต่อตรงจากโปรแกรมไม่ได้ → ปุ่มใหม่บนการ์ดภาพ 🍌 Gemini เว็บ (ฟรี): คัดลอกภาพ (PNG ≤ 1600 px) + เปิด gemini.google.com · 📋 คัดลอกคำสั่ง (คงแบบตู้ เหมือนปุ่ม AI แต่งต่อ) · เอาภาพผลกลับ: 📥 วางภาพผล (อ่านคลิปบอร์ด) / Ctrl+V ในหน้า Render / ลากไฟล์มาวางบนการ์ด / 📂 เลือกไฟล์ → ขึ้นเป็นภาพ AI ของการ์ดนั้น บันทึกได้เหมือนเดิม · ไม่ใช้คีย์ · FIX ข้อความ 429 ภาษาอังกฤษยาวถูกตัด → บอกไทย: คีย์ฟรี (โควตาภาพ 0) / โควตาวันนี้หมด (รีเซ็ตราว 14:00–15:00 น.) / เกินชั่วคราว รอกี่วินาที + ปุ่ม 🍌 เป็นสีเหลือง · หารุ่นภาพอัตโนมัติรวมชื่อที่มี banana · FEAT ภาพเข้าใบเสนอราคา (ผู้ใช้ 14:09 “ส่งรูป + Prompt ไปให้ Gemini ให้ User เจนอีกที แล้วเอากลับมาอัพ เพื่อใส่เข้าใบเสนอราคา”): การ์ด Render มีปุ่ม 🧾 ใส่ใบเสนอราคา (ภาพ AI / ภาพเรนเดอร์ · กดซ้ำ = เอาออก · ภาพใหม่ = อัปเดต) · หน้า 🧾 ใบเสนอราคา มีหัวข้อ ภาพประกอบ (Render / AI): ภาพย่อ ⭐ ขึ้นก่อน ✕ ลบ · 📂 เพิ่มภาพ (ไฟล์ที่ดาวน์โหลดจาก Gemini) · 🎬 เปิด Render · ภาพแรกขึ้นหัวใบแทนภาพ 3D · แนบภาพเต็มหน้า A4 แนวนอน หลังใบ (มีหมายเหตุ ภาพจำลอง) · เก็บใน state.qPics (JPEG ≤ 1600 px สูงสุด 6 ภาพ) ไปกับ Save Order / .json / autosave · ไม่เข้า Ctrl+Z และลิงก์แชร์ · ปิดได้ SN_OFF.rndWeb / rndQuota / plqPics"],
     ["1.567","2026-10-30","FEAT ใบเสนอราคา หน้ารวมวัสดุ (ผู้ใช้ 13:30) — ① เนื้อไม้: รูปจริง PB · PB-HMR · MDF · MDF-HMR (รูปที่ผู้ใช้ส่ง ฝังในไฟล์) แยกช่องโครงตู้/หน้าบาน (เนื้อเดียวกัน = ช่องเดียว) · ดูเนื้อจากรหัส/ชื่อวัสดุ (MDF/HDF · HMR/MR/กันชื้น · PB/Particle) · หาไม่เจอ = รูปไอคอนเดิม (เดิมช่องเดียว “โครงสร้าง” เป็นไอคอน) ② อุปกรณ์: บานพับ กับ ราง แยกช่อง (มีถึงแสดง) + จำนวน + มีหลายรุ่น = บอก +n แบบ (เดิมรวมช่องเดียว “Fitting”) ③ สีหน้าบาน/สีโครงตู้ หัวช่อง = รหัสสี (Family ของตู้ เช่น MK630 · AK1 · AA7) บรรทัดล่าง = คำอธิบายสี (เดิมขึ้นรหัสผิว K_N01M0029_… ยาว) · สีหน้าบานหลายสี = ช่องละสี (สูงสุด 4) · ปิดได้ SN_OFF.dwgCore / dwgFitSplit / dwgColorCode"],
     ["1.566","2026-10-30","FEAT ห้องออกแบบ (ผู้ใช้ 13:13–13:21) — ① 🎬 Render / ✨ โหมดสมจริง ใช้ห้องที่ออกแบบจริง: ผนังที่เปิดอยู่ = ผนังจริงเจาะช่องประตู/หน้าต่างตามที่วาง + สี/รูปผนังตาม 🖌 · ประตู/หน้าต่างขึ้นในโหมดสมจริง (กระจกไม่บังแสง · นอกหน้าต่างเป็นฟ้า) · แดด/ฟ้าในภาพแสงจริงเข้าทางหน้าต่างที่ใหญ่สุดที่วาง · พื้นตามแบบพื้น/สีที่ตั้ง (เดิมสร้างห้องเอง หน้าต่างผนังซ้าย ผนังครีม พื้นโอ๊ค ไม่ตรงห้องที่ออกแบบ) · ภาพแสงจริงรองรับมุมมอง 2 จุด (เส้นตั้งตรง) กรอบภาพตรงจอ ② ระยะเครื่องใช้บนท็อป: ช่อง ห่างหน้าท็อป / ห่างหลัง ในแผง (แก้ได้ · ↺ กลาง) ติดตัวชิ้นเวลาลาก/ย้ายตู้ + เส้นระยะหน้า-หลัง-ปลายท็อปตอนเลือก ③ ถาดฟอยด์ลายนูนเป็นเม็ดแบบแผ่นฟอยด์จริง (ลายสี + normal map) แทนร่องตามยาว ④ FIX ผนังที่มีประตู/หน้าต่าง มีเส้นรอยต่อตั้งจากพื้นถึงฝ้าที่ขอบช่อง (ผนังต่อจากหลายท่อน) → เส้นขอบเหลือเฉพาะขอบช่องจริง ⑤ สีวงกบ/กรอบหน้าต่าง · สีบานประตู · ลายบานประตู 6 แบบ (เรียบ · เซาะร่องนอน 3 เส้น · ลูกฟัก 2 ช่อง · ลูกฟัก 4 ช่อง · กระจกช่องตั้ง · ระแนงตั้ง) · ปิดได้ SN_OFF.realPlWalls / plaDepth / foilTex / plWallSeam / ploStyle"],
     ["1.565","2026-10-30","FEAT ห้องออกแบบ (ผู้ใช้ 12:57 + 13:01) — ① ซิงค์ใต้ท็อป 1 หลุม (sinku 540×440 ลึก 200): อ่างอยู่ใต้ท็อป ท็อปเจาะช่องตามปากอ่าง (w−40 × d−40 มุม 15 · เห็นสันหิน) + ก๊อกบนท็อป ② ซิงค์ 1 หลุมบนท็อป ไม่มีที่พักจาน (sink1 500×450 ลึก 180): ขอบสเตนเลส + อ่างลึกจริงลงในช่องเจาะ — ทั้งสองแบบท็อปเจาะรูจริง (plWtHoles/plWtHoleGeo · ลายหินต่อเนื่อง · ย้ายซิงค์ช่องตาม) ③ เตาอินดักชั่น 2 หัว 30 ซม. HAFELE LUCIEN 495.06.095 (hobd 290×520×68 · กระจกดำ วงหน้า-หลัง แผงสัมผัส โลโก้ · รหัสใส่ให้เอง) ④ FIX ใบเสนอราคา แปลนท็อป ขึ้น “ซิงค์” ทุกตู้ BA… (ตารางรหัส BA = ตู้พื้น · ซิงค์) → วาดตามเครื่องใช้ที่วางจริง ตำแหน่ง/ขนาด/ชื่อรุ่น (ซิงค์ = ปากอ่าง · ใต้ท็อป = ช่องเจาะ · เตา = วงหัวเตา) ไม่มีเครื่องใช้ค่อยเดาแบบเดิมโดยไม่ใช้ชื่อกลุ่มรหัส ⑤ ฉาก 🎬 เลือกแสดง ตู้ลอย / ตู้พื้น + ท็อป / ตู้สูง ต่อฉาก (s.vis · หน้าต่างแก้ฉาก/🔭 · ป้าย 🙈 บนแท็บ · 🙈 แสดงทั้งหมด บนแถบ · ใช้กับ Render ด้วย) ⑥ FIX ท็อปวิ่งเข้าผนัง: ปลายแนวตู้ห่างผนัง ≤ 150 (เดิม 60) = ชนผนัง ท็อป/บัววิ่งถึงผนัง · มุม L ที่ไม่ถึงกัน ≤ 150 ยืดชนกัน · ปิดได้ SN_OFF.plWtHole / dwgApplLbl / scnVis / plWtWallGap"],
@@ -24882,7 +24883,7 @@ const SCENE_KEY="sxlocaltrial:boardforge:v1"+(SX_TAB?(":"+SX_TAB):"");
    openSharedIfAny เรียก sync(1) ซึ่งเซฟอัตโนมัติ = สแนปช็อตตู้ใบเดียวทับออเดอร์ทั้งใบ
    เปิดลิงก์เช็คจากหน้าตรวจลิงก์ทีหนึ่ง แล้วรีเฟรชแท็บงาน งาน 37 ตู้เหลือตู้เดียว
    v36.3 คิดเผื่อกรณีสองแท็บทำงานไว้แล้ว แต่ลิงก์ดูอย่างเดียวเป็นกรณีที่สามที่ยังไม่มีใครกัน */
-async function autosave(){ if(state.editing||VIEW_ONLY||_alignHold>0)return;   /* v1.265 */ try{ await store.set(SCENE_KEY,JSON.stringify({boards:state.boards,globalTone:state.globalTone,cabColors:state.cabColors,cabNums:state.cabNums,cabVarTxt:state.cabVarTxt,cabDX:state.cabDX,bcSeq:state.bcSeq,bcMax:state.bcMax,orderLines:state.orderLines,cabDP:state.cabDP,cabFrontEdge:state.cabFrontEdge,cabFrontDir:state.cabFrontDir,room:state.room||null,scenes:state.scenes||[],orderMat:state.orderMat||{},pidLock:state.pidLock||null})); }catch(e){} }   /* v1.337: + orderMat · v1.411: + pidLock */
+async function autosave(){ if(state.editing||VIEW_ONLY||_alignHold>0)return;   /* v1.265 */ try{ await store.set(SCENE_KEY,JSON.stringify({boards:state.boards,globalTone:state.globalTone,cabColors:state.cabColors,cabNums:state.cabNums,cabVarTxt:state.cabVarTxt,cabDX:state.cabDX,bcSeq:state.bcSeq,bcMax:state.bcMax,orderLines:state.orderLines,cabDP:state.cabDP,cabFrontEdge:state.cabFrontEdge,cabFrontDir:state.cabFrontDir,room:state.room||null,scenes:state.scenes||[],qPics:state.qPics||[],orderMat:state.orderMat||{},pidLock:state.pidLock||null})); }catch(e){} }   /* v1.337: + orderMat · v1.411: + pidLock */
 /* ───────── v1.127: การบันทึกอัตโนมัติกินเวลาเกือบครึ่งของรอบคิดฉาก ─────────
    ตัวบันทึกแปลงข้อมูลทั้งฉากเป็นข้อความใหม่ทุกครั้งที่คิดฉาก ทั้งชิ้น รู ร่อง อุปกรณ์
    ออเดอร์ร้อยสามสิบห้าชิ้นจึงกินสองวินาทีต่อรอบ วัดได้จริงในงานจริง
@@ -29548,6 +29549,9 @@ function boardRole(b){
      SN_OFF.dwgCore=1     หน้ารวมวัสดุ ช่อง “โครงสร้าง” ไอคอนแบบเดิม (ไม่มีรูปเนื้อไม้) (v1.567)
      SN_OFF.dwgFitSplit=1 หน้ารวมวัสดุ บานพับ+ราง รวมช่อง “Fitting” แบบเดิม (v1.567)
      SN_OFF.dwgColorCode=1 หน้ารวมวัสดุ สีขึ้นรหัสผิว (K_…) แบบเดิม (v1.567)
+     SN_OFF.rndWeb=1      🎬 Render ไม่มีปุ่ม 🍌 Gemini เว็บ (ฟรี) · ไม่รับวาง/ลากภาพผลกลับ (v1.568)
+     SN_OFF.rndQuota=1    🎬 Render AI แต่งต่อ โควตาเต็ม (429) ขึ้นข้อความอังกฤษของ Google แบบเดิม (v1.568)
+     SN_OFF.plqPics=1     ใบเสนอราคาไม่มีภาพประกอบ Render/AI (ไม่มีปุ่ม 🧾 บนการ์ด Render · ภาพที่เก็บไว้ยังอยู่) (v1.568)
      SN_OFF.plMulti=1     ห้องออกแบบเลือกได้ทีละตู้ (ไม่มี Ctrl+คลิก/กรอบ/Ctrl+A) · ลากตู้แล้วซิงค์/ฮู้ดไม่ตาม (v1.562)
      SN_OFF.plMarble=1    ท็อป/บัว/ผนังหินเป็นสีเรียบ ไม่มีลายหินอ่อน (ค่าที่เลือกไว้ยังอยู่) (v1.562)
      SN_OFF.plRender=1    แผงห้องออกแบบกลับมีปุ่ม 🧊 ส่งออก Blender แทน 🎬 Render (v1.562)
@@ -41329,7 +41333,7 @@ function plqData(){ const r=plRoom(); if(!r.quote||typeof r.quote!=="object") r.
   const q=r.quote, oid=((typeof orderId==="function"&&String(orderId()||"").match(/^\d{10}/))||[""])[0];
   const d=new Date(), p=n=>String(n).padStart(2,"0");
   const def={no:"QT-"+(oid||(String(d.getFullYear()).slice(2)+p(d.getMonth()+1)+p(d.getDate()))), date:d.getFullYear()+"-"+p(d.getMonth()+1)+"-"+p(d.getDate()), valid:30,
-    cust:"", custAddr:"", custTel:"", proj:"", markup:0, pct:{}, nm:{}, disc:0, vat:"add", round:10, note:PLQ_NOTE, img:true, att:{plan:true, elev:true, sec:true, wt:true, mat:true}};   // v1.521: att = แบบที่แนบ
+    cust:"", custAddr:"", custTel:"", proj:"", markup:0, pct:{}, nm:{}, disc:0, vat:"add", round:10, note:PLQ_NOTE, img:true, picTop:true, picPage:true, att:{plan:true, elev:true, sec:true, wt:true, mat:true}};   // v1.568: picTop/picPage = ภาพประกอบ Render/AI   // v1.521: att = แบบที่แนบ
   Object.keys(def).forEach(k=>{ if(q[k]==null) q[k]=(typeof def[k]==="object")?JSON.parse(JSON.stringify(def[k])):def[k]; });
   if(!q.pct||typeof q.pct!=="object") q.pct={}; if(!q.nm||typeof q.nm!=="object") q.nm={};
   if(q.note===PLQ_NOTE_515) q.note=PLQ_NOTE;   // v1.518: ข้อความเดาเดิมที่ไม่ได้แก้ → เงื่อนไขจริง
@@ -41423,23 +41427,56 @@ function plqCalc(Q,L){
   return {rows, sub, disc, after, vat, pre, grand, cost, gp:(Q.vat==="incl"?pre:after)-cost}; }
 /* หน้า A4 (HTML ทั้งหน้า) — ใช้ทั้งภาพตัวอย่างและตอนพิมพ์ */
 /* v1.521: หน้าแนบท้ายใบ — A = {figs:[{key,title,svg}], mat:[การ์ด]} */
-function plqAttHtml(Q,C,A){ if(snOff("plqDwg")||!A) return ""; const at=Q.att||{}, e=s=>escapeHtml(String(s==null?"":s));
-  const figs=(A.figs||[]).filter(f=>at[String(f.key).split("_")[0]]!==false), matH=(at.mat!==false)?dwgMatHtml(A.mat):"";
-  if(!figs.length&&!matH) return "";
-  const lg=plqLogo(C), hd=n=>'<div class="dwh">'+(lg?'<img src="'+e(lg)+'" alt="">':'<b>'+e(C.name||"")+'</b>')
-      +'<div><b>แบบประกอบใบเสนอราคา</b> เลขที่ '+e(Q.no||"-")+(Q.cust?(' · '+e(Q.cust)):'')+(Q.proj?(' · '+e(Q.proj)):'')+'<br><span>หน่วย มม. · แบบเพื่อประกอบการเสนอราคา ขนาดจริงวัดหน้างานอีกครั้งก่อนผลิต</span></div>'+(n?'<em>'+e(n)+'</em>':'')+'</div>';
+/* ═════════ v1.568: ภาพประกอบใบเสนอราคา จาก 🎬 Render / AI / Gemini เว็บ ═════════
+   ผู้ใช้ 30/10 14:09: “ตัวที่ Ai แต่งให้ อยากได้เป็น รูป แล้วก็ Prompt ไปให้ Gemini โดยให้ User เจนอีกทีครับ แล้วเอากลับมา อัพ เพื่อใส่เข้าใบเสนอราคา”
+   เดิม: ใบเสนอราคามีภาพห้อง 3D มุมจอภาพเดียว (plqShot) · ภาพจาก Render/AI อยู่แค่ในหน้า Render (ปิดโปรแกรมหาย) ต้องบันทึกไฟล์ไปแปะเองในโปรแกรมอื่น
+   ตอนนี้: state.qPics = [{id,key,sig,url,w,h,name,src,at}] (JPEG ≤ 1600 px q .84 · สูงสุด PLQ_PIC_MAX ภาพ)
+     ใส่ได้ 2 ทาง: การ์ด Render ปุ่ม 🧾 (key = id การ์ด:ai / :r · sig = ลายเซ็นภาพต้นทาง → ภาพ AI ใหม่ = 🧾 อัปเดต แทนที่ตำแหน่งเดิม) · หน้า 🧾 ใบเสนอราคา 📂 เพิ่มภาพ
+     ในใบ: ภาพแรกขึ้นหัวใบแทนภาพ 3D (Q.picTop) · ทุกภาพแนบเต็มหน้า A4 แนวนอนก่อนแบบ (Q.picPage) พร้อมหมายเหตุว่าเป็นภาพจำลอง
+     เก็บไปกับ Save Order / ไฟล์ .json / autosave แบบ state.scenes · ไม่อยู่ใน Ctrl+Z (snap() เก็บทั้งก้อนทุกครั้ง ภาพใหญ่จะกินหน่วยความจำ ×120)
+     ลิงก์แชร์ไม่มี (payload แชร์ไม่ได้ใส่) · Order → ใหม่ = ล้าง · ปิด SN_OFF.plqPics=1 (ภาพที่เก็บไว้ไม่หาย) */
+const PLQ_PIC_MAX=6;
+function plqSig(u){ u=String(u||""); return u.length+":"+u.slice(-32); }
+function plqPics(){ if(typeof state==="undefined") return []; if(!Array.isArray(state.qPics)) state.qPics=[]; return state.qPics; }
+function plqPicShrink(url,max,q){ return new Promise(ok=>{ const im=new Image(); im.onload=()=>{ try{ const k=Math.min(1,(max||1600)/Math.max(im.width,im.height)), c=document.createElement("canvas");
+      c.width=Math.max(1,Math.round(im.width*k)); c.height=Math.max(1,Math.round(im.height*k)); const g=c.getContext("2d"); g.fillStyle="#fff"; g.fillRect(0,0,c.width,c.height); g.drawImage(im,0,0,c.width,c.height);
+      ok({url:c.toDataURL("image/jpeg",q||0.84), w:c.width, h:c.height}); }catch(e){ console.warn("qPic:",e); ok(null); } };
+    im.onerror=()=>ok(null); im.src=url; }); }
+function plqPicState(key,url){ const p=plqPics().find(x=>x.key&&x.key===key); return !p?0:(p.sig===plqSig(url)?1:2); }   /* 0 ไม่มี · 1 ภาพเดียวกัน · 2 ภาพเปลี่ยน */
+function plqPicsChanged(){ try{ if(PLQ.el&&PLQ.picsChanged) PLQ.picsChanged(); }catch(e){ console.warn("qPic:",e); } try{ autosave(); }catch(e){} }
+async function plqPicAdd(url,o){ o=o||{}; if(snOff("plqPics")||!url) return false; const P=plqPics(), i=o.key?P.findIndex(x=>x.key===o.key):-1;
+  if(i<0&&P.length>=PLQ_PIC_MAX){ toast("ใส่ภาพในใบเสนอราคาได้สูงสุด "+PLQ_PIC_MAX+" ภาพ — ลบภาพเก่าในหน้า 🧾 ใบเสนอราคา ก่อน"); return false; }
+  const r=await plqPicShrink(url,1600,0.84); if(!r){ toast("อ่านภาพไม่ได้"); return false; }
+  const it={id:(i>=0?P[i].id:("qp"+Date.now().toString(36)+Math.random().toString(36).slice(2,5))), key:o.key||"", sig:o.key?plqSig(url):"", url:r.url, w:r.w, h:r.h,
+    name:String(o.name||"ภาพ").slice(0,60), src:String(o.src||"upload").slice(0,40), at:Date.now()};
+  if(i>=0) P[i]=it; else P.push(it); plqPicsChanged(); return true; }
+function plqPicDel(idOrKey){ const P=plqPics(), i=P.findIndex(x=>x.id===idOrKey||(x.key&&x.key===idOrKey)); if(i<0) return false; P.splice(i,1); plqPicsChanged(); return true; }
+function plqTopImg(Q){ if(Q.img===false) return ""; const P=snOff("plqPics")?[]:plqPics(); return (P.length&&Q.picTop!==false)?P[0].url:PLQ.img; }
+function plqPicNote(p){ const s=String((p&&p.src)||"");
+  return s==="render"?"ภาพจำลอง 3D เพื่อประกอบการนำเสนอ — สีและวัสดุจริงอาจต่างจากภาพเล็กน้อย"
+    :s==="upload"?"ภาพประกอบเพื่อการนำเสนอ — ขนาด สี วัสดุ และรายละเอียดจริงยึดตามแบบและรายการในใบเสนอราคานี้"
+    :"ภาพจำลองบรรยากาศ (AI) เพื่อประกอบการนำเสนอ — ขนาด สี วัสดุ และรายละเอียดจริงยึดตามแบบและรายการในใบเสนอราคานี้"; }
+function plqPicPages(Q){ return (snOff("plqPics")||Q.picPage===false)?[]:plqPics().filter(p=>p&&p.url); }
+function plqAttHtml(Q,C,A){ const PP=plqPicPages(Q), noDwg=snOff("plqDwg")||!A;   /* v1.568: + หน้าภาพประกอบ (ปิดแบบอยู่ก็ยังแนบภาพได้) */
+  if(noDwg&&!PP.length) return ""; if(noDwg) A={figs:[],mat:null}; const at=Q.att||{}, e=s=>escapeHtml(String(s==null?"":s));
+  const figs=(A.figs||[]).filter(f=>at[String(f.key).split("_")[0]]!==false), matH=(!noDwg&&at.mat!==false)?dwgMatHtml(A.mat):"";
+  if(!figs.length&&!matH&&!PP.length) return "";
+  const lg=plqLogo(C), hd=(n,pic)=>'<div class="dwh">'+(lg?'<img src="'+e(lg)+'" alt="">':'<b>'+e(C.name||"")+'</b>')
+      +'<div><b>'+(pic?'ภาพประกอบใบเสนอราคา':'แบบประกอบใบเสนอราคา')+'</b> เลขที่ '+e(Q.no||"-")+(Q.cust?(' · '+e(Q.cust)):'')+(Q.proj?(' · '+e(Q.proj)):'')+'<br><span>'+(pic?'ภาพเพื่อประกอบการนำเสนอ':'หน่วย มม. · แบบเพื่อประกอบการเสนอราคา ขนาดจริงวัดหน้างานอีกครั้งก่อนผลิต')+'</span></div>'+(n?'<em>'+e(n)+'</em>':'')+'</div>';
   /* ───────── v1.526: หน้าแบบเป็นกระดาษแนวนอน ─────────
      ผู้ใช้ 27/10 21:00: “ที่เป็นแบบ ให้กระดาษเป็นแนวนอนครับ”
      เดิม (1.521): ต่อท้ายใบเป็น A4 ตั้ง หน้าละ 2 ภาพ · ตอนนี้ภาพละหน้า A4 แนวนอน (@page dw) ภาพเต็มหน้า · หน้ารวมวัสดุแนวตั้งตามเดิม
      ปิด SN_OFF.plqDwgLand=1 = หน้าละ 2 ภาพแนวตั้ง (ขอบกระดาษยังเป็นแบบใหม่ ไม่มีลิงก์) */
-  if(snOff("plqDwgLand")) return '<div class="dwp2">'+hd("")
+  const picH=(k0,tot)=>PP.map((p,i)=>'<section class="dwl dwi">'+hd("แผ่น "+(k0+i+1)+"/"+tot,1)+'<div class="dwf dwfi"><img src="'+p.url+'" alt=""></div>'   /* v1.568 */
+    +'<div class="ft">ภาพจำลอง'+(p.name?(' — '+e(p.name)):'')+'</div><div class="fn">'+e(plqPicNote(p))+'</div></section>').join("");
+  if(snOff("plqDwgLand")) return picH(0,PP.length)+((figs.length||matH)?('<div class="dwp2">'+hd("")
     +figs.map(f=>'<div class="fig"><div class="fs">'+f.svg+'</div><div class="ft">'+e(f.title)+'</div></div>').join("")
     +(matH?('<div class="fig mtp"><div class="ft" style="margin:0 0 4px">รายละเอียดวัสดุ</div>'+matH+'</div>'):'')
-    +'</div>';
+    +'</div>'):'');
   /* v1.527: หน้ารวมวัสดุ = A4 แนวนอน หน้าละ 10 ช่อง (ผู้ใช้ 21:04 “รายการวัสดุเป็นกระดาษแนวนอน 1 หน้า … มีเยอะขึ้นก็ขึ้นหน้า 2 แต่ไม่เอาอะไรมาปนต่อ”)
      เดิม (1.526): หน้าตั้งแยก · (1.521: ต่อท้ายภาพแปลนท็อปในหน้าเดียวกัน วัสดุตกไปหน้าถัดไปทีละช่อง) */
-  const MT=(at.mat!==false)?((A.mat||[]).filter(Boolean)):[], PER=10, mp=Math.ceil(MT.length/PER), tot=figs.length+mp; let k=0;
-  return figs.map(f=>'<section class="dwl">'+hd("แผ่น "+(++k)+"/"+tot)+'<div class="dwf">'+f.svg+'</div><div class="ft">'+e(f.title)+'</div></section>').join("")
+  const MT=(!noDwg&&at.mat!==false)?((A.mat||[]).filter(Boolean)):[], PER=10, mp=Math.ceil(MT.length/PER), tot=PP.length+figs.length+mp; let k=PP.length;   /* v1.568: ภาพประกอบขึ้นก่อนแบบ */
+  return picH(0,tot)+figs.map(f=>'<section class="dwl">'+hd("แผ่น "+(++k)+"/"+tot)+'<div class="dwf">'+f.svg+'</div><div class="ft">'+e(f.title)+'</div></section>').join("")
     +Array.from({length:mp},(_,i)=>'<section class="dwl dwm">'+hd("แผ่น "+(++k)+"/"+tot)+'<div class="ft" style="margin:2mm 0 3mm">รายละเอียดวัสดุ'+(i?" (ต่อ)":"")+'</div>'
       +dwgMatHtml(MT.slice(i*PER,(i+1)*PER)).replace('<div class="mtl">','<div class="mtl mtl5">')+'</section>').join(""); }
 function plqHtml(Q,C,K,img,A){
@@ -41458,6 +41495,7 @@ function plqHtml(Q,C,K,img,A){
     +'.pw{width:100%;border-collapse:collapse}.pw>thead>tr>td,.pw>tfoot>tr>td,.pw>tbody>tr>td{padding:0;border:0}.psp{height:12mm}'
     +'.dwl{page:dw;break-before:page;page-break-before:always;width:297mm;height:209mm;padding:9mm 12mm 8mm;display:flex;flex-direction:column;overflow:hidden}'
     +'.dwl .dwf{flex:1;min-height:0;border:1px solid #cfd6de;border-radius:6px;padding:3mm;display:flex;align-items:center;justify-content:center}.dwl .dwf svg{display:block;width:100%;height:100%}'
+    +'.dwl .dwfi{padding:0;overflow:hidden;background:#f3f4f6}.dwl .dwfi img{display:block;width:100%;height:100%;object-fit:contain}.dwl .fn{text-align:center;font-size:10px;color:#6b7280;margin-top:1mm}.imgp img{max-height:78mm}'   /* v1.568: หน้าภาพประกอบ · ภาพหัวใบจาก Render/AI สูงขึ้น */
     +'.dwm .mtl5{display:grid;grid-template-columns:repeat(5,1fr);gap:4mm;align-content:start}.dwm .mi{height:50mm}.dwm .mc{font-size:11px}.dwm .mc b{font-size:12.5px}.mi svg.dsg{width:100%;height:100%;max-width:none}'   // v1.527
     /* ───────── v1.536: หน้ารายละเอียดวัสดุ ช่องเท่ากันเสมอ ─────────
        ผู้ใช้ 28/10 15:33 (ภาพหน้า 4/4 ช่องกว้างไม่เท่ากัน): “อยากได้สี่เหลี่ยมเท่าเดิมเสมอ เหมือนที่ส่งไฟล์ให้แต่แรก”
@@ -41488,7 +41526,7 @@ function plqHtml(Q,C,K,img,A){
     +'<div class="meta"><div class="box"><div class="l">ลูกค้า</div><b>'+e(Q.cust||"-")+'</b>'+(Q.custAddr?'<div>'+nl(Q.custAddr)+'</div>':'')+(Q.custTel?'<div>โทร '+e(Q.custTel)+'</div>':'')+(Q.proj?'<div>โครงการ / ห้อง: '+e(Q.proj)+'</div>':'')+'</div>'
       +'<div class="box" style="flex:0 0 66mm"><div class="kv"><span>เลขที่</span><b>'+e(Q.no||"-")+'</b><span>วันที่</span><span>'+e(plqDateTh(Q.date))+'</span>'
       +(exp?'<span>ยืนราคาถึง</span><span>'+e(exp)+' ('+(+Q.valid)+' วัน)</span>':'')+(C.sales?'<span>ผู้เสนอราคา</span><span>'+e(C.sales)+(C.salesTel?(' · '+e(C.salesTel)):'')+'</span>':'')+'</div></div></div>'
-    +(img?'<div class="img"><img src="'+img+'" alt=""></div>':'')
+    +(img?'<div class="img'+((!snOff("plqPics")&&plqPics().length&&img===plqPics()[0].url)?' imgp':'')+'"><img src="'+img+'" alt=""></div>':'')   /* v1.568 */
     +'<table class="it"><thead><tr><th style="width:9mm">ลำดับ</th><th>รายการ</th><th style="width:34mm">ขนาด ก×ล×ส (ซม.)</th><th style="width:13mm">จำนวน</th><th style="width:25mm">ราคา/หน่วย</th><th style="width:27mm">จำนวนเงิน</th></tr></thead><tbody>'
       +(rowsH||'<tr><td colspan="6" class="c" style="padding:14px;color:#6b7280">ยังไม่มีตู้ในห้อง</td></tr>')+'</tbody></table>'
     +'<div class="sum"><div class="words">('+e(plqBaht(K.grand))+')</div><table class="tt2">'+tot+'</table></div>'
@@ -41547,6 +41585,7 @@ async function plQuoteOpen(){
       +'<div class="row">'+inp("custTel","โทร")+inp("proj","โครงการ / ห้อง")+'</div>'
     +'<h5>ใบเสนอราคา</h5><div class="row">'+inp("no","เลขที่")+inp("date","วันที่","","date")+inp("valid","ยืนราคา (วัน)","","number")+'</div>'
       +'<label style="flex-direction:row;align-items:center;gap:6px;color:var(--ink);font-size:12.5px"><input type="checkbox" data-q="img"'+(Q.img!==false?" checked":"")+'> ใส่ภาพห้อง 3D (มุมกล้องตามจอตอนนี้) <button class="ibtn" data-a="shot" style="padding:1px 8px;font-size:11px;margin-left:auto">ถ่ายใหม่</button></label>'
+      +(snOff("plqPics")?'':'<h5>ภาพประกอบ (Render / AI)</h5><div id="plqPics"></div>')   /* v1.568 */
       +'<label>เงื่อนไข / หมายเหตุ<textarea data-q="note" rows="4">'+e(Q.note)+'</textarea></label>'
       +(snOff("plqDwg")?'':('<h5>แนบท้ายใบ</h5><div style="display:flex;flex-wrap:wrap;gap:4px 12px;font-size:12.5px">'+[["plan","แปลน"],["elev","ด้านหน้า"],["sec","Section"],["wt","แปลนท็อป"],["mat","หน้ารวมวัสดุ"]]
         .map(x=>'<label style="flex-direction:row;align-items:center;gap:4px;color:var(--ink);font-size:12.5px"><input type="checkbox" data-att="'+x[0]+'"'+((Q.att||{})[x[0]]!==false?" checked":"")+'> '+x[1]+'</label>').join("")+'</div><div id="plqAttSay" style="font-size:11px;color:var(--ink-dim)"></div>'))   /* v1.521 */
@@ -41578,8 +41617,23 @@ async function plQuoteOpen(){
     preview(); };
   const preview=()=>{ clearTimeout(PLQ.tmr); PLQ.tmr=setTimeout(()=>{ const f=ov.querySelector("#plqFrame"); if(!f) return;
       f.onload=()=>{ try{ const h=Math.max(1123,f.contentDocument.documentElement.scrollHeight); f.style.height=h+"px"; fit(); }catch(_){} };   // v1.521: หลายหน้า = กรอบสูงตามเนื้อหา
-      f.srcdoc=plqHtml(Q,PLQ.co,K||plqCalc(Q,L),Q.img!==false?PLQ.img:"",PLQ.att); fit(); },150); };
+      f.srcdoc=plqHtml(Q,PLQ.co,K||plqCalc(Q,L),plqTopImg(Q),PLQ.att); fit(); },150); };
   const shoot=async()=>{ say("กำลังถ่ายภาพห้อง…"); PLQ.img=await plqShot(); say(PLQ.img?"":"ถ่ายภาพห้องไม่ได้ (เครื่องนี้แสดง 3D ไม่ได้)"); preview(); };
+  /* v1.568: ภาพประกอบ (Render / AI) — ภาพย่อ ⭐ ขึ้นก่อน ✕ ลบ · 📂 เพิ่ม · 🎬 Render · ภาพแรกขึ้นหัวใบ · แนบเต็มหน้า */
+  const picsPaint=()=>{ const box=ov.querySelector("#plqPics"); if(!box) return; const P=plqPics(), sb='style="padding:1px 8px;font-size:11px;flex:none"';
+    box.innerHTML=(P.length?('<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(118px,1fr));gap:6px;margin:4px 0">'+P.map((p,i)=>
+        '<div style="position:relative;border:1px solid '+(i?'var(--line,#ddd)':'var(--accent,#2f6fed)')+';border-radius:7px;overflow:hidden;background:#111">'
+        +'<img src="'+p.url+'" alt="" style="display:block;width:100%;aspect-ratio:16/9;object-fit:cover">'
+        +'<div style="display:flex;gap:3px;align-items:center;padding:3px 4px;background:var(--solid,#fff);font-size:10.5px"><span style="flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="'+e(p.name)+'">'+(i?'':'⭐ ')+e(p.name)+'</span>'
+        +(i?'<button class="ibtn" data-a="picUp" data-i="'+i+'" title="ขึ้นเป็นภาพแรก" style="padding:0 5px;font-size:10.5px;flex:none">⭐</button>':'')
+        +'<button class="ibtn" data-a="picX" data-i="'+i+'" title="เอาออกจากใบเสนอราคา" style="padding:0 5px;font-size:10.5px;flex:none">✕</button></div></div>').join("")+'</div>')
+      :'<div style="font-size:11.5px;color:var(--ink-dim);line-height:1.6">ยังไม่มี — 🎬 Render แล้วกด <b>🧾 ใส่ใบเสนอราคา</b> บนการ์ดภาพ (ภาพ AI / Gemini เว็บ) หรือ 📂 เพิ่มภาพที่ดาวน์โหลดมา</div>')
+      +'<div style="display:flex;gap:6px;flex-wrap:wrap;align-items:center;margin:4px 0"><button class="ibtn" data-a="picAdd" '+sb+'>📂 เพิ่มภาพ…</button>'
+      +((typeof RND!=="undefined"&&!snOff("plRender"))?'<button class="ibtn" data-a="picRnd" '+sb+'>🎬 เปิด Render</button>':'')
+      +'<span style="font-size:11px;color:var(--ink-dim)">'+P.length+'/'+PLQ_PIC_MAX+' ภาพ</span></div>'
+      +(P.length?('<label style="flex-direction:row;align-items:center;gap:6px;color:var(--ink);font-size:12.5px"><input type="checkbox" data-q="picTop"'+(Q.picTop!==false?" checked":"")+'> ภาพแรก (⭐) ขึ้นหัวใบแทนภาพห้อง 3D</label>'
+        +'<label style="flex-direction:row;align-items:center;gap:6px;color:var(--ink);font-size:12.5px"><input type="checkbox" data-q="picPage"'+(Q.picPage!==false?" checked":"")+'> แนบภาพเต็มหน้า (A4 แนวนอน) ต่อท้ายใบ</label>'):''); };
+  PLQ.picsChanged=()=>{ if(PLQ.el!==ov) return; picsPaint(); PLQ.dirty=true; preview(); };
   ov.addEventListener("input",ev=>{ const t=ev.target;
     if(t.dataset.q!=null&&t.type!=="checkbox"&&t.tagName!=="SELECT"){ Q[t.dataset.q]=(t.type==="number")?(t.value===""?"":+t.value):t.value; PLQ.dirty=true; if(["markup","disc"].includes(t.dataset.q)){ K=plqCalc(Q,L); repaintLight(); } else preview(); return; }
     if(t.dataset.pk!=null){ if(t.value==="") delete Q.pct[t.dataset.pk]; else Q.pct[t.dataset.pk]=+t.value; PLQ.dirty=true; repaintLight(); return; }
@@ -41595,6 +41649,14 @@ async function plQuoteOpen(){
   ov.addEventListener("click",async ev=>{ const b=ev.target.closest("[data-a]"); if(!b) return; const a=b.dataset.a;
     if(a==="x"){ plqClose(); return; }
     if(a==="shot"){ shoot(); return; }
+    if(a==="picX"){ const P=plqPics(), p=P[+b.dataset.i]; if(p) plqPicDel(p.id); return; }   /* v1.568: ภาพประกอบ */
+    if(a==="picUp"){ const P=plqPics(), i=+b.dataset.i; if(i>0&&P[i]){ P.unshift(P.splice(i,1)[0]); plqPicsChanged(); } return; }
+    if(a==="picRnd"){ try{ RND.open(); }catch(err){ console.error(err); } return; }
+    if(a==="picAdd"){ const fi=document.createElement("input"); fi.type="file"; fi.accept="image/*"; fi.multiple=true;
+      fi.onchange=async()=>{ const F=Array.from(fi.files||[]).filter(f=>/^image\//.test(f.type||"")); let n=0;
+        for(const f of F){ const url=await new Promise(r=>{ const rd=new FileReader(); rd.onload=()=>r(String(rd.result||"")); rd.onerror=()=>r(""); rd.readAsDataURL(f); });
+          if(url&&await plqPicAdd(url,{name:String(f.name||"ภาพ").replace(/\.[a-z0-9]+$/i,""),src:"upload"})) n++; else break; }
+        if(n) say("เพิ่มภาพ "+n+" ภาพ"); }; fi.click(); return; }
     if(a==="logoX"){ PLQ.co.logo=""; PLQ.co.logoOff=true; saveCo(); preview(); return; }    // v1.516: ✕ = ไม่เอาโลโก้เลย (ไม่เด้งกลับเป็น Starmark)
     if(a==="logoSM"){ PLQ.co.logo=""; PLQ.co.logoOff=false; saveCo(); preview(); return; }  // v1.516: กลับมาใช้โลโก้ Starmark
     if(a==="logo"){ const fi=document.createElement("input"); fi.type="file"; fi.accept="image/*";
@@ -41603,14 +41665,14 @@ async function plQuoteOpen(){
           PLQ.co.logo=url; PLQ.co.logoOff=false; saveCo(); preview(); }; rd.readAsDataURL(f); }; fi.click(); return; }
     if(a==="cost"){ const co=costEditor({onlyMissing:true}); if(co){   /* ovCard = z 430 อยู่เหนือหน้าต่างนี้ (410) อยู่แล้ว */
         const iv=setInterval(()=>{ if(!co.isConnected){ clearInterval(iv); if(PLQ.el===ov){ L=plqLines(); paint(); } } },400); } return; }
-    if(a==="print"){ const html=plqHtml(Q,PLQ.co,plqCalc(Q,L),Q.img!==false?PLQ.img:"",PLQ.att), fr=document.createElement("iframe");
+    if(a==="print"){ const html=plqHtml(Q,PLQ.co,plqCalc(Q,L),plqTopImg(Q),PLQ.att), fr=document.createElement("iframe");
       fr.style.cssText="position:fixed;right:0;bottom:0;width:0;height:0;border:0;visibility:hidden"; document.body.appendChild(fr);
       fr.onload=()=>{ setTimeout(()=>{ try{ fr.contentWindow.focus(); fr.contentWindow.print(); }catch(err){ console.error(err); toast("พิมพ์ไม่ได้ — ลองใหม่"); } setTimeout(()=>fr.remove(),60000); },500); };
       fr.srcdoc=html; PLQ.dirty=true; say("เลือกเครื่องพิมพ์ หรือ “บันทึกเป็น PDF”"); return; } });
   ov.addEventListener("mousedown",ev=>{ if(ev.target===ov) plqClose(); });
   ov.addEventListener("keydown",ev=>{ if(ev.key==="Escape"){ ev.preventDefault(); plqClose(); } ev.stopPropagation(); });   // ปุ่มลัดของโปรแกรม (Del/Ctrl+Z) ไม่ทะลุไปถึงตู้ในห้อง
   addEventListener("resize",fit);
-  paint();
+  paint(); picsPaint();   /* v1.568 */
   if(Q.img!==false) shoot();
   /* v1.521: แบบ (SVG) คิดทันที · หน้ารวมวัสดุมีภาพ 3D/รูปลายผิว คิดตามหลัง */
   PLQ.att={figs:[], mat:null};
@@ -44463,7 +44525,7 @@ async function nextOrderNo(){
    ถ้าก๊อปไปเขียนอีกที่ วันหน้าเพิ่มช่องใหม่ (แบบ cabDP) แล้วลืมอีกที่ = ห้องที่บันทึกหายช่องนั้นเงียบ ๆ
    ช่องใหม่ที่ผูกกับออเดอร์ ใส่ที่นี่ที่เดียว (ทางเปิด = cloudLoadOrder ซึ่งห้องพร้อมตู้ก็ใช้ตัวเดียวกัน) */
 function orderDataNow(oid){
-  return {order:true,orderId:oid,boards:JSON.parse(JSON.stringify(state.boards)),globalTone:state.globalTone,cabColors:state.cabColors,cabNums:state.cabNums,cabVarTxt:state.cabVarTxt,cabDX:state.cabDX,orderLines:state.orderLines,cabDP:state.cabDP,cabFrontEdge:state.cabFrontEdge,cabFrontDir:state.cabFrontDir,room:state.room||null,scenes:state.scenes||[],orderMat:state.orderMat||{},pidLock:state.pidLock||null}; }
+  return {order:true,orderId:oid,boards:JSON.parse(JSON.stringify(state.boards)),globalTone:state.globalTone,cabColors:state.cabColors,cabNums:state.cabNums,cabVarTxt:state.cabVarTxt,cabDX:state.cabDX,orderLines:state.orderLines,cabDP:state.cabDP,cabFrontEdge:state.cabFrontEdge,cabFrontDir:state.cabFrontDir,room:state.room||null,scenes:state.scenes||[],qPics:state.qPics||[],orderMat:state.orderMat||{},pidLock:state.pidLock||null}; }
 async function cloudSaveOrder(){
   if(VIEW_ONLY){ toast("ลิงก์ดูอย่างเดียว — บันทึกขึ้นคลาวด์ไม่ได้"); return; }   // v27.3
 
@@ -44534,7 +44596,7 @@ async function newOrder(opts){
   const _keepRoom=(keepRm&&state.room)?JSON.parse(JSON.stringify(state.room)):null;   // v1.540
   state.boards=[]; state.selectedId=null; state.selectedCab=null; cabSelClear(); state.hidden=[];
   state.cabColors={}; state.cabNums={}; state.cabVarTxt={}; state.cabDX={};
-  state.bcSeq={}; state.bcMax={}; state.orderLines=[]; state.room=_keepRoom; state.scenes=_keepRoom?(state.scenes||[]):[]; try{ scnAfterLoad(); }catch(e){}   /* v1.541: เก็บห้อง = เก็บฉาก */ state.cabDP={}; state.orderMat={};   /* v1.337 */
+  state.bcSeq={}; state.bcMax={}; state.orderLines=[]; state.room=_keepRoom; state.scenes=_keepRoom?(state.scenes||[]):[]; state.qPics=[];   /* v1.568: ภาพใบเสนอราคาเป็นของตู้ชุดเดิม = ล้าง */ try{ scnAfterLoad(); }catch(e){}   /* v1.541: เก็บห้อง = เก็บฉาก */ state.cabDP={}; state.orderMat={};   /* v1.337 */
   state.pidLock=null; _pidAdopt={}; _pidProdP={};                                                        /* v1.411 */
   state.doorPick=[]; state.doorProg={}; state.explode=0;
   try{ if(typeof clearMeasure==="function") clearMeasure(); }catch(e){}
@@ -44563,7 +44625,7 @@ async function cloudLoadOrder(oid,pre){
     remapRuleRefs(norm,idMap); remapHoleSrc(norm,idMap); healHoleSrc(norm);
     state.boards=norm; if(src.globalTone!=null)state.globalTone=src.globalTone; if(src.cabColors)state.cabColors=src.cabColors;
     if(src.cabNums)state.cabNums=src.cabNums; if(src.cabVarTxt)state.cabVarTxt=src.cabVarTxt; if(src.cabDX)state.cabDX=src.cabDX;
-    state.orderLines=src.orderLines||[]; state.room=src.room||null; state.scenes=Array.isArray(src.scenes)?src.scenes:[]; try{ scnAfterLoad(); }catch(e){}   /* v1.541 */ state.cabDP=src.cabDP||{}; state.orderMat=src.orderMat||{};   /* v1.337 */                  // v28.3/v30.5
+    state.orderLines=src.orderLines||[]; state.room=src.room||null; state.scenes=Array.isArray(src.scenes)?src.scenes:[]; state.qPics=Array.isArray(src.qPics)?src.qPics:[];   /* v1.568 */ try{ scnAfterLoad(); }catch(e){}   /* v1.541 */ state.cabDP=src.cabDP||{}; state.orderMat=src.orderMat||{};   /* v1.337 */                  // v28.3/v30.5
     state.pidLock=src.pidLock||null; _pidAdopt={}; _pidProdP={};                                         /* v1.411: ล็อกเลขชิ้นของออเดอร์นี้ (ไม่มี = ไปอ่านจาก Production ตอนเปิดหน้าส่งออก) */
     /* v7.16: ออเดอร์ที่เซฟไว้ก่อนหน้านี้มีค่าผิดฝังอยู่ (ชั้นลึกเกิน ทะลุแผ่นหลัง)
        เพราะตอนสร้าง refitInterior ข้ามไปตอนตู้หมุน · เปิดกลับมาก็ต้องซ่อมให้ด้วย
@@ -52216,7 +52278,7 @@ async function renderLoader(){
         remapRuleRefs(state.boards,idMap); remapHoleSrc(state.boards,idMap); healHoleSrc(state.boards);
         if(saved.globalTone!=null)state.globalTone=saved.globalTone; if(saved.cabColors)state.cabColors=saved.cabColors;
         if(saved.cabNums)state.cabNums=saved.cabNums; if(saved.cabVarTxt)state.cabVarTxt=saved.cabVarTxt; if(saved.cabDX)state.cabDX=saved.cabDX;
-        state.orderLines=saved.orderLines||[]; state.room=saved.room||null; state.scenes=Array.isArray(saved.scenes)?saved.scenes:[]; try{ scnAfterLoad(); }catch(e){}   /* v1.541 */ state.cabDP=saved.cabDP||{}; state.orderMat=saved.orderMat||{};   /* v1.337 */          // v28.3/v30.5
+        state.orderLines=saved.orderLines||[]; state.room=saved.room||null; state.scenes=Array.isArray(saved.scenes)?saved.scenes:[]; state.qPics=Array.isArray(saved.qPics)?saved.qPics:[];   /* v1.568 */ try{ scnAfterLoad(); }catch(e){}   /* v1.541 */ state.cabDP=saved.cabDP||{}; state.orderMat=saved.orderMat||{};   /* v1.337 */          // v28.3/v30.5
         if(saved.bcSeq)state.bcSeq=saved.bcSeq; if(saved.bcMax)state.bcMax=saved.bcMax;   // v9.22: เลขบาร์โค้ดที่จำไว้
         state.pidLock=saved.pidLock||null;                                                  // v1.411: เลขชิ้นที่ล็อกหลังส่ง Production
     if(saved.cabDX)state.cabDX=saved.cabDX;                                          // v11.2
@@ -57631,7 +57693,7 @@ function exportJSON(){
   /* v11.2: ไฟล์โปรเจกต์เคยเก็บแค่ชิ้นงาน ค่าที่ผูกกับตู้ (เส้นโปรไฟล์ · สี · ตัวแปร) จึงหายไปกับไฟล์
      เปิดไฟล์กลับมาแล้วเส้นโปรไฟล์หายทั้งงาน เพราะตัวสร้างเส้นไม่เจอรายการว่าตู้ไหนติดอะไรไว้ */
   download("starnexus-project.json",JSON.stringify({boards:state.boards,globalTone:state.globalTone,
-    bcSeq:state.bcSeq,bcMax:state.bcMax,orderLines:state.orderLines,cabDP:state.cabDP,cabFrontEdge:state.cabFrontEdge,cabFrontDir:state.cabFrontDir,room:state.room||null,scenes:state.scenes||[],orderMat:state.orderMat||{},   /* v1.337 · v1.541 ฉาก */
+    bcSeq:state.bcSeq,bcMax:state.bcMax,orderLines:state.orderLines,cabDP:state.cabDP,cabFrontEdge:state.cabFrontEdge,cabFrontDir:state.cabFrontDir,room:state.room||null,scenes:state.scenes||[],qPics:state.qPics||[],orderMat:state.orderMat||{},   /* v1.337 · v1.541 ฉาก */
     pidLock:state.pidLock||null,   /* v1.411 */
     cabDX:state.cabDX,cabColors:state.cabColors,cabNums:state.cabNums,cabVarTxt:state.cabVarTxt},null,2),
     "application/json");
@@ -60265,7 +60327,7 @@ function readFile(f){const r=new FileReader();
     if(o.cabDX)state.cabDX=o.cabDX;
     if(o.bcSeq)state.bcSeq=o.bcSeq; if(o.bcMax)state.bcMax=o.bcMax;
     state.pidLock=o.pidLock||null; _pidAdopt={}; _pidProdP={};                                             // v1.411
-    state.orderLines=o.orderLines||[]; state.room=o.room||null; state.scenes=Array.isArray(o.scenes)?o.scenes:[]; try{ scnAfterLoad(); }catch(e){}   /* v1.541 */ state.cabDP=o.cabDP||{}; state.orderMat=o.orderMat||{};   /* v1.337 */                      // v28.3/v30.5
+    state.orderLines=o.orderLines||[]; state.room=o.room||null; state.scenes=Array.isArray(o.scenes)?o.scenes:[]; state.qPics=Array.isArray(o.qPics)?o.qPics:[];   /* v1.568 */ try{ scnAfterLoad(); }catch(e){}   /* v1.541 */ state.cabDP=o.cabDP||{}; state.orderMat=o.orderMat||{};   /* v1.337 */                      // v28.3/v30.5
     state.selectedId=null;buildGTones();sync(1); refreshSkins();   // v1.065
     try{ const _nh=adjShelfSideHeal(); if(_nh){ sync(0); toast("ชั้นปรับ "+_nh+" แผ่นยาวเต็มช่อง — ร่นข้างละ 1 มม. ตามค่าที่ตั้งไว้ให้แล้ว"); } }catch(e){ console.error("adjShelfSideHeal:",e); }   // v1.414
     try{ symfixHealStale(); }catch(e){ console.error("symfixHeal:",e); }   /* v1.403 */
@@ -68445,7 +68507,7 @@ const RND=(function(){
     let b=L[0], d=1e9; L.forEach(x=>{ const e=Math.abs(Math.log(r/x[1])); if(e<d){ d=e; b=x; } }); return b[0]; }
   async function gemModel(key){ if(O.gm) return O.gm;
     const r=await fx("https://generativelanguage.googleapis.com/v1beta/models?pageSize=1000",{headers:{"x-goog-api-key":key}},30000), j=await jerr(r);
-    const L=(j.models||[]).filter(m=>(m.supportedGenerationMethods||[]).indexOf("generateContent")>=0).map(m=>String(m.name||"").replace(/^models\//,"")).filter(n=>/image/i.test(n)&&!/imagen/i.test(n));
+    const L=(j.models||[]).filter(m=>(m.supportedGenerationMethods||[]).indexOf("generateContent")>=0).map(m=>String(m.name||"").replace(/^models\//,"")).filter(n=>(/image/i.test(n)||/banana/i.test(n))&&!/imagen/i.test(n));   /* v1.568: + banana */
     if(!L.length) throw new Error("คีย์ Gemini นี้ไม่มีรุ่นสร้างภาพ — ต้องเปิด billing (ผูกบัตร) ที่ Google AI Studio ก่อน");
     const ver=n=>{ const m=/gemini-(\d+(?:\.\d+)?)/i.exec(n); return m?+m[1]:0; };
     const sc=n=>ver(n)*10+(/flash-image/i.test(n)&&!/lite/i.test(n)?3:/pro-image/i.test(n)?2:/lite/i.test(n)?1:0)-(/preview|exp/i.test(n)?.5:0);
@@ -68471,6 +68533,7 @@ const RND=(function(){
     let r; try{ r=await go(); }catch(e){ if(!e||!e.net) throw e;   /* v1.566: เน็ตล้ม → ลองซ้ำด้วยภาพย่อ → ยังไม่ได้ = บอกสาเหตุ */
       try{ b64=(await shrink(it.url,1024)).split(",")[1]||b64; r=await go(); }catch(e2){ if(!e2||!e2.net) throw e2; throw new Error(await netWhy(key,e2)); } }
     if(r.status===404){ O.gm=""; save(); }
+    if(r.status===429&&!snOff("rndQuota")) throw await gemQuota(r,model);   /* v1.568: โควตาเต็ม = บอกไทย + ชี้ 🍌 Gemini เว็บ */
     const j=await jerr(r), c=(j.candidates||[])[0]||{}, ps=((c.content||{}).parts)||[];
     const p=ps.find(x=>x&&(x.inlineData||x.inline_data));
     if(p){ const d=p.inlineData||p.inline_data; return {url:"data:"+(d.mimeType||d.mime_type||"image/png")+";base64,"+d.data, model}; }
@@ -68491,6 +68554,81 @@ const RND=(function(){
   async function enhance(it){ const key=aiKey();
     if(!key) throw new Error("ยังไม่มีคีย์ "+(O.ai==="openai"?"OpenAI":"Gemini")+" — ใส่ที่ 🤖 ผู้ช่วย → ⚙ (เลือกผู้ให้บริการ ใส่คีย์ แล้วกดบันทึก)");
     return O.ai==="openai"?aiOpenAI(it,key):aiGemini(it,key); }
+  /* ───────── v1.568: 🍌 Gemini เว็บ (ฟรี) + โควตา 429 เป็นภาษาไทย ─────────
+     ผู้ใช้ 14:02 (ภาพการ์ด per1 แสงจริง 1280×620 · “✕ You exceeded your current quota … Quota exceeded for metric: generativelanguage.googleapis…”):
+       “ตรงนี้ต่อ banana ให้มันเจนได้ปะครับ ที่ฟรี 2 ครั้ง”
+     เดิม: ปุ่ม 🤖 AI แต่งต่อ ใช้คีย์ API อย่างเดียว · คีย์ Gemini แบบฟรีได้โควตาสร้างภาพ 0 (หน้าราคา ai.google.dev: Free Tier ของรุ่นภาพทุกรุ่น = Not available)
+       ภาพฟรีรายวันที่ผู้ใช้เห็น (Nano Banana) อยู่ในเว็บ/แอป Gemini ที่ล็อกอินบัญชี Google — ไม่มี API ให้โปรแกรมเรียกตรง (และไม่ทำบอตกดแทน)
+       ข้อความ error ของ Google เป็นอังกฤษยาว ถูกตัด 300 ตัว ไม่รู้ว่าต้องทำอะไรต่อ
+     ตอนนี้:
+       ① 429 → gemQuota: คีย์ฟรี (free_tier / limit: 0) · โควตาวันนี้หมด (PerDay — รีเซ็ตเที่ยงคืนแปซิฟิก ≈ 14:00–15:00 น. ไทย) · เกินชั่วคราว (RetryInfo.retryDelay)
+          → ข้อความไทย + ธง free = ปุ่ม 🍌 บนการ์ดเป็นสีเหลือง
+       ② ปุ่ม 🍌 Gemini เว็บ (ฟรี) บนการ์ดภาพ = สะพานแบบคนกดเอง:
+          คัดลอกภาพลงคลิปบอร์ด (PNG ย่อ ≤ 1600 px · ClipboardItem รับ Promise ให้ยังนับเป็นการกดของผู้ใช้) → เปิด gemini.google.com แท็บใหม่
+          (คัดลอกก่อนเปิดแท็บ เพราะเขียนคลิปบอร์ดต้องให้หน้านี้โฟกัสอยู่ · คัดลอกไม่ได้ = บันทึกไฟล์ให้ลากไปวาง · กันหน้าต่างใหม่ = มีลิงก์ให้กดในกล่อง)
+          กล่องคำแนะนำ 3 ขั้นในการ์ด: 🖼 คัดลอกภาพอีกครั้ง · 📋 คัดลอกคำสั่ง (คำสั่งเดียวกับ AI แต่งต่อ + “สั่งเพิ่ม”) · 📥 วางภาพผล (navigator.clipboard.read)
+          เอาภาพกลับได้อีก 3 ทาง: Ctrl+V ในหน้า Render (รับเฉพาะตอนมีการ์ดรอผล · ไม่ยุ่งช่องพิมพ์) · ลากไฟล์มาวางบนการ์ด · 📂 เลือกไฟล์
+          ภาพที่ได้ = it.ai {url, model:"Gemini เว็บ (ฟรี)"} → ⬇ บันทึกภาพ AI / บันทึกทั้งหมด ใช้ได้เหมือนผลจาก API
+          ลากวางในหน้า Render: หยุดไม่ให้ตัวรับไฟล์ของหน้าหลัก (#drop → readFile) รับไปด้วย (แบบหน้าต่างรูปผิว)
+       ปิดได้ SN_OFF.rndWeb (ไม่มีปุ่ม/ไม่รับวาง) · SN_OFF.rndQuota (ข้อความ 429 แบบเดิม) */
+  async function gemQuota(r,model){ let j={}; try{ j=await r.json(); }catch(e){} const E=(j&&j.error)||{}, m=String(E.message||"");
+    const free=/free_tier|limit:\s*0\b/i.test(m), day=!free&&/per.?day|PerDay|daily/i.test(m);
+    let wait=0; try{ (E.details||[]).forEach(d=>{ const v=/^(\d+(?:\.\d+)?)s$/.exec(String((d&&d.retryDelay)||"")); if(v) wait=Math.ceil(+v[1]); }); }catch(e){}
+    console.warn("render AI quota:",m);
+    const er=new Error(free?"คีย์ Gemini นี้ยังเป็นแบบฟรี — Google ให้โควตาสร้างภาพผ่าน API = 0 ภาพ (ภาพฟรีรายวันมีเฉพาะในเว็บ/แอป Gemini) → กด 🍌 Gemini เว็บ (ฟรี) ข้าง ๆ แทน · หรือเปิด billing (ผูกบัตร) ที่ aistudio.google.com แล้วปุ่ม AI แต่งต่อ จะใช้ได้ (ภาพละราว 1–5 บาท)"
+      :day?("โควตาวันนี้ของคีย์หมดแล้ว (รุ่น "+model+") — รีเซ็ตราว 14:00–15:00 น. เวลาไทย · ระหว่างนี้ใช้ 🍌 Gemini เว็บ (ฟรี) ได้")
+      :("เกินโควตาชั่วคราว (รุ่น "+model+") — "+(wait?("รอ "+wait+" วินาที แล้วกดใหม่"):"รอสักครู่แล้วกดใหม่")));
+    er.free=free||day; return er; }
+  const WEB_URL="https://gemini.google.com/app";
+  let webFor=null, _pasteOn=false;   /* webFor = id การ์ดที่รอภาพผลจาก Gemini เว็บ (ล่าสุด) */
+  function webPrompt(it){ return "Edit the attached image and give me the edited IMAGE (keep the same framing, aspect ratio about "+ratio(it.w,it.h)+").\n"+prompt(); }
+  function pngBlob(url,max){ return new Promise((ok,no)=>{ const im=new Image(); im.onload=()=>{ const k=Math.min(1,(max||1600)/Math.max(im.width,im.height)), c=document.createElement("canvas");
+      c.width=Math.round(im.width*k); c.height=Math.round(im.height*k); c.getContext("2d").drawImage(im,0,0,c.width,c.height); c.toBlob(b=>b?ok(b):no(new Error("แปลงภาพไม่ได้")),"image/png"); };
+    im.onerror=()=>no(new Error("อ่านภาพไม่ได้")); im.src=url; }); }
+  async function copyImg(it){ if(!(navigator.clipboard&&navigator.clipboard.write&&typeof ClipboardItem!=="undefined")) throw new Error("เบราว์เซอร์นี้คัดลอกภาพไม่ได้");
+    await navigator.clipboard.write([new ClipboardItem({"image/png":pngBlob(it.url,1600)})]); }
+  async function copyTxt(t){ try{ await navigator.clipboard.writeText(t); return true; }
+    catch(e){ try{ const ta=document.createElement("textarea"); ta.value=t; ta.style.cssText="position:fixed;left:-9999px;top:0"; document.body.appendChild(ta); ta.select(); const ok=document.execCommand("copy"); ta.remove(); return ok; }catch(_){ return false; } } }
+  function blobUrl(b){ return new Promise((ok,no)=>{ const r=new FileReader(); r.onload=()=>ok(String(r.result)); r.onerror=()=>no(r.error||new Error("อ่านไฟล์ไม่ได้")); r.readAsDataURL(b); }); }
+  function imgOf(dt){ if(!dt) return null; const f=Array.from(dt.files||[]).find(x=>/^image\//.test(x.type||"")); if(f) return f;
+    const i=Array.from(dt.items||[]).find(x=>x.kind==="file"&&/^image\//.test(x.type||"")); return i?i.getAsFile():null; }
+  async function webStart(it){ webFor=it.id; it.web={at:Date.now()}; let ok=false;
+    try{ await copyImg(it); ok=true; }catch(e){ console.warn("render web copy:",(e&&e.message)||e); }
+    if(!ok){ try{ await dl(it.url,fname(it.name,"ส่งGemini","jpg")); }catch(e){} }
+    let w=null; try{ w=window.open(WEB_URL,"_blank"); if(w){ try{ w.opener=null; }catch(_){} } }catch(_){}
+    it.web.copied=ok; it.web.blocked=!w; draw();
+    toast(ok?"🍌 คัดลอกภาพแล้ว — ในแท็บ Gemini กด Ctrl+V":"🍌 บันทึกภาพเป็นไฟล์แล้ว — ลากไฟล์ไปวางในแท็บ Gemini"); }
+  async function webPut(it,blob){ if(!it) return false;
+    if(!blob||!/^image\//.test(blob.type||"")){ toast("วางได้เฉพาะไฟล์ภาพ"); return false; }
+    const url=await blobUrl(blob); it.ai={url, model:"Gemini เว็บ (ฟรี)"}; it.web=null; if(webFor===it.id) webFor=null; draw(); toast("✓ ใส่ภาพจาก Gemini ให้ “"+it.name+"” แล้ว"); return true; }
+  async function webPaste(it){ webFor=it.id;
+    try{ const L=await navigator.clipboard.read(); for(const c of L){ const t=(c.types||[]).find(x=>/^image\//.test(x)); if(t){ await webPut(it,await c.getType(t)); return; } }
+      toast("ในคลิปบอร์ดยังไม่มีภาพ — ใน Gemini คลิกขวาที่ภาพ → คัดลอกรูปภาพ ก่อน"); }
+    catch(e){ console.warn("render web paste:",(e&&e.message)||e); toast("อ่านคลิปบอร์ดไม่ได้ — กด Ctrl+V ในหน้านี้ หรือ 📂 เลือกไฟล์ แทน"); } }
+  function webPick(it){ const f=document.createElement("input"); f.type="file"; f.accept="image/*"; f.onchange=()=>{ const x=f.files&&f.files[0]; if(x) webPut(it,x); }; f.click(); }
+  function webWire(){ if(_pasteOn||snOff("rndWeb")) return; _pasteOn=true;
+    document.addEventListener("paste",e=>{ if(!ov||!ov.isConnected||ov.style.display==="none"||!webFor) return;
+      const t=e.target; if(t&&(/^(INPUT|TEXTAREA|SELECT)$/.test(t.tagName)||t.isContentEditable)) return;
+      const it=res.find(x=>x.id===webFor), f=imgOf(e.clipboardData); if(!it||!f) return; e.preventDefault(); e.stopPropagation(); webPut(it,f); }, true); }
+  function webDrop(el){ if(snOff("rndWeb")) return;
+    ["dragenter","dragover"].forEach(t=>el.addEventListener(t,ev=>{ ev.preventDefault(); ev.stopPropagation(); }));
+    el.addEventListener("dragleave",ev=>ev.stopPropagation());
+    el.addEventListener("drop",ev=>{ ev.preventDefault(); ev.stopPropagation(); const f=imgOf(ev.dataTransfer);
+      const c=ev.target&&ev.target.closest&&ev.target.closest(".rnC"), id=c?c.dataset.id:webFor, it=res.find(x=>x.id===id);
+      if(!f){ toast("วางได้เฉพาะไฟล์ภาพ"); return; } if(!it){ toast("ลากภาพไปวางบนการ์ดภาพที่ต้องการ"); return; } webPut(it,f); }); }
+  function qBtn(it,k){ if(snOff("plqPics")||(typeof VIEW_ONLY!=="undefined"&&VIEW_ONLY)||typeof plqPicState!=="function") return "";   /* v1.568: 🧾 ใส่ใบเสนอราคา */
+    const url=k==="ai"?((it.ai||{}).url):it.url, st=plqPicState(it.id+":"+k,url);
+    return '<button class="ibtn rnQ" data-k="'+k+'" title="'+(st===1?"กดอีกครั้ง = เอาออกจากใบเสนอราคา":"ใส่ภาพนี้ในใบเสนอราคา (หน้า 🧾 ใบเสนอราคา)")+'" style="font-size:11.5px;padding:3px 9px;white-space:nowrap'
+      +(st===1?';background:#e7f6ec;border-color:#7cc290;color:#1e6b35':'')+'">'+(st===1?'✓ อยู่ในใบเสนอราคา':st===2?'🧾 อัปเดตในใบเสนอราคา':'🧾 ใส่ใบเสนอราคา')+'</button>'; }
+  function webPanel(it){ const w=it.web||{}, b=(c,t)=>'<button class="ibtn '+c+'" style="display:inline-flex;flex:none;width:auto;font-size:11px;padding:2px 8px;margin:1px 0;vertical-align:middle">'+t+'</button>';   /* .ibtn = flex:1 → ไม่ให้ยืดเต็มบรรทัด */
+    return '<div class="rnWP" style="margin:0 9px 9px;padding:8px 10px;border-radius:8px;background:rgba(255,211,107,.16);border:.5px solid rgba(229,181,58,.6);font-size:11.5px;line-height:1.8">'
+      +'<div style="display:flex;align-items:center;gap:6px"><b style="flex:1;min-width:0">🍌 Gemini เว็บ — ฟรีตามโควตาบัญชี Google</b>'+b("rnWX","✕")+'</div>'
+      +'<div>① '+(w.blocked?'<a href="'+WEB_URL+'" target="_blank" rel="noopener">เปิด gemini.google.com ↗</a> แล้ว':'ในแท็บ Gemini ที่เปิดให้')+' '
+        +(w.copied?'กด <b>Ctrl+V</b> วางภาพ (คัดลอกไว้แล้ว)':'ลากไฟล์ภาพที่บันทึกไว้ไปวาง')+' '+b("rnWI","🖼 คัดลอกภาพอีกครั้ง")+'</div>'
+      +'<div>② '+b("rnWT","📋 คัดลอกคำสั่ง")+' แล้ว Ctrl+V ในช่องพิมพ์ของ Gemini → กดส่ง (มีเครื่องมือ 🍌 สร้างรูปภาพ ให้เลือกด้วย)</div>'
+      +'<div>③ ได้ภาพแล้ว คลิกขวาที่ภาพ → <b>คัดลอกรูปภาพ</b> แล้วกลับมากด '+b("rnWV","📥 วางภาพผล")+' · หรือ Ctrl+V ในหน้านี้ · ลากไฟล์มาวางบนการ์ด · '+b("rnWF","📂 เลือกไฟล์")+'</div>'
+      +(snOff("plqPics")?'':'<div>④ ได้ภาพแล้วกด <b>🧾 ใส่ใบเสนอราคา</b> ใต้ภาพ → ขึ้นในหน้า 🧾 ใบเสนอราคา</div>')
+      +'<div class="muted" style="font-size:10.5px;line-height:1.5">ใช้บัญชี Google ที่ล็อกอินในเบราว์เซอร์ ไม่ต้องใช้คีย์ · ภาพฟรีอาจมีลายน้ำ ✦ เล็ก ๆ ที่มุม · โควตาฟรีต่อวัน Google เป็นคนกำหนด</div></div>'; }
   /* ---------- หน้าต่าง ---------- */
   async function open(){ await load();
     if(snOff("plRender")) return;
@@ -68501,18 +68639,23 @@ const RND=(function(){
     ov.innerHTML='<div style="'+C.cardCSS+'"><div style="display:flex;align-items:center;gap:10px;padding:12px 16px;border-bottom:.5px solid var(--line)">'
       +'<b style="font-size:15px">🎬 Render</b><span class="muted" style="font-size:11.5px">เรนเดอร์ทุกฉาก 🎬 ที่ตั้งไว้ · แล้วให้ AI แต่งต่อได้ทีละภาพ</span>'
       +'<button class="ibtn" id="rnX" '+C.xbtn+'>✕ ปิด</button></div><div id="rnB" style="padding:12px 16px;overflow:auto;flex:1;min-height:0;font-size:12.5px"></div></div>';
-    document.body.appendChild(ov); ov.querySelector("#rnX").onclick=()=>{ ov.remove(); ov=null; }; draw(); }
+    document.body.appendChild(ov); ov.querySelector("#rnX").onclick=()=>{ ov.remove(); ov=null; };
+    webDrop(ov); webWire();   /* v1.568: เอาภาพจาก Gemini เว็บกลับ (ลากวาง · Ctrl+V) */
+    draw(); }
   function card(it){ const a=it.ai||{};
     return '<div class="rnC" data-id="'+H(it.id)+'" style="border:.5px solid var(--line);border-radius:10px;overflow:hidden;background:var(--card2)">'
       +'<img src="'+it.url+'" alt="" style="display:block;width:100%;aspect-ratio:'+(it.w||16)+'/'+(it.h||9)+';object-fit:cover;background:#111">'
       +'<div style="padding:7px 9px 4px;display:flex;gap:6px;align-items:center"><b style="flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">'+H(it.name)+'</b>'
       +'<span class="muted" style="font-size:10.5px;white-space:nowrap">'+(it.eng==="pt"?"📸 แสงจริง":"⚡ เร็ว")+' · '+it.w+'×'+it.h+'</span></div>'
-      +'<div style="padding:0 9px 8px;display:flex;gap:6px;flex-wrap:wrap"><button class="ibtn rnD" style="font-size:11.5px;padding:3px 9px">⬇ บันทึก</button>'
-      +'<button class="ibtn rnA" style="font-size:11.5px;padding:3px 9px"'+(a.busy?' disabled':'')+'>'+(a.busy?'🤖 กำลังแต่ง…':(a.url?'🤖 แต่งใหม่':'🤖 AI แต่งต่อ'))+'</button></div>'
+      +'<div style="padding:0 9px 8px;display:flex;gap:6px;flex-wrap:wrap"><button class="ibtn rnD" style="font-size:11.5px;padding:3px 9px;white-space:nowrap">⬇ บันทึก</button>'
+      +'<button class="ibtn rnA" style="font-size:11.5px;padding:3px 9px;white-space:nowrap"'+(a.busy?' disabled':'')+'>'+(a.busy?'🤖 กำลังแต่ง…':(a.url?'🤖 แต่งใหม่':'🤖 AI แต่งต่อ'))+'</button>'
+      +(a.url?'':qBtn(it,"r"))   /* v1.568: ยังไม่มีภาพ AI = ใส่ภาพเรนเดอร์ได้ */
+      +(snOff("rndWeb")?'':'<button class="ibtn rnW" title="ใช้ Gemini บนเว็บ (บัญชี Google ฟรี) — คัดลอกภาพ + คำสั่งไปวาง แล้วเอาภาพผลกลับมา" style="flex:1 1 100%;font-size:11.5px;padding:4px 9px'+(a.free?';background:#ffd36b;border-color:#e5b53a;color:#1d1d1f;font-weight:600':'')+'">🍌 Gemini เว็บ (ฟรี)</button>')+'</div>'   /* v1.568 */
       +(a.err?'<div style="padding:0 9px 8px;color:#b42318;font-size:11.5px;white-space:pre-wrap">✕ '+H(a.err)+'</div>':'')
+      +((it.web&&!snOff("rndWeb"))?webPanel(it):'')   /* v1.568: กล่องคำแนะนำ Gemini เว็บ */
       +(a.url?'<div style="border-top:.5px solid var(--line)"><img src="'+H(a.url)+'" alt="" style="display:block;width:100%;background:#111">'
         +'<div style="padding:6px 9px;display:flex;gap:6px;align-items:center"><span class="muted" style="flex:1;font-size:10.5px">🤖 '+H(a.model||"")+' — ตรวจรายละเอียดตู้ก่อนส่งลูกค้า</span>'
-        +'<button class="ibtn rnDA" style="font-size:11.5px;padding:3px 9px">⬇ บันทึกภาพ AI</button></div></div>':'')
+        +'<button class="ibtn rnDA" style="font-size:11.5px;padding:3px 9px">⬇ บันทึกภาพ AI</button>'+qBtn(it,"ai")+'</div></div>':'')   /* v1.568: + 🧾 */
       +'</div>'; }
   function draw(){ if(!ov) return; const B=ov.querySelector("#rnB"); if(!B) return; const S=scenes(), PR=Object.keys(REAL_PRESETS);
     const row=(l,h)=>'<div style="display:flex;align-items:center;gap:8px;margin:5px 0"><span style="width:96px;color:var(--ink-dim);flex:none">'+l+'</span><div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;flex:1;min-width:0">'+h+'</div></div>';
@@ -68536,7 +68679,8 @@ const RND=(function(){
       +row("ผู้ให้บริการ",'<select id="rnAi" class="nameinp" style="width:auto">'+opt("gemini",O.ai,"Gemini (Google)"+(has("gemini")?"":" — ยังไม่มีคีย์"))+opt("openai",O.ai,"OpenAI"+(has("openai")?"":" — ยังไม่มีคีย์"))+'</select>')
       +row("รุ่น",'<input id="rnModel" class="nameinp" style="width:260px;max-width:100%;font-family:var(--mono)" placeholder="ว่าง = เลือกรุ่นภาพล่าสุดให้เอง" value="'+H(O.ai==="openai"?O.om:O.gm)+'">')
       +row("สั่งเพิ่ม",'<input id="rnNote" class="nameinp" style="flex:1;min-width:180px" placeholder="เช่น แสงเย็นโทนอุ่น · มีต้นไม้เล็กบนท็อป" value="'+H(O.note)+'">')
-      +'<div class="muted" style="font-size:11px;line-height:1.6;margin-top:4px">ใช้คีย์เดียวกับ 🤖 ผู้ช่วย (⚙) · ภาพละราว 1–5 บาท และคีย์ต้องผูกบัตร (คีย์ฟรีสร้างภาพไม่ได้) · AI ถูกสั่งให้คงแบบตู้ไว้ แต่ยังอาจเปลี่ยนรายละเอียดเล็ก ๆ เช่นจำนวนบาน/มือจับ — ตรวจก่อนส่งลูกค้า</div></details>'
+      +'<div class="muted" style="font-size:11px;line-height:1.6;margin-top:4px">ใช้คีย์เดียวกับ 🤖 ผู้ช่วย (⚙) · ภาพละราว 1–5 บาท และคีย์ต้องผูกบัตร (คีย์ฟรีสร้างภาพไม่ได้) · AI ถูกสั่งให้คงแบบตู้ไว้ แต่ยังอาจเปลี่ยนรายละเอียดเล็ก ๆ เช่นจำนวนบาน/มือจับ — ตรวจก่อนส่งลูกค้า'
+      +(snOff("rndWeb")?'':'<br>ไม่มีบัตร/คีย์ฟรี = ใช้ปุ่ม <b>🍌 Gemini เว็บ (ฟรี)</b> บนการ์ดภาพ (คัดลอกภาพ+คำสั่งไปวางใน gemini.google.com แล้วเอาภาพผลกลับมา)')+'</div></details>'
       +'<div style="font-weight:700;margin:10px 0 6px">ผลลัพธ์'+(res.length?' ('+res.length+')':'')+'</div>'
       +(res.length?'<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:12px">'+res.map(card).join("")+'</div>':'<div class="muted">ยังไม่มีภาพ — กด ▶ เรนเดอร์</div>');
     B.innerHTML=h; wire(B); }
@@ -68555,11 +68699,22 @@ const RND=(function(){
     B.querySelectorAll(".rnC").forEach(el=>{ const it=res.find(x=>x.id===el.dataset.id); if(!it) return;
       el.querySelector(".rnD").onclick=()=>dl(it.url,fname(it.name,it.eng==="pt"?"แสงจริง":"สมจริง","jpg"));
       const dA=el.querySelector(".rnDA"); if(dA) dA.onclick=()=>dl(it.ai.url,fname(it.name,"AI",/^data:image\/jpe?g/.test(it.ai.url)?"jpg":"png"));
+      /* v1.568: 🍌 Gemini เว็บ (ฟรี) */
+      const wq=c=>el.querySelector(c), W=wq(".rnW"); if(W) W.onclick=()=>webStart(it);
+      if(wq(".rnWX")) wq(".rnWX").onclick=()=>{ it.web=null; if(webFor===it.id) webFor=null; draw(); };
+      if(wq(".rnWI")) wq(".rnWI").onclick=async()=>{ try{ await copyImg(it); toast("🖼 คัดลอกภาพแล้ว — Ctrl+V ในแท็บ Gemini"); }catch(e){ toast("คัดลอกภาพไม่ได้ — บันทึกเป็นไฟล์แทน"); dl(it.url,fname(it.name,"ส่งGemini","jpg")); } };
+      if(wq(".rnWT")) wq(".rnWT").onclick=async()=>{ webFor=it.id; toast((await copyTxt(webPrompt(it)))?"📋 คัดลอกคำสั่งแล้ว — Ctrl+V ในช่องพิมพ์ของ Gemini":"คัดลอกคำสั่งไม่ได้"); };
+      if(wq(".rnWV")) wq(".rnWV").onclick=()=>webPaste(it);
+      if(wq(".rnWF")) wq(".rnWF").onclick=()=>{ webFor=it.id; webPick(it); };
+      el.querySelectorAll(".rnQ").forEach(q=>q.onclick=async()=>{ const k=q.dataset.k, url=k==="ai"?((it.ai||{}).url):it.url, key=it.id+":"+k;   /* v1.568 */
+        if(!url) return; if(plqPicState(key,url)===1){ plqPicDel(key); toast("เอาภาพออกจากใบเสนอราคาแล้ว"); draw(); return; }
+        q.disabled=true; const ok=await plqPicAdd(url,{key, name:it.name, src:k==="ai"?String((it.ai&&it.ai.model)||"AI"):"render"});
+        if(ok) toast("🧾 ใส่ภาพ “"+it.name+"” ในใบเสนอราคาแล้ว — ดูที่ 🧾 ใบเสนอราคา (ภาพประกอบ)"); draw(); });
       el.querySelector(".rnA").onclick=async()=>{ it.ai=Object.assign({},it.ai||{},{busy:true,err:""}); draw();
         try{ const r=await enhance(it); it.ai={url:r.url, model:r.model}; }
-        catch(e){ console.warn("render AI:",(e&&e.message)||e); it.ai=Object.assign({},it.ai,{err:String((e&&e.message)||e)}); }
+        catch(e){ console.warn("render AI:",(e&&e.message)||e); it.ai=Object.assign({},it.ai,{err:String((e&&e.message)||e), free:!!(e&&e.free)}); }   /* v1.568: free = ไฮไลต์ 🍌 */
         it.ai.busy=false; draw(); }; }); }
-  return {open, run, enhance, fastShot, _res:()=>res, _opt:()=>O, _load:load};
+  return {open, run, enhance, fastShot, _res:()=>res, _opt:()=>O, _load:load, _web:{start:webStart, put:webPut, paste:webPaste, prompt:webPrompt, wait:()=>webFor}};
 })();
 
 </script>
