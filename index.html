@@ -3283,7 +3283,7 @@ body[data-theme="dark"] .splash-dots span{background:rgba(255,255,255,.25)}
    ===================================================================== */
 /* ---- APP_META: แหล่งความจริงเดียวของเวอร์ชัน (ดูได้จาก console / คลิกชื่อแอป) ---- */
 const APP_META={
-  name:"StarNexus", version:"1.561", build:"2026-10-30/ai-goto-req",
+  name:"StarNexus", version:"1.562", build:"2026-10-30/room-multi-render",
   file:"StarNexus.html", basedOn:"Furnitech_V3.html (v3.11)",
   /* ───────── เริ่มนับเวอร์ชันใหม่ที่ 1.001 (21/08/2026) ─────────
      ของเดิมนับมาถึง 42.1 แล้ววิ่งเป็นทศนิยมสองชั้นซึ่งอ่านลำดับยาก
@@ -3291,6 +3291,7 @@ const APP_META={
      ประวัติเก่าเก็บไว้ทั้งหมดตามเลขเดิม ไม่ไล่เขียนใหม่ เพราะเลขในนั้นถูกอ้างถึงไปแล้ว
      รายการที่อยู่ใต้ 1.001 ลงไปจึงเป็นเลขชุดเก่า อ่านต่อกันได้ตามวันที่ */
   changelog:[
+    ["1.562","2026-10-30","FEAT ห้องออกแบบ + ผู้ช่วย (ผู้ใช้ 30/10 11:24–11:42) — ① เลือกหลายตู้: Ctrl+คลิก เพิ่ม/เอาออก · Ctrl+ลากกรอบ (ซ้าย→ขวา = ทั้งใบในกรอบ · ขวา→ซ้าย = แตะกรอบ) · Ctrl+A / ปุ่ม ⬚ เลือกทั้งหมด · ลากใบไหนก็ได้ = ย้ายทั้งชุด (ลงกริด · ขอบชุดดูดผนัง · Alt อิสระ) · Esc เลิก · Del ลบทั้งชุด (ถามก่อน) · กรอบฟ้ารายตู้ · ซิงค์/เตา/ฮู้ด/เตาอบที่ติดตู้ย้าย+หมุนตามตู้ (ลากทีละใบด้วย — เดิมค้างที่เดิม) ② ลายหินอ่อนท็อป/บัว/ผนังหิน: วัสดุ “หินอ่อน” + ช่อง “ลาย” 6 แบบวาดเอง (Carrara · Calacatta · Nero Marquina · Bardiglio · Crema Marfil · Emperador · สีพื้น/สีเส้นปรับได้) หรืออัปโหลดรูปหินจริง (≤ 2048 px · ขนาดลาย มม.) · UV พิกัดโลก ลายต่อกันข้ามชิ้น · ภาพแสงจริงเห็นลาย · หน้ารวมวัสดุใบเสนอราคาใช้ลายจริง ③ ปุ่ม 🎬 Render แทน 🧊 ส่งออก Blender: เลือกฉาก 🎬 + มุมตอนนี้ · 📸 แสงจริง (path tracing ทีละฉาก) หรือ ⚡ เร็ว · ขนาด/ความเนียน/แสง · ⏹ หยุดได้ · ⬇ บันทึก · 🤖 AI แต่งต่อรายภาพ (Gemini หาชื่อรุ่นภาพเอง / OpenAI images/edits · คีย์เดียวกับผู้ช่วย · สั่งให้คงแบบตู้) ④ ⚡ ทำให้เลย: AI ตอบแล้วกดทำตามลำดับเอง + กดตกลงฟอร์มให้ (ไม่ทำให้: ส่งคำขอ/ลบตู้/แทนที่ทั้งฉาก) · สวิตช์ ⚡ หัวแผง ⑤ ปุ่ม ✏ สอนผู้ช่วย กับ 📮 ขอฟีเจอร์ แถวเดียวกัน ⑥ FIX แถบล่างล้นจอ 1920 ที่ 100% (ธีม/⚙ ตั้งค่า ตกขอบ เพราะซ่อนแถบเลื่อน): ย่ออัตโนมัติทีละขั้น (ซ่อนป้ายเล็ก → ปุ่มรองเหลือไอคอน → ทั้งหมด) ยังล้น = แถบเลื่อนบาง + ล้อเมาส์ ⑦ เอาปุ่ม ประกอบ|แยกชิ้น ออกจากแถบล่าง (ไม่ได้ใช้แล้ว) ⑧ ท็อปจบสวย (ไฟล์ครัว L ของผู้ใช้ 11:55): ซิงค์/เตา/ไมโครเวฟขึ้นผิวท็อปเอง (เดิมจมใต้ท็อป 20 มม.) · มุม L/บัว/ผนังหิน เส้นเฉพาะขอบนอก ไม่มีเส้นรอยต่อ · ท็อปจบที่ผิวผนัง (เดิมตามแผง Fix Front ตู้มุม BCL055 ทะลุผนังซ้าย 267 มม.) · ปิดได้ SN_OFF.plMulti / plMarble / plRender / aiAuto / sbFit / viewSegHide / plWtClamp / plWtSeam / plaTopY"],
     ["1.561","2026-10-30","FEAT 🤖 ผู้ช่วย AI พาไปหาฟังก์ชัน + แจ้งเมื่อไม่มี (ผู้ใช้ 30/10 10:42 “ถ้าจะทำให้ Api แนะนำ ไปหาฟังก์ชั่นที่เขาต้องการ แล้วถ้าไม่มี ให้แจ้งมาถึงผมทำอย่างไร” · เลือก: แจ้งในโปรแกรมอย่างเดียว · ทุกคนเห็นหน้า 📮 admin จัดการ · ชี้อย่างเดียวไม่กดแทน) — ① action ใหม่ goto: AI ส่งที่หมายจากแผนที่ฟังก์ชัน (แถบบน bar: · แถบล่าง sb: · คลิกขวา ctx: · แผงห้องออกแบบ pl: · ตั้งค่า set:) โปรแกรมเปิดบริบทให้ก่อน (เปิดห้อง/กางกลุ่ม/เลือกชิ้นแล้วเปิดเมนูคลิกขวา/เปิดตั้งค่าไปหมวดนั้น) แล้ววงแหวนส้มกะพริบ + ป้าย “กดตรงนี้ — …” คนกดเอง · ตำแหน่งหาร uiZoomOf · ชั้นอยู่เหนือของที่ชี้ 5 ชั้น · โหมดออฟไลน์ “หา …” ก็ชี้ปุ่มที่ตรงคำได้ ② action ใหม่ request: ไม่มีฟังก์ชันจริง ๆ = การ์ด “ยังไม่มีฟังก์ชันนี้ — 📮 ส่งคำขอ” แก้ข้อความก่อนส่งได้ · ทุกคำตอบมีปุ่ม 📮 ขอฟีเจอร์ คู่กับ ✏ สอน · พิมพ์ “ขอฟีเจอร์: …” ได้ไม่เปลืองโควตา · เก็บแถว AIREQ:: ใน furnitech_cabinets (cloudListCabs กรองออก) · เรื่องคล้ายกัน = ถาม 👍 ขอด้วย (+1) ③ หน้า 📮 คำขอฟีเจอร์: กรองสถานะ ใหม่/รับทราบ/ทำแล้ว (vX)/ไม่ทำ/ของฉัน · ผู้ดูแลแก้สถานะ ตอบ ลบ · 📋 คัดลอกเป็น Markdown ไปวางแชท Claude ④ แจ้งผู้ดูแล: ทุก 5 นาที + ตอนกลับมาที่หน้าจอ → 🔔 + ป้ายเลขที่ปุ่ม 🤖 · คนขอเห็นสถานะ/คำตอบตอนเปิดผู้ช่วยครั้งถัดไป · เดิมทุกเครื่องชื่อ “ทดลองไฟล์กลาง” และ sxCan เปิดให้ทุกคน → ตั้งชื่อเครื่องครั้งเดียว (snAI:me:v1) + รายชื่อผู้ดูแลเก็บที่แถว AIREQ::_cfg (👑 ตั้งฉันเป็นผู้ดูแล) · ปิดได้ SN_OFF.aiGoto / SN_OFF.aiReq"],
     ["1.560","2026-10-29","FEAT ดึงถาด LeMans II ทีละถาด 2 จังหวะ (ผู้ใช้ 15:10 “ให้หมุนได้ทีละถาด แล้วทำให้เหมือนของจริง 2 จังหวะ”) — โหมดเปิดบาน คลิกที่ถาด: ปิด → ① สวิงออก → ② ดึงออกสุด → เก็บเข้า · state.lmProg ต่อถาด (0/0.5/1) · ท่าสุดท้ายถอดจากแบบผู้ผลิต: หมุนรอบเสา 164.7° แล้วหัวเล็กของถาดมาอยู่หน้าเสา (ห่างทางช่องบาน 105 · ออกหน้า 150 มม. ปรับตามความยาวถาด) กลับด้านตามช่องบาน · viewBoards ขยับเฉพาะภาพ · อนิเมชันขยับก้อนเดิม (lemansAnimate) แบบเดียวกับกางบาน แล้ววาดใหม่ครั้งเดียวตอนจบ · ชิ้นที่ขยับ = ถาด/ราว/แขน (_lmKey) เสาอยู่กับที่"],
     ["1.559","2026-10-29","FIX 3D LeMans II (ผู้ใช้ 15:06 ส่งแบบมองบนของผู้ผลิต: “ยังไม่เหมือน แล้ว 3D มันโดนคานตั้ง ด้านหน้า”) — ① ทรงถาดลอกจากแบบ: หัวเล็กด้านช่องบานยื่นถึงหน้า · พูใหญ่ในปีกตาย · ขอบหลังเว้าสองพู · หน้าฝั่งปีกตายถอยเข้า · splineThru ผ่านจุด (u,v) ปรับขนาดตามช่อง กลับซ้าย/ขวาตามช่องบาน ② ถาดถอยหลังพ้นคานตั้งด้านหน้า (หาแผ่นตั้งในตู้ที่ตื้น <250 ชิดหน้า → ระยะลึกของคาน + 8) · ลึกถาด lemansD 450 ไม่เกินช่องในถึงแผ่นหลัง ③ ยาวถาดเต็มช่องระหว่างแผ่นข้าง (lemansMaxL 830 → 960) ④ เสาหมุนย้ายไปขอบช่องบานฝั่งปีกตาย ถัดคานตั้ง (ตามแบบ) · แขนยึดชี้เข้าถาด"],
@@ -29258,6 +29259,15 @@ function boardRole(b){
      SN_OFF.realPlRoom=1  โหมดสมจริงในห้องออกแบบสร้างห้องรอบตู้แบบเดิม (ไม่ใช้ผนังของห้องออกแบบ) (v1.528)
      SN_OFF.realSnap=1    ไม่มีปุ่ม 📷 บันทึกภาพสมจริงความละเอียดสูง (v1.528)
      SN_OFF.plWtSel=1     คลิกท็อป/ผนังเหนือท็อปไม่เลือก · ไม่มี Dim ท็อป · ไม่ตัดผนังเหนือท็อปทีละช่วง (ที่ตัดไว้กลับมาครบ) (v1.548)
+     SN_OFF.plWtClamp=1   ท็อปยื่นตามตู้แม้เลยผิวผนังห้อง (แบบเดิม) (v1.562)
+     SN_OFF.plWtSeam=1    ท็อป/บัว/ผนังหินมีเส้นขอบทีละชิ้น (เห็นรอยต่อมุม L แบบเดิม) (v1.562)
+     SN_OFF.plaTopY=1     ซิงค์/เตา/ไมโครเวฟ ไม่ปรับระดับตามผิวท็อปเอง (v1.562)
+     SN_OFF.plMulti=1     ห้องออกแบบเลือกได้ทีละตู้ (ไม่มี Ctrl+คลิก/กรอบ/Ctrl+A) · ลากตู้แล้วซิงค์/ฮู้ดไม่ตาม (v1.562)
+     SN_OFF.plMarble=1    ท็อป/บัว/ผนังหินเป็นสีเรียบ ไม่มีลายหินอ่อน (ค่าที่เลือกไว้ยังอยู่) (v1.562)
+     SN_OFF.plRender=1    แผงห้องออกแบบกลับมีปุ่ม 🧊 ส่งออก Blender แทน 🎬 Render (v1.562)
+     SN_OFF.aiAuto=1      ผู้ช่วย AI ไม่ทำคำสั่งให้เอง ต้องกด “ทำ” ทีละข้อ (v1.562)
+     SN_OFF.sbFit=1       แถบล่างไม่ย่อตามจอ (ล้นแล้วซ่อนแบบเดิม) (v1.562)
+     SN_OFF.viewSegHide=1 แถบล่างกลับมีปุ่ม ประกอบ | แยกชิ้น (v1.562)
      SN_OFF.aiGoto=1      ผู้ช่วย AI ไม่มี action goto (ไม่ชี้ปุ่ม · ส่งรายการเมนูแบบเดิม) (v1.561)
      SN_OFF.aiReq=1       ผู้ช่วย AI ไม่มี 📮 คำขอฟีเจอร์ (ไม่มีปุ่ม/หน้า/การแจ้งผู้ดูแล) (v1.561)
      SN_OFF.realProps=1   โหมดสมจริงในห้องออกแบบซ่อนเครื่องใช้ในครัว/ปลั๊กแบบเดิม (v1.548)
@@ -36597,6 +36607,7 @@ function plDragDown(e){
   if(plIsLightPanel(inst)){ plSelect(inst); e.stopImmediatePropagation(); try{ toast("ไม้ไฟใต้ตู้วางตามตู้ลอยเอง — ลากตู้ลอยแทน · ปิดที่แผงห้องหรือรายใบที่ตู้ลอย"); }catch(err){} return; }   // v1.313
   if(csmIsCornerInst(inst)){ plSelect(inst); e.stopImmediatePropagation(); try{ toast("ชั้นมุม L วางตามช่องมุมเอง — ยกขึ้นลงที่ช่อง สูงจากพื้น · ติ๊กออกที่ ชั้นมุม = แยกคืนเป็นสองชั้น"); }catch(err){} return; }   // v1.380
   if(csmIsBaseInst(inst)){ plSelect(inst); e.stopImmediatePropagation(); try{ toast("ขาแผ่นไม้ Cosimo วางตามช่องเอง — ติ๊ก ขาแผ่นไม้ใต้ช่องนี้ ที่ชิ้นในช่อง หรือปุ่มที่แผงเสา"); }catch(err){} return; }   // v1.378
+  if(plmsDragStart(e,inst,hit)) return;   /* v1.562: กดตู้ที่อยู่ในชุดที่เลือก = ลากทั้งชุด */
   e.stopImmediatePropagation(); e.preventDefault();
   try{ renderer.domElement.setPointerCapture(e.pointerId); }catch(err){}
   const bs=plBoardsOf(inst), f=plFp(bs), py=hit.point.y, p0=plFloorPt(e,py);
@@ -36604,7 +36615,7 @@ function plDragDown(e){
   const yaw0=(((cabYawOf(inst)||0)%360)+360)%360;
   PL.drag={inst, snap, py, yaw0, off:p0?[(f.lo[0]+f.hi[0])/2-p0.x,(f.lo[2]+f.hi[2])/2-p0.z]:[0,0],
     D:(yaw0%180)?(f.hi[0]-f.lo[0]):(f.hi[2]-f.lo[2]), sx:e.clientX, sy:e.clientY, moved:false, ev:null, wall:plWallOf(inst,f), nb:plOthers(inst)};
-  PL.drag.wall0=PL.drag.wall; PL.drag.off0=plOffOf(inst);                   // v1.310: ลากบนผนังเดิม = ห่างผนังเท่าเดิม
+  PL.drag.wall0=PL.drag.wall; PL.drag.off0=plOffOf(inst); if(!snOff("plMulti")){ try{ PL.drag.fol=plaFollowStart([inst]); }catch(err){} }   /* v1.562: ของที่ติดตู้ย้ายตาม */   // v1.310: ลากบนผนังเดิม = ห่างผนังเท่าเดิม
   PL.drag.rail=!snOff("csmRail")&&bs.some(x=>x&&x._csmRail);                // v1.390: ราวแขวน = ลากแบบราว (ไม่ปรับกว้าง/ไม่ดูดคอลัมน์)
   if(!PL.drag.rail&&csmIsCode(f.code)&&!snOff("csmDrag")){ PL.drag.csm=true; PL.drag.gy=py-f.lo[1]; PL.drag.full0=new Set(((window._csm||{}).full)||[]);
     try{ const G=csmGroupStart(inst,f); if(G) PL.drag.group=G; }catch(err){ console.error("csmGroup:",err); } }   // v1.381: ลากทั้งแถว   // v1.373: ชิ้น Cosimo ลากบนผนัง ขึ้นลงได้ (จุดจับเหนือก้นชิ้น) · v1.377: จำสถานะเต็มช่องก่อนลาก
@@ -36619,6 +36630,7 @@ function plDragMove(e){
 }
 function plDragApply(){
   const g=PL.drag; if(!g||!g.ev) return;
+  if(g.multi){ plmsDragApply(g); return; }   /* v1.562: ลากทั้งชุด */
   if(g.rail){ try{ if(csmRailDragApply(g)) return; }catch(e){ console.error("csmRail:",e); } }   // v1.390: ราวแขวน — ชี้ผนัง ซ้ายขวา/ขึ้นลง แล้วดูดเข้าช่อง+ใต้ชั้น
   if(g.group){ try{ if(csmGroupDragApply(g)) return; }catch(e){ console.error("csmGroup:",e); } }   // v1.381: ลากทั้งแถว
   if(g.csm){ try{ if(plCsmDragApply(g)) return; }catch(e){ console.error("csmDrag:",e); } }   // v1.373: ชิ้น Cosimo — ชี้ผนัง = ตามซ้ายขวา + ขึ้นลง
@@ -36658,9 +36670,11 @@ function plDragApply(){
 function plDragUp(){
   const g=PL.drag; if(!g) return; PL.drag=null;
   if(PL.raf){ cancelAnimationFrame(PL.raf); PL.raf=0; plDragApplyLast(g); }
+  if(g.multi){ plmsDragEnd(g); return; }   /* v1.562 */
   if(!g.moved) return;
   const cam=plCamKeep();
   if(g.csm&&!g.group){ try{ csmFitOnDrop(g); }catch(e){ console.error("csmFit:",e); } }   // v1.381: ลากทั้งแถวไม่ปรับกว้าง   // v1.375: ลากเข้าช่อง = กว้างเท่าช่อง
+  if(g.fol){ try{ plaFollowEnd(g.fol); }catch(e){ console.error("plaFollow:",e); } }   /* v1.562: ซิงค์/ฮู้ดตามตู้ */
   sync(0);
   try{ csmBaseRelayout(null); }catch(e){ console.error("csmBase:",e); }    // v1.378: ช่องเปลี่ยนจากการลาก → ขาตามช่อง (ตามที่ขาวางอยู่)
   plCamPut(cam); plSelect(g.inst);
@@ -36982,6 +36996,200 @@ function plwCtx(e){ if(!plwOn()||typeof renderer==="undefined"||!renderer||e.tar
   e.preventDefault(); e.stopImmediatePropagation();
   if(typeof pPan!=="undefined"&&pPan){ pPan=false; return; }                // คลิกขวาลาก = เลื่อนจอ ไม่ใช่จบเส้น
   plwFinish(false); }
+/* ═════════ v1.562: เลือกหลายตู้ในห้องออกแบบ แล้วย้ายทั้งชุด (ผู้ใช้ 30/10 11:24 ภาพครัว L “มีกดเลือกหรือลากคลุมทั้งหมดไหมครับ แล้วย้าย”) ═════════
+   เดิม: ห้องออกแบบเลือก/ลากได้ทีละตู้ (plSelect ล้างชุดที่เลือกทุกครั้ง) · เลือกหลายใบได้เฉพาะรายการซ้ายในหน้าปกติ (v40.1)
+     ครัวทั้งชุดจะขยับต้องลากทีละใบ แล้วแม่เหล็กดูดผนัง/ตู้ข้าง ๆ ทำให้ชุดเพี้ยน
+   ตอนนี้ (ผู้ใช้เลือก Ctrl+คลิก · Ctrl+ลากกรอบ · Ctrl+A/ปุ่มเลือกทั้งหมด):
+     · Ctrl+คลิกตู้ = เพิ่ม/เอาออก · Ctrl+ลากที่ไหนก็ได้ = กรอบ (ซ้าย→ขวา เส้นทึบ = ทั้งใบต้องอยู่ในกรอบ · ขวา→ซ้าย เส้นประ = แตะกรอบก็เลือก แบบ SketchUp)
+       ลากเปล่าไม่กด Ctrl = หมุนกล้องเหมือนเดิม · Ctrl+A / ปุ่ม ⬚ เลือกทั้งหมด (หัวแผงห้อง) · Esc = เลิก · Del = ลบทั้งชุด (ถามก่อน)
+     · ชุดที่เลือกเก็บที่ state.selectedCabs (cabSelSet แบบเดียวกับรายการซ้าย) · กรอบฟ้ารายตู้ (PLMS.box ไม่ใช่กรอบรวม selBox)
+     · ลากตู้ใบไหนก็ได้ในชุด = ย้ายทั้งชุดเท่ากัน (ระยะลงกริด · ขอบชุดดูดผิวผนังห้อง ≤ 80 · Alt = อิสระ) ไม่หมุน ไม่ดูดทีละใบ · คลิกเฉย ๆ = เลือกใบนั้นใบเดียว
+     · ซิงค์/เตา/ไมโครเวฟ/ฮู้ด/เตาอบที่ติดตู้ (o.host) ย้าย+หมุนตามตู้ (plaFollowStart/End) — ใช้กับลากทีละใบด้วย (เดิมของค้างที่เดิม)
+     · ท็อป/บัว/ผนังเหนือท็อปคิดใหม่จากตู้เอง (plWtSlabs) · ช่วงผนังที่ตัด (top.cut) เป็นพิกัดจริง ยังไม่ตาม (ข้อจำกัดเดิม 1.548)
+     · ตู้ระบบ (ไม้ไฟใต้ตู้ · ขา/ชั้นมุม Cosimo · ราวแขวน) ไม่อยู่ในชุด — ระบบวางตามตู้เอง · ออเดอร์ล็อก = เลือกได้ ลากไม่ได้
+   ปิด SN_OFF.plMulti=1 */
+const PLMS={box:null,g:null};
+function plmsOn(){ return !snOff("plMulti")&&typeof PL!=="undefined"&&!!PL.on&&cabSelKeys().length>1; }
+function plmsSelectable(inst){ const i=String(inst);
+  try{ if(plIsLightPanel(i)||csmIsBaseInst(i)||csmIsCornerInst(i)) return false; }catch(e){}
+  try{ if(!snOff("csmRail")&&csmIsRailInst(i)) return false; }catch(e){}
+  return true; }
+function plmsAll(){ try{ return Object.keys(plCabMap()).filter(plmsSelectable); }catch(e){ return []; } }
+function plmsSet(keys,primary){
+  const M=plCabMap(); keys=[...new Set((keys||[]).map(String))].filter(k=>M[k]&&plmsSelectable(k));
+  if(keys.length<=1){ plSelect(keys[0]||null); plmsDraw(); return; }
+  if(PL.tpick){ PL.tpick=null; try{ plwtSelDraw(); }catch(e){} }
+  if(PL.wpick){ PL.wpick=null; try{ plRoomDraw(); }catch(e){} }
+  try{ if(typeof PLO!=="undefined"&&PLO.sel){ PLO.sel=null; plRoomDraw(); } }catch(e){}
+  const p=(primary!=null&&keys.indexOf(String(primary))>=0)?String(primary):keys[keys.length-1], bs=plBoardsOf(p);
+  state.selectedCab=p; state.selectedId=(bs.find(b=>!b._virtual)||bs[0]||{}).id||null; cabSelSet(keys);
+  try{ updateSelBox(); }catch(e){} try{ renderList(); }catch(e){}
+  plPanelSel(); plmsDraw(); }
+function plmsCur(){ let K=cabSelKeys(); if(!K.length&&state.selectedCab&&plCabMap()[String(state.selectedCab)]) K=[String(state.selectedCab)]; return K; }
+function plmsToggle(inst){ inst=String(inst); const K=plmsCur(); plmsSet(K.indexOf(inst)>=0?K.filter(k=>k!==inst):K.concat([inst]),inst); }
+function plmsClear(){ try{ cabSelClear(); }catch(e){} plSelect(null); plmsDraw(); }
+function plmsSelAll(){ const K=plmsAll(); if(!K.length){ toast("ยังไม่มีตู้ในห้อง"); return; }
+  plmsSet(K,(state.selectedCab&&K.indexOf(String(state.selectedCab))>=0)?state.selectedCab:K[0]);
+  if(K.length>1) toast("⬚ เลือกทั้งหมด "+K.length+" ตู้ — ลากตู้ใบไหนก็ได้เพื่อย้ายทั้งชุด · Esc เลิกเลือก"); }
+function plmsDraw(){ try{
+    if(PLMS.box){ scene.remove(PLMS.box); PLMS.box.traverse(o=>{ if(o.geometry) o.geometry.dispose(); if(o.material) o.material.dispose(); }); PLMS.box=null; }
+    if(!plmsOn()){ try{ invalidate(); }catch(e){} return; }
+    const g=new THREE.Group(); g.name="plMultiSel";
+    cabSelKeys().forEach(k=>{ const bs=plBoardsOf(k); if(!bs.length) return; const f=plFp(bs); if(!isFinite(f.lo[0])) return;
+      const sz=[0,1,2].map(a=>Math.max(f.hi[a]-f.lo[a],1)+16), c=[0,1,2].map(a=>(f.lo[a]+f.hi[a])/2);
+      const m=new THREE.LineSegments(new THREE.EdgesGeometry(new THREE.BoxGeometry(sz[0],sz[1],sz[2])),new THREE.LineBasicMaterial({color:0x1e88e5,depthTest:false,transparent:true,opacity:.95}));
+      m.position.set(c[0],c[1],c[2]); try{ if(typeof root!=="undefined"&&root&&root.position) m.position.add(root.position); }catch(e){}
+      m.renderOrder=999; m.userData._rptSkip=1; g.add(m); });
+    scene.add(g); PLMS.box=g;
+    try{ if(typeof selBox!=="undefined"&&selBox) selBox.visible=false; }catch(e){}
+    invalidate(); }catch(e){ console.error("plmsDraw:",e); } }
+function plmsHitInst(e){ try{ const rc=rayFrom(e), hit=pickFromHits(rc.intersectObjects(meshes.map(m=>m.mesh),false)); if(!hit) return null;
+    const b=state.boards.find(x=>x.id===hit.object.userData.id); if(!b||b.cabInst==null) return null;
+    const i=String(b.cabInst); return (plCabMap()[i]&&plmsSelectable(i))?i:null; }catch(err){ return null; } }
+function plmsScreenBox(inst){ const f=plFp(plBoardsOf(inst)); if(!isFinite(f.lo[0])) return null;
+  const rc=renderer.domElement.getBoundingClientRect(); let x0=1e9,y0=1e9,x1=-1e9,y1=-1e9;
+  for(let i=0;i<8;i++){ const v=new THREE.Vector3((i&1)?f.hi[0]:f.lo[0],(i&2)?f.hi[1]:f.lo[1],(i&4)?f.hi[2]:f.lo[2]);
+    try{ if(typeof root!=="undefined"&&root&&root.position) v.add(root.position); }catch(e){}
+    v.project(camera); if(!(v.z<1)) return null;
+    const sx=rc.left+(v.x+1)/2*rc.width, sy=rc.top+(1-v.y)/2*rc.height; x0=Math.min(x0,sx); y0=Math.min(y0,sy); x1=Math.max(x1,sx); y1=Math.max(y1,sy); }
+  return {x0,y0,x1,y1}; }
+function plmsInRect(l,t,r,b,cross){ return plmsAll().filter(k=>{ const B=plmsScreenBox(k); if(!B) return false;
+  return cross?(B.x1>=l&&B.x0<=r&&B.y1>=t&&B.y0<=b):(B.x0>=l&&B.x1<=r&&B.y0>=t&&B.y1<=b); }); }
+/* Ctrl+กด (ลงทะเบียนก่อน plwDown/ploDown/plDragDown — ตัวรับ capture บน window ทำงานตามลำดับที่ลงทะเบียน) */
+function plmsDown(e){
+  if(snOff("plMulti")||typeof PL==="undefined"||!PL.on||typeof renderer==="undefined"||!renderer||e.target!==renderer.domElement) return;
+  if(e.button!==0||!(e.ctrlKey||e.metaKey)) return;
+  try{ if(typeof plwOn==="function"&&plwOn()) return; }catch(err){}
+  e.stopImmediatePropagation(); e.preventDefault();
+  const div=document.createElement("div"); div.className="plmsRect";
+  div.style.cssText="position:fixed;left:0;top:0;width:0;height:0;z-index:70;pointer-events:none;display:none;border:1.5px solid #1e88e5;background:rgba(30,136,229,.10);box-sizing:border-box";
+  document.body.appendChild(div); let zm=1; try{ zm=uiZoomOf(div)||1; }catch(err){}
+  const G=PLMS.g={x0:e.clientX,y0:e.clientY,x1:e.clientX,y1:e.clientY,hit:plmsHitInst(e),moved:false};
+  const mv=ev=>{ G.x1=ev.clientX; G.y1=ev.clientY; if(!G.moved&&Math.abs(G.x1-G.x0)+Math.abs(G.y1-G.y0)<5) return; G.moved=true; ev.stopImmediatePropagation();
+    const l=Math.min(G.x0,G.x1), t=Math.min(G.y0,G.y1), cr=G.x1<G.x0;
+    Object.assign(div.style,{display:"block",left:(l/zm)+"px",top:(t/zm)+"px",width:(Math.abs(G.x1-G.x0)/zm)+"px",height:(Math.abs(G.y1-G.y0)/zm)+"px",
+      borderStyle:cr?"dashed":"solid",borderColor:cr?"#2ea043":"#1e88e5",background:cr?"rgba(46,160,67,.10)":"rgba(30,136,229,.10)"}); };
+  const up=ev=>{ removeEventListener("pointermove",mv,true); removeEventListener("pointerup",up,true); div.remove(); PLMS.g=null; ev.stopImmediatePropagation();
+    if(!G.moved){ if(G.hit) plmsToggle(G.hit); return; }
+    const L=plmsInRect(Math.min(G.x0,G.x1),Math.min(G.y0,G.y1),Math.max(G.x0,G.x1),Math.max(G.y0,G.y1),G.x1<G.x0);
+    if(!L.length){ toast("กรอบไม่โดนตู้ — ลากซ้าย→ขวา = ตู้ต้องอยู่ในกรอบทั้งใบ · ขวา→ซ้าย = แตะกรอบก็เลือก"); return; }
+    const nu=[...new Set(plmsCur().concat(L))]; plmsSet(nu,L[L.length-1]);
+    if(nu.length>1) toast("⬚ เลือก "+nu.length+" ตู้ — ลากตู้ใบไหนก็ได้เพื่อย้ายทั้งชุด · Ctrl+คลิก เพิ่ม/เอาออก · Esc เลิกเลือก"); };
+  addEventListener("pointermove",mv,true); addEventListener("pointerup",up,true); }
+function plmsKey(e){
+  if(snOff("plMulti")||typeof PL==="undefined"||!PL.on) return;
+  const t=e.target; if(t&&(/INPUT|TEXTAREA|SELECT/.test(t.tagName)||t.isContentEditable)) return;
+  if(document.querySelector(".modal.show")||$("rptWin")) return;
+  if(Array.prototype.some.call(document.body.children,d=>d.tagName==="DIV"&&d.style&&d.style.zIndex==="430"&&d.style.display!=="none")) return;   /* หน้าต่าง ovCard เปิดอยู่ */
+  if((e.ctrlKey||e.metaKey)&&!e.shiftKey&&!e.altKey&&(e.key==="a"||e.key==="A")){ e.preventDefault(); e.stopImmediatePropagation(); plmsSelAll(); return; }
+  if(!plmsOn()) return;
+  if(e.key==="Escape"){ e.preventDefault(); plmsClear(); return; }
+  if(e.key==="Delete"||e.key==="Backspace"){ e.preventDefault(); e.stopImmediatePropagation(); plmsDelete(); return; }
+  if(e.key==="r"||e.key==="R"){ e.preventDefault(); e.stopImmediatePropagation(); toast("หมุนได้ทีละตู้ — คลิกตู้ใบเดียวก่อนแล้วกด R"); } }
+async function plmsDelete(){ const K=cabSelKeys().slice(); if(K.length<2) return;
+  if(typeof isLocked==="function"&&isLocked()){ try{ guardEdit("ลบตู้"); }catch(e){} return; }
+  const codes=K.map(k=>{ try{ return plFp(plBoardsOf(k)).code||k; }catch(e){ return k; } });
+  if(!(await dialog({title:"ลบ "+K.length+" ตู้ออกจากห้อง?",ok:"🗑 ลบ "+K.length+" ตู้",html:'<div style="font-size:12.5px;line-height:1.6">'+escapeHtml(codes.join(" · "))+'<br><span style="color:var(--ink-dim)">Ctrl+Z ย้อนได้</span></div>'}))) return;
+  const cam=plCamKeep(), set=new Set(K);
+  state.boards=state.boards.filter(b=>!(b&&b.cabInst!=null&&set.has(String(b.cabInst))));
+  state.selectedId=null; state.selectedCab=null; try{ cabSelClear(); }catch(e){}
+  sync(0); try{ csmBaseRelayout(null); }catch(e){ console.error("csmBase:",e); }
+  plCamPut(cam); plSelect(null); plmsDraw(); toast("ลบ "+K.length+" ตู้แล้ว (Ctrl+Z ย้อนได้)"); }
+/* ลากชุด — เรียกจาก plDragDown (ตู้ที่กดอยู่ในชุด) / plDragApply / plDragUp */
+function plmsDragStart(e,inst,hit){ if(!plmsOn()) return false; const K=cabSelKeys(); if(K.indexOf(String(inst))<0) return false;
+  e.stopImmediatePropagation(); e.preventDefault(); try{ renderer.domElement.setPointerCapture(e.pointerId); }catch(err){}
+  const py=hit.point.y, snap={}, lo=[1e9,1e9,1e9], hi=[-1e9,-1e9,-1e9];
+  K.forEach(k=>{ const bs=plBoardsOf(k); bs.forEach(x=>{ snap[x.id]=[x.x,x.y,x.z]; }); const f=plFp(bs); for(let a=0;a<3;a++){ lo[a]=Math.min(lo[a],f.lo[a]); hi[a]=Math.max(hi[a],f.hi[a]); } });
+  let fol=[]; try{ fol=plaFollowStart(K); }catch(err){}
+  PL.drag={multi:true, inst:String(inst), insts:K.slice(), snap, py, p0:plFloorPt(e,py), lo, hi, sx:e.clientX, sy:e.clientY, moved:false, ev:null, d:[0,0,0], fol};
+  return true; }
+function plmsDragApply(g){ const p=plFloorPt(g.ev,g.py); if(!p||!g.p0) return;
+  const d=[p.x-g.p0.x,0,p.z-g.p0.z];
+  if(!g.ev.alt){ const G=plGrid(); if(G){ d[0]=Math.round(d[0]/G)*G; d[2]=Math.round(d[2]/G)*G; }
+    try{ const r=plRoom(); Object.keys(PL_WALLS).forEach(k=>{ if(!r.walls||!r.walls[k]) return; const W=PL_WALLS[k], a=W.pa, face=plFace(r,k), ed=(W.s>0?g.lo[a]:g.hi[a])+d[a];
+      if(Math.abs(ed-face)<PL_SNAP) d[a]+=face-ed; }); }catch(e){} }
+  g.insts.forEach(k=>plBoardsOf(k).forEach(x=>{ const s=g.snap[x.id]; if(s){ x.x=round(s[0]+d[0]); x.y=s[1]; x.z=round(s[2]+d[2]); } }));
+  g.d=d;
+  _fastFrame=true; try{ render3D(false); }finally{ _fastFrame=false; }
+  try{ updateSelBox(); }catch(e){} plmsDraw();
+  const tip=$("plDragTip"); if(tip) tip.textContent="ย้าย "+g.insts.length+" ตู้ · X "+(d[0]>0?"+":"")+Math.round(d[0])+" · Z "+(d[2]>0?"+":"")+Math.round(d[2])+" มม. · Alt = ไม่ลงกริด/ไม่ดูดผนัง"; }
+function plmsDragEnd(g){ const tip=$("plDragTip"); if(tip) tip.textContent="";
+  if(!g.moved){ plSelect(g.inst); plmsDraw(); return; }
+  const cam=plCamKeep();
+  try{ plaFollowEnd(g.fol); }catch(e){ console.error("plaFollow:",e); }
+  sync(0); try{ csmBaseRelayout(null); }catch(e){ console.error("csmBase:",e); }
+  plCamPut(cam); plmsSet(g.insts,g.inst);
+  const d=g.d||[0,0,0]; toast("ย้าย "+g.insts.length+" ตู้ X "+(d[0]>0?"+":"")+Math.round(d[0])+" · Z "+(d[2]>0?"+":"")+Math.round(d[2])+" มม. — Ctrl+Z ย้อนได้"); }
+function plmsPanel(s){ const K=cabSelKeys(), codes=K.map(k=>{ try{ return plFp(plBoardsOf(k)).code||k; }catch(e){ return k; } });
+  let pr=0; K.forEach(k=>{ try{ const d=plLocalDims(k); pr+=+catPrice(d.f.code,d.W)||0; }catch(e){} });
+  s.innerHTML='<div class="plRow"><h4>เลือก '+K.length+' ตู้</h4>'+(pr>0?'<span style="margin-left:auto;font-weight:700">'+plMoney(pr)+'</span>':'')+'</div>'
+    +'<div class="plNote" style="font-size:11px;line-height:1.5;margin-top:3px">'+escapeHtml(codes.join(" · "))+'</div>'
+    +'<div class="plNote" style="font-size:11px;line-height:1.55;margin-top:5px">ลากตู้ใบไหนก็ได้ในชุด = ย้ายทั้งชุด (ลงกริด · ดูดผนัง · Alt = อิสระ) · ซิงค์/เตา/ฮู้ดที่ติดตู้ย้ายตาม<br>Ctrl+คลิก เพิ่ม/เอาออก · Ctrl+ลาก = กรอบ · Esc เลิกเลือก</div>'
+    +'<div class="plBar" style="margin-top:6px"><button class="ibtn" id="plmsAllB">⬚ เลือกทั้งหมด</button><button class="ibtn" id="plmsNone">✕ เลิกเลือก</button>'
+    +'<button class="ibtn" id="plmsDelB" style="grid-column:1/-1;color:#b42318">🗑 ลบ '+K.length+' ตู้</button></div>';
+  const q=x=>s.querySelector(x);
+  if(q("#plmsAllB")) q("#plmsAllB").onclick=()=>plmsSelAll();
+  if(q("#plmsNone")) q("#plmsNone").onclick=()=>plmsClear();
+  if(q("#plmsDelB")) q("#plmsDelB").onclick=()=>plmsDelete(); }
+/* ───────── v1.562: ของในห้องที่ติดตู้ (o.host) ย้าย/หมุนตามตู้ ─────────
+   เดิม plaResnap ถูกเรียกแค่ตอนแก้ขนาดในแผง — ลากตู้แล้วซิงค์/ฮู้ดลอยค้างที่เดิม
+   จำตำแหน่งเทียบศูนย์ตู้ก่อนลาก → หลังวางหมุนตาม yaw ที่เปลี่ยน (สูตรเดียวกับ rotateCabBoards) + ย้ายตามศูนย์ใหม่ → plaResnap ให้ชิดผิวเดิม */
+function plaFollowStart(insts){ const set=new Set((insts||[]).map(String)), out=[];
+  ((state.room&&state.room.obj)||[]).forEach(o=>{ if(!o||o.host==null||!set.has(String(o.host))) return; const T=(typeof PLO_T!=="undefined")?PLO_T[o.k]:null; if(!T||!T.appl) return;
+    const i=String(o.host), f=plFp(plBoardsOf(i)); if(!isFinite(f.lo[0])) return;
+    out.push({o, inst:i, c0:[(f.lo[0]+f.hi[0])/2,(f.lo[2]+f.hi[2])/2], y0:cabYawOf(i), p0:[+o.x||0,+o.z||0]}); });
+  return out; }
+function plaFollowEnd(L){ if(!L||!L.length) return 0; let n=0;
+  L.forEach(r=>{ const bs=plBoardsOf(r.inst); if(!bs.length) return; const f=plFp(bs), c1=[(f.lo[0]+f.hi[0])/2,(f.lo[2]+f.hi[2])/2];
+    const dy=(((cabYawOf(r.inst)-r.y0)%360)+360)%360, rad=dy*Math.PI/180, cs=Math.cos(rad), sn=Math.sin(rad), dx=r.p0[0]-r.c0[0], dz=r.p0[1]-r.c0[1];
+    const nx=c1[0]+dx*cs+dz*sn, nz=c1[1]-dx*sn+dz*cs; if(Math.abs(nx-r.p0[0])<.5&&Math.abs(nz-r.p0[1])<.5&&!dy) return;
+    r.o.x=Math.round(nx*10)/10; r.o.z=Math.round(nz*10)/10; try{ plaResnap(r.o); }catch(e){} n++; });
+  if(n){ try{ plRoomDraw(); }catch(e){} }
+  return n; }
+
+/* ═════════ v1.562: แถบล่างพอดีจอ (ผู้ใช้ 30/10 11:35 ภาพจอ 1920 “หน้าจอข้างล่าง เห็นไม่ครบที่ 100%”) ═════════
+   เดิม #statusbar มี overflow-x:auto แต่ซ่อนแถบเลื่อน (height 0) — ปุ่มเพิ่มมาเรื่อย ๆ (🤖 ผู้ช่วย 1.549 …) จอ 1920 ปุ่มธีม/⚙ ตั้งค่า/FPS ตกขอบ
+     ดูเหมือนปุ่มหาย ตั้งค่าเปิดไม่ได้ (เลื่อนได้เฉพาะ Shift+ล้อ / ทัชแพด)
+   ตอนนี้ sbFit(): ล้น → ย่อทีละขั้น sbc1 ซ่อนป้ายเล็ก (สแนป · mm · แยกประกอบ) + หดช่องไฟ/ปุ่ม → sbc2 ปุ่มรองเหลือไอคอน (ผู้ช่วย/ตั้งค่า/ปุ่มที่เปิดอยู่มีชื่อ)
+     → sbc3 ไอคอนทั้งหมด + ซ่อน FPS → ยังล้น = แถบเลื่อนบาง 6 px + ล้อเมาส์บนแถบเลื่อนซ้ายขวา · ปุ่มที่ไม่มี title ได้ title จากชื่อ (ชี้แล้วเห็นชื่อ)
+     ทำใหม่เมื่อ: ขนาดหน้าต่าง/ขนาดหน้าจอ (ResizeObserver) · ป้ายปุ่มเปลี่ยน (MutationObserver ไม่ดู attribute จึงไม่วน) · ปิด SN_OFF.sbFit=1 */
+function sbFitCss(){ if($("sbFitCss")) return; const st=document.createElement("style"); st.id="sbFitCss";
+  st.textContent=["#statusbar.sbNoTr,#statusbar.sbNoTr *{transition:none!important}",
+    "#statusbar.sbc1 .sb-lbl,#statusbar.sbc1 .sb-unit{display:none}",
+    "#statusbar.sbc1 .chip{padding:6px 8px}",
+    "#statusbar.sbc1 .seg button{padding:6px 9px}",
+    "#statusbar.sbc1 #expGrp input[type=range]{width:70px}",
+    "#statusbar.sbc2 .chip:not(#aiBtn):not(#setBtn):not(.sel){font-size:0;gap:0;padding:6px 8px}",
+    "#statusbar.sbc3 .chip,#statusbar.sbc3 #toolSeg button{font-size:0;gap:0;padding:6px 8px}",
+    "#statusbar.sbc3 .fps{display:none}",
+    "#statusbar.sbScroll::-webkit-scrollbar{height:6px}",
+    "#statusbar.sbScroll::-webkit-scrollbar-thumb{background:rgba(127,127,127,.45);border-radius:3px}",
+    "#statusbar.sbScroll{scrollbar-width:thin}"].join("\n");
+  document.head.appendChild(st); }
+let _sbFitRaf=0;
+function sbFit(){ const s=$("statusbar"); if(!s) return; const L=["sbc1","sbc2","sbc3"];
+  if(snOff("sbFit")){ s.classList.remove(...L,"sbScroll"); return; } sbFitCss();
+  s.querySelectorAll("button").forEach(b=>{ if(!b.getAttribute("title")){ const t=String(b.textContent||"").replace(/\s+/g," ").trim(); if(t) b.setAttribute("title",t); } });
+  /* .chip มี transition:.1s — วัดทันทีหลังเปลี่ยน class ได้ขนาดเก่า (ทดสอบแล้ววัดพลาด) → ปิด transition ระหว่างวัด */
+  s.classList.add("sbNoTr"); s.classList.remove(...L,"sbScroll"); void s.offsetWidth;
+  for(let i=0;i<L.length&&s.scrollWidth>s.clientWidth+1;i++){ s.classList.add(L[i]); void s.offsetWidth; }
+  s.classList.toggle("sbScroll",s.scrollWidth>s.clientWidth+1);
+  requestAnimationFrame(()=>s.classList.remove("sbNoTr")); }
+function sbFitSoon(){ if(_sbFitRaf) return; _sbFitRaf=requestAnimationFrame(()=>{ _sbFitRaf=0; try{ sbFit(); }catch(e){ console.error("sbFit:",e); } }); }
+setTimeout(()=>{ try{ const s=$("statusbar"); if(!s||snOff("sbFit")) return;
+    addEventListener("resize",sbFitSoon);
+    if(typeof ResizeObserver!=="undefined") new ResizeObserver(sbFitSoon).observe(s);
+    if(typeof MutationObserver!=="undefined") new MutationObserver(sbFitSoon).observe(s,{childList:true,subtree:true,characterData:true});
+    s.addEventListener("wheel",e=>{ if(!s.classList.contains("sbScroll")||Math.abs(e.deltaX)>Math.abs(e.deltaY)) return; s.scrollLeft+=e.deltaY; e.preventDefault(); },{passive:false});
+    sbFit(); setTimeout(sbFitSoon,1500); }catch(e){ console.error("sbFit:",e); } },0);
+/* ───────── v1.562: เอาปุ่ม “ประกอบ | แยกชิ้น” ออกจากแถบล่าง (ผู้ใช้ 30/10 11:42 “จริงๆ เอาออกได้เลยครับไม่ได้ใช้นานแล้ว”) ─────────
+   ซ่อนด้วย CSS (โค้ด/ตัวรับเดิมอยู่ครบ) + เส้นคั่นถัดไป · ค้างโหมดแยกชิ้นอยู่ = กดประกอบให้ · แถบเลื่อน “แยกประกอบ” ยังอยู่ · คืนปุ่ม SN_OFF.viewSegHide=1 */
+setTimeout(()=>{ try{ if(snOff("viewSegHide")) return;
+    if(!$("viewSegHideCss")){ const st=document.createElement("style"); st.id="viewSegHideCss"; st.textContent="#viewSeg,#viewSeg + .sb-sep{display:none!important}"; document.head.appendChild(st); }
+    if(state.view!=="assembled"){ const b=document.querySelector('#viewSeg button[data-v="assembled"]'); if(b) b.click(); }
+    sbFitSoon(); }catch(e){ console.error("viewSegHide:",e); } },0);
+addEventListener("pointerdown",e=>{ try{ plmsDown(e); }catch(err){ console.error("plms:",err); } },true);   /* v1.562: Ctrl+คลิก/ลากกรอบ ในห้องออกแบบ (ก่อน plwDown/ploDown/plDragDown) */
+addEventListener("keydown",e=>{ try{ plmsKey(e); }catch(err){ console.error("plmsKey:",err); } },true);       /* v1.562: Ctrl+A · Esc · Del · R เมื่อเลือกหลายตู้ */
 addEventListener("pointerdown",plwDown,true);
 addEventListener("pointermove",plwMove,true);
 addEventListener("keydown",plwKey,true);
@@ -38861,7 +39069,7 @@ function plRoomHtml531(r,num){ plCss317(); plCss531();
   const ck=(id,on,lbl)=>'<label class="plCk"><input type="checkbox" id="'+id+'"'+(on?" checked":"")+'> '+lbl+'</label>';
   const head='<div class="plRow"><h4>ห้อง (มม.)</h4><span class="plGrow"></span>'
       +'<button class="ibtn" id="plFitRoom" title="ย้ายและขยายห้องให้คลุมตู้ที่มีอยู่ในฉาก">⤢ ครอบตู้ที่มี</button>'
-      +'<button class="ibtn" id="plCam" title="กล้องมองมุมห้อง">🎥 มุมห้อง</button></div>'
+      +'<button class="ibtn" id="plCam" title="กล้องมองมุมห้อง">🎥 มุมห้อง</button>'+(snOff("plMulti")?'':'<button class="ibtn" id="plSelAll" title="เลือกตู้ทุกใบในห้อง (Ctrl+A) — แล้วลากใบไหนก็ได้เพื่อย้ายทั้งชุด · Ctrl+คลิก / Ctrl+ลากกรอบ = เลือกบางใบ">⬚ ทั้งหมด</button>')+'</div>'
     +'<div class="plBar'+(((1+(snOff("plPull")?0:1)+(snOff("plDrawWall")?0:1)+(snOff("plPaint")?0:1)+(snOff("plRoomLock")?0:1))%2)?' plOdd':'')+'" style="margin-top:7px">'   /* v1.533: + ✏ วาดผนัง (เลขคี่ = ตัวท้ายเต็มแถว) */
       +'<button class="ibtn" id="plClrAll" title="เลือกสีทีเดียวทั้งออเดอร์ — หน้าบานทุกบาน โครงตู้ ฯลฯ">🎨 สีทั้งออเดอร์</button>'
       +(snOff("plPull")?'':'<button class="ibtn" id="plPullAll" title="เลือกมือจับทีเดียวทั้งห้อง">🖐 มือจับทั้งห้อง</button>')
@@ -38915,7 +39123,8 @@ function plWtGrpHtml531(grp){
     +(!T.on?'':(
       F("วัสดุ",sel("mat",Object.keys(PLWT_MATS).map(k=>[k,PLWT_MATS[k].n]),T.mat))
       +F("หนา",inp("t",T.t,64,' type="number" step="1" list="plWtTl"')+mm+dl)
-      +F("สี/รุ่น",inp("clr",T.clr,130,' placeholder="เช่น ดำอินเดีย"')+clr("color",String(T.color||"").trim()||M.c))
+      +F("สี/รุ่น",inp("clr",T.clr,130,' placeholder="เช่น ดำอินเดีย"')+clr("color",String(T.color||"").trim()||plmBase(T)||M.c))
+      +plmRow531(T,F)   /* v1.562: ลาย */
       +F("ยื่นหน้า",inp("over",T.over,56,' type="number" step="5"')+mm+'<span class="plNote">เลยหน้าบาน</span>')
       +F("ยื่นข้าง",inp("side",T.side,56,' type="number" step="5"')+mm+'<span class="plNote">ปลายที่ไม่ชนผนัง</span>',"ปลายท็อปที่ไม่ชนผนัง")
       +'<div class="plDiv"></div>'
@@ -38939,7 +39148,8 @@ function plPopX531(rc){ const P=PL&&PL.panel; return ((P&&!snOff("plTidy"))?Math
 function plFootTop531(p){ const B=[];
   if(!VIEW_ONLY){ if(!snOff("plQuote")) B.push('<button class="ibtn" id="plQuoteBtn" title="ใบเสนอราคา A4 — ราคาตั้งต้นจากต้นทุนตู้ + กำไร % ของเซลล์ · พิมพ์ / บันทึก PDF">🧾 ใบเสนอราคา</button>');
     else if(!snOff("plPoster")) B.push('<button class="ibtn" id="plPosterBtn" title="ภาพห้อง 3D + รายการตู้ ขนาด ราคา + แปลน → PNG">🖼 โปสเตอร์ขาย</button>'); }
-  if(!snOff("glbExport")) B.push('<button class="ibtn" id="plGlbBtn" title="ห้อง + ตู้ทั้งหมดเป็นไฟล์ 3D (.glb) — เปิดใน Blender แล้วเรนเดอร์เหมือนจริงได้ฟรี">🧊 ส่งออก Blender</button>');
+  if(!VIEW_ONLY&&realCanUse()&&!snOff("plRender")) B.push('<button class="ibtn" id="plRendBtn" title="เรนเดอร์ทุกฉาก 🎬 ที่ตั้งไว้ — แสงจริงในเครื่อง แล้วให้ AI แต่งต่อได้ทีละภาพ">🎬 Render</button>');   /* v1.562: แทน 🧊 ส่งออก Blender (ผู้ใช้ “เอาออกเลย”) */
+  else if(!snOff("glbExport")) B.push('<button class="ibtn" id="plGlbBtn" title="ห้อง + ตู้ทั้งหมดเป็นไฟล์ 3D (.glb) — เปิดใน Blender แล้วเรนเดอร์เหมือนจริงได้ฟรี">🧊 ส่งออก Blender</button>');
   if(!VIEW_ONLY&&realCanUse()){ B.push('<button class="ibtn'+(REAL.on?' on':'')+'" id="plRealBtn" title="ห้องจริง แสงจริง ตามห้องที่ออกแบบ — ลากหมุนดูได้">'+(REAL.on?'✕ ออกจากสมจริง':'✨ โหมดสมจริง')+'</button>');
     if(!snOff("realSnap")) B.push('<button class="ibtn" id="plSnapBtn" title="บันทึกภาพสมจริงความละเอียดสูงจากมุมกล้องนี้ (JPG)">📷 บันทึกภาพ</button>'); }
   return '<div class="plRow plSum"><span>ตู้ในห้อง <b>'+p.n+'</b> ใบ</span><span class="plSale" title="ราคาขายรวมจากแคตตาล็อก (ใบที่ยังไม่ใส่ราคาไม่นับ)">ราคาขาย<b>'+plMoney(p.sum)+'</b></span></div>'
@@ -38967,7 +39177,7 @@ function plRoomHtml(r,num){ plCss317();
   const chip=(k,v,t)=>'<button class="ibtn plSug" data-k="'+k+'" data-v="'+v+'" title="'+escapeHtml(t)+'" style="padding:2px 7px;font-size:11px">แนะนำ '+v+'</button>';
   const head='<div class="plRow"><h4>ห้อง (มม.)</h4>'
       +'<button class="ibtn" id="plFitRoom" style="margin-left:auto;padding:3px 7px;font-size:11px" title="ย้ายและขยายห้องให้คลุมตู้ที่มีอยู่ในฉาก">ครอบตู้ที่มี</button>'
-      +'<button class="ibtn" id="plCam" style="padding:3px 7px;font-size:11px">มุมห้อง</button></div>';
+      +'<button class="ibtn" id="plCam" style="padding:3px 7px;font-size:11px">มุมห้อง</button>'+(snOff("plMulti")?'':'<button class="ibtn" id="plSelAll" style="padding:3px 7px;font-size:11px" title="เลือกตู้ทุกใบในห้อง (Ctrl+A)">เลือกทั้งหมด</button>')+'</div>';
   const size=grp("size",false,"ขนาดห้อง · ผนัง · Dim",Math.round(r.w)+"×"+Math.round(r.d)+"×"+Math.round(r.h),
       '<div class="plRow">'+num("w","กว้าง",r.w)+num("d","ลึก",r.d)+num("h","สูง",r.h)+'</div>'
       +'<div class="plRow" style="margin-top:6px">ผนัง '
@@ -39018,7 +39228,101 @@ const PLWT_MATS={
   granite:{n:"หินแกรนิต", t:[20,30], c:"#2b2b2e", ro:.6},
   quartz:{n:"หินควอตซ์", t:[20,15], c:"#e8e5de", ro:.5},
   solid:{n:"หินสังเคราะห์ (Solid Surface)", t:[12,20], c:"#efede7", ro:.45},
-  wood:{n:"ไม้", t:[25,38], c:"#b48758", ro:.62} };
+  wood:{n:"ไม้", t:[25,38], c:"#b48758", ro:.62},
+  marble:{n:"หินอ่อน", t:[20,30], c:"#ecebe8", ro:.3} };   /* v1.562: หินอ่อน (เลือกแล้วได้ลาย Carrara) */
+/* ═════════ v1.562: ลายหินอ่อน — ท็อป · บัวหิน · ผนังหินเหนือท็อป (ผู้ใช้ 30/10 11:24 “เพิ่ม ลายหินอ่อนบน ทอปให้ด้วยครับ กับผนังที่เป็นหินอ่อน”) ═════════
+   เดิม: ท็อป/บัว/ผนังหิน = สีเรียบสีเดียว (MeshStandardMaterial color) · หน้ารวมวัสดุวาดจุดสุ่มบนสีพื้น
+   ตอนนี้ (ผู้ใช้เลือก: ลายสำเร็จรูป + อัปโหลดรูปหินจริง + ขึ้นหน้ารวมวัสดุ):
+     · วัสดุใหม่ “หินอ่อน” ใน PLWT_MATS (เลือกแล้วได้ลาย Carrara ให้เอง) · ช่อง “ลาย” ใช้กับวัสดุไหนก็ได้ = state.room.top.pat
+       ลายสำเร็จรูป PLM_PRE 6 แบบ วาดเองบน canvas 768 px (noise คาบซ้ำได้ ต่อขอบไร้รอย) · สีพื้น = ช่องสีเดิม (T.color) · สีเส้น T.vein
+       รูปหินจริง “tex:<id>” = state.room.texLib เดียวกับ 🖌 สีผนัง/พื้น (ย่อ ≤ 2048 px · ไปกับห้อง/ออเดอร์) · ขนาดลาย T.patMM (มม. ที่ลาย 1 รอบครอบ · จำในรูปด้วย)
+     · 3D: UV เป็นพิกัดโลก มม. (plmUv) ลายต่อกันข้ามท็อปหลายชิ้น/บัว/ผนัง · ภาพแสงจริงใช้ลายนี้ด้วย (rptCollect อ่าน material.map + uv)
+     · หน้ารวมวัสดุในใบเสนอราคา: ช่องท็อปใช้ลายจริง (ครอบ ~700 มม.) · ชื่อวัสดุต่อท้ายชื่อลายเมื่อไม่ได้พิมพ์สี/รุ่นเอง
+   ปิด SN_OFF.plMarble=1 (กลับเป็นสีเรียบ · ค่าที่เลือกไว้ยังอยู่) */
+const PLM_PRE={
+  carrara:  {n:"ขาว Carrara",          base:"#ecebe8", vein:"#7f868e", ax:1, ay:2, tw:9,  w1:.07, a:.6,  bx:3, by:-1, w2:.05, fine:.35, cloud:.10},
+  calacatta:{n:"ขาวลายทอง Calacatta",  base:"#f4f1ea", vein:"#8c7650", ax:1, ay:1, tw:6,  w1:.12, a:.85, bx:2, by:-3, w2:.04, fine:.2,  cloud:.06},
+  marquina: {n:"ดำ Nero Marquina",      base:"#1c1d20", vein:"#ecebe6", ax:2, ay:1, tw:8,  w1:.05, a:.85, bx:1, by:-3, w2:.03, fine:.3,  cloud:.25},
+  grey:     {n:"เทา Bardiglio",          base:"#8f959b", vein:"#e0e3e6", ax:1, ay:3, tw:10, w1:.09, a:.55, bx:2, by:1,  w2:.05, fine:.3,  cloud:.14},
+  beige:    {n:"เบจ Crema Marfil",       base:"#e2d3b8", vein:"#ad926a", ax:2, ay:1, tw:12, w1:.06, a:.45, bx:1, by:-2, w2:.04, fine:.3,  cloud:.12},
+  emperador:{n:"น้ำตาล Emperador",       base:"#5e4331", vein:"#d7c1a3", ax:1, ay:2, tw:11, w1:.05, a:.7,  bx:3, by:2,  w2:.03, fine:.5,  cloud:.2} };
+const PLM={cv:{},tex:{},img:{}};
+function plmHash(x,y,s){ let h=(x*374761393+y*668265263+s*1442695041)|0; h=Math.imul(h^(h>>>13),1274126177); return ((h^(h>>>16))>>>0)/4294967295; }
+function plmNoise(x,y,P,s){ const xi=Math.floor(x), yi=Math.floor(y), xf=x-xi, yf=y-yi, u=xf*xf*(3-2*xf), v=yf*yf*(3-2*yf), m=a=>((a%P)+P)%P;
+  const x0=m(xi), x1=m(xi+1), y0=m(yi), y1=m(yi+1), a=plmHash(x0,y0,s), b=plmHash(x1,y0,s), c=plmHash(x0,y1,s), d=plmHash(x1,y1,s);
+  return a+(b-a)*u+(c-a)*v+(a-b-c+d)*u*v; }
+function plmFbm(x,y,P,s,o){ let t=0,amp=.5,f=1; for(let i=0;i<o;i++){ t+=amp*plmNoise(x*f,y*f,P*f,s+i*17); amp*=.5; f*=2; } return t; }
+function plmCanvas(key,base,vein){ const k=key+"|"+base+"|"+vein; if(PLM.cv[k]) return PLM.cv[k];
+  const P=PLM_PRE[key]||PLM_PRE.carrara, N=768, cv=document.createElement("canvas"); cv.width=cv.height=N;
+  const g=cv.getContext("2d"), im=g.createImageData(N,N), D=im.data;
+  const hx=c=>{ const v=parseInt(String(c||"#888888").replace("#",""),16)||0; return [(v>>16)&255,(v>>8)&255,v&255]; };
+  const B=hx(base), V=hx(vein), sd=[...key].reduce((a,ch)=>(a*31+ch.charCodeAt(0))|0,7)&1023, L=4, TP=2*Math.PI;
+  for(let y=0;y<N;y++){ const v=y/N;
+    for(let x=0;x<N;x++){ const u=x/N;
+      const t1=plmFbm(u*L,v*L,L,sd,4), t2=plmFbm(u*L*2+7,v*L*2+3,L*2,sd+101,3), cl=plmFbm(u*3,v*3,3,sd+211,3);
+      const s1=Math.abs(Math.sin(TP*(P.ax*u+P.ay*v)+P.tw*t1)), s2=Math.abs(Math.sin(TP*(P.bx*u+P.by*v)+P.tw*1.6*t2));
+      let w=P.a*Math.pow(1-Math.min(s1/P.w1,1),2.2)+P.fine*Math.pow(1-Math.min(s2/P.w2,1),3); if(w>1) w=1;
+      const sh=1+(cl-.5)*P.cloud, i=(y*N+x)*4;
+      D[i]=Math.max(0,Math.min(255,B[0]*sh*(1-w)+V[0]*w)); D[i+1]=Math.max(0,Math.min(255,B[1]*sh*(1-w)+V[1]*w)); D[i+2]=Math.max(0,Math.min(255,B[2]*sh*(1-w)+V[2]*w)); D[i+3]=255; } }
+  g.putImageData(im,0,0); return (PLM.cv[k]=cv); }
+function plmSpec(T){ if(snOff("plMarble")||!T) return null; const p=String(T.pat||""); if(!p) return null;
+  if(p.indexOf("tex:")===0){ const id=p.slice(4), e=plptLib().find(x=>x.id===id); if(!e) return null; return {kind:"tex", id, e, mm:Math.max(+T.patMM||+e.mm||1600,50)}; }
+  const P=PLM_PRE[p]; if(!P) return null;
+  return {kind:"pre", key:p, P, base:String(T.color||"").trim()||P.base, vein:String(T.vein||"").trim()||P.vein, mm:Math.max(+T.patMM||1600,50)}; }
+function plmBase(T){ const s=plmSpec(T); return (s&&s.kind==="pre")?s.P.base:""; }
+function plmName(T){ const s=plmSpec(T); if(!s) return ""; return s.kind==="pre"?s.P.n:("ลาย "+String(s.e.n||"รูปหิน")); }
+function plmImg(id){ const e=plptLib().find(x=>x.id===id); if(!e) return null; let I=PLM.img[id];
+  if(!I||I.src!==e.src){ const im=new Image(); I=PLM.img[id]={src:e.src,img:im,ok:false}; im.onload=()=>{ I.ok=true; try{ plWtDraw(true); }catch(err){} }; im.src=e.src; }
+  return I.ok?I.img:null; }
+function plmTex(sp){ if(!sp) return null; let k, src;
+  if(sp.kind==="pre"){ k="pre|"+sp.key+"|"+sp.base+"|"+sp.vein; src=plmCanvas(sp.key,sp.base,sp.vein); }
+  else { src=plmImg(sp.id); if(!src) return null; k="tex|"+sp.id; }
+  let t=PLM.tex[k]; if(t&&t.image===src) return t;
+  t=new THREE.Texture(src); t.wrapS=t.wrapT=THREE.RepeatWrapping; t.encoding=THREE.sRGBEncoding; t.anisotropy=4; t.needsUpdate=true;
+  return (PLM.tex[k]=t); }
+/* UV = พิกัดโลก (มม.) ตามแนวผิว — ลายต่อกันข้ามชิ้น · ผิวบน/ล่าง = X,Z · ผิวข้าง = Z,Y หรือ X,Y */
+function plmUv(g,c){ try{ const pa=g.attributes.position, na=g.attributes.normal, ua=g.attributes.uv;
+    for(let i=0;i<pa.count;i++){ const x=pa.getX(i)+c[0], y=pa.getY(i)+c[1], z=pa.getZ(i)+c[2], nx=Math.abs(na.getX(i)), ny=Math.abs(na.getY(i));
+      if(ny>0.5) ua.setXY(i,x,-z); else if(nx>0.5) ua.setXY(i,z,y); else ua.setXY(i,x,y); }
+    ua.needsUpdate=true; }catch(e){} }
+/* หน้ารวมวัสดุ: รูปลาย (ครอบ ~700 มม.) — รูปที่อัปโหลดรอโหลดก่อน ≤ 3 วิ */
+async function plmImgFor(T){ const sp=plmSpec(T); if(!sp) return null; let img=null;
+  if(sp.kind==="pre") img=plmCanvas(sp.key,sp.base,sp.vein);
+  else { img=plmImg(sp.id); if(!img){ await new Promise(r=>{ const I=PLM.img[sp.id]; if(!I) return r(); I.img.addEventListener("load",()=>r(),{once:true}); I.img.addEventListener("error",()=>r(),{once:true}); setTimeout(r,3000); }); img=plmImg(sp.id); } }
+  if(!img) return null; const W=img.naturalWidth||img.width, H=img.naturalHeight||img.height, f=Math.min(1,700/sp.mm);
+  return {img, sw:Math.max(8,W*f), sh:Math.max(8,H*f)}; }
+function plmOptsHtml(T){ const e=v=>escapeHtml(String(v==null?"":v)), p=String(T.pat||"");
+  const opts=[["","สีเรียบ (ไม่มีลาย)"]].concat(Object.keys(PLM_PRE).map(k=>[k,"หินอ่อน "+PLM_PRE[k].n]))
+    .concat(plptLib().map(x=>["tex:"+x.id,"🖼 "+x.n])).concat([["+up","＋ อัปโหลดรูปหินจริง…"]]);
+  return '<select data-tk="pat" title="ลายบนท็อป บัวหิน และผนังหิน">'+opts.map(o=>'<option value="'+e(o[0])+'"'+(o[0]===p?" selected":"")+'>'+e(o[1])+'</option>').join("")+'</select>'; }
+function plmVeinHtml(sp){ return '<input type="color" data-tk="vein" value="'+escapeHtml(sp.vein)+'" style="width:30px;height:22px;padding:0;border:0;background:none" title="สีเส้นลาย">'; }
+function plmMMHtml(sp){ return '<input data-tk="patMM" type="number" step="100" min="100" value="'+Math.round(sp.mm)+'" style="width:64px" title="ลาย 1 รอบครอบกว้างเท่านี้ (มม.)">'; }
+function plmRow531(T,F){ if(snOff("plMarble")) return ""; const sp=plmSpec(T);
+  return F("ลาย",plmOptsHtml(T),"ลายบนท็อป บัวหิน และผนังหิน — ลายสำเร็จรูป หรือรูปแผ่นหินจริงของร้าน")
+    +(sp&&sp.kind==="pre"?F("สีเส้น",plmVeinHtml(sp)+'<span class="plNote">สีพื้น = ช่องสีด้านบน</span>'):"")
+    +(sp?F("ขนาดลาย",plmMMHtml(sp)+'<span class="plU">มม.</span><span class="plNote">ลาย 1 รอบ</span>'):""); }
+function plmRowOld(T){ if(snOff("plMarble")) return ""; const sp=plmSpec(T);
+  return '<div class="plRow" style="margin-top:4px">ลาย '+plmOptsHtml(T)+(sp&&sp.kind==="pre"?(' เส้น '+plmVeinHtml(sp)):'')+(sp?(' '+plmMMHtml(sp)+' มม.'):'')+'</div>'; }
+/* ค่าที่เปลี่ยนในแผงท็อป (เรียกจาก plWtWire หลัง T[k]=v) */
+function plmOnSet(T,k,v){
+  if(k==="mat"&&v==="marble"&&!T.pat){ T.pat="carrara"; if(!(+T.patMM>0)) T.patMM=1600; }
+  if(k==="pat"){ T.color=""; T.vein=""; const s=String(v||"");
+    if(s.indexOf("tex:")===0){ const en=plptLib().find(x=>"tex:"+x.id===s); T.patMM=Math.round(+(en&&en.mm)||1600); }
+    else if(s&&!(+T.patMM>0)) T.patMM=1600; }
+  if(k==="patMM"){ T.patMM=Math.max(Math.round(+v||1600),50); const s=String(T.pat||""); if(s.indexOf("tex:")===0){ const en=plptLib().find(x=>"tex:"+x.id===s); if(en) en.mm=T.patMM; } } }
+function plmUploadPick(){ const f=document.createElement("input"); f.type="file"; f.accept="image/*";
+  f.onchange=()=>{ const x=f.files&&f.files[0]; if(!x) return; const rd=new FileReader();
+    rd.onload=()=>{ const im=new Image(); im.onload=()=>{ try{ const M=2048, k=Math.min(1,M/Math.max(im.naturalWidth||1,im.naturalHeight||1));
+          const cv=document.createElement("canvas"); cv.width=Math.max(1,Math.round(im.naturalWidth*k)); cv.height=Math.max(1,Math.round(im.naturalHeight*k));
+          cv.getContext("2d").drawImage(im,0,0,cv.width,cv.height);
+          const ent={id:uid(), n:String(x.name||"หิน").replace(/\.[a-z0-9]+$/i,"").slice(0,40), src:cv.toDataURL("image/jpeg",0.88), mm:1600, stone:1};
+          plptLib().push(ent); const T=plWt(); T.pat="tex:"+ent.id; T.patMM=1600; T.color=""; T.vein="";
+          plWtDraw(true); plPanelRoom(); plAfterRoom(); try{ costSchedule(); }catch(e){}
+          toast("🖼 ใส่ลายหิน “"+ent.n+"” ("+cv.width+"×"+cv.height+") — ตั้ง “ขนาดลาย” = ความกว้างจริงของแผ่นในรูป (มม.)"); }
+        catch(e){ console.error("plmUpload:",e); toast("อ่านรูปไม่สำเร็จ"); } };
+      im.onerror=()=>toast("ไฟล์นี้ไม่ใช่รูปที่เปิดได้"); im.src=rd.result; };
+    rd.readAsDataURL(x); };
+  f.click(); }
 const PLWT_LS="sxlocaltrial:furnitech:topcost";
 /* ───────── v1.522: ผนังเหนือท็อป — บัวหิน + ผนัง (หิน / กระเบื้อง / กระจก / ไม่มี) ─────────
    ผู้ใช้ 27/10 20:02: “ตรงผนังระหว่างตู้ลอยและพื้น ต้องเลือกได้ว่าจะให้มีบัวหินทอปไหม บัวสูงเท่าไหร่ และเลือกได้เป็นผนังกระเบื้อง หรือผนังกระจก
@@ -39051,7 +39355,7 @@ function plWt(){ const r=plRoom(); if(!r.top||typeof r.top!=="object") r.top={};
   if(!PLWT_WALLS[T.wall]) T.wall="stone"; if(!PLWT_GLASS[T.glass]) T.glass="clear";
   return T; }
 function plWtOn(){ return !snOff("plWorktop")&&!!(state.room&&state.room.top&&state.room.top.on); }
-function plWtName(T){ T=T||plWt(); const M=PLWT_MATS[T.mat]||PLWT_MATS.granite; return M.n+(String(T.clr||"").trim()?(" "+String(T.clr).trim()):""); }
+function plWtName(T){ T=T||plWt(); const M=PLWT_MATS[T.mat]||PLWT_MATS.granite; return M.n+(String(T.clr||"").trim()?(" "+String(T.clr).trim()):((typeof plmName==="function"&&plmName(T))?(" "+plmName(T)):"")); }   /* v1.562: + ชื่อลาย */
 /* ชิ้นท็อป + วอผนัง (มม. พิกัดโลก) → {slabs:[{lo,hi,ax,wk,len,dep,area,trim}], bs:[…], runs} */
 function plWtSlabs(){
   const out={slabs:[], bs:[], runs:[]}; if(!plWtOn()) return out;
@@ -39075,6 +39379,9 @@ function plWtSlabs(){
         cur.y=Math.max(cur.y,c.top); cur.insts.push(c.inst); return; }
       cur={wk, a0:c.lo[A], a1:c.hi[A], back:back(c), front:front(c), y:c.top, insts:[c.inst]}; runs.push(cur); }); });
   const face=k=>plFace(r,k), DW=snOff("plWtDw")?[]:plWtDwSegs();   // v1.536: ผนังที่วาด
+  /* v1.562: ช่วงตู้ยื่นเลยผิวผนังห้อง (แผงหน้าตู้มุมยื่นทะลุผนัง) → ท็อปจบที่ผิวผนัง แล้วนับเป็นปลายชนผนัง */
+  if(!snOff("plWtClamp")) runs.forEach(R=>{ const en=PL_WALLS[R.wk].ax===0?["left","right"]:["back","front"];
+    if(r.walls[en[0]]&&R.a0<face(en[0])) R.a0=face(en[0]); if(r.walls[en[1]]&&R.a1>face(en[1])) R.a1=face(en[1]); });
   runs.forEach(R=>{ const W=PL_WALLS[R.wk], A=W.ax, P=W.pa, s=W.s, rOn=!!r.walls[R.wk]&&Math.abs(R.back-face(R.wk))<=60, dF=rOn?null:plWtDwBack(DW,A,P,s,R), onW=rOn||dF!=null, f0=rOn?face(R.wk):dF;
     const ends=A===0?["left","right"]:(R.wk==="left"||R.wk==="right"?["back","front"]:["back","front"]);
     const eLo=(!!r.walls[ends[0]]&&Math.abs(R.a0-face(ends[0]))<=60)?face(ends[0]):plWtDwEnd(DW,A,P,-1,R), eHi=(!!r.walls[ends[1]]&&Math.abs(R.a1-face(ends[1]))<=60)?face(ends[1]):plWtDwEnd(DW,A,P,1,R);
@@ -39137,6 +39444,38 @@ function plWtSum(S){ S=S||plWtSlabs(); const r2=v=>Math.round(v*100)/100, sum=L=
   return {a:r2(sum(S.slabs)), u:r2(sum(U)), w:r2(sum(Wl)), b:r2(sum(S.bs)), n:S.slabs.length, nb:S.bs.length, nu:U.length, nw:Wl.length}; }
 /* 3D */
 /* v1.522: กระเบื้อง = ลายร่องยาแนวตามขนาด · กระจก = โปร่ง/เงาตามชนิด · บัว/ผนังหิน = วัสดุเดียวกับท็อป */
+/* ═════════ v1.562: ท็อปจบสวย + เครื่องใช้บนท็อปขึ้นผิวท็อปเอง (ผู้ใช้ 30/10 11:55 ไฟล์ครัว L + ภาพมุมท็อป “เพิ่มให้ปิดทอปให้จบสวยงาม แล้วขยับ เครื่องใช้ไฟฟ้าหรือซิงค์ขึ้นบนทอป auto”) ═════════
+   เจอในไฟล์ผู้ใช้:
+     ① เตาแก๊ส/ซิงค์ y = 860 (หลังตู้) แต่ผิวท็อป 880 → จม เห็นแค่หัวเตา ซิงค์เห็นแค่ก๊อก — y ถูกตั้งตอนวาง แล้วไม่ตามเมื่อท็อปเปิด/หนาเปลี่ยน/ตู้ย้าย
+        → plaTopFollow ทุกรอบ plWtDraw: ของแบบ “บนท็อป” (ซิงค์ เตา ไมโครเวฟ) y = ผิวบนท็อปที่อยู่ใต้ · ไม่มีท็อป = หลังตู้ที่ติด (host) · ปิด SN_OFF.plaTopY=1
+     ② มุม L: EdgesGeometry ทีละกล่อง → เส้นรอยต่อ/ขอบซ้อนตรงที่ท็อปสองชิ้นชนกัน (บัว/ผนังหินมุมก็เหมือนกัน)
+        → plWtOutline วาดเส้นเฉพาะขอบนอกของชุดกล่องที่สูงเท่ากัน (ท็อป / บัว / ผนังหินแยกกลุ่ม) · ขอบที่ชนกล่องอื่น = ไม่วาด · มุม = วาดเมื่อเป็นมุมนอก/มุมใน
+          กระเบื้อง/กระจกยังเส้นทีละกล่องเหมือนเดิม · ปิด SN_OFF.plWtSeam=1
+     ③ ช่วงตู้แนวผนังหลังเริ่มที่ x −267 เพราะแผง “Fix Front” ของตู้มุม BCL055 ยื่นเลยตัวตู้ → ท็อป/บัวทะลุผนังซ้าย 267 มม. และไม่นับว่าชนผนัง
+        → ช่วงที่ยื่นเลยผิวผนังห้อง (ผนังเปิดอยู่) ตัดที่ผิวผนัง แล้วนับเป็นปลายชนผนังตามปกติ · ปิด SN_OFF.plWtClamp=1 */
+function plaTopFollow(S){ if(snOff("plaTopY")||typeof state==="undefined"||!state.room||!Array.isArray(state.room.obj)) return false; let ch=false;
+  state.room.obj.forEach(o=>{ const T=(typeof PLO_T!=="undefined")?PLO_T[o&&o.k]:null; if(!T||T.appl!=="top") return; const x=+o.x, z=+o.z; if(!isFinite(x)||!isFinite(z)) return;
+    let y=null; ((S&&S.slabs)||[]).forEach(q=>{ if(x>=q.lo[0]-1&&x<=q.hi[0]+1&&z>=q.lo[2]-1&&z<=q.hi[2]+1&&(y==null||q.hi[1]>y)) y=q.hi[1]; });
+    if(y==null&&o.host!=null){ try{ const H=plaHostInfo(String(o.host),null); if(H&&!H.up) y=H.c.hi[1]; }catch(e){} }
+    if(y!=null&&Math.abs((+o.y||0)-y)>0.5){ o.y=Math.round(y*10)/10; ch=true; } });
+  return ch; }
+function plWtOutline(g,B,col){ const grp={}, pts=[], E=0.5;
+  B.forEach(b=>{ const k=(b.kind?(b.kind==="up"?"u":"w"):"s")+"|"+Math.round(b.lo[1])+"|"+Math.round(b.hi[1]); (grp[k]=grp[k]||[]).push(b); });
+  Object.keys(grp).forEach(k=>{ const L=grp[k], y0=L[0].lo[1], y1=L[0].hi[1];
+    const inside=(x,z)=>L.some(b=>x>b.lo[0]+1e-6&&x<b.hi[0]-1e-6&&z>b.lo[2]+1e-6&&z<b.hi[2]-1e-6);
+    const xs=[...new Set(L.flatMap(b=>[b.lo[0],b.hi[0]]))], zs=[...new Set(L.flatMap(b=>[b.lo[2],b.hi[2]]))];
+    L.forEach(b=>{
+      [[b.lo[2],-1],[b.hi[2],1]].forEach(([z,n])=>{ const c=[b.lo[0],...xs.filter(v=>v>b.lo[0]&&v<b.hi[0]).sort((p,q)=>p-q),b.hi[0]];
+        for(let i=0;i<c.length-1;i++){ if(inside((c[i]+c[i+1])/2,z+n*E)) continue; [y0,y1].forEach(y=>pts.push(c[i],y,z,c[i+1],y,z)); } });
+      [[b.lo[0],-1],[b.hi[0],1]].forEach(([x,n])=>{ const c=[b.lo[2],...zs.filter(v=>v>b.lo[2]&&v<b.hi[2]).sort((p,q)=>p-q),b.hi[2]];
+        for(let i=0;i<c.length-1;i++){ if(inside(x+n*E,(c[i]+c[i+1])/2)) continue; [y0,y1].forEach(y=>pts.push(x,y,c[i],x,y,c[i+1])); } }); });
+    const seen=new Set();
+    L.forEach(b=>[[b.lo[0],b.lo[2]],[b.hi[0],b.lo[2]],[b.hi[0],b.hi[2]],[b.lo[0],b.hi[2]]].forEach(([x,z])=>{ const key=Math.round(x*10)+","+Math.round(z*10); if(seen.has(key)) return; seen.add(key);
+      const q=[inside(x-E,z-E),inside(x+E,z-E),inside(x+E,z+E),inside(x-E,z+E)], n=q.filter(Boolean).length;
+      if(n===1||n===3||(n===2&&q[0]===q[2])) pts.push(x,y0,z,x,y1,z); })); });
+  if(!pts.length) return;
+  const geo=new THREE.BufferGeometry(); geo.setAttribute("position",new THREE.Float32BufferAttribute(pts,3));
+  const ln=new THREE.LineSegments(geo,new THREE.LineBasicMaterial({color:col})); ln.userData.edge=1; g.add(ln); }
 function plWtTileTex(T){ const key=String(T.tileColor||"#e9e6df"); PL._tileTx=PL._tileTx||{}; if(PL._tileTx[key]) return PL._tileTx[key];
   const cv=document.createElement("canvas"); cv.width=cv.height=256; const g=cv.getContext("2d"); g.fillStyle=key; g.fillRect(0,0,256,256);
   for(let i=0;i<500;i++){ g.fillStyle="rgba(0,0,0,"+(Math.random()*0.04)+")"; g.fillRect(Math.random()*256,Math.random()*256,2,2); }
@@ -39145,14 +39484,18 @@ function plWtTileTex(T){ const key=String(T.tileColor||"#e9e6df"); PL._tileTx=PL
 function plWtDraw(force){
   if(typeof scene==="undefined"||!scene) return;
   const kill=()=>{ if(PL.wtGrp){ scene.remove(PL.wtGrp); PL.wtGrp.traverse(o=>{ if(o.geometry) o.geometry.dispose(); if(o.material&&o.material.dispose){ if(o.material.map&&o.material.map._plClone) o.material.map.dispose(); o.material.dispose(); } }); PL.wtGrp=null; PL.wtSig=""; } };
+  if(PL&&PL.on&&!plWtOn()&&plaTopFollow(null)) setTimeout(()=>{ try{ plRoomDraw(); }catch(e){} },0);   /* v1.562: ไม่มีท็อป = เครื่องใช้ลงหลังตู้ */
   if(!PL.on||!plWtOn()){ if(PL.wtGrp){ kill(); invalidate(); } if(PL.tpick){ PL.tpick=null; try{ plwtSelDraw(); }catch(e){} } return; }   // v1.548
   const T=plWt(), S=plWtSlabs(), M=PLWT_MATS[T.mat]||PLWT_MATS.granite, col=String(T.color||"").trim()||M.c;
-  const sig=JSON.stringify([col,T.mat,T.wall,T.glass,T.glassColor,T.tile,T.tileColor,S.slabs.map(s=>[s.lo,s.hi].flat().map(v=>Math.round(v))),S.bs.map(s=>[s.kind,s.lo,s.hi].flat().map(v=>typeof v==="number"?Math.round(v):v))]);
+  const _pm=plmSpec(T), _pt=_pm?plmTex(_pm):null;   /* v1.562: ลายหินอ่อน (ไม่มี = สีเรียบเดิม) */
+  const sig=JSON.stringify([_pm?[_pm.kind,_pm.key||_pm.id,_pm.base||"",_pm.vein||"",_pm.mm,!!_pt]:0,col,T.mat,T.wall,T.glass,T.glassColor,T.tile,T.tileColor,S.slabs.map(s=>[s.lo,s.hi].flat().map(v=>Math.round(v))),S.bs.map(s=>[s.kind,s.lo,s.hi].flat().map(v=>typeof v==="number"?Math.round(v):v))]);
+  if(plaTopFollow(S)) setTimeout(()=>{ try{ plRoomDraw(); }catch(e){} },0);   /* v1.562: ซิงค์/เตา/ไมโครเวฟ ขึ้นผิวท็อปเอง */
   if(!force&&PL.wtGrp&&PL.wtSig===sig) return;
   kill(); if(!S.slabs.length&&!S.bs.length) return;
   const g=new THREE.Group(); g.name="plWorktop";
-  const stone=new THREE.MeshStandardMaterial({color:new THREE.Color(col), roughness:M.ro, metalness:0.02});
-  const edgeCol=new THREE.Color(col).getHSL({}).l<.35?0x8a8f99:0x6b655c;
+  if(_pt) _pt.repeat.set(1/_pm.mm,1/_pm.mm);   /* v1.562: uv เป็น มม. → ลาย 1 รอบ = _pm.mm */
+  const stone=_pt?new THREE.MeshStandardMaterial({map:_pt, color:0xffffff, roughness:Math.min(M.ro,.32), metalness:0.02}):new THREE.MeshStandardMaterial({color:new THREE.Color(col), roughness:M.ro, metalness:0.02});
+  const edgeCol=new THREE.Color((_pm&&_pm.base)||col).getHSL({}).l<.35?0x8a8f99:0x6b655c;
   const matOf=s=>{ if(!s.kind||s.kind==="up"||s.mat==="stone") return stone;
     if(s.mat==="glass"){ const gl=PLWT_GLASS[T.glass]||PLWT_GLASS.clear, c=String(T.glassColor||"").trim()||gl.c;
       return new THREE.MeshStandardMaterial({color:new THREE.Color(c), roughness:gl.ro, metalness:gl.me, transparent:gl.op<1, opacity:gl.op, depthWrite:gl.op>=1}); }
@@ -39160,8 +39503,9 @@ function plWtDraw(force){
     tx._plClone=1; tx.needsUpdate=true; tx.repeat.set(Math.max(s.len,1)/tw, Math.max(s.h,1)/th);
     return new THREE.MeshStandardMaterial({map:tx, roughness:.35, metalness:0}); };
   [...S.slabs,...S.bs].forEach(s=>{ const sz=[0,1,2].map(k=>Math.max(s.hi[k]-s.lo[k],0.5)), c=[0,1,2].map(k=>(s.lo[k]+s.hi[k])/2);
-    const mesh=new THREE.Mesh(new THREE.BoxGeometry(sz[0],sz[1],sz[2]),matOf(s)); mesh.position.set(c[0],c[1],c[2]); mesh.userData.plWorktop=1; mesh.userData.plWtP=s;   /* v1.548: คลิกเลือกชิ้น */ mesh.castShadow=true; mesh.receiveShadow=true; g.add(mesh);
-    if(!(s.mat==="glass")){ const el=new THREE.LineSegments(new THREE.EdgesGeometry(mesh.geometry), new THREE.LineBasicMaterial({color:s.mat==="tile"?0x9a948a:edgeCol})); el.position.copy(mesh.position); el.userData.edge=1; g.add(el); } });
+    const mesh=new THREE.Mesh(new THREE.BoxGeometry(sz[0],sz[1],sz[2]),matOf(s)); mesh.position.set(c[0],c[1],c[2]); if(_pt&&mesh.material===stone) plmUv(mesh.geometry,c); mesh.userData.plWorktop=1; mesh.userData.plWtP=s;   /* v1.548: คลิกเลือกชิ้น */ mesh.castShadow=true; mesh.receiveShadow=true; g.add(mesh);
+    if(!(s.mat==="glass")&&(s.mat==="tile"||snOff("plWtSeam"))){ const el=new THREE.LineSegments(new THREE.EdgesGeometry(mesh.geometry), new THREE.LineBasicMaterial({color:s.mat==="tile"?0x9a948a:edgeCol})); el.position.copy(mesh.position); el.userData.edge=1; g.add(el); } });
+  if(!snOff("plWtSeam")){ try{ plWtOutline(g,[...S.slabs,...S.bs].filter(s=>s.mat!=="glass"&&s.mat!=="tile"),edgeCol); }catch(e){ console.error("plWtOutline:",e); } }   /* v1.562: เส้นเฉพาะขอบนอก (มุม L ไม่มีเส้นรอยต่อ) */
   scene.add(g); PL.wtGrp=g; PL.wtSig=sig; invalidate();
   try{ plwtRevalidate(S); }catch(e){ console.error("plWtSel:",e); } }   // v1.548: ท็อปเปลี่ยน → ช่วงที่เลือกตามหรือหลุด
 /* แผงห้อง › ท็อปเคาน์เตอร์ */
@@ -39179,7 +39523,7 @@ function plWtGrpHtml(grp){
     '<div class="plRow"><label title="วางท็อปบนตู้พื้นที่ยืนพื้นทุกช่วงที่ชิดกันให้เอง · ย้าย/เพิ่ม/ลบตู้แล้วท็อปตามเอง"><input type="checkbox" data-tk="on"'+(T.on?" checked":"")+'> ใส่ท็อปบนตู้พื้น (อัตโนมัติ)</label></div>'
     +(!T.on?'':(
       '<div class="plRow" style="margin-top:4px">วัสดุ '+sel("mat",Object.keys(PLWT_MATS).map(k=>[k,PLWT_MATS[k].n]),T.mat)+inp("t","หนา (มม.)",T.t,58,' type="number" step="1" list="plWtTl"')+dl+'</div>'
-      +'<div class="plRow" style="margin-top:4px">'+inp("clr","สี/รุ่น",T.clr,120,' placeholder="เช่น ดำอินเดีย"')+clr("color",String(T.color||"").trim()||M.c)+'</div>'
+      +'<div class="plRow" style="margin-top:4px">'+inp("clr","สี/รุ่น",T.clr,120,' placeholder="เช่น ดำอินเดีย"')+clr("color",String(T.color||"").trim()||plmBase(T)||M.c)+'</div>'+plmRowOld(T)
       +'<div class="plRow" style="margin-top:4px">'+inp("over","ยื่นหน้า (เลยบาน)",T.over,48,' type="number" step="5"')+inp("side","ยื่นข้าง",T.side,44,' type="number" step="5" title="ปลายท็อปที่ไม่ชนผนัง"')+'มม.</div>'
       +'<div class="plRow" style="margin-top:6px;padding-top:4px;border-top:1px dashed var(--line)"><label title="บัวหินชิดผนังบนท็อป — หินชนิดเดียวกับท็อป หนาเท่าท็อป"><input type="checkbox" data-tk="up"'+(T.up?" checked":"")+'> บัวหิน</label>'
         +(T.up?inp("upH","สูง (มม.)",T.upH,52,' type="number" step="10"'):'')+'</div>'
@@ -39194,9 +39538,10 @@ function plWtGrpHtml(grp){
       +'<div class="plNote" style="margin-top:3px">'+(S.slabs.length?e(pieces):'ยังไม่มีตู้พื้นที่ยืนพื้นในห้อง')+' · ไม่เข้าใบตัด (ของสั่งซื้อ)</div>'+plWtCutNote())) ); }
 function plWtWire(s){ if(!s) return; const T=plWt();
   const go=async(k,el)=>{ let v=el.type==="checkbox"?el.checked:el.value;
-    if(["t","over","side","upH","wallH","cost","wallCost","glassT"].includes(k)){ v=parseFloat(v); if(!isFinite(v)) v=0; if(k!=="over") v=Math.max(v,0); }
+    if(k==="pat"&&v==="+up"){ el.value=String(T.pat||""); plmUploadPick(); return; }   /* v1.562: อัปโหลดรูปหิน */
+    if(["t","over","side","upH","wallH","cost","wallCost","glassT","patMM"].includes(k)){ v=parseFloat(v); if(!isFinite(v)) v=0; if(k!=="over") v=Math.max(v,0); }
     if(k==="clr"||k==="glassClr"||k==="tileClr") v=String(v||"").slice(0,60);
-    const key0=T.mat+"|"+T.t, wk0=plWtWallKey(T); T[k]=v;
+    const key0=T.mat+"|"+T.t, wk0=plWtWallKey(T); T[k]=v; try{ plmOnSet(T,k,v); }catch(e){ console.error("plm:",e); }
     if(k==="mat"){ const M=PLWT_MATS[v]||PLWT_MATS.granite; if(M.t.indexOf(+T.t)<0) T.t=M.t[0]; T.color=""; }
     if(k==="glass") T.glassColor="";
     /* ราคาทุน/ตร.ม. จำในเครื่อง — หิน ต่อ วัสดุ|หนา · ผนัง ต่อชนิด (กระเบื้อง / กระจกแต่ละแบบ) · สลับชุด = ใช้ราคาที่เคยใส่ของชุดนั้น */
@@ -39211,7 +39556,7 @@ function plWtWire(s){ if(!s) return; const T=plWt();
     plWtDraw(true); plPanelRoom(); plAfterRoom(); try{ costSchedule(); }catch(e){} };
   s.querySelectorAll("[data-tk]").forEach(el=>{ el.onchange=()=>go(el.dataset.tk,el); });
   { const rs=s.querySelector("#plWtCutReset"); if(rs) rs.onclick=ev=>{ ev.preventDefault(); plwtCutReset(); }; }   // v1.548
-  ["color","glassColor","tileColor"].forEach(k=>{ const c=s.querySelector('input[data-tk="'+k+'"]'); if(c) c.oninput=()=>{ T[k]=c.value; plWtDraw(true); }; }); }
+  ["color","glassColor","tileColor","vein"].forEach(k=>{ const c=s.querySelector('input[data-tk="'+k+'"]'); if(c) c.oninput=()=>{ T[k]=c.value; plWtDraw(true); }; }); }
 /* ═════════ v1.548: คลิกท็อป = Dim · เลือกบัว/ผนังเหนือท็อปทีละช่วง แล้วตัดออก ═════════
    ผู้ใช้ 29/10 08:56: “เลือกผนังแยกได้ไหม” → (ถามกลับ) “ผมอยากเลือกแล้วกดลบได้ ใต้ Hood” · “อยากให้คลิกทอปเพื่อดูขนาดได้เหมือนคลิกตู้แล้ว Dim ขึ้น”
    เดิม: คลิกท็อป = เลือกตู้ข้างใต้ (ท็อปไม่อยู่ในรายการชิ้น) · ผนังเหนือท็อปเป็นแผ่นยาวตลอดแนว แบ่งแค่ตรงที่ก้นตู้ลอยสูงไม่เท่ากัน — ใต้ฮู้ดก็มีผนัง เอาออกไม่ได้
@@ -39871,6 +40216,7 @@ function plPanelRoom(){
   { const c=s.querySelector("#plCeilShow"); if(c) c.onchange=()=>{ r.ceilShow=c.checked; plRoomDraw(); plAfterRoom(); }; }   // v1.541: ฝ้าเพดาน
   s.querySelector("#plFitRoom").onclick=()=>{ plFitRoom(true); plRoomDraw(); plPanelRoom(); plCamRoom(); plAfterRoom(); };
   s.querySelector("#plCam").onclick=()=>plCamRoom();
+  { const sa=s.querySelector("#plSelAll"); if(sa) sa.onclick=()=>plmsSelAll(); }   /* v1.562 */
   { const a=s.querySelector("#plrlSave"), b=s.querySelector("#plrlOpen"), c=s.querySelector("#plrlNew");   // v1.540
     if(a) a.onclick=()=>plRoomLibSave(); if(b) b.onclick=()=>plRoomLibOpen(); if(c) c.onclick=()=>plClearCabsKeepRoom(); }
   { const a=s.querySelector("#plDimGap"), b=s.querySelector("#plDimSize"); if(a) a.onchange=()=>plDimOptSet("gap",a.checked); if(b) b.onchange=()=>plDimOptSet("size",b.checked); }   // v1.310
@@ -40033,13 +40379,15 @@ function plPanelWalls(){ const ws=$("plWall"); if(!ws) return; const r=plRoom();
   const on=Object.keys(PL_WALLS).filter(k=>r.walls[k]); if(on.indexOf(PL.wall)<0) PL.wall=on[0]||"back";
   ws.innerHTML=Object.keys(PL_WALLS).map(k=>'<option value="'+k+'"'+(k===PL.wall?" selected":"")+(r.walls[k]?"":" disabled")+'>ลงผนัง'+PL_WALLS[k].lbl+'</option>').join(""); }
 function plPanelSel(){
+  try{ plmsDraw(); }catch(e){}   /* v1.562: กรอบฟ้ารายตู้ตามชุดที่เลือก */
   try{ plDimDraw(); }catch(e){}                                              // v1.310
   const s=$("plSelSec"); if(!s) return;
   if(!snOff("plObj")&&PLO.sel&&ploGet(PLO.sel)){ try{ ploPanel(s); }catch(e){ console.error("ploPanel:",e); } plPanelGaps(); plPanelFoot(); return; }
   if(!snOff("plWallSel")&&PL.wpick&&!plSelInst()&&plwsOk(PL.wpick)){ try{ plwsPanel(s); }catch(e){ console.error("plwsPanel:",e); } plPanelGaps(); plPanelFoot(); return; }   // v1.539: เลือกผนังอยู่   // v1.535: เลือกประตู/หน้าต่าง/บันไดอยู่
   if(!snOff("plWtSel")&&PL.tpick&&!plSelInst()){ try{ plwtPanel(s); }catch(e){ console.error("plwtPanel:",e); } plPanelGaps(); plPanelFoot(); return; }   // v1.548: เลือกท็อป/ผนังเหนือท็อปอยู่
+  if(plmsOn()){ try{ plmsPanel(s); }catch(e){ console.error("plmsPanel:",e); } plPanelGaps(); plPanelFoot(); return; }   /* v1.562: เลือกหลายตู้ */
   const inst=plSelInst();
-  if(!inst){ s.innerHTML='<h4>ตู้ที่เลือก</h4><div style="color:var(--ink-dim);margin-top:4px">คลิกตู้ในจอเพื่อเลือก · กดรูปในแคตตาล็อกเพื่อวางใบใหม่</div>'; plPanelGaps(); plPanelFoot(); return; }
+  if(!inst){ s.innerHTML='<h4>ตู้ที่เลือก</h4><div style="color:var(--ink-dim);margin-top:4px">'+(snOff("plMulti")?'':'Ctrl+คลิก / Ctrl+ลากกรอบ = เลือกหลายตู้ · Ctrl+A = ทั้งหมด · ')+'คลิกตู้ในจอเพื่อเลือก · กดรูปในแคตตาล็อกเพื่อวางใบใหม่</div>'; plPanelGaps(); plPanelFoot(); return; }
   if(!snOff("csmRail")&&csmIsRailInst(inst)){ s.innerHTML=csmRailSelHtml(inst); const _d=s.querySelector("#plDel"); if(_d) _d.onclick=()=>plDelete(inst);
     { const _rp=s.querySelector("#csmRailPaper"), _rb=csmRailOf(inst); if(_rp&&_rb) _rp.onclick=()=>{ try{ ShopPaper.open({board:_rb.id, scope:"scene"}); }catch(e){ console.error("csmRailPaper:",e); toast("เปิดแบบผลิตไม่สำเร็จ"); } };
       /* v1.394: ยาวราวเข้ามุมรายตัว */
@@ -40172,7 +40520,7 @@ function plPanelFoot(){
   const tdy531=!snOff("plTidy");   // v1.531: ตู้ในห้อง + ราคาขาย · ปุ่มตาราง 2×2 (plFootTop531)
   s.innerHTML=(tdy531?plFootTop531(p):('<div class="plRow"><span>ตู้ในห้อง <b>'+p.n+'</b> ใบ</span><span style="margin-left:auto;font-size:15px;font-weight:800">'+plMoney(p.sum)+'</span></div>'
     +'<div class="plRow" style="margin:6px 0 2px">'+(VIEW_ONLY?'':!snOff("plQuote")?'<button class="ibtn" id="plQuoteBtn" style="flex:1" title="ใบเสนอราคา A4 — ราคาตั้งต้นจากต้นทุนตู้ + กำไร % ของเซลล์ · พิมพ์ / บันทึก PDF">🧾 ใบเสนอราคา</button>':(snOff("plPoster")?'':'<button class="ibtn" id="plPosterBtn" style="flex:1" title="ภาพห้อง 3D + รายการตู้ ขนาด ราคา + แปลน → PNG">🖼 โปสเตอร์ขาย</button>'))   /* v1.515: แทนโปสเตอร์ (SN_OFF.plQuote=1 = โปสเตอร์เดิม) */   // v1.457
-    +(snOff("glbExport")?'':'<button class="ibtn" id="plGlbBtn" style="flex:1" title="ห้อง + ตู้ทั้งหมดเป็นไฟล์ 3D (.glb) — เปิดใน Blender แล้วเรนเดอร์เหมือนจริงได้ฟรี">🧊 ส่งออก Blender</button>')+'</div>'   // v1.459
+    +((!VIEW_ONLY&&realCanUse()&&!snOff("plRender"))?'<button class="ibtn" id="plRendBtn" style="flex:1" title="เรนเดอร์ทุกฉาก 🎬 ที่ตั้งไว้ — แสงจริงในเครื่อง แล้วให้ AI แต่งต่อได้ทีละภาพ">🎬 Render</button>':snOff("glbExport")?'':'<button class="ibtn" id="plGlbBtn" style="flex:1" title="ห้อง + ตู้ทั้งหมดเป็นไฟล์ 3D (.glb) — เปิดใน Blender แล้วเรนเดอร์เหมือนจริงได้ฟรี">🧊 ส่งออก Blender</button>')+'</div>'   // v1.459
     +((VIEW_ONLY||!realCanUse())?'':('<div class="plRow" style="margin:0 0 2px">'   // v1.528: ✨ โหมดสมจริง + 📷 บันทึกภาพ อยู่ในห้องออกแบบ
       +'<button class="ibtn" id="plRealBtn" style="flex:1'+(REAL.on?';background:var(--accent);color:#fff;border-color:var(--accent)':'')+'" title="ห้องจริง แสงจริง ตามห้องที่ออกแบบ — ลากหมุนดูได้">'+(REAL.on?'✕ ออกจากสมจริง':'✨ โหมดสมจริง')+'</button>'
       +(snOff("realSnap")?'':'<button class="ibtn" id="plSnapBtn" style="flex:1" title="บันทึกภาพสมจริงความละเอียดสูงจากมุมกล้องนี้ (JPG)">📷 บันทึกภาพ</button>')+'</div>'))
@@ -40190,7 +40538,7 @@ function plPanelFoot(){
   { const b=s.querySelector("#plPlSync"); if(b) b.onclick=()=>plPlinthSync(); }
   { const pb=s.querySelector("#plPosterBtn"); if(pb) pb.onclick=()=>{ plPosterOpen().catch(e=>{ console.error("poster:",e); toast("เปิดโปสเตอร์ไม่สำเร็จ — ดู console"); }); }; }   // v1.457
   { const qb=s.querySelector("#plQuoteBtn"); if(qb) qb.onclick=()=>{ plQuoteOpen().catch(e=>{ console.error("quote:",e); toast("เปิดใบเสนอราคาไม่สำเร็จ — ดู console"); }); }; }   // v1.515
-  { const gb=s.querySelector("#plGlbBtn"); if(gb) gb.onclick=()=>exportGlb({room:true}); }   // v1.459
+  { const gb=s.querySelector("#plGlbBtn"); if(gb) gb.onclick=()=>exportGlb({room:true}); } { const rb2=s.querySelector("#plRendBtn"); if(rb2) rb2.onclick=()=>{ try{ RND.open(); }catch(e){ console.error("render:",e); toast("เปิดหน้า Render ไม่สำเร็จ"); } }; }   /* v1.562 */   // v1.459
   { const rb=s.querySelector("#plRealBtn"); if(rb) rb.onclick=()=>realToggle(); const sb=s.querySelector("#plSnapBtn"); if(sb) sb.onclick=()=>realSnapSave(); }   // v1.528
   plRoomGrpWire(s);
 }
@@ -41237,7 +41585,8 @@ async function dwgMatTiles(C){ const cabs=(C||dwgCabs()).filter(c=>c.lv!=="rail"
   { const side=[]; cabs.forEach(c=>c.bs.forEach(b=>{ if(b&&!b._door&&!b._virtual&&b.orient==="side"&&+b.T>0) side.push(b); })); if(side.length){ const sw=await dwgSwatch(side[0]); if(sw) tiles.push({h:"สีโครงตู้ด้านใน", img:sw.url, t:sw.code, s:sw.name&&sw.name!==sw.code?sw.name:""}); } }
   try{ const S0=plWtOn()?plWtSlabs():null; if(S0&&S0.slabs.length){ const T=plWt(), M=PLWT_MATS[T.mat]||PLWT_MATS.granite, S=S0, col=String(T.color||"").trim()||M.c;
       const cv=document.createElement("canvas"); cv.width=cv.height=220; const g=cv.getContext("2d"); g.fillStyle=col; g.fillRect(0,0,220,220);
-      if(T.mat!=="wood"){ for(let i=0;i<900;i++){ g.fillStyle="rgba(255,255,255,"+(Math.random()*0.22)+")"; g.fillRect(Math.random()*220,Math.random()*220,1+Math.random()*2,1+Math.random()*2); } }
+      const _pmI=snOff("plMarble")?null:await plmImgFor(T); if(_pmI){ try{ g.drawImage(_pmI.img,0,0,_pmI.sw,_pmI.sh,0,0,220,220); }catch(e){} }   /* v1.562: ลายหินจริง */
+      else if(T.mat!=="wood"){ for(let i=0;i<900;i++){ g.fillStyle="rgba(255,255,255,"+(Math.random()*0.22)+")"; g.fillRect(Math.random()*220,Math.random()*220,1+Math.random()*2,1+Math.random()*2); } }
       else { g.strokeStyle="rgba(60,35,10,.18)"; for(let i=0;i<26;i++){ g.beginPath(); g.moveTo(0,i*9+Math.random()*4); g.bezierCurveTo(70,i*9+6,150,i*9-6,220,i*9+Math.random()*4); g.stroke(); } }
       const _up=S.bs.find(b=>b.kind==="up"), _wl=S.bs.find(b=>b.kind!=="up");   // v1.522
       tiles.push({h:"ท็อป"+(_up?" + บัวหิน":"")+(_wl&&_wl.mat==="stone"?" + ผนัง":""), img:cv.toDataURL("image/jpeg",0.86), t:plWtName(T), s:"หนา "+(+T.t||0)+" มม."+(_up?(" · บัวสูง "+_up.h):"")+(_wl&&_wl.mat==="stone"?(" · ผนังสูง "+plWtHTxt(S.bs.filter(b=>b.kind!=="up"))):"")});
@@ -41393,7 +41742,7 @@ async function plToggle(on){
     if(PL.panel){ PL.panel.remove(); PL.panel=null; } const t=$("plDragTip"); if(t) t.remove();
     plCatDrop();                                                             // v1.367: แผงแคตตาล็อกขวา + ปุ่มพับ + คืน #insp/ViewCube
     try{ plColorClose(); }catch(e){}
-    PL.items=null; plRoomDraw();
+    PL.items=null; plRoomDraw(); try{ cabSelClear(); plmsDraw(); }catch(e){}   /* v1.562 */
     try{ const b=$("planBtn"); if(b) b.classList.remove("on"); }catch(e){}
     try{ autosave(); }catch(e){}
   }
@@ -66889,13 +67238,13 @@ const SNAI=(function(){
        ชี้อย่างเดียว ไม่กดแทน (ผู้ใช้เลือก) · ตำแหน่งหาร uiZoomOf (body[data-uiz] ซูมลูกของ body) · ชั้น = ชั้นของที่ชี้ + 5 (เมนูคลิกขวา 130 → 135 · แผงห้อง 320 → 325 · ตั้งค่า 90 → 95)
        ผู้ช่วยบังของที่ชี้ = ซ่อนผู้ช่วยระหว่างชี้ · ปิด SN_OFF.aiGoto */
   const GO_LSK="snAI:gomap:v1";
-  const GO_SEED={"plClose":{"l":"✓ เสร็จ","g":""},"plFitRoom":{"l":"⤢ ครอบตู้ที่มี","g":""},"plCam":{"l":"🎥 มุมห้อง","g":""},"plClrAll":{"l":"🎨 สีทั้งออเดอร์","g":""},"plPullAll":{"l":"🖐 มือจับทั้งห้อง","g":""},"plwGo2":{"l":"✏ วาดผนังจากแปลน","g":""},"plptGo":{"l":"🖌 สีผนัง · พื้น","g":""},"plRoomLock":{"l":"🔓 ล็อกห้อง","g":""},"plrlSave":{"l":"💾 บันทึกห้อง","g":""},"plrlOpen":{"l":"📂 เปิดห้องที่บันทึก","g":""},"plrlNew":{"l":"🧹 ล้างตู้ · เก็บห้อง","g":""},"plCeilShow":{"l":"แสดงฝ้า","g":"ขนาดห้อง · ผนัง · Dim"},"plDimGap":{"l":"■ ระยะถึงผนัง/ตู้ข้าง","g":"ขนาดห้อง · ผนัง · Dim"},"plDimSize":{"l":"■ ขนาดตู้","g":"ขนาดห้อง · ผนัง · Dim"},"plPlMat":{"l":"ตีนตู้","g":"ขา · ตีนตู้ · ฟิลเลอร์ · ไม้ไฟ"},"plFFloor":{"l":"ฟิลเลอร์ลงพื้น","g":"ขา · ตีนตู้ · ฟิลเลอร์ · ไม้ไฟ"},"plCeilOn":{"l":"ฟิลเลอร์บน","g":"ขา · ตีนตู้ · ฟิลเลอร์ · ไม้ไฟ"},"plCeilH":{"l":"ฟิลเลอร์บน","g":"ขา · ตีนตู้ · ฟิลเลอร์ · ไม้ไฟ"},"plLtOn":{"l":"ไม้ไฟใต้ตู้ลอย","g":"ขา · ตีนตู้ · ฟิลเลอร์ · ไม้ไฟ"},"plLtCode":{"l":"ไม้ไฟใต้ตู้ลอย","g":"ขา · ตีนตู้ · ฟิลเลอร์ · ไม้ไฟ"},"plSdFloor":{"l":"ตู้พื้น/สูง ลงพื้น","g":"ขา · ตีนตู้ · ฟิลเลอร์ · ไม้ไฟ"},"plSdCeil":{"l":"ตู้ลอย/สูง ถึงฝ้า","g":"ขา · ตีนตู้ · ฟิลเลอร์ · ไม้ไฟ"},"plBvTT":{"l":"บานเพบน","g":"ขา · ตีนตู้ · ฟิลเลอร์ · ไม้ไฟ"},"plwGo":{"l":"✏ วาดผนังจากแปลน (มองจากบน)","g":"✏ ผนังที่วาด (แปลน)"},"plApply":{"l":"ปรับขนาด","g":"ตู้ที่เลือก"},"plDup":{"l":"⧉ สำเนา","g":"ตู้ที่เลือก"},"plDupM":{"l":"⧉⇋ สำเนากลับ","g":"ตู้ที่เลือก"},"plClr":{"l":"🎨 สี","g":"ตู้ที่เลือก"},"plSwap":{"l":"🔁 รุ่น","g":"ตู้ที่เลือก"},"plRot":{"l":"⟳ หมุน","g":"ตู้ที่เลือก"},"plMir":{"l":"⇋ กลับ","g":"ตู้ที่เลือก"},"plDel":{"l":"🗑 ลบ","g":"ตู้ที่เลือก"},"plDp":{"l":"DP","g":"ตู้ที่เลือก"},"plTT":{"l":"Trim Top","g":"ตู้ที่เลือก"},"plOff":{"l":"ห่างผนัง","g":"ตู้ที่เลือก"},"plFL":{"l":"◀ ปิดช่องซ้าย","g":"ตู้ที่เลือก"},"plFR":{"l":"ปิดช่องขวา ▶","g":"ตู้ที่เลือก"},"plSdL":{"l":"◀ ซ้าย","g":"ตู้ที่เลือก"},"plSdR":{"l":"ขวา ▶","g":"ตู้ที่เลือก"},"plAlignAll":{"l":"จัดแนวทั้งห้อง","g":""},"plCostEdit":{"l":"💰 ใส่ราคาที่ขาด","g":"ท้ายแผง"},"plQuoteBtn":{"l":"🧾 ใบเสนอราคา","g":"ท้ายแผง"},"plGlbBtn":{"l":"🧊 ส่งออก Blender","g":"ท้ายแผง"},"plRealBtn":{"l":"✨ โหมดสมจริง","g":"ท้ายแผง"},"plSnapBtn":{"l":"📷 บันทึกภาพ","g":"ท้ายแผง"},"@size":{"l":"ขนาดห้อง · ผนัง · Dim","g":"กลุ่ม"},"@work":{"l":"ขา · ตีนตู้ · ฟิลเลอร์ · ไม้ไฟ · ปิดข้าง","g":"กลุ่ม"},"@line":{"l":"แนวตู้ลอย / ตู้สูง","g":"กลุ่ม"},"@wt":{"l":"ท็อปเคาน์เตอร์ · ผนังเหนือท็อป","g":"กลุ่ม"},"@dw":{"l":"✏ ผนังที่วาด (แปลน)","g":"กลุ่ม"},"@foot":{"l":"รายละเอียด","g":"กลุ่ม"},"plCatHide":{"l":"ซ่อน ▸","g":"แคตตาล็อก"},"plWall":{"l":"ตู้ที่กดจากแคตตาล็อกไปลงผนังไหน","g":"แคตตาล็อก"}};
+  const GO_SEED={"plClose":{"l":"✓ เสร็จ","g":""},"plFitRoom":{"l":"⤢ ครอบตู้ที่มี","g":""},"plCam":{"l":"🎥 มุมห้อง","g":""},"plClrAll":{"l":"🎨 สีทั้งออเดอร์","g":""},"plPullAll":{"l":"🖐 มือจับทั้งห้อง","g":""},"plwGo2":{"l":"✏ วาดผนังจากแปลน","g":""},"plptGo":{"l":"🖌 สีผนัง · พื้น","g":""},"plRoomLock":{"l":"🔓 ล็อกห้อง","g":""},"plrlSave":{"l":"💾 บันทึกห้อง","g":""},"plrlOpen":{"l":"📂 เปิดห้องที่บันทึก","g":""},"plrlNew":{"l":"🧹 ล้างตู้ · เก็บห้อง","g":""},"plCeilShow":{"l":"แสดงฝ้า","g":"ขนาดห้อง · ผนัง · Dim"},"plDimGap":{"l":"■ ระยะถึงผนัง/ตู้ข้าง","g":"ขนาดห้อง · ผนัง · Dim"},"plDimSize":{"l":"■ ขนาดตู้","g":"ขนาดห้อง · ผนัง · Dim"},"plPlMat":{"l":"ตีนตู้","g":"ขา · ตีนตู้ · ฟิลเลอร์ · ไม้ไฟ"},"plFFloor":{"l":"ฟิลเลอร์ลงพื้น","g":"ขา · ตีนตู้ · ฟิลเลอร์ · ไม้ไฟ"},"plCeilOn":{"l":"ฟิลเลอร์บน","g":"ขา · ตีนตู้ · ฟิลเลอร์ · ไม้ไฟ"},"plCeilH":{"l":"ฟิลเลอร์บน","g":"ขา · ตีนตู้ · ฟิลเลอร์ · ไม้ไฟ"},"plLtOn":{"l":"ไม้ไฟใต้ตู้ลอย","g":"ขา · ตีนตู้ · ฟิลเลอร์ · ไม้ไฟ"},"plLtCode":{"l":"ไม้ไฟใต้ตู้ลอย","g":"ขา · ตีนตู้ · ฟิลเลอร์ · ไม้ไฟ"},"plSdFloor":{"l":"ตู้พื้น/สูง ลงพื้น","g":"ขา · ตีนตู้ · ฟิลเลอร์ · ไม้ไฟ"},"plSdCeil":{"l":"ตู้ลอย/สูง ถึงฝ้า","g":"ขา · ตีนตู้ · ฟิลเลอร์ · ไม้ไฟ"},"plBvTT":{"l":"บานเพบน","g":"ขา · ตีนตู้ · ฟิลเลอร์ · ไม้ไฟ"},"plwGo":{"l":"✏ วาดผนังจากแปลน (มองจากบน)","g":"✏ ผนังที่วาด (แปลน)"},"plApply":{"l":"ปรับขนาด","g":"ตู้ที่เลือก"},"plDup":{"l":"⧉ สำเนา","g":"ตู้ที่เลือก"},"plDupM":{"l":"⧉⇋ สำเนากลับ","g":"ตู้ที่เลือก"},"plClr":{"l":"🎨 สี","g":"ตู้ที่เลือก"},"plSwap":{"l":"🔁 รุ่น","g":"ตู้ที่เลือก"},"plRot":{"l":"⟳ หมุน","g":"ตู้ที่เลือก"},"plMir":{"l":"⇋ กลับ","g":"ตู้ที่เลือก"},"plDel":{"l":"🗑 ลบ","g":"ตู้ที่เลือก"},"plDp":{"l":"DP","g":"ตู้ที่เลือก"},"plTT":{"l":"Trim Top","g":"ตู้ที่เลือก"},"plOff":{"l":"ห่างผนัง","g":"ตู้ที่เลือก"},"plFL":{"l":"◀ ปิดช่องซ้าย","g":"ตู้ที่เลือก"},"plFR":{"l":"ปิดช่องขวา ▶","g":"ตู้ที่เลือก"},"plSdL":{"l":"◀ ซ้าย","g":"ตู้ที่เลือก"},"plSdR":{"l":"ขวา ▶","g":"ตู้ที่เลือก"},"plAlignAll":{"l":"จัดแนวทั้งห้อง","g":""},"plCostEdit":{"l":"💰 ใส่ราคาที่ขาด","g":"ท้ายแผง"},"plQuoteBtn":{"l":"🧾 ใบเสนอราคา","g":"ท้ายแผง"},"plRendBtn":{"l":"🎬 Render","g":"ท้ายแผง"},"plRealBtn":{"l":"✨ โหมดสมจริง","g":"ท้ายแผง"},"plSnapBtn":{"l":"📷 บันทึกภาพ","g":"ท้ายแผง"},"@size":{"l":"ขนาดห้อง · ผนัง · Dim","g":"กลุ่ม"},"@work":{"l":"ขา · ตีนตู้ · ฟิลเลอร์ · ไม้ไฟ · ปิดข้าง","g":"กลุ่ม"},"@line":{"l":"แนวตู้ลอย / ตู้สูง","g":"กลุ่ม"},"@wt":{"l":"ท็อปเคาน์เตอร์ · ผนังเหนือท็อป","g":"กลุ่ม"},"@dw":{"l":"✏ ผนังที่วาด (แปลน)","g":"กลุ่ม"},"@foot":{"l":"รายละเอียด","g":"กลุ่ม"},"plCatHide":{"l":"ซ่อน ▸","g":"แคตตาล็อก"},"plWall":{"l":"ตู้ที่กดจากแคตตาล็อกไปลงผนังไหน","g":"แคตตาล็อก"}};
   const cssq=x=>String(x).replace(/["\\]/g,"\\$&");
   function goLbl(el){ if(!el) return ""; let t=String(el.textContent||"").replace(/\s+/g," ").trim();
     if(!t||t.length<2) t=String(el.getAttribute("title")||el.getAttribute("aria-label")||"").split(/ — |\n|\(/)[0].trim();
     return t.replace(/…$/,"").slice(0,44); }
   function goPlLocal(){ try{ return JSON.parse(localStorage.getItem(GO_LSK)||"{}")||{}; }catch(e){ return {}; } }
-  function goPlMap(){ return Object.assign({},GO_SEED,goPlLocal()); }
+  function goPlMap(){ const o=Object.assign({},GO_SEED,goPlLocal()); if(!snOff("plRender")) delete o.plGlbBtn; return o; }   /* v1.562: ปุ่ม Blender เอาออกแล้ว — ล้างของที่เครื่องจำไว้ */
   function goHarvestPl(){ try{ const box=$("plPanel"); if(!box) return null; const M={};
       const grpOf=el=>{ const d=el.closest("details.plGrp"), s=d&&d.querySelector(":scope>summary"); if(!s) return "";
         const c=s.cloneNode(true); c.querySelectorAll("small").forEach(x=>x.remove()); return c.textContent.replace(/\s+/g," ").trim().slice(0,30); };
@@ -66921,7 +67270,7 @@ const SNAI=(function(){
     try{ $$("#titlebar button[id]").forEach(b=>add("bar:"+b.id,goLbl(b),"แถบบน")); }catch(e){}
     try{ $$("#statusbar button[id]").forEach(b=>add("sb:"+b.id,goLbl(b),"แถบล่าง")); }catch(e){}
     try{ $$("#toolSeg button[data-t]").forEach(b=>add("sb:t="+b.dataset.t,goLbl(b),"แถบล่าง · เครื่องมือ")); }catch(e){}
-    try{ $$("#viewSeg button[data-v]").forEach(b=>add("sb:v="+b.dataset.v,goLbl(b),"แถบล่าง · มุมมอง")); }catch(e){}
+    if(snOff("viewSegHide")) try{ $$("#viewSeg button[data-v]").forEach(b=>add("sb:v="+b.dataset.v,goLbl(b),"แถบล่าง · มุมมอง")); }catch(e){}   /* v1.562: ปุ่มนี้เอาออกแล้ว */
     try{ $$("#ctxMenu button[data-act]").forEach(b=>add("ctx:"+b.dataset.act,goLbl(b),"คลิกขวาที่ชิ้น")); }catch(e){}
     if(typeof PL!=="undefined"&&PL.on) goHarvestPl();
     const P=goPlMap(); Object.keys(P).forEach(id=>{ const x=P[id]||{}; add("pl:"+id,x.l,"ห้องออกแบบ"+(x.g?" · "+x.g:"")); });
@@ -67338,6 +67687,8 @@ const SNAI=(function(){
 #snaiPanel .pill.off{background:rgba(232,144,31,.16);color:#b45309}
 #snaiPanel .ib{border:0;background:transparent;color:var(--ink-dim);cursor:pointer;border-radius:6px;padding:4px 7px;font-size:13px}
 #snaiPanel .ib:hover{background:rgba(0,0,0,.07);color:var(--ink)}
+#snaiMode{display:flex;align-items:center;gap:8px;padding:0 12px 6px;font-size:11px;color:var(--ink-faint)}
+#snaiMode .seg button{font-size:11px;padding:3px 9px}
 #snaiCfg{display:none;padding:10px 12px;border-bottom:.5px solid var(--line);background:var(--card2)}
 #snaiCfg.show{display:block}
 #snaiCfg label{display:block;font-size:11px;color:var(--ink-faint);font-weight:600;margin:6px 0 3px}
@@ -67385,6 +67736,7 @@ const SNAI=(function(){
       +'<div class="note" id="snaiNote"></div></div>'
       +'<div id="snaiLog"></div>'
       +'<div id="snaiQuick"></div><div id="snaiUse"></div>'
+      +(snOff("aiAuto")?'':'<div id="snaiMode" title="⚡ AI ทำให้เลย = ตอบแล้วทำคำสั่งเองทันที (ฟอร์มกรอกแล้วกดตกลงให้ · คำสั่งเสี่ยงยังต้องกดเอง) · ✋ กดเองทีละข้อ = กด “ทำ” ที่การ์ดเอง"><span>การทำคำสั่ง</span><div class="seg"><button type="button" data-m="auto">⚡ AI ทำให้เลย</button><button type="button" data-m="manual">✋ กดเองทีละข้อ</button></div></div>')   /* v1.562 */
       +'<div id="snaiIn"><textarea id="snaiTxt" placeholder="พิมพ์สั่ง เช่น สร้างตู้แขวน 800x720x350 ชั้น 2 · Enter = ส่ง · Shift+Enter = ขึ้นบรรทัด"></textarea>'
       +'<button class="ibtn" id="snaiGo" style="background:var(--brand-orange);color:#fff;border-color:transparent">ส่ง</button></div>';
     document.body.appendChild(root);
@@ -67397,6 +67749,7 @@ const SNAI=(function(){
     q("#snaiGuide").onclick=()=>guideEdit();
     q("#snaiModel").onclick=()=>modelWizard();
     q("#snaiMem").onclick=()=>memManager();
+    root.querySelectorAll("#snaiMode button[data-m]").forEach(b=>b.onclick=()=>{ autoSet(b.dataset.m==="auto"); toast(autoOn()?"⚡ AI ทำให้เลย — ตอบแล้วทำคำสั่งทันที":"✋ กดเองทีละข้อ — กด “ทำ” ที่การ์ด หรือ ▶ ทำทั้งหมด"); });   /* v1.562 */
     if(q("#snaiReq")) q("#snaiReq").onclick=()=>reqManager();   /* v1.561 */
     q("#snaiDel").onclick=()=>{ delete cfg.keys[cfg.prov]; saveCfg(); fillCfg(); pill(); toast("ลบคีย์ "+PROV[cfg.prov].name+" แล้ว"); };
     q("#snaiTest").onclick=async()=>{ readCfg(); saveCfg(); pill(); if(!key()){ toast("ยังไม่ได้ใส่คีย์"); return; }
@@ -67413,7 +67766,7 @@ const SNAI=(function(){
     q("#snaiGo").onclick=()=>send();
     q("#snaiQuick").innerHTML=["สร้างตู้ 600x720x560 ชั้น 1","หา backset","สีใหม่ "].map(s=>'<button class="chip">'+H(s)+'</button>').join("");
     q("#snaiQuick").querySelectorAll("button").forEach(b=>b.onclick=()=>{ tx.value=b.textContent; tx.focus(); });
-    pill(); hello(); badge(); return root; }
+    pill(); hello(); badge(); autoUI(); return root; }
   function fillCfg(){ const q=s=>root.querySelector(s), P=PROV[cfg.prov];
     q("#snaiProv").value=cfg.prov; q("#snaiModel").value=cfg.models[cfg.prov]||""; q("#snaiModel").placeholder=P.model;
     q("#snaiKey").value=cfg.keys[cfg.prov]||""; q("#snaiKey").placeholder=P.hint;
@@ -67430,7 +67783,7 @@ const SNAI=(function(){
     if(key()){ const n=used(), qq=quota(); p.className="pill"+(qq&&n>=qq?" off":""); p.textContent=PROV[cfg.prov].name.split(" ")[0]+" · "+model()+" · "+n+(qq?"/"+qq:"")+" ครั้ง";
       p.title=useText(); }
     else { p.className="pill off"; p.textContent="ยังไม่ใส่คีย์ · ออฟไลน์"; } }
-  function hello(){ addMsg("a",key()?"สั่งได้เลยครับ — สร้างตู้ · แก้ค่าตั้ง · เพิ่มสี ทุกคำสั่งจะให้กดยืนยันก่อนทำ"+(snOff("aiGoto")?"":"\nถามได้ว่าปุ่ม/เมนูอยู่ไหน — ผู้ช่วยชี้ให้ที่จอ 👉")+(snOff("aiReq")?"":"\nเรื่องที่โปรแกรมยังทำไม่ได้ ส่งคำขอถึงผู้ดูแลได้ 📮")
+  function hello(){ addMsg("a",key()?"สั่งได้เลยครับ — สร้างตู้ · แก้ค่าตั้ง · เพิ่มสี"+(autoOn()?"\n⚡ AI ทำให้เลย — ทำตามคำสั่งทันที (เลือก ✋ กดเองทีละข้อ ได้เหนือช่องพิมพ์)":" · ✋ กดเองทีละข้อ — กด “ทำ” ที่การ์ด")+(snOff("aiGoto")?"":"\nถามได้ว่าปุ่ม/เมนูอยู่ไหน — ผู้ช่วยชี้ให้ที่จอ 👉")+(snOff("aiReq")?"":"\nเรื่องที่โปรแกรมยังทำไม่ได้ ส่งคำขอถึงผู้ดูแลได้ 📮")
     :"ยังไม่ได้ใส่คีย์ AI — กด ⚙ เพื่อใส่ (Claude / OpenAI / Gemini)\nระหว่างนี้สั่งแบบง่ายได้ เช่น “สร้างตู้ 800x720x560 ชั้น 2” · “backset = 18” · “หา เดือย” · “สีใหม่ N03P0001N”"); }
   function addMsg(who,text,actions){ const log=root.querySelector("#snaiLog"), d=document.createElement("div");
     d.className="m "+who; d.textContent=text||(actions&&actions.length?"":"(ไม่มีข้อความ)");
@@ -67452,6 +67805,32 @@ const SNAI=(function(){
         finally{ if(!root.classList.contains("show")&&!(res&&res.keepHidden)) show(true); } };   /* v1.561: goto ที่ต้องหลบผู้ช่วย = ไม่เปิดกลับมาทับ */
       d.appendChild(r); });
     log.appendChild(d); log.scrollTop=log.scrollHeight; return d; }
+  /* ═════════ v1.562: ⚡ ทำให้เลย (ผู้ใช้ 30/10 11:32 ภาพการ์ด “สร้างตู้ 600×720×560 [ทำ]” — “ให้มันทำให้เลยได้ไหมครับ”) ═════════
+     เดิม: AI ตอบเป็นการ์ดคำสั่ง ต้องกด “ทำ” ทีละข้อ แล้วกดตกลงในฟอร์มอีกรอบ
+     ตอนนี้ ตัวเลือกเหนือช่องพิมพ์ “การทำคำสั่ง: ⚡ AI ทำให้เลย | ✋ กดเองทีละข้อ” (ผู้ใช้ 11:50 “ให้ ai กดให้ เป็นมีให้เลือกกดเองด้วย”)
+       · ⚡ (ค่าตั้งต้น · จำในเครื่อง snAI:auto:v1): ตอบแล้วกดปุ่ม “ทำ” ของแต่ละการ์ดให้เองตามลำดับ (ทางเดิมทุกอย่าง · Ctrl+Z ได้)
+       · ✋: การ์ดมีปุ่ม “ทำ” แบบเดิม + คำตอบที่มีคำสั่ง ≥ 2 ข้อได้ปุ่ม ▶ ทำทั้งหมด (ทำแบบ ⚡ เฉพาะข้อความนั้น)
+       ฟอร์ม promptFields ที่ขึ้นระหว่างนั้นกรอกค่าแล้วกดตกลงให้หลังขึ้นให้เห็น 0.7 วิ (autoOk ตัวเดียวกับ 🏗 AI Model) · กล่องถามยืนยัน/หน้าต่างใหญ่ยังรอคนกด
+       ไม่ทำให้: 📮 ส่งคำขอ · คำสั่งที่มีป้าย ⚠ (ลบตู้ในห้อง) · สร้างตู้แบบ “แทนที่ทั้งฉาก” ตอนมีของในฉาก · 👉 ชี้ปุ่มเกิน 1 ข้อ (ชี้ข้อเดียวให้)
+       คำสั่งไหนพัง = หยุดตรงนั้น ที่เหลือกดเองได้ · ปิด SN_OFF.aiAuto=1 */
+  const AUTO_LSK="snAI:auto:v1";
+  const autoOn=()=>{ if(snOff("aiAuto")) return false; try{ return localStorage.getItem(AUTO_LSK)!=="0"; }catch(e){ return true; } };
+  function autoUI(){ if(!root) return; const on=autoOn();
+    root.querySelectorAll("#snaiMode button[data-m]").forEach(b=>b.classList.toggle("sel",(b.dataset.m==="auto")===on)); }
+  function autoSet(on){ try{ localStorage.setItem(AUTO_LSK,on?"1":"0"); }catch(e){} autoUI(); }
+  function autoRisky(a){ if(!a) return true; if(a.type==="request") return true;
+    if(a.type==="tool"){ const T=toolOf(a.tool); return !!(T&&T.warn); }
+    if(a.type==="create_cabinet") return ((a.params||{}).mode==="แทนที่ทั้งฉาก")&&(state.boards||[]).length>0;
+    return false; }
+  async function autoRun(d,acts,force){ if(!d||!(force?!snOff("aiAuto"):autoOn())||!acts||!acts.length) return;
+    const rows=Array.prototype.slice.call(d.querySelectorAll(".act")), nGo=acts.filter(a=>a&&a.type==="goto").length;
+    const stopA=autoOk(true);
+    try{ for(let i=0;i<acts.length;i++){ const a=acts[i], r=rows[i], go=r&&r.querySelector(".go"), st=r&&r.querySelector(".st");
+        if(!go||go.disabled) continue;
+        if(autoRisky(a)||(a.type==="goto"&&nGo>1)){ if(st&&!st.textContent) st.textContent=a.type==="goto"?"กด 👉 เพื่อชี้":"⚠ คำสั่งนี้ต้องกดเอง"; continue; }
+        await go.onclick();
+        if(st&&/^✕/.test(String(st.textContent||""))) break; } }
+    finally{ stopA(); } }
   async function send(){ const tx=root.querySelector("#snaiTxt"), t=String(tx.value||"").trim(); if(!t||busy) return;
     tx.value=""; addMsg("u",t);
     { const m=/^\s*(?:จำไว้|จำว่า|จดไว้|remember)\s*[:：]?\s*([\s\S]+)$/i.exec(t);   // v1.557: สอนตรง ๆ ไม่เรียก AI
@@ -67459,7 +67838,7 @@ const SNAI=(function(){
         catch(e){ addMsg("e","บันทึกความจำไม่สำเร็จ: "+(e.message||e)+"\n(ต้องเชื่อมคลาวด์/Odoo อยู่)"); } return; } }
     { const m=snOff("aiReq")?null:/^\s*(?:ขอฟีเจอร์|ขอฟังก์ชัน|ขอฟังก์ชั่น|อยากได้ฟีเจอร์|feature\s*request)\s*[:：]?\s*([\s\S]+)$/i.exec(t);   /* v1.561: ขอตรง ๆ ไม่เรียก AI */
       if(m){ const x=m[1].trim(); addMsg("a","📮 กดส่งคำขอด้านล่าง — แก้ชื่อ/รายละเอียดได้ก่อนส่ง",[{type:"request",title:x.split(/\n/)[0].slice(0,80),detail:x,_q:t}]); return; } }
-    if(!key()){ const o=offline(t); addMsg("a",o.reply,o.actions); return; }
+    if(!key()){ const o=offline(t); const d0=addMsg("a",o.reply,o.actions); await autoRun(d0,o.actions); return; }   /* v1.562: ⚡ */
     { const n=used(), q=quota(); if(q&&n>=q) addMsg("e","⚠ วันนี้ใช้ครบ "+q+" ครั้งตามโควตาแล้ว — ลองส่งให้ แต่อาจถูกปฏิเสธ · รีเซ็ต "+resetAt()+" น. · หรือกด ⚙ เปลี่ยนรุ่นเป็น flash-lite"); }
     busy=true; const go=root.querySelector("#snaiGo"); go.disabled=true; const wait=addMsg("a","กำลังคิด… 0 วิ"), t0=Date.now();
     const tk=setInterval(()=>{ wait.textContent="กำลังคิด… "+Math.round((Date.now()-t0)/1000)+" วิ"; },1000);
@@ -67470,15 +67849,18 @@ const SNAI=(function(){
       hist.push({role:"assistant",content:raw||"{}"}); wait.remove();
       (o.actions||[]).forEach(a=>{ if(a&&a.type==="request"){ a._q=t; a._ai=o.reply; } });   /* v1.561: คำขอเก็บคำถามเดิม + คำตอบ AI */
       const d=addMsg("a",o.reply,o.actions);
-      { const tb=document.createElement("div"); tb.style.cssText="margin-top:6px;text-align:right";   // v1.557: ✏ สอน — ตอบผิด/บอกว่าทำไม่ได้แต่ทำได้
+      { const tb=document.createElement("div"); tb.style.cssText="margin-top:6px;display:flex;justify-content:flex-end;align-items:center;gap:6px;flex-wrap:nowrap;white-space:nowrap";   /* v1.562: ✏ กับ 📮 แถวเดียว (เดิม text-align ตกบรรทัดในกล่องแคบ) */   // v1.557: ✏ สอน — ตอบผิด/บอกว่าทำไม่ได้แต่ทำได้
         tb.innerHTML='<button class="ibtn" style="font-size:11px;padding:2px 9px" title="AI ตอบผิดหรือบอกว่าทำไม่ได้แต่ทำได้? สอนแล้วจำเป็นความจำของทีม">✏ สอนผู้ช่วย</button>';
         tb.firstChild.onclick=()=>teach(t,o.reply);
-        if(!snOff("aiReq")){ const rb=document.createElement("button"); rb.className="ibtn"; rb.style.cssText="font-size:11px;padding:2px 9px;margin-left:6px";   /* v1.561: 📮 คู่กับ ✏ */
+        if(!snOff("aiReq")){ const rb=document.createElement("button"); rb.className="ibtn"; rb.style.cssText="font-size:11px;padding:2px 9px";   /* v1.561: 📮 คู่กับ ✏ */
           rb.title="AI บอกว่ามี แต่จริง ๆ โปรแกรมยังทำไม่ได้? ส่งคำขอถึงผู้ดูแล"; rb.textContent="📮 ขอฟีเจอร์";
           const ra=(o.actions||[]).find(a=>a&&a.type==="request")||{};
           rb.onclick=async()=>{ try{ const r=await reqDialog({title:ra.title,detail:ra.detail,area:ra.area,q:t,ai:o.reply}); if(r&&!r.cancel) addMsg("a",r.msg); }catch(e){ addMsg("e",e.message||String(e)); } };
           tb.appendChild(rb); }
-        d.appendChild(tb); } }
+        if(!snOff("aiAuto")&&!autoOn()&&(o.actions||[]).filter(a=>a&&a.type!=="request").length>=2){ const ab=document.createElement("button"); ab.className="ibtn"; ab.style.cssText="font-size:11px;padding:2px 9px;background:var(--accent);color:#fff;border-color:transparent";   /* v1.562: ✋ กดเอง → ทำทั้งชุดในคลิกเดียว */
+          ab.textContent="▶ ทำทั้งหมด"; ab.onclick=async()=>{ ab.disabled=true; try{ await autoRun(d,o.actions,true); }finally{ ab.remove(); } }; tb.insertBefore(ab,tb.firstChild); }
+        d.appendChild(tb); }
+      await autoRun(d,o.actions); }   /* v1.562: ⚡ ทำให้เลย */
     catch(e){ hist.pop(); wait.remove(); addMsg("e","เรียก AI ไม่สำเร็จ: "+(e.message||e)+"\n(ตรวจคีย์/รุ่นที่ ⚙ · หรือเน็ต)"); }
     finally{ clearInterval(tk); busy=false; go.disabled=false; tx.focus(); } }
   /* v1.551: หลบแผงห้องออกแบบ (ผู้ใช้ 12:00 ภาพ: “ผู้ช่วย โดนทับเวลาอยู่โหมดออกแบบ”)
@@ -67505,6 +67887,201 @@ const SNAI=(function(){
     goMap, goCtx, goFind, goParse, runGoto, goStop, goHarvestPl, reqLoad, reqAdd, reqVote, reqDups, reqDialog, reqManager, reqTick, reqMd, reqSetAdmins, meName, _req:()=>REQ };   /* v1.561 */
 })();
 try{ SNAI.init(); }catch(e){ console.error("SNAI.init:",e); }
+/* ═════════ v1.562: 🎬 Render — เรนเดอร์ทุกฉาก 🎬 + 🤖 AI แต่งต่อ (ผู้ใช้ 30/10 11:24 “ปุ่ม Blender เปลี่ยนเป็น ปุ่ม Render ได้หรือไม่ โดยให้ APi เรนเดอร์ … ตามมุม Screne ที่มีคนตั้งไว้เลย”) ═════════
+   ผู้ใช้เลือก: แสงจริงในเครื่องก่อน + กดให้ AI แต่งต่อรายภาพ · ปุ่ม 🧊 ส่งออก Blender ในแผงห้องเอาออก (ปุ่ม 🎬 Render แทนที่เดิม · คืนได้ SN_OFF.plRender=1)
+   ● ฉาก = state.scenes (🎬 ใต้ลูกเต๋า · v1.541) ติ๊กเลือกได้ + 📷 มุมกล้องตอนนี้ · ไล่ทีละฉาก scnGo(ฉาก, ทันที) → รอ 3 เฟรมให้กล้องตาม
+     📸 แสงจริง = ตัวเดิม rptOpen/rptPrepare (path tracing · ต้องเปิดโหมดสมจริง — เปิดให้เองแล้วปิดคืน) รอจนครบรอบ (RPT.done) → toDataURL JPG
+     ⚡ เร็ว = วาดโหมดสมจริงความละเอียดสูงแบบ realSnapSave แต่คืนภาพแทนดาวน์โหลด (ซ่อนเส้น/ป้าย/กรอบเลือก)
+     ระหว่างทำ: แถบ ⏹ หยุด ลอยบนสุด (ชั้น 9050 · ต่ำกว่า toast) · จบ = กล้อง/ฉากที่เลือก/แสง/โหมดสมจริงกลับเหมือนก่อนกด
+   ● ผลอยู่ในหน้านี้จนปิดโปรแกรม (ไม่เก็บลงออเดอร์ — ภาพใหญ่) · ⬇ บันทึกทีละภาพ / ทั้งหมด
+   ● 🤖 AI แต่งต่อ: ส่งภาพ + คำสั่ง “คงแบบตู้ทุกอย่าง เพิ่มความสมจริง” ไปที่
+       Gemini — models:generateContent (inline_data JPEG · responseModalities TEXT+IMAGE · imageConfig.aspectRatio ใกล้สุด ไม่รับ = ส่งซ้ำแบบไม่ใส่)
+         รุ่นว่าง = ถาม ListModels แล้วเลือกรุ่นที่ชื่อมี image (ไม่ใช่ imagen) เลขรุ่นสูงสุด flash ก่อน pro/lite · 404 = ล้างชื่อรุ่นให้หาใหม่รอบหน้า
+       OpenAI — images/edits (multipart · รุ่น gpt-image ล่าสุดจาก /v1/models ไม่งั้น gpt-image-1)
+     ใช้คีย์เดียวกับ 🤖 ผู้ช่วย (localStorage snAI:cfg:v1 ผ่าน SNAI._cfg) ไม่เก็บซ้ำ · ค่าหน้า Render จำในเครื่อง lsSet sxlocaltrial:furnitech:render
+     คีย์ฟรีของ Gemini สร้างภาพไม่ได้ (ต.ค. 2026 ต้องเปิด billing) — บอกในหน้า + ข้อความ error ของผู้ให้บริการ */
+const RND=(function(){
+  const LSK="sxlocaltrial:furnitech:render";
+  const DEF={eng:"pt", px:1600, spp:128, preset:"", ai:"gemini", gm:"", om:"", note:"", cur:false, off:{}, aiOpen:false};
+  let O=Object.assign({},DEF), loaded=false, res=[], busy=false, stop=false, ov=null, pill=null;
+  const H=s=>escapeHtml(String(s==null?"":s));
+  const sleep=ms=>new Promise(r=>setTimeout(r,ms));
+  const frames=n=>new Promise(r=>{ let k=0; const f=()=>{ if(++k>=n) r(); else requestAnimationFrame(f); }; requestAnimationFrame(f); });
+  async function load(){ if(loaded) return; loaded=true; try{ const v=await lsGet(LSK,null); if(v&&typeof v==="object") O=Object.assign({},DEF,v); }catch(e){} if(!O.off||typeof O.off!=="object") O.off={}; }
+  function save(){ try{ lsSet(LSK,O); }catch(e){} }
+  function scenes(){ try{ return scnList().filter(s=>s&&Array.isArray(s.t)); }catch(e){ return []; } }
+  function fname(nm,tag,ext){ const d=new Date(), p2=x=>String(x).padStart(2,"0"); let oid="";
+    try{ const v=(($("exOrderId")||{}).value||"").trim(); if(v) oid=v.replace(/[\\/:*?"<>|\s]+/g,"_")+"-"; }catch(e){}
+    return "StarNexus-"+oid+String(nm||"ภาพ").replace(/[\\/:*?"<>|\s]+/g,"_")+"-"+tag+"-"+d.getFullYear()+p2(d.getMonth()+1)+p2(d.getDate())+"-"+p2(d.getHours())+p2(d.getMinutes())+"."+ext; }
+  async function dl(url,name){ try{ const bl=await (await fetch(url)).blob(), a=document.createElement("a"); a.href=URL.createObjectURL(bl); a.download=name;
+      document.body.appendChild(a); a.click(); setTimeout(()=>{ URL.revokeObjectURL(a.href); a.remove(); },1500); }
+    catch(e){ const a=document.createElement("a"); a.href=url; a.download=name; document.body.appendChild(a); a.click(); a.remove(); } }
+  /* ---------- แถบระหว่างเรนเดอร์ ---------- */
+  function pillTxt(t){ const s=pill&&pill.querySelector(".t"); if(s) s.textContent=t; }
+  function pillHide(){ if(pill){ pill.remove(); pill=null; } }
+  function pillShow(t){ pillHide(); pill=document.createElement("div"); pill.setAttribute("data-rnd","1");
+    pill.style.cssText="position:fixed;top:10px;left:50%;transform:translateX(-50%);z-index:9050;display:flex;align-items:center;gap:10px;background:#1d1f25;color:#fff;border-radius:99px;padding:7px 8px 7px 16px;box-shadow:0 8px 30px rgba(0,0,0,.35);font:12.5px var(--font)";
+    pill.innerHTML='<span class="t"></span><button type="button" style="border:0;background:#e58a24;color:#1d1d1f;font:600 12px var(--font);padding:5px 12px;border-radius:99px;cursor:pointer">⏹ หยุด</button>';
+    pill.querySelector("button").onclick=()=>{ stop=true; pillTxt("กำลังหยุด…"); try{ if(RPT.run) rptRun(false); }catch(e){} };
+    document.body.appendChild(pill); pillTxt(t); }
+  /* ---------- ถ่ายภาพ ---------- */
+  function fastShot(){ const keepPR=renderer.getPixelRatio(), sz=renderer.getSize(new THREE.Vector2()), hid=[]; let url="", w=0, h=0;
+    try{ const cw=Math.max(1,sz.x), ch=Math.max(1,sz.y), lim=Math.min(+(renderer.capabilities.maxTextureSize)||4096,8192);
+      let k=O.px/Math.max(cw,ch); k=Math.max(.25,Math.min(k,lim/Math.max(cw,ch),4));
+      const Hd=o=>{ if(o&&o.visible){ o.visible=false; hid.push(o); } };
+      [typeof selBox!=="undefined"?selBox:null, typeof cabBox!=="undefined"?cabBox:null, typeof axisLine!=="undefined"?axisLine:null,
+       (typeof PLD!=="undefined"&&PLD)?PLD.grp:null, (typeof _msGrp!=="undefined")?_msGrp:null, (typeof PLMS!=="undefined")?PLMS.box:null].forEach(Hd);
+      scene.traverse(o=>{ const u=o.userData||{}; if(o.isSprite||u.label||o.isLine) Hd(o); });
+      renderer.setPixelRatio(k); try{ renderer.shadowMap.needsUpdate=true; }catch(e){}
+      realRender(); url=renderer.domElement.toDataURL("image/jpeg",0.93); w=Math.round(cw*k); h=Math.round(ch*k); }
+    finally{ hid.forEach(o=>o.visible=true); renderer.setPixelRatio(keepPR); try{ _realCmpDispose(); }catch(e){} invalidate(); }
+    if(!url||url.length<1000) throw new Error("ภาพว่าง — การ์ดจออาจไม่พอ ลองลดขนาดภาพ");
+    return {url,w,h}; }
+  async function ptShot(i,n,nm){ RPT.res=O.px; RPT.target=O.spp; rptOpen(); await sleep(80);
+    if(!RPT.el) throw new Error("เปิดตัวเรนเดอร์แสงจริงไม่ได้");
+    for(;;){ await sleep(250);
+      if(stop) break;
+      if(!RPT.el){ stop=true; break; }                                   /* ผู้ใช้ปิดหน้าต่างแสงจริง (✕ / Esc) = หยุด */
+      const st=RPT.el.querySelector("#rptStat"); if(st&&st.classList.contains("err")) throw new Error(String(st.textContent||"").replace(/^⚠\s*/,""));
+      pillTxt("🎬 "+(i+1)+"/"+n+" · "+nm+" · รอบ "+RPT.frame+"/"+RPT.target);
+      if(RPT.done) break; }
+    let url="", w=RPT.W, h=RPT.H; if(!stop&&RPT.gl&&RPT.frame){ rptShow(true); url=RPT.cv.toDataURL("image/jpeg",0.93); }
+    rptClose(); if(stop) return null; if(!url||url.length<1000) throw new Error("ไม่ได้ภาพ"); return {url,w,h}; }
+  async function run(list){ if(busy||!list||!list.length) return; busy=true; stop=false; const n=list.length; let ok=0, err=null;
+    const keep=scnCap(), keepAct=SCN.act, wasReal=REAL.on, keepPre=REAL.preset;
+    if(ov) ov.style.display="none"; pillShow("🎬 กำลังเตรียมห้อง/แสง…");
+    try{
+      if(O.preset&&REAL_PRESETS[O.preset]&&O.preset!==REAL.preset) realSetPreset(O.preset);
+      if(!REAL.on){ await realToggle(true); if(!REAL.on) throw new Error("เปิดโหมดสมจริงไม่ได้"); await frames(4); await sleep(350); }
+      for(let i=0;i<n&&!stop;i++){ const s=list[i]; pillTxt("🎬 "+(i+1)+"/"+n+" · "+s.name);
+        scnGo(s,true); await frames(3); await sleep(200);
+        try{ const r=O.eng==="pt"?await ptShot(i,n,s.name):fastShot();
+          if(r){ res.unshift({id:"r"+Date.now().toString(36)+i, name:s.name, eng:O.eng, url:r.url, w:r.w, h:r.h, at:Date.now(), ai:null}); ok++; } }
+        catch(e){ err=e; console.error("render:",e); if(O.eng==="pt") break; } } }
+    catch(e){ err=e; console.error("render:",e); }
+    finally{
+      try{ if(RPT.el) rptClose(); }catch(e){}
+      try{ scnGo(Object.assign({},keep,{id:null}),true); SCN.act=keepAct; scnBarRender(); }catch(e){}
+      if(!wasReal){ try{ await realToggle(false); }catch(e){} }
+      if(REAL.preset!==keepPre&&REAL_PRESETS[keepPre]){ try{ realSetPreset(keepPre); }catch(e){} }
+      pillHide(); busy=false; if(ov){ ov.style.display=""; draw(); }
+      toast(stop?("⏹ หยุดแล้ว — ได้ "+ok+" ภาพ"):err?("เรนเดอร์ได้ "+ok+"/"+n+" ภาพ · ⚠ "+(err.message||err)):("🎬 เรนเดอร์เสร็จ "+ok+" ภาพ")); }
+    return ok; }
+  /* ---------- 🤖 AI แต่งต่อ ---------- */
+  async function fx(url,init,ms){ const ac=new AbortController(), tm=setTimeout(()=>ac.abort(),ms||180000);
+    try{ return await fetch(url,Object.assign({},init,{signal:ac.signal})); }
+    catch(e){ if(e&&e.name==="AbortError") throw new Error("หมดเวลา "+Math.round((ms||180000)/1000)+" วิ — ลองใหม่"); throw new Error("ต่อเน็ตไปหา AI ไม่ได้ ("+(e&&e.message||e)+")"); }
+    finally{ clearTimeout(tm); } }
+  async function jerr(r){ let j={}; try{ j=await r.json(); }catch(e){} if(r.ok) return j;
+    const m=(j&&j.error&&(j.error.message||(typeof j.error==="string"?j.error:"")))||("HTTP "+r.status); throw new Error(String(m).slice(0,300)); }
+  function aiKey(){ let c={}; try{ c=SNAI._cfg()||{}; }catch(e){} return String(((c.keys||{})[O.ai])||"").trim(); }
+  const PROMPT="Turn this 3D visualization of built-in furniture into a photorealistic interior photograph. Keep EXACTLY the same camera angle, framing, room layout, cabinet positions, sizes and proportions, the number of doors and drawers, door divisions, handles, colors and material finishes (wood decor, countertop and backsplash pattern), walls and floor. Do not add, remove, move or redesign any cabinet, door, drawer, handle or appliance, and do not add any text or watermark. Only improve realism: natural soft lighting and shadows, realistic material textures and reflections, professional architectural photography look.";
+  function prompt(){ const n=String(O.note||"").trim(); return PROMPT+(n?("\nAdditional instructions from the designer (Thai): "+n):""); }
+  function ratio(w,h){ const r=(w||16)/(h||9), L=[["21:9",21/9],["16:9",16/9],["3:2",1.5],["4:3",4/3],["5:4",1.25],["1:1",1],["4:5",.8],["3:4",.75],["2:3",2/3],["9:16",9/16]];
+    let b=L[0], d=1e9; L.forEach(x=>{ const e=Math.abs(Math.log(r/x[1])); if(e<d){ d=e; b=x; } }); return b[0]; }
+  async function gemModel(key){ if(O.gm) return O.gm;
+    const r=await fx("https://generativelanguage.googleapis.com/v1beta/models?pageSize=1000",{headers:{"x-goog-api-key":key}},30000), j=await jerr(r);
+    const L=(j.models||[]).filter(m=>(m.supportedGenerationMethods||[]).indexOf("generateContent")>=0).map(m=>String(m.name||"").replace(/^models\//,"")).filter(n=>/image/i.test(n)&&!/imagen/i.test(n));
+    if(!L.length) throw new Error("คีย์ Gemini นี้ไม่มีรุ่นสร้างภาพ — ต้องเปิด billing (ผูกบัตร) ที่ Google AI Studio ก่อน");
+    const ver=n=>{ const m=/gemini-(\d+(?:\.\d+)?)/i.exec(n); return m?+m[1]:0; };
+    const sc=n=>ver(n)*10+(/flash-image/i.test(n)&&!/lite/i.test(n)?3:/pro-image/i.test(n)?2:/lite/i.test(n)?1:0)-(/preview|exp/i.test(n)?.5:0);
+    L.sort((a,b)=>sc(b)-sc(a)); O.gm=L[0]; save(); return O.gm; }
+  async function aiGemini(it,key){ const model=await gemModel(key), b64=String(it.url).split(",")[1]||"";
+    const body=cfg=>JSON.stringify({contents:[{role:"user",parts:[{text:prompt()},{inline_data:{mime_type:"image/jpeg",data:b64}}]}],generationConfig:cfg});
+    const url="https://generativelanguage.googleapis.com/v1beta/models/"+encodeURIComponent(model)+":generateContent", hd={"content-type":"application/json","x-goog-api-key":key};
+    let r=await fx(url,{method:"POST",headers:hd,body:body({responseModalities:["TEXT","IMAGE"],imageConfig:{aspectRatio:ratio(it.w,it.h)}})});
+    if(r.status===400){ const t=await r.clone().text().catch(()=>""); if(/imageConfig|aspect/i.test(t)) r=await fx(url,{method:"POST",headers:hd,body:body({responseModalities:["TEXT","IMAGE"]})}); }
+    if(r.status===404){ O.gm=""; save(); }
+    const j=await jerr(r), c=(j.candidates||[])[0]||{}, ps=((c.content||{}).parts)||[];
+    const p=ps.find(x=>x&&(x.inlineData||x.inline_data));
+    if(p){ const d=p.inlineData||p.inline_data; return {url:"data:"+(d.mimeType||d.mime_type||"image/png")+";base64,"+d.data, model}; }
+    const txt=ps.map(x=>(x&&x.text)||"").join(" ").trim(), why=(j.promptFeedback&&j.promptFeedback.blockReason)||c.finishReason||"";
+    throw new Error("AI ไม่ส่งภาพกลับ"+(why?" ("+why+")":"")+(txt?" — "+txt.slice(0,160):"")); }
+  async function oaModel(key){ if(O.om) return O.om;
+    try{ const r=await fx("https://api.openai.com/v1/models",{headers:{authorization:"Bearer "+key}},30000), j=await jerr(r);
+      const ver=n=>{ const m=/gpt-image-(\d+(?:\.\d+)?)/i.exec(n); return m?+m[1]:0; };
+      const L=(j.data||[]).map(m=>String(m.id||"")).filter(n=>/^gpt-image/i.test(n)&&!/mini/i.test(n)).sort((a,b)=>ver(b)-ver(a)||a.length-b.length);
+      if(L.length){ O.om=L[0]; save(); return O.om; } }catch(e){ console.warn("render oaModel:",e); }
+    return "gpt-image-1"; }
+  async function aiOpenAI(it,key){ const model=await oaModel(key), bl=await (await fetch(it.url)).blob(), fd=new FormData();
+    fd.append("model",model); fd.append("prompt",prompt()); fd.append("image",bl,"render.jpg");
+    fd.append("size",(it.w>=it.h*1.15)?"1536x1024":((it.h>=it.w*1.15)?"1024x1536":"1024x1024"));
+    const r=await fx("https://api.openai.com/v1/images/edits",{method:"POST",headers:{authorization:"Bearer "+key},body:fd}), j=await jerr(r), d=(j.data||[])[0]||{};
+    if(d.b64_json) return {url:"data:image/png;base64,"+d.b64_json, model}; if(d.url) return {url:d.url, model};
+    throw new Error("AI ไม่ส่งภาพกลับ"); }
+  async function enhance(it){ const key=aiKey();
+    if(!key) throw new Error("ยังไม่มีคีย์ "+(O.ai==="openai"?"OpenAI":"Gemini")+" — ใส่ที่ 🤖 ผู้ช่วย → ⚙ (เลือกผู้ให้บริการ ใส่คีย์ แล้วกดบันทึก)");
+    return O.ai==="openai"?aiOpenAI(it,key):aiGemini(it,key); }
+  /* ---------- หน้าต่าง ---------- */
+  async function open(){ await load();
+    if(snOff("plRender")) return;
+    if(typeof realCanUse==="function"&&!realCanUse()){ toast("เครื่องนี้แสดง 3D ไม่ได้ จึงเรนเดอร์ไม่ได้"); return; }
+    if(!state.boards||!state.boards.length){ toast("ยังไม่มีตู้ในฉาก"); return; }
+    if(ov&&ov.isConnected){ ov.style.display=""; draw(); return; }
+    const C=ovCard(980,92); ov=C.ov; ov.setAttribute("data-rnd","1");
+    ov.innerHTML='<div style="'+C.cardCSS+'"><div style="display:flex;align-items:center;gap:10px;padding:12px 16px;border-bottom:.5px solid var(--line)">'
+      +'<b style="font-size:15px">🎬 Render</b><span class="muted" style="font-size:11.5px">เรนเดอร์ทุกฉาก 🎬 ที่ตั้งไว้ · แล้วให้ AI แต่งต่อได้ทีละภาพ</span>'
+      +'<button class="ibtn" id="rnX" '+C.xbtn+'>✕ ปิด</button></div><div id="rnB" style="padding:12px 16px;overflow:auto;flex:1;min-height:0;font-size:12.5px"></div></div>';
+    document.body.appendChild(ov); ov.querySelector("#rnX").onclick=()=>{ ov.remove(); ov=null; }; draw(); }
+  function card(it){ const a=it.ai||{};
+    return '<div class="rnC" data-id="'+H(it.id)+'" style="border:.5px solid var(--line);border-radius:10px;overflow:hidden;background:var(--card2)">'
+      +'<img src="'+it.url+'" alt="" style="display:block;width:100%;aspect-ratio:'+(it.w||16)+'/'+(it.h||9)+';object-fit:cover;background:#111">'
+      +'<div style="padding:7px 9px 4px;display:flex;gap:6px;align-items:center"><b style="flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">'+H(it.name)+'</b>'
+      +'<span class="muted" style="font-size:10.5px;white-space:nowrap">'+(it.eng==="pt"?"📸 แสงจริง":"⚡ เร็ว")+' · '+it.w+'×'+it.h+'</span></div>'
+      +'<div style="padding:0 9px 8px;display:flex;gap:6px;flex-wrap:wrap"><button class="ibtn rnD" style="font-size:11.5px;padding:3px 9px">⬇ บันทึก</button>'
+      +'<button class="ibtn rnA" style="font-size:11.5px;padding:3px 9px"'+(a.busy?' disabled':'')+'>'+(a.busy?'🤖 กำลังแต่ง…':(a.url?'🤖 แต่งใหม่':'🤖 AI แต่งต่อ'))+'</button></div>'
+      +(a.err?'<div style="padding:0 9px 8px;color:#b42318;font-size:11.5px;white-space:pre-wrap">✕ '+H(a.err)+'</div>':'')
+      +(a.url?'<div style="border-top:.5px solid var(--line)"><img src="'+H(a.url)+'" alt="" style="display:block;width:100%;background:#111">'
+        +'<div style="padding:6px 9px;display:flex;gap:6px;align-items:center"><span class="muted" style="flex:1;font-size:10.5px">🤖 '+H(a.model||"")+' — ตรวจรายละเอียดตู้ก่อนส่งลูกค้า</span>'
+        +'<button class="ibtn rnDA" style="font-size:11.5px;padding:3px 9px">⬇ บันทึกภาพ AI</button></div></div>':'')
+      +'</div>'; }
+  function draw(){ if(!ov) return; const B=ov.querySelector("#rnB"); if(!B) return; const S=scenes(), PR=Object.keys(REAL_PRESETS);
+    const row=(l,h)=>'<div style="display:flex;align-items:center;gap:8px;margin:5px 0"><span style="width:96px;color:var(--ink-dim);flex:none">'+l+'</span><div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap;flex:1;min-width:0">'+h+'</div></div>';
+    const opt=(v,cur,t)=>'<option value="'+H(v)+'"'+(String(v)===String(cur)?" selected":"")+'>'+H(t)+'</option>';
+    const curOn=O.cur||!S.length, n=S.filter(s=>!O.off[s.id]).length+(curOn?1:0);
+    let C={}; try{ C=SNAI._cfg()||{}; }catch(e){} const has=k=>!!String(((C.keys||{})[k])||"").trim();
+    let h='<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px">'
+      +'<div><div style="font-weight:700;margin-bottom:4px">ฉากที่จะเรนเดอร์</div>'
+      +(S.length?S.map(s=>'<label style="display:flex;gap:8px;align-items:center;padding:3px 0;cursor:pointer"><input type="checkbox" class="rnS" data-id="'+H(s.id)+'"'+(O.off[s.id]?'':' checked')+'> 🎬 '+H(s.name)+(s.two?' <span class="muted" style="font-size:11px">· 2 จุด</span>':'')+'</label>').join("")
+        :'<div class="muted" style="line-height:1.6;margin-bottom:4px">ยังไม่มีฉาก — ปิดหน้านี้ หมุนกล้องไปมุมที่ต้องการ แล้วกด 🎬 ใต้ลูกเต๋า (มุมขวาบน) เพื่อเพิ่มฉาก</div>')
+      +'<label style="display:flex;gap:8px;align-items:center;padding:3px 0;cursor:pointer"><input type="checkbox" id="rnCur"'+(curOn?' checked':'')+(S.length?'':' disabled')+'> 📷 มุมกล้องตอนนี้</label></div>'
+      +'<div><div style="font-weight:700;margin-bottom:4px">ตั้งค่า</div>'
+      +row("ตัวเรนเดอร์",'<select id="rnEng" class="nameinp" style="width:auto">'+opt("pt",O.eng,"📸 แสงจริง (path tracing · สวยสุด)")+opt("fast",O.eng,"⚡ เร็ว (ภาพโหมดสมจริง)")+'</select>')
+      +row("ขนาดภาพ",'<select id="rnPx" class="nameinp" style="width:auto">'+[1280,1600,1920,2560].map(v=>opt(v,O.px,v+" px"+(v===1920?" (Full HD)":""))).join("")+'</select>')
+      +(O.eng==="pt"?row("ความเนียน",'<select id="rnSpp" class="nameinp" style="width:auto">'+[[64,"64 รอบ · เร็ว"],[128,"128 รอบ"],[256,"256 รอบ · เนียน"],[512,"512 รอบ · นาน"]].map(x=>opt(x[0],O.spp,x[1])).join("")+'</select>'):'')
+      +row("แสง",'<select id="rnPre" class="nameinp" style="width:auto">'+opt("",O.preset,"ตามโหมดสมจริงตอนนี้")+PR.map(k=>opt(k,O.preset,(REAL_PRESETS[k].icon||"")+" "+REAL_PRESETS[k].label)).join("")+'</select>')
+      +'<div class="muted" style="font-size:11px;line-height:1.55;margin-top:6px">'+(O.eng==="pt"?"แสงจริงคำนวณบนการ์ดจอทีละฉาก ฉากละราว 1–5 นาทีแล้วแต่เครื่อง · ระหว่างนั้นใช้โปรแกรมไม่ได้ (กด ⏹ หยุดได้)":"ภาพโหมดสมจริงความละเอียดสูง ฉากละไม่กี่วินาที แต่แสงเงาไม่ละเอียดเท่าแสงจริง")+'</div></div></div>'
+      +'<div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:12px 0 4px"><button class="ibtn" id="rnGo" style="background:var(--accent);color:#fff;border-color:transparent;padding:8px 18px"'+(n?'':' disabled')+'>▶ เรนเดอร์ '+n+' ภาพ</button>'
+      +(res.length?'<button class="ibtn" id="rnAll">⬇ บันทึกทั้งหมด ('+res.length+')</button><button class="ibtn" id="rnClr">🧹 ล้างผล</button>':'')+'</div>'
+      +'<details id="rnAiD" style="margin:8px 0;border:.5px solid var(--line);border-radius:10px;padding:6px 10px"'+(O.aiOpen?' open':'')+'><summary style="cursor:pointer;font-weight:600">🤖 AI แต่งต่อ — '+(O.ai==="openai"?"OpenAI":"Gemini")+(has(O.ai)?' · มีคีย์แล้ว':' · <span style="color:#b45309">ยังไม่มีคีย์</span>')+'</summary>'
+      +row("ผู้ให้บริการ",'<select id="rnAi" class="nameinp" style="width:auto">'+opt("gemini",O.ai,"Gemini (Google)"+(has("gemini")?"":" — ยังไม่มีคีย์"))+opt("openai",O.ai,"OpenAI"+(has("openai")?"":" — ยังไม่มีคีย์"))+'</select>')
+      +row("รุ่น",'<input id="rnModel" class="nameinp" style="width:260px;max-width:100%;font-family:var(--mono)" placeholder="ว่าง = เลือกรุ่นภาพล่าสุดให้เอง" value="'+H(O.ai==="openai"?O.om:O.gm)+'">')
+      +row("สั่งเพิ่ม",'<input id="rnNote" class="nameinp" style="flex:1;min-width:180px" placeholder="เช่น แสงเย็นโทนอุ่น · มีต้นไม้เล็กบนท็อป" value="'+H(O.note)+'">')
+      +'<div class="muted" style="font-size:11px;line-height:1.6;margin-top:4px">ใช้คีย์เดียวกับ 🤖 ผู้ช่วย (⚙) · ภาพละราว 1–5 บาท และคีย์ต้องผูกบัตร (คีย์ฟรีสร้างภาพไม่ได้) · AI ถูกสั่งให้คงแบบตู้ไว้ แต่ยังอาจเปลี่ยนรายละเอียดเล็ก ๆ เช่นจำนวนบาน/มือจับ — ตรวจก่อนส่งลูกค้า</div></details>'
+      +'<div style="font-weight:700;margin:10px 0 6px">ผลลัพธ์'+(res.length?' ('+res.length+')':'')+'</div>'
+      +(res.length?'<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:12px">'+res.map(card).join("")+'</div>':'<div class="muted">ยังไม่มีภาพ — กด ▶ เรนเดอร์</div>');
+    B.innerHTML=h; wire(B); }
+  function wire(B){ const q=x=>B.querySelector(x);
+    B.querySelectorAll(".rnS").forEach(c=>c.onchange=()=>{ if(c.checked) delete O.off[c.dataset.id]; else O.off[c.dataset.id]=1; save(); draw(); });
+    const cur=q("#rnCur"); if(cur) cur.onchange=()=>{ O.cur=cur.checked; save(); draw(); };
+    const bd=(id,k,num)=>{ const e=q(id); if(e) e.onchange=()=>{ O[k]=num?(+e.value||DEF[k]):e.value; save(); draw(); }; };
+    bd("#rnEng","eng"); bd("#rnPx","px",1); bd("#rnSpp","spp",1); bd("#rnPre","preset"); bd("#rnAi","ai");
+    const md=q("#rnModel"); if(md){ md.onkeydown=e=>e.stopPropagation(); md.onchange=()=>{ const v=String(md.value||"").trim(); if(O.ai==="openai") O.om=v; else O.gm=v; save(); }; }
+    const nt=q("#rnNote"); if(nt){ nt.onkeydown=e=>e.stopPropagation(); nt.onchange=()=>{ O.note=String(nt.value||"").slice(0,300); save(); }; }
+    const ad=q("#rnAiD"); if(ad) ad.ontoggle=()=>{ O.aiOpen=ad.open; save(); };
+    const go=q("#rnGo"); if(go) go.onclick=()=>{ const S=scenes(), L=S.filter(s=>!O.off[s.id]); if(O.cur||!S.length) L.push(Object.assign({},scnCap(),{id:null,name:"มุมตอนนี้"})); run(L); };
+    const all=q("#rnAll"); if(all) all.onclick=async()=>{ for(const it of res.slice().reverse()){ await dl(it.url,fname(it.name,it.eng==="pt"?"แสงจริง":"สมจริง","jpg")); await sleep(400);
+        if(it.ai&&it.ai.url){ await dl(it.ai.url,fname(it.name,"AI",/^data:image\/jpe?g/.test(it.ai.url)?"jpg":"png")); await sleep(400); } } };
+    const clr=q("#rnClr"); if(clr) clr.onclick=()=>{ res=[]; draw(); };
+    B.querySelectorAll(".rnC").forEach(el=>{ const it=res.find(x=>x.id===el.dataset.id); if(!it) return;
+      el.querySelector(".rnD").onclick=()=>dl(it.url,fname(it.name,it.eng==="pt"?"แสงจริง":"สมจริง","jpg"));
+      const dA=el.querySelector(".rnDA"); if(dA) dA.onclick=()=>dl(it.ai.url,fname(it.name,"AI",/^data:image\/jpe?g/.test(it.ai.url)?"jpg":"png"));
+      el.querySelector(".rnA").onclick=async()=>{ it.ai=Object.assign({},it.ai||{},{busy:true,err:""}); draw();
+        try{ const r=await enhance(it); it.ai={url:r.url, model:r.model}; }
+        catch(e){ console.warn("render AI:",(e&&e.message)||e); it.ai=Object.assign({},it.ai,{err:String((e&&e.message)||e)}); }
+        it.ai.busy=false; draw(); }; }); }
+  return {open, run, enhance, fastShot, _res:()=>res, _opt:()=>O, _load:load};
+})();
 
 </script>
 <!-- library modal -->
