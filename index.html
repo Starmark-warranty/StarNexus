@@ -3283,7 +3283,7 @@ body[data-theme="dark"] .splash-dots span{background:rgba(255,255,255,.25)}
    ===================================================================== */
 /* ---- APP_META: แหล่งความจริงเดียวของเวอร์ชัน (ดูได้จาก console / คลิกชื่อแอป) ---- */
 const APP_META={
-  name:"StarNexus", version:"1.562", build:"2026-10-30/room-multi-render",
+  name:"StarNexus", version:"1.563", build:"2026-10-30/imove-3d",
   file:"StarNexus.html", basedOn:"Furnitech_V3.html (v3.11)",
   /* ───────── เริ่มนับเวอร์ชันใหม่ที่ 1.001 (21/08/2026) ─────────
      ของเดิมนับมาถึง 42.1 แล้ววิ่งเป็นทศนิยมสองชั้นซึ่งอ่านลำดับยาก
@@ -3291,6 +3291,7 @@ const APP_META={
      ประวัติเก่าเก็บไว้ทั้งหมดตามเลขเดิม ไม่ไล่เขียนใหม่ เพราะเลขในนั้นถูกอ้างถึงไปแล้ว
      รายการที่อยู่ใต้ 1.001 ลงไปจึงเป็นเลขชุดเก่า อ่านต่อกันได้ตามวันที่ */
   changelog:[
+    ["1.563","2026-10-30","FEAT 3D ตะแกรงดึงลงตู้ลอย Häfele iMove (ผู้ใช้ 12:11 ส่งภาพสินค้า + แบบขนาด + ไฟล์งานตู้ WNR113 ที่ใส่ ตระแกรง_504_68_913: “เพิ่ม 3D ตะแกรง imove ให้มี”) — เดิมรหัสนี้วาดเป็นกล่องตะแกรง 5 แผ่น (500×400×280 จากคลัง) ไม่เหมือนของจริง · ตอนนี้รหัสที่มี 504_68 / 504.68 / 504_69 / imove (settings.imoveCodes) วาดเป็นชุด iMove ตามแบบผู้ผลิต: กว้างเท่าช่องในระหว่างแผ่นข้าง (565 ในตู้ 600) · ลึก 267 จากผิวแผ่นหลัง · สูง 380 (1 ถาด) / 565 (2 ถาด · รหัส x2x) · ฐานกลไกสูงจากพื้นตู้ 25 (settings.imoveZ หรือ “วางจากแผ่นพื้นตู้” ถ้ามากกว่า) — ถาด + ราวมือจับหน้า + มือจับกลาง + ฐานกลไกซ้าย/ขวา + แขนคู่ขนานฝั่งละ 2 · สีตามรหัส 504.68.<สี>: 3 เทาเข้ม · 6 ขาว · 9 เงิน · เตือนใน console ถ้าลึกในตู้ < 270 หรือสูงไม่พอ · โหมดเปิดบาน: คลิกที่ชุด = ดึงลงมาหน้าตู้ (ลง ~340 ออกหน้า ~300 ถาดยังขนานพื้น · บานยังปิดอยู่ = เปิดบานให้ก่อน) คลิกอีกครั้ง = ดันกลับ · ทั้งชุดเป็นชิ้นเสมือน _fitId เดียว = 1 ชุดในรายการอุปกรณ์ ไม่เข้าใบตัด · ปิดได้ SN_OFF.imove (กลับเป็นกล่องแบบเดิม)"],
     ["1.562","2026-10-30","FEAT ห้องออกแบบ + ผู้ช่วย (ผู้ใช้ 30/10 11:24–11:42) — ① เลือกหลายตู้: Ctrl+คลิก เพิ่ม/เอาออก · Ctrl+ลากกรอบ (ซ้าย→ขวา = ทั้งใบในกรอบ · ขวา→ซ้าย = แตะกรอบ) · Ctrl+A / ปุ่ม ⬚ เลือกทั้งหมด · ลากใบไหนก็ได้ = ย้ายทั้งชุด (ลงกริด · ขอบชุดดูดผนัง · Alt อิสระ) · Esc เลิก · Del ลบทั้งชุด (ถามก่อน) · กรอบฟ้ารายตู้ · ซิงค์/เตา/ฮู้ด/เตาอบที่ติดตู้ย้าย+หมุนตามตู้ (ลากทีละใบด้วย — เดิมค้างที่เดิม) ② ลายหินอ่อนท็อป/บัว/ผนังหิน: วัสดุ “หินอ่อน” + ช่อง “ลาย” 6 แบบวาดเอง (Carrara · Calacatta · Nero Marquina · Bardiglio · Crema Marfil · Emperador · สีพื้น/สีเส้นปรับได้) หรืออัปโหลดรูปหินจริง (≤ 2048 px · ขนาดลาย มม.) · UV พิกัดโลก ลายต่อกันข้ามชิ้น · ภาพแสงจริงเห็นลาย · หน้ารวมวัสดุใบเสนอราคาใช้ลายจริง ③ ปุ่ม 🎬 Render แทน 🧊 ส่งออก Blender: เลือกฉาก 🎬 + มุมตอนนี้ · 📸 แสงจริง (path tracing ทีละฉาก) หรือ ⚡ เร็ว · ขนาด/ความเนียน/แสง · ⏹ หยุดได้ · ⬇ บันทึก · 🤖 AI แต่งต่อรายภาพ (Gemini หาชื่อรุ่นภาพเอง / OpenAI images/edits · คีย์เดียวกับผู้ช่วย · สั่งให้คงแบบตู้) ④ ⚡ ทำให้เลย: AI ตอบแล้วกดทำตามลำดับเอง + กดตกลงฟอร์มให้ (ไม่ทำให้: ส่งคำขอ/ลบตู้/แทนที่ทั้งฉาก) · สวิตช์ ⚡ หัวแผง ⑤ ปุ่ม ✏ สอนผู้ช่วย กับ 📮 ขอฟีเจอร์ แถวเดียวกัน ⑥ FIX แถบล่างล้นจอ 1920 ที่ 100% (ธีม/⚙ ตั้งค่า ตกขอบ เพราะซ่อนแถบเลื่อน): ย่ออัตโนมัติทีละขั้น (ซ่อนป้ายเล็ก → ปุ่มรองเหลือไอคอน → ทั้งหมด) ยังล้น = แถบเลื่อนบาง + ล้อเมาส์ ⑦ เอาปุ่ม ประกอบ|แยกชิ้น ออกจากแถบล่าง (ไม่ได้ใช้แล้ว) ⑧ ท็อปจบสวย (ไฟล์ครัว L ของผู้ใช้ 11:55): ซิงค์/เตา/ไมโครเวฟขึ้นผิวท็อปเอง (เดิมจมใต้ท็อป 20 มม.) · มุม L/บัว/ผนังหิน เส้นเฉพาะขอบนอก ไม่มีเส้นรอยต่อ · ท็อปจบที่ผิวผนัง (เดิมตามแผง Fix Front ตู้มุม BCL055 ทะลุผนังซ้าย 267 มม.) · ปิดได้ SN_OFF.plMulti / plMarble / plRender / aiAuto / sbFit / viewSegHide / plWtClamp / plWtSeam / plaTopY"],
     ["1.561","2026-10-30","FEAT 🤖 ผู้ช่วย AI พาไปหาฟังก์ชัน + แจ้งเมื่อไม่มี (ผู้ใช้ 30/10 10:42 “ถ้าจะทำให้ Api แนะนำ ไปหาฟังก์ชั่นที่เขาต้องการ แล้วถ้าไม่มี ให้แจ้งมาถึงผมทำอย่างไร” · เลือก: แจ้งในโปรแกรมอย่างเดียว · ทุกคนเห็นหน้า 📮 admin จัดการ · ชี้อย่างเดียวไม่กดแทน) — ① action ใหม่ goto: AI ส่งที่หมายจากแผนที่ฟังก์ชัน (แถบบน bar: · แถบล่าง sb: · คลิกขวา ctx: · แผงห้องออกแบบ pl: · ตั้งค่า set:) โปรแกรมเปิดบริบทให้ก่อน (เปิดห้อง/กางกลุ่ม/เลือกชิ้นแล้วเปิดเมนูคลิกขวา/เปิดตั้งค่าไปหมวดนั้น) แล้ววงแหวนส้มกะพริบ + ป้าย “กดตรงนี้ — …” คนกดเอง · ตำแหน่งหาร uiZoomOf · ชั้นอยู่เหนือของที่ชี้ 5 ชั้น · โหมดออฟไลน์ “หา …” ก็ชี้ปุ่มที่ตรงคำได้ ② action ใหม่ request: ไม่มีฟังก์ชันจริง ๆ = การ์ด “ยังไม่มีฟังก์ชันนี้ — 📮 ส่งคำขอ” แก้ข้อความก่อนส่งได้ · ทุกคำตอบมีปุ่ม 📮 ขอฟีเจอร์ คู่กับ ✏ สอน · พิมพ์ “ขอฟีเจอร์: …” ได้ไม่เปลืองโควตา · เก็บแถว AIREQ:: ใน furnitech_cabinets (cloudListCabs กรองออก) · เรื่องคล้ายกัน = ถาม 👍 ขอด้วย (+1) ③ หน้า 📮 คำขอฟีเจอร์: กรองสถานะ ใหม่/รับทราบ/ทำแล้ว (vX)/ไม่ทำ/ของฉัน · ผู้ดูแลแก้สถานะ ตอบ ลบ · 📋 คัดลอกเป็น Markdown ไปวางแชท Claude ④ แจ้งผู้ดูแล: ทุก 5 นาที + ตอนกลับมาที่หน้าจอ → 🔔 + ป้ายเลขที่ปุ่ม 🤖 · คนขอเห็นสถานะ/คำตอบตอนเปิดผู้ช่วยครั้งถัดไป · เดิมทุกเครื่องชื่อ “ทดลองไฟล์กลาง” และ sxCan เปิดให้ทุกคน → ตั้งชื่อเครื่องครั้งเดียว (snAI:me:v1) + รายชื่อผู้ดูแลเก็บที่แถว AIREQ::_cfg (👑 ตั้งฉันเป็นผู้ดูแล) · ปิดได้ SN_OFF.aiGoto / SN_OFF.aiReq"],
     ["1.560","2026-10-29","FEAT ดึงถาด LeMans II ทีละถาด 2 จังหวะ (ผู้ใช้ 15:10 “ให้หมุนได้ทีละถาด แล้วทำให้เหมือนของจริง 2 จังหวะ”) — โหมดเปิดบาน คลิกที่ถาด: ปิด → ① สวิงออก → ② ดึงออกสุด → เก็บเข้า · state.lmProg ต่อถาด (0/0.5/1) · ท่าสุดท้ายถอดจากแบบผู้ผลิต: หมุนรอบเสา 164.7° แล้วหัวเล็กของถาดมาอยู่หน้าเสา (ห่างทางช่องบาน 105 · ออกหน้า 150 มม. ปรับตามความยาวถาด) กลับด้านตามช่องบาน · viewBoards ขยับเฉพาะภาพ · อนิเมชันขยับก้อนเดิม (lemansAnimate) แบบเดียวกับกางบาน แล้ววาดใหม่ครั้งเดียวตอนจบ · ชิ้นที่ขยับ = ถาด/ราว/แขน (_lmKey) เสาอยู่กับที่"],
@@ -4013,7 +4014,8 @@ const DEF_SETTINGS={ frontSetMax:6, dowelD:8, dowelDepth:28, dowelMateDepth:12, 
   dowelSizeMode:true, dowelBackRelease:0, dowelFlipFront:false, dowelSizeRule:DEF_DOWEL_RULE,
   dowelFormulas:[{name:"มาตรฐาน",rule:DEF_DOWEL_RULE}], dowelFormulaActive:"มาตรฐาน", mfFormulaActive:"มาตรฐาน", cloudAutoSave:true,
   backset:16, backGroove:true, backOver:4.5, backClear:0.5,
-  lemansCodes:"541_32,541.32,545_32,lemans,เลอมัง,สวิง", lemansMaxL:960, lemansD:450, lemansRailH:90,   // v1.558: ตะแกรงสวิง LeMans II — รหัสที่วาดเป็นถาดรูปไต · ยาวถาดสูงสุด · สูงขอบถาด (มม.)
+  lemansCodes:"541_32,541.32,545_32,lemans,เลอมัง,สวิง", lemansMaxL:960, lemansD:450, lemansRailH:90,
+  imoveCodes:"504_68,504.68,504_69,504.69,imove,ไอมูฟ", imoveZ:25,   // v1.563: ตะแกรงดึงลง iMove — รหัสที่วาดเป็นชุด iMove · ฐานกลไกสูงจากผิวพื้นตู้ (มม. · แบบผู้ผลิต Z ≥ 25)   // v1.558: ตะแกรงสวิง LeMans II — รหัสที่วาดเป็นถาดรูปไต · ยาวถาดสูงสุด · สูงขอบถาด (มม.)
   railAutoGap:500,   // v1.292: คานขวางในโครง ห่างกันไม่เกินกี่ มม. ก่อนต้องเพิ่มคาน
   ledStripGapMax:40, ledStripMaxL:5000,   // v1.294: เส้นไฟข้ามรอยที่ชั้นตัดรางได้ไม่เกินกี่ มม. · ยาวสุดต่อเส้น (ม้วน)
   drawerBotThick:9, drawerBotLift:11, drawerBotOver:4.5, drawerBotClear:0.5, drawerBotMacroOn:true, drawerBotPipeNotch:false, drawerBotPipeW:40, drawerBotPipeH:25,
@@ -6827,6 +6829,9 @@ function shapeLocalGeo(b){
     return g; }
   if(b._shape==="lmTray") return lemansGeo(b,"tray");   // v1.558: LeMans II ถาด
   if(b._shape==="lmRail") return lemansGeo(b,"rail");   // v1.558: LeMans II ราวโครเมียม
+  if(b._shape==="imBasket") return imoveGeo(b,"basket");   // v1.563: iMove ถาด + ราวมือจับ
+  if(b._shape==="imHouse") return imoveGeo(b,"house");     // v1.563: iMove ฐานกลไก
+  if(b._shape==="imArm") return imoveGeo(b,"arm");         // v1.563: iMove แขน (จุดหมุน = ศูนย์ชิ้น)
   if(b._shape==="cutTray") return cutTrayGeo(Math.max(+b.L||100,40),Math.max(+b.W||100,40),Math.max(T,10));   // v1.532: ถาดช้อน
   if(b._shape==="flatPull") return pullFlatGeo(b);                                    // v1.446: มือจับบาร์แบน
   throw new Error("unknown shape");
@@ -16881,6 +16886,107 @@ function lemansAnimate(key,from,to,ms){
       q.setFromAxisAngle(ax,(B.deg-A.deg)*Math.PI/180); s.o.quaternion.copy(q).multiply(s.q); });
     invalidate(); if(k>=1){ fin(); return; } _lmAnim=requestAnimationFrame(step); };
   _lmAnim=requestAnimationFrame(step); }
+/* ═════════ v1.563: Häfele / Kesseböhmer iMove — ตะแกรงดึงลงตู้ลอย (ผู้ใช้ 30/10 12:11 ส่งภาพสินค้า + แบบขนาด + ไฟล์งาน: “เพิ่ม 3D ตะแกรง imove ให้มี”) ═════════
+   เดิม: ตู้ WNR113 ใส่ ตระแกรง_504_68_913 แล้ววาดเป็นกล่องตะแกรง 5 แผ่น (ก้น/หน้า/หลัง/ซ้าย/ขวา) ตามขนาดในคลัง 500×400×280 — ไม่เหมือนของจริงเลย
+   ของจริง (แบบผู้ผลิต + hafelehome.co.th): 504.68.913 = ชั้นเดียว ตู้ 600 สีเงิน · ขนาด 565 × 267 × 380 · ช่องในกว้าง 562–568 (ตู้ 900 = 862–868)
+     ฐานกลไกยึดแผ่นข้างสองฝั่ง ก้นฐานสูงจากพื้นตู้ Z ≥ 25 · ถาดอยู่บนสุด · ลึกในตู้ ≥ 270 (ชุดลึก 267 ชิดแผ่นหลัง) · ดึงลงมาหน้าตู้ ~340 มม. ถาดขนานพื้นตลอด
+   → ชิ้นเสมือน (ไม่ใช่ไม้ · ไม่เข้าใบตัด · _fitId เดียวกันทั้งชุด = นับ 1 ชุดในรายการอุปกรณ์) orient front (local x = กว้าง · y = สูง · z = ไปหน้าตู้):
+     ① ถาด imBasket (+ ราวหลัง · ราวมือจับหน้า · ขายึดราว) ② มือจับกลาง (กล่อง) ③ ฐานกลไก imHouse ซ้าย/ขวา
+     ④ แขนคู่ขนาน imArm ฝั่งละ 2 — x,y,z ของชิ้น = จุดหมุนบนฐาน (ไม่ใช่ศูนย์กล่อง) · มุมแขน _imA (องศา จากแนวไปหน้าตู้ วนขึ้นบน)
+   สีจากรหัส 504.68.<สี><ถาด><กว้าง>: สี 3 = เทาเข้ม · 6 = ขาว · 9 = เงิน · ถาด 2 = สองชั้น (สูง 565) · ไม่มีเลขในรหัส = เงิน ชั้นเดียว
+   ท่าดึงลง (แขนคู่ขนานยาว R หมุนจาก a0 → a1): ถาดเลื่อน R·(cos a − cos a0, sin a − sin a0) = ออกหน้า ~300 ลง ~340 ที่ปลาย
+     (ถอดจากแบบ: ถาดลงมาหน้าตู้ ต่ำกว่าก้นตู้เล็กน้อย) · ตรวจแล้วกลางทางไม่ชนแผ่นพื้นตู้/ขอบหน้า
+   รหัสที่นับเป็น iMove: settings.imoveCodes · ปิดได้ SN_OFF.imove (กลับเป็นกล่องตะแกรงแบบเดิม) */
+const IM_ARM={R:240, a0:111.9, a1:-29.1, pa:[196,40], pb:[150,95]};   // จุดหมุน [ลึกจากหลังชุด, สูงจากก้นชุด] มม. · ปลายแขนตอนปิด = ใต้ก้นถาด/กลางข้างถาด
+function imoveIs(code){ if(snOff("imove")) return false; const c=String(code||"").toLowerCase();
+  return String(settings.imoveCodes||"504_68,504.68,504_69,504.69,imove,ไอมูฟ").split(/[,;]+/).map(x=>x.trim().toLowerCase()).filter(Boolean).some(k=>c.indexOf(k)>=0); }
+function imoveSpec(code){ const t=String(code||""), m=t.match(/504[._\s-]?6[89][._\s-]?(\d)(\d)(\d)/);
+  const two=!!(m&&m[2]==="2")||/2\s*(ชั้น|ถาด)|double/i.test(t);
+  const COL={"3":{n:"เทาเข้ม",bk:"#4b4e53",hs:"#2f3134",ar:"#3a3d41",hd:"#232528"},
+             "6":{n:"ขาว",bk:"#ecece8",hs:"#dcdcd7",ar:"#c9cac5",hd:"#b9bab5"},
+             "9":{n:"เงิน",bk:"nickel",hs:"#8e9297",ar:"#7c8086",hd:"#4f5358"}};
+  return Object.assign({two, H:two?565:380}, COL[m?m[1]:"9"]||COL["9"]); }
+/* ชุดชิ้น — o: {sLo,sHi ผิวในแผ่นข้าง · y0 ก้นชุด · zB ผิวหน้าแผ่นหลัง · spec · cabRaw · cabInst · code · fid} (ในกรอบตู้ที่ขนานแกนแล้ว: หน้าตู้ = +z) */
+function imoveBoards(o){ const S=o.spec, hT=16, aT=6, Du=267, Hb=118, Wu=o.sHi-o.sLo, Wb=Math.max(Wu-2*(hT+aT+5),200), cx=(o.sLo+o.sHi)/2;
+  const base={cab:o.cabRaw||undefined,cabInst:o.cabInst,orient:"front",yaw:0,tone:null,r:0,holes:[],grooves:[],connectors:[],mat:"$CarcassBodyMat",surfT:"",surfB:"",
+    edges:["No Edge","No Edge","No Edge","No Edge"],_virtual:true,_fitPart:true,_autoFit:true,_basket:true,_imove:true,_fit:o.code,_fitId:o.fid,
+    _imKey:String(o.cabInst||"")+"|im:"+o.fid};
+  const mk=(nm,p)=>Object.assign({id:uid(),name:o.code+" · "+nm},base,p);
+  const Z=f=>round(o.zB+f), Y=u=>round(o.y0+u), fin=v=>(/^#/.test(v)?{_hex:v}:{_metal:v});
+  const out=[], low=S.H-Hb/2-(S.two?185:0);                          // ศูนย์ถาดล่าง (สูงจากก้นชุด) — สองชั้น: ถาดบนสูงกว่า 185
+  (S.two?[low,low+185]:[low]).forEach((u,i)=>out.push(mk(S.two?(i?"ถาดบน":"ถาดล่าง"):"ถาด",
+    Object.assign({L:round(Wb),W:Hb,T:Du,x:round(cx),y:Y(u),z:Z(Du/2),_shape:"imBasket",_imRole:"b"},fin(S.bk)))));
+  if(S.two) [-1,1].forEach(sx=>[30,Du-60].forEach((f,j)=>out.push(mk("เสาเชื่อมถาด"+(sx<0?"ซ้าย":"ขวา")+" "+(j+1),   // สองชั้น: เสาข้างยึดถาดบนกับถาดล่าง
+    Object.assign({L:5,W:185,T:16,x:round(cx+sx*(Wb/2-1)),y:Y(low+92.5),z:Z(f),_imRole:"b"},fin(S.bk))))));
+  out.push(mk("มือจับดึงลง",{L:100,W:56,T:24,x:round(cx),y:Y(low-Hb/2+0.72*Hb),z:Z(Du-7),_hex:S.hd,_imRole:"b"}));
+  [[o.sLo+hT/2,"ซ้าย",1],[o.sHi-hT/2,"ขวา",-1]].forEach(([x,nm,sg])=>{
+    out.push(mk("ฐานกลไก"+nm,Object.assign({L:hT,W:195,T:203,x:round(x),y:Y(102.5),z:Z(110.5),_shape:"imHouse",_imIn:sg,_imRole:"s"},fin(S.hs))));
+    const xa=x+sg*(hT/2+aT/2+1);
+    [IM_ARM.pa,IM_ARM.pb].forEach((p,j)=>out.push(mk("แขน"+nm+" "+(j+1),
+      Object.assign({L:aT,W:26,T:26,x:round(xa),y:Y(p[1]),z:Z(p[0]),_shape:"imArm",_imA:IM_ARM.a0,_imR:IM_ARM.R,_imRole:"a"},fin(S.ar))))); });
+  return out; }
+/* รูปปิดมุมมน (จุด [s,t] ปิดรอบ) — ใช้ทำแผ่นข้างถาด/ฐานกลไก */
+function imRoundShape(P,r){ const sh=new THREE.Shape(), n=P.length, at=i=>P[(i+n)%n];
+  const cut=(a,b,d)=>{ const dx=b[0]-a[0], dy=b[1]-a[1], l=Math.hypot(dx,dy)||1, k=Math.min(d,l/2)/l; return [a[0]+dx*k,a[1]+dy*k]; };
+  for(let i=0;i<n;i++){ const c=at(i), p=cut(c,at(i-1),r), q=cut(c,at(i+1),r);
+    if(i===0) sh.moveTo(p[0],p[1]); else sh.lineTo(p[0],p[1]);
+    sh.quadraticCurveTo(c[0],c[1],q[0],q[1]); }
+  sh.closePath(); return sh; }
+const _imGeoC={};
+function imoveGeo(b,part){ const L=Math.max(+b.L||10,2), W=Math.max(+b.W||10,2), T=Math.max(+b.T||10,2);
+  const k=part+"|"+Math.round(L)+"|"+Math.round(W)+"|"+Math.round(T)+"|"+(+b._imIn||0)+(part==="arm"?"|"+(+b._imA||0).toFixed(1)+"|"+(+b._imR||0):"");
+  if(_imGeoC[k]) return _imGeoC[k].clone();
+  const gs=[], box=(w,h,d,x,y,z)=>{ const g=new THREE.BoxGeometry(w,h,d); g.translate(x,y,z); return g; };
+  /* แผ่นตามรูปข้าง (s = ไปหน้า z · t = ขึ้น y) หนา d ตามแกน x ศูนย์ที่ x0 — rotateY(−90°): s→z · t→y · ทิศอัด→−x */
+  const plate=(sh,d,x0)=>{ const g=new THREE.ExtrudeGeometry(sh,{depth:d,bevelEnabled:false,curveSegments:6}); g.rotateY(-Math.PI/2); g.translate(x0+d/2,0,0); return g; };
+  const tube=(r,len,y,z)=>{ const g=new THREE.CylinderGeometry(r,r,len,20); g.rotateZ(Math.PI/2); g.translate(0,y,z); return g; };
+  if(part==="basket"){ const yb=-W/2, Dt=T-22, zb=-T/2, zf=zb+Dt, t=2;
+    const prof=[[zb,yb],[zf,yb],[zf+6,yb+0.55*W],[zf-14,yb+0.66*W],[zb+0.42*Dt,W/2],[zb,W/2]];   // ข้างถาด: หลังสูงเต็ม หน้าเตี้ย ขอบบนลาดลงหน้า
+    [-1,1].forEach(sx=>gs.push(plate(imRoundShape(prof,7),t,sx*(L/2-t/2))));
+    gs.push(box(L,t,Dt,0,yb+t/2,zb+Dt/2));                                   // พื้นถาด
+    gs.push(box(L,W,t,0,0,zb+t/2));                                          // ผนังหลัง
+    { const hf=0.55*W, g=new THREE.BoxGeometry(L,hf,t); g.rotateX(Math.atan2(6,hf)); g.translate(0,yb+hf/2,zf+3); gs.push(g); }   // ผนังหน้าเอียงออก
+    gs.push(box(L,6,t+4,0,yb+0.55*W,zf+6));                                  // ขอบพับบนผนังหน้า
+    gs.push(tube(5,L,W/2-5,zb+5));                                           // ราวหลังบน
+    const by=yb+0.72*W, bz=T/2-9;
+    gs.push(tube(8,L+24,by,bz));                                             // ราวมือจับหน้า (ยาวเลยข้างถาด)
+    [-1,1].forEach(sx=>gs.push(box(5,22,bz-(zf-14),sx*(L/2+2.5),by,(bz+zf-14)/2)));   // ขายึดราวหน้า
+  } else if(part==="house"){ const U=[[0.227,0],[1,0],[0.729,1],[0,0.974]];        // (ลึกจากหลัง, สูง) 0..1 — ล่างยื่นไปหน้า ตามแบบด้านข้าง
+    const prof=U.map(p=>[-T/2+p[0]*T,-W/2+p[1]*W]);
+    gs.push(plate(imRoundShape(prof,24),L,0));
+    const sg=+b._imIn||1, cxp=prof.reduce((a,p)=>a+p[0],0)/4, cyp=prof.reduce((a,p)=>a+p[1],0)/4;
+    gs.push(plate(imRoundShape(prof.map(p=>[cxp+(p[0]-cxp)*0.72,cyp+(p[1]-cyp)*0.72]),16),3,sg*(L/2+1.5)));   // ฝาครอบสปริงด้านใน (นูน 3)
+  } else { const R=+b._imR||240, a=(+b._imA||0)*Math.PI/180, w=26;                // แขน: เริ่มที่จุดหมุน (0,0) ยาว R ตามมุม a
+    const g=new THREE.BoxGeometry(L,w,R); g.translate(0,0,R/2); g.rotateX(-a); gs.push(g);
+    [[0,0],[Math.sin(a)*R,Math.cos(a)*R]].forEach(p=>{ const c=new THREE.CylinderGeometry(w/2,w/2,L+3,20); c.rotateZ(Math.PI/2); c.translate(0,p[0],p[1]); gs.push(c); });
+  }
+  const out=mergeGeos(gs); _imGeoC[k]=out; return out.clone(); }
+/* ท่าดึงลง t = 0 (ในตู้) … 1 (ดึงลงสุด) · df = ออกหน้า · du = ขึ้น (ลบ = ลง) */
+function imovePose(t){ const A=IM_ARM, r=Math.PI/180, a=A.a0+(A.a1-A.a0)*t;
+  return {a, df:A.R*(Math.cos(a*r)-Math.cos(A.a0*r)), du:A.R*(Math.sin(a*r)-Math.sin(A.a0*r))}; }
+function imoveT(b){ const v=(state.imProg||{})[b._imKey]; return Math.max(0,Math.min(+v||0,1)); }
+function imoveXf(b,t){ const P=imovePose(t);
+  if(b._imRole==="a") return Object.assign({},b,{_imA:+P.a.toFixed(2)});
+  if(b._imRole!=="b") return b;
+  const th=(+b.yaw||0)*Math.PI/180;                                          // หน้าตู้ = (sin yaw, cos yaw) แบบลิ้นชัก
+  return Object.assign({},b,{x:round(b.x+Math.sin(th)*P.df), y:round(b.y+P.du), z:round(b.z+Math.cos(th)*P.df)}); }
+let _imAnim=null;
+function imoveAnimate(key,from,to,ms){
+  state.imProg=state.imProg||{}; if(_imAnim){ cancelAnimationFrame(_imAnim); _imAnim=null; }
+  const bs={}; state.boards.forEach(b=>{ if(b&&b._imKey===key&&(b._imRole==="b"||b._imRole==="a")) bs[b.id]=b; });
+  let snap=[];
+  const grab=()=>{ snap=[]; root.children.forEach(o=>{ const id=o.userData&&o.userData.id, b=id&&bs[id]; if(b) snap.push({o,b,p:o.position.clone(),q:o.quaternion.clone()}); }); };
+  grab();
+  const fin=()=>{ _imAnim=null; _fastFrame=false; state.imProg[key]=to; render3D(false); };
+  if(!snap.length||snOff("doorFast")){ fin(); return; }
+  const P0=imovePose(from), t0=performance.now(), q=new THREE.Quaternion(), ax=new THREE.Vector3(); ms=ms||900;
+  const step=now=>{ if(snap.some(s=>!s.o.parent)) grab();                    // ฉากถูกวาดใหม่กลางทาง (บานกางเสร็จ) → จับชิ้นชุดใหม่ ยังอยู่ท่าเริ่มเหมือนเดิม
+    const k=Math.min((now-t0)/ms,1), e=k<.5?4*k*k*k:1-Math.pow(-2*k+2,3)/2, P=imovePose(from+(to-from)*e);
+    snap.forEach(s=>{ const th=(+s.b.yaw||0)*Math.PI/180;
+      if(s.b._imRole==="b"){ const df=P.df-P0.df; s.o.position.set(s.p.x+Math.sin(th)*df, s.p.y+(P.du-P0.du), s.p.z+Math.cos(th)*df); }
+      else { ax.set(Math.cos(th),0,-Math.sin(th)); q.setFromAxisAngle(ax,-(P.a-P0.a)*Math.PI/180); s.o.quaternion.copy(q).multiply(s.q); } });   // แขนหมุนรอบแกนกว้างตู้ที่จุดหมุน
+    invalidate(); if(k>=1){ fin(); return; } _imAnim=requestAnimationFrame(step); };
+  _imAnim=requestAnimationFrame(step); }
 function _basketBoards(cx,cy,cz,bw,bh,bd,cabRaw,cabInst,code,fid){
   const tw=15, half=tw/2;
   const mk=(nm,L,W,T,x,y,z)=>({id:uid(),name:code+" · "+nm,orient:"front",cab:cabRaw||undefined,cabInst,
@@ -17817,6 +17923,25 @@ function applyCabFittings(){
                   i===0?Math.min(pitch*(n-1)+Htr+60, isFinite(topY)?topY-(cyT-Htr/2):1e9):0, postX, postZ, i)
                   .forEach(b=>{ b._fit=def.code; out.push(b); }); }
               return; } }
+          /* ───────── v1.563: ตะแกรงดึงลง iMove (ผู้ใช้ 12:11 “เพิ่ม 3D ตะแกรง imove ให้มี”) ─────────
+             เดิมรหัส 504_68 ตกไปทางกล่องตะแกรง 5 แผ่นด้านล่าง (ขนาดจากคลัง) · ของจริงยึดแผ่นข้างสองฝั่ง กว้างเท่าช่องใน ลึก 267 ชิดแผ่นหลัง
+             ก้นฐานกลไกสูงจากผิวพื้นตู้ imoveZ (25) หรือค่า “วางจากแผ่นพื้นตู้” ของรายการถ้ามากกว่า · 1 ชุดต่อตู้ (ไม่ซ้อนตาม bQty) */
+          if(imoveIs(def.code)){
+            const sd3=carc.filter(z=>z.orient==="side"&&!isRail(z)&&z.zoneLo==null).slice().sort((a,b)=>a.x-b.x);
+            let sLo, sHi;
+            if(sd3.length>=2){ sLo=sd3[0].x+worldDims(sd3[0])[0]/2; sHi=sd3[sd3.length-1].x-worldDims(sd3[sd3.length-1])[0]/2; }
+            else { const w0=isFinite(innerW)?innerW:def.bw; sLo=anchorX-w0/2; sHi=anchorX+w0/2; }
+            if(doorSpan&&doorSpan.w<sHi-sLo-20){ sLo=Math.max(sLo,doorSpan.lo); sHi=Math.min(sHi,doorSpan.hi); }   // ตู้มีเสาแบ่ง: อยู่ในช่องบาน
+            const fZ=A2.frontZ;
+            const bk=carc.filter(z=>z.orient==="front"&&/back/i.test(String(z.name||""))).reduce((m,z)=>Math.max(m,z.z+worldDims(z)[2]/2),-Infinity);
+            const zB=isFinite(bk)?bk:(fZ-Math.max(def.bd,270));
+            const S=imoveSpec(def.code), zr=Math.max(+settings.imoveZ||25, def.fromBot>0?def.fromBot:0);
+            const y0=(A2.botTop!=null?A2.botTop:(cy0-def.bh/2))+zr;
+            if(fZ-zB<270) _bkWarn(inst,"iMove "+def.code+": ลึกในตู้ "+Math.round(fZ-zB)+" มม. — ของจริงต้อง ≥ 270 (ชุดลึก 267) จะยื่นเลยหน้าตู้");
+            if(isFinite(topY)&&topY-16-y0<S.H) _bkWarn(inst,"iMove "+def.code+": สูงในตู้เหนือฐานกลไกเหลือ "+Math.round(topY-16-y0)+" มม. — ชุดสูง "+S.H);
+            if(sHi-sLo<300){ _bkWarn(inst,"iMove "+def.code+": ช่องในกว้าง "+Math.round(sHi-sLo)+" มม. แคบเกินไป — วาดเป็นกล่องตะแกรงแทน"); }
+            else { imoveBoards({sLo,sHi,y0,zB,spec:S,cabRaw,cabInst:cabInstVal,code:def.code,fid:uid()}).forEach(b=>{ b._fit=def.code; out.push(b); });
+              return; } }
           const bw=isFinite(innerW) ? Math.min(def.bw, Math.max(round(innerW-2*clr),60)) : def.bw;   // กว้างเกินตู้ -> ย่อลงพอดี
           let made=0, skip=0;
           for(let i=0;i<n;i++){ const cy=cy0+pitch*i;
@@ -18321,6 +18446,7 @@ function viewBoards(){
   const _tvC={};   // v1.474: ระยะชักรางรับใต้ต่อชุดลิ้นชัก (คิดครั้งเดียวต่อรอบ)
   const out=state.boards.map(b=>{
     if(b._lmKey){ const t=lemansT(b); return t>0.002?lemansXf(b,t):b; }   // v1.560: ถาด LeMans ดึงออกทีละถาด
+    if(b._imKey&&b._imRole!=="s"&&!snOff("imove")){ const t=imoveT(b); return t>0.002?imoveXf(b,t):b; }   // v1.563: iMove ดึงลง (ถาดเลื่อน · แขนหมุน)
     const p=pOf(b); if(p<=0.002) return b;
     if(b._dg){ const g=_dwrSpanOf(dg,b); const D=Math.max(g.z1-g.z0,40);
       /* ───────── v15.5: ลิ้นชักต้องเลื่อนออกทาง "หน้าตู้ใบนั้น" ─────────
@@ -20543,6 +20669,16 @@ function bindPointer(dom){
         const k=tb._lmKey, cur=(state.lmProg||{})[k]||0, nx=cur<0.25?0.5:(cur<0.75?1:0);
         lemansAnimate(k,cur,nx);   // ไม่เลือกชิ้น — กรอบเลือกวาดตามท่าปิด จะลอยผิดที่ตอนถาดดึงออก
         toast(nx===0.5?"🧺 ถาดสวิงออก (จังหวะ 1) — คลิกอีกครั้งดึงออกสุด":nx===1?"🧺 ดึงถาดออกสุด (จังหวะ 2) — คลิกอีกครั้งเก็บเข้า":"🧺 เก็บถาดเข้าตู้แล้ว");
+        pMode="rot"; return; }
+      /* ───────── v1.563: iMove — คลิกที่ชุด = ดึงลง / ดันกลับ ─────────
+         ดึงลงตอนบานของตู้ใบนั้นยังปิด = เปิดบานให้ก่อน (ถาดออกทางหน้าตู้ ไม่งั้นทะลุบาน) แล้วค่อยดึงหลังบานกางเสร็จ */
+      if(tb&&tb._imKey&&!snOff("imove")){
+        const k=tb._imKey, cur=(state.imProg||{})[k]||0, nx=cur<0.5?1:0; let wait=0;
+        if(nx===1){ state.doorPick=state.doorPick||[]; const keys=[];
+          state.boards.forEach(x=>{ if(x&&x.cabInst===tb.cabInst&&x._door&&!x._box&&!x._panel&&!x._dummy&&!x._dg&&state.doorPick.indexOf(x.id)<0) keys.push(x.id); });
+          if(keys.length){ keys.forEach(id=>state.doorPick.push(id)); animateDoorPick(keys,1); wait=470; } }
+        setTimeout(()=>imoveAnimate(k,cur,nx),wait);
+        toast(nx?("🧺 ดึง iMove ลง"+(wait?" (เปิดบานให้ก่อน)":"")+" — คลิกอีกครั้งดันกลับ"):"🧺 ดัน iMove กลับเข้าตู้แล้ว");
         pMode="rot"; return; }
       const mv=tb&&!tb._box&&!tb._panel&&!tb._dummy&&(tb._dg||tb._door);
       if(mv){ const key=tb._dg?((tb.cabInst||"")+"|dg:"+tb._dg):tb.id;   // v9.01: ผูกกับตู้ใบนั้น
@@ -29262,6 +29398,7 @@ function boardRole(b){
      SN_OFF.plWtClamp=1   ท็อปยื่นตามตู้แม้เลยผิวผนังห้อง (แบบเดิม) (v1.562)
      SN_OFF.plWtSeam=1    ท็อป/บัว/ผนังหินมีเส้นขอบทีละชิ้น (เห็นรอยต่อมุม L แบบเดิม) (v1.562)
      SN_OFF.plaTopY=1     ซิงค์/เตา/ไมโครเวฟ ไม่ปรับระดับตามผิวท็อปเอง (v1.562)
+     SN_OFF.imove=1       ตะแกรงดึงลง iMove วาดเป็นกล่องตะแกรง 5 แผ่นแบบเดิม · คลิกดึงลงไม่ได้ (v1.563)
      SN_OFF.plMulti=1     ห้องออกแบบเลือกได้ทีละตู้ (ไม่มี Ctrl+คลิก/กรอบ/Ctrl+A) · ลากตู้แล้วซิงค์/ฮู้ดไม่ตาม (v1.562)
      SN_OFF.plMarble=1    ท็อป/บัว/ผนังหินเป็นสีเรียบ ไม่มีลายหินอ่อน (ค่าที่เลือกไว้ยังอยู่) (v1.562)
      SN_OFF.plRender=1    แผงห้องออกแบบกลับมีปุ่ม 🧊 ส่งออก Blender แทน 🎬 Render (v1.562)
