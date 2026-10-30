@@ -3283,7 +3283,7 @@ body[data-theme="dark"] .splash-dots span{background:rgba(255,255,255,.25)}
    ===================================================================== */
 /* ---- APP_META: แหล่งความจริงเดียวของเวอร์ชัน (ดูได้จาก console / คลิกชื่อแอป) ---- */
 const APP_META={
-  name:"StarNexus", version:"1.572", build:"2026-10-30/vr-walk",
+  name:"StarNexus", version:"1.575", build:"2026-10-30/top-spin",
   file:"StarNexus.html", basedOn:"Furnitech_V3.html (v3.11)",
   /* ───────── เริ่มนับเวอร์ชันใหม่ที่ 1.001 (21/08/2026) ─────────
      ของเดิมนับมาถึง 42.1 แล้ววิ่งเป็นทศนิยมสองชั้นซึ่งอ่านลำดับยาก
@@ -3291,6 +3291,9 @@ const APP_META={
      ประวัติเก่าเก็บไว้ทั้งหมดตามเลขเดิม ไม่ไล่เขียนใหม่ เพราะเลขในนั้นถูกอ้างถึงไปแล้ว
      รายการที่อยู่ใต้ 1.001 ลงไปจึงเป็นเลขชุดเก่า อ่านต่อกันได้ตามวันที่ */
   changelog:[
+    ["1.575","2026-10-30","UX 📐 มองตรง “บน” หมุนแปลนได้ (ผู้ใช้ 16:43 ภาพฉาก 📐 บน: “เพิ่มให้หมุนที่มุมทอป ได้ด้วยครับ”) — ระหว่างมองลงตรง ลากซ้าย-ขวา = หมุนแปลนรอบแกนตั้ง ยังมองลงตรงไม่เอียง (เดิมลากขึ้น-ลงนิดเดียวก็เอียงหลุดจากมุมบน) · Alt+ลาก = เอียงออกได้ (Shift+ลาก = เลื่อนภาพ เหมือนเดิม) · เมนู 📐 มีปุ่ม ⟲ 90° / ⟳ 90° / ↺ หน้าตู้อยู่ล่าง (ซูมพอดีให้ใหม่) · ＋ เก็บเป็นฉาก = จำมุมที่หมุนไว้ · ปิดได้ SN_OFF.voSpin"],
+    ["1.574","2026-10-30","FEAT 📎 สกิลของทีมสำหรับผู้ช่วย AI (ผู้ใช้ 16:27 ภาพหน้า ✏ สอนผู้ช่วย: “ตรงสอนผู้ช่วยให้เราแนบสกิลเหมือนที่แนบให้ได้ไหมครับ แต่เป็นการกดในโปรแกรม ไม่ข้ามโปรแกรม”) — ปุ่ม 📎 แนบสกิล ในหน้า ✏ สอนผู้ช่วย และหน้า 🧠 ความจำของทีม: เลือกไฟล์ SKILL.md / .md หรือ .zip / .skill แบบที่ใช้กับ Claude (แตก zip ในโปรแกรมเอง · อ่านชื่อ/คำอธิบายจากหัวไฟล์ --- name / description --- · ไฟล์ .md อื่นในโฟลเดอร์สกิลต่อท้ายให้ · สคริปต์ไม่ถูกรัน) → เก็บเป็นความจำของทีม (แถว AIMEM:: ชนิด skill · ชื่อซ้ำของตัวเอง = อัปเดต) · ทุกคำถาม ผู้ช่วยเห็นรายชื่อสกิลทั้งหมด + เนื้อหาเต็มของสกิลที่ตรงกับคำถาม (≤ 2 ตัว · ≤ 7,000 ตัวอักษร · พิมพ์ชื่อสกิลในคำถาม = ได้แน่) แล้วตอบ/ชี้ปุ่มตามขั้นตอนในสกิล ด้วยคำสั่งของโปรแกรมเท่านั้น (ขั้นตอนนอกโปรแกรมบอกให้ผู้ใช้ทำเอง) · หน้า 🧠 ดูเนื้อหา/⬇ บันทึก .md/ลบได้ · ปิดได้ SN_OFF.aiSkill"],
+    ["1.573","2026-10-30","UX 🎬 AI RENDER + 🧾 ใบเสนอราคา (ผู้ใช้ 16:21 + PDF test.pdf: “คำว่าผลลัพธ์ น่าจะต้องแก้เป็นข้อมูลสำหรับไปเจนภาพ · ปรับ UI ให้คนทั่วไปไม่งง แบ่งเป็น ข้อมูลก่อนไปใช้ AI เรนเดอร์ ขวาเป็นข้อมูลที่ได้หลังจากการเจน · ใบเสนอราคาเอาภาพหน้าแนวนอนที่มาจากการเจนขึ้นก่อน แล้วต่อด้วยใบเสนอราคา แล้วเอาภาพที่อยู่ในใบเสนอราคาออก · ภาพแนวนอนปริ้นออกมาแล้วเลื่อนไม่ต้องกดหมุน”) — ① หน้า AI RENDER หนึ่งฉาก = หนึ่งแถว: ซ้าย “① ข้อมูลสำหรับไปเจนภาพ” (ภาพฉาก + 📝 คำสั่งที่จะส่ง + ⬇ / 🤖 AI แต่งต่อ / 🍌 Gemini เว็บ) · ขวา “② ภาพที่ได้จากการเจน” (ภาพ AI + 🧾 ใส่ใบเสนอราคา · ยังไม่มี = ช่องรอรับ 📥 วางภาพผล / 📂 เลือกไฟล์ / Ctrl+V / ลากไฟล์ — มีช่องรอช่องเดียว Ctrl+V ได้เลยไม่ต้องกด 🍌 ก่อน) ② ใบเสนอราคา: หน้าภาพประกอบ A4 แนวนอนขึ้นก่อน (ภาพ 1/n) แล้วใบเสนอราคาไม่มีภาพหัวใบ แล้วแบบแนบท้าย (ติ๊กกลับแบบเดิมได้) ③ คำแนะนำข้างปุ่มพิมพ์: ปลายทาง “บันทึกเป็น PDF” = หน้าแนวนอนอยู่แนวนอนในไฟล์เลย (ไฟล์ทดสอบพิมพ์ผ่าน Microsoft Print to PDF ซึ่งบังคับกระดาษ Letter แนวตั้งทุกหน้า หน้าแนวนอนจึงถูกหมุน + มีวันที่/ลิงก์ที่ขอบ) · FIX เปิดผ่าน Odoo หน้า AI RENDER ขึ้น “บัญชี Odoo / Odoo ให้โควตา” แทน Google (ตัวแปลคำ Google→Odoo) · ปิดได้ SN_OFF.rndSplit / plqPicFirst / plqPdfTip"],
     ["1.572","2026-10-30","FEAT 🥽 ลิงก์ดูงาน = เดินดูในห้องที่ออกแบบ (ผู้ใช้ 15:15 “มีแบบว่า Link เข้าไปดู 3D ในห้องออกแบบ เหมือนคนใส่แว่น VR เลย ทำได้ไหมครับ” · เลือกครบ 3 แบบ: แว่น VR · มือถือ + Cardboard · มือถือ/คอมไม่ใส่แว่น) — ① ลิงก์/ไฟล์ดูงานมีห้องที่ออกแบบไปด้วย (ผนัง ประตู หน้าต่าง พื้น ฝ้า ท็อป เครื่องใช้ — เดิมมีแต่ตู้ลอยในที่ว่าง) · ผนัง/ประตู/หน้าต่าง/ฝ้าฝั่งกล้องซ่อนเองตอนหมุนดูจากนอกห้อง ② ปุ่ม 🥽 VR ในหน้าดูงาน: 🚶 เดินในห้อง (ระดับสายตา 1.6 ม. · ลากมอง · แตะพื้นเดินไป · ⬆ ค้างเดิน · ล้อ/W A S D · 🧭 หมุนตามมือถือ) · 📱 แว่นกระดาษ (จอแบ่งซ้าย-ขวา หันหัวมอง แตะค้างเดิน เต็มจอแนวนอน) · 🥽 แว่น VR (WebXR — เปิดลิงก์ในเบราว์เซอร์ของแว่น เช่น Meta Quest: ขนาดจริง ชี้พื้นกดไกย้ายที่ โยกปุ่มหมุน 30°) · 🔗 ลิงก์เข้าโหมดเดินเลย (&walk=1) · AI RENDER: “สั่งเพิ่ม” ที่ขอเพิ่มของตกแต่งบอก AI เป็นข้อยกเว้น (เดิมชนกับ “ห้ามเพิ่ม” AI ไม่ทำ) · ปิดได้ SN_OFF.snvRoom / rndNoteEx"],
     ["1.571","2026-10-30","FEAT 📐 มองตรง (ผู้ใช้ 15:12 “มีมุมภาพหน้าตรงที่มองตรงๆ เลย ไม่เป็น Per มีไหมครับ ข้าง บน ด้วย” · เลือก: 3D มองตรงจริง + เก็บเป็นฉาก) — ปุ่ม 📐 ใต้ลูกเต๋า: หน้า · หลัง · ซ้าย · ขวา · บน = ภาพสี/วัสดุจริงแบบไม่มีเพอร์สเปกทีฟ (เส้นขนานไม่ลู่ ข้างตู้ไม่โผล่ ตู้หน้า-หลังขนาดเท่ากัน) · คลิกหน้าลูกเต๋า/ลากหมุนระหว่างมองตรง = ภาพขนาน (แบบ SketchUp Parallel Projection) · ＋ เก็บเป็นฉาก (แท็บมี 📐 · ไปฉาก = มองตรงเอง) ใช้กับ 🎬 AI RENDER/ใบเสนอราคาได้ · ⌂ หรือ ✕ = กลับมุมปกติ · FIX ประตู/หน้าต่างของผนังที่ซ่อน (กล้องอยู่นอกห้องฝั่งนั้น) ซ่อนตามผนัง เดิมลอยบังตู้ · ทำด้วยเลนส์แคบ 1° + ถอยกล้องตามสัดส่วน (กลไกเดียวกับมุมแปลน 1.538) + ระนาบตัดใกล้/ไกลตามระยะ (ไม่กระพริบ) — ทุกอย่างที่ใช้กล้องเดิม (คลิกเลือก ลาก Dim โหมดสมจริง Render) ทำงานเหมือนเดิม · ปิดได้ SN_OFF.viewOrtho / ploWallHide"],
     ["1.570","2026-10-30","FIX/FEAT (ผู้ใช้ 14:50 + project (2)) — ① FIX หน้าลิ้นชักจมเข้าตู้หลังเปลี่ยนจากบานอลูเป็นบานไม้ (“บานลิ้นชักมีอาการหุบเข้าหลัง”): บานอลูตั้งความหนา = หน้าตัด 60 โดยคงศูนย์บาน → เปลี่ยนกลับไม้ (19.4) ตัวปรับหนาคงผิวหลัง → ผิวหลังค้างในตู้ 20.3 (BND217 · BAD161 จม 23.5) · v1.488 ดึงบานทับออกมาชนหน้าตู้แล้วแต่ยกเว้นหน้าลิ้นชัก/แผงหน้า → ตอนนี้รวมหน้าลิ้นชัก (_dg) และแผงหน้า (_panel/_dummy) ที่ขอบเป็น “ทับ” จม 5–80 มม. ไม่อยู่หลังบานอื่น ไม่ใช่ลิ้นชักใน · กล่องลิ้นชักไม่ขยับ (คิดจากหน้าตู้อยู่แล้ว) ② FEAT ปุ่ม 🎬 Render → 🎬 AI RENDER: ตัวเลือกใหม่ (ตั้งต้น) “AI — ภาพฉาก → Gemini” ถ่ายภาพฉากที่ติ๊กแบบเร็ว (ไม่ path tracing ในเครื่อง) แล้วส่งให้ AI พร้อมคำสั่งคงแบบตู้ทันทีทีละภาพ ผลขึ้นในการ์ด · ไม่มีคีย์/คีย์ฟรีโดนปฏิเสธ = ภาพฉากยังอยู่ ปุ่ม 🍌 Gemini เว็บ สีเหลือง และภาพที่เหลือไม่ส่งซ้ำ · แสงจริงในเครื่อง/ภาพเร็ว ยังเลือกได้ · ปิดได้ SN_OFF.ddDrawer / rndAi"],
@@ -20530,19 +20533,35 @@ function voSet(on,quiet){ on=!!on&&!snOff("viewOrtho"); if(typeof camera==="unde
   camera.updateProjectionMatrix(); try{ invalidate(); }catch(e){} try{ scnBarRender(); }catch(e){} try{ voMark(); }catch(e){}
   if(!quiet) toast(on?"📐 มองตรง (ไม่มีเพอร์สเปกทีฟ) — ⌂ หรือ 📐 → ✕ = กลับมุมปกติ":"🔭 กลับมุมมองปกติ"); }
 function voGo(name){ const d=VO_DIRS.find(x=>x[0]===name); if(!d) return; voSet(true,true); VO.dir=name; vcGoDir(d[1]); voMark(); }
+/* ───────── v1.575: หมุนแปลนตอนมองตรง “บน” ─────────
+   ผู้ใช้ 30/10 16:43 (ภาพฉาก 📐 บน): “เพิ่มให้หมุนที่มุมทอป ได้ด้วยครับ”
+   เดิม (1.571): มองลงตรงแล้วลากหมุน = ลากซ้าย-ขวาหมุนรอบแกนตั้งได้ แต่ลากขึ้น-ลงนิดเดียวก็เอียงหลุดจากมุมบน (ภาพไม่ตรงแล้ว) · ไม่มีปุ่มหมุนทีละ 90°
+   ตอนนี้: voTopLock — มองตรง + กล้องอยู่มุมบน (phi < 0.12) → ลากหมุนเอาแต่ซ้าย-ขวา (theta) ไม่แตะ phi · กด Alt ค้าง = เอียงออกได้แบบเดิม (Shift = เลื่อนภาพอยู่แล้ว)
+     voSpin(k): ⟳ +90° (ภาพหมุนตามเข็ม) / ⟲ −90° / ↺ 0 = หน้าตู้ (+Z) อยู่ล่าง — ปัดเป็นทีละ 90° แล้ว vcGoAngles (ซูมพอดีให้ใหม่)
+     ฉากเก็บ th อยู่แล้ว → ＋ เก็บเป็นฉาก ได้มุมที่หมุนไว้ · ปิด SN_OFF.voSpin */
+function voTop(){ return voOn()&&(VO.dir==="บน"||(typeof orbit!=="undefined"&&orbit.phi<.12)); }
+function voTopLock(e){ return !snOff("voSpin")&&voOn()&&typeof orbit!=="undefined"&&orbit.phi<.12&&!(e&&e.altKey); }
+function voSpin(k){ if(!voOn()||snOff("voSpin")) return; const Q=Math.PI/2; const th=k?(Math.round(orbit.theta/Q)+k)*Q:0;
+  VO.dir="บน"; vcGoAngles(th,.0015); try{ voMark(); }catch(e){} }
 function voMark(){ const b=document.querySelector("#viewCube .vcOrtho"); if(b) b.classList.toggle("on",!!VO.on);
-  const p=$("voPop"); if(p){ p.querySelectorAll("[data-vo]").forEach(x=>x.classList.toggle("on",VO.on&&x.dataset.vo===VO.dir)); const t=p.querySelector('[data-a="tog"]'); if(t) t.textContent=VO.on?"✕ กลับมุมปกติ":"📐 มองตรงมุมนี้"; } }
+  const p=$("voPop"); if(p){ p.querySelectorAll("[data-vo]").forEach(x=>x.classList.toggle("on",VO.on&&x.dataset.vo===VO.dir)); const t=p.querySelector('[data-a="tog"]'); if(t) t.textContent=VO.on?"✕ กลับมุมปกติ":"📐 มองตรงมุมนี้";
+    const sp=p.querySelector(".voSpin"); if(sp) sp.style.display=voTop()?"":"none"; } }   /* v1.575: แถวหมุนแปลน เฉพาะมุมบน */
 function voPop(btn){ let p=$("voPop"); if(p){ p.remove(); return; } try{ const o=$("orbSensPop"); if(o) o.remove(); }catch(e){}
   p=document.createElement("div"); p.id="voPop";
   const rc=btn.getBoundingClientRect(), rw=(btn.closest("#viewCube")||btn).getBoundingClientRect();
   p.style.cssText="position:fixed;z-index:36;top:"+Math.round(rc.bottom+6)+"px;right:"+Math.max(Math.round(innerWidth-rw.right),8)+"px;width:252px;padding:10px 12px;border-radius:10px;border:.5px solid var(--line,#c9ced8);background:var(--solid,#fff);color:var(--ink,#1c2330);box-shadow:0 6px 24px rgba(0,0,0,.18);font:12px var(--font)";
   p.innerHTML='<div style="font-weight:700">📐 มองตรง <span style="font-weight:400;color:var(--ink-dim,#6b7280)">ไม่มีเพอร์สเปกทีฟ</span></div>'
     +'<div style="display:grid;grid-template-columns:repeat(5,1fr);gap:4px;margin-top:8px">'+VO_DIRS.map(d=>'<button class="ibtn" data-vo="'+d[0]+'" title="'+d[2]+'" style="padding:6px 0;justify-content:center;font-size:12px">'+d[0]+'</button>').join("")+'</div>'
+    +(snOff("voSpin")?'':'<div class="voSpin" style="margin-top:8px;padding:7px 8px;border-radius:8px;background:rgba(0,122,255,.07)"><div style="display:flex;gap:4px;align-items:center"><span style="flex:1;font-weight:600">หมุนแปลน</span>'   /* v1.575 */
+      +'<button class="ibtn" data-sp="-1" title="หมุนภาพทวนเข็ม 90°" style="flex:none;padding:4px 8px">⟲ 90°</button><button class="ibtn" data-sp="1" title="หมุนภาพตามเข็ม 90°" style="flex:none;padding:4px 8px">⟳ 90°</button>'
+      +'<button class="ibtn" data-sp="0" title="กลับมุมตั้งต้น — หน้าตู้อยู่ด้านล่าง" style="flex:none;padding:4px 8px">↺</button></div>'
+      +'<div style="color:var(--ink-dim,#6b7280);font-size:10.5px;margin-top:4px;line-height:1.45">มุมบน: ลากซ้าย-ขวา = หมุนแปลน (ไม่เอียง) · Alt+ลาก = เอียงออก</div></div>')
     +'<div style="color:var(--ink-dim,#6b7280);font-size:11px;margin-top:6px;line-height:1.5">ซ้าย/ขวา = ยืนฝั่งนั้นมอง (ขวา → เห็นตู้ผนังซ้าย) · ระหว่างมองตรง คลิกหน้าลูกเต๋า/ลากหมุนได้ ภาพยังขนาน</div>'
     +'<div style="display:flex;gap:6px;margin-top:9px"><button class="ibtn" data-a="scn" style="flex:1;justify-content:center"'+(snOff("scenes")?' disabled':'')+'>＋ เก็บเป็นฉาก</button><button class="ibtn" data-a="tog" style="flex:1;justify-content:center"></button></div>';
   document.body.appendChild(p);
   { const z=uiZoomOf(p); p.style.left=""; p.style.top=Math.round((rc.bottom+6)/z)+"px"; p.style.right=Math.max(Math.round((innerWidth-rw.right)/z),8)+"px"; }
-  p.querySelectorAll("[data-vo]").forEach(b=>b.onclick=()=>voGo(b.dataset.vo));
+  p.querySelectorAll("[data-vo]").forEach(b=>b.onclick=()=>{ voGo(b.dataset.vo); setTimeout(voMark,480); });   /* v1.575: แถวหมุนขึ้นหลังกล้องถึงมุมบน */
+  p.querySelectorAll("[data-sp]").forEach(b=>b.onclick=()=>voSpin(+b.dataset.sp));
   p.querySelector('[data-a="tog"]').onclick=()=>{ if(VO.on) voSet(false); else { voSet(true); VO.dir=""; voMark(); } };
   p.querySelector('[data-a="scn"]').onclick=()=>{ if(!VO.on){ voSet(true,true); voMark(); }
     const s=scnAdd(); if(!s) return; const names=new Set(scnList().filter(x=>x!==s).map(x=>x.name)); let nm="📐 "+(VO.dir||"มองตรง"), k=2; while(names.has(nm)) nm="📐 "+(VO.dir||"มองตรง")+" "+(k++);
@@ -20916,7 +20935,7 @@ function bindPointer(dom){
     if(moveSession){ updateMove(e); return; }                    // move follows cursor (button held or not)
     if(stretchSession && (pMode==="stretch"||stretchSession.free)){ updateStretch(e); return; }   // v1.365: โหมดคลิกค้าง ขยับเมาส์โดยไม่กดก็ยืดตาม
     if(!pMode)return; const dx=e.clientX-pLX,dy=e.clientY-pLY; pLX=e.clientX;pLY=e.clientY;
-    if(pMode==="rot"){ const _rs=orbSensK("rot"); orbit.dTheta-=dx*.005*_rs;orbit.dPhi-=dy*.005*_rs;}   /* v1.539: ตัวคูณความไวลากหมุน */
+    if(pMode==="rot"){ const _rs=orbSensK("rot"); orbit.dTheta-=dx*.005*_rs; if(!voTopLock(e)) orbit.dPhi-=dy*.005*_rs; }   /* v1.575: มองตรงมุมบน = หมุนแปลนอย่างเดียว (Alt = เอียง) */   /* v1.539: ตัวคูณความไวลากหมุน */
     else if(pMode==="pan"){if(Math.abs(dx)+Math.abs(dy)>2)pPan=true;panCam(dx,dy);}
   });
   dom.addEventListener("wheel",e=>{e.preventDefault();
@@ -29629,6 +29648,11 @@ function boardRole(b){
      SN_OFF.ploWallHide=1 ประตู/หน้าต่างแสดงตลอด แม้ผนังที่ติดถูกซ่อน (กล้องอยู่นอกห้อง) แบบเดิม (v1.571)
      SN_OFF.snvRoom=1     ลิงก์/ไฟล์ดูงานไม่ส่งห้องที่ออกแบบ (ตู้อย่างเดียวแบบเดิม · ปุ่ม 🥽 VR ยังเดินได้รอบตู้) (v1.572)
      SN_OFF.rndNoteEx=1   AI RENDER “สั่งเพิ่ม” ไม่บอกข้อยกเว้นของตกแต่ง (คำสั่งแบบเดิม) (v1.572)
+     SN_OFF.rndSplit=1    หน้า AI RENDER การ์ดแบบเดิม (ภาพฉาก + ภาพ AI ในการ์ดเดียว · หัวข้อ “ผลลัพธ์”) (v1.573)
+     SN_OFF.plqPicFirst=1 ใบเสนอราคา ภาพประกอบต่อท้ายใบ + ภาพแรกขึ้นหัวใบ แบบ 1.568 (v1.573)
+     SN_OFF.plqPdfTip=1   ไม่มีคำแนะนำ “บันทึกเป็น PDF” ข้างปุ่มพิมพ์ใบเสนอราคา (v1.573)
+     SN_OFF.voSpin=1      มองตรง “บน” ลากแล้วเอียงได้ตามเดิม · ไม่มีปุ่มหมุน 90° (v1.575)
+     SN_OFF.aiSkill=1     ผู้ช่วย AI ไม่มีปุ่ม 📎 แนบสกิล และไม่ส่งสกิลให้ AI (สกิลที่เก็บไว้ไม่หาย · ขึ้นในความจำเป็นบรรทัดสั้น) (v1.574)
      SN_OFF.plPlinthColor=1 ตีนตู้เปลี่ยนสีเฉพาะตอนจัดแนว/แก้ความสูง/เปลี่ยนวัสดุแบบเดิม (v1.569)
      SN_OFF.plMulti=1     ห้องออกแบบเลือกได้ทีละตู้ (ไม่มี Ctrl+คลิก/กรอบ/Ctrl+A) · ลากตู้แล้วซิงค์/ฮู้ดไม่ตาม (v1.562)
      SN_OFF.plMarble=1    ท็อป/บัว/ผนังหินเป็นสีเรียบ ไม่มีลายหินอ่อน (ค่าที่เลือกไว้ยังอยู่) (v1.562)
@@ -41491,7 +41515,7 @@ function plqData(){ const r=plRoom(); if(!r.quote||typeof r.quote!=="object") r.
   const q=r.quote, oid=((typeof orderId==="function"&&String(orderId()||"").match(/^\d{10}/))||[""])[0];
   const d=new Date(), p=n=>String(n).padStart(2,"0");
   const def={no:"QT-"+(oid||(String(d.getFullYear()).slice(2)+p(d.getMonth()+1)+p(d.getDate()))), date:d.getFullYear()+"-"+p(d.getMonth()+1)+"-"+p(d.getDate()), valid:30,
-    cust:"", custAddr:"", custTel:"", proj:"", markup:0, pct:{}, nm:{}, disc:0, vat:"add", round:10, note:PLQ_NOTE, img:true, picTop:true, picPage:true, att:{plan:true, elev:true, sec:true, wt:true, mat:true}};   // v1.568: picTop/picPage = ภาพประกอบ Render/AI   // v1.521: att = แบบที่แนบ
+    cust:"", custAddr:"", custTel:"", proj:"", markup:0, pct:{}, nm:{}, disc:0, vat:"add", round:10, note:PLQ_NOTE, img:true, picTop:true, picPage:true, picFirst:true, att:{plan:true, elev:true, sec:true, wt:true, mat:true}};   // v1.568: picTop/picPage = ภาพประกอบ Render/AI   // v1.521: att = แบบที่แนบ
   Object.keys(def).forEach(k=>{ if(q[k]==null) q[k]=(typeof def[k]==="object")?JSON.parse(JSON.stringify(def[k])):def[k]; });
   if(!q.pct||typeof q.pct!=="object") q.pct={}; if(!q.nm||typeof q.nm!=="object") q.nm={};
   if(q.note===PLQ_NOTE_515) q.note=PLQ_NOTE;   // v1.518: ข้อความเดาเดิมที่ไม่ได้แก้ → เงื่อนไขจริง
@@ -41609,18 +41633,27 @@ async function plqPicAdd(url,o){ o=o||{}; if(snOff("plqPics")||!url) return fals
     name:String(o.name||"ภาพ").slice(0,60), src:String(o.src||"upload").slice(0,40), at:Date.now()};
   if(i>=0) P[i]=it; else P.push(it); plqPicsChanged(); return true; }
 function plqPicDel(idOrKey){ const P=plqPics(), i=P.findIndex(x=>x.id===idOrKey||(x.key&&x.key===idOrKey)); if(i<0) return false; P.splice(i,1); plqPicsChanged(); return true; }
-function plqTopImg(Q){ if(Q.img===false) return ""; const P=snOff("plqPics")?[]:plqPics(); return (P.length&&Q.picTop!==false)?P[0].url:PLQ.img; }
+function plqTopImg(Q){ if(plqPicFirst(Q)) return "";   /* v1.573: ภาพประกอบขึ้นก่อน = ในใบไม่มีภาพ */
+  if(Q.img===false) return ""; const P=snOff("plqPics")?[]:plqPics(); return (P.length&&Q.picTop!==false)?P[0].url:PLQ.img; }
 function plqPicNote(p){ const s=String((p&&p.src)||"");
   return s==="render"?"ภาพจำลอง 3D เพื่อประกอบการนำเสนอ — สีและวัสดุจริงอาจต่างจากภาพเล็กน้อย"
     :s==="upload"?"ภาพประกอบเพื่อการนำเสนอ — ขนาด สี วัสดุ และรายละเอียดจริงยึดตามแบบและรายการในใบเสนอราคานี้"
     :"ภาพจำลองบรรยากาศ (AI) เพื่อประกอบการนำเสนอ — ขนาด สี วัสดุ และรายละเอียดจริงยึดตามแบบและรายการในใบเสนอราคานี้"; }
 function plqPicPages(Q){ return (snOff("plqPics")||Q.picPage===false)?[]:plqPics().filter(p=>p&&p.url); }
-function plqAttHtml(Q,C,A){ const PP=plqPicPages(Q), noDwg=snOff("plqDwg")||!A;   /* v1.568: + หน้าภาพประกอบ (ปิดแบบอยู่ก็ยังแนบภาพได้) */
+/* ───────── v1.573: ภาพประกอบขึ้นก่อนใบเสนอราคา ─────────
+   ผู้ใช้ 30/10 16:21 (test.pdf 11 หน้า): “ใบเสนอราคา เอาภาพที่เป็นหน้าแนวนอนที่มาจากการเจนขึ้นก่อน แล้วต่อด้วยใบเสนอราคา แล้วเอาภาพที่อยู่ในใบเสนอราคาออก”
+   เดิม (1.568): ใบเสนอราคา (ภาพแรกขึ้นหัวใบ สูง 78 มม.) → หน้าภาพประกอบ A4 แนวนอน → แบบ
+   ตอนนี้ (Q.picFirst ตั้งต้นเปิด · ต้องมีภาพและติ๊กแนบเต็มหน้า): หน้าภาพประกอบ (“ภาพ i/n”) → ใบเสนอราคาไม่มีภาพหัวใบ (ทั้งภาพ AI และภาพห้อง 3D) → แบบ (“แผ่น k/m” นับเฉพาะแบบ)
+   ปิดติ๊ก “ภาพประกอบขึ้นหน้าแรก” = แบบ 1.568 · ปิดทั้งหมด SN_OFF.plqPicFirst=1 */
+function plqPicFirst(Q){ return !snOff("plqPicFirst")&&!!Q&&Q.picFirst!==false&&plqPicPages(Q).length>0; }
+function plqAttHtml(Q,C,A,mode){ const PP=(mode==="pics"||!plqPicFirst(Q))?plqPicPages(Q):[], noDwg=snOff("plqDwg")||!A||mode==="pics";   /* v1.573: mode "pics" = เฉพาะหน้าภาพ (ขึ้นก่อนใบ) · ภาพขึ้นก่อน = ท้ายใบไม่มีหน้าภาพ */   /* v1.568: + หน้าภาพประกอบ (ปิดแบบอยู่ก็ยังแนบภาพได้) */
   if(noDwg&&!PP.length) return ""; if(noDwg) A={figs:[],mat:null}; const at=Q.att||{}, e=s=>escapeHtml(String(s==null?"":s));
   const figs=(A.figs||[]).filter(f=>at[String(f.key).split("_")[0]]!==false), matH=(!noDwg&&at.mat!==false)?dwgMatHtml(A.mat):"";
   if(!figs.length&&!matH&&!PP.length) return "";
   const lg=plqLogo(C), hd=(n,pic)=>'<div class="dwh">'+(lg?'<img src="'+e(lg)+'" alt="">':'<b>'+e(C.name||"")+'</b>')
       +'<div><b>'+(pic?'ภาพประกอบใบเสนอราคา':'แบบประกอบใบเสนอราคา')+'</b> เลขที่ '+e(Q.no||"-")+(Q.cust?(' · '+e(Q.cust)):'')+(Q.proj?(' · '+e(Q.proj)):'')+'<br><span>'+(pic?'ภาพเพื่อประกอบการนำเสนอ':'หน่วย มม. · แบบเพื่อประกอบการเสนอราคา ขนาดจริงวัดหน้างานอีกครั้งก่อนผลิต')+'</span></div>'+(n?'<em>'+e(n)+'</em>':'')+'</div>';
+  if(mode==="pics") return PP.map((p,i)=>'<section class="dwl dwi">'+hd("ภาพ "+(i+1)+"/"+PP.length,1)+'<div class="dwf dwfi"><img src="'+p.url+'" alt=""></div>'   /* v1.573 */
+    +'<div class="ft">ภาพจำลอง'+(p.name?(' — '+e(p.name)):'')+'</div><div class="fn">'+e(plqPicNote(p))+'</div></section>').join("");
   /* ───────── v1.526: หน้าแบบเป็นกระดาษแนวนอน ─────────
      ผู้ใช้ 27/10 21:00: “ที่เป็นแบบ ให้กระดาษเป็นแนวนอนครับ”
      เดิม (1.521): ต่อท้ายใบเป็น A4 ตั้ง หน้าละ 2 ภาพ · ตอนนี้ภาพละหน้า A4 แนวนอน (@page dw) ภาพเต็มหน้า · หน้ารวมวัสดุแนวตั้งตามเดิม
@@ -41650,6 +41683,7 @@ function plqHtml(Q,C,K,img,A){
   return '<!doctype html><html lang="th"><head><meta charset="utf-8"><title>'+e(("ใบเสนอราคา "+(Q.no||"")+" "+(Q.cust||"")).trim())+'</title>'
     +'<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;600;700&display=swap" rel="stylesheet">'
     +'<style>@page{size:A4;margin:0}@page dw{size:A4 landscape;margin:0}'   /* v1.526: ขอบ 0 = เบราว์เซอร์ไม่พิมพ์ลิงก์/วันที่ที่ขอบกระดาษ · เว้นขอบเองด้วย .pw/.psp (บน-ล่าง ซ้ำทุกหน้า) และ .pg กว้าง 186 กลางหน้า (ข้าง 12) */
+    +'.pwb{break-before:page;page-break-before:always}@media screen{.pwb{margin-top:8mm;border-top:1px dashed #b8c0cc}}'   /* v1.573: ใบเสนอราคาต่อจากหน้าภาพ */
     +'.pw{width:100%;border-collapse:collapse}.pw>thead>tr>td,.pw>tfoot>tr>td,.pw>tbody>tr>td{padding:0;border:0}.psp{height:12mm}'
     +'.dwl{page:dw;break-before:page;page-break-before:always;width:297mm;height:209mm;padding:9mm 12mm 8mm;display:flex;flex-direction:column;overflow:hidden}'
     +'.dwl .dwf{flex:1;min-height:0;border:1px solid #cfd6de;border-radius:6px;padding:3mm;display:flex;align-items:center;justify-content:center}.dwl .dwf svg{display:block;width:100%;height:100%}'
@@ -41677,7 +41711,7 @@ function plqHtml(Q,C,K,img,A){
     +'.sum{display:flex;gap:14px;margin-top:8px;page-break-inside:avoid}.words{flex:1;align-self:flex-end;background:#f3f5f8;border-radius:6px;padding:8px 10px;font-weight:600}'
     +'table.tt2{width:78mm;border-collapse:collapse}table.tt2 td{padding:4px 6px;border-bottom:1px solid #e5e7eb}table.tt2 tr.g td{background:#1f3b57;color:#fff;font-weight:700;font-size:13.5px;border:0}'
     +'.end{page-break-inside:avoid;break-inside:avoid}.note{margin-top:8px;font-size:11.5px;color:#374151;page-break-inside:avoid}.note b{color:#1d232b}.sig{display:flex;gap:16px;margin-top:16px;page-break-inside:avoid}.sig div{flex:1;text-align:center;font-size:11.5px;color:#4b5563}.sig i{display:block;border-bottom:1px solid #9ca3af;height:30px;margin-bottom:3px}'
-    +'</style></head><body><table class="pw"><thead><tr><td><div class="psp"></div></td></tr></thead><tfoot><tr><td><div class="psp"></div></td></tr></tfoot><tbody><tr><td><div class="pg">'   // v1.526: ขอบบน/ล่างทุกหน้า
+    +'</style></head><body>'+(plqPicFirst(Q)?plqAttHtml(Q,C,A,"pics"):'')+'<table class="pw'+(plqPicFirst(Q)?' pwb':'')+'"><thead><tr><td><div class="psp"></div></td></tr></thead><tfoot><tr><td><div class="psp"></div></td></tr></tfoot><tbody><tr><td><div class="pg">'   // v1.526: ขอบบน/ล่างทุกหน้า
     +'<div class="hd">'+(plqLogo(C)?'<img src="'+e(plqLogo(C))+'" alt="">':'')   /* v1.516: ตั้งต้น = โลโก้ Starmark */+'<div class="co"><b>'+e(C.name||"ชื่อบริษัท")+'</b>'+(C.addr?'<div>'+nl(C.addr)+'</div>':'')
       +([C.tel?("โทร. "+e(C.tel)):"",C.email?e(C.email):""].filter(Boolean).length?('<div>'+[C.tel?("โทร. "+e(C.tel)):"",C.email?e(C.email):""].filter(Boolean).join(" · ")+'</div>'):'')+(C.tax?('<div>เลขประจำตัวผู้เสียภาษี '+e(C.tax)+'</div>'):'')+'</div>'   /* v1.518: เรียงแบบหัวใบเสนอราคาของบริษัท — ที่อยู่ / โทร / เลขผู้เสียภาษี คนละบรรทัด */
       +'<div class="tt"><h1>ใบเสนอราคา</h1><div class="en">QUOTATION</div></div></div>'
@@ -41751,7 +41785,12 @@ async function plQuoteOpen(){
       +'<div class="row">'+cin("tax","เลขผู้เสียภาษี")+cin("tel","โทร")+'</div><div class="row">'+cin("email","อีเมล / เว็บ")+'<label>โลโก้<span style="display:flex;gap:4px"><button class="ibtn" data-a="logo" style="flex:1">เลือกรูป…</button><button class="ibtn" data-a="logoSM" title="ใช้โลโก้ Starmark">Starmark</button><button class="ibtn" data-a="logoX" title="เอาโลโก้ออก">✕</button></span></label></div>'
       +'<div class="row">'+cin("sales","ชื่อผู้เสนอราคา")+cin("salesTel","โทรผู้เสนอราคา")+'</div>'
     +'</div><div class="qa"><button class="ibtn" data-a="print" style="background:var(--accent);color:#fff;border-color:transparent;font-weight:700">🖨 พิมพ์ / บันทึก PDF</button>'
-      +'<span id="plqSay" style="font-size:11.5px;color:var(--ink-dim)"></span></div></div>'
+      +'<span id="plqSay" style="font-size:11.5px;color:var(--ink-dim)"></span>'
+      /* ───────── v1.573: ทำ PDF ไม่ต้องหมุนหน้า ─────────
+         ผู้ใช้ 16:21 “ภาพไหนที่เป็นแนวนอนอยากให้ปริ้นออกมาแล้วเลื่อนแล้วไม่ต้องกดหมุน” · test.pdf = Microsoft: Print To PDF กระดาษ Letter แนวตั้งทุกหน้า
+         (เครื่องพิมพ์ Windows ใช้กระดาษแนวเดียวทั้งงาน → หน้า A4 แนวนอนถูกหมุน/ย่อลงกระดาษแนวตั้ง + มีวันที่/ลิงก์ที่ขอบ)
+         ปลายทาง “บันทึกเป็น PDF” ของ Chrome/Edge ใช้ขนาดหน้าตาม @page ทีละหน้า (ทดสอบแล้ว: ใบ 595×842 · ภาพ/แบบ 842×595) → บอกไว้ข้างปุ่ม · ปิด SN_OFF.plqPdfTip */
+      +(snOff("plqPdfTip")?'':'<div id="plqPdfTip" style="flex-basis:100%;font-size:11px;color:var(--ink-dim);line-height:1.5">📄 ทำไฟล์ PDF: ในหน้าพิมพ์ ช่อง <b>ปลายทาง</b> เลือก <b>บันทึกเป็น PDF</b> (Save as PDF) — หน้าภาพ/แบบเป็นแนวนอนในไฟล์เลย ไม่ต้องหมุน · ถ้าเลือก Microsoft Print to PDF หน้าแนวนอนจะถูกหมุนลงกระดาษแนวตั้ง</div>')+'</div></div>'
     +'<div class="qv" id="plqView"><iframe id="plqFrame" title="ตัวอย่างใบเสนอราคา" style="width:794px;height:1123px"></iframe></div></div>';
   document.body.appendChild(ov);
   const say=t=>{ const s=ov.querySelector("#plqSay"); if(s) s.textContent=t||""; };
@@ -41789,8 +41828,10 @@ async function plQuoteOpen(){
       +'<div style="display:flex;gap:6px;flex-wrap:wrap;align-items:center;margin:4px 0"><button class="ibtn" data-a="picAdd" '+sb+'>📂 เพิ่มภาพ…</button>'
       +((typeof RND!=="undefined"&&!snOff("plRender"))?'<button class="ibtn" data-a="picRnd" '+sb+'>🎬 เปิด AI RENDER</button>':'')
       +'<span style="font-size:11px;color:var(--ink-dim)">'+P.length+'/'+PLQ_PIC_MAX+' ภาพ</span></div>'
-      +(P.length?('<label style="flex-direction:row;align-items:center;gap:6px;color:var(--ink);font-size:12.5px"><input type="checkbox" data-q="picTop"'+(Q.picTop!==false?" checked":"")+'> ภาพแรก (⭐) ขึ้นหัวใบแทนภาพห้อง 3D</label>'
-        +'<label style="flex-direction:row;align-items:center;gap:6px;color:var(--ink);font-size:12.5px"><input type="checkbox" data-q="picPage"'+(Q.picPage!==false?" checked":"")+'> แนบภาพเต็มหน้า (A4 แนวนอน) ต่อท้ายใบ</label>'):''); };
+      +(P.length?((snOff("plqPicFirst")?'':'<label style="flex-direction:row;align-items:center;gap:6px;color:var(--ink);font-size:12.5px"><input type="checkbox" data-q="picFirst"'+(Q.picFirst!==false?" checked":"")+'> ภาพประกอบขึ้นหน้าแรก ก่อนใบเสนอราคา (ในใบไม่ใส่ภาพ)</label>')   /* v1.573 */
+        +'<label style="flex-direction:row;align-items:center;gap:6px;color:var(--ink);font-size:12.5px"><input type="checkbox" data-q="picPage"'+(Q.picPage!==false?" checked":"")+'> แนบภาพเต็มหน้า (A4 แนวนอน)'+(plqPicFirst(Q)?'':' ต่อท้ายใบ')+'</label>'
+        +(plqPicFirst(Q)?'<div style="font-size:11px;color:var(--ink-dim);line-height:1.5">ลำดับในไฟล์: ภาพประกอบ (แนวนอน) → ใบเสนอราคา (ไม่มีภาพหัวใบ) → แบบแนบท้าย</div>'
+          :'<label style="flex-direction:row;align-items:center;gap:6px;color:var(--ink);font-size:12.5px"><input type="checkbox" data-q="picTop"'+(Q.picTop!==false?" checked":"")+'> ภาพแรก (⭐) ขึ้นหัวใบแทนภาพห้อง 3D</label>')):''); };
   PLQ.picsChanged=()=>{ if(PLQ.el!==ov) return; picsPaint(); PLQ.dirty=true; preview(); };
   ov.addEventListener("input",ev=>{ const t=ev.target;
     if(t.dataset.q!=null&&t.type!=="checkbox"&&t.tagName!=="SELECT"){ Q[t.dataset.q]=(t.type==="number")?(t.value===""?"":+t.value):t.value; PLQ.dirty=true; if(["markup","disc"].includes(t.dataset.q)){ K=plqCalc(Q,L); repaintLight(); } else preview(); return; }
@@ -41803,7 +41844,7 @@ async function plQuoteOpen(){
     if(k){ const n=ov.querySelector(a.dataset.pk!=null?('[data-pk="'+CSS.escape(k)+'"]'):('[data-q="'+k+'"]')); if(n){ n.focus(); try{ if(pos!=null) n.setSelectionRange(pos,pos); }catch(_){} } } };
   ov.addEventListener("change",ev=>{ const t=ev.target;
     if(t.dataset.q!=null&&(t.type==="checkbox"||t.tagName==="SELECT")){ Q[t.dataset.q]=(t.type==="checkbox")?t.checked:(t.dataset.q==="round"?+t.value:t.value); PLQ.dirty=true;
-      if(t.dataset.q==="img"&&t.checked&&!PLQ.img) shoot(); paint(); } });
+      if(t.dataset.q==="img"&&t.checked&&!PLQ.img) shoot(); if(t.dataset.q==="picFirst"||t.dataset.q==="picPage") picsPaint(); paint(); } });   /* v1.573: ตัวเลือกภาพเปลี่ยนตามลำดับหน้า */
   ov.addEventListener("click",async ev=>{ const b=ev.target.closest("[data-a]"); if(!b) return; const a=b.dataset.a;
     if(a==="x"){ plqClose(); return; }
     if(a==="shot"){ shoot(); return; }
@@ -41826,7 +41867,7 @@ async function plQuoteOpen(){
     if(a==="print"){ const html=plqHtml(Q,PLQ.co,plqCalc(Q,L),plqTopImg(Q),PLQ.att), fr=document.createElement("iframe");
       fr.style.cssText="position:fixed;right:0;bottom:0;width:0;height:0;border:0;visibility:hidden"; document.body.appendChild(fr);
       fr.onload=()=>{ setTimeout(()=>{ try{ fr.contentWindow.focus(); fr.contentWindow.print(); }catch(err){ console.error(err); toast("พิมพ์ไม่ได้ — ลองใหม่"); } setTimeout(()=>fr.remove(),60000); },500); };
-      fr.srcdoc=html; PLQ.dirty=true; say("เลือกเครื่องพิมพ์ หรือ “บันทึกเป็น PDF”"); return; } });
+      fr.srcdoc=html; PLQ.dirty=true; say(snOff("plqPdfTip")?"เลือกเครื่องพิมพ์ หรือ “บันทึกเป็น PDF”":"ปลายทาง: “บันทึกเป็น PDF” = หน้าแนวนอนไม่ต้องหมุน · หรือเลือกเครื่องพิมพ์"); return; } });
   ov.addEventListener("mousedown",ev=>{ if(ev.target===ov) plqClose(); });
   ov.addEventListener("keydown",ev=>{ if(ev.key==="Escape"){ ev.preventDefault(); plqClose(); } ev.stopPropagation(); });   // ปุ่มลัดของโปรแกรม (Del/Ctrl+Z) ไม่ทะลุไปถึงตู้ในห้อง
   addEventListener("resize",fit);
@@ -67436,6 +67477,7 @@ const SNAI=(function(){
   :"ลำดับการเลือก: มี tool ทำได้ → ใช้ tool · มีปุ่ม/เมนูแต่ไม่มี tool → reply บอกทาง + ใส่ goto ชี้ให้ (ห้ามเดาเมนูที่ไม่มีในแผนที่) · ไม่มีจริง ๆ → reply บอกว่ายังไม่มี"+(snOff("aiReq")?"":" + ใส่ request")+" · ห้ามตอบแค่ว่าทำไม่ได้"),   /* v1.561: + goto / request */
 "","--- คู่มือของทีม (หัวข้อที่เกี่ยว · ทำตามคู่มือนี้ก่อนความรู้ทั่วไป) ---",guideCtx(q),
 "","--- ความจำของทีม (บทเรียนที่ผู้ใช้ยืนยันแล้ว · เชื่อสิ่งนี้ก่อนความรู้ทั่วไป ห้ามตอบขัดกับบทเรียน) ---",memCtx(q),
+...(snOff("aiSkill")?[]:["","--- สกิลของทีม (📎 คู่มือเฉพาะงานที่ทีมแนบไว้ · คำถามตรงสกิล = ตอบ/ทำตามขั้นตอนในสกิล ด้วย action ของโปรแกรมเท่านั้น (tool / goto ชี้ปุ่ม) · ขั้นตอนที่อยู่นอกโปรแกรม (เว็บ/แอปอื่น) ให้บอกผู้ใช้ทำเองทีละขั้น ห้ามบอกว่าทำให้แล้ว · สกิลเขียนถึงเครื่องมือที่ผู้ช่วยนี้ไม่มี (เช่น browser tools) = แปลงเป็นขั้นตอนให้ผู้ใช้กดเอง) ---",sklCtx(q)]),   /* v1.574 */
 "","--- ตู้ในฉาก ---",cabCtx(),
 "","--- รายการคำสั่ง (ชื่อ [ชิ้นเป้าหมาย] หน้าที่ · ทางเมนู) ---",toolsCtx(q),
 "","--- แคตตาล็อกห้องออกแบบ (ใช้กับ room_add) ---",catalogCtx(q),
@@ -67747,7 +67789,8 @@ const SNAI=(function(){
           +" | "+[b.x-d[0]/2-o[0],b.y-d[1]/2-o[1],b.z-d[2]/2-o[2]].map(v=>Math.round(v)).join(","); }).join("\n")
       +(c.boards.length>70?"\n…อีก "+(c.boards.length-70)+" แผ่น":""); }
   function modelPrompt(q,code,inst){ const L=cabList(), i=L.findIndex(x=>x.inst===String(inst))+1;
-    return sysPrompt(q)+"\n\n"+[
+    SKL_NOASK=true; let _sp=""; try{ _sp=sysPrompt(q); } finally{ SKL_NOASK=false; }   /* v1.574: AI Model รับแต่ action tool — ไม่บอกให้ขอสกิล */
+    return _sp+"\n\n"+[
 "=== โหมด AI Model (สร้างตู้ใหม่จากต้นแบบ) ===",
 "ตู้ต้นแบบ “"+code+"” ถูกโหลดเข้าฉากแล้วเป็นตู้ #"+i+" — แก้ตู้ใบนี้เท่านั้น ใส่ \"cab\":\"#"+i+"\" ทุก action",
 "วางแผนให้ครบในครั้งเดียว ใช้ได้เฉพาะ type \"tool\" (ห้าม create_cabinet / set_setting / add_color / ห้องออกแบบ)",
@@ -67894,7 +67937,7 @@ const SNAI=(function(){
   async function memDel(row){ if(!row) return; if(row.by!==meName()&&!canAdmin()) throw new Error("ลบได้เฉพาะบทเรียนของตัวเอง (หรือ admin)");
     await _cloudKill(row.id,{data:Object.assign({},row,{deleted:true,_ts:new Date().toISOString()})});
     MEM.rows=(MEM.rows||[]).filter(x=>x.id!==row.id); }
-  function memCtx(q){ const R=MEM.rows||[]; if(!R.length) return "(ยังไม่มี)";
+  function memCtx(q){ const R=(MEM.rows||[]).filter(x=>x.kind!=="skill"||snOff("aiSkill")); if(!R.length) return "(ยังไม่มี)";   /* v1.574: สกิลไปหัวข้อ “สกิลของทีม” */
     const s=String(q||"").toLowerCase();
     const sc=R.map((x,i)=>{ const t=(String(x.text)+" "+String(x.q||"")).toLowerCase(); let n=0;
       TOPIC.forEach(w=>{ if(s.indexOf(w)>=0&&t.indexOf(w)>=0) n+=2; });
@@ -67907,15 +67950,100 @@ const SNAI=(function(){
       const line="- "+String(x.text).replace(/\s+/g," ")+(x.q?" (จากคำถาม: "+String(x.q).replace(/\s+/g," ").slice(0,80)+")":"")+" — "+(x.by||"?");
       if(used+line.length>2500) return; out+=(out?"\n":"")+line; used+=line.length; });
     return out+(R.length>pick.size?"\n(มีทั้งหมด "+R.length+" ข้อ — แนบเฉพาะที่เกี่ยว)":""); }
+  /* ═════════ v1.574: 📎 สกิลของทีม ═════════
+     ผู้ใช้ 30/10 16:27 (ภาพหน้า ✏ สอนผู้ช่วย): “ตรงสอนผู้ช่วยให้เราแนบสกิลเหมือนที่แนบให้ได้ไหมครับ แต่เป็นการกดในโปรแกรม ไม่ข้ามโปรแกรม”
+       (ก่อนหน้า 15:53 ผู้ใช้ส่ง Starnexus_gemini_web_render-v1.zip = สกิลของ Claude: .claude-plugin/plugin.json + skills/<ชื่อ>/SKILL.md)
+     เดิม: สอนได้แค่บทเรียนสั้น ≤ 600 ตัวอักษร (✏ สอน / จำไว้: / 🧠) และคู่มือ 📘 เล่มเดียวในค่าตั้ง — คู่มือยาวหลายขั้นตอนแบบสกิลต้องพิมพ์ใหม่เอง
+     ตอนนี้: 📎 แนบสกิล (หน้า ✏ สอนผู้ช่วย + หน้า 🧠) เลือก .md / .zip / .skill
+       · zip แตกในโปรแกรม (sklUnzip: central directory · stored / deflate ผ่าน DecompressionStream "deflate-raw") อ่านเฉพาะไฟล์ .md
+       · SKILL.md แต่ละตัว = 1 สกิล · หัวไฟล์ --- name / description --- (ไม่มี = ชื่อโฟลเดอร์/ไฟล์ · คำอธิบาย = บรรทัดแรก ๆ)
+       · .md อื่นในโฟลเดอร์เดียวกันต่อท้ายเป็น “ไฟล์ประกอบ” (≤ 8) · สคริปต์/ไฟล์อื่นไม่อ่าน ไม่รัน · ยาวสุด SKL_MAX ตัวอักษร
+     เก็บ: แถว AIMEM:: เดียวกับความจำ (ไม่ต้องเพิ่มตัวกรองใน Library) data {kind:"skill", name, desc, body, file, text(บรรทัดสั้นให้หน้า 🧠), by, ts}
+       ชื่อซ้ำกับสกิลของตัวเอง (หรือ admin) = เขียนทับแถวเดิม
+     ใช้: sysPrompt หัวข้อ “สกิลของทีม” = รายชื่อ + คำอธิบายทุกตัว และเนื้อหาเต็มของสกิลที่ตรงคำถาม (sklHit: ชื่ออยู่ในคำถาม +10 ·
+       ตัวอักษรคู่ของคำถามที่พบในชื่อ/คำอธิบาย ×3 · ในเนื้อหา ×2 · ≥ 1 ถึงแนบ) ≤ 2 ตัว ≤ SKL_CTX ตัวอักษร · สกิลเล็กทั้งหมดรวม ≤ 2,500 = แนบหมด
+     ปิด SN_OFF.aiSkill */
+  const SKL_MAX=40000, SKL_CTX=7000; let SKL_FORCE=[], SKL_NOASK=false;   /* SKL_FORCE = ชื่อสกิลที่ AI ขอเนื้อหา (action skill) รอบถามซ้ำ · SKL_NOASK = โหมด AI Model (รับแต่ tool) ไม่ให้ขอสกิล */
+  function sklFront(md){ md=String(md||"").replace(/^\uFEFF/,""); const meta={}; let body=md;
+    const m=/^---[ \t]*\r?\n([\s\S]*?)\r?\n---[ \t]*(?:\r?\n|$)/.exec(md);
+    if(m){ body=md.slice(m[0].length); m[1].split(/\r?\n/).forEach(l=>{ const k=/^([A-Za-z_-]+)\s*:\s*(.*)$/.exec(l); if(k) meta[k[1].toLowerCase()]=k[2].trim().replace(/^["']|["']$/g,""); }); }
+    return {meta, body:body.trim()}; }
+  async function sklUnzip(buf){ const u8=new Uint8Array(buf), dv=new DataView(buf), td=new TextDecoder("utf-8"), out=[]; let e=-1;
+    for(let i=u8.length-22;i>=Math.max(0,u8.length-65557);i--){ if(dv.getUint32(i,true)===0x06054b50){ e=i; break; } }
+    if(e<0) throw new Error("ไม่ใช่ไฟล์ zip หรือไฟล์เสีย");
+    const n=dv.getUint16(e+10,true); let p=dv.getUint32(e+16,true);
+    for(let k=0;k<n&&p+46<=u8.length;k++){ if(dv.getUint32(p,true)!==0x02014b50) break;
+      const meth=dv.getUint16(p+10,true), csz=dv.getUint32(p+20,true), usz=dv.getUint32(p+24,true), nl=dv.getUint16(p+28,true), xl=dv.getUint16(p+30,true), cl=dv.getUint16(p+32,true), lo=dv.getUint32(p+42,true);
+      const name=td.decode(u8.subarray(p+46,p+46+nl)); p+=46+nl+xl+cl;
+      if(!/\.(md|markdown)$/i.test(name)||/(^|\/)__MACOSX\//.test(name)||usz>2e6||lo+30>u8.length) continue;
+      const d0=lo+30+dv.getUint16(lo+26,true)+dv.getUint16(lo+28,true), raw=u8.subarray(d0,d0+csz); let data=null;
+      if(meth===0) data=raw;
+      else if(meth===8){ if(typeof DecompressionStream==="undefined") throw new Error("เบราว์เซอร์นี้แตก zip ไม่ได้ — แตกไฟล์เองแล้วเลือก SKILL.md แทน");
+        data=new Uint8Array(await new Response(new Blob([raw]).stream().pipeThrough(new DecompressionStream("deflate-raw"))).arrayBuffer()); }
+      if(data) out.push({path:name, text:td.decode(data)}); }
+    return out; }
+  async function sklParse(f){ const nm=String(f.name||"สกิล"), out=[];
+    const mk=(text,path,extra)=>{ const P=sklFront(text), parts=String(path||nm).split("/"), base=parts[parts.length-1].replace(/\.(md|markdown|txt)$/i,"");
+      const name=(String(P.meta.name||"").trim()||(/^skill$/i.test(base)&&parts.length>1?parts[parts.length-2]:base)||nm.replace(/\.[^.]+$/,"")).slice(0,80);
+      let body=P.body+(extra||""); if(body.length>SKL_MAX) body=body.slice(0,SKL_MAX)+"\n…(ตัดเหลือ "+SKL_MAX.toLocaleString()+" ตัวอักษร)";
+      const desc=(String(P.meta.description||"").trim()||P.body.replace(/^#.*$/gm,"").replace(/\s+/g," ").trim().slice(0,160)).slice(0,400);
+      return {name, desc, body, file:nm}; };
+    if(/\.(zip|skill)$/i.test(nm)||/zip/i.test(f.type||"")){ const E=await sklUnzip(await f.arrayBuffer()), S=E.filter(x=>/(^|\/)skill\.md$/i.test(x.path));
+      if(S.length) S.slice(0,10).forEach(sk=>{ const dir=sk.path.replace(/[^\/]*$/,"");
+          const ex=E.filter(x=>x!==sk&&x.path.indexOf(dir)===0&&!/(^|\/)skill\.md$/i.test(x.path)).slice(0,8).map(x=>"\n\n## (ไฟล์ประกอบ) "+x.path.slice(dir.length)+"\n"+x.text.trim()).join("");
+          out.push(mk(sk.text,sk.path,ex)); });
+      else if(E.length===1) out.push(mk(E[0].text,E[0].path));
+      else throw new Error(E.length?("ใน zip ไม่มี SKILL.md (มี .md "+E.length+" ไฟล์ — แตกแล้วเลือกไฟล์ที่ต้องการ)"):"ใน zip ไม่มีไฟล์ .md"); }
+    else out.push(mk(await f.text(),nm));
+    return out.filter(x=>x.body.trim()); }
+  function sklPick(){ return new Promise(ok=>{ const fi=document.createElement("input"); fi.type="file"; fi.multiple=true; fi.accept=".md,.markdown,.txt,.zip,.skill,text/markdown,text/plain,application/zip";
+    fi.onchange=async()=>{ const L=[]; for(const f of Array.from(fi.files||[])){ try{ (await sklParse(f)).forEach(x=>L.push(x)); }catch(e){ toast("📎 "+f.name+": "+(e.message||e)); } } ok(L); };
+    fi.addEventListener("cancel",()=>ok([])); fi.click(); }); }
+  async function sklSave(k){ if(typeof VIEW_ONLY!=="undefined"&&VIEW_ONLY) throw new Error("ลิงก์ดูอย่างเดียว — บันทึกสกิลไม่ได้");
+    try{ await memLoad(); }catch(e){}
+    const me=meName(), nm=String(k.name||"").toLowerCase(), old=(MEM.rows||[]).find(x=>x.kind==="skill"&&String(x.name||"").toLowerCase()===nm&&(x.by===me||canAdmin()));
+    const id=old?old.id:(MEM_PFX+Date.now().toString(36)+"-"+Math.random().toString(36).slice(2,6));
+    const data={kind:"skill", name:String(k.name).slice(0,80), desc:String(k.desc||"").slice(0,400), body:String(k.body||"").slice(0,SKL_MAX+80), file:String(k.file||"").slice(0,120),
+      text:("📎 สกิล “"+k.name+"”"+(k.desc?" — "+k.desc:"")).slice(0,600), q:"", by:me, ts:new Date().toISOString()};
+    const db=await getDB(); const r=await db.from("furnitech_cabinets").upsert({id,name:id,part_count:0,data,updated_at:data.ts},{onConflict:"id"}); if(r.error) throw r.error;
+    MEM.rows=(MEM.rows||[]).filter(x=>x.id!==id); MEM.rows.unshift(Object.assign({id},data)); return {id, upd:!!old}; }
+  function sklList(){ return (MEM.rows||[]).filter(x=>x&&x.kind==="skill"&&String(x.body||"").trim()); }
+  function sklCont(A,txt){ if(!A.size) return 0; const B=bigr(txt); let k=0; A.forEach(b=>{ if(B.has(b)) k++; }); return k/A.size; }
+  function sklHit(q,x){ const s=String(q||"").toLowerCase(), nm=String(x.name||"").toLowerCase(); let n=0;
+    if(nm&&(s.indexOf(nm)>=0||s.indexOf(nm.replace(/[-_]+/g," "))>=0)) n+=10;
+    if(nm&&SKL_FORCE.some(f=>String(f||"").toLowerCase().trim()===nm)) n+=100;
+    const A=bigr(s); return n+sklCont(A,nm+" "+(x.desc||""))*3+sklCont(A,String(x.body||"").slice(0,4000))*2; }
+  function sklCtx(q){ const S=sklList(); if(!S.length) return "(ยังไม่มี)";
+    const tiny=S.reduce((a,x)=>a+String(x.body).length,0)<=2500, R=S.map(x=>[x,sklHit(q,x)]).sort((a,b)=>b[1]-a[1]);
+    let out="มีสกิล "+S.length+" ตัว: "+S.map(x=>"["+x.name+"] "+String(x.desc||"").replace(/\s+/g," ").slice(0,160)).join(" | "), used=0, n=0;
+    R.forEach(([x,sc])=>{ if(n>=(tiny?S.length:2)||(!tiny&&sc<1)) return; const b=String(x.body), room=SKL_CTX-used; if(room<600) return;
+      const t=b.length>room?b.slice(0,room)+"\n…(ตัด — เนื้อหายาวกว่านี้)":b; out+="\n\n### สกิล ["+x.name+"] — เนื้อหา\n"+t; used+=t.length; n++; });
+    if(n<S.length&&!SKL_NOASK) out+="\n"+(SKL_FORCE.length?"(ส่งเนื้อหาสกิลที่ขอแล้ว — ตอบเลย ห้ามขอ skill ซ้ำ)"
+      :"(สกิลที่ยังไม่แนบเนื้อหา: ถ้าคำถามต้องใช้สกิลไหน ให้ตอบ JSON นี้อย่างเดียว {\"reply\":\"\",\"actions\":[{\"type\":\"skill\",\"name\":\"<ชื่อสกิลตามรายการ>\"}]} — โปรแกรมจะส่งเนื้อหาสกิลนั้นแล้วถามซ้ำให้เอง · ไม่เกี่ยว = ตอบตามปกติ)");
+    return out; }
+  function sklMd(x){ return "---\nname: "+JSON.stringify(String(x.name||""))+"\ndescription: "+JSON.stringify(String(x.desc||""))+"\n---\n\n"+String(x.body||"")+"\n"; }
+  const SKL_NOTE='<div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap"><button type="button" class="ibtn" id="snaiSkAtt" style="flex:none;padding:5px 12px">📎 แนบสกิล (.md / .zip)</button>'
+    +'<span id="snaiSkSay" style="flex:1;min-width:200px">ไฟล์ SKILL.md หรือ .zip แบบที่ใช้กับ Claude — เก็บเป็นความจำของทีม ผู้ช่วยหยิบขั้นตอนในสกิลมาใช้เมื่อคำถามตรงเรื่อง (ไม่ต้องเขียนบทเรียนด้านบนก็ได้)</span></div>';
   async function teach(q,reply){   // ✏ สอน ใต้คำตอบ
     show(false);
-    const v=await promptFields("🧠 สอนผู้ช่วย — บันทึกเป็นความจำของทีม (ทุกคนที่ใช้ผู้ช่วยจะได้บทเรียนนี้)",[
+    /* v1.574: 📎 แนบสกิล ในหน้าเดียวกัน — ปุ่มอยู่ในช่องข้อความของ promptFields จึงจับคลิกแบบ capture ระหว่างหน้านี้เปิด */
+    const skOn=!snOff("aiSkill"); let SKL=[];
+    const onSk=async ev=>{ const b=ev.target&&ev.target.closest&&ev.target.closest("#snaiSkAtt"); if(!b) return; ev.preventDefault(); ev.stopPropagation();
+      const L=await sklPick(); if(!L||!L.length) return; SKL=L; const sy=document.getElementById("snaiSkSay");
+      if(sy) sy.innerHTML="✓ แนบ "+L.map(x=>"<b>"+escapeHtml(x.name)+"</b> ("+x.body.length.toLocaleString()+" ตัวอักษร)").join(" · ")+" — กด <b>ตกลง</b> เพื่อบันทึก"; };
+    if(skOn) document.addEventListener("click",onSk,true);
+    let v=null; try{ v=await promptFields("🧠 สอนผู้ช่วย — บันทึกเป็นความจำของทีม (ทุกคนที่ใช้ผู้ช่วยจะได้บทเรียนนี้)",[
       {type:"note",label:"คำถาม: "+escapeHtml(String(q||"—").slice(0,160))+"<br>AI ตอบ: "+escapeHtml(String(reply||"—").slice(0,200))},
-      {key:"text",type:"area",rows:4,label:"ที่ถูกต้องคือ (เขียนเป็นบทเรียนสั้น ๆ เช่น “เพิ่มบานได้ — ใช้ ctx:adddoor แล้วค่อยใส่มือจับ”)",value:""}]);
+      {key:"text",type:"area",rows:4,label:"ที่ถูกต้องคือ (เขียนเป็นบทเรียนสั้น ๆ เช่น “เพิ่มบานได้ — ใช้ ctx:adddoor แล้วค่อยใส่มือจับ”)",value:""}]
+      .concat(skOn?[{type:"note",label:SKL_NOTE}]:[])); }
+    finally{ if(skOn) document.removeEventListener("click",onSk,true); }
     show(true);
-    if(!v||!String(v.text||"").trim()) return;
-    try{ await memAdd(v.text,q); addMsg("a","🧠 จำแล้ว — บทเรียนนี้จะถูกใช้กับทุกคนในทีม\n“"+String(v.text).trim()+"”"); }
-    catch(e){ addMsg("e","บันทึกความจำไม่สำเร็จ: "+(e.message||e)+"\n(ต้องเชื่อมคลาวด์/Odoo อยู่)"); } }
+    const txt=v?String(v.text||"").trim():"";
+    if(!v||(!txt&&!SKL.length)) return;
+    if(txt){ try{ await memAdd(v.text,q); addMsg("a","🧠 จำแล้ว — บทเรียนนี้จะถูกใช้กับทุกคนในทีม\n“"+txt+"”"); }
+      catch(e){ addMsg("e","บันทึกความจำไม่สำเร็จ: "+(e.message||e)+"\n(ต้องเชื่อมคลาวด์/Odoo อยู่)"); } }
+    for(const k of SKL){ try{ const r=await sklSave(k); addMsg("a","📎 "+(r.upd?"อัปเดต":"เพิ่ม")+"สกิล “"+k.name+"” แล้ว — ทุกคนในทีมใช้ได้ · ผู้ช่วยหยิบมาใช้เมื่อคำถามตรงเรื่อง (พิมพ์ชื่อสกิลในคำถาม = ได้แน่)"); }
+      catch(e){ addMsg("e","บันทึกสกิล “"+k.name+"” ไม่สำเร็จ: "+(e.message||e)+"\n(ต้องเชื่อมคลาวด์/Odoo อยู่)"); } } }
   function memManager(){ const _C=ovCard(760,88), ov=_C.ov; ov.setAttribute("data-snai","1");
     ov.innerHTML='<div style="'+_C.cardCSS+'"><div style="display:flex;align-items:center;gap:10px;padding:12px 16px;border-bottom:.5px solid var(--line)">'
       +'<b style="font-size:15px">🧠 ความจำของทีม</b><span class="muted" style="font-size:11.5px">เก็บบนคลาวด์ (Odoo · ตาราง furnitech_cabinets · แถว AIMEM::) ทุกคนใช้ร่วมกัน</span>'
@@ -67925,18 +68053,30 @@ const SNAI=(function(){
       +'<div id="mmL" style="padding:6px 16px;overflow:auto;flex:1;min-height:0;font-size:12.5px"></div>'
       +'<div style="padding:10px 16px;border-top:.5px solid var(--line);display:flex;gap:8px;align-items:flex-start">'
       +'<textarea id="mmT" rows="2" placeholder="เพิ่มบทเรียนใหม่ เช่น “ตู้ลอยในโรงงานเรา = ตู้แขวน ไม่มีขา ใช้หูแขวน HANGER_STD”" style="flex:1;resize:vertical;font-family:var(--font);font-size:13px;padding:7px 9px;border-radius:9px;border:.5px solid var(--line-strong);background:var(--solid);color:var(--ink)"></textarea>'
-      +'<button class="ibtn" id="mmAdd" style="background:var(--accent);color:#fff;border-color:transparent;padding:8px 14px">＋ จำไว้</button></div></div>';
+      +'<button class="ibtn" id="mmAdd" style="background:var(--accent);color:#fff;border-color:transparent;padding:8px 14px'+(snOff("aiSkill")?'':';flex:none')+'">＋ จำไว้</button>'
+      +(snOff("aiSkill")?'':'<button class="ibtn" id="mmSk" title="เลือก SKILL.md / .md หรือ .zip / .skill แบบที่ใช้กับ Claude — เก็บเป็นสกิลของทีม" style="padding:8px 12px;flex:none">📎 แนบสกิล</button>')+'</div></div>';   /* v1.574 */
     document.body.appendChild(ov); const q=x=>ov.querySelector(x);
     [q("#mmQ"),q("#mmT")].forEach(e=>{ e.onkeydown=ev=>ev.stopPropagation(); e.onkeyup=ev=>ev.stopPropagation(); });
     const draw=()=>{ const f=String(q("#mmQ").value||"").toLowerCase().trim(), R=(MEM.rows||[]).filter(x=>!f||(String(x.text)+" "+(x.q||"")+" "+(x.by||"")).toLowerCase().indexOf(f)>=0);
       q("#mmL").innerHTML=R.length?R.map(x=>'<div style="display:flex;gap:8px;align-items:flex-start;padding:7px 0;border-bottom:.5px solid var(--line)">'
-        +'<div style="flex:1;white-space:pre-wrap;line-height:1.55">'+H(x.text)+(x.q?'<div class="muted" style="font-size:11px">จากคำถาม: '+H(x.q)+'</div>':'')
+        +'<div style="flex:1;white-space:pre-wrap;line-height:1.55">'+H(x.text)
+        +((x.kind==="skill"&&!snOff("aiSkill"))?('<details style="margin-top:3px;white-space:normal"><summary class="muted" style="cursor:pointer;font-size:11px">ดูเนื้อหาสกิล ('+String(x.body||"").length.toLocaleString()+' ตัวอักษร'+(x.file?' · '+H(x.file):'')+')</summary>'
+          +'<div style="white-space:pre-wrap;max-height:240px;overflow:auto;font-family:var(--mono);font-size:11px;line-height:1.5;background:rgba(0,0,0,.05);border-radius:7px;padding:6px 8px;margin-top:4px">'+H(x.body)+'</div>'
+          +'<button class="ibtn mmSkD" data-id="'+H(x.id)+'" style="margin-top:4px;padding:2px 9px;font-size:11px">⬇ บันทึกเป็น .md</button></details>'):'')   /* v1.574 */
+        +(x.q?'<div class="muted" style="font-size:11px">จากคำถาม: '+H(x.q)+'</div>':'')
         +'<div class="muted" style="font-size:10.5px">'+H(x.by||"?")+' · '+H(String(x.ts||"").slice(0,16).replace("T"," "))+'</div></div>'
         +((x.by===meName()||canAdmin())?'<button class="ibtn mmD" data-id="'+H(x.id)+'" style="flex:none;padding:3px 9px;font-size:11px">ลบ</button>':'')+'</div>').join("")
         :'<div class="muted" style="padding:16px 0">'+(MEM.rows?"ยังไม่มีความจำ"+(f?"ที่ตรงกับคำค้น":""):"กำลังโหลด…")+'</div>';
       q("#mmL").querySelectorAll(".mmD").forEach(b=>b.onclick=async()=>{ const row=(MEM.rows||[]).find(x=>x.id===b.dataset.id);
         b.disabled=true; try{ await memDel(row); draw(); toast("ลบความจำแล้ว"); }catch(e){ b.disabled=false; toast(e.message||String(e)); } }); };
     q("#mmX").onclick=()=>ov.remove(); q("#mmQ").oninput=draw;
+    /* v1.574: 📎 แนบสกิล · ⬇ บันทึกสกิลเป็น .md */
+    if(q("#mmSk")) q("#mmSk").onclick=async()=>{ const L=await sklPick(); if(!L||!L.length) return; q("#mmSk").disabled=true; let n=0;
+      try{ for(const k of L){ try{ await sklSave(k); n++; }catch(e){ toast("บันทึกสกิล “"+k.name+"” ไม่สำเร็จ: "+(e.message||e)); } } }
+      finally{ q("#mmSk").disabled=false; } draw(); if(n) toast("📎 เก็บสกิล "+n+" ตัวแล้ว: "+L.slice(0,3).map(x=>x.name).join(", ")); };
+    q("#mmL").addEventListener("click",ev=>{ const b=ev.target.closest&&ev.target.closest(".mmSkD"); if(!b) return; const x=(MEM.rows||[]).find(r=>r.id===b.dataset.id); if(!x) return;
+      try{ const a=document.createElement("a"); a.href=URL.createObjectURL(new Blob([sklMd(x)],{type:"text/markdown"})); a.download=String(x.name||"skill").replace(/[\\/:*?"<>|\s]+/g,"_")+"-SKILL.md";
+        document.body.appendChild(a); a.click(); setTimeout(()=>{ URL.revokeObjectURL(a.href); a.remove(); },800); }catch(e){ toast("บันทึกไฟล์ไม่ได้"); } });
     q("#mmR").onclick=async()=>{ MEM.rows=null; draw(); await memLoad(true); draw(); };
     q("#mmAdd").onclick=async()=>{ const t=String(q("#mmT").value||"").trim(); if(!t) return; q("#mmAdd").disabled=true;
       try{ await memAdd(t,""); q("#mmT").value=""; draw(); toast("🧠 จำแล้ว"); }catch(e){ toast("บันทึกไม่สำเร็จ: "+(e.message||e)); } finally{ q("#mmAdd").disabled=false; } };
@@ -68561,7 +68701,12 @@ const SNAI=(function(){
     hist.push({role:"user",content:t}); if(hist.length>16) hist=hist.slice(-16); if(hist[0].role!=="user") hist.shift();
     try{ const q3=hist.filter(x=>x.role==="user").slice(-3).map(x=>x.content).join("\n");   // 3 ข้อความล่าสุด = คำตอบต่อเนื่อง (เช่น “ใช่ 18”) ยังได้ค่าตั้งชุดเดิม
       try{ await memLoad(); }catch(e){}
-      const raw=await callLLM(sysPrompt(q3),hist,90000); const o=parseReply(raw);
+      let raw=await callLLM(sysPrompt(q3),hist,90000), o=parseReply(raw);
+      /* v1.574: AI ขอเนื้อหาสกิล ({type:"skill",name}) = ส่งเนื้อหาแล้วถามซ้ำ 1 รอบเอง (แบบสกิลของ Claude: เห็นคำอธิบายก่อน เปิดเนื้อหาเมื่อใช้) */
+      if(!snOff("aiSkill")){ const want=(o.actions||[]).filter(a=>a&&a.type==="skill").map(a=>String(a.name||"").trim()).filter(Boolean);
+        if(want.length&&sklList().some(x=>want.some(w=>w.toLowerCase()===String(x.name||"").toLowerCase()))){ SKL_FORCE=want.slice(0,2); try{ wait.textContent="📎 เปิดสกิล "+SKL_FORCE.join(", ")+"…"; }catch(e){}
+          try{ raw=await callLLM(sysPrompt(q3),hist,90000); o=parseReply(raw); } finally{ SKL_FORCE=[]; } }
+        o.actions=(o.actions||[]).filter(a=>!(a&&a.type==="skill")); if(!String(o.reply||"").trim()&&!o.actions.length) o.reply="(AI ไม่ได้ตอบ — ลองถามใหม่)"; }
       hist.push({role:"assistant",content:raw||"{}"}); wait.remove();
       (o.actions||[]).forEach(a=>{ if(a&&a.type==="request"){ a._q=t; a._ai=o.reply; } });   /* v1.561: คำขอเก็บคำถามเดิม + คำตอบ AI */
       const d=addMsg("a",o.reply,o.actions);
@@ -68600,7 +68745,7 @@ const SNAI=(function(){
       reqMine().catch(()=>{}); } }
   function init(){ bind("aiBtn",()=>show()); try{ addEventListener("resize",place); }catch(e){} try{ reqStart(); }catch(e){ console.error("snai req:",e); } }   /* v1.561: + เฝ้าคำขอฟีเจอร์ */
   return { init, show, offline, parseReply, coerce, settingKeys, relevantKeys, run, sysPrompt, prefill, allTools, cabList, _toolOf:toolOf, guideCtx, guideEdit, modelWizard, memLoad, memAdd, memCtx, memManager, structCtx, used, quota, resetAt, _cfg:()=>cfg,
-    goMap, goCtx, goFind, goParse, runGoto, goStop, goHarvestPl, reqLoad, reqAdd, reqVote, reqDups, reqDialog, reqManager, reqTick, reqMd, reqSetAdmins, meName, _req:()=>REQ };   /* v1.561 */
+    goMap, goCtx, goFind, goParse, runGoto, goStop, goHarvestPl, reqLoad, reqAdd, reqVote, reqDups, reqDialog, reqManager, reqTick, reqMd, reqSetAdmins, meName, _req:()=>REQ, _skl:{parse:sklParse, unzip:sklUnzip, save:sklSave, ctx:sklCtx, hit:sklHit, list:sklList, pick:sklPick} };   /* v1.574: + _skl */   /* v1.561 */
 })();
 try{ SNAI.init(); }catch(e){ console.error("SNAI.init:",e); }
 /* ═════════ v1.562: 🎬 Render — เรนเดอร์ทุกฉาก 🎬 + 🤖 AI แต่งต่อ (ผู้ใช้ 30/10 11:24 “ปุ่ม Blender เปลี่ยนเป็น ปุ่ม Render ได้หรือไม่ โดยให้ APi เรนเดอร์ … ตามมุม Screne ที่มีคนตั้งไว้เลย”) ═════════
@@ -68823,9 +68968,9 @@ const RND=(function(){
     catch(e){ console.warn("render web paste:",(e&&e.message)||e); toast("อ่านคลิปบอร์ดไม่ได้ — กด Ctrl+V ในหน้านี้ หรือ 📂 เลือกไฟล์ แทน"); } }
   function webPick(it){ const f=document.createElement("input"); f.type="file"; f.accept="image/*"; f.onchange=()=>{ const x=f.files&&f.files[0]; if(x) webPut(it,x); }; f.click(); }
   function webWire(){ if(_pasteOn||snOff("rndWeb")) return; _pasteOn=true;
-    document.addEventListener("paste",e=>{ if(!ov||!ov.isConnected||ov.style.display==="none"||!webFor) return;
+    document.addEventListener("paste",e=>{ if(!ov||!ov.isConnected||ov.style.display==="none"||!(webFor||webAuto())) return;   /* v1.573: + webAuto */
       const t=e.target; if(t&&(/^(INPUT|TEXTAREA|SELECT)$/.test(t.tagName)||t.isContentEditable)) return;
-      const it=res.find(x=>x.id===webFor), f=imgOf(e.clipboardData); if(!it||!f) return; e.preventDefault(); e.stopPropagation(); webPut(it,f); }, true); }
+      const it=res.find(x=>x.id===(webFor||webAuto())), f=imgOf(e.clipboardData); if(!it||!f) return; e.preventDefault(); e.stopPropagation(); webPut(it,f); }, true); }
   function webDrop(el){ if(snOff("rndWeb")) return;
     ["dragenter","dragover"].forEach(t=>el.addEventListener(t,ev=>{ ev.preventDefault(); ev.stopPropagation(); }));
     el.addEventListener("dragleave",ev=>ev.stopPropagation());
@@ -68842,8 +68987,9 @@ const RND=(function(){
       +'<div>① '+(w.blocked?'<a href="'+WEB_URL+'" target="_blank" rel="noopener">เปิด gemini.google.com ↗</a> แล้ว':'ในแท็บ Gemini ที่เปิดให้')+' '
         +(w.copied?'กด <b>Ctrl+V</b> วางภาพ (คัดลอกไว้แล้ว)':'ลากไฟล์ภาพที่บันทึกไว้ไปวาง')+' '+b("rnWI","🖼 คัดลอกภาพอีกครั้ง")+'</div>'
       +'<div>② '+b("rnWT","📋 คัดลอกคำสั่ง")+' แล้ว Ctrl+V ในช่องพิมพ์ของ Gemini → กดส่ง (มีเครื่องมือ 🍌 สร้างรูปภาพ ให้เลือกด้วย)</div>'
-      +'<div>③ ได้ภาพแล้ว คลิกขวาที่ภาพ → <b>คัดลอกรูปภาพ</b> แล้วกลับมากด '+b("rnWV","📥 วางภาพผล")+' · หรือ Ctrl+V ในหน้านี้ · ลากไฟล์มาวางบนการ์ด · '+b("rnWF","📂 เลือกไฟล์")+'</div>'
-      +(snOff("plqPics")?'':'<div>④ ได้ภาพแล้วกด <b>🧾 ใส่ใบเสนอราคา</b> ใต้ภาพ → ขึ้นในหน้า 🧾 ใบเสนอราคา</div>')
+      +(snOff("rndSplit")?('<div>③ ได้ภาพแล้ว คลิกขวาที่ภาพ → <b>คัดลอกรูปภาพ</b> แล้วกลับมากด '+b("rnWV","📥 วางภาพผล")+' · หรือ Ctrl+V ในหน้านี้ · ลากไฟล์มาวางบนการ์ด · '+b("rnWF","📂 เลือกไฟล์")+'</div>')
+        :'<div>③ ได้ภาพแล้ว ใน Gemini คลิกขวาที่ภาพ → <b>คัดลอกรูปภาพ</b> แล้วกลับมาวางที่ช่อง <b>② ภาพที่ได้จากการเจน</b> ทางขวา (📥 วางภาพผล · Ctrl+V · ลากไฟล์ · 📂 เลือกไฟล์)</div>')   /* v1.573 */
+      +(snOff("plqPics")?'':'<div>④ ได้ภาพแล้วกด <b>🧾 ใส่ใบเสนอราคา</b> ใต้ภาพ'+(snOff("rndSplit")?'':'ทางขวา')+' → ขึ้นในหน้า 🧾 ใบเสนอราคา</div>')
       +'<div class="muted" style="font-size:10.5px;line-height:1.5">ใช้บัญชี Google ที่ล็อกอินในเบราว์เซอร์ ไม่ต้องใช้คีย์ · ภาพฟรีอาจมีลายน้ำ ✦ เล็ก ๆ ที่มุม · โควตาฟรีต่อวัน Google เป็นคนกำหนด</div></div>'; }
   /* ---------- หน้าต่าง ---------- */
   async function open(){ await load();
@@ -68851,14 +68997,61 @@ const RND=(function(){
     if(typeof realCanUse==="function"&&!realCanUse()){ toast("เครื่องนี้แสดง 3D ไม่ได้ จึงเรนเดอร์ไม่ได้"); return; }
     if(!state.boards||!state.boards.length){ toast("ยังไม่มีตู้ในฉาก"); return; }
     if(ov&&ov.isConnected){ ov.style.display=""; draw(); return; }
-    const C=ovCard(980,92); ov=C.ov; ov.setAttribute("data-rnd","1");
+    const C=ovCard(980,92); ov=C.ov; ov.setAttribute("data-rnd","1"); ov.setAttribute("data-gas-keep","1");   /* v1.573: เปิดผ่าน Odoo ตัวแปลคำเคยเปลี่ยน “บัญชี Google / Google ให้โควตา” เป็น “Odoo” — หน้านี้พูดถึง Google (Gemini) จริง */
     ov.innerHTML='<div style="'+C.cardCSS+'"><div style="display:flex;align-items:center;gap:10px;padding:12px 16px;border-bottom:.5px solid var(--line)">'
       +'<b style="font-size:15px">'+rndLbl()+'</b><span class="muted" style="font-size:11.5px">'+(snOff("rndAi")?'เรนเดอร์ทุกฉาก 🎬 ที่ตั้งไว้ · แล้วให้ AI แต่งต่อได้ทีละภาพ':'ส่งภาพฉาก 🎬 ที่เลือกให้ AI แต่งเป็นภาพสมจริง — ไม่ต้องเรนเดอร์ในเครื่อง')+'</span>'
       +'<button class="ibtn" id="rnX" '+C.xbtn+'>✕ ปิด</button></div><div id="rnB" style="padding:12px 16px;overflow:auto;flex:1;min-height:0;font-size:12.5px"></div></div>';
     document.body.appendChild(ov); ov.querySelector("#rnX").onclick=()=>{ ov.remove(); ov=null; };
     webDrop(ov); webWire();   /* v1.568: เอาภาพจาก Gemini เว็บกลับ (ลากวาง · Ctrl+V) */
     draw(); }
-  function card(it){ const a=it.ai||{};
+  /* ───────── v1.573: การ์ดแบ่ง ซ้าย = ข้อมูลสำหรับไปเจนภาพ · ขวา = ภาพที่ได้จากการเจน ─────────
+     ผู้ใช้ 30/10 16:21 (ภาพการ์ด per1 + กล่อง Gemini เว็บ): “คำว่าผลลัพธ์ น่าจะต้องแก้เป็นข้อมูลสำหรับไปเจนภาพ
+       2.ปรับ UI ให้คนทั่วไปไม่งง อาจจะแบ่งเป็น ข้อมูลก่อนไปใช้ AI เรนเดอร์ ขวา เป็น ข้อมูลที่ได้หลังจากการเจน”
+     เดิม (1.562–1.572): หัวข้อ “ผลลัพธ์” แต่ที่อยู่ข้างใต้คือภาพฉากที่ยังไม่ได้เจน · ภาพ AI ต่อใต้ภาพฉากในการ์ดเดียว ปุ่มส่ง/ปุ่มรับปนกัน
+     ตอนนี้: หนึ่งฉาก = หนึ่งแถว .rnC สองช่อง (กว้างไม่พอ = ซ้อนบน-ล่าง)
+       ซ้าย .rnL “① ข้อมูลสำหรับไปเจนภาพ” = ภาพฉาก + 📝 คำสั่งที่จะส่ง (ดู/คัดลอก) + ⬇ บันทึก · 🤖 AI แต่งต่อ · 🍌 Gemini เว็บ (ฟรี) + ขั้นตอน ①②
+       ขวา .rnR “② ภาพที่ได้จากการเจน” = ภาพ AI + ⬇ บันทึกภาพ AI · 🧾 ใส่ใบเสนอราคา · 📂 เปลี่ยนภาพ
+             ยังไม่มีภาพ = ช่องรอรับ (📥 วางภาพผล · 📂 เลือกไฟล์ · Ctrl+V · ลากไฟล์มาวาง) · คลิกช่อง = ช่องนี้รับ Ctrl+V
+             มีช่องรอภาพช่องเดียว = Ctrl+V ลงช่องนั้นเลย (เดิมต้องกด 🍌 ก่อน Ctrl+V ถึงทำงาน)
+     class เดิมทุกตัว (.rnC .rnD .rnA .rnW .rnQ .rnDA .rnWV .rnWF) — ตัวลากวาง/ตัวต่อสาย/ทดสอบเดิมใช้ได้
+     ปิด SN_OFF.rndSplit=1 = การ์ดแบบเดิม (card0) */
+  const btnS="font-size:11.5px;padding:3px 9px;white-space:nowrap";
+  function engTag(it){ return (it.eng==="pt"?"📸 แสงจริง":it.eng==="ai"?"🎬 ภาพฉาก":"⚡ เร็ว")+" · "+it.w+"×"+it.h; }
+  function cardL(it){ const a=it.ai||{};
+    return '<div class="rnL" style="border:.5px solid var(--line);border-radius:10px;overflow:hidden;background:var(--card2);min-width:0">'
+      +'<img src="'+it.url+'" alt="" style="display:block;width:100%;aspect-ratio:'+(it.w||16)+'/'+(it.h||9)+';object-fit:cover;background:#111">'
+      +'<div style="padding:7px 9px 4px;display:flex;gap:6px;align-items:center"><b style="flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">'+H(it.name)+'</b>'
+      +'<span class="muted" style="font-size:10.5px;white-space:nowrap">'+engTag(it)+'</span></div>'
+      +'<details class="rnPr" style="margin:0 9px 6px;font-size:11.5px"><summary style="cursor:pointer;color:var(--ink-dim)">📝 คำสั่งที่ส่งไปกับภาพ'+(String(O.note||"").trim()?' (มีสั่งเพิ่ม)':'')+'</summary>'
+        +'<div style="white-space:pre-wrap;max-height:150px;overflow:auto;font-size:10.5px;line-height:1.5;background:rgba(0,0,0,.05);border-radius:7px;padding:6px 8px;margin:4px 0">'+H(webPrompt(it))+'</div>'
+        +'<button class="ibtn rnWT2" style="'+btnS+';display:inline-flex;flex:none;width:auto">📋 คัดลอกคำสั่ง</button></details>'
+      +'<div style="padding:0 9px 8px;display:flex;gap:6px;flex-wrap:wrap"><button class="ibtn rnD" style="'+btnS+'">⬇ บันทึก</button>'
+      +'<button class="ibtn rnA" title="ส่งภาพ + คำสั่งให้ AI ผ่านคีย์ API (คีย์ต้องเปิด billing) — ภาพขึ้นช่องขวา" style="'+btnS+'"'+(a.busy?' disabled':'')+'>'+(a.busy?'🤖 กำลังแต่ง…':(a.url?'🤖 แต่งใหม่':'🤖 AI แต่งต่อ'))+'</button>'
+      +(a.url?'':qBtn(it,"r"))
+      +(snOff("rndWeb")?'':'<button class="ibtn rnW" title="ใช้ Gemini บนเว็บ (บัญชี Google ฟรี) — คัดลอกภาพ + คำสั่งไปวาง แล้วเอาภาพผลกลับมาใส่ช่องขวา" style="flex:1 1 100%;font-size:11.5px;padding:4px 9px'+(a.free?';background:#ffd36b;border-color:#e5b53a;color:#1d1d1f;font-weight:600':'')+'">🍌 Gemini เว็บ (ฟรี)</button>')+'</div>'
+      +(a.err?'<div style="padding:0 9px 8px;color:#b42318;font-size:11.5px;white-space:pre-wrap">✕ '+H(a.err)+'</div>':'')
+      +((it.web&&!snOff("rndWeb"))?webPanel(it):'')
+      +'</div>'; }
+  function cardR(it){ const a=it.ai||{}, wt=webFor===it.id, ar="aspect-ratio:"+(it.w||16)+"/"+(it.h||9);
+    if(a.url) return '<div class="rnR" style="border:.5px solid var(--line);border-radius:10px;overflow:hidden;background:var(--card2);min-width:0">'
+      +'<img src="'+H(a.url)+'" alt="" style="display:block;width:100%;background:#111">'
+      +'<div style="padding:7px 9px 4px;display:flex;gap:6px;align-items:center"><b style="flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">'+H(it.name)+'</b>'
+      +'<span class="muted" style="font-size:10.5px;white-space:nowrap">🤖 '+H(a.model||"AI")+'</span></div>'
+      +'<div class="muted" style="padding:0 9px 6px;font-size:10.5px;line-height:1.5">ตรวจจำนวนบาน/ลิ้นชัก มือจับ สี ให้ตรงแบบก่อนส่งลูกค้า</div>'
+      +'<div style="padding:0 9px 9px;display:flex;gap:6px;flex-wrap:wrap"><button class="ibtn rnDA" style="'+btnS+'">⬇ บันทึกภาพ AI</button>'+qBtn(it,"ai")
+      +(snOff("rndWeb")?'':'<button class="ibtn rnWF" title="ใช้ภาพอื่นแทนภาพนี้" style="'+btnS+'">📂 เปลี่ยนภาพ</button>')+'</div></div>';
+    if(a.busy) return '<div class="rnR" style="border:1.5px dashed var(--line-strong);border-radius:10px;min-width:0;'+ar+';display:flex;align-items:center;justify-content:center;flex-direction:column;gap:6px;text-align:center;padding:12px">'
+      +'<div style="font-size:24px;line-height:1">🤖</div><b>กำลังแต่งภาพ…</b><div class="muted" style="font-size:11px">ราว 10–60 วินาที</div></div>';
+    return '<div class="rnR rnDZ" title="คลิกช่องนี้ แล้วกด Ctrl+V วางภาพจาก Gemini" style="border:1.5px dashed '+(wt?'var(--accent)':'var(--line-strong)')+';border-radius:10px;min-width:0;'+ar+';display:flex;align-items:center;justify-content:center;flex-direction:column;gap:7px;text-align:center;padding:12px;cursor:pointer;background:'+(wt?'rgba(0,122,255,.07)':'transparent')+'">'
+      +'<div style="font-size:26px;line-height:1">🖼</div><b>ยังไม่มีภาพที่เจน</b>'
+      +'<div class="muted" style="font-size:11.5px;line-height:1.55">🤖 AI แต่งต่อ = ภาพขึ้นที่ช่องนี้เอง<br>🍌 Gemini เว็บ = ได้ภาพแล้วเอากลับมาใส่ช่องนี้</div>'
+      +(snOff("rndWeb")?'':('<div style="display:flex;gap:6px;flex-wrap:wrap;justify-content:center"><button class="ibtn rnWV" style="'+btnS+';flex:none">📥 วางภาพผล</button><button class="ibtn rnWF" style="'+btnS+';flex:none">📂 เลือกไฟล์</button></div>'
+        +'<div class="muted" style="font-size:10.5px">'+(wt?'✓ ช่องนี้พร้อมรับ — กด Ctrl+V ได้เลย':'หรือ Ctrl+V · ลากไฟล์ภาพมาวางในช่องนี้')+'</div>'))+'</div>'; }
+  function card(it){ if(snOff("rndSplit")) return card0(it);
+    return '<div class="rnC" data-id="'+H(it.id)+'" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px;align-items:start">'+cardL(it)+cardR(it)+'</div>'; }
+  /* v1.573: Ctrl+V โดยยังไม่ได้เลือกช่อง — มีช่องรอภาพช่องเดียวก็ลงช่องนั้น (หลายช่อง = ต้องคลิกช่องก่อน ไม่เดา) */
+  function webAuto(){ if(snOff("rndSplit")) return null; const L=res.filter(x=>!(x.ai&&(x.ai.url||x.ai.busy))); return L.length===1?L[0].id:null; }
+  function card0(it){ const a=it.ai||{};
     return '<div class="rnC" data-id="'+H(it.id)+'" style="border:.5px solid var(--line);border-radius:10px;overflow:hidden;background:var(--card2)">'
       +'<img src="'+it.url+'" alt="" style="display:block;width:100%;aspect-ratio:'+(it.w||16)+'/'+(it.h||9)+';object-fit:cover;background:#111">'
       +'<div style="padding:7px 9px 4px;display:flex;gap:6px;align-items:center"><b style="flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">'+H(it.name)+'</b>'
@@ -68888,17 +69081,23 @@ const RND=(function(){
       +row("ขนาดภาพ",'<select id="rnPx" class="nameinp" style="width:auto">'+[1280,1600,1920,2560].map(v=>opt(v,O.px,v+" px"+(v===1920?" (Full HD)":""))).join("")+'</select>')
       +(O.eng==="pt"?row("ความเนียน",'<select id="rnSpp" class="nameinp" style="width:auto">'+[[64,"64 รอบ · เร็ว"],[128,"128 รอบ"],[256,"256 รอบ · เนียน"],[512,"512 รอบ · นาน"]].map(x=>opt(x[0],O.spp,x[1])).join("")+'</select>'):'')
       +row("แสง",'<select id="rnPre" class="nameinp" style="width:auto">'+opt("",O.preset,"ตามโหมดสมจริงตอนนี้")+PR.map(k=>opt(k,O.preset,(REAL_PRESETS[k].icon||"")+" "+REAL_PRESETS[k].label)).join("")+'</select>')
-      +'<div class="muted" style="font-size:11px;line-height:1.55;margin-top:6px">'+(O.eng==="pt"?"แสงจริงคำนวณบนการ์ดจอทีละฉาก ฉากละราว 1–5 นาทีแล้วแต่เครื่อง · ระหว่างนั้นใช้โปรแกรมไม่ได้ (กด ⏹ หยุดได้)":O.eng==="ai"?"ถ่ายภาพฉากที่ติ๊ก (ฉากละไม่กี่วินาที) แล้วส่งให้ AI พร้อมคำสั่งคงแบบตู้ทันที ผลขึ้นในการ์ดด้านล่าง · คีย์ต้องเปิด billing (คีย์ฟรีสร้างภาพไม่ได้ → ใช้ 🍌 Gemini เว็บ บนการ์ด)":"ภาพโหมดสมจริงความละเอียดสูง ฉากละไม่กี่วินาที แต่แสงเงาไม่ละเอียดเท่าแสงจริง")+'</div></div></div>'
+      +'<div class="muted" style="font-size:11px;line-height:1.55;margin-top:6px">'+(O.eng==="pt"?"แสงจริงคำนวณบนการ์ดจอทีละฉาก ฉากละราว 1–5 นาทีแล้วแต่เครื่อง · ระหว่างนั้นใช้โปรแกรมไม่ได้ (กด ⏹ หยุดได้)":O.eng==="ai"?"ถ่ายภาพฉากที่ติ๊ก (ฉากละไม่กี่วินาที) แล้วส่งให้ AI พร้อมคำสั่งคงแบบตู้ทันที ผลขึ้นช่อง ② ภาพที่ได้จากการเจน ด้านล่าง · คีย์ต้องเปิด billing (คีย์ฟรีสร้างภาพไม่ได้ → ใช้ 🍌 Gemini เว็บ บนการ์ด)":"ภาพโหมดสมจริงความละเอียดสูง ฉากละไม่กี่วินาที แต่แสงเงาไม่ละเอียดเท่าแสงจริง")+'</div></div></div>'
       +'<div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:12px 0 4px"><button class="ibtn" id="rnGo" style="background:var(--accent);color:#fff;border-color:transparent;padding:8px 18px"'+((n&&!busy)?'':' disabled')+'>'+(busy?'⏳ กำลังทำ…':(O.eng==="ai"&&!snOff("rndAi"))?('▶ AI RENDER '+n+' ภาพ'):('▶ เรนเดอร์ '+n+' ภาพ'))+'</button>'   /* v1.570 */
-      +(res.length?'<button class="ibtn" id="rnAll">⬇ บันทึกทั้งหมด ('+res.length+')</button><button class="ibtn" id="rnClr">🧹 ล้างผล</button>':'')+'</div>'
+      +(res.length?'<button class="ibtn" id="rnAll">⬇ บันทึกทั้งหมด ('+res.length+')</button><button class="ibtn" id="rnClr">🧹 '+(snOff("rndSplit")?"ล้างผล":"ล้างทั้งหมด")+'</button>':'')+'</div>'
       +'<details id="rnAiD" data-gas-drive="1" style="margin:8px 0;border:.5px solid var(--line);border-radius:10px;padding:6px 10px"'+(O.aiOpen?' open':'')+'><summary style="cursor:pointer;font-weight:600">🤖 AI แต่งต่อ — '+(O.ai==="openai"?"OpenAI":"Gemini")+(has(O.ai)?' · มีคีย์แล้ว':' · <span style="color:#b45309">ยังไม่มีคีย์</span>')+'</summary>'
       +row("ผู้ให้บริการ",'<select id="rnAi" class="nameinp" style="width:auto">'+opt("gemini",O.ai,"Gemini (Google)"+(has("gemini")?"":" — ยังไม่มีคีย์"))+opt("openai",O.ai,"OpenAI"+(has("openai")?"":" — ยังไม่มีคีย์"))+'</select>')
       +row("รุ่น",'<input id="rnModel" class="nameinp" style="width:260px;max-width:100%;font-family:var(--mono)" placeholder="ว่าง = เลือกรุ่นภาพล่าสุดให้เอง" value="'+H(O.ai==="openai"?O.om:O.gm)+'">')
       +row("สั่งเพิ่ม",'<input id="rnNote" class="nameinp" style="flex:1;min-width:180px" placeholder="เช่น แสงเย็นโทนอุ่น · มีต้นไม้เล็กบนท็อป" value="'+H(O.note)+'">')
       +'<div class="muted" style="font-size:11px;line-height:1.6;margin-top:4px">ใช้คีย์เดียวกับ 🤖 ผู้ช่วย (⚙) · ภาพละราว 1–5 บาท และคีย์ต้องผูกบัตร (คีย์ฟรีสร้างภาพไม่ได้) · AI ถูกสั่งให้คงแบบตู้ไว้ แต่ยังอาจเปลี่ยนรายละเอียดเล็ก ๆ เช่นจำนวนบาน/มือจับ — ตรวจก่อนส่งลูกค้า'
       +(snOff("rndWeb")?'':'<br>ไม่มีบัตร/คีย์ฟรี = ใช้ปุ่ม <b>🍌 Gemini เว็บ (ฟรี)</b> บนการ์ดภาพ (คัดลอกภาพ+คำสั่งไปวางใน gemini.google.com แล้วเอาภาพผลกลับมา)')+'</div></details>'
-      +'<div style="font-weight:700;margin:10px 0 6px">ผลลัพธ์'+(res.length?' ('+res.length+')':'')+'</div>'
-      +(res.length?'<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:12px">'+res.map(card).join("")+'</div>':'<div class="muted">ยังไม่มีภาพ — กด ▶ เรนเดอร์</div>');
+      +(snOff("rndSplit")?(
+      '<div style="font-weight:700;margin:10px 0 6px">ผลลัพธ์'+(res.length?' ('+res.length+')':'')+'</div>'
+      +(res.length?'<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:12px">'+res.map(card).join("")+'</div>':'<div class="muted">ยังไม่มีภาพ — กด ▶ เรนเดอร์</div>'))
+      /* v1.573: หัวสองฝั่ง — ① ข้อมูลสำหรับไปเจนภาพ (เดิม “ผลลัพธ์”) · ② ภาพที่ได้จากการเจน */
+      :('<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px;margin:16px 0 8px;padding-top:12px;border-top:.5px solid var(--line)">'
+        +'<div><div style="font-weight:700;font-size:13.5px">① ข้อมูลสำหรับไปเจนภาพ'+(res.length?' ('+res.length+')':'')+'</div><div class="muted" style="font-size:11px;line-height:1.5">ภาพฉาก + คำสั่ง — ส่งด้วย 🤖 AI แต่งต่อ (คีย์ที่เปิด billing) หรือ 🍌 Gemini เว็บ (ฟรี)</div></div>'
+        +'<div><div style="font-weight:700;font-size:13.5px">② ภาพที่ได้จากการเจน ('+res.filter(x=>x.ai&&x.ai.url).length+'/'+res.length+')</div><div class="muted" style="font-size:11px;line-height:1.5">ตรวจรายละเอียดตู้ แล้วกด 🧾 ใส่ใบเสนอราคา</div></div></div>'
+        +(res.length?'<div style="display:flex;flex-direction:column;gap:14px">'+res.map(card).join("")+'</div>':'<div class="muted">ยังไม่มีภาพ — เลือกฉากด้านบน แล้วกด ▶ '+((O.eng==="ai"&&!snOff("rndAi"))?'AI RENDER':'เรนเดอร์')+'</div>')));
     B.innerHTML=h; wire(B); }
   function wire(B){ const q=x=>B.querySelector(x);
     B.querySelectorAll(".rnS").forEach(c=>c.onchange=()=>{ if(c.checked) delete O.off[c.dataset.id]; else O.off[c.dataset.id]=1; save(); draw(); });
@@ -68922,6 +69121,10 @@ const RND=(function(){
       if(wq(".rnWT")) wq(".rnWT").onclick=async()=>{ webFor=it.id; toast((await copyTxt(webPrompt(it)))?"📋 คัดลอกคำสั่งแล้ว — Ctrl+V ในช่องพิมพ์ของ Gemini":"คัดลอกคำสั่งไม่ได้"); };
       if(wq(".rnWV")) wq(".rnWV").onclick=()=>webPaste(it);
       if(wq(".rnWF")) wq(".rnWF").onclick=()=>{ webFor=it.id; webPick(it); };
+      /* v1.573: ปุ่มชื่อเดียวกันมีได้ทั้งช่องซ้าย/ขวา — ต่อสายทุกตัว (querySelector ได้แค่ตัวแรก) */
+      [".rnWI",".rnWT",".rnWV",".rnWF"].forEach(c=>{ const f0=wq(c); if(f0) el.querySelectorAll(c).forEach(x=>{ x.onclick=f0.onclick; }); });
+      const t2=wq(".rnWT2"); if(t2) t2.onclick=async()=>{ webFor=it.id; toast((await copyTxt(webPrompt(it)))?"📋 คัดลอกคำสั่งแล้ว — วางในช่องพิมพ์ของ Gemini / ChatGPT ได้":"คัดลอกคำสั่งไม่ได้"); };
+      const rR=wq(".rnDZ"); if(rR) rR.onclick=ev=>{ if(ev.target.closest&&ev.target.closest("button,a,input")) return; if(webFor!==it.id){ webFor=it.id; draw(); } };
       el.querySelectorAll(".rnQ").forEach(q=>q.onclick=async()=>{ const k=q.dataset.k, url=k==="ai"?((it.ai||{}).url):it.url, key=it.id+":"+k;   /* v1.568 */
         if(!url) return; if(plqPicState(key,url)===1){ plqPicDel(key); toast("เอาภาพออกจากใบเสนอราคาแล้ว"); draw(); return; }
         q.disabled=true; const ok=await plqPicAdd(url,{key, name:it.name, src:k==="ai"?String((it.ai&&it.ai.model)||"AI"):"render"});
