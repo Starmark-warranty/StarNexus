@@ -3283,7 +3283,7 @@ body[data-theme="dark"] .splash-dots span{background:rgba(255,255,255,.25)}
    ===================================================================== */
 /* ---- APP_META: แหล่งความจริงเดียวของเวอร์ชัน (ดูได้จาก console / คลิกชื่อแอป) ---- */
 const APP_META={
-  name:"StarNexus", version:"1.582", build:"2026-10-31/kit-push-side",
+  name:"StarNexus", version:"1.583", build:"2026-10-31/mcwg-hinge3d",
   file:"StarNexus.html", basedOn:"Furnitech_V3.html (v3.11)",
   /* ───────── เริ่มนับเวอร์ชันใหม่ที่ 1.001 (21/08/2026) ─────────
      ของเดิมนับมาถึง 42.1 แล้ววิ่งเป็นทศนิยมสองชั้นซึ่งอ่านลำดับยาก
@@ -3291,6 +3291,7 @@ const APP_META={
      ประวัติเก่าเก็บไว้ทั้งหมดตามเลขเดิม ไม่ไล่เขียนใหม่ เพราะเลขในนั้นถูกอ้างถึงไปแล้ว
      รายการที่อยู่ใต้ 1.001 ลงไปจึงเป็นเลขชุดเก่า อ่านต่อกันได้ตามวันที่ */
   changelog:[
+    ["1.583","2026-10-31","FIX บาน MCWG บานพับ 3D หาย (ผู้ใช้ 31/10 12:03 ภาพบานกระจกเปิดไม่มีตัวบานพับ: “อ่าว MCWG20 บานพับ 3D หาย”) — 1.577 ให้บาน MCWG ไม่เจาะถ้วย โดยข้ามกิ่งบานพับทั้งกิ่งใน buildConnectorMeshes ซึ่งเป็นที่เดียวกับที่วาดตัวบานพับจริง (hinge3DMeshes v1.454) ตัวบานพับจึงหายไปด้วย · ตอนนี้ข้ามเฉพาะรูถ้วย/เดือยยึด/ฝาวงถ้วย ตัวบานพับ 3D ยังวาด · MPR/แบบผลิต/รายการรู ยังไม่เจาะถ้วยเหมือน 1.577"],
     ["1.582","2026-10-31","FIX กดกระเด้ง KIT02 ไม่อยู่ฝั่งตรงข้ามบานพับ (ผู้ใช้ 31/10 11:53 project (4) ตู้ลอย WAT070 บานคู่ไม่มีตั้งกลาง ภาพรูกดที่มุมบานพับ) — ต้นเหตุ: ตัววางจุดกด (v1.164) อ่านฝั่งบานพับจากตัวเชื่อมบานพับ (connector) อย่างเดียว · ตู้ชุดกดกระเด้งบานยังไม่มีบานพับ → ตกไปทางสำรอง “บานคู่ = ริมซ้าย-ขวาสุดของแผ่นพื้น” ซึ่งเป็นฝั่งบานพับพอดี · ตอนนี้ใช้ hingeSideOf (ตัวเดียวกับตอนเปิดบานใน 3D: บานพับ → ชื่อ Door L / Door R) จุดกดจึงไปปลายเปิดกลางตู้ · + ข้อความสรุปจุดเจาะใน console กลับมาขึ้น (เดิมอ้างตัวแปร face ที่ไม่มี)"],
     ["1.581","2026-10-31","FEAT (ผู้ใช้ 31/10 11:37 ภาพบานพับ + ภาพราง: “1.อันนี้รูปราง Alto 552.66.585 2.รูปบานพับ เอาไปแสดงหน้า วัสดุ 3.เดี๋ยวเพิ่มคำสั่งซ่อน Object ด้วยหมายถึง ตู้เย็น หรืออื่นๆ ครับ หน้าออกแบบ”) — ① หน้ารวมวัสดุในใบเสนอราคา ช่องบานพับ = รูปบานพับจริง (เดิมไอคอนวาด) · ช่องราง = รูปราง Alto เมื่อเป็นราง Alto / 552.66… · ปุ่ม 🖼 รูปอุปกรณ์ ในหัวข้อแนบท้ายใบ: เปลี่ยนรูปตามรหัสอุปกรณ์ที่ใช้ในงาน (เก็บกลาง ใช้ได้ทุกงาน) · ↺ กลับรูปตั้งต้น ② ห้องออกแบบ: ปุ่ม 🙈 ซ่อน ในแผงของทุกชิ้น (ตู้เย็น เครื่องใช้ ประตู หน้าต่าง เสา ฝ้า …) = ไม่วาดในห้อง/ภาพ/ใบเสนอราคา · แผงห้องขึ้นแถบ “ซ่อนอยู่ n ชิ้น” คลิกชื่อ = แสดงคืน · 👁 แสดงทั้งหมด ③ FIX (1.580) หน้าต่างยืนยัน “ล้าง” อยู่ใต้หน้าต่างใบเสนอราคา · ปิดได้ SN_OFF.dwgFitImg / plHide"],
     ["1.580","2026-10-31","FEAT ใบเสนอราคา — แก้คำ + เครื่องมือแปะแบบ PDF (ผู้ใช้ 31/10 11:26 ภาพหน้าภาพจำลองในใบ: “เพิ่มให้แก้คำ ได้หรือไม่ครับ หรือ มี เครื่องมือเพิ่ม เหมือน PDF เพิ่ม TEXT เพิ่มกล่องสี่เหลี่ยมแบบเลือกสีได้ เพิ่มลูกศร เพิ่มรูปแปะเพิ่มแบบ อิสระ”) — แถบเครื่องมือเหนือตัวอย่างใบ: 🖱 เลือก/ย้าย · ✏ แก้คำ (คลิกตัวหนังสือในใบแล้วพิมพ์ทับ จำไว้กับใบ) · T ข้อความ · ▭ กล่อง (เส้นขอบ / พื้นโปร่ง / พื้นทึบปิดทับ) · ➜ ลูกศร · 🖼 รูป · เลือกสี/ขนาดตัวอักษร · ลาก = ย้าย · มุมขวาล่าง = ย่อขยาย · Delete = ลบ · ↺ ล้าง · ของที่แปะเกาะกับส่วนของใบ (หน้าภาพ/หัวใบ/ตาราง/ลายเซ็น) พิมพ์/บันทึก PDF ออกตามจอ · เก็บกับใบเสนอราคาของงาน · ปิดได้ SN_OFF.plqAnn"],
@@ -8557,7 +8558,6 @@ function buildConnectorMeshes(b){
   (b.connectors||[]).forEach(c=>{
     const {pts,axisLocal}=connectorPoints(b,c); const axW=axisLocal.clone().transformDirection(M);
     const T=b.T||18;
-    if(c.type==="hinge"&&hingeNoCup(b)) return;   /* v1.577: บาน MCWG ไม่มีรูถ้วย/เดือยยึด */
     if(c.type==="hinge"){                                                              // บานพับ: รูถ้วย Ø35 + เดือยยึด บนผิวบาน
       const _hs=hingeSpecOf(b);                                                       // v38.3: ระยะตามรุ่นบานพับของแบบบานนั้น
       const cupOff=hingeCupOffOf(b,c.edge,_hs), cupD=_hs.cupDepth, cupR=Math.max(_hs.cupD/2,1);   // v40.8
@@ -8569,13 +8569,17 @@ function buildConnectorMeshes(b){
       const cupZ=_sg*(T/2-0.3-_cD/2);
       const dwZ =_sg*(T/2-0.3-_dD/2);
       const _HM=_hm?hingeCapMats():null, _h3d=hinge3DOn()&&!!b._door&&!b._box;   // v1.454
+      /* ───────── v1.583: บาน MCWG — ไม่มีรูถ้วย/เดือยยึด แต่ตัวบานพับ 3D ยังอยู่ ─────────
+         1.577 ใส่ return ก่อนกิ่งนี้ทั้งกิ่ง → hinge3DMeshes ไม่ถูกเรียก บานพับหายจากบาน MCWG20 (ผู้ใช้ 12:03 “บานพับ 3D หาย”)
+         ตอนนี้ _nc = ข้ามเฉพาะทรงกระบอกถ้วย/เดือย + ฝาวง */
+      const _nc=hingeNoCup(b);
       pts.forEach(lp=>{ const wEdge=lp.clone().applyMatrix4(M).add(bp);
         const cupC=wEdge.clone().addScaledVector(axW,-cupOff);
-        if(_cyl){ const cm=new THREE.Mesh(new THREE.CylinderGeometry(cupR,cupR,_cD,22),connMat0);
+        if(_cyl&&!_nc){ const cm=new THREE.Mesh(new THREE.CylinderGeometry(cupR,cupR,_cD,22),connMat0);
           cm.quaternion.setFromUnitVectors(new THREE.Vector3(0,1,0),zW); cm.position.copy(cupC.clone().addScaledVector(zW,cupZ)); cm.userData.id=b.id; arr.push(cm); }
-        if(_HM&&(!_h3d||state.ghost)) arr.push(faceCapMesh(b,cupC,zW,_sg,T,cupR*1.08,_HM.cup));   // v1.454: มีตัวบานพับจริงแล้ว ฝาวงถ้วยไม่ต้อง (ปีกถ้วยบังอยู่ · ขอบฟ้าโผล่รอบปีก)
+        if(_HM&&(!_h3d||state.ghost)&&!_nc) arr.push(faceCapMesh(b,cupC,zW,_sg,T,cupR*1.08,_HM.cup));   // v1.454: มีตัวบานพับจริงแล้ว ฝาวงถ้วยไม่ต้อง (ปีกถ้วยบังอยู่ · ขอบฟ้าโผล่รอบปีก)
         if(_h3d){ try{ hinge3DMeshes(b,c,lp,cupOff).forEach(x=>arr.push(x)); }catch(e){ console.error("hinge3D:",e); } }   // v1.454: ตัวบานพับจริง
-        if(dwD>0)[-1,1].forEach(s=>{ const dwC=wEdge.clone().addScaledVector(axW,-(cupOff+dwOff)).addScaledVector(alongW,s*dwSp/2);
+        if(dwD>0&&!_nc)[-1,1].forEach(s=>{ const dwC=wEdge.clone().addScaledVector(axW,-(cupOff+dwOff)).addScaledVector(alongW,s*dwSp/2);
           if(_cyl){ const dm=new THREE.Mesh(new THREE.CylinderGeometry(dwR,dwR,_dD,12),connMat0);
             dm.quaternion.setFromUnitVectors(new THREE.Vector3(0,1,0),zW); dm.position.copy(dwC.clone().addScaledVector(zW,dwZ)); dm.userData.id=b.id; arr.push(dm); }
           if(_HM&&(!_h3d||state.ghost)) arr.push(faceCapMesh(b,dwC,zW,_sg,T,Math.max(dwR*1.35,3),_HM.dot)); });   // v1.454: ปีกถ้วยจริงบังอยู่
