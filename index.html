@@ -3283,7 +3283,7 @@ body[data-theme="dark"] .splash-dots span{background:rgba(255,255,255,.25)}
    ===================================================================== */
 /* ---- APP_META: แหล่งความจริงเดียวของเวอร์ชัน (ดูได้จาก console / คลิกชื่อแอป) ---- */
 const APP_META={
-  name:"StarNexus", version:"1.584", build:"2026-10-31/mcwg-cup",
+  name:"StarNexus", version:"1.588", build:"2026-10-31/oven-up-microb",
   file:"StarNexus.html", basedOn:"Furnitech_V3.html (v3.11)",
   /* ───────── เริ่มนับเวอร์ชันใหม่ที่ 1.001 (21/08/2026) ─────────
      ของเดิมนับมาถึง 42.1 แล้ววิ่งเป็นทศนิยมสองชั้นซึ่งอ่านลำดับยาก
@@ -3291,6 +3291,10 @@ const APP_META={
      ประวัติเก่าเก็บไว้ทั้งหมดตามเลขเดิม ไม่ไล่เขียนใหม่ เพราะเลขในนั้นถูกอ้างถึงไปแล้ว
      รายการที่อยู่ใต้ 1.001 ลงไปจึงเป็นเลขชุดเก่า อ่านต่อกันได้ตามวันที่ */
   changelog:[
+    ["1.588","2026-10-31","FEAT ช่องเตา/ไมโครเวฟ Built-in (ผู้ใช้ 31/10 14:04 project (7) ตู้ TAR031 + สเปก HAFELE ไมโครเวฟ Built-in หน้ากาก 595×454 ติดตั้ง 560-568×550×450: “มันจะมีเคสที่เอาไปวาง ช่องล่าง เดี๋ยวช่องบน จะวาง ไมโครเวฟ แบบ built แล้วให้ บานหลอกปรับหา ไมโครเวฟ หมายถึงความสูงหน้ากาก … หน้ากาก 454 ถ้าช่องที่เหลือ 524 บานหลอกก็ 70 − GAP 2 = 68” · 14:06: “จริงๆ ชั้น บนเตาต้องขยับ หา เตา ข้างล่าง ครับ กรณีใส่เตา”) — ① เตาอบ: ปล่อยในช่อง = ชั้นเหนือเตาขยับขึ้น/ลงให้ช่องสูงเท่าสูงติดตั้ง (เดิม 1.578 ขยับชั้นใต้เตา) · ของที่ติดชั้นขยับ/ยืดตาม · บานที่ขอบติดชั้นยืดหดตาม · ช่องเตาใต้หลังคาตู้ (ไม่มีชั้นบน) = ขยับชั้นล่างแบบเดิม ② ไมโครเวฟ Built-in (การ์ดใหม่ หน้ากาก 595×454 ลึก 568 · ติดตั้ง 450): ปล่อยในช่อง = บานหลอก (Panel) เหนือเครื่องยืด/หดให้ขอบล่างห่างหน้ากาก 2 มม. (ช่องเหลือ − หน้ากาก − เว้น) · แก้ระยะเว้นได้ในแผง · ช่องเหลือไม่พอ/ช่องในเตี้ยกว่าติดตั้ง = บอก ③ FIX “⚠ หาช่องของเตาไม่เจอ” เมื่อเตาไม่ได้อยู่พื้นช่องพอดี (เช่น ตู้เปลี่ยนแบบหลังวางเตา — project (7) เตาค้างที่สูง 400 ช่องจริง 704) → หาช่องที่ใกล้สุดแล้วจัดเตาเข้าช่องให้ ④ FIX เดือย/มินิฟิกโผล่บนหน้าบาน (ผู้ใช้ 31/10 14:08 project (8): “ตอนนี้ หน้าบาน มีเดือยมินิฟิกเฉยเลย … ผมไม่ได้สั่งใส่เลย”) — ต้นเหตุ: “เชื่อมโครงอัตโนมัติ” ยิงหารอยชนทุกชิ้นในฉาก รวมหน้าบาน/หน้าลิ้นชัก/บานหลอก/กล่องลิ้นชัก และชนข้ามตู้ · สร้างตู้ใหม่แบบเพิ่มเข้าฉาก (รวมผู้ช่วย AI ⚡) สั่งเชื่อมทั้งฉาก (v1.029) → ไฟล์ (5)(7)(8) ได้เดือยสูตรชุดหัวท้าย ลึก 26 เพิ่ม ~300 ขอบ · แก้: ไม่ใส่ที่หน้าบาน/กล่องลิ้นชัก/ชิ้นเสมือน · ไม่ชนข้ามตู้ · กดปุ่มเชื่อมโครง = ข้ามตู้ที่มีเดือย/มินิฟิกอยู่แล้ว (โมเดลจากคลัง) · สร้างตู้ใหม่ = เชื่อมเฉพาะตู้ใหม่ · เปิดงานที่โดนแล้ว = กล่องถาม “ล้างให้” (ลบตัวเชื่อมแบบเดียวกับที่โผล่บนหน้าบาน ทั้งบนหน้าบานและบนโครงตู้ที่มีเดือยจากโมเดล แล้วเจาะรูคู่ใหม่ · Ctrl+Z ได้) ⑤ UX (ผู้ใช้ 14:26 ภาพแผง “แนวตู้ลอย / ตู้สูง”: “เพิ่มปิดเปิดแสดงเส้น ประแนวตู้ ลอยให้ด้วยครับ”) แผงห้อง › แนวตู้ลอย/ตู้สูง ติ๊ก “แสดงเส้นประบนผนัง” (เส้นฟ้าก้นตู้ลอย + เส้นส้มแนวบน · ค่าแนวยังคุมตู้เหมือนเดิม · เก็บกับห้อง) · ปิดได้ SN_OFF.ovenFitUp / plMicroB / ovenNear / acdSafe / acdHeal"],
+    ["1.587","2026-10-31","UX แผ่นปิดข้างสูงเกินแผ่น (ผู้ใช้ 31/10 13:42 project (5) ภาพแผ่นปิด TFF007 ข้างตู้ลอย: “อยากให้ เส้น ของ แผ่นปิดของที่เกิน 2400 แบ่งตรง ขอบบานล่างของบานบนทำได้ไหม”) — แผ่นปิดข้างแบบ 2 ชิ้นต่อกัน (รุ่นที่ใช้เมื่อสูงเกิน 2440) เดิมแบ่งครึ่งเท่ากัน (2550 → 1275 + 1275 รอยต่อลอยกลางบานบน) · ตอนนี้รอยต่ออยู่ตรงขอบล่างของบานบนสุดของตู้ที่อยู่ชิดแผ่น (ตู้ลอย/บานบนตู้สูง เช่น 1551.6 → ล่าง 1551.6 + บน 998.4) · ใช้ได้เมื่อทั้งสองชิ้นไม่เกิน 2440 และไม่สั้นกว่า 100 ไม่งั้นคงแบบเดิม · งานเก่า: คลิกตู้หรือแผ่นใดก็ได้ในห้องออกแบบ 1 ครั้ง ระบบจัดรอยต่อให้เอง · ปิดได้ SN_OFF.sideSplitDoor"],
+    ["1.586","2026-10-31","FEAT (ผู้ใช้ 31/10 13:27 ภาพปลั๊กบนผนัง + ภาพไฟเส้น COB 24V: “1.มันจะมี แบบที่แยกที่บอก Dim ของงาน ระบบ … งานปลั๊ก งาน ท่อ ให้ออกแบบแยกในใบเสนอราคาตามด้านที่มันอยู่ แต่ยังเห็น เส้นตู้อยู่ แต่ Dim บอกแค่ ของงานระบบ 2.ต้องเพิ่มไฟดาวไลน์ไหม โดยตอนเริ่มฝ้าก็ใส่ให้ก่อน สัก 4 ดวง แล้วมีให้ User ดึงเข้าไปเติมเอง 3.รูปวัสดุของไฟเส้น COB 24V”) — ① ใบเสนอราคา แนบท้าย “งานระบบ”: หน้าละผนังที่มีปลั๊ก/ท่อน้ำดี/ท่อน้ำทิ้ง · เส้นตู้/ท็อป/ประตู-หน้าต่างจาง (ไม่มีเลข) · Dim เฉพาะงานระบบ: ระยะจากมุมห้องต่อเนื่องตามแนวผนัง + สูงจากพื้นถึงศูนย์ทุกจุด + ป้ายชนิด · ติ๊กออกได้ ② ไฟดาวน์ไลท์ (โครงสร้าง · ฝ้า): ห้องที่มีฝ้า ใส่ให้ 4 ดวง (2×2) ครั้งแรก · ลากการ์ดไปเติม/ลากย้าย ดูดแนวผนัง/ระยะเหมือนเสา · อยู่ใต้ฝ้าหลุม/ฝ้าลดตามระดับฝ้าตรงนั้น · ซ่อนได้ · โหมดสมจริง/AI RENDER ใช้ตำแหน่งดาวน์ไลท์ในห้อง (เดิมวางเองเรียงตามตู้) ③ หน้ารวมวัสดุ ช่อง LED = รูปไฟเส้น COB 24V (เปลี่ยนได้ที่ 🖼 รูปอุปกรณ์…) · ปิดได้ SN_OFF.dwgUtil / plDl"],
+    ["1.585","2026-10-31","FEAT ตะแกรงเข้ามุม (ผู้ใช้ 31/10 11:59 ภาพ Magic Corner 571.011.900 L/R + ครึ่งวงกลม 571.016.800: “ตะแกรงรูปถั่ว ผมหาวีธีการดึงออกมาให้แล้วครับ 2.เพิ่มตระแกรงรูปครึ่งวงกลม … ใน Element Fitting ก็ควรมีให้ติกเลือก 3D ที่จะแสดง … คนละ Sup แต่ 3D มันเท่ากัน”) — ① Magic Corner: ตะแกรงรูปถั่ว 2 ใบต่อชั้น (ใบหน้าในช่องบาน · ใบหลังในปีกตาย) ค่าเริ่ม 2 ชั้น · โหมดเปิดบานคลิกที่ตะแกรง: จังหวะ 1 ใบหน้าสวิงออกนอกตู้ · จังหวะ 2 ใบหลังเลื่อนมาที่ช่องบาน · คลิกอีกครั้ง = เก็บ · ② ครึ่งวงกลม Ø610 หมุน 180° รอบเสาหน้าตู้ (คลิก = หมุนออก/เก็บ) ค่าเริ่ม 2 ชั้น ③ Element › Fitting ช่อง “ตะแกรง — 3D ที่แสดง”: อัตโนมัติ (ตามรหัส) / กล่องตะแกรง / iMove / LeMans / Magic Corner / ครึ่งวงกลม 180° — รหัสต่างกัน (คนละ Supplier) เลือกใช้ 3D เดียวกันได้ · รหัสที่นับอัตโนมัติ: settings.magicCodes (571.011, magic) / halfCodes (571.016, ครึ่งวงกลม) · ปิดได้ SN_OFF.swBasket / fitB3dSel"],
     ["1.584","2026-10-31","FIX บาน MCWG ต้องเจาะรูถ้วยบานพับ (ผู้ใช้ 31/10 12:10: “ตอนตั้งให้บาน MCWG ไม่เจาะรูถ้วย ผมไม่ได้ไม่ให้เจาะ ผมให้เจาะครับ บาน MCWx58 มันเจาะรูถ้วยไงครับ”) — ① ยกเลิก 1.577 ที่เข้าใจผิด: บาน MCWG กลับมาเจาะรูถ้วย + เดือยยึดทุกทาง (MPR · แบบผลิต · รายการรู · 3D) เหมือนบาน MCWx58 · ค่าตั้งรายชื่อแบบบานที่ไม่เจาะ เปลี่ยนเป็นช่องใหม่ hingeNoCupList ค่าเริ่มว่าง (ค่า MCWG เดิมที่อาจถูกบันทึกไว้ไม่มีผล) ② FIX ต้นเรื่องจริง: บานกัดทะลุที่มีบ่ารับกระจกด้านหลัง (MCWG) ใน 3D ไม่วาดรูถ้วยบานพับ (v1.469 ข้ามกรณีบ่าหลังไว้) — บาน MCWx58 (ไม่ทะลุ) จึงเห็นรูถ้วย แต่ MCWG ไม่เห็น · ตอนนี้ผิวหลังวงนอก (นอกบ่า) เจาะวงถ้วยได้ ถ้าวงถ้วยไม่แตะบ่า"],
     ["1.583","2026-10-31","FIX บาน MCWG บานพับ 3D หาย (ผู้ใช้ 31/10 12:03 ภาพบานกระจกเปิดไม่มีตัวบานพับ: “อ่าว MCWG20 บานพับ 3D หาย”) — 1.577 ให้บาน MCWG ไม่เจาะถ้วย โดยข้ามกิ่งบานพับทั้งกิ่งใน buildConnectorMeshes ซึ่งเป็นที่เดียวกับที่วาดตัวบานพับจริง (hinge3DMeshes v1.454) ตัวบานพับจึงหายไปด้วย · ตอนนี้ข้ามเฉพาะรูถ้วย/เดือยยึด/ฝาวงถ้วย ตัวบานพับ 3D ยังวาด · MPR/แบบผลิต/รายการรู ยังไม่เจาะถ้วยเหมือน 1.577"],
     ["1.582","2026-10-31","FIX กดกระเด้ง KIT02 ไม่อยู่ฝั่งตรงข้ามบานพับ (ผู้ใช้ 31/10 11:53 project (4) ตู้ลอย WAT070 บานคู่ไม่มีตั้งกลาง ภาพรูกดที่มุมบานพับ) — ต้นเหตุ: ตัววางจุดกด (v1.164) อ่านฝั่งบานพับจากตัวเชื่อมบานพับ (connector) อย่างเดียว · ตู้ชุดกดกระเด้งบานยังไม่มีบานพับ → ตกไปทางสำรอง “บานคู่ = ริมซ้าย-ขวาสุดของแผ่นพื้น” ซึ่งเป็นฝั่งบานพับพอดี · ตอนนี้ใช้ hingeSideOf (ตัวเดียวกับตอนเปิดบานใน 3D: บานพับ → ชื่อ Door L / Door R) จุดกดจึงไปปลายเปิดกลางตู้ · + ข้อความสรุปจุดเจาะใน console กลับมาขึ้น (เดิมอ้างตัวแปร face ที่ไม่มี)"],
@@ -4598,7 +4602,8 @@ function bind(id,fn,ev){ const e=(typeof id==="string")?$(id):id; if(e) e[ev||"o
 let _alignHold=0;
 function sync(rebuild,save,cm){
   try{ topDropUndo(true); }catch(e){ console.error("topDropUndo:",e); }
-  try{ if(typeof plPlinthColorSoon==="function") plPlinthColorSoon(); }catch(e){}   /* v1.569: ตีนตู้ตามสีหน้าบาน (เช็กหลังฉากนิ่ง 0.35 วิ) */
+  try{ if(typeof plPlinthColorSoon==="function") plPlinthColorSoon(); }catch(e){}
+  try{ acdCheckSoon(); }catch(e){}   /* v1.588: เดือย/มินิฟิกที่ “เชื่อมโครงทั้งฉาก” ใส่เกินบนหน้าบาน → ถามล้าง */   /* v1.569: ตีนตู้ตามสีหน้าบาน (เช็กหลังฉากนิ่ง 0.35 วิ) */
   try{ skinTrimHeal(); }catch(e){ console.error("skinTrim:",e); }      // v1.451: ชิ้นตั้งที่จมเข้าทอป/พื้นนอกเท่าผิว → ตัดให้ชนผิว (บนรูปทรงปกติ ก่อนตัวคิดบาน/ชั้น)   // v1.447: ยกชิ้นที่ดรอปไว้คืนเสมอขอบก่อน — ตัวคิดบาน/ชั้น/ราว/ตรึงผิว เห็นรูปทรงปกติเหมือนเดิม
   try{ healStrayShelves(); }catch(e){ console.error("healShelf:",e); }   // v1.265: ชั้นที่หันผิดแกนในตู้ที่หมุน (ซ่อมครั้งเดียว ไม่เจอก็ไม่ทำอะไร)
   const channelInsts=[...new Set(state.boards.filter(b=>b.rule&&b.rule.channelRail).map(b=>b.cabInst))];
@@ -8851,14 +8856,64 @@ function connectMate(b){
   else toast(thin?("พบแผ่นที่ชนแต่บางกว่า 11 มม. ("+thin+" จุด) จึงไม่เจาะ"):"ไม่พบแผ่นที่เดือยชน — เลื่อนให้ขอบแตะอีกแผ่นก่อน");
 }
 // one-click: detect every edge-to-face butt joint in the cabinet, add dowels + drill mating holes
-function autoCarcassDowels(){
+/* ═════════ v1.588: เชื่อมโครงไม่แตะหน้าบาน · ไม่ข้ามตู้ · ไม่ซ้ำตู้ที่มีเดือยแล้ว · ล้างของที่ใส่เกิน ═════════
+   ผู้ใช้ 31/10 14:08 (project (8)): “ตอนนี้ หน้าบาน มีเดือยมินิฟิกเฉยเลย เกิดอะไรขึ้น ผมไม่ได้สั่งใส่เลย”
+   ไฟล์ (4) 11:53 / ไฟล์ 11:55 ไม่มี · (5) 13:42 / (7) / (8) มี → ระหว่างนั้นมี “เชื่อมโครงอัตโนมัติ” รันทั้งฉาก 1 ครั้ง:
+     ตัวเชื่อม 226 เดือย + 79 มินิฟิก สูตร “ชุดหัวท้าย” ลึก 26 (ค่าตั้งของผู้ใช้ตอนนั้น) บนทุกขอบที่ยิงเจอชิ้นอื่น
+     — หน้าบานคู่ขอบกลาง (ยิงเจออีกบาน) · หน้าลิ้นชัก · บานหลอก · กล่อง K40/ALTO · หัวแผ่นข้างที่ทอปเจาะเข้ามาอยู่แล้ว · ขา · ฟิลเลอร์ข้ามไปตู้ข้าง ๆ
+   ทางที่รันได้: ปุ่ม “เชื่อมโครง” (autoDowelBtn) · genCabinet แบบเพิ่มเข้าฉาก (v1.029 สั่งเชื่อมทั้งฉาก ไม่ใช่แค่ตู้ใหม่ — ผู้ช่วย AI ⚡ ทำให้เลย สร้างตู้ได้เอง)
+   แก้ (SN_OFF.acdSafe = แบบเดิม):
+     · ชิ้นต้นทาง/ปลายทางที่เป็น _door (หน้าบาน หน้าลิ้นชัก บานหลอก กล่องลิ้นชัก) / _box / ชิ้นเสมือน / เส้นแนว = ไม่ใส่ · ปลายทางต้องตู้เดียวกัน
+     · กดปุ่ม (ไม่ระบุชิ้น) = ข้ามตู้ที่มีเดือย/มินิฟิกอยู่แล้ว (โมเดลจากคลังมาพร้อมรอยต่อ — เดิมเติมขอบที่ “ว่าง” ซึ่งอีกฝั่งเจาะเข้ามาแล้ว = รูซ้ำ)
+     · genCabinet ส่งชุดชิ้นของตู้ใหม่ (only) = เชื่อมเฉพาะตู้นั้น · ตัวเชื่อมใหม่ติด _acd:1
+     · acdScan/acdAsk: เปิดงาน/sync แล้วเจอเดือย/มินิฟิก “ธรรมดา” (ไม่มีธง _bj _bjb _symfix _shoeW manual) บนชิ้น _door
+       = ลายนิ้วมือ (ชนิด|สูตร|ลึก|ลึกคู่|ระยะขอบ|Ø) → ถามครั้งเดียวต่อชุด · “ล้างให้” = ลบตัวเชื่อมลายเดียวกันบนหน้าบานทุกชิ้น
+         + บนโครงของตู้ที่มีรอยต่อแบบอื่นอยู่ (โมเดล) / หน้าบานโดน / ฟิลเลอร์ แล้ว healDrillsFor ตู้ที่โดน (ล้างรูคู่ที่ชิ้นตู้นั้นเจาะ แล้วเจาะใหม่) · ตู้ที่มีแต่ลายนี้ (ตู้สร้างเอง) ไม่แตะ · SN_OFF.acdHeal */
+function acdFp(c){ return [c.type,c.formula||"",+c.depth||0,+c.mateDepth||0,+c.margin||0,+c.d||0].join("|"); }
+function acdPlain(c){ return !!(c&&(c.type==="dowel"||c.type==="minifix")&&!["_bj","_bjb","_symfix","_shoeW","manual"].some(k=>c[k])); }
+function acdScan(){ if(snOff("acdHeal")) return null;
+  const fp=new Set(), fr=new Set(); (state.boards||[]).forEach(b=>{ if(!b||!b._door) return; (b.connectors||[]).forEach(c=>{ if(acdPlain(c)){ fp.add(acdFp(c)); fr.add(b); } }); });
+  if(!fp.size) return null;
+  const by={}; state.boards.forEach(b=>{ if(!b||!b.cabInst) return;   /* ชิ้นเสมือน (ขา · แผงเหล็กลิ้นชัก) ก็โดนด้วย */ const L=by[b.cabInst]||(by[b.cabInst]={bs:[],other:false}); L.bs.push(b);
+    if(!b._door&&(b.connectors||[]).some(c=>c&&(c.type==="dowel"||c.type==="minifix")&&!(acdPlain(c)&&fp.has(acdFp(c))))) L.other=true;
+    if(b._door&&(b.connectors||[]).some(c=>acdPlain(c)&&fp.has(acdFp(c)))) L.door=true;
+    if(L.fill==null){ L.fill=false; try{ L.fill=plKindOf(catKey(String(b.cab||"")))==="filler"; }catch(e){} } });
+  /* ตู้ที่นับว่าโดน: มีรอยต่อแบบอื่น (โมเดล) · หน้าบานของตู้ก็โดน · เป็นฟิลเลอร์ (โมเดลไม่มีรอยต่อ — ไฟล์ (4) ไม่มีเลย) · ตู้สร้างเองที่ไม่มีบาน = ไม่แตะ */
+  const hits=[]; Object.keys(by).forEach(i=>{ const L=by[i], on=L.other||L.door||L.fill; L.bs.forEach(b=>(b.connectors||[]).forEach(c=>{ if(acdPlain(c)&&fp.has(acdFp(c))&&(b._door||on)) hits.push({b,c,i}); })); });
+  return {fp:[...fp], hits, fronts:fr.size, cabs:new Set(hits.map(h=>h.i)).size}; }
+function acdHeal(S){ S=S||acdScan(); if(!S||!S.hits.length) return 0;
+  try{ if(lastSnap==null) lastSnap=snap(); }catch(e){}   /* เปิดงานแล้วยังไม่มีภาพก่อนหน้า → Ctrl+Z กลับมาที่ก่อนล้างได้ */
+  const u0=undoStack.length;
+  const set=new Set(S.hits.map(h=>h.c)), insts=new Set(S.hits.map(h=>h.i));
+  state.boards.forEach(b=>{ if(b&&b.connectors&&b.connectors.some(c=>set.has(c))){ b.connectors=b.connectors.filter(c=>!set.has(c)); delete b._sfxOk; } });
+  insts.forEach(i=>{ try{ healDrillsFor(i,true); }catch(e){ console.error("acdHeal:",e); } });
+  sync(0); try{ if(undoStack.length>u0+1){ undoStack.splice(u0+1); refreshUndoUI(); } }catch(e){}   /* healDrillsFor + sync เก็บหลายภาพ → รวมเป็น Ctrl+Z ครั้งเดียว */
+  return S.hits.length; }
+function acdCheckSoon(){ if(snOff("acdHeal")||(typeof VIEW_ONLY!=="undefined"&&VIEW_ONLY)) return; clearTimeout(acdCheckSoon._t); acdCheckSoon._t=setTimeout(()=>{ acdAsk().catch(e=>console.error("acdAsk:",e)); },1500); }
+async function acdAsk(){ const S=acdScan(); if(!S||!S.hits.length) return null;
+  const key=S.fp.join(",")+"#"+S.hits.length; acdAsk._seen=acdAsk._seen||new Set(); if(acdAsk._seen.has(key)) return null;
+  const busy=document.querySelector("#askModal.show,#fieldsModal.show"); if(busy){ acdCheckSoon(); return null; }
+  acdAsk._seen.add(key);
+  const nF=S.hits.filter(h=>h.b._door).length, fpTxt=S.fp.map(x=>{ const p=x.split("|"); return (p[0]==="minifix"?"มินิฟิก":"เดือย")+" “"+(p[1]||"ไม่มีสูตร")+"” ลึก "+p[2]; }).join(" · ");
+  const ok=await dialog({title:"พบเดือย/มินิฟิกที่ถูกใส่เกิน "+S.hits.length+" ขอบ ("+S.cabs+" ตู้)",
+    html:'<div style="font-size:12.5px;line-height:1.55">บนหน้าบาน/หน้าลิ้นชัก/กล่องลิ้นชัก '+S.fronts+' ชิ้น ('+nF+' ขอบ) และขอบโครงที่ซ้ำกับรอยต่อของโมเดล '+(S.hits.length-nF)+' ขอบ<br>'
+      +'แบบ: '+escapeHtml(fpTxt)+'<br><span style="opacity:.75">เกิดจาก “เชื่อมโครงอัตโนมัติ” รันทั้งฉาก (ปุ่มเชื่อมโครง หรือสร้างตู้ใหม่เพิ่มเข้าฉาก) ในโปรแกรมรุ่นก่อน 1.588 · ล้างให้ = ลบตัวเชื่อมแบบนี้แล้วเจาะรูคู่ใหม่ (Ctrl+Z ย้อนได้)</span></div>',
+    ok:"ล้างให้"});
+  if(ok!==true) return false;
+  if(isLocked()){ guardEdit("ล้างเดือยที่ใส่เกิน"); return false; }
+  const n=acdHeal(S); toast("🩹 ล้างเดือย/มินิฟิกที่ใส่เกิน "+n+" ขอบ · เจาะรูคู่ใหม่ "+S.cabs+" ตู้ · Ctrl+Z ย้อนได้"); return n; }
+function autoCarcassDowels(only){
   if(!state.boards.length){toast("ยังไม่มีชิ้นงาน");return;}
   if(state.view!=="assembled"){toast("สลับเป็นมุมมอง “ประกอบ” ก่อน");return;}
   const rc=new THREE.Raycaster(); let addedConn=0, addedMf=0;
+  const _safe=!snOff("acdSafe"), _onlyS=(only&&only.size)?only:null, _joined=new Set();   /* v1.588 */
+  if(_safe&&!_onlyS) state.boards.forEach(b=>{ if(b&&b.cabInst&&!b._door&&(b.connectors||[]).some(c=>c&&(c.type==="dowel"||c.type==="minifix"))) _joined.add(b.cabInst); });
   const topYByInst={};   // หาแผ่นนอน (flat) ที่อยู่สูงสุดของแต่ละตู้ = แผ่นทอป (มินิฟิกหันขึ้น) · ที่เหลือ (พื้น/ชั้นตาย) หันลง
   state.boards.forEach(b=>{ if(b.orient==="flat" && !b._door && !b._virtual){ const k=b.cabInst||"_"; if(topYByInst[k]==null||b.y>topYByInst[k]) topYByInst[k]=b.y; } });
   state.boards.forEach(A=>{
     if((A.T||18) < 11) return;                                     // source panel must be ≥ 11 mm
+    if(_safe){ if(A._door||A._box||A._virtual||A._lineDisp||A._trayPart||isRail(A)) return;   /* v1.588: หน้าบาน/กล่องลิ้นชัก/ชิ้นเสมือนไม่ใส่เดือย */
+      if(_onlyS?!_onlyS.has(A.id):(A.cabInst&&_joined.has(A.cabInst))) return; }             /* v1.588: เฉพาะชิ้นที่สั่ง · ตู้ที่มีรอยต่อแล้วไม่เติมซ้ำ */
     const M=orientMatrix(A.orient,A.yaw), ap=new THREE.Vector3(A.x,A.y,A.z);
     const solids=meshes.filter(o=>o.id!==A.id && !o.groove && !o.connector);
     ["left","right","top","bottom"].forEach(edge=>{
@@ -8871,6 +8926,7 @@ function autoCarcassDowels(){
       const hit=rc.intersectObjects(solids.map(o=>o.mesh),false)[0];
       if(!hit)return;
       const mb=state.boards.find(x=>x.id===hit.object.userData.id); if(!mb||(mb.T||18)<11) return;   // target panel must be ≥ 11 mm
+      if(_safe&&(mb._door||mb._box||mb._virtual||mb._lineDisp||(A.cabInst&&mb.cabInst!==A.cabInst))) return;   /* v1.588: ไม่ชนหน้าบาน · ไม่ข้ามตู้ */
       const len=info.len, count=Math.max(2,Math.min(8,Math.round(len/Math.max(settings.dowelPitch,40))+1));
       if(!A.connectors)A.connectors=[];
       /* ───────── v1.029: เชื่อมโครงออกสเปคเต็มชุดทั้งเดือยและมินิฟิก ─────────
@@ -8881,12 +8937,12 @@ function autoCarcassDowels(){
       const _mg=Math.min(80,Math.max(10,settings.dowelMargin||32));
       const _dep=Math.max(6,settings.dowelDepth||28), _mdep=Math.max(1,settings.dowelMateDepth||12);
       A.connectors.push({type:"dowel",edge,count,d:settings.dowelD||8,depth:_dep,mateDepth:_mdep,margin:_mg,
-        sizeRule:true, formula:(settings.dowelFormulaActive||"มาตรฐาน")});
+        sizeRule:true, formula:(settings.dowelFormulaActive||"มาตรฐาน"), _acd:1});
       addedConn++;
       if(A.orient==="flat"){                                              // แผ่นนอน → ใส่มินิฟิก หันหัวตามชนิดแผ่น · ตำแหน่งจับจากสูตรมินิฟิกที่เลือกไว้
         const k=A.cabInst||"_", isTop=(topYByInst[k]==null)||(A.y>=topYByInst[k]-1);
         A.connectors.push({type:"minifix",edge,face:isTop?"top":"bottom",d:settings.dowelD||8,depth:_dep,mateDepth:_mdep,margin:_mg,
-          count, sizeRule:true, formula:(settings.mfFormulaActive||"มินิฟิก")});
+          count, sizeRule:true, formula:(settings.mfFormulaActive||"มินิฟิก"), _acd:1});
         addedMf++;
       }
       /* v1.482: แผ่นข้างนอกสุดที่หัว/ท้ายชนทอป/พื้นทับข้าง → มินิฟิกอยู่ที่แผ่นข้าง ถ้วยผิวในข้าง (เดิมได้เดือยอย่างเดียว) */
@@ -8895,7 +8951,7 @@ function autoCarcassDowels(){
         const J=oc&&((axisW.y>0&&oc.top&&oc.top.f===mb)?oc.top:(axisW.y<0&&oc.bot&&oc.bot.f===mb)?oc.bot:null);
         if(J&&(A===oc.ls||A===oc.rs)){
           A.connectors.push({type:"minifix",edge,face:_ovInnerFace(A,oc.A,(A===oc.ls)?1:-1),d:settings.dowelD||8,depth:_dep,mateDepth:_mdep,margin:_mg,
-            count, sizeRule:true, formula:(settings.mfFormulaActive||"มินิฟิก")});
+            count, sizeRule:true, formula:(settings.mfFormulaActive||"มินิฟิก"), _acd:1});
           addedMf++;
           /* v1.483: เดือย+มินิฟิกที่หัวข้าง เริ่มนับฝั่งเดียวกับแผ่นนอนที่ชน (หน้าตู้) — แกนตามขอบของข้างกลับทิศกับของแผ่นนอน */
           const eF=_ovEdgeToward(mb,oc.A,(A===oc.ls)?-1:1);
@@ -8903,7 +8959,7 @@ function autoCarcassDowels(){
     });
   });
   render3D(false);   // build the new dowels so meshes/holes are consistent
-  if(!addedConn){ toast("ไม่พบรอยต่อขอบชนหน้า — ลองสร้างตู้หรือเลื่อนแผ่นให้ชนกันก่อน"); return; }
+  if(!addedConn){ toast((_safe&&!_onlyS&&_joined.size)?("ตู้ในฉากมีเดือย/มินิฟิกอยู่แล้ว "+_joined.size+" ใบ — ไม่เชื่อมซ้ำ · หน้าบาน/ลิ้นชักไม่ใส่เดือย"):"ไม่พบรอยต่อขอบชนหน้า — ลองสร้างตู้หรือเลื่อนแผ่นให้ชนกันก่อน"); return; }
   let totalHoles=0, totalThin=0; const allMates=new Set();
   state.boards.forEach(b=>{ if((b.connectors||[]).length&&isDowelSource(b)){ const r=drillMates(b); totalHoles+=r.added; totalThin+=r.thin||0; r.mates.forEach(m=>allMates.add(m)); } });
   sync(0);
@@ -13458,7 +13514,7 @@ async function genCabinet(preset){   // v1.549: preset = ค่าที่ผ�
      ปิดได้ที่ settings.cabGenAutoFix ถ้าอยากเชื่อมเองทีหลัง */
   if(v.kind==="ตู้" && settings.cabGenAutoFix!==false){
     try{ const _bk=state.view; if(_bk!=="assembled") state.view="assembled";
-      render3D(true); autoCarcassDowels();
+      render3D(true); autoCarcassDowels(snOff("acdSafe")?null:new Set(out.map(b=>b.id)));   /* v1.588: เชื่อมเฉพาะตู้ที่เพิ่งสร้าง (เดิมทั้งฉาก → หน้าบานตู้อื่นได้เดือย) */
       if(_bk!=="assembled") state.view=_bk;
     }catch(e){ console.error("cabGen autoFix:",e); }
   }
@@ -16847,6 +16903,44 @@ async function sinkTrayLookup(t){
    ต่อถาด: ① พื้นถาดขาว (_shape lmTray · พื้น + ขอบเตี้ย) ② ราวโครเมียม (_shape lmRail · ราว 2 ชั้น + ซี่ตั้ง)
    ชุดเดียว: ③ เสาหมุน Ø25 โครเมียม ที่มุมหน้าฝั่งช่องบาน สูงคลุมทุกชั้น (เฉพาะถาดแรก) ④ แขนยึดถาดกับเสา ทุกถาด
    ชิ้นนอน (flat): local x = ยาวถาด (L) · y = ลึก (W · +y = หลังตู้) · z = สูง (T) */
+/* ═════════ v1.585: ตะแกรงเข้ามุม Magic Corner (รูปถั่ว) · ครึ่งวงกลมหมุน 180° · เลือก 3D ใน Element ═════════
+   ผู้ใช้ 31/10 11:59 ส่งภาพ Magic Corner Basket 571.011.900 L/R (ตู้ 900–1000 · ชุด W600–750 × D495 × H865 · มองบนท่าปิด/ดึงออก
+     + ภาพวิธีดึง 2 จังหวะ) และตะแกรงสแตนเลสหมุน 180° 571.016.800 (ตู้ 800 · Ø610 × H695–770 · มองบนครึ่งวงกลม หน้าตรงชิดหน้าตู้)
+     “ตะแกรงรูปถั่ว ผมหาวีธีการดึงออกมาให้แล้วครับ 2.เพิ่มตระแกรงรูปครึ่งวงกลม … ใน Element Fitting ก็ควรมีให้ติกเลือก 3D ที่จะแสดง
+      … เป็น 3D ครึ่งวงกลมเหมือนกัน แต่คนละ Sup แต่ 3D มันเท่ากัน”
+   เดิม: ตะแกรงจาก Element เลือก 3D จากรหัสอย่างเดียว (lemansCodes / imoveCodes) · รหัสอื่น = กล่องตะแกรง 5 แผ่น
+   ตอนนี้:
+     · Element ช่อง b3d (FIT_B3D) ว่าง/auto = ตามรหัส (LeMans · iMove · magicCodes · halfCodes) · ตั้งเอง = ใช้ตามนั้น → fitB3d(def)
+     · Magic Corner (_lmType "mc"): ชั้นละ 2 ใบรูปถั่ว — ใบหน้า (role f) ในช่องบาน · ใบหลัง (role r) ในปีกตาย · ยาวรวม = กว้างรายการ (≤ ช่องใน)
+       ท่า (swPose ใช้โครงเดียวกับ LeMans: _lmKey ต่อชั้น · state.lmProg 0 → 0.5 → 1 → 0 · lemansAnimate/lemansXf):
+         จังหวะ 1 ใบหน้าหมุน 90° รอบเสาที่ขอบช่องบานฝั่งนอก ออกไปนอกตู้ (+40 หน้า) · จังหวะ 2 ใบหลังเลื่อนตามแนวกว้างมาที่ช่องบาน
+     · ครึ่งวงกลม (_lmType "hc"): Ø = กว้างรายการ (≤ ช่องบาน) · หน้าตรงชิดหน้าตู้ · เสาหมุนกลางขอบตรง · คลิก 0 ↔ 1 = หมุน 180° ออกหน้าตู้
+     · ทั้งสองแบบ: สูงขอบ swBasketRailH (110) · รายการสูง ≥ 450 = 2 ชั้น (ไล่ตามสูงรายการ) · เสาโครเมียมอยู่กับที่ · _fitId เดียว = นับ 1 ชุด
+   ปิด SN_OFF.swBasket (กลับเป็นกล่องตะแกรง) · SN_OFF.fitB3dSel (ช่อง b3d เป็นช่องพิมพ์) */
+const FIT_B3D=[["","อัตโนมัติ (ตามรหัส)"],["box","กล่องตะแกรง (ดึงออกตรง)"],["imove","iMove ดึงลง (ตู้ลอย)"],["lemans","LeMans สวิงเข้ามุม"],["magic","Magic Corner รูปถั่ว 2 ใบ"],["half","ครึ่งวงกลม หมุน 180°"]];
+function _swCodeHit(code,list){ const c=String(code||"").toLowerCase(); return String(list||"").split(/[,;]+/).map(x=>x.trim().toLowerCase()).filter(Boolean).some(k=>c.indexOf(k)>=0); }
+function magicIs(code){ return !snOff("swBasket")&&_swCodeHit(code,settings.magicCodes||"571.011,571_011,magic corner,magiccorner,magic,เมจิก"); }
+function halfIs(code){ return !snOff("swBasket")&&_swCodeHit(code,settings.halfCodes||"571.016,571_016,ครึ่งวงกลม,half moon,halfmoon"); }
+function fitB3d(def){ const v=String((def&&def.b3d)||"").trim().toLowerCase(), c=def&&def.code;
+  let t=(v&&v!=="auto")?v:(lemansIs(c)?"lemans":imoveIs(c)?"imove":magicIs(c)?"magic":halfIs(c)?"half":"box");
+  if(t==="lemans"&&snOff("lemans")) t="box"; if(t==="imove"&&snOff("imove")) t="box"; if((t==="magic"||t==="half")&&snOff("swBasket")) t="box";
+  return t; }
+function swOutlineUV(type){
+  if(type==="hc"){ const P=[[0,0],[1,0]]; for(let i=1;i<48;i++){ const a=i/48*Math.PI; P.push([0.5+0.5*Math.cos(a), Math.sin(a)]); } return P; }
+  const P=[]; for(let i=0;i<72;i++){ const a=i/72*Math.PI*2; const u=0.5+0.5*Math.cos(a); let v=0.5+0.5*Math.sin(a);   /* รูปถั่ว: เอวคอดด้านหลังลึก ด้านหน้าตื้น */
+    const w=Math.exp(-Math.pow((u-0.44)/0.16,2)); v=v>0.5?0.5+(v-0.5)*(1-0.42*w):0.5+(v-0.5)*(1-0.12*w); P.push([u,v]); } return P; }
+function swPose(b,t){ const m=b._lmOpenR?1:-1, k1=Math.min(Math.max(t/0.5,0),1), k2=Math.min(Math.max((t-0.5)/0.5,0),1);
+  if(b._lmType==="hc"){ const k=Math.min(Math.max(t,0),1); return {deg:-m*180*k, tx:0, tz:0}; }
+  if(b._mcRole==="r") return {deg:0, tx:m*(+b._mcShift||0)*k2, tz:0};
+  return {deg:m*90*k1, tx:0, tz:Math.round(40*k1)}; }
+function swBasketBoards(o){
+  const base={cab:o.cabRaw||undefined,cabInst:o.cabInst,yaw:0,tone:null,r:0,holes:[],grooves:[],connectors:[],mat:"$CarcassBodyMat",surfT:"",surfB:"",
+    edges:["No Edge","No Edge","No Edge","No Edge"],_virtual:true,_fitPart:true,_autoFit:true,_basket:true,_lemans:true,_lmType:o.type,_mcRole:o.role||"",
+    _lmR:!!o.mir,_lmOpenR:!!o.openR,_fit:o.code,_fitId:o.fid,_lmKey:o.key,_lmPx:round(o.px),_lmPz:round(o.pz),_mcShift:round(o.shift||0)};
+  const mk=(nm,x)=>Object.assign({id:uid(),name:o.code+" · "+nm},base,x), g={orient:"flat",L:round(o.L),W:round(o.D),T:round(o.H),x:round(o.cx),y:round(o.cy),z:round(o.cz)};
+  return [mk("พื้นตะแกรง",Object.assign({},g,{_shape:"lmTray",_hex:o.type==="hc"?"#cfd4d9":"#a3a9b0"})), mk("ราวตะแกรง",Object.assign({},g,{_shape:"lmRail",_metal:"chrome"}))]; }
+function swPost(o){ return {id:uid(),name:o.code+" · เสา",cab:o.cabRaw||undefined,cabInst:o.cabInst,yaw:0,tone:null,r:0,holes:[],grooves:[],connectors:[],mat:"$CarcassBodyMat",surfT:"",surfB:"",
+  edges:["No Edge","No Edge","No Edge","No Edge"],_virtual:true,_fitPart:true,_autoFit:true,_basket:true,_fit:o.code,_fitId:o.fid,orient:"flat",L:25,W:25,T:round(o.h),x:round(o.x),y:round(o.y),z:round(o.z),_shape:"cyl",_metal:"chrome"}; }
 function lemansIs(code){ if(snOff("lemans")) return false; const c=String(code||"").toLowerCase();
   return String(settings.lemansCodes||"541_32,541.32,545_32,lemans,เลอมัง,สวิง").split(/[,;]+/).map(x=>x.trim().toLowerCase()).filter(Boolean).some(k=>c.indexOf(k)>=0); }
 function lemansBoards(cx,cy,cz,L,H,D,openR,cabRaw,cabInst,code,fid,postH,postX,postZ,idx){
@@ -16875,15 +16969,17 @@ function lemansOutlineUV(){   // ปิดรอบ: ขอบหลัง (ล�
     [.7,.715],[.77,.69],[.84,.645],[.9,.58],[.95,.5],[.985,.41],[1,.33],[.99,.26],[.96,.205],[.9,.18],[.82,.185],[.74,.18],[.68,.16],[.63,.12],[.585,.07],
     [.55,.04],[.5,.025],[.42,.015],[.33,.01],[.22,.008],[.12,.008],[.04,.01]];
   return back; }
-function lemansShape(L,W,mirror){ const P=lemansOutlineUV();
+function lemansShape(L,W,mirror,type){ const P=(type==="mc"||type==="hc")?swOutlineUV(type):lemansOutlineUV();   /* v1.585: + รูปถั่ว / ครึ่งวงกลม */
   const xs=P.map(p=>p[0]), ys=P.map(p=>p[1]), u0=Math.min(...xs), u1=Math.max(...xs), v0=Math.min(...ys), v1=Math.max(...ys);
   const pts=P.map(p=>{ const u=(p[0]-u0)/(u1-u0), v=(p[1]-v0)/(v1-v0);
     return new THREE.Vector2(mirror?(L/2-u*L):(-L/2+u*L), -W/2+v*W); });
   if(mirror) pts.reverse();                                  // คงทิศวนเดิม (Extrude ต้องการรูปปิดทิศเดียวกัน)
-  const sh=new THREE.Shape(); sh.moveTo(pts[0].x,pts[0].y); sh.splineThru(pts.slice(1).concat([pts[0]])); return sh; }
+  const sh=new THREE.Shape(); sh.moveTo(pts[0].x,pts[0].y);
+  if(type==="hc"){ pts.slice(1).forEach(p=>sh.lineTo(p.x,p.y)); sh.closePath(); return sh; }   /* v1.585: ครึ่งวงกลมขอบตรงคม */
+  sh.splineThru(pts.slice(1).concat([pts[0]])); return sh; }
 function lemansGeo(b,part){ const L=Math.max(+b.L||200,100), W=Math.max(+b.W||200,100), H=Math.max(+b.T||60,30);
-  const mir=!!b._lmR, k=part+"|"+Math.round(L)+"|"+Math.round(W)+"|"+Math.round(H)+"|"+(mir?1:0); if(_lmGeoC[k]) return _lmGeoC[k].clone();
-  const sh=lemansShape(L,W,mir), z0=-H/2, gs=[];
+  const mir=!!b._lmR, k=part+"|"+Math.round(L)+"|"+Math.round(W)+"|"+Math.round(H)+"|"+(mir?1:0)+"|"+(b._lmType||""); if(_lmGeoC[k]) return _lmGeoC[k].clone();
+  const sh=lemansShape(L,W,mir,b._lmType), z0=-H/2, gs=[];
   if(part==="tray"){
     const g=new THREE.ExtrudeGeometry(sh,{depth:5,bevelEnabled:false,curveSegments:18}); g.translate(0,0,z0); gs.push(g);
     const pts=sh.getPoints(20), sx=(L/2-3)/(L/2), sy=(W/2-3)/(W/2);
@@ -16906,7 +17002,8 @@ function lemansGeo(b,part){ const L=Math.max(+b.L||200,100), W=Math.max(+b.W||20
    ท่ากลาง = ครึ่งทางของทั้งมุมและระยะ · ช่องบานขวา = กลับด้านแกน x · ขยับเฉพาะภาพ (viewBoards) ตำแหน่งจริงของชิ้นไม่เปลี่ยน */
 /* ท่าสุดท้ายตามแบบ: หมุน 164.7° แล้วหัวเล็กของถาดมาอยู่หน้าเสาหมุน (ห่างไปทางช่องบาน 105 · ออกหน้า 150 มม. ที่ถาดยาว 942) */
 const LM_OPEN={deg:164.7, tipX:105, tipZ:150};
-function lemansPose(b,t){ const m=b._lmR?-1:1, s=+b._lmS||1;
+function lemansPose(b,t){ if(b._lmType==="mc"||b._lmType==="hc") return swPose(b,t);   /* v1.585 */
+  const m=b._lmR?-1:1, s=+b._lmS||1;
   const at=(deg,dx,dz)=>{ const r=lemansXY(b._lmTx,b._lmTz,b._lmPx,b._lmPz,{deg,tx:0,tz:0});   // หมุนแล้วเลื่อนให้หัวเล็กไปอยู่จุดเป้า
     return {deg, tx:b._lmPx+dx-r[0], tz:b._lmPz+dz-r[1]}; };
   const D=+b._lmD||450;
@@ -17125,7 +17222,7 @@ function parseFitDef(el){   // แปลง 1 Element fitting → นิยา�
   });
   const fbRaw=String(el.bFromBot==null?"":el.bFromBot).trim();
   const fb=fbRaw===""?null:parseFloat(fbRaw); const fromBot=(fb!=null&&isFinite(fb))?fb:null;
-  return {code:el.code,desc:el.desc||el.code,kind,cabs,bw,bh,bd,dx:+el.bdx||0,dy:+el.bdy||0,dz:+el.bdz||0,fromBot,
+  return {code:el.code,desc:el.desc||el.code,kind,cabs,b3d:String(el.b3d==null?"":el.b3d).trim().toLowerCase(),   /* v1.585: 3D ที่แสดง */bw,bh,bd,dx:+el.bdx||0,dy:+el.bdy||0,dz:+el.bdz||0,fromBot,
           bQty:Math.max(1,Math.round(num0(el.bQty,1))), bPitch:num0(el.bPitch,0), cabQty,   // v7.39: ซ้อนหลายใบในตู้เดียว
           nH:num0(el.nH,60), nW:num0(el.nW,40), hgInset:+el.hgInset||0,
           /* v1.234: บากตัว L — ขาที่สองชิดขอบข้าง (0 = บากสี่เหลี่ยมแบบเดิม) */
@@ -18001,7 +18098,37 @@ function applyCabFittings(){
              ทิศ: ช่องบานอยู่ขวาของตู้ = ถาดยื่นเข้าปีกซ้าย (รุ่นขวา 541.32.280) · สลับข้างเองตามช่องบาน
              สูงขอบถาด lemansRailH (ของจริงขอบเตี้ย) · ชั้นถัดไปใช้ระยะ bPitch เดิม · ทั้งชุดใช้ _fitId เดียว = นับ 1 ชุดใน BOM
              รหัสที่นับเป็น LeMans: settings.lemansCodes (คั่นด้วย ,) · ปิดได้ SN_OFF.lemans */
-          if(lemansIs(def.code)){
+          /* ───────── v1.585: Magic Corner / ครึ่งวงกลม 180° (ดูบล็อก v1.585 เหนือ lemansIs) ───────── */
+          const _b3=fitB3d(def);
+          if(_b3==="magic"||_b3==="half"){
+            const sdM=carc.filter(z=>z.orient==="side"&&!isRail(z)&&z.zoneLo==null).slice().sort((a,b)=>a.x-b.x);
+            if(sdM.length>=2){
+              const sLo=sdM[0].x+worldDims(sdM[0])[0]/2, sHi=sdM[sdM.length-1].x-worldDims(sdM[sdM.length-1])[0]/2;
+              const ds=doorSpan||{lo:sLo,hi:sHi,cx:(sLo+sHi)/2,w:sHi-sLo}, openR=ds.cx>(sLo+sHi)/2+1, m=openR?1:-1;
+              const fZ=A2.frontZ, bk=carc.filter(z=>z.orient==="front"&&/back/i.test(String(z.name||""))).reduce((mm,z)=>Math.max(mm,z.z+worldDims(z)[2]/2),-Infinity);
+              const inD=isFinite(bk)?(fZ-bk):def.bd, fOff=10, Hl=Math.max(Math.min(+settings.swBasketRailH||110, def.bh),40);
+              const lv=Math.max(n, def.bh>=450?2:1);
+              const yb=(def.fromBot!=null&&A2.botTop!=null)?(A2.botTop+def.fromBot):(A2.botTop!=null?A2.botTop+40:(cy0-def.bh/2));
+              let pt=def.bPitch>0?def.bPitch:(lv>1?Math.max(Math.round((def.bh-Hl)/(lv-1)),Hl+60):pitch);
+              if(lv>1&&!(def.bPitch>0)&&isFinite(topY)) pt=Math.min(pt,Math.max(Math.round((topY-yb-Hl-30)/(lv-1)),Hl+40));   /* ชุดสูงกว่าช่องใน (H865 ในตู้พื้น 760) = บีบระยะชั้นให้อยู่ในตู้ */
+              const fid=uid(), common={fid,cabRaw,cabInst:cabInstVal}, keys=[]; let topC=yb;
+              const lvOK=i=>{ const c=yb+Hl/2+pt*i; return !(i>0&&isFinite(topY)&&c+Hl/2>topY-2); };
+              if(_b3==="magic"){
+                const Wt=Math.max(Math.min(def.bw||700, sHi-sLo-2*clr),300), Lb=Math.max((Wt-20)/2,140), D=Math.max(Math.min(def.bd||495, inD-fOff-10),200);
+                const e=openR?(sHi-clr):(sLo+clr), xF=e-m*Lb/2, xR=e-m*(Lb+20+Lb/2), cz=fZ-fOff-D/2, pz=fZ-6;
+                for(let i=0;i<lv;i++){ if(!lvOK(i)) break; const cyT=yb+Hl/2+pt*i, key=cabInstVal+"|mc:"+fid+":"+i; topC=cyT+Hl/2; keys.push(key);
+                  swBasketBoards(Object.assign({type:"mc",role:"f",cx:xF,cy:cyT,cz,L:Lb,D,H:Hl,mir:openR,openR,code:def.code+" #"+(i+1)+" ใบหน้า",key,px:e,pz},common)).forEach(b=>{ b._fit=def.code; out.push(b); });
+                  swBasketBoards(Object.assign({type:"mc",role:"r",cx:xR,cy:cyT,cz,L:Lb,D,H:Hl,mir:!openR,openR,code:def.code+" #"+(i+1)+" ใบหลัง",key,px:xR,pz:cz,shift:Math.abs(xF-xR)},common)).forEach(b=>{ b._fit=def.code; out.push(b); }); }
+                const ph=Math.max(topC-yb+60,200); out.push(Object.assign(swPost(Object.assign({code:def.code,x:e-m*14,y:yb+ph/2-20,z:pz-10,h:ph},common)),{_fit:def.code,_swPost:keys}));
+              } else {
+                const Dm=Math.max(Math.min(def.bw||610, (ds.w||(ds.hi-ds.lo)||(sHi-sLo))-2*clr, sHi-sLo-2*clr),200), D=Math.max(Math.min(Dm/2+30, inD-fOff-10),120);
+                const cx=(ds.lo+ds.hi)/2, cz=fZ-fOff-D/2, pz=fZ-fOff-15;
+                for(let i=0;i<lv;i++){ if(!lvOK(i)) break; const cyT=yb+Hl/2+pt*i, key=cabInstVal+"|hc:"+fid+":"+i; topC=cyT+Hl/2; keys.push(key);
+                  swBasketBoards(Object.assign({type:"hc",cx,cy:cyT,cz,L:Dm,D,H:Hl,mir:false,openR,code:def.code+" #"+(i+1),key,px:cx,pz},common)).forEach(b=>{ b._fit=def.code; out.push(b); }); }
+                const ph=Math.max(topC-yb+60,200); out.push(Object.assign(swPost(Object.assign({code:def.code,x:cx,y:yb+ph/2-20,z:pz,h:ph},common)),{_fit:def.code,_swPost:keys}));
+              }
+              return; } }
+          if(_b3==="lemans"){
             const sd2=carc.filter(z=>z.orient==="side"&&!isRail(z)&&z.zoneLo==null).slice().sort((a,b)=>a.x-b.x);
             if(sd2.length>=2){
               const sLo=sd2[0].x+worldDims(sd2[0])[0]/2, sHi=sd2[sd2.length-1].x-worldDims(sd2[sd2.length-1])[0]/2;
@@ -18029,7 +18156,7 @@ function applyCabFittings(){
           /* ───────── v1.563: ตะแกรงดึงลง iMove (ผู้ใช้ 12:11 “เพิ่ม 3D ตะแกรง imove ให้มี”) ─────────
              เดิมรหัส 504_68 ตกไปทางกล่องตะแกรง 5 แผ่นด้านล่าง (ขนาดจากคลัง) · ของจริงยึดแผ่นข้างสองฝั่ง กว้างเท่าช่องใน ลึก 267 ชิดแผ่นหลัง
              ก้นฐานกลไกสูงจากผิวพื้นตู้ imoveZ (25) หรือค่า “วางจากแผ่นพื้นตู้” ของรายการถ้ามากกว่า · 1 ชุดต่อตู้ (ไม่ซ้อนตาม bQty) */
-          if(imoveIs(def.code)){
+          if(_b3==="imove"){   /* v1.585: ผ่าน fitB3d (ตั้งเองใน Element ได้) */
             const sd3=carc.filter(z=>z.orient==="side"&&!isRail(z)&&z.zoneLo==null).slice().sort((a,b)=>a.x-b.x);
             let sLo, sHi;
             if(sd3.length>=2){ sLo=sd3[0].x+worldDims(sd3[0])[0]/2; sHi=sd3[sd3.length-1].x-worldDims(sd3[sd3.length-1])[0]/2; }
@@ -19188,12 +19315,16 @@ function realBuildRoom(){
       const cm=new THREE.Mesh(geo,ceilM); cm.receiveShadow=true; cm.castShadow=true; wg.add(cm); }
     else box(wg,w+2*T,T,d+2*T,ceilM,cx,R.y1+T/2,cz);
     const Wc=bx.max.x-bx.min.x, n=Math.max(1,Math.min(4,Math.round(Wc/1200)||1)), lz=Math.min(bx.max.z+750,R.z1-300);
-    for(let i=0;i<n;i++){ const lx=bx.min.x+(i+.5)*Wc/n, on=P.lamp>0;
+    /* v1.586: ห้องจากห้องออกแบบที่มีดาวน์ไลท์ = วางไฟตามดาวน์ไลท์ (ระดับตามฝ้าตรงนั้น) · ไม่มี = เรียงตามตู้แบบเดิม */
+    let _LP=null; try{ if(R.pl&&!snOff("plDl")&&typeof ploList==="function"){ const rp=(root&&root.position)?root.position:{x:0,y:0,z:0};
+      _LP=ploList().filter(o=>o&&o.k==="dl"&&!(typeof ploHid==="function"&&ploHid(o))).map(o=>({x:+o.x+rp.x, z:+o.z+rp.z, y:plDlY(o)+rp.y})); } }catch(e){ _LP=null; }
+    if(!_LP||!_LP.length) _LP=Array.from({length:n},(_,i)=>({x:bx.min.x+(i+.5)*Wc/n, z:lz, y:R.y1}));
+    _LP.forEach(_p=>{ const lx=_p.x, lzz=_p.z, ly=_p.y, on=P.lamp>0;
       const lm=new THREE.MeshStandardMaterial({color:realLin(0xf5f3ee),roughness:.3,metalness:0,emissive:realLin(0xffe2b8),emissiveIntensity:on?2.4:0});
-      const o=new THREE.Mesh(new THREE.CylinderGeometry(62,62,14,32),lm); o.position.set(lx,R.y1-7,lz); o.receiveShadow=false; wg.add(o);
+      const o=new THREE.Mesh(new THREE.CylinderGeometry(62,62,14,32),lm); o.position.set(lx,ly-7,lzz); o.receiveShadow=false; wg.add(o);
       o.userData._rptEmit=on?P.pt.lampL:0; o.userData._rptEmitCol=[1,.82,.62]; o.userData._rptEmitK=4;   // ภาพแสงจริง: ส่องลงเป็นลำ
-      const rim=new THREE.Mesh(new THREE.CylinderGeometry(78,78,4,32),M(0xd8d8d8,.35,.6)); rim.position.set(lx,R.y1-2,lz); wg.add(rim);
-      REAL.lamps.push({x:lx,y:R.y1-16,z:lz}); } }
+      const rim=new THREE.Mesh(new THREE.CylinderGeometry(78,78,4,32),M(0xd8d8d8,.35,.6)); rim.position.set(lx,ly-2,lzz); wg.add(rim);
+      REAL.lamps.push({x:lx,y:ly-16,z:lzz}); }); }
   scene.add(g); REAL.grp=g;
   REAL.walls.forEach(w2=>w2.hid=false);
   return true; }
@@ -20928,8 +21059,11 @@ function bindPointer(dom){
          และเลือกชิ้นพวกนั้นไม่ได้เลยตราบใดที่ยังอยู่ในโหมดเปิดบาน ต้องปิดโหมดก่อนทุกครั้ง
          ตัวสั่งเปิดปิดควรเป็นสิ่งที่มองเห็นจากด้านหน้า ซึ่งก็คือหน้าลิ้นชัก ไม่ใช่ของข้างใน
          ของข้างในกลับไปเลือกได้ตามปกติ ส่วนการเลื่อนออกยังเลื่อนทั้งชุดเหมือนเดิม */
+      if(tb&&tb._swPost&&!snOff("swBasket")){ let bst=null, bd=1e9; const hy=hit.point.y-((root&&root.position&&root.position.y)||0);   /* v1.585: คลิกเสา = ตะแกรงชั้นที่ใกล้จุดคลิก */
+        tb._swPost.forEach(k=>{ const t=state.boards.find(x=>x._lmKey===k&&x._shape==="lmTray"); if(t&&Math.abs(t.y-hy)<bd){ bd=Math.abs(t.y-hy); bst=t; } }); if(bst) tb=bst; }
       if(tb&&tb._lmKey){   // v1.560: ถาด LeMans — คลิกทีละครั้ง ปิด → สวิงออก → ดึงออกสุด → ปิด
-        const k=tb._lmKey, cur=(state.lmProg||{})[k]||0, nx=cur<0.25?0.5:(cur<0.75?1:0);
+        const k=tb._lmKey, cur=(state.lmProg||{})[k]||0, _hc=tb._lmType==="hc", _mc=tb._lmType==="mc", nx=_hc?(cur<0.5?1:0):(cur<0.25?0.5:(cur<0.75?1:0));   /* v1.585: ครึ่งวงกลม = จังหวะเดียว */
+        if(_hc||_mc){ lemansAnimate(k,cur,nx); toast(_hc?(nx?"🧺 ตะแกรงครึ่งวงกลมหมุนออก 180° — คลิกอีกครั้งหมุนเก็บ":"🧺 หมุนเก็บเข้าตู้แล้ว"):(nx===0.5?"🧺 Magic Corner จังหวะ 1: ตะแกรงใบหน้าสวิงออก — คลิกอีกครั้งดึงใบหลังมาหน้า":nx===1?"🧺 จังหวะ 2: ตะแกรงใบหลังเลื่อนมาที่ช่องบาน — คลิกอีกครั้งเก็บ":"🧺 เก็บตะแกรงเข้าตู้แล้ว")); pMode="rot"; return; }
         lemansAnimate(k,cur,nx);   // ไม่เลือกชิ้น — กรอบเลือกวาดตามท่าปิด จะลอยผิดที่ตอนถาดดึงออก
         toast(nx===0.5?"🧺 ถาดสวิงออก (จังหวะ 1) — คลิกอีกครั้งดึงออกสุด":nx===1?"🧺 ดึงถาดออกสุด (จังหวะ 2) — คลิกอีกครั้งเก็บเข้า":"🧺 เก็บถาดเข้าตู้แล้ว");
         pMode="rot"; return; }
@@ -29729,6 +29863,10 @@ function boardRole(b){
      SN_OFF.plMold=1      ไม่มีบัวฝ้า/บัวพื้นในห้องออกแบบ (ค่าที่ตั้งไว้ยังอยู่) (v1.579)
      SN_OFF.plWash=1      ไม่มีการ์ดเครื่องซักผ้า (ที่วางไว้ยังอยู่) (v1.579)
      SN_OFF.ovenFit=1     เตาอบ Built-in แปะหน้าตู้แบบเดิม ไม่เข้าช่อง ไม่ขยับชั้น (v1.578)
+     SN_OFF.dwgUtil=1     ใบเสนอราคาไม่มีหน้าแบบงานระบบ (ปลั๊ก/ท่อ) (v1.586)
+     SN_OFF.plDl=1        ไม่มีไฟดาวน์ไลท์ในห้องออกแบบ (ไม่ใส่ 4 ดวงตั้งต้น · โหมดสมจริงวางไฟเองแบบเดิม) (v1.586)
+     SN_OFF.swBasket=1    ตะแกรง Magic Corner / ครึ่งวงกลม วาดเป็นกล่องตะแกรงแบบเดิม (v1.585)
+     SN_OFF.fitB3dSel=1   Element Fitting ช่อง “3D ที่แสดง” เป็นช่องพิมพ์ธรรมดา (v1.585)
      SN_OFF.reliefCupReb=1 บานกัดทะลุที่มีบ่าหลัง ไม่วาดรูถ้วยบานพับใน 3D (แบบ 1.583) (v1.584)
      SN_OFF.hingeNoCup=1  บานแบบ MCWG (settings.hingeNoCupShapes) เจาะรูถ้วยบานพับเหมือนบานอื่น (แบบ 1.576) (v1.577)
      SN_OFF.plSmeg=1      ไม่มีการ์ดตู้เย็น SMEG ในหมวดเครื่องใช้ในครัว (ที่วางไว้ยังอยู่) (v1.577)
@@ -29868,6 +30006,12 @@ function boardRole(b){
      SN_OFF.csmCorner=1   ไม่มีชั้นมุม L Cosimo (ไม่มีติ๊ก · ชั้นมุมที่แปลงแล้วยังเป็นแผ่น L) (v1.380)
      SN_OFF.plGrid=1      ลากในห้องออกแบบไม่ลงกริด (อิสระทีละมิล · ชิ้น Cosimo ขึ้นลงทีละ 10 แบบเดิม) (v1.379)
      SN_OFF.plWallSolid=1 ผนังห้องออกแบบกลับไปโปร่งแสงแบบเดิม (v1.379)
+     SN_OFF.ovenFitUp=1   เตาอบในช่อง ปรับชั้นใต้เตาแบบ 1.578 (ไม่ขยับชั้นบนเตา) (v1.588)
+     SN_OFF.plMicroB=1    ไม่มีการ์ดไมโครเวฟ Built-in (บานหลอกปรับตามหน้ากาก) (v1.588)
+     SN_OFF.acdSafe=1     เชื่อมโครงอัตโนมัติแบบเดิม (ยิงทุกชิ้นในฉาก รวมหน้าบาน · ข้ามตู้ · สร้างตู้ใหม่เชื่อมทั้งฉาก) (v1.588)
+     SN_OFF.acdHeal=1     ไม่ถามล้างเดือย/มินิฟิกที่ใส่เกินบนหน้าบาน (v1.588)
+     SN_OFF.ovenNear=1    เตาที่ไม่อยู่พื้นช่องพอดี = “หาช่องของเตาไม่เจอ” แบบเดิม ไม่หาช่องใกล้สุด (v1.588)
+     SN_OFF.sideSplitDoor=1 แผ่นปิดข้าง 2 ชิ้น (สูงเกินแผ่น) แบ่งครึ่งเท่ากันแบบเดิม ไม่ย้ายรอยต่อไปขอบล่างบานบน (v1.587)
      SN_OFF.csmBase=1     ไม่มีขาแผ่นไม้ Cosimo (ไม่สร้าง/ไม่จัดใหม่ · เสายืนพื้นทุกต้น · ไม่มีติ๊กขาที่แผง) — ท่อนขาที่มีอยู่แล้วยังเป็นไม้ในงาน (v1.378) */
 window.SN_SAFE=window.SN_SAFE||0;
 window.SN_OFF=window.SN_OFF||{};
@@ -32071,6 +32215,7 @@ const ELEM_FORM={
              ["bFromBot","วางจากแผ่นพื้นตู้: ก้นตะแกรงสูงจากพื้น (มม. · 0=วางบนพื้น · เว้นว่าง=อิงกลางหน้าบานตาม Y ล่าง)"],
              ["bQty","ตะแกรง — จำนวนใบตั้งต้น ใช้กับรหัสที่ไม่ได้ระบุ *n ไว้ใน defCabs (เว้นว่าง/1 = ใบเดียว)"],
              ["bPitch","ตะแกรง — ระยะไล่ขึ้นระหว่างใบ ก้นถึงก้น (มม. · เว้นว่าง/0 = ใช้ค่าเดียวกับ “สูงจากพื้น” ด้านบน)"],
+             ["b3d","ตะแกรง — 3D ที่แสดง (v1.585) · อัตโนมัติ = ดูจากรหัส · รหัสต่างกัน (คนละ Supplier) เลือก 3D เดียวกันได้ · ใช้: box / imove / lemans / magic / half"],
              ["kind","ชนิด: เว้นว่าง=ตะแกรง(ผูกรหัส) · \"หูแขวน\"=ตู้ลอย(คลิกขวาเลือก) · \"ขาตู้\"=ขาตู้(คลิกขวา/ปุ่ม🦵 เลือกรุ่น) · \"มือจับ\"=มือจับ/ปุ่มจับ(ปุ่ม🔩 หรือช่อง K_Pull ใน XML)"],
              ["nH","หูแขวน — บากแผ่นหลังสูง (มม. · ใส่ 0 = ไม่บาก · เว้นว่าง = 60)"],["nW","หูแขวน — บากแผ่นหลังกว้าง (มม. · ใส่ 0 = ไม่บาก · เว้นว่าง = 40)"],
              ["nW2","หูแขวน — บากตัว L: ขาที่สองกว้างจากขอบข้าง (มม. · เว้นว่าง/0 = บากสี่เหลี่ยมแบบเดิม · ต้องแคบกว่าช่อง “บากกว้าง” ด้านบน)"],
@@ -32517,7 +32662,7 @@ const FIT_FIELD_GRP={
   pullDrill:"pull", pullPocket:"pull", pull3D:"pull", pullFinish:"pull", pullDia:"pull", pullH:"pull",   // v1.331
   pullLen:"pull", pullT:"pull", pullBar:"pull", pullLeg:"pull",                                        // v1.446: บาร์แบน
   defCabs:"basket", bw:"basket", bh:"basket", bd:"basket", bFromBot:"basket",
-  bQty:"basket", bPitch:"basket", bdx:"basket", bdy:"basket", bdz:"basket",
+  bQty:"basket", bPitch:"basket", bdx:"basket", bdy:"basket", bdz:"basket", b3d:"basket",   // v1.585
   lenMap:"rail", boxToRail:"rail", drillMap:"rail", drillH:"rail", frontDrill:"rail"
 };
 const FIT_KIND_TH={hanger:"หูแขวน", leg:"ขาตู้", pull:"มือจับ", basket:"ตะแกรง / ซีรีส์ราง (ชนิดว่าง)"};
@@ -32859,6 +33004,12 @@ function renderElements(){
     _items.forEach(_it=>{ if(!_it.v) return; const f=_it.f;
     if(f[0]==="__h"){ const h=document.createElement("div"); h.className="emSec"; h.textContent=f[1]; form.appendChild(h); return; }
     const fld=document.createElement("div"); fld.className="emFld";
+    if(f[0]==="b3d"&&!snOff("fitB3dSel")){   /* v1.585: เลือก 3D ที่แสดงของตะแกรง */
+      fld.innerHTML='<label>'+escapeHtml(f[1])+'</label>'; const sl=document.createElement("select"); sl.className="nameinp";
+      const cv=String(cur.b3d==null?"":cur.b3d).trim().toLowerCase(); let auto="";
+      try{ const d0=parseFitDef(Object.assign({},cur,{b3d:""})); auto=d0?fitB3d(d0):""; }catch(e){}
+      FIT_B3D.forEach(o=>{ const op=document.createElement("option"); op.value=o[0]; op.textContent=o[1]+(o[0]===""&&auto?(" → "+((FIT_B3D.find(x=>x[0]===auto)||[0,auto])[1])):""); if(cv===o[0]||(o[0]===""&&cv==="auto")) op.selected=true; sl.appendChild(op); });
+      sl.onchange=()=>{ cur.b3d=sl.value; }; fld.appendChild(sl); form.appendChild(fld); return; }
     if(f[0]==="__fit3d"){
       const models=Object.keys(settings.fitModels||{}).sort();
       const ref=String(cur.model3d||"").trim();                         // โมเดลที่เลือกใช้ (เว้นว่าง=ใช้รหัสนี้เอง)
@@ -36706,6 +36857,7 @@ function plRoomDraw(){
   fl.rotation.x=-Math.PI/2; fl.position.set(r.x0+r.w/2,0.8,r.z0+r.d/2); fl.renderOrder=-1; g.add(fl);
   fl.onBeforeRender=(rd,sc,cam)=>{ const M=fl.material; if(!M) return; if(M.userData._dw==null) M.userData._dw=!!M.depthWrite;   /* v1.541: กล้องต่ำกว่าพื้น = ไม่วาดพื้น (มองขึ้นเห็นฝ้า) */
     const on=snOff("plCeilMesh")||cam.position.y>0; M.colorWrite=on; M.depthWrite=on&&M.userData._dw; };
+  try{ plDlInit(r); }catch(e){ console.error("plDlInit:",e); }                        // v1.586: ดาวน์ไลท์ 4 ดวงตั้งต้น
   try{ plCeilMesh(g,r); }catch(e){ console.error("plCeilMesh:",e); }                   // v1.541: ฝ้าเพดาน
   try{ plMoldDraw(g,r); }catch(e){ console.error("plMoldDraw:",e); }                   // v1.579: บัวฝ้า / บัวพื้น
   try{ plptFloor(fl,r); }catch(e){ console.error("plptFloor:",e); }    // v1.534: สี/รูปพื้นห้อง
@@ -36744,8 +36896,9 @@ function plRoomDraw(){
       const ln=new THREE.Line(new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(...a),new THREE.Vector3(...b)]),
         new THREE.LineDashedMaterial({color:col,dashSize:60,gapSize:40,transparent:true,opacity:.9}));
       ln.computeLineDistances(); g.add(ln); }); };
-  if(+r.wallBot>0) guide(+r.wallBot,0x1e88e5);
-  if(+r.wallTop>0) guide(+r.wallTop,0xef6c00);
+  /* v1.588: ผู้ใช้ 14:26 “เพิ่มปิดเปิดแสดงเส้น ประแนวตู้ ลอยให้ด้วยครับ” — r.guideOff = ซ่อนเส้น (ค่าแนวยังคุมตู้) · ติ๊กที่แผงห้อง #plGdLn */
+  if(+r.wallBot>0&&!r.guideOff) guide(+r.wallBot,0x1e88e5);
+  if(+r.wallTop>0&&!r.guideOff) guide(+r.wallTop,0xef6c00);
   try{ plwAddMeshes(g); }catch(e){ console.error("plw:",e); }   // v1.533: ผนังที่วาดจากแปลน
   try{ plwNumMeshes(g); }catch(e){ console.error("plwNum:",e); }   // v1.538: เลขช่วงผนัง
   try{ ploAddMeshes(g); }catch(e){ console.error("plo:",e); }   // v1.535: ประตู · หน้าต่าง · บันได
@@ -38104,7 +38257,8 @@ const PLO_T={
   stair:{n:"บันไดตรง", ic:"🪜", w:900, d:3300},
   col  :{n:"เสา", ic:"▮", w:400, d:400, col:1},
   ceil :{n:"ฝ้าลด", ic:"▭", w:1500, d:1500, rect:1},                          // v1.538: พื้นที่ฝ้า (ระดับฝ้า h จากพื้น · ต่ำกว่าฝ้าห้อง = ฝ้าลด)
-  ceilu:{n:"ฝ้าหลุม", ic:"▭", w:1500, d:1500, rect:1, alias:"ceil"},          // v1.538: การ์ดฝ้าหลุม = ชนิด ceil ที่สูงกว่าฝ้าห้อง
+  ceilu:{n:"ฝ้าหลุม", ic:"▭", w:1500, d:1500, rect:1, alias:"ceil"},
+  dl   :{n:"ไฟดาวน์ไลท์", ic:"💡", w:90, d:90},   // v1.586: ติดฝ้า (ระดับตามฝ้าตรงนั้น) · ใช้ทางลาก/แผงของเสา          // v1.538: การ์ดฝ้าหลุม = ชนิด ceil ที่สูงกว่าฝ้าห้อง
   plug :{n:"ปลั๊กไฟ", ic:"🔌", w:120, h:75, sill:1100, wall:1, util:1},        // v1.538: งานระบบ (sill = ความสูงถึงศูนย์ · ไม่เจาะผนัง · ลงพื้นได้)
   wat  :{n:"ท่อน้ำดี", ic:"🚰", w:20, h:20, sill:500, wall:1, util:1},
   drn  :{n:"ท่อน้ำเสีย", ic:"⭕", w:55, h:55, sill:400, wall:1, util:1},
@@ -38120,6 +38274,7 @@ const PLO_T={
   hood2:{n:"ฮู้ดบางติดใต้ตู้ (Slim)", ic:"🌀", w:600, h:90, d:480, appl:"under"},
   hood3:{n:"ฮู้ดกระโจมติดผนัง", ic:"🌀", w:900, h:550, d:480, sill:1550, wall:1, appl:"wall"},
   oven :{n:"เตาอบฝัง (Built-in)", ic:"⬛", w:595, h:595, d:575, appl:"cab", fit:1, iw:560, ih:585, idp:560},   /* v1.578: รุ่นในภาพผู้ใช้ 31/10 09:56 · iw/ih/idp = ขนาดช่องติดตั้ง (ก/ส/ล) */
+  microb:{n:"ไมโครเวฟ Built-in", ic:"⬛", w:595, h:454, d:568, appl:"cab", fit:1, mask:1, iw:560, ih:450, idp:550},   /* v1.588: HAFELE (ภาพผู้ใช้ 31/10 14:04) หน้ากาก 595×454 · ติดตั้ง 560-568 × 550 × 450 · mask = บานหลอกปรับตามหน้ากาก */
   micro:{n:"ไมโครเวฟตั้งพื้น", ic:"📦", w:480, h:280, d:360, appl:"top", niche:true},   /* v1.569: niche = วางในช่องโล่งของตู้ได้ */
   bin  :{n:"ถังขยะ", ic:"🗑", w:300, h:600, d:300, appl:"floor"},
   gas  :{n:"ถังแก๊ส 15 กก.", ic:"🛢", w:360, h:620, d:360, appl:"floor"},
@@ -38203,6 +38358,22 @@ function ploHideBar(){ if(snOff("plHide")) return ""; const H=ploList().filter(o
   return '<div class="plRow" id="ploHideBar" style="margin-top:6px;gap:4px;flex-wrap:wrap;align-items:center;background:rgba(240,140,0,.08);border:1px solid rgba(240,140,0,.35);border-radius:8px;padding:5px 7px;font-size:12px">'
     +'<span>🙈 ซ่อนอยู่ '+H.length+' ชิ้น:</span>'+H.map(o=>'<button class="ibtn" data-unhide="'+escapeHtml(String(o.id))+'" title="คลิก = แสดงคืน" style="padding:1px 7px;font-size:11.5px">👁 '+escapeHtml(ploHideName(o))+'</button>').join("")
     +(H.length>1?'<button class="ibtn" data-unhide="*" style="padding:1px 7px;font-size:11.5px">แสดงทั้งหมด</button>':'')+'</div>'; }
+/* ───────── v1.586: ไฟดาวน์ไลท์ ─────────
+   ผู้ใช้ 31/10 13:27 “ต้องเพิ่มไฟดาวไลน์ไหมครับ โดยตอนเริ่มฝ้าก็ใส่ให้ก่อน สัก 4 ดวง แล้วมีให้ User ดึงเข้าไปเติมเอง”
+   เดิม: ห้องออกแบบไม่มีไฟ · โหมดสมจริงวางดาวน์ไลท์เอง 1–4 ดวงเรียงตามความกว้างตู้ (ผู้ใช้เลือกตำแหน่งไม่ได้)
+   ตอนนี้: ชนิด dl (การ์ดในโครงสร้าง · ฝ้า) · ระดับ = ฝ้าตรงจุดนั้น (ฝ้าหลุม/ฝ้าลดที่คลุม = ระดับนั้น · plDlY) · ลาก/แผง/หมุนใช้ทางของเสา
+     ห้องที่แสดงฝ้าและยังไม่เคยใส่ (r.dlInit) = ใส่ 4 ดวง 2×2 ที่ ¼ · ¾ ของห้อง ครั้งเดียว (ลบแล้วไม่กลับมา) · ซ่อนได้ (1.581)
+     โหมดสมจริง (AI RENDER): มีดาวน์ไลท์ในห้อง = วางไฟตามนั้น · ปิด SN_OFF.plDl */
+function plDlY(o){ const r=plRoom(); let y=+r.h||2600;
+  try{ ploList().forEach(c=>{ if(!c||c.k!=="ceil"||(typeof ploHid==="function"&&ploHid(c))) return; const hw=(+c.w||1500)/2, hd=(+c.d||1500)/2;
+    if(Math.abs(+o.x-(+c.x))<=hw&&Math.abs(+o.z-(+c.z))<=hd) y=+c.h||y; }); }catch(e){}
+  return y; }
+function plDlInit(r){ if(snOff("plDl")||snOff("plObj")||!r||r.dlInit||r.ceilShow===false||!(+r.w>300&&+r.d>300)) return 0;
+  try{ if(typeof plRoomLocked==="function"&&plRoomLocked()) return 0; }catch(e){}
+  const anyWall=Object.keys(r.walls||{}).some(k=>r.walls[k])||plwList().length>0; if(!anyWall) return 0;
+  r.dlInit=1; const L=ploList(); if(L.some(o=>o&&o.k==="dl")) return 0; let n=0;
+  [0.25,0.75].forEach(fx=>[0.25,0.75].forEach(fz=>{ const o=ploNew("dl"); if(!o) return; o.x=Math.round(r.x0+r.w*fx); o.z=Math.round(r.z0+r.d*fz); delete o.hinge; delete o.swing; o.ref="bl"; L.push(o); n++; }));
+  return n; }
 function ploAddMeshes(g){
   if(snOff("plObj")) return; const L=ploList().filter(o=>o&&(!PLW.on||o.k==="col")&&(o.k!=="col"||!snOff("plCol"))&&!scnApplHid(o)&&!ploHid(o));   /* v1.565: ฉากซ่อนตู้พื้น/ตู้ลอย = ซ่อนเครื่องใช้ระดับนั้น */ if(!L.length) return;
   try{ ploDimDraw(g); }catch(e){ console.error("ploDim:",e); }              // v1.538: Dim ของที่ลาก/เลือกอยู่   // v1.536: ตอนวาดผนังเห็นแต่เสา (เตี้ย)
@@ -38260,6 +38431,10 @@ function ploAddMeshes(g){
       else { const pw=(w-2*fw)/2+30; box(pw,h-2*fw,6,-(w-2*fw)/4+15,y0+h/2,10,glassM); box(pw,h-2*fw,6,(w-2*fw)/4-15,y0+h/2,-10,glassM); box(40,h-2*fw,fd*0.7,0,y0+h/2,0,frameM); }
       if(snOff("plWinNoSill")) box(w+80,20,80,0,y0-10,th/2+30,frameM); } }   /* v1.539: ผู้ใช้ 16:58 “ตรงหน้าต่างไม่เอาขอบที่ยื่น” — ไม่มีขอบรองด้านใน (SN_OFF.plWinNoSill=1 = มีแบบเดิม) */                                                  // ขอบรองด้านใน · v1.538: } ปิด else มุมแปลน
     else if(T.appl){ try{ plaMesh(o,T,G,box,M,th,r); }catch(e){ console.error("plaMesh:",e); } }   // v1.546: เครื่องใช้ในครัว
+    else if(o.k==="dl"){ const yc=plDlY(o), R0=Math.max(+o.w||90,40)/2;   /* v1.586: ดาวน์ไลท์ — ขอบขาว + หน้าเรืองแสง · เห็นเมื่อกล้องต่ำกว่าฝ้า หรือมุมแปลน */
+      const rim=new THREE.Mesh(new THREE.CylinderGeometry(R0,R0,8,28),new THREE.MeshStandardMaterial({color:0xf2f2f0,roughness:.4})); rim.position.y=yc-4; G.add(rim);
+      const lm=new THREE.MeshBasicMaterial({color:0xfff0cf}); const ds=new THREE.Mesh(new THREE.CylinderGeometry(R0-12,R0-12,2,28),lm); ds.position.y=yc-9; G.add(ds);
+      [rim,ds].forEach(m=>{ m.userData.plDl=1; m.onBeforeRender=(rd,sc,cam)=>{ const on=plPlanOn()||cam.position.y<yc-1; m.material.colorWrite=on; m.material.depthWrite=on; }; }); }
     else if(o.k==="ceil"){ const H=+r.h||2600, hz=Math.max(+o.h||H,300), cw=Math.max(+o.w||1500,100), cd=Math.max(+o.d||1500,100), lo=Math.min(hz,H), hi=Math.max(hz,H), drop=hz<H-1;   // v1.538: ฝ้า
       const mat=new THREE.MeshStandardMaterial({color:drop?0xf1eee8:0xdbe8f5, roughness:.9, transparent:true, opacity:drop?.5:.22, depthWrite:false, side:THREE.DoubleSide});
       const m=box(cw,Math.max(hi-lo,6),cd,0,(lo+hi)/2,0,mat); m.castShadow=false; m.renderOrder=3; if(plPlanOn()) mat.visible=false;   // มุมแปลน = กรอบอย่างเดียว ไม่บังตู้
@@ -38287,7 +38462,7 @@ function ploAddMeshes(g){
       const ap=[]; for(let i=0;i<n;i++){ const y=(i+1)*rise+3, z0=-D/2+i*run; ap.push([0,y,z0+run*0.15],[0,y,z0+run*0.85]); }
       line(ap,0x7c2d12); const zt=D/2-run*0.15, yt=H+3; line([[-w*0.18,yt,zt-run*0.6],[0,yt,zt],[w*0.18,yt,zt-run*0.6]],0x7c2d12); }
     /* กล่องคลิก (มองไม่เห็น) + กรอบเลือก */
-    const pk=T.appl?plaPk(o,T,th):o.k==="ceil"?ploCeilPk(o,r):T.util?ploUtilPk(o,F,th):o.k==="stair"?[w,Math.max(+o.h||+r.h||2600,300),Math.max(+o.d||T.d,600),0]:o.k==="col"?[Math.max(+o.w||400,50),PLW.on?60:Math.max(+o.h||+r.h||2600,100),Math.max(+o.d||400,50),0]:[w,h,th+40,y0];
+    const pk=T.appl?plaPk(o,T,th):o.k==="ceil"?ploCeilPk(o,r):T.util?ploUtilPk(o,F,th):o.k==="stair"?[w,Math.max(+o.h||+r.h||2600,300),Math.max(+o.d||T.d,600),0]:o.k==="dl"?[Math.max(+o.w||90,40),30,Math.max(+o.w||90,40),plDlY(o)-30]:o.k==="col"?[Math.max(+o.w||400,50),PLW.on?60:Math.max(+o.h||+r.h||2600,100),Math.max(+o.d||400,50),0]:[w,h,th+40,y0];
     const pick=new THREE.Mesh(new THREE.BoxGeometry(pk[0],pk[1],pk[2]),new THREE.MeshBasicMaterial({visible:false}));
     pick.position.set(0,pk[3]+pk[1]/2,pk[4]||0); /* v1.546: ฮู้ดติดผนังอยู่หน้าผนัง */ pick.userData.ploPick=1; pick.userData.plo=o.id; G.add(pick);
     if(PLO.sel===o.id){ const sel=new THREE.LineSegments(new THREE.EdgesGeometry(pick.geometry),new THREE.LineBasicMaterial({color:0x2563eb,depthTest:false})); sel.position.copy(pick.position); sel.renderOrder=999; sel.userData.ploSelLine=1; G.add(sel); }   /* v1.548: โหมดสมจริงซ่อนขอบที่เลือก */
@@ -38333,6 +38508,7 @@ function plaIcon(k,s,e){ const F='fill="rgba(160,170,180,.35)"';
   if(k==="hood1") return s+'<rect x="10" y="10" width="60" height="36"/><rect x="12" y="46" width="56" height="7" '+F+'/><path d="M16 60h48" stroke-dasharray="4 3"/>'+e;
   if(k==="hood2") return s+'<rect x="16" y="10" width="48" height="34"/><rect x="8" y="44" width="64" height="9" '+F+'/>'+e;
   if(k==="hood3") return s+'<rect x="34" y="6" width="12" height="28" '+F+'/><path d="M12 54L28 34H52L68 54Z" '+F+'/><path d="M10 54h60"/>'+e;
+  if(k==="microb") return s+'<rect x="8" y="18" width="64" height="46" rx="2"/><rect x="13" y="30" width="38" height="28" rx="2" fill="rgba(30,30,30,.8)"/><rect x="55" y="30" width="12" height="28" rx="1"/><path d="M14 24h52" stroke-width="3"/>'+e;   /* v1.588 */
   if(k==="oven") return s+'<rect x="12" y="12" width="56" height="56" rx="2"/><rect x="18" y="30" width="44" height="32" rx="2" fill="rgba(30,30,30,.8)"/><path d="M22 23h36" stroke-width="4"/>'+e;
   if(k==="micro") return s+'<rect x="6" y="22" width="68" height="40" rx="3"/><rect x="11" y="27" width="42" height="30" rx="2" fill="rgba(30,30,30,.75)"/><circle cx="64" cy="34" r="3"/><circle cx="64" cy="46" r="3"/>'+e;
   if(k==="fridge1") return s+'<rect x="22" y="5" width="36" height="70" rx="3" '+F+'/><path d="M29 28v16" stroke-width="3"/>'+e;   // v1.576
@@ -38447,7 +38623,8 @@ function plaOvenNicheAt(o,H){ const T=PLO_T[o.k]||{}; if(!T.fit||snOff("ovenFit"
 function plaPutOven(o,H,N){ const d=Math.max(+o.d||(PLO_T[o.k]||{}).d||575,50), s=N.s;
   plaSet(o,H,(N.inLo+N.inHi)/2,N.front+s*20-s*d/2,N.floor); o.inCab=1; }
 function plaOvenTip(o,N){ const ih=plaOvenIH(o), dl=Math.round(N.h-ih), iw=plaOvenIW(o);
-  return "ช่อง ก "+N.w+" × ส "+N.h+(Math.abs(dl)<1?" · สูงพอดีเตา ("+ih+")":(" → ปล่อย = ชั้นล่าง"+(dl>0?"ขึ้น ":"ลง ")+Math.abs(dl)+" ให้ช่องสูง "+ih))+(N.w<iw?(" · ⚠ ช่องแคบกว่าติดตั้ง "+Math.round(iw-N.w)):""); }
+  if(PLO_T[o.k]&&PLO_T[o.k].mask) return "ช่อง ก "+N.w+" · หน้ากาก "+Math.round(+o.h||454)+" → ปล่อย = บานหลอกปรับให้พอดีหน้ากาก (เว้น "+plaMaskGap(o)+")";   /* v1.588 */
+  return "ช่อง ก "+N.w+" × ส "+N.h+(Math.abs(dl)<1?" · สูงพอดีเตา ("+ih+")":(snOff("ovenFitUp")?(" → ปล่อย = ชั้นล่าง"+(dl>0?"ขึ้น ":"ลง ")+Math.abs(dl)+" ให้ช่องสูง "+ih):(" → ปล่อย = ชั้นบนเตา"+(dl>0?"ลง ":"ขึ้น ")+Math.abs(dl)+" ให้ช่องสูง "+ih)))+(N.w<iw?(" · ⚠ ช่องแคบกว่าติดตั้ง "+Math.round(iw-N.w)):""); }
 function plaOvenAuto(o,c){ let best=null, bd=Infinity;
   Object.keys(plCabMap()).forEach(i=>{ const H=plaHostInfo(i,null); if(!H||H.up) return; let L=[]; try{ L=plaNiches(i); }catch(e){ L=[]; }
     L.filter(N=>N.w>=plaOvenIW(o)-40&&N.h>=300).forEach(N=>{ const dd=Math.hypot((H.c.lo[0]+H.c.hi[0])/2-c.x,(H.c.lo[2]+H.c.hi[2])/2-c.z)+Math.abs(N.h-plaOvenIH(o))*0.5;
@@ -38455,9 +38632,110 @@ function plaOvenAuto(o,c){ let best=null, bd=Infinity;
   if(!best) return false; plaPutOven(o,best.H,best.N); return true; }
 function plaOvenRows(o,fr,num){ let nt="ยังไม่อยู่ในช่องตู้ — ลากไปชี้ช่องโล่ง";
   try{ if(o.inCab&&o.host){ const H=plaHostInfo(o.host,null), N=H&&plaNicheAt(H,(+o.y||0)+5); if(N) nt="ช่อง ก "+N.w+" × ส "+N.h+" × ล "+N.d; } }catch(e){}
-  return fr("สูงติดตั้ง",num("ih",plaOvenIH(o),1)+'<span class="plU">มม.</span>',"ความสูงช่องที่เตารุ่นนี้ต้องการ (สเปกติดตั้ง)")
-    +'<div class="plRow" style="margin-top:4px;gap:6px"><span class="plNote">'+escapeHtml(nt)+'</span>'+(o.inCab?'<button class="ibtn" id="plaOvFit" title="ขยับชั้นใต้เตาให้ช่องสูงเท่าสูงติดตั้ง · บานช่องล่างยืดหดตาม">↕ ปรับชั้นให้พอดีเตา</button>':'')+'</div>'; }
+  const _mk=!!(PLO_T[o.k]&&PLO_T[o.k].mask);   /* v1.588 */
+  return (_mk?fr("เว้นบานหลอก",num("mgap",plaMaskGap(o),1,50)+'<span class="plU">มม.</span>',"ระยะขอบหน้ากากเครื่อง ↔ ขอบบานหลอก (ค่าตั้งต้น 2)"):"")+fr("สูงติดตั้ง",num("ih",plaOvenIH(o),1)+'<span class="plU">มม.</span>',"ความสูงช่องที่เตารุ่นนี้ต้องการ (สเปกติดตั้ง)")
+    +'<div class="plRow" style="margin-top:4px;gap:6px"><span class="plNote">'+escapeHtml(nt)+'</span>'+(o.inCab?'<button class="ibtn" id="plaOvFit" title="'+(_mk?"บานหลอกเหนือเครื่องยืด/หดให้พอดีหน้ากาก (เว้น "+plaMaskGap(o)+" มม.)":snOff("ovenFitUp")?"ขยับชั้นใต้เตาให้ช่องสูงเท่าสูงติดตั้ง · บานช่องล่างยืดหดตาม":"ขยับชั้นบนเตาให้ช่องสูงเท่าสูงติดตั้ง · บานที่ติดชั้นยืดหดตาม")+'">'+(_mk?"↕ ปรับบานหลอกให้พอดีหน้ากาก":"↕ ปรับชั้นให้พอดีเตา")+'</button>':'')+'</div>'; }
+/* ═════════ v1.588: ช่องเตา — ชั้นบนเตาขยับ · ไมโครเวฟ Built-in บานหลอกตามหน้ากาก · หาช่องใกล้สุด ═════════
+   ผู้ใช้ 31/10 14:04 (project (7) ตู้สูง TAR031: ลิ้นชัก 101–702 · ชั้น 1 ผิวบน 704 · ช่องเตา 704–1289 · ชั้น 2 1289–1305
+     · ช่องบน 1305–1660 · บานหลอก Panel L 1589–1659 ใต้ Door R 1659–2449) + สเปก HAFELE ไมโครเวฟ Built-in หน้ากาก 595×454 ติดตั้ง 450:
+     “ช่องบน จะวาง ไมโครเวฟ แบบ built แล้วให้ บานหลอกปรับหา ไมโครเวฟ หมายถึงความสูงหน้ากาก … ช่องที่เหลือ 524 บานหลอกก็ 70 − GAP 2 = 68”
+   14:06 (ภาพเตาบนชั้นเหนือลิ้นชัก ช่องเหนือเตาโล่ง): “จริงๆ ชั้น บนเตาต้องขยับ หา เตา ข้างล่าง ครับ กรณีใส่เตา”
+   ① 1.578 (ผู้ใช้เลือกตอนนั้น “ขยับชั้นล่าง”) → เปลี่ยนเป็นชั้นเหนือเตา: เตานั่งบนชั้นเดิม ชั้นบนลง/ขึ้นให้ช่องใน (ผิวบนชั้นล่าง → ผิวล่างชั้นบน) = สูงติดตั้ง
+      ของติดชั้น (≤ 3 มม.): สูง ≤ 150 ขยับตาม · สูงกว่า (แผ่นหลัง/ฉาก) ยืด-หดฝั่งที่ติดชั้น · บานที่ขอบชิดชั้นยืด-หดขอบนั้น (ขอบไกลคงที่)
+      ชั้นบนเป็นหลังคาตู้ / ไม่มี = ใช้ทางเดิม (ชั้นใต้เตา) · ปิด SN_OFF.ovenFitUp = ทางเดิมทั้งหมด (plaOvenFitDn)
+   ② ไมโครเวฟ Built-in (PLO_T.microb · mask:1): ไม่ขยับชั้น — เครื่องนั่งบนพื้นช่อง หน้ากากสูง o.h (454)
+      บานหลอก = หน้า (_door) ที่เป็น _dummy/_panel/ชื่อ Panel·Dummy·หลอก ไม่ใช่ลิ้นชัก คลุมกว้างช่อง ≥ 50% อยู่เหนือเครื่อง (ไม่มี = ใต้เครื่อง)
+      ขอบล่างใหม่ = บนหน้ากาก + เว้น (o.mgap › settings.plaMaskGap › 2) · ขอบบนคงที่ → สูงใหม่ = ช่องเหลือ − หน้ากาก − เว้น
+      สั้นกว่า 10 = ไม่แตะ บอกว่าขาดเท่าไร · ช่องใน (ถึงชั้นถัดไป) เตี้ยกว่าสูงติดตั้ง = เตือนต่อท้าย
+   ③ FIX “หาช่องของเตาไม่เจอ”: เดิมหาช่องที่ระดับ o.y เท่านั้น — เตาที่ค้างระดับเก่า (ตู้เปลี่ยนแบบ/ชั้นย้ายหลังวาง: project (7) เตาสูง 400
+      ช่องจริง 704) หาไม่เจอ · ตอนนี้ plaNicheNear = ช่องที่กว้างพอ ใกล้ระดับเดิมสุด (≤ 400) แล้วจัดเตาเข้าช่องก่อน · ปิด SN_OFF.ovenNear */
+function plaMaskGap(o){ const v=+(o&&o.mgap); if(isFinite(v)&&o&&o.mgap!=null&&v>=0) return v; const g=+settings.plaMaskGap; return (isFinite(g)&&settings.plaMaskGap!=null&&g>=0)?g:2; }
+function plaNicheNear(o,H){ if(snOff("ovenNear")||!o||!H) return null; let L=[]; try{ L=plaNiches(H.inst); }catch(e){ L=[]; }
+  const y=+o.y||0, iw=plaOvenIW(o); let best=null, bd=Infinity;
+  L.filter(N=>N.w>=iw-40&&N.h>=150).forEach(N=>{ const dd=Math.abs(N.floor-y); if(dd<bd){ bd=dd; best=N; } });
+  return bd<=400?best:null; }
+function plaFitBoards(inst,N){ const all=plBoardsOf(inst).filter(b=>b&&!b._virtual&&(+b.T>0)&&!plIsLeg(b)), A=N.A;
+  const ys=b=>{ const d=worldDims(b); return {d, lo:b.y-d[1]/2, hi:b.y+d[1]/2}; };
+  const ov=b=>{ const d=worldDims(b), p=[b.x,b.y,b.z][A]; return Math.min(p+d[A]/2,N.inHi)-Math.max(p-d[A]/2,N.inLo); };
+  const flat=b=>b.orient==="flat"&&!b._door&&!b._box&&b._dg==null&&ov(b)>=N.w*0.5;
+  const hk=(b,q)=>Math.abs((+b.W||0)-q.d[1])<=Math.abs((+b.L||0)-q.d[1])?"W":"L";
+  return {all, ys, ov, flat, hk}; }
+function plaFitHoles(list){ const reMate=[];   /* ชิ้นที่ย้าย/ยืด: ล้างรูคู่อัตโนมัติที่มันเจาะไว้ แล้วเจาะใหม่ (ทางเดียวกับ 1.578) */
+  list.forEach(x=>{ if(x._datum) delete x._datum; state.boards.forEach(b=>{ if(b!==x&&b.holes) b.holes=b.holes.filter(h=>!(h&&h.src===x.id&&(h.dowel||h.screw)&&!h.manual&&!h.pin)); });
+    if((x.connectors||[]).length) reMate.push(x); });
+  return reMate; }
+function plaFitAfter(inst,reMate,doors){
+  if(doors&&settings.doorKeepSpec!==false){ try{ captureDoorSpecs(inst,true); }catch(e){ console.error("fit doorSpec:",e); } }
+  try{ render3D(false); reMate.forEach(x=>{ try{ drillMates(x); }catch(e){ console.error("fit drillMates:",e); } }); }catch(e){ console.error("fit remate:",e); }
+  try{ state.boards.filter(x=>x.cabInst===inst&&x._door&&(x.connectors||[]).some(k=>k.type==="hinge"&&k.plate!==false)).forEach(d=>{ try{ drillHingePlateHoles(d); }catch(e){} }); }catch(e){} }
 function plaOvenFit(o){ if(snOff("ovenFit")||!o||!o.inCab||!o.host) return {err:"เตายังไม่อยู่ในช่องตู้"};
+  const H=plaHostInfo(o.host,null); if(!H) return {err:"หาตู้ของเตาไม่เจอ"};
+  let N=plaNicheAt(H,(+o.y||0)+5), snap="";
+  if(!N){ N=plaNicheNear(o,H); if(N){ const y0=Math.round(+o.y||0); plaPutOven(o,H,N); snap="จัดเข้าช่อง (สูง "+y0+" → "+Math.round(N.floor)+") · "; } }
+  if(!N) return {err:"หาช่องของเตาไม่เจอ"};
+  const T=PLO_T[o.k]||{}; let r;
+  if(T.mask) r=plaMaskFit(o,H,N);
+  else if(snOff("ovenFitUp")) r=plaOvenFitDn(o);
+  else { r=plaOvenFitUp(o,H,N); if(r&&r.down) r=plaOvenFitDn(o); }
+  if(snap){ if(r&&r.msg) r.msg=snap+r.msg; else if(r&&r.err) r.err=snap+r.err; if(r&&r.err) try{ sync(0); }catch(e){} }
+  return r; }
+/* ① ชั้นบนเตา */
+function plaOvenFitUp(o,H,N){ const ih=plaOvenIH(o), inst=H.inst, F=plaFitBoards(inst,N), ys=F.ys, ov=F.ov;
+  const flats=F.all.filter(F.flat); if(!flats.length) return {down:1};
+  const roof=Math.max(...flats.map(b=>ys(b).hi));
+  const up=flats.filter(b=>ys(b).lo>=N.floor+1).sort((a,b)=>ys(a).lo-ys(b).lo)[0];
+  if(!up||ys(up).hi>=roof-0.5) return {down:1};                                   // ชั้นบน = หลังคาตู้ → ทางเดิม
+  const S=ys(up), cur=Math.round((S.lo-N.floor)*10)/10, dl=Math.round((N.floor+ih-S.lo)*10)/10;
+  if(Math.abs(dl)<0.5) return {ok:1, msg:"ช่องเตาสูง "+cur+" พอดีเตาแล้ว"};
+  const nxt=flats.filter(b=>b!==up&&ys(b).lo>=S.hi-0.5).sort((a,b)=>ys(a).lo-ys(b).lo)[0], ceil=nxt?ys(nxt).lo:roof;
+  const att=[], obs=[];
+  F.all.forEach(b=>{ if(b===up||b._door||ov(b)<=0||F.flat(b)) return; const q=ys(b);
+    const onTop=Math.abs(q.lo-S.hi)<=3&&q.hi<=ceil+3, under=Math.abs(q.hi-S.lo)<=3&&q.lo>=N.floor-3;
+    if(onTop) att.push({b,q,side:"t"}); else if(under) att.push({b,q,side:"u"});
+    else if(q.lo>=N.floor+1&&q.hi<=S.lo+1&&q.hi>N.floor+1) obs.push({b,q,where:"n"});          // ในช่องเตา
+    else if(q.lo>=S.hi-1&&q.lo<ceil&&q.hi>S.hi+1&&!(q.lo<S.lo&&q.hi>S.hi)) obs.push({b,q,where:"u"}); });  // ในช่องบน
+  if(dl<0){ const lim=Math.max(N.floor,...obs.filter(x=>x.where==="n").map(x=>x.q.hi)); if(S.lo+dl<lim+2) return {err:"ช่องเตามีของขวาง — ชั้นบนลงได้ถึงสูง "+Math.round(lim)+" (ช่องเตายังสูง "+cur+")"}; }
+  else { const lim=Math.min(ceil,...obs.filter(x=>x.where==="u").map(x=>x.q.lo)); if(S.hi+dl>lim-50) return {err:"ช่องเหนือชั้นไม่พอให้ชั้นขึ้น "+dl+" (ขึ้นได้ "+Math.max(0,Math.floor(lim-50-S.hi))+") — ช่องเตายังสูง "+cur}; }
+  /* บานที่ขอบติดชั้น: ขอบล่างแถวชั้น (ผิวล่าง −20 ถึงผิวบน +60) ยาวขึ้นไป = ขอบล่างตาม · ขอบบนแถวชั้น (ผิวล่าง −60 ถึงผิวบน +20) ยาวลงมา = ขอบบนตาม */
+  const drs=[]; F.all.forEach(b=>{ if(!b._door||b._box||b._dg!=null||ov(b)<=0) return; const q=ys(b);
+    if(q.lo>=S.lo-20&&q.lo<=S.hi+60&&q.hi>S.hi+50) drs.push({b,q,e:"lo"});
+    else if(q.hi>=S.lo-60&&q.hi<=S.hi+20&&q.lo<S.lo-50&&q.lo>=N.floor-60) drs.push({b,q,e:"hi"}); });
+  if(drs.some(x=>(x.e==="lo"?x.q.d[1]-dl:x.q.d[1]+dl)<60)) return {err:"บานที่ติดชั้นจะเตี้ยเกินไป — ไม่ขยับ"};
+  const moved=[up];
+  withCabAxisAligned(inst,()=>{
+    up.y=Math.round((up.y+dl)*10)/10;
+    att.forEach(x=>{ const b=x.b, q=x.q; if(q.d[1]<=150){ b.y=Math.round((b.y+dl)*10)/10; }
+      else { const k=F.hk(b,q); if(x.side==="t"){ const nh=Math.round((q.d[1]-dl)*10)/10; b[k]=nh; b.y=Math.round((q.hi-nh/2)*10)/10; }
+        else { const nh=Math.round((q.d[1]+dl)*10)/10; b[k]=nh; b.y=Math.round((q.lo+nh/2)*10)/10; } }
+      moved.push(b); });
+    drs.forEach(x=>{ const b=x.b, q=x.q, k=F.hk(b,q);
+      if(x.e==="lo"){ const nh=Math.round((q.d[1]-dl)*10)/10; b[k]=nh; b.y=Math.round((q.hi-nh/2)*10)/10; }
+      else { const nh=Math.round((q.d[1]+dl)*10)/10; b[k]=nh; b.y=Math.round((q.lo+nh/2)*10)/10; } });
+    plaFitAfter(inst,plaFitHoles(moved),drs.length);
+  });
+  const H2=plaHostInfo(inst,null), N2=H2&&plaNicheAt(H2,N.floor+5); if(N2) plaPutOven(o,H2,N2);
+  sync(0);
+  return {ok:1, dl, n:drs.length, msg:"ชั้นบนเตา"+(dl<0?"ลง ":"ขึ้น ")+Math.abs(dl)+" มม. → ช่องเตาสูง "+Math.round((cur+dl)*10)/10+" (ติดตั้ง "+ih+")"
+    +(drs.length?(" · บานติดชั้นยืด/หด "+drs.length+" ใบ"):"")+(att.length?(" · ชิ้นติดชั้นขยับ/ยืดตาม "+att.length):"")+" · Ctrl+Z ย้อนได้"}; }
+/* ② ไมโครเวฟ Built-in: บานหลอกตามหน้ากาก */
+function plaMaskFit(o,H,N){ const inst=H.inst, F=plaFitBoards(inst,N), ys=F.ys, ov=F.ov, gap=plaMaskGap(o), mh=Math.round(+o.h||454), y0=+o.y||N.floor, top=y0+mh, ih=plaOvenIH(o);
+  const isDm=b=>b._door&&!b._box&&b._dg==null&&(b._dummy||b._panel||/panel|dummy|หลอก/i.test(String(b.name||"")))&&ov(b)>=N.w*0.5;
+  const ds=F.all.filter(isDm).map(b=>({b,q:ys(b)}));
+  const ab=ds.filter(x=>x.q.hi>y0+mh*0.5&&x.q.lo>=y0-1).sort((a,b)=>a.q.lo-b.q.lo)[0];
+  const bl=ab?null:ds.filter(x=>x.q.hi<=y0+mh*0.5).sort((a,b)=>b.q.hi-a.q.hi)[0];
+  const ceil=(()=>{ const c=F.all.filter(b=>F.flat(b)&&ys(b).lo>=y0+1).map(b=>ys(b).lo); return c.length?Math.min(...c):null; })();
+  const inH=ceil!=null?Math.round((ceil-y0)*10)/10:null, warn=(inH!=null&&inH<ih-0.5)?(" · ⚠ ช่องในสูง "+inH+" เตี้ยกว่าติดตั้ง "+ih+" — เครื่องใส่ไม่ลง ขยับชั้นบนช่องก่อน"):"";
+  const X=ab||bl; if(!X) return {err:"ตู้นี้ไม่มีบานหลอก (Panel) เหนือ/ใต้ช่องเครื่อง — หน้ากาก "+mh+warn};
+  const q=X.q, b=X.b, rem=Math.round(((ab?q.hi-y0:top-q.lo))*10)/10;
+  const nh=Math.round((ab?(q.hi-(top+gap)):((y0-gap)-q.lo))*10)/10, old=Math.round(q.d[1]*10)/10;
+  if(nh<10) return {err:"ช่องเหลือ "+rem+" ไม่พอ หน้ากาก "+mh+" + เว้น "+gap+" (ขาด "+Math.round((10-nh)*10)/10+") — บานหลอกไม่แตะ"+warn};
+  if(Math.abs(nh-old)<0.5) return {ok:1, msg:"บานหลอกสูง "+old+" พอดีหน้ากากแล้ว"+warn};
+  withCabAxisAligned(inst,()=>{ const k=F.hk(b,q); b[k]=nh; b.y=ab?(q.hi-nh/2):(q.lo+nh/2);   /* ขอบไกลคงที่ (ไม่ปัด y) */
+    plaFitAfter(inst,plaFitHoles([b]),1); });
+  sync(0);
+  return {ok:1, dh:Math.round((nh-old)*10)/10, h:nh, msg:"บานหลอก"+(ab?"เหนือ":"ใต้")+"เครื่อง "+old+" → "+nh+" (ช่องเหลือ "+rem+" − หน้ากาก "+mh+" − เว้น "+gap+")"+warn+" · Ctrl+Z ย้อนได้"}; }
+/* 1.578: ชั้นใต้เตา (ทางเดิม — ใช้เมื่อชั้นบนเป็นหลังคาตู้ หรือ SN_OFF.ovenFitUp) */
+function plaOvenFitDn(o){ if(snOff("ovenFit")||!o||!o.inCab||!o.host) return {err:"เตายังไม่อยู่ในช่องตู้"};
   const H=plaHostInfo(o.host,null); if(!H) return {err:"หาตู้ของเตาไม่เจอ"};
   const N=plaNicheAt(H,(+o.y||0)+5); if(!N) return {err:"หาช่องของเตาไม่เจอ"};
   const ih=plaOvenIH(o), dl=Math.round((N.h-ih)*10)/10, inst=H.inst, A=N.A;
@@ -38573,7 +38851,7 @@ function plaAuto(o){ const md=PLO_T[o.k].appl, c=orbit.target; let best=null, bd
 function plaResnap(o){ const T=PLO_T[o.k]; if(!o.host||!T||!T.appl) return; const H=plaHostInfo(o.host,null); if(!H){ o.host=null; return; }
   H.pt=new THREE.Vector3(+o.x||0,(+o.y||0)+(+o.h||0)/2,+o.z||0);
   if(T.appl==="top"&&o.inCab&&T.niche){ const N=plaNicheAt(H,(+o.y||0)+5); if(N){ plaPutNiche(o,H,N); return; } const q=plaSlabAt(+o.x,+o.z); plaPutTop(o,{x:+o.x,z:+o.z,y:q?q.hi[1]:H.c.hi[1],H}); return; }   /* v1.569 */
-  if(T.appl==="cab"&&o.inCab&&T.fit&&!snOff("ovenFit")){ const N=plaNicheAt(H,(+o.y||0)+5); if(N){ plaPutOven(o,H,N); return; } delete o.inCab; }   /* v1.578 */
+  if(T.appl==="cab"&&o.inCab&&T.fit&&!snOff("ovenFit")){ let N=plaNicheAt(H,(+o.y||0)+5); if(!N) N=plaNicheNear(o,H); if(N){   /* v1.588: ช่องใกล้สุด */ plaPutOven(o,H,N); return; } delete o.inCab; }   /* v1.578 */
   if(T.appl==="top") plaPutTop(o,{x:+o.x,z:+o.z,y:+o.y,H}); else if(T.appl==="under") plaPutUnder(o,H); else if(T.appl==="cab") plaPutCab(o,H,true); }
 /* ═════════ v1.566: ระยะเครื่องใช้บนท็อป — ห่างหน้าท็อป / ห่างหลัง (ผู้ใช้ 30/10 13:14 ภาพเตาบนท็อป: “เพิ่มระยะจากหน้าทอป หรือ หลัง ยังไงครับระยะ”) ═════════
    เดิม: เตา/ซิงค์ วางกึ่งกลางความลึกตู้เสมอ (plaPutTop) แก้ระยะหน้า-หลังไม่ได้ ไม่มีเส้นระยะ
@@ -38643,6 +38921,10 @@ function plaMesh(o,T,G,box,M,th,r){ const w=Math.max(+o.w||T.w,20), h=Math.max(+
     return; }
   if(k==="hood1"){ box(w-12,h,d,0,y0+h/2,0,M(0xb9bec4,{metalness:.5,roughness:.4})); box(w-12,34,70,0,y0-12,d/2-35,steel); box(w-60,4,d-90,0,y0-2,-30,filt); return; }
   if(k==="hood2"){ box(w,h,d,0,y0-h/2,0,steel); box(w-40,4,d-60,0,y0-h-1,0,filt); box(150,12,4,0,y0-h/2,d/2+2,dark); return; }
+  if(k==="microb"){ box(w,h,d,0,y0+h/2,0,dark);   /* v1.588: ไมโครเวฟ Built-in — กระจกบาน + แผงปุ่มขวา + แถบบน + มือจับ */
+    box(w*0.7,h*0.68,6,-w*0.11,y0+h*0.41,d/2+3,black); box(w*0.19,h*0.68,6,w*0.37,y0+h*0.41,d/2+3,M(0x5a5e66,{metalness:.4,roughness:.4}));
+    box(w-16,h*0.14,6,0,y0+h*0.88,d/2+3,M(0x8c9198,{metalness:.5,roughness:.35}));
+    box(w*0.56,12,12,-w*0.11,y0+h*0.79,d/2+24,steel); [-1,1].forEach(sg=>box(10,10,20,-w*0.11+sg*w*0.26,y0+h*0.79,d/2+13,steel)); return; }
   if(k==="oven"){ box(w,h,d,0,y0+h/2,0,dark); box(w-16,h*0.66,6,0,y0+h*0.38,d/2+3,black); box(w-16,h*0.16,6,0,y0+h*0.86,d/2+3,M(0x8c9198,{metalness:.5,roughness:.35}));
     box(w*0.72,14,14,0,y0+h*0.73,d/2+28,steel); [-1,1].forEach(sg=>box(12,12,22,sg*w*0.34,y0+h*0.73,d/2+14,steel)); return; }
   if(k==="micro"){ box(w,h,d,0,y0+h/2,0,M(0x2c2e33,{roughness:.35})); box(w*0.64,h*0.72,4,-w*0.14,y0+h/2,d/2+2,black); box(w*0.2,h*0.78,4,w*0.36,y0+h/2,d/2+2,M(0x5a5e66));
@@ -38725,6 +39007,7 @@ function plaPanel(s,o){ const T=PLO_T[o.k]||{}, F=ploFrameOf(o), md=T.appl;
     else if(k==="code"){ o.code=String(inp.value||"").trim(); }
     else if(k==="hinge"){ o.hinge=inp.value==="L"?"L":"R"; }
     else if(k==="col"){ o.col=T.fridge==="wash"?(/^(white|silver|black)$/.test(inp.value)?inp.value:"white"):(PLA_SMEG_COL[inp.value]?inp.value:"cream"); }   /* v1.579: + สีเครื่องซักผ้า */
+    else if(k==="mgap"){ const v=+inp.value; if(isFinite(v)&&v>=0&&v<=30) o.mgap=v; else { plPanelSel(); return; } }   /* v1.588: เว้นบานหลอก */
     else if(k==="ih"){ const v=+inp.value; if(isFinite(v)&&v>=100) o.ih=Math.round(v); else { plPanelSel(); return; } }   /* v1.578: สูงติดตั้งเตา */   /* v1.577: สีตู้เย็น SMEG */   /* v1.576: บานพับตู้เย็น */
     else { const v=+inp.value; if(!isFinite(v)){ plPanelSel(); return; }
       if(k==="w"&&v>=20) o.w=Math.round(v); else if(k==="d"&&v>=20) o.d=Math.round(v); else if(k==="h"&&v>=5) o.h=Math.round(v);
@@ -38855,7 +39138,7 @@ function ploDragApply(){ const g=PLO.drag, ev=PLO.ev; if(!g||!ev) return; const 
     else { const p=w.p||plFloorPt(ev,0); if(!p) return; o.wk=null; o.x=Math.round(p.x/G)*G; o.z=Math.round(p.z/G)*G; tip=T.ic+" ยังไม่ติดผนัง — ชี้ที่ผนังหรือลากเข้าใกล้ผนัง"; } }
   else if(T.appl&&T.appl!=="floor"){ const S=plaDrag(o,ev); if(!S) return; tip=S.tip; }
   else if(T.fridge&&!snOff("plFridgeSnap")){ const p=plFloorPt(ev,g.y||0); if(!p) return; tip=plaFridgeSnap(o,[p.x+((g.off&&g.off[0])||0),p.z+((g.off&&g.off[1])||0)]); }   /* v1.576: ตู้เย็นดูดผนัง/ตู้ */   // v1.546: ท็อป / ใต้ตู้ลอย / ฝังตู้
-  else if(o.k==="col"||o.k==="ceil"){ const p=plFloorPt(ev,g.y||0); if(!p) return; const S=ploColSnap(o,[p.x+g.off[0],p.z+g.off[1]]); o.x=S.x; o.z=S.z; PLO.guides=S.guides; tip=S.tip; }   // v1.536 · v1.538 ฝ้า
+  else if(o.k==="col"||o.k==="ceil"||o.k==="dl"){ const p=plFloorPt(ev,g.y||0); if(!p) return; const S=ploColSnap(o,[p.x+g.off[0],p.z+g.off[1]]); o.x=S.x; o.z=S.z; PLO.guides=S.guides; tip=S.tip; }   // v1.536 · v1.538 ฝ้า
   else { const p=plFloorPt(ev,g.y||0); if(!p) return; o.x=Math.round((p.x+g.off[0])/G)*G; o.z=Math.round((p.z+g.off[1])/G)*G; tip=T.ic+" "+T.n+" · หมุนด้วย R"; }
   plRoomDraw(); const tp=$("plDragTip"); if(tp) tp.textContent=tip; }
 function ploUp(e){
@@ -38876,7 +39159,7 @@ function ploDel(id){ if(ploLocked()) return; const L=ploList(), k=L.findIndex(o=
 function ploWallH(F){ return (F&&+F.H>0)?+F.H:(+plRoom().h||2600); }   // v1.539: ความสูงผนังที่หน้าต่างติด (ใช้คิด ห่างฝ้า)
 function ploTopGap(o,F){ return Math.round(ploWallH(F)-(+o.sill||0)-(+o.h||0)); }
 function ploRot(o){ if(!o||ploLocked()) return; if(o.k==="stair"||(PLO_T[o.k]&&PLO_T[o.k].appl&&PLO_T[o.k].appl!=="wall")){ /* v1.546: เครื่องใช้หมุน 90° */ o.yaw=(((+o.yaw||0)+90)%360); }
-  else if(o.k==="col"||o.k==="ceil"){ const D=ploColDist(o), w=o.w; o.w=o.d; o.d=w; ploColPut(o,D); }   // v1.536: เสาหมุน = สลับกว้าง/ลึก ระยะจากมุมที่เลือกคงเดิม
+  else if(o.k==="col"||o.k==="ceil"||o.k==="dl"){ const D=ploColDist(o), w=o.w; o.w=o.d; o.d=w; ploColPut(o,D); }   // v1.536: เสาหมุน = สลับกว้าง/ลึก ระยะจากมุมที่เลือกคงเดิม
   else if(o.k==="door"||o.k==="door2"||o.k==="win1"){ o.hinge=o.hinge==="R"?"L":"R"; }   // v1.539: หน้าต่างบานเดี่ยวสลับบานพับได้
   plRoomDraw(); plPanelSel(); plAfterRoom(); }
 function ploKey(e){ if(snOff("plObj")||!PL.on||!PLO.sel) return; if(PLW.on&&e.key!=="Delete") return; /* v1.538: โหมดวาดผนัง = Del ลบเสาได้ (Backspace ยังเป็นถอยจุด) */ const t=e.target;
@@ -38988,6 +39271,7 @@ function ploIcon(k){ const s='<svg viewBox="0 0 80 80" width="70" height="70" fi
   if(k==="win") return s+'<rect x="12" y="16" width="56" height="44" fill="rgba(159,199,216,.35)"/><path d="M40 16v44"/><path d="M8 64h64"/>'+e;
   if(k==="win1") return s+'<rect x="24" y="8" width="32" height="62" fill="rgba(159,199,216,.35)"/><path d="M52 12L28 39L52 66" stroke-width="1.6" stroke-dasharray="4 3"/><path d="M50 33v12" stroke-width="4"/><path d="M8 74h64"/>'+e;   // v1.539
   if(k==="winw") return s+'<rect x="8" y="18" width="64" height="40" fill="rgba(159,199,216,.35)"/><path d="M40 18v40"/><path d="M18 38h14M28 34l4 4-4 4"/><path d="M6 62h68"/>'+e;
+  if(k==="dl") return s+'<circle cx="40" cy="40" r="22" fill="rgba(255,226,170,.55)"/><circle cx="40" cy="40" r="13" fill="rgba(255,200,90,.9)"/><path d="M40 8v8M40 64v8M8 40h8M64 40h8"/>'+e;   // v1.586
   if(k==="ceil") return s+'<path d="M8 14h64M8 14v58M72 14v58M8 72h64"/><rect x="22" y="14" width="36" height="14" fill="rgba(160,150,130,.3)"/>'+e;   // v1.538
   if(k==="ceilu") return s+'<path d="M8 26h14V12h36v14h14M8 26v46M72 26v46M8 72h64"/>'+e;
   if(k==="plug") return s+'<rect x="18" y="24" width="44" height="32" rx="4"/><rect x="27" y="33" width="9" height="14" fill="currentColor"/><rect x="44" y="33" width="9" height="14" fill="currentColor"/>'+e;
@@ -39002,7 +39286,7 @@ function ploGrid(tabs,grid){   // v1.538: แบ่งหมวด · การ�
   tabs.innerHTML=ks.map(k=>'<button data-t="'+k[0]+'" class="'+(k[0]===PL.tab?"on":"")+'">'+k[1]+'</button>').join("");
   tabs.querySelectorAll("button").forEach(bt=>bt.onclick=()=>{ PL.tab=bt.dataset.t; plPanelGrid(); });
   const ok=k=>!!PLO_T[k]&&!(PLO_T[k].appl&&snOff("plAppl"))&&!(k==="col"&&snOff("plCol"))&&!((k==="ceil"||k==="ceilu")&&snOff("plCeil"))&&!(PLO_T[k].util&&snOff("plUtil"));
-  const GR=[["ประตู · หน้าต่าง",["door","door2","slide","open","win","win1","winw"]],["โครงสร้าง · ฝ้า",["stair","col","ceil","ceilu"]],["งานระบบ",["plug","wat","drn"]],["เครื่องใช้ในครัว",["sink","sink2","sink1","sinku","hob","hobi","hobd","hood1","hood2","hood3","oven","micro","bin","gas"].concat(snOff("plFridge")?[]:["fridge1","fridge2","fridgeT"]).concat(snOff("plSmeg")?[]:["smeg"]).concat(snOff("plWash")?[]:["wash"])]];   /* v1.576: + ตู้เย็น */   // v1.546
+  const GR=[["ประตู · หน้าต่าง",["door","door2","slide","open","win","win1","winw"]],["โครงสร้าง · ฝ้า",["stair","col","ceil","ceilu"].concat(snOff("plDl")?[]:["dl"])],["งานระบบ",["plug","wat","drn"]],["เครื่องใช้ในครัว",["sink","sink2","sink1","sinku","hob","hobi","hobd","hood1","hood2","hood3","oven"].concat(snOff("plMicroB")?[]:["microb"]).concat(["micro","bin","gas"]).concat(snOff("plFridge")?[]:["fridge1","fridge2","fridgeT"]).concat(snOff("plSmeg")?[]:["smeg"]).concat(snOff("plWash")?[]:["wash"])]];   /* v1.576: + ตู้เย็น */   // v1.546
   const K=GR.reduce((a,g)=>a.concat(g[1].filter(ok)),[]);
   { const cn=$("plCatN"); if(cn) cn.textContent=K.length+" แบบ"; }
   const lk=plRoomLocked();
@@ -39015,7 +39299,7 @@ function ploGrid(tabs,grid){   // v1.538: แบ่งหมวด · การ�
   grid.querySelectorAll(".plCard").forEach(cd=>{ const k=cd.dataset.k;
     cd.addEventListener("pointerdown",ev=>{ if(ev.button!==0) return; ev.preventDefault(); if(plRoomLocked()){ ploLocked(); return; } PLO.pend={k, m:cd.dataset.m||null, sx:ev.clientX, sy:ev.clientY, id:null}; }); }); }
 /* ── แผงซ้าย: ของที่เลือก ── */
-function ploPanel(s){ const o=ploGet(PLO.sel); if(!o){ PLO.sel=null; return; } if(o.k==="col"||o.k==="ceil"){ ploColPanel(s,o); return; } if((PLO_T[o.k]||{}).util){ ploUtilPanel(s,o); return; } if((PLO_T[o.k]||{}).appl){ plaPanel(s,o); return; }   // v1.546   // v1.538   // v1.536
+function ploPanel(s){ const o=ploGet(PLO.sel); if(!o){ PLO.sel=null; return; } if(o.k==="col"||o.k==="ceil"||o.k==="dl"){ ploColPanel(s,o); return; } if((PLO_T[o.k]||{}).util){ ploUtilPanel(s,o); return; } if((PLO_T[o.k]||{}).appl){ plaPanel(s,o); return; }   // v1.546   // v1.538   // v1.536
   const T=PLO_T[o.k]||{n:o.k,ic:"•"}, F=ploFrameOf(o);
   const fr=(lbl,ctl,tip)=>(typeof plF531==="function"&&!snOff("plTidy"))?plF531(lbl,ctl,tip):('<div class="plRow" style="margin-top:5px">'+lbl+' '+ctl+'</div>');
   const num=(k,v,st,w)=>'<input type="number" data-pok="'+k+'" value="'+Math.round(+v||0)+'" step="'+(st||10)+'" style="width:'+(w||70)+'px"><span class="plU">มม.</span>';
@@ -39090,14 +39374,14 @@ function ploColSnap(o,c){ const r=plRoom(), tol=plwTolPx(20), G=plGrid()||10, hw
   if(sz){ const L=sz.L; if(L.k==="wall"){ touch=true; gd.push([Math.max(L.lo,x-hw-600),L.v,Math.min(L.hi,x+hw+600),L.v]); } else gd.push([L.c[0],L.v,x,L.v]); }
   const tmp={x, z, w:o.w, d:o.d}, D=ploColDist(tmp), kx=ref[1]==="l"?"L":"R", kz=ref[0]==="b"?"B":"F", nm={L:"ซ้าย",R:"ขวา",B:"หลัง",F:"หน้า"};
   const f=v=>Math.round(v).toLocaleString("en-US");
-  return {x:Math.round(x*10)/10, z:Math.round(z*10)/10, guides:gd, tip:(o.k==="ceil"?ploCeilName(o):"▮ เสา")+" "+Math.round(+o.w)+"×"+Math.round(+o.d)+" · ห่างผนัง"+nm[kx]+" "+f(D[kx])+" · ห่างผนัง"+nm[kz]+" "+f(D[kz])+(touch?" · ┆ ชิดผนัง":(sx||sz)?" · ┆ ตรงแนวเสา":"")}; }
+  return {x:Math.round(x*10)/10, z:Math.round(z*10)/10, guides:gd, tip:(o.k==="ceil"?ploCeilName(o):o.k==="dl"?"💡 ดาวน์ไลท์":"▮ เสา")+" "+Math.round(+o.w)+"×"+Math.round(+o.d)+" · ห่างผนัง"+nm[kx]+" "+f(D[kx])+" · ห่างผนัง"+nm[kz]+" "+f(D[kz])+(touch?" · ┆ ชิดผนัง":(sx||sz)?" · ┆ ตรงแนวเสา":"")}; }
 function ploColPanel(s,o){ const r=plRoom(), D=ploColDist(o), ref=PLO_REF[o.ref]?o.ref:"bl", kx=ref[1]==="l"?"L":"R", kz=ref[0]==="b"?"B":"F", nm={L:"ซ้าย",R:"ขวา",B:"หลัง",F:"หน้า"};
   const fr=(lbl,ctl,tip)=>(typeof plF531==="function"&&!snOff("plTidy"))?plF531(lbl,ctl,tip):('<div class="plRow" style="margin-top:5px">'+lbl+' '+ctl+'</div>');
   const num=(k,v,st,w)=>'<input type="number" data-pok="'+k+'" value="'+Math.round(+v||0)+'" step="'+(st||10)+'" style="width:'+(w||70)+'px"><span class="plU">มม.</span>';
   const f=v=>Math.round(v).toLocaleString("en-US");
-  s.innerHTML='<div class="plRow"><h4>'+(o.k==="ceil"?ploCeilName(o):"▮ เสา")+'</h4><span class="plNote" style="margin-left:auto">'+f(+o.w)+'×'+f(+o.d)+' · สูง '+f(+o.h||+r.h||2600)+'</span></div>'
+  s.innerHTML='<div class="plRow"><h4>'+(o.k==="ceil"?ploCeilName(o):o.k==="dl"?"💡 ดาวน์ไลท์":"▮ เสา")+'</h4><span class="plNote" style="margin-left:auto">'+f(+o.w)+'×'+f(+o.d)+' · สูง '+f(+o.h||+r.h||2600)+'</span></div>'
     +fr("กว้าง (แนว X)",num("w",o.w,10))+fr("ลึก (แนว Z)",num("d",o.d,10))
-    +fr(o.k==="ceil"?"ระดับฝ้า (จากพื้น)":"สูง",num("h",o.h||r.h,10)+'<span class="plNote plNB">ห้องสูง '+f(+r.h||2600)+'</span>')
+    +(o.k==="dl"?fr("ระดับ",'<span class="plNote">ติดฝ้า สูง '+f(plDlY(o))+' (ตามฝ้าตรงนั้น)</span>'):fr(o.k==="ceil"?"ระดับฝ้า (จากพื้น)":"สูง",num("h",o.h||r.h,10)+'<span class="plNote plNB">ห้องสูง '+f(+r.h||2600)+'</span>'))   /* v1.586 */
     +((o.k==="ceil"&&!snOff("plCeilSolid"))?fr("ขอบฝ้า (หน้าตัด)",'<select data-pok="sec">'+plProfAll("cedge").map(p=>'<option value="'+escapeHtml(p.id)+'"'+(p.id===(o.sec||"ce_f")?" selected":"")+'>'+escapeHtml(p.n)+'</option>').join("")+'</select> <button class="ibtn" id="plSecEd" title="วาดหน้าตัดขอบฝ้าเอง">✏</button>',"หน้าตัดขอบฝ้าหลุม/ฝ้าลด")
       +(plMoldCfg(r,"crown").on&&!snOff("plMold")?fr("บัวรอบขอบ",'<label class="plCk"><input type="checkbox" data-pok="crown"'+(o.crown!==false?" checked":"")+'> ใส่บัวฝ้า</label>'):""):"")   /* v1.579 */
     +fr("วัดจากมุม",'<select data-pok="ref">'+Object.keys(PLO_REF).map(k=>'<option value="'+k+'"'+(k===ref?" selected":"")+'>'+PLO_REF[k]+'</option>').join("")+'</select>',"มุมห้องที่ใช้บอกตำแหน่งเสา")
@@ -39941,11 +40225,40 @@ function plSideAlign(si){
   let ch=false;
   if(plLightOf(si)>0){ plLightMark(si,0); ch=true; }                          // เคยถูกยกเป็นฟิลเลอร์ (v1.316) → คืน
   try{ if(plDpVal(si)&&plDpSetTok(si,/^ExtendBottom[\d.]+(mm|cm)$/i,"")) ch=true; }catch(e){}
-  const h=plSideHost(si); if(!h) return ch;
+  const h=plSideHost(si); if(!h){ try{ if(plSideSplit(si)) ch=true; }catch(e){ console.error("plSideSplit:",e); } return ch; }
   const lv=plLevelOf(plFp(plBoardsOf(si)).code), sp=plSideSpan(si,h.inst,lv), f=plFp(plBoardsOf(si)), H=sp.top-sp.bot;
   if(H>50&&Math.abs(H-(f.hi[1]-f.lo[1]))>0.5){ resizeCabinetTo(si,0,H,0); ch=true; }
   const f2=plFp(plBoardsOf(si)), dy=sp.bot-f2.lo[1]; if(Math.abs(dy)>0.5){ plShift(si,[0,dy,0]); ch=true; }
+  try{ if(plSideSplit(si)) ch=true; }catch(e){ console.error("plSideSplit:",e); }      // v1.587
   return ch; }
+/* ───────── v1.587: แผ่นปิดข้าง 2 ชิ้น (สูงเกินแผ่น) — รอยต่ออยู่ตรงขอบล่างบานบน ─────────
+   ผู้ใช้ 31/10 13:42: “อยากให้ เส้น ของ แผ่นปิดของที่เกิน 2400 แบ่งตรง ขอบบานล่างของบานบนทำได้ไหม”
+   เดิม: สูงเกิน 2440 เลือกรุ่นที่ต่อสองแผ่น (TFF007) แล้วตัวปรับขนาดสเกลสองชิ้นตามสัดส่วนโมเดล
+         ห้องสูง 2550 จึงได้ 1275 + 1275 รอยต่อไปอยู่กลางบานตู้ลอย/บานบนตู้สูง ดูไม่เป็นแนวเดียวกับงาน
+   แก้: หาบานของตู้ที่ชิดแผ่น (ทั้งสองข้าง · ผนังเดียวกัน · ช่วงสูงทับกัน) เรียงจากบานที่ขอบบนสูงสุด
+         เอาขอบล่างของบานนั้นเป็นรอยต่อ — ต้องได้ทั้งสองชิ้นไม่เกิน 2440 และไม่สั้นกว่า 100
+         ไม่ผ่าน = ลองบานถัดไป · ไม่มีบานไหนผ่าน = คงการแบ่งเดิม
+         ตั้งความยาวสองชิ้นตรง ๆ (แกนที่เป็นความสูงในโลก) ไม่ต้องสร้างใหม่ — รวมสูงเท่าเดิม ตัวปรับขนาดจึงไม่ทำงานซ้ำ
+   ปิด SN_OFF.sideSplitDoor=1 */
+function plSideSplitY(si,bot,top){
+  const f=plFp(plBoardsOf(si)), wk=plWallOf(si,f); if(!wk) return null; const ax=PL_WALLS[wk].ax, MX=2440, MN=100;
+  const ns=plOthers(si).filter(n=>plYOver(n,f)&&!plIsSide(n.inst)&&plWallOf(n.inst,n)===wk&&(Math.abs(n.hi[ax]-f.lo[ax])<3||Math.abs(n.lo[ax]-f.hi[ax])<3));
+  const ds=[];
+  ns.forEach(n=>plBoardsOf(n.inst).forEach(b=>{ if(!b||!b._door||b._virtual||b._dg||isRail(b)||!(+b.T>0)) return;
+    const h=worldDims(b)[1]; if(h>50) ds.push({lo:b.y-h/2, hi:b.y+h/2}); }));
+  ds.sort((a,b)=>b.hi-a.hi);
+  for(const d of ds){ const y=round(d.lo); if(y-bot>=MN&&top-y>=MN&&y-bot<=MX&&top-y<=MX) return y; }
+  return null; }
+function plSideSplit(si){
+  if(snOff("sideSplitDoor")) return false;
+  const bs=plBoardsOf(si).filter(b=>b&&!b._virtual&&(+b.T>0)); if(bs.length!==2) return false;
+  const vk=b=>{ const h=worldDims(b)[1]; return Math.abs(h-b.L)<0.5?"L":(Math.abs(h-b.W)<0.5?"W":null); };
+  const s=bs.slice().sort((a,b)=>a.y-b.y), lo=s[0], hi=s[1], kL=vk(lo), kH=vk(hi); if(!kL||!kH) return false;
+  const hL=worldDims(lo)[1], hH=worldDims(hi)[1], bot=lo.y-hL/2, top=hi.y+hH/2, cur=lo.y+hL/2;
+  if(Math.abs(cur-(hi.y-hH/2))>1) return false;                                  // ต้องเป็นสองชิ้นต่อกันตามสูง
+  const y=plSideSplitY(si,bot,top); if(y==null||Math.abs(cur-y)<0.5) return false;
+  lo[kL]=round(y-bot); lo.y=bot+(y-bot)/2; hi[kH]=round(top-y); hi.y=y+(top-y)/2;
+  return true; }
 /* รุ่นแผ่นปิดข้างในคลัง: [B|W|T]FF### ที่เป็นแผ่นตั้ง · สูงเกินแผ่น (2440) เลือกรุ่นที่ต่อสองแผ่น (เช่น TFF007) */
 const _plSideM={};
 async function plSideInfo(code){ const k=catKey(code); if(_plSideM[k]) return _plSideM[k];
@@ -40170,6 +40483,7 @@ function plRoomHtml531(r,num){ plCss317(); plCss531();
   const line=grp("line",true,"แนวตู้ลอย / ตู้สูง","ก้น "+Math.round(+r.wallBot||0)+" · บน "+(+r.wallTop>0?Math.round(+r.wallTop):"ไม่คุม"),
       F('<i class="plSw" style="background:#1e88e5"></i>ก้นตู้ลอยจากพื้น',nin("wallBot",r.wallBot)+chip("wallBot",sg.bot,"ท็อปเคาน์เตอร์ "+sg.counter+(sg.baseTop?" (ตู้พื้นสูงสุด "+sg.baseTop+" + ท็อป 40)":" (ยังไม่มีตู้พื้น ใช้ 900)")+" + ระยะผนังกันเปื้อน 600"),"ก้นตู้ลอยสูงจากพื้น (มม.)")
       +F('<i class="plSw" style="background:#ef6c00"></i>แนวบนตู้ลอย/สูง',nin("wallTop",r.wallTop||0)+chip("wallTop",sg.top,"จาก"+sg.src),"แนวบนตู้ลอย/ตู้สูง (มม.) · 0 = ไม่คุม")
+      +F("เส้นประบนผนัง",'<label class="plCk"><input type="checkbox" id="plGdLn"'+(r.guideOff?'':' checked')+'> แสดง</label>',"เส้นฟ้า (ก้นตู้ลอย) / ส้ม (แนวบน) บนผนัง · ซ่อนแล้วค่าแนวยังคุมตู้เหมือนเดิม")   /* v1.588 */
       +'<div class="plNote" style="margin-top:5px">'
         +(+r.wallTop>0?('ตู้ลอยสูง <b style="color:var(--ink)">'+(r.wallTop-r.wallBot)+'</b> มม. · ตู้สูงหัวเสมอแนวบน · '):'แนวบน 0 = ไม่คุม (ตู้ลอยใช้ความสูงโมเดล) · ')
         +'ห่างท็อป 550–650 (เหนือเตา ≥ 650) · แก้ค่าแล้วตู้ในห้องขยับ/ปรับสูงตามทันที</div>');
@@ -40275,6 +40589,7 @@ function plRoomHtml(r,num){ plCss317();
         +num("wallBot","ก้นตู้ลอยสูงจากพื้น",r.wallBot)+chip("wallBot",sg.bot,"ท็อปเคาน์เตอร์ "+sg.counter+(sg.baseTop?" (ตู้พื้นสูงสุด "+sg.baseTop+" + ท็อป 40)":" (ยังไม่มีตู้พื้น ใช้ 900)")+" + ระยะผนังกันเปื้อน 600")+'</div>'
       +'<div class="plRow" style="margin-top:4px"><span style="width:9px;height:3px;background:#ef6c00;display:inline-block"></span>'
         +num("wallTop","แนวบนตู้ลอย/ตู้สูง",r.wallTop||0)+chip("wallTop",sg.top,"จาก"+sg.src)+'</div>'
+      +'<div class="plRow" style="margin-top:4px"><label class="plCk"><input type="checkbox" id="plGdLn"'+(r.guideOff?'':' checked')+'> แสดงเส้นประบนผนัง</label></div>'   /* v1.588 */
       +'<div class="plNote" style="margin-top:3px">'
         +(+r.wallTop>0?('ตู้ลอยสูง <b style="color:var(--ink)">'+(r.wallTop-r.wallBot)+'</b> มม. · ตู้สูงหัวเสมอแนวบน · '):'แนวบน 0 = ไม่คุม (ตู้ลอยใช้ความสูงโมเดล) · ')
         +'ห่างท็อป 550–650 (เหนือเตา ≥ 650) · แก้ค่าแล้วตู้ในห้องขยับ/ปรับสูงตามทันที</div>');
@@ -41331,6 +41646,7 @@ function plPanelRoom(){
   s.querySelectorAll("input[data-w]").forEach(inp=>inp.onchange=()=>{ r.walls[inp.dataset.w]=inp.checked; plRoomDraw(); plPanelWalls(); plAfterRoom(); });
   s.querySelectorAll("[data-unhide]").forEach(b=>b.onclick=()=>ploHide(b.dataset.unhide,false));   /* v1.581: แสดงของที่ซ่อนคืน */
   { const c=s.querySelector("#plCeilShow"); if(c) c.onchange=()=>{ r.ceilShow=c.checked; plRoomDraw(); plAfterRoom(); }; }   // v1.541: ฝ้าเพดาน
+  { const c=s.querySelector("#plGdLn"); if(c) c.onchange=()=>{ if(c.checked) delete r.guideOff; else r.guideOff=1; plRoomDraw(); plAfterRoom(); }; }   /* v1.588: เส้นประแนวตู้ลอย */
   ["crown","skirt"].forEach(k=>{ const c=plMoldCfg(r,k), q=id=>s.querySelector("#"+id+"_"+k);   /* v1.579: บัวฝ้า / บัวพื้น */
     if(q("plMd")) q("plMd").onchange=()=>{ c.on=q("plMd").checked; plRoomDraw(); plAfterRoom(); };
     if(q("plMdP")) q("plMdP").onchange=()=>{ c.p=q("plMdP").value; c.on=true; plRoomDraw(); plPanelRoom(); plAfterRoom(); };
@@ -42292,7 +42608,7 @@ async function plQuoteOpen(){
       +'<label style="flex-direction:row;align-items:center;gap:6px;color:var(--ink);font-size:12.5px"><input type="checkbox" data-q="img"'+(Q.img!==false?" checked":"")+'> ใส่ภาพห้อง 3D (มุมกล้องตามจอตอนนี้) <button class="ibtn" data-a="shot" style="padding:1px 8px;font-size:11px;margin-left:auto">ถ่ายใหม่</button></label>'
       +(snOff("plqPics")?'':'<h5>ภาพประกอบ (Render / AI)</h5><div id="plqPics"></div>')   /* v1.568 */
       +'<label>เงื่อนไข / หมายเหตุ<textarea data-q="note" rows="4">'+e(Q.note)+'</textarea></label>'
-      +(snOff("plqDwg")?'':('<h5>แนบท้ายใบ</h5><div style="display:flex;flex-wrap:wrap;gap:4px 12px;font-size:12.5px">'+[["plan","แปลน"],["elev","ด้านหน้า"],["sec","Section"],["wt","แปลนท็อป"],["mat","หน้ารวมวัสดุ"]]
+      +(snOff("plqDwg")?'':('<h5>แนบท้ายใบ</h5><div style="display:flex;flex-wrap:wrap;gap:4px 12px;font-size:12.5px">'+[["plan","แปลน"],["elev","ด้านหน้า"],["sec","Section"],["wt","แปลนท็อป"],["util","งานระบบ"],["mat","หน้ารวมวัสดุ"]]
         .map(x=>'<label style="flex-direction:row;align-items:center;gap:4px;color:var(--ink);font-size:12.5px"><input type="checkbox" data-att="'+x[0]+'"'+((Q.att||{})[x[0]]!==false?" checked":"")+'> '+x[1]+'</label>').join("")+'</div><div id="plqAttSay" style="font-size:11px;color:var(--ink-dim)"></div>'+(snOff("dwgFitImg")?'':'<button class="ibtn" data-a="fitImg" style="padding:2px 9px;font-size:11.5px;align-self:flex-start" title="รูปบานพับ/รางบนหน้ารวมวัสดุ">🖼 รูปอุปกรณ์…</button>')+''))   /* v1.521 */
     +'<h5>บริษัท · ผู้เสนอราคา (จำในเครื่องนี้)</h5>'+cin("name","ชื่อบริษัท / ร้าน")+'<label>ที่อยู่<textarea data-c="addr" rows="2">'+e(C.addr)+'</textarea></label>'
       +'<div class="row">'+cin("tax","เลขผู้เสียภาษี")+cin("tel","โทร")+'</div><div class="row">'+cin("email","อีเมล / เว็บ")+'<label>โลโก้<span style="display:flex;gap:4px"><button class="ibtn" data-a="logo" style="flex:1">เลือกรูป…</button><button class="ibtn" data-a="logoSM" title="ใช้โลโก้ Starmark">Starmark</button><button class="ibtn" data-a="logoX" title="เอาโลโก้ออก">✕</button></span></label></div>'
@@ -42620,6 +42936,42 @@ function dwgPlan(C){ const r=plRoom(), T=100, cabs=C||dwgCabs();
   if(!done[2]) o.chain([r.z0,r.z0+r.d],r.x0-T-10*k,r.x0-T,false);
   return {key:"plan", title:"แปลน (Plan drawing)", svg:o.svg()}; }
 /* ── ด้านหน้าแต่ละผนัง ── */
+/* ═════════ v1.586: แบบงานระบบ (ปลั๊ก · ท่อน้ำดี · ท่อน้ำทิ้ง) แยกตามผนัง ═════════
+   ผู้ใช้ 31/10 13:27 (ภาพปลั๊กคู่บนผนังเหนือท็อป): “มันจะมี แบบที่แยกที่บอก Dim ของงาน ระบบ ครับ คือ งานปลั๊ก งาน ท่อ ให้ออกแบบแยก
+     ในใบเสนอราคาตามด้านที่มันอยู่ครับ แต่ยังเห็น เส้นตู้อยู่ แต่ Dim บอกแค่ ของงานระบบ”
+   เดิม: ปลั๊ก/ท่อ (v1.538) อยู่แค่ในห้อง 3D · ภาพด้านหน้า (dwgElev) ไม่มีงานระบบ และ Dim เป็นของตู้
+   ตอนนี้: ผนังห้องสี่เหลี่ยมที่มีงานระบบติด (o.wk = r:ผนัง) → หน้า “งานระบบ — ด้าน…” (key util_ผนัง · ติ๊ก “งานระบบ” ในแนบท้ายใบ)
+     ตู้ (เส้นประจาง + รหัส) · ท็อป · ประตู/หน้าต่าง จาง ไม่มีเลข · งานระบบ: สัญลักษณ์ตามชนิด + ป้าย “ปลั๊ก สูง 1100”
+     Dim: ระยะต่อเนื่องจากมุมซ้ายถึงศูนย์ทุกจุดถึงมุมขวา (ใต้พื้น) + ระยะรวม · สูงจากพื้นถึงศูนย์ข้างทุกจุด
+     ผนังที่วาดเอง (plw) ยังไม่ทำ · ซ่อนอยู่ไม่วาด · ปิด SN_OFF.dwgUtil */
+function dwgUtilWalls(){ if(snOff("dwgUtil")||snOff("plObj")) return []; const r=plRoom();
+  return Object.keys(PL_WALLS).filter(k=>r.walls[k]&&ploList().some(o=>o&&PLO_T[o.k]&&PLO_T[o.k].util&&o.wk==="r:"+k&&!(typeof ploHid==="function"&&ploHid(o)))); }
+function dwgUtilElev(wk,C){ const r=plRoom(), W=PL_WALLS[wk], A=W.ax, Lw=A===0?r.w:r.d, H=+r.h||2600, Tw=100;
+  const ut=ploList().filter(o=>o&&PLO_T[o.k]&&PLO_T[o.k].util&&o.wk==="r:"+wk&&!(typeof ploHid==="function"&&ploHid(o))); if(!ut.length) return null;
+  const uOf=v=>wk==="back"?v-r.x0:wk==="right"?v-r.z0:wk==="left"?(r.z0+r.d)-v:(r.x0+r.w)-v;
+  const U=(a,b)=>{ const u1=uOf(a), u2=uOf(b); return [Math.min(u1,u2),Math.max(u1,u2)]; };
+  const uT=t=>(wk==="back"||wk==="right")?t:Lw-t;                                    // t ตามกรอบผนังห้อง (ploFrames: วัดจากมุมใน)
+  const o=dwgNew("du"+wk,-Tw,-H,Lw+Tw,0,760,470,80), k=o.k, hb=o.hatch("w",7), FA="#b8bcc4";
+  const leftWall=wk==="back"?"left":wk==="right"?"back":wk==="left"?"front":"right", rightWall=wk==="back"?"right":wk==="right"?"front":wk==="left"?"back":"left";
+  if(r.walls[leftWall]) o.R(-Tw,-H,0,0,{w:1,fill:hb}); if(r.walls[rightWall]) o.R(Lw,-H,Lw+Tw,0,{w:1,fill:hb});
+  o.L(-Tw,0,Lw+Tw,0,1.6); o.L(0,-H,Lw,-H,0.6,DWG_THIN,"8 4");
+  (C||dwgCabs()).filter(c=>dwgOnWall(c,r,wk)).forEach(c=>{ const u=U(c.f.lo[A],c.f.hi[A]); o.R(u[0],-c.f.hi[1],u[1],-c.f.lo[1],{w:0.6,col:FA,dash:"5 3"});
+    if(u[1]-u[0]>=180) o.T((u[0]+u[1])/2,-(c.f.lo[1]+c.f.hi[1])/2,c.code,{px:6,col:"#9aa0aa"}); });
+  try{ plWtSlabs().slabs.filter(s=>s.wk===wk||Math.min(Math.abs(s.lo[W.pa]-plFace(r,wk)),Math.abs(s.hi[W.pa]-plFace(r,wk)))<=5).forEach(s=>{ const u=U(s.lo[A],s.hi[A]); o.R(u[0],-s.hi[1],u[1],-s.lo[1],{w:0.8,col:FA,fill:"#f1f2f4"}); }); }catch(e){}
+  try{ ploOpenings("r:"+wk).forEach(op=>{ const a=uT(op.t0), b=uT(op.t1); o.R(Math.min(a,b),-op.y1,Math.max(a,b),-op.y0,{w:0.6,col:FA,dash:"2 3"}); }); }catch(e){}
+  const NM={plug:"ปลั๊ก",wat:"น้ำดี",drn:"น้ำทิ้ง"}, CL={plug:"#e8590c",wat:"#1c7ed6",drn:"#495057"}, us=[];
+  ut.slice().sort((a,b)=>uT(+a.t||0)-uT(+b.t||0)).forEach((q,i)=>{ const u=uT(+q.t||0), yc=Math.max(+q.sill||0,0), w=Math.max(+q.w||PLO_T[q.k].w,20), h=Math.max(+q.h||PLO_T[q.k].h,20), col=CL[q.k]||"#e8590c";
+    us.push(u);
+    if(q.k==="plug"){ o.R(u-w/2,-(yc+h/2),u+w/2,-(yc-h/2),{w:1.4,col,fill:"#fff4e6",rx:2}); [-1,1].forEach(sg=>o.R(u+sg*w*0.22-w*0.06,-(yc+h*0.2),u+sg*w*0.22+w*0.06,-(yc-h*0.2),{w:0.8,col,fill:col})); }
+    else { const rr=Math.max(w,30)/2; o.els.push('<circle cx="'+u+'" cy="'+(-yc)+'" r="'+rr+'" fill="'+(q.k==="wat"?"#d0e4ff":"#e9ecef")+'" stroke="'+col+'" stroke-width="1.6" vector-effect="non-scaling-stroke"/>');
+      o.els.push('<circle cx="'+u+'" cy="'+(-yc)+'" r="'+(rr*0.4)+'" fill="'+col+'"/>'); }
+    const lab=(NM[q.k]||q.k)+" สูง "+Math.round(yc), near=us.slice(0,-1).filter(v=>Math.abs(v-u)<260).length;   /* จุดใกล้กัน = ป้ายเลื่อนขึ้นทีละชั้น ไม่ทับกัน */
+    o.T(u,-(yc+Math.max(h,40)/2)-(6+12*near)*k,lab,{px:7,b:1,col,bg:1});
+    o.chain([-yc,0],u+Math.max(w,40)/2+9*k,u+Math.max(w,30)/2,false); });                   // สูงจากพื้นถึงศูนย์
+  o.chain([0].concat(us.map(v=>Math.max(0,Math.min(Lw,v))),[Lw]).sort((a,b)=>a-b),12*k,0,true);   // ระยะจากมุมห้องต่อเนื่อง
+  o.chain([0,Lw],27*k,null,true);
+  o.T(-Tw,-H-14*k,"Dim เฉพาะงานระบบ · ระยะถึงศูนย์ · สูงจากพื้นสำเร็จ",{px:6.5,a:"start",col:"#6b7280"});
+  return {key:"util_"+wk, title:"งานระบบ — ด้าน"+W.lbl+" (ปลั๊ก · ท่อ · มองจากในห้อง)", svg:o.svg()}; }
 function dwgElevWalls(C){ const r=plRoom(), cabs=C||dwgCabs(); return Object.keys(PL_WALLS).filter(k=>cabs.some(c=>dwgOnWall(c,r,k))); }
 /* v1.522: บัว/ผนังเหนือท็อปในภาพด้านหน้า — u0,u1 = ช่วงแนวนอน · บัว/หิน = เข้ม/ลายขีด · กระเบื้อง = ตารางตามขนาด · กระจก = เส้นเฉียงคู่ */
 function dwgVert(o,list,U,A,hs){ const k=o.k, T=plWt(), tw=+String(T.tile||"300x600").split("x")[0]||300, th=+String(T.tile||"300x600").split("x")[1]||600;
@@ -42857,22 +43209,23 @@ async function dwgSwatch(b){
    ตอนนี้: dwgFitImg(แถว fittingAgg, kind) → รูปที่ตั้งเองตามรหัส (settings.fitImg[art]) > ตั้งเองทั้งชนิด (settings.fitImg["kind:hinge"])
      > รูปตั้งต้นฝังในไฟล์ (บานพับทุกรุ่น · ราง = เฉพาะชื่อ/รหัส/ซีรีส์มี Alto หรือ 552.66) > ไอคอนเดิม · ปิด SN_OFF.dwgFitImg
    รูปที่ผู้ใช้ส่ง ย่อเหลือด้านยาว 240 px JPEG พื้นขาว (~8 KB) */
-const DWG_FIT_IMG={"hinge": "data:image/jpeg;base64,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", "alto": "data:image/jpeg;base64,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"};
+const DWG_FIT_IMG={"led":"data:image/jpeg;base64,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", "hinge": "data:image/jpeg;base64,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", "alto": "data:image/jpeg;base64,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"};
 function dwgFitLib(){ if(typeof settings==="undefined") return {}; if(!settings.fitImg||typeof settings.fitImg!=="object") settings.fitImg={}; return settings.fitImg; }
 function dwgFitImg(r,k){ if(snOff("dwgFitImg")||!r) return ""; const L=dwgFitLib(), art=String(r.art||"").trim();
   if(art&&L[art]) return L[art]; if(L["kind:"+k]) return L["kind:"+k];
   if(k==="hinge") return DWG_FIT_IMG.hinge;
+  if(k==="led") return DWG_FIT_IMG.led;   /* v1.586: ไฟเส้น COB 24V (ภาพผู้ใช้ 31/10 13:27) */
   if(k==="slide"&&/alto|552\.?66/i.test([r.art,r.name,r.series,r.purchase].join(" "))) return DWG_FIT_IMG.alto;
   return ""; }
 /* หน้าต่างเปลี่ยนรูปอุปกรณ์ (เรียกจากใบเสนอราคา · z 440 เหนือหน้าต่างใบ 410) — แถวบานพับ/รางที่ใช้ในงานนี้ */
-function dwgFitImgEdit(){ return new Promise(res=>{ let rows=[]; try{ const C=dwgCabs().filter(c=>c.lv!=="rail"&&c.lv!=="light"); rows=fittingAgg(C.reduce((a,c)=>a.concat(c.bs),[])).filter(x=>x&&(x.kind==="hinge"||x.kind==="slide")); }catch(e){ console.error("fitImg rows:",e); }
+function dwgFitImgEdit(){ return new Promise(res=>{ let rows=[]; try{ const C=dwgCabs().filter(c=>c.lv!=="rail"&&c.lv!=="light"); rows=fittingAgg(C.reduce((a,c)=>a.concat(c.bs),[])).filter(x=>x&&(x.kind==="hinge"||x.kind==="slide"||x.kind==="led"));   /* v1.586: + LED */ }catch(e){ console.error("fitImg rows:",e); }
   const L=dwgFitLib(), e=escapeHtml, ov=document.createElement("div"); ov.id="dwgFitDlg"; ov.style.cssText="position:fixed;inset:0;z-index:440;background:rgba(0,0,0,.35);display:flex;align-items:center;justify-content:center";
   const paint=()=>{ ov.innerHTML='<div style="background:var(--solid,#fff);color:var(--ink,#222);border-radius:12px;box-shadow:0 10px 40px rgba(0,0,0,.35);padding:14px;width:min(560px,94vw);max-height:86vh;overflow:auto;font-size:13px">'
       +'<div style="display:flex;align-items:center;margin-bottom:8px"><b>🖼 รูปอุปกรณ์ — หน้ารวมวัสดุ</b><span style="flex:1"></span><button class="ibtn" data-f="x">✕</button></div>'
       +'<div style="font-size:11.5px;color:var(--ink-dim,#777);margin-bottom:8px">รูปที่ตั้ง เก็บตามรหัสอุปกรณ์ ใช้ได้ทุกงาน · ไม่ตั้ง = รูปตั้งต้น (บานพับ / ราง Alto) หรือไอคอน</div>'
       +(rows.length?rows.map((r,i)=>{ const k=r.kind, im=dwgFitImg(r,k), own=!!L[String(r.art||"")];
         return '<div style="display:flex;gap:10px;align-items:center;padding:6px 0;border-top:1px solid var(--line,#eee)"><div style="width:72px;height:56px;flex:none;border:1px solid var(--line,#ddd);border-radius:6px;display:flex;align-items:center;justify-content:center;overflow:hidden;background:#fff">'
-          +(im?'<img src="'+im+'" style="max-width:100%;max-height:100%">':dwgIcon(k))+'</div><div style="flex:1;min-width:0"><b>'+(k==="hinge"?"บานพับ":"ราง")+'</b> '+e(String(r.name||""))+'<div style="font-size:11px;color:var(--ink-dim,#777)">'+e(String(r.art||""))+' · '+(r.count||0)+' '+e(String(r.unit||""))+(own?' · รูปที่ตั้งเอง':'')+'</div></div>'
+          +(im?'<img src="'+im+'" style="max-width:100%;max-height:100%">':dwgIcon(k))+'</div><div style="flex:1;min-width:0"><b>'+(k==="hinge"?"บานพับ":k==="led"?"LED":"ราง")+'</b> '+e(String(r.name||""))+'<div style="font-size:11px;color:var(--ink-dim,#777)">'+e(String(r.art||""))+' · '+(r.count||0)+' '+e(String(r.unit||""))+(own?' · รูปที่ตั้งเอง':'')+'</div></div>'
           +'<button class="ibtn" data-f="up" data-i="'+i+'">📂 เปลี่ยนรูป</button>'+(own?'<button class="ibtn" data-f="rs" data-i="'+i+'" title="กลับรูปตั้งต้น">↺</button>':'')+'</div>'; }).join(""):'<div style="color:var(--ink-dim,#777);padding:10px 0">งานนี้ยังไม่มีบานพับ/ราง</div>')
       +'<div style="display:flex;justify-content:flex-end;margin-top:10px"><button class="ibtn" data-f="x" style="font-weight:600">เสร็จ</button></div></div>'; };
   let changed=false; const done=()=>{ ov.remove(); res(changed); };
@@ -43018,7 +43371,7 @@ async function dwgMatTiles(C){ const cabs=(C||dwgCabs()).filter(c=>c.lv!=="rail"
         tiles.push({h, img:fim, icon:fim?"":k, t:nm, s:[r0.art&&String(r0.art)!==nm?String(r0.art):"", n+" "+(r0.unit||u), L.length>1?("+"+(L.length-1)+" แบบ"):""].filter(Boolean).join(" · ")}); }); }
     else if(hg||sl) tiles.push({h:"Fitting", icon:"hinge", t:hg?String(hg.name||hg.art):String(sl.name||sl.art), s:(hg&&sl)?String(sl.name||sl.art):""});
     const led=rows.filter(x=>x&&x.kind==="led").sort((a,b)=>b.count-a.count)[0];
-    if(led) tiles.push({h:"LED", icon:"led", t:String(led.name||led.art), s:String(led.art||"")}); }
+    if(led){ const lim=dwgFitImg(led,"led"); tiles.push({h:"LED", img:lim, icon:lim?"":"led", t:String(led.name||led.art), s:String(led.art||"")}); }   /* v1.586 */ }
   return tiles; }
 function dwgIcon(kind){
   if(kind==="board") return '<svg viewBox="0 0 120 80"><g fill="#cfe0c8" stroke="#6f8a66" stroke-width="1.2">'+[0,1,2,3].map(i=>'<path d="M'+(10+i*6)+' '+(58-i*12)+' l70 -14 l26 10 l-70 14 z"/>').join("")+'</g></svg>';
@@ -43038,6 +43391,7 @@ function dwgAll(){ const C=dwgCabs(), out=[]; if(!C.length) return out;
   const ng=Math.ceil(secs.length/3), per=ng?Math.ceil(secs.length/ng):3;   // แบ่งหน้าเท่า ๆ กัน (4 = 2+2 · 5 = 3+2) ไม่ให้เหลือภาพเดียวโดด ๆ
   for(let i=0;i<secs.length;i+=per) tryP(()=>dwgSecFig(secs.slice(i,i+per)));
   tryP(()=>dwgWorktop(C));
+  tryP(()=>dwgUtilWalls().map(k=>dwgUtilElev(k,C)));   /* v1.586: แบบงานระบบ */
   return out; }
 /* ═════════ v1.459: 🧊 ส่งออก 3D (.glb) สำหรับ Blender ═════════
    ผู้ใช้ 15/10 12:57: "ปุ่มส่งออกให้ Blender" (เรนเดอร์ภาพเหมือนจริงเองฟรี ไม่ต้องจ่าย AI)

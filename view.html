@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="th"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover"><meta name="generator" content="StarNexus 1.584"><title>StarNexus — ดูงาน 3D</title><style>
+<html lang="th"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover"><meta name="generator" content="StarNexus 1.588"><title>StarNexus — ดูงาน 3D</title><style>
 :root{--bg:#e7e8ee;--panel:rgba(255,255,255,.94);--solid:#fff;--ink:#172c40;--dim:#5b6b7c;--line:#d5dae2;--accent:#1e5fa8;--warn:#e8590c;--shadow:0 10px 30px -12px rgba(16,32,56,.35)}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html,body{margin:0;height:100%;background:var(--bg);color:var(--ink);font:14px/1.5 system-ui,-apple-system,"Segoe UI","Noto Sans Thai","Sarabun",sans-serif;overflow:hidden;overscroll-behavior:none}
@@ -1425,12 +1425,16 @@ function realBuildRoom(){
       const cm=new THREE.Mesh(geo,ceilM); cm.receiveShadow=true; cm.castShadow=true; wg.add(cm); }
     else box(wg,w+2*T,T,d+2*T,ceilM,cx,R.y1+T/2,cz);
     const Wc=bx.max.x-bx.min.x, n=Math.max(1,Math.min(4,Math.round(Wc/1200)||1)), lz=Math.min(bx.max.z+750,R.z1-300);
-    for(let i=0;i<n;i++){ const lx=bx.min.x+(i+.5)*Wc/n, on=P.lamp>0;
+    /* v1.586: ห้องจากห้องออกแบบที่มีดาวน์ไลท์ = วางไฟตามดาวน์ไลท์ (ระดับตามฝ้าตรงนั้น) · ไม่มี = เรียงตามตู้แบบเดิม */
+    let _LP=null; try{ if(R.pl&&!snOff("plDl")&&typeof ploList==="function"){ const rp=(root&&root.position)?root.position:{x:0,y:0,z:0};
+      _LP=ploList().filter(o=>o&&o.k==="dl"&&!(typeof ploHid==="function"&&ploHid(o))).map(o=>({x:+o.x+rp.x, z:+o.z+rp.z, y:plDlY(o)+rp.y})); } }catch(e){ _LP=null; }
+    if(!_LP||!_LP.length) _LP=Array.from({length:n},(_,i)=>({x:bx.min.x+(i+.5)*Wc/n, z:lz, y:R.y1}));
+    _LP.forEach(_p=>{ const lx=_p.x, lzz=_p.z, ly=_p.y, on=P.lamp>0;
       const lm=new THREE.MeshStandardMaterial({color:realLin(0xf5f3ee),roughness:.3,metalness:0,emissive:realLin(0xffe2b8),emissiveIntensity:on?2.4:0});
-      const o=new THREE.Mesh(new THREE.CylinderGeometry(62,62,14,32),lm); o.position.set(lx,R.y1-7,lz); o.receiveShadow=false; wg.add(o);
+      const o=new THREE.Mesh(new THREE.CylinderGeometry(62,62,14,32),lm); o.position.set(lx,ly-7,lzz); o.receiveShadow=false; wg.add(o);
       o.userData._rptEmit=on?P.pt.lampL:0; o.userData._rptEmitCol=[1,.82,.62]; o.userData._rptEmitK=4;   // ภาพแสงจริง: ส่องลงเป็นลำ
-      const rim=new THREE.Mesh(new THREE.CylinderGeometry(78,78,4,32),M(0xd8d8d8,.35,.6)); rim.position.set(lx,R.y1-2,lz); wg.add(rim);
-      REAL.lamps.push({x:lx,y:R.y1-16,z:lz}); } }
+      const rim=new THREE.Mesh(new THREE.CylinderGeometry(78,78,4,32),M(0xd8d8d8,.35,.6)); rim.position.set(lx,ly-2,lzz); wg.add(rim);
+      REAL.lamps.push({x:lx,y:ly-16,z:lzz}); }); }
   scene.add(g); REAL.grp=g;
   REAL.walls.forEach(w2=>w2.hid=false);
   return true; }
