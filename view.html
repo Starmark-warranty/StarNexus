@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="th"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover"><meta name="generator" content="StarNexus 1.578"><title>StarNexus — ดูงาน 3D</title><style>
+<html lang="th"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover"><meta name="generator" content="StarNexus 1.582"><title>StarNexus — ดูงาน 3D</title><style>
 :root{--bg:#e7e8ee;--panel:rgba(255,255,255,.94);--solid:#fff;--ink:#172c40;--dim:#5b6b7c;--line:#d5dae2;--accent:#1e5fa8;--warn:#e8590c;--shadow:0 10px 30px -12px rgba(16,32,56,.35)}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html,body{margin:0;height:100%;background:var(--bg);color:var(--ink);font:14px/1.5 system-ui,-apple-system,"Segoe UI","Noto Sans Thai","Sarabun",sans-serif;overflow:hidden;overscroll-behavior:none}
@@ -1414,7 +1414,16 @@ function realBuildRoom(){
     box(wg,SKT,SK,d,skirtM,R.x0+SKT/2,R.y0+SK/2,cz,true); }
   if(R.plWalls) try{ realPlWalls(g,R,wall,P); }catch(e){ console.error("realPlWalls:",e); }   /* v1.566 */
   // ฝ้า + ดาวน์ไลท์
-  { const wg=wall("ceil",[0,-1,0],[0,R.y1,0]); box(wg,w+2*T,T,d+2*T,ceilM,cx,R.y1+T/2,cz);
+  /* ───────── v1.579: ฝ้าของโหมดสมจริงเจาะช่องฝ้าหลุม ─────────
+     AI RENDER (ภาพฉาก/ภาพเร็ว/แสงจริง) ถ่ายจากโหมดสมจริง ซึ่งวาดฝ้าเป็นกล่องทึบของตัวเอง + ซ่อนชิ้นในห้องออกแบบที่ไม่ใช่เครื่องใช้
+     → ฝ้าหลุมไม่เคยขึ้นในภาพ (ภาพฉาก per1 ของผู้ใช้ 31/10 11:17) · ตอนนี้ห้องจากห้องออกแบบ (R.pl) = ฝ้าแผ่นเดียวเจาะช่องฝ้าหลุม
+     แล้วชิ้นจริงของฝ้าหลุม/ฝ้าลด/บัว (PL.grp userData.plCeil 3/4 · plMold) ไม่ถูกซ่อนใน realPlProps */
+  { const wg=wall("ceil",[0,-1,0],[0,R.y1,0]); const _ch=realCeilHoles(R);
+    if(_ch.length){ const sh=new THREE.Shape(); sh.moveTo(R.x0-T,R.z0-T); sh.lineTo(R.x1+T,R.z0-T); sh.lineTo(R.x1+T,R.z1+T); sh.lineTo(R.x0-T,R.z1+T); sh.closePath();
+      _ch.forEach(q=>{ const pa=new THREE.Path(); pa.moveTo(q[0],q[1]); pa.lineTo(q[2],q[1]); pa.lineTo(q[2],q[3]); pa.lineTo(q[0],q[3]); pa.closePath(); sh.holes.push(pa); });
+      const geo=new THREE.ExtrudeGeometry(sh,{depth:T,bevelEnabled:false}); geo.rotateX(Math.PI/2); geo.translate(0,R.y1+T,0);
+      const cm=new THREE.Mesh(geo,ceilM); cm.receiveShadow=true; cm.castShadow=true; wg.add(cm); }
+    else box(wg,w+2*T,T,d+2*T,ceilM,cx,R.y1+T/2,cz);
     const Wc=bx.max.x-bx.min.x, n=Math.max(1,Math.min(4,Math.round(Wc/1200)||1)), lz=Math.min(bx.max.z+750,R.z1-300);
     for(let i=0;i<n;i++){ const lx=bx.min.x+(i+.5)*Wc/n, on=P.lamp>0;
       const lm=new THREE.MeshStandardMaterial({color:realLin(0xf5f3ee),roughness:.3,metalness:0,emissive:realLin(0xffe2b8),emissiveIntensity:on?2.4:0});
