@@ -3283,7 +3283,7 @@ body[data-theme="dark"] .splash-dots span{background:rgba(255,255,255,.25)}
    ===================================================================== */
 /* ---- APP_META: แหล่งความจริงเดียวของเวอร์ชัน (ดูได้จาก console / คลิกชื่อแอป) ---- */
 const APP_META={
-  name:"StarNexus", version:"1.583", build:"2026-10-31/mcwg-hinge3d",
+  name:"StarNexus", version:"1.584", build:"2026-10-31/mcwg-cup",
   file:"StarNexus.html", basedOn:"Furnitech_V3.html (v3.11)",
   /* ───────── เริ่มนับเวอร์ชันใหม่ที่ 1.001 (21/08/2026) ─────────
      ของเดิมนับมาถึง 42.1 แล้ววิ่งเป็นทศนิยมสองชั้นซึ่งอ่านลำดับยาก
@@ -3291,6 +3291,7 @@ const APP_META={
      ประวัติเก่าเก็บไว้ทั้งหมดตามเลขเดิม ไม่ไล่เขียนใหม่ เพราะเลขในนั้นถูกอ้างถึงไปแล้ว
      รายการที่อยู่ใต้ 1.001 ลงไปจึงเป็นเลขชุดเก่า อ่านต่อกันได้ตามวันที่ */
   changelog:[
+    ["1.584","2026-10-31","FIX บาน MCWG ต้องเจาะรูถ้วยบานพับ (ผู้ใช้ 31/10 12:10: “ตอนตั้งให้บาน MCWG ไม่เจาะรูถ้วย ผมไม่ได้ไม่ให้เจาะ ผมให้เจาะครับ บาน MCWx58 มันเจาะรูถ้วยไงครับ”) — ① ยกเลิก 1.577 ที่เข้าใจผิด: บาน MCWG กลับมาเจาะรูถ้วย + เดือยยึดทุกทาง (MPR · แบบผลิต · รายการรู · 3D) เหมือนบาน MCWx58 · ค่าตั้งรายชื่อแบบบานที่ไม่เจาะ เปลี่ยนเป็นช่องใหม่ hingeNoCupList ค่าเริ่มว่าง (ค่า MCWG เดิมที่อาจถูกบันทึกไว้ไม่มีผล) ② FIX ต้นเรื่องจริง: บานกัดทะลุที่มีบ่ารับกระจกด้านหลัง (MCWG) ใน 3D ไม่วาดรูถ้วยบานพับ (v1.469 ข้ามกรณีบ่าหลังไว้) — บาน MCWx58 (ไม่ทะลุ) จึงเห็นรูถ้วย แต่ MCWG ไม่เห็น · ตอนนี้ผิวหลังวงนอก (นอกบ่า) เจาะวงถ้วยได้ ถ้าวงถ้วยไม่แตะบ่า"],
     ["1.583","2026-10-31","FIX บาน MCWG บานพับ 3D หาย (ผู้ใช้ 31/10 12:03 ภาพบานกระจกเปิดไม่มีตัวบานพับ: “อ่าว MCWG20 บานพับ 3D หาย”) — 1.577 ให้บาน MCWG ไม่เจาะถ้วย โดยข้ามกิ่งบานพับทั้งกิ่งใน buildConnectorMeshes ซึ่งเป็นที่เดียวกับที่วาดตัวบานพับจริง (hinge3DMeshes v1.454) ตัวบานพับจึงหายไปด้วย · ตอนนี้ข้ามเฉพาะรูถ้วย/เดือยยึด/ฝาวงถ้วย ตัวบานพับ 3D ยังวาด · MPR/แบบผลิต/รายการรู ยังไม่เจาะถ้วยเหมือน 1.577"],
     ["1.582","2026-10-31","FIX กดกระเด้ง KIT02 ไม่อยู่ฝั่งตรงข้ามบานพับ (ผู้ใช้ 31/10 11:53 project (4) ตู้ลอย WAT070 บานคู่ไม่มีตั้งกลาง ภาพรูกดที่มุมบานพับ) — ต้นเหตุ: ตัววางจุดกด (v1.164) อ่านฝั่งบานพับจากตัวเชื่อมบานพับ (connector) อย่างเดียว · ตู้ชุดกดกระเด้งบานยังไม่มีบานพับ → ตกไปทางสำรอง “บานคู่ = ริมซ้าย-ขวาสุดของแผ่นพื้น” ซึ่งเป็นฝั่งบานพับพอดี · ตอนนี้ใช้ hingeSideOf (ตัวเดียวกับตอนเปิดบานใน 3D: บานพับ → ชื่อ Door L / Door R) จุดกดจึงไปปลายเปิดกลางตู้ · + ข้อความสรุปจุดเจาะใน console กลับมาขึ้น (เดิมอ้างตัวแปร face ที่ไม่มี)"],
     ["1.581","2026-10-31","FEAT (ผู้ใช้ 31/10 11:37 ภาพบานพับ + ภาพราง: “1.อันนี้รูปราง Alto 552.66.585 2.รูปบานพับ เอาไปแสดงหน้า วัสดุ 3.เดี๋ยวเพิ่มคำสั่งซ่อน Object ด้วยหมายถึง ตู้เย็น หรืออื่นๆ ครับ หน้าออกแบบ”) — ① หน้ารวมวัสดุในใบเสนอราคา ช่องบานพับ = รูปบานพับจริง (เดิมไอคอนวาด) · ช่องราง = รูปราง Alto เมื่อเป็นราง Alto / 552.66… · ปุ่ม 🖼 รูปอุปกรณ์ ในหัวข้อแนบท้ายใบ: เปลี่ยนรูปตามรหัสอุปกรณ์ที่ใช้ในงาน (เก็บกลาง ใช้ได้ทุกงาน) · ↺ กลับรูปตั้งต้น ② ห้องออกแบบ: ปุ่ม 🙈 ซ่อน ในแผงของทุกชิ้น (ตู้เย็น เครื่องใช้ ประตู หน้าต่าง เสา ฝ้า …) = ไม่วาดในห้อง/ภาพ/ใบเสนอราคา · แผงห้องขึ้นแถบ “ซ่อนอยู่ n ชิ้น” คลิกชื่อ = แสดงคืน · 👁 แสดงทั้งหมด ③ FIX (1.580) หน้าต่างยืนยัน “ล้าง” อยู่ใต้หน้าต่างใบเสนอราคา · ปิดได้ SN_OFF.dwgFitImg / plHide"],
@@ -4091,7 +4092,7 @@ const DEF_SETTINGS={ frontSetMax:6, dowelD:8, dowelDepth:28, dowelMateDepth:12, 
   dxHI:70, dxTI:16, dxClrBack:0.5, dxClrDown:0.5,   // v8.38: DX I — สูง 70 · หนา 16 · เผื่อบากลึก/ลงล่างด้านละ 0.5   // v8.22/8.26: เพดานความสูงกล่อง · หักจากความสูงหน้าบาน · ปัดลงเป็นขั้น
   legMarkEdgeX:32, legMarkFront:75, legMarkBack:143, legMarkPair:12, legMarkMidOver:900,
   legMarkAvoid:true, legMarkAvoidGap:3, legMarkAvoidFwd:20, legMarkAvoidBack:10,   // v1.209: หลบรูคัมมินิฟิก/รูอื่น — ขึ้นหน้าได้ 20 ถอยหลังได้ 10
-  hingeCupD:35, hingeCupDepth:12.5, hingeCupOffset:22.5, hingeDowelD:8, hingeDowelDepth:12, hingeDowelSpacing:45, hingeDowelOffset:0, hingeNoCupShapes:"MCWG", hingeName:"บานพับ", hingeCode:"HINGE", hingeFormulaActive:"มาตรฐาน", hingeModels:[],
+  hingeCupD:35, hingeCupDepth:12.5, hingeCupOffset:22.5, hingeDowelD:8, hingeDowelDepth:12, hingeDowelSpacing:45, hingeDowelOffset:0, hingeNoCupList:"", hingeName:"บานพับ", hingeCode:"HINGE", hingeFormulaActive:"มาตรฐาน", hingeModels:[],
   hingePlateD:3, hingePlateDepth:2, hingePlateFromFront:37, hingePlateSpacing:32,
   xmlMap:[ {field:"K_Carcass_Color",target:"Carcass"}, {field:"K_Front_Color1",target:"Front"}, {field:"K_Front_Shape1",target:"$FrontShape1"} ],
   /* v7.79: ค่าตั้งต้นเมื่อออเดอร์ไม่ได้ส่งค่ามา — กัน Variable ว่าง/ค้างค่าออเดอร์ก่อนหน้าหลุดไปถึงไฟล์ส่งออก */
@@ -6030,7 +6031,9 @@ function doorReliefGeo(L,W,T,prof,orient,yaw,cut,cups){
   const cupsOK=[]; if(!snOff("reliefCup")) (cups||[]).forEach(c=>{
     const r=Math.max(+c.w||35,1)/2, x=+c.x||0, y=+c.y||0;
     if(Math.abs(x)+r>L/2-0.5||Math.abs(y)+r>W/2-0.5) return;
-    if(cut&&!((Math.abs(x)-r>=L/2-cut.cf+1)||(Math.abs(y)-r>=W/2-cut.cf+1))) return;      // วงถ้วยต้องไม่แตะช่องทะลุ
+    /* v1.584: บ่าหลัง (MCWG ใส่กระจกจากหลัง) = วงถ้วยต้องอยู่นอกบ่า (ผิวหลังเต็มหนา) · ไม่มีบ่า = นอกช่องทะลุแบบเดิม */
+    const _lim=(cut&&hasReb&&cut.back&&!snOff("reliefCupReb"))?cut.rf:(cut?cut.cf:0);
+    if(cut&&!((Math.abs(x)-r>=L/2-_lim+1)||(Math.abs(y)-r>=W/2-_lim+1))) return;      // วงถ้วยต้องไม่แตะช่องทะลุ (หรือบ่าหลัง)
     let room=T; [[0,0]].concat(Array.from({length:16},(_,k)=>[Math.cos(k*Math.PI/8),Math.sin(k*Math.PI/8)])).forEach(q=>[1,0.55].forEach(s=>{
       room=Math.min(room,T-dep(x+q[0]*r*s,y+q[1]*r*s)); }));
     const cd=Math.min(Math.max(+c.depth||13,0.5),room-0.4);
@@ -6057,14 +6060,19 @@ function doorReliefGeo(L,W,T,prof,orient,yaw,cut,cups){
     const cf=cut.cf, bR=hasReb&&cut.back, rf=cut.rf, zr=-T/2+(bR?cut.rd:0), nb=new THREE.Vector3(0,0,-1);
     /* v1.469: ไม่มีบ่าหลัง + มีรูถ้วย → ผิวหลังเป็นกรอบมีรูช่องทะลุ + รูถ้วย (ใส่จุดตารางตามขอบทุกเส้น ให้ชนผนังพอดี ไม่มีรอยแตก) */
     let _cupBack=false;
-    if(!bR&&cupsOK.length){ const nr=(A,v)=>{ let bst=v, dd=1e9; A.forEach(t=>{ const e=Math.abs(t-v); if(e<dd){ dd=e; bst=t; } }); return bst; };
-      const x0=nr(X,-L/2+cf), x1=nr(X,L/2-cf), y0=nr(Y,-W/2+cf), y1=nr(Y,W/2-cf);
+    /* ───────── v1.584: บ่าหลัง + รูถ้วย ─────────
+       เดิม (v1.469) เจาะรูถ้วยที่ผิวหลังเฉพาะบานกัดทะลุที่ “ไม่มีบ่าหลัง” — บาน MCWG (กระจกใส่จากหลังบนบ่า) จึงไม่มีรูถ้วยใน 3D
+       ผู้ใช้ 12:10 “บาน MCWx58 มันเจาะรูถ้วยไงครับ” (MCWx58 ไม่ทะลุ เห็นรูถ้วย)
+       ตอนนี้: ผิวหลังวงนอก (ระยะจากขอบ < rf) = รูปกรอบมีรูขอบบ่า + รูถ้วย · พื้นบ่า (rf…cf) วาดตามตารางเดิมที่ zr · ปิด SN_OFF.reliefCupReb */
+    const _fh=(bR&&!snOff("reliefCupReb"))?rf:cf;
+    if((!bR||!snOff("reliefCupReb"))&&cupsOK.length){ const nr=(A,v)=>{ let bst=v, dd=1e9; A.forEach(t=>{ const e=Math.abs(t-v); if(e<dd){ dd=e; bst=t; } }); return bst; };
+      const x0=nr(X,-L/2+_fh), x1=nr(X,L/2-_fh), y0=nr(Y,-W/2+_fh), y1=nr(Y,W/2-_fh);
       const Xi=X.filter(v=>v>x0+1e-6&&v<x1-1e-6), Yi=Y.filter(v=>v>y0+1e-6&&v<y1-1e-6), Xo=X.slice(1,-1), Yo=Y.slice(1,-1);
       const outer=[[-L/2,-W/2]].concat(Xo.map(x=>[x,-W/2]),[[L/2,-W/2]],Yo.map(y=>[L/2,y]),[[L/2,W/2]],Xo.slice().reverse().map(x=>[x,W/2]),[[-L/2,W/2]],Yo.slice().reverse().map(y=>[-L/2,y]));
       const hole=[[x0,y0]].concat(Xi.map(x=>[x,y0]),[[x1,y0]],Yi.map(y=>[x1,y]),[[x1,y1]],Xi.slice().reverse().map(x=>[x,y1]),[[x0,y1]],Yi.slice().reverse().map(y=>[x0,y]));
       if(x1-x0>1&&y1-y0>1&&backPoly(-T/2,outer,[hole].concat(cupsOK.map(ringPts)))){ cupWalls(-T/2); _cupBack=true; } }
-    if(!_cupBack) for(let i=0;i<X.length-1;i++) for(let j=0;j<Y.length-1;j++){
-      const m=mOf((X[i]+X[i+1])/2,(Y[j]+Y[j+1])/2); if(m>=cf) continue;
+    for(let i=0;i<X.length-1;i++) for(let j=0;j<Y.length-1;j++){
+      const m=mOf((X[i]+X[i+1])/2,(Y[j]+Y[j+1])/2); if(m>=cf) continue; if(_cupBack&&m<_fh) continue;   /* v1.584: ผิวหลังวงนอกปั้นไปแล้ว (มีรูถ้วย) */
       const z=(bR&&m>=rf)?zr:-T/2;
       const p=[[X[i],Y[j]],[X[i+1],Y[j]],[X[i+1],Y[j+1]],[X[i],Y[j+1]]].map(q=>new THREE.Vector3(q[0],q[1],z));
       tri(p[0],p[1],p[2],nb); tri(p[0],p[2],p[3],nb); }
@@ -8006,7 +8014,9 @@ function hinge3DLinkM(mArm,L,phi,K){
      = ไม่เจาะถ้วย/เดือยยึดบนบาน ทุกทาง (MPR · แบบผลิต · รายการรู · รูปตัด 3D · ฝั่งผิวที่ต้องเจาะ)
      บานพับยังนับใน BOM และรูฐานบานพับบนแผ่นข้าง (drillHingePlateHoles) ยังอยู่ · SN_OFF.hingeNoCup = แบบเดิม */
 function hingeNoCup(b){ if(snOff("hingeNoCup")||!b||!b._door) return false;
-  const L=String(settings.hingeNoCupShapes==null?"MCWG":settings.hingeNoCupShapes).split(/[,\s]+/).map(x=>x.trim().toUpperCase()).filter(x=>x&&x!=="-");
+  /* v1.584: ผู้ใช้ 12:10 “ผมให้เจาะครับ” — 1.577 เข้าใจคำขอกลับด้าน · อ่านจากช่องใหม่ hingeNoCupList ค่าเริ่มว่าง = เจาะทุกบาน
+     (ช่องเดิม hingeNoCupShapes ที่อาจถูกบันทึกเป็น "MCWG" ไว้แล้ว ไม่อ่านอีก) */
+  const L=String(settings.hingeNoCupList==null?"":settings.hingeNoCupList).split(/[,\s]+/).map(x=>x.trim().toUpperCase()).filter(x=>x&&x!=="-");
   if(!L.length) return false; let sc=""; try{ sc=String(doorShapeCode(b)||"").trim().toUpperCase(); }catch(e){ sc=""; }
   return !!sc&&L.some(p=>sc.indexOf(p)===0); }
 function hingeCutOn(){ return hinge3DOn()&&!snOff("hingeCut"); }
@@ -29719,6 +29729,7 @@ function boardRole(b){
      SN_OFF.plMold=1      ไม่มีบัวฝ้า/บัวพื้นในห้องออกแบบ (ค่าที่ตั้งไว้ยังอยู่) (v1.579)
      SN_OFF.plWash=1      ไม่มีการ์ดเครื่องซักผ้า (ที่วางไว้ยังอยู่) (v1.579)
      SN_OFF.ovenFit=1     เตาอบ Built-in แปะหน้าตู้แบบเดิม ไม่เข้าช่อง ไม่ขยับชั้น (v1.578)
+     SN_OFF.reliefCupReb=1 บานกัดทะลุที่มีบ่าหลัง ไม่วาดรูถ้วยบานพับใน 3D (แบบ 1.583) (v1.584)
      SN_OFF.hingeNoCup=1  บานแบบ MCWG (settings.hingeNoCupShapes) เจาะรูถ้วยบานพับเหมือนบานอื่น (แบบ 1.576) (v1.577)
      SN_OFF.plSmeg=1      ไม่มีการ์ดตู้เย็น SMEG ในหมวดเครื่องใช้ในครัว (ที่วางไว้ยังอยู่) (v1.577)
      SN_OFF.plDoorOne=1   ห้องออกแบบ ปุ่มเปิดบาน = กางทุกบานทั้งห้องแบบ 1.311 (คลิกทีละใบไม่ได้) (v1.576)
@@ -35099,7 +35110,7 @@ function renderSettings(){
       ${num("hingeDowelOffset","เยื้องเดือยยึดเข้าด้านใน จากศูนย์ถ้วย (มม.) เช่น 0")}
     </div>
     <!-- ───────── v1.577: แบบบานที่ไม่เจาะถ้วย ───────── -->
-    ${txt("hingeNoCupShapes","แบบบาน (FrontShape) ที่บานพับไม่เจาะรูถ้วย — ขึ้นต้นด้วย · คั่นด้วย , เช่น MCWG · ใส่ - = เจาะทุกบาน")}
+    ${txt("hingeNoCupList","แบบบาน (FrontShape) ที่บานพับไม่เจาะรูถ้วย — ขึ้นต้นด้วย · คั่นด้วย , · ว่าง/ใส่ - = เจาะทุกบาน (ค่าเริ่ม)")}
     <!-- ───────── v1.454: บานพับ 3D จริง ───────── -->
     <label style="display:flex;align-items:center;gap:8px;font-size:13px;cursor:pointer;margin-top:6px"><input type="checkbox" id="setHinge3D" ${settings.hinge3D!==false?"checked":""}> แสดงบานพับเป็นรูป 3D จริง (Blum 71B3550 + ฐาน 173H7100 จากไฟล์ .dae ของผู้ผลิต) — ไม่มีผลกับระยะเจาะ/ไฟล์ส่งออก</label>
     <label style="display:flex;align-items:center;gap:8px;font-size:13px;margin:4px 0 0 26px">สีบานพับ 3D <select id="setHingeFinish" style="font-size:13px">${[["nickel","นิกเกิล (ค่าเริ่ม)"],["chrome","โครเมียมเงา"],["black","ดำ (Onyx)"]].map(o=>`<option value="${o[0]}" ${String(settings.hingeFinish||"nickel")===o[0]?"selected":""}>${o[1]}</option>`).join("")}</select> <span style="color:var(--mut,#888);font-size:12px">· บานเปิดขยับตามกลไกบานพับจริง · รูถ้วย Ø35 เจาะเนื้อบานในภาพ</span></label>
