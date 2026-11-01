@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="th"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover"><meta name="generator" content="StarNexus 1.591"><title>StarNexus — ดูงาน 3D</title><style>
+<html lang="th"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover"><meta name="generator" content="StarNexus 1.593"><title>StarNexus — ดูงาน 3D</title><style>
 :root{--bg:#e7e8ee;--panel:rgba(255,255,255,.94);--solid:#fff;--ink:#172c40;--dim:#5b6b7c;--line:#d5dae2;--accent:#1e5fa8;--warn:#e8590c;--shadow:0 10px 30px -12px rgba(16,32,56,.35)}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html,body{margin:0;height:100%;background:var(--bg);color:var(--ink);font:14px/1.5 system-ui,-apple-system,"Segoe UI","Noto Sans Thai","Sarabun",sans-serif;overflow:hidden;overscroll-behavior:none}
@@ -415,6 +415,7 @@ function build(D,imgs){
     if(n.ro) o.renderOrder=n.ro; if(n.v===0) o.visible=false; if(n.cs) o.castShadow=true; if(n.rs) o.receiveShadow=true; if(n.fc===0) o.frustumCulled=false;
     if(n.id) o.userData.id=n.id;
     if(n.lg){ o.userData.led=1; S.led.push(o); }
+    if(n.rk) o.userData.rk=n.rk;   /* v1.593 */
     if(n.wc){ o.userData.wc=n.wc; S.wcs.push(o); }   /* v1.572: ผนัง/ฝ้าของห้อง ซ่อนฝั่งกล้อง (wcTick) */                                 // v1.396: ไฟราง LED (ปุ่ม 💡)
     if(isGrain(n)){ o.visible=false; o.userData.grain=1; }
     (n.ch||[]).forEach(function(c){ var co=mk(c); if(co) o.add(co); });
@@ -2282,6 +2283,7 @@ function arUi(){ var el=$("vwAr"); if(el) return el; el=document.createElement("
   el.innerHTML='<div class="arMsg" id="vwArMsg"></div><div class="arBtns">'
     +'<button class="adj" data-a="l">◀ 1 ซม.</button><button class="adj" data-a="r">1 ซม. ▶</button><button class="adj" data-a="b">⤒ เข้าผนัง</button><button class="adj" data-a="f">⤓ ออกจากผนัง</button>'
     +'<button class="adj" data-a="ccw">⟲ 0.5°</button><button class="adj" data-a="cw">0.5° ⟳</button><button class="adj" data-a="g">◐ โปร่ง</button>'
+    +((S.roomG&&!(S.D&&S.D.noArSc))?'<button class="adj" data-a="sc" title="ท็อป · เครื่องใช้ · ปลั๊ก/ท่อ จากห้องออกแบบ (ผนัง/พื้น/ฝ้า/ประตู/หน้าต่างใช้ของจริง)">🏠 ทั้งฉาก</button>':'')   /* v1.593 */
     +'<button data-a="re">↺ เทียบใหม่</button><button class="x" data-a="x">✕ ออก</button></div>';
   document.body.appendChild(el);
   [].forEach.call(el.querySelectorAll(".arMsg,.arBtns"),function(p){ p.addEventListener("beforexrselect",function(e){ e.preventDefault(); }); });   /* แตะปุ่ม ≠ แตะพื้น */
@@ -2296,18 +2298,38 @@ function arNudge(a){ var d=XR.dolly; if(!d) return;
   if(a==="x"){ try{ if(AR.ses) AR.ses.end(); }catch(e){} return; }
   if(a==="re"){ AR.step=0; AR.p1=null; arShow(false); arSay(); return; }
   if(a==="g"){ setGhost(!S.ghost); var gb=document.querySelector('#vwAr [data-a="g"]'); if(gb) gb.classList.toggle("on",S.ghost); return; }
+  if(a==="sc"){ if(AR.step<2) return; arScene(!AR.sc); return; }   /* v1.593 */
   if(AR.step<2) return; var st=10, da=0.5*Math.PI/180, c=AR.c1||arCorner().c;
   if(a==="l"){ d.position.x+=st; AR.off.x-=st; } else if(a==="r"){ d.position.x-=st; AR.off.x+=st; }
   else if(a==="f"){ d.position.z-=st; AR.off.z+=st; } else if(a==="b"){ d.position.z+=st; AR.off.z-=st; }
   else if(a==="ccw"||a==="cw"){ var s=(a==="ccw")?-1:1, v=new THREE.Vector3(d.position.x-c.x,0,d.position.z-c.z).applyAxisAngle(_wkY,s*da);   /* ตู้หมุน +δ = dolly หมุน −δ รอบมุม ① */
     d.position.x=c.x+v.x; d.position.z=c.z+v.z; d.rotation.y+=s*da; AR.off.a+=(a==="ccw"?0.5:-0.5); }
   d.updateMatrixWorld(true); arSay(); }
+/* ───────── v1.593: 🏠 ทั้งฉากในโหมด AR ─────────
+   ผู้ใช้ 1/11 14:29 (ภาพ AR ในห้องจริง ตู้ซ้อนห้อง): “ในตอนอยู่โหมดนี้ เราเติม ทั้งฉากเข้าได้ไหม”
+   ใส่เฉพาะ “ของ” จากห้องออกแบบ (ป้าย rk="prop" ตอนส่งลิงก์ = กลุ่มท็อป + เครื่องใช้ + ปลั๊ก/ท่อ + ดาวน์ไลท์)
+   ผนัง/พื้น/ฝ้า/ประตู/หน้าต่าง ไม่ใส่ — ห้องจริงอยู่แล้ว (ใส่ = บังห้องจริง)
+   ลิงก์เก่า (ก่อน 1.593 ไม่มีป้าย): ซ่อนชิ้นที่มีกติกาผนัง (S.wcs = ผนัง/ฝ้า/ประตู/หน้าต่าง) + แผ่นพื้นแบนกว้าง แสดงที่เหลือ
+   จำความเห็นเดิมของทุกชิ้นใน roomG (AR.keep.rv) คืนตอนปิด/ออก */
+function arScene(on){ var G=S.roomG; if(!G||!AR.keep) return; AR.sc=!!on;
+  if(!AR.keep.rv){ AR.keep.rv=[]; G.traverse(function(o){ AR.keep.rv.push([o,o.visible]); }); }
+  AR.keep.rv.forEach(function(e){ e[0].visible=e[1]; });
+  if(!AR.sc){ G.visible=false; }
+  else { var tag=[]; G.traverse(function(o){ if(o.userData&&o.userData.rk==="prop") tag.push(o); });
+    if(tag.length){ var keep=new Set(); tag.forEach(function(t){ t.traverse(function(x){ keep.add(x); }); var p=t.parent; while(p&&p!==G){ keep.add(p); p=p.parent; } });
+      G.traverse(function(o){ if(o!==G) o.visible=keep.has(o); }); }
+    else { var hid=new Set(); (S.wcs||[]).forEach(function(w){ w.traverse(function(x){ hid.add(x); }); });
+      G.traverse(function(o){ if(o===G) return; if(hid.has(o)){ o.visible=false; return; }
+        if(o.isMesh){ var bb=new THREE.Box3().setFromObject(o), sz=bb.getSize(new THREE.Vector3()); if(sz.y<40&&bb.max.y<40&&sz.x*sz.z>1e6){ o.visible=false; } } }); }
+    G.visible=true; }
+  var b=document.querySelector('#vwAr [data-a="sc"]'); if(b) b.classList.toggle("on",AR.sc);
+  if(renderer&&renderer.shadowMap) renderer.shadowMap.needsUpdate=true; S.dirty=true; arSay(AR.sc?"🏠 ใส่ท็อป · เครื่องใช้ · ปลั๊ก/ท่อ จากแบบแล้ว (ผนัง/พื้นใช้ของจริง)":null); }
 function arPrep(){ var vis=[]; scene.children.forEach(function(o){ vis.push([o,o.visible]); });
   AR.keep={bg:scene.background,fog:scene.fog,vis:vis,ghost:S.ghost,cc:renderer.getClearColor(new THREE.Color()),ca:renderer.getClearAlpha()};
   scene.background=null; scene.fog=null; renderer.setClearColor(0x000000,0); }
 function arShow(on){ var K=AR.keep; if(!K) return; K.vis.forEach(function(e){ var o=e[0]; if(o===XR.dolly||o===AR.ret||o.isLight) return;
     o.visible=on&&e[1]&&o!==floor&&o!==grid&&o!==S.roomG; }); S.dirty=true; }
-function arRestore(){ var K=AR.keep; if(!K) return; K.vis.forEach(function(e){ e[0].visible=e[1]; }); scene.background=K.bg; scene.fog=K.fog; renderer.setClearColor(K.cc,K.ca);
+function arRestore(){ var K=AR.keep; if(!K) return; if(K.rv) K.rv.forEach(function(e){ e[0].visible=e[1]; }); AR.sc=false;   /* v1.593 */ K.vis.forEach(function(e){ e[0].visible=e[1]; }); scene.background=K.bg; scene.fog=K.fog; renderer.setClearColor(K.cc,K.ca);
   if(S.ghost!==K.ghost) setGhost(K.ghost); AR.keep=null; if(renderer.shadowMap) renderer.shadowMap.needsUpdate=true; S.dirty=true; }
 function arFrame(t,frame){ if(!AR.ses) return;
   try{ if(frame&&AR.src){ var ref=renderer.xr.getReferenceSpace(), hs=frame.getHitTestResults(AR.src);
@@ -2319,7 +2341,7 @@ function arSelect(){ if(!AR.ses) return;
   if(!AR.hit){ arSay("ยังไม่เจอพื้น — ส่ายกล้องช้า ๆ ให้เห็นพื้น (พื้นมีลาย/แสงพอจะจับง่ายกว่า)"); return; }
   if(AR.step===0){ AR.p1={x:AR.hit.x,y:AR.hit.y,z:AR.hit.z}; AR.step=1; arSay(); return; }
   if(!arCalib(AR.p1,AR.hit)){ arSay("จุดที่ 2 ใกล้จุดแรกเกินไป — ห่างอย่างน้อย 30 ซม. (แนะนำ 1 ม. ขึ้นไป)"); return; }
-  AR.step=2; arShow(true); arSay(); }
+  AR.step=2; arShow(true); if(AR.sc) arScene(true); arSay(); }
 function arEnter(){ if(!navigator.xr||XR.ses||AR.ses) return; if(WK.on) wkExit(); if(typeof REAL!=="undefined"&&REAL.on){ try{ rvToggle(false); }catch(e){} }
   var ui=arUi();
   navigator.xr.requestSession("immersive-ar",{requiredFeatures:["hit-test"],optionalFeatures:["dom-overlay","local-floor"],domOverlay:{root:ui}}).then(function(ses){
