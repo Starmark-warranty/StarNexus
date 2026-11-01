@@ -3283,7 +3283,7 @@ body[data-theme="dark"] .splash-dots span{background:rgba(255,255,255,.25)}
    ===================================================================== */
 /* ---- APP_META: แหล่งความจริงเดียวของเวอร์ชัน (ดูได้จาก console / คลิกชื่อแอป) ---- */
 const APP_META={
-  name:"StarNexus", version:"1.596", build:"2026-11-01/ehp-mark",
+  name:"StarNexus", version:"1.597", build:"2026-11-01/ehp-cost-size",
   file:"StarNexus.html", basedOn:"Furnitech_V3.html (v3.11)",
   /* ───────── เริ่มนับเวอร์ชันใหม่ที่ 1.001 (21/08/2026) ─────────
      ของเดิมนับมาถึง 42.1 แล้ววิ่งเป็นทศนิยมสองชั้นซึ่งอ่านลำดับยาก
@@ -3291,6 +3291,7 @@ const APP_META={
      ประวัติเก่าเก็บไว้ทั้งหมดตามเลขเดิม ไม่ไล่เขียนใหม่ เพราะเลขในนั้นถูกอ้างถึงไปแล้ว
      รายการที่อยู่ใต้ 1.001 ลงไปจึงเป็นเลขชุดเก่า อ่านต่อกันได้ตามวันที่ */
   changelog:[
+    ["1.597","2026-11-01","CHANGE ราคา (💰) มือจับแบบฝัง แยกบรรทัดตามขนาดตัด (เช่น HW-367 ตัด 897 × 3 เส้น · ตัด 372 × 2 เส้น) แทนรวมเป็นเมตร · ราคาใส่รายขนาด (บาท/เส้น) หรือใส่ราคาต่อเมตรที่ “รหัส@m” ไว้ก็คิดให้ตามยาว (ผู้ใช้ 1/11 18:45 “HW-367 แยกขนาดให้ด้วย”)"],
     ["1.596","2026-11-01","FEAT มือจับแบบฝัง: รูมาร์คที่สันบานด้านที่มือจับอยู่ (กึ่งกลางยาว · กึ่งกลางหนา) ทุกรุ่น · ค่าตั้งต้น Ø5 ลึก 3 · แก้ได้ที่แถว “รูมาร์ค” ในหน้าต่างมือจับแบบฝัง (ใส่/ไม่ใส่ · Ø · ลึก · เลื่อนตามหนา) · บานที่ใส่อยู่แล้วได้รูเอง (ผู้ใช้ 1/11 18:11)"],
     ["1.595","2026-11-01","FEAT หน้าดูงาน: ตะแกรงดึงออก/iMove ดึงลงได้ (แตะในโหมดเปิดบาน · บานปิดอยู่ = เปิดให้ก่อน · ส่งลิงก์ใหม่) · มือจับทั้งห้อง/ทุกตู้ เลือกหมวด ตู้พื้น/ตู้ลอย/ตู้สูง · มือจับแบบฝัง: บานคู่เลือกซ้าย/ขวา = ทั้งสองบานติดฝั่งตรงข้ามบานพับ (เดิมติดบานเดียว) · ✏ แก้รุ่น / ＋ เพิ่มรุ่น = หน้าวาดหน้าตัด (แบบวาดผนัง: คลิกวางจุด · ล็อกตั้งฉาก · พิมพ์ความยาว+Enter · คลิกเลขแก้ความยาว · ลากจุด · ล้อเมาส์ซูม · เห็นหน้าบาน/ขอบบานเป็นที่อ้างอิง) แทนพิมพ์พิกัด · ช่อง “หดบานเพิ่ม” รายรุ่น (เช่น มือจับ 37 + หด 3 = บานสั้นลง 40) · แก้รุ่นแล้วบานที่ใส่อยู่ตัดใหม่ตาม (ผู้ใช้ 1/11 17:40–17:49)"],
     ["1.594","2026-11-01","FEAT มือจับแบบฝัง: การ์ด ▤ จากคลัง Section — เอาหน้าตัดในคลัง (เช่น HW-367 เฟรมบาน 38×13) มาเป็นรุ่นมือจับฝัง · ท่าวางตามแบบบานที่ใช้เส้นนั้น (หมุน/พลิก/เลื่อน) หรือตั้งเอง พร้อมรูปตัวอย่าง · เดือยที่เสียบเข้าขอบบานไม่นับเป็นระยะตัด · หน้าตัดหลายวง (รูกลวง) วาด 3D ได้ · แก้หน้าตัดในคลัง = รุ่นนี้ตาม (ผู้ใช้ 1/11 16:01 ส่งภาพการ์ด HW-367: “เอาตัวนี้ไปใส่ ให้หน่อยครับ”)"],
@@ -30018,6 +30019,7 @@ function boardRole(b){
      SN_OFF.plWallSolid=1 ผนังห้องออกแบบกลับไปโปร่งแสงแบบเดิม (v1.379)
      SN_OFF.ovenFitUp=1   เตาอบในช่อง ปรับชั้นใต้เตาแบบ 1.578 (ไม่ขยับชั้นบนเตา) (v1.588)
      SN_OFF.plMicroB=1    ไม่มีการ์ดไมโครเวฟ Built-in (บานหลอกปรับตามหน้ากาก) (v1.588)
+     SN_OFF.costEhpSize=1 ราคามือจับฝังรวมเป็นเมตรบรรทัดเดียวแบบ 1.592–1.596 (v1.597)
      SN_OFF.ehpMark=1     มือจับฝังไม่ใส่รูมาร์คที่สันบาน (รูที่ใส่ไว้ถูกถอดตอน sync) (v1.596)
      SN_OFF.snvBasket=1   ลิงก์ดูงานที่ส่งหลังตั้ง = ตะแกรง/iMove ในหน้าดูงานดึงไม่ได้ (แบบ 1.594) (v1.595)
      SN_OFF.ehpFlip=1     มือจับฝัง: ด้านที่เลือกตรงบานพับ = ข้ามบานนั้นแบบ 1.592 (ไม่ย้ายไปฝั่งตรงข้าม) (v1.595)
@@ -41314,9 +41316,13 @@ function costElemPrice(kind,key,code){
       if(x.itemId&&String(x.itemId).split(",").map(s=>s.trim()).indexOf(key)>=0) return true;
       const r=/xx/.test(x.code)?re(x.code):null; return !!(r&&(r.test(key)||r.test(code))); });
     return e?costNum(e.cost):0; }catch(e){ return 0; } }
-function costPrice(kind,key,code){ const c=costCfg(), v=c[kind][key]; const n=costNum(v); if(n>0) return n; if(costZero(v)) return 0; if(kind==="surf"&&v==null&&costIsMel(key,code)) return 0; const ep=(kind==="fit")?0:costElemPrice(kind,key,code); return ep>0?ep:stkPrice(kind,key,code); }   // v1.514: ไม่มีใน SN = ราคา AX จาก StarStock
+/* v1.597: กุญแจ “รหัส@<ยาว>mm” (มือจับฝังแยกขนาด) — ราคาที่ใส่เอง หรือ ราคาต่อเมตรของ รหัส@m × ยาว */
+function costCutKey(kind,key){ if(kind!=="fit") return null; const m=/^(.+)@(\d+(?:\.\d+)?)mm$/.exec(String(key||"")); return m?{base:m[1],mm:+m[2]}:null; }
+function costPrice(kind,key,code){ const c=costCfg(), v=c[kind][key]; const n=costNum(v); if(n>0) return n;
+  { const ck=costCutKey(kind,key); if(ck){ if(costZero(v)) return 0; const pm=costPrice("fit",ck.base+"@m",code); return pm>0?Math.round(pm*ck.mm/10)/100:0; } }   /* v1.597 */ if(costZero(v)) return 0; if(kind==="surf"&&v==null&&costIsMel(key,code)) return 0; const ep=(kind==="fit")?0:costElemPrice(kind,key,code); return ep>0?ep:stkPrice(kind,key,code); }   // v1.514: ไม่มีใน SN = ราคา AX จาก StarStock
 /* v1.514: ราคานี้มาจากไหน — sn (พิมพ์ใน SN) · zero (ใส่ 0) · mel (เมลามีน) · elem (ช่อง cost ของ Element) · stk (ราคา AX จาก StarStock) · "" ไม่มี */
-function costSrc(kind,key,code){ const c=costCfg(), v=c[kind][key]; if(costNum(v)>0) return "sn"; if(costZero(v)) return "zero"; if(kind==="surf"&&v==null&&costIsMel(key,code)) return "mel";
+function costSrc(kind,key,code){ const c=costCfg(), v=c[kind][key]; if(costNum(v)>0) return "sn"; if(costZero(v)) return "zero";
+  { const ck=costCutKey(kind,key); if(ck) return costSrc("fit",ck.base+"@m",code); }   /* v1.597: ไม่ได้ใส่รายขนาด = ที่มาเดียวกับราคาต่อเมตร */ if(kind==="surf"&&v==null&&costIsMel(key,code)) return "mel";
   if(kind!=="fit"&&costElemPrice(kind,key,code)>0) return "elem"; return stkPrice(kind,key,code)>0?"stk":""; }
 /* v1.442: รหัสสี อักษร+เลข 2 หลัก+อักษร (+เลข) — ตัวที่ 4 = M คือเมลามีน (G01M · G02M · N01M) · H = HPL ฯลฯ */
 function costMelToken(code){ const u=String(code||"").toUpperCase(); const m=u.match(/(?:^|[^A-Z0-9])([A-Z]\d{2}[A-Z])\d{3}/); return m?m[1]:""; }
@@ -41343,6 +41349,13 @@ function costItems(boards,fitRows){
         add(R.edge,k,{code:k,name:u.tag?("ขอบ "+u.tag):k,unit:"ม."},(+u.mm||0)/1000); });
     }catch(e){} });
   (fitRows||[]).forEach(r=>{ if(!r) return; const base=String(r.purchase||r.art||"").trim(); if(!base) return;
+    /* ───────── v1.597: มือจับฝังแยกบรรทัดตามขนาดตัด ─────────
+       ผู้ใช้ 1/11 18:45 (ภาพหน้า 💰 ราคาที่ยังไม่มี: “HW-367@m · มือจับฝัง HW-367 · ม. · 10.49”): “HW-367 แยกขนาดให้ด้วยครับ”
+       เดิม: ทุกแถวตัดตามยาว (_cut) รวมเป็นเมตรบรรทัดเดียว (รหัส@m) — ไม่รู้ว่าต้องตัดยาวเท่าไหร่กี่เส้น
+       ตอนนี้: แถวมือจับฝัง (_ehpRow จาก fittingAgg) = กุญแจ “รหัส@<ยาว>mm” หน่วยเส้น ชื่อตามใบเบิก (ตัดขนาด … mm.)
+         ราคา (costPrice): ใส่รายขนาดเอง (บาท/เส้น) · ไม่ได้ใส่ = ราคาต่อเมตรของ “รหัส@m” (ที่ใส่ไว้เดิม/AX) × ยาว — ราคาเดิมที่ใส่ไว้ยังใช้ได้
+         เส้นอื่น (เฟรมอลู · มือจับโปรไฟล์ · DX · รางไฟ) ยังรวมเป็นเมตรเหมือนเดิม · ปิด SN_OFF.costEhpSize */
+    if(r._ehpRow&&+r._cut>0&&!snOff("costEhpSize")){ add(R.fit,base+"@"+(+r._cut)+"mm",{code:String(r.art||base),pid:String(r.purchase||""),name:String(r.name||base),unit:"เส้น",perM:false,cutMM:+r._cut},(+r.count||0)); return; }
     const perM=(+r._cut>0), key=perM?base+"@m":base, q=perM?(+r.count||0)*(+r._cut)/1000:(+r.count||0);
     let nm=String(r.name||base); if(perM){ try{ const d=fitDef(r.art); if(d&&d.desc) nm=String(d.desc); }catch(e){} }
     add(R.fit,key,{code:String(r.art||base),pid:String(r.purchase||""),name:nm,unit:perM?"ม.":String(r.unit||"ชิ้น"),perM},q); });
@@ -59920,7 +59933,8 @@ function fittingAgg(boards){   // รวมเดือย + พินรอง�
   /* v1.592: รางอลูมือจับติดขอบบาน — 1 เส้นต่อบาน ยาวเท่าขอบ (ชิ้น _virtual อ่านจาก state.boards ตามบานที่อยู่ในชุดนี้ แบบเฟรมอลู) */
   if(!snOff("ehp")) try{ const own=new Set((boards||[]).map(b=>b&&b.id)); (state.boards||[]).forEach(b=>{ if(!b||!b._ehpPart||!(own.has(b._pullOwner)||own.has(b.id))) return;
       const el9=(((settings.elements||{}).fittings)||[]).find(x=>x&&x.code===b._ehpCode);
-      bomCutRow(m,b._ehpCode,((el9&&el9.desc)||("มือจับฝัง "+b._ehpName)),((el9&&el9.unit)||"เส้น"),+b._ehpLen||0,"pull"); }); }catch(e){ console.error("ehp bom:",e); }
+      bomCutRow(m,b._ehpCode,((el9&&el9.desc)||("มือจับฝัง "+b._ehpName)),((el9&&el9.unit)||"เส้น"),+b._ehpLen||0,"pull");
+      { const kk=b._ehpCode+"@"+cutLen(+b._ehpLen||0); if(m[kk]) m[kk]._ehpRow=1; } }); }catch(e){ console.error("ehp bom:",e); }   /* v1.597: ธงให้ตัวคิดราคาแยกขนาด */
   /* ───────── v37.6: เฟรมอลูเข้าท่อ "ตัดตามยาว" เหมือนเส้น DX กับรางไฟ ─────────
      ของเดิมออกเป็นรายการรวม 008 × 4 เส้น ซึ่งบอกจำนวนแต่ไม่บอกความยาว
      ทั้งที่รหัสสั่งซื้อจริงผูกกับความยาว (600 = ...0106 · 800 = ...0098)
