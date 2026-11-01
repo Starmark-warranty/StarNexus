@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="th"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover"><meta name="generator" content="StarNexus 1.589"><title>StarNexus — ดูงาน 3D</title><style>
+<html lang="th"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover"><meta name="generator" content="StarNexus 1.590"><title>StarNexus — ดูงาน 3D</title><style>
 :root{--bg:#e7e8ee;--panel:rgba(255,255,255,.94);--solid:#fff;--ink:#172c40;--dim:#5b6b7c;--line:#d5dae2;--accent:#1e5fa8;--warn:#e8590c;--shadow:0 10px 30px -12px rgba(16,32,56,.35)}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html,body{margin:0;height:100%;background:var(--bg);color:var(--ink);font:14px/1.5 system-ui,-apple-system,"Segoe UI","Noto Sans Thai","Sarabun",sans-serif;overflow:hidden;overscroll-behavior:none}
@@ -263,6 +263,12 @@ body.mkOn #vwHint{z-index:41;bottom:calc(112px + env(safe-area-inset-bottom))}
 #vwVrSheet .vrO{display:flex;flex-direction:column;align-items:flex-start;gap:2px;text-align:left;padding:10px 12px;border-radius:12px;border:1px solid rgba(0,0,0,.12);background:#fff;color:#1c2330;font:inherit;cursor:pointer}
 #vwVrSheet .vrO span{font-size:12px;color:#6b7280;line-height:1.45}#vwVrSheet .vrO:disabled{opacity:.55;cursor:default}#vwVrSheet .vrO:not(:disabled):hover{border-color:#2f8cff}
 body.vwWalk #vwBar,body.vwWalk #vwZoom,body.vwWalk #vwCabs,body.vwWalk #vwInfo{display:none!important}
+#vwAr{position:fixed;inset:0;z-index:60;display:none;pointer-events:none;font-family:inherit}
+#vwAr .arMsg{pointer-events:auto;position:absolute;left:50%;transform:translateX(-50%);top:calc(10px + env(safe-area-inset-top));width:min(460px,calc(100vw - 20px));background:rgba(17,24,39,.82);color:#fff;border-radius:12px;padding:10px 12px;font-size:14px;line-height:1.45;text-align:center}
+#vwAr .arMsg small{display:block;opacity:.75;font-size:11.5px;margin-top:3px}
+#vwAr .arBtns{pointer-events:auto;position:absolute;left:50%;transform:translateX(-50%);bottom:calc(14px + env(safe-area-inset-bottom));display:flex;flex-wrap:wrap;gap:6px;justify-content:center;width:min(520px,calc(100vw - 16px))}
+#vwAr .arBtns button{border:0;border-radius:10px;padding:9px 12px;font-size:14px;background:rgba(255,255,255,.92);color:#111827;box-shadow:0 4px 14px rgba(0,0,0,.25);font-family:inherit}
+#vwAr .arBtns button.on{background:#2f8cff;color:#fff}#vwAr .arBtns button.x{background:#ef4444;color:#fff}#vwAr.cal .arBtns .adj{display:none}
 #vwWalkHud{position:fixed;left:50%;transform:translateX(-50%);bottom:calc(14px + env(safe-area-inset-bottom));z-index:46;display:flex;gap:8px;flex-wrap:wrap;justify-content:center;max-width:calc(100vw - 20px)}
 #vwWalkHud .vbtn{box-shadow:0 4px 14px rgba(0,0,0,.18)}#vwWalkHud .wkGo{min-width:96px;font-weight:700;touch-action:none;user-select:none;-webkit-user-select:none}
 body.vwCb #vwTop,body.vwCb #vwHint{display:none!important}body.vwCb #vwWalkHud{bottom:auto;top:8px;opacity:.75}
@@ -279,7 +285,7 @@ body.vwCb #vwTop,body.vwCb #vwHint{display:none!important}body.vwCb #vwWalkHud{b
 <div id="vwLbl"></div>
 <footer id="vwBar">
   <div class="seg" id="vwTool"><button data-t="sel" class="on">👆 ดูชิ้น</button><button data-t="meas">📏 วัด</button><button data-t="door">🚪 เปิดบาน</button></div>
-  <button class="vbtn" id="vwVR" title="🥽 เดินดูในห้อง · แว่นกระดาษ · แว่น VR">🥽 VR</button>
+  <button class="vbtn" id="vwVR" title="🥽 เดินดูในห้อง · แว่นกระดาษ · แว่น VR">🥽 VR / AR</button>
   <button class="vbtn" id="vwReal" title="✨ โหมดสมจริง — ดูตู้ในห้องจริง แสงกลางวัน / เย็น / กลางคืน">✨ สมจริง</button>
   <button class="vbtn" id="vwMore" aria-label="เครื่องมือเพิ่มเติม">⋯ เพิ่มเติม</button>
   <div id="vwExtra">
@@ -2250,6 +2256,91 @@ function xrEnter(){ if(!navigator.xr||XR.ses) return; if(S.roomG&&!S.scene) scen
 function xrEnd(){ renderer.setAnimationLoop(null); XR.ses=null; renderer.xr.enabled=false; if(XR.mark) XR.mark.visible=false;
   scene.add(camera); var c=XR.cam0||{}; camera.near=c.near||5; camera.far=c.far||60000; camera.fov=c.fov||camera.fov; camera.updateProjectionMatrix();
   var sz=renderer.getSize(new THREE.Vector2()); renderer.setViewport(0,0,sz.x,sz.y); camApply(); S.dirty=true; }
+/* ═════════ v1.590: 📱 AR — วางตู้ซ้อนห้องจริง (WebXR immersive-ar) ═════════
+   ผู้ใช้ 1/11 09:03: “โหมด VR ทำเป็นเหมือนลายเส้นแนบไปกับผนังจริงได้ไหม เป็นเหมือนโหมดตีลายผนัง มันเปะไหม”
+   ตอบ: ได้ (AR) แต่คร่าว ๆ 1–3 ซม. ไม่ใช่ระดับมิล · 09:06 “ทำเลยครับ ให้ลูกค้าเห็นคร่าวๆ”
+   รองรับ: Chrome บน Android ที่มี ARCore · Meta Quest Browser (passthrough) · iPhone Safari ยังไม่มี immersive-ar = ปุ่มจาง
+   หลักการ: ใช้ XR.dolly แบบโหมดแว่น VR (กล้องอยู่ใน dolly ขยาย ×1000 = พื้นที่อ้างอิงเมตร → โลก มม.)
+     hit-test จากกล้อง (viewer) หาจุดบนพื้นจริง → เทียบ 2 จุด:
+       ① มุมซ้ายในสุดของห้อง (rm.x0, rm.z0 = ผนังหลังชนผนังซ้าย มองจากในห้อง) · ไม่มีห้อง = มุมซ้ายหลังของตู้ (sceneBox min x/z)
+       ② จุดบนพื้นชิดผนังหลังไปทางขวา → ทิศ +X ของแบบ
+     dolly: หมุน θ = atan2(vz,vx) (ทิศ ①→② ไปเป็น +X) · position = มุม − R(θ)·(1000·P1) → จุด ① ตรงมุมในแบบ · พื้นจริง = y 0
+   ระหว่าง AR: พื้นเงา/กริด/ห้องเสมือน (ผนัง ท็อป เครื่องใช้) ซ่อน · พื้นหลังโปร่ง · ก่อนเทียบเสร็จซ่อนตู้ (เห็นแต่วงเล็งเขียว)
+   ปรับละเอียด: ◀ ▶ ตามผนัง · เข้า/ออก 1 ซม. · หมุน 0.5° รอบมุม ① · ◐ โปร่ง (setGhost) · ↺ เทียบใหม่ · ✕ ออก
+   Quest ไม่มี dom-overlay = เทียบด้วยไก 2 ครั้ง · ไกครั้งที่ 3 = เทียบใหม่ · ออกด้วยปุ่มระบบ
+   ทดสอบ: window.__snvAR (calib/frame/select/nudge/prep/restore) */
+var AR={ok:false,ses:null,src:null,hit:null,step:0,p1:null,c1:null,ret:null,keep:null,off:{x:0,z:0,a:0}};
+function arCorner(){ var R=S.D&&S.D.rm; if(R&&R.w>0&&R.d>0) return {c:new THREE.Vector3(R.x0,R.y0||0,R.z0),room:true};
+  var b=sceneBox(); return {c:new THREE.Vector3(isFinite(b.min.x)?b.min.x:0,0,isFinite(b.min.z)?b.min.z:0),room:false}; }
+function arSay(t){ var m=$("vwArMsg"); if(!m) return; var k=arCorner(), o=AR.off;
+  var s=t||(AR.step===0?(k.room?"① เล็งกล้องที่พื้นตรง <b>มุมซ้ายในสุดของห้อง</b> (ผนังหลังชนผนังซ้าย) ให้วงเขียวอยู่ที่มุม แล้วแตะจอ":"① เล็งกล้องที่พื้นตรง <b>มุมซ้ายหลังของตู้</b> (จุดที่หลังตู้ชิดผนัง) แล้วแตะจอ")
+    :AR.step===1?"② เล็งพื้น <b>ชิดผนังหลัง ไปทางขวา</b> ห่างจุดแรก 1 ม. ขึ้นไป แล้วแตะจอ"
+    :("✓ วางตู้แล้ว"+((o.x||o.z||o.a)?(" · ขยับ "+(o.x?((o.x>0?"ขวา ":"ซ้าย ")+Math.abs(o.x)/10+" ซม. "):"")+(o.z?((o.z>0?"ออก ":"เข้า ")+Math.abs(o.z)/10+" ซม. "):"")+(o.a?("หมุน "+(Math.round(o.a*10)/10)+"°"):"")):"")));
+  m.innerHTML=s+'<small>ภาพจำลองคร่าว ๆ คลาดได้ 1–3 ซม. — วัดจริงทุกครั้งก่อนเจาะ/ติดตั้ง</small>';
+  var el=$("vwAr"); if(el) el.classList.toggle("cal",AR.step<2); }
+function arUi(){ var el=$("vwAr"); if(el) return el; el=document.createElement("div"); el.id="vwAr";
+  el.innerHTML='<div class="arMsg" id="vwArMsg"></div><div class="arBtns">'
+    +'<button class="adj" data-a="l">◀ 1 ซม.</button><button class="adj" data-a="r">1 ซม. ▶</button><button class="adj" data-a="b">⤒ เข้าผนัง</button><button class="adj" data-a="f">⤓ ออกจากผนัง</button>'
+    +'<button class="adj" data-a="ccw">⟲ 0.5°</button><button class="adj" data-a="cw">0.5° ⟳</button><button class="adj" data-a="g">◐ โปร่ง</button>'
+    +'<button data-a="re">↺ เทียบใหม่</button><button class="x" data-a="x">✕ ออก</button></div>';
+  document.body.appendChild(el);
+  [].forEach.call(el.querySelectorAll(".arMsg,.arBtns"),function(p){ p.addEventListener("beforexrselect",function(e){ e.preventDefault(); }); });   /* แตะปุ่ม ≠ แตะพื้น */
+  [].forEach.call(el.querySelectorAll("[data-a]"),function(b){ b.onclick=function(){ arNudge(b.dataset.a); }; });
+  return el; }
+function arCalib(p1,p2){ var k=arCorner(), vx=p2.x-p1.x, vz=p2.z-p1.z; if(Math.sqrt(vx*vx+vz*vz)<0.3) return false;
+  if(!XR.dolly){ XR.dolly=new THREE.Group(); XR.dolly.name="xrDolly"; scene.add(XR.dolly); }
+  var th=Math.atan2(vz,vx), d=XR.dolly, q=new THREE.Vector3(p1.x*1000,p1.y*1000,p1.z*1000).applyAxisAngle(_wkY,th);
+  d.scale.setScalar(1000); d.rotation.set(0,th,0); d.position.set(k.c.x-q.x,k.c.y-q.y,k.c.z-q.z); d.updateMatrixWorld(true);
+  AR.c1=k.c.clone(); AR.off={x:0,z:0,a:0}; return true; }
+function arNudge(a){ var d=XR.dolly; if(!d) return;
+  if(a==="x"){ try{ if(AR.ses) AR.ses.end(); }catch(e){} return; }
+  if(a==="re"){ AR.step=0; AR.p1=null; arShow(false); arSay(); return; }
+  if(a==="g"){ setGhost(!S.ghost); var gb=document.querySelector('#vwAr [data-a="g"]'); if(gb) gb.classList.toggle("on",S.ghost); return; }
+  if(AR.step<2) return; var st=10, da=0.5*Math.PI/180, c=AR.c1||arCorner().c;
+  if(a==="l"){ d.position.x+=st; AR.off.x-=st; } else if(a==="r"){ d.position.x-=st; AR.off.x+=st; }
+  else if(a==="f"){ d.position.z-=st; AR.off.z+=st; } else if(a==="b"){ d.position.z+=st; AR.off.z-=st; }
+  else if(a==="ccw"||a==="cw"){ var s=(a==="ccw")?-1:1, v=new THREE.Vector3(d.position.x-c.x,0,d.position.z-c.z).applyAxisAngle(_wkY,s*da);   /* ตู้หมุน +δ = dolly หมุน −δ รอบมุม ① */
+    d.position.x=c.x+v.x; d.position.z=c.z+v.z; d.rotation.y+=s*da; AR.off.a+=(a==="ccw"?0.5:-0.5); }
+  d.updateMatrixWorld(true); arSay(); }
+function arPrep(){ var vis=[]; scene.children.forEach(function(o){ vis.push([o,o.visible]); });
+  AR.keep={bg:scene.background,fog:scene.fog,vis:vis,ghost:S.ghost,cc:renderer.getClearColor(new THREE.Color()),ca:renderer.getClearAlpha()};
+  scene.background=null; scene.fog=null; renderer.setClearColor(0x000000,0); }
+function arShow(on){ var K=AR.keep; if(!K) return; K.vis.forEach(function(e){ var o=e[0]; if(o===XR.dolly||o===AR.ret||o.isLight) return;
+    o.visible=on&&e[1]&&o!==floor&&o!==grid&&o!==S.roomG; }); S.dirty=true; }
+function arRestore(){ var K=AR.keep; if(!K) return; K.vis.forEach(function(e){ e[0].visible=e[1]; }); scene.background=K.bg; scene.fog=K.fog; renderer.setClearColor(K.cc,K.ca);
+  if(S.ghost!==K.ghost) setGhost(K.ghost); AR.keep=null; if(renderer.shadowMap) renderer.shadowMap.needsUpdate=true; S.dirty=true; }
+function arFrame(t,frame){ if(!AR.ses) return;
+  try{ if(frame&&AR.src){ var ref=renderer.xr.getReferenceSpace(), hs=frame.getHitTestResults(AR.src);
+      if(hs&&hs.length){ var ps=hs[0].getPose(ref); if(ps){ var p=ps.transform.position; AR.hit={x:p.x,y:p.y,z:p.z}; } } else AR.hit=null; } }catch(e){}
+  if(AR.ret){ var on=!!AR.hit&&AR.step<2; AR.ret.visible=on; if(on&&XR.dolly){ XR.dolly.updateMatrixWorld(true); AR.ret.position.copy(XR.dolly.localToWorld(new THREE.Vector3(AR.hit.x,AR.hit.y,AR.hit.z))); } }
+  renderer.render(scene,camera); }
+function arSelect(){ if(!AR.ses) return;
+  if(AR.step>=2){ if(!$("vwAr")||!AR.dom){ arNudge("re"); } return; }   /* ไม่มี dom-overlay (Quest) = แตะ/ไกครั้งที่ 3 เทียบใหม่ */
+  if(!AR.hit){ arSay("ยังไม่เจอพื้น — ส่ายกล้องช้า ๆ ให้เห็นพื้น (พื้นมีลาย/แสงพอจะจับง่ายกว่า)"); return; }
+  if(AR.step===0){ AR.p1={x:AR.hit.x,y:AR.hit.y,z:AR.hit.z}; AR.step=1; arSay(); return; }
+  if(!arCalib(AR.p1,AR.hit)){ arSay("จุดที่ 2 ใกล้จุดแรกเกินไป — ห่างอย่างน้อย 30 ซม. (แนะนำ 1 ม. ขึ้นไป)"); return; }
+  AR.step=2; arShow(true); arSay(); }
+function arEnter(){ if(!navigator.xr||XR.ses||AR.ses) return; if(WK.on) wkExit(); if(typeof REAL!=="undefined"&&REAL.on){ try{ rvToggle(false); }catch(e){} }
+  var ui=arUi();
+  navigator.xr.requestSession("immersive-ar",{requiredFeatures:["hit-test"],optionalFeatures:["dom-overlay","local-floor"],domOverlay:{root:ui}}).then(function(ses){
+    AR.ses=ses; XR.ses=ses; AR.step=0; AR.hit=null; AR.p1=null; AR.dom=!!ses.domOverlayState; vrSheet(false); ui.style.display="block";
+    if(!XR.dolly){ XR.dolly=new THREE.Group(); XR.dolly.name="xrDolly"; scene.add(XR.dolly); }
+    XR.cam0={near:camera.near,far:camera.far,fov:camera.fov,pos:camera.position.clone(),q:camera.quaternion.clone()};
+    XR.dolly.position.set(0,0,0); XR.dolly.rotation.set(0,0,0); XR.dolly.scale.setScalar(1000);
+    XR.dolly.add(camera); camera.position.set(0,0,0); camera.quaternion.identity(); camera.near=0.02; camera.far=200; camera.updateProjectionMatrix();
+    if(!AR.ret){ AR.ret=new THREE.Mesh(new THREE.RingGeometry(38,52,40).rotateX(-Math.PI/2),new THREE.MeshBasicMaterial({color:0x22c55e,side:THREE.DoubleSide,depthTest:false,transparent:true,opacity:.95})); AR.ret.renderOrder=999; AR.ret.name="arReticle"; }
+    scene.add(AR.ret); AR.ret.visible=false; arPrep(); arShow(false);
+    renderer.xr.enabled=true; renderer.xr.setReferenceSpaceType("local");
+    ses.addEventListener("select",arSelect); ses.addEventListener("end",arEnd);
+    return renderer.xr.setSession(ses).then(function(){ return ses.requestReferenceSpace("viewer"); }).then(function(vs){ return ses.requestHitTestSource({space:vs}); })
+      .then(function(src){ AR.src=src; renderer.setAnimationLoop(arFrame); arSay(); }); })
+  .catch(function(e){ console.error("ar:",e); if(AR.ses){ try{ AR.ses.end(); }catch(er){} } AR.ses=null; if(XR.ses&&!XR.ses.end) XR.ses=null;
+    hint("เปิด AR ไม่ได้: "+((e&&e.message)||e)+" — ใช้ Chrome บนมือถือ Android (มี ARCore) หรือแว่น Meta Quest",5200); }); }
+function arEnd(){ renderer.setAnimationLoop(null); try{ if(AR.src) AR.src.cancel(); }catch(e){} AR.src=null; AR.ses=null; XR.ses=null; AR.step=0; AR.hit=null; renderer.xr.enabled=false;
+  if(AR.ret){ AR.ret.visible=false; scene.remove(AR.ret); } var ui=$("vwAr"); if(ui) ui.style.display="none"; arRestore();
+  scene.add(camera); var c=XR.cam0||{}; camera.near=c.near||5; camera.far=c.far||60000; camera.fov=c.fov||camera.fov; camera.updateProjectionMatrix();
+  var sz=renderer.getSize(new THREE.Vector2()); renderer.setViewport(0,0,sz.x,sz.y); camApply(); S.dirty=true; }
+try{ window.__snvAR={AR:AR,corner:arCorner,calib:arCalib,nudge:arNudge,prep:arPrep,show:arShow,restore:arRestore,frame:arFrame,select:arSelect,ui:arUi,say:arSay,enter:arEnter,end:arEnd,dolly:function(){ return XR.dolly; }}; }catch(e){}
 /* ── เมนู 🥽 ── */
 function vrSheet(on){ var el=$("vwVrSheet"); if(on===false||(on==null&&el)){ if(el) el.remove(); return; } if(el) return;
   el=document.createElement("section"); el.id="vwVrSheet"; el.className="sheet";
@@ -2257,10 +2348,11 @@ function vrSheet(on){ var el=$("vwVrSheet"); if(on===false||(on==null&&el)){ if(
     +'<button class="vrO" data-v="walk"><b>🚶 เดินในห้อง</b><span>มือถือ/คอม — ลากเพื่อมอง · แตะพื้นเพื่อเดินไป · สูงระดับสายตา 1.6 ม.</span></button>'
     +'<button class="vrO" data-v="cb"><b>📱 แว่นกระดาษ (Cardboard)</b><span>ใส่มือถือในแว่น · หันหัวเพื่อมอง · แตะค้างเพื่อเดิน</span></button>'
     +'<button class="vrO" data-v="xr"'+(XR.ok?'':' disabled')+'><b>🥽 แว่น VR (Meta Quest ฯลฯ)</b><span>'+(XR.ok?'ขนาดจริงรอบตัว · ชี้พื้นแล้วกดไกเพื่อย้าย · โยกปุ่มซ้าย/ขวาเพื่อหมุน':'เปิดลิงก์นี้ในเบราว์เซอร์ของแว่น VR (เช่น Meta Quest Browser) แล้วกดปุ่มนี้')+'</span></button>'
+    +((S.D&&S.D.noAr)?'':('<button class="vrO" data-v="ar"'+(AR.ok?'':' disabled')+'><b>📱 AR — วางตู้ในห้องจริง</b><span>'+(AR.ok?'ส่องกล้องในห้องจริง · แตะมุมห้อง 2 จุด ตู้ขึ้นขนาดจริงตรงตำแหน่ง · คร่าว ๆ คลาดได้ 1–3 ซม.':'เครื่อง/เบราว์เซอร์นี้ยังไม่รองรับ — ใช้ Chrome บนมือถือ Android (มี ARCore) หรือแว่น Meta Quest · iPhone ยังไม่รองรับ')+'</span></button>'))   /* v1.590 */
     +'<button class="vrO" data-v="link"><b>🔗 คัดลอกลิงก์เข้าโหมดเดินเลย</b><span>ส่งให้ลูกค้า — เปิดแล้วยืนอยู่ในห้องทันที</span></button>';
   document.body.appendChild(el);
   [].forEach.call(el.querySelectorAll("[data-v]"),function(b){ b.onclick=function(){ var v=b.dataset.v;
-    if(v==="x") vrSheet(false); else if(v==="walk") wkEnter("walk"); else if(v==="cb") wkEnter("cb"); else if(v==="xr") xrEnter();
+    if(v==="x") vrSheet(false); else if(v==="walk") wkEnter("walk"); else if(v==="cb") wkEnter("cb"); else if(v==="xr") xrEnter(); else if(v==="ar") arEnter();   /* v1.590 */
     else if(v==="link"){ var u=location.href; try{ var U=new URL(location.href); U.searchParams.set("walk","1"); u=U.toString(); }catch(e){}
       var ok=function(){ hint("คัดลอกลิงก์แล้ว — เปิดแล้วเข้าโหมดเดินทันที",3200); };
       try{ navigator.clipboard.writeText(u).then(ok,function(){ prompt("คัดลอกลิงก์นี้",u); }); }catch(e){ prompt("คัดลอกลิงก์นี้",u); } } }; }); }
@@ -2270,6 +2362,7 @@ function vrInit(){ var b=$("vwVR"); if(b) b.onclick=function(){ vrSheet(); };
   addEventListener("keyup",function(e){ var k=String(e.key||"").toLowerCase(); if(WK.keys[k]) delete WK.keys[k]; });
   addEventListener("blur",function(){ WK.keys={}; WK.hold=0; });
   try{ if(navigator.xr&&navigator.xr.isSessionSupported) navigator.xr.isSessionSupported("immersive-vr").then(function(ok){ XR.ok=!!ok; },function(){}); }catch(e){}
+  try{ if(navigator.xr&&navigator.xr.isSessionSupported) navigator.xr.isSessionSupported("immersive-ar").then(function(ok){ AR.ok=!!ok; },function(){}); }catch(e){}   /* v1.590 */
   try{ var q=new URLSearchParams(location.search); if(q.get("walk")==="1") setTimeout(function(){ wkEnter("walk"); },400); else if(q.get("vr")==="1") vrSheet(true); }catch(e){} }
 try{ window.__snvVR={WK:WK,XR:XR,enter:wkEnter,exit:wkExit,move:wkMove,look:wkLook,tap:wkTap,xr:xrEnter,rayHit:xrRayHit,stereo:wkStereo,sheet:vrSheet,box:wkBox,wc:function(){ return S.wcs; },room:function(){ return S.roomG; }}; }catch(e){}
 
@@ -2277,7 +2370,7 @@ function start(){
   status("กำลังโหลดข้อมูลงาน…");
   loadData().then(function(D){
     S.D=D;
-    try{ renderer=new THREE.WebGLRenderer({antialias:true,powerPreference:"high-performance"}); }catch(e){ renderer=null; }
+    try{ renderer=new THREE.WebGLRenderer({antialias:true,alpha:true,powerPreference:"high-performance"})   /* v1.590: alpha = ชั้นภาพ WebXR AR โปร่ง (three r128 ใช้ alpha ของ context ตั้ง XRWebGLLayer — ไม่มี = ภาพกล้องดำ) · โหมดปกติ scene.background ทึบอยู่แล้ว */; }catch(e){ renderer=null; }
     if(!renderer||!renderer.getContext()) throw new Error("เครื่องนี้แสดง 3D ไม่ได้ (WebGL ถูกปิด) — ลองเปิดด้วย Chrome หรือ Safari");
     renderer.setPixelRatio(Math.min(devicePixelRatio||1,2)); renderer.setSize(innerWidth,innerHeight);
     renderer.outputEncoding=THREE.sRGBEncoding; renderer.shadowMap.enabled=true; renderer.shadowMap.type=THREE.PCFSoftShadowMap;
