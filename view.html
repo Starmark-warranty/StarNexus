@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="th"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover"><meta name="generator" content="StarNexus 1.588"><title>StarNexus — ดูงาน 3D</title><style>
+<html lang="th"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover"><meta name="generator" content="StarNexus 1.589"><title>StarNexus — ดูงาน 3D</title><style>
 :root{--bg:#e7e8ee;--panel:rgba(255,255,255,.94);--solid:#fff;--ink:#172c40;--dim:#5b6b7c;--line:#d5dae2;--accent:#1e5fa8;--warn:#e8590c;--shadow:0 10px 30px -12px rgba(16,32,56,.35)}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html,body{margin:0;height:100%;background:var(--bg);color:var(--ink);font:14px/1.5 system-ui,-apple-system,"Segoe UI","Noto Sans Thai","Sarabun",sans-serif;overflow:hidden;overscroll-behavior:none}
@@ -283,6 +283,7 @@ body.vwCb #vwTop,body.vwCb #vwHint{display:none!important}body.vwCb #vwWalkHud{b
   <button class="vbtn" id="vwReal" title="✨ โหมดสมจริง — ดูตู้ในห้องจริง แสงกลางวัน / เย็น / กลางคืน">✨ สมจริง</button>
   <button class="vbtn" id="vwMore" aria-label="เครื่องมือเพิ่มเติม">⋯ เพิ่มเติม</button>
   <div id="vwExtra">
+    <button class="vbtn" id="vwScene" style="display:none" title="แสดงทั้งฉาก — ห้อง ผนัง พื้น ท็อป เครื่องใช้ ประตู/หน้าต่าง (ปกติเห็นแค่ตู้)">🏠 แสดงทั้งฉาก</button>
     <button class="vbtn" id="vwAllDoors">เปิดทุกบาน</button>
     <button class="vbtn" id="vwCabDim" title="เปิด/ปิดเส้นบอกขนาดรวมของตู้ (กว้าง × สูง × ลึก)">📐 ขนาดตู้</button>
     <button class="vbtn" id="vwSnap" title="แจ้งซ่อม — แคปภาพ 3D ตอนนี้ แล้ววง/เขียนจุดที่ต้องซ่อมก่อนแชร์ (ป้ายขนาดที่เปิดอยู่ติดไปด้วย)">🔧 แจ้งซ่อม</button>
@@ -2191,7 +2192,19 @@ function wkHud(){ var h=$("vwWalkHud"); if(!WK.on){ if(h) h.remove(); return; } 
     if(a==="go"){ var st=function(e){ e.preventDefault(); WK.hold=1; }, sp=function(){ WK.hold=0; };
       b.addEventListener("pointerdown",st); b.addEventListener("pointerup",sp); b.addEventListener("pointerleave",sp); b.addEventListener("pointercancel",sp); b.addEventListener("contextmenu",function(e){ e.preventDefault(); }); }
     else b.onclick=function(){ if(a==="x") wkExit(); else if(a==="gy") wkGyro(!WK.gyro); else if(a==="cb") wkEnter("cb"); }; }); }
-function wkEnter(mode){ if(XR.ses) return; if(typeof REAL!=="undefined"&&REAL.on){ try{ rvToggle(false); }catch(e){} }
+/* ───────── v1.589: หน้าดูงานเห็นแค่ตู้ ─────────
+   ผู้ใช้ 1/11 08:38: “โหมดดูต้องไม่มี prop ครับ เห็นแค่ตู้ กดดูทั้งออเดอร์ก็เห็นแค่ตู้ แต่ เพิ่มปุ่มแสดง ทั้งฉากได้”
+   เดิม (1.572): S.roomG (ห้อง ผนัง พื้น ฝ้า ท็อป เครื่องใช้ ประตู/หน้าต่าง) แสดงทันทีที่เปิดลิงก์
+   ตอนนี้: ซ่อนทั้งกลุ่ม · ปุ่ม #vwScene (⋯ เพิ่มเติม · มีเฉพาะลิงก์ที่มีห้อง) สลับ · เดิน/แว่น/WebXR = เปิดให้เอง (ต้องมีผนังพื้น)
+   · &scene=1 หรือ D.sceneOn (ส่งตอน SN_OFF.snvPropHide) = เปิดตั้งแต่แรก · wcTick ยังซ่อนผนังฝั่งกล้องรายชิ้นเหมือนเดิม */
+function sceneSet(on){ S.scene=!!on; if(S.roomG) S.roomG.visible=S.scene; var b=$("vwScene");
+  if(b){ b.classList.toggle("on",S.scene); b.textContent=S.scene?"🏠 ทั้งฉาก: เปิด":"🏠 แสดงทั้งฉาก"; }
+  if(renderer&&renderer.shadowMap) renderer.shadowMap.needsUpdate=true; S.dirty=true; }
+function sceneInit(){ var b=$("vwScene"); if(!S.roomG){ if(b) b.style.display="none"; return; }
+  if(b){ b.style.display=""; b.onclick=function(){ sceneSet(!S.scene); }; }
+  var on=!!(S.D&&S.D.sceneOn); try{ var q=new URLSearchParams(location.search); if(q.get("scene")==="1"||q.get("walk")==="1"||q.get("vr")==="1") on=true; }catch(e){}
+  sceneSet(on); }
+function wkEnter(mode){ if(XR.ses) return; if(S.roomG&&!S.scene) sceneSet(true);   /* v1.589: เดินในห้องต้องเห็นห้อง */ if(typeof REAL!=="undefined"&&REAL.on){ try{ rvToggle(false); }catch(e){} }
   if(!WK.on){ WK.fov0=camera.fov; WK.near0=camera.near; WK.orb={th:orbit.th,ph:orbit.ph,r:orbit.r,t:orbit.t.clone()}; var st=wkStart(); WK.pos.copy(st.p); WK.yaw=st.yaw; WK.pitch=-0.12; }
   WK.on=true; WK.mode=mode||"walk"; camera.fov=(WK.mode==="cb")?85:72; camera.near=30; camera.updateProjectionMatrix();
   document.body.classList.add("vwWalk"); document.body.classList.toggle("vwCb",WK.mode==="cb"); vrSheet(false); try{ closeInfo(); }catch(e){}
@@ -2224,7 +2237,7 @@ function xrFrame(t,frame){ if(!XR.ses) return;
       XR.dolly.position.x=h.x+off.x; XR.dolly.position.z=h.z+off.z; XR.dolly.rotation.y+=ang; }
     else if(Math.abs(x)<.3) XR.latch=false; }catch(e){}
   wcTick(); renderer.render(scene,camera); }
-function xrEnter(){ if(!navigator.xr||XR.ses) return; if(WK.on) wkExit(); if(typeof REAL!=="undefined"&&REAL.on){ try{ rvToggle(false); }catch(e){} }
+function xrEnter(){ if(!navigator.xr||XR.ses) return; if(S.roomG&&!S.scene) sceneSet(true);   /* v1.589 */ if(WK.on) wkExit(); if(typeof REAL!=="undefined"&&REAL.on){ try{ rvToggle(false); }catch(e){} }
   navigator.xr.requestSession("immersive-vr",{optionalFeatures:["local-floor","bounded-floor"]}).then(function(ses){
     XR.ses=ses; var st=wkStart(), B=wkBox(); vrSheet(false);
     if(!XR.dolly){ XR.dolly=new THREE.Group(); XR.dolly.name="xrDolly"; scene.add(XR.dolly); }
@@ -2274,7 +2287,7 @@ function start(){
     status("กำลังโหลดรูปผิว…");
     return loadImages(D.tex).then(function(imgs){
       status("กำลังประกอบ 3D…");
-      build(D,imgs); fitGround(); if(S.roomG){ if(floor) floor.position.y-=3; if(grid) grid.position.y-=3; }   /* v1.572: พื้นห้องจริงอยู่บน */ setLight(S.light); setGrid(S.grid);
+      build(D,imgs); fitGround(); if(S.roomG){ if(floor) floor.position.y-=3; if(grid) grid.position.y-=3; }   /* v1.572: พื้นห้องจริงอยู่บน */ try{ sceneInit(); }catch(e){}   /* v1.589: เห็นแค่ตู้ */ setLight(S.light); setGrid(S.grid);
       if(S.led.length&&$("vwLed")) $("vwLed").style.display="";                // v1.396: มีไฟราง = มีปุ่ม   // v1.350: แสงในห้อง · ปิดตาราง
       var c=D.cam||{}; orbit.th=(c.th!=null?c.th:.85); orbit.ph=(c.ph!=null?c.ph:.95); orbit.r=c.r||2000; orbit.mr=Math.max(orbit.mr,c.mr||0);
       if(c.t) orbit.t.fromArray(c.t); else { var b=sceneBox(); b.getCenter(orbit.t); }

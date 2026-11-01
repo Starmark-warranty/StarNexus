@@ -3283,7 +3283,7 @@ body[data-theme="dark"] .splash-dots span{background:rgba(255,255,255,.25)}
    ===================================================================== */
 /* ---- APP_META: แหล่งความจริงเดียวของเวอร์ชัน (ดูได้จาก console / คลิกชื่อแอป) ---- */
 const APP_META={
-  name:"StarNexus", version:"1.588", build:"2026-10-31/oven-up-microb",
+  name:"StarNexus", version:"1.589", build:"2026-11-01/view-cabs-only",
   file:"StarNexus.html", basedOn:"Furnitech_V3.html (v3.11)",
   /* ───────── เริ่มนับเวอร์ชันใหม่ที่ 1.001 (21/08/2026) ─────────
      ของเดิมนับมาถึง 42.1 แล้ววิ่งเป็นทศนิยมสองชั้นซึ่งอ่านลำดับยาก
@@ -3291,6 +3291,7 @@ const APP_META={
      ประวัติเก่าเก็บไว้ทั้งหมดตามเลขเดิม ไม่ไล่เขียนใหม่ เพราะเลขในนั้นถูกอ้างถึงไปแล้ว
      รายการที่อยู่ใต้ 1.001 ลงไปจึงเป็นเลขชุดเก่า อ่านต่อกันได้ตามวันที่ */
   changelog:[
+    ["1.589","2026-11-01","UX หน้าดูงาน (ลิงก์แชร์/สแกน · ดูทั้งออเดอร์) เห็นแค่ตู้ (ผู้ใช้ 1/11 08:38 ภาพหน้าดูงานมีห้อง ตู้เย็น เตา ฮู้ด ท็อป ซิงค์ + ป้าย P28: “โหมดดูต้องไม่มี prop ครับ เห็นแค่ตู้ กดดูทั้งออเดอร์ก็เห็นแค่ตู้ แต่ เพิ่มปุ่มแสดง ทั้งฉากได้”) — เดิม (1.572) ลิงก์ที่ส่งจากห้องออกแบบแสดงห้องทั้งหมดทันที · ตอนนี้ห้อง/ผนัง/พื้น/ฝ้า/ท็อป/เครื่องใช้/ประตู-หน้าต่างซ่อนไว้ · ปุ่ม 🏠 แสดงทั้งฉาก (แถบ ⋯ เพิ่มเติม · มีเฉพาะลิงก์ที่มีห้อง) สลับเปิด/ปิด · เข้าโหมดเดิน/แว่น VR = เปิดฉากให้เอง · ลิงก์ &scene=1 = เปิดฉากตั้งแต่แรก · ลิงก์ที่ส่งไปแล้วก็เป็นแบบใหม่ (หน้าดูงานอ่านจาก view.html ตัวใหม่) · ปิดได้ SN_OFF.snvPropHide (ลิงก์ที่ส่งหลังตั้ง = เปิดฉากตั้งแต่แรกแบบเดิม)"],
     ["1.588","2026-10-31","FEAT ช่องเตา/ไมโครเวฟ Built-in (ผู้ใช้ 31/10 14:04 project (7) ตู้ TAR031 + สเปก HAFELE ไมโครเวฟ Built-in หน้ากาก 595×454 ติดตั้ง 560-568×550×450: “มันจะมีเคสที่เอาไปวาง ช่องล่าง เดี๋ยวช่องบน จะวาง ไมโครเวฟ แบบ built แล้วให้ บานหลอกปรับหา ไมโครเวฟ หมายถึงความสูงหน้ากาก … หน้ากาก 454 ถ้าช่องที่เหลือ 524 บานหลอกก็ 70 − GAP 2 = 68” · 14:06: “จริงๆ ชั้น บนเตาต้องขยับ หา เตา ข้างล่าง ครับ กรณีใส่เตา”) — ① เตาอบ: ปล่อยในช่อง = ชั้นเหนือเตาขยับขึ้น/ลงให้ช่องสูงเท่าสูงติดตั้ง (เดิม 1.578 ขยับชั้นใต้เตา) · ของที่ติดชั้นขยับ/ยืดตาม · บานที่ขอบติดชั้นยืดหดตาม · ช่องเตาใต้หลังคาตู้ (ไม่มีชั้นบน) = ขยับชั้นล่างแบบเดิม ② ไมโครเวฟ Built-in (การ์ดใหม่ หน้ากาก 595×454 ลึก 568 · ติดตั้ง 450): ปล่อยในช่อง = บานหลอก (Panel) เหนือเครื่องยืด/หดให้ขอบล่างห่างหน้ากาก 2 มม. (ช่องเหลือ − หน้ากาก − เว้น) · แก้ระยะเว้นได้ในแผง · ช่องเหลือไม่พอ/ช่องในเตี้ยกว่าติดตั้ง = บอก ③ FIX “⚠ หาช่องของเตาไม่เจอ” เมื่อเตาไม่ได้อยู่พื้นช่องพอดี (เช่น ตู้เปลี่ยนแบบหลังวางเตา — project (7) เตาค้างที่สูง 400 ช่องจริง 704) → หาช่องที่ใกล้สุดแล้วจัดเตาเข้าช่องให้ ④ FIX เดือย/มินิฟิกโผล่บนหน้าบาน (ผู้ใช้ 31/10 14:08 project (8): “ตอนนี้ หน้าบาน มีเดือยมินิฟิกเฉยเลย … ผมไม่ได้สั่งใส่เลย”) — ต้นเหตุ: “เชื่อมโครงอัตโนมัติ” ยิงหารอยชนทุกชิ้นในฉาก รวมหน้าบาน/หน้าลิ้นชัก/บานหลอก/กล่องลิ้นชัก และชนข้ามตู้ · สร้างตู้ใหม่แบบเพิ่มเข้าฉาก (รวมผู้ช่วย AI ⚡) สั่งเชื่อมทั้งฉาก (v1.029) → ไฟล์ (5)(7)(8) ได้เดือยสูตรชุดหัวท้าย ลึก 26 เพิ่ม ~300 ขอบ · แก้: ไม่ใส่ที่หน้าบาน/กล่องลิ้นชัก/ชิ้นเสมือน · ไม่ชนข้ามตู้ · กดปุ่มเชื่อมโครง = ข้ามตู้ที่มีเดือย/มินิฟิกอยู่แล้ว (โมเดลจากคลัง) · สร้างตู้ใหม่ = เชื่อมเฉพาะตู้ใหม่ · เปิดงานที่โดนแล้ว = กล่องถาม “ล้างให้” (ลบตัวเชื่อมแบบเดียวกับที่โผล่บนหน้าบาน ทั้งบนหน้าบานและบนโครงตู้ที่มีเดือยจากโมเดล แล้วเจาะรูคู่ใหม่ · Ctrl+Z ได้) ⑤ UX (ผู้ใช้ 14:26 ภาพแผง “แนวตู้ลอย / ตู้สูง”: “เพิ่มปิดเปิดแสดงเส้น ประแนวตู้ ลอยให้ด้วยครับ”) แผงห้อง › แนวตู้ลอย/ตู้สูง ติ๊ก “แสดงเส้นประบนผนัง” (เส้นฟ้าก้นตู้ลอย + เส้นส้มแนวบน · ค่าแนวยังคุมตู้เหมือนเดิม · เก็บกับห้อง) · ปิดได้ SN_OFF.ovenFitUp / plMicroB / ovenNear / acdSafe / acdHeal"],
     ["1.587","2026-10-31","UX แผ่นปิดข้างสูงเกินแผ่น (ผู้ใช้ 31/10 13:42 project (5) ภาพแผ่นปิด TFF007 ข้างตู้ลอย: “อยากให้ เส้น ของ แผ่นปิดของที่เกิน 2400 แบ่งตรง ขอบบานล่างของบานบนทำได้ไหม”) — แผ่นปิดข้างแบบ 2 ชิ้นต่อกัน (รุ่นที่ใช้เมื่อสูงเกิน 2440) เดิมแบ่งครึ่งเท่ากัน (2550 → 1275 + 1275 รอยต่อลอยกลางบานบน) · ตอนนี้รอยต่ออยู่ตรงขอบล่างของบานบนสุดของตู้ที่อยู่ชิดแผ่น (ตู้ลอย/บานบนตู้สูง เช่น 1551.6 → ล่าง 1551.6 + บน 998.4) · ใช้ได้เมื่อทั้งสองชิ้นไม่เกิน 2440 และไม่สั้นกว่า 100 ไม่งั้นคงแบบเดิม · งานเก่า: คลิกตู้หรือแผ่นใดก็ได้ในห้องออกแบบ 1 ครั้ง ระบบจัดรอยต่อให้เอง · ปิดได้ SN_OFF.sideSplitDoor"],
     ["1.586","2026-10-31","FEAT (ผู้ใช้ 31/10 13:27 ภาพปลั๊กบนผนัง + ภาพไฟเส้น COB 24V: “1.มันจะมี แบบที่แยกที่บอก Dim ของงาน ระบบ … งานปลั๊ก งาน ท่อ ให้ออกแบบแยกในใบเสนอราคาตามด้านที่มันอยู่ แต่ยังเห็น เส้นตู้อยู่ แต่ Dim บอกแค่ ของงานระบบ 2.ต้องเพิ่มไฟดาวไลน์ไหม โดยตอนเริ่มฝ้าก็ใส่ให้ก่อน สัก 4 ดวง แล้วมีให้ User ดึงเข้าไปเติมเอง 3.รูปวัสดุของไฟเส้น COB 24V”) — ① ใบเสนอราคา แนบท้าย “งานระบบ”: หน้าละผนังที่มีปลั๊ก/ท่อน้ำดี/ท่อน้ำทิ้ง · เส้นตู้/ท็อป/ประตู-หน้าต่างจาง (ไม่มีเลข) · Dim เฉพาะงานระบบ: ระยะจากมุมห้องต่อเนื่องตามแนวผนัง + สูงจากพื้นถึงศูนย์ทุกจุด + ป้ายชนิด · ติ๊กออกได้ ② ไฟดาวน์ไลท์ (โครงสร้าง · ฝ้า): ห้องที่มีฝ้า ใส่ให้ 4 ดวง (2×2) ครั้งแรก · ลากการ์ดไปเติม/ลากย้าย ดูดแนวผนัง/ระยะเหมือนเสา · อยู่ใต้ฝ้าหลุม/ฝ้าลดตามระดับฝ้าตรงนั้น · ซ่อนได้ · โหมดสมจริง/AI RENDER ใช้ตำแหน่งดาวน์ไลท์ในห้อง (เดิมวางเองเรียงตามตู้) ③ หน้ารวมวัสดุ ช่อง LED = รูปไฟเส้น COB 24V (เปลี่ยนได้ที่ 🖼 รูปอุปกรณ์…) · ปิดได้ SN_OFF.dwgUtil / plDl"],
@@ -30008,6 +30009,7 @@ function boardRole(b){
      SN_OFF.plWallSolid=1 ผนังห้องออกแบบกลับไปโปร่งแสงแบบเดิม (v1.379)
      SN_OFF.ovenFitUp=1   เตาอบในช่อง ปรับชั้นใต้เตาแบบ 1.578 (ไม่ขยับชั้นบนเตา) (v1.588)
      SN_OFF.plMicroB=1    ไม่มีการ์ดไมโครเวฟ Built-in (บานหลอกปรับตามหน้ากาก) (v1.588)
+     SN_OFF.snvPropHide=1 ลิงก์ดูงานที่ส่งหลังตั้ง = เปิดห้อง/ของในห้องตั้งแต่แรกแบบ 1.572 (ปกติเห็นแค่ตู้ กด 🏠 แสดงทั้งฉาก) (v1.589)
      SN_OFF.acdSafe=1     เชื่อมโครงอัตโนมัติแบบเดิม (ยิงทุกชิ้นในฉาก รวมหน้าบาน · ข้ามตู้ · สร้างตู้ใหม่เชื่อมทั้งฉาก) (v1.588)
      SN_OFF.acdHeal=1     ไม่ถามล้างเดือย/มินิฟิกที่ใส่เกินบนหน้าบาน (v1.588)
      SN_OFF.ovenNear=1    เตาที่ไม่อยู่พื้นช่องพอดี = “หาช่องของเตาไม่เจอ” แบบเดิม ไม่หาช่องใกล้สุด (v1.588)
@@ -56555,7 +56557,7 @@ async function snvBuild(opt){
       root:{p:root.position.toArray()}, bg:0xe7e8ee,   /* v1.443: พื้นเทาเสมอ ไม่ตามธีมจอคนส่ง */
       cam:{t:orbit.target.toArray().map(v=>Math.round(v*10)/10), th:orbit.theta, ph:orbit.phi, r:orbit.radius, mr:modelRadius, fov:(typeof plBaseFov==="function")?plBaseFov():camera.fov},
       light:{hemi:hemiLight?[hemiLight.color.getHex(),hemiLight.groundColor.getHex(),hemiLight.intensity]:null, key:lt(keyLight), fill:lt(fillLight), rim:lt(rimLight)},
-      geo:sc.geo, mat:sc.mat, tex:sc.tex, obj:sc.obj, room:sc.room||undefined, rm:snvRoomMeta()}, meta);   /* v1.572: + ห้อง */
+      geo:sc.geo, mat:sc.mat, tex:sc.tex, obj:sc.obj, room:sc.room||undefined, rm:snvRoomMeta(), sceneOn:(sc.room&&snOff("snvPropHide"))?1:undefined}, meta);   /* v1.589: sceneOn = เปิดฉากตั้งแต่แรก */   /* v1.572: + ห้อง */
     return {D, files:sc.files, preview:prev};
   } finally {
     Object.assign(state,{eco:keep.eco,ghost:keep.ghost,doorOpen:keep.doorOpen,doorPick:keep.doorPick,doorProg:keep.doorProg,explode:keep.explode,hidden:keep.hidden,view:keep.view,selectedId:keep.sel,showGrain:keep.grain});
@@ -70897,6 +70899,7 @@ body.vwCb #vwTop,body.vwCb #vwHint{display:none!important}body.vwCb #vwWalkHud{b
   <button class="vbtn" id="vwReal" title="✨ โหมดสมจริง — ดูตู้ในห้องจริง แสงกลางวัน / เย็น / กลางคืน">✨ สมจริง</button>
   <button class="vbtn" id="vwMore" aria-label="เครื่องมือเพิ่มเติม">⋯ เพิ่มเติม</button>
   <div id="vwExtra">
+    <button class="vbtn" id="vwScene" style="display:none" title="แสดงทั้งฉาก — ห้อง ผนัง พื้น ท็อป เครื่องใช้ ประตู/หน้าต่าง (ปกติเห็นแค่ตู้)">🏠 แสดงทั้งฉาก</button>
     <button class="vbtn" id="vwAllDoors">เปิดทุกบาน</button>
     <button class="vbtn" id="vwCabDim" title="เปิด/ปิดเส้นบอกขนาดรวมของตู้ (กว้าง × สูง × ลึก)">📐 ขนาดตู้</button>
     <button class="vbtn" id="vwSnap" title="แจ้งซ่อม — แคปภาพ 3D ตอนนี้ แล้ววง/เขียนจุดที่ต้องซ่อมก่อนแชร์ (ป้ายขนาดที่เปิดอยู่ติดไปด้วย)">🔧 แจ้งซ่อม</button>
@@ -72382,7 +72385,19 @@ function wkHud(){ var h=$("vwWalkHud"); if(!WK.on){ if(h) h.remove(); return; } 
     if(a==="go"){ var st=function(e){ e.preventDefault(); WK.hold=1; }, sp=function(){ WK.hold=0; };
       b.addEventListener("pointerdown",st); b.addEventListener("pointerup",sp); b.addEventListener("pointerleave",sp); b.addEventListener("pointercancel",sp); b.addEventListener("contextmenu",function(e){ e.preventDefault(); }); }
     else b.onclick=function(){ if(a==="x") wkExit(); else if(a==="gy") wkGyro(!WK.gyro); else if(a==="cb") wkEnter("cb"); }; }); }
-function wkEnter(mode){ if(XR.ses) return; if(typeof REAL!=="undefined"&&REAL.on){ try{ rvToggle(false); }catch(e){} }
+/* ───────── v1.589: หน้าดูงานเห็นแค่ตู้ ─────────
+   ผู้ใช้ 1/11 08:38: “โหมดดูต้องไม่มี prop ครับ เห็นแค่ตู้ กดดูทั้งออเดอร์ก็เห็นแค่ตู้ แต่ เพิ่มปุ่มแสดง ทั้งฉากได้”
+   เดิม (1.572): S.roomG (ห้อง ผนัง พื้น ฝ้า ท็อป เครื่องใช้ ประตู/หน้าต่าง) แสดงทันทีที่เปิดลิงก์
+   ตอนนี้: ซ่อนทั้งกลุ่ม · ปุ่ม #vwScene (⋯ เพิ่มเติม · มีเฉพาะลิงก์ที่มีห้อง) สลับ · เดิน/แว่น/WebXR = เปิดให้เอง (ต้องมีผนังพื้น)
+   · &scene=1 หรือ D.sceneOn (ส่งตอน SN_OFF.snvPropHide) = เปิดตั้งแต่แรก · wcTick ยังซ่อนผนังฝั่งกล้องรายชิ้นเหมือนเดิม */
+function sceneSet(on){ S.scene=!!on; if(S.roomG) S.roomG.visible=S.scene; var b=$("vwScene");
+  if(b){ b.classList.toggle("on",S.scene); b.textContent=S.scene?"🏠 ทั้งฉาก: เปิด":"🏠 แสดงทั้งฉาก"; }
+  if(renderer&&renderer.shadowMap) renderer.shadowMap.needsUpdate=true; S.dirty=true; }
+function sceneInit(){ var b=$("vwScene"); if(!S.roomG){ if(b) b.style.display="none"; return; }
+  if(b){ b.style.display=""; b.onclick=function(){ sceneSet(!S.scene); }; }
+  var on=!!(S.D&&S.D.sceneOn); try{ var q=new URLSearchParams(location.search); if(q.get("scene")==="1"||q.get("walk")==="1"||q.get("vr")==="1") on=true; }catch(e){}
+  sceneSet(on); }
+function wkEnter(mode){ if(XR.ses) return; if(S.roomG&&!S.scene) sceneSet(true);   /* v1.589: เดินในห้องต้องเห็นห้อง */ if(typeof REAL!=="undefined"&&REAL.on){ try{ rvToggle(false); }catch(e){} }
   if(!WK.on){ WK.fov0=camera.fov; WK.near0=camera.near; WK.orb={th:orbit.th,ph:orbit.ph,r:orbit.r,t:orbit.t.clone()}; var st=wkStart(); WK.pos.copy(st.p); WK.yaw=st.yaw; WK.pitch=-0.12; }
   WK.on=true; WK.mode=mode||"walk"; camera.fov=(WK.mode==="cb")?85:72; camera.near=30; camera.updateProjectionMatrix();
   document.body.classList.add("vwWalk"); document.body.classList.toggle("vwCb",WK.mode==="cb"); vrSheet(false); try{ closeInfo(); }catch(e){}
@@ -72415,7 +72430,7 @@ function xrFrame(t,frame){ if(!XR.ses) return;
       XR.dolly.position.x=h.x+off.x; XR.dolly.position.z=h.z+off.z; XR.dolly.rotation.y+=ang; }
     else if(Math.abs(x)<.3) XR.latch=false; }catch(e){}
   wcTick(); renderer.render(scene,camera); }
-function xrEnter(){ if(!navigator.xr||XR.ses) return; if(WK.on) wkExit(); if(typeof REAL!=="undefined"&&REAL.on){ try{ rvToggle(false); }catch(e){} }
+function xrEnter(){ if(!navigator.xr||XR.ses) return; if(S.roomG&&!S.scene) sceneSet(true);   /* v1.589 */ if(WK.on) wkExit(); if(typeof REAL!=="undefined"&&REAL.on){ try{ rvToggle(false); }catch(e){} }
   navigator.xr.requestSession("immersive-vr",{optionalFeatures:["local-floor","bounded-floor"]}).then(function(ses){
     XR.ses=ses; var st=wkStart(), B=wkBox(); vrSheet(false);
     if(!XR.dolly){ XR.dolly=new THREE.Group(); XR.dolly.name="xrDolly"; scene.add(XR.dolly); }
@@ -72465,7 +72480,7 @@ function start(){
     status("กำลังโหลดรูปผิว…");
     return loadImages(D.tex).then(function(imgs){
       status("กำลังประกอบ 3D…");
-      build(D,imgs); fitGround(); if(S.roomG){ if(floor) floor.position.y-=3; if(grid) grid.position.y-=3; }   /* v1.572: พื้นห้องจริงอยู่บน */ setLight(S.light); setGrid(S.grid);
+      build(D,imgs); fitGround(); if(S.roomG){ if(floor) floor.position.y-=3; if(grid) grid.position.y-=3; }   /* v1.572: พื้นห้องจริงอยู่บน */ try{ sceneInit(); }catch(e){}   /* v1.589: เห็นแค่ตู้ */ setLight(S.light); setGrid(S.grid);
       if(S.led.length&&$("vwLed")) $("vwLed").style.display="";                // v1.396: มีไฟราง = มีปุ่ม   // v1.350: แสงในห้อง · ปิดตาราง
       var c=D.cam||{}; orbit.th=(c.th!=null?c.th:.85); orbit.ph=(c.ph!=null?c.ph:.95); orbit.r=c.r||2000; orbit.mr=Math.max(orbit.mr,c.mr||0);
       if(c.t) orbit.t.fromArray(c.t); else { var b=sceneBox(); b.getCenter(orbit.t); }
