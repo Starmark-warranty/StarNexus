@@ -3283,7 +3283,7 @@ body[data-theme="dark"] .splash-dots span{background:rgba(255,255,255,.25)}
    ===================================================================== */
 /* ---- APP_META: แหล่งความจริงเดียวของเวอร์ชัน (ดูได้จาก console / คลิกชื่อแอป) ---- */
 const APP_META={
-  name:"StarNexus", version:"1.590", build:"2026-11-01/view-ar",
+  name:"StarNexus", version:"1.591", build:"2026-11-01/shape-thumbs",
   file:"StarNexus.html", basedOn:"Furnitech_V3.html (v3.11)",
   /* ───────── เริ่มนับเวอร์ชันใหม่ที่ 1.001 (21/08/2026) ─────────
      ของเดิมนับมาถึง 42.1 แล้ววิ่งเป็นทศนิยมสองชั้นซึ่งอ่านลำดับยาก
@@ -3291,6 +3291,7 @@ const APP_META={
      ประวัติเก่าเก็บไว้ทั้งหมดตามเลขเดิม ไม่ไล่เขียนใหม่ เพราะเลขในนั้นถูกอ้างถึงไปแล้ว
      รายการที่อยู่ใต้ 1.001 ลงไปจึงเป็นเลขชุดเก่า อ่านต่อกันได้ตามวันที่ */
   changelog:[
+    ["1.591","2026-11-01","UX กล่องเลือกสี (ห้องออกแบบ) แท็บ FrontShape มีรูปตัวอย่างแบบบาน (ผู้ใช้ 1/11 10:01 ภาพกล่อง 🎨 สี — BAT070 แท็บ FrontShape (บาน 1–2) ช่องรูปเป็น “…” ทั้งหมด: “เพิ่มรูปตัวอย่างได้ไหมครับ”) — เดิมช่องรูปหาลายผิวจากรหัส (plSwatchOf) ซึ่งรหัสแบบบาน (ECxx01 · Exxx01 · MCWx58 …) ไม่มี จึงค้าง “…” · ตอนนี้แท็บที่เป็นแบบบาน (FrontShape) วาดภาพเส้นแบบเดียวกับหน้ารวมวัสดุในใบเสนอราคา: ด้านหน้า (ร่อง/เพ/ช่องกระจก/กรอบ) + Section ข้าง · ใช้บานจริงของตู้นั้นเป็นตัวแทน (บานใหญ่สุดที่ใช้ช่องนี้ ไม่ใช่ลิ้นชัก) แล้วลองใส่รหัสทีละแบบชั่วคราว (ไม่บันทึก ไม่ sync) · แบบที่ไม่มีข้อมูลลาย = สี่เหลี่ยมเรียบ · ปิดได้ SN_OFF.plShapeThumb"],
     ["1.590","2026-11-01","FEAT 📱 AR ในหน้าดูงาน — วางตู้ซ้อนห้องจริงผ่านกล้อง (ผู้ใช้ 1/11 09:03: “โหมด VR ทำเป็นเหมือนลายเส้นแนบไปกับผนังจริงได้ไหม เป็นเหมือนโหมดตีลายผนัง มันเปะไหม” · 09:06: “ทำเลยครับ ให้ลูกค้าเห็นคร่าวๆ”) — เมนู 🥽 VR / AR › “📱 AR — วางตู้ในห้องจริง” (WebXR immersive-ar: Chrome บน Android ที่มี ARCore · แว่น Meta Quest · iPhone ยังไม่รองรับ = ปุ่มจาง) · เทียบ 2 จุด: ① แตะพื้นที่มุมซ้ายในสุดของห้อง (ผนังหลังชนผนังซ้าย · ลิงก์ไม่มีห้อง = มุมซ้ายหลังของตู้) ② แตะพื้นชิดผนังหลังไปทางขวา ≥ 1 ม. → ตู้ขึ้นขนาดจริงตรงตำแหน่งในแบบ · ปุ่มขยับละเอียด ◀ ▶ (ตามผนัง) / เข้า-ออก 1 ซม. / หมุน 0.5° · ◐ โปร่ง · ↺ เทียบใหม่ · ✕ ออก · ห้อง/พื้น/ท็อป/เครื่องใช้เสมือนซ่อน (เห็นห้องจริง) · ความแม่นคร่าว ๆ 1–3 ซม. (บอกบนจอ) · ปิดได้ SN_OFF.snvAr (ลิงก์ที่ส่งหลังตั้ง = ไม่มีปุ่ม AR)"],
     ["1.589","2026-11-01","UX หน้าดูงาน (ลิงก์แชร์/สแกน · ดูทั้งออเดอร์) เห็นแค่ตู้ (ผู้ใช้ 1/11 08:38 ภาพหน้าดูงานมีห้อง ตู้เย็น เตา ฮู้ด ท็อป ซิงค์ + ป้าย P28: “โหมดดูต้องไม่มี prop ครับ เห็นแค่ตู้ กดดูทั้งออเดอร์ก็เห็นแค่ตู้ แต่ เพิ่มปุ่มแสดง ทั้งฉากได้”) — เดิม (1.572) ลิงก์ที่ส่งจากห้องออกแบบแสดงห้องทั้งหมดทันที · ตอนนี้ห้อง/ผนัง/พื้น/ฝ้า/ท็อป/เครื่องใช้/ประตู-หน้าต่างซ่อนไว้ · ปุ่ม 🏠 แสดงทั้งฉาก (แถบ ⋯ เพิ่มเติม · มีเฉพาะลิงก์ที่มีห้อง) สลับเปิด/ปิด · เข้าโหมดเดิน/แว่น VR = เปิดฉากให้เอง · ลิงก์ &scene=1 = เปิดฉากตั้งแต่แรก · ลิงก์ที่ส่งไปแล้วก็เป็นแบบใหม่ (หน้าดูงานอ่านจาก view.html ตัวใหม่) · ปิดได้ SN_OFF.snvPropHide (ลิงก์ที่ส่งหลังตั้ง = เปิดฉากตั้งแต่แรกแบบเดิม)"],
     ["1.588","2026-10-31","FEAT ช่องเตา/ไมโครเวฟ Built-in (ผู้ใช้ 31/10 14:04 project (7) ตู้ TAR031 + สเปก HAFELE ไมโครเวฟ Built-in หน้ากาก 595×454 ติดตั้ง 560-568×550×450: “มันจะมีเคสที่เอาไปวาง ช่องล่าง เดี๋ยวช่องบน จะวาง ไมโครเวฟ แบบ built แล้วให้ บานหลอกปรับหา ไมโครเวฟ หมายถึงความสูงหน้ากาก … หน้ากาก 454 ถ้าช่องที่เหลือ 524 บานหลอกก็ 70 − GAP 2 = 68” · 14:06: “จริงๆ ชั้น บนเตาต้องขยับ หา เตา ข้างล่าง ครับ กรณีใส่เตา”) — ① เตาอบ: ปล่อยในช่อง = ชั้นเหนือเตาขยับขึ้น/ลงให้ช่องสูงเท่าสูงติดตั้ง (เดิม 1.578 ขยับชั้นใต้เตา) · ของที่ติดชั้นขยับ/ยืดตาม · บานที่ขอบติดชั้นยืดหดตาม · ช่องเตาใต้หลังคาตู้ (ไม่มีชั้นบน) = ขยับชั้นล่างแบบเดิม ② ไมโครเวฟ Built-in (การ์ดใหม่ หน้ากาก 595×454 ลึก 568 · ติดตั้ง 450): ปล่อยในช่อง = บานหลอก (Panel) เหนือเครื่องยืด/หดให้ขอบล่างห่างหน้ากาก 2 มม. (ช่องเหลือ − หน้ากาก − เว้น) · แก้ระยะเว้นได้ในแผง · ช่องเหลือไม่พอ/ช่องในเตี้ยกว่าติดตั้ง = บอก ③ FIX “⚠ หาช่องของเตาไม่เจอ” เมื่อเตาไม่ได้อยู่พื้นช่องพอดี (เช่น ตู้เปลี่ยนแบบหลังวางเตา — project (7) เตาค้างที่สูง 400 ช่องจริง 704) → หาช่องที่ใกล้สุดแล้วจัดเตาเข้าช่องให้ ④ FIX เดือย/มินิฟิกโผล่บนหน้าบาน (ผู้ใช้ 31/10 14:08 project (8): “ตอนนี้ หน้าบาน มีเดือยมินิฟิกเฉยเลย … ผมไม่ได้สั่งใส่เลย”) — ต้นเหตุ: “เชื่อมโครงอัตโนมัติ” ยิงหารอยชนทุกชิ้นในฉาก รวมหน้าบาน/หน้าลิ้นชัก/บานหลอก/กล่องลิ้นชัก และชนข้ามตู้ · สร้างตู้ใหม่แบบเพิ่มเข้าฉาก (รวมผู้ช่วย AI ⚡) สั่งเชื่อมทั้งฉาก (v1.029) → ไฟล์ (5)(7)(8) ได้เดือยสูตรชุดหัวท้าย ลึก 26 เพิ่ม ~300 ขอบ · แก้: ไม่ใส่ที่หน้าบาน/กล่องลิ้นชัก/ชิ้นเสมือน · ไม่ชนข้ามตู้ · กดปุ่มเชื่อมโครง = ข้ามตู้ที่มีเดือย/มินิฟิกอยู่แล้ว (โมเดลจากคลัง) · สร้างตู้ใหม่ = เชื่อมเฉพาะตู้ใหม่ · เปิดงานที่โดนแล้ว = กล่องถาม “ล้างให้” (ลบตัวเชื่อมแบบเดียวกับที่โผล่บนหน้าบาน ทั้งบนหน้าบานและบนโครงตู้ที่มีเดือยจากโมเดล แล้วเจาะรูคู่ใหม่ · Ctrl+Z ได้) ⑤ UX (ผู้ใช้ 14:26 ภาพแผง “แนวตู้ลอย / ตู้สูง”: “เพิ่มปิดเปิดแสดงเส้น ประแนวตู้ ลอยให้ด้วยครับ”) แผงห้อง › แนวตู้ลอย/ตู้สูง ติ๊ก “แสดงเส้นประบนผนัง” (เส้นฟ้าก้นตู้ลอย + เส้นส้มแนวบน · ค่าแนวยังคุมตู้เหมือนเดิม · เก็บกับห้อง) · ปิดได้ SN_OFF.ovenFitUp / plMicroB / ovenNear / acdSafe / acdHeal"],
@@ -30010,6 +30011,7 @@ function boardRole(b){
      SN_OFF.plWallSolid=1 ผนังห้องออกแบบกลับไปโปร่งแสงแบบเดิม (v1.379)
      SN_OFF.ovenFitUp=1   เตาอบในช่อง ปรับชั้นใต้เตาแบบ 1.578 (ไม่ขยับชั้นบนเตา) (v1.588)
      SN_OFF.plMicroB=1    ไม่มีการ์ดไมโครเวฟ Built-in (บานหลอกปรับตามหน้ากาก) (v1.588)
+     SN_OFF.plShapeThumb=1 กล่องเลือกสีแท็บ FrontShape ไม่วาดรูปแบบบาน (ช่องรูปแบบเดิม) (v1.591)
      SN_OFF.snvAr=1       ลิงก์ดูงานที่ส่งหลังตั้ง = ไม่มีปุ่ม 📱 AR ในเมนู 🥽 (v1.590)
      SN_OFF.snvPropHide=1 ลิงก์ดูงานที่ส่งหลังตั้ง = เปิดห้อง/ของในห้องตั้งแต่แรกแบบ 1.572 (ปกติเห็นแค่ตู้ กด 🏠 แสดงทั้งฉาก) (v1.589)
      SN_OFF.acdSafe=1     เชื่อมโครงอัตโนมัติแบบเดิม (ยิงทุกชิ้นในฉาก รวมหน้าบาน · ข้ามตู้ · สร้างตู้ใหม่เชื่อมทั้งฉาก) (v1.588)
@@ -45354,10 +45356,33 @@ function plColorCSS(){
     +"#plColor .pcT{cursor:pointer;border:2px solid transparent;border-radius:10px;padding:3px;display:flex;flex-direction:column;gap:3px;min-width:0}"
     +"#plColor .pcT:hover{border-color:var(--line)}#plColor .pcT.on{border-color:var(--accent)}"
     +"#plColor .pcSw{aspect-ratio:1;border-radius:7px;background:rgba(127,127,127,.12) center/cover no-repeat;display:flex;align-items:center;justify-content:center;color:var(--ink-dim);font-size:9.5px;text-align:center;overflow:hidden;box-shadow:inset 0 0 0 1px rgba(0,0,0,.08)}"
+    +"#plColor .pcSw.pcShp{padding:5px}#plColor .pcSw.pcShp svg{width:100%;height:100%;display:block}"   /* v1.591: รูปแบบบาน */
     +"#plColor .pcT b{font-size:10.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-family:var(--mono)}"
     +"#plColor .pcT small{font-size:9.5px;color:var(--ink-dim);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-height:12px}";
     document.head.appendChild(st); }
 }
+/* ───────── v1.591: รูปตัวอย่างแบบบานในกล่องเลือกสี (แท็บ FrontShape) ─────────
+   ผู้ใช้ 1/11 10:01 (ภาพ 🎨 สี — BAT070 แท็บ FrontShape (บาน 1–2) ทุกช่อง “…”): “เพิ่มรูปตัวอย่างได้ไหมครับ”
+   เดิม: ช่องรูปเรียก plSwatchOf(รหัส) หาลายผิว/รูปใน textures — รหัสแบบบาน (ECxx01 · Exxx01 · MCWx58) ไม่ใช่ผิว เลยได้ “…”/รหัส
+   ตอนนี้: แท็บที่ชื่อมี “shape” วาดภาพเส้นด้วย dwgDoorSvg (ตัวเดียวกับหน้ารวมวัสดุ 1.527: ด้านหน้า + Section ข้าง)
+     ตัวแทน (plShapeRep): บานจริงของตู้ในรายการ ที่ doorShapeCode อ่านค่าจากช่องในกลุ่มนี้ (ลองใส่ค่าทดลองแล้วดูว่าบานไหนเปลี่ยนตาม)
+       — เลือกบานใหญ่สุด · บาน (ไม่ใช่หน้าลิ้นชัก) ก่อน · ไม่เจอเลย = ไม่วาด (ช่องรูปเดิม)
+     วาดทีละรหัส (plShapeSvg): ใส่รหัสในช่องของกลุ่มนั้นชั่วคราว (state.cabColors[root]) → dwgDoorSvg → คืนค่าเดิมทันที (ไม่ sync · ไม่เข้า undo)
+     แคชตามตัวแทน+ขนาด+รหัส (_plShapeC) · ปิด SN_OFF.plShapeThumb */
+const _plShapeC=new Map();
+function plShapeSwap(root,names,val,fn){ const cc=state.cabColors[root]=state.cabColors[root]||{}, old={};
+  names.forEach(nm=>{ old[nm]=Object.prototype.hasOwnProperty.call(cc,nm)?cc[nm]:undefined; cc[nm]=val; });
+  try{ return fn(); } finally{ names.forEach(nm=>{ if(old[nm]===undefined) delete cc[nm]; else cc[nm]=old[nm]; }); } }
+function plShapeRep(insts,names){ if(snOff("plShapeThumb")) return null; const want=new Set(names), P="__SHAPE_PROBE__"; let best=null, bs=-1;
+  const roots=new Set(); insts.forEach(i=>{ let cf=null; try{ cf=plColorFams(i); }catch(e){} if(!cf||roots.has(String(cf.root))||!cf.fams.some(f=>want.has(f.name))) return; roots.add(String(cf.root));
+    plShapeSwap(cf.root,names,P,()=>{ cf.mem.forEach(m=>plBoardsOf(m).forEach(b=>{ if(!b||!b._door||b._box||b._virtual||b._glass||!(+b.T>0)) return;
+      let c=""; try{ c=doorShapeCode(b); }catch(e){} if(c!==P) return;
+      const sc=(+b.L||0)*(+b.W||0)*(b._dg!=null?0.25:1); if(sc>bs){ bs=sc; best={b, root:cf.root}; } })); }); });
+  return best; }
+function plShapeSvg(rep,names,code){ if(!rep) return ""; const b=rep.b, k=[b.id,Math.round(+b.L||0),Math.round(+b.W||0),Math.round(+b.T||0),names.join(","),code].join("|");
+  if(_plShapeC.has(k)) return _plShapeC.get(k);
+  let svg=""; try{ svg=plShapeSwap(rep.root,names,code,()=>dwgDoorSvg(b)); }catch(e){ console.error("plShapeSvg:",e); svg=""; }
+  if(_plShapeC.size>400) _plShapeC.clear(); _plShapeC.set(k,svg); return svg; }
 function plColorOpen(inst,x,y){
   plColorClose();
   const whole=!inst; if(whole&&!Object.keys(plCabMap()).length){ toast("ยังไม่มีตู้ในห้อง"); return; }
@@ -45402,6 +45427,9 @@ function plColorOpen(inst,x,y){
       gs=plColorGroups(whole?Object.keys(plCabMap()):[String(inst)],PLC.split); draw(); });
     /* รูปย่อทยอยขึ้นทีละ 6 ใบ — รายการสีมีได้เป็นร้อย */
     const sws=[...el.querySelectorAll(".pcSw")]; let k=0;
+    /* v1.591: แท็บแบบบาน = ภาพเส้นแบบบาน */
+    if(f&&/shape/i.test(f.key)&&!snOff("plShapeThumb")){ const rep=plShapeRep(targets(),f.names);
+      if(rep){ sws.forEach(sw=>{ const svg=plShapeSvg(rep,f.names,sw.dataset.c); if(svg){ sw.innerHTML=svg; sw.style.background="#fff"; sw.classList.add("pcShp"); } }); k=sws.length; } }
     const next=async()=>{ while(k<sws.length){ const sw=sws[k++]; if(!sw.isConnected) return;
       let s=null; try{ s=await plSwatchOf(sw.dataset.c); }catch(e){}
       if(!sw.isConnected) return;
