@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="th"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover"><meta name="generator" content="StarNexus 1.594"><title>StarNexus — ดูงาน 3D</title><style>
+<html lang="th"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover"><meta name="generator" content="StarNexus 1.595"><title>StarNexus — ดูงาน 3D</title><style>
 :root{--bg:#e7e8ee;--panel:rgba(255,255,255,.94);--solid:#fff;--ink:#172c40;--dim:#5b6b7c;--line:#d5dae2;--accent:#1e5fa8;--warn:#e8590c;--shadow:0 10px 30px -12px rgba(16,32,56,.35)}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html,body{margin:0;height:100%;background:var(--bg);color:var(--ink);font:14px/1.5 system-ui,-apple-system,"Segoe UI","Noto Sans Thai","Sarabun",sans-serif;overflow:hidden;overscroll-behavior:none}
@@ -325,6 +325,7 @@ var S={D:null,wcs:[],roomG:null,items:[],byId:{},prog:{},anim:{},ex:0,ghost:fals
 var renderer,scene,camera,root,floor,grid,hemi,keyL,fillL,rimL,selBox,measLine,measDots=[],envTexC=null;
 var orbit={t:new THREE.Vector3(),th:.85,ph:.95,r:2000,mr:900};
 var _Y=new THREE.Vector3(0,1,0), _q=new THREE.Quaternion();
+var _imX=new THREE.Vector3(1,0,0), _imV=new THREE.Vector3();   /* v1.595: iMove */
 
 function status(msg,err){ var el=$("vwLoad"); if(!el) return; var m=el.querySelector(".msg"); if(m) m.textContent=msg; el.classList.toggle("err",!!err); }
 function hint(msg,ms){ var h=$("vwHint"); if(!h) return; h.textContent=msg; h.classList.add("show"); clearTimeout(hint._t); hint._t=setTimeout(function(){ h.classList.remove("show"); },ms||2200); }
@@ -517,7 +518,10 @@ function applyPose(){
     var own=(D.own&&D.own[it.id])||it.id, t=D.door&&D.door[own], k=(D.key&&D.key[own]!=null)?D.key[own]:null, p=(k!=null&&S.prog[k])||0;
     var x=it.px, y=it.py, z=it.pz; it.o.quaternion.copy(it.q);
     if(it.hk&&D.hk&&!(ex>0)&&(!t||t.k)){ hkLinkPose(it,(t&&t.k&&p>0)?t.k.ph*p:0); continue; }   // v1.456: ข้อต่อบานพับหมุนรอบหมุดแขน
-    if(t&&p>0&&!(it.hf&&!(ex>0))){                                               // v1.456: แขน/ฐานบานพับอยู่กับแผ่นข้าง (แยกประกอบ = ตามบานทั้งตัว)
+    if(t&&t.im){ if(p>0&&D.imA&&!(ex>0)){ var IA=D.imA, rd=Math.PI/180, a0=IA.a0*rd, aa=(IA.a0+(IA.a1-IA.a0)*p)*rd;   /* v1.595: iMove ดึงลง (สูตร imovePose) */
+        if(t.im==="a"){ _q.setFromAxisAngle(_imX,-(aa-a0)); it.o.quaternion.multiply(_q); }
+        else { _imV.set(0,IA.R*(Math.sin(aa)-Math.sin(a0)),IA.R*(Math.cos(aa)-Math.cos(a0))).applyQuaternion(it.q); x+=_imV.x; y+=_imV.y; z+=_imV.z; } } }
+    else if(t&&p>0&&!(it.hf&&!(ex>0))){                                               // v1.456: แขน/ฐานบานพับอยู่กับแผ่นข้าง (แยกประกอบ = ตามบานทั้งตัว)
       if(t.p){ var rr=t.d*p*Math.PI/180, cs=Math.cos(rr), sn=Math.sin(rr), P=t.p;
         if(t.k&&D.hk){ var pp=hkPole(t.k,t.k.ph*p); if(pp) P=pp; }               // v1.456: จุดหมุนตามมุม (กลไกบานพับ)
         var dx=x-P[0], dz=z-P[1];
@@ -534,7 +538,10 @@ function animKeys(keys,to){ var from={}, t0=performance.now(), ms=460;
     keys.forEach(function(k){ S.prog[k]=from[k]+(to-from[k])*e; }); applyPose();
     if(kk<1) requestAnimationFrame(step); })(t0); }
 function allKeys(){ var D=S.D, s={}; Object.keys(D.key||{}).forEach(function(id){ s[D.key[id]]=1; }); return Object.keys(s); }
-function toggleDoor(k){ if(k==null) return false; animKeys([k],(S.prog[k]||0)>.5?0:1); return true; }
+function toggleDoor(k){ if(k==null) return false; var to=(S.prog[k]||0)>.5?0:1, pre=S.D.pre&&S.D.pre[k];
+  if(to===1&&pre&&pre.length){ var cl=pre.filter(function(d){ return (S.prog[d]||0)<.5; });   /* v1.595: ตะแกรง — บานยังปิด = เปิดบานก่อน */
+    if(cl.length){ animKeys(cl,1); setTimeout(function(){ animKeys([k],1); },480); return true; } }
+  animKeys([k],to); return true; }
 
 /* ── เลือกชิ้น / ข้อมูล ── */
 function pick(ev){
@@ -572,7 +579,7 @@ function showInfo(id){
   box.innerHTML='<h3>'+esc(I.n||"ชิ้นงาน")+'<button class="x" data-x>✕</button></h3>'
     +'<div class="sub">'+(I.pg?"เสาเหล็ก (งานสั่งทำ)":(I.v?"อุปกรณ์ / ชิ้นประกอบ":(I.dr?"บาน / หน้าลิ้นชัก":"ชิ้นไม้")))+'</div>'
     +'<div class="bd"><table>'+rows.map(function(r){ return '<tr><td>'+r[0]+'</td><td>'+r[1]+'</td></tr>'; }).join("")+'</table>'
-    +'<div class="acts">'+(k!=null?'<button data-a="door">'+((S.prog[k]||0)>.5?"ปิดบานนี้":"เปิดบานนี้")+'</button>':'')
+    +'<div class="acts">'+(k!=null?'<button data-a="door">'+((D.pre&&D.pre[k])?((S.prog[k]||0)>.5?"เก็บตะแกรง":"ดึงตะแกรงออก"):((S.prog[k]||0)>.5?"ปิดบานนี้":"เปิดบานนี้"))+'</button>':'')   /* v1.595 */
     +'<button data-a="zoom">ซูมไปที่ชิ้น</button>'+(cab?'<button data-a="cab">ดูทั้งตู้</button>':'')
     +((D.pp&&(!I.v||I.pg))?'<button data-a="paper">'+(I.pg?'📄 แบบเสานี้':'📄 แบบผลิต')+'</button>':'')+'</div></div>';   // v1.359 · v1.382: เสา
   box.classList.remove("hide");
@@ -1202,8 +1209,8 @@ function bindUI(){
   /* v1.346: มือถือ — ปุ่มที่เหลืออยู่ในแผง "⋯ เพิ่มเติม" (จอกว้างเรียงแถวเดียวเหมือนเดิม) */
   $("vwMore").onclick=function(){ var ex=$("vwExtra"), on=!ex.classList.contains("open"); ex.classList.toggle("open",on); this.classList.toggle("on",on);
     if(on){ closeInfo(); var cb=$("vwCabs"); if(cb) cb.classList.add("hide"); var hn=$("vwHint"); if(hn) hn.classList.remove("show"); } };   // ป้ายคำแนะนำลอยทับแผง (แผงอยู่ในแถบล่างซึ่งชั้นต่ำกว่า) → ซ่อนป้ายตอนเปิดแผง
-  $("vwAllDoors").onclick=function(){ var ks=allKeys(); if(!ks.length){ hint("งานนี้ไม่มีบานที่เปิดได้"); return; }
-    S.allOpen=!ks.every(function(k){ return (S.prog[k]||0)>.5; }); animKeys(ks,S.allOpen?1:0); this.textContent=S.allOpen?"ปิดทุกบาน":"เปิดทุกบาน"; this.classList.toggle("on",S.allOpen); };
+  $("vwAllDoors").onclick=function(){ var ka=allKeys(), ks=ka.filter(function(k){ return !(S.D.pre&&S.D.pre[k]); }); if(!ks.length){ hint("งานนี้ไม่มีบานที่เปิดได้"); return; }   /* v1.595: เปิดทุกบานไม่ดึงตะแกรง */
+    S.allOpen=!ks.every(function(k){ return (S.prog[k]||0)>.5; }); animKeys(S.allOpen?ks:ka,S.allOpen?1:0); this.textContent=S.allOpen?"ปิดทุกบาน":"เปิดทุกบาน"; this.classList.toggle("on",S.allOpen); };
   $("vwGhost").onclick=function(){ setGhost(!S.ghost); };
   { var cdb=$("vwCabDim"); if(cdb){ cdb.style.display=(S.D.cabs&&S.D.cabs.length)?"":"none";   // v1.457: ขนาดรวมตู้
       cdb.onclick=function(){ var n=setCabDim(!CD.on); if(CD.on&&n) hint("ขนาดรวมตู้ (มม.) — กว้าง × สูง × ลึก รวมบานและขา ไม่รวมมือจับ"+(CD.sig.indexOf("*all")===0?" · หลายตู้ = ขนาดรวมทั้งชุด แตะชิ้นในตู้ไหนขึ้นขนาดตู้นั้น":"")); }; } }
@@ -2416,7 +2423,7 @@ function start(){
       if(!sc) hint("ลากเพื่อหมุน · สองนิ้วเพื่อซูม/เลื่อน · แตะชิ้นเพื่อดูรายละเอียด",3200); }); })
   .catch(function(e){ console.error(e); status(String((e&&e.message)||e),true); }); }
 
-try{ window.__snv={S:S,DIM:DIM,scene:function(){ return scene; },camera:function(){ return camera; },pp:function(){ return PPS; },ppOpen:function(id){ paperOpen(id); },
+try{ window.__snv={S:S,DIM:DIM,tog:function(k){ return toggleDoor(k); },keyOf:function(id){ return keyOf(id); },scene:function(){ return scene; },camera:function(){ return camera; },pp:function(){ return PPS; },ppOpen:function(id){ paperOpen(id); },
   real:function(){ return REAL; },rpt:function(){ return RPT; },rv:function(on){ rvToggle(on); },rvPhoto:function(){ rvPhoto(); },orbit:orbit,camApply:function(){ camApply(); },renderer:function(){ return renderer; }}; }catch(e){}   // v1.464: + โหมดสมจริง (ให้ตัวทดสอบเรียก)   // v1.359: + สถานะ/ตัวเปิดหน้าแบบผลิต (ให้ตัวทดสอบเรียก)   // v1.346: ให้ตัวทดสอบอ่านสถานะได้ (อ่านอย่างเดียว)
 if(document.readyState==="loading") document.addEventListener("DOMContentLoaded",start); else start();
 })();
