@@ -3283,7 +3283,7 @@ body[data-theme="dark"] .splash-dots span{background:rgba(255,255,255,.25)}
    ===================================================================== */
 /* ---- APP_META: แหล่งความจริงเดียวของเวอร์ชัน (ดูได้จาก console / คลิกชื่อแอป) ---- */
 const APP_META={
-  name:"StarNexus", version:"1.612", build:"2026-11-02/clear-with-room",
+  name:"StarNexus", version:"1.613", build:"2026-11-02/filler-copy",
   file:"StarNexus.html", basedOn:"Furnitech_V3.html (v3.11)",
   /* ───────── เริ่มนับเวอร์ชันใหม่ที่ 1.001 (21/08/2026) ─────────
      ของเดิมนับมาถึง 42.1 แล้ววิ่งเป็นทศนิยมสองชั้นซึ่งอ่านลำดับยาก
@@ -3291,6 +3291,7 @@ const APP_META={
      ประวัติเก่าเก็บไว้ทั้งหมดตามเลขเดิม ไม่ไล่เขียนใหม่ เพราะเลขในนั้นถูกอ้างถึงไปแล้ว
      รายการที่อยู่ใต้ 1.001 ลงไปจึงเป็นเลขชุดเก่า อ่านต่อกันได้ตามวันที่ */
   changelog:[
+    ["1.613","2026-11-02","FIX+FEAT ห้องออกแบบ (ผู้ใช้ 19:30 project 36 ตู้เสื้อผ้า MWA050 · 19:33) — ① ฟิลเลอร์บน/ตีนตู้ ตามสีหน้าบาน: เดิมนับสีจากตู้ลอย/ตู้พื้นเท่านั้น งานที่มีแต่ตู้สูงหรือตู้เสื้อผ้าจึงได้สี “-” · ฟิลเลอร์บนเปลี่ยนสีทันทีแบบตีนตู้ ② ฟิลเลอร์บนวิ่งข้ามฟิลเลอร์ข้างตู้ที่สูงแค่หัวตู้ ไปชนผนัง ③ ตู้เสื้อผ้า (รหัสนอกหมวด B/W/T ที่ทรงเป็นตู้สูง) มีปุ่มแผ่นปิดข้าง ใช้รุ่น TFF ④ Ctrl+C / Ctrl+V: เสา ฝ้า ไฟ ประตู หน้าต่าง เครื่องใช้ (ขนาดที่ปรับไว้ติดไป) และตู้ · แป้นไทยก็กดได้ ⑤ กล่องสี แท็บแบบบาน: กล่องกว้างขึ้น การ์ดแนวตั้ง บานตัวอย่างขนาดเดียวกัน เห็นหน้าตาบานชัด · เลือกแล้วไม่เด้งกลับบนสุด"],
     ["1.612","2026-11-02","CHANGE ปุ่ม ล้าง ล้างห้องไปด้วย (ผนัง ประตู หน้าต่าง เครื่องใช้ ท็อป ฉาก) · เลือกล้างแค่ตู้ได้ในกล่อง · ห้องล็อกอยู่ไม่แตะห้อง · Ctrl+Z คืนได้ · ปิด SN_OFF.clearRoom"],
     ["1.611","2026-11-02","FEAT AI RENDER เลือกภาพตั้งต้นได้: 🖥 ภาพจากจอ (ตั้งต้น · ไม่เปิดโหมดสมจริง) หรือ ✨ โหมดสมจริงแบบเดิม · ปิด SN_OFF.rndView · FEAT สัญลักษณ์เส้นประกากบาทบนหน้าลิ้นชักใน 3D · ปิด SN_OFF.drawerSym · FIX ลิงก์ดูงาน เส้น V ทิศเปิดหมุนตามบาน ไม่ค้างกลางอากาศ"],
     ["1.610","2026-11-02","CHANGE รอยต่อตีนตู้อยู่ระหว่างตู้ ก่อนถึง 2400 เหมือนฟิลเลอร์บนและไม้ไฟ · ปิด SN_OFF.plinthJoint · UI แถบลอยไม้วัดอยู่กลางช่องระหว่างแผงซ้าย-ขวา ไม่จมใต้แผงห้องออกแบบ · ปิด SN_OFF.mdHudPlace"],
@@ -5305,6 +5306,7 @@ function restoreSnap(str){ const o=JSON.parse(str); state.boards=o.boards; state
   if(_clrBak&&Array.isArray(o.boards)&&o.boards.length){ state.scenes=_clrBak.scenes; state.orderLines=_clrBak.lines; state.qPics=_clrBak.pics; _clrBak=null; try{ scnAfterLoad(); }catch(e){} }   /* v1.612 */
   let _rmR=false; if(Object.prototype.hasOwnProperty.call(o,"room")&&!snOff("plUndo")){ state.room=o.room||null; _rmR=true; }   /* v1.540: ห้องย้อนตาม (ภาพเก่าก่อน 1.540 ไม่มีห้อง = ห้องอยู่ที่เดิม) */
   if(o.cab) SNAP_CAB_KEYS.forEach(k=>{ state[k]=o.cab[k]||{}; });   /* v1.297 */
+  try{ if(!snOff("plCeilColor")) plLineRowsFromCabs(); }catch(e){ console.error("lineRows:",e); }   /* v1.613 */
   if(!selBoard())state.selectedId=null; buildGTones();
   try{ autoMateMarkClean(); }catch(e){}   /* v1.425: ทุกจุดในประวัติเจาะรูคู่ไว้แล้วก่อนเก็บ — ย้อนแล้วไม่ต้องยิงใหม่ทั้งฉาก */
   sync(0,1,0);
@@ -30371,6 +30373,12 @@ function boardRole(b){
      SN_OFF.ehpRebate=1   มือจับฝังไม่เซาะบ่าหลังบาน (v1.606)
      SN_OFF.hgk3D=1       หูแขวนเป็นกล่องคร่าว ๆ แบบเดิม (v1.606)
      SN_OFF.clearRoom=1   ปุ่ม ล้าง ล้างแค่ตู้ ห้องอยู่ครบแบบเดิม (v1.612)
+     SN_OFF.lineColorAny=1 ฟิลเลอร์บน/ตีนตู้นับสีจากตู้ลอย/ตู้พื้นเท่านั้นแบบเดิม (v1.613)
+     SN_OFF.plCeilColor=1 ฟิลเลอร์บนไม่เปลี่ยนสีทันทีตอนเปลี่ยนสีหน้าบาน (v1.613)
+     SN_OFF.ceilSideFill=1 ฟิลเลอร์บนจบที่ข้างตู้ ไม่วิ่งข้ามฟิลเลอร์ข้างตู้ (v1.613)
+     SN_OFF.plSideOther=1 ตู้นอกหมวด B/W/T ไม่มีปุ่มแผ่นปิดข้าง (v1.613)
+     SN_OFF.plClip=1      ปิด Ctrl+C / Ctrl+V ในห้องออกแบบ (v1.613)
+     SN_OFF.plShapeBig=1  แท็บแบบบานในกล่องสี ขนาดการ์ดเล็กและวาดตามสัดส่วนจริงแบบเดิม (v1.613)
      SN_OFF.rndView=1     AI RENDER เปิดโหมดสมจริงทุกครั้งแบบเดิม ไม่มีแถวภาพตั้งต้น (v1.611)
      SN_OFF.drawerSym=1   หน้าลิ้นชักไม่มีเส้นประกากบาท (v1.611)
      SN_OFF.plinthJoint=1 ตีนตู้ตัดทุก 2400 จากต้นแนวแบบเดิม (v1.610)
@@ -37729,8 +37737,18 @@ function plPlinthColor(rule){
   const fam=String((rule&&rule.colorTo)||"FrontColor1").split(/[,;]+/)[0].trim(), cnt={};
   Object.keys(plCabMap()).forEach(i=>{ const f=plFp(plBoardsOf(i)); if(plLevelOf(f.code)!=="base") return;
     const v=String((((state.cabColors||{})[i])||{})[fam]||(((state.cabColors||{})[i])||{}).Carcass||"").trim(); if(v) cnt[v]=(cnt[v]||0)+1; });
-  let b="", n=0; Object.keys(cnt).forEach(k=>{ if(cnt[k]>n){ n=cnt[k]; b=k; } }); return b;
+  let b="", n=0; Object.keys(cnt).forEach(k=>{ if(cnt[k]>n){ n=cnt[k]; b=k; } });
+  /* v1.613: ไม่มีตู้พื้นเลย (ห้องมีแต่ตู้สูง/ตู้เสื้อผ้าบนขา) → นับจากตู้ที่ตีนตู้วิ่งผ่านจริง — ดู plColorMost */
+  if(!b&&!snOff("lineColorAny")) b=plColorMost(fam,Object.keys(plCabMap()).filter(i=>{ const bs=plBoardsOf(i); return bs.some(plIsLeg)&&!plIsSide(i)&&plKindOf(plFp(bs).code)!=="filler"; }));
+  return b;
 }
+/* ───────── v1.613: ฟิลเลอร์บน/ตีนตู้ ต้องตามสีหน้าบาน แม้ห้องไม่มีตู้ลอย/ตู้พื้น ─────────
+   ผู้ใช้ 2/11 19:30 (project 36 ตู้เสื้อผ้า MWA050 สีลายไม้ แต่ฟิลเลอร์บนกับตีนตู้เป็นสีเทาเรียบ): “ทำไมฟิลเลอร์ ไม่เปลี่ยนสีตามหน้าบานครับ”
+   เดิม: สีแถวฟิลเลอร์บนนับจากตู้หมวด wall · ตีนตู้นับจากหมวด base เท่านั้น ตู้เสื้อผ้า (รหัส M… = other) กับตู้สูง (T…) ไม่ถูกนับ
+     ไม่เจอเลยจึงได้สี “-” ทั้งที่ v1.543 ให้ตู้สูงได้ฟิลเลอร์บนแล้ว · ส่วนฟิลเลอร์บนก็ไม่มีตัวตามสีทันทีแบบตีนตู้ (v1.569)
+   ตอนนี้: ยังนับตู้ลอย/ตู้พื้นก่อนเหมือนเดิม (ครัวเดิมไม่เปลี่ยนสี) · ไม่เจอจึงนับตู้ที่แผ่นวิ่งผ่านจริง ค่า “-” ไม่นับ · ปิด SN_OFF.lineColorAny=1 */
+function plColorMost(fam,insts){ const cnt={}; (insts||[]).forEach(i=>{ const cc=(state.cabColors||{})[i]||{}, a=String(cc[fam]||"").trim(), v=(a&&a!=="-")?a:String(cc.Carcass||"").trim(); if(v&&v!=="-") cnt[v]=(cnt[v]||0)+1; });
+  let b="", n=0; Object.keys(cnt).forEach(k=>{ if(cnt[k]>n){ n=cnt[k]; b=k; } }); return b; }
 let _plPlBusy=false;
 /* ───────── v1.569: ตีนตู้เปลี่ยนสีตามสีหน้าบานทันที ─────────
    ผู้ใช้ 30/10 14:28: “ขาตู้ ตอนนี้ พอเปลี่ยนสีหน้าบาน มันไม่เปลี่ยนตาม นอกจากจะไปกระตุ้นฉาก เช่น แก้ความสูงหรือเปลี่ยนเป็นแสตนเลส แล้วกลับมาเลือกไม้ ถึงจะเปลี่ยนสี”
@@ -37741,11 +37759,23 @@ let _plPlBusy=false;
      ตัวจับเวลาเก็บเป็น property ของฟังก์ชัน (ไม่ใช้ let ระดับไฟล์ — sync ถูกเรียกตอนบูตก่อนถึงบรรทัดนี้ = TDZ)
    ปิด SN_OFF.plPlinthColor=1 */
 function plPlinthColorSoon(){ if(snOff("plPlinthColor")) return; const F=plPlinthColorSoon; clearTimeout(F.t);
-  F.t=setTimeout(()=>{ try{ if(Date.now()<(F.skip||0)||_plPlBusy||state.editing||VIEW_ONLY||_alignHold>0) return;
-      const row=plPlinthRow(); if(!row||plPlinthXml()||!state.room) return; if(plRoom().plinthMat==="stainless") return;
-      const rule=plPlinthRule(); if(!rule) return; const col=plPlinthColor(rule)||"-"; if(col===row.color) return;
-      plPlinthSync().then(()=>{ try{ if(typeof PL!=="undefined"&&PL.on) plPanelFoot(); }catch(e){} }).catch(e=>console.error("plinth color:",e)); }
+  F.t=setTimeout(()=>{ try{ if(Date.now()<(F.skip||0)||_plPlBusy||state.editing||VIEW_ONLY||_alignHold>0||!state.room) return;
+      if(typeof isLocked==="function"&&isLocked()) return;                     /* v1.613: งานล็อก = ไม่แก้ใบตัดเอง (สีที่นับใหม่อาจต่างจากที่ออกไปแล้ว) */
+      let needP=false, needC=false;
+      const row=plPlinthRow();
+      if(row&&!plPlinthXml()&&plRoom().plinthMat!=="stainless"){ const rule=plPlinthRule(); if(rule&&(plPlinthColor(rule)||"-")!==row.color) needP=true; }
+      /* v1.613: ฟิลเลอร์บนใช้ตัวเดียวกัน — ทำต่อกันทีละแถว เพราะทั้งคู่สร้างตู้เส้นใหม่ทั้งชุด (applyLineRulesNow) · ปิด SN_OFF.plCeilColor=1 */
+      if(!snOff("plCeilColor")&&!_plCeBusy){ const rc=plCeilRow(); if(rc&&!plCeilXml()){ const ru=plCeilRule(); if(ru&&(plLineColor(ru,"wall")||"-")!==rc.color) needC=true; } }
+      if(!needP&&!needC) return;
+      /* v1.613: งานสร้างใหม่นี้เป็นผลของการเปลี่ยนสี ไม่ใช่อีกคำสั่ง — รวมประวัติ Ctrl+Z ครั้งเดียวกลับไปก่อนเปลี่ยนสี (เดิมกดแล้วค้างที่ตีนตู้สีใหม่ ฟิลเลอร์สีเก่า) */
+      (async()=>{ const n0=undoStack.length; if(needP) await plPlinthSync(); if(needC) await plCeilSync();
+        if(undoStack.length>n0&&undoStack.length<120){ undoStack.length=n0; refreshUndoUI(); }
+        try{ if(typeof PL!=="undefined"&&PL.on) plPanelFoot(); }catch(e){} })().catch(e=>console.error("plinth color:",e)); }
     catch(e){ console.error("plinth color:",e); } },350); }
+/* v1.613: orderLines ไม่อยู่ในประวัติ ย้อน/ทำซ้ำแล้วสีแถวตีนตู้/ฟิลเลอร์บนจะไม่ตรงตู้เส้นที่คืนมา → อ่านกลับจากตู้เส้นเอง ไม่ต้องสร้างใหม่ (ประวัติทำซ้ำไม่หาย) */
+function plLineRowsFromCabs(){ (state.orderLines||[]).forEach(r=>{ if(!r||!r._planner) return; let rule=null; try{ rule=lineRuleOf(r); }catch(e){} if(!rule||rule.act!=="cab") return;
+    const code=String(rule.cabCode||"").trim(), b=(state.boards||[]).find(x=>x&&x._lineCab&&!x._virtual&&String(x.cab)===code); if(!b) return;
+    const fam=String(rule.colorTo||"").split(/[,;]+/)[0].trim(), v=fam?String((((state.cabColors||{})[b.cabInst])||{})[fam]||"").trim():""; if(v) r.color=v; }); }
 async function plPlinthSync(){
   if(_plPlBusy) return null; if(plPlinthXml()) return {xml:true};
   const r=plRoom(), H=Math.max(+r.legH||0,0), stn=r.plinthMat==="stainless", rule=stn?null:plPlinthRule();   // v1.313: สแตนเลส = ไม่มีตู้ไม้
@@ -39593,6 +39623,68 @@ addEventListener("pointerdown",ploDown,true);
 addEventListener("pointermove",ploMove,true);
 addEventListener("pointerup",ploUp,true);
 addEventListener("keydown",ploKey,true);
+/* ═════════ v1.613: Ctrl+C / Ctrl+V ในห้องออกแบบ ═════════
+   ผู้ใช้ 2/11 19:33 (ภาพเสาที่ปรับขนาดแล้วในห้อง): “เพิ่ม Ctrl+C Ctrl+V ด้วยครับ เสาที่ผมปรับแล้ว”
+   เดิม: ของในห้องไม่มีทางทำสำเนา ต้องลากการ์ดมาใหม่แล้วใส่ขนาดเองอีกรอบ · ตู้มีแต่ปุ่มทำสำเนาในแผง
+   ตอนนี้: ของในห้อง (เสา ฝ้า ไฟ ประตู หน้าต่าง บันได งานระบบ เครื่องใช้) ติดทุกค่าที่ปรับไว้ไปด้วย
+     ติดผนัง = ช่องว่างถัดไปบนผนังเดิม · ที่เหลือ = วางข้างต้นฉบับ ไม่ทับชนิดเดียวกัน ไม่ล้นห้อง · กดวางซ้ำ = เรียงต่อจากชิ้นล่าสุด
+     เครื่องใช้ในตู้/บนท็อป = หาที่ใหม่แบบเดียวกับกดการ์ด เพราะตู้ที่รองรับอาจไม่ใช่ใบเดิม
+     ตู้ = ใช้ plDup (ปุ่มทำสำเนาเดิม) ได้ทั้งหลายใบ · วางแล้วเลือกชิ้นใหม่ให้ลากต่อได้เลย · Ctrl+Z ย้อนได้
+     จำชิ้นไว้ในหน่วยความจำ ไม่ลงคลิปบอร์ดของเครื่อง ไม่ไปกวน Ctrl+V ในช่องพิมพ์/กล่องอื่น · ใช้ e.code จึงกดได้ทั้งแป้นไทย · ปิด SN_OFF.plClip=1 */
+function ploOverlap(o,x,z){ const ext=c=>{ const y=(((+c.yaw||0)%180)+180)%180, s=y>45&&y<135; return s?[+c.d||+c.w||0,+c.w||0]:[+c.w||0,+c.d||+c.w||0]; }, a=ext(o);
+  return ploList().some(c=>{ if(!c||c.id===o.id||c.k!==o.k||c.wk) return false; const e=ext(c); return Math.abs(x-(+c.x||0))<(a[0]+e[0])/2&&Math.abs(z-(+c.z||0))<(a[1]+e[1])/2; }); }
+/* วางข้างจุดเดิม: ขวา ซ้าย หน้า หลัง · ไกลขึ้นทีละช่วงถ้าเต็ม · ไม่ได้เลย = กลางห้อง */
+function ploPasteFree(o){ const r=plRoom(), gap=o.k==="dl"?510:100, ext=(()=>{ const y=(((+o.yaw||0)%180)+180)%180, s=y>45&&y<135; return s?[+o.d||+o.w||0,+o.w||0]:[+o.w||0,+o.d||+o.w||0]; })();
+  const dx=ext[0]+gap, dz=ext[1]+gap, x0=+o.x||0, z0=+o.z||0, inRoom=(x,z)=>x-ext[0]/2>=r.x0-0.5&&x+ext[0]/2<=r.x0+r.w+0.5&&z-ext[1]/2>=r.z0-0.5&&z+ext[1]/2<=r.z0+r.d+0.5;
+  for(let m=1;m<=40;m++) for(const d of [[1,0],[-1,0],[0,1],[0,-1]]){ const x=x0+d[0]*m*dx, z=z0+d[1]*m*dz; if(inRoom(x,z)&&!ploOverlap(o,x,z)){ o.x=Math.round(x*10)/10; o.z=Math.round(z*10)/10; return true; } }
+  /* ชิ้นใหญ่ (ฝ้า) ไม่มีที่ว่างข้าง ๆ = ขยับเท่าที่ห้องให้ ทับบางส่วนแต่ยังเห็นสองชิ้น · ขยับไม่ได้เลยจึงไปกลางห้อง */
+  const cl=(v,lo,hi)=>lo>hi?(lo+hi)/2:Math.min(Math.max(v,lo),hi), X0=r.x0+ext[0]/2, X1=r.x0+r.w-ext[0]/2, Z0=r.z0+ext[1]/2, Z1=r.z0+r.d-ext[1]/2;
+  let best=null, bd=1; [[x0+dx,z0],[x0-dx,z0],[x0,z0+dz],[x0,z0-dz]].forEach(p=>{ const x=cl(p[0],X0,X1), z=cl(p[1],Z0,Z1), m=Math.hypot(x-x0,z-z0); if(m>bd&&!ploOverlap(o,x,z)||(m>bd&&!best)){ best=[x,z]; bd=m; } });
+  if(best){ o.x=Math.round(best[0]*10)/10; o.z=Math.round(best[1]*10)/10; }
+  else { o.x=r.x0+r.w/2; o.z=r.z0+r.d/2; }
+  return false; }
+/* ติดผนัง: ผนังเดิมก่อน ไล่ออกจากตำแหน่งเดิมทีละกริด ถัดไปจึงผนังอื่น */
+function ploPasteWall(o){ const G=plGrid()||10, gap=(PLO_T[o.k]||{}).util?30:100, F0=ploFrameOf(o), FR=[F0].concat(ploFrames().filter(F=>!F0||F.key!==F0.key)).filter(F=>F&&F.L>=(+o.w||0)+2*gap);
+  for(const F of FR){ const from=F===F0?(+o.t||0):F.L/2, n=Math.ceil(F.L/G);
+    for(let i=F===F0?1:0;i<=n;i++) for(const sg of [1,-1]){ const t=from+sg*i*G; if(t<(+o.w||0)/2+gap/2||t>F.L-(+o.w||0)/2-gap/2) continue;
+      if(!ploClash(o,F.key,t,gap)){ o.wk=F.key; o.t=Math.round(t); const P=ploPose(o,F); o.x=Math.round(P.x); o.z=Math.round(P.z); o.yaw=Math.round(P.rot*180/Math.PI); return true; } } }
+  return false; }
+function ploPaste(src){ if(ploLocked()) return null; const T=PLO_T[src.k]; if(!T) return null;
+  const o=JSON.parse(JSON.stringify(src)); o.id=uid(); delete o.hid;
+  let msg="";
+  if(T.wall&&o.wk){ if(!ploPasteWall(o)){ o.wk=null; const r=plRoom(); o.x=r.x0+r.w/2; o.z=r.z0+r.d/2; msg=" · ผนังเต็ม วางไว้กลางห้อง ลากไปวางเอง"; } }
+  else { let auto=false;
+    if(T.appl&&T.appl!=="wall"){ delete o.host; delete o.inCab; delete o.dF; try{ plaAuto(o); auto=!!o.host||!!T.fridge; }catch(e){ console.error("plaAuto:",e); } }
+    /* เครื่องใช้ที่ได้ตู้เดิมจนทับต้นฉบับ = ปล่อยจากตู้ ให้ผู้ใช้ลากไปตู้ที่ต้องการ (ค้าง host ไว้ แล้วลอยนอกตู้ไม่ได้) */
+    if(!auto||ploOverlap(o,+o.x||0,+o.z||0)){ if(o.host){ delete o.host; delete o.inCab; msg=" · ลากไปวางบนตู้ที่ต้องการ"; }
+      if(!ploPasteFree(o)) msg=" · ไม่มีที่ว่างข้าง ๆ ลากไปวางเอง"; } }
+  ploList().push(o); PLO.sel=o.id; try{ plSelect(null); }catch(e){} PLO.sel=o.id;
+  plRoomDraw(); plPanelSel(); ploReveal(); plAfterRoom(); plHoodChanged(o);
+  if(o.inCab&&T.fit){ try{ plaOvenFitRun(o); plRoomDraw(); plPanelSel(); plAfterRoom(); }catch(e){ console.error("ovenFit:",e); } }
+  toast(T.ic+" วาง"+(T.s||T.n)+"แล้ว"+msg+" — Ctrl+V วางซ้ำ · ลากเลื่อนได้");
+  return o; }
+/* มีหน้าต่างบังห้องอยู่ (กล่อง/หน้าตรวจ/วาดลายบาน/AI RENDER) = ไม่ใช่ปุ่มของห้อง */
+function plClipBlocked(){ const A=innerWidth*innerHeight*0.5;
+  return Array.prototype.some.call(document.body.children,d=>{ if(!d||d.id==="app"||d.id==="plPanel") return false; const cs=getComputedStyle(d);
+    if(cs.display==="none"||cs.visibility==="hidden"||cs.position!=="fixed"||!(+cs.zIndex>=90)) return false; const r=d.getBoundingClientRect(); return r.width*r.height>A; }); }
+function plClipKey(e){ if(snOff("plClip")||typeof PL==="undefined"||!PL.on||PLW.on) return;
+  if(!(e.ctrlKey||e.metaKey)||e.shiftKey||e.altKey||(e.code!=="KeyC"&&e.code!=="KeyV")) return;
+  const t=e.target; if(t&&(/INPUT|TEXTAREA|SELECT/.test(t.tagName)||t.isContentEditable)) return;
+  if(t&&t.closest&&t.closest("#askModal,#fieldsModal,.modal")) return; if(plClipBlocked()) return;
+  const stop=()=>{ e.preventDefault(); e.stopImmediatePropagation(); };
+  if(e.code==="KeyC"){ let tx=""; try{ tx=String(getSelection()||"").trim(); }catch(_){} if(tx) return;   /* ลากคลุมข้อความอยู่ = คัดลอกข้อความตามปกติ */
+    const o=PLO.sel?ploGet(PLO.sel):null;
+    if(o){ PLO.clip={o:JSON.parse(JSON.stringify(o))}; stop(); toast("คัดลอก"+((PLO_T[o.k]||{}).s||(PLO_T[o.k]||{}).n||"ของในห้อง")+" — กด Ctrl+V เพื่อวาง"); return; }
+    const K=cabSelKeys().length>1?cabSelKeys().slice():(state.selectedCab&&plCabMap()[state.selectedCab]?[String(state.selectedCab)]:[]);
+    if(K.length){ PLO.clip={cabs:K}; stop(); toast("คัดลอกตู้ "+(K.length>1?(K.length+" ใบ"):plFp(plBoardsOf(K[0])).code)+" — กด Ctrl+V เพื่อวาง"); }
+    return; }
+  const c=PLO.clip; if(!c) return; stop();
+  if(c.o){ const n=ploPaste(c.o); if(n) c.o=JSON.parse(JSON.stringify(n)); return; }
+  const live=(c.cabs||[]).filter(i=>plCabMap()[i]); if(!live.length){ toast("ตู้ที่คัดลอกไว้ไม่อยู่ในห้องแล้ว — เลือกตู้แล้วกด Ctrl+C ใหม่"); return; }
+  /* plDup เก็บประวัติหลายจังหวะ (สร้าง → ย้ายลงผนัง) รวมเป็นครั้งเดียว ไม่งั้น Ctrl+Z ครั้งแรกแค่ตู้กลับที่เดิม ตู้ยังอยู่ */
+  const n0=undoStack.length; live.forEach(i=>{ try{ plDup(i,false); }catch(er){ console.error("plDup:",er); } });
+  if(undoStack.length>n0+1&&undoStack.length<120){ undoStack.length=n0+1; refreshUndoUI(); } }
+addEventListener("keydown",plClipKey,true);
 /* ═════════ v1.539: เลือกผนังทีละช่วง แล้วลบ ═════════
    ผู้ใช้ 28/10 16:58: “ต่อไปทำให้เลือกผนัง 1 ด้านได้ แล้วกดลบ”
    เดิมลบได้ทีละทั้งเส้น (ปุ่ม 🗑 ที่แผงห้อง) หรือปิดผนังห้องสี่เหลี่ยมทั้งด้าน · วาดห้อง L ไว้แล้วอยากเปิดช่วงเดียว (ห้องเปิดโล่งไปห้องนั่งเล่น) ต้องวาดใหม่ทั้งห้อง
@@ -40618,9 +40710,23 @@ function ceilPlan(cabs,H){
   const g={}; wall.forEach(c=>{ const k=c.fa+"|"+c.s; (g[k]=g[k]||[]).push(c); });
   const items=[], groups=[];
   Object.values(g).forEach(arr=>{ const top=ceilTopMode(arr), ceilY=top+H; groups.push({top,ceilY,n:arr.length});
-    arr.forEach(c=>{ if(c.hi[1]>=ceilY-1) return; items.push({c, y0:round(c.hi[1]), y1:round(ceilY)}); }); });
+    arr.forEach(c=>{ if(c.hi[1]>=ceilY-1) return; items.push({c, y0:round(c.hi[1]), y1:round(ceilY)}); });
+    /* ───────── v1.613: ฟิลเลอร์บนวิ่งข้ามฟิลเลอร์ข้างตู้ ─────────
+       ผู้ใช้ 2/11 19:30 (ภาพตู้เสื้อผ้า MWA050 + ฟิลเลอร์ MWA003 ถึงผนัง): “ฟิลเลอร์บนเคสที่ฟิลเลอร์ข้างตู้ไปสุดแค่ทอปตู้ ไม้ ต้องวิ่งไปปิดด้วยครับ”
+       เดิม: แนวฟิลเลอร์บนนับเฉพาะตู้มีบาน/ตู้เปิดโล่ง ฟิลเลอร์ข้างตู้ไม่มีบานจึงหลุด ไม้จบที่ข้างตู้ เหนือฟิลเลอร์เปิดโล่งถึงฝ้า
+       ตอนนี้: ฟิลเลอร์ที่ชิดตู้ในแนว (ห่างไม่เกิน 30 · แนวลึกทับกัน) และหัวยังไม่ถึงฝ้า ได้ไม้ด้วย · ไม่นับใน wall จึงไม่เปลี่ยนระดับฝ้าอัตโนมัติ
+         ฟิลเลอร์ที่สูงถึงฝ้าอยู่แล้ว = ไม้จบที่ข้างมันเหมือนเดิม · ปิด SN_OFF.ceilSideFill=1 */
+    if(!snOff("ceilSideFill")) cabs.forEach(c=>{ if(arr.indexOf(c)>=0||c.fa!==arr[0].fa||c.s!==arr[0].s||c.hi[1]>=ceilY-1||under(c)) return;
+      if(!(tall(c)||(!c.legs&&c.lo[1]>1000))||!ceilSideFill(c)) return;
+      if(!arr.some(a=>Math.min(Math.abs(a.lo[a.wa]-c.hi[c.wa]),Math.abs(a.hi[a.wa]-c.lo[c.wa]))<=30&&ov(a.lo[a.fa],a.hi[a.fa],c.lo[c.fa],c.hi[c.fa],1))) return;
+      items.push({c, y0:round(c.hi[1]), y1:round(ceilY)}); }); });
   return {items, groups, wall};
 }
+/* v1.613: ฟิลเลอร์ข้างตู้ — ไม่มีบาน ไม่ใช่กล่องตู้/แผ่นปิดข้าง/ไม้ไฟ · หมวดฟิลเลอร์ในแคตตาล็อก หรือทรงเป็นแผ่นหน้า ไม่มีแผ่นนอน กว้างไม่เกิน 600 (MWA003 ที่ยังไม่ลงแคตตาล็อก) */
+function ceilSideFill(c){ try{ if(!c||c.door||c.box||c.side||plIsLightPanel(c.i)) return false;
+  const bs=plBoardsOf(c.i), f=plFp(bs); if(plKindOf(f.code)==="filler") return true;
+  const car=bs.filter(b=>b&&!b._virtual&&!b._door&&!b._lineDisp&&!plIsLeg(b)&&(+b.T>0));
+  return car.length>0&&car.length<=3&&car.some(b=>b.orient==="front")&&car.every(b=>b.orient==="front"||b.orient==="side")&&(c.hi[c.wa]-c.lo[c.wa])<=600; }catch(e){ return false; } }
 /* ───────── v1.326: ตู้แขวนเปิดโล่ง (ไม่มีบาน เช่นตู้ชั้นโชว์ WNO077 / WNO078) ต้องได้ฟิลเลอร์บนด้วย ─────────
    ตัวเลือกตู้แขวนของฟิลเลอร์บนนับเฉพาะตู้ที่มีบาน (c.door) — เดิมกันไม่ให้แผ่นปิดข้าง ไม้ไฟ แผงหลังเคาน์เตอร์ มาต่อแนว
    แต่ตู้ชั้นโชว์ไม่มีบานก็หลุดไปด้วย ฟิลเลอร์จึงหยุดกลางครัว (เคสจริง: หยุดที่ตู้ถัดจากชั้นโชว์ทั้งสองฝั่ง)
@@ -40644,7 +40750,10 @@ function plLineColor(rule,lv){
   const fam=String((rule&&rule.colorTo)||"FrontColor1").split(/[,;]+/)[0].trim(), cnt={};
   Object.keys(plCabMap()).forEach(i=>{ if(plIsLightPanel(i)) return; const f=plFp(plBoardsOf(i)); if(plLevelOf(f.code)!==lv) return;
     const v=String((((state.cabColors||{})[i])||{})[fam]||(((state.cabColors||{})[i])||{}).Carcass||"").trim(); if(v) cnt[v]=(cnt[v]||0)+1; });
-  let b="", n=0; Object.keys(cnt).forEach(k=>{ if(cnt[k]>n){ n=cnt[k]; b=k; } }); return b; }
+  let b="", n=0; Object.keys(cnt).forEach(k=>{ if(cnt[k]>n){ n=cnt[k]; b=k; } });
+  /* v1.613: ไม่มีตู้ลอย (ห้องมีแต่ตู้สูง/ตู้เสื้อผ้า) → นับจากตู้ที่ได้ฟิลเลอร์บนจริง — ดู plColorMost */
+  if(!b&&lv==="wall"&&!snOff("lineColorAny")){ let w=[]; try{ w=ceilPlan(plCeilCabs(),0).wall.map(c=>c.i); }catch(e){} b=plColorMost(fam,w); }
+  return b; }
 let _plCeBusy=false;
 async function plCeilSync(){
   if(_plCeBusy) return null; if(plCeilXml()) return {xml:true};
@@ -40795,10 +40904,19 @@ async function plSideCode(lv,H){
   ok.sort((x,y)=>(y.on?1:0)-(x.on?1:0));                                     // ติ๊กใช้ก่อน (sort คงลำดับเดิมในกลุ่มเดียวกัน)
   const pref=ok.filter(o=>H>2440?o.n>1:o.n===1), pool=pref.length?pref:ok;
   return pool.find(o=>plSizeOk(o.c,"h",Math.round(H)))||pool[0]; }
+/* ───────── v1.613: ตู้นอกหมวด B/W/T ที่ทรงเป็นตู้สูง ใส่แผ่นปิดข้างได้ ─────────
+   ผู้ใช้ 2/11 19:30 (ภาพแผงตู้ MWA050 มีแถวฟิลเลอร์แต่ไม่มีแถวแผ่นปิดข้าง): “ทำไม[ไม่]มีแผ่นปิดข้างให้กดใส่ครับ รหัสน่าจะเป็น TFF001”
+   เดิม: หมวดอ่านจากตัวอักษรแรกของรหัส MWA050 จึงเป็น other แถวปุ่มถูกซ่อน และ plSideAdd ปฏิเสธ
+   ตอนนี้: เฉพาะเรื่องแผ่นปิดข้าง ตู้ other ที่ยืนพื้น/บนขา (ก้นไม่เกิน 300) สูงตั้งแต่ 1,500 หัวตั้งแต่ 1,700 (เกณฑ์เดียวกับ ceilPlan v1.543) นับเป็น tall → หารุ่น TFF
+     ไม่เปลี่ยน plLevelOf เพราะตัวนั้นคุมแนวบน ขา และการยืดตู้ทั้งระบบ · ช่อง Cosimo/ฟิลเลอร์ไม่เข้าเกณฑ์ · ปิด SN_OFF.plSideOther=1 */
+function plSideLvOf(inst){ const f=plFp(plBoardsOf(inst)), lv=plLevelOf(f.code); if(lv!=="other"||snOff("plSideOther")) return lv;
+  const k=plKindOf(f.code), bs=plBoardsOf(inst); if(k==="filler"||k==="cosimo"||csmIsCode(f.code)) return lv;
+  if(!bs.some(x=>x&&!x._virtual&&(x._door||x.orient==="flat"))) return lv;     /* ไม่มีบาน ไม่มีแผ่นนอน = แผ่นหน้า/ฟิลเลอร์ (MWA003 ที่ยังไม่ลงแคตตาล็อก) ไม่ใช่ตู้ */
+  return ((f.hi[1]-Math.max(f.lo[1],0))>=1500&&f.hi[1]>=1700&&f.lo[1]<=300)?"tall":lv; }
 async function plSideAdd(inst,side){
   if(plIsSide(inst)||plIsLightPanel(inst)) return null;
   const g=plGapsOf(inst); if(!g){ toast("ตู้ใบนี้ไม่ได้ติดผนัง — ลากไปชิดผนังก่อน"); return null; }
-  const f=g.f, wk=g.wk, W=PL_WALLS[wk], lv=plLevelOf(f.code);
+  const f=g.f, wk=g.wk, W=PL_WALLS[wk], lv=plSideLvOf(inst);
   if(lv!=="base"&&lv!=="wall"&&lv!=="tall"){ toast("แผ่นปิดข้างใส่ได้กับตู้พื้น ตู้ลอย ตู้สูง"); return null; }
   const sp=plSideSpan(null,inst,lv), pick=await plSideCode(lv,sp.top-sp.bot);
   if(!pick){ const pre=(lv==="base"?"B":lv==="tall"?"T":"W")+"FF###";
@@ -42097,7 +42215,7 @@ function plPanelOpen(){
     +'<div id="plGrid"></div>';
   const tdy531=!snOff("plTidy"); if(tdy531) plCss531();   // v1.531: หัวแผงบรรทัดเดียว · คำแนะนำบรรทัดล่าง
   p.innerHTML=(tdy531?('<div class="plSec plHead"><div class="plHT"><b>🏠 ห้องออกแบบ</b><button class="ibtn" id="plClose" title="ออกจากห้องออกแบบ (ตู้ยังอยู่ในออเดอร์)">✓ เสร็จ</button></div>'
-      +'<div class="plHint">ลากตู้ = แม่เหล็กติดผนัง · คลิกขวา = สี · R หมุน · Del ลบ</div></div>'):
+      +'<div class="plHint">ลากตู้ = แม่เหล็กติดผนัง · คลิกขวา = สี · R หมุน · Del ลบ · Ctrl+C / Ctrl+V ทำสำเนา</div></div>'):
     ('<div class="plSec" style="display:flex;align-items:center;gap:8px"><b style="font-size:14px">🏠 ห้องออกแบบ</b>'
     +'<span style="color:var(--ink-dim);font-size:11px">ลากตู้ = แม่เหล็กติดผนัง · คลิกขวา = สี · R หมุน · Del ลบ</span>'
     +'<button class="ibtn" id="plClose" style="margin-left:auto">เสร็จ</button></div>'))
@@ -42445,7 +42563,7 @@ function plPanelSel(){
     +((g&&!plIsSide(inst))?('<div class="plRow plBtns" style="margin-top:6px">ฟิลเลอร์ '
       +'<button class="ibtn" id="plFL"'+(g.lo.gap>=3&&g.lo.gap<=600?'':' disabled')+'>◀ ปิดช่องซ้าย '+Math.max(g.lo.gap,0)+'</button>'
       +'<button class="ibtn" id="plFR"'+(g.hi.gap>=3&&g.hi.gap<=600?'':' disabled')+'>ปิดช่องขวา '+Math.max(g.hi.gap,0)+' ▶</button></div>'):'')
-    +((g&&!plIsSide(inst)&&!plIsLightPanel(inst)&&plKindOf(code)!=="filler"&&/^(base|wall|tall)$/.test(plLevelOf(code)))?('<div class="plRow plBtns" style="margin-top:4px" title="แผ่นปิดข้างตู้ ('+({base:'BFF',wall:'WFF',tall:'TFF'})[plLevelOf(code)]+'###) — สูงตามตู้ ลึกเสมอบาน · ลงพื้น/ถึงฝ้า ตามแผงห้อง">แผ่นปิดข้าง '   // v1.317
+    +((g&&!plIsSide(inst)&&!plIsLightPanel(inst)&&plKindOf(code)!=="filler"&&/^(base|wall|tall)$/.test(plSideLvOf(inst)))?('<div class="plRow plBtns" style="margin-top:4px" title="แผ่นปิดข้างตู้ ('+({base:'BFF',wall:'WFF',tall:'TFF'})[plSideLvOf(inst)]+'###) — สูงตามตู้ ลึกเสมอบาน · ลงพื้น/ถึงฝ้า ตามแผงห้อง">แผ่นปิดข้าง '   // v1.317
       +'<button class="ibtn" id="plSdL"'+(g.lo.gap>=10?'':' disabled')+'>◀ ซ้าย</button><button class="ibtn" id="plSdR"'+(g.hi.gap>=10?'':' disabled')+'>ขวา ▶</button></div>'):'')
     +(plIsSide(inst)?(()=>{ const lv3=plLevelOf(code), bm=plSideBotOf(inst), tm=plSideTopOf(inst), ho=plSideHost(inst), cy=plSideCeilY();   // v1.317
       return '<div class="plRow plBtns" style="margin-top:6px">แผ่นปิดข้าง'+(ho?(' <span style="font-size:10.5px;color:var(--ink-dim)">ปิด '+escapeHtml(plFp(plBoardsOf(ho.inst)).code)+'</span>'):' <span style="font-size:10.5px;color:#d33">ไม่ได้ชิดตู้</span>')
@@ -44050,7 +44168,7 @@ function dwgDoorIsDesign(b){ if(snOff("dwgDoorOnlyCode")) return true; try{ if(d
   let c=""; try{ c=String(doorShapeCode(b)||"").trim(); }catch(e){} return /^[A-Za-z][^_\s]*$/.test(c); }
 function dwgDoorSvg(b,opt){ const e=v=>Math.round(v*10)/10;
   let L=Math.max(+b.L||400,40), W=Math.max(+b.W||700,40); const T=Math.max(+b.T||18,1), smp=!!(opt&&opt.sample);
-  if(smp){ let _ar=null; try{ _ar=doorArtOf(b); }catch(e){} if(_ar){ const k=Math.min(DWG_DOOR_SAMPLE.L/L,DWG_DOOR_SAMPLE.W/W); L*=k; W*=k; } else { L=DWG_DOOR_SAMPLE.L; W=DWG_DOOR_SAMPLE.W; } }
+  if(smp){ const _S=(opt&&opt.size)||DWG_DOOR_SAMPLE; /* v1.613: กล่องสีใช้บานตัวอย่างแนวตั้ง */ let _ar=null; try{ _ar=doorArtOf(b); }catch(e){} if(_ar){ const k=Math.min(_S.L/L,_S.W/W); L*=k; W*=k; } else { L=_S.L; W=_S.W; } }
   let prof=null, cut=null, bev=[], es=null;
   try{ const c=doorShapeCode(b); if(c) prof=doorReliefProfiles()[String(c).toUpperCase()]||null; }catch(e){}
   try{ cut=doorReliefCutOf(b); }catch(e){}
@@ -46166,6 +46284,7 @@ function plColorCSS(){
     +"#plColor .pcT:hover{border-color:var(--line)}#plColor .pcT.on{border-color:var(--accent)}"
     +"#plColor .pcSw{aspect-ratio:1;border-radius:7px;background:rgba(127,127,127,.12) center/cover no-repeat;display:flex;align-items:center;justify-content:center;color:var(--ink-dim);font-size:9.5px;text-align:center;overflow:hidden;box-shadow:inset 0 0 0 1px rgba(0,0,0,.08)}"
     +"#plColor .pcSw.pcShp{padding:5px}#plColor .pcSw.pcShp svg{width:100%;height:100%;display:block}"   /* v1.591: รูปแบบบาน */
+    +"#plColor.pcBig{width:820px;max-height:90vh}#plColor.pcBig .pcGrid{grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}#plColor.pcBig .pcSw.pcShp{aspect-ratio:3/4;padding:10px}#plColor.pcBig .pcT b{font-size:12.5px;text-align:center}#plColor.pcBig .pcT small{text-align:center;font-size:10.5px}"   /* v1.613: แท็บแบบบาน */
     +"#plColor .pcT b{font-size:10.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-family:var(--mono)}"
     +"#plColor .pcT small{font-size:9.5px;color:var(--ink-dim);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-height:12px}";
     document.head.appendChild(st); }
@@ -46179,6 +46298,12 @@ function plColorCSS(){
      วาดทีละรหัส (plShapeSvg): ใส่รหัสในช่องของกลุ่มนั้นชั่วคราว (state.cabColors[root]) → dwgDoorSvg → คืนค่าเดิมทันที (ไม่ sync · ไม่เข้า undo)
      แคชตามตัวแทน+ขนาด+รหัส (_plShapeC) · ปิด SN_OFF.plShapeThumb */
 const _plShapeC=new Map();
+/* ───────── v1.613: แท็บแบบบาน เห็นหน้าบานชัดขึ้น ─────────
+   ผู้ใช้ 2/11 19:42 (ภาพแท็บ FrontShape ตู้ MWA021 การ์ดเล็ก บานเป็นเส้นตั้ง): “หน้านี้น่าจะต้องปรับ UI ให้มองเห็นหน้าบานได้ใหญ่ขึ้นครับ ผมมองแท็บไม่เห็นเลยบานหน้าตาแบบไหน”
+   เดิม: กล่องกว้าง 440 การ์ดจัตุรัส 4 ช่อง และวาดตามขนาดจริงของบานตัวแทน ตู้เสื้อผ้า 445×2197 จึงเหลือเส้นตั้งแคบ ๆ
+   ตอนนี้: เฉพาะแท็บแบบบาน กล่องขยายกว้าง 820 สูง 90% ของจอ การ์ดแนวตั้ง · ทุกแบบวาดบานตัวอย่าง PL_SHAPE_SAMPLE ขนาดเดียวกัน (ร่อง/กรอบ/กระจก ยังวัด มม. จริงจากขอบ)
+     เลือกแบบแล้วตำแหน่งเลื่อนไม่กระโดดกลับบนสุด · เปิดแท็บ = เลื่อนไปหาแบบที่ใช้อยู่ · ไม่โชว์คำว่า (from XML) · แท็บอื่นขนาดเดิม · ปิด SN_OFF.plShapeBig=1 */
+const PL_SHAPE_SAMPLE={L:450,W:800};
 function plShapeSwap(root,names,val,fn){ const cc=state.cabColors[root]=state.cabColors[root]||{}, old={};
   names.forEach(nm=>{ old[nm]=Object.prototype.hasOwnProperty.call(cc,nm)?cc[nm]:undefined; cc[nm]=val; });
   try{ return fn(); } finally{ names.forEach(nm=>{ if(old[nm]===undefined) delete cc[nm]; else cc[nm]=old[nm]; }); } }
@@ -46190,7 +46315,7 @@ function plShapeRep(insts,names){ if(snOff("plShapeThumb")) return null; const w
   return best; }
 function plShapeSvg(rep,names,code){ if(!rep) return ""; const b=rep.b, k=[b.id,Math.round(+b.L||0),Math.round(+b.W||0),Math.round(+b.T||0),names.join(","),code].join("|");
   if(_plShapeC.has(k)) return _plShapeC.get(k);
-  let svg=""; try{ svg=plShapeSwap(rep.root,names,code,()=>dwgDoorSvg(b)); }catch(e){ console.error("plShapeSvg:",e); svg=""; }
+  let svg=""; try{ svg=plShapeSwap(rep.root,names,code,()=>dwgDoorSvg(b,snOff("plShapeBig")?undefined:{sample:true,size:PL_SHAPE_SAMPLE})); }catch(e){ console.error("plShapeSvg:",e); svg=""; }   /* v1.613 */
   if(_plShapeC.size>400) _plShapeC.clear(); _plShapeC.set(k,svg); return svg; }
 function plColorOpen(inst,x,y){
   plColorClose();
@@ -46202,12 +46327,17 @@ function plColorOpen(inst,x,y){
   PLC.inst=inst;
   plColorCSS();
   const el=document.createElement("div"); el.id="plColor"; document.body.appendChild(el); PLC.el=el;
-  const W=Math.min(440,innerWidth*0.94), H=Math.min(innerHeight*0.74,560);
-  el.style.left=Math.max(8,Math.min((x!=null?x:innerWidth/2-W/2),innerWidth-W-8))+"px";
-  el.style.top=Math.max(8,Math.min((y!=null?y:120),innerHeight-H-8))+"px";
+  /* v1.613: กล่องกว้างขึ้นเมื่ออยู่แท็บแบบบาน จึงจัดตำแหน่งใหม่ทุกครั้งที่สลับ ไม่ให้ล้นจอ */
+  const place=big=>{ el.classList.toggle("pcBig",!!big); const W=Math.min(big?820:440,innerWidth*0.94), H=big?innerHeight*0.9:Math.min(innerHeight*0.74,560);
+    el.style.left=Math.max(8,Math.min((x!=null?x:innerWidth/2-W/2),innerWidth-W-8))+"px";
+    el.style.top=Math.max(8,Math.min((y!=null?y:120),innerHeight-H-8))+"px"; };
+  place(false);
+  let _pcFam=null;   /* v1.613: แท็บที่วาดล่าสุด — แท็บเดิม = คงตำแหน่งเลื่อน */
   const desc=c=>{ const r=(((settings.elements||{}).colors)||[]).find(z=>z&&String(z.code).trim()===c); return (r&&r.desc)||((surfDef(c)||{}).desc)||""; };
   const draw=()=>{
     const f=gs.find(z=>z.key===PLC.fam);
+    const _g0=el.querySelector(".pcGrid"), _st0=_g0?_g0.scrollTop:0, _same=_pcFam===PLC.fam; _pcFam=PLC.fam;   /* v1.613 */
+    const _isShp=!!(f&&/shape/i.test(f.key)), dsc=o=>{ const t=desc(o); return (_isShp&&/from\s*XML/i.test(t))?"":t; };   /* v1.613 */
     const q=String(PLC.q||"").trim().toUpperCase();
     const opts=f?f.opts.filter(o=>!q||String(o).toUpperCase().indexOf(q)>=0||String(desc(o)).toUpperCase().indexOf(q)>=0):[];
     el.innerHTML='<div class="pcHd"><b style="font-size:13.5px">🎨 สี — '+escapeHtml(code)+'</b>'
@@ -46222,7 +46352,7 @@ function plColorOpen(inst,x,y){
         +'<span style="color:var(--ink-dim)">ตอนนี้ <b style="font-family:var(--mono);color:var(--ink)">'+escapeHtml((f&&f.cur)||"—")+'</b>'+(f&&f.mixed?' <span style="color:#e58a24">+ปน</span>':'')+'</span></div>'
         +(whole?'<div style="padding:4px 12px 0;color:var(--ink-dim);font-size:10.5px">กดสี = ตู้ทุกใบในออเดอร์ที่มีช่องนี้ได้สีนี้'+(PLC.split?'':' ทุกบาน')+'</div>':'')
         +'<div class="pcGrid">'+(opts.length?opts.map((o,i)=>'<div class="pcT'+(f&&o===f.cur?" on":"")+'" data-i="'+i+'" title="'+escapeHtml(o+(desc(o)?(" · "+desc(o)):""))+'">'
-            +'<div class="pcSw" data-c="'+escapeHtml(o)+'">…</div><b>'+escapeHtml(o)+'</b><small>'+escapeHtml(desc(o))+'</small></div>').join("")
+            +'<div class="pcSw" data-c="'+escapeHtml(o)+'">…</div><b>'+escapeHtml(o)+'</b><small>'+escapeHtml(dsc(o))+'</small></div>').join("")
           :'<div style="grid-column:1/-1;color:var(--ink-dim)">ไม่พบสีที่ค้น</div>')+'</div>')
       :'<div style="padding:14px 12px;color:var(--ink-dim);line-height:1.6">'+(whole?'ออเดอร์นี้':'ตู้ใบนี้')+'ไม่มีช่องสีให้เลือก — ตัวเลือกของ Family ต้องเป็นรหัสที่อยู่ใน Element → Colors หรือ Surfaces</div>');
     el.querySelector("#pcX").onclick=plColorClose;
@@ -46243,8 +46373,11 @@ function plColorOpen(inst,x,y){
     /* รูปย่อทยอยขึ้นทีละ 6 ใบ — รายการสีมีได้เป็นร้อย */
     const sws=[...el.querySelectorAll(".pcSw")]; let k=0;
     /* v1.591: แท็บแบบบาน = ภาพเส้นแบบบาน */
+    let _big=false;   /* v1.613 */
     if(f&&/shape/i.test(f.key)&&!snOff("plShapeThumb")){ const rep=plShapeRep(targets(),f.names);
-      if(rep){ sws.forEach(sw=>{ const svg=plShapeSvg(rep,f.names,sw.dataset.c); if(svg){ sw.innerHTML=svg; sw.style.background="#fff"; sw.classList.add("pcShp"); } }); k=sws.length; } }
+      if(rep){ sws.forEach(sw=>{ const svg=plShapeSvg(rep,f.names,sw.dataset.c); if(svg){ sw.innerHTML=svg; sw.style.background="#fff"; sw.classList.add("pcShp"); } }); k=sws.length; _big=!snOff("plShapeBig"); } }
+    place(_big);
+    { const g2=el.querySelector(".pcGrid"); if(g2){ if(_same) g2.scrollTop=_st0; else { const on=el.querySelector(".pcT.on"); if(on) g2.scrollTop=Math.max(0,on.offsetTop-g2.offsetTop-10); } } }   /* v1.613: เลือกแล้วไม่เด้งกลับบนสุด · เปิดแท็บ = เห็นแบบที่ใช้อยู่ */
     const next=async()=>{ while(k<sws.length){ const sw=sws[k++]; if(!sw.isConnected) return;
       let s=null; try{ s=await plSwatchOf(sw.dataset.c); }catch(e){}
       if(!sw.isConnected) return;
