@@ -3283,7 +3283,7 @@ body[data-theme="dark"] .splash-dots span{background:rgba(255,255,255,.25)}
    ===================================================================== */
 /* ---- APP_META: แหล่งความจริงเดียวของเวอร์ชัน (ดูได้จาก console / คลิกชื่อแอป) ---- */
 const APP_META={
-  name:"StarNexus", version:"1.618", build:"2026-11-02/door-pick",
+  name:"StarNexus", version:"1.619", build:"2026-11-02/pc-rgb",
   file:"StarNexus.html", basedOn:"Furnitech_V3.html (v3.11)",
   /* ───────── เริ่มนับเวอร์ชันใหม่ที่ 1.001 (21/08/2026) ─────────
      ของเดิมนับมาถึง 42.1 แล้ววิ่งเป็นทศนิยมสองชั้นซึ่งอ่านลำดับยาก
@@ -3291,6 +3291,7 @@ const APP_META={
      ประวัติเก่าเก็บไว้ทั้งหมดตามเลขเดิม ไม่ไล่เขียนใหม่ เพราะเลขในนั้นถูกอ้างถึงไปแล้ว
      รายการที่อยู่ใต้ 1.001 ลงไปจึงเป็นเลขชุดเก่า อ่านต่อกันได้ตามวันที่ */
   changelog:[
+    ["1.619","2026-11-02","FEAT หมวด ห้องทำงาน · คอม (ผู้ใช้ 20:27 “เพิ่มโต๊ะคอมให้ด้วยครับผม คอม มี RGB พัดลมทำได้ปะ”) — โต๊ะคอมครบชุด (จอ คีย์บอร์ดไฟ เมาส์ เคสกระจก) เลือกเหลือจอหรือโต๊ะเปล่าได้ · คอม RGB แยกชิ้น วางพื้นหรือตั้งระดับเองได้ · พัดลมหมุน ไฟวงแหวนวิ่งสีรุ้ง ตั้งเป็นไฟนิ่งได้ · หยุดเองในโหมดประหยัด โหมดสมจริง และตอนสลับหน้าจอ"],
     ["1.618","2026-11-02","UX กล่องสี แยกทีละบาน (ผู้ใช้ 20:25 “ตอนแยกคนละบาน เลือกได้ไหม ติ๊กเลือก ตอนเลือกควรมี highlight ให้รู้ว่าบานไหน”) — เดิมเป็นแท็บ FrontColor1–6 / FrontShape1–6 ไม่รู้ว่าเลขไหนคือบานไหน ตอนนี้แท็บรวม + แถวติ๊ก บาน 1, บาน 2 … · บานที่ติ๊กเป็นสีฟ้าในจอ มีเลขกำกับทุกบาน · ชี้ที่ช่องติ๊ก = บานนั้นเป็นสีส้ม · คลิกบานในจอก็ติ๊กได้ · หมุนกล้องได้โดยกล่องไม่ปิด · สีและแนวลายเปลี่ยนเฉพาะบานที่ติ๊ก"],
     ["1.617","2026-11-02","FEAT หมวด ห้องรับแขก เบื้องต้น (ผู้ใช้ 20:22 “เพิ่มของห้องรับแขกไว้ด้วย”) — โซฟา 2 / 3 ที่นั่ง อาร์มแชร์ (เบาะมุมมน หมอนอิง เลือกสีได้) โต๊ะกลาง โต๊ะข้าง ชั้นวางทีวี ต้นไม้ในกระถาง · โซฟาและชั้นวางดูดชิดผนัง · Ctrl+C/V ใช้ได้ · ฉากซ่อนตู้ไม่ซ่อน"],
     ["1.616","2026-11-02","FEAT สตูลนั่ง ในหมวดห้องนอน (ผู้ใช้ 20:22 “STOOL นั่งละครับ”) — เบาะกลม Ø400 สูง 450 ขาไม้ 4 ขา เลือกสีเบาะได้ · คลิกการ์ดแล้ววางหน้าโต๊ะเครื่องแป้งที่ยังไม่มีสตูลให้เอง · ไม่มีโต๊ะ = กลางห้อง ลากเองได้"],
@@ -30384,6 +30385,7 @@ function boardRole(b){
      SN_OFF.plSideOther=1 ตู้นอกหมวด B/W/T ไม่มีปุ่มแผ่นปิดข้าง (v1.613)
      SN_OFF.plProps=1     ซ่อนการ์ดของห้องนอนและทีวีในแคตตาล็อก ชิ้นที่วางแล้วยังวาดอยู่ (v1.614)
      SN_OFF.plDoorPick=1  แยกทีละบานในกล่องสี กลับเป็นแท็บ FrontColor1–6 แบบเดิม ไม่มีติ๊ก ไม่มีไฮไลต์ (v1.618)
+     SN_OFF.plRgbAnim=1   พัดลมคอมไม่หมุน ไฟ RGB นิ่ง (v1.619)
      SN_OFF.plClip=1      ปิด Ctrl+C / Ctrl+V ในห้องออกแบบ (v1.613)
      SN_OFF.plShapeBig=1  แท็บแบบบานในกล่องสี ขนาดการ์ดเล็กและวาดตามสัดส่วนจริงแบบเดิม (v1.613)
      SN_OFF.rndView=1     AI RENDER เปิดโหมดสมจริงทุกครั้งแบบเดิม ไม่มีแถวภาพตั้งต้น (v1.611)
@@ -38771,6 +38773,12 @@ const PLO_T={
   stable:{n:"โต๊ะข้าง", ic:"🟤", w:450, h:520, d:450, appl:"floor", prop:1, room:"living"},
   tvcon:{n:"ชั้นวางทีวี", ic:"🗄", w:1800, h:450, d:400, appl:"floor", snap:1, prop:1, room:"living"},
   plant:{n:"ต้นไม้ในกระถาง", s:"ต้นไม้", ic:"🌿", w:450, h:1500, d:450, appl:"floor", prop:1, room:"living"},
+  /* ───────── v1.619: โต๊ะคอม + คอม RGB ─────────
+     ผู้ใช้ 2/11 20:27: “เพิ่มโต๊ะคอมให้ด้วยครับผม คอม มี RGB พัดลมทำได้ปะ”
+     pcdesk = โต๊ะ ดูดชิดผนัง o.dset: ไม่ตั้ง = ครบชุด · "mon" = จอ + คีย์บอร์ด · "none" = โต๊ะเปล่า · คอมบนโต๊ะขยับตามโต๊ะ
+     pcase = เคสตู้กระจก หน้า = +Z กระจกหน้าและซ้าย · o.y ตั้งระดับวางได้ · o.rgb="off" = ไฟนิ่ง พัดลมไม่หมุน · ขนาดเป็นค่าทั่วไป แก้ที่แผงได้ */
+  pcdesk:{n:"โต๊ะคอม + คอม RGB", s:"โต๊ะคอม", ic:"🖥", w:1400, h:750, d:700, appl:"floor", pcdesk:1, snap:1, prop:1},
+  pctower:{n:"คอม RGB เคสกระจก", s:"คอม RGB", ic:"🖥", w:230, h:470, d:450, appl:"floor", pcase:1, prop:1},
   ac:{n:"แอร์ติดผนัง", ic:"❄", w:800, h:280, d:210, sill:2100, wall:1, appl:"wall", ac:1, prop:1},
   tv43:{n:"SAMSUNG 43 นิ้ว", s:"ทีวี SAMSUNG 43\"", ic:"📺", w:957, h:558, d:76, sill:950, wall:1, appl:"wall", tv:1, prop:1},
   tv55:{n:"SAMSUNG 55 นิ้ว", s:"ทีวี SAMSUNG 55\"", ic:"📺", w:1225, h:709, d:77, sill:800, wall:1, appl:"wall", tv:1, prop:1},
@@ -38992,6 +39000,10 @@ function plaIcon(k,s,e){ const F='fill="rgba(160,170,180,.35)"';
     return s+'<rect x="'+(40-hw)+'" y="8" width="'+(2*hw)+'" height="64" rx="3"/><path d="M'+(40-hw)+' 16h'+(2*hw)+'" stroke-width="5"/>'+pl.map(p=>'<rect x="'+(p[0]-p[1]/2)+'" y="20" width="'+p[1]+'" height="11" rx="4" '+F+'/>').join("")+'<path d="M'+(40-hw)+' 38h'+(2*hw)+'"/><rect x="'+(40-hw)+'" y="38" width="'+(2*hw)+'" height="34" rx="3" fill="rgba(160,170,180,.2)"/>'+e; }
   if(k==="nstand") return s+'<rect x="20" y="20" width="40" height="42" rx="2"/><path d="M20 41h40"/><path d="M36 30h8M36 51h8" stroke-width="4"/><path d="M25 62v10M55 62v10"/>'+e;
   if(k==="dress") return s+'<rect x="26" y="8" width="28" height="30" rx="14" fill="rgba(159,199,216,.35)"/><rect x="10" y="38" width="60" height="7"/><rect x="12" y="45" width="20" height="16"/><path d="M12 45v27M68 45v27"/><path d="M18 53h8" stroke-width="3"/>'+e;
+  /* v1.619: คอม */
+  if(k==="pctower"||k==="pcdesk"){ const r=[["#ff2d55",16],["#18c964",32],["#2f7bff",48]], tw=k==="pctower", x=tw?28:53, y=tw?10:30, W=tw?24:19, H=tw?60:38, R=tw?7:4.500;
+    const cs='<rect x="'+x+'" y="'+y+'" width="'+W+'" height="'+H+'" rx="2" fill="rgba(20,22,30,.9)"/>'+r.map((q,i)=>'<circle cx="'+(x+W/2)+'" cy="'+(y+H*(i+.62)/3.3)+'" r="'+R+'" stroke="'+q[0]+'" stroke-width="2.200" fill="none"/>').join("");
+    return s+(tw?'':'<rect x="6" y="10" width="44" height="28" rx="2"/><path d="M28 38v9M19 48h18"/><path d="M4 68h72" stroke-width="5"/><path d="M12 70v8M68 70v8"/><rect x="15" y="60" width="28" height="5" rx="1" '+F+'/>')+cs+e; }
   /* v1.617: ห้องรับแขก */
   if(k==="sofa2"||k==="sofa3"||k==="armch"){ const n=k==="sofa3"?3:k==="sofa2"?2:1, sw=n===3?68:n===2?56:40, x0=40-sw/2, cw=(sw-12)/n; let c=""; for(let i=0;i<n;i++) c+='<rect x="'+(x0+6+i*cw)+'" y="40" width="'+cw+'" height="14" rx="3" '+F+'/>';
     return s+'<rect x="'+(x0+4)+'" y="20" width="'+(sw-8)+'" height="22" rx="5"/><rect x="'+x0+'" y="34" width="9" height="28" rx="4"/><rect x="'+(x0+sw-9)+'" y="34" width="9" height="28" rx="4"/>'+c+'<path d="M'+(x0+9)+' 54h'+(sw-18)+'v8h-'+(sw-18)+'"/><path d="M'+(x0+6)+' 62v6M'+(x0+sw-6)+' 62v6"/>'+e; }
@@ -39383,6 +39395,7 @@ function plaDepthRows(o,fr,num){ const R=plaDepthRef(o); if(!R) return "";
   return fr("ห่างหน้าท็อป",num("dF",R.dF,5)+'<span class="plU">มม.</span>',"ขอบหน้าเครื่อง → ขอบหน้าท็อป")
     +fr("ห่างหลัง",num("dB",R.dB,5)+'<span class="plU">มม.</span>'+(o.dF!=null?' <button class="ibtn" id="plaMidD" title="กลับไปกึ่งกลางความลึกตู้ (ค่าตั้งต้น)">↺ กลาง</button>':''),"ขอบหลังเครื่อง → ขอบหลังท็อป (ผนัง)"); }
 function plaPk(o,T,th){ const w=Math.max(+o.w||T.w,20), h=Math.max(+o.h||T.h,5), d=Math.max(+o.d||T.d,20), y=Math.max(+o.y||0,0);
+  if(T.pcdesk&&o.dset!=="none") return [w,h+520,d,y,0];   /* v1.619: คลิกจอ/เคสบนโต๊ะก็เลือกได้ */
   if(T.appl==="wall") return [w,h,d,Math.max(+o.sill||0,0),th/2+d/2];
   if(/^(sink|sink2|sink1|sinku|hob|hobi|hobd)$/.test(o.k)) return [w,40,d,y-10,0];   /* v1.565: + ซิงค์เดี่ยว/ใต้ท็อป/เตา 30 ซม. */
   if(o.k==="hood1") return [w,60,d,y-40,0]; if(o.k==="hood2") return [w,h,d,y-h,0];
@@ -39441,6 +39454,44 @@ function plaPillowGeo(W,D,T,seed){ const key=[Math.round(W),Math.round(D),Math.r
     if(si===0) idx.push(a,c,b,b,c,e); else idx.push(a,b,c,b,e,c); } });
   const g=new THREE.BufferGeometry(); g.setAttribute("position",new THREE.Float32BufferAttribute(pos,3)); g.setAttribute("color",new THREE.Float32BufferAttribute(col,3)); g.setIndex(idx); g.computeVertexNormals();
   if(_plaPilG.size>24) _plaPilG.clear(); _plaPilG.set(key,g); return g; }
+/* ───────── v1.619: คอม RGB ─────────
+   ไฟทุกจุดใช้แถบสีรุ้งใบเดียวกัน (plaRgbTex) เลื่อน offset ใบเดียว ไฟวิ่งพร้อมกันทั้งเครื่อง ไม่ต้องไล่เปลี่ยนสีทีละชิ้น
+   ใบพัดอยู่ในกลุ่มที่ติดป้าย userData.rgbSpin · plaRgbTick หมุนราว 14 ครั้ง/วินาที และสั่งวาดเฉพาะเมื่อมีใบพัดในห้อง
+   หยุดเอง: ไม่ได้เปิดห้อง · โหมดประหยัด · โหมดสมจริง (ภาพจะสะสมไม่ได้) · แท็บถูกซ่อน · ลิงก์ดูงานได้ภาพนิ่ง · ปิด SN_OFF.plRgbAnim=1 */
+function plaRgbTex(){ if(window._rgbTex) return window._rgbTex; const cv=document.createElement("canvas"); cv.width=256; cv.height=4; const x=cv.getContext("2d"), g=x.createLinearGradient(0,0,256,0);
+  ["#ff0040","#ff7a00","#ffe600","#18ff5a","#00e5ff","#2f5bff","#b000ff","#ff0040"].forEach((c,i,a)=>g.addColorStop(i/(a.length-1),c)); x.fillStyle=g; x.fillRect(0,0,256,4);
+  const t=new THREE.CanvasTexture(cv); t.encoding=THREE.sRGBEncoding; t.wrapS=THREE.RepeatWrapping; t.needsUpdate=true; window._rgbTex=t; return t; }
+function plaRgbTick(){ try{ if(snOff("plRgbAnim")||typeof PL==="undefined"||!PL.on||!PL.grp||state.eco||document.hidden||(typeof REAL!=="undefined"&&REAL.on)) return;
+    let n=0; PL.grp.traverse(x=>{ if(x.userData&&x.userData.rgbSpin){ x.rotation.z-=.42; n++; } }); if(!n) return;
+    if(window._rgbTex) window._rgbTex.offset.x=(window._rgbTex.offset.x+.014)%1; invalidate(); }catch(e){} }
+function plaFanBladeGeo(){ if(window._fanBladeG) return window._fanBladeG; const s=new THREE.Shape(); s.moveTo(.11,-.05); s.quadraticCurveTo(.3,-.12,.43,.01); s.quadraticCurveTo(.34,.15,.11,.08); s.closePath(); const g=new THREE.ShapeGeometry(s,8); window._fanBladeG=g; return g; }
+function plaPcFan(G,M,x,y,z,S,spin,ry){ const g=new THREE.Group(); g.position.set(x,y,z); if(ry) g.rotation.y=ry;
+  const fr=new THREE.Mesh(plaSoftBoxGeo(S,S,20,8),M(0x101114,{roughness:.5})); fr.position.z=-10; g.add(fr);
+  const rgb=new THREE.MeshBasicMaterial({map:plaRgbTex()}), ring=new THREE.Mesh(new THREE.TorusGeometry(S*.455,S*.032,10,56),rgb); ring.position.z=1; g.add(ring);
+  const r2=new THREE.Mesh(new THREE.TorusGeometry(S*.17,S*.012,8,36),rgb); r2.position.z=2; g.add(r2);
+  const hub=new THREE.Mesh(new THREE.CylinderGeometry(S*.15,S*.15,6,28),M(0x1b1c20,{roughness:.4})); hub.rotation.x=Math.PI/2; hub.position.z=4; g.add(hub);
+  const sp=new THREE.Group(), bl=new THREE.MeshStandardMaterial({color:0xc4c9d6,roughness:.4,transparent:true,opacity:.72,emissive:0x2a1a55,emissiveIntensity:.8,side:THREE.DoubleSide,depthWrite:false});
+  for(let i=0;i<7;i++){ const m=new THREE.Mesh(plaFanBladeGeo(),bl); m.scale.set(S,S,1); m.rotation.z=i*Math.PI*2/7; sp.add(m); } sp.position.z=1.5; if(spin) sp.userData.rgbSpin=1; g.add(sp);
+  G.add(g); return g; }
+function plaPcCase(G,M,box,cx,y0,cz,w,h,d,spin){ const blk=M(0x0f1013,{roughness:.42,metalness:.35}), inr=M(0x17161d,{roughness:.6,emissive:0x1a1240,emissiveIntensity:.42}), gpu=M(0x1d1f25,{roughness:.35,metalness:.5}), rgb=new THREE.MeshBasicMaterial({map:plaRgbTex()});
+  const B=(sx,sy,sz,x,y,z,m)=>box(sx,sy,sz,cx+x,y0+y,cz+z,m);
+  B(w,14,d,0,7,0,blk); B(w,14,d,0,h-7,0,blk); B(3,h-8,d-4,w/2-1.5,h/2,0,blk); B(w-4,h-8,3,0,h/2,-d/2+1.5,blk); B(4,h-28,d-12,w/2-6,h/2,0,inr); B(w-14,h-28,4,0,h/2,-d/2+6,inr);                                 // ฐาน ฝา แผงข้าง/หลังนอกสีดำ · แผ่นด้านในเรืองไฟ
+  const sh=Math.min(74,h*.16); B(w-8,sh,d-34,0,14+sh/2,-8,blk); B(w-40,6,3,0,14+sh-14,d/2-26,rgb);                                        // ช่องพาวเวอร์ + แถบไฟ
+  [[-1,-1],[1,-1],[-1,1],[1,1]].forEach(q=>B(10,h-28,10,q[0]*(w/2-5),h/2,q[1]*(d/2-5),blk));                                                 // เสามุม
+  const S=Math.min(120,(h-14*2-sh)/3.1,w-30), base=14+sh+6; for(let i=0;i<3;i++) plaPcFan(G,M,cx-4,y0+base+S/2+i*(S+4),cz+d/2-34,S,spin);   // พัดลมหน้า 3 ตัว
+  plaPcFan(G,M,cx-6,y0+h-14-S*.5-6,cz-d/2+30,S*.9,spin);                                                                                     // พัดลมหลัง
+  plaPcFan(G,M,cx+w/2-26,y0+h-S*1.25,cz-20,Math.min(S*.62,78),spin,-Math.PI/2);                                                              // หัวปั๊ม CPU (หันเข้ากระจกข้าง)
+  const gw=w*.62, gh=Math.min(46,h*.1), gd=d*.62, gy=base+Math.min(96,h*.2), gx=w/2-5-gw/2; B(gw,gh,gd,gx,gy,-16,gpu); B(2,Math.min(9,gh*.25),gd-30,gx-gw/2-1,gy,-16,rgb);    // การ์ดจอ + แถบไฟ
+  for(let i=0;i<3;i++){ const rx=w/2-30-i*11, ry=h-S*.62; B(6,62,130,rx,ry-S*.75,62,gpu); B(2,10,130,rx-4,ry-S*.75+22,62,rgb); }              // แรม
+  const gl=new THREE.MeshStandardMaterial({color:0xaab4c4,roughness:.06,metalness:.1,transparent:true,opacity:.14,depthWrite:false});
+  B(w-12,h-28,3,0,h/2,d/2-2,gl); B(3,h-28,d-12,-w/2+2,h/2,0,gl); }                                                                           // กระจกหน้า + ข้าง
+function plaPcScrTex(){ if(window._pcScrTex) return window._pcScrTex; const cv=document.createElement("canvas"); cv.width=1024; cv.height=576; const x=cv.getContext("2d"), g=x.createLinearGradient(0,0,1024,576);
+  g.addColorStop(0,"#120a3a"); g.addColorStop(.5,"#2a1a7c"); g.addColorStop(1,"#0b3a6e"); x.fillStyle=g; x.fillRect(0,0,1024,576);
+  [["#ff2d9a",170],["#7a4dff",250],["#22d3ee",335]].forEach(q=>{ x.beginPath(); for(let i=0;i<=1024;i+=8) x.lineTo(i,q[1]+Math.sin(i/120+q[1])*70+Math.sin(i/41)*16); x.strokeStyle=q[0]; x.lineWidth=9; x.globalAlpha=.65; x.stroke(); }); x.globalAlpha=1;
+  x.fillStyle="rgba(8,10,20,.72)"; x.fillRect(0,546,1024,30); const t=new THREE.CanvasTexture(cv); t.encoding=THREE.sRGBEncoding; t.needsUpdate=true; window._pcScrTex=t; return t; }
+function plaKbTex(){ if(window._kbTex) return window._kbTex; const cv=document.createElement("canvas"); cv.width=512; cv.height=168; const x=cv.getContext("2d"); x.fillStyle="#0c0d10"; x.fillRect(0,0,512,168);
+  for(let r=0;r<5;r++) for(let c=0;c<17;c++){ const px=8+c*29, py=8+r*31; x.fillStyle="hsl("+Math.round((c*18+r*14)%360)+",95%,58%)"; x.fillRect(px,py,25,27); x.fillStyle="#17181d"; x.fillRect(px+3,py+3,19,19); }
+  const t=new THREE.CanvasTexture(cv); t.encoding=THREE.sRGBEncoding; t.needsUpdate=true; window._kbTex=t; return t; }
 /* ───────── v1.617: กล่องมุมมน (เบาะโซฟา) ─────────
    three r128 ไม่มี RoundedBoxGeometry · แบ่งกล่องแล้วดันจุดออกจากกล่องใน ตั้งแกนตั้งฉากตามทิศจริง จึงเรียบไม่มีรอยต่อ · ขนาดเดียวกันใช้ตาข่ายร่วมกัน */
 const _plaSoftG=new Map();
@@ -39476,6 +39527,20 @@ function plaPropMesh(o,T,G,box,M,cyl,y0,w,h,d,k){
     box(w,tT,d,0,y0+tH-tT/2,0,wood); [[-1,-1],[1,-1],[-1,1],[1,1]].forEach(q=>box(34,tH-tT,34,q[0]*(w/2-22),y0+(tH-tT)/2,q[1]*(d/2-22),legM));
     box(dw,dh,d-20,-w/2+dw/2+4,y0+tH-tT-dh/2,0,wood); [0,1].forEach(i=>{ const cy=y0+tH-tT-8-(dh-16)/4-i*((dh-16)/2); box(dw-14,(dh-30)/2,8,-w/2+dw/2+4,cy,d/2-6,woodL); cyl(8,8,14,-w/2+dw/2+4,cy,d/2+4,knob,true); });
     box(mw,mH,24,0,mY,zb+22,wood); box(mw-44,mH-44,3,0,mY,zb+36,mir); return true; }
+  /* v1.619: คอม */
+  if(T.pcase){ if(!window._rgbTick) window._rgbTick=setInterval(plaRgbTick,70); plaPcCase(G,M,box,0,y0,0,w,h,d,o.rgb!=="off"); return true; }
+  if(T.pcdesk){ const tT=32, tH=Math.max(h,300), blk=M(0x16171b,{roughness:.42,metalness:.45}), set=o.dset||"", zb=-d/2, rgb=new THREE.MeshBasicMaterial({map:plaRgbTex()});
+    box(w,tT,d,0,y0+tH-tT/2,0,wood); const pz=d/2-90;
+    [-1,1].forEach(sx=>{ const lx=sx*(w/2-90); box(70,tH-tT-22,60,lx,y0+22+(tH-tT-22)/2,0,blk); box(70,22,d-60,lx,y0+11,0,blk); box(60,16,d-120,lx,y0+tH-tT-8,0,blk); });     // ขาโต๊ะ
+    box(w-240,70,24,0,y0+tH-tT-90,zb+70,blk); box(w-60,6,3,0,y0+tH-tT-4,zb+6,rgb);                                                                                           // คานหลัง + แถบไฟใต้โต๊ะ
+    if(set!=="none"){ const yT=y0+tH, hasPc=set!==("mon")&&w>=1000, mw=Math.min(w*.46,720), mh=mw*9/16, mx=hasPc?-w*.1:0, mz=zb+150, sk=M(0x101114,{roughness:.35,metalness:.3});
+      box(mw,mh,26,mx,yT+150+mh/2,mz,sk); const sc=new THREE.Mesh(new THREE.PlaneGeometry(mw-14,mh-14),new THREE.MeshBasicMaterial({map:plaPcScrTex()})); sc.position.set(mx,yT+150+mh/2,mz+13.6); G.add(sc);   // จอ
+      box(46,170,30,mx,yT+85,mz-28,sk); box(250,12,180,mx,yT+6,mz-22,sk);                                                                                                       // ขาจอ
+      box(Math.min(w*.3,440),4,Math.min(d*.42,300)+60,mx+30,yT+2,pz-40,M(0x18191e,{roughness:.9}));                                                                                // แผ่นรองเมาส์
+      const kw=Math.min(w*.3,400), kd=kw*.32; box(kw+10,18,kd+10,mx-30,yT+13,pz-40,sk); const kb=new THREE.Mesh(new THREE.PlaneGeometry(kw,kd),new THREE.MeshBasicMaterial({map:plaKbTex()})); kb.rotation.x=-Math.PI/2; kb.position.set(mx-30,yT+22.5,pz-40); G.add(kb);   // คีย์บอร์ด
+      const ms=new THREE.Mesh(plaSoftBoxGeo(62,34,110,15),sk); ms.position.set(mx-30+kw/2+70,yT+21,pz-40); ms.castShadow=true; G.add(ms); box(4,3,44,mx-30+kw/2+70,yT+38,pz-60,rgb);   // เมาส์
+      if(hasPc){ if(!window._rgbTick) window._rgbTick=setInterval(plaRgbTick,70); const pw=230, pd=Math.min(450,d-60), ph=470; plaPcCase(G,M,box,w/2-pw/2-30,yT,zb+pd/2+16,pw,ph,pd,o.rgb!=="off"); } }
+    return true; }
   /* v1.617: โซฟา/อาร์มแชร์ — ฐาน พนัก ท้าวแขน เบาะนั่งแยกตามที่นั่ง หมอนอิงใช้ทรงหมอน 1.615 · หน้า = +Z */
   if(T.sofa){ const n=T.sofa, fab=M(C.c,{roughness:.95}), fab2=M(new THREE.Color(C.c).multiplyScalar(.88),{roughness:.96}), pil=M(new THREE.Color(C.c).lerp(new THREE.Color(0xe9e4d8),.55),{roughness:.96,vertexColors:true});
     const soft=(sx,sy,sz,x,y,z,r,mat)=>{ const m=new THREE.Mesh(plaSoftBoxGeo(sx,sy,sz,r),mat); m.position.set(x,y0+y,z); m.castShadow=true; m.receiveShadow=true; G.add(m); return m; };
@@ -39628,6 +39693,8 @@ function plaPanel(s,o){ const T=PLO_T[o.k]||{}, F=ploFrameOf(o), md=T.appl;
     +(md==="wall"?fr(T.tv?"ขอบล่างจอสูงจากพื้น":T.ac?"ก้นแอร์สูงจากพื้น":"ก้นฮู้ดสูงจากพื้น",num("sill",o.sill)+'<span class="plU">มม.</span>'):fr(md==="under"?"ก้นตู้ (ระดับติด)":"ระดับวาง (จากพื้น)",num("y",o.y)+'<span class="plU">มม.</span>'))
     +(F?fr("ห่างต้นผนัง",num("off",(+o.t||0)-o.w/2)+'<span class="plNote plNB">ผนังยาว '+Math.round(F.L)+'</span>'):"")
     +((T.bed||T.rug||T.stool||T.sofa)?fr(T.bed?"สีหัวเตียง":T.sofa?"สีผ้า":T.stool?"สีเบาะ":"สีพรม",'<select data-pok="col">'+Object.keys(PLA_PROP_COL).map(c=>'<option value="'+c+'"'+((PLA_PROP_COL[o.col]?o.col:"grey")===c?" selected":"")+'>'+PLA_PROP_COL[c].n+'</option>').join("")+'</select>'):"")   /* v1.614 */
+    +(T.pcdesk?fr("ของบนโต๊ะ",'<select data-pok="dset"><option value="">ครบชุด (จอ คีย์บอร์ด คอม RGB)</option><option value="mon"'+(o.dset==="mon"?" selected":"")+'>จอ + คีย์บอร์ด</option><option value="none"'+(o.dset==="none"?" selected":"")+'>โต๊ะเปล่า</option></select>'):"")   /* v1.619 */
+    +((T.pcase||(T.pcdesk&&!o.dset))?fr("ไฟ RGB",'<select data-pok="rgb"><option value="">ไฟวิ่ง + พัดลมหมุน</option><option value="off"'+(o.rgb==="off"?" selected":"")+'>ไฟนิ่ง พัดลมไม่หมุน</option></select>'):"")   /* v1.619 */
     +(T.tv?fr("หน้าจอ",'<select data-pok="scr"><option value="">โลโก้ SAMSUNG</option><option value="off"'+(o.scr==="off"?" selected":"")+'>จอดับ</option></select>'):"")   /* v1.614 */
     +(T.fridge==="wash"?fr("สี",'<select data-pok="col">'+[["white","ขาว"],["silver","เงิน"],["black","ดำ"]].map(c=>'<option value="'+c[0]+'"'+((o.col||"white")===c[0]?" selected":"")+'>'+c[1]+'</option>').join("")+'</select>'):"")   /* v1.579 */
     +(T.fridge==="smeg"?fr("สี",'<select data-pok="col">'+Object.keys(PLA_SMEG_COL).map(c=>'<option value="'+c+'"'+((PLA_SMEG_COL[o.col]?o.col:"cream")===c?" selected":"")+'>'+PLA_SMEG_COL[c].n+'</option>').join("")+'</select>'):"")   /* v1.577 */
@@ -39644,6 +39711,8 @@ function plaPanel(s,o){ const T=PLO_T[o.k]||{}, F=ploFrameOf(o), md=T.appl;
     if(k==="mdl"){ if(inp.value) plaUseModel(o,inp.value); else { o.w=T.w; o.h=T.h; o.d=T.d; delete o.mdl; o.code=""; } plaResnap(o); }
     else if(k==="code"){ o.code=String(inp.value||"").trim(); }
     else if(k==="hinge"){ o.hinge=inp.value==="L"?"L":"R"; }
+    else if(k==="dset"){ if(inp.value) o.dset=inp.value; else delete o.dset; }   /* v1.619 */
+    else if(k==="rgb"){ if(inp.value==="off") o.rgb="off"; else delete o.rgb; }   /* v1.619 */
     else if(k==="scr"){ if(inp.value==="off") o.scr="off"; else delete o.scr; }   /* v1.614 */
     else if(k==="col"){ o.col=(T.bed||T.rug||T.stool||T.sofa)?(PLA_PROP_COL[inp.value]?inp.value:"grey"):T.fridge==="wash"?(/^(white|silver|black)$/.test(inp.value)?inp.value:"white"):(PLA_SMEG_COL[inp.value]?inp.value:"cream"); }   /* v1.579: + สีเครื่องซักผ้า */
     else if(k==="mgap"){ const v=+inp.value; if(isFinite(v)&&v>=0&&v<=30) o.mgap=v; else { plPanelSel(); return; } }   /* v1.588: เว้นบานหลอก */
@@ -39989,7 +40058,7 @@ function ploGrid(tabs,grid){   // v1.538: แบ่งหมวด · การ�
   tabs.innerHTML=ks.map(k=>'<button data-t="'+k[0]+'" class="'+(k[0]===PL.tab?"on":"")+'">'+k[1]+'</button>').join("");
   tabs.querySelectorAll("button").forEach(bt=>bt.onclick=()=>{ PL.tab=bt.dataset.t; plPanelGrid(); });
   const ok=k=>!!PLO_T[k]&&!(PLO_T[k].appl&&snOff("plAppl"))&&!(k==="col"&&snOff("plCol"))&&!((k==="ceil"||k==="ceilu")&&snOff("plCeil"))&&!(PLO_T[k].util&&snOff("plUtil"));
-  const GR=[["ประตู · หน้าต่าง",["door","door2","slide","open","win","win1","winw"]],["โครงสร้าง · ฝ้า",["stair","col","ceil","ceilu"].concat(snOff("plDl")?[]:["dl"])],["งานระบบ",["plug","wat","drn"]],["เครื่องใช้ในครัว",["sink","sink2","sink1","sinku","hob","hobi","hobd","hood1","hood2","hood3","oven"].concat(snOff("plMicroB")?[]:["microb"]).concat(["micro","bin","gas"]).concat(snOff("plFridge")?[]:["fridge1","fridge2","fridgeT"]).concat(snOff("plSmeg")?[]:["smeg"]).concat(snOff("plWash")?[]:["wash"])]].concat(snOff("plProps")?[]:[["ห้องนอน",["bed35","bed5","bed6","nstand","dress","stool","fmirror","flamp","rug","ac"]],["ห้องรับแขก",["sofa2","sofa3","armch","ctable","stable","tvcon","plant"]],["ทีวีติดผนัง",["tv43","tv55","tv65"]]]);   /* v1.614 */   /* v1.576: + ตู้เย็น */   // v1.546
+  const GR=[["ประตู · หน้าต่าง",["door","door2","slide","open","win","win1","winw"]],["โครงสร้าง · ฝ้า",["stair","col","ceil","ceilu"].concat(snOff("plDl")?[]:["dl"])],["งานระบบ",["plug","wat","drn"]],["เครื่องใช้ในครัว",["sink","sink2","sink1","sinku","hob","hobi","hobd","hood1","hood2","hood3","oven"].concat(snOff("plMicroB")?[]:["microb"]).concat(["micro","bin","gas"]).concat(snOff("plFridge")?[]:["fridge1","fridge2","fridgeT"]).concat(snOff("plSmeg")?[]:["smeg"]).concat(snOff("plWash")?[]:["wash"])]].concat(snOff("plProps")?[]:[["ห้องนอน",["bed35","bed5","bed6","nstand","dress","stool","fmirror","flamp","rug","ac"]],["ห้องรับแขก",["sofa2","sofa3","armch","ctable","stable","tvcon","plant"]],["ห้องทำงาน · คอม",["pcdesk","pctower"]],["ทีวีติดผนัง",["tv43","tv55","tv65"]]]);   /* v1.614 */   /* v1.576: + ตู้เย็น */   // v1.546
   const K=GR.reduce((a,g)=>a.concat(g[1].filter(ok)),[]);
   { const cn=$("plCatN"); if(cn) cn.textContent=K.length+" แบบ"; }
   const lk=plRoomLocked();
