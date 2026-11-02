@@ -3283,7 +3283,7 @@ body[data-theme="dark"] .splash-dots span{background:rgba(255,255,255,.25)}
    ===================================================================== */
 /* ---- APP_META: แหล่งความจริงเดียวของเวอร์ชัน (ดูได้จาก console / คลิกชื่อแอป) ---- */
 const APP_META={
-  name:"StarNexus", version:"1.619", build:"2026-11-02/pc-rgb",
+  name:"StarNexus", version:"1.620", build:"2026-11-02/room-trash",
   file:"StarNexus.html", basedOn:"Furnitech_V3.html (v3.11)",
   /* ───────── เริ่มนับเวอร์ชันใหม่ที่ 1.001 (21/08/2026) ─────────
      ของเดิมนับมาถึง 42.1 แล้ววิ่งเป็นทศนิยมสองชั้นซึ่งอ่านลำดับยาก
@@ -3291,6 +3291,7 @@ const APP_META={
      ประวัติเก่าเก็บไว้ทั้งหมดตามเลขเดิม ไม่ไล่เขียนใหม่ เพราะเลขในนั้นถูกอ้างถึงไปแล้ว
      รายการที่อยู่ใต้ 1.001 ลงไปจึงเป็นเลขชุดเก่า อ่านต่อกันได้ตามวันที่ */
   changelog:[
+    ["1.620","2026-11-02","FEAT ถังขยะห้อง (ผู้ใช้ 20:42 “BACKUP ห้องไว้ได้ไหมครับ ลบไปแล้วเอาไปค้างไว้ที่ถังขยะ จะเข้าถังขยะได้ต้องเข้าที่ตั้งค่าโปรแกรม”) — ลบห้องที่บันทึก = ย้ายไปถังขยะ ไม่หายทันที · ปุ่ม ล้าง / Order ใหม่ / ล้างตู้ / บันทึกทับ สำรองห้องและตู้ลงถังขยะให้เอง · เปิดได้ที่ ⚙ ตั้งค่า › ถังขยะห้องเท่านั้น กู้คืนกลับเข้า 📂 ห้องที่บันทึก หรือลบถาวรได้ · ของสำรองอัตโนมัติเก็บ 20 รายการล่าสุด ห้องที่กดลบเองอยู่จนกว่าจะลบถาวร"],
     ["1.619","2026-11-02","FEAT หมวด ห้องทำงาน · คอม (ผู้ใช้ 20:27 “เพิ่มโต๊ะคอมให้ด้วยครับผม คอม มี RGB พัดลมทำได้ปะ”) — โต๊ะคอมครบชุด (จอ คีย์บอร์ดไฟ เมาส์ เคสกระจก) เลือกเหลือจอหรือโต๊ะเปล่าได้ · คอม RGB แยกชิ้น วางพื้นหรือตั้งระดับเองได้ · พัดลมหมุน ไฟวงแหวนวิ่งสีรุ้ง ตั้งเป็นไฟนิ่งได้ · หยุดเองในโหมดประหยัด โหมดสมจริง และตอนสลับหน้าจอ"],
     ["1.618","2026-11-02","UX กล่องสี แยกทีละบาน (ผู้ใช้ 20:25 “ตอนแยกคนละบาน เลือกได้ไหม ติ๊กเลือก ตอนเลือกควรมี highlight ให้รู้ว่าบานไหน”) — เดิมเป็นแท็บ FrontColor1–6 / FrontShape1–6 ไม่รู้ว่าเลขไหนคือบานไหน ตอนนี้แท็บรวม + แถวติ๊ก บาน 1, บาน 2 … · บานที่ติ๊กเป็นสีฟ้าในจอ มีเลขกำกับทุกบาน · ชี้ที่ช่องติ๊ก = บานนั้นเป็นสีส้ม · คลิกบานในจอก็ติ๊กได้ · หมุนกล้องได้โดยกล่องไม่ปิด · สีและแนวลายเปลี่ยนเฉพาะบานที่ติ๊ก"],
     ["1.617","2026-11-02","FEAT หมวด ห้องรับแขก เบื้องต้น (ผู้ใช้ 20:22 “เพิ่มของห้องรับแขกไว้ด้วย”) — โซฟา 2 / 3 ที่นั่ง อาร์มแชร์ (เบาะมุมมน หมอนอิง เลือกสีได้) โต๊ะกลาง โต๊ะข้าง ชั้นวางทีวี ต้นไม้ในกระถาง · โซฟาและชั้นวางดูดชิดผนัง · Ctrl+C/V ใช้ได้ · ฉากซ่อนตู้ไม่ซ่อน"],
@@ -30386,6 +30387,7 @@ function boardRole(b){
      SN_OFF.plProps=1     ซ่อนการ์ดของห้องนอนและทีวีในแคตตาล็อก ชิ้นที่วางแล้วยังวาดอยู่ (v1.614)
      SN_OFF.plDoorPick=1  แยกทีละบานในกล่องสี กลับเป็นแท็บ FrontColor1–6 แบบเดิม ไม่มีติ๊ก ไม่มีไฮไลต์ (v1.618)
      SN_OFF.plRgbAnim=1   พัดลมคอมไม่หมุน ไฟ RGB นิ่ง (v1.619)
+     SN_OFF.plRoomTrash=1 ลบห้องแล้วหายทันทีแบบเดิม ไม่สำรอง ไม่มีถังขยะในตั้งค่า (v1.620)
      SN_OFF.plClip=1      ปิด Ctrl+C / Ctrl+V ในห้องออกแบบ (v1.613)
      SN_OFF.plShapeBig=1  แท็บแบบบานในกล่องสี ขนาดการ์ดเล็กและวาดตามสัดส่วนจริงแบบเดิม (v1.613)
      SN_OFF.rndView=1     AI RENDER เปิดโหมดสมจริงทุกครั้งแบบเดิม ไม่มีแถวภาพตั้งต้น (v1.611)
@@ -35544,6 +35546,7 @@ const SET_CATS=[
   {key:"var",   label:"Variables / Element",                 rx:/variable|element|ตัวแปร|part|ออเดอร์/i},
   {key:"view",  label:"หน้าจอ — ธีม / ขนาด UI",               rx:/หน้าตาโปรแกรม|ธีม|ขนาดหน้าจอ|theme|ui/i},
   {key:"tool",  label:"เครื่องมือ / คลาวด์",                    rx:/ตรวจ|ปัดขนาด|คลาวด์|overlap|cloud/i},
+  {key:"roomTrash", label:"🗑 ถังขยะห้อง",                     rx:/^ถังขยะห้อง/},   /* v1.620 */
   {key:"misc",  label:"อื่น ๆ",                               rx:null}
 ];
 function _setCatOf(title){
@@ -35551,6 +35554,7 @@ function _setCatOf(title){
   return SET_CATS[SET_CATS.length-1];
 }
 function _setBuildGroups(body){
+  setTimeout(()=>{ try{ plTrashFill(); }catch(e){ console.error("roomTrash:",e); } },0);   /* v1.620: วาดหน้าตั้งค่าใหม่ทุกทาง = โหลดรายการถังขยะ */
   const kids=[...body.childNodes];
   const groups=[]; let cur=null;
   kids.forEach(n=>{
@@ -35632,6 +35636,7 @@ function renderSettings(){
   body.innerHTML=`
     ${(typeof sxlDataInSet==="function"&&sxlDataInSet())?`<div class="sumh">ข้อมูล — ตารางที่โหลด (Odoo / Google Drive)</div>
     <div id="setSxlHost"></div>`:""}
+    ${snOff("plRoomTrash")?"":`<div class="sumh">ถังขยะห้อง</div><div id="setRoomTrash" style="column-span:all"><div style="padding:10px;color:var(--ink-dim)">กำลังโหลด…</div></div>`}
     <div class="sumh">รหัสตู้ — ตารางแปลความหมาย</div>
     <div class="cb-fld"><label>บรรทัดละหนึ่งรายการ · <span style="font-family:var(--mono)">หัวรหัส = คำอธิบาย</span> — หัวรหัสที่ยาวกว่าถูกจับก่อน (BND ชนะ BN, BN ชนะ B) · ตัวที่ไม่มีในตารางจะไม่แสดงคำอธิบาย ไม่เดาให้</label>
       <textarea id="setCabCodeMap" rows="7" style="width:100%;font-family:var(--mono);font-size:12px;resize:vertical">${escapeHtml(Object.entries(cabCodeMap()).map(([k,v])=>k+" = "+v).join("\n"))}</textarea></div>
@@ -42631,6 +42636,52 @@ function plPlanLbl(){ return !snOff("plPlanLbl")&&plPlanOn(); }   // v1.540: ม
      📂 เปิดใช้ = แทนห้องตอนนี้ (ตู้ในฉากอยู่ที่เดิม · Ctrl+Z ย้อนได้) · 🧹 ล้างตู้ เก็บห้อง = newOrder({keepRoom}) หรือล้างแค่ตู้
      Order → ใหม่ มีห้องวาดไว้ = ถามก่อน มีทางเลือก 🏠 ใหม่ · เก็บห้องไว้ · ปิด SN_OFF.plRoomLib=1 */
 const PLRL_PFX="plroom:";
+/* ───────── v1.620: ถังขยะห้อง ─────────
+   ผู้ใช้ 2/11 20:42: “BACKUP ห้องไว้ได้ไหมครับ ลบไปแล้วเอาไปค้างไว้ที่ถังขยะ ครับ จะเข้าถังขยะได้ต้องเข้าที่ตั้งค่าโปรแกรมครับผม”
+   เดิม: กด 🗑 ในห้องที่บันทึก = หายจากไฟล์กลางทันที · ปุ่ม ล้าง / Order ใหม่ ห้องและตู้ที่ยังไม่ได้บันทึกกู้ได้แค่ Ctrl+Z ก่อนปิดโปรแกรม · บันทึกทับ = ของเดิมหาย
+   ตอนนี้: เก็บในไฟล์กลาง ตาราง app_settings คีย์ "plroomtrash:<เวลา>|<ชื่อ>" (ไม่ตรงกับ like "plroom:%" จึงไม่โผล่ใน 📂) ค่าเหมือนห้องที่บันทึก + delAt why auto sig
+     ลบเอง (auto=0) = อยู่จนกว่าจะลบถาวร · สำรองอัตโนมัติ (auto=1: ล้าง · Order ใหม่ · ล้างตู้ · บันทึกทับ) = เก็บ 20 รายการล่าสุด · เนื้อหาเหมือนรายการล่าสุด (sig) ไม่เก็บซ้ำ
+     ห้องเปล่าที่มีแต่ดาวน์ไลท์ตั้งต้นและไม่มีตู้ ไม่เก็บ · ถ่ายข้อมูลทันทีก่อนล้าง แล้วเขียนตามหลัง ปุ่มล้างจึงไม่ต้องรอ
+     เข้าได้ทางเดียว: ⚙ ตั้งค่า › 🗑 ถังขยะห้อง · กู้คืน = กลับเข้า 📂 ห้องที่บันทึก ชื่อซ้ำเติม (กู้คืน วันเวลา) ไม่ทับของเดิม · ปิด SN_OFF.plRoomTrash=1 */
+const PLRT_PFX="plroomtrash:", PLRT_AUTO_MAX=20;
+function plTrashHash(s){ let h=5381; for(let i=0;i<s.length;i++) h=((h*33)^s.charCodeAt(i))>>>0; return h.toString(36)+"_"+s.length; }
+async function plTrashPut(val,why,auto){ const db=await getDB(), row=Object.assign({},val,{delAt:new Date().toISOString(),why:String(why||""),auto:auto?1:0}); delete row.key;
+  const key=PLRT_PFX+Date.now().toString(36)+Math.floor(Math.random()*1296).toString(36)+"|"+String(val.name||"").slice(0,60);
+  const res=await db.from("app_settings").upsert({key,value:JSON.stringify(row)},{onConflict:"key"}); if(res&&res.error) throw res.error; return key; }
+async function plTrashList(){ const db=await getDB(), res=await db.from("app_settings").select("key,value").like("key",PLRT_PFX+"%"); if(res.error) throw res.error;
+  return (res.data||[]).map(x=>{ let v=x&&x.value; try{ if(typeof v==="string") v=JSON.parse(v); }catch(e){ v=null; } return (v&&v.room)?Object.assign({},v,{key:x.key}):null; }).filter(Boolean).sort((a,b)=>String(b.delAt||"").localeCompare(String(a.delAt||""))); }
+function plTrashSnapshot(){ if(snOff("plRoomTrash")||typeof state==="undefined") return null; const r=state.room, n=plRoomLibNb();
+  if(!(n>0||(r&&((r.dw||[]).length||(r.obj||[]).some(o=>o&&o.k!=="dl"))))) return null;
+  const room=JSON.parse(JSON.stringify(r||plRoomDef())); delete room.libName; let oid=""; try{ oid=String(($("exOrderId")||{}).value||"").trim(); }catch(e){}
+  const nm=String((r&&r.libName)||"").trim()||(oid?("ออเดอร์ "+oid):"ห้องไม่มีชื่อ"), ord=plRoomLibOrd(), val={v:ord?2:1,name:nm,at:new Date().toISOString(),sum:plRoomSum(room)+(ord?(" · ตู้ "+ord.ncab+" ใบ"):""),room};
+  if(ord){ val.ord=ord.data; val.ncab=ord.ncab; val.nb=ord.nb; } return val; }
+async function plTrashAuto(val,why){ if(!val||snOff("plRoomTrash")) return false;
+  try{ const sig=plTrashHash(JSON.stringify([val.room,(val.ord&&val.ord.boards)||null])), L=(await plTrashList()).filter(x=>x.auto); if(L[0]&&L[0].sig===sig) return false;
+    await plTrashPut(Object.assign({},val,{sig}),why,true); const db=await getDB(); for(const x of L.slice(PLRT_AUTO_MAX-1)) await db.from("app_settings").delete().eq("key",x.key);
+    return true; }
+  catch(e){ console.error("roomTrash:",e); toast("⚠ สำรองห้องลงถังขยะไม่สำเร็จ: "+((e&&e.message)||e)); return false; } }
+/* ถ่ายข้อมูลตอนนี้ แล้วเขียนตามหลัง — เรียกก่อนล้าง state */
+function plTrashNow(why){ try{ const v=plTrashSnapshot(); if(v) plTrashAuto(v,why); }catch(e){ console.error("roomTrash:",e); } }
+async function plTrashRestore(x){ const db=await getDB(); let nm=String(x.name||"ห้องกู้คืน").slice(0,80), ex=await db.from("app_settings").select("key").eq("key",PLRL_PFX+nm).maybeSingle();
+  if(ex&&ex.data) nm=(nm+" (กู้คืน "+plRoomLibDate(new Date().toISOString())+")").slice(0,110);
+  const val=Object.assign({},x,{name:nm,at:new Date().toISOString()}); ["key","delAt","why","auto","sig"].forEach(k=>{ delete val[k]; });
+  const r1=await db.from("app_settings").upsert({key:PLRL_PFX+nm,value:JSON.stringify(val)},{onConflict:"key"}); if(r1&&r1.error) throw r1.error;
+  const r2=await db.from("app_settings").delete().eq("key",x.key); if(r2&&r2.error) throw r2.error; return nm; }
+async function plTrashFill(){ const box=$("setRoomTrash"); if(!box) return; let L=null;
+  try{ L=await plTrashList(); }catch(e){ box.innerHTML='<div style="padding:10px;color:#d33">อ่านถังขยะไม่ได้: '+escapeHtml(String((e&&e.message)||e))+'</div>'; return; }
+  const note='<div style="font-size:11.5px;color:var(--ink-dim);line-height:1.6;margin:0 0 8px">ห้องที่ลบหรือถูกล้างมาค้างที่นี่ · กู้คืนแล้วเปิดได้ที่ 📂 เปิดห้องที่บันทึก · ห้องที่กดลบเองอยู่จนกว่าจะลบถาวร · สำรองอัตโนมัติเก็บ '+PLRT_AUTO_MAX+' รายการล่าสุด · เก็บในไฟล์กลาง ทุกเครื่องเห็นเหมือนกัน</div>';
+  if(!L.length){ box.innerHTML=note+'<div style="padding:14px;color:var(--ink-dim);border:.5px solid var(--line);border-radius:8px">ถังขยะว่าง</div>'; return; }
+  box.innerHTML=note+'<div style="display:flex;align-items:center;margin-bottom:6px"><b style="font-size:12.5px">'+L.length+' รายการ</b><button class="ibtn" id="plrtAll" style="flex:none;width:auto;margin-left:auto;padding:4px 10px;color:#d33">ลบถาวรทั้งหมด</button></div>'
+    +'<div style="max-height:min(56vh,480px);overflow:auto;border:.5px solid var(--line);border-radius:8px">'+L.map((x,i)=>'<div class="plrtRow" data-i="'+i+'" style="display:flex;align-items:center;gap:8px;padding:8px 10px;border-bottom:.5px solid var(--line)">'
+      +'<div style="flex:1;min-width:0"><b>'+escapeHtml(String(x.name||""))+'</b>'+plRoomLibBadge(x)+'<div style="font-size:11px;color:var(--ink-dim);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">'+escapeHtml(String(x.why||"ลบ"))+' · '+escapeHtml(plRoomLibDate(x.delAt))+' · '+escapeHtml(plRoomSum(x.room))+'</div></div>'
+      +'<button class="ibtn" data-a="res" style="flex:none;width:auto;padding:5px 12px;background:var(--accent);color:#fff;border-color:transparent">♻ กู้คืน</button>'
+      +'<button class="ibtn" data-a="del" title="ลบออกจากไฟล์กลาง กู้คืนไม่ได้อีก" style="flex:none;width:auto;padding:5px 9px;color:#d33">ลบถาวร</button></div>').join("")+'</div>';
+  box.querySelectorAll(".plrtRow").forEach(row=>{ const x=L[+row.dataset.i];
+    row.querySelector('[data-a="res"]').onclick=async()=>{ try{ const nm=await plTrashRestore(x); toast("♻ กู้คืน “"+nm+"” แล้ว — เปิดได้ที่ 📂 เปิดห้องที่บันทึก"); plTrashFill(); }catch(e){ console.error("roomTrash:",e); toast("กู้คืนไม่สำเร็จ: "+((e&&e.message)||e)); } };
+    row.querySelector('[data-a="del"]').onclick=async()=>{ if(!(await dialog({title:"ลบ “"+(x.name||"")+"” ถาวร?",ok:"ลบถาวร",html:'<div style="font-size:12.5px">กู้คืนไม่ได้อีก ทุกเครื่องจะไม่เห็นรายการนี้</div>'}))) return;
+      try{ const db=await getDB(), r=await db.from("app_settings").delete().eq("key",x.key); if(r&&r.error) throw r.error; plTrashFill(); }catch(e){ toast("ลบไม่สำเร็จ: "+((e&&e.message)||e)); } }; });
+  { const a=box.querySelector("#plrtAll"); if(a) a.onclick=async()=>{ if(!(await dialog({title:"ลบถาวรทั้ง "+L.length+" รายการ?",ok:"ลบถาวรทั้งหมด",html:'<div style="font-size:12.5px">กู้คืนไม่ได้อีก ทุกเครื่องจะไม่เห็นรายการเหล่านี้</div>'}))) return;
+      try{ const db=await getDB(); for(const x of L){ const r=await db.from("app_settings").delete().eq("key",x.key); if(r&&r.error) throw r.error; } plTrashFill(); toast("ล้างถังขยะแล้ว"); }catch(e){ toast("ลบไม่สำเร็จ: "+((e&&e.message)||e)); } }; } }
 function plRoomHas(r){ r=r||(typeof state!=="undefined"?state.room:null); return !!(r&&(((r.dw||[]).length)||((r.obj||[]).length))); }
 function plRoomSum(r){ if(!r) return ""; const dw=r.dw||[], nO=(r.obj||[]).length, rc=Object.keys(r.walls||{}).filter(k=>r.walls[k]).length;
   const nS=dw.reduce((s,w)=>s+plwSegs(w).length,0);
@@ -42654,8 +42705,9 @@ async function plRoomLibSave(){ if(snOff("plRoomLib")) return false; const r=plR
   if(nm0==null) return false; const nm=String(nm0).trim().replace(/\s+/g," ").slice(0,80); if(!nm){ toast("ใส่ชื่อห้องก่อน"); return false; }
   const key=PLRL_PFX+nm; let bz=null;   // v1.547: กล่องรอตอนเขียนห้อง + ตู้
   try{ const db=await getDB();
-    const ex=await db.from("app_settings").select("key").eq("key",key).maybeSingle();
+    const ex=await db.from("app_settings").select("key,value").eq("key",key).maybeSingle();   /* v1.620: + value */
     if(ex&&ex.data&&!(await dialog({title:"มีห้องชื่อ “"+nm+"” อยู่แล้ว — บันทึกทับ?", ok:"บันทึกทับ"}))) return false;
+    try{ if(ex&&ex.data){ let ov=ex.data.value; if(typeof ov==="string") ov=JSON.parse(ov); if(ov&&ov.room) await plTrashAuto(ov,"ถูกบันทึกทับ"); } }catch(e){ console.error("roomTrash:",e); }   /* v1.620: ของเดิมไม่หาย */
     const room=JSON.parse(JSON.stringify(r)); delete room.libName;
     const ord=withCab?plRoomLibOrd():null;   // v1.547: ก้อนเดียวกับ Save Order (ไม่รวม room — อยู่ที่ val.room แล้ว)
     const val={v:ord?2:1, name:nm, at:new Date().toISOString(), sum:plRoomSum(room)+(ord?(" · ตู้ "+ord.ncab+" ใบ"):""), room};
@@ -42717,9 +42769,9 @@ async function plRoomLibLoadAll(x){ if(!plRoomLibHasCab(x)) return false;
   if(!ok) return false;
   if(typeof PL!=="undefined"&&PL.on){ try{ plRoomDraw(); plPanelRoom(); plPanelSel(); plPanelGrid(); plCamRoom(); }catch(e){ console.error("plRoomLibLoadAll:",e); } }
   plAfterRoom(); return true; }
-async function plRoomLibDel(x){ if(!x) return false;
-  if(!(await dialog({title:"ลบห้อง “"+(x.name||"")+"” ออกจากไฟล์กลาง?", ok:"ลบ", html:'<div style="font-size:12.5px">ทุกเครื่องจะไม่เห็นห้องนี้อีก · ออเดอร์ที่ใช้ห้องนี้ไปแล้วไม่กระทบ</div>'}))) return false;
-  try{ const db=await getDB(); const res=await db.from("app_settings").delete().eq("key",x.key); if(res&&res.error) throw res.error; toast("ลบห้อง “"+(x.name||"")+"” แล้ว"); return true; }
+async function plRoomLibDel(x){ if(!x) return false; const _tr=!snOff("plRoomTrash");   /* v1.620: ย้ายเข้าถังขยะก่อน เขียนถังขยะไม่ได้ = ไม่ลบ */
+  if(!(await dialog({title:_tr?("ย้ายห้อง “"+(x.name||"")+"” ไปถังขยะ?"):("ลบห้อง “"+(x.name||"")+"” ออกจากไฟล์กลาง?"), ok:_tr?"ย้ายไปถังขยะ":"ลบ", html:'<div style="font-size:12.5px;line-height:1.6">'+(_tr?'ไม่แสดงในรายการนี้อีก · กู้คืนได้ที่ ⚙ ตั้งค่า › 🗑 ถังขยะห้อง · ':'ทุกเครื่องจะไม่เห็นห้องนี้อีก · ')+'ออเดอร์ที่ใช้ห้องนี้ไปแล้วไม่กระทบ</div>'}))) return false;
+  try{ const db=await getDB(); if(_tr) await plTrashPut(x,"ลบจากห้องที่บันทึก",false); const res=await db.from("app_settings").delete().eq("key",x.key); if(res&&res.error) throw res.error; toast(_tr?("🗑 ย้าย “"+(x.name||"")+"” ไปถังขยะแล้ว — กู้คืนได้ที่ ⚙ ตั้งค่า"):("ลบห้อง “"+(x.name||"")+"” แล้ว")); return true; }
   catch(e){ console.error("plRoomLibDel:",e); toast("ลบห้องไม่สำเร็จ: "+((e&&e.message)||e)); return false; } }
 async function plRoomLibFill(m,quick){ const box=m.querySelector("#plrlList"); if(!box) return;
   if(!quick||!m._list){ try{ m._list=await plRoomLibList(); }catch(e){ console.error("plRoomLib:",e); box.innerHTML='<div style="padding:14px;color:#d33">อ่านรายการห้องไม่ได้: '+escapeHtml(String((e&&e.message)||e))+'</div>'; return; } }
@@ -42753,7 +42805,7 @@ async function plClearCabsKeepRoom(){ if(typeof isLocked==="function"&&isLocked(
       +'<b>ล้างตู้ + เริ่มออเดอร์ใหม่</b> = ล้างเลขออเดอร์ สีรายตู้ ตัวแปรรายตู้ ด้วย (เอาห้องนี้ไปใช้บ้านหลังอื่น)<br><b>ล้างแค่ตู้</b> = ออเดอร์/เลขเดิม<br>'
       +'<span style="opacity:.7">ออเดอร์ที่ยังไม่ได้ Save ให้ Save ก่อน · เผลอกด Ctrl+Z เอาคืนได้</span></div>'});
   if(!res) return false;
-  if(res==="cabs"){ state.boards=[]; state.selectedId=null; state.selectedCab=null; try{ cabSelClear(); }catch(e){} sync(1); toast("🧹 ล้างตู้แล้ว — ห้องอยู่ครบ (ออเดอร์เดิม)"); }
+  if(res==="cabs"){ plTrashNow("ล้างตู้ เก็บห้อง");   /* v1.620 */ state.boards=[]; state.selectedId=null; state.selectedCab=null; try{ cabSelClear(); }catch(e){} sync(1); toast("🧹 ล้างตู้แล้ว — ห้องอยู่ครบ (ออเดอร์เดิม)"); }
   else if(!(await newOrder({force:true, keepRoom:true}))) return false;
   PL.wpick=null; PLO.sel=null; try{ plRoomDraw(); plPanelRoom(); plPanelSel(); }catch(e){ console.error("plClearCabs:",e); }
   return true; }
@@ -47924,6 +47976,7 @@ async function newOrder(opts){
       ok:"ล้างแล้วเริ่มใหม่"});
     if(!ok) return false; if(ok==="keep") keepRm=true;
   }
+  if(!(keepRm&&!n)) plTrashNow(keepRm?"Order ใหม่ · เก็บห้อง":"Order ใหม่");   /* v1.620 */
   const _keepRoom=(keepRm&&state.room)?JSON.parse(JSON.stringify(state.room)):null;   // v1.540
   state.boards=[]; state.selectedId=null; state.selectedCab=null; cabSelClear(); state.hidden=[];
   state.cabColors={}; state.cabNums={}; state.cabVarTxt={}; state.cabDX={};
@@ -63595,9 +63648,10 @@ function bindChrome(){
   $("newBtn").onclick=async()=>{ const _off=snOff("clearRoom"); let _lk=false; try{ _lk=typeof plRoomLocked==="function"&&plRoomLocked(); }catch(e){}
     const _has=!!state.room&&plRoomHas(), _can=!_off&&!_lk;
     const res=await dialog({title:_can?"ล้างทั้งหมด รวมห้อง?":"ล้างชิ้นงานทั้งหมด?",ok:_can?"ล้างทั้งหมด":"ล้าง", extra:(_can&&_has)?{label:"ล้างแค่ตู้ · เก็บห้องไว้",id:"keep"}:undefined,
-      html:_can?'<div style="font-size:12.5px;line-height:1.6">ตู้/ชิ้นในฉาก <b>และห้องที่วาดไว้</b> (ผนัง ประตู หน้าต่าง เครื่องใช้ ท็อป ฉาก) หายทั้งหมด<br><span style="opacity:.7">ห้องที่ 💾 บันทึกไว้ยังอยู่ · เผลอกด Ctrl+Z เอาคืนได้</span></div>'
+      html:_can?'<div style="font-size:12.5px;line-height:1.6">ตู้/ชิ้นในฉาก <b>และห้องที่วาดไว้</b> (ผนัง ประตู หน้าต่าง เครื่องใช้ ท็อป ฉาก) หายทั้งหมด<br><span style="opacity:.7">ห้องที่ 💾 บันทึกไว้ยังอยู่ · เผลอกด Ctrl+Z เอาคืนได้'+(snOff("plRoomTrash")?'':' · สำรองไว้ที่ ⚙ ตั้งค่า › ถังขยะห้อง')+'</span></div>'
         :(_has?'<div style="font-size:12.5px;line-height:1.6">ตู้/ชิ้นในฉากหายทั้งหมด · <b>ห้องที่วาดไว้ยังอยู่</b>'+(_lk?' เพราะห้องล็อกอยู่':' (ผนัง ประตู หน้าต่าง)')+'</div>':"")});
     if(!res) return;
+    plTrashNow(res==="keep"?"ปุ่มล้าง · ล้างแค่ตู้":"ปุ่มล้าง");   /* v1.620 */
     if(!_off) _clrBak={scenes:state.scenes||[], lines:state.orderLines||[], pics:state.qPics||[]};
     if(_can&&res!=="keep"){ state.room=null; state.scenes=[]; state.orderLines=[]; state.qPics=[]; try{ scnAfterLoad(); }catch(e){ console.error("clearRoom:",e); } }
     else if(!_off) state.orderLines=(state.orderLines||[]).filter(x=>!(x&&x._planner));   /* ล้างแค่ตู้: แถวฟิลเลอร์บน/ตีนตู้ที่ห้องคิดเอง ไม่ปล่อยให้ปั้นตู้เส้นกลับมายืนในห้องเปล่า */
