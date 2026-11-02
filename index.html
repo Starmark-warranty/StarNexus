@@ -3283,7 +3283,7 @@ body[data-theme="dark"] .splash-dots span{background:rgba(255,255,255,.25)}
    ===================================================================== */
 /* ---- APP_META: แหล่งความจริงเดียวของเวอร์ชัน (ดูได้จาก console / คลิกชื่อแอป) ---- */
 const APP_META={
-  name:"StarNexus", version:"1.608", build:"2026-11-02/ehp-ax-code-by-size",
+  name:"StarNexus", version:"1.609", build:"2026-11-02/hood-door-joint-between-cabs",
   file:"StarNexus.html", basedOn:"Furnitech_V3.html (v3.11)",
   /* ───────── เริ่มนับเวอร์ชันใหม่ที่ 1.001 (21/08/2026) ─────────
      ของเดิมนับมาถึง 42.1 แล้ววิ่งเป็นทศนิยมสองชั้นซึ่งอ่านลำดับยาก
@@ -3291,6 +3291,7 @@ const APP_META={
      ประวัติเก่าเก็บไว้ทั้งหมดตามเลขเดิม ไม่ไล่เขียนใหม่ เพราะเลขในนั้นถูกอ้างถึงไปแล้ว
      รายการที่อยู่ใต้ 1.001 ลงไปจึงเป็นเลขชุดเก่า อ่านต่อกันได้ตามวันที่ */
   changelog:[
+    ["1.609","2026-11-02","FIX บานตู้ฮู้ดก้นบานหาย ~10 มม. — ขอบล่างไม่มีจุดอ้างจึงจำระยะที่ถูกตัดสะสมมาจากรุ่นก่อน ตอนนี้อ้างแผ่นข้าง เว้น 1.5 เท่าขอบบน · CHANGE รอยต่อไม้ไฟและฟิลเลอร์บนอยู่ระหว่างตู้ ก่อนถึง 2400 ไม่อยู่กลางตู้ · ปิด SN_OFF.deFreeBottom · SN_OFF.cabJoint · UI แผงห้องออกแบบไม่ทับแถบเครื่องมือล่าง"],
     ["1.608","2026-11-02","FEAT ใบเบิกมือจับฝังออกรหัส AX จริงตามรุ่น + สี + ขนาดตัด (1 ขนาด = 1 รหัส · รหัสขึ้นต้น 406 · ไม่เจอบอกในใบพร้อมชื่อขอเปิดรหัส · ปิด SN_OFF.ehpAxCode) · ราคาทุนใช้ราคา AX ของรหัสท่อนก่อนราคาต่อเมตร · FIX ลายหน้าบานแบบแปะรูปรอโหลดก่อนอบลงลิงก์ดูงาน + สีเส้นตรงโปรแกรม · UX หน้าต่างมือจับสองฝั่ง รายการรุ่นเต็มความสูง กดแล้วไม่เด้งกลับบน ลากย้ายได้"],
     ["1.607","2026-11-02","FIX มือจับฝัง R122 · R118 วางท่าใหม่ตามภาพผู้ใช้: แผ่นนอนบนหัวบาน ยื่นหน้าบาน หัวห้อยลง ขาลงร่องหลังบาน 2 × 18 — 1.606 ตั้งขึ้นตามแบบ CAD ตรง ๆ บานจึงถูกตัด 45 (ตอนนี้ R122 สั้นลง 2 · R118 2.9 · งานที่ใส่ไว้แล้วแก้ให้เอง) · FEAT ห้องออกแบบ › 🎨 สี เลือกแนวลายหน้าบาน อัตโนมัติ/ตั้ง/นอน เมื่อสีมีลายไม้ · ปิด SN_OFF.plGrainDir · UI การ์ดดีไซน์หน้าบาน: อยู่กลางช่อง · บานตัวอย่างขนาดเดียวกันทุกแบบ · ไม่แสดงรหัสที่ไม่ใช่แบบบาน (0000_Mat16) · FEAT Fitting Global กรองแยกรหัส/ชื่อ/หน่วย/หมวด + คอลัมน์หมวดแทน RecId"],
     ["1.606","2026-11-02","FEAT (ผู้ใช้ 2/11 16:32) ① มือจับฝังรุ่นจริง LM24 · R122 · R118 ลอกจากแบบ CAD ② R122/R118 เซาะบ่าหลังบาน ลึก 2 สูง 18 ตามแบบ: ควักใน 3D + MPR ผิวหลัง · หน้าวาดมีช่องเซาะหลังบาน แก้/ปิดรายรุ่นได้ ③ หูแขวนครัว 3D ตามภาพ: ตัวเรือนเปิดฝาเห็นกลไก น็อตปรับ แผ่นหลัง ลิ้นตะขอรูยาว ซ้าย/ขวากลับด้าน · ขนาด ตำแหน่ง รอยบาก รูเจาะ BOM เท่าเดิม"],
@@ -11452,12 +11453,32 @@ function deIntSnap(inst){
   });
   return n;
 }
+/* ───────── v1.609: บานตู้ฮู้ด ก้นบานมีจุดอ้างแล้ว ─────────
+   ผู้ใช้ 2/11 18:39 (project 35 · WAT070): “ทำไมบาน hood ถึงหายไปประมาณ 10 mm.”
+   วัดจากไฟล์: แผ่นข้างลงถึง 1592 · บาน + มือจับ LM126 ลงถึงแค่ 1602.05 ห่าง 10.05 · ตอน project 12:52 (HW-367) ห่าง 13.1
+   สาเหตุ: แผ่นพื้นตู้ฮู้ดยกขึ้นไปอยู่สูง (1793) ตอนเก็บสเปคจึงไม่มีชิ้นให้อ้างก้นบาน _de.B = ว่าง
+     ขอบล่างไม่เคยถูกคิดใหม่ ได้แต่จำต่อจากรอบก่อน · ก่อน 1.601 ปรับสูง/ย้ายตู้ทีไรถูกตัดเพิ่มตามความสูงมือจับสะสมไป
+     1.601 หยุดการตัดเพิ่ม (ehpFreeEdge) แต่ของที่หายไปแล้วไม่มีอะไรคืน และจะคืนเองไม่ได้เพราะไม่มีจุดอ้าง
+   ตอนนี้: ตู้ที่แผ่นพื้นทุกแผ่นอยู่เหนือก้นบานเกิน 50 และก้นบาน (รวมมือจับฝังด้านล่าง) ห่างก้นแผ่นข้างไม่เกิน 30 = ตั้ง _de.B อ้างแผ่นข้าง
+     ระยะเท่าขอบบน (ไม่มีขอบบน = 1.5) → บานคิดจากแผ่นข้างทุกรอบเหมือนบานทั่วไป ปรับสูงแล้วตาม ไม่สะสม · แก้ระยะได้ในหน้าจัดหน้าบาน
+     ห่างเกิน 30 = บานที่ตั้งใจจบเหนือก้นตู้ ไม่แตะ · ปิด SN_OFF.deFreeBottom=1 */
+function deFreeBottomHeal(carc,drs){ if(snOff("deFreeBottom")) return 0; let n=0;
+  const by=id=>carc.find(x=>x.id===id)||null, lo=x=>x.y-_deWY(x)/2, flats=carc.filter(x=>x&&x.orient==="flat"&&!x._dx);
+  if(!flats.length) return 0;
+  drs.forEach(b=>{ const sp=b._de; if(!sp||sp.B!=null||(+sp.vn||1)>1||b.fixH||b._inner||b.orient!=="front") return;
+    const l=sp.L&&by(sp.L.ref), r=sp.R&&by(sp.R.ref); if(!l||!r||l.orient!=="side"||r.orient!=="side") return;
+    const e=b._ehp, h=worldDims(b)[1], _cutNow=e&&e.side==="bottom"&&Array.isArray(e.lw)&&Math.abs((+e.lw[1])-(+b.W))<0.06,   /* เทียบแค่ความสูงบาน ไม่ใช้ ehpCut เพราะตู้หมุนถูกจัดแกนชั่วคราว x z จึงไม่ตรงที่จำ */
+      full=b.y-h/2-(_cutNow?(+e.cut||0):0), ref=lo(l)<=lo(r)?l:r, gap=full-lo(ref);
+    if(gap<-0.5||gap>30||flats.some(x=>lo(x)<full+50)) return;
+    sp.B={m:"ทับ", v:(sp.T&&sp.T.m==="ทับ")?Math.max(+sp.T.v||0,0):1.5, ref:ref.id}; n++; });
+  return n; }
 function applyDoorSpecs(inst){
   try{ fzHealDoorRefs(inst); }catch(e){ console.error("fzRef:",e); }   // v1.219
   try{ ensureFrontZones(inst); }catch(e){ console.error("zx:",e); }   // v21.6
   try{ healMirroredZx(inst); }catch(e){ console.error("zxMirror:",e); }   // v1.320: ของค้างจากกลับตู้รุ่นก่อน
   const carc=_deCarcOf(inst), drs=_deDoorsOf(inst).filter(b=>b._de);
   if(!carc.length||!drs.length) return 0;
+  try{ deFreeBottomHeal(carc,drs); }catch(e){ console.error("deFreeBottom:",e); }   /* v1.609 */
   const byId=id=>carc.find(x=>x.id===id)||null;
   /* ───────── v1.263: เสาแบ่งระหว่างบานถูกลบ → สองช่องกลายเป็นช่องเดียว ─────────
      บานซ้ายเสาอ้างขอบขวาที่เสา · บานขวาเสาอ้างขอบซ้ายที่เสา · ลบเสาแล้วชิ้นอ้างอิงนั้นหายไปพร้อมกันทั้งสองฝั่ง
@@ -30319,6 +30340,8 @@ function boardRole(b){
      SN_OFF.doorArt=1     ไม่มีหน้าวาดลายหน้าบาน · ลายที่ใส่ไว้ไม่แสดง (v1.604)
      SN_OFF.ehpRebate=1   มือจับฝังไม่เซาะบ่าหลังบาน (v1.606)
      SN_OFF.hgk3D=1       หูแขวนเป็นกล่องคร่าว ๆ แบบเดิม (v1.606)
+     SN_OFF.deFreeBottom=1 บานตู้ฮู้ดก้นบานไม่อ้างแผ่นข้าง (v1.609)
+     SN_OFF.cabJoint=1    ไม้ไฟ/ฟิลเลอร์บนตัดทุก 2400 จากต้นแนวแบบเดิม (v1.609)
      SN_OFF.ehpAxCode=1   ใบเบิกมือจับฝังออกรหัสรุ่น ไม่ค้นรหัส AX ตามสี+ขนาด (v1.608)
      SN_OFF.plPullWide=1  หน้าต่างมือจับแบบเดิม กว้าง 500 เรียงบนลงล่าง (v1.608)
      SN_OFF.plGrainDir=1  กล่องสีห้องออกแบบไม่มีแถวเลือกแนวลายหน้าบาน · ค่าที่เลือกไว้ไม่มีผล (v1.607)
@@ -40464,6 +40487,18 @@ async function plLightPrep(){ const r=plRoom(), code=String(r.lightCode||"WEF253
   if(!m||!m.boards||!m.boards.length){ toast("⚠ ไม่พบโมเดล "+code+" ในคลังตู้ — ใช้ความหนา "+plLightT()+" ไปก่อน"); return false; }
   const bs=m.boards.filter(b=>b&&!b._virtual&&(+b.T>0)); const bb=cabBBox(bs.length?bs:m.boards);
   const t=Math.round(Math.min(bb.W,bb.H,bb.D)*10)/10; if(t>0) r.lightT=t; return true; }
+/* ───────── v1.609: รอยต่อไม้ไฟ/ฟิลเลอร์บน อยู่ระหว่างตู้ ─────────
+   ผู้ใช้ 2/11 18:42 (ภาพตู้ที่มีรอยต่อฟิลเลอร์กลางตู้): “รอยต่อฟิลเลอร์บน ต้องอยู่ก่อนถึงตู้นี้ เราจะไม่เอารอยอยู่กลางตู้ ต้องอยู่ระหว่างตู้
+     · ไม้วิ่งไฟด้วย เกิน 2400 ขอรอยต่อไม้ที่ระหว่างตู้ ก่อนถึง 2400”
+   เดิม: ตัดทุก 2400 นับจากต้นแนว ไม่ดูว่าตกตรงไหน (ครัว3 ไม้ไฟต่อที่ 2400 · ฟิลเลอร์ต่อที่ 2480 กลางตู้ WNR113 2130–2730)
+   ตอนนี้: จากต้นแนวเลือกรอยต่อระหว่างตู้ที่ไกลสุดแต่ท่อนยังไม่เกิน 2400 แล้วเดินต่อจากจุดนั้น · cands = ขอบตู้สองฝั่งของทุกรอยต่อ
+     ช่วงนั้นไม่มีรอยระหว่างตู้เลย (ตู้เดี่ยวยาวเกิน 2400) = ตัดที่ 2400 เหมือนเดิม เพราะไม้ยาวกว่านี้ไม่มี
+   ตีนตู้ยังตัดแบบเดิม · ปิด SN_OFF.cabJoint=1 */
+function cabJointSplit(a0,a1,cands,M){ const out=[];
+  if(snOff("cabJoint")){ const n=Math.max(1,Math.ceil((a1-a0)/M-1e-6)); for(let k=0;k<n;k++) out.push([a0+k*M,Math.min(a1,a0+(k+1)*M)]); return out; }
+  const C=[...new Set((cands||[]).map(v=>Math.round(v*10)/10))].filter(v=>v>a0+1&&v<a1-1).sort((p,q)=>p-q);
+  let s=a0, g=0; while(a1-s>M+1e-6&&g++<200){ const c=C.filter(v=>v>s+1&&v<=s+M+1e-6), e=c.length?c[c.length-1]:s+M; out.push([s,e]); s=e; }
+  out.push([s,a1]); return out; }
 /* แนวไม้ไฟ: ตู้ที่ยกโครงแล้ว บนผนังเดียวกัน ก้นโครงเท่ากัน ห่างผนังเท่ากัน · ต่อกันเมื่อห่างไม่เกิน 200 (ฟิลเลอร์)
    v1.316: ช่องที่มีของลงมาขวางแนวไม้ไฟ (ฟิลเลอร์ที่ไม่ยก · ตู้สูง · ตู้ที่ปิดไม้ไฟ) = ตัดแนว ไม่วิ่งทะลุ */
 function plLightRuns(){
@@ -40475,7 +40510,7 @@ function plLightRuns(){
   const g={}; items.forEach(o=>{ const k=o.wk+"|"+Math.round(o.bot)+"|"+Math.round(o.off); (g[k]=g[k]||[]).push(o); });
   const cut=(cur,o)=>blk.some(b=>b.wk===o.wk&&b.lo<o.bot-0.5&&b.hi>o.bot-T+0.5&&b.a1>cur.a1+0.5&&b.a0<o.a0-0.5);
   Object.values(g).forEach(arr=>{ arr.sort((p,q)=>p.a0-q.a0); let cur=null;
-    arr.forEach(o=>{ if(cur&&o.a0-cur.a1<=200&&!cut(cur,o)){ cur.a1=Math.max(cur.a1,o.a1); cur.D=Math.min(cur.D,o.D); }
+    arr.forEach(o=>{ if(cur&&o.a0-cur.a1<=200&&!cut(cur,o)){ (cur.cuts=cur.cuts||[]).push(cur.a1,o.a0);   /* v1.609 */ cur.a1=Math.max(cur.a1,o.a1); cur.D=Math.min(cur.D,o.D); }
       else { cur={wk:o.wk, a0:o.a0, a1:o.a1, bot:o.bot, D:o.D, off:o.off, inst:o.i}; out.push(cur); } }); });
   /* ───────── v1.601: ปลายแนวไม้ไฟวิ่งชนผนัง ─────────
      ผู้ใช้ 2/11 12:52: “ไม้วิ่งไฟ วิ่งไม่ชนผนังครับ” (งานครัว3: ตู้มุม WCL027 เริ่มที่ x 80 ไม้ไฟจบที่ 80 เหลือช่อง 80 ถึงผนังซ้าย)
@@ -40497,15 +40532,16 @@ async function plLightSync(force){
   if(typeof isLocked==="function"&&isLocked()) return false;                 // v1.601: งานล็อก ห้ามลบ/สร้างแผ่นไม้ไฟใหม่ (plAdd ไม่ยอมวาง แผ่นเดิมจะหายเฉย ๆ)
   if(PL.lightBusy) return false; const r=plRoom(), code=String(r.lightCode||"WEF253").trim(), T=plLightT(), MAXL=Math.max(+settings.lineMaxLen||2400,100);
   const runs=(r.lightOn&&code)?plLightRuns():[];
-  const sig=JSON.stringify([code,T,runs.map(u=>[u.wk,Math.round(u.a0),Math.round(u.a1),Math.round(u.bot),Math.round(u.D),Math.round(u.off)])]);
+  runs.forEach(u=>{ u.segs=cabJointSplit(u.a0,u.a1,u.cuts,MAXL); });   /* v1.609: รอยต่ออยู่ในลายเซ็น งานเก่าที่ต่อกลางตู้จึงถูกจัดใหม่ */
+  const sig=JSON.stringify([code,T,runs.map(u=>[u.wk,Math.round(u.a0),Math.round(u.a1),Math.round(u.bot),Math.round(u.D),Math.round(u.off),u.segs.map(q=>Math.round(q[1]))])]);
   const have=Object.keys(plCabMap()).filter(plIsLightPanel);
   if(!force&&sig===r.lightSig&&(runs.length?have.length>0:!have.length)) return false;
   PL.lightBusy=true; const cam=plCamKeep(); let made=0, miss=false, tReal=0;
   try{
     if(have.length){ const hs=new Set(have); state.boards=state.boards.filter(b=>!(b&&hs.has(String(b.cabInst))));
       hs.forEach(i=>{ try{ delete (state.cabColors||{})[i]; }catch(e){} }); }
-    for(const u of runs){ const pcs=Math.max(1,Math.ceil((u.a1-u.a0)/MAXL-1e-6));
-      for(let k=0;k<pcs;k++){ const a0=u.a0+k*MAXL, L=Math.min(u.a1,a0+MAXL)-a0; if(L<20) continue;
+    for(const u of runs){ const pcs=u.segs.length;   /* v1.609 */
+      for(let k=0;k<pcs;k++){ const a0=u.segs[k][0], L=u.segs[k][1]-a0; if(L<20) continue;
         const vars=Object.assign({},(state.cabColors||{})[u.inst]||{});
         const ni=await plAdd(code,Math.round(L),{wall:u.wk, along:a0, y:u.bot-T, H:T, D:Math.round(u.D), off:u.off, kind:"other", vars, quiet:true, free:true});
         if(ni){ plBoardsOf(ni).forEach(b=>{ if(b) b._plLightPanel=1; }); made++;
@@ -41989,7 +42025,10 @@ const plMoney=v=>"฿"+Math.round(v).toLocaleString("th-TH");
 function plPanelOpen(){
   if(PL.panel) return PL.panel;
   if(!$("plCSS")){ const st=document.createElement("style"); st.id="plCSS"; st.textContent=
-    "#plPanel{position:fixed;left:10px;top:64px;bottom:10px;width:350px;z-index:320;display:flex;flex-direction:column;background:var(--solid,#fff);color:var(--ink,#111);border-radius:14px;box-shadow:0 18px 50px -14px rgba(0,0,0,.45);overflow:hidden;font-size:12.5px}"
+    /* ───────── v1.609: แผงห้องออกแบบไม่ทับแถบเครื่องมือล่าง ─────────
+       ผู้ใช้ 2/11 18:44 (ภาพแผงห้องสูงเต็มจอ): “เป็นมานานแล้วตั้งแต่เริ่มโหมดนี้ มันไปทับแท็บเครื่องมือ เลือก วัด ย้าย ยืดหด ขยับขึ้นได้ไหม”
+       เดิม: แผงลงถึงขอบจอ (bottom 10) ชั้น 320 ทับแถบล่าง (#statusbar ชั้น 40) ฝั่งซ้ายที่เป็นปุ่มเครื่องมือพอดี → ตอนนี้จบเหนือแถบล่าง 8 มม. เนื้อในแผงเลื่อนเหมือนเดิม */
+    "#plPanel{position:fixed;left:10px;top:64px;bottom:calc(var(--sb,48px) + 8px);width:350px;z-index:320;display:flex;flex-direction:column;background:var(--solid,#fff);color:var(--ink,#111);border-radius:14px;box-shadow:0 18px 50px -14px rgba(0,0,0,.45);overflow:hidden;font-size:12.5px}"
     +"#plPanel h4{margin:0;font-size:12px;color:var(--ink-dim);font-weight:700;letter-spacing:.02em}"
     +"#plPanel .plSec{padding:10px 12px;border-bottom:1px solid var(--line)}"
     +"#plPanel .plRow{display:flex;gap:6px;align-items:center;flex-wrap:wrap}"
@@ -49909,7 +49948,7 @@ function applyLineDisplay(){
           &&Math.abs(cur.y0-o.y0)<1&&Math.abs(cur.y1-o.y1)<1;
         const mx=(a,b)=>(c.s>0)?Math.max(a,b):Math.min(a,b);
         /* v1.308: หน้าแนวยึดตู้ที่มีขาจริง — ฟิลเลอร์ที่หน้าเสมอบาน (ยื่นกว่าโครง) ไม่ดึงตีนตู้ทั้งแนวออกมา */
-        if(ok){ cur.whi=Math.max(cur.whi,whi);
+        if(ok){ (cur.cuts=cur.cuts||[]).push(cur.whi,wlo);   /* v1.609 */ cur.whi=Math.max(cur.whi,whi);
           if(c.realLeg){ cur.front=cur.rl?mx(cur.front,c.front):c.front; cur.rl=true; } else if(!cur.rl) cur.front=mx(cur.front,c.front);
           cur.n++; }
         else { cur={fa:c.fa, s:c.s, wa:c.wa, wlo, whi, front:c.front, rl:!!c.realLeg, y0:o.y0, y1:o.y1, n:1}; out.push(cur); } });
@@ -49929,9 +49968,10 @@ function applyLineDisplay(){
       ends.forEach(e=>{ if(e.end==="lo") ru.wlo=Math.min(ru.wlo,e.outer); else ru.whi=Math.max(ru.whi,e.outer); });   // แนววิ่งถึงผิวนอกแผ่นปิดข้าง
       const len=ru.whi-ru.wlo, h=ru.y1-ru.y0; if(len<20||h<10) return;
       const outer=ru.front-ru.s*(kind==="ceil"?CSB:SB), ca=outer-ru.s*T/2;
-      const pieces=Math.max(1,Math.ceil(len/MAXL-1e-6));
+      const _segs=(kind==="ceil")?cabJointSplit(ru.wlo,ru.whi,ru.cuts,MAXL):null;   /* v1.609: ฟิลเลอร์บนต่อที่ระหว่างตู้ */
+      const pieces=_segs?_segs.length:Math.max(1,Math.ceil(len/MAXL-1e-6));
       for(let k=0;k<pieces;k++){
-        const a0=ru.wlo+k*MAXL, a1=Math.min(ru.whi,a0+MAXL), L=a1-a0; if(L<1) continue;
+        const a0=_segs?_segs[k][0]:ru.wlo+k*MAXL, a1=_segs?_segs[k][1]:Math.min(ru.whi,a0+MAXL), L=a1-a0; if(L<1) continue;
         const p=[0,0,0]; p[ru.fa]=ca; p[1]=(ru.y0+ru.y1)/2; p[ru.wa]=(a0+a1)/2;
         state.boards.push({ id:"ld:"+kind+":"+ri+":"+k, name:(base.name||kind)+" · 3D", cab:base.cab, cabInst:base.cabInst,
           part:base.part, mat:base.mat, surfT:base.surfT, surfB:base.surfB,
