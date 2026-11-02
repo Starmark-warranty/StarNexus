@@ -3283,7 +3283,7 @@ body[data-theme="dark"] .splash-dots span{background:rgba(255,255,255,.25)}
    ===================================================================== */
 /* ---- APP_META: แหล่งความจริงเดียวของเวอร์ชัน (ดูได้จาก console / คลิกชื่อแอป) ---- */
 const APP_META={
-  name:"StarNexus", version:"1.617", build:"2026-11-02/living-props",
+  name:"StarNexus", version:"1.618", build:"2026-11-02/door-pick",
   file:"StarNexus.html", basedOn:"Furnitech_V3.html (v3.11)",
   /* ───────── เริ่มนับเวอร์ชันใหม่ที่ 1.001 (21/08/2026) ─────────
      ของเดิมนับมาถึง 42.1 แล้ววิ่งเป็นทศนิยมสองชั้นซึ่งอ่านลำดับยาก
@@ -3291,6 +3291,7 @@ const APP_META={
      ประวัติเก่าเก็บไว้ทั้งหมดตามเลขเดิม ไม่ไล่เขียนใหม่ เพราะเลขในนั้นถูกอ้างถึงไปแล้ว
      รายการที่อยู่ใต้ 1.001 ลงไปจึงเป็นเลขชุดเก่า อ่านต่อกันได้ตามวันที่ */
   changelog:[
+    ["1.618","2026-11-02","UX กล่องสี แยกทีละบาน (ผู้ใช้ 20:25 “ตอนแยกคนละบาน เลือกได้ไหม ติ๊กเลือก ตอนเลือกควรมี highlight ให้รู้ว่าบานไหน”) — เดิมเป็นแท็บ FrontColor1–6 / FrontShape1–6 ไม่รู้ว่าเลขไหนคือบานไหน ตอนนี้แท็บรวม + แถวติ๊ก บาน 1, บาน 2 … · บานที่ติ๊กเป็นสีฟ้าในจอ มีเลขกำกับทุกบาน · ชี้ที่ช่องติ๊ก = บานนั้นเป็นสีส้ม · คลิกบานในจอก็ติ๊กได้ · หมุนกล้องได้โดยกล่องไม่ปิด · สีและแนวลายเปลี่ยนเฉพาะบานที่ติ๊ก"],
     ["1.617","2026-11-02","FEAT หมวด ห้องรับแขก เบื้องต้น (ผู้ใช้ 20:22 “เพิ่มของห้องรับแขกไว้ด้วย”) — โซฟา 2 / 3 ที่นั่ง อาร์มแชร์ (เบาะมุมมน หมอนอิง เลือกสีได้) โต๊ะกลาง โต๊ะข้าง ชั้นวางทีวี ต้นไม้ในกระถาง · โซฟาและชั้นวางดูดชิดผนัง · Ctrl+C/V ใช้ได้ · ฉากซ่อนตู้ไม่ซ่อน"],
     ["1.616","2026-11-02","FEAT สตูลนั่ง ในหมวดห้องนอน (ผู้ใช้ 20:22 “STOOL นั่งละครับ”) — เบาะกลม Ø400 สูง 450 ขาไม้ 4 ขา เลือกสีเบาะได้ · คลิกการ์ดแล้ววางหน้าโต๊ะเครื่องแป้งที่ยังไม่มีสตูลให้เอง · ไม่มีโต๊ะ = กลางห้อง ลากเองได้"],
     ["1.615","2026-11-02","UI หมอนบนเตียงเป็นทรงหมอนจริง (ผู้ใช้ 20:10 “หมอนไม่ค่อยสมจริงเลย”) — เดิมเป็นทรงไข่ลอยกลางเตียง ตอนนี้ขอบบีบ มุมแหลม ป่องกลาง มีรอยย่นรอบขอบ พิงหัวเตียง · ลดความสว่างผ้าปูและผ้าห่มให้เห็นเงา"],
@@ -30382,6 +30383,7 @@ function boardRole(b){
      SN_OFF.ceilSideFill=1 ฟิลเลอร์บนจบที่ข้างตู้ ไม่วิ่งข้ามฟิลเลอร์ข้างตู้ (v1.613)
      SN_OFF.plSideOther=1 ตู้นอกหมวด B/W/T ไม่มีปุ่มแผ่นปิดข้าง (v1.613)
      SN_OFF.plProps=1     ซ่อนการ์ดของห้องนอนและทีวีในแคตตาล็อก ชิ้นที่วางแล้วยังวาดอยู่ (v1.614)
+     SN_OFF.plDoorPick=1  แยกทีละบานในกล่องสี กลับเป็นแท็บ FrontColor1–6 แบบเดิม ไม่มีติ๊ก ไม่มีไฮไลต์ (v1.618)
      SN_OFF.plClip=1      ปิด Ctrl+C / Ctrl+V ในห้องออกแบบ (v1.613)
      SN_OFF.plShapeBig=1  แท็บแบบบานในกล่องสี ขนาดการ์ดเล็กและวาดตามสัดส่วนจริงแบบเดิม (v1.613)
      SN_OFF.rndView=1     AI RENDER เปิดโหมดสมจริงทุกครั้งแบบเดิม ไม่มีแถวภาพตั้งต้น (v1.611)
@@ -38453,6 +38455,7 @@ setTimeout(()=>{ try{ if(snOff("aiBtnHi")) return; const b=$("aiBtn"); if(!b) re
         "@media (prefers-reduced-motion:reduce){#aiBtn.aiHi{animation:none}}"].join("\n");
       document.head.appendChild(st); }
     b.classList.add("aiHi"); sbFitSoon(); }catch(e){ console.error("aiBtnHi:",e); } },0);
+addEventListener("pointerdown",e=>{ try{ plDoorPickDown(e); }catch(err){ console.error("doorPick:",err); } },true);   /* v1.618: ต้องก่อนตัวเลือก/ลากตู้ทุกตัว */
 addEventListener("pointerdown",e=>{ try{ plmsDown(e); }catch(err){ console.error("plms:",err); } },true);   /* v1.562: Ctrl+คลิก/ลากกรอบ ในห้องออกแบบ (ก่อน plwDown/ploDown/plDragDown) */
 addEventListener("keydown",e=>{ try{ plmsKey(e); }catch(err){ console.error("plmsKey:",err); } },true);       /* v1.562: Ctrl+A · Esc · Del · R เมื่อเลือกหลายตู้ */
 addEventListener("pointerdown",plwDown,true);
@@ -46440,7 +46443,7 @@ function plSetColor(inst,fam,val,all){   // เดิม (ช่องเดี�
   const n=plSetColorGroup(all?Object.keys(plCabMap()):[String(inst)],[fam],val);
   toast("🎨 "+fam+" = "+val+(all?(" · "+n+" ตู้"):""));
 }
-const PLC={el:null, inst:null, fam:"", q:"", all:false, split:false};
+const PLC={el:null, inst:null, fam:"", q:"", all:false, split:false, pick:new Set(), hov:0, slots:null, hl:null, redraw:null};   /* v1.618: pick = เลขบานที่ติ๊ก · slots = {list:[{n,doors}]} เมื่ออยู่โหมดติ๊ก */
 /* v1.607: แถวเลือกแนวลายหน้าบานในกล่อง 🎨 — ดู grainDirApply · โชว์เมื่อมีบาน/หน้าลิ้นชักที่ใช้สีลายไม้ */
 function plFrontDoors(insts){ const s=new Set(); (insts||[]).forEach(i=>{ let mem=[i]; try{ mem=varMemberInsts(varRootInst(i)); }catch(e){} mem.forEach(m=>s.add(String(m))); });
   return (state.boards||[]).filter(b=>b&&!b._virtual&&b._door&&!b._box&&!b._glass&&b.orient!=="flat"&&+b.T>0&&s.has(String(b.cabInst))); }
@@ -46452,12 +46455,51 @@ function plGrainRowHtml(insts){ if(snOff("plGrainDir")) return ""; const ds=plGr
   return '<div class="pcGd"><b>ลายหน้าบาน</b>'
     +bt("","อัตโนมัติ","ตามกฎของระบบ: ลายตั้ง · ท้ายรหัสสี X = ลายนอน · Y = ลายตั้ง")+bt("V",ic(true)+"ลายตั้ง","ลายไม้วิ่งขึ้น-ลงทุกบาน รวมหน้าลิ้นชัก")+bt("H",ic(false)+"ลายนอน","ลายไม้วิ่งซ้าย-ขวาทุกบาน รวมหน้าลิ้นชัก")
     +'<span>'+(nH&&nV?("ตั้ง "+nV+" · นอน "+nH+" บาน"):((nV?"ตั้ง":"นอน")+"ทั้ง "+ds.length+" บาน"))+'</span></div>'; }
-function plGrainSet(insts,dir){ const cam=plCamKeep(), ds=plGrainDoors(insts);
+function plGrainSet(insts,dir,only){ const cam=plCamKeep(), ds=plGrainDoors(insts).filter(d=>!only||only.has(d.id));   /* v1.618: only = เฉพาะบานที่ติ๊ก */
   ds.forEach(d=>{ if(dir){ d._grainDir=dir; grainDirApply(d); } else { delete d._grainDir; delete d._grainLock; } });   /* อัตโนมัติ = ปล่อยให้กฎคิดจริง ๆ รวมบานที่เคยล็อกไว้ */
   if(dir&&!state.showGrain){ state.showGrain=true; const gb=$("grainBtn"); if(gb) gb.classList.add("sel"); }   /* เลือกแล้วต้องเห็นลาย */
   sync(0); plCamPut(cam); if(PLC.inst) plSelect(PLC.inst); else plPanelSel();
   return ds.length; }
-function plColorClose(){ if(PLC.el){ PLC.el.remove(); PLC.el=null; } }
+/* ───────── v1.618: แยกทีละบาน = ติ๊กเลือกบาน + ไฮไลต์ในจอ ─────────
+   ผู้ใช้ 2/11 20:25 (ภาพแท็บ FrontColor1 FrontShape1 … FrontShape6 ของ AWC054): “ตอนแยกคนละบาน เลือกได้ไหมครับ ติ๊กเลือก แล้วก็ตอนเลือกควรมี hightlight ให้รู้ด้วยครับ ว่าบานไหน”
+   เดิม: ติ๊กแยกแล้วได้แท็บแยกตามช่องของโมเดล ชื่อไม่บอกว่าเป็นบานไหน และช่องที่ไม่มีบานก็โชว์ ต้องลองกดแล้วดูว่าบานไหนเปลี่ยน
+   ตอนนี้ (ตู้ใบเดียว): แท็บรวมตามชนิด + แถวติ๊กเฉพาะบานที่มีจริง · กดสี = เปลี่ยนเฉพาะบานที่ติ๊ก · ไม่ได้ติ๊ก = บอกให้ติ๊กก่อน ไม่เปลี่ยนอะไร
+     ในจอ: ทุกบานมีป้ายเลข · บานที่ติ๊กเป็นสีฟ้า · ชี้ที่ช่องติ๊ก = สีส้ม · วาดทับทุกอย่าง จึงเห็นบานของตู้ที่อยู่ข้างในด้วย
+     คลิกบานในจอ = ติ๊ก/เอาออก · คลิกชิ้นอื่นของตู้ไม่เกิดอะไร ตู้ไม่ขยับ · คลิกที่ว่างแล้วลาก = หมุนกล้อง กล่องไม่ปิด (ปิดด้วย ✕ หรือ Esc)
+     หาว่าบานอยู่ช่องไหนจากโซ่ Variables จริงก่อน (ผิว = skinColor · แบบ = nodePathFams) ไม่เจอจึงอ่านเลขจากชื่อ Part
+     ช่องเดียวมีหลายบาน = ติ๊กทีเดียวติดทุกบานและขึ้น ×จำนวน เพราะโมเดลผูกสีช่องเดียวกัน แยกกันไม่ได้
+     ทั้งออเดอร์/ติ๊ก ทุกตู้ = แท็บแบบเดิม เพราะเลขบานของแต่ละตู้ไม่ตรงกัน · ปิด SN_OFF.plDoorPick=1 */
+function plFamNo(nm){ const m=/(\d+)\s*$/.exec(String(nm||"")); return m?+m[1]:0; }
+function plDoorSlots(inst,f){ if(!f) return []; const cf=plColorFams(inst), mem=new Set(cf.mem.map(String)), has=new Set(f.names), shp=/shape/i.test(f.key), by=new Map();
+  (state.boards||[]).forEach(b=>{ if(!b||b._virtual||!b._door||b._box||!(+b.T>0)||!mem.has(String(b.cabInst))) return; let nm="";
+    try{ if(shp){ const i=nodePathFams(String(b.part||"").trim()); nm=(i&&i.fams&&i.fams[0])?i.fams[0].name:""; } else { const c=skinColor(b); nm=(c&&c.fam)||""; } }catch(e){}
+    let n=has.has(nm)?plFamNo(nm):0; if(!n){ const m=/Front(?:Shape)?P?(\d+)/i.exec(String(b.part||"")); if(m) n=+m[1]; } if(!n) return;
+    if(!by.has(n)) by.set(n,[]); by.get(n).push(b); });
+  return [...by.keys()].sort((a,b)=>a-b).map(n=>({n,doors:by.get(n)})); }
+function plDoorRowHtml(L){ const k=L.filter(s=>PLC.pick.has(s.n)).length;
+  return '<div class="pcDr"><b>เลือกบาน</b>'+L.map(s=>{ const on=PLC.pick.has(s.n), d=s.doors[0], dr=s.doors.every(x=>x._dg!=null);
+      return '<label class="pcDc'+(on?" on":"")+'" data-n="'+s.n+'" title="'+escapeHtml(s.doors.map(x=>String(x.cab||"")+" "+String(x.name||"")).join(" · "))+'"><input type="checkbox" data-n="'+s.n+'"'+(on?" checked":"")+'>'+(dr?"ลิ้นชัก ":"บาน ")+s.n+(s.doors.length>1?(" ×"+s.doors.length):"")+'<small>'+Math.round(+d.L||0)+'×'+Math.round(+d.W||0)+'</small></label>'; }).join("")
+    +'<button class="pcDa" data-a="all">ทุกบาน</button><button class="pcDa" data-a="none">ล้าง</button>'
+    +'<span>'+(k?("เลือก "+k+" ช่อง · กดสีด้านล่างเพื่อเปลี่ยนเฉพาะช่องนี้"):"ติ๊กบานที่จะเปลี่ยน หรือคลิกบานในจอ")+'</span></div>'; }
+function plDoorPickedBoards(){ const s=PLC.slots; return s?s.list.filter(x=>PLC.pick.has(x.n)).reduce((a,x)=>a.concat(x.doors),[]):[]; }
+function plDoorBadge(n,on){ const k=n+"|"+(on?1:0), C=window._plDrTex=window._plDrTex||{}; if(C[k]) return C[k];
+  const cv=document.createElement("canvas"); cv.width=cv.height=128; const x=cv.getContext("2d"); x.beginPath(); x.arc(64,64,58,0,Math.PI*2); x.fillStyle=on?"#1e88e5":"#ffffff"; x.fill(); x.lineWidth=7; x.strokeStyle=on?"#ffffff":"#1e88e5"; x.stroke();
+  x.fillStyle=on?"#ffffff":"#123"; x.font="bold 72px Arial,Helvetica,sans-serif"; x.textAlign="center"; x.textBaseline="middle"; x.fillText(String(n),64,69);
+  const t=new THREE.CanvasTexture(cv); t.encoding=THREE.sRGBEncoding; t.needsUpdate=true; C[k]=t; return t; }
+function plDoorHlClear(){ if(!PLC.hl) return; scene.remove(PLC.hl); PLC.hl.traverse(o=>{ if(o.geometry) o.geometry.dispose(); if(o.material) o.material.dispose(); }); PLC.hl=null; try{ invalidate(); }catch(e){} }
+function plDoorHl(){ plDoorHlClear(); if(!PLC.el||!PLC.slots) return; const g=new THREE.Group(); g.name="plDoorPick"; g.userData._rptSkip=1;
+  PLC.slots.list.forEach(s=>{ const on=PLC.pick.has(s.n), hv=PLC.hov===s.n, col=hv&&!on?0xf59e0b:0x1e88e5;
+    s.doors.forEach(b=>{ const o=(meshes||[]).find(m=>m.id===b.id); if(!o||!o.mesh) return; const bx=new THREE.Box3().setFromObject(o.mesh); if(bx.isEmpty()) return; const c=bx.getCenter(new THREE.Vector3()), z=bx.getSize(new THREE.Vector3());
+      if(on||hv){ const geo=new THREE.BoxGeometry(z.x+6,z.y+6,z.z+6), m=new THREE.Mesh(geo,new THREE.MeshBasicMaterial({color:col,transparent:true,opacity:hv?.45:.38,depthTest:false,depthWrite:false})), l=new THREE.LineSegments(new THREE.EdgesGeometry(geo),new THREE.LineBasicMaterial({color:col,transparent:true,opacity:1,depthTest:false}));
+        m.position.copy(c); l.position.copy(c); m.renderOrder=998; l.renderOrder=999; m.userData._rptSkip=1; l.userData._rptSkip=1; g.add(m); g.add(l); }
+      const sd=[z.x,z.y,z.z].sort((p,q)=>q-p)[1], S=Math.min(150,Math.max(60,sd*.34)), sp=new THREE.Sprite(new THREE.SpriteMaterial({map:plDoorBadge(s.n,on),transparent:true,depthTest:false,depthWrite:false})); sp.scale.set(S,S,1); sp.position.copy(c); sp.renderOrder=1000; sp.userData._rptSkip=1; g.add(sp); }); });
+  scene.add(g); PLC.hl=g; try{ invalidate(); }catch(e){} }
+/* คลิกในจอระหว่างเลือกบาน: โดนบาน = ติ๊ก · โดนชิ้นอื่น = กันไม่ให้ไปเลือก/ลากตู้ · ที่ว่าง = ปล่อยให้หมุนกล้อง */
+function plDoorPickDown(e){ if(!PLC.el||!PLC.slots||e.button!==0||typeof renderer==="undefined"||e.target!==renderer.domElement) return;
+  const hit=pickFromHits(rayFrom(e).intersectObjects(meshes.map(m=>m.mesh),false)); if(!hit) return;
+  e.stopImmediatePropagation(); e.preventDefault(); const id=hit.object.userData.id, s=PLC.slots.list.find(x=>x.doors.some(b=>b.id===id)); if(!s) return;
+  if(PLC.pick.has(s.n)) PLC.pick.delete(s.n); else PLC.pick.add(s.n); if(PLC.redraw) PLC.redraw(); }
+function plColorClose(){ if(PLC.el){ PLC.el.remove(); PLC.el=null; } PLC.slots=null; PLC.hov=0; PLC.redraw=null; try{ plDoorHlClear(); }catch(e){} }   /* v1.618 */
 function plColorCSS(){
   if(!$("plcCSS")){ const st=document.createElement("style"); st.id="plcCSS"; st.textContent=
     "#plColor{position:fixed;z-index:470;width:440px;max-width:94vw;max-height:74vh;display:flex;flex-direction:column;background:var(--solid,#fff);color:var(--ink,#111);border-radius:14px;box-shadow:0 22px 60px -14px rgba(0,0,0,.5);overflow:hidden;font-size:12px}"
@@ -46472,6 +46514,7 @@ function plColorCSS(){
     +"#plColor .pcT:hover{border-color:var(--line)}#plColor .pcT.on{border-color:var(--accent)}"
     +"#plColor .pcSw{aspect-ratio:1;border-radius:7px;background:rgba(127,127,127,.12) center/cover no-repeat;display:flex;align-items:center;justify-content:center;color:var(--ink-dim);font-size:9.5px;text-align:center;overflow:hidden;box-shadow:inset 0 0 0 1px rgba(0,0,0,.08)}"
     +"#plColor .pcSw.pcShp{padding:5px}#plColor .pcSw.pcShp svg{width:100%;height:100%;display:block}"   /* v1.591: รูปแบบบาน */
+    +"#plColor .pcDr{display:flex;gap:5px;align-items:center;flex-wrap:wrap;padding:8px 12px 0}#plColor .pcDr b{font-size:11.5px;margin-right:2px}#plColor .pcDr span{color:var(--ink-dim);font-size:10.5px;flex-basis:100%}#plColor .pcDc{display:inline-flex;gap:4px;align-items:center;padding:3px 8px;border:1px solid var(--line);border-radius:8px;cursor:pointer;font-size:11.5px;user-select:none}#plColor .pcDc:hover{border-color:#f59e0b}#plColor .pcDc.on{border-color:#1e88e5;background:rgba(30,136,229,.14);font-weight:600}#plColor .pcDc small{color:var(--ink-dim);font-size:10px;font-weight:400}#plColor .pcDc input{margin:0}#plColor .pcDa{padding:3px 6px;border:none;background:none;color:var(--accent);cursor:pointer;font-size:11px}"   /* v1.618 */
     +"#plColor.pcBig{width:820px;max-height:90vh}#plColor.pcBig .pcGrid{grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:12px}#plColor.pcBig .pcSw.pcShp{aspect-ratio:3/4;padding:10px}#plColor.pcBig .pcT b{font-size:12.5px;text-align:center}#plColor.pcBig .pcT small{text-align:center;font-size:10.5px}"   /* v1.613: แท็บแบบบาน */
     +"#plColor .pcT b{font-size:10.5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-family:var(--mono)}"
     +"#plColor .pcT small{font-size:9.5px;color:var(--ink-dim);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-height:12px}";
@@ -46510,7 +46553,11 @@ function plColorOpen(inst,x,y){
   const whole=!inst; if(whole&&!Object.keys(plCabMap()).length){ toast("ยังไม่มีตู้ในห้อง"); return; }
   const code=inst?((plBoardsOf(inst).find(b=>b.cab)||{}).cab||""):"ทั้งออเดอร์";
   const targets=()=>(whole||PLC.all)?Object.keys(plCabMap()):[String(inst)];
-  let gs=plColorGroups(whole?Object.keys(plCabMap()):[String(inst)],PLC.split);
+  /* v1.618: โหมดติ๊กใช้แท็บรวม · ทั้งออเดอร์/ทุกตู้ = แท็บแยกแบบเดิม */
+  const pickable=()=>!!PLC.split&&!whole&&!PLC.all&&!snOff("plDoorPick");
+  const gsNow=()=>plColorGroups(whole?Object.keys(plCabMap()):[String(inst)],PLC.split&&!pickable());
+  let gs=gsNow();
+  if(PLC.inst!==inst) PLC.pick=new Set();
   if(PLC.inst!==inst||!gs.some(g=>g.key===PLC.fam)){ PLC.fam=(gs.find(g=>/frontcolor/i.test(g.key))||gs.find(g=>/front/i.test(g.key)&&g.names.length>1)||gs[0]||{}).key||""; PLC.q=""; }
   PLC.inst=inst;
   plColorCSS();
@@ -46524,6 +46571,11 @@ function plColorOpen(inst,x,y){
   const desc=c=>{ const r=(((settings.elements||{}).colors)||[]).find(z=>z&&String(z.code).trim()===c); return (r&&r.desc)||((surfDef(c)||{}).desc)||""; };
   const draw=()=>{
     const f=gs.find(z=>z.key===PLC.fam);
+    /* v1.618: แถวติ๊กเฉพาะแท็บหน้าบาน (Carcass ฯลฯ ทั้งตู้) · ค่าปัจจุบันอ่านจากบานที่ติ๊ก */
+    { const L=(f&&pickable()&&/^front/i.test(String(f.key)))?plDoorSlots(inst,f):[]; PLC.slots=L.length?{list:L}:null; }
+    PLC.redraw=draw;
+    const _pn=PLC.slots?f.names.filter(nm=>PLC.pick.has(plFamNo(nm))):null; let fc=f?f.cur:"", fmix=f?f.mixed:false;
+    if(_pn&&_pn.length){ const cf=plColorFams(inst), vs=[...new Set(_pn.map(nm=>{ const z=cf.fams.find(y=>y.name===nm); return z?String(z.cur||""):""; }).filter(Boolean))]; fc=vs[0]||""; fmix=vs.length>1; }
     const _g0=el.querySelector(".pcGrid"), _st0=_g0?_g0.scrollTop:0, _same=_pcFam===PLC.fam; _pcFam=PLC.fam;   /* v1.613 */
     const _isShp=!!(f&&/shape/i.test(f.key)), dsc=o=>{ const t=desc(o); return (_isShp&&/from\s*XML/i.test(t))?"":t; };   /* v1.613 */
     const q=String(PLC.q||"").trim().toUpperCase();
@@ -46531,33 +46583,41 @@ function plColorOpen(inst,x,y){
     el.innerHTML='<div class="pcHd"><b style="font-size:13.5px">🎨 สี — '+escapeHtml(code)+'</b>'
         +((snOff("doorArt")||whole)?'':'<button class="ibtn" id="pcArt" style="flex:none;width:auto;padding:3px 9px" title="วาดลายหน้าบาน หรือแปะรูปลายเส้น">✏ ลายบาน</button>')   /* v1.604 */
         +(snOff("plPull")?'':'<button class="ibtn" id="pcPull" style="flex:none;width:auto;padding:3px 9px" title="เลือกมือจับแบบรูป">🖐 มือจับ</button>')   // v1.524
-        +'<label style="margin-left:auto;display:flex;gap:4px;align-items:center;cursor:pointer" title="ติ๊ก = เลือกสีให้ทีละบาน (FrontColor1, 2, 3 แยกกัน)"><input type="checkbox" id="pcSplit"'+(PLC.split?" checked":"")+'> แยกทีละบาน</label>'
+        +'<label style="margin-left:auto;display:flex;gap:4px;align-items:center;cursor:pointer" title="ติ๊ก = เลือกว่าจะเปลี่ยนบานไหน · บานที่เลือกเป็นสีฟ้าในจอ"><input type="checkbox" id="pcSplit"'+(PLC.split?" checked":"")+'> แยกทีละบาน</label>'
         +(whole?'':'<label style="display:flex;gap:4px;align-items:center;cursor:pointer" title="ตู้ทุกใบในห้องที่มีช่องสีนี้ ได้สีเดียวกัน"><input type="checkbox" id="pcAll"'+(PLC.all?" checked":"")+'> ทุกตู้</label>')
         +'<button class="ibtn" id="pcX" style="flex:none;width:auto;padding:3px 9px">✕</button></div>'
       +(gs.length?('<div class="pcTabs">'+gs.map(z=>'<button data-f="'+escapeHtml(z.key)+'" class="'+(z.key===PLC.fam?"on":"")+'" title="'+escapeHtml(z.names.join(", "))+' · ตอนนี้: '+escapeHtml(z.cur||"—")+(z.mixed?" (ปนกันหลายสี)":"")+'">'+escapeHtml(z.label)+'</button>').join("")+'</div>'
+        +(PLC.slots?plDoorRowHtml(PLC.slots.list):"")   /* v1.618 */
         +plGrainRowHtml(targets())   /* v1.607 */
         +'<div style="display:flex;gap:6px;align-items:center;padding:8px 12px 0"><input id="pcQ" placeholder="ค้นรหัส/ชื่อสี ('+(f?f.opts.length:0)+')" value="'+escapeHtml(PLC.q)+'" style="flex:1;padding:4px 7px">'
-        +'<span style="color:var(--ink-dim)">ตอนนี้ <b style="font-family:var(--mono);color:var(--ink)">'+escapeHtml((f&&f.cur)||"—")+'</b>'+(f&&f.mixed?' <span style="color:#e58a24">+ปน</span>':'')+'</span></div>'
+        +'<span style="color:var(--ink-dim)">ตอนนี้ <b style="font-family:var(--mono);color:var(--ink)">'+escapeHtml(fc||"—")+'</b>'+(fmix?' <span style="color:#e58a24">+ปน</span>':'')+'</span></div>'
         +(whole?'<div style="padding:4px 12px 0;color:var(--ink-dim);font-size:10.5px">กดสี = ตู้ทุกใบในออเดอร์ที่มีช่องนี้ได้สีนี้'+(PLC.split?'':' ทุกบาน')+'</div>':'')
-        +'<div class="pcGrid">'+(opts.length?opts.map((o,i)=>'<div class="pcT'+(f&&o===f.cur?" on":"")+'" data-i="'+i+'" title="'+escapeHtml(o+(desc(o)?(" · "+desc(o)):""))+'">'
+        +'<div class="pcGrid">'+(opts.length?opts.map((o,i)=>'<div class="pcT'+(f&&o===fc?" on":"")+'" data-i="'+i+'" title="'+escapeHtml(o+(desc(o)?(" · "+desc(o)):""))+'">'
             +'<div class="pcSw" data-c="'+escapeHtml(o)+'">…</div><b>'+escapeHtml(o)+'</b><small>'+escapeHtml(dsc(o))+'</small></div>').join("")
           :'<div style="grid-column:1/-1;color:var(--ink-dim)">ไม่พบสีที่ค้น</div>')+'</div>')
       :'<div style="padding:14px 12px;color:var(--ink-dim);line-height:1.6">'+(whole?'ออเดอร์นี้':'ตู้ใบนี้')+'ไม่มีช่องสีให้เลือก — ตัวเลือกของ Family ต้องเป็นรหัสที่อยู่ใน Element → Colors หรือ Surfaces</div>');
     el.querySelector("#pcX").onclick=plColorClose;
     { const ab=el.querySelector("#pcArt"); if(ab) ab.onclick=()=>{ const d=state.boards.find(x=>x&&x.cabInst===inst&&daIsDoor(x)); if(!d){ toast("ตู้นี้ไม่มีหน้าบานให้ใส่ลาย"); return; } plColorClose(); doorArtOpen(d); }; }   /* v1.604 */
     { const pb=el.querySelector("#pcPull"); if(pb) pb.onclick=()=>{ const rc=el.getBoundingClientRect(); plColorClose(); plPullOpen(inst,rc.left,rc.top); }; }   // v1.524
-    { const a=el.querySelector("#pcAll"); if(a) a.onchange=ev=>{ PLC.all=ev.target.checked; draw(); }; }   /* v1.607: นับบานในแถวลายใหม่ */
-    el.querySelectorAll(".pcGd button").forEach(bt=>bt.onclick=()=>{ const k=bt.dataset.gd, n=plGrainSet(targets(),k); toast("ลายหน้าบาน "+({V:"ตั้ง",H:"นอน"}[k]||"อัตโนมัติ")+" · "+n+" บาน"); gs=plColorGroups(whole?Object.keys(plCabMap()):[String(inst)],PLC.split); draw(); });   /* v1.607 */
-    el.querySelector("#pcSplit").onchange=ev=>{ PLC.split=ev.target.checked; gs=plColorGroups(whole?Object.keys(plCabMap()):[String(inst)],PLC.split);
+    { const a=el.querySelector("#pcAll"); if(a) a.onchange=ev=>{ PLC.all=ev.target.checked; gs=gsNow(); if(!gs.some(g=>g.key===PLC.fam)) PLC.fam=(gs.find(g=>plGrpKey(g.key)===plGrpKey(PLC.fam))||gs[0]||{}).key||""; draw(); }; }   /* v1.607: นับบานในแถวลายใหม่ · v1.618: สลับแบบแท็บ */
+    /* v1.618: แถวติ๊ก */
+    el.querySelectorAll(".pcDc input").forEach(inp=>inp.onchange=()=>{ const n=+inp.dataset.n; if(inp.checked) PLC.pick.add(n); else PLC.pick.delete(n); draw(); });
+    el.querySelectorAll(".pcDc").forEach(lb=>{ lb.onmouseenter=()=>{ PLC.hov=+lb.dataset.n; plDoorHl(); }; lb.onmouseleave=()=>{ PLC.hov=0; plDoorHl(); }; });
+    el.querySelectorAll(".pcDa").forEach(bt=>bt.onclick=()=>{ PLC.pick=bt.dataset.a==="all"&&PLC.slots?new Set(PLC.slots.list.map(s=>s.n)):new Set(); draw(); });
+    el.querySelectorAll(".pcGd button").forEach(bt=>bt.onclick=()=>{ const k=bt.dataset.gd; let only=null;   /* v1.618: โหมดติ๊ก = เฉพาะบานที่เลือก */
+      if(PLC.slots){ const P=plDoorPickedBoards(); if(!P.length){ toast("ติ๊กเลือกบานก่อน แล้วค่อยกดแนวลาย"); return; } only=new Set(P.map(d=>d.id)); }
+      const n=plGrainSet(targets(),k,only); toast("ลายหน้าบาน "+({V:"ตั้ง",H:"นอน"}[k]||"อัตโนมัติ")+" · "+n+" บาน"); gs=gsNow(); draw(); });   /* v1.607 */
+    el.querySelector("#pcSplit").onchange=ev=>{ PLC.split=ev.target.checked; gs=gsNow();
       if(!gs.some(g=>g.key===PLC.fam)) PLC.fam=(gs.find(g=>plGrpKey(g.key)===plGrpKey(PLC.fam))||gs[0]||{}).key||""; draw(); };
     el.querySelectorAll(".pcTabs button").forEach(bt=>bt.onclick=()=>{ PLC.fam=bt.dataset.f; PLC.q=""; draw(); });
     const qi=el.querySelector("#pcQ"); if(qi){ qi.oninput=()=>{ PLC.q=qi.value; const pos=qi.selectionStart; draw(); const q2=el.querySelector("#pcQ"); if(q2){ q2.focus(); try{ q2.setSelectionRange(pos,pos); }catch(e){} } }; }
     el.querySelectorAll(".pcT").forEach(t=>t.onclick=()=>{ const v=opts[+t.dataset.i]; if(!f||!v) return;
       /* v1.607: เลือกสีท้าย X/Y = บอกแนวลายอยู่ในรหัสแล้ว และเป็นคำสั่งล่าสุด จึงกลับเป็นอัตโนมัติให้รหัสคุม · สีไม่มีท้าย X/Y = คงแนวที่เลือกไว้ */
-      if(/front/i.test(f.key)&&!/shape/i.test(f.key)&&/[XY]\s*$/i.test(String(v))) plFrontDoors(targets()).forEach(d=>{ delete d._grainDir; });
-      const n=plSetColorGroup(targets(),f.names,v);
-      toast("🎨 "+f.label+" = "+v+" · "+n+" ตู้");
-      gs=plColorGroups(whole?Object.keys(plCabMap()):[String(inst)],PLC.split); draw(); });
+      if(_pn&&!_pn.length){ toast("ติ๊กเลือกบานก่อน แล้วค่อยกดสี"); return; }   /* v1.618 */
+      if(/front/i.test(f.key)&&!/shape/i.test(f.key)&&/[XY]\s*$/i.test(String(v))) (PLC.slots?plDoorPickedBoards():plFrontDoors(targets())).forEach(d=>{ delete d._grainDir; });
+      const n=plSetColorGroup(targets(),_pn||f.names,v);
+      toast(_pn?("🎨 "+plGrpKey(f.key)+" บาน "+_pn.map(plFamNo).join(", ")+" = "+v):("🎨 "+f.label+" = "+v+" · "+n+" ตู้"));
+      gs=gsNow(); draw(); });
     /* รูปย่อทยอยขึ้นทีละ 6 ใบ — รายการสีมีได้เป็นร้อย */
     const sws=[...el.querySelectorAll(".pcSw")]; let k=0;
     /* v1.591: แท็บแบบบาน = ภาพเส้นแบบบาน */
@@ -46565,6 +46625,7 @@ function plColorOpen(inst,x,y){
     if(f&&/shape/i.test(f.key)&&!snOff("plShapeThumb")){ const rep=plShapeRep(targets(),f.names);
       if(rep){ sws.forEach(sw=>{ const svg=plShapeSvg(rep,f.names,sw.dataset.c); if(svg){ sw.innerHTML=svg; sw.style.background="#fff"; sw.classList.add("pcShp"); } }); k=sws.length; _big=!snOff("plShapeBig"); } }
     place(_big);
+    try{ plDoorHl(); }catch(e){ console.error("doorHl:",e); }   /* v1.618 */
     { const g2=el.querySelector(".pcGrid"); if(g2){ if(_same) g2.scrollTop=_st0; else { const on=el.querySelector(".pcT.on"); if(on) g2.scrollTop=Math.max(0,on.offsetTop-g2.offsetTop-10); } } }   /* v1.613: เลือกแล้วไม่เด้งกลับบนสุด · เปิดแท็บ = เห็นแบบที่ใช้อยู่ */
     const next=async()=>{ while(k<sws.length){ const sw=sws[k++]; if(!sw.isConnected) return;
       let s=null; try{ s=await plSwatchOf(sw.dataset.c); }catch(e){}
@@ -46577,7 +46638,7 @@ function plColorOpen(inst,x,y){
   draw();
 }
 /* คลิกนอกกล่อง / Esc = ปิด */
-addEventListener("pointerdown",e=>{ if(PLC.el&&!PLC.el.contains(e.target)) plColorClose(); },true);
+addEventListener("pointerdown",e=>{ if(PLC.el&&!PLC.el.contains(e.target)){ if(PLC.slots&&typeof renderer!=="undefined"&&e.target===renderer.domElement) return; /* v1.618: เลือกบานอยู่ หมุนกล้องได้ กล่องไม่ปิด */ plColorClose(); } },true);
 addEventListener("keydown",e=>{ if(e.key==="Escape"&&PLC.el) plColorClose(); });
 /* ═════════ v1.524: 🖐 เลือกมือจับในห้องออกแบบ (แบบลูกค้าเลือกเอง) ═════════
    ผู้ใช้ 27/10 20:42 (ภาพห้องออกแบบ + กล่องเลือกสีตู้ BND214): “โหมดห้องออกแบบยังขาดเลือกใส่มือจับ เพิ่มให้หน่อย
