@@ -3283,7 +3283,7 @@ body[data-theme="dark"] .splash-dots span{background:rgba(255,255,255,.25)}
    ===================================================================== */
 /* ---- APP_META: แหล่งความจริงเดียวของเวอร์ชัน (ดูได้จาก console / คลิกชื่อแอป) ---- */
 const APP_META={
-  name:"StarNexus", version:"1.598", build:"2026-11-02/slide-sdc",
+  name:"StarNexus", version:"1.599", build:"2026-11-02/slide-groove",
   file:"StarNexus.html", basedOn:"Furnitech_V3.html (v3.11)",
   /* ───────── เริ่มนับเวอร์ชันใหม่ที่ 1.001 (21/08/2026) ─────────
      ของเดิมนับมาถึง 42.1 แล้ววิ่งเป็นทศนิยมสองชั้นซึ่งอ่านลำดับยาก
@@ -3291,6 +3291,7 @@ const APP_META={
      ประวัติเก่าเก็บไว้ทั้งหมดตามเลขเดิม ไม่ไล่เขียนใหม่ เพราะเลขในนั้นถูกอ้างถึงไปแล้ว
      รายการที่อยู่ใต้ 1.001 ลงไปจึงเป็นเลขชุดเก่า อ่านต่อกันได้ตามวันที่ */
   changelog:[
+    ["1.599","2026-11-02","FEAT บานเลื่อน SDC32045: ร่องฝังราง — แผ่นพื้น (ผิวบน) + แผ่นบน (ผิวล่าง) ได้ร่องตามยาวตรงแนวรางของแต่ละบาน (2 ร่อง/แผ่น · กว้าง 15 ลึก 12 แก้ได้) ลง MPR/แบบผลิต · ปรับขนาดตู้/ถอดบานเลื่อนแล้วร่องตาม · ด้านบนเป็นคาน (ตู้พื้น) = ไม่เซาะ บอกในกล่อง (ผู้ใช้ 2/11 08:44 “ทำร่องฝังรางเลย”)"],
     ["1.598","2026-11-02","FEAT บานเลื่อน FT Slide SDC32045 (รางเดี่ยว 2 บาน · ราง บน 2 ล่าง 2): ห้องออกแบบ › แผงตู้ › 🚪 บานเลื่อน — สร้างบาน 2 บานในช่องตู้ (สูง = ช่อง − 16 · ซ้อนกลาง 40 · ซ้าย = รางหลัง ขวา = รางหน้า) · ลูกล้อบานละ 4 ห่างขอบ 110 + ช่องเจาะลูกล้อ 60×44 ลึก 12 ผิวหลังบานลง MPR · ราง/ลูกล้อ 3D · ใบเบิก (ชุดลูกล้อต่อบาน · รางตัดตามยาว 4 เส้น) · โหมดเปิดบาน = เลื่อนบาน (ห้องออกแบบ/หน้าดูงาน) · ปรับขนาดตู้แล้วบานตาม (ผู้ใช้ 2/11 07:57)"],
     ["1.597","2026-11-01","CHANGE ราคา (💰) มือจับแบบฝัง แยกบรรทัดตามขนาดตัด (เช่น HW-367 ตัด 897 × 3 เส้น · ตัด 372 × 2 เส้น) แทนรวมเป็นเมตร · ราคาใส่รายขนาด (บาท/เส้น) หรือใส่ราคาต่อเมตรที่ “รหัส@m” ไว้ก็คิดให้ตามยาว (ผู้ใช้ 1/11 18:45 “HW-367 แยกขนาดให้ด้วย”)"],
     ["1.596","2026-11-01","FEAT มือจับแบบฝัง: รูมาร์คที่สันบานด้านที่มือจับอยู่ (กึ่งกลางยาว · กึ่งกลางหนา) ทุกรุ่น · ค่าตั้งต้น Ø5 ลึก 3 · แก้ได้ที่แถว “รูมาร์ค” ในหน้าต่างมือจับแบบฝัง (ใส่/ไม่ใส่ · Ø · ลึก · เลื่อนตามหนา) · บานที่ใส่อยู่แล้วได้รูเอง (ผู้ใช้ 1/11 18:11)"],
@@ -30023,6 +30024,7 @@ function boardRole(b){
      SN_OFF.plWallSolid=1 ผนังห้องออกแบบกลับไปโปร่งแสงแบบเดิม (v1.379)
      SN_OFF.ovenFitUp=1   เตาอบในช่อง ปรับชั้นใต้เตาแบบ 1.578 (ไม่ขยับชั้นบนเตา) (v1.588)
      SN_OFF.plMicroB=1    ไม่มีการ์ดไมโครเวฟ Built-in (บานหลอกปรับตามหน้ากาก) (v1.588)
+     SN_OFF.sdcGroove=1   บานเลื่อน SDC ไม่เซาะร่องฝังรางในแผ่นพื้น/แผ่นบน (ร่องที่เซาะไว้ถูกถอดตอน sync) (v1.599)
      SN_OFF.sdc=1         บานเลื่อน SDC: ไม่มีปุ่ม · ไม่คิดบานใหม่/ราง/ลูกล้อ/ใบเบิก · ไม่เลื่อน (บานที่สร้างไว้ยังเป็นแผ่นบานธรรมดา) (v1.598)
      SN_OFF.costEhpSize=1 ราคามือจับฝังรวมเป็นเมตรบรรทัดเดียวแบบ 1.592–1.596 (v1.597)
      SN_OFF.ehpMark=1     มือจับฝังไม่ใส่รูมาร์คที่สันบาน (รูที่ใส่ไว้ถูกถอดตอน sync) (v1.596)
@@ -45607,7 +45609,9 @@ function sdcOpening(inst){
   const rails=R.filter(r=>r.dz<=40&&r.dz<r.dx&&r.dz<r.dy&&wide(r)&&r.z1>fZ-60&&r.dy<=200);
   const below=flats.filter(r=>(r.y0+r.y1)/2<ym).sort((a,b)=>a.y0-b.y0), above=flats.concat(rails).filter(r=>(r.y0+r.y1)/2>ym).sort((a,b)=>b.y1-a.y1);
   const yLo=below.length?below[0].y1:yMin, yHi=above.length?above[0].y0:yMax;
-  return {sLo, sHi, yLo, yHi, fZ, Wo, A:yHi-yLo, top:!!above.length, bot:!!below.length,
+  /* v1.599: แผ่นที่จะเซาะร่องฝังราง — เฉพาะแผ่นนอน (คานหน้าตั้งเซาะไม่ได้ หนาไม่พอกว้างร่อง) */
+  const botB=below.length?below[0].b:null, topB=(above.length&&above[0].dy<=40&&above[0].dy<above[0].dz)?above[0].b:null;
+  return {sLo, sHi, yLo, yHi, fZ, Wo, A:yHi-yLo, top:!!above.length, bot:!!below.length, botB, topB,
     cab:(R.find(r=>r.b.cab)||{b:{}}).b.cab||""}; }
 /* ช่องตู้แบบรูปทรงปกติ (นอกรอบคิดฉาก) — ทอป/พื้นที่ดรอปไว้ (applyTopDrop) ยกคืนก่อนแล้วดรอปกลับ แบบที่ตัวปรับขนาดตู้ทำ
    ในรอบ sync ตัวคิดบานทุกตัวเห็นรูปทรงปกติ (topDropUndo ต้นรอบ) — กล่องค่าจึงต้องเห็นแบบเดียวกัน ไม่งั้นตัวเลขต่างกัน 1 มม. */
@@ -45651,10 +45655,25 @@ function sdcApply(inst,c){ if(snOff("sdc")) return {err:"ปิดอยู่"}
     res={ok:1, op, n:old.filter(b=>!b._sdc).length}; });
   return res; }
 function sdcRemove(inst){ const ds=sdcDoors(inst), kill=new Set(ds.map(b=>b.id));
-  state.boards=state.boards.filter(b=>b&&!kill.has(b.id)&&!(b._pullOwner&&kill.has(b._pullOwner))); return ds.length; }
+  state.boards=state.boards.filter(b=>b&&!kill.has(b.id)&&!(b._pullOwner&&kill.has(b._pullOwner))); try{ sdcGrooves(inst,null,[]); }catch(e){} return ds.length; }   /* v1.599: + ร่องฝังราง */
+/* ───────── v1.599: ร่องฝังราง (แบบ “การติดตั้งแบบรางฝัง (เดี่ยว)” ราง 12 ฝังในแผ่น) ─────────
+   ผู้ใช้ 2/11 08:44: “ทำร่องฝังรางเลยครับ” (1.598 มีแต่รูปราง 3D ยังไม่เซาะแผ่น)
+   แผ่นพื้น (below[0]) เซาะผิวบน · แผ่นบน (above[0] ถ้าเป็นแผ่นนอน) เซาะผิวล่าง · ร่องละบาน ตรงกลางความหนาบาน (= แนวราง)
+     {axis "len" ตามยาวแผ่น · pos = แผ่น.z − บาน.z (สูตรเดียวกับร่องแผ่นหลัง · กรอบขนานแกน) · width rw · depth rh · _sdcG = ตู้}
+   ตรงแล้วไม่แตะ · ไม่ตรง = แทน · ตู้ที่ไม่มีบานเลื่อนแล้ว (ถอด/undo) = เอาร่อง _sdcG ออก · ปิด SN_OFF.sdcGroove */
+function sdcGrooves(inst,op,ds){ const want=new Map();
+  if(op&&!snOff("sdcGroove")) (ds||[]).forEach(d=>{ const c=sdcCfg(d._sdc.c); [[op.botB,"top"],[op.topB,"bottom"]].forEach(pf=>{ const p=pf[0]; if(!p) return;
+    const L=want.get(p)||[]; L.push({axis:"len", face:pf[1], pos:round(p.z-d.z), width:c.rw, depth:c.rh, _sdcG:String(inst)}); want.set(p,L); }); });
+  let n=0; (state.boards||[]).forEach(p=>{ if(!p||p._virtual||p.cabInst!==inst) return; const cur=(p.grooves||[]).filter(g=>g&&g._sdcG), w=want.get(p)||[];
+    if(JSON.stringify(cur)===JSON.stringify(w)) return; p.grooves=(p.grooves||[]).filter(g=>!(g&&g._sdcG)).concat(w); n++; });
+  return n; }
 function sdcHealAll(){ if(snOff("sdc")) return 0; let n=0; const insts=[...new Set((state.boards||[]).filter(b=>b&&b._sdc&&!b._virtual).map(b=>b.cabInst))];
   insts.forEach(inst=>{ try{ withCabAxisAligned(inst,()=>{ const op=sdcOpening(inst); if(!op) return;
-      sdcDoors(inst).forEach(d=>{ if(sdcLayout(d,op,sdcCfg(d._sdc.c))) n++; }); }); }catch(e){ console.error("sdcHeal:",e); } });
+      const ds=sdcDoors(inst); ds.forEach(d=>{ if(sdcLayout(d,op,sdcCfg(d._sdc.c))) n++; });
+      n+=sdcGrooves(inst,op,ds); }); }catch(e){ console.error("sdcHeal:",e); } });
+  /* v1.599: ร่องค้างของตู้ที่ไม่มีบานเลื่อนแล้ว */
+  try{ const left=new Set(); (state.boards||[]).forEach(p=>{ if(p&&!p._virtual&&(p.grooves||[]).some(g=>g&&g._sdcG)&&insts.indexOf(p.cabInst)<0) left.add(p.cabInst); });
+    left.forEach(inst=>{ n+=sdcGrooves(inst,null,[]); }); }catch(e){ console.error("sdcGroove clean:",e); }
   return n; }
 /* ชิ้น 3D: ราง (ตามช่อง ไม่ตามบาน) + ลูกล้อ (ตามบาน) — พิกัดในกรอบบาน แล้วหมุนตามบาน */
 function sdcParts(d){ const s=d._sdc, g=s&&s.g; if(!g) return []; const c=sdcCfg(s.c), M=orientMatrix(d.orient,d.yaw||0), out=[];
@@ -45688,6 +45707,8 @@ async function sdcOpen(inst){ if(snOff("sdc")) return;
       +'<div style="font-size:11.5px;line-height:1.7;margin-top:6px">ช่องตู้ <b>'+round(op.Wo)+' × '+round(op.A)+'</b> มม.'+(op.top?'':' <span style="color:#e58a24">(ไม่เจอแผ่นบน — ใช้ขอบบนแผ่นข้าง)</span>')
       +'<br>บาน 2 บาน <b>'+round(Wd)+' × '+round(H)+' × '+c.T+'</b> · ซ้อนกลาง '+c.ov+' · ซ้าย = รางหลัง (สีเทา) ขวา = รางหน้า'
       +'<br>ลูกล้อบานละ 4 (ช่องเจาะ '+c.pw+'×'+c.ph+' ลึก '+c.pd+' ผิวหลังบาน ห่างขอบข้าง '+c.ins+') · ราง '+c.rail+' ยาว '+round(op.Wo)+' × 4 เส้น'
+      +(snOff("sdcGroove")?'':('<br>ร่องฝังราง '+c.rw+'×'+c.rh+': '+[op.botB?('แผ่นพื้น “'+escapeHtml(op.botB.name||"")+'” ผิวบน 2 ร่อง'):'<span style="color:#e58a24">ไม่เจอแผ่นพื้น</span>',
+        op.topB?('แผ่นบน “'+escapeHtml(op.topB.name||"")+'” ผิวล่าง 2 ร่อง'):'<span style="color:#e58a24">ด้านบนเป็นคาน/ไม่มีแผ่นบน — ไม่เซาะ (ยึดรางใต้คานเอง)</span>'].join(' · ')))   /* v1.599 */
       +(H<=150||Wd<=120?'<br><b style="color:#c0392b">ช่องเล็กเกินไป</b>':'')+(c.T<18?'<br><b style="color:#e58a24">แบบกำหนดหนาบาน ≥ 18</b>':'')
       +(has.length?'':((state.boards.some(b=>b&&b.cabInst===inst&&b._door&&!b._virtual&&!b._dg&&!b._box))?'<br><b style="color:#e58a24">บานเดิมของตู้นี้จะถูกเอาออก</b>':''))+'</div>'; };
   const v=await promptFields("🚪 บานเลื่อน — "+(op.cab||inst),[
@@ -45697,12 +45718,13 @@ async function sdcOpen(inst){ if(snOff("sdc")) return;
     {key:"rail",type:"text",label:"รหัสราง (ลงใบเบิก ตัดตามยาว)",value:c0.rail,showIf:x=>x.act!==RM},
     num("T","หนาบาน (มม.)"), num("ov","ซ้อนกลาง (มม.)"), num("hDed","หักความสูง (ช่อง A − …)"), num("rec","ผิวหน้าบานถอยจากหน้าตู้ (มม.)"), num("gap","ระยะห่างระหว่างบานหน้า-หลัง (มม.)"),
     num("ins","ลูกล้อห่างขอบข้างบาน (มม.)"), num("pw","ช่องลูกล้อ กว้าง"), num("ph","ช่องลูกล้อ สูง"), num("pd","ช่องลูกล้อ ลึก"),
+    num("rw","ร่องฝังราง กว้าง (มม.)"), num("rh","ร่องฝังราง ลึก (มม.)"),   /* v1.599 */
     {key:"_pv",type:"preview",label:"รูปตัวอย่าง (มองหน้าตู้)",render:pv}]);
   if(!v) return;
   const cam=plCamKeep();
   if(v.act===RM){ const n=sdcRemove(inst); sync(0); plCamPut(cam); try{ plSelect(inst); }catch(e){} toast("ถอดบานเลื่อน "+n+" บานแล้ว"); return; }
   const c=sdcCfg({sys:String(v.sys||"").trim()||SDC_DEF.sys, kit:String(v.kit||"").trim(), rail:String(v.rail||"").trim(),
-    T:v.T, ov:v.ov, hDed:v.hDed, rec:v.rec, gap:v.gap, ins:v.ins, pw:v.pw, ph:v.ph, pd:v.pd});
+    T:v.T, ov:v.ov, hDed:v.hDed, rec:v.rec, gap:v.gap, ins:v.ins, pw:v.pw, ph:v.ph, pd:v.pd, rw:v.rw, rh:v.rh});
   const oldN=state.boards.filter(b=>b&&b.cabInst===inst&&b._door&&!b._virtual&&!b._dg&&!b._box&&!b._sdc).length;
   if(oldN&&!await dialog({title:"ตู้นี้มีบานอยู่ "+oldN+" บาน — เอาออกแล้วใส่บานเลื่อน?",ok:"ใส่บานเลื่อน"})) return;
   settings.sdc=Object.assign({},c); try{ await catSaveSettings(); }catch(e){ console.error("sdc save:",e); }
