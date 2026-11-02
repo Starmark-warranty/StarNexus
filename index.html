@@ -3283,7 +3283,7 @@ body[data-theme="dark"] .splash-dots span{background:rgba(255,255,255,.25)}
    ===================================================================== */
 /* ---- APP_META: แหล่งความจริงเดียวของเวอร์ชัน (ดูได้จาก console / คลิกชื่อแอป) ---- */
 const APP_META={
-  name:"StarNexus", version:"1.599", build:"2026-11-02/slide-groove",
+  name:"StarNexus", version:"1.600", build:"2026-11-02/hood-light",
   file:"StarNexus.html", basedOn:"Furnitech_V3.html (v3.11)",
   /* ───────── เริ่มนับเวอร์ชันใหม่ที่ 1.001 (21/08/2026) ─────────
      ของเดิมนับมาถึง 42.1 แล้ววิ่งเป็นทศนิยมสองชั้นซึ่งอ่านลำดับยาก
@@ -3291,6 +3291,7 @@ const APP_META={
      ประวัติเก่าเก็บไว้ทั้งหมดตามเลขเดิม ไม่ไล่เขียนใหม่ เพราะเลขในนั้นถูกอ้างถึงไปแล้ว
      รายการที่อยู่ใต้ 1.001 ลงไปจึงเป็นเลขชุดเก่า อ่านต่อกันได้ตามวันที่ */
   changelog:[
+    ["1.600","2026-11-02","FIX ห้องออกแบบ ไม้ไฟใต้ตู้ (ผู้ใช้ 2/11 12:11 “ใส่ไม้วิ่งไฟใต้ตู้แล้ว ตู้ hood เด้ง กับตู้ที่ใกล้แผ่นปิดข้าง ถ้าตู้มี hood ก็ไม่ต้องใส่ไม้ไฟใต้ตู้”) — ① ตู้มีฮู้ดไม่ใส่ไม้ไฟเอง: รหัสมี HD/HOOD · แผ่นข้างหักขอบล่าง (-$D4) · มีเครื่องฮู้ดติดตู้/อยู่ใต้ตู้ · วาง/ย้าย/ลบฮู้ดแล้วตู้ปรับตาม · ติ๊กรายใบบังคับใส่ได้ ② ตู้ฮู้ดไม่เด้ง: หัวตู้เสมอแนว ก้นโครงสูงกว่าแถวเท่า $D4 · ตัวปรับขนาดเดิมวัดฐานก่อนถอดสูตร ตู้ที่ชิ้นโครงมีสูตรหดซ้ำทุกครั้ง (658 → 565 → 520 → 447) ③ จัดแนวไม่ดีดตู้ที่ทับแผ่นปิดข้าง/ตู้ข้าง ๆ อยู่ก่อนไปช่องว่าง · แผ่นปิดข้าง/ฟิลเลอร์ข้างตู้ฮู้ดสูงตามแบบ · ปิด SN_OFF.plHoodNoLight / plHoodLift / plAlignStay / rszAdjBox"],
     ["1.599","2026-11-02","FEAT บานเลื่อน SDC32045: ร่องฝังราง — แผ่นพื้น (ผิวบน) + แผ่นบน (ผิวล่าง) ได้ร่องตามยาวตรงแนวรางของแต่ละบาน (2 ร่อง/แผ่น · กว้าง 15 ลึก 12 แก้ได้) ลง MPR/แบบผลิต · ปรับขนาดตู้/ถอดบานเลื่อนแล้วร่องตาม · ด้านบนเป็นคาน (ตู้พื้น) = ไม่เซาะ บอกในกล่อง (ผู้ใช้ 2/11 08:44 “ทำร่องฝังรางเลย”)"],
     ["1.598","2026-11-02","FEAT บานเลื่อน FT Slide SDC32045 (รางเดี่ยว 2 บาน · ราง บน 2 ล่าง 2): ห้องออกแบบ › แผงตู้ › 🚪 บานเลื่อน — สร้างบาน 2 บานในช่องตู้ (สูง = ช่อง − 16 · ซ้อนกลาง 40 · ซ้าย = รางหลัง ขวา = รางหน้า) · ลูกล้อบานละ 4 ห่างขอบ 110 + ช่องเจาะลูกล้อ 60×44 ลึก 12 ผิวหลังบานลง MPR · ราง/ลูกล้อ 3D · ใบเบิก (ชุดลูกล้อต่อบาน · รางตัดตามยาว 4 เส้น) · โหมดเปิดบาน = เลื่อนบาน (ห้องออกแบบ/หน้าดูงาน) · ปรับขนาดตู้แล้วบานตาม (ผู้ใช้ 2/11 07:57)"],
     ["1.597","2026-11-01","CHANGE ราคา (💰) มือจับแบบฝัง แยกบรรทัดตามขนาดตัด (เช่น HW-367 ตัด 897 × 3 เส้น · ตัด 372 × 2 เส้น) แทนรวมเป็นเมตร · ราคาใส่รายขนาด (บาท/เส้น) หรือใส่ราคาต่อเมตรที่ “รหัส@m” ไว้ก็คิดให้ตามยาว (ผู้ใช้ 1/11 18:45 “HW-367 แยกขนาดให้ด้วย”)"],
@@ -30024,6 +30025,10 @@ function boardRole(b){
      SN_OFF.plWallSolid=1 ผนังห้องออกแบบกลับไปโปร่งแสงแบบเดิม (v1.379)
      SN_OFF.ovenFitUp=1   เตาอบในช่อง ปรับชั้นใต้เตาแบบ 1.578 (ไม่ขยับชั้นบนเตา) (v1.588)
      SN_OFF.plMicroB=1    ไม่มีการ์ดไมโครเวฟ Built-in (บานหลอกปรับตามหน้ากาก) (v1.588)
+     SN_OFF.plHoodNoLight=1 ตู้มีฮู้ดยังได้ไม้ไฟใต้ตู้เหมือนตู้อื่น (ปิดกติกาไม่ใส่) (v1.600)
+     SN_OFF.plHoodLift=1  จัดแนวตู้ฮู้ดด้วยกรอบโครงจริงแบบเดิม ก้นโครงลงระดับก้นตู้ลอย (v1.600)
+     SN_OFF.plAlignStay=1 จัดแนวแล้วตู้หลบของที่ทับกันอยู่ก่อนแบบเดิม (ดีดไปช่องว่าง) (v1.600)
+     SN_OFF.rszAdjBox=1   ปรับขนาดตู้ที่ชิ้นโครงมีสูตรปรับ วัดฐานก่อนถอดสูตรแบบเดิม (หดซ้ำ) (v1.600)
      SN_OFF.sdcGroove=1   บานเลื่อน SDC ไม่เซาะร่องฝังรางในแผ่นพื้น/แผ่นบน (ร่องที่เซาะไว้ถูกถอดตอน sync) (v1.599)
      SN_OFF.sdc=1         บานเลื่อน SDC: ไม่มีปุ่ม · ไม่คิดบานใหม่/ราง/ลูกล้อ/ใบเบิก · ไม่เลื่อน (บานที่สร้างไว้ยังเป็นแผ่นบานธรรมดา) (v1.598)
      SN_OFF.costEhpSize=1 ราคามือจับฝังรวมเป็นเมตรบรรทัดเดียวแบบ 1.592–1.596 (v1.597)
@@ -37052,7 +37057,7 @@ async function plFill(inst,side){
   const fc=plFillerCode(g.f.code); if(!fc){ toast("ยังไม่ได้ตั้งรุ่นฟิลเลอร์ — ไปตั้งที่ 🗂 แคตตาล็อก (หมวด ฟิลเลอร์ หรือช่อง ฟิลเลอร์คู่)"); return null; }
   const W=PL_WALLS[g.wk], f=g.f;
   const a=side==="lo"?x.a:g.hi.a;
-  const lg=plLightOf(inst);                                                 // v1.316
+  const lg=plLightOf(inst)+plNomLift(inst,f);                               // v1.316 · v1.600: + ช่องฮู้ด
   const fi=await plAdd(fc, x.gap, {wall:g.wk, along:a, y:f.lo[1]-lg, H:Math.round(f.hi[1]-f.lo[1]+lg), D:Math.round(f.hi[W.pa]-f.lo[W.pa]),
     vars:Object.assign({},(state.cabColors||{})[inst]||{}), kind:"filler", off:plOffOf(inst)});
   /* v1.308: หน้าฟิลเลอร์เสมอบานของตู้ที่มันเกาะ */
@@ -37062,7 +37067,7 @@ async function plFill(inst,side){
 /* ---------- แก้ตู้ที่เลือก ---------- */
 function plLocalDims(inst){ const f=plFp(plBoardsOf(inst)), y=(((cabYawOf(inst)||0)%360)+360)%360, sw=(y%180)!==0;
   const cg=csmIsCode(f.code)?2*csmGapOf(inst):0;                             // v1.371: ช่อง Cosimo กว้าง = ช่องระหว่างเสา (ชิ้นจริง + 2×ชั้นห่างเสา) · v1.377: ตู้/ชั้นบนตู้ = ชิ้นจริง
-  return {W:Math.round((sw?f.hi[2]-f.lo[2]:f.hi[0]-f.lo[0])+cg), cg, H:Math.round(f.hi[1]-f.lo[1]+plLightOf(inst)), D:Math.round(sw?f.hi[0]-f.lo[0]:f.hi[2]-f.lo[2]), f}; }   // v1.313: สูงเต็ม (รวมช่องไม้ไฟ)
+  return {W:Math.round((sw?f.hi[2]-f.lo[2]:f.hi[0]-f.lo[0])+cg), cg, H:Math.round(f.hi[1]-f.lo[1]+plLightOf(inst)+plNomLift(inst,f)), D:Math.round(sw?f.hi[0]-f.lo[0]:f.hi[2]-f.lo[2]), f}; }   // v1.313: สูงเต็ม (รวมช่องไม้ไฟ) · v1.600: + ช่องฮู้ด (ขึ้น 700 เหมือนกล่องปรับขนาด)
 function plResize(inst,W,H,D){
   if(csmIsCornerInst(inst)){ toast("ชั้นมุม L ขนาดตามช่องมุมเอง — ปรับกว้างที่ชั้นในช่องข้าง ๆ แล้วชั้นมุมคิดใหม่ · ติ๊กออกเพื่อแยกเป็นสองชั้น"); return; }   // v1.380
   if(csmIsBaseInst(inst)){ toast("ขาแผ่นไม้ Cosimo ยาว/ลึก/สูงตามช่องเอง — ปรับกว้างที่ชั้น/ตู้ในช่องแทน · สูงรวม/หนาแผ่นบนตั้งที่แผงเสา"); return; }   // v1.378
@@ -37197,33 +37202,48 @@ function plAlignCab(inst){
   let f=plFp(plBoardsOf(inst)); const code=f.code, lv=plLevelOf(code), r=plRoom();
   if(lv!=="wall"&&lv!=="tall") return ch;
   const wk=plWallOf(inst,f), a0=wk?f.lo[PL_WALLS[wk].ax]:null, top=(+r.wallTop>0)?+r.wallTop:0;
+  const f0={lo:f.lo.slice(), hi:f.hi.slice(), ylo:f.ylo};                     // v1.600: จำตำแหน่งก่อนจัด (plAlignNb)
+  /* ───────── v1.600: ตู้ฮู้ด — จัดแนวด้วย “สูงตามแบบ” ไม่ใช่กรอบโครงจริง ─────────
+     ตู้ฮู้ดสั่ง 700 แผ่นข้างหัก -$D4 (42) ขอบล่างยกขึ้น โครงจริง 658 · หัวตู้ต้องเสมอแนวบน ก้นโครงอยู่สูงกว่าตู้ข้าง ๆ 42
+     เดิม: คิดสูงจากกรอบโครง (658 ถูกหักซ้ำตอนปรับขนาด) แล้ววาง “ก้นโครง” ที่ระดับก้นตู้ลอย → หัวตู้ฮู้ดต่ำกว่าแถวอย่างน้อย 42
+       พอเปิดไม้ไฟ/จัดแนวแต่ละรอบตู้เตี้ยลงอีก (ทดสอบ 658 → 565 → 520 → 447)
+     ตอนนี้: lift = ก้นโครง − ก้นตามแบบ · สูงตามแบบ = โครง + lift (+ ช่องไม้ไฟ) · ก้นโครง = ก้นตามแบบ + lift · ปิด SN_OFF.plHoodLift=1 */
+  let lift=plNomLift(inst,f);
   /* v1.313: ไม้ไฟใต้ตู้ — ความสูงตู้เต็ม = โครง + ช่องไม้ไฟ (gOld) · โครงใหม่ = เต็ม − gNew */
   const gOld=(lv==="wall")?plLightOf(inst):0, gNew=(lv==="wall"&&plLightWanted(inst,code))?plLightGap():0;
-  const curH=f.hi[1]-f.lo[1]+gOld;
+  const curH=f.hi[1]-f.lo[1]+gOld+lift;
   let want=0;
   if(top&&lv==="wall"&&top>r.wallBot) want=plHAllowed(code,top-r.wallBot);
-  if(top&&lv==="tall"&&top>f.lo[1]+100) want=plHAllowed(code,top-f.lo[1]);
+  if(top&&lv==="tall"&&top>f.lo[1]-lift+100) want=plHAllowed(code,top-(f.lo[1]-lift));
   let nomH=(want>50)?want:curH;
   const isFil=plKindOf(code)==="filler";                                     // v1.316: ฟิลเลอร์ตู้ลอยสูงเต็มเท่าตู้ที่เกาะ (ไม่ตั้งแนวบน)
   if(lv==="wall"&&isFil&&plFillDoorHeal(inst)) ch=true;                       // v1.317: บานยืดทบเกินโครง → คืน
-  if(lv==="wall"&&isFil&&!(want>50)){ try{ const ho=plFillerHost(inst); if(ho){ const hf=plFp(plBoardsOf(ho.inst)); nomH=hf.hi[1]-hf.lo[1]+plLightOf(ho.inst); } }catch(e){} }
+  if(lv==="wall"&&isFil&&!(want>50)){ try{ const ho=plFillerHost(inst); if(ho){ const hf=plFp(plBoardsOf(ho.inst)); nomH=hf.hi[1]-hf.lo[1]+plLightOf(ho.inst)+plNomLift(ho.inst,hf); } }catch(e){} }
   const carH=nomH-gNew;
-  if(Math.abs(carH-(f.hi[1]-f.lo[1]))>0.5){ plDpUnapply(inst); resizeCabinetTo(inst,0,carH,0); ch=true; f=plFp(plBoardsOf(inst)); }   // v1.317: คืนบานเป็นฐานก่อน ไม่งั้นยืดทบ
+  if(Math.abs(carH-(f.hi[1]-f.lo[1]+lift))>0.5){ plDpUnapply(inst); resizeCabinetTo(inst,0,carH,0); ch=true; f=plFp(plBoardsOf(inst)); lift=plNomLift(inst,f); }   // v1.317: คืนบานเป็นฐานก่อน ไม่งั้นยืดทบ
   if(lv==="wall"){
     if(gOld!==gNew||(gNew>0&&plLightOf(inst)!==gNew)){ plLightMark(inst,gNew); ch=true; }
     const EB=/^ExtendBottom[\d.]+(mm|cm)$/i;
     const ebOk=!isFil||realDoorsOf(String(inst)).length>0;                   // v1.316: ฟิลเลอร์ไม่มีบาน = ยกโครงอย่างเดียว
     if(gNew>0&&ebOk){ if(plDpSetTok(inst,EB,"ExtendBottom"+gNew+"mm")) ch=true; }
     else if(gOld>0||gNew>0){ if(plDpSetTok(inst,EB,"")) ch=true; }
-    const nomBot=top?(top-nomH):r.wallBot, bot=nomBot+gNew, dy=bot-f.lo[1];
+    const nomBot=top?(top-nomH):r.wallBot, bot=nomBot+gNew+lift, dy=bot-f.lo[1];
     if(Math.abs(dy)>0.5){ plShift(inst,[0,dy,0]); ch=true; } }
-  if(ch&&wk) plPutOnWall(inst,wk,a0,false);
+  if(ch&&wk) plPutOnWall(inst,wk,a0,false,plAlignNb(inst,wk,f0));
   return ch;
 }
+/* ───────── v1.600: จัดแนวไม่ดีดตู้ออกจากของที่ชิดกันอยู่แล้ว ─────────
+   ผู้ใช้ 2/11 12:11: “ใส่ไม้วิ่งไฟใต้ตู้แล้ว … ตู้ที่ใกล้แผ่นปิดข้าง [เด้ง]”
+   จัดแนวเปลี่ยนแค่ความสูง/ระดับ ตำแหน่งตามแนวผนังเท่าเดิม แต่เดิมเรียกตัวหาที่ว่าง (plSolveAlong) ทุกครั้งที่มีอะไรเปลี่ยน
+   ตู้ที่ทับแผ่นปิดข้าง/ตู้ข้าง ๆ อยู่เกิน 1 มม. อยู่แล้ว (เช่นแผ่นหนาขึ้นตามวัสดุ) จึงถูกมองว่าชน แล้วดีดไปช่องว่างที่ใกล้สุด = ข้ามไปอีกฝั่งแผ่น
+   ไม่เปิดไม้ไฟไม่เห็น เพราะไม่มีอะไรเปลี่ยน ไม่ถูกเรียก · เปิดไม้ไฟทุกใบถูกเรียกพร้อมกัน
+   ตอนนี้: ของที่ทับกันตั้งแต่ก่อนจัดแนวไม่นับเป็นตัวขวาง · ที่เพิ่งชนเพราะตู้สูงขึ้น (ตู้ซ้อนบน) ยังหลบเหมือนเดิม · ปิด SN_OFF.plAlignStay=1 */
+function plAlignNb(inst,wk,f0){ if(snOff("plAlignStay")) return undefined; const W=PL_WALLS[wk], ax=W.ax, pa=W.pa;
+  return plOthers(inst).filter(n=>!(plYOver(n,f0)&&n.lo[pa]<f0.hi[pa]-1&&f0.lo[pa]<n.hi[pa]-1&&n.lo[ax]<f0.hi[ax]-1&&f0.lo[ax]<n.hi[ax]-1)); }
 function plOffLine(){ const r=plRoom(), top=+r.wallTop||0, H=Math.max(+r.legH||0,0), out=[];
   Object.keys(plCabMap()).forEach(inst=>{ const bs=plBoardsOf(inst), f=plFp(bs), lv=plLevelOf(f.code), isF=plKindOf(f.code)==="filler";
     if(plIsLightPanel(inst)||plIsSide(inst)) return;                          // v1.313 · v1.317
-    if(lv==="wall"){ if(top?Math.abs(f.hi[1]-top)>1:Math.abs(f.lo[1]-r.wallBot-plLightOf(inst))>1) out.push({inst,code:f.code,lv,w:top?"หัว":"ก้น",v:Math.round(top?f.hi[1]:f.lo[1])}); }
+    if(lv==="wall"){ if(top?Math.abs(f.hi[1]-top)>1:Math.abs(f.lo[1]-r.wallBot-plLightOf(inst)-plNomLift(inst,f))>1) out.push({inst,code:f.code,lv,w:top?"หัว":"ก้น",v:Math.round(top?f.hi[1]:f.lo[1])}); }
     else if(lv==="tall"&&top&&Math.abs(f.hi[1]-top)>1) out.push({inst,code:f.code,lv,w:"หัว",v:Math.round(f.hi[1])});
     if(lv==="base"||lv==="tall"){
       const b0=(isF&&plFillerFloorOf(inst))?0:H;
@@ -37246,6 +37266,7 @@ async function plAlignAll(quiet){
   try{ await plPlinthSync(); }catch(e){ console.error("plinth:",e); }
   try{ await plLightSync(false); }catch(e){ console.error("light:",e); }   // v1.313
   try{ await plCeilSync(); }catch(e){ console.error("ceil:",e); }           // v1.313
+  plHoodResnap(); try{ plRoomDraw(); }catch(e){}                            // v1.600
   plPanelSel();
   const r=plRoom(), bad=plOffLine();
   toast("จัดแนวแล้ว "+n+" ใบ · ขา "+(+r.legH||0)+" · ก้นตู้ลอย "+r.wallBot+(+r.wallTop?(" · แนวบน "+r.wallTop):"")
@@ -37275,7 +37296,7 @@ function plSuggest(){
 async function plSwap(inst,code){
   if(typeof isLocked==="function"&&isLocked()){ try{ guardEdit("เปลี่ยนรุ่นตู้"); }catch(e){} return false; }
   const id=(PL.ids||{})[catKey(code)]||code, f0=plFp(plBoardsOf(inst)), wk=plWallOf(inst,f0), a0=wk?f0.lo[PL_WALLS[wk].ax]:null, cam=plCamKeep();
-  const off0=plOffOf(inst), lt0=plLightOf(inst), nl0=plBoardsOf(inst).some(b=>b&&b._plNoLight), tt0=plTTMode(inst), lf0=(plBoardsOf(inst).find(b=>b&&b._plLtFill!=null)||{})._plLtFill;   // v1.316
+  const off0=plOffOf(inst), lt0=plLightOf(inst), nl0=plBoardsOf(inst).some(b=>b&&b._plNoLight), tt0=plTTMode(inst), lf0=(plBoardsOf(inst).find(b=>b&&b._plLtFill!=null)||{})._plLtFill, lfc0=plBoardsOf(inst).some(b=>b&&b._plLtForce);   // v1.316 · v1.600
   const sb0=(plBoardsOf(inst).find(b=>b&&b._plSideBot!=null)||{})._plSideBot, st0=(plBoardsOf(inst).find(b=>b&&b._plSideTop!=null)||{})._plSideTop;   // v1.317   // v1.310 · v1.313                                                  // v1.310
   let r=null; try{ r=await cabSwapModel(inst,id,{keepSize:true}); }
   catch(e){ console.error("plSwap:",e); toast("เปลี่ยนรุ่นไม่สำเร็จ: "+((e&&e.message)||e)); plCamPut(cam); return false; }
@@ -37283,6 +37304,7 @@ async function plSwap(inst,code){
   if(off0>0) plOffMark(inst,off0);
   if(lt0>0) plLightMark(inst,lt0); if(nl0) plBoardsOf(inst).forEach(b=>{ if(b&&!b._virtual) b._plNoLight=1; }); if(tt0) plTTMark(inst,tt0);
   if(lf0!=null) plBoardsOf(inst).forEach(b=>{ if(b&&!b._virtual) b._plLtFill=lf0; });
+  if(lfc0) plBoardsOf(inst).forEach(b=>{ if(b&&!b._virtual) b._plLtForce=1; });   // v1.600
   if(sb0!=null||st0!=null) plBoardsOf(inst).forEach(b=>{ if(!b||b._virtual) return; if(sb0!=null) b._plSideBot=sb0; if(st0!=null) b._plSideTop=st0; });   // v1.317
   try{ plAlignCab(inst); }catch(e){ console.error(e); }                    // ขา/ความสูงตามห้อง (ขาเก่าหายไปกับตู้เก่า)
   if(wk) plPutOnWall(inst,wk,a0,false);
@@ -39095,7 +39117,7 @@ function ploAddAuto(k,mid){ if(ploLocked()) return null; const o=plaNewFor({k,m:
     else toast(FR.length?"ผนังเต็มแล้ว — วางไว้กลางห้อง ลากไปวางเองได้":"ยังไม่มีผนังให้ติด — วางไว้กลางห้อง ลากไปชิดผนังได้"); }
   if(T.appl&&T.appl!=="wall") try{ plaAuto(o); }catch(e){ console.error("plaAuto:",e); }   // v1.546: เครื่องใช้ = วางที่ตู้ที่เหมาะ
   ploList().push(o); PLO.sel=o.id; try{ plSelect(null); }catch(e){} PLO.sel=o.id;
-  plRoomDraw(); plPanelSel(); ploReveal(); plAfterRoom(); toast(T.ic+" วาง"+T.n+(o.wk?(" บน"+((ploFrameOf(o)||{}).lbl||"ผนัง")):"")+" — ลากเลื่อนได้ · Del = ลบ");
+  plRoomDraw(); plPanelSel(); ploReveal(); plAfterRoom(); plHoodChanged(o); toast(T.ic+" วาง"+T.n+(o.wk?(" บน"+((ploFrameOf(o)||{}).lbl||"ผนัง")):"")+" — ลากเลื่อนได้ · Del = ลบ");
   if(o.inCab&&T.fit){ try{ plaOvenFitRun(o); plRoomDraw(); plPanelSel(); plAfterRoom(); }catch(e){ console.error("ovenFit:",e); } }   /* v1.578 */
   return o; }
 /* ผนังใต้เมาส์: ยิงเรย์ใส่ระนาบกลางความหนาของทุกช่วงผนัง (ข้ามผนังที่กล้องอยู่นอกห้องฝั่งนั้น = ผนังถูกซ่อน ยกเว้นมุมบน) → ใกล้กล้องสุด
@@ -39180,11 +39202,11 @@ function ploUp(e){
   const g=PLO.drag; if(!g) return; PLO.drag=null; PLO.guides=null;
   if(PLO.raf){ cancelAnimationFrame(PLO.raf); PLO.raf=0; ploDragApply(); }
   const tp=$("plDragTip"); if(tp) tp.textContent="";
-  if(g.moved){ try{ const o=ploGet(g.id); if(o&&o.inCab&&PLO_T[o.k]&&PLO_T[o.k].fit) plaOvenFitRun(o); }catch(e){ console.error("ovenFit:",e); }   /* v1.578: ปล่อยเตาในช่อง = ปรับชั้น */
+  if(g.moved){ try{ const o=ploGet(g.id); if(o&&o.inCab&&PLO_T[o.k]&&PLO_T[o.k].fit) plaOvenFitRun(o); plHoodChanged(o); }catch(e){ console.error("ovenFit:",e); }   /* v1.578: ปล่อยเตาในช่อง = ปรับชั้น · v1.600: ย้ายฮู้ด = ตู้ใบนั้นถอด/ใส่ไม้ไฟ */
     plAfterRoom(); } plRoomDraw(); plPanelSel(); if(g.fromCat) ploReveal(); }
 function ploReveal(){ setTimeout(()=>{ const s=$("plSelSec"); if(s&&s.scrollIntoView) try{ s.scrollIntoView({block:"nearest"}); }catch(e){} },0); }   // แผงซ้ายเลื่อนให้เห็นตัวแก้ขนาด
 function ploDel(id){ if(ploLocked()) return; const L=ploList(), k=L.findIndex(o=>o.id===id); if(k<0) return; const o=L[k]; L.splice(k,1); if(PLO.sel===id) PLO.sel=null;
-  plRoomDraw(); plPanelSel(); plAfterRoom(); toast("ลบ"+((PLO_T[o.k]||{}).n||"")+"แล้ว"); }
+  plRoomDraw(); plPanelSel(); plAfterRoom(); plHoodChanged(o); toast("ลบ"+((PLO_T[o.k]||{}).n||"")+"แล้ว"); }
 function ploWallH(F){ return (F&&+F.H>0)?+F.H:(+plRoom().h||2600); }   // v1.539: ความสูงผนังที่หน้าต่างติด (ใช้คิด ห่างฝ้า)
 function ploTopGap(o,F){ return Math.round(ploWallH(F)-(+o.sill||0)-(+o.h||0)); }
 function ploRot(o){ if(!o||ploLocked()) return; if(o.k==="stair"||(PLO_T[o.k]&&PLO_T[o.k].appl&&PLO_T[o.k].appl!=="wall")){ /* v1.546: เครื่องใช้หมุน 90° */ o.yaw=(((+o.yaw||0)+90)%360); }
@@ -40056,7 +40078,32 @@ function plLightWanted(inst,code){ const r=plRoom(); if(!r.lightOn) return false
   if(plLevelOf(code)!=="wall"||plIsLightPanel(inst)) return false;
   if(plIsSide(inst)) return false;                                           // v1.317: แผ่นปิดข้าง ปิดปลายไม้ไฟเสมอ ไม่ยก
   if(plKindOf(code)==="filler") return plFillLightOf(inst)&&plFillLitHost(inst);   // v1.316: ฟิลเลอร์ข้างตู้ที่มีไม้ไฟ · สุดฟิลเลอร์ = ยกโครงเท่าตู้
+  if(plHoodCab(inst,code)&&!plBoardsOf(inst).some(b=>b&&b._plLtForce)) return false;   // v1.600: ตู้มีฮู้ด ไม่ใส่ไม้ไฟ (ติ๊กรายใบบังคับใส่ได้)
   return !plBoardsOf(inst).some(b=>b&&b._plNoLight); }
+/* ═════════ v1.600: ตู้ฮู้ดกับไม้ไฟใต้ตู้ ═════════
+   ผู้ใช้ 2/11 12:11: “ถ้าตู้มี hood ก็ไม่ต้องใส่ไม้ไฟใต้ตู้”
+   plNomLift = ระยะที่ก้นโครงจริงอยู่สูงกว่าก้นตามแบบ เพราะแผ่นข้างมีสูตรหักขอบล่าง (ตู้ฮู้ด -$D4)
+     ถ้ามีชิ้นอื่นลงถึงก้นตามแบบอยู่แล้ว ก้นโครง = ก้นตามแบบ ได้ 0 ไม่ต้องชดเชย · ปิด SN_OFF.plHoodLift=1
+   plHoodCab = ตู้ลอยที่ถือว่ามีฮู้ด ข้อใดข้อหนึ่ง: รหัสมี HD/HOOD (กติกาเดียวกับ plaAuto) · แผ่นข้างหักขอบล่าง ≥ 5 มม.
+     · มีเครื่องฮู้ดติดตู้นี้ (o.host) · ฮู้ดอยู่ใต้ตู้นี้ ทับแนวเกินครึ่งของใบที่แคบกว่า (รวมฮู้ดกระโจมติดผนัง)
+     ตรวจจากข้อมูล อาจเดาผิดได้ — แผงตู้มีติ๊ก “ไม้ไฟใต้ตู้” บังคับใส่รายใบ (_plLtForce) · ปิดทั้งกติกา SN_OFF.plHoodNoLight=1 */
+function plNomLift(inst,f){ if(snOff("plHoodLift")) return 0; try{
+  const sd=plBoardsOf(inst).filter(b=>b&&b.orient==="side"&&!b._door&&!b._virtual&&!b._dx&&!isRail(b)&&b.zoneLo==null&&b._adjApplied); if(!sd.length) return 0;
+  f=f||plFp(plBoardsOf(inst)); let y0=Infinity;
+  sd.forEach(b=>{ const pv=b._adjApplied, nomL=b.L-(pv.dL||0), off=_adjOffset(b,pv.l0||0,pv.l1||0,pv.w0||0,pv.w1||0); y0=Math.min(y0,(b.y-off.y)-nomL/2); });
+  return isFinite(y0)?Math.max(Math.round((f.lo[1]-y0)*10)/10,0):0; }catch(e){ return 0; } }
+function plHoodCab(inst,code){ if(snOff("plHoodNoLight")) return false; try{
+  const f=plFp(plBoardsOf(inst)); if(/HD|HOOD/.test(catKey(code||f.code))) return true;
+  if(plNomLift(inst,f)>=5) return true;
+  return ploList().some(o=>{ if(!o||!/^hood/.test(String(o.k||""))) return false; if(o.host!=null&&String(o.host)===String(inst)) return true;
+    const T=PLO_T[o.k]||{}, w=Math.max(+o.w||T.w||600,100), d=Math.max(+o.d||T.d||400,50), yy=((Math.round(+o.yaw||0)%180)+180)%180, ex=yy===90?d:w, ez=yy===90?w:d, x=+o.x||0, z=+o.z||0;
+    const ox=Math.min(x+ex/2,f.hi[0])-Math.max(x-ex/2,f.lo[0]), oz=Math.min(z+ez/2,f.hi[2])-Math.max(z-ez/2,f.lo[2]); if(ox<=0||oz<=0) return false;
+    const yaw=(((cabYawOf(inst)||0)%180)+180)%180, ov=yaw===90?oz:ox, wc=yaw===90?f.hi[2]-f.lo[2]:f.hi[0]-f.lo[0];
+    const hb=T.appl==="wall"?Math.max(+o.sill||0,0):(+o.y||0)-(+o.h||T.h||0);
+    return ov>=Math.min(wc,w)/2&&hb<f.lo[1]; }); }catch(e){ return false; } }
+/* ฮู้ดที่ติดก้นตู้ตามตู้ไป เมื่อระดับก้นโครงเปลี่ยน */
+function plHoodResnap(){ try{ ploList().forEach(o=>{ if(o&&o.host!=null&&(PLO_T[o.k]||{}).appl==="under") plaResnap(o); }); }catch(e){ console.error("plHoodResnap:",e); } }
+function plHoodChanged(o){ if(o&&/^hood/.test(String(o.k||""))) try{ plMaintSoon(); }catch(e){} }
 /* ---------- v1.316: ไม้ไฟวิ่งสุดฟิลเลอร์ ----------
    ติ๊กทั้งห้อง (room.lightFill · ตั้งต้น = สุด) หรือสั่งรายใบที่ฟิลเลอร์ (_plLtFill)
    สุด = โครงฟิลเลอร์ยกขึ้นเท่าตู้ (g) ไม้ไฟวิ่งยาวใต้ฟิลเลอร์ไปถึงขอบนอก
@@ -40083,7 +40130,7 @@ function plLightRuns(){
   const m=plCabMap(), items=[], out=[], blk=[], T=plLightT();
   Object.keys(m).forEach(i=>{ if(plIsLightPanel(i)) return;
     const f=plFp(m[i]), wk=plWallOf(i,f); if(!wk) return; const W=PL_WALLS[wk];
-    if(!(plLightOf(i)>0)){ blk.push({wk, a0:f.lo[W.ax], a1:f.hi[W.ax], lo:f.lo[1], hi:f.hi[1]}); return; }
+    if(!(plLightOf(i)>0)){ blk.push({wk, a0:f.lo[W.ax], a1:f.hi[W.ax], lo:f.lo[1]-plNomLift(i,f), hi:f.hi[1]}); return; }   // v1.600: ตู้ฮู้ดนับถึงก้นตามแบบ ไม้ไฟไม่วิ่งผ่านใต้ตู้
     items.push({i, wk, a0:f.lo[W.ax], a1:f.hi[W.ax], bot:f.lo[1], D:f.hi[W.pa]-f.lo[W.pa], off:plOffOf(i)}); });
   const g={}; items.forEach(o=>{ const k=o.wk+"|"+Math.round(o.bot)+"|"+Math.round(o.off); (g[k]=g[k]||[]).push(o); });
   const cut=(cur,o)=>blk.some(b=>b.wk===o.wk&&b.lo<o.bot-0.5&&b.hi>o.bot-T+0.5&&b.a1>cur.a1+0.5&&b.a0<o.a0-0.5);
@@ -40215,10 +40262,15 @@ async function plMaint(){
     Object.keys(plCabMap()).forEach(i=>{ try{ const f=plFp(plBoardsOf(i)); if(plKindOf(f.code)==="filler"&&plLevelOf(f.code)==="wall"&&!plIsSide(i)&&plFillDoorHeal(i)) ch=true; }catch(e){ console.error("plHeal:",e); } });
     Object.keys(plCabMap()).forEach(i=>{ try{ const f=plFp(plBoardsOf(i)); if(plKindOf(f.code)!=="filler"||plLevelOf(f.code)!=="wall"||plIsSide(i)) return;
       const want=plLightWanted(i,f.code)?plLightGap():0; if(want!==plLightOf(i)&&plAlignCab(i)) ch=true; }catch(e){ console.error("plLtFill:",e); } });
+    /* v1.600: วาง/ย้าย/ลบฮู้ด หรือเปิดงานเก่าที่ตู้ฮู้ดเคยได้ไม้ไฟ → ตู้ใบนั้นถอด/ใส่ไม้ไฟให้ตรง · เปิดไม้ไฟอยู่เท่านั้น */
+    if(plRoom().lightOn&&!snOff("plHoodNoLight")){ let hc=false;
+      Object.keys(plCabMap()).forEach(i=>{ try{ const f=plFp(plBoardsOf(i)); if(plKindOf(f.code)==="filler"||plLevelOf(f.code)!=="wall"||plIsSide(i)||plIsLightPanel(i)) return;
+        const want=plLightWanted(i,f.code)?plLightGap():0; if(want!==plLightOf(i)&&plAlignCab(i)){ ch=true; hc=true; } }catch(e){ console.error("plHoodLt:",e); } });
+      if(hc) plHoodResnap(); }
     try{ const cam0=plCamKeep(); if(csmCornerFullSync()){ ch=true; plCamPut(cam0); } }catch(e){ console.error("csmCornerFull:",e); }   // v1.386: แขนชั้นมุมวางบนลิ้นชัก/พ้นลิ้นชัก
     if(ch){ const cam=plCamKeep(); sync(0); plCamPut(cam); }
     const n=await plLightSync(false);
-    if(ch||n) try{ plPanelSel(); }catch(e){}
+    if(ch||n) try{ plRoomDraw(); plPanelSel(); }catch(e){}   // v1.600: + วาดฮู้ดที่ตามก้นตู้
   } finally{ PL.maintBusy=false; }
 }
 
@@ -40246,7 +40298,7 @@ function plSideCeilY(){ const r=plRoom(); if(r.ceilOn===false) return 0;
   const t=plCeilTopMode(), H=plCeilH(); return (t!=null&&H>=10)?t+H:0; }
 /* ช่วงสูงของแผ่น: ก้นเต็มของตู้ (รวมช่องไม้ไฟ — แผ่นปิดปลายไม้ไฟ) ถึงหัวตู้ · ลงพื้น / ถึงฝ้า ตามโหมด */
 function plSideSpan(si,host,lv){ const hf=plFp(plBoardsOf(host));
-  let bot=hf.lo[1]-plLightOf(host), top=hf.hi[1];
+  let bot=hf.lo[1]-plLightOf(host)-plNomLift(host,hf), top=hf.hi[1];         // v1.600: ตู้ฮู้ด = ถึงก้นตามแบบ เสมอแนวตู้ข้าง ๆ
   if((lv==="base"||lv==="tall")&&plSideBotOf(si)==="floor") bot=0;
   if((lv==="wall"||lv==="tall")&&plSideTopOf(si)==="ceil"){ const c=plSideCeilY(); if(c>top+5) top=c; }
   return {bot:round(bot), top:round(top)}; }
@@ -41665,7 +41717,8 @@ function plPanelRoom(){
   { const lo=s.querySelector("#plLtOn"), lc=s.querySelector("#plLtCode");
     const go=async()=>{ r.lightOn=lo.checked; r.lightCode=String(lc.value||"").trim()||"WEF253"; if(r.lightOn) await plLightPrep();
       await plAlignAll(true); await plLightSync(true); plPanelRoom(); plAfterRoom();
-      toast(r.lightOn?("ไม้ไฟ "+r.lightCode+" ใต้ตู้ลอย — โครงหด "+plLightGap()+" · บานยืดลง "+plLightGap()):"เอาไม้ไฟใต้ตู้ลอยออก — โครงคืนขนาดเดิม"); };
+      let nHd=0; if(r.lightOn) try{ nHd=Object.keys(plCabMap()).filter(i=>{ const c=plFp(plBoardsOf(i)).code; return plLevelOf(c)==="wall"&&plKindOf(c)!=="filler"&&!plIsSide(i)&&!plIsLightPanel(i)&&plHoodCab(i,c)&&!plBoardsOf(i).some(b=>b&&b._plLtForce); }).length; }catch(e){}   // v1.600
+      toast(r.lightOn?("ไม้ไฟ "+r.lightCode+" ใต้ตู้ลอย — โครงหด "+plLightGap()+" · บานยืดลง "+plLightGap()+(nHd?(" · ตู้มีฮู้ด "+nHd+" ใบไม่ใส่"):"")):"เอาไม้ไฟใต้ตู้ลอยออก — โครงคืนขนาดเดิม"); };
     if(lo) lo.onchange=go; if(lc) lc.onchange=()=>{ if(lo.checked) go(); else r.lightCode=String(lc.value||"").trim()||"WEF253"; }; }
   { const lf=s.querySelector("#plLtFill"); if(lf) lf.onchange=async()=>{ r.lightFill=lf.checked;   // v1.316: ติ๊กทั้งห้อง = ล้างค่ารายใบ
       Object.keys(plCabMap()).forEach(i=>{ if(plKindOf(plFp(plBoardsOf(i)).code)==="filler") plBoardsOf(i).forEach(b=>{ delete b._plLtFill; }); });
@@ -41906,8 +41959,8 @@ function plPanelSel(){
       return '<div class="plRow plBtns" style="margin-top:6px"><label title="Design Parameter ของตู้ใบนี้ เช่น TT30mm_ExtendBottom20mm — คำสั่งปรับบาน (กฎอยู่ที่ ตั้งค่า → Design Parameter) · ว่าง = Standard">DP <input id="plDp" value="'+escapeHtml(dp)+'" placeholder="Standard" style="width:140px;font-family:var(--mono);font-size:11px"></label>'
         +'<label title="Trim Top — หดบานแถวบนสุดลง (มม.) · บานเพขอบบนใส่ให้เองตามค่าที่แผงห้อง · 0 = ไม่หด">Trim Top <input type="number" id="plTT" value="'+tt+'" min="0" step="5" style="width:52px"></label>'
         +(bev?('<span style="font-size:10.5px;color:var(--ink-dim)">บานเพบน · '+(md==="man"?'ตั้งเอง':((!snOff("ttRail")&&!plFrontTopRail(inst))?'ไม่มีคานตั้งหน้า = ไม่หด':('ค่าตั้งต้น '+(+rr.bevelTT||0))))+'</span>'):'')+'</div>'
-        +((lv2==="wall"&&plKindOf(code)!=="filler"&&rr.lightOn)?('<div class="plRow plBtns" style="margin-top:4px"><label title="ไม้ไฟใต้ตู้ใบนี้ — ไม่ติ๊ก = ตู้ใบนี้ไม่ยกโครง ไม่มีไม้ไฟ"><input type="checkbox" id="plLt"'+(plBoardsOf(inst).some(b=>b&&b._plNoLight)?'':' checked')+'> ไม้ไฟใต้ตู้ '+escapeHtml(String(rr.lightCode||""))+'</label>'
-          +(plLightOf(inst)>0?('<span style="font-size:10.5px;color:var(--ink-dim)">โครงหด '+plLightOf(inst)+' · บานยืดลง '+plLightOf(inst)+'</span>'):'')+'</div>'):'')
+        +((lv2==="wall"&&plKindOf(code)!=="filler"&&rr.lightOn)?('<div class="plRow plBtns" style="margin-top:4px"><label title="ไม้ไฟใต้ตู้ใบนี้ — ไม่ติ๊ก = ตู้ใบนี้ไม่ยกโครง ไม่มีไม้ไฟ · ตู้มีฮู้ดไม่ใส่ให้เอง ติ๊ก = บังคับใส่"><input type="checkbox" id="plLt"'+(plLightWanted(inst,code)?' checked':'')+'> ไม้ไฟใต้ตู้ '+escapeHtml(String(rr.lightCode||""))+'</label>'
+          +(plLightOf(inst)>0?('<span style="font-size:10.5px;color:var(--ink-dim)">โครงหด '+plLightOf(inst)+' · บานยืดลง '+plLightOf(inst)+'</span>'):(plHoodCab(inst,code)?'<span style="font-size:10.5px;color:var(--ink-dim)">ตู้มีฮู้ด — ไม่ใส่ไม้ไฟ</span>':''))+'</div>'):'')
         +((lv2==="wall"&&plKindOf(code)==="filler"&&!plIsSide(inst)&&rr.lightOn)?('<div class="plRow plBtns" style="margin-top:4px"><label title="ติ๊ก = ไม้ไฟวิ่งยาวใต้ฟิลเลอร์นี้ไปถึงขอบนอก โครงฟิลเลอร์ยกขึ้นเท่าตู้ · ไม่ติ๊ก = ฟิลเลอร์ลงเต็มถึงก้นบาน ไม้ไฟจบที่ข้างฟิลเลอร์"><input type="checkbox" id="plLtF"'+(plFillLightOf(inst)?' checked':'')+'> ไม้ไฟวิ่งสุดฟิลเลอร์</label>'   // v1.316
           +(plLightOf(inst)>0?('<span style="font-size:10.5px;color:var(--ink-dim)">โครงยก '+plLightOf(inst)+'</span>'):((plFillLightOf(inst)&&!plFillLitHost(inst))?'<span style="font-size:10.5px;color:var(--ink-dim)">ตู้ข้าง ๆ ไม่มีไม้ไฟ</span>':''))+'</div>'):''); })()
     +(wk?(()=>{ const off=plOffOf(inst), fp=plFrontPlan(inst);                 // v1.310: ดึงออกจากผนัง · หน้าเสมอตู้ข้าง
@@ -41975,8 +42028,9 @@ function plPanelSel(){
   if(q("#plSdBot")) q("#plSdBot").onclick=()=>plSideModeSet(inst,"bot",plSideBotOf(inst)==="floor"?"cab":"floor");
   if(q("#plSdTop")) q("#plSdTop").onclick=()=>plSideModeSet(inst,"top",plSideTopOf(inst)==="ceil"?"cab":"ceil");
   if(q("#plLt")) q("#plLt").onchange=async ev=>{ const on=ev.target.checked, cam=plCamKeep();
-    plBoardsOf(inst).forEach(b=>{ if(!b||b._virtual) return; if(on) delete b._plNoLight; else b._plNoLight=1; });
-    plAlignCab(inst); sync(0); plCamPut(cam); await plLightSync(false); plSelect(inst); };
+    const hd=plHoodCab(inst);                                                 // v1.600: ตู้มีฮู้ด ติ๊ก = บังคับใส่
+    plBoardsOf(inst).forEach(b=>{ if(!b||b._virtual) return; if(on){ delete b._plNoLight; if(hd) b._plLtForce=1; } else { b._plNoLight=1; delete b._plLtForce; } });
+    plAlignCab(inst); sync(0); plCamPut(cam); await plLightSync(false); plHoodResnap(); plSelect(inst); };
   plPanelGaps(); plPanelFoot();
   try{ plMaintSoon(); }catch(e){}                                              // v1.313: บานเพ Trim Top · แนวไม้ไฟ
 }
@@ -53796,13 +53850,23 @@ function _resizeCabinetToCore(inst, W, H, D, lock){
      ใช้ 430 เป็นฐาน พอกรอกกลับไป 330 ทุกชิ้นถูกย่อ 0.767 เท่า แผ่นข้างเหลือ 253
      -> อ้างจากขอบแผ่นข้าง แล้วแปลงเป็นเป้าหมายของกรอบรวมด้วยอัตราส่วนเดียวกัน
         ส่วนที่ยื่นถูกตรึงด้วยพิน applyPins() คืนระยะให้ตอนท้าย */
-  stripPartAdjust(inst);                                   // v7.70: ถอดส่วนที่ปรับด้วยสูตรออกก่อน แล้ว commit จะใส่กลับให้
+  const _nAdj=stripPartAdjust(inst);                       // v7.70: ถอดส่วนที่ปรับด้วยสูตรออกก่อน แล้ว commit จะใส่กลับให้
+  /* ───────── v1.600: ตู้ที่ชิ้นโครงมีสูตรปรับ (ตู้ฮู้ด: แผ่นข้าง -$D4) ปรับขนาดแล้วหดซ้ำทุกครั้ง ─────────
+     ผู้ใช้ 2/11 12:11: “ใส่ไม้วิ่งไฟใต้ตู้แล้ว ตู้ hood เด้ง”
+     เดิม: กรอบ curH วัดก่อนถอดสูตร (658) แต่ตัวสเกลกับ refH วัดหลังถอด (700) → สั่ง 700 = toBox ได้ 658*700/700 = 658
+       ตัวสเกลย่อ 700 ลงเหลือ 658 แล้ว commit หัก -$D4 อีกรอบ = เหลือ 616 · ทุกครั้งที่ปรับขนาด (รวมกดตกลงเฉย ๆ ในกล่องปรับขนาด) ตู้เตี้ยลงอีก
+     แก้: มีชิ้นถูกถอดสูตร = วัดกรอบใหม่หลังถอด ทุกค่าในสมการอยู่ฐานเดียวกัน · ไม่มีสูตร = เลขเดิมทุกตัว
+     ปิด SN_OFF.rszAdjBox=1 */
+  let _bxN=[curW,curH,curD];
+  if(_nAdj&&!snOff("rszAdjBox")){ const m0=[Infinity,Infinity,Infinity], m1=[-Infinity,-Infinity,-Infinity];
+    boards.filter(z=>!z._door&&!z._virtual).forEach(bb=>{ const d=worldDims(bb), c=[bb.x,bb.y,bb.z]; for(let a=0;a<3;a++){ m0[a]=Math.min(m0[a],c[a]-d[a]/2); m1[a]=Math.max(m1[a],c[a]+d[a]/2); } });
+    if(m0.every(v=>isFinite(v))) _bxN=[0,1,2].map(a=>Math.round(m1[a]-m0[a])); }
   /* v9.82: ฐานเดียวกับตัวสเกล — กรอบรวม ยกเว้นชิ้นที่พินให้ยื่น */
-  let refD=curD, refH=curH;
+  let refD=_bxN[2], refH=_bxN[1];
   { const rb=cabRefBox(boards);
     if(rb[1]>1) refH=Math.round(rb[1]);
     if(rb[2]>1) refD=Math.round(rb[2]); }
-  const bxW=curW, bxH=curH, bxD=curD, refW0=curW;   // v9.49: กว้างวัดจากกรอบรวมอยู่แล้ว จึงใช้ค่าเดียวกัน
+  const bxW=_bxN[0], bxH=_bxN[1], bxD=_bxN[2], refW0=_bxN[0];   // v9.49: กว้างวัดจากกรอบรวมอยู่แล้ว จึงใช้ค่าเดียวกัน · v1.600: วัดหลังถอดสูตร
   const toBox=(want,cur,box)=>(want>0&&cur>0)?Math.max(20,round(box*want/cur)):box;
   const wd=worldDims;
   const sidesB=boards.filter(z=>!z._door&&z.orient==="side"), flatsB=boards.filter(z=>!z._door&&z.orient==="flat");
