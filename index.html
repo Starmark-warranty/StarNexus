@@ -3283,7 +3283,7 @@ body[data-theme="dark"] .splash-dots span{background:rgba(255,255,255,.25)}
    ===================================================================== */
 /* ---- APP_META: แหล่งความจริงเดียวของเวอร์ชัน (ดูได้จาก console / คลิกชื่อแอป) ---- */
 const APP_META={
-  name:"StarNexus", version:"1.611", build:"2026-11-02/render-from-view",
+  name:"StarNexus", version:"1.612", build:"2026-11-02/clear-with-room",
   file:"StarNexus.html", basedOn:"Furnitech_V3.html (v3.11)",
   /* ───────── เริ่มนับเวอร์ชันใหม่ที่ 1.001 (21/08/2026) ─────────
      ของเดิมนับมาถึง 42.1 แล้ววิ่งเป็นทศนิยมสองชั้นซึ่งอ่านลำดับยาก
@@ -3291,6 +3291,7 @@ const APP_META={
      ประวัติเก่าเก็บไว้ทั้งหมดตามเลขเดิม ไม่ไล่เขียนใหม่ เพราะเลขในนั้นถูกอ้างถึงไปแล้ว
      รายการที่อยู่ใต้ 1.001 ลงไปจึงเป็นเลขชุดเก่า อ่านต่อกันได้ตามวันที่ */
   changelog:[
+    ["1.612","2026-11-02","CHANGE ปุ่ม ล้าง ล้างห้องไปด้วย (ผนัง ประตู หน้าต่าง เครื่องใช้ ท็อป ฉาก) · เลือกล้างแค่ตู้ได้ในกล่อง · ห้องล็อกอยู่ไม่แตะห้อง · Ctrl+Z คืนได้ · ปิด SN_OFF.clearRoom"],
     ["1.611","2026-11-02","FEAT AI RENDER เลือกภาพตั้งต้นได้: 🖥 ภาพจากจอ (ตั้งต้น · ไม่เปิดโหมดสมจริง) หรือ ✨ โหมดสมจริงแบบเดิม · ปิด SN_OFF.rndView · FEAT สัญลักษณ์เส้นประกากบาทบนหน้าลิ้นชักใน 3D · ปิด SN_OFF.drawerSym · FIX ลิงก์ดูงาน เส้น V ทิศเปิดหมุนตามบาน ไม่ค้างกลางอากาศ"],
     ["1.610","2026-11-02","CHANGE รอยต่อตีนตู้อยู่ระหว่างตู้ ก่อนถึง 2400 เหมือนฟิลเลอร์บนและไม้ไฟ · ปิด SN_OFF.plinthJoint · UI แถบลอยไม้วัดอยู่กลางช่องระหว่างแผงซ้าย-ขวา ไม่จมใต้แผงห้องออกแบบ · ปิด SN_OFF.mdHudPlace"],
     ["1.609","2026-11-02","FIX บานตู้ฮู้ดก้นบานหาย ~10 มม. — ขอบล่างไม่มีจุดอ้างจึงจำระยะที่ถูกตัดสะสมมาจากรุ่นก่อน ตอนนี้อ้างแผ่นข้าง เว้น 1.5 เท่าขอบบน · CHANGE รอยต่อไม้ไฟและฟิลเลอร์บนอยู่ระหว่างตู้ ก่อนถึง 2400 ไม่อยู่กลางตู้ · ปิด SN_OFF.deFreeBottom · SN_OFF.cabJoint · UI แผงห้องออกแบบไม่ทับแถบเครื่องมือล่าง"],
@@ -5025,6 +5026,7 @@ function pull(m,val){ return m==="กลาง"? Math.max(val,0)/2 : Math.max(va
 let undoStack=[], redoStack=[], lastSnap=null;
 /* v1.297: Ctrl+Z ต้องย้อนค่าประจำตู้ด้วย ไม่ใช่แค่ชิ้น — เดิมเก็บแต่ boards
    เปลี่ยนสีในช่อง Variables หรือวางคุณสมบัติตู้แล้วกด Ctrl+Z ชิ้นย้อน แต่สีกับค่าปรับบานค้างของใหม่ ไม่ตรงกัน */
+let _clrBak=null;   /* v1.612: ของที่ปุ่ม ล้าง เอาออกและไม่อยู่ใน snap — คืนตอน Ctrl+Z */
 const SNAP_CAB_KEYS=["cabColors","cabDP","cabVarTxt","cabFrontEdge","cabFrontDir","orderMat"];   // v1.337: + วัสดุทั้งออเดอร์ (Ctrl+Z ย้อนพร้อมความหนาชิ้น)
 function snap(){ const cab={}; SNAP_CAB_KEYS.forEach(k=>{ if(state[k]) cab[k]=state[k]; });
   return JSON.stringify({boards:state.boards,globalTone:state.globalTone,cab:cab,room:snOff("plUndo")?undefined:(state.room||null)}); }   /* v1.540: + ห้อง (Ctrl+Z ย้อนผนัง/ประตู/หน้าต่างได้) */
@@ -5300,6 +5302,7 @@ function runOverlapCheck(){
 function clearOverlapHL(){ if(state.overlapIds&&state.overlapIds.length){ state.overlapIds=[]; render3D(false); } }
 function restoreSnap(str){ const o=JSON.parse(str); state.boards=o.boards; state.globalTone=o.globalTone;
   try{ plPlinthColorSoon.skip=Date.now()+1500; }catch(e){}   /* v1.569: ย้อน/ทำซ้ำ ไม่ทำตีนตู้ใหม่ (ไม่ล้างประวัติทำซ้ำ) */
+  if(_clrBak&&Array.isArray(o.boards)&&o.boards.length){ state.scenes=_clrBak.scenes; state.orderLines=_clrBak.lines; state.qPics=_clrBak.pics; _clrBak=null; try{ scnAfterLoad(); }catch(e){} }   /* v1.612 */
   let _rmR=false; if(Object.prototype.hasOwnProperty.call(o,"room")&&!snOff("plUndo")){ state.room=o.room||null; _rmR=true; }   /* v1.540: ห้องย้อนตาม (ภาพเก่าก่อน 1.540 ไม่มีห้อง = ห้องอยู่ที่เดิม) */
   if(o.cab) SNAP_CAB_KEYS.forEach(k=>{ state[k]=o.cab[k]||{}; });   /* v1.297 */
   if(!selBoard())state.selectedId=null; buildGTones();
@@ -30367,6 +30370,7 @@ function boardRole(b){
      SN_OFF.doorArt=1     ไม่มีหน้าวาดลายหน้าบาน · ลายที่ใส่ไว้ไม่แสดง (v1.604)
      SN_OFF.ehpRebate=1   มือจับฝังไม่เซาะบ่าหลังบาน (v1.606)
      SN_OFF.hgk3D=1       หูแขวนเป็นกล่องคร่าว ๆ แบบเดิม (v1.606)
+     SN_OFF.clearRoom=1   ปุ่ม ล้าง ล้างแค่ตู้ ห้องอยู่ครบแบบเดิม (v1.612)
      SN_OFF.rndView=1     AI RENDER เปิดโหมดสมจริงทุกครั้งแบบเดิม ไม่มีแถวภาพตั้งต้น (v1.611)
      SN_OFF.drawerSym=1   หน้าลิ้นชักไม่มีเส้นประกากบาท (v1.611)
      SN_OFF.plinthJoint=1 ตีนตู้ตัดทุก 2400 จากต้นแนวแบบเดิม (v1.610)
@@ -63131,8 +63135,23 @@ function bindChrome(){
   addEventListener("pointerdown",e=>{ if(!e.target.closest("#varCtx"))varCtxHide(); },true);
   addEventListener("keydown",e=>{ if(e.key==="Escape" && closeTopModal()) e.preventDefault(); }, true);
   $("addBtn").onclick=()=>addBoard();
-  $("newBtn").onclick=async()=>{if(await dialog({title:"ล้างชิ้นงานทั้งหมด?",ok:"ล้าง",   /* v1.540: บอกว่าห้องที่วาดไว้ยังอยู่ */
-      html:(!snOff("plRoomLib")&&plRoomHas())?'<div style="font-size:12.5px;line-height:1.6">ตู้/ชิ้นในฉากหายทั้งหมด · <b>ห้องที่วาดไว้ยังอยู่</b> (ผนัง ประตู หน้าต่าง)</div>':""})){state.boards=[];state.selectedId=null;sync(1);}};
+  /* ───────── v1.612: ปุ่ม ล้าง ล้างห้องไปด้วย ─────────
+     ผู้ใช้ 2/11 19:19 (ภาพห้องเหลือผนัง ประตู เครื่องใช้ แต่ไม่มีตู้): “ลืมไปได้ไง คำสั่งล้าง ให้ล้างห้องไปด้วยครับ”
+     เดิม (1.540): ล้างแค่ state.boards ห้องอยู่ครบ และแถวฟิลเลอร์บน/ตีนตู้ใน orderLines ยังอยู่ จึงปั้นตู้เส้นกลับมายืนในห้องเปล่า ทั้งที่กล่องบอกว่าชิ้นหายหมด
+     ตอนนี้: ล้างตู้ + ห้อง (state.room) + ฉาก + บรรทัดเส้น + ภาพในใบเสนอราคา แล้ววาดห้องใหม่ทันที · ห้องที่ 💾 บันทึกไว้ไม่แตะ · เลขออเดอร์ สีรายตู้ เหมือนเดิม (ล้างครบใช้ Order › ใหม่)
+       ยังเลือก “ล้างแค่ตู้ · เก็บห้องไว้” ได้ในกล่อง · ห้องล็อกอยู่ = ล้างแค่ตู้ ไม่แตะห้อง
+       Ctrl+Z: ห้องอยู่ใน snap อยู่แล้ว · ฉาก/บรรทัดเส้น/ภาพ ไม่อยู่ จึงจำไว้ใน _clrBak แล้วคืนพร้อมตู้ · ปิด SN_OFF.clearRoom=1 = ล้างแค่ตู้แบบเดิม */
+  $("newBtn").onclick=async()=>{ const _off=snOff("clearRoom"); let _lk=false; try{ _lk=typeof plRoomLocked==="function"&&plRoomLocked(); }catch(e){}
+    const _has=!!state.room&&plRoomHas(), _can=!_off&&!_lk;
+    const res=await dialog({title:_can?"ล้างทั้งหมด รวมห้อง?":"ล้างชิ้นงานทั้งหมด?",ok:_can?"ล้างทั้งหมด":"ล้าง", extra:(_can&&_has)?{label:"ล้างแค่ตู้ · เก็บห้องไว้",id:"keep"}:undefined,
+      html:_can?'<div style="font-size:12.5px;line-height:1.6">ตู้/ชิ้นในฉาก <b>และห้องที่วาดไว้</b> (ผนัง ประตู หน้าต่าง เครื่องใช้ ท็อป ฉาก) หายทั้งหมด<br><span style="opacity:.7">ห้องที่ 💾 บันทึกไว้ยังอยู่ · เผลอกด Ctrl+Z เอาคืนได้</span></div>'
+        :(_has?'<div style="font-size:12.5px;line-height:1.6">ตู้/ชิ้นในฉากหายทั้งหมด · <b>ห้องที่วาดไว้ยังอยู่</b>'+(_lk?' เพราะห้องล็อกอยู่':' (ผนัง ประตู หน้าต่าง)')+'</div>':"")});
+    if(!res) return;
+    if(!_off) _clrBak={scenes:state.scenes||[], lines:state.orderLines||[], pics:state.qPics||[]};
+    if(_can&&res!=="keep"){ state.room=null; state.scenes=[]; state.orderLines=[]; state.qPics=[]; try{ scnAfterLoad(); }catch(e){ console.error("clearRoom:",e); } }
+    else if(!_off) state.orderLines=(state.orderLines||[]).filter(x=>!(x&&x._planner));   /* ล้างแค่ตู้: แถวฟิลเลอร์บน/ตีนตู้ที่ห้องคิดเอง ไม่ปล่อยให้ปั้นตู้เส้นกลับมายืนในห้องเปล่า */
+    state.boards=[]; state.selectedId=null; sync(1);
+    if(_can&&res!=="keep"){ try{ if(typeof PL!=="undefined"&&PL.on){ PL.wpick=null; PLO.sel=null; plUndoRoomRedraw(); } }catch(e){ console.error("clearRoom draw:",e); } } };
   $("importBtn").onclick=()=>$("fileInput").click();
   $("fileInput").addEventListener("change",e=>{const f=e.target.files[0];if(f)readFile(f);e.target.value="";});
   $("importXmlBtn").onclick=()=>showXmlImport();
