@@ -3283,7 +3283,7 @@ body[data-theme="dark"] .splash-dots span{background:rgba(255,255,255,.25)}
    ===================================================================== */
 /* ---- APP_META: แหล่งความจริงเดียวของเวอร์ชัน (ดูได้จาก console / คลิกชื่อแอป) ---- */
 const APP_META={
-  name:"StarNexus", version:"1.606", build:"2026-11-02/lm24-r122-r118-hanger3d",
+  name:"StarNexus", version:"1.607", build:"2026-11-02/r122-r118-pose-grain-dir",
   file:"StarNexus.html", basedOn:"Furnitech_V3.html (v3.11)",
   /* ───────── เริ่มนับเวอร์ชันใหม่ที่ 1.001 (21/08/2026) ─────────
      ของเดิมนับมาถึง 42.1 แล้ววิ่งเป็นทศนิยมสองชั้นซึ่งอ่านลำดับยาก
@@ -3291,6 +3291,7 @@ const APP_META={
      ประวัติเก่าเก็บไว้ทั้งหมดตามเลขเดิม ไม่ไล่เขียนใหม่ เพราะเลขในนั้นถูกอ้างถึงไปแล้ว
      รายการที่อยู่ใต้ 1.001 ลงไปจึงเป็นเลขชุดเก่า อ่านต่อกันได้ตามวันที่ */
   changelog:[
+    ["1.607","2026-11-02","FIX มือจับฝัง R122 · R118 วางท่าใหม่ตามภาพผู้ใช้: แผ่นนอนบนหัวบาน ยื่นหน้าบาน หัวห้อยลง ขาลงร่องหลังบาน 2 × 18 — 1.606 ตั้งขึ้นตามแบบ CAD ตรง ๆ บานจึงถูกตัด 45 (ตอนนี้ R122 สั้นลง 2 · R118 2.9 · งานที่ใส่ไว้แล้วแก้ให้เอง) · FEAT ห้องออกแบบ › 🎨 สี เลือกแนวลายหน้าบาน อัตโนมัติ/ตั้ง/นอน เมื่อสีมีลายไม้ · ปิด SN_OFF.plGrainDir · UI การ์ดดีไซน์หน้าบาน: อยู่กลางช่อง · บานตัวอย่างขนาดเดียวกันทุกแบบ · ไม่แสดงรหัสที่ไม่ใช่แบบบาน (0000_Mat16) · FEAT Fitting Global กรองแยกรหัส/ชื่อ/หน่วย/หมวด + คอลัมน์หมวดแทน RecId"],
     ["1.606","2026-11-02","FEAT (ผู้ใช้ 2/11 16:32) ① มือจับฝังรุ่นจริง LM24 · R122 · R118 ลอกจากแบบ CAD ② R122/R118 เซาะบ่าหลังบาน ลึก 2 สูง 18 ตามแบบ: ควักใน 3D + MPR ผิวหลัง · หน้าวาดมีช่องเซาะหลังบาน แก้/ปิดรายรุ่นได้ ③ หูแขวนครัว 3D ตามภาพ: ตัวเรือนเปิดฝาเห็นกลไก น็อตปรับ แผ่นหลัง ลิ้นตะขอรูยาว ซ้าย/ขวากลับด้าน · ขนาด ตำแหน่ง รอยบาก รูเจาะ BOM เท่าเดิม"],
     ["1.605","2026-11-02","FEAT หน้าวาดหน้าตัดมือจับฝัง (ผู้ใช้ 2/11 16:21 “เส้นเฉียง หรือโค้งเฉียงได้ไหม … แก้/ปรับ ความหนาบานได้ไหม”): ⌒ ดัดโค้ง ลากเส้นให้โค้ง พิมพ์ยอดโค้งหรือ R12 · พิมพ์ 20@45 = ยาว 20 มุม 45° · ขณะวาดบอกมุม · ช่องหนาบานเทียบ (ตั้งต้นตามบานในงาน เก็บกับรุ่น) · บอกระยะเลยหลังบาน"],
     ["1.604","2026-11-02","FEAT ✏ ลายหน้าบาน (ผู้ใช้ 2/11 15:29 “วาดรูป แบบหน้าบานได้อิสระ … หรือ JPG แบบลายเส้น เอามาแปะ”): วาดเส้นตรง กรอบ มุมมน โค้งบน วงรี มือเปล่า · สมมาตร · แบบสำเร็จ 10 แบบ · แปะ JPG/PNG เป็นลายเส้น ทั้งแผ่น หรือภาพรองวาดทับ · บานขนาดอื่นคงระยะจากขอบ · ใส่ให้บานนี้ ตู้นี้ แบบเดียวกัน ทั้งงาน · โชว์ใน 3D และแบบเสนอราคา (ใบตัด/MPR ไม่เปลี่ยน)"],
@@ -6643,6 +6644,19 @@ function _grainXFlip(b,isX){
   if(isX) b._grainX=true; else delete b._grainX;
   return 1;
 }
+/* ───────── v1.607: แนวลายที่เลือกเองจากห้องออกแบบ ─────────
+   ผู้ใช้ 2/11 16:46: “หน้าห้องออกแบบ เลือกลายไม้ได้ไหมครับหน้าบาน หลัง เลือกสีที่มีลายไม้”
+   เดิม: แนวลายหน้าบานมาจากกฎอัตโนมัติ (ตั้งเสมอ เว้นท้ายรหัส X) · อยากได้ลายนอนต้องเข้าแผงขวา กด ↻ + 🔒 ทีละบาน
+     และ 🔒 ไปตรึงค่า grainCross ซึ่งแปลว่า “ตามยาว/ตามกว้าง” ไม่ใช่ “ตั้ง/นอน” บวกกับกลับเองอีกรอบเมื่อสีท้าย X
+   ตอนนี้: b._grainDir = "V" ลายตั้ง / "H" ลายนอน / ไม่มี = อัตโนมัติ → ตั้ง grainCross ให้ตรงทิศจริงทุกรอบ sync จึงตามได้แม้สลับกว้างยาว
+     ปลายทางทั้งหมด (3D · ใบตัด · GROR · MPR) อ่าน grainCross ตัวเดิม ไม่ต้องรู้จัก _grainDir · ปิด SN_OFF.plGrainDir=1 */
+function grainDirIsV(b){ let lVert=false; try{ const uL=new THREE.Vector3(1,0,0).transformDirection(orientMatrix(b.orient,b.yaw)); lVert=Math.abs(uL.y)>0.7; }catch(e){ return null; }
+  return lVert!==!!b.grainCross; }
+function grainDirApply(b){ const v=grainDirIsV(b); if(v==null) return 0; let n=0;
+  if(b._grainX){ delete b._grainX; n=1; }
+  if(v===(b._grainDir==="V")) return n;
+  if(b.grainCross) delete b.grainCross; else b.grainCross=true;
+  return 1; }
 function applyGrainDefaults(){
   if(settings.grainAuto===false) return 0;
   let n=0;
@@ -6655,6 +6669,7 @@ function applyGrainDefaults(){
       toast("สีที่ใช้มีลายไม้ — เปิดแสดงลายไม้ให้แล้ว (กดปุ่ม ลายไม้ เพื่อปิด)"); } }catch(e){}
   (state.boards||[]).forEach(b=>{
     if(!b||b._virtual) return;
+    if((b._grainDir==="V"||b._grainDir==="H")&&!snOff("plGrainDir")){ n+=grainDirApply(b); return; }   /* v1.607: เลือกเองชนะทุกกฎ */
     /* v1.299-local.10: ชิ้นที่ล็อคลายไว้ ระบบไม่คิดแนวลายให้ แต่สี X ยังกลับลายให้ (ตามที่ตั้งไว้ตอนเป็น Y) */
     if(b._grainLock){ try{ n+=_grainXFlip(b,grainCodeAxis(b)==="H"); }catch(e){} return; }   // v9.20
     /* v9.25: ปุ่มมี/ไม่มีลาย กลับไปเป็น "อัตโนมัติ" เองเมื่อสีที่ใช้อยู่ขัดกับที่บังคับไว้
@@ -22572,7 +22587,7 @@ function cabSelHas(k){ return cabSelKeys().indexOf(String(k))>=0 || String(state
    ชิ้นที่ระบบปั้นเองทุกรอบ (ขา เฟรม กระจก ราง LED อุปกรณ์) ไม่นับ เพราะถูกสร้างใหม่ตามค่าของตู้อยู่แล้ว */
 let _cabPropClip=null;
 const CABPROP_PART=["part","mat","surfT","surfB","edges"];
-const CABPROP_TICK=["fixW","fixH","fixY","fixDim","core","grain","grainCross","_grainX","_grainLock","_shelfSup","pinPitch"];
+const CABPROP_TICK=["fixW","fixH","fixY","fixDim","core","grain","grainCross","_grainX","_grainLock","_grainDir","_shelfSup","pinPitch"];   /* v1.607: + _grainDir */
 function _cpBoardsOf(inst){ inst=String(inst);
   return state.boards.filter(b=>b&&String(b.cabInst)===inst&&!b._virtual&&!b._framePart&&!b._ledPart&&!b._fitPart&&String(b.name||"").trim()); }
 function _cpJ(v){ return (v==null)?v:JSON.parse(JSON.stringify(v)); }
@@ -24112,10 +24127,12 @@ function showInspector(){
     render3D(true); showInspector(); autosave(); commit();
     toast(v.code?(lb+" → "+v.code+" (ทับเฉพาะชิ้นนี้)"):(lb+" กลับไปใช้ค่าตาม Part แล้ว")); }; });
   { const gl=body.querySelector("#f_grainLock"); if(gl)gl.onclick=()=>{
+        delete b._grainDir;   /* v1.607: สั่งที่ชิ้นนี้โดยตรง = เลิกใช้ค่าจากห้องออกแบบ */
         if(b._grainLock) delete b._grainLock; else b._grainLock=true;
         showInspector(); autosave(); commit();
         toast(b._grainLock?"ล็อคแนวลายชิ้นนี้แล้ว — ระบบอัตโนมัติจะไม่แก้ทับ":"ปลดล็อคแล้ว — ลายจะคิดตามบทบาทชิ้น/ท้ายรหัสสีอีกครั้ง"); }; }
-    if(gx)gx.onclick=()=>{ b.grainCross=!b.grainCross||undefined; if(!b.grainCross) delete b.grainCross;
+    if(gx)gx.onclick=()=>{ if(b._grainDir){ delete b._grainDir; b._grainLock=true; }   /* v1.607: กด ↻ บานที่เลือกแนวลายไว้ = ค่าที่กดต้องอยู่ ไม่ถูกดึงกลับรอบ sync ถัดไป */
+      b.grainCross=!b.grainCross||undefined; if(!b.grainCross) delete b.grainCross;
       showInspector(); render3D(false); autosave(); commit();
       /* v7.37.3: แค่สลับลำดับตัวเลขในโทสต์ให้ตรงกับของที่ส่งออกจริง (ยาว x กว้าง) — ตัวส่งออกถูกอยู่แล้ว ไม่แตะ */
       /* v1.003: ข้อความแจ้งเตือนอ่านเป็น กว้าง × ยาว ให้ตรงกับช่องกรอกในแผงขวา
@@ -30264,6 +30281,9 @@ function boardRole(b){
      SN_OFF.doorArt=1     ไม่มีหน้าวาดลายหน้าบาน · ลายที่ใส่ไว้ไม่แสดง (v1.604)
      SN_OFF.ehpRebate=1   มือจับฝังไม่เซาะบ่าหลังบาน (v1.606)
      SN_OFF.hgk3D=1       หูแขวนเป็นกล่องคร่าว ๆ แบบเดิม (v1.606)
+     SN_OFF.plGrainDir=1  กล่องสีห้องออกแบบไม่มีแถวเลือกแนวลายหน้าบาน · ค่าที่เลือกไว้ไม่มีผล (v1.607)
+     SN_OFF.dwgDoorSample=1 การ์ดดีไซน์หน้าบานวาดตามขนาดจริงของบาน (v1.607)
+     SN_OFF.dwgDoorOnlyCode=1 การ์ดดีไซน์หน้าบานมีทุกรหัส รวม 0000_Mat16 (v1.607)
      SN_OFF.plHoodNoLight=1 ตู้มีฮู้ดยังได้ไม้ไฟใต้ตู้เหมือนตู้อื่น (ปิดกติกาไม่ใส่) (v1.600)
      SN_OFF.plHoodLift=1  จัดแนวตู้ฮู้ดด้วยกรอบโครงจริงแบบเดิม ก้นโครงลงระดับก้นตู้ลอย (v1.600)
      SN_OFF.plAlignStay=1 จัดแนวแล้วตู้หลบของที่ทับกันอยู่ก่อนแบบเดิม (ดีดไปช่องว่าง) (v1.600)
@@ -43899,8 +43919,23 @@ function dwgDoorDesign(b){ let code=""; try{ code=doorShapeCode(b)||""; }catch(e
   let desc=""; try{ const r=(((settings.elements||{}).colors)||[]).find(z=>z&&String(z.code).trim()===code); desc=String((r&&r.desc)||"").trim(); }catch(e){}
   if(/from\s*XML/i.test(desc)) desc="";
   return {code, desc}; }
-function dwgDoorSvg(b){ const e=v=>Math.round(v*10)/10;
-  const L=Math.max(+b.L||400,40), W=Math.max(+b.W||700,40), T=Math.max(+b.T||18,1);
+/* ───────── v1.607: การ์ดดีไซน์หน้าบาน — กลางช่อง · บานขนาดเท่ากัน · เฉพาะรหัสแบบบาน ─────────
+   ผู้ใช้ 2/11 16:55 (ภาพการ์ด MCWx58 · MCWG20 · 0000_Mat16 · Exxx01):
+     “1. จัดให้มันอยู่กลางแต่ละช่อง มันชิดซ้ายเกินไป 2. เอาขนาดบานเท่ากัน แม้ของจริงบานจะเล็กเหลือใหญ่ ถ้ารูปตัวอย่างเอาบานอื่น ๆ ให้เท่า Exxx01
+      3. ที่ไม่ได้ขึ้นต้นด้วยรหัสแบบบานเอาออก เช่น 0000_Mat16”
+   เดิม: · viewBox กันที่ขวาไว้ fs*6 ให้ป้าย “หนา” เกินตัว Section จริงมาก รูปจึงเอียงซ้ายทุกการ์ด
+     · วาดตามขนาดจริงของบานตัวแทน หน้าลิ้นชัก 997×218 จึงเป็นเส้นบาง บานแคบเป็นเส้นตั้ง เทียบแบบกันไม่ได้
+     · รหัสแบบว่างหรือค่าที่ไม่ใช่แบบบานก็ได้การ์ดของตัวเอง
+   ตอนนี้: · viewBox เท่าตัวรูปพอดี ป้าย “หนา” จัดไม่ให้ล้นออกขวา (แก้ให้รูปย่อในกล่องสีด้วย)
+     · การ์ด = บานตัวอย่าง DWG_DOOR_SAMPLE ขนาดเดียวกันทุกแบบ ไม่มีป้ายกว้าง×สูง (ไม่ใช่ขนาดจริง) ส่วนร่อง/กรอบ/กระจกยังวัดเป็น มม. จริงจากขอบ · บานที่ใส่ลาย ✏ คงสัดส่วนตัวเอง ไม่ยืดลาย
+     · ไม่มีการ์ดของบานที่รหัสไม่ได้ขึ้นต้นด้วยตัวอักษร (0000_Mat16) หรือมี _ · ไม่มีรหัส = ไม่มีการ์ด
+   ปิด SN_OFF.dwgDoorSample=1 (ขนาดจริง) · SN_OFF.dwgDoorOnlyCode=1 (ทุกรหัส) */
+const DWG_DOOR_SAMPLE={L:600,W:630};
+function dwgDoorIsDesign(b){ if(snOff("dwgDoorOnlyCode")) return true; try{ if(doorArtOf(b)) return true; }catch(e){}
+  let c=""; try{ c=String(doorShapeCode(b)||"").trim(); }catch(e){} return /^[A-Za-z][^_\s]*$/.test(c); }
+function dwgDoorSvg(b,opt){ const e=v=>Math.round(v*10)/10;
+  let L=Math.max(+b.L||400,40), W=Math.max(+b.W||700,40); const T=Math.max(+b.T||18,1), smp=!!(opt&&opt.sample);
+  if(smp){ let _ar=null; try{ _ar=doorArtOf(b); }catch(e){} if(_ar){ const k=Math.min(DWG_DOOR_SAMPLE.L/L,DWG_DOOR_SAMPLE.W/W); L*=k; W*=k; } else { L=DWG_DOOR_SAMPLE.L; W=DWG_DOOR_SAMPLE.W; } }
   let prof=null, cut=null, bev=[], es=null;
   try{ const c=doorShapeCode(b); if(c) prof=doorReliefProfiles()[String(c).toUpperCase()]||null; }catch(e){}
   try{ cut=doorReliefCutOf(b); }catch(e){}
@@ -43947,19 +43982,19 @@ function dwgDoorSvg(b){ const e=v=>Math.round(v*10)/10;
   else wood(endPts(true),endPts(false));
   /* ป้าย */
   const ty=W+fs*1.5;
-  o.push('<text x="'+e(L/2)+'" y="'+e(ty)+'" font-size="'+e(fs)+'" text-anchor="middle" fill="#3a3f48">'+Math.round(L)+'×'+Math.round(W)+'</text>');
-  o.push('<text x="'+e(X0+ST/2)+'" y="'+e(ty)+'" font-size="'+e(fs)+'" text-anchor="middle" fill="#3a3f48">หนา '+Math.round(T*10)/10+'</text>');
-  const vw=L+g+Math.max(ST,fs*6)+pad*2, vh=W+fs*2.2+pad*2;
+  if(!smp) o.push('<text x="'+e(L/2)+'" y="'+e(ty)+'" font-size="'+e(fs)+'" text-anchor="middle" fill="#3a3f48">'+Math.round(L)+'×'+Math.round(W)+'</text>');   /* v1.607: บานตัวอย่างไม่ใช่ขนาดจริง */
+  o.push('<text x="'+e(smp?(X0+ST)/2:(X0+ST))+'" y="'+e(ty)+'" font-size="'+e(fs)+'" text-anchor="'+(smp?"middle":"end")+'" fill="#3a3f48">หนา '+Math.round(T*10)/10+'</text>');
+  const vw=L+g+ST+pad*2, vh=W+fs*2.2+pad*2;   /* v1.607: เดิมกันที่ขวา fs*6 รูปจึงเอียงซ้าย */
   return '<svg class="dsg" xmlns="http://www.w3.org/2000/svg" viewBox="'+e(-pad)+' '+e(-pad)+' '+e(vw)+' '+e(vh)+'" preserveAspectRatio="xMidYMid meet" font-family="Sarabun,Leelawadee UI,Tahoma,sans-serif">'+o.join("")+'</svg>'; }
 async function dwgMatTiles(C){ const cabs=(C||dwgCabs()).filter(c=>c.lv!=="rail"&&c.lv!=="light"), tiles=[];
   const doors=[]; cabs.forEach(c=>c.bs.forEach(b=>{ if(dwgIsDoor(b)) doors.push({b,c}); }));
   /* v1.527: แบบหน้าบาน = รหัสแบบ (Exxx01 …) · ภาพเส้นด้านหน้า + Section (dwgDoorSvg) · บานที่พบบ่อยสุดของแบบนั้นเป็นตัวแทน */
-  if(!snOff("dwgDoorLine")){ const byD={}; doors.forEach(x=>{ if(x.b._box) return; const dd=dwgDoorDesign(x.b); (byD[dd.code]=byD[dd.code]||{dd,L:[]}).L.push(x); });
+  if(!snOff("dwgDoorLine")){ const byD={}; doors.forEach(x=>{ if(x.b._box||!dwgDoorIsDesign(x.b)) return; /* v1.607 */ const dd=dwgDoorDesign(x.b); (byD[dd.code]=byD[dd.code]||{dd,L:[]}).L.push(x); });
     Object.values(byD).sort((a,b)=>b.L.length-a.L.length).slice(0,6).forEach(G=>{
       const sz={}; G.L.forEach(x=>{ const k=Math.round(+x.b.L||0)+"x"+Math.round(+x.b.W||0); sz[k]=(sz[k]||0)+1; });
       const kk=Object.keys(sz).sort((a,b)=>sz[b]-sz[a]||(+b.split("x")[0]*+b.split("x")[1])-(+a.split("x")[0]*+a.split("x")[1]))[0];
       const pick=(G.L.find(x=>Math.round(+x.b.L||0)+"x"+Math.round(+x.b.W||0)===kk)||G.L[0]).b;
-      let svg=""; try{ svg=dwgDoorSvg(pick); }catch(e){ console.error("doorSvg:",e); }
+      let svg=""; try{ svg=dwgDoorSvg(pick,{sample:!snOff("dwgDoorSample")}); }catch(e){ console.error("doorSvg:",e); }   /* v1.607: บานตัวอย่างขนาดเดียวกัน */
       tiles.push({h:"ดีไซน์หน้าบาน", svg, t:G.dd.code, s:(G.dd.desc?G.dd.desc+" · ":"")+G.L.length+" บาน"}); }); }
   /* แบบหน้าบาน: Part ของบาน (สูงสุด 3 แบบ) · ภาพ = บานจริงจาก 3D — v1.527: ใช้เมื่อปิด SN_OFF.dwgDoorLine=1 */
   const byPart={}; if(snOff("dwgDoorLine")) doors.forEach(x=>{ const k=String(x.b.part||"").trim()||"หน้าบาน"; (byPart[k]=byPart[k]||[]).push(x); });
@@ -45985,6 +46020,22 @@ function plSetColor(inst,fam,val,all){   // เดิม (ช่องเดี�
   toast("🎨 "+fam+" = "+val+(all?(" · "+n+" ตู้"):""));
 }
 const PLC={el:null, inst:null, fam:"", q:"", all:false, split:false};
+/* v1.607: แถวเลือกแนวลายหน้าบานในกล่อง 🎨 — ดู grainDirApply · โชว์เมื่อมีบาน/หน้าลิ้นชักที่ใช้สีลายไม้ */
+function plFrontDoors(insts){ const s=new Set(); (insts||[]).forEach(i=>{ let mem=[i]; try{ mem=varMemberInsts(varRootInst(i)); }catch(e){} mem.forEach(m=>s.add(String(m))); });
+  return (state.boards||[]).filter(b=>b&&!b._virtual&&b._door&&!b._box&&!b._glass&&b.orient!=="flat"&&+b.T>0&&s.has(String(b.cabInst))); }
+function plGrainDoors(insts){ return plFrontDoors(insts).filter(b=>hasGrain(b)); }
+function plGrainRowHtml(insts){ if(snOff("plGrainDir")) return ""; const ds=plGrainDoors(insts); if(!ds.length) return "";
+  const dirs=new Set(ds.map(d=>d._grainDir||"")), mode=dirs.size===1?[...dirs][0]:null, nV=ds.filter(d=>grainDirIsV(d)===true).length, nH=ds.length-nV;
+  const ic=v=>'<svg width="12" height="15" viewBox="0 0 12 15" style="vertical-align:-3px;margin-right:4px" fill="none" stroke="currentColor"><rect x=".5" y=".5" width="11" height="14" rx="1.5"/><path stroke-width=".9" d="'+(v?"M3.2 2.5V12.5M6 2.5V12.5M8.8 2.5V12.5":"M2.5 4H9.5M2.5 7.5H9.5M2.5 11H9.5")+'"/></svg>';
+  const bt=(k,h,t)=>'<button data-gd="'+k+'" class="'+(mode===k?"on":"")+'" title="'+t+'">'+h+'</button>';
+  return '<div class="pcGd"><b>ลายหน้าบาน</b>'
+    +bt("","อัตโนมัติ","ตามกฎของระบบ: ลายตั้ง · ท้ายรหัสสี X = ลายนอน · Y = ลายตั้ง")+bt("V",ic(true)+"ลายตั้ง","ลายไม้วิ่งขึ้น-ลงทุกบาน รวมหน้าลิ้นชัก")+bt("H",ic(false)+"ลายนอน","ลายไม้วิ่งซ้าย-ขวาทุกบาน รวมหน้าลิ้นชัก")
+    +'<span>'+(nH&&nV?("ตั้ง "+nV+" · นอน "+nH+" บาน"):((nV?"ตั้ง":"นอน")+"ทั้ง "+ds.length+" บาน"))+'</span></div>'; }
+function plGrainSet(insts,dir){ const cam=plCamKeep(), ds=plGrainDoors(insts);
+  ds.forEach(d=>{ if(dir){ d._grainDir=dir; grainDirApply(d); } else { delete d._grainDir; delete d._grainLock; } });   /* อัตโนมัติ = ปล่อยให้กฎคิดจริง ๆ รวมบานที่เคยล็อกไว้ */
+  if(dir&&!state.showGrain){ state.showGrain=true; const gb=$("grainBtn"); if(gb) gb.classList.add("sel"); }   /* เลือกแล้วต้องเห็นลาย */
+  sync(0); plCamPut(cam); if(PLC.inst) plSelect(PLC.inst); else plPanelSel();
+  return ds.length; }
 function plColorClose(){ if(PLC.el){ PLC.el.remove(); PLC.el=null; } }
 function plColorCSS(){
   if(!$("plcCSS")){ const st=document.createElement("style"); st.id="plcCSS"; st.textContent=
@@ -45993,6 +46044,8 @@ function plColorCSS(){
     +"#plColor .pcTabs{display:flex;gap:4px;flex-wrap:wrap;padding:8px 12px 0}"
     +"#plColor .pcTabs button{padding:3px 9px;border-radius:99px;border:1px solid var(--line);background:none;color:inherit;cursor:pointer;font-size:11.5px}"
     +"#plColor .pcTabs button.on{background:var(--accent);border-color:var(--accent);color:#fff}"
+    +"#plColor .pcGd{display:flex;gap:4px;align-items:center;flex-wrap:wrap;padding:8px 12px 0}#plColor .pcGd b{font-size:11.5px;margin-right:4px}#plColor .pcGd span{margin-left:auto;color:var(--ink-dim);font-size:11px}"   /* v1.607 */
+    +"#plColor .pcGd button{padding:3px 9px;border-radius:7px;border:1px solid var(--line);background:none;color:inherit;cursor:pointer;font-size:11.5px;display:inline-flex;align-items:center}#plColor .pcGd button.on{background:var(--accent);border-color:var(--accent);color:#fff}"
     +"#plColor .pcGrid{overflow:auto;padding:10px 12px 12px;display:grid;grid-template-columns:repeat(4,1fr);gap:8px}"
     +"#plColor .pcT{cursor:pointer;border:2px solid transparent;border-radius:10px;padding:3px;display:flex;flex-direction:column;gap:3px;min-width:0}"
     +"#plColor .pcT:hover{border-color:var(--line)}#plColor .pcT.on{border-color:var(--accent)}"
@@ -46049,6 +46102,7 @@ function plColorOpen(inst,x,y){
         +(whole?'':'<label style="display:flex;gap:4px;align-items:center;cursor:pointer" title="ตู้ทุกใบในห้องที่มีช่องสีนี้ ได้สีเดียวกัน"><input type="checkbox" id="pcAll"'+(PLC.all?" checked":"")+'> ทุกตู้</label>')
         +'<button class="ibtn" id="pcX" style="flex:none;width:auto;padding:3px 9px">✕</button></div>'
       +(gs.length?('<div class="pcTabs">'+gs.map(z=>'<button data-f="'+escapeHtml(z.key)+'" class="'+(z.key===PLC.fam?"on":"")+'" title="'+escapeHtml(z.names.join(", "))+' · ตอนนี้: '+escapeHtml(z.cur||"—")+(z.mixed?" (ปนกันหลายสี)":"")+'">'+escapeHtml(z.label)+'</button>').join("")+'</div>'
+        +plGrainRowHtml(targets())   /* v1.607 */
         +'<div style="display:flex;gap:6px;align-items:center;padding:8px 12px 0"><input id="pcQ" placeholder="ค้นรหัส/ชื่อสี ('+(f?f.opts.length:0)+')" value="'+escapeHtml(PLC.q)+'" style="flex:1;padding:4px 7px">'
         +'<span style="color:var(--ink-dim)">ตอนนี้ <b style="font-family:var(--mono);color:var(--ink)">'+escapeHtml((f&&f.cur)||"—")+'</b>'+(f&&f.mixed?' <span style="color:#e58a24">+ปน</span>':'')+'</span></div>'
         +(whole?'<div style="padding:4px 12px 0;color:var(--ink-dim);font-size:10.5px">กดสี = ตู้ทุกใบในออเดอร์ที่มีช่องนี้ได้สีนี้'+(PLC.split?'':' ทุกบาน')+'</div>':'')
@@ -46059,12 +46113,15 @@ function plColorOpen(inst,x,y){
     el.querySelector("#pcX").onclick=plColorClose;
     { const ab=el.querySelector("#pcArt"); if(ab) ab.onclick=()=>{ const d=state.boards.find(x=>x&&x.cabInst===inst&&daIsDoor(x)); if(!d){ toast("ตู้นี้ไม่มีหน้าบานให้ใส่ลาย"); return; } plColorClose(); doorArtOpen(d); }; }   /* v1.604 */
     { const pb=el.querySelector("#pcPull"); if(pb) pb.onclick=()=>{ const rc=el.getBoundingClientRect(); plColorClose(); plPullOpen(inst,rc.left,rc.top); }; }   // v1.524
-    { const a=el.querySelector("#pcAll"); if(a) a.onchange=ev=>{ PLC.all=ev.target.checked; }; }
+    { const a=el.querySelector("#pcAll"); if(a) a.onchange=ev=>{ PLC.all=ev.target.checked; draw(); }; }   /* v1.607: นับบานในแถวลายใหม่ */
+    el.querySelectorAll(".pcGd button").forEach(bt=>bt.onclick=()=>{ const k=bt.dataset.gd, n=plGrainSet(targets(),k); toast("ลายหน้าบาน "+({V:"ตั้ง",H:"นอน"}[k]||"อัตโนมัติ")+" · "+n+" บาน"); gs=plColorGroups(whole?Object.keys(plCabMap()):[String(inst)],PLC.split); draw(); });   /* v1.607 */
     el.querySelector("#pcSplit").onchange=ev=>{ PLC.split=ev.target.checked; gs=plColorGroups(whole?Object.keys(plCabMap()):[String(inst)],PLC.split);
       if(!gs.some(g=>g.key===PLC.fam)) PLC.fam=(gs.find(g=>plGrpKey(g.key)===plGrpKey(PLC.fam))||gs[0]||{}).key||""; draw(); };
     el.querySelectorAll(".pcTabs button").forEach(bt=>bt.onclick=()=>{ PLC.fam=bt.dataset.f; PLC.q=""; draw(); });
     const qi=el.querySelector("#pcQ"); if(qi){ qi.oninput=()=>{ PLC.q=qi.value; const pos=qi.selectionStart; draw(); const q2=el.querySelector("#pcQ"); if(q2){ q2.focus(); try{ q2.setSelectionRange(pos,pos); }catch(e){} } }; }
     el.querySelectorAll(".pcT").forEach(t=>t.onclick=()=>{ const v=opts[+t.dataset.i]; if(!f||!v) return;
+      /* v1.607: เลือกสีท้าย X/Y = บอกแนวลายอยู่ในรหัสแล้ว และเป็นคำสั่งล่าสุด จึงกลับเป็นอัตโนมัติให้รหัสคุม · สีไม่มีท้าย X/Y = คงแนวที่เลือกไว้ */
+      if(/front/i.test(f.key)&&!/shape/i.test(f.key)&&/[XY]\s*$/i.test(String(v))) plFrontDoors(targets()).forEach(d=>{ delete d._grainDir; });
       const n=plSetColorGroup(targets(),f.names,v);
       toast("🎨 "+f.label+" = "+v+" · "+n+" ตู้");
       gs=plColorGroups(whole?Object.keys(plCabMap()):[String(inst)],PLC.split); draw(); });
@@ -46128,8 +46185,15 @@ const EHP_DEF=[
      · R118 ภาพตรงสเกล อ่านตามจริง รวมร่องเสียบบนผนังหน้า · ฐาน Ø5 คว้านหัวเป็นรูบนตัวอลู ไม่ได้รีดเข้าหน้าตัด
      rb = เซาะบ่าหลังบาน {d ลึก, h สูงจากขอบ} ตามภาพหน้าตัดบานของทั้ง R122 และ R118 · refT = หนาบานในแบบ (ใช้เทียบเท่านั้น) · fin = เลือกสีได้ตั้งต้น */
   {id:"ehp-lm24", code:"LM24", n:"LM24 ร่องนิ้วมีปาก", refT:18, fin:1, pts:[[18,0],[18,35.5],[17.5,36],[-1,36],[-1,25.8],[-0.6,25.2],[-0.1,25],[0.4,25.2],[0.6,25.8],[0.6,30.6],[1.1,32.2],[2,33.2],[3.4,34.3],[4.7,34.7],[16.4,34.7],[16.4,19.2],[16,16.4],[14.7,13.3],[12.5,9.8],[9.4,6.7],[5.9,4.5],[3.1,3.6],[0.6,3.1],[-0.4,2.6],[-1,1.3],[-1,-2.8],[-0.7,-3.2],[-0.3,-3.1],[0,-2.5],[0,0],[8.45,0],[8.45,-2],[8,-2.5],[8.3,-3.5],[8,-4.5],[8.3,-5.5],[8,-6.5],[8.3,-7.5],[8,-8.5],[8.4,-9.6],[9,-10.3],[9.6,-9.6],[10,-8.5],[9.7,-7.5],[10,-6.5],[9.7,-5.5],[10,-4.5],[9.7,-3.5],[10,-2.5],[9.55,-2],[9.55,0]]},
-  {id:"ehp-r122", code:"R122", n:"R122 ตัว L หัวกลม", refT:20, fin:1, rb:{d:2,h:18}, pts:[[0,0],[20,0],[20,2],[2,2],[2,41],[3.4,41.6],[4,43],[3.4,44.4],[2,45],[0.6,44.4],[0,43]]},
-  {id:"ehp-r118", code:"R118", n:"R118 คอเฉียง", refT:20, fin:1, rb:{d:2,h:18}, pts:[[0,0],[20,0],[20,2],[2.9,2],[2.9,2.8],[2.1,2.8],[2.1,9.9],[2.9,9.9],[2.9,19.9],[2.1,19.9],[2.1,23.1],[2.9,23.1],[2.9,30.2],[16.3,40.1],[18.5,40.1],[19.9,41.4],[19.9,43.6],[18.7,45],[16.5,45],[15.1,43.6],[15.1,41.8],[0,30.2],[0,17.9],[0.9,17.9],[0.9,19],[2.1,19],[2.1,11.1],[0.9,11.1],[0.9,11.9],[0,11.9]]}
+  /* ───────── v1.607: R122 · R118 วางท่าผิด ─────────
+     ผู้ใช้ 2/11 16:46 (ภาพหน้าตัดบานขีดแดง): “มือจับแบบฝังมันอยู่แบบนี้ครับพี่ R122 R118”
+     เดิม (1.606): เอาแบบ CAD มาตั้งตรง ๆ — ฐานยาว 20 นอนบนขอบบาน ผนัง 45 ตั้งขึ้น บานจึงถูกตัด 45 และมือจับชี้ขึ้นฟ้า
+     ท่าจริงในภาพ: แผ่นยาว 45 “นอน” อยู่บนหัวบาน ยื่นออกหน้าบาน · หัวกลมห้อยลงใต้แผ่นที่ปลายด้านหน้า · ฐาน 20 กลายเป็นขาลงในบ่าหลังบาน 2 × 18
+     ตอนนี้: ยึดจากผิวหลังบาน (fromBack: pts[0] = ระยะจากผิวหลังบาน ไม่ใช่จากผิวหน้า) เพราะขาต้องตรงร่องไม่ว่าบานหนาเท่าไหร่ ส่วนที่ยื่นหน้าบานเปลี่ยนตามหนาบานแทน
+       จากแบบ CAD (x,y): ระยะจากหลังบาน = y · v = (หนาแผ่น − x) → R122 บานสั้นลง 2 · R118 บานสั้นลง 2.9 (ผิวล่างแผ่นแตะหัวบานที่ x 2.9) · ขาลงต่ำกว่าขอบ 18 / 17.1
+     ลอกจากภาพเหมือนเดิม ไม่ใช่ไฟล์ DXF */
+  {id:"ehp-r122", code:"R122", n:"R122 ตัว L หัวกลม", refT:20, fin:1, fromBack:1, rb:{d:2,h:18}, pts:[[0,2],[0,-18],[2,-18],[2,0],[41,0],[41.6,-1.4],[43,-2],[44.4,-1.4],[45,0],[44.4,1.4],[43,2]]},
+  {id:"ehp-r118", code:"R118", n:"R118 คอเฉียง", refT:20, fin:1, fromBack:1, rb:{d:2,h:18}, pts:[[0,2.9],[0,-17.1],[2,-17.1],[2,0],[2.8,0],[2.8,0.8],[9.9,0.8],[9.9,0],[19.9,0],[19.9,0.8],[23.1,0.8],[23.1,0],[30.2,0],[40.1,-13.4],[40.1,-15.6],[41.4,-17],[43.6,-17],[45,-15.8],[45,-13.6],[43.6,-12.2],[41.8,-12.2],[30.2,2.9],[17.9,2.9],[17.9,2],[19,2],[19,0.8],[11.1,0.8],[11.1,2],[11.9,2],[11.9,2.9]]}
 ];
 /* v1.606: บ่าหลังบานของรุ่นนี้ — ไม่มี/ปิด = null */
 function ehpRebate(P){ if(!P||snOff("ehpRebate")) return null; const q=P.rb, d=+(q&&q.d), h=+(q&&q.h); return (d>0&&h>0)?{d,h}:null; }
@@ -46170,6 +46234,7 @@ function ehpSecLs(P){ const l0=sectLoops(P.sec); if(!l0) return null;
   const ls=sectXform(l0,{frameRot:Q.rot, frameFlipX:Q.fx, frameFlipY:Q.fy});
   return ls.map(l=>l.map(q=>[round((+q[1])+oy), round(-((+q[0])+ox))])); }
 function ehpLoops(P,T){ T=Math.max(+T||18,1);
+  if(P&&P.fromBack&&Array.isArray(P.pts)) return [P.pts.map(q=>[round(T-(+q[0])),+q[1]])];   /* v1.607: รุ่นที่ขาเสียบร่องหลังบาน — ยึดจากผิวหลังบาน */
   if(P&&P.sec){ let L=null; try{ L=ehpSecLs(P); }catch(e){} if(!L&&Array.isArray(P.ls)) L=P.ls;
     if(L&&L.length) return L.map(l=>l.map(q=>[round(T-(+q[0])), +q[1]])); }
   return [(P&&P.pts)||[]]; }
@@ -46193,6 +46258,11 @@ function ehpShift(d,S,side,cut){ const A=S[side], k=(A.ax==="y")?"W":"L", v=((A.
 function ehpSig(d){ return [+d.L,+d.W,+d.x,+d.y,+d.z]; }
 function ehpCut(d){ const e=d._ehp; if(!e||!Array.isArray(e.lw)) return false; const s=ehpSig(d); return s.every((v,i)=>Math.abs(v-e.lw[i])<0.06); }
 function ehpHealAll(){ if(snOff("ehp")) return 0; let n=0;
+  /* ───────── v1.607: งานที่ใส่ R122/R118 ไว้ตอน 1.606 บานถูกตัดไป 45 ─────────
+     ระยะตัดเก็บอยู่ที่บาน (_ehp.cut) แก้หน้าตัดรุ่นอย่างเดียวบานจะสั้นเกินจริง 43 → รุ่น fromBack ที่ระยะตัดไม่ตรงรุ่น = ใส่ใหม่ครั้งเดียว ด้านเดิม */
+  (state.boards||[]).forEach(d=>{ if(!d||!d._ehp||d._virtual) return; const P=ehpGet(d._ehp.id); if(!P||!P.fromBack) return;
+    const want=Math.round((ehpDims(P).h+ehpGap(P))*10)/10; if(Math.abs((+d._ehp.cut||0)-want)<0.01) return;
+    try{ ehpApplyRows([{d}],P.id,d._ehp.side); n++; }catch(e){ console.error("ehpFromBack:",e); } });
   (state.boards||[]).forEach(d=>{ if(!d||!d._ehp||d._virtual||ehpCut(d)) return; const S=ehpSides(d); if(!S[d._ehp.side]) return;
     /* ───────── v1.601: ขอบที่ไม่มีสเปคไม่ถูกตั้งกลับเต็มใบ จึงห้ามตัดซ้ำ ─────────
        ตัวเดิมถือว่าบานต่างจากที่จำ = ถูกคิดใหม่เต็มใบ → ตัดอีกรอบ · แต่บานตู้ฮู้ด (WAT070 มือจับล่าง) ขอบล่างไม่มีสเปค ขอบนั้นไม่เคยถูกคืน
@@ -46460,7 +46530,7 @@ function ehpFinEdit(){ return new Promise(done=>{ const old=document.getElementB
 function ehpSecSvg(P,fin){ const LS=ehpLoops(P,18).filter(l=>l&&l.length>=3); if(!LS.length) return "";
   const A=[].concat(...LS), xs=A.map(q=>+q[0]), ys=A.map(q=>-(+q[1])), x0=Math.min(...xs), x1=Math.max(...xs), y0=Math.min(...ys), y1=Math.max(...ys), w=x1-x0, h=y1-y0, M=Math.max(w,h,1), pad=M*0.26, fs=M*0.085, e=v=>Math.round(v*100)/100, r1=v=>String(Math.round(v*10)/10);
   const d=LS.map(l=>"M"+l.map(q=>e(+q[0])+","+e(-(+q[1]))).join(" L")+" Z").join(" "), st='stroke="#2b2f36" stroke-width="0.9" vector-effect="non-scaling-stroke"';
-  const yd=y1+pad*0.38, xd=x1+pad*0.38, yH1=(y1>0.05&&y0<0)?0:y1;   /* v1.606: มีเดือยจมในบาน = เลขสูงวัดถึงขอบบาน ตามแบบ */
+  const yd=y1+pad*0.38, xd=x1+pad*0.38, yH1=(y1>0.05&&y0<0&&-y0>=y1)?0:y1;   /* v1.606: มีเดือยจมในบาน = เลขสูงวัดถึงขอบบาน ตามแบบ · v1.607: ส่วนที่จมยาวกว่าส่วนบนขอบ (R122 ขาลง 18 เหนือขอบแค่ 2) = วัดเต็มตัว */
   return '<svg class="dsg" xmlns="http://www.w3.org/2000/svg" viewBox="'+e(x0-pad*0.5)+' '+e(y0-pad*0.5)+' '+e(w+pad*1.5)+' '+e(h+pad*1.5)+'" preserveAspectRatio="xMidYMid meet" font-family="Sarabun,Leelawadee UI,Tahoma,sans-serif">'
     +'<path d="'+d+'" fill="'+(fin?ehpFinColor(fin):"#8d949e")+'" fill-rule="evenodd" stroke="#2b2f36" stroke-width="1.2" stroke-linejoin="round" vector-effect="non-scaling-stroke"/>'
     +'<path d="M'+e(x0)+' '+e(yd)+' H'+e(x1)+' M'+e(x0)+' '+e(yd-fs*0.35)+' V'+e(yd+fs*0.35)+' M'+e(x1)+' '+e(yd-fs*0.35)+' V'+e(yd+fs*0.35)+'" fill="none" '+st+'/>'
@@ -46527,10 +46597,12 @@ function ehpDrawEdit(P){ return new Promise(res=>{ try{ const o=document.getElem
   const W=560, H=430, e=v=>escapeHtml(String(v==null?"":v)), r1=v=>Math.round(v*10)/10;
   const _dt=(()=>{ const c={}; (state.boards||[]).forEach(b=>{ if(b&&b._door&&!b._box&&!b._virtual&&+b.T>0){ const t=Math.round(+b.T*10)/10; c[t]=(c[t]||0)+1; } }); return Object.keys(c).map(Number).sort((a,b)=>c[b]-c[a]); })();
   let T=(P&&+P.refT>0)?+P.refT:(_dt[0]||18), bend=false, bd=null, rbD=(P&&P.rb&&+P.rb.d)||0, rbH=(P&&P.rb&&+P.rb.h)||0;   /* v1.606: บ่าหลังบาน */
+  /* v1.607: รุ่นยึดจากผิวหลังบาน — ในหน้าวาดยังเป็น u จากผิวหน้าเหมือนรุ่นอื่น (แปลงตอนเปิด/บันทึก) · เปลี่ยนหนาบานแล้วรูปเลื่อนตามผิวหลัง */
+  let fromBack=!!(P&&P.fromBack);
   /* จุดบนส่วนโค้งระหว่าง a→b (ไม่รวมปลาย) · s = ยอดโค้ง มีเครื่องหมายตามด้าน */
   const arcPts=(a,b,sg)=>{ const dx=b[0]-a[0], dy=b[1]-a[1], L=Math.hypot(dx,dy); if(!(L>0)||Math.abs(sg)<0.05) return []; const h=L/2, tx=dx/L, ty=dy/L, nx=-ty, ny=tx, R=(h*h+sg*sg)/(2*sg), beta=2*Math.atan(sg/h), cx=(a[0]+b[0])/2+nx*(sg-R), cy=(a[1]+b[1])/2+ny*(sg-R), N=Math.max(6,Math.min(24,Math.ceil(2*Math.abs(beta*R)/1.5))), out=[];
     for(let k=1;k<N;k++){ const g=beta*(-1+2*k/N); out.push([cx+R*(nx*Math.cos(g)+tx*Math.sin(g)),cy+R*(ny*Math.cos(g)+ty*Math.sin(g))]); } return out; };
-  let pts=(P&&Array.isArray(P.pts))?P.pts.map(q=>[+q[0],+q[1]]):[], closed=pts.length>=3, ortho=true, buf="", hov=null, drag=-1, hist=[], sc=8, ox=0, oy=0, edI=null;
+  let pts=(P&&Array.isArray(P.pts))?P.pts.map(q=>[fromBack?r1(T-(+q[0])):+q[0],+q[1]]):[], closed=pts.length>=3, ortho=true, buf="", hov=null, drag=-1, hist=[], sc=8, ox=0, oy=0, edI=null;
   const tpl=ehpLib().filter(x=>x&&!x.sec&&Array.isArray(x.pts));
   const ov=document.createElement("div"); ov.id="ehpDrawDlg"; ov.style.cssText="position:fixed;inset:0;z-index:480;background:rgba(15,20,30,.38);display:flex;align-items:center;justify-content:center";
   ov.innerHTML='<div style="background:var(--solid,#fff);color:var(--ink,#111);border-radius:14px;box-shadow:0 22px 60px -10px rgba(0,0,0,.45);padding:14px 16px;width:min(900px,97vw);max-height:96vh;overflow:auto;font-size:12.5px">'
@@ -46549,6 +46621,7 @@ function ehpDrawEdit(P){ return new Promise(res=>{ try{ const o=document.getElem
       +'<label>ชื่อเรียก<input data-f="n" type="text" class="nameinp" style="width:100%" value="'+e(P?P.n:"")+'"></label>'
       +'<label>หดบานเพิ่ม (มม.) — นอกจากความสูงมือจับ<input data-f="gap" type="number" step="0.5" min="0" class="nameinp" style="width:100%;font-family:var(--mono)" value="'+ehpGap(P)+'"></label>'
       +'<label>หนาบาน (มม.) — ไว้เทียบตอนวาด<input data-f="T" type="number" step="0.1" min="1" list="ehpTList" class="nameinp" style="width:100%;font-family:var(--mono)" value="'+T+'"><datalist id="ehpTList">'+_dt.concat([16,18,19,25].filter(v=>_dt.indexOf(v)<0)).map(v=>'<option value="'+v+'">').join("")+'</datalist></label>'
+      +'<label style="display:flex;gap:6px;align-items:center;cursor:pointer" title="ติ๊ก = รูปเกาะผิวหลังบาน ใช้กับรุ่นที่ขาเสียบร่องหลังบาน (R122 · R118) บานหนาบางแค่ไหนขายังตรงร่อง ส่วนที่ยื่นหน้าบานเปลี่ยนตามหนาบาน · ไม่ติ๊ก = เกาะผิวหน้าบาน"><input data-f="fb" type="checkbox"'+(fromBack?" checked":"")+'> ยึดจากผิวหลังบาน (ขาเสียบร่องหลังบาน)</label>'   /* v1.607 */
       +'<div style="display:flex;gap:6px;align-items:flex-end"><label style="flex:1">เซาะหลังบาน ลึก (มม.)<input data-f="rbD" type="number" step="0.5" min="0" class="nameinp" style="width:100%;font-family:var(--mono)" value="'+rbD+'"></label><label style="flex:1">สูงจากขอบ (มม.)<input data-f="rbH" type="number" step="1" min="0" class="nameinp" style="width:100%;font-family:var(--mono)" value="'+rbH+'"></label></div>'
       +'<div data-info="1" style="background:rgba(0,0,0,.04);border-radius:9px;padding:8px 10px;line-height:1.7"></div>'
       +(tpl.length?('<label>เริ่มจากแบบ<select data-f="tpl" class="nameinp" style="width:100%"><option value="">—</option>'+tpl.map((x,i)=>'<option value="'+i+'">'+e(x.code+" · "+x.n)+'</option>').join("")+'</select></label>'):'')
@@ -46676,15 +46749,17 @@ function ehpDrawEdit(P){ return new Promise(res=>{ try{ const o=document.getElem
   q('[data-b="undo"]').onclick=undo; q('[data-b="ortho"]').onclick=()=>{ ortho=!ortho; draw(); }; q('[data-b="bend"]').onclick=()=>{ bend=!bend; hov=null; draw(); }; q('[data-b="fit"]').onclick=()=>{ fit(); draw(); };
   q('[data-b="new"]').onclick=()=>{ push(); pts=[]; closed=false; buf=""; fit(); draw(); };
   ov.querySelectorAll('[data-x]').forEach(b=>b.onclick=()=>done(null));
-  { const tp=q('[data-f="tpl"]'); if(tp) tp.onchange=()=>{ const x=tpl[+tp.value]; if(x){ push(); pts=x.pts.map(p=>[+p[0],+p[1]]); closed=true; rbD=(x.rb&&+x.rb.d)||0; rbH=(x.rb&&+x.rb.h)||0; q('[data-f="rbD"]').value=rbD; q('[data-f="rbH"]').value=rbH; fit(); draw(); } }; }
+  { const tp=q('[data-f="tpl"]'); if(tp) tp.onchange=()=>{ const x=tpl[+tp.value]; if(x){ push(); fromBack=!!x.fromBack; q('[data-f="fb"]').checked=fromBack; pts=x.pts.map(p=>[fromBack?r1(T-(+p[0])):+p[0],+p[1]]); closed=true; rbD=(x.rb&&+x.rb.d)||0; rbH=(x.rb&&+x.rb.h)||0; q('[data-f="rbD"]').value=rbD; q('[data-f="rbH"]').value=rbH; fit(); draw(); } }; }
   gin.oninput=()=>draw();
   { const ra=q('[data-f="rbD"]'), rc=q('[data-f="rbH"]'); ra.oninput=()=>{ rbD=Math.max(parseFloat(ra.value)||0,0); draw(); }; rc.oninput=()=>{ rbH=Math.max(parseFloat(rc.value)||0,0); draw(); }; rc.onchange=()=>{ fit(); draw(); }; }   /* v1.606 */
-  { const ti=q('[data-f="T"]'); ti.oninput=()=>{ const v=parseFloat(ti.value); if(v>0&&v<=80){ T=Math.round(v*10)/10; draw(); } }; ti.onchange=()=>{ const v=parseFloat(ti.value); if(!(v>0&&v<=80)) ti.value=T; fit(); draw(); }; }
+  q('[data-f="fb"]').onchange=ev=>{ fromBack=ev.target.checked; };   /* v1.607 */
+  { const ti=q('[data-f="T"]'); ti.oninput=()=>{ const v=parseFloat(ti.value); if(v>0&&v<=80){ const nT=Math.round(v*10)/10; if(fromBack&&nT!==T){ const dT=nT-T; pts=pts.map(p=>[r1(p[0]+dT),p[1]]); hist.length=0; } T=nT; draw(); } }; ti.onchange=()=>{ const v=parseFloat(ti.value); if(!(v>0&&v<=80)) ti.value=T; fit(); draw(); }; }
   tx.oninput=()=>{ const z=tx.value.split(/\n+/).map(l=>l.split(/[,\s]+/).filter(Boolean).map(Number)).filter(a=>a.length>=2&&isFinite(a[0])&&isFinite(a[1])).map(a=>[a[0],a[1]]); if(z.length>=2){ pts=z; closed=z.length>=3; draw(); } };
   q('[data-ok]').onclick=async()=>{ const code=String(q('[data-f="code"]').value||"").trim(); if(!code){ toast("ใส่รหัสสินค้าก่อน"); q('[data-f="code"]').focus(); return; }
     if(pts.length<3){ toast("วาดอย่างน้อย 3 จุด"); return; } const D=dims(); if(!(D.h>0)){ toast("ต้องมีส่วนที่อยู่เหนือเส้นแดง (ขอบบาน)"); return; }
     const id=(P&&P.id)||("ehp"+Date.now().toString(36)), L=Array.isArray(settings.ehpLib)?settings.ehpLib:(settings.ehpLib=[]);
-    const row={id, code, n:String(q('[data-f="n"]').value||"").trim()||code, pts:pts.map(p=>[r1(p[0]),r1(p[1])]), gap:ehpGap({gap:gin.value}), refT:T};   /* v1.605: refT = หนาบานที่ใช้เทียบ ไม่เข้าตัวคิด */
+    const row={id, code, n:String(q('[data-f="n"]').value||"").trim()||code, pts:pts.map(p=>[r1(fromBack?(T-p[0]):p[0]),r1(p[1])]), gap:ehpGap({gap:gin.value}), refT:T};   /* v1.605: refT = หนาบานที่ใช้เทียบ ไม่เข้าตัวคิด */
+    if(fromBack) row.fromBack=1;   /* v1.607 */
     if(rbD>0&&rbH>0) row.rb={d:rbD,h:rbH};   /* v1.606 */ if(P&&P.fin) row.fin=P.fin;
     const i=L.findIndex(x=>x&&x.id===id); if(i>=0) L[i]=row; else L.push(row);
     try{ await catSaveSettings(); }catch(er){ console.error("ehpSave:",er); }
@@ -46709,6 +46784,7 @@ async function ehpEdit(P){ if(P&&P.sec) return ehpSecEdit(P);   /* v1.594: ร�
   if(pts.length<3){ toast("จุดหน้าตัดต้องมีอย่างน้อย 3 จุด"); return null; }
   const id=(P&&P.id)||("ehp"+Date.now().toString(36)), L=Array.isArray(settings.ehpLib)?settings.ehpLib:(settings.ehpLib=[]);
   const i=L.findIndex(x=>x&&x.id===id), row={id, code, n:String(v.n||"").trim()||code, pts, gap:ehpGap(v)};
+  if(P&&P.fromBack) row.fromBack=1;   /* v1.607: กล่องพิมพ์แบบเดิม (SN_OFF.ehpDraw) ไม่ทำท่าวางหาย */
   if(i>=0) L[i]=row; else L.push(row);
   try{ await catSaveSettings(); }catch(e){ console.error("ehpSave:",e); }
   return row; }
@@ -46989,7 +47065,7 @@ function plEhpDraw(el,C){ const e=v=>escapeHtml(String(v==null?"":v)), inst=C.in
   const chip=(v,lbl,tt)=>'<button data-es="'+v+'" class="'+(PLPU.ehSide===v?"on":"")+'"'+(tt?' title="'+e(tt)+'"':'')+'>'+lbl+'</button>';
   const card=(P,i)=>{ const n=P?(us[P.id]||0):(rows.length-nOn), D=P?ehpDims(P):null;
     return '<div class="ppT'+(P&&n&&n===rows.length?" on":"")+'" data-ei="'+i+'" title="'+e(P?(P.code+" · "+P.n+" · สูง "+D.h+(ehpGap(P)?(" + หดเพิ่ม "+ehpGap(P)):"")+" (บานสั้นลง "+round(D.h+ehpGap(P))+")"):"ไม่มีมือจับฝัง — บานกลับขนาดเดิม")+'">'
-      +'<div class="ppSw" style="background:#fff;position:relative;overflow:hidden;min-height:0">'+(P?ehpThumb(P):'<span style="font-size:22px">∅</span>')+'</div><b>'+e(P?P.code:"ไม่มีมือจับฝัง")+'</b><small>'+e(P?(P.n+" · สูง "+D.h+(ehpGap(P)?(" +หด "+ehpGap(P)):"")):"บานขนาดเดิม")+'</small>'
+      +'<div class="ppSw" style="background:#fff;position:relative;overflow:hidden;min-height:0">'+(P?ehpThumb(P):'<span style="font-size:22px">∅</span>')+'</div><b>'+e(P?P.code:"ไม่มีมือจับฝัง")+'</b><small>'+e(P?(P.n+" · "+(P.fromBack?"บานสั้นลง ":"สูง ")+D.h+(ehpGap(P)?(" +หด "+ehpGap(P)):"")):"บานขนาดเดิม")+'</small>'
       +'<div class="ppUse">'+(P&&n?("✓ ใส่อยู่ "+n+(rows.length>1?("/"+rows.length):"")+" บาน"):"")+'</div>'
       +(P?'<button class="ppEd" data-ee="'+i+'" title="แก้รุ่นมือจับฝังนี้ (รหัส · ชื่อ · หน้าตัด)">✏</button>':'')
       +((P&&!snOff("ehpDel"))?'<button class="ppEd ppDel" data-ed="'+i+'" title="ลบรุ่นนี้ออกจากรายการ">🗑</button>':'')+'</div>'; };   /* v1.601 */
@@ -64381,7 +64457,8 @@ async function sxlReadXlsx(T,file){
 /* Fitting Global จากไฟล์ Excel ที่ดึงจาก AX: DISPLAYPRODUCTNUMBER → item_number · SEARCHNAME → product_name/search_name · RECID → recid
    (ตรงกับที่ตาราง fitting_global บน Supabase เก็บไว้ ตรวจแล้ว 24/09/2026) · ไฟล์ไม่มีหน่วย → EA (ใน Supabase 99.8% เป็น EA) */
 var SXL_FG_XLSX={key:'item_number',need:['item_number','product_name'],label:'จาก Excel (AX)',
- cols:{item_number:['ITEM_NUMBER','DISPLAYPRODUCTNUMBER','ITEMID'],product_name:['PRODUCT_NAME','NAME','SEARCHNAME'],unit:['UNIT','UNITID','UNIT_ID','BOMUNITID'],search_name:['SEARCH_NAME','SEARCHNAME'],recid:['RECID']},
+ cols:{item_number:['ITEM_NUMBER','DISPLAYPRODUCTNUMBER','ITEMID'],product_name:['PRODUCT_NAME','NAME','SEARCHNAME'],unit:['UNIT','UNITID','UNIT_ID','BOMUNITID'],search_name:['SEARCH_NAME','SEARCHNAME'],recid:['RECID'],
+  category:['CATEGORY','CATEGORY_NAME','CATEGORYNAME','MAIN_CATEGORY','MAINCATEGORY','MAINGROUP','MAIN_GROUP','ITEM_GROUP','ITEMGROUP','ITEMGROUPID','GROUP','หมวดหลัก','หมวด']},   /* v1.607: ดู sxlFgCatKey */
  defaults:{unit:'EA'}};
 /* โครงตารางกลาง — StarNexus กับ Production ใช้ชุดเดียวกัน ไฟล์ใน _changes จึงอ่านข้ามโปรแกรมได้ */
 var SXL_SCHEMA={
@@ -64856,6 +64933,14 @@ function sxlOdooOn(){return !_sxlSnOff('odoo')&&typeof window.Nexus==='function'
 /* v1.432: Fitting Global ดึงจาก API ของ AX โดยตรง (ผ่านทะเบียน API ของ Odoo) ทุกครั้งที่เปิด — ไม่ผูกกับสำเนาในเมนู แถวที่คัดลอก
    (ผู้ใช้: หน้าแถวที่คัดลอกจะค่อย ๆ ตัดออก เพื่อทำ API ให้ StarNexus ดึงตรง) · ปุ่ม “ดึงจาก AX” = ดึงสดใหม่ในเครื่องนี้ · v1.430 ที่อ่านสำเนาใน Odoo ถูกถอดออก */
 async function sxlOdooFG(manual){return sxlOdooFGLive(manual)}
+/* ───────── v1.607: หมวดรหัส แทนคอลัมน์ RecId ─────────
+   ผู้ใช้ 2/11 17:02: “ผมจะเพิ่มหมวดหลักรหัส เพิ่มคอลัมหมวด แทนคอลัม RecId”
+   ชื่อฟิลด์ฝั่ง AX ยังไม่รู้ จึงหาเอง: ชื่อเข้าข่ายหมวด (Category · MainGroup · ItemGroup · หมวด …) ก่อน · ไม่เข้าข่ายแต่มีฟิลด์ที่ไม่รู้จักตัวเดียว = ถือว่าตัวนั้นคือหมวด
+   เก็บลง r.category · ฟิลด์ recid ยังอ่านเหมือนเดิม ไม่มีตัวไหนใช้ค่านี้นอกจากหน้าดูรายการ */
+var SXL_FG_KNOWN=/^(itemid|itemnumber|item_number|displayproductnumber|itemname|productname|product_name|searchname|search_name|name|unit|unitid|unit_id|bomunitid|recid|rec_id)$/i;
+function sxlFgCatKey(o){var ks=Object.keys(o||{}),a=ks.filter(function(k){return /หมวด|categor|^(main_?)?(item_?)?group|^cat(_|id|name|code)?$/i.test(k)})[0];if(a)return a;
+ var u=ks.filter(function(k){return !SXL_FG_KNOWN.test(k)});return u.length===1?u[0]:''}
+function sxlFgCat(r){if(!r)return'';var c=r.category;if(c==null||c==='')c=r['หมวดหลัก']||r['หมวด']||r.main_category||r.item_group||'';return String(c==null?'':c).trim()}
 async function sxlOdooFGLive(manual){   // v1.424: ดึงสดจาก AX ผ่านทะเบียน API ของ Odoo (ระบบ ax_star_nexus · endpoint fitting_global)
  if(!sxlOdooOn())return false;var t='fitting_global',T=sxlCfg(t),S=SXL.s[t];
  try{
@@ -64869,19 +64954,20 @@ async function sxlOdooFGLive(manual){   // v1.424: ดึงสดจาก AX �
   else{
   if(d&&!Array.isArray(d)){if(d.Success===false)throw Error(d.Message||'AX ตอบ Success = false');d=d.Data}
   if(!Array.isArray(d))throw Error('AX ตอบมาไม่ใช่รายการ');
-  var pick=function(o,ks){for(var i=0;i<ks.length;i++){var v=o[ks[i]];if(v!=null&&v!=='')return v}return null};
+  var pick=function(o,ks){for(var i=0;i<ks.length;i++){var v=o[ks[i]];if(v!=null&&v!=='')return v}return null},catK='';
   d.forEach(function(o){if(!o||typeof o!=='object')return;
+   if(!catK)catK=sxlFgCatKey(o);   /* v1.607 */
    var k=pick(o,['ItemId','ItemNumber','ITEMID','DISPLAYPRODUCTNUMBER','item_number']);if(k==null)return;k=String(k).trim();if(!k)return;
    if(seen.has(k)){dup++;return}seen.add(k);
    var nm=pick(o,['ItemName','ProductName','SEARCHNAME','NAME','product_name']),u=pick(o,['Unit','UNITID','BOMUNITID','unit']),rc=pick(o,['RecId','RECID','recid']);
    nm=nm==null?null:String(nm).trim();
-   rows.push({item_number:k,product_name:nm,unit:(u==null?'':String(u).trim())||'EA',search_name:nm,recid:(rc!=null&&isFinite(+rc))?+rc:rc})});
+   rows.push({item_number:k,product_name:nm,unit:(u==null?'':String(u).trim())||'EA',search_name:nm,recid:(rc!=null&&isFinite(+rc))?+rc:rc,category:(catK&&o[catK]!=null)?String(o[catK]).trim():''})});
   if(!rows.length)throw Error('AX ตอบมาแต่ไม่มีรายการที่มีรหัสอุปกรณ์');
   if(r.etag){try{await sxlIdbPut('fg:ax',{etag:r.etag,rows:rows,at:Date.now()})}catch(e){}}
   }
   var size=JSON.stringify(rows).length;
   await sxlLocked(async function(){
-   Object.assign(S,{ready:true,base:rows,cols:['item_number','product_name','unit','search_name','recid'],name:'AX · '+SXL_FG_AX.system+'/'+SXL_FG_AX.endpoint,
+   Object.assign(S,{ready:true,base:rows,cols:['item_number','product_name','unit','search_name','recid','category'],name:'AX · '+SXL_FG_AX.system+'/'+SXL_FG_AX.endpoint,
     sig:'odoo|'+rows.length+'|'+size,size:size,mod:(r&&r.notModified&&cached&&cached.at)||Date.now(),src:'odoo',handle:null,err:''});
    sxlRebuild(T,S);SXL.notes[t]=dup?('รหัสซ้ำ '+dup+' แถว ใช้แถวแรก'):''});
   await sxlApply(new Set([t]),'pick');sxlRender();
@@ -65088,6 +65174,16 @@ function sxlVFile(kind,f){return {kind:'file',name:f.name,_odoo:1,_mt:+f.mtime||
    ตารางนี้ถูกค้นเบื้องหลังอย่างเดียว (ถาด · ท่อนตัด · กระจก) ไม่มีหน้าให้ดูว่าได้อะไรมา
    ปุ่ม “ดูรายการ” ในแถว fitting_global เปิดรายการชุดที่โปรแกรมใช้อยู่จริง (S.rows) · อ่านอย่างเดียว · แสดงทีละ SXL_FG_LIM แถวแรกที่ตรง */
 var SXL_FG_LIM=300;
+/* ───────── v1.607: ตัวกรองแยกรหัส · ชื่อ · หน่วย · หมวด ─────────
+   ผู้ใช้ 2/11 17:02 (ภาพ Fitting Global ค้น LM126 ตรง 1,383 รายการ แสดงแค่ 300 แถว): “เพิ่มตัวกรองมากกว่านี้ กรองรหัส กรองชื่อ · เพิ่มคอลัมหมวด แทนคอลัม RecId”
+   เดิม: ช่องเดียวค้นปนกันทั้งรหัสและชื่อ ไล่หาแคบลงไม่ได้ · ท้ายตารางเป็น RecId ซึ่งไม่มีใครใช้
+   ตอนนี้: แถวกรองอยู่ใต้หัวคอลัมน์ ครบทุกคอลัมน์และค้างบนจอตอนเลื่อน · ช่องบนยังค้นทุกช่องเหมือนเดิม · ทุกตัวกรองใช้พร้อมกันได้
+     รหัส/ชื่อ: เว้นวรรค = ต้องมีครบทุกคำ · ขึ้นต้นคำด้วย - = ไม่เอาคำนั้น · รหัสใส่ * ได้ (34WAD* = ขึ้นต้น · *187 = ลงท้าย)
+     หมวด: ยังไม่มีค่าจาก AX = ช่องเลือกปิดไว้ ขึ้นต่อเมื่อข้อมูลมา ไม่ต้องแก้โปรแกรมอีก */
+function sxlFgMatcher(v,wild){var inc=[],exc=[];String(v||'').toLowerCase().split(/\s+/).filter(Boolean).forEach(function(w){var no=w.length>1&&w.charAt(0)==='-';if(no)w=w.slice(1);
+  var t=(wild&&w.indexOf('*')>=0)?new RegExp('^'+w.split('*').map(function(s){return s.replace(/[.+?^${}()|[\]\\]/g,'\\$&')}).join('.*')+'$'):w;(no?exc:inc).push(t)});
+ if(!inc.length&&!exc.length)return null;
+ return function(h){var has=function(t){return typeof t==='string'?h.indexOf(t)>=0:t.test(h)};return inc.every(has)&&!exc.some(has)}}
 function sxlFgView(){
  var t='fitting_global',S=SXL.s[t];
  if(!S||!S.ready){sxlStatus('ยังไม่มีข้อมูล fitting_global — รอดึงจาก AX หรือเลือกไฟล์ก่อน',true);return}
@@ -65095,36 +65191,45 @@ function sxlFgView(){
  var all=S.rows.slice().sort(function(a,b){var x=String(a.item_number||''),y=String(b.item_number||'');return x<y?-1:x>y?1:0});
  var dead=function(r){return /^\s*\(?ยกเลิก\)?/.test(String(r.product_name||''))};
  var units={};all.forEach(function(r){var u=String(r.unit==null?'':r.unit);units[u]=(units[u]||0)+1});
+ var cats={};all.forEach(function(r){var c=sxlFgCat(r);cats[c]=(cats[c]||0)+1});var catN=Object.keys(cats).filter(Boolean).length;   /* v1.607 */
+ var lcC=all.map(function(r){return String(r.item_number||'').toLowerCase()}),lcN=all.map(function(r){return String(r.product_name||'').toLowerCase()});
+ var fs='width:100%;box-sizing:border-box;padding:5px 7px;border:1px solid #93a9b8;border-radius:6px;font:inherit;font-size:12.5px;font-weight:400;color:inherit;background:#fff',ft='background:#eef3f6;padding:0 10px 7px;border-bottom:1px solid #8886;text-align:left';
  var bs='padding:7px 12px;border:1px solid #93a9b8;border-radius:6px;cursor:pointer;background:transparent;color:inherit;font:inherit';
  var box=document.createElement('div');box.id='sxlFgView';
  box.style.cssText='position:fixed;inset:0;z-index:1000000;background:#0008;display:flex;align-items:center;justify-content:center;padding:20px';
- box.innerHTML='<div style="background:#fff;color:#172c40;width:min(1040px,96vw);height:min(780px,92vh);display:flex;flex-direction:column;padding:18px 20px;border-radius:14px;font:14px/1.55 system-ui,Sarabun,sans-serif;text-align:left">'
+ box.innerHTML='<div style="background:#fff;color:#172c40;width:min(1120px,96vw);height:min(780px,92vh);display:flex;flex-direction:column;padding:18px 20px;border-radius:14px;font:14px/1.55 system-ui,Sarabun,sans-serif;text-align:left">'
   +'<div style="display:flex;align-items:center;gap:10px"><h2 style="margin:0;font-size:19px;flex:1">Fitting Global · รายการที่โปรแกรมใช้อยู่</h2><button id="sxlFgX" style="'+bs+'">ปิด</button></div>'
   +'<p id="sxlFgSrc" style="margin:4px 0 10px;color:#506577;font-size:13px"></p>'
-  +'<div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center"><input id="sxlFgQ" type="search" placeholder="ค้นรหัสหรือชื่อ — เว้นวรรคคั่นหลายคำ" style="flex:1;min-width:220px;padding:8px 10px;border:1px solid #93a9b8;border-radius:6px;font:inherit;color:inherit;background:#fff">'
-  +'<select id="sxlFgU" style="padding:8px 10px;border:1px solid #93a9b8;border-radius:6px;font:inherit;color:inherit;background:#fff"><option value="*">ทุกหน่วย</option>'
-  +Object.keys(units).sort().map(function(u){return '<option value="'+esc2(u)+'">'+esc2(u||'(ว่าง)')+' · '+units[u].toLocaleString()+'</option>'}).join('')+'</select>'
-  +'<label style="white-space:nowrap;cursor:pointer"><input type="checkbox" id="sxlFgC"> ซ่อนที่ยกเลิก</label></div>'
+  +'<div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center"><input id="sxlFgQ" type="search" placeholder="ค้นทุกช่อง — เว้นวรรคคั่นหลายคำ" style="flex:1;min-width:220px;padding:8px 10px;border:1px solid #93a9b8;border-radius:6px;font:inherit;color:inherit;background:#fff">'
+  +'<label style="white-space:nowrap;cursor:pointer"><input type="checkbox" id="sxlFgC"> ซ่อนที่ยกเลิก</label><button id="sxlFgClr" style="'+bs+'">ล้างตัวกรอง</button></div>'   /* v1.607: ช่องหน่วยย้ายลงแถวกรอง */
   +'<p id="sxlFgN" role="status" style="margin:8px 0 6px;font-size:13px;color:#506577"></p>'
   +'<div style="flex:1;overflow:auto;border:1px solid #8884;border-radius:8px"><table style="width:100%;border-collapse:collapse;font-size:13px">'
-  +'<thead><tr>'+['รหัส (item_number)','ชื่อ (product_name)','หน่วย','RecId'].map(function(h,i){return '<th style="position:sticky;top:0;background:#eef3f6;padding:7px 10px;text-align:'+(i===3?'right':'left')+';font-weight:600;border-bottom:1px solid #8886;white-space:nowrap">'+h+'</th>'}).join('')+'</tr></thead>'
+  +'<thead style="position:sticky;top:0;z-index:1;background:#eef3f6"><tr>'+['รหัส (item_number)','ชื่อ (product_name)','หน่วย','หมวด'].map(function(h){return '<th style="background:#eef3f6;padding:7px 10px 4px;text-align:left;font-weight:600;white-space:nowrap">'+h+'</th>'}).join('')+'</tr>'   /* v1.607: หมวด แทน RecId + แถวกรอง */
+  +'<tr><th style="'+ft+';width:170px"><input id="sxlFgFC" type="search" placeholder="กรองรหัส" title="เว้นวรรค = ต้องมีครบทุกคำ · -คำ = ไม่เอา · 34WAD* = ขึ้นต้นด้วย · *187 = ลงท้ายด้วย" style="'+fs+'"></th>'
+  +'<th style="'+ft+'"><input id="sxlFgFN" type="search" placeholder="กรองชื่อ — เช่น LM126 AL622MH -R1mm" title="เว้นวรรค = ต้องมีครบทุกคำ · -คำ = ไม่เอาคำนั้น" style="'+fs+'"></th>'
+  +'<th style="'+ft+';width:118px"><select id="sxlFgU" style="'+fs+'"><option value="*">ทุกหน่วย</option>'+Object.keys(units).sort().map(function(u){return '<option value="'+esc2(u)+'">'+esc2(u||'(ว่าง)')+' · '+units[u].toLocaleString()+'</option>'}).join('')+'</select></th>'
+  +'<th style="'+ft+';width:190px"><select id="sxlFgCt"'+(catN?'':' disabled title="รอคอลัมน์หมวดจาก AX — มีข้อมูลแล้วช่องนี้เปิดเอง"')+' style="'+fs+'"><option value="*">'+(catN?'ทุกหมวด':'ยังไม่มีหมวด')+'</option>'+Object.keys(cats).sort(function(a,b){return a.localeCompare(b,'th',{numeric:true})}).map(function(c){return '<option value="'+esc2(c)+'">'+esc2(c||'(ไม่มีหมวด)')+' · '+cats[c].toLocaleString()+'</option>'}).join('')+'</select></th></tr></thead>'
   +'<tbody id="sxlFgB"></tbody></table></div></div>';
  document.body.append(box);
- var $q=box.querySelector('#sxlFgQ'),$u=box.querySelector('#sxlFgU'),$c=box.querySelector('#sxlFgC'),$b=box.querySelector('#sxlFgB'),$n=box.querySelector('#sxlFgN');
- box.querySelector('#sxlFgSrc').textContent=(SXL_SRC[S.src]||'ไฟล์')+' · '+S.name+' · ได้ข้อมูลเมื่อ '+new Date(S.mod).toLocaleString('th-TH')+' · ทั้งหมด '+all.length.toLocaleString()+' รายการ (ชื่อขึ้นต้น ยกเลิก '+all.filter(dead).length.toLocaleString()+')';
+ var $q=box.querySelector('#sxlFgQ'),$u=box.querySelector('#sxlFgU'),$c=box.querySelector('#sxlFgC'),$b=box.querySelector('#sxlFgB'),$n=box.querySelector('#sxlFgN'),$fc=box.querySelector('#sxlFgFC'),$fn=box.querySelector('#sxlFgFN'),$ct=box.querySelector('#sxlFgCt');
+ box.querySelector('#sxlFgSrc').textContent=(SXL_SRC[S.src]||'ไฟล์')+' · '+S.name+' · ได้ข้อมูลเมื่อ '+new Date(S.mod).toLocaleString('th-TH')+' · ทั้งหมด '+all.length.toLocaleString()+' รายการ (ชื่อขึ้นต้น ยกเลิก '+all.filter(dead).length.toLocaleString()+')'+(catN?(' · '+catN.toLocaleString()+' หมวด'):' · ยังไม่มีคอลัมน์หมวดจากต้นทาง');
  var td='padding:6px 10px;border-bottom:1px solid #8883;vertical-align:top';
  var draw=function(){
-  var ws=$q.value.toLowerCase().split(/\s+/).filter(Boolean),u=$u.value,hide=$c.checked,out=[],n=0;
+  var fQ=sxlFgMatcher($q.value),fC=sxlFgMatcher($fc.value,true),fN=sxlFgMatcher($fn.value),ct=$ct.value,u=$u.value,hide=$c.checked,out=[],n=0;   /* v1.607 */
   for(var i=0;i<all.length;i++){var r=all[i];
    if(u!=='*'&&String(r.unit==null?'':r.unit)!==u)continue;
+   if(ct!=='*'&&sxlFgCat(r)!==ct)continue;
    if(hide&&dead(r))continue;
-   if(ws.length){var hay=(String(r.item_number||'')+' '+String(r.product_name||'')).toLowerCase(),ok=true;for(var j=0;j<ws.length;j++)if(hay.indexOf(ws[j])<0){ok=false;break}if(!ok)continue}
+   if(fC&&!fC(lcC[i]))continue;
+   if(fN&&!fN(lcN[i]))continue;
+   if(fQ&&!fQ(lcC[i]+' '+lcN[i]+' '+sxlFgCat(r).toLowerCase()))continue;
    n++;if(out.length<SXL_FG_LIM)out.push(r)}
-  $b.innerHTML=out.map(function(r){return '<tr'+(dead(r)?' style="color:#8a97a3"':'')+'><td style="'+td+';font-family:ui-monospace,Consolas,monospace;white-space:nowrap">'+esc2(r.item_number)+'</td><td style="'+td+'">'+esc2(r.product_name)+'</td><td style="'+td+';white-space:nowrap">'+esc2(r.unit)+'</td><td style="'+td+';text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap">'+esc2(r.recid)+'</td></tr>'}).join('')
+  $b.innerHTML=out.map(function(r){return '<tr'+(dead(r)?' style="color:#8a97a3"':'')+'><td style="'+td+';font-family:ui-monospace,Consolas,monospace;white-space:nowrap">'+esc2(r.item_number)+'</td><td style="'+td+'">'+esc2(r.product_name)+'</td><td style="'+td+';white-space:nowrap">'+esc2(r.unit)+'</td><td style="'+td+'">'+(sxlFgCat(r)?esc2(sxlFgCat(r)):'<span style="color:#9aa7b3">—</span>')+'</td></tr>'}).join('')
    ||'<tr><td colspan="4" style="padding:24px;text-align:center;color:#506577">ไม่พบรายการที่ตรง</td></tr>';
   $n.textContent='ตรง '+n.toLocaleString()+' รายการ'+(n>out.length?' · แสดง '+out.length.toLocaleString()+' แถวแรก — พิมพ์คำค้นเพิ่มเพื่อให้แคบลง':'');
   $b.parentNode.parentNode.scrollTop=0};
- var tm=null;$q.oninput=function(){clearTimeout(tm);tm=setTimeout(draw,150)};$u.onchange=draw;$c.onchange=draw;
+ var tm=null;$q.oninput=$fc.oninput=$fn.oninput=function(){clearTimeout(tm);tm=setTimeout(draw,150)};$u.onchange=draw;$c.onchange=draw;$ct.onchange=draw;   /* v1.607 */
+ box.querySelector('#sxlFgClr').onclick=function(){$q.value=$fc.value=$fn.value='';$u.value=$ct.value='*';$c.checked=false;draw();$q.focus()};
  var close=function(){document.removeEventListener('keydown',key,true);box.remove()};
  var key=function(e){if(e.key==='Escape'){e.stopPropagation();close()}};
  document.addEventListener('keydown',key,true);
