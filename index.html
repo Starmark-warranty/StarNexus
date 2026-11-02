@@ -3283,7 +3283,7 @@ body[data-theme="dark"] .splash-dots span{background:rgba(255,255,255,.25)}
    ===================================================================== */
 /* ---- APP_META: แหล่งความจริงเดียวของเวอร์ชัน (ดูได้จาก console / คลิกชื่อแอป) ---- */
 const APP_META={
-  name:"StarNexus", version:"1.605", build:"2026-11-02/ehp-draw-curve",
+  name:"StarNexus", version:"1.606", build:"2026-11-02/lm24-r122-r118-hanger3d",
   file:"StarNexus.html", basedOn:"Furnitech_V3.html (v3.11)",
   /* ───────── เริ่มนับเวอร์ชันใหม่ที่ 1.001 (21/08/2026) ─────────
      ของเดิมนับมาถึง 42.1 แล้ววิ่งเป็นทศนิยมสองชั้นซึ่งอ่านลำดับยาก
@@ -3291,6 +3291,7 @@ const APP_META={
      ประวัติเก่าเก็บไว้ทั้งหมดตามเลขเดิม ไม่ไล่เขียนใหม่ เพราะเลขในนั้นถูกอ้างถึงไปแล้ว
      รายการที่อยู่ใต้ 1.001 ลงไปจึงเป็นเลขชุดเก่า อ่านต่อกันได้ตามวันที่ */
   changelog:[
+    ["1.606","2026-11-02","FEAT (ผู้ใช้ 2/11 16:32) ① มือจับฝังรุ่นจริง LM24 · R122 · R118 ลอกจากแบบ CAD ② R122/R118 เซาะบ่าหลังบาน ลึก 2 สูง 18 ตามแบบ: ควักใน 3D + MPR ผิวหลัง · หน้าวาดมีช่องเซาะหลังบาน แก้/ปิดรายรุ่นได้ ③ หูแขวนครัว 3D ตามภาพ: ตัวเรือนเปิดฝาเห็นกลไก น็อตปรับ แผ่นหลัง ลิ้นตะขอรูยาว ซ้าย/ขวากลับด้าน · ขนาด ตำแหน่ง รอยบาก รูเจาะ BOM เท่าเดิม"],
     ["1.605","2026-11-02","FEAT หน้าวาดหน้าตัดมือจับฝัง (ผู้ใช้ 2/11 16:21 “เส้นเฉียง หรือโค้งเฉียงได้ไหม … แก้/ปรับ ความหนาบานได้ไหม”): ⌒ ดัดโค้ง ลากเส้นให้โค้ง พิมพ์ยอดโค้งหรือ R12 · พิมพ์ 20@45 = ยาว 20 มุม 45° · ขณะวาดบอกมุม · ช่องหนาบานเทียบ (ตั้งต้นตามบานในงาน เก็บกับรุ่น) · บอกระยะเลยหลังบาน"],
     ["1.604","2026-11-02","FEAT ✏ ลายหน้าบาน (ผู้ใช้ 2/11 15:29 “วาดรูป แบบหน้าบานได้อิสระ … หรือ JPG แบบลายเส้น เอามาแปะ”): วาดเส้นตรง กรอบ มุมมน โค้งบน วงรี มือเปล่า · สมมาตร · แบบสำเร็จ 10 แบบ · แปะ JPG/PNG เป็นลายเส้น ทั้งแผ่น หรือภาพรองวาดทับ · บานขนาดอื่นคงระยะจากขอบ · ใส่ให้บานนี้ ตู้นี้ แบบเดียวกัน ทั้งงาน · โชว์ใน 3D และแบบเสนอราคา (ใบตัด/MPR ไม่เปลี่ยน)"],
     ["1.603","2026-11-02","FIX+FEAT หน้ารายละเอียดวัสดุ + มือจับฝัง (ผู้ใช้ 2/11 15:51 · 16:01) ① การ์ดสีหน้าบานรวมตามสีจริง (เดิมได้รหัสแบบบาน MCWx58 · MCWG20 · Exxx01 แยกสามการ์ดทั้งที่สีเดียวกัน) ② การ์ดมือจับฝัง HW-367 แสดงเฉพาะหน้าตัด + ขนาด ③ เลือกสีมือจับฝังได้เฉพาะรุ่นที่ติ๊ก: สีมาตรฐาน 7 สีตาม Memorandum (AL601H AL616MH AL617H AL618MH AL620H AL621H AL622MH) แก้ เพิ่ม ลบ ได้ · เห็นใน 3D และการ์ด · ใบเบิกต่อรหัสสีและแยกบรรทัด"],
@@ -6890,6 +6891,7 @@ function shapeLocalGeo(b){
   if(b._shape==="foilTray") return foilTrayGeo(b);         // v1.564: ถาดฟอยด์ใต้ซิงค์ อลูมิเนียม
   if(b._shape==="cutTray") return cutTrayGeo(Math.max(+b.L||100,40),Math.max(+b.W||100,40),Math.max(T,10));   // v1.532: ถาดช้อน
   if(b._shape==="ehp") return ehpGeo(b);                                              // v1.592: รางอลูมือจับติดขอบบาน
+  if(b._shape==="hgk") return hgkGeo(b);                                              // v1.606: หูแขวนครัว
   if(b._shape==="flatPull") return pullFlatGeo(b);                                    // v1.446: มือจับบาร์แบน
   throw new Error("unknown shape");
 }
@@ -17713,10 +17715,48 @@ function _hangerBoards(cx,cy,cz,bw,bh,bd,cabRaw,cabInst,code,fid){
       _pts:p._pts? JSON.parse(JSON.stringify(p._pts)) : undefined,
       x:round(cx+(p.x||0)), y:round(topY+(p.y||0)), z:round(frontZ+(p.z||0)) }));
   }
+  /* v1.606: ตัวเรือนตามภาพหูแขวนครัว (ดู hgkGeo) · ของเล็กแบบ H1 (10×10×10) ยังเป็นกล่องเดิม */
+  if(!snOff("hgk3D")&&bd>=20&&bh>=15&&bw>=6) return [Object.assign(mk("หูแขวน",bw,bh,bd,cx,cy,cz),{_shape:"hgk",_hgkP:0,_metal:"#c9cdd3"}), Object.assign(mk("กลไก",bw,bh,bd,cx,cy,cz),{_shape:"hgk",_hgkP:1,_metal:"#55595f"})];
   const out=[ mk("หูแขวน", bw, bh, bd, cx, cy, cz) ];                             // ตัวเรือน (รูปคร่าวๆ)
   if(bw>15 && bh>15) out.push(mk("แผ่นยึด", Math.max(bw*0.7,10), Math.max(bh*0.5,10), 4, cx, cy-bh*0.2, cz-bd/2-2));   // แผ่นเหล็กยึดผนัง — กล่องมาร์กเกอร์เล็ก ๆ ไม่ต้องมี
   return out;
 }
+/* ───────── v1.606: รูปทรง 3D หูแขวนครัว ─────────
+   ผู้ใช้ 2/11 16:32 (ภาพ isometric ซ้าย/ขวา จาก AutoCAD): “รูป ให้คุณไปขึ้น 3D หูแขวน ครัวครับ”
+   เดิม: กล่องเหลี่ยม + แผ่นยึดเล็ก ๆ (รูปคร่าว ๆ) · ไม่ได้รับ STEP/DWG มา จึงปั้นจากภาพ ไม่ใช่ขนาดจริงจากแบบ
+   ตอนนี้: พอดีกล่องเดิมของรุ่น (กว้าง bw · สูง bh · ลึก bd ใน Element) ไม่เปลี่ยนตำแหน่ง รอยบาก รูเจาะ หรือ BOM เลย
+     · ตัวเรือนชิดแผ่นข้าง กว้าง ~62% ของ bw · ฝาบนเปิดเห็นช่องกลไก: บล็อก + น็อตกลมท้าย · แผ่นกั้น · รางคู่ · ตัวล็อกหน้า · น็อตปรับหน้าตู้
+     · แผ่นหลังเต็มกว้าง bw · ลิ้นตะขอมีรูยาวยื่นหลังตู้ 15 มม. ปลายพับลง + เขี้ยว
+     · ซ้าย/ขวากลับด้านตาม _fitSide ให้แผ่นหลังหันเข้ากลางตู้ · _hgkP 0 = เนื้อโลหะ · 1 = ช่องกลไกสีเข้ม
+     · รุ่นที่มีโมเดลใน Fitting 3D ใช้โมเดลนั้นเหมือนเดิม · ปิด SN_OFF.hgk3D=1 */
+function hgkGeo(b){ const W=Math.max(+b.L||25,6), H=Math.max(+b.W||35,6), D=Math.max(+b.T||60,10), P=+b._hgkP||0, s=(b._fitSide==="R")?-1:1, t=Math.min(1.2,W*0.06), A=[];
+  const wB=Math.min(W,Math.max(W*0.62,D*0.24)), x0=-W/2, x1=x0+wB, zF=D/2, zR=-D/2, yT=H/2, yB=-H/2;
+  const bx=(a,c,y0,y1,z0,z1)=>{ const g=new THREE.BoxGeometry(Math.max(Math.abs(c-a),0.05),Math.max(y1-y0,0.05),Math.max(z1-z0,0.05)); g.translate(s*(a+c)/2,(y0+y1)/2,(z0+z1)/2); A.push(g); };
+  const cy=(x,y,z,r,h,axis)=>{ const g=new THREE.CylinderGeometry(r,r,h,22); if(axis==="z") g.rotateX(Math.PI/2); g.translate(s*x,y,z); A.push(g); };
+  const iL=x0+t, iR=x1-t, iW=iR-iL, xc=(iL+iR)/2, kr=Math.min(iW*0.28,D*0.08);
+  if(P===0){
+    bx(x0,iL,yB,yT,zR,zF); bx(iR,x1,yB,yT,zR,zF);                                // ผนังซ้าย-ขวา
+    bx(iL,iR,yB,yB+t,zR,zF); bx(iL,iR,yB,yT,zF-1.6,zF); bx(iL,iR,yB,yT,zR,zR+1.6); // ก้น · หน้า · หลัง
+    bx(iL,iL+0.7,yT-1.4,yT-0.5,zR+1.6,zF-1.6); bx(iR-0.7,iR,yT-1.4,yT-0.5,zR+1.6,zF-1.6);   // ขอบในรอบปาก
+    const zB=zR+D*0.32; bx(iL+0.3,iR-0.3,yT-3.2,yT-1.2,zR+1.6,zB);                // บล็อกท้าย
+    cy(xc,yT-0.9,zR+1.6+(zB-zR-1.6)/2,kr,0.8);                                    // น็อตบล็อกท้าย
+    bx(iL,iR,yT-5,yT-1,zB+0.6,zB+1.8);                                            // แผ่นกั้น
+    const zT=zF-D*0.12; [0.3,0.7].forEach(k=>{ const xr=iL+iW*k; bx(xr-iW*0.05,xr+iW*0.05,yT-3.2,yT-1.6,zB+1.8,zT); });   // รางคู่
+    bx(iL+iW*0.18,iR-iW*0.18,yT-3.4,yT-1.6,zT,zT+D*0.06);                         // ตัวล็อกหน้า
+    bx(x0,W/2,yB,yT,zR-1.5,zR);                                                   // แผ่นหลังเต็มกว้าง
+    /* ลิ้นตะขอ: ยื่นหลังตู้ มีรูยาว · ปลายพับลง + เขี้ยว */
+    const hw=Math.min(W*0.62,14), hc=W/2-hw/2-0.4, zH=zR-1.5, LH=15, rc=Math.min(hw*0.28,4), sh=new THREE.Shape(), X=v=>s*v;
+    sh.moveTo(X(hc-hw/2),zH); sh.lineTo(X(hc-hw/2),zH-LH+rc); sh.lineTo(X(hc-hw/2+rc*0.3),zH-LH+rc*0.3); sh.lineTo(X(hc-hw/2+rc),zH-LH); sh.lineTo(X(hc+hw/2-rc),zH-LH); sh.lineTo(X(hc+hw/2-rc*0.3),zH-LH+rc*0.3); sh.lineTo(X(hc+hw/2),zH-LH+rc); sh.lineTo(X(hc+hw/2),zH); sh.closePath();
+    { const hp=new THREE.Path(), sl=hw*0.3, rs=Math.min(LH*0.17,2.2), zs=zH-LH*0.48, n=9; for(let i=0;i<=n;i++){ const a=-Math.PI/2+Math.PI*i/n, xx=X(hc+sl+rs*Math.cos(a)), zz=zs+rs*Math.sin(a); if(i) hp.lineTo(xx,zz); else hp.moveTo(xx,zz); } for(let i=0;i<=n;i++){ const a=Math.PI/2+Math.PI*i/n; hp.lineTo(X(hc-sl+rs*Math.cos(a)),zs+rs*Math.sin(a)); } hp.closePath(); sh.holes.push(hp); }
+    const eg=new THREE.ExtrudeGeometry(sh,{depth:1.5,bevelEnabled:false,curveSegments:2}); eg.rotateX(Math.PI/2); eg.translate(0,yT,0); eg.computeVertexNormals(); A.push(eg);
+    const dn=Math.min(H*0.28,10), zE=zH-LH; bx(hc-hw/2+rc,hc+hw/2-rc,yT-dn,yT,zE,zE+1.5); bx(hc-hw*0.12,hc+hw*0.12,yT-dn-3,yT-dn,zE-0.4,zE+1.9);
+  } else {
+    bx(iL,iR,yT-6,yT-5.2,zR+1.6,zF-1.6);                                          // พื้นช่องกลไก
+    const zB=zR+D*0.32; cy(xc,yT-0.45,zR+1.6+(zB-zR-1.6)/2,kr*0.6,0.2);           // รูบนน็อตท้าย
+    const yS=yT-H*0.55, rS=Math.min(wB*0.2,H*0.14); cy(xc,yS,zF+0.1,rS,0.5,"z");   // น็อตปรับที่หน้าตู้
+    bx(xc-rS*0.8,xc+rS*0.8,yS-rS*0.14,yS+rS*0.14,zF+0.3,zF+0.45);                  // ร่องไขควง
+  }
+  return mergeGeos(A); }
 /* ───────── v1.234: บากมุมแผ่นหลังรองรับ "ตัว L" ─────────
    ของเดิมบากได้แต่สี่เหลี่ยมมุมละบล็อก ซึ่งพอกับหูแขวนแป้น 40×60
    แต่เหล็กฉากที่พาดทั้งขอบบนและขอบข้าง ต้องการปากบากรูปตัว L
@@ -30222,6 +30262,8 @@ function boardRole(b){
      SN_OFF.dwgEhpSec=1   การ์ดมือจับฝังเป็นรูปถ่าย 3D แบบเดิม (v1.603)
      SN_OFF.ehpFin=1      ไม่มีแถวเลือกสีมือจับฝัง · มือจับฝังกลับเป็นอลูเงินทุกบาน (v1.603)
      SN_OFF.doorArt=1     ไม่มีหน้าวาดลายหน้าบาน · ลายที่ใส่ไว้ไม่แสดง (v1.604)
+     SN_OFF.ehpRebate=1   มือจับฝังไม่เซาะบ่าหลังบาน (v1.606)
+     SN_OFF.hgk3D=1       หูแขวนเป็นกล่องคร่าว ๆ แบบเดิม (v1.606)
      SN_OFF.plHoodNoLight=1 ตู้มีฮู้ดยังได้ไม้ไฟใต้ตู้เหมือนตู้อื่น (ปิดกติกาไม่ใส่) (v1.600)
      SN_OFF.plHoodLift=1  จัดแนวตู้ฮู้ดด้วยกรอบโครงจริงแบบเดิม ก้นโครงลงระดับก้นตู้ลอย (v1.600)
      SN_OFF.plAlignStay=1 จัดแนวแล้วตู้หลบของที่ทับกันอยู่ก่อนแบบเดิม (ดีดไปช่องว่าง) (v1.600)
@@ -46077,8 +46119,20 @@ const EHP_DEF=[
   {id:"ehp-c38", code:"EH-C38", n:"C ร่องลึก", pts:[[0,0],[20,0],[20,38],[17,38],[17,10],[3,10],[3,38],[0,38]]},
   {id:"ehp-s28", code:"EH-S28", n:"เฉียง", pts:[[0,0],[20,0],[20,4],[9,28],[0,28]]},
   {id:"ehp-t32", code:"EH-T32", n:"บาร์ยื่นหน้า", pts:[[0,0],[20,0],[20,3],[3,3],[3,24],[-14,24],[-14,32],[0,32]]},
-  {id:"ehp-r30", code:"EH-R30", n:"โค้ง", pts:[[0,0],[20,0],[20,3],[6,3],[6,14],[3,22],[-3,28],[-6,30],[-6,26],[-2,22],[0,16]]}
+  {id:"ehp-r30", code:"EH-R30", n:"โค้ง", pts:[[0,0],[20,0],[20,3],[6,3],[6,14],[3,22],[-3,28],[-6,30],[-6,26],[-2,22],[0,16]]},
+  /* ───────── v1.606: รุ่นจริงของโรงงาน LM24 · R122 · R118 ─────────
+     ผู้ใช้ 2/11 16:32 (ภาพแบบ AutoCAD 3 รุ่น): “เพิ่ม มือจับฝัง LM24 · R122 แต่ตัวนี้มีเซาะร่องหลังบาน · เพิ่ม R118”
+     ลอกจากภาพ ไม่ใช่ไฟล์ DXF — ยึดตามเลขที่บอกในแบบ (LM24 กว้าง 19 สูง 36 เดือยกว้าง 2 · R122/R118 สูง 45 ฐาน 20 หนา 2)
+     · LM24 ปากเปิดอยู่ฝั่งหน้าบาน · ปากล่างยื่นพ้นผิวหน้าบาน 1 มม. เกาะลงต่ำกว่าขอบ 3.2 · เดือยจมในบาน 10.3 กลางบานหนา 18 · หนาผนังโค้งเล็งจากภาพ
+     · R122 ภาพวาดไม่ตรงสเกล (สูง 45 แต่วาดสั้นกว่าฐาน 20 ตามส่วน) จึงใช้เลขล้วน: ผนังหนา 2 · หัวกลม Ø4
+     · R118 ภาพตรงสเกล อ่านตามจริง รวมร่องเสียบบนผนังหน้า · ฐาน Ø5 คว้านหัวเป็นรูบนตัวอลู ไม่ได้รีดเข้าหน้าตัด
+     rb = เซาะบ่าหลังบาน {d ลึก, h สูงจากขอบ} ตามภาพหน้าตัดบานของทั้ง R122 และ R118 · refT = หนาบานในแบบ (ใช้เทียบเท่านั้น) · fin = เลือกสีได้ตั้งต้น */
+  {id:"ehp-lm24", code:"LM24", n:"LM24 ร่องนิ้วมีปาก", refT:18, fin:1, pts:[[18,0],[18,35.5],[17.5,36],[-1,36],[-1,25.8],[-0.6,25.2],[-0.1,25],[0.4,25.2],[0.6,25.8],[0.6,30.6],[1.1,32.2],[2,33.2],[3.4,34.3],[4.7,34.7],[16.4,34.7],[16.4,19.2],[16,16.4],[14.7,13.3],[12.5,9.8],[9.4,6.7],[5.9,4.5],[3.1,3.6],[0.6,3.1],[-0.4,2.6],[-1,1.3],[-1,-2.8],[-0.7,-3.2],[-0.3,-3.1],[0,-2.5],[0,0],[8.45,0],[8.45,-2],[8,-2.5],[8.3,-3.5],[8,-4.5],[8.3,-5.5],[8,-6.5],[8.3,-7.5],[8,-8.5],[8.4,-9.6],[9,-10.3],[9.6,-9.6],[10,-8.5],[9.7,-7.5],[10,-6.5],[9.7,-5.5],[10,-4.5],[9.7,-3.5],[10,-2.5],[9.55,-2],[9.55,0]]},
+  {id:"ehp-r122", code:"R122", n:"R122 ตัว L หัวกลม", refT:20, fin:1, rb:{d:2,h:18}, pts:[[0,0],[20,0],[20,2],[2,2],[2,41],[3.4,41.6],[4,43],[3.4,44.4],[2,45],[0.6,44.4],[0,43]]},
+  {id:"ehp-r118", code:"R118", n:"R118 คอเฉียง", refT:20, fin:1, rb:{d:2,h:18}, pts:[[0,0],[20,0],[20,2],[2.9,2],[2.9,2.8],[2.1,2.8],[2.1,9.9],[2.9,9.9],[2.9,19.9],[2.1,19.9],[2.1,23.1],[2.9,23.1],[2.9,30.2],[16.3,40.1],[18.5,40.1],[19.9,41.4],[19.9,43.6],[18.7,45],[16.5,45],[15.1,43.6],[15.1,41.8],[0,30.2],[0,17.9],[0.9,17.9],[0.9,19],[2.1,19],[2.1,11.1],[0.9,11.1],[0.9,11.9],[0,11.9]]}
 ];
+/* v1.606: บ่าหลังบานของรุ่นนี้ — ไม่มี/ปิด = null */
+function ehpRebate(P){ if(!P||snOff("ehpRebate")) return null; const q=P.rb, d=+(q&&q.d), h=+(q&&q.h); return (d>0&&h>0)?{d,h}:null; }
 /* ───────── v1.601: ลบรุ่นมือจับฝังออกจากรายการ ─────────
    ผู้ใช้ 2/11 12:53 (ภาพการ์ด EH-J30 …): “จะลบ ออกอย่างไร” — เดิมมีแค่ ✏ แก้รุ่น ลบไม่ได้ ทั้งรุ่นตัวอย่างและรุ่นที่เพิ่มเอง
    🗑 บนการ์ด = ซ่อนจากรายการ (settings.ehpHide เก็บ id) · ไม่ลบข้อมูลรุ่น งานเก่าที่บันทึกบานรุ่นนั้นไว้จึงยังวาด/ออกใบตัดถูก (ehpGet หาจาก ehpAll)
@@ -46147,6 +46201,7 @@ function ehpHealAll(){ if(snOff("ehp")) return 0; let n=0;
       if(!snOff("ehpFreeEdge")&&!stack&&(!sp||sp[k]==null)){ d._ehp.lw=ehpSig(d); return; } }
     ehpShift(d,S,d._ehp.side,+d._ehp.cut||0); d._ehp.lw=ehpSig(d); n++; });
   try{ (state.boards||[]).forEach(d=>{ if(d&&!d._virtual&&(d._ehp||(d.holes||[]).some(h=>h&&h._ehpMark))) ehpMarkSync(d); }); }catch(e){ console.error("ehpMark:",e); }   /* v1.596 */
+  try{ (state.boards||[]).forEach(d=>{ if(d&&!d._virtual&&(d._ehp||(d.grooves||[]).some(g=>g&&g._ehpGr))) ehpRebateSync(d); }); }catch(e){ console.error("ehpRebate:",e); }   /* v1.606 */
   return n; }
 /* ───────── v1.596: รูมาร์คที่สันบานของมือจับฝัง ─────────
    ผู้ใช้ 1/11 18:11: “เพิ่มตั้งค่าใส่รูมาร์ค ไปกับมือจับแบบฝังด้วย ดอก 5 ลึก 3 ที่กลางสันบานที่มือจับอยู่ แบบฝังทุกอัน ตั้งไว้ให้แก้ไขด้วย”
@@ -46324,6 +46379,18 @@ function ehpMarkSync(d){ if(!d) return false; const hs=d.holes||[]; let want=nul
   if(want&&cur.length===1&&JSON.stringify(cur[0])===JSON.stringify(want)) return false;
   if(!want&&!cur.length) return false;
   d.holes=hs.filter(h=>!(h&&h._ehpMark)); if(want) d.holes.push(want); return true; }
+/* ───────── v1.606: เซาะบ่าหลังบานตามรุ่นมือจับฝัง ─────────
+   ผู้ใช้ 2/11 16:32 (ภาพ R122 + หน้าตัดบาน บ่า 2 × 18 ที่ผิวหลัง): “R122 แต่ตัวนี้มีเซาะร่องหลังบานครับ”
+   เดิม: มือจับฝังตัดบานสั้นลงอย่างเดียว ไม่มีทางสั่งเซาะบาน
+   ตอนนี้: รุ่นที่มี rb → บานได้ร่องผิวหลัง กว้าง = h · ลึก = d · ชิดขอบด้านที่ติดมือจับ · วิ่งเต็มยาวขอบ
+     ใช้ร่องปกติของชิ้น จึงควักเนื้อใน 3D และออก MPR <112 ที่ไฟล์ผิวหลังเอง · คิดใหม่ทุก sync ตามขนาดบาน · ถอดมือจับ/เปลี่ยนรุ่น ร่องตาม
+   ปิด SN_OFF.ehpRebate=1 */
+function ehpRebateSync(d){ if(!d) return false; const cur=(d.grooves||[]).filter(g=>g&&g._ehpGr); let want=null;
+  if(d._ehp){ const rb=ehpRebate(ehpGet(d._ehp.id)); if(rb){ const S=ehpSides(d), A=S[d._ehp.side];
+      if(A){ const dim=(A.ax==="y")?+d.W:+d.L; want={axis:(A.ax==="y")?"len":"wid", face:(S.sz>0)?"bottom":"top", pos:Math.round(A.s*(dim/2-rb.h/2)*100)/100, width:rb.h, depth:rb.d, end:"sq", _ehpGr:true}; } } }
+  if(want&&cur.length===1&&JSON.stringify(cur[0])===JSON.stringify(want)) return false;
+  if(!want&&!cur.length) return false;
+  d.grooves=(d.grooves||[]).filter(g=>!(g&&g._ehpGr)); if(want) d.grooves.push(want); return true; }
 function ehpSet(d,id,side){ if(!d) return {err:"ไม่พบบาน"}; const S=ehpSides(d);
   const _fin0=d._ehp?ehpFinKey(d._ehp):String((typeof PLPU!=="undefined"&&PLPU.ehFin)||"");   /* v1.603: เปลี่ยนด้าน/รุ่นแล้วสีเดิมยังอยู่ · บานใหม่ = สีที่เลือกไว้ */
   if(d._ehp){ const o=d._ehp; if(S[o.side]&&ehpCut(d)) ehpShift(d,S,o.side,-(+o.cut||0)); delete d._ehp; }   /* ยังตัดอยู่ = คืน · ถูกตั้งเต็มใบไปแล้ว = ไม่ต้อง */
@@ -46344,7 +46411,7 @@ function ehpSet(d,id,side){ if(!d) return {err:"ไม่พบบาน"}; cons
 function ehpApplyRows(rows,id,side){ const out={n:0, skip:[], insts:new Set()}, done=new Set();
   (rows||[]).forEach(r=>{ const d=r&&r.d; if(!d||done.has(d.id)) return; done.add(d.id);
     if(id&&(d._pulls||[]).length){ try{ plPullApplyRows([r],"",PLPU.pm,PLPU.om); }catch(e){} }   /* มือจับเดิมของบานนี้ถอดออก */
-    const had=!!d._ehp, res=ehpSet(d,id,side); try{ ehpMarkSync(d); }catch(e){}   /* v1.596 */
+    const had=!!d._ehp, res=ehpSet(d,id,side); try{ ehpMarkSync(d); }catch(e){}   /* v1.596 */ try{ ehpRebateSync(d); }catch(e){ console.error("ehpRebate:",e); }   /* v1.606 */
     if(res.ok){ if(id||had){ out.n++; out.insts.add(d.cabInst); } } else { out.skip.push(res.err); if(had) out.insts.add(d.cabInst); } });
   out.insts.forEach(inst=>{   /* ไม่จำสเปคขอบใหม่ — สเปคคือบานเต็มใบ (รวมราง) · ราง = หักทีหลังทุกรอบ (ehpHealAll) ปรับขนาดตู้แล้วจึงตามถูก */
     try{ state.boards.filter(x=>x.cabInst===inst&&x._door&&(x.connectors||[]).some(k=>k.type==="hinge"&&k.plate!==false)).forEach(x=>{ try{ drillHingePlateHoles(x); }catch(e){} }); }catch(e){} });
@@ -46366,7 +46433,7 @@ const EHP_FIN_DEF="#c9cdd3", EHP_FINS_STD=[
   {k:"AL622MH",c:"#4f4a41",d:"Deep Dark Brown (ด้าน) + แฮร์ไลน์ เบอร์ 60"}];
 function ehpFinList(){ return Array.isArray(settings.ehpFins)?settings.ehpFins.filter(f=>f&&f.k):EHP_FINS_STD; }
 function ehpFinGet(k){ k=String(k||"").trim().toUpperCase(); return k?(ehpFinList().find(f=>String(f.k).toUpperCase()===k)||null):null; }
-function ehpFinAllow(P){ if(!P||snOff("ehpFin")) return false; const m=settings.ehpFinModels; if(m&&m[P.id]!=null) return !!m[P.id]; return !!P.sec; }
+function ehpFinAllow(P){ if(!P||snOff("ehpFin")) return false; const m=settings.ehpFinModels; if(m&&m[P.id]!=null) return !!m[P.id]; return !!(P.sec||P.fin); }
 function ehpFinKey(e){ return String((e&&e.fin)||""); }
 function ehpFinColor(k){ const f=ehpFinGet(k); return f?String(f.c||EHP_FIN_DEF):EHP_FIN_DEF; }
 /* รายการสี: แก้รหัส/สี/คำอธิบาย · เพิ่ม · ลบ — สีที่ลบ บานที่ใช้อยู่กลับเป็น “ยังไม่ระบุ” */
@@ -46393,13 +46460,13 @@ function ehpFinEdit(){ return new Promise(done=>{ const old=document.getElementB
 function ehpSecSvg(P,fin){ const LS=ehpLoops(P,18).filter(l=>l&&l.length>=3); if(!LS.length) return "";
   const A=[].concat(...LS), xs=A.map(q=>+q[0]), ys=A.map(q=>-(+q[1])), x0=Math.min(...xs), x1=Math.max(...xs), y0=Math.min(...ys), y1=Math.max(...ys), w=x1-x0, h=y1-y0, M=Math.max(w,h,1), pad=M*0.26, fs=M*0.085, e=v=>Math.round(v*100)/100, r1=v=>String(Math.round(v*10)/10);
   const d=LS.map(l=>"M"+l.map(q=>e(+q[0])+","+e(-(+q[1]))).join(" L")+" Z").join(" "), st='stroke="#2b2f36" stroke-width="0.9" vector-effect="non-scaling-stroke"';
-  const yd=y1+pad*0.38, xd=x1+pad*0.38;
+  const yd=y1+pad*0.38, xd=x1+pad*0.38, yH1=(y1>0.05&&y0<0)?0:y1;   /* v1.606: มีเดือยจมในบาน = เลขสูงวัดถึงขอบบาน ตามแบบ */
   return '<svg class="dsg" xmlns="http://www.w3.org/2000/svg" viewBox="'+e(x0-pad*0.5)+' '+e(y0-pad*0.5)+' '+e(w+pad*1.5)+' '+e(h+pad*1.5)+'" preserveAspectRatio="xMidYMid meet" font-family="Sarabun,Leelawadee UI,Tahoma,sans-serif">'
     +'<path d="'+d+'" fill="'+(fin?ehpFinColor(fin):"#8d949e")+'" fill-rule="evenodd" stroke="#2b2f36" stroke-width="1.2" stroke-linejoin="round" vector-effect="non-scaling-stroke"/>'
     +'<path d="M'+e(x0)+' '+e(yd)+' H'+e(x1)+' M'+e(x0)+' '+e(yd-fs*0.35)+' V'+e(yd+fs*0.35)+' M'+e(x1)+' '+e(yd-fs*0.35)+' V'+e(yd+fs*0.35)+'" fill="none" '+st+'/>'
-    +'<path d="M'+e(xd)+' '+e(y0)+' V'+e(y1)+' M'+e(xd-fs*0.35)+' '+e(y0)+' H'+e(xd+fs*0.35)+' M'+e(xd-fs*0.35)+' '+e(y1)+' H'+e(xd+fs*0.35)+'" fill="none" '+st+'/>'
+    +'<path d="M'+e(xd)+' '+e(y0)+' V'+e(yH1)+' M'+e(xd-fs*0.35)+' '+e(y0)+' H'+e(xd+fs*0.35)+' M'+e(xd-fs*0.35)+' '+e(yH1)+' H'+e(xd+fs*0.35)+'" fill="none" '+st+'/>'
     +'<text x="'+e((x0+x1)/2)+'" y="'+e(yd+fs*1.25)+'" text-anchor="middle" font-size="'+e(fs)+'" fill="#2b2f36">'+r1(w)+'</text>'
-    +'<text x="'+e(xd+fs*0.55)+'" y="'+e((y0+y1)/2+fs*0.35)+'" font-size="'+e(fs)+'" fill="#2b2f36">'+r1(h)+'</text></svg>'; }
+    +'<text x="'+e(xd+fs*0.55)+'" y="'+e((y0+yH1)/2+fs*0.35)+'" font-size="'+e(fs)+'" fill="#2b2f36">'+r1(yH1-y0)+'</text></svg>'; }
 function ehpPart(d){ const e=d._ehp, P=e&&ehpGet(e.id); if(!P) return null; const S=ehpSides(d), A=S[e.side]; if(!A) return null;
   const T=Math.max(+d.T||18,1), LS=ehpLoops(P,T), D=ehpDims(P,T), len=(A.ax==="y")?+d.L:+d.W, h=D.h, dep=D.u1-D.u0;   /* v1.594: ความหนาบานจริง (รุ่นจากคลัง Section) */
   const ax=(A.ax==="y")?S.ey:S.ex, half=((A.ax==="y")?+d.W:+d.L)/2;
@@ -46424,10 +46491,11 @@ function ehpGeo(b){ const pts=b._ehpPts||[], T=+b._ehpT||18, h=+b._ehpH||20, len
   g.computeVertexNormals(); return g; }
 /* รูปหน้าตัดในการ์ด (SVG) — บานสีอ่อนด้านล่าง ราง (อลู) ด้านบน · ผิวหน้าบานอยู่ซ้าย */
 /* v1.594: วาดจากทุกวง (รูกลวง = evenodd) · บานหนา 18 · เดือยที่เข้าเนื้อบาน (v < 0) ต้องเห็นในรูปด้วย */
-function ehpThumb(P){ const T=(P&&!P.sec&&+P.refT>0)?+P.refT:18, LS=ehpLoops(P,T), D=ehpDims(P,T), pad=4, x0=Math.min(D.u0,0)-pad, x1=Math.max(D.u1,T)+pad, y0=-D.h-pad, y1=Math.max(26,-(D.v0||0)+6)+pad, e=v=>Math.round(v*100)/100;
+function ehpThumb(P){ const T=(P&&!P.sec&&+P.refT>0)?+P.refT:18, LS=ehpLoops(P,T), D=ehpDims(P,T), pad=4, x0=Math.min(D.u0,0)-pad, x1=Math.max(D.u1,T)+pad, y0=-D.h-pad, y1=Math.max(26,-(D.v0||0)+6,((P&&+(P.rb||{}).h)||0)+8)+pad, e=v=>Math.round(v*100)/100;
   const poly=LS.filter(l=>l&&l.length>=3).map(l=>"M"+l.map(q=>e(+q[0])+","+e(-q[1])).join(" L")+" Z").join(" ");
   return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="'+e(x0)+' '+e(y0)+' '+e(x1-x0)+' '+e(y1-y0)+'" preserveAspectRatio="xMidYMid meet" style="position:absolute;left:8%;top:8%;width:84%;height:84%">'
-    +'<rect x="0" y="0" width="'+T+'" height="'+e(y1-pad)+'" fill="#efe6d4" stroke="#b9a98a" stroke-width="0.6"/><path d="M0 '+e(y1-pad)+' L0 0" stroke="#8a7a5c" stroke-width="0.8" stroke-dasharray="2 1.5"/>'
+    +(()=>{ const rb=ehpRebate(P), yb=e(y1-pad); if(!rb) return '<rect x="0" y="0" width="'+T+'" height="'+yb+'" fill="#efe6d4" stroke="#b9a98a" stroke-width="0.6"/>'; const xr=e(T-rb.d), yr=e(Math.min(rb.h,y1-pad)); return '<path d="M0 0 H'+xr+' V'+yr+' H'+T+' V'+yb+' H0 Z" fill="#efe6d4" stroke="#b9a98a" stroke-width="0.6"/>'; })()   /* v1.606: เห็นบ่าหลังบาน */
+    +'<path d="M0 '+e(y1-pad)+' L0 0" stroke="#8a7a5c" stroke-width="0.8" stroke-dasharray="2 1.5"/>'
     +'<path d="'+poly+'" fill="#8d949e" fill-rule="evenodd" stroke="#2b2f36" stroke-width="0.7" stroke-linejoin="round"/></svg>'; }
 /* เพิ่ม/แก้รุ่นเอง */
 /* ───────── v1.595: หดบานเพิ่ม + แก้รุ่นแล้วบานที่ใส่อยู่ตาม ─────────
@@ -46458,7 +46526,7 @@ function ehpReapply(id){ let n=0; if(!id) return 0;
 function ehpDrawEdit(P){ return new Promise(res=>{ try{ const o=document.getElementById("ehpDrawDlg"); if(o) o.remove(); }catch(e){}
   const W=560, H=430, e=v=>escapeHtml(String(v==null?"":v)), r1=v=>Math.round(v*10)/10;
   const _dt=(()=>{ const c={}; (state.boards||[]).forEach(b=>{ if(b&&b._door&&!b._box&&!b._virtual&&+b.T>0){ const t=Math.round(+b.T*10)/10; c[t]=(c[t]||0)+1; } }); return Object.keys(c).map(Number).sort((a,b)=>c[b]-c[a]); })();
-  let T=(P&&+P.refT>0)?+P.refT:(_dt[0]||18), bend=false, bd=null;
+  let T=(P&&+P.refT>0)?+P.refT:(_dt[0]||18), bend=false, bd=null, rbD=(P&&P.rb&&+P.rb.d)||0, rbH=(P&&P.rb&&+P.rb.h)||0;   /* v1.606: บ่าหลังบาน */
   /* จุดบนส่วนโค้งระหว่าง a→b (ไม่รวมปลาย) · s = ยอดโค้ง มีเครื่องหมายตามด้าน */
   const arcPts=(a,b,sg)=>{ const dx=b[0]-a[0], dy=b[1]-a[1], L=Math.hypot(dx,dy); if(!(L>0)||Math.abs(sg)<0.05) return []; const h=L/2, tx=dx/L, ty=dy/L, nx=-ty, ny=tx, R=(h*h+sg*sg)/(2*sg), beta=2*Math.atan(sg/h), cx=(a[0]+b[0])/2+nx*(sg-R), cy=(a[1]+b[1])/2+ny*(sg-R), N=Math.max(6,Math.min(24,Math.ceil(2*Math.abs(beta*R)/1.5))), out=[];
     for(let k=1;k<N;k++){ const g=beta*(-1+2*k/N); out.push([cx+R*(nx*Math.cos(g)+tx*Math.sin(g)),cy+R*(ny*Math.cos(g)+ty*Math.sin(g))]); } return out; };
@@ -46481,6 +46549,7 @@ function ehpDrawEdit(P){ return new Promise(res=>{ try{ const o=document.getElem
       +'<label>ชื่อเรียก<input data-f="n" type="text" class="nameinp" style="width:100%" value="'+e(P?P.n:"")+'"></label>'
       +'<label>หดบานเพิ่ม (มม.) — นอกจากความสูงมือจับ<input data-f="gap" type="number" step="0.5" min="0" class="nameinp" style="width:100%;font-family:var(--mono)" value="'+ehpGap(P)+'"></label>'
       +'<label>หนาบาน (มม.) — ไว้เทียบตอนวาด<input data-f="T" type="number" step="0.1" min="1" list="ehpTList" class="nameinp" style="width:100%;font-family:var(--mono)" value="'+T+'"><datalist id="ehpTList">'+_dt.concat([16,18,19,25].filter(v=>_dt.indexOf(v)<0)).map(v=>'<option value="'+v+'">').join("")+'</datalist></label>'
+      +'<div style="display:flex;gap:6px;align-items:flex-end"><label style="flex:1">เซาะหลังบาน ลึก (มม.)<input data-f="rbD" type="number" step="0.5" min="0" class="nameinp" style="width:100%;font-family:var(--mono)" value="'+rbD+'"></label><label style="flex:1">สูงจากขอบ (มม.)<input data-f="rbH" type="number" step="1" min="0" class="nameinp" style="width:100%;font-family:var(--mono)" value="'+rbH+'"></label></div>'
       +'<div data-info="1" style="background:rgba(0,0,0,.04);border-radius:9px;padding:8px 10px;line-height:1.7"></div>'
       +(tpl.length?('<label>เริ่มจากแบบ<select data-f="tpl" class="nameinp" style="width:100%"><option value="">—</option>'+tpl.map((x,i)=>'<option value="'+i+'">'+e(x.code+" · "+x.n)+'</option>').join("")+'</select></label>'):'')
       +'<details><summary style="cursor:pointer;color:var(--ink-dim)">แก้เป็นตัวเลข (u,v บรรทัดละจุด)</summary><textarea data-f="tx" rows="7" class="nameinp" style="width:100%;font-family:var(--mono);font-size:11.5px;margin-top:4px"></textarea></details>'
@@ -46491,7 +46560,7 @@ function ehpDrawEdit(P){ return new Promise(res=>{ try{ const o=document.getElem
   const q=k=>ov.querySelector(k), sv=q('[data-sv]'), tx=q('[data-f="tx"]'), info=q('[data-info]'), stl=q('[data-st]'), gin=q('[data-f="gap"]');
   const X=u=>ox+u*sc, Y=v=>oy-v*sc, U=x=>(x-ox)/sc, V=y=>(oy-y)/sc;
   const push=()=>{ hist.push(JSON.stringify([pts,closed])); if(hist.length>200) hist.shift(); };
-  const fit=()=>{ let u0=-6, u1=T+6, v0=-14, v1=12; pts.forEach(p=>{ u0=Math.min(u0,p[0]-4); u1=Math.max(u1,p[0]+4); v0=Math.min(v0,p[1]-4); v1=Math.max(v1,p[1]+6); });
+  const fit=()=>{ let u0=-6, u1=T+6, v0=Math.min(-14,-(rbH+6)), v1=12;   /* v1.606: เห็นบ่าหลังบานเต็ม */ pts.forEach(p=>{ u0=Math.min(u0,p[0]-4); u1=Math.max(u1,p[0]+4); v0=Math.min(v0,p[1]-4); v1=Math.max(v1,p[1]+6); });
     sc=Math.max(1.5,Math.min(40,Math.min((W-70)/(u1-u0),(H-60)/(v1-v0)))); ox=W/2-sc*(u0+u1)/2; oy=H/2+sc*(v0+v1)/2; };
   /* ดูดเข้าแนว: ผิวหน้าบาน/หลังบาน · ขอบบาน · แนวจุดอื่น (ห่าง ≤ 7 px) แล้วกริด 0.5 */
   const snap=(u,v,skip)=>{ const tol=7/sc, us=[0,T], vs=[0]; pts.forEach((p,i)=>{ if(i!==skip){ us.push(p[0]); vs.push(p[1]); } });
@@ -46505,7 +46574,8 @@ function ehpDrawEdit(P){ return new Promise(res=>{ try{ const o=document.getElem
     for(let g=Math.ceil(u0/st)*st; g<=u1; g+=st){ const mj=Math.abs(g/(st*5)-Math.round(g/(st*5)))<1e-6; h+='<line x1="'+X(g)+'" y1="0" x2="'+X(g)+'" y2="'+H+'" stroke="'+(mj?"#e2e5ea":"#f0f2f5")+'"/>'; }
     for(let g=Math.ceil(v0/st)*st; g<=v1; g+=st){ const mj=Math.abs(g/(st*5)-Math.round(g/(st*5)))<1e-6; h+='<line x1="0" y1="'+Y(g)+'" x2="'+W+'" y2="'+Y(g)+'" stroke="'+(mj?"#e2e5ea":"#f0f2f5")+'"/>'; }
     /* หน้าตัดบาน: หนา T ใต้ขอบ */
-    h+='<rect x="'+X(0)+'" y="'+Y(0)+'" width="'+(T*sc)+'" height="'+Math.max(0,H-Y(0))+'" fill="#efe6d4" stroke="#b9a98a"/>';
+    if(rbD>0&&rbH>0) h+='<path d="M'+X(0)+' '+Y(0)+' H'+X(T-rbD)+' V'+Y(-rbH)+' H'+X(T)+' V'+Math.max(H,Y(-rbH))+' H'+X(0)+' Z" fill="#efe6d4" stroke="#b9a98a"/>';   /* v1.606 */
+    else h+='<rect x="'+X(0)+'" y="'+Y(0)+'" width="'+(T*sc)+'" height="'+Math.max(0,H-Y(0))+'" fill="#efe6d4" stroke="#b9a98a"/>';
     h+='<line x1="0" y1="'+Y(0)+'" x2="'+W+'" y2="'+Y(0)+'" stroke="#e03131" stroke-width="1.2" stroke-dasharray="6 4"/>';
     h+='<text x="'+(W-6)+'" y="'+(Y(0)-5)+'" text-anchor="end" font-size="11" fill="#e03131">ขอบบาน (เหนือเส้น = ส่วนที่ตัดบานออก)</text>';
     h+='<text x="'+(X(0)-6)+'" y="'+Math.min(H-8,Y(0)+18)+'" text-anchor="end" font-size="11" fill="#8a7a5c">← หน้าบาน</text>';
@@ -46532,7 +46602,7 @@ function ehpDrawEdit(P){ return new Promise(res=>{ try{ const o=document.getElem
     if(hov&&!closed&&drag<0) h+='<circle cx="'+X(hov[0])+'" cy="'+Y(hov[1])+'" r="3" fill="#1971c2"/>';
     sv.innerHTML=h;
     const g=ehpGap({gap:gin.value}); info.innerHTML=D&&D.h>0?('สูงมือจับ (เหนือขอบ) <b>'+r1(D.h)+'</b> มม.'+(g?(' + หดเพิ่ม <b>'+g+'</b>'):'')+'<br>บานสั้นลง <b style="color:#c0392b">'+r1(D.h+g)+'</b> มม.'
-        +(D.v0<-0.05?('<br>จมในบาน (เดือย) '+r1(-D.v0)+' มม.'):'')+(D.u0<-0.05?('<br>ยื่นพ้นหน้าบาน '+r1(-D.u0)+' มม.'):'')+(D.u1>T+0.05?('<br><span style="color:#b45309">เลยหลังบาน '+r1(D.u1-T)+' มม. (บานหนา '+T+')</span>'):'')+'<br><span style="color:var(--ink-dim)">'+pts.length+' จุด'+(closed?' · ปิดรูปแล้ว':' · ยังไม่ปิดรูป')+'</span>')
+        +(D.v0<-0.05?('<br>จมในบาน (เดือย) '+r1(-D.v0)+' มม.'):'')+(D.u0<-0.05?('<br>ยื่นพ้นหน้าบาน '+r1(-D.u0)+' มม.'):'')+(D.u1>T+0.05?('<br><span style="color:#b45309">เลยหลังบาน '+r1(D.u1-T)+' มม. (บานหนา '+T+')</span>'):'')+((rbD>0&&rbH>0)?('<br>เซาะหลังบาน ลึก '+rbD+' สูง '+rbH+' มม.'):'')+'<br><span style="color:var(--ink-dim)">'+pts.length+' จุด'+(closed?' · ปิดรูปแล้ว':' · ยังไม่ปิดรูป')+'</span>')
       :'<span style="color:var(--ink-dim)">เริ่มคลิกวาดเหนือเส้นแดง (ส่วนที่อยู่เหนือขอบบาน = ความสูงมือจับ)</span>';
     stl.textContent=(closed?"ปิดรูปแล้ว":(pts.length?"กำลังวาด":"คลิกวางจุดแรก"))+(buf?(" · พิมพ์ "+buf):"");
     q('[data-b="ortho"]').style.background=ortho?"var(--accent,#1f3a68)":""; q('[data-b="ortho"]').style.color=ortho?"#fff":"";
@@ -46606,14 +46676,16 @@ function ehpDrawEdit(P){ return new Promise(res=>{ try{ const o=document.getElem
   q('[data-b="undo"]').onclick=undo; q('[data-b="ortho"]').onclick=()=>{ ortho=!ortho; draw(); }; q('[data-b="bend"]').onclick=()=>{ bend=!bend; hov=null; draw(); }; q('[data-b="fit"]').onclick=()=>{ fit(); draw(); };
   q('[data-b="new"]').onclick=()=>{ push(); pts=[]; closed=false; buf=""; fit(); draw(); };
   ov.querySelectorAll('[data-x]').forEach(b=>b.onclick=()=>done(null));
-  { const tp=q('[data-f="tpl"]'); if(tp) tp.onchange=()=>{ const x=tpl[+tp.value]; if(x){ push(); pts=x.pts.map(p=>[+p[0],+p[1]]); closed=true; fit(); draw(); } }; }
+  { const tp=q('[data-f="tpl"]'); if(tp) tp.onchange=()=>{ const x=tpl[+tp.value]; if(x){ push(); pts=x.pts.map(p=>[+p[0],+p[1]]); closed=true; rbD=(x.rb&&+x.rb.d)||0; rbH=(x.rb&&+x.rb.h)||0; q('[data-f="rbD"]').value=rbD; q('[data-f="rbH"]').value=rbH; fit(); draw(); } }; }
   gin.oninput=()=>draw();
+  { const ra=q('[data-f="rbD"]'), rc=q('[data-f="rbH"]'); ra.oninput=()=>{ rbD=Math.max(parseFloat(ra.value)||0,0); draw(); }; rc.oninput=()=>{ rbH=Math.max(parseFloat(rc.value)||0,0); draw(); }; rc.onchange=()=>{ fit(); draw(); }; }   /* v1.606 */
   { const ti=q('[data-f="T"]'); ti.oninput=()=>{ const v=parseFloat(ti.value); if(v>0&&v<=80){ T=Math.round(v*10)/10; draw(); } }; ti.onchange=()=>{ const v=parseFloat(ti.value); if(!(v>0&&v<=80)) ti.value=T; fit(); draw(); }; }
   tx.oninput=()=>{ const z=tx.value.split(/\n+/).map(l=>l.split(/[,\s]+/).filter(Boolean).map(Number)).filter(a=>a.length>=2&&isFinite(a[0])&&isFinite(a[1])).map(a=>[a[0],a[1]]); if(z.length>=2){ pts=z; closed=z.length>=3; draw(); } };
   q('[data-ok]').onclick=async()=>{ const code=String(q('[data-f="code"]').value||"").trim(); if(!code){ toast("ใส่รหัสสินค้าก่อน"); q('[data-f="code"]').focus(); return; }
     if(pts.length<3){ toast("วาดอย่างน้อย 3 จุด"); return; } const D=dims(); if(!(D.h>0)){ toast("ต้องมีส่วนที่อยู่เหนือเส้นแดง (ขอบบาน)"); return; }
     const id=(P&&P.id)||("ehp"+Date.now().toString(36)), L=Array.isArray(settings.ehpLib)?settings.ehpLib:(settings.ehpLib=[]);
     const row={id, code, n:String(q('[data-f="n"]').value||"").trim()||code, pts:pts.map(p=>[r1(p[0]),r1(p[1])]), gap:ehpGap({gap:gin.value}), refT:T};   /* v1.605: refT = หนาบานที่ใช้เทียบ ไม่เข้าตัวคิด */
+    if(rbD>0&&rbH>0) row.rb={d:rbD,h:rbH};   /* v1.606 */ if(P&&P.fin) row.fin=P.fin;
     const i=L.findIndex(x=>x&&x.id===id); if(i>=0) L[i]=row; else L.push(row);
     try{ await catSaveSettings(); }catch(er){ console.error("ehpSave:",er); }
     done(row); };
@@ -54298,6 +54370,11 @@ function resizeCabinetTo(inst, W, H, D, lock){
           const grp=state.boards.filter(x=>x._dg===dg&&x.cabInst===inst);
           if(grp.length) try{ refitDrawerBox(grp,carcG); }catch(e){ console.error(e); } });
       } }); }catch(e){ console.error(e); } }
+  /* ───────── v1.606: ปรับขนาดตู้แล้วบานมือจับฝังเต็มใบค้าง ─────────
+     พบตอนทดสอบ R122: หลังกดปรับขนาด บานสูง 756.5 (ตัดมือจับออกแล้วต้อง 712) จนกว่าจะมีการแก้อะไรอีกครั้ง — มีมาก่อนแล้วตั้งแต่ 1.592
+     ต้นเหตุ: applyDoorSpecs ช่วงท้ายตั้งบานกลับเต็มใบ หลัง ehpHealAll รอบ sync ของการปรับขนาดทำงานไปแล้ว · ออกใบตัดทันทีจะได้บานยาวเกิน
+     ตอนนี้: ตู้ที่มีบานมือจับฝัง ตัดซ้ำตอนจบการปรับขนาด (ทั้งบาน ร่อง และมือจับ) */
+  try{ if(!snOff("ehp")&&state.boards.some(b=>b&&b.cabInst===inst&&b._ehp)){ if(ehpHealAll()) sync(0,0,0); } }catch(e){ console.error("ehp resize:",e); }
   return out;
 }
 /* v7.70: "ขนาดตู้ตามแบบ" = ขนาดก่อนหักส่วนที่ปรับด้วยสูตร
