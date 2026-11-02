@@ -3283,7 +3283,7 @@ body[data-theme="dark"] .splash-dots span{background:rgba(255,255,255,.25)}
    ===================================================================== */
 /* ---- APP_META: แหล่งความจริงเดียวของเวอร์ชัน (ดูได้จาก console / คลิกชื่อแอป) ---- */
 const APP_META={
-  name:"StarNexus", version:"1.614", build:"2026-11-02/bedroom-props-tv",
+  name:"StarNexus", version:"1.615", build:"2026-11-02/pillow",
   file:"StarNexus.html", basedOn:"Furnitech_V3.html (v3.11)",
   /* ───────── เริ่มนับเวอร์ชันใหม่ที่ 1.001 (21/08/2026) ─────────
      ของเดิมนับมาถึง 42.1 แล้ววิ่งเป็นทศนิยมสองชั้นซึ่งอ่านลำดับยาก
@@ -3291,6 +3291,7 @@ const APP_META={
      ประวัติเก่าเก็บไว้ทั้งหมดตามเลขเดิม ไม่ไล่เขียนใหม่ เพราะเลขในนั้นถูกอ้างถึงไปแล้ว
      รายการที่อยู่ใต้ 1.001 ลงไปจึงเป็นเลขชุดเก่า อ่านต่อกันได้ตามวันที่ */
   changelog:[
+    ["1.615","2026-11-02","UI หมอนบนเตียงเป็นทรงหมอนจริง (ผู้ใช้ 20:10 “หมอนไม่ค่อยสมจริงเลย”) — เดิมเป็นทรงไข่ลอยกลางเตียง ตอนนี้ขอบบีบ มุมแหลม ป่องกลาง มีรอยย่นรอบขอบ พิงหัวเตียง · ลดความสว่างผ้าปูและผ้าห่มให้เห็นเงา"],
     ["1.614","2026-11-02","FEAT ของในห้อง (ผู้ใช้ 19:49) — ① หมวด ห้องนอน เบื้องต้น: เตียง 3.5 / 5 / 6 ฟุต (เลือกสีหัวเตียงได้) โต๊ะข้างเตียง โต๊ะเครื่องแป้ง กระจกตั้งพื้น โคมไฟตั้งพื้น พรม แอร์ติดผนัง · เตียงและเฟอร์นิเจอร์ดูดชิดผนังแบบตู้เย็น ② หมวด ทีวีติดผนัง: SAMSUNG 43 / 55 / 65 นิ้ว 3D โลโก้บนจอและขอบล่าง เลือกจอดับได้ · Ctrl+C/V ใช้ได้ทุกชิ้น ฉากซ่อนตู้ไม่ซ่อนของพวกนี้"],
     ["1.613","2026-11-02","FIX+FEAT ห้องออกแบบ (ผู้ใช้ 19:30 project 36 ตู้เสื้อผ้า MWA050 · 19:33) — ① ฟิลเลอร์บน/ตีนตู้ ตามสีหน้าบาน: เดิมนับสีจากตู้ลอย/ตู้พื้นเท่านั้น งานที่มีแต่ตู้สูงหรือตู้เสื้อผ้าจึงได้สี “-” · ฟิลเลอร์บนเปลี่ยนสีทันทีแบบตีนตู้ ② ฟิลเลอร์บนวิ่งข้ามฟิลเลอร์ข้างตู้ที่สูงแค่หัวตู้ ไปชนผนัง ③ ตู้เสื้อผ้า (รหัสนอกหมวด B/W/T ที่ทรงเป็นตู้สูง) มีปุ่มแผ่นปิดข้าง ใช้รุ่น TFF ④ Ctrl+C / Ctrl+V: เสา ฝ้า ไฟ ประตู หน้าต่าง เครื่องใช้ (ขนาดที่ปรับไว้ติดไป) และตู้ · แป้นไทยก็กดได้ ⑤ กล่องสี แท็บแบบบาน: กล่องกว้างขึ้น การ์ดแนวตั้ง บานตัวอย่างขนาดเดียวกัน เห็นหน้าตาบานชัด · เลือกแล้วไม่เด้งกลับบนสุด"],
     ["1.612","2026-11-02","CHANGE ปุ่ม ล้าง ล้างห้องไปด้วย (ผนัง ประตู หน้าต่าง เครื่องใช้ ท็อป ฉาก) · เลือกล้างแค่ตู้ได้ในกล่อง · ห้องล็อกอยู่ไม่แตะห้อง · Ctrl+Z คืนได้ · ปิด SN_OFF.clearRoom"],
@@ -39388,10 +39389,30 @@ function plaAcMesh(o,G,box,M,th,w,h,d){ const y0=Math.max(+o.sill||0,0), z0=th/2
   box(w,h,d*0.62,0,y0+h/2,z0+d*0.31,wh); box(w,h*0.66,d*0.38,0,y0+h*0.67,z0+d*0.81,wh); box(w-4,h*0.04,d*0.36,0,y0+h*0.34,z0+d*0.81,gy);
   box(w-50,h*0.24,d*0.3,0,y0+h*0.17,z0+d*0.72,gy); box(w-70,h*0.05,3,0,y0+h*0.22,z0+d*0.875,dk); box(w-70,h*0.05,3,0,y0+h*0.11,z0+d*0.875,dk);
   box(58,18,2,w/2-90,y0+h*0.48,z0+d+1,dk); box(8,8,2,w/2-48,y0+h*0.48,z0+d+1,M(0x7fd0ff,{emissive:0x4fb4ff,emissiveIntensity:.9})); }
+/* ───────── v1.615: หมอนทรงจริง ─────────
+   ผู้ใช้ 2/11 20:10 (ภาพเตียง 3.5 ฟุต หมอนเป็นก้อนไข่สีขาวกลางเตียง): “หมอนไม่ค่อยสมจริงเลย”
+   เดิม (1.614): ทรงกลมบีบ ไม่มีขอบ ไม่มีมุม สีสว่างจนผิวบนขาวล้วนไม่เห็นเงา
+   ตอนนี้: ตาข่ายสองผิวเชื่อมกันที่รอบขอบ (ขอบบาง กลางป่อง) · ด้านเว้าเข้า มุมแหลมแบบหมอนจริง · รอยย่นไล่จากขอบเข้ากลาง · สีเข้มลงที่ตะเข็บและร่องย่น (vertex color) จึงเห็นทรงแม้แสงจ้า
+     พิงหัวเตียงเอียง 53° · ขนาดหมอนไทย 740×480 หนา 170 · seed ต่างกัน = รอยย่นสองใบไม่ซ้ำ · ไม่สุ่ม ภาพคงเดิมทุกครั้งที่วาด
+     เก็บตาข่ายไว้ใช้ซ้ำ เพราะห้องวาดใหม่ทุกจังหวะที่ลาก */
+const _plaPilG=new Map();
+function plaPillowGeo(W,D,T,seed){ const key=[Math.round(W),Math.round(D),Math.round(T),seed].join("|"); if(_plaPilG.has(key)) return _plaPilG.get(key);
+  const N=34, pos=[], col=[], idx=[], sm=(a,b,x)=>{ const t=Math.min(Math.max((x-a)/(b-a),0),1); return t*t*(3-2*t); }, S=N+1;
+  [1,-1].forEach((sd,si)=>{ for(let j=0;j<=N;j++) for(let i=0;i<=N;i++){
+    const su=-1+2*i/N, sv=-1+2*j/N, u=Math.sign(su)*Math.pow(Math.abs(su),.82), v=Math.sign(sv)*Math.pow(Math.abs(sv),.82), au=Math.abs(u), av=Math.abs(v);   /* จุดถี่ที่ขอบ */
+    const x=W/2*u*(1-.055*(1-v*v)), z=D/2*v*(1-.075*(1-u*u));                     /* ด้านเว้าเข้า มุมยื่น */
+    const base=Math.pow(1-Math.pow(au,2.8),.6)*Math.pow(1-Math.pow(av,2.8),.6), ang=Math.atan2(v*D,u*W), edge=sm(.5,.97,Math.max(au,av));
+    const cr=.5*Math.sin(ang*17+seed*1.7)+.5*Math.sin(ang*29+seed*3.1), dent=sd>0?Math.exp(-(u*u/.26+v*v/.2)):0;   /* รอยย่นจากขอบ · ผิวบนยุบกลางนิด ๆ */
+    const h=T/2*base*(1+.11*cr*edge)*(1+.06*Math.sin(u*2.2+seed)*Math.cos(v*1.9+seed*1.3))*(1-.11*dent);
+    pos.push(x,(sd>0?h:-h*.8)-T*.03*u*u,z);
+    const sh=1-.34*(1-sm(0,.34,base))-.14*Math.max(-cr,0)*edge-.05*dent; col.push(sh,sh,sh); } });
+  [0,1].forEach(si=>{ const o=si*S*S; for(let j=0;j<N;j++) for(let i=0;i<N;i++){ const a=o+j*S+i, b=a+1, c=a+S, e=c+1;
+    if(si===0) idx.push(a,c,b,b,c,e); else idx.push(a,b,c,b,e,c); } });
+  const g=new THREE.BufferGeometry(); g.setAttribute("position",new THREE.Float32BufferAttribute(pos,3)); g.setAttribute("color",new THREE.Float32BufferAttribute(col,3)); g.setIndex(idx); g.computeVertexNormals();
+  if(_plaPilG.size>24) _plaPilG.clear(); _plaPilG.set(key,g); return g; }
 function plaPropMesh(o,T,G,box,M,cyl,y0,w,h,d,k){
-  const ell=(rx,ry,rz,x,y,z,mat)=>{ const s=new THREE.Mesh(new THREE.SphereGeometry(1,24,14),mat); s.scale.set(rx,ry,rz); s.position.set(x,y,z); s.castShadow=true; G.add(s); return s; };
   const wood=M(0x9a7853,{roughness:.62}), woodL=M(0xa98863,{roughness:.58}), legM=M(0x3b3028,{roughness:.6}), knob=M(0xb9a06a,{metalness:.7,roughness:.3}), mir=M(0xd3e2ea,{metalness:.25,roughness:.12}), C=PLA_PROP_COL[o.col]||PLA_PROP_COL.grey;
-  if(T.bed){ const hb=70, fab=M(C.c,{roughness:.93}), sheet=M(0xdedbd4,{roughness:.86}), duv=M(0xc8c5bc,{roughness:.92}), pil=M(0xe9e6df,{roughness:.9}), acc=M(new THREE.Color(C.c).multiplyScalar(.72),{roughness:.96});
+  if(T.bed){ const hb=70, fab=M(C.c,{roughness:.93}), sheet=M(0xc9c6bf,{roughness:.88}), duv=M(0xb3b0a8,{roughness:.93}), pil=M(0xd2cfc8,{roughness:.96,vertexColors:true}), acc=M(new THREE.Color(C.c).multiplyScalar(.72),{roughness:.96});
     const zh=-d/2+hb, len=d-hb, zc=zh+len/2, lg=80, bh=220, mh=230, yB=y0+lg, yM=yB+bh, yT=yM+mh;
     box(w,Math.max(h,yT-y0+40),hb,0,y0+Math.max(h,yT-y0+40)/2,-d/2+hb/2,fab);                                    // หัวเตียง
     box(w,bh,len,0,yB+bh/2,zc,fab);                                                                               // ฐาน
@@ -39399,7 +39420,10 @@ function plaPropMesh(o,T,G,box,M,cyl,y0,w,h,d,k){
     box(w-30,mh,len-16,0,yM+mh/2,zc,sheet);                                                                       // ที่นอน
     const dL=len*0.66, dZ=zh+len-dL/2-4; box(w-12,130,dL,0,yT+34-65,dZ,duv); box(w-10,46,210,0,yT+24,dZ-dL/2+105,sheet);   // ผ้าห่ม + ขอบพับ
     box(w-4,190,430,0,yT+42-95,zh+len-240,acc);                                                                   // ผ้าคลุมปลายเตียง
-    const n=w<1300?1:2, pw=n===1?Math.min(w-220,720):Math.min((w-110)/2-16,720); for(let i=0;i<n;i++){ const px=n===1?0:(i?1:-1)*(pw/2+16); ell(pw/2,86,200,px,yT+66,zh+230,pil); }
+    /* v1.615: หมอนพิงหัวเตียง — ขอบล่างแตะที่นอน ขอบบนชิดหัวเตียง */
+    const n=w<1300?1:2, pw=n===1?Math.min(w-220,740):Math.min((w-110)/2-16,740), pd=Math.min(480,len*.3), pt=Math.min(170,pd*.36), tilt=.92;
+    for(let i=0;i<n;i++){ const px=n===1?0:(i?1:-1)*(pw/2+16), m=new THREE.Mesh(plaPillowGeo(pw,pd,pt,i+1),pil);
+      m.position.set(px,yT+pd/2*Math.sin(tilt)+8,zh+pd/2*Math.cos(tilt)+20); m.rotation.set(tilt,(i?1:-1)*(n===1?0:.018),(i?-1:1)*.012); m.castShadow=true; m.receiveShadow=true; G.add(m); }
     return true; }
   if(k==="nstand"){ const lg=Math.min(h*0.25,130), bh=Math.max(h-lg,60), dh=(bh-34)/2; box(w,bh,d,0,y0+lg+bh/2,0,wood);
     [0,1].forEach(i=>{ const cy=y0+lg+11+dh/2+i*(dh+12); box(w-22,dh,8,0,cy,d/2+4,woodL); cyl(9,9,16,0,cy,d/2+14,knob,true); });
@@ -39727,7 +39751,9 @@ function ploPasteFree(o){ const r=plRoom(), gap=o.k==="dl"?510:100, ext=(()=>{ c
   for(let m=1;m<=40;m++) for(const d of [[1,0],[-1,0],[0,1],[0,-1]]){ const x=x0+d[0]*m*dx, z=z0+d[1]*m*dz; if(inRoom(x,z)&&!ploOverlap(o,x,z)){ o.x=Math.round(x*10)/10; o.z=Math.round(z*10)/10; return true; } }
   /* ชิ้นใหญ่ (ฝ้า) ไม่มีที่ว่างข้าง ๆ = ขยับเท่าที่ห้องให้ ทับบางส่วนแต่ยังเห็นสองชิ้น · ขยับไม่ได้เลยจึงไปกลางห้อง */
   const cl=(v,lo,hi)=>lo>hi?(lo+hi)/2:Math.min(Math.max(v,lo),hi), X0=r.x0+ext[0]/2, X1=r.x0+r.w-ext[0]/2, Z0=r.z0+ext[1]/2, Z1=r.z0+r.d-ext[1]/2;
-  let best=null, bd=1; [[x0+dx,z0],[x0-dx,z0],[x0,z0+dz],[x0,z0-dz]].forEach(p=>{ const x=cl(p[0],X0,X1), z=cl(p[1],Z0,Z1), m=Math.hypot(x-x0,z-z0); if(m>bd&&!ploOverlap(o,x,z)||(m>bd&&!best)){ best=[x,z]; bd=m; } });
+  /* v1.615: เลือกจุดที่ห่างชิ้นชนิดเดียวกันมากที่สุด (เดิมวัดจากจุดตั้งต้น ห้องแน่น ๆ เตียงสำเนาจึงมาทับตัวเดิมเกือบสนิท) */
+  let best=null, bd=1; [[x0+dx,z0],[x0-dx,z0],[x0,z0+dz],[x0,z0-dz],[r.x0+r.w/2,r.z0+r.d/2]].forEach(p=>{ const x=cl(p[0],X0,X1), z=cl(p[1],Z0,Z1); let m=Infinity;
+    ploList().forEach(c=>{ if(c&&c.id!==o.id&&c.k===o.k&&!c.wk) m=Math.min(m,Math.hypot(x-(+c.x||0),z-(+c.z||0))); }); if(m>bd){ best=[x,z]; bd=m; } });
   if(best){ o.x=Math.round(best[0]*10)/10; o.z=Math.round(best[1]*10)/10; }
   else { o.x=r.x0+r.w/2; o.z=r.z0+r.d/2; }
   return false; }
