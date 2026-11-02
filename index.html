@@ -3283,7 +3283,7 @@ body[data-theme="dark"] .splash-dots span{background:rgba(255,255,255,.25)}
    ===================================================================== */
 /* ---- APP_META: แหล่งความจริงเดียวของเวอร์ชัน (ดูได้จาก console / คลิกชื่อแอป) ---- */
 const APP_META={
-  name:"StarNexus", version:"1.613", build:"2026-11-02/filler-copy",
+  name:"StarNexus", version:"1.614", build:"2026-11-02/bedroom-props-tv",
   file:"StarNexus.html", basedOn:"Furnitech_V3.html (v3.11)",
   /* ───────── เริ่มนับเวอร์ชันใหม่ที่ 1.001 (21/08/2026) ─────────
      ของเดิมนับมาถึง 42.1 แล้ววิ่งเป็นทศนิยมสองชั้นซึ่งอ่านลำดับยาก
@@ -3291,6 +3291,7 @@ const APP_META={
      ประวัติเก่าเก็บไว้ทั้งหมดตามเลขเดิม ไม่ไล่เขียนใหม่ เพราะเลขในนั้นถูกอ้างถึงไปแล้ว
      รายการที่อยู่ใต้ 1.001 ลงไปจึงเป็นเลขชุดเก่า อ่านต่อกันได้ตามวันที่ */
   changelog:[
+    ["1.614","2026-11-02","FEAT ของในห้อง (ผู้ใช้ 19:49) — ① หมวด ห้องนอน เบื้องต้น: เตียง 3.5 / 5 / 6 ฟุต (เลือกสีหัวเตียงได้) โต๊ะข้างเตียง โต๊ะเครื่องแป้ง กระจกตั้งพื้น โคมไฟตั้งพื้น พรม แอร์ติดผนัง · เตียงและเฟอร์นิเจอร์ดูดชิดผนังแบบตู้เย็น ② หมวด ทีวีติดผนัง: SAMSUNG 43 / 55 / 65 นิ้ว 3D โลโก้บนจอและขอบล่าง เลือกจอดับได้ · Ctrl+C/V ใช้ได้ทุกชิ้น ฉากซ่อนตู้ไม่ซ่อนของพวกนี้"],
     ["1.613","2026-11-02","FIX+FEAT ห้องออกแบบ (ผู้ใช้ 19:30 project 36 ตู้เสื้อผ้า MWA050 · 19:33) — ① ฟิลเลอร์บน/ตีนตู้ ตามสีหน้าบาน: เดิมนับสีจากตู้ลอย/ตู้พื้นเท่านั้น งานที่มีแต่ตู้สูงหรือตู้เสื้อผ้าจึงได้สี “-” · ฟิลเลอร์บนเปลี่ยนสีทันทีแบบตีนตู้ ② ฟิลเลอร์บนวิ่งข้ามฟิลเลอร์ข้างตู้ที่สูงแค่หัวตู้ ไปชนผนัง ③ ตู้เสื้อผ้า (รหัสนอกหมวด B/W/T ที่ทรงเป็นตู้สูง) มีปุ่มแผ่นปิดข้าง ใช้รุ่น TFF ④ Ctrl+C / Ctrl+V: เสา ฝ้า ไฟ ประตู หน้าต่าง เครื่องใช้ (ขนาดที่ปรับไว้ติดไป) และตู้ · แป้นไทยก็กดได้ ⑤ กล่องสี แท็บแบบบาน: กล่องกว้างขึ้น การ์ดแนวตั้ง บานตัวอย่างขนาดเดียวกัน เห็นหน้าตาบานชัด · เลือกแล้วไม่เด้งกลับบนสุด"],
     ["1.612","2026-11-02","CHANGE ปุ่ม ล้าง ล้างห้องไปด้วย (ผนัง ประตู หน้าต่าง เครื่องใช้ ท็อป ฉาก) · เลือกล้างแค่ตู้ได้ในกล่อง · ห้องล็อกอยู่ไม่แตะห้อง · Ctrl+Z คืนได้ · ปิด SN_OFF.clearRoom"],
     ["1.611","2026-11-02","FEAT AI RENDER เลือกภาพตั้งต้นได้: 🖥 ภาพจากจอ (ตั้งต้น · ไม่เปิดโหมดสมจริง) หรือ ✨ โหมดสมจริงแบบเดิม · ปิด SN_OFF.rndView · FEAT สัญลักษณ์เส้นประกากบาทบนหน้าลิ้นชักใน 3D · ปิด SN_OFF.drawerSym · FIX ลิงก์ดูงาน เส้น V ทิศเปิดหมุนตามบาน ไม่ค้างกลางอากาศ"],
@@ -21223,7 +21224,7 @@ const SCNLY=[["wall","ตู้ลอย"],["base","ตู้พื้น + ท�
 function scnVisNorm(v){ return (v&&(v.wall===0||v.base===0||v.tall===0))?{wall:v.wall===0?0:1, base:v.base===0?0:1, tall:v.tall===0?0:1}:null; }
 function scnVisCap(){ try{ return SCN.vis?Object.assign({},SCN.vis):undefined; }catch(e){ return undefined; } }
 function scnLyOff(k){ try{ return !snOff("scnVis")&&!!SCN.vis&&SCN.vis[k]===0; }catch(e){ return false; } }
-function scnApplHid(o){ const T=(typeof PLO_T!=="undefined")?PLO_T[o&&o.k]:null; if(!T||!T.appl) return false;
+function scnApplHid(o){ const T=(typeof PLO_T!=="undefined")?PLO_T[o&&o.k]:null; if(!T||!T.appl||T.prop) return false;   /* v1.614: ของประกอบห้องไม่ขึ้นกับตู้ */
   return (T.appl==="under"||T.appl==="wall")?scnLyOff("wall"):scnLyOff("base"); }
 /* ชุด cabInst ที่ต้องซ่อนตามฉาก (null = ไม่ซ่อนอะไร) — ระดับตู้จากรหัสของชิ้นที่มีรหัส (ชิ้นเสมือนบางชิ้นไม่มี cab) */
 function scnLyHid(){ let V=null; try{ V=snOff("scnVis")?null:SCN.vis; }catch(e){ return null; } if(!V) return null;
@@ -30377,6 +30378,7 @@ function boardRole(b){
      SN_OFF.plCeilColor=1 ฟิลเลอร์บนไม่เปลี่ยนสีทันทีตอนเปลี่ยนสีหน้าบาน (v1.613)
      SN_OFF.ceilSideFill=1 ฟิลเลอร์บนจบที่ข้างตู้ ไม่วิ่งข้ามฟิลเลอร์ข้างตู้ (v1.613)
      SN_OFF.plSideOther=1 ตู้นอกหมวด B/W/T ไม่มีปุ่มแผ่นปิดข้าง (v1.613)
+     SN_OFF.plProps=1     ซ่อนการ์ดของห้องนอนและทีวีในแคตตาล็อก ชิ้นที่วางแล้วยังวาดอยู่ (v1.614)
      SN_OFF.plClip=1      ปิด Ctrl+C / Ctrl+V ในห้องออกแบบ (v1.613)
      SN_OFF.plShapeBig=1  แท็บแบบบานในกล่องสี ขนาดการ์ดเล็กและวาดตามสัดส่วนจริงแบบเดิม (v1.613)
      SN_OFF.rndView=1     AI RENDER เปิดโหมดสมจริงทุกครั้งแบบเดิม ไม่มีแถวภาพตั้งต้น (v1.611)
@@ -38736,7 +38738,25 @@ const PLO_T={
   /* v1.577: ตู้เย็น SMEG FAB28 เรโทร 1 บาน (ผู้ใช้ 31/10 09:43 ภาพสีครีม) — ขนาดประมาณจากสเปกรุ่น แก้ได้/บันทึกเป็นรุ่นได้ · o.col = สี (PLA_SMEG_COL) */
   smeg:{n:"ตู้เย็น SMEG FAB28 (เรโทร 1 บาน)", s:"ตู้เย็น SMEG", ic:"🧊", w:601, h:1503, d:728, appl:"floor", fridge:"smeg"},
   /* v1.579: เครื่องซักผ้าฝาหน้า (ผู้ใช้ 31/10 11:17 สเปก 598 × 848 × 636 รวมบาน · ตัวเครื่องลึก 590) — ดูดผนัง/หาที่ว่างแบบตู้เย็น (fridge:"wash") · o.col ขาว/เงิน/ดำ */
-  wash:{n:"เครื่องซักผ้าฝาหน้า", s:"เครื่องซักผ้า", ic:"🫧", w:598, h:848, d:636, appl:"floor", fridge:"wash"} };   // v1.536: เสา (อิสระ · กว้าง = แนว X · ลึก = แนว Z · สูงตั้งต้นถึงฝ้า)
+  wash:{n:"เครื่องซักผ้าฝาหน้า", s:"เครื่องซักผ้า", ic:"🫧", w:598, h:848, d:636, appl:"floor", fridge:"wash"},
+  /* ───────── v1.614: ของห้องนอน + ทีวี ─────────
+     ผู้ใช้ 2/11 19:49 (ภาพตู้เสื้อผ้าในห้องเปล่า + แคตตาล็อกของในห้องที่มีแต่ของครัว): “1. ห้องนอนต้องเพิ่ม Prop เหมือนห้องครัวครับ คุณลองเพิ่มให้เบื้องต้น 2. เพิ่ม TV ติดผนัง 3D ยี่ห้อ SAMSUNG ที”
+     prop = ของประกอบห้อง ไม่ขึ้นกับตู้ (ฉากที่ซ่อนตู้พื้น/ตู้ลอยยังเห็น) · snap = ลากเข้าใกล้ผนังแล้วหันหลังชิดผนังแบบตู้เย็น (หัวเตียงอยู่ฝั่ง −Z)
+     เตียง = กว้าง × ยาว รวมโครง ที่นอนมาตรฐานไทย 3.5 / 5 / 6 ฟุต · h = สูงหัวเตียง · ขนาดอื่นเป็นค่าตั้งต้นทั่วไป แก้ที่แผงได้ทุกชิ้น
+     ทีวี (ไม่รวมขาตั้ง): 43" Crystal UHD U8070F 957×558×76 ตามสเปก · 55" และ 65" กว้าง 1,225 และ 1,444 ตามสเปก U7099F สูงคิดจากจอ 16:9 (ค่าประมาณ) · o.scr="off" = จอดับ
+     ปิดการ์ด SN_OFF.plProps=1 */
+  bed35:{n:"เตียง 3.5 ฟุต", ic:"🛏", w:1100, h:1000, d:2080, appl:"floor", bed:1, snap:1, prop:1},
+  bed5:{n:"เตียง 5 ฟุต", ic:"🛏", w:1560, h:1000, d:2080, appl:"floor", bed:1, snap:1, prop:1},
+  bed6:{n:"เตียง 6 ฟุต", ic:"🛏", w:1860, h:1000, d:2080, appl:"floor", bed:1, snap:1, prop:1},
+  nstand:{n:"โต๊ะข้างเตียง", ic:"🗄", w:500, h:520, d:400, appl:"floor", snap:1, prop:1},
+  dress:{n:"โต๊ะเครื่องแป้ง", ic:"🪞", w:1000, h:1500, d:450, appl:"floor", snap:1, prop:1},
+  fmirror:{n:"กระจกตั้งพื้น", ic:"🪞", w:600, h:1700, d:60, appl:"floor", snap:1, prop:1},
+  flamp:{n:"โคมไฟตั้งพื้น", ic:"💡", w:400, h:1600, d:400, appl:"floor", prop:1},
+  rug:{n:"พรม", ic:"🟫", w:2000, h:12, d:1500, appl:"floor", rug:1, prop:1},
+  ac:{n:"แอร์ติดผนัง", ic:"❄", w:800, h:280, d:210, sill:2100, wall:1, appl:"wall", ac:1, prop:1},
+  tv43:{n:"SAMSUNG 43 นิ้ว", s:"ทีวี SAMSUNG 43\"", ic:"📺", w:957, h:558, d:76, sill:950, wall:1, appl:"wall", tv:1, prop:1},
+  tv55:{n:"SAMSUNG 55 นิ้ว", s:"ทีวี SAMSUNG 55\"", ic:"📺", w:1225, h:709, d:77, sill:800, wall:1, appl:"wall", tv:1, prop:1},
+  tv65:{n:"SAMSUNG 65 นิ้ว", s:"ทีวี SAMSUNG 65\"", ic:"📺", w:1444, h:830, d:78, sill:750, wall:1, appl:"wall", tv:1, prop:1} };   // v1.536: เสา (อิสระ · กว้าง = แนว X · ลึก = แนว Z · สูงตั้งต้นถึงฝ้า)
 function ploList(){ const r=plRoom(); if(!Array.isArray(r.obj)) r.obj=[]; return r.obj; }
 function ploGet(id){ return ploList().find(o=>o&&o.id===id)||null; }
 function ploFrames(){ const out=[], r=plRoom(), T=100;
@@ -38949,6 +38969,16 @@ function plaLibCards(L,lk){ if(snOff("plAppl")) return ""; const ks=new Set(L||[
   return plaLib().filter(m=>m&&ks.has(m.k)&&PLO_T[m.k]).map(m=>'<div class="plCard" data-k="'+m.k+'" data-m="'+escapeHtml(String(m.id))+'" title="'+escapeHtml((m.n||"")+(m.code?(" · "+m.code):""))+'"'+(lk?' style="opacity:.5"':'')+'>'
     +'<div class="plTh" style="color:var(--accent,#007aff)">'+ploIcon(m.k)+'</div><b style="font-family:inherit">'+escapeHtml(String(m.n||""))+'</b><small>'+escapeHtml(Math.round(+m.w||0)+"×"+Math.round(+m.d||0)+(m.code?(" · "+m.code):" · รุ่นที่บันทึก"))+'</small></div>').join(""); }
 function plaIcon(k,s,e){ const F='fill="rgba(160,170,180,.35)"';
+  /* v1.614: ห้องนอน + ทีวี */
+  if(/^bed/.test(k)){ const hw=k==="bed35"?15:k==="bed5"?22:27, pl=k==="bed35"?[[40,18]]:[[40-hw/2,hw-4],[40+hw/2,hw-4]];
+    return s+'<rect x="'+(40-hw)+'" y="8" width="'+(2*hw)+'" height="64" rx="3"/><path d="M'+(40-hw)+' 16h'+(2*hw)+'" stroke-width="5"/>'+pl.map(p=>'<rect x="'+(p[0]-p[1]/2)+'" y="20" width="'+p[1]+'" height="11" rx="4" '+F+'/>').join("")+'<path d="M'+(40-hw)+' 38h'+(2*hw)+'"/><rect x="'+(40-hw)+'" y="38" width="'+(2*hw)+'" height="34" rx="3" fill="rgba(160,170,180,.2)"/>'+e; }
+  if(k==="nstand") return s+'<rect x="20" y="20" width="40" height="42" rx="2"/><path d="M20 41h40"/><path d="M36 30h8M36 51h8" stroke-width="4"/><path d="M25 62v10M55 62v10"/>'+e;
+  if(k==="dress") return s+'<rect x="26" y="8" width="28" height="30" rx="14" fill="rgba(159,199,216,.35)"/><rect x="10" y="38" width="60" height="7"/><rect x="12" y="45" width="20" height="16"/><path d="M12 45v27M68 45v27"/><path d="M18 53h8" stroke-width="3"/>'+e;
+  if(k==="fmirror") return s+'<rect x="26" y="6" width="28" height="62" rx="3" fill="rgba(159,199,216,.35)"/><path d="M33 22l10-10M33 40l18-18" stroke-width="1.5"/><path d="M20 68h40v5H20z"/>'+e;
+  if(k==="flamp") return s+'<path d="M28 34L33 10h14l5 24z" fill="rgba(255,226,170,.6)"/><path d="M40 34v34"/><path d="M26 72h28" stroke-width="5"/>'+e;
+  if(k==="rug") return s+'<rect x="8" y="18" width="64" height="44" rx="2" '+F+'/><rect x="15" y="25" width="50" height="30" rx="1"/><path d="M4 22v36M76 22v36" stroke-dasharray="2 3"/>'+e;
+  if(k==="ac") return s+'<rect x="6" y="24" width="68" height="28" rx="6"/><path d="M12 44h56"/><path d="M14 48h52" stroke-width="1.5"/><circle cx="62" cy="33" r="2" fill="currentColor"/><path d="M24 58l-3 9M40 58v10M56 58l3 9" stroke-width="2" stroke-dasharray="3 3"/>'+e;
+  if(/^tv\d/.test(k)){ const hw=k==="tv43"?26:k==="tv55"?32:37, hh=Math.round(hw*0.58); return s+'<rect x="'+(40-hw)+'" y="'+(38-hh)+'" width="'+(2*hw)+'" height="'+(2*hh)+'" rx="2" fill="rgba(25,30,45,.9)"/><text x="40" y="41" font-size="8.5" font-weight="700" letter-spacing=".6" text-anchor="middle" fill="#fff" stroke="none" font-family="Arial,Helvetica,sans-serif">SAMSUNG</text>'+e; }
   if(k==="sink") return s+'<rect x="6" y="28" width="68" height="26" rx="3"/><rect x="11" y="32" width="32" height="18" rx="3" '+F+'/><path d="M48 36h22M48 41h22M48 46h22" stroke-width="1.5"/><path d="M27 28v-12h10"/>'+e;
   if(k==="sink2") return s+'<rect x="4" y="28" width="72" height="26" rx="3"/><rect x="8" y="32" width="30" height="18" rx="3" '+F+'/><rect x="42" y="32" width="30" height="18" rx="3" '+F+'/><path d="M40 28v-12h10"/>'+e;
   if(k==="hob") return s+'<rect x="6" y="24" width="68" height="32" rx="3" fill="rgba(30,30,30,.85)"/><circle cx="26" cy="40" r="9" stroke="#ddd"/><circle cx="54" cy="40" r="9" stroke="#ddd"/><circle cx="26" cy="40" r="3" fill="#ddd" stroke="none"/><circle cx="54" cy="40" r="3" fill="#ddd" stroke="none"/>'+e;
@@ -39273,6 +39303,7 @@ function plaFridgeRect(x,z,w,d,yaw){ const q=(((+yaw||0)%180)+180)%180, a=q?d:w,
 function plaFridgeFree(o,pt){ const r=plRoom(), w=Math.max(+o.w||600,100), d=Math.max(+o.d||650,100), obs=[];
   try{ Object.keys(plCabMap()).forEach(i=>{ const f=plFp(plBoardsOf(i)); if(f&&f.lo&&f.lo[1]<1000) obs.push([f.lo[0],f.lo[2],f.hi[0],f.hi[2]]); }); }catch(e){}
   try{ ploList().forEach(x=>{ if(!x||x===o||x.id===o.id) return; const T2=PLO_T[x.k]||{};
+      if(T2.rug) return;   /* v1.614: พรมวางของทับได้ */
       if(T2.appl==="floor") obs.push(plaFridgeRect(+x.x||0,+x.z||0,+x.w||300,+x.d||300,x.yaw));
       else if(/^(door|door2|slide|open)$/.test(x.k)){ const F=ploFrameOf(x), P=ploPose(x,F), ww=+x.w||900, rr=ploPose(x,F).rot, cx=P.x+Math.sin(rr)*450, cz=P.z+Math.cos(rr)*450;   /* ช่องประตู + ที่เดินหน้าประตู 900 */
         obs.push(plaFridgeRect(cx,cz,ww,900,Math.round(rr*180/Math.PI))); }
@@ -39285,9 +39316,9 @@ function plaFridgeFree(o,pt){ const r=plRoom(), w=Math.max(+o.w||600,100), d=Mat
       plaFridgeSnap(tmp,[p[0],p[2]],k); const R=plaFridgeRect(tmp.x,tmp.z,w,d,tmp.yaw); if(hit(R)) continue;
       const dd=Math.hypot(tmp.x-pt[0],tmp.z-pt[1]); if(dd<bd){ bd=dd; best={x:tmp.x,z:tmp.z,yaw:tmp.yaw}; } } });
   if(best){ o.x=best.x; o.z=best.z; o.yaw=best.yaw; o.wk=null; return true; }
-  plaFridgeSnap(o,pt,true); setTimeout(()=>toast("🧊 ผนังที่เปิดอยู่ไม่มีที่ว่างพอ — วางชิดผนังใกล้สุดไว้ก่อน ลากไปวางเองได้"),60); return false; }
+  plaFridgeSnap(o,pt,true); setTimeout(()=>toast(((PLO_T[o.k]||{}).ic||"🧊")+" ผนังที่เปิดอยู่ไม่มีที่ว่างพอ — วางชิดผนังใกล้สุดไว้ก่อน ลากไปวางเองได้"),60); return false; }
 function plaAuto(o){ const md=PLO_T[o.k].appl, c=orbit.target; let best=null, bd=Infinity;
-  if(PLO_T[o.k].fridge&&!snOff("plFridgeSnap")){ plaFridgeFree(o,[c.x,c.z]); return true; }
+  if((PLO_T[o.k].fridge||PLO_T[o.k].snap)&&!snOff("plFridgeSnap")){ plaFridgeFree(o,[c.x,c.z]); return true; }   /* v1.614: + snap (เตียง · เฟอร์นิเจอร์) */
   if(PLO_T[o.k].fit&&!snOff("ovenFit")&&plaOvenAuto(o,c)) return true;   /* v1.578: เตาอบ = ช่องที่ใส่ได้ในตู้ใกล้กลางจอ */   /* v1.576: คลิกการ์ดตู้เย็น = ที่ว่างชิดผนังใกล้กลางจอ */
   Object.keys(plCabMap()).forEach(i=>{ const H=plaHostInfo(i,null); if(!H) return; const cd=String(H.f.code||"").toUpperCase(); if(/^[BWT]NF\d|^[BWT]FF\d/.test(cd)) return;
     if(md==="under"?!H.up:(H.up||H.lv==="filler")) return;
@@ -39332,14 +39363,68 @@ function plaSmegTex(){ if(window._smegTex) return window._smegTex;
   x.clearRect(0,0,256,72); x.font="italic bold 60px Georgia,'Times New Roman',serif"; x.textAlign="center"; x.textBaseline="middle";
   x.fillStyle="#5d6168"; x.fillText("smeg",130,40); x.fillStyle="#e9ecef"; x.fillText("smeg",128,37);
   const t=new THREE.CanvasTexture(cv); t.needsUpdate=true; window._smegTex=t; return t; }
+/* ───────── v1.614: ของห้องนอน + ทีวี ─────────  ดูคอมเมนต์ที่ PLO_T */
+const PLA_PROP_COL={ grey:{n:"เทาอ่อน",c:0xbfc1c3}, cream:{n:"ครีม",c:0xddd2bd}, brown:{n:"น้ำตาล",c:0x7f6450}, dark:{n:"เทาเข้ม",c:0x4c4f54}, blue:{n:"น้ำเงินหม่น",c:0x4f6579} };
+/* ตัวอักษร SAMSUNG กว้างเท่า W · เว้นช่องตัวอักษรเองเพราะ letterSpacing ของ canvas ไม่มีทุกเบราว์เซอร์ */
+function plaSamsungText(x,cx,cy,W,col){ const L="SAMSUNG".split(""), sp=11; x.save(); x.font="bold 100px Arial,Helvetica,sans-serif"; x.textBaseline="middle"; x.textAlign="left"; x.fillStyle=col;
+  const ws=L.map(c=>x.measureText(c).width), tot=ws.reduce((a,v)=>a+v,0)+sp*(L.length-1), k=W/tot; x.translate(cx-W/2,cy); x.scale(k,k*0.82);
+  let px=0; L.forEach((c,i)=>{ x.fillText(c,px,0); px+=ws[i]+sp; }); x.restore(); }
+function plaTvTex(){ if(window._tvTex) return window._tvTex; const cv=document.createElement("canvas"); cv.width=1024; cv.height=576; const x=cv.getContext("2d");
+  const g=x.createRadialGradient(512,288,40,512,288,640); g.addColorStop(0,"#1b2f6b"); g.addColorStop(.55,"#0d1738"); g.addColorStop(1,"#050810"); x.fillStyle=g; x.fillRect(0,0,1024,576);
+  plaSamsungText(x,512,288,520,"#f5f7fc"); const t=new THREE.CanvasTexture(cv); t.encoding=THREE.sRGBEncoding; t.needsUpdate=true; window._tvTex=t; return t; }
+function plaTvLogoTex(){ if(window._tvLogo) return window._tvLogo; const cv=document.createElement("canvas"); cv.width=512; cv.height=80; const x=cv.getContext("2d"); x.clearRect(0,0,512,80);
+  plaSamsungText(x,256,41,480,"#e8eaee"); const t=new THREE.CanvasTexture(cv); t.encoding=THREE.sRGBEncoding; t.needsUpdate=true; window._tvLogo=t; return t; }
+function plaTvMesh(o,G,box,M,th,w,h,d){ const y0=Math.max(+o.sill||0,0), zb=th/2+22, zf=zb+d, slim=Math.min(d,26);
+  const body=M(0x17181b,{roughness:.45,metalness:.2}), edge=M(0x0b0c0e,{roughness:.3,metalness:.3});
+  box(Math.min(w*0.34,420),Math.min(h*0.42,320),22,0,y0+h/2,th/2+11,M(0x2a2c30,{roughness:.6,metalness:.4}));   // ขายึดผนัง
+  box(w*0.82,h*0.82,Math.max(d-slim,4),0,y0+h/2,zb+Math.max(d-slim,4)/2,body);                                   // หลังเครื่อง (หนากว่าขอบ)
+  box(w,h,slim,0,y0+h/2,zf-slim/2,edge);                                                                          // ขอบจอ
+  const bz=Math.max(w*0.01,8), sw=w-2*bz, sh=Math.min(sw*9/16,h-bz-Math.max(h*0.03,14)), sy=y0+h-bz-sh/2;
+  const scr=o.scr==="off"?new THREE.MeshStandardMaterial({color:0x050608,roughness:.07,metalness:.35}):new THREE.MeshBasicMaterial({map:plaTvTex()});
+  const pl=new THREE.Mesh(new THREE.PlaneGeometry(sw,sh),scr); pl.position.set(0,sy,zf+0.8); G.add(pl);
+  const bot=sy-sh/2-y0, lw=Math.min(w*0.075,120), lh=lw*80/512;                                                   // โลโก้ขอบล่าง
+  if(bot>lh+2){ const lg=new THREE.Mesh(new THREE.PlaneGeometry(lw,lh),new THREE.MeshBasicMaterial({map:plaTvLogoTex(),transparent:true,depthWrite:false})); lg.position.set(0,y0+bot/2,zf+0.8); G.add(lg); } }
+function plaAcMesh(o,G,box,M,th,w,h,d){ const y0=Math.max(+o.sill||0,0), z0=th/2, wh=M(0xf4f4f1,{roughness:.42}), gy=M(0xdfe0dd,{roughness:.5}), dk=M(0x23262a,{roughness:.4});
+  box(w,h,d*0.62,0,y0+h/2,z0+d*0.31,wh); box(w,h*0.66,d*0.38,0,y0+h*0.67,z0+d*0.81,wh); box(w-4,h*0.04,d*0.36,0,y0+h*0.34,z0+d*0.81,gy);
+  box(w-50,h*0.24,d*0.3,0,y0+h*0.17,z0+d*0.72,gy); box(w-70,h*0.05,3,0,y0+h*0.22,z0+d*0.875,dk); box(w-70,h*0.05,3,0,y0+h*0.11,z0+d*0.875,dk);
+  box(58,18,2,w/2-90,y0+h*0.48,z0+d+1,dk); box(8,8,2,w/2-48,y0+h*0.48,z0+d+1,M(0x7fd0ff,{emissive:0x4fb4ff,emissiveIntensity:.9})); }
+function plaPropMesh(o,T,G,box,M,cyl,y0,w,h,d,k){
+  const ell=(rx,ry,rz,x,y,z,mat)=>{ const s=new THREE.Mesh(new THREE.SphereGeometry(1,24,14),mat); s.scale.set(rx,ry,rz); s.position.set(x,y,z); s.castShadow=true; G.add(s); return s; };
+  const wood=M(0x9a7853,{roughness:.62}), woodL=M(0xa98863,{roughness:.58}), legM=M(0x3b3028,{roughness:.6}), knob=M(0xb9a06a,{metalness:.7,roughness:.3}), mir=M(0xd3e2ea,{metalness:.25,roughness:.12}), C=PLA_PROP_COL[o.col]||PLA_PROP_COL.grey;
+  if(T.bed){ const hb=70, fab=M(C.c,{roughness:.93}), sheet=M(0xdedbd4,{roughness:.86}), duv=M(0xc8c5bc,{roughness:.92}), pil=M(0xe9e6df,{roughness:.9}), acc=M(new THREE.Color(C.c).multiplyScalar(.72),{roughness:.96});
+    const zh=-d/2+hb, len=d-hb, zc=zh+len/2, lg=80, bh=220, mh=230, yB=y0+lg, yM=yB+bh, yT=yM+mh;
+    box(w,Math.max(h,yT-y0+40),hb,0,y0+Math.max(h,yT-y0+40)/2,-d/2+hb/2,fab);                                    // หัวเตียง
+    box(w,bh,len,0,yB+bh/2,zc,fab);                                                                               // ฐาน
+    [[-1,-1],[1,-1],[-1,1],[1,1]].forEach(q=>box(56,lg,56,q[0]*(w/2-70),y0+lg/2,zc+q[1]*(len/2-70),legM));
+    box(w-30,mh,len-16,0,yM+mh/2,zc,sheet);                                                                       // ที่นอน
+    const dL=len*0.66, dZ=zh+len-dL/2-4; box(w-12,130,dL,0,yT+34-65,dZ,duv); box(w-10,46,210,0,yT+24,dZ-dL/2+105,sheet);   // ผ้าห่ม + ขอบพับ
+    box(w-4,190,430,0,yT+42-95,zh+len-240,acc);                                                                   // ผ้าคลุมปลายเตียง
+    const n=w<1300?1:2, pw=n===1?Math.min(w-220,720):Math.min((w-110)/2-16,720); for(let i=0;i<n;i++){ const px=n===1?0:(i?1:-1)*(pw/2+16); ell(pw/2,86,200,px,yT+66,zh+230,pil); }
+    return true; }
+  if(k==="nstand"){ const lg=Math.min(h*0.25,130), bh=Math.max(h-lg,60), dh=(bh-34)/2; box(w,bh,d,0,y0+lg+bh/2,0,wood);
+    [0,1].forEach(i=>{ const cy=y0+lg+11+dh/2+i*(dh+12); box(w-22,dh,8,0,cy,d/2+4,woodL); cyl(9,9,16,0,cy,d/2+14,knob,true); });
+    [[-1,-1],[1,-1],[-1,1],[1,1]].forEach(q=>box(28,lg,28,q[0]*(w/2-26),y0+lg/2,q[1]*(d/2-26),legM)); return true; }
+  if(k==="dress"){ const tH=Math.min(750,h*0.55), tT=28, zb=-d/2, mw=Math.min(w*0.62,760), mH=Math.max(h-tH-16,120), mY=y0+tH+8+mH/2, dw=w*0.36, dh=Math.min(tH*0.5,340);
+    box(w,tT,d,0,y0+tH-tT/2,0,wood); [[-1,-1],[1,-1],[-1,1],[1,1]].forEach(q=>box(34,tH-tT,34,q[0]*(w/2-22),y0+(tH-tT)/2,q[1]*(d/2-22),legM));
+    box(dw,dh,d-20,-w/2+dw/2+4,y0+tH-tT-dh/2,0,wood); [0,1].forEach(i=>{ const cy=y0+tH-tT-8-(dh-16)/4-i*((dh-16)/2); box(dw-14,(dh-30)/2,8,-w/2+dw/2+4,cy,d/2-6,woodL); cyl(8,8,14,-w/2+dw/2+4,cy,d/2+4,knob,true); });
+    box(mw,mH,24,0,mY,zb+22,wood); box(mw-44,mH-44,3,0,mY,zb+36,mir); return true; }
+  if(k==="fmirror"){ const fw=Math.min(w*0.06,34); box(w,h,24,0,y0+h/2,0,wood); box(w-2*fw,h-2*fw,3,0,y0+h/2,13.5,mir); box(w*0.9,18,Math.max(d,120),0,y0+9,0,legM); return true; }
+  if(k==="flamp"){ const rr=w/2, shH=Math.min(h*0.2,320), pole=Math.max(h-shH*0.7,100), dk=M(0x2a2b2e,{roughness:.45,metalness:.5});
+    cyl(rr*0.58,rr*0.62,24,0,y0+12,0,dk); cyl(11,11,pole,0,y0+pole/2,0,dk);
+    const sd=new THREE.Mesh(new THREE.CylinderGeometry(rr*0.7,rr,shH,32,1,true),new THREE.MeshStandardMaterial({color:0xfff1d6,emissive:0xffd9a0,emissiveIntensity:.75,roughness:.9,side:THREE.DoubleSide})); sd.position.set(0,y0+h-shH/2,0); G.add(sd); return true; }
+  if(T.rug){ box(w,h,d,0,y0+h/2,0,M(C.c,{roughness:1})); box(Math.max(w-110,20),2,Math.max(d-110,20),0,y0+h+1,0,M(new THREE.Color(C.c).multiplyScalar(1.22),{roughness:1})); box(Math.max(w-170,20),2,Math.max(d-170,20),0,y0+h+2,0,M(C.c,{roughness:1})); return true; }
+  return false; }
 function plaMesh(o,T,G,box,M,th,r){ const w=Math.max(+o.w||T.w,20), h=Math.max(+o.h||T.h,5), d=Math.max(+o.d||T.d,20), k=o.k;
   const steel=M(0xc9cdd2,{metalness:.55,roughness:.32}), dark=M(0x2b2d31,{roughness:.4}), black=M(0x101113,{roughness:.12,metalness:.25}), bowlM=M(0x9aa1a9,{metalness:.5,roughness:.4}), filt=M(0x6c7178,{metalness:.4,roughness:.5});
   const cyl=(r0,r1,len,x,y,z,mat,front)=>{ const c=new THREE.Mesh(new THREE.CylinderGeometry(r0,r1,len,28),mat); if(front) c.rotation.x=Math.PI/2; c.position.set(x,y,z); c.castShadow=true; G.add(c); return c; };
+  if(T.tv){ plaTvMesh(o,G,box,M,th,w,h,d); return; }   /* v1.614 */
+  if(T.ac){ plaAcMesh(o,G,box,M,th,w,h,d); return; }   /* v1.614 */
   if(T.appl==="wall"){ const y0=Math.max(+o.sill||0,0), z0=th/2, top=Math.max(+r.h||2600,y0+h+60);   // ฮู้ดกระโจม
     box(w,50,d,0,y0+25,z0+d/2,steel); box(w-40,4,d-60,0,y0-1,z0+d/2,filt); box(160,14,6,0,y0+25,z0+d+3,dark);
     const bh=Math.max(h-50,40); box(w*0.5,bh,d*0.62,0,y0+50+bh/2,z0+d*0.31,steel);
     box(280,Math.max(top-(y0+h),10),220,0,y0+h+Math.max(top-(y0+h),10)/2,z0+110,steel); return; }
   const y0=Math.max(+o.y||0,0);
+  if(T.prop&&plaPropMesh(o,T,G,box,M,cyl,y0,w,h,d,k)) return;   /* v1.614 */
   if(k==="sink"||k==="sink2"){ box(w,3,d,0,y0+1.5,0,steel);
     const two=k==="sink2", bw=two?w*0.42:w*0.52, bd=d*0.7, cz=d*0.05, bx=two?[-w*0.23,w*0.23]:[-w*0.2];
     bx.forEach(cx=>{ box(bw,1,bd,cx,y0+3.5,cz,bowlM); box(bw-24,1,bd-24,cx,y0+4.2,cz,M(0x7d848c,{metalness:.5,roughness:.45})); cyl(22,22,1.5,cx,y0+5.2,cz,dark); });
@@ -39439,9 +39524,11 @@ function plaPanel(s,o){ const T=PLO_T[o.k]||{}, F=ploFrameOf(o), md=T.appl;
     +fr("รุ่น",'<select data-pok="mdl"><option value="">'+escapeHtml(T.n||"")+' (ค่าตั้งต้น)</option>'+lib.map(m=>'<option value="'+escapeHtml(String(m.id))+'"'+(m.id===cur?" selected":"")+'>'+escapeHtml(String(m.n||""))+'</option>').join("")+'</select>')
     +fr("รหัสสินค้า",'<input type="text" data-pok="code" value="'+escapeHtml(String(o.code||""))+'" placeholder="ไม่บังคับ" style="width:150px">')
     +fr("กว้าง × ลึก",num("w",o.w)+' × '+num("d",o.d)+'<span class="plU">มม.</span>')
-    +fr(/^(sink1|sinku)$/.test(o.k)?"ลึกอ่าง":/^(sink|sink2|hob|hobi|hobd)$/.test(o.k)?"หนาตัวเครื่อง":"สูง",num("h",o.h)+'<span class="plU">มม.</span>')
-    +(md==="wall"?fr("ก้นฮู้ดสูงจากพื้น",num("sill",o.sill)+'<span class="plU">มม.</span>'):fr(md==="under"?"ก้นตู้ (ระดับติด)":"ระดับวาง (จากพื้น)",num("y",o.y)+'<span class="plU">มม.</span>'))
+    +fr(T.bed?"สูงหัวเตียง":/^(sink1|sinku)$/.test(o.k)?"ลึกอ่าง":/^(sink|sink2|hob|hobi|hobd)$/.test(o.k)?"หนาตัวเครื่อง":"สูง",num("h",o.h)+'<span class="plU">มม.</span>')
+    +(md==="wall"?fr(T.tv?"ขอบล่างจอสูงจากพื้น":T.ac?"ก้นแอร์สูงจากพื้น":"ก้นฮู้ดสูงจากพื้น",num("sill",o.sill)+'<span class="plU">มม.</span>'):fr(md==="under"?"ก้นตู้ (ระดับติด)":"ระดับวาง (จากพื้น)",num("y",o.y)+'<span class="plU">มม.</span>'))
     +(F?fr("ห่างต้นผนัง",num("off",(+o.t||0)-o.w/2)+'<span class="plNote plNB">ผนังยาว '+Math.round(F.L)+'</span>'):"")
+    +((T.bed||T.rug)?fr(T.bed?"สีหัวเตียง":"สีพรม",'<select data-pok="col">'+Object.keys(PLA_PROP_COL).map(c=>'<option value="'+c+'"'+((PLA_PROP_COL[o.col]?o.col:"grey")===c?" selected":"")+'>'+PLA_PROP_COL[c].n+'</option>').join("")+'</select>'):"")   /* v1.614 */
+    +(T.tv?fr("หน้าจอ",'<select data-pok="scr"><option value="">โลโก้ SAMSUNG</option><option value="off"'+(o.scr==="off"?" selected":"")+'>จอดับ</option></select>'):"")   /* v1.614 */
     +(T.fridge==="wash"?fr("สี",'<select data-pok="col">'+[["white","ขาว"],["silver","เงิน"],["black","ดำ"]].map(c=>'<option value="'+c[0]+'"'+((o.col||"white")===c[0]?" selected":"")+'>'+c[1]+'</option>').join("")+'</select>'):"")   /* v1.579 */
     +(T.fridge==="smeg"?fr("สี",'<select data-pok="col">'+Object.keys(PLA_SMEG_COL).map(c=>'<option value="'+c+'"'+((PLA_SMEG_COL[o.col]?o.col:"cream")===c?" selected":"")+'>'+PLA_SMEG_COL[c].n+'</option>').join("")+'</select>'):"")   /* v1.577 */
     +((T.fridge===1||T.fridge==="t"||T.fridge==="smeg")?fr("บานพับ",'<select data-pok="hinge"><option value="R"'+(o.hinge!=="L"?" selected":"")+'>ขวา (มือจับซ้าย)</option><option value="L"'+(o.hinge==="L"?" selected":"")+'>ซ้าย (มือจับขวา)</option></select>'):"")   /* v1.576 */
@@ -39451,13 +39538,14 @@ function plaPanel(s,o){ const T=PLO_T[o.k]||{}, F=ploFrameOf(o), md=T.appl;
       +'<button class="ibtn" id="plaSave" title="เก็บชื่อ รหัส ขนาด เป็นรุ่น — ขึ้นเป็นการ์ดในแคตตาล็อก ใช้ได้ทุกเครื่อง">💾 บันทึกเป็นรุ่น</button>'
       +(cur?'<button class="ibtn" id="plaDelM" title="เอารุ่นนี้ออกจากรายการรุ่น (ชิ้นที่วางแล้วยังอยู่)">✕ ลบรุ่นจากรายการ</button>':'')
       +'<button class="ibtn" id="ploHide" title="ซ่อนชิ้นนี้ — ไม่วาดในห้อง/ภาพ/ใบเสนอราคา · แสดงคืนที่แผงห้อง (แถบ ซ่อนอยู่)">🙈 ซ่อน</button><button class="ibtn" id="ploDel" style="color:#d33">🗑 ลบ (Del)</button><button class="ibtn" id="ploDone">✓ เสร็จ</button></div>'
-    +'<div class="plNote" style="margin-top:4px">'+(T.niche&&!snOff("plaNiche")?"ชี้ช่องโล่งในตู้ (ไม่มีบานบัง) = วางในช่อง · ":"")+({top:"ลากไปชี้ท็อป/ตู้พื้น — หันตามตู้ ใกล้กลางตู้ดูดเข้ากลาง",under:"ลากไปชี้ตู้ลอย (ตู้ฮู้ด) — ติดก้นตู้ กลางตู้",cab:"ลากไปชี้ตู้ — หน้าเสมอหน้าบาน กลางตู้",wall:"ลากไปชี้ผนัง — ปล่องขึ้นถึงฝ้า",floor:"ลากบนพื้น · R หมุน"}[md]||"")+' · ภาพอย่างเดียว ไม่เข้าใบตัด/ใบเสนอราคา</div>';
+    +'<div class="plNote" style="margin-top:4px">'+(T.niche&&!snOff("plaNiche")?"ชี้ช่องโล่งในตู้ (ไม่มีบานบัง) = วางในช่อง · ":"")+({top:"ลากไปชี้ท็อป/ตู้พื้น — หันตามตู้ ใกล้กลางตู้ดูดเข้ากลาง",under:"ลากไปชี้ตู้ลอย (ตู้ฮู้ด) — ติดก้นตู้ กลางตู้",cab:"ลากไปชี้ตู้ — หน้าเสมอหน้าบาน กลางตู้",wall:T.prop?"ลากไปชี้ผนัง":"ลากไปชี้ผนัง — ปล่องขึ้นถึงฝ้า",floor:"ลากบนพื้น · R หมุน"}[md]||"")+' · ภาพอย่างเดียว ไม่เข้าใบตัด/ใบเสนอราคา</div>';
   s.innerHTML=h;
   s.querySelectorAll("[data-pok]").forEach(inp=>inp.onchange=()=>{ const k=inp.dataset.pok; if(ploLocked()){ plPanelSel(); return; }
     if(k==="mdl"){ if(inp.value) plaUseModel(o,inp.value); else { o.w=T.w; o.h=T.h; o.d=T.d; delete o.mdl; o.code=""; } plaResnap(o); }
     else if(k==="code"){ o.code=String(inp.value||"").trim(); }
     else if(k==="hinge"){ o.hinge=inp.value==="L"?"L":"R"; }
-    else if(k==="col"){ o.col=T.fridge==="wash"?(/^(white|silver|black)$/.test(inp.value)?inp.value:"white"):(PLA_SMEG_COL[inp.value]?inp.value:"cream"); }   /* v1.579: + สีเครื่องซักผ้า */
+    else if(k==="scr"){ if(inp.value==="off") o.scr="off"; else delete o.scr; }   /* v1.614 */
+    else if(k==="col"){ o.col=(T.bed||T.rug)?(PLA_PROP_COL[inp.value]?inp.value:"grey"):T.fridge==="wash"?(/^(white|silver|black)$/.test(inp.value)?inp.value:"white"):(PLA_SMEG_COL[inp.value]?inp.value:"cream"); }   /* v1.579: + สีเครื่องซักผ้า */
     else if(k==="mgap"){ const v=+inp.value; if(isFinite(v)&&v>=0&&v<=30) o.mgap=v; else { plPanelSel(); return; } }   /* v1.588: เว้นบานหลอก */
     else if(k==="ih"){ const v=+inp.value; if(isFinite(v)&&v>=100) o.ih=Math.round(v); else { plPanelSel(); return; } }   /* v1.578: สูงติดตั้งเตา */   /* v1.577: สีตู้เย็น SMEG */   /* v1.576: บานพับตู้เย็น */
     else { const v=+inp.value; if(!isFinite(v)){ plPanelSel(); return; }
@@ -39588,7 +39676,7 @@ function ploDragApply(){ const g=PLO.drag, ev=PLO.ev; if(!g||!ev) return; const 
     else if(T.util){ const p=plFloorPt(ev,0); if(!p) return; o.wk=null; const S=ploPtSnap(o,[p.x,p.z]); o.x=S.x; o.z=S.z; tip=S.tip; }
     else { const p=w.p||plFloorPt(ev,0); if(!p) return; o.wk=null; o.x=Math.round(p.x/G)*G; o.z=Math.round(p.z/G)*G; tip=T.ic+" ยังไม่ติดผนัง — ชี้ที่ผนังหรือลากเข้าใกล้ผนัง"; } }
   else if(T.appl&&T.appl!=="floor"){ const S=plaDrag(o,ev); if(!S) return; tip=S.tip; }
-  else if(T.fridge&&!snOff("plFridgeSnap")){ const p=plFloorPt(ev,g.y||0); if(!p) return; tip=plaFridgeSnap(o,[p.x+((g.off&&g.off[0])||0),p.z+((g.off&&g.off[1])||0)]); }   /* v1.576: ตู้เย็นดูดผนัง/ตู้ */   // v1.546: ท็อป / ใต้ตู้ลอย / ฝังตู้
+  else if((T.fridge||T.snap)&&!snOff("plFridgeSnap")){ const p=plFloorPt(ev,g.y||0); if(!p) return; tip=plaFridgeSnap(o,[p.x+((g.off&&g.off[0])||0),p.z+((g.off&&g.off[1])||0)]); }   /* v1.576: ตู้เย็นดูดผนัง/ตู้ */   // v1.546: ท็อป / ใต้ตู้ลอย / ฝังตู้
   else if(o.k==="col"||o.k==="ceil"||o.k==="dl"){ const p=plFloorPt(ev,g.y||0); if(!p) return; const S=ploColSnap(o,[p.x+g.off[0],p.z+g.off[1]]); o.x=S.x; o.z=S.z; PLO.guides=S.guides; tip=S.tip; }   // v1.536 · v1.538 ฝ้า
   else { const p=plFloorPt(ev,g.y||0); if(!p) return; o.x=Math.round((p.x+g.off[0])/G)*G; o.z=Math.round((p.z+g.off[1])/G)*G; tip=T.ic+" "+T.n+" · หมุนด้วย R"; }
   plRoomDraw(); const tp=$("plDragTip"); if(tp) tp.textContent=tip; }
@@ -39654,7 +39742,7 @@ function ploPaste(src){ if(ploLocked()) return null; const T=PLO_T[src.k]; if(!T
   let msg="";
   if(T.wall&&o.wk){ if(!ploPasteWall(o)){ o.wk=null; const r=plRoom(); o.x=r.x0+r.w/2; o.z=r.z0+r.d/2; msg=" · ผนังเต็ม วางไว้กลางห้อง ลากไปวางเอง"; } }
   else { let auto=false;
-    if(T.appl&&T.appl!=="wall"){ delete o.host; delete o.inCab; delete o.dF; try{ plaAuto(o); auto=!!o.host||!!T.fridge; }catch(e){ console.error("plaAuto:",e); } }
+    if(T.appl&&T.appl!=="wall"){ delete o.host; delete o.inCab; delete o.dF; try{ plaAuto(o); auto=!!o.host||!!T.fridge||!!T.snap; }catch(e){ console.error("plaAuto:",e); } }
     /* เครื่องใช้ที่ได้ตู้เดิมจนทับต้นฉบับ = ปล่อยจากตู้ ให้ผู้ใช้ลากไปตู้ที่ต้องการ (ค้าง host ไว้ แล้วลอยนอกตู้ไม่ได้) */
     if(!auto||ploOverlap(o,+o.x||0,+o.z||0)){ if(o.host){ delete o.host; delete o.inCab; msg=" · ลากไปวางบนตู้ที่ต้องการ"; }
       if(!ploPasteFree(o)) msg=" · ไม่มีที่ว่างข้าง ๆ ลากไปวางเอง"; } }
@@ -39799,7 +39887,7 @@ function ploGrid(tabs,grid){   // v1.538: แบ่งหมวด · การ�
   tabs.innerHTML=ks.map(k=>'<button data-t="'+k[0]+'" class="'+(k[0]===PL.tab?"on":"")+'">'+k[1]+'</button>').join("");
   tabs.querySelectorAll("button").forEach(bt=>bt.onclick=()=>{ PL.tab=bt.dataset.t; plPanelGrid(); });
   const ok=k=>!!PLO_T[k]&&!(PLO_T[k].appl&&snOff("plAppl"))&&!(k==="col"&&snOff("plCol"))&&!((k==="ceil"||k==="ceilu")&&snOff("plCeil"))&&!(PLO_T[k].util&&snOff("plUtil"));
-  const GR=[["ประตู · หน้าต่าง",["door","door2","slide","open","win","win1","winw"]],["โครงสร้าง · ฝ้า",["stair","col","ceil","ceilu"].concat(snOff("plDl")?[]:["dl"])],["งานระบบ",["plug","wat","drn"]],["เครื่องใช้ในครัว",["sink","sink2","sink1","sinku","hob","hobi","hobd","hood1","hood2","hood3","oven"].concat(snOff("plMicroB")?[]:["microb"]).concat(["micro","bin","gas"]).concat(snOff("plFridge")?[]:["fridge1","fridge2","fridgeT"]).concat(snOff("plSmeg")?[]:["smeg"]).concat(snOff("plWash")?[]:["wash"])]];   /* v1.576: + ตู้เย็น */   // v1.546
+  const GR=[["ประตู · หน้าต่าง",["door","door2","slide","open","win","win1","winw"]],["โครงสร้าง · ฝ้า",["stair","col","ceil","ceilu"].concat(snOff("plDl")?[]:["dl"])],["งานระบบ",["plug","wat","drn"]],["เครื่องใช้ในครัว",["sink","sink2","sink1","sinku","hob","hobi","hobd","hood1","hood2","hood3","oven"].concat(snOff("plMicroB")?[]:["microb"]).concat(["micro","bin","gas"]).concat(snOff("plFridge")?[]:["fridge1","fridge2","fridgeT"]).concat(snOff("plSmeg")?[]:["smeg"]).concat(snOff("plWash")?[]:["wash"])]].concat(snOff("plProps")?[]:[["ห้องนอน",["bed35","bed5","bed6","nstand","dress","fmirror","flamp","rug","ac"]],["ทีวีติดผนัง",["tv43","tv55","tv65"]]]);   /* v1.614 */   /* v1.576: + ตู้เย็น */   // v1.546
   const K=GR.reduce((a,g)=>a.concat(g[1].filter(ok)),[]);
   { const cn=$("plCatN"); if(cn) cn.textContent=K.length+" แบบ"; }
   const lk=plRoomLocked();
@@ -39976,6 +40064,7 @@ function ploCeilPk(o,r){ const H=+r.h||2600, hz=Math.max(+o.h||H,300), lo=Math.m
 function ploUtilPk(o,F,th){ const T=PLO_T[o.k]||{}, uw=Math.max(+o.w||T.w||60,8), uh=Math.max(+o.h||T.h||60,8), yc=Math.max(+o.sill||0,0);
   if(F){ const pw=Math.max(uw,90), ph=Math.max(uh,90); return [pw,ph,th+220,yc-ph/2]; } return [150,220,150,0]; }
 function ploCardSub(k){ const T=PLO_T[k]||{};
+  if(T.tv) return T.w+"×"+T.h+" · ติดผนัง";   /* v1.614 */
   if(T.appl) return T.w+"×"+T.d+({top:" · บนท็อป",under:" · ใต้ตู้ลอย",wall:" · ติดผนัง",cab:" · ฝังในตู้",floor:" · วางพื้น"}[T.appl]||"");   // v1.546
   if(k==="col") return T.w+"×"+T.d+" · สูงถึงฝ้า"; if(k==="stair") return "กว้าง "+T.w+" · ยาว "+T.d;
   if(k==="ceil") return T.w+"×"+T.d+" · ต่ำกว่าฝ้าห้อง 300"; if(k==="ceilu") return T.w+"×"+T.d+" · สูงกว่าฝ้าห้อง 200";
