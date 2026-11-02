@@ -3283,7 +3283,7 @@ body[data-theme="dark"] .splash-dots span{background:rgba(255,255,255,.25)}
    ===================================================================== */
 /* ---- APP_META: แหล่งความจริงเดียวของเวอร์ชัน (ดูได้จาก console / คลิกชื่อแอป) ---- */
 const APP_META={
-  name:"StarNexus", version:"1.604", build:"2026-11-02/door-art",
+  name:"StarNexus", version:"1.605", build:"2026-11-02/ehp-draw-curve",
   file:"StarNexus.html", basedOn:"Furnitech_V3.html (v3.11)",
   /* ───────── เริ่มนับเวอร์ชันใหม่ที่ 1.001 (21/08/2026) ─────────
      ของเดิมนับมาถึง 42.1 แล้ววิ่งเป็นทศนิยมสองชั้นซึ่งอ่านลำดับยาก
@@ -3291,6 +3291,7 @@ const APP_META={
      ประวัติเก่าเก็บไว้ทั้งหมดตามเลขเดิม ไม่ไล่เขียนใหม่ เพราะเลขในนั้นถูกอ้างถึงไปแล้ว
      รายการที่อยู่ใต้ 1.001 ลงไปจึงเป็นเลขชุดเก่า อ่านต่อกันได้ตามวันที่ */
   changelog:[
+    ["1.605","2026-11-02","FEAT หน้าวาดหน้าตัดมือจับฝัง (ผู้ใช้ 2/11 16:21 “เส้นเฉียง หรือโค้งเฉียงได้ไหม … แก้/ปรับ ความหนาบานได้ไหม”): ⌒ ดัดโค้ง ลากเส้นให้โค้ง พิมพ์ยอดโค้งหรือ R12 · พิมพ์ 20@45 = ยาว 20 มุม 45° · ขณะวาดบอกมุม · ช่องหนาบานเทียบ (ตั้งต้นตามบานในงาน เก็บกับรุ่น) · บอกระยะเลยหลังบาน"],
     ["1.604","2026-11-02","FEAT ✏ ลายหน้าบาน (ผู้ใช้ 2/11 15:29 “วาดรูป แบบหน้าบานได้อิสระ … หรือ JPG แบบลายเส้น เอามาแปะ”): วาดเส้นตรง กรอบ มุมมน โค้งบน วงรี มือเปล่า · สมมาตร · แบบสำเร็จ 10 แบบ · แปะ JPG/PNG เป็นลายเส้น ทั้งแผ่น หรือภาพรองวาดทับ · บานขนาดอื่นคงระยะจากขอบ · ใส่ให้บานนี้ ตู้นี้ แบบเดียวกัน ทั้งงาน · โชว์ใน 3D และแบบเสนอราคา (ใบตัด/MPR ไม่เปลี่ยน)"],
     ["1.603","2026-11-02","FIX+FEAT หน้ารายละเอียดวัสดุ + มือจับฝัง (ผู้ใช้ 2/11 15:51 · 16:01) ① การ์ดสีหน้าบานรวมตามสีจริง (เดิมได้รหัสแบบบาน MCWx58 · MCWG20 · Exxx01 แยกสามการ์ดทั้งที่สีเดียวกัน) ② การ์ดมือจับฝัง HW-367 แสดงเฉพาะหน้าตัด + ขนาด ③ เลือกสีมือจับฝังได้เฉพาะรุ่นที่ติ๊ก: สีมาตรฐาน 7 สีตาม Memorandum (AL601H AL616MH AL617H AL618MH AL620H AL621H AL622MH) แก้ เพิ่ม ลบ ได้ · เห็นใน 3D และการ์ด · ใบเบิกต่อรหัสสีและแยกบรรทัด"],
     ["1.602","2026-11-02","FEAT+FIX ① เปลี่ยนคานเป็นทอปเต็มคำสั่งเดียว (ผู้ใช้ 2/11 15:27 “ลบคานออก แล้วใส่แผ่นทอป … ให้ API ไปใช้”): ลบคานขอบบน+รูที่ฝากไว้ · ทอปตามแผ่นพื้น · ร่องแผ่นหลัง · เดือย/มินิฟิก · แผ่นหลังจบเข้าร่อง · เสาแบ่งถึงใต้ทอป · ตู้นี้/ทุกตู้ · แผงขวา คลิกขวา ผู้ช่วย (tool rail_to_top) ② ผู้ช่วยรู้ศัพท์งาน (“เปลี่ยนรุ่นบานพับมันคือเปลี่ยน fitting Concept”): ตาราง TERMS แนบให้ AI + ไม่มีคีย์ก็ขึ้นปุ่ม · คำสั่งใหม่ fitting_concept + รายการชุดในบริบท · ปุ่มเปลี่ยนชุดอุปกรณ์ ③ หัวผู้ช่วยคำไม่ตัดบรรทัด ④ หน้า 💰 ราคาทุนมีคอลัมน์ขนาด (ผู้ใช้ 15:36): ยาวตัด · ขนาดจากชื่อ · หนา · เรียงตามขนาด · CSV ด้วย"],
@@ -46423,7 +46424,7 @@ function ehpGeo(b){ const pts=b._ehpPts||[], T=+b._ehpT||18, h=+b._ehpH||20, len
   g.computeVertexNormals(); return g; }
 /* รูปหน้าตัดในการ์ด (SVG) — บานสีอ่อนด้านล่าง ราง (อลู) ด้านบน · ผิวหน้าบานอยู่ซ้าย */
 /* v1.594: วาดจากทุกวง (รูกลวง = evenodd) · บานหนา 18 · เดือยที่เข้าเนื้อบาน (v < 0) ต้องเห็นในรูปด้วย */
-function ehpThumb(P){ const T=18, LS=ehpLoops(P,T), D=ehpDims(P,T), pad=4, x0=Math.min(D.u0,0)-pad, x1=Math.max(D.u1,T)+pad, y0=-D.h-pad, y1=Math.max(26,-(D.v0||0)+6)+pad, e=v=>Math.round(v*100)/100;
+function ehpThumb(P){ const T=(P&&!P.sec&&+P.refT>0)?+P.refT:18, LS=ehpLoops(P,T), D=ehpDims(P,T), pad=4, x0=Math.min(D.u0,0)-pad, x1=Math.max(D.u1,T)+pad, y0=-D.h-pad, y1=Math.max(26,-(D.v0||0)+6)+pad, e=v=>Math.round(v*100)/100;
   const poly=LS.filter(l=>l&&l.length>=3).map(l=>"M"+l.map(q=>e(+q[0])+","+e(-q[1])).join(" L")+" Z").join(" ");
   return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="'+e(x0)+' '+e(y0)+' '+e(x1-x0)+' '+e(y1-y0)+'" preserveAspectRatio="xMidYMid meet" style="position:absolute;left:8%;top:8%;width:84%;height:84%">'
     +'<rect x="0" y="0" width="'+T+'" height="'+e(y1-pad)+'" fill="#efe6d4" stroke="#b9a98a" stroke-width="0.6"/><path d="M0 '+e(y1-pad)+' L0 0" stroke="#8a7a5c" stroke-width="0.8" stroke-dasharray="2 1.5"/>'
@@ -46448,8 +46449,19 @@ function ehpReapply(id){ let n=0; if(!id) return 0;
      ปิดรูปแล้ว: ลากจุด = ย้าย · คลิกเลขความยาว = แก้ · ดับเบิลคลิกเส้น = เพิ่มจุด · ดับเบิลคลิกจุด = ลบ · ล้อเมาส์ = ซูม · Ctrl+Z = ย้อน
      ข้อมูลเก็บแบบเดิม (pts [u,v]) — ตัวคิด/3D/ใบเบิกไม่ต้องรู้ว่ามาจากหน้าวาด · ยังแก้เป็นตัวเลขได้ในช่อง “แก้เป็นตัวเลข”
    ชั้น 480 (เหนือหน้าต่างมือจับ #plPull 470) · ปิด SN_OFF.ehpDraw = กล่องพิมพ์แบบเดิม */
+/* ───────── v1.605: หน้าวาดหน้าตัด — เส้นโค้ง · มุมแม่น · ปรับหนาบานได้ ─────────
+   ผู้ใช้ 2/11 16:21 (ภาพหน้าวาดหน้าตัดมือจับฝัง): “เส้นเฉียง หรือโค้งเฉียงได้ไหมครับ วาด อย่างไร หน้านี้ แก้/ปรับ ความหนาบานได้ไหมครับ ในภาพตัวอย่าง”
+   เดิม: เส้นเฉียงมีอยู่แล้วแต่ต้องปิด ⊥ และกำหนดมุมแม่นไม่ได้ · โค้งไม่มี (รุ่น EH-R30 คือพิมพ์จุดทีละจุด) · หนาบานล็อก 18 ตายตัว ทั้งที่บานในงานหนา 16.6/19.6
+   ตอนนี้: · ⌒ ดัดโค้ง = กดปุ่มแล้วลากเส้นไหนก็ได้ให้โป่ง ปล่อยแล้วพิมพ์ยอดโค้งเป็น มม. หรือ R12 = รัศมี · เก็บเป็นจุดถี่ ๆ ใน pts แบบเดิม ตัวคิด/3D/ใบเบิกไม่ต้องเปลี่ยน
+     · พิมพ์ 20@45 + Enter = ยาว 20 มุม 45° (0° = ไปทางหลังบาน · 90° = ขึ้น) · ตัวเลขขณะวาดบอกมุมด้วย
+     · ช่องหนาบาน: ตั้งต้น = หนาบานที่มากสุดในงาน · เก็บกับรุ่น (refT) · ใช้เทียบตอนวาด ดูดแนว และรูปในการ์ด ไม่แตะตัวคิด: หน้าตัดยึดจากผิวหน้าบาน บานหนาเท่าไหร่ด้านหน้าก็ตรงเดิม · บอกด้วยว่าเลยหลังบานกี่ มม. */
 function ehpDrawEdit(P){ return new Promise(res=>{ try{ const o=document.getElementById("ehpDrawDlg"); if(o) o.remove(); }catch(e){}
-  const T=18, W=560, H=430, e=v=>escapeHtml(String(v==null?"":v)), r1=v=>Math.round(v*10)/10;
+  const W=560, H=430, e=v=>escapeHtml(String(v==null?"":v)), r1=v=>Math.round(v*10)/10;
+  const _dt=(()=>{ const c={}; (state.boards||[]).forEach(b=>{ if(b&&b._door&&!b._box&&!b._virtual&&+b.T>0){ const t=Math.round(+b.T*10)/10; c[t]=(c[t]||0)+1; } }); return Object.keys(c).map(Number).sort((a,b)=>c[b]-c[a]); })();
+  let T=(P&&+P.refT>0)?+P.refT:(_dt[0]||18), bend=false, bd=null;
+  /* จุดบนส่วนโค้งระหว่าง a→b (ไม่รวมปลาย) · s = ยอดโค้ง มีเครื่องหมายตามด้าน */
+  const arcPts=(a,b,sg)=>{ const dx=b[0]-a[0], dy=b[1]-a[1], L=Math.hypot(dx,dy); if(!(L>0)||Math.abs(sg)<0.05) return []; const h=L/2, tx=dx/L, ty=dy/L, nx=-ty, ny=tx, R=(h*h+sg*sg)/(2*sg), beta=2*Math.atan(sg/h), cx=(a[0]+b[0])/2+nx*(sg-R), cy=(a[1]+b[1])/2+ny*(sg-R), N=Math.max(6,Math.min(24,Math.ceil(2*Math.abs(beta*R)/1.5))), out=[];
+    for(let k=1;k<N;k++){ const g=beta*(-1+2*k/N); out.push([cx+R*(nx*Math.cos(g)+tx*Math.sin(g)),cy+R*(ny*Math.cos(g)+ty*Math.sin(g))]); } return out; };
   let pts=(P&&Array.isArray(P.pts))?P.pts.map(q=>[+q[0],+q[1]]):[], closed=pts.length>=3, ortho=true, buf="", hov=null, drag=-1, hist=[], sc=8, ox=0, oy=0, edI=null;
   const tpl=ehpLib().filter(x=>x&&!x.sec&&Array.isArray(x.pts));
   const ov=document.createElement("div"); ov.id="ehpDrawDlg"; ov.style.cssText="position:fixed;inset:0;z-index:480;background:rgba(15,20,30,.38);display:flex;align-items:center;justify-content:center";
@@ -46458,7 +46470,8 @@ function ehpDrawEdit(P){ return new Promise(res=>{ try{ const o=document.getElem
     +'<div style="display:flex;gap:14px;flex-wrap:wrap;align-items:flex-start">'
     +'<div style="flex:none"><div style="display:flex;gap:6px;margin-bottom:6px;flex-wrap:wrap">'
       +'<button class="ibtn" data-b="undo" style="flex:none;width:auto;padding:3px 9px" title="Ctrl+Z">↶ ย้อน</button>'
-      +'<button class="ibtn" data-b="ortho" style="flex:none;width:auto;padding:3px 9px" title="ล็อกเส้นตั้ง/นอน (กด Shift ค้าง = สลับชั่วคราว)">⊥ ตั้งฉาก</button>'
+      +'<button class="ibtn" data-b="ortho" style="flex:none;width:auto;padding:3px 9px" title="ล็อกเส้นตั้ง/นอน · กดปิด = วาดเส้นเฉียงได้ (กด Shift ค้าง = สลับชั่วคราว)">⊥ ตั้งฉาก</button>'
+      +'<button class="ibtn" data-b="bend" style="flex:none;width:auto;padding:3px 9px" title="กดแล้วลากเส้นไหนก็ได้ให้โค้ง · ปล่อยแล้วพิมพ์ยอดโค้ง หรือ R12 = รัศมี">⌒ ดัดโค้ง</button>'
       +'<button class="ibtn" data-b="fit" style="flex:none;width:auto;padding:3px 9px">⤢ พอดี</button>'
       +'<button class="ibtn" data-b="new" style="flex:none;width:auto;padding:3px 9px">🗑 วาดใหม่</button>'
       +'<span data-st="1" style="align-self:center;color:var(--ink-dim);font-size:11.5px"></span></div>'
@@ -46467,10 +46480,11 @@ function ehpDrawEdit(P){ return new Promise(res=>{ try{ const o=document.getElem
       +'<label>รหัสสินค้า (ลงใบเบิก)<input data-f="code" type="text" class="nameinp" style="width:100%" value="'+e(P?P.code:"")+'"></label>'
       +'<label>ชื่อเรียก<input data-f="n" type="text" class="nameinp" style="width:100%" value="'+e(P?P.n:"")+'"></label>'
       +'<label>หดบานเพิ่ม (มม.) — นอกจากความสูงมือจับ<input data-f="gap" type="number" step="0.5" min="0" class="nameinp" style="width:100%;font-family:var(--mono)" value="'+ehpGap(P)+'"></label>'
+      +'<label>หนาบาน (มม.) — ไว้เทียบตอนวาด<input data-f="T" type="number" step="0.1" min="1" list="ehpTList" class="nameinp" style="width:100%;font-family:var(--mono)" value="'+T+'"><datalist id="ehpTList">'+_dt.concat([16,18,19,25].filter(v=>_dt.indexOf(v)<0)).map(v=>'<option value="'+v+'">').join("")+'</datalist></label>'
       +'<div data-info="1" style="background:rgba(0,0,0,.04);border-radius:9px;padding:8px 10px;line-height:1.7"></div>'
       +(tpl.length?('<label>เริ่มจากแบบ<select data-f="tpl" class="nameinp" style="width:100%"><option value="">—</option>'+tpl.map((x,i)=>'<option value="'+i+'">'+e(x.code+" · "+x.n)+'</option>').join("")+'</select></label>'):'')
       +'<details><summary style="cursor:pointer;color:var(--ink-dim)">แก้เป็นตัวเลข (u,v บรรทัดละจุด)</summary><textarea data-f="tx" rows="7" class="nameinp" style="width:100%;font-family:var(--mono);font-size:11.5px;margin-top:4px"></textarea></details>'
-      +'<div style="font-size:11px;line-height:1.65;color:var(--ink-dim)">คลิก = วางจุด · <b>พิมพ์ตัวเลข + Enter</b> = ยาวเท่านั้นตามทิศเมาส์ (พิมพ์ “u,v” = ไปที่พิกัด) · คลิกจุดแรก/Enter = ปิดรูป · Backspace = ลบจุดล่าสุด<br>ปิดรูปแล้ว: ลากจุด = ย้าย · <b>คลิกเลขความยาว</b> = แก้ · ดับเบิลคลิกเส้น = เพิ่มจุด · ดับเบิลคลิกจุด = ลบ · ล้อเมาส์ = ซูม · Shift = ไม่ล็อกตั้งฉาก</div>'
+      +'<div style="font-size:11px;line-height:1.65;color:var(--ink-dim)">คลิก = วางจุด · <b>เส้นเฉียง</b> = กดปิด ⊥ ตั้งฉาก (หรือ Shift ค้าง) · <b>เส้นโค้ง</b> = กด ⌒ ดัดโค้ง แล้วลากเส้น<br><b>พิมพ์ตัวเลข + Enter</b> = ยาวเท่านั้นตามทิศเมาส์ (พิมพ์ “u,v” = ไปที่พิกัด · “20@45” = ยาว 20 มุม 45°) · คลิกจุดแรก/Enter = ปิดรูป · Backspace = ลบจุดล่าสุด<br>ปิดรูปแล้ว: ลากจุด = ย้าย · <b>คลิกเลขความยาว</b> = แก้ · ดับเบิลคลิกเส้น = เพิ่มจุด · ดับเบิลคลิกจุด = ลบ · ล้อเมาส์ = ซูม · Shift = ไม่ล็อกตั้งฉาก</div>'
       +'<div style="display:flex;gap:8px;margin-top:auto"><button class="ibtn" data-x="1" style="flex:1">ยกเลิก</button><button class="ibtn" data-ok="1" style="flex:2;background:var(--accent,#1f3a68);color:#fff;border-color:transparent;font-weight:600">💾 บันทึกรุ่น</button></div>'
     +'</div></div></div>';
   document.body.appendChild(ov);
@@ -46503,7 +46517,9 @@ function ehpDrawEdit(P){ return new Promise(res=>{ try{ const o=document.getElem
       segs().forEach(s2=>{ h+='<line data-s="'+s2[0]+'" x1="'+X(s2[1][0])+'" y1="'+Y(s2[1][1])+'" x2="'+X(s2[2][0])+'" y2="'+Y(s2[2][1])+'" stroke="transparent" stroke-width="10" style="cursor:copy"/>'; }); }
     if(!closed&&hov&&pts.length){ const a=pts[pts.length-1], L=Math.hypot(hov[0]-a[0],hov[1]-a[1]);
       h+='<line x1="'+X(a[0])+'" y1="'+Y(a[1])+'" x2="'+X(hov[0])+'" y2="'+Y(hov[1])+'" stroke="#1971c2" stroke-width="1.4" stroke-dasharray="5 3"/>';
-      h+='<text x="'+((X(a[0])+X(hov[0]))/2+8)+'" y="'+((Y(a[1])+Y(hov[1]))/2-8)+'" font-size="12" font-weight="700" fill="#1971c2">'+(buf?(buf+" ↵"):r1(L))+'</text>'; }
+      h+='<text x="'+((X(a[0])+X(hov[0]))/2+8)+'" y="'+((Y(a[1])+Y(hov[1]))/2-8)+'" font-size="12" font-weight="700" fill="#1971c2">'+(buf?(buf+" ↵"):(r1(L)+((Math.abs(hov[0]-a[0])>0.05&&Math.abs(hov[1]-a[1])>0.05)?(" ∠"+Math.round(Math.atan2(hov[1]-a[1],hov[0]-a[0])*180/Math.PI)+"°"):"")))+'</text>'; }
+    if(bd&&bd.on){ const a=pts[bd.i], b=pts[(bd.i+1)%pts.length], z=[a].concat(arcPts(a,b,bd.s),[b]);
+      h+='<polyline points="'+z.map(q=>X(q[0]).toFixed(1)+","+Y(q[1]).toFixed(1)).join(" ")+'" fill="none" stroke="#1971c2" stroke-width="2.2"/>'; }
     /* เลขความยาวรายเส้น — คลิกแก้ได้ */
     segs().forEach(s2=>{ const a=s2[1], b=s2[2], L=Math.hypot(b[0]-a[0],b[1]-a[1]); if(L<0.05||L*sc<16) return;
       const mx=(X(a[0])+X(b[0]))/2, my=(Y(a[1])+Y(b[1]))/2, nx=-(Y(b[1])-Y(a[1]))/(L*sc), ny=(X(b[0])-X(a[0]))/(L*sc), off=11;
@@ -46511,14 +46527,16 @@ function ehpDrawEdit(P){ return new Promise(res=>{ try{ const o=document.getElem
     /* ระยะตัด (สูงสุดเหนือขอบ) */
     const D=dims(); if(D&&D.h>0){ const xr=X(Math.max(D.u1,T))+26; h+='<line x1="'+xr+'" y1="'+Y(0)+'" x2="'+xr+'" y2="'+Y(D.h)+'" stroke="#c0392b"/><line x1="'+(xr-4)+'" y1="'+Y(D.h)+'" x2="'+(xr+4)+'" y2="'+Y(D.h)+'" stroke="#c0392b"/>'
       +'<text x="'+(xr+5)+'" y="'+((Y(0)+Y(D.h))/2+4)+'" font-size="11" font-weight="700" fill="#c0392b">'+r1(D.h)+'</text>'; }
-    pts.forEach((p,i)=>{ h+='<circle data-i="'+i+'" cx="'+X(p[0])+'" cy="'+Y(p[1])+'" r="'+(i===0&&!closed&&pts.length>=3?7:5)+'" fill="'+(i?"#fff":"#f08c00")+'" stroke="#2b2f36" stroke-width="1.3" style="cursor:move"/>'; });
+    pts.forEach((p,i)=>{ const _n=pts.length, _pv=pts[(i-1+_n)%_n], _nx=pts[(i+1)%_n], _short=_n>3&&Math.hypot(p[0]-_pv[0],p[1]-_pv[1])*sc<14&&Math.hypot(p[0]-_nx[0],p[1]-_nx[1])*sc<14;   /* v1.605: จุดบนเส้นโค้งถี่ — วงเล็กไม่บังรูป */
+      h+='<circle data-i="'+i+'" cx="'+X(p[0])+'" cy="'+Y(p[1])+'" r="'+(_short?2.5:(i===0&&!closed&&pts.length>=3?7:5))+'" fill="'+(i?"#fff":"#f08c00")+'" stroke="#2b2f36" stroke-width="1.3" style="cursor:move"/>'; });
     if(hov&&!closed&&drag<0) h+='<circle cx="'+X(hov[0])+'" cy="'+Y(hov[1])+'" r="3" fill="#1971c2"/>';
     sv.innerHTML=h;
     const g=ehpGap({gap:gin.value}); info.innerHTML=D&&D.h>0?('สูงมือจับ (เหนือขอบ) <b>'+r1(D.h)+'</b> มม.'+(g?(' + หดเพิ่ม <b>'+g+'</b>'):'')+'<br>บานสั้นลง <b style="color:#c0392b">'+r1(D.h+g)+'</b> มม.'
-        +(D.v0<-0.05?('<br>จมในบาน (เดือย) '+r1(-D.v0)+' มม.'):'')+(D.u0<-0.05?('<br>ยื่นพ้นหน้าบาน '+r1(-D.u0)+' มม.'):'')+'<br><span style="color:var(--ink-dim)">'+pts.length+' จุด'+(closed?' · ปิดรูปแล้ว':' · ยังไม่ปิดรูป')+'</span>')
+        +(D.v0<-0.05?('<br>จมในบาน (เดือย) '+r1(-D.v0)+' มม.'):'')+(D.u0<-0.05?('<br>ยื่นพ้นหน้าบาน '+r1(-D.u0)+' มม.'):'')+(D.u1>T+0.05?('<br><span style="color:#b45309">เลยหลังบาน '+r1(D.u1-T)+' มม. (บานหนา '+T+')</span>'):'')+'<br><span style="color:var(--ink-dim)">'+pts.length+' จุด'+(closed?' · ปิดรูปแล้ว':' · ยังไม่ปิดรูป')+'</span>')
       :'<span style="color:var(--ink-dim)">เริ่มคลิกวาดเหนือเส้นแดง (ส่วนที่อยู่เหนือขอบบาน = ความสูงมือจับ)</span>';
     stl.textContent=(closed?"ปิดรูปแล้ว":(pts.length?"กำลังวาด":"คลิกวางจุดแรก"))+(buf?(" · พิมพ์ "+buf):"");
     q('[data-b="ortho"]').style.background=ortho?"var(--accent,#1f3a68)":""; q('[data-b="ortho"]').style.color=ortho?"#fff":"";
+    q('[data-b="bend"]').style.background=bend?"var(--accent,#1f3a68)":""; q('[data-b="bend"]').style.color=bend?"#fff":""; sv.style.cursor=bend?"grab":"crosshair";
     if(document.activeElement!==tx) tx.value=pts.map(p=>r1(p[0])+","+r1(p[1])).join("\n"); };
   const at=ev=>{ const b=sv.getBoundingClientRect(); return [U(ev.clientX-b.left),V(ev.clientY-b.top)]; };
   const close=()=>{ if(pts.length>=3){ push(); closed=true; hov=null; draw(); } };
@@ -46526,13 +46544,24 @@ function ehpDrawEdit(P){ return new Promise(res=>{ try{ const o=document.getElem
   /* จุดหลุดกรอบ (พิมพ์ความยาวยาว ๆ) = ซูมพอดีให้เอง — ไม่งั้นวาดต่อด้วยเมาส์ไม่ได้ */
   const keepIn=()=>{ if(pts.some(p=>{ const x=X(p[0]), y=Y(p[1]); return x<24||x>W-24||y<24||y>H-24; })) fit(); };
   sv.addEventListener("pointermove",ev=>{ const r=at(ev);
+    if(bd&&bd.on){ const a=pts[bd.i], b=pts[(bd.i+1)%pts.length], L=Math.hypot(b[0]-a[0],b[1]-a[1])||1, sg=(r[0]-(a[0]+b[0])/2)*(-(b[1]-a[1])/L)+(r[1]-(a[1]+b[1])/2)*((b[0]-a[0])/L); bd.s=Math.round(sg*2)/2; draw(); return; }
     if(drag>=0){ pts[drag]=snap(r[0],r[1],drag); draw(); return; }
     hov=lockO(snap(r[0],r[1],-1),ev.shiftKey); if(!closed) draw(); });
-  sv.addEventListener("pointerdown",ev=>{ if(edI) return; const c=ev.target.closest&&ev.target.closest("circle[data-i]"), lb=ev.target.closest&&ev.target.closest("[data-l]");
+  sv.addEventListener("pointerdown",ev=>{ if(edI) return;
+    if(bend){ const ln=ev.target.closest&&ev.target.closest("line[data-s]"); if(ln){ bd={on:true,i:+ln.dataset.s,s:0}; try{ sv.setPointerCapture(ev.pointerId); }catch(er){} draw(); } else toast("กดลากที่เส้น เพื่อดัดให้โค้ง"); return; }
+    const c=ev.target.closest&&ev.target.closest("circle[data-i]"), lb=ev.target.closest&&ev.target.closest("[data-l]");
     if(lb){ ev.preventDefault(); segEdit(+lb.dataset.l); return; }
     if(c){ const i=+c.dataset.i; if(!closed&&i===0&&pts.length>=3){ close(); return; } push(); drag=i; try{ sv.setPointerCapture(ev.pointerId); }catch(er){} return; }
     if(!closed){ const r=at(ev); addAt(lockO(snap(r[0],r[1],-1),ev.shiftKey)); } });
-  sv.addEventListener("pointerup",()=>{ if(drag>=0){ drag=-1; draw(); } });
+  sv.addEventListener("pointerup",()=>{ if(bd&&bd.on){ bd.on=false; if(Math.abs(bd.s)<0.25){ bd=null; draw(); } else bendAsk(); return; } if(drag>=0){ drag=-1; draw(); } });
+  /* ปล่อยเมาส์แล้วถามยอดโค้ง: Enter/คลิกที่อื่น = ใช้ · พิมพ์ R12 = รัศมี · Esc = ไม่ดัด */
+  function bendAsk(){ const i=bd.i, a=pts[i], b=pts[(i+1)%pts.length], s0=bd.s, L=Math.hypot(b[0]-a[0],b[1]-a[1]), inp=document.createElement("input"); inp.type="text"; inp.value=String(Math.abs(s0)); inp.title="ยอดโค้ง (มม.) · R12 = รัศมี 12";
+    inp.style.cssText="position:absolute;width:74px;font-family:var(--mono);font-size:12px;padding:2px 4px;border:2px solid #1971c2;border-radius:5px;z-index:2;left:"+((X(a[0])+X(b[0]))/2-37)+"px;top:"+((Y(a[1])+Y(b[1]))/2-12)+"px"; sv.parentNode.appendChild(inp); edI=inp; inp.focus(); inp.select();
+    const fin=ok=>{ if(edI!==inp) return; edI=null; const t=String(inp.value||"").trim().toUpperCase(); inp.remove(); bd=null; if(!ok){ draw(); return; } let sg=Math.abs(s0);
+      if(/^R/.test(t)){ const R=parseFloat(t.slice(1)); if(R>0){ if(R<L/2){ toast("รัศมีต้องไม่น้อยกว่าครึ่งความยาวเส้น ("+r1(L/2)+")"); draw(); return; } sg=R-Math.sqrt(R*R-L*L/4); } } else { const v=parseFloat(t); if(v>0) sg=v; }
+      push(); pts.splice(i+1,0,...arcPts(a,b,sg*(s0<0?-1:1)).map(q=>[r1(q[0]),r1(q[1])])); keepIn(); draw(); };
+    inp.onkeydown=ev=>{ ev.stopPropagation(); if(ev.key==="Enter"){ ev.preventDefault(); fin(true); } else if(ev.key==="Escape"){ ev.preventDefault(); fin(false); } };
+    inp.onblur=()=>fin(true); }
   sv.addEventListener("pointerleave",()=>{ if(drag<0){ hov=null; draw(); } });
   sv.addEventListener("dblclick",ev=>{ const c=ev.target.closest&&ev.target.closest("circle[data-i]"), ln=ev.target.closest&&ev.target.closest("line[data-s]");
     if(c&&closed){ if(pts.length>3){ push(); pts.splice(+c.dataset.i,1); draw(); } return; }
@@ -46561,10 +46590,11 @@ function ehpDrawEdit(P){ return new Promise(res=>{ try{ const o=document.getElem
     if(typing) return;
     let used=true; const k=ev.key;
     if((ev.ctrlKey||ev.metaKey)&&(k==="z"||k==="Z")) undo();
-    else if(/^[0-9.,\-]$/.test(k)&&!ev.ctrlKey&&!ev.metaKey){ buf+=k; draw(); }
+    else if(/^[0-9.,\-@]$/.test(k)&&!ev.ctrlKey&&!ev.metaKey){ buf+=k; draw(); }
     else if(k==="Backspace"){ if(buf) buf=buf.slice(0,-1); else if(!closed&&pts.length){ push(); pts.pop(); } draw(); }
     else if(k==="Enter"){ if(buf){ const t=buf; buf="";
-        if(t.indexOf(",")>=0){ const a=t.split(",").map(Number); if(a.length===2&&isFinite(a[0])&&isFinite(a[1])) addAt([a[0],a[1]]); else draw(); }
+        if(t.indexOf("@")>=0){ const a=t.split("@").map(Number), last=pts[pts.length-1]; if(a.length===2&&a[0]>0&&isFinite(a[1])&&last&&!closed){ const th=a[1]*Math.PI/180; addAt([last[0]+a[0]*Math.cos(th),last[1]+a[0]*Math.sin(th)]); } else draw(); }   /* v1.605: ยาว@มุม */
+        else if(t.indexOf(",")>=0){ const a=t.split(",").map(Number); if(a.length===2&&isFinite(a[0])&&isFinite(a[1])) addAt([a[0],a[1]]); else draw(); }
         else { const L=parseFloat(t), last=pts[pts.length-1];
           if(!(L>0)||closed) draw(); else if(!last) addAt([0,0]);
           else { let dx=hov?hov[0]-last[0]:0, dy=hov?hov[1]-last[1]:1; const m=Math.hypot(dx,dy)||1; if(!hov||m<1e-6){ dx=0; dy=1; } addAt([last[0]+dx/m*L,last[1]+dy/m*L]); } } }
@@ -46573,16 +46603,17 @@ function ehpDrawEdit(P){ return new Promise(res=>{ try{ const o=document.getElem
     if(used){ ev.preventDefault(); ev.stopImmediatePropagation(); } };
   window.addEventListener("keydown",key,true);
   const done=v=>{ window.removeEventListener("keydown",key,true); ov.remove(); res(v); };
-  q('[data-b="undo"]').onclick=undo; q('[data-b="ortho"]').onclick=()=>{ ortho=!ortho; draw(); }; q('[data-b="fit"]').onclick=()=>{ fit(); draw(); };
+  q('[data-b="undo"]').onclick=undo; q('[data-b="ortho"]').onclick=()=>{ ortho=!ortho; draw(); }; q('[data-b="bend"]').onclick=()=>{ bend=!bend; hov=null; draw(); }; q('[data-b="fit"]').onclick=()=>{ fit(); draw(); };
   q('[data-b="new"]').onclick=()=>{ push(); pts=[]; closed=false; buf=""; fit(); draw(); };
   ov.querySelectorAll('[data-x]').forEach(b=>b.onclick=()=>done(null));
   { const tp=q('[data-f="tpl"]'); if(tp) tp.onchange=()=>{ const x=tpl[+tp.value]; if(x){ push(); pts=x.pts.map(p=>[+p[0],+p[1]]); closed=true; fit(); draw(); } }; }
   gin.oninput=()=>draw();
+  { const ti=q('[data-f="T"]'); ti.oninput=()=>{ const v=parseFloat(ti.value); if(v>0&&v<=80){ T=Math.round(v*10)/10; draw(); } }; ti.onchange=()=>{ const v=parseFloat(ti.value); if(!(v>0&&v<=80)) ti.value=T; fit(); draw(); }; }
   tx.oninput=()=>{ const z=tx.value.split(/\n+/).map(l=>l.split(/[,\s]+/).filter(Boolean).map(Number)).filter(a=>a.length>=2&&isFinite(a[0])&&isFinite(a[1])).map(a=>[a[0],a[1]]); if(z.length>=2){ pts=z; closed=z.length>=3; draw(); } };
   q('[data-ok]').onclick=async()=>{ const code=String(q('[data-f="code"]').value||"").trim(); if(!code){ toast("ใส่รหัสสินค้าก่อน"); q('[data-f="code"]').focus(); return; }
     if(pts.length<3){ toast("วาดอย่างน้อย 3 จุด"); return; } const D=dims(); if(!(D.h>0)){ toast("ต้องมีส่วนที่อยู่เหนือเส้นแดง (ขอบบาน)"); return; }
     const id=(P&&P.id)||("ehp"+Date.now().toString(36)), L=Array.isArray(settings.ehpLib)?settings.ehpLib:(settings.ehpLib=[]);
-    const row={id, code, n:String(q('[data-f="n"]').value||"").trim()||code, pts:pts.map(p=>[r1(p[0]),r1(p[1])]), gap:ehpGap({gap:gin.value})};
+    const row={id, code, n:String(q('[data-f="n"]').value||"").trim()||code, pts:pts.map(p=>[r1(p[0]),r1(p[1])]), gap:ehpGap({gap:gin.value}), refT:T};   /* v1.605: refT = หนาบานที่ใช้เทียบ ไม่เข้าตัวคิด */
     const i=L.findIndex(x=>x&&x.id===id); if(i>=0) L[i]=row; else L.push(row);
     try{ await catSaveSettings(); }catch(er){ console.error("ehpSave:",er); }
     done(row); };
