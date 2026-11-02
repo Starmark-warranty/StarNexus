@@ -3283,7 +3283,7 @@ body[data-theme="dark"] .splash-dots span{background:rgba(255,255,255,.25)}
    ===================================================================== */
 /* ---- APP_META: แหล่งความจริงเดียวของเวอร์ชัน (ดูได้จาก console / คลิกชื่อแอป) ---- */
 const APP_META={
-  name:"StarNexus", version:"1.610", build:"2026-11-02/plinth-joint-meas-hud",
+  name:"StarNexus", version:"1.611", build:"2026-11-02/render-from-view",
   file:"StarNexus.html", basedOn:"Furnitech_V3.html (v3.11)",
   /* ───────── เริ่มนับเวอร์ชันใหม่ที่ 1.001 (21/08/2026) ─────────
      ของเดิมนับมาถึง 42.1 แล้ววิ่งเป็นทศนิยมสองชั้นซึ่งอ่านลำดับยาก
@@ -3291,6 +3291,7 @@ const APP_META={
      ประวัติเก่าเก็บไว้ทั้งหมดตามเลขเดิม ไม่ไล่เขียนใหม่ เพราะเลขในนั้นถูกอ้างถึงไปแล้ว
      รายการที่อยู่ใต้ 1.001 ลงไปจึงเป็นเลขชุดเก่า อ่านต่อกันได้ตามวันที่ */
   changelog:[
+    ["1.611","2026-11-02","FEAT AI RENDER เลือกภาพตั้งต้นได้: 🖥 ภาพจากจอ (ตั้งต้น · ไม่เปิดโหมดสมจริง) หรือ ✨ โหมดสมจริงแบบเดิม · ปิด SN_OFF.rndView · FEAT สัญลักษณ์เส้นประกากบาทบนหน้าลิ้นชักใน 3D · ปิด SN_OFF.drawerSym · FIX ลิงก์ดูงาน เส้น V ทิศเปิดหมุนตามบาน ไม่ค้างกลางอากาศ"],
     ["1.610","2026-11-02","CHANGE รอยต่อตีนตู้อยู่ระหว่างตู้ ก่อนถึง 2400 เหมือนฟิลเลอร์บนและไม้ไฟ · ปิด SN_OFF.plinthJoint · UI แถบลอยไม้วัดอยู่กลางช่องระหว่างแผงซ้าย-ขวา ไม่จมใต้แผงห้องออกแบบ · ปิด SN_OFF.mdHudPlace"],
     ["1.609","2026-11-02","FIX บานตู้ฮู้ดก้นบานหาย ~10 มม. — ขอบล่างไม่มีจุดอ้างจึงจำระยะที่ถูกตัดสะสมมาจากรุ่นก่อน ตอนนี้อ้างแผ่นข้าง เว้น 1.5 เท่าขอบบน · CHANGE รอยต่อไม้ไฟและฟิลเลอร์บนอยู่ระหว่างตู้ ก่อนถึง 2400 ไม่อยู่กลางตู้ · ปิด SN_OFF.deFreeBottom · SN_OFF.cabJoint · UI แผงห้องออกแบบไม่ทับแถบเครื่องมือล่าง"],
     ["1.608","2026-11-02","FEAT ใบเบิกมือจับฝังออกรหัส AX จริงตามรุ่น + สี + ขนาดตัด (1 ขนาด = 1 รหัส · รหัสขึ้นต้น 406 · ไม่เจอบอกในใบพร้อมชื่อขอเปิดรหัส · ปิด SN_OFF.ehpAxCode) · ราคาทุนใช้ราคา AX ของรหัสท่อนก่อนราคาต่อเมตร · FIX ลายหน้าบานแบบแปะรูปรอโหลดก่อนอบลงลิงก์ดูงาน + สีเส้นตรงโปรแกรม · UX หน้าต่างมือจับสองฝั่ง รายการรุ่นเต็มความสูง กดแล้วไม่เด้งกลับบน ลากย้ายได้"],
@@ -20572,8 +20573,18 @@ function render3D(refit){
             return new THREE.Vector3(v3.x+b.x,v3.y+b.y,v3.z+b.z); });
           const lg=new THREE.BufferGeometry().setFromPoints(lp);
           const ln=new THREE.Line(lg,new THREE.LineDashedMaterial({color:0x49505e,dashSize:14,gapSize:9,transparent:true,opacity:.85}));
-          ln.computeLineDistances(); ln.userData.label=true; ln.renderOrder=3; root.add(ln);
+          ln.computeLineDistances(); ln.userData.label=true; ln.userData.id=b.id;   /* v1.611: id บาน = ในลิงก์ดูงานเส้นหมุนตามบาน ไม่ค้างกลางอากาศตอนเปิดบาน */ ln.renderOrder=3; root.add(ln);
         }
+      }
+      /* ───────── v1.611: สัญลักษณ์หน้าลิ้นชัก ─────────
+         ผู้ใช้ 2/11 19:14 (ภาพหน้าตรงครัว): “คุณเห็นสัญลักษณ์บานเปิดไหมครับ ผมอยากได้ที่ลูกลิ้นชักด้วย มีไหม”
+         เดิม: V ทิศเปิดมีเฉพาะบานเปิด เงื่อนไขข้ามหน้าลิ้นชัก (_dg) ไว้ · มองหน้าตรงแยกหน้าลิ้นชักกับบานไม่ออก
+         ตอนนี้: เส้นประกากบาทมุมถึงมุม สีและเส้นเดียวกับบาน ตามสวิตช์เดียวกัน (ตั้งค่า › เส้นสัญลักษณ์) · ลิ้นชักในไม่มี · วาดด้านหน้าจริงจาก ehpSides · ปิด SN_OFF.drawerSym=1 */
+      if(settings.doorSwing!==false && !snOff("drawerSym") && b._door && b._dg!=null && !b._box && !b._inner && !b._panel && !b._dummy){
+        let sz=1; try{ sz=ehpSides(state.boards.find(x=>x&&x.id===b.id)||b).sz||1; }catch(e){}
+        const M=orientMatrix(b.orient,b.yaw), hx=b.L/2-1.5, hy=b.W/2-1.5, P3=(x,y)=>{ const v3=new THREE.Vector3(x,y,sz*(b.T/2+0.8)).applyMatrix4(M); return new THREE.Vector3(v3.x+b.x,v3.y+b.y,v3.z+b.z); };
+        [[[-hx,hy],[hx,-hy]],[[-hx,-hy],[hx,hy]]].forEach(q=>{ const ln=new THREE.Line(new THREE.BufferGeometry().setFromPoints([P3(q[0][0],q[0][1]),P3(q[1][0],q[1][1])]),new THREE.LineDashedMaterial({color:0x49505e,dashSize:14,gapSize:9,transparent:true,opacity:.85}));
+          ln.computeLineDistances(); ln.userData.label=true; ln.userData.id=b.id; ln.renderOrder=3; root.add(ln); });
       }
     });
   } else { // exploded: lay flat, shelf-pack
@@ -30356,6 +30367,8 @@ function boardRole(b){
      SN_OFF.doorArt=1     ไม่มีหน้าวาดลายหน้าบาน · ลายที่ใส่ไว้ไม่แสดง (v1.604)
      SN_OFF.ehpRebate=1   มือจับฝังไม่เซาะบ่าหลังบาน (v1.606)
      SN_OFF.hgk3D=1       หูแขวนเป็นกล่องคร่าว ๆ แบบเดิม (v1.606)
+     SN_OFF.rndView=1     AI RENDER เปิดโหมดสมจริงทุกครั้งแบบเดิม ไม่มีแถวภาพตั้งต้น (v1.611)
+     SN_OFF.drawerSym=1   หน้าลิ้นชักไม่มีเส้นประกากบาท (v1.611)
      SN_OFF.plinthJoint=1 ตีนตู้ตัดทุก 2400 จากต้นแนวแบบเดิม (v1.610)
      SN_OFF.mdHudPlace=1  แถบลอยไม้วัดอยู่กลางจอตายตัวแบบเดิม (v1.610)
      SN_OFF.deFreeBottom=1 บานตู้ฮู้ดก้นบานไม่อ้างแผ่นข้าง (v1.609)
@@ -36041,7 +36054,7 @@ function renderSettings(){
     <div style="font-size:11px;opacity:.62;margin:2px 0 6px">รูปแบบที่เจาะจงกว่าชนะ เขียนข้อยกเว้นทับกฎกว้างได้ เช่น <code>Screw_*:LEGCLIP_Screw, Screw_150_179:LEGCLIP_Screw_L</code> · รุ่นขาที่ถูกสร้างใหม่จาก XML จะถูกเติมรหัสกิ๊ฟตามตารางนี้ลงไปในคลังให้เลย แก้ทับทีหลังได้</div>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px">${txt("legClipCode","รหัสกลางของกิ๊ฟ (ใช้เมื่อไม่เข้าข้อ 1 และ 2)")}${txt("legClipName","ชื่อที่ใช้ในใบอุปกรณ์ ถ้าไม่มีใน Element")}</div>
     <div class="sumh" style="margin-top:12px">ตรวจชิ้นซ้อนกัน (Overlap)</div>
-    <label style="display:flex;align-items:center;gap:8px;font-size:13px;cursor:pointer"><input type="checkbox" id="setDoorSwing" ${settings.doorSwing!==false?"checked":""}> เส้นสัญลักษณ์ทิศเปิดบาน (V จากฝั่งบานพับ) บนหน้าบานใน 3D</label>
+    <label style="display:flex;align-items:center;gap:8px;font-size:13px;cursor:pointer"><input type="checkbox" id="setDoorSwing" ${settings.doorSwing!==false?"checked":""}> เส้นสัญลักษณ์ทิศเปิดบาน (V จากฝั่งบานพับ) บนหน้าบาน · กากบาท บนหน้าลิ้นชัก ใน 3D</label>
     <label style="display:flex;align-items:center;gap:8px;font-size:13px;cursor:pointer;margin-top:6px"><input type="checkbox" id="setDoorRelief" ${settings.doorRelief3D!==false?"checked":""}> ลายหน้าบาน 3D (โชว์อย่างเดียว · ไม่ออก CNC/ใบไม้ · ปิดเองในโหมดประหยัด)</label>
     <textarea id="setDoorReliefMap" class="nameinp" rows="3" style="width:100%;font-family:var(--mono);font-size:12px;margin-top:4px" placeholder="MCxx35 = 0:3, 3:0, 55:0, 58:3, 60:6, 95:6, 110:2, 110:0">${escapeHtml(String(settings.doorReliefMap==null?"":settings.doorReliefMap))}</textarea>
     <div style="font-size:11px;opacity:.62;margin:2px 0 6px">บรรทัดละแบบ: <code>รหัสแบบบาน (FrontShape) = ระยะจากขอบ:ความลึก, …</code> ไล่จากขอบบานเข้าไป จุดสุดท้ายคือขอบลูกฟักกลาง · ความลึกวัดจากผิวหน้าบาน · หลังบานเรียบ · ปกติทุกด้านเข้ามุม 45 · ต่อท้าย <code>| ตั้งทะลุ 55-60</code> = ช่วงนั้นของขอบซ้าย/ขวาวิ่งตรงตลอดความสูงบาน (ตั้งยาว คานสั้นชนเข้า) · <code>| นอนทะลุ a-b</code> = ขอบบน/ล่างวิ่งตรงตลอดความกว้าง · บานที่เล็กกว่าลาย (เช่นหน้าลิ้นชักเตี้ย) วาดเป็นแผ่นเรียบ</div>
@@ -71588,7 +71601,15 @@ try{ SNAI.init(); }catch(e){ console.error("SNAI.init:",e); }
 function rndLbl(){ return snOff("rndAi")?"🎬 Render":"🎬 AI RENDER"; }
 const RND=(function(){
   const LSK="sxlocaltrial:furnitech:render";
-  const DEF={eng:"ai", engV:1, px:1600, spp:128, preset:"", ai:"gemini", gm:"", om:"", note:"", cur:false, off:{}, aiOpen:false};   /* v1.570: ตั้งต้น ai */
+  /* ───────── v1.611: เลือกได้ว่าจะถ่ายภาพตั้งต้นจากจอ หรือเปิดโหมดสมจริง ─────────
+     ผู้ใช้ 2/11 19:07: “ตอนกดปุ่ม AI RENDER แล้วกด Render ไม่อยากให้โปรแกรมไปกดสมจริง มีให้เลือกไหม”
+     เดิม: กด ▶ ทุกครั้ง run() เปิดโหมดสมจริงให้เอง (ปั้นห้อง + ไฟจำลอง) ถ่ายแล้วปิดกลับ ไม่มีทางเลือก
+     ตอนนี้: แถว “ภาพตั้งต้น” — 🖥 ภาพจากจอ (ตั้งต้น · ไม่เปิดโหมดสมจริง) / ✨ โหมดสมจริง (แบบเดิม) · จำค่าในเครื่อง (O.base)
+       ภาพจากจอ: ปิดโหมดประหยัด/โปร่งใส/เส้นลายไม้/เส้นทิศเปิดบานชั่วคราวเฉพาะตอนถ่าย ซ่อนเส้นเลือก ระยะ ป้าย กริด แล้วคืนค่า · มุมกล้อง ฉาก บานที่เปิดอยู่ เหมือนจอ
+         ต้องคงเส้นขอบชิ้นไว้ — ไม่มีเงาแบบโหมดสมจริง ถ้าตัดเส้นออก (แบบ fastShot เดิม) บานติดกันจะกลืนเป็นผืนเดียว AI นับบานไม่ได้
+       เปิดโหมดสมจริงค้างไว้เองอยู่แล้ว = ถ่ายจากโหมดนั้น เพราะนั่นคือจอตอนนี้ · 📸 แสงจริงต้องใช้ห้องของโหมดสมจริงเสมอ จึงไม่มีแถวนี้
+     ปิด SN_OFF.rndView=1 = เปิดโหมดสมจริงทุกครั้งแบบเดิม */
+  const DEF={eng:"ai", engV:1, px:1600, spp:128, preset:"", ai:"gemini", gm:"", om:"", note:"", cur:false, off:{}, aiOpen:false, base:"view"};   /* v1.570: ตั้งต้น ai */
   let O=Object.assign({},DEF), loaded=false, res=[], busy=false, stop=false, ov=null, pill=null;
   const H=s=>escapeHtml(String(s==null?"":s));
   const sleep=ms=>new Promise(r=>setTimeout(r,ms));
@@ -71597,6 +71618,7 @@ const RND=(function(){
       if(!v.engV){ O.engV=1; if(!snOff("rndAi")) O.eng="ai"; } } }catch(e){} if(!O.off||typeof O.off!=="object") O.off={};   /* v1.570: ค่าที่จำไว้ก่อนมี AI RENDER (pt) → ai ครั้งเดียว · เลือกกลับเองได้ */
     if(O.eng==="ai"&&snOff("rndAi")) O.eng="fast"; }
   function save(){ try{ lsSet(LSK,O); }catch(e){} }
+  function baseIsView(){ return O.eng!=="pt"&&O.base!=="real"&&!snOff("rndView"); }   /* v1.611 */
   function scenes(){ try{ return scnList().filter(s=>s&&Array.isArray(s.t)); }catch(e){ return []; } }
   function fname(nm,tag,ext){ const d=new Date(), p2=x=>String(x).padStart(2,"0"); let oid="";
     try{ const v=(($("exOrderId")||{}).value||"").trim(); if(v) oid=v.replace(/[\\/:*?"<>|\s]+/g,"_")+"-"; }catch(e){}
@@ -71613,15 +71635,17 @@ const RND=(function(){
     pill.querySelector("button").onclick=()=>{ stop=true; pillTxt("กำลังหยุด…"); try{ if(RPT.run) rptRun(false); }catch(e){} };
     document.body.appendChild(pill); pillTxt(t); }
   /* ---------- ถ่ายภาพ ---------- */
-  function fastShot(){ const keepPR=renderer.getPixelRatio(), sz=renderer.getSize(new THREE.Vector2()), hid=[]; let url="", w=0, h=0;
+  function fastShot(fromView){ const keepPR=renderer.getPixelRatio(), sz=renderer.getSize(new THREE.Vector2()), hid=[]; let url="", w=0, h=0;
     try{ const cw=Math.max(1,sz.x), ch=Math.max(1,sz.y), lim=Math.min(+(renderer.capabilities.maxTextureSize)||4096,8192);
       let k=O.px/Math.max(cw,ch); k=Math.max(.25,Math.min(k,lim/Math.max(cw,ch),4));
       const Hd=o=>{ if(o&&o.visible){ o.visible=false; hid.push(o); } };
       [typeof selBox!=="undefined"?selBox:null, typeof cabBox!=="undefined"?cabBox:null, typeof axisLine!=="undefined"?axisLine:null,
        (typeof PLD!=="undefined"&&PLD)?PLD.grp:null, (typeof _msGrp!=="undefined")?_msGrp:null, (typeof PLMS!=="undefined")?PLMS.box:null].forEach(Hd);
-      scene.traverse(o=>{ const u=o.userData||{}; if(o.isSprite||u.label||o.isLine) Hd(o); });
+      const _kl=new Set(); if(fromView) root.traverse(o=>{ if(o.isLine) _kl.add(o); });   /* v1.611: ภาพจากจอคงเส้นขอบชิ้นของตู้ · เส้นห้อง (ฝ้าหลุม กริด แนวผนัง) ซ่อน */
+      scene.traverse(o=>{ const u=o.userData||{}; if(o.isSprite||u.label||(o.isLine&&!_kl.has(o))) Hd(o); });
       renderer.setPixelRatio(k); try{ renderer.shadowMap.needsUpdate=true; }catch(e){}
-      realRender(); url=renderer.domElement.toDataURL("image/jpeg",0.93); w=Math.round(cw*k); h=Math.round(ch*k); }
+      if(fromView) renderer.render(scene,camera); else realRender();   /* v1.611 */
+      url=renderer.domElement.toDataURL("image/jpeg",0.93); w=Math.round(cw*k); h=Math.round(ch*k); }
     finally{ hid.forEach(o=>o.visible=true); renderer.setPixelRatio(keepPR); try{ _realCmpDispose(); }catch(e){} invalidate(); }
     if(!url||url.length<1000) throw new Error("ภาพว่าง — การ์ดจออาจไม่พอ ลองลดขนาดภาพ");
     return {url,w,h}; }
@@ -71638,21 +71662,28 @@ const RND=(function(){
   async function run(list){ if(busy||!list||!list.length) return; busy=true; stop=false; const n=list.length; let ok=0, err=null;
     const aiMode=O.eng==="ai"&&!snOff("rndAi"), made=[];   /* v1.570: AI RENDER = ภาพเร็ว แล้วส่ง AI */
     const keep=scnCap(), keepAct=SCN.act, wasReal=REAL.on, keepPre=REAL.preset;
-    if(ov) ov.style.display="none"; pillShow("🎬 กำลังเตรียมห้อง/แสง…");
+    const fromView=baseIsView()&&!REAL.on, vKeep=fromView?{eco:state.eco,ghost:state.ghost,grain:state.showGrain,swing:settings.doorSwing}:null;   /* v1.611 */
+    if(ov) ov.style.display="none"; pillShow(fromView?"🎬 กำลังเตรียมภาพ…":"🎬 กำลังเตรียมห้อง/แสง…");
     try{
+      if(fromView){ state.eco=false; state.ghost=false; state.showGrain=false; settings.doorSwing=false; render3D(false);
+        for(let i=0;i<60;i++){ const b2=Object.keys(_texImgC||{}).some(k=>_texImgC[k]&&_texImgC[k].st==="loading"); if(!b2) break; await sleep(150); }
+        await frames(3); }
+      else {
       if(O.preset&&REAL_PRESETS[O.preset]&&O.preset!==REAL.preset) realSetPreset(O.preset);
-      if(!REAL.on){ await realToggle(true); if(!REAL.on) throw new Error("เปิดโหมดสมจริงไม่ได้"); await frames(4); await sleep(350); }
+      if(!REAL.on){ await realToggle(true); if(!REAL.on) throw new Error("เปิดโหมดสมจริงไม่ได้"); await frames(4); await sleep(350); } }
       for(let i=0;i<n&&!stop;i++){ const s=list[i]; pillTxt("🎬 "+(i+1)+"/"+n+" · "+s.name);
         scnGo(s,true); await frames(3); await sleep(200);
-        try{ const r=O.eng==="pt"?await ptShot(i,n,s.name):fastShot();
-          if(r){ res.unshift({id:"r"+Date.now().toString(36)+i, name:s.name, eng:O.eng, url:r.url, w:r.w, h:r.h, at:Date.now(), ai:null}); made.push(res[0]); ok++; } }
+        try{ const r=O.eng==="pt"?await ptShot(i,n,s.name):fastShot(fromView);
+          if(r){ res.unshift({id:"r"+Date.now().toString(36)+i, name:s.name, eng:O.eng, url:r.url, w:r.w, h:r.h, at:Date.now(), ai:null, fromView}); made.push(res[0]); ok++; } }
         catch(e){ err=e; console.error("render:",e); if(O.eng==="pt") break; } } }
     catch(e){ err=e; console.error("render:",e); }
     finally{
       try{ if(RPT.el) rptClose(); }catch(e){}
       try{ scnGo(Object.assign({},keep,{id:null}),true); SCN.act=keepAct; scnBarRender(); }catch(e){}
+      if(vKeep){ state.eco=vKeep.eco; state.ghost=vKeep.ghost; state.showGrain=vKeep.grain; if(vKeep.swing===undefined) delete settings.doorSwing; else settings.doorSwing=vKeep.swing; try{ render3D(false); invalidate(); }catch(e){} }   /* v1.611: คืนจอตามเดิม */
+      else {
       if(!wasReal){ try{ await realToggle(false); }catch(e){} }
-      if(REAL.preset!==keepPre&&REAL_PRESETS[keepPre]){ try{ realSetPreset(keepPre); }catch(e){} }
+      if(REAL.preset!==keepPre&&REAL_PRESETS[keepPre]){ try{ realSetPreset(keepPre); }catch(e){} } }
       pillHide(); busy=false; if(ov){ ov.style.display=""; draw(); }
       if(!(aiMode&&made.length&&!stop&&!err)) toast(stop?("⏹ หยุดแล้ว — ได้ "+ok+" ภาพ"):err?("เรนเดอร์ได้ "+ok+"/"+n+" ภาพ · ⚠ "+(err.message||err)):("🎬 เรนเดอร์เสร็จ "+ok+" ภาพ")); }
     if(aiMode&&made.length&&!stop) await aiAll(made.slice().reverse());   /* v1.570: ตามลำดับฉาก */
@@ -71897,8 +71928,10 @@ const RND=(function(){
       +row("ตัวเรนเดอร์",'<select id="rnEng" class="nameinp" style="width:auto">'+(snOff("rndAi")?'':opt("ai",O.eng,"🤖 AI — ภาพฉาก → "+(O.ai==="openai"?"OpenAI":"Gemini")+" (ไม่เรนเดอร์ในเครื่อง)"))+opt("pt",O.eng,"📸 แสงจริงในเครื่อง (path tracing · นาน)")+opt("fast",O.eng,"⚡ ภาพเร็ว (ไม่ส่ง AI)")+'</select>')
       +row("ขนาดภาพ",'<select id="rnPx" class="nameinp" style="width:auto">'+[1280,1600,1920,2560].map(v=>opt(v,O.px,v+" px"+(v===1920?" (Full HD)":""))).join("")+'</select>')
       +(O.eng==="pt"?row("ความเนียน",'<select id="rnSpp" class="nameinp" style="width:auto">'+[[64,"64 รอบ · เร็ว"],[128,"128 รอบ"],[256,"256 รอบ · เนียน"],[512,"512 รอบ · นาน"]].map(x=>opt(x[0],O.spp,x[1])).join("")+'</select>'):'')
-      +row("แสง",'<select id="rnPre" class="nameinp" style="width:auto">'+opt("",O.preset,"ตามโหมดสมจริงตอนนี้")+PR.map(k=>opt(k,O.preset,(REAL_PRESETS[k].icon||"")+" "+REAL_PRESETS[k].label)).join("")+'</select>')
-      +'<div class="muted" style="font-size:11px;line-height:1.55;margin-top:6px">'+(O.eng==="pt"?"แสงจริงคำนวณบนการ์ดจอทีละฉาก ฉากละราว 1–5 นาทีแล้วแต่เครื่อง · ระหว่างนั้นใช้โปรแกรมไม่ได้ (กด ⏹ หยุดได้)":O.eng==="ai"?"ถ่ายภาพฉากที่ติ๊ก (ฉากละไม่กี่วินาที) แล้วส่งให้ AI พร้อมคำสั่งคงแบบตู้ทันที ผลขึ้นช่อง ② ภาพที่ได้จากการเจน ด้านล่าง · คีย์ต้องเปิด billing (คีย์ฟรีสร้างภาพไม่ได้ → ใช้ 🍌 Gemini เว็บ บนการ์ด)":"ภาพโหมดสมจริงความละเอียดสูง ฉากละไม่กี่วินาที แต่แสงเงาไม่ละเอียดเท่าแสงจริง")+'</div></div></div>'
+      /* v1.611: ภาพตั้งต้น · แสงจำลองเลือกได้เฉพาะตอนใช้โหมดสมจริง */
+      +((O.eng==="pt"||snOff("rndView"))?'':row("ภาพตั้งต้น",'<select id="rnBase" class="nameinp" style="width:auto" title="ภาพจากจอ = ถ่ายตามที่เห็นในหน้าจอตอนนี้ ไม่เปิดโหมดสมจริง · ถ้าอยู่นอกห้องออกแบบจะไม่มีผนังและพื้น">'+opt("view",O.base==="real"?"":"view","🖥 ภาพจากจอ (ไม่เปิดโหมดสมจริง)")+opt("real",O.base,"✨ โหมดสมจริง (ห้อง + แสงจำลอง)")+'</select>'))
+      +(baseIsView()?'':row("แสง",'<select id="rnPre" class="nameinp" style="width:auto">'+opt("",O.preset,"ตามโหมดสมจริงตอนนี้")+PR.map(k=>opt(k,O.preset,(REAL_PRESETS[k].icon||"")+" "+REAL_PRESETS[k].label)).join("")+'</select>'))
+      +'<div class="muted" style="font-size:11px;line-height:1.55;margin-top:6px">'+(O.eng==="pt"?"แสงจริงคำนวณบนการ์ดจอทีละฉาก ฉากละราว 1–5 นาทีแล้วแต่เครื่อง · ระหว่างนั้นใช้โปรแกรมไม่ได้ (กด ⏹ หยุดได้)":O.eng==="ai"?"ถ่ายภาพฉากที่ติ๊ก (ฉากละไม่กี่วินาที) แล้วส่งให้ AI พร้อมคำสั่งคงแบบตู้ทันที ผลขึ้นช่อง ② ภาพที่ได้จากการเจน ด้านล่าง · คีย์ต้องเปิด billing (คีย์ฟรีสร้างภาพไม่ได้ → ใช้ 🍌 Gemini เว็บ บนการ์ด)":(baseIsView()?"ภาพจากจอความละเอียดสูง ฉากละไม่กี่วินาที ไม่เปิดโหมดสมจริง":"ภาพโหมดสมจริงความละเอียดสูง ฉากละไม่กี่วินาที แต่แสงเงาไม่ละเอียดเท่าแสงจริง"))+'</div></div></div>'
       +'<div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:12px 0 4px"><button class="ibtn" id="rnGo" style="background:var(--accent);color:#fff;border-color:transparent;padding:8px 18px"'+((n&&!busy)?'':' disabled')+'>'+(busy?'⏳ กำลังทำ…':(O.eng==="ai"&&!snOff("rndAi"))?('▶ AI RENDER '+n+' ภาพ'):('▶ เรนเดอร์ '+n+' ภาพ'))+'</button>'   /* v1.570 */
       +(res.length?'<button class="ibtn" id="rnAll">⬇ บันทึกทั้งหมด ('+res.length+')</button><button class="ibtn" id="rnClr">🧹 '+(snOff("rndSplit")?"ล้างผล":"ล้างทั้งหมด")+'</button>':'')+'</div>'
       +'<details id="rnAiD" data-gas-drive="1" style="margin:8px 0;border:.5px solid var(--line);border-radius:10px;padding:6px 10px"'+(O.aiOpen?' open':'')+'><summary style="cursor:pointer;font-weight:600">🤖 AI แต่งต่อ — '+(O.ai==="openai"?"OpenAI":"Gemini")+(has(O.ai)?' · มีคีย์แล้ว':' · <span style="color:#b45309">ยังไม่มีคีย์</span>')+'</summary>'
@@ -71920,16 +71953,16 @@ const RND=(function(){
     B.querySelectorAll(".rnS").forEach(c=>c.onchange=()=>{ if(c.checked) delete O.off[c.dataset.id]; else O.off[c.dataset.id]=1; save(); draw(); });
     const cur=q("#rnCur"); if(cur) cur.onchange=()=>{ O.cur=cur.checked; save(); draw(); };
     const bd=(id,k,num)=>{ const e=q(id); if(e) e.onchange=()=>{ O[k]=num?(+e.value||DEF[k]):e.value; save(); draw(); }; };
-    bd("#rnEng","eng"); bd("#rnPx","px",1); bd("#rnSpp","spp",1); bd("#rnPre","preset"); bd("#rnAi","ai");
+    bd("#rnEng","eng"); bd("#rnPx","px",1); bd("#rnSpp","spp",1); bd("#rnPre","preset"); bd("#rnAi","ai"); bd("#rnBase","base");   /* v1.611 */
     const md=q("#rnModel"); if(md){ md.onkeydown=e=>e.stopPropagation(); md.onchange=()=>{ const v=String(md.value||"").trim(); if(O.ai==="openai") O.om=v; else O.gm=v; save(); }; }
     const nt=q("#rnNote"); if(nt){ nt.onkeydown=e=>e.stopPropagation(); nt.onchange=()=>{ O.note=String(nt.value||"").slice(0,300); save(); }; }
     const ad=q("#rnAiD"); if(ad) ad.ontoggle=()=>{ O.aiOpen=ad.open; save(); };
     const go=q("#rnGo"); if(go) go.onclick=()=>{ const S=scenes(), L=S.filter(s=>!O.off[s.id]); if(O.cur||!S.length) L.push(Object.assign({},scnCap(),{id:null,name:"มุมตอนนี้"})); run(L); };
-    const all=q("#rnAll"); if(all) all.onclick=async()=>{ for(const it of res.slice().reverse()){ await dl(it.url,fname(it.name,it.eng==="pt"?"แสงจริง":"สมจริง","jpg")); await sleep(400);
+    const all=q("#rnAll"); if(all) all.onclick=async()=>{ for(const it of res.slice().reverse()){ await dl(it.url,fname(it.name,it.eng==="pt"?"แสงจริง":(it.fromView?"ภาพจากจอ":"สมจริง"),"jpg")); await sleep(400);
         if(it.ai&&it.ai.url){ await dl(it.ai.url,fname(it.name,"AI",/^data:image\/jpe?g/.test(it.ai.url)?"jpg":"png")); await sleep(400); } } };
     const clr=q("#rnClr"); if(clr) clr.onclick=()=>{ res=[]; draw(); };
     B.querySelectorAll(".rnC").forEach(el=>{ const it=res.find(x=>x.id===el.dataset.id); if(!it) return;
-      el.querySelector(".rnD").onclick=()=>dl(it.url,fname(it.name,it.eng==="pt"?"แสงจริง":"สมจริง","jpg"));
+      el.querySelector(".rnD").onclick=()=>dl(it.url,fname(it.name,it.eng==="pt"?"แสงจริง":(it.fromView?"ภาพจากจอ":"สมจริง"),"jpg"));   /* v1.611 */
       const dA=el.querySelector(".rnDA"); if(dA) dA.onclick=()=>dl(it.ai.url,fname(it.name,"AI",/^data:image\/jpe?g/.test(it.ai.url)?"jpg":"png"));
       /* v1.568: 🍌 Gemini เว็บ (ฟรี) */
       const wq=c=>el.querySelector(c), W=wq(".rnW"); if(W) W.onclick=()=>webStart(it);
