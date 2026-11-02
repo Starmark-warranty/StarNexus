@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="th"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover"><meta name="generator" content="StarNexus 1.607"><title>StarNexus — ดูงาน 3D</title><style>
+<html lang="th"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover"><meta name="generator" content="StarNexus 1.608"><title>StarNexus — ดูงาน 3D</title><style>
 :root{--bg:#e7e8ee;--panel:rgba(255,255,255,.94);--solid:#fff;--ink:#172c40;--dim:#5b6b7c;--line:#d5dae2;--accent:#1e5fa8;--warn:#e8590c;--shadow:0 10px 30px -12px rgba(16,32,56,.35)}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html,body{margin:0;height:100%;background:var(--bg);color:var(--ink);font:14px/1.5 system-ui,-apple-system,"Segoe UI","Noto Sans Thai","Sarabun",sans-serif;overflow:hidden;overscroll-behavior:none}
@@ -382,7 +382,7 @@ function build(D,imgs){
     x.rotation=t.ro||0; x.encoding=t.en||3000; x.flipY=t.fy!==0; x.anisotropy=Math.min(8,renderer.capabilities.getMaxAnisotropy()||1); x.needsUpdate=true; return x; });
   var mats=(D.mat||[]).map(function(m){ var p={}, o;
     if(m.c!=null) p.color=m.c; if(m.tr) p.transparent=true; if(m.op!=null) p.opacity=m.op; if(m.sd) p.side=m.sd;
-    if(m.dw===0) p.depthWrite=false; if(m.dt===0) p.depthTest=false; if(m.vc) p.vertexColors=true;
+    if(m.dw===0) p.depthWrite=false; if(m.dt===0) p.depthTest=false; if(m.vc) p.vertexColors=true; if(m.tm===0) p.toneMapped=false;
     if(m.po){ p.polygonOffset=true; p.polygonOffsetFactor=m.po[0]; p.polygonOffsetUnits=m.po[1]; }
     if(m.mp!=null&&tex[m.mp]) p.map=tex[m.mp];
     switch(m.k){

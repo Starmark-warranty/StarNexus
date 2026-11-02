@@ -3283,7 +3283,7 @@ body[data-theme="dark"] .splash-dots span{background:rgba(255,255,255,.25)}
    ===================================================================== */
 /* ---- APP_META: แหล่งความจริงเดียวของเวอร์ชัน (ดูได้จาก console / คลิกชื่อแอป) ---- */
 const APP_META={
-  name:"StarNexus", version:"1.607", build:"2026-11-02/r122-r118-pose-grain-dir",
+  name:"StarNexus", version:"1.608", build:"2026-11-02/ehp-ax-code-by-size",
   file:"StarNexus.html", basedOn:"Furnitech_V3.html (v3.11)",
   /* ───────── เริ่มนับเวอร์ชันใหม่ที่ 1.001 (21/08/2026) ─────────
      ของเดิมนับมาถึง 42.1 แล้ววิ่งเป็นทศนิยมสองชั้นซึ่งอ่านลำดับยาก
@@ -3291,6 +3291,7 @@ const APP_META={
      ประวัติเก่าเก็บไว้ทั้งหมดตามเลขเดิม ไม่ไล่เขียนใหม่ เพราะเลขในนั้นถูกอ้างถึงไปแล้ว
      รายการที่อยู่ใต้ 1.001 ลงไปจึงเป็นเลขชุดเก่า อ่านต่อกันได้ตามวันที่ */
   changelog:[
+    ["1.608","2026-11-02","FEAT ใบเบิกมือจับฝังออกรหัส AX จริงตามรุ่น + สี + ขนาดตัด (1 ขนาด = 1 รหัส · รหัสขึ้นต้น 406 · ไม่เจอบอกในใบพร้อมชื่อขอเปิดรหัส · ปิด SN_OFF.ehpAxCode) · ราคาทุนใช้ราคา AX ของรหัสท่อนก่อนราคาต่อเมตร · FIX ลายหน้าบานแบบแปะรูปรอโหลดก่อนอบลงลิงก์ดูงาน + สีเส้นตรงโปรแกรม · UX หน้าต่างมือจับสองฝั่ง รายการรุ่นเต็มความสูง กดแล้วไม่เด้งกลับบน ลากย้ายได้"],
     ["1.607","2026-11-02","FIX มือจับฝัง R122 · R118 วางท่าใหม่ตามภาพผู้ใช้: แผ่นนอนบนหัวบาน ยื่นหน้าบาน หัวห้อยลง ขาลงร่องหลังบาน 2 × 18 — 1.606 ตั้งขึ้นตามแบบ CAD ตรง ๆ บานจึงถูกตัด 45 (ตอนนี้ R122 สั้นลง 2 · R118 2.9 · งานที่ใส่ไว้แล้วแก้ให้เอง) · FEAT ห้องออกแบบ › 🎨 สี เลือกแนวลายหน้าบาน อัตโนมัติ/ตั้ง/นอน เมื่อสีมีลายไม้ · ปิด SN_OFF.plGrainDir · UI การ์ดดีไซน์หน้าบาน: อยู่กลางช่อง · บานตัวอย่างขนาดเดียวกันทุกแบบ · ไม่แสดงรหัสที่ไม่ใช่แบบบาน (0000_Mat16) · FEAT Fitting Global กรองแยกรหัส/ชื่อ/หน่วย/หมวด + คอลัมน์หมวดแทน RecId"],
     ["1.606","2026-11-02","FEAT (ผู้ใช้ 2/11 16:32) ① มือจับฝังรุ่นจริง LM24 · R122 · R118 ลอกจากแบบ CAD ② R122/R118 เซาะบ่าหลังบาน ลึก 2 สูง 18 ตามแบบ: ควักใน 3D + MPR ผิวหลัง · หน้าวาดมีช่องเซาะหลังบาน แก้/ปิดรายรุ่นได้ ③ หูแขวนครัว 3D ตามภาพ: ตัวเรือนเปิดฝาเห็นกลไก น็อตปรับ แผ่นหลัง ลิ้นตะขอรูยาว ซ้าย/ขวากลับด้าน · ขนาด ตำแหน่ง รอยบาก รูเจาะ BOM เท่าเดิม"],
     ["1.605","2026-11-02","FEAT หน้าวาดหน้าตัดมือจับฝัง (ผู้ใช้ 2/11 16:21 “เส้นเฉียง หรือโค้งเฉียงได้ไหม … แก้/ปรับ ความหนาบานได้ไหม”): ⌒ ดัดโค้ง ลากเส้นให้โค้ง พิมพ์ยอดโค้งหรือ R12 · พิมพ์ 20@45 = ยาว 20 มุม 45° · ขณะวาดบอกมุม · ช่องหนาบานเทียบ (ตั้งต้นตามบานในงาน เก็บกับรุ่น) · บอกระยะเลยหลังบาน"],
@@ -26814,7 +26815,7 @@ async function cutLookupSeq(codes,len,hint,v){
    ไม่มียาวตรงตัว = ใช้ท่อนที่ห่างไม่เกิน cutNearTol (ตั้งต้น 1 มม. เหมือน v1.298 · บอกในใบ)
    ไม่เจอเลย แต่ Element ของซีรีส์ผูก Purchase ID ไว้ = ค้นแบบรหัสขึ้นต้นต่อ (ของเดิม)
    ยาวเดียวกันมีหลายรหัส = เลือกชื่อที่ขึ้นต้นด้วย "ราว" ก่อน แล้วรหัสเรียงน้อยไปมาก และบอกในใบว่ามีรหัสไหนบ้าง */
-function cutNameKey(f){ return "~N:"+String((f&&f._cutName)||"").trim()+"|"+cutLen(f&&f._cut); }
+function cutNameKey(f){ return "~N:"+String((f&&f._cutName)||"").trim()+"|"+cutLen(f&&f._cut)+((f&&f._cutEhp&&f._cutTok)?("|"+String(f._cutTok).trim()):""); }   /* v1.608: มือจับฝัง สีต่างกัน = คนละรหัส */
 function cutNameRows(sb,word){
   if(_fgCutNames[word]) return _fgCutNames[word];
   const kw=(String(settings.cutLookupKey||DEF_SETTINGS.cutLookupKey||"ตัดขนาด")).trim();
@@ -26838,7 +26839,44 @@ function cutNamePick(rows,L){
   const pk=hit[0], codes=hit.map(x=>String(x.item_number).trim());
   return {code:codes[0],name:nm(pk),unit:String(pk.unit||""),byName:true,dupCodes:(codes.length>1?codes:undefined)};
 }
+/* ───────── v1.608: รหัส AX ของมือจับฝัง — 1 รุ่น + 1 สี + 1 ขนาด = 1 รหัส ─────────
+   ผู้ใช้ 2/11 17:15 (ภาพ Fitting Global กรองรหัส 406 · ชื่อ 126 · ค้น 616MH ได้ 406AL30040200016 “มือจับอลูมิเนียม LM126 ขนาด 3.0m. AL616MH … ตัดขนาด 397 mm.”):
+     “1 ขนาด เท่ากับ 1 รหัส ครับ วิธีหา แบบรูปที่ส่ง”
+   เดิม: ใบเบิกออกรหัสรุ่น (R122) ต่อด้วยสีในชื่อ · ค้นรหัสแบบขึ้นต้นด้วยรหัสรุ่น ซึ่งใน AX ไม่มี จึงขึ้นค้นไม่เจอทุกบรรทัด
+   ตอนนี้: ค้นตามวิธีของผู้ใช้ — รหัสขึ้นต้น 406 (settings.ehpAxPre · ว่าง = ไม่จำกัด) · ชื่อมีรุ่นพอดีคำ (LM24 ไม่ไปเจอ LM240) · สีพอดีคำ · “ตัดขนาด <ยาว>” เลขตรงตัว
+     ตัดแถว ค่าจ้าง…/ยกเลิก ทิ้งใน cutNameRows · ไม่มียาวตรงตัว = ท่อนที่ห่างไม่เกิน cutNearTol มีบรรทัดส้มบอกในใบ
+     ยังไม่เลือกสี: ยาวนั้นมีรหัสเดียว = ใช้เลย · หลายรหัส = ไม่เดา บอกให้เลือกสี
+     ไม่เจอจากชื่อ แต่ Element ผูก Purchase ID ไว้ = ค้นแบบรหัสขึ้นต้นตามเดิม · ไม่เจอเลย = รหัสรุ่นเดิม + ข้อความแดงพร้อมชื่อที่ใช้ขอเปิดรหัส
+   ปิด SN_OFF.ehpAxCode=1 */
+function ehpAxPrefix(){ return String(settings.ehpAxPre!=null?settings.ehpAxPre:"406").trim(); }
+async function cutLookupEhp(f){
+  const k=cutNameKey(f); if(_fgCut[k]!==undefined) return _fgCut[k];
+  _fgCut[k]=null;
+  const word=String(f._cutName||"").trim(), tok=String(f._cutTok||"").trim(), raw=+f._cut||0, L0=cutLen(raw), pre=ehpAxPrefix();
+  const miss=(why,sample)=>{ _fgMiss[k]={pre:"“"+word+"”",L:L0,why:why,n:0,phrase:(sample?cutPhraseFrom(sample,L0):"")}; return null; };
+  try{
+    const sb=await getDB(); if(!sb) return miss("ต่อคลังอุปกรณ์ไม่ได้");
+    const R=await cutNameRows(sb,word); if(R.err) return miss(R.why);
+    const _e=t=>String(t).replace(/[.*+?^${}()|[\]\\]/g,"\\$&"), nm=x=>String(x.product_name||"").replace(/^"+/,"").trim();
+    const whole=t=>new RegExp("(^|[^A-Za-z0-9])"+_e(t)+"([^A-Za-z0-9]|$)","i"), wRe=whole(word), up=pre.toUpperCase();
+    const base=R.rows.filter(x=>String(x.item_number||"").trim().toUpperCase().indexOf(up)===0&&wRe.test(nm(x)));
+    const rows=tok?base.filter(x=>whole(tok).test(nm(x))):base;
+    let r=cutNamePick(rows,L0);
+    if(!r){ const tol=Math.max(+((settings.cutNearTol!=null)?settings.cutNearTol:DEF_SETTINGS.cutNearTol)||0,0), cand=[];
+      if(tol>0) for(let n=Math.floor(raw-tol); n<=Math.ceil(raw+tol); n++) if(n>0&&n!==L0&&Math.abs(n-raw)<=tol+1e-6) cand.push(n);
+      cand.sort((a,b)=>(Math.abs(a-raw)-Math.abs(b-raw))||(b-a));
+      for(const n of cand){ const r2=cutNamePick(rows,n); if(r2){ r=Object.assign(r2,{near:n,want:round(raw)}); break; } } }
+    if(r&&!tok&&r.dupCodes) return miss("ยังไม่ได้เลือกสีมือจับ — "+word+" ยาว "+L0+" มม. มี "+r.dupCodes.length+" รหัสตามสี เลือกสีในกล่อง 🖐 มือจับ");
+    if(r){ _fgCut[k]=r; return r; }
+    const si=fitPidSrc(f.art);
+    if(si&&si.from==="element"){ const r3=await cutLookupSeq(cutSrcList(f),raw,f.name,cutVarOf(f)); if(r3&&r3.code){ _fgCut[k]=r3; return r3; } }
+    if(!base.length) return miss("ไม่มีรหัสขึ้นต้น "+(pre||"(ทุกรหัส)")+" ที่ชื่อมีรุ่น “"+word+"” และคำว่า ตัดขนาด — เช็ครหัสรุ่นในโปรแกรมให้ตรงชื่อใน AX");
+    if(!rows.length) return miss("มี "+word+" แบบตัดขนาดในคลัง แต่ไม่มีสี "+tok,nm(base[0]));
+    return miss("มี "+word+(tok?(" สี "+tok):"")+" แบบตัดขนาด "+rows.length+" รหัส แต่ยังไม่มีท่อนยาว "+L0+" มม. — ต้องขอเปิดรหัสท่อนนี้",nm(rows[0]));
+  }catch(e){ console.error("cutLookupEhp:",e); return miss("ผิดพลาด: "+(e&&e.message||e)); }
+}
 async function cutLookupNamed(f){
+  if(f&&f._cutEhp) return cutLookupEhp(f);   /* v1.608 */
   const k=cutNameKey(f); if(_fgCut[k]!==undefined) return _fgCut[k];
   _fgCut[k]=null;
   const word=String(f._cutName||"").trim(), raw=+f._cut||0, L0=cutLen(raw);
@@ -30281,6 +30319,8 @@ function boardRole(b){
      SN_OFF.doorArt=1     ไม่มีหน้าวาดลายหน้าบาน · ลายที่ใส่ไว้ไม่แสดง (v1.604)
      SN_OFF.ehpRebate=1   มือจับฝังไม่เซาะบ่าหลังบาน (v1.606)
      SN_OFF.hgk3D=1       หูแขวนเป็นกล่องคร่าว ๆ แบบเดิม (v1.606)
+     SN_OFF.ehpAxCode=1   ใบเบิกมือจับฝังออกรหัสรุ่น ไม่ค้นรหัส AX ตามสี+ขนาด (v1.608)
+     SN_OFF.plPullWide=1  หน้าต่างมือจับแบบเดิม กว้าง 500 เรียงบนลงล่าง (v1.608)
      SN_OFF.plGrainDir=1  กล่องสีห้องออกแบบไม่มีแถวเลือกแนวลายหน้าบาน · ค่าที่เลือกไว้ไม่มีผล (v1.607)
      SN_OFF.dwgDoorSample=1 การ์ดดีไซน์หน้าบานวาดตามขนาดจริงของบาน (v1.607)
      SN_OFF.dwgDoorOnlyCode=1 การ์ดดีไซน์หน้าบานมีทุกรหัส รวม 0000_Mat16 (v1.607)
@@ -41733,10 +41773,10 @@ function costElemPrice(kind,key,code){
 /* v1.597: กุญแจ “รหัส@<ยาว>mm” (มือจับฝังแยกขนาด) — ราคาที่ใส่เอง หรือ ราคาต่อเมตรของ รหัส@m × ยาว */
 function costCutKey(kind,key){ if(kind!=="fit") return null; const m=/^(.+)@(\d+(?:\.\d+)?)mm(?:#.*)?$/.exec(String(key||""));   /* v1.603: + #รหัสสี (มือจับฝังเลือกสี) */ return m?{base:m[1],mm:+m[2]}:null; }
 function costPrice(kind,key,code){ const c=costCfg(), v=c[kind][key]; const n=costNum(v); if(n>0) return n;
-  { const ck=costCutKey(kind,key); if(ck){ if(costZero(v)) return 0; const pm=costPrice("fit",ck.base+"@m",code); return pm>0?Math.round(pm*ck.mm/10)/100:0; } }   /* v1.597 */ if(costZero(v)) return 0; if(kind==="surf"&&v==null&&costIsMel(key,code)) return 0; const ep=(kind==="fit")?0:costElemPrice(kind,key,code); return ep>0?ep:stkPrice(kind,key,code); }   // v1.514: ไม่มีใน SN = ราคา AX จาก StarStock
+  { const ck=costCutKey(kind,key); if(ck){ if(costZero(v)) return 0; const _st=stkPrice(kind,key,code); if(_st>0) return _st;   /* v1.608: รหัสท่อนมีราคา AX = ใช้ราคานั้นก่อนราคาต่อเมตร */ const pm=costPrice("fit",ck.base+"@m",code); return pm>0?Math.round(pm*ck.mm/10)/100:0; } }   /* v1.597 */ if(costZero(v)) return 0; if(kind==="surf"&&v==null&&costIsMel(key,code)) return 0; const ep=(kind==="fit")?0:costElemPrice(kind,key,code); return ep>0?ep:stkPrice(kind,key,code); }   // v1.514: ไม่มีใน SN = ราคา AX จาก StarStock
 /* v1.514: ราคานี้มาจากไหน — sn (พิมพ์ใน SN) · zero (ใส่ 0) · mel (เมลามีน) · elem (ช่อง cost ของ Element) · stk (ราคา AX จาก StarStock) · "" ไม่มี */
 function costSrc(kind,key,code){ const c=costCfg(), v=c[kind][key]; if(costNum(v)>0) return "sn"; if(costZero(v)) return "zero";
-  { const ck=costCutKey(kind,key); if(ck) return costSrc("fit",ck.base+"@m",code); }   /* v1.597: ไม่ได้ใส่รายขนาด = ที่มาเดียวกับราคาต่อเมตร */ if(kind==="surf"&&v==null&&costIsMel(key,code)) return "mel";
+  { const ck=costCutKey(kind,key); if(ck){ if(stkPrice(kind,key,code)>0) return "stk";   /* v1.608 */ return costSrc("fit",ck.base+"@m",code); } }   /* v1.597: ไม่ได้ใส่รายขนาด = ที่มาเดียวกับราคาต่อเมตร */ if(kind==="surf"&&v==null&&costIsMel(key,code)) return "mel";
   if(kind!=="fit"&&costElemPrice(kind,key,code)>0) return "elem"; return stkPrice(kind,key,code)>0?"stk":""; }
 /* v1.442: รหัสสี อักษร+เลข 2 หลัก+อักษร (+เลข) — ตัวที่ 4 = M คือเมลามีน (G01M · G02M · N01M) · H = HPL ฯลฯ */
 function costMelToken(code){ const u=String(code||"").toUpperCase(); const m=u.match(/(?:^|[^A-Z0-9])([A-Z]\d{2}[A-Z])\d{3}/); return m?m[1]:""; }
@@ -41769,7 +41809,8 @@ function costItems(boards,fitRows){
        ตอนนี้: แถวมือจับฝัง (_ehpRow จาก fittingAgg) = กุญแจ “รหัส@<ยาว>mm” หน่วยเส้น ชื่อตามใบเบิก (ตัดขนาด … mm.)
          ราคา (costPrice): ใส่รายขนาดเอง (บาท/เส้น) · ไม่ได้ใส่ = ราคาต่อเมตรของ “รหัส@m” (ที่ใส่ไว้เดิม/AX) × ยาว — ราคาเดิมที่ใส่ไว้ยังใช้ได้
          เส้นอื่น (เฟรมอลู · มือจับโปรไฟล์ · DX · รางไฟ) ยังรวมเป็นเมตรเหมือนเดิม · ปิด SN_OFF.costEhpSize */
-    if(r._ehpRow&&+r._cut>0&&!snOff("costEhpSize")){ add(R.fit,base+"@"+(+r._cut)+"mm"+(r._cutTok?("#"+r._cutTok):""),{code:String(r.art||base),pid:String(r.purchase||""),name:String(r.name||base),unit:"เส้น",perM:false,cutMM:+r._cut},(+r.count||0)); return; }
+    /* v1.608: เจอรหัส AX แล้ว base กลายเป็นรหัสท่อน — กุญแจราคาคงรหัสรุ่นเดิม ราคาที่ใส่รายขนาดไว้จึงไม่หาย · code = รหัสท่อน เพื่อหาราคา AX ของท่อนนั้น */
+    if(r._ehpRow&&+r._cut>0&&!snOff("costEhpSize")){ const _kb=(r._fg&&r._pidSrc)?String(r._pidSrc):base, _rc=(r._fg&&r._fg.code)?String(r._fg.code):""; add(R.fit,_kb+"@"+(+r._cut)+"mm"+(r._cutTok?("#"+r._cutTok):""),{code:_rc||String(r.art||base),pid:String(r.purchase||""),name:String(r.name||base),unit:"เส้น",perM:false,cutMM:+r._cut},(+r.count||0)); return; }
     const perM=(+r._cut>0), key=perM?base+"@m":base, q=perM?(+r.count||0)*(+r._cut)/1000:(+r.count||0);
     let nm=String(r.name||base); if(perM){ try{ const d=fitDef(r.art); if(d&&d.desc) nm=String(d.desc); }catch(e){} }
     add(R.fit,key,{code:String(r.art||base),pid:String(r.purchase||""),name:nm,unit:perM?"ม.":String(r.unit||"ชิ้น"),perM},q);
@@ -47035,6 +47076,22 @@ function plpDoorsSvg(cands){
     o.push('</g>'); });
   return o.join("")+'</svg>'; }
 function plPullClose(){ if(PLPU.el){ PLPU.el.remove(); PLPU.el=null; } }
+/* ───────── v1.608: หน้าต่างมือจับเห็นรุ่นให้เลือกมากขึ้น ─────────
+   ผู้ใช้ 2/11 17:18 (ภาพ 🖐 มือจับแบบฝัง ตู้ BNL078): “มันเห็นช่องเลือกน้อยไปครับ ปรับ UI หน่อย เห็นมือจับแค่แถวเดียวเองครับ”
+   เดิม: กล่องกว้าง 500 สูง 80vh เรียงบนลงล่าง ด้าน · สี · รูมาร์ค · รูปบาน กินที่หมด รายการรุ่นเหลือแถวเดียว · กดรุ่นแล้วรายการเด้งกลับบนสุด
+   ตอนนี้: สองฝั่ง ซ้าย = ตัวเลือก + รูปบาน · ขวา = รายการรุ่นเต็มความสูง · กดแล้วตำแหน่งเลื่อนอยู่ที่เดิม · ลากหัวหน้าต่างย้ายได้ เพราะกว้างขึ้นจึงบัง 3D มากขึ้น · จอแคบ = เรียงบนลงล่างเลื่อนทั้งกล่อง
+   จัดหลังวาดทุกรอบโดยย้าย element เดิม ไม่แตะข้อความในตัววาดทั้งสองโหมด · ปิด SN_OFF.plPullWide=1 */
+function plpLayout(el){ if(snOff("plPullWide")) return;
+  const kids=[...el.children], g=kids.find(c=>c.classList.contains("ppGrid"));
+  if(!g){ el.classList.remove("ppWide","ppEh"); return; }
+  el.classList.add("ppWide"); el.classList.toggle("ppEh",PLPU.mode==="ehp");
+  const body=document.createElement("div"), side=document.createElement("div"), main=document.createElement("div"); body.className="ppBody"; side.className="ppSide"; main.className="ppMain";
+  let after=false; kids.forEach(c=>{ if(c.classList.contains("ppHd")) return; if(c===g) after=true; (after?main:side).appendChild(c); });
+  { const q=side.querySelector("#ppQ"); if(q) main.insertBefore(q.parentNode,g); }   /* ช่องค้นรุ่นอยู่เหนือรายการ */
+  body.append(side,main); el.appendChild(body);
+  const m=PLPU.mode==="ehp"?"e":"k", S=PLPU._sc||(PLPU._sc={});
+  g.scrollTop=S[m]||0; side.scrollTop=S[m+"s"]||0;
+  g.addEventListener("scroll",()=>{ S[m]=g.scrollTop; }); side.addEventListener("scroll",()=>{ S[m+"s"]=side.scrollTop; }); }
 function plPullCSS(){
   if($("plpuCSS")) return; const st=document.createElement("style"); st.id="plpuCSS"; st.textContent=
     "#plPull{position:fixed;z-index:470;width:500px;max-width:94vw;max-height:80vh;display:flex;flex-direction:column;background:var(--solid,#fff);color:var(--ink,#111);border-radius:14px;box-shadow:0 22px 60px -14px rgba(0,0,0,.5);overflow:hidden;font-size:12px}"
@@ -47053,7 +47110,13 @@ function plPullCSS(){
     +"#plPull .ppT small{font-size:10px;color:var(--ink-dim);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}"
     +"#plPull .ppT .ppUse{font-size:10px;color:var(--accent);font-weight:600;min-height:13px}"
     +"#plPull .ppDr{padding:8px 12px 0}#plPull .ppDrH{display:flex;gap:8px;align-items:baseline}#plPull .ppDrH span{color:var(--ink-dim);font-size:11px}"
-    +"#plPull .ppDr svg{display:block;width:100%;max-height:170px;margin-top:4px;background:rgba(127,127,127,.08);border-radius:8px}";   // v1.529
+    +"#plPull .ppDr svg{display:block;width:100%;max-height:170px;margin-top:4px;background:rgba(127,127,127,.08);border-radius:8px}"   // v1.529
+    /* v1.608: สองฝั่ง */
+    +"#plPull.ppWide{width:880px;max-width:96vw;height:min(86vh,700px);max-height:none}#plPull.ppWide .ppHd{cursor:move;flex:none}"
+    +"#plPull .ppBody{flex:1;min-height:0;display:flex}#plPull .ppSide{width:300px;flex:none;overflow:auto;padding-bottom:12px;border-right:1px solid var(--line)}"
+    +"#plPull .ppMain{flex:1;min-width:0;min-height:0;display:flex;flex-direction:column}#plPull .ppMain .ppGrid{flex:1;min-height:0;grid-template-columns:repeat(auto-fill,minmax(128px,1fr));align-content:start}"
+    +"#plPull.ppEh .ppSw{aspect-ratio:5/4}#plPull.ppEh .ppT b{min-height:0}#plPull.ppEh .ppT small{white-space:normal;line-height:1.3;min-height:26px}"
+    +"@media(max-width:780px){#plPull.ppWide{height:auto;max-height:90vh}#plPull .ppBody{flex-direction:column;overflow:auto}#plPull .ppSide{width:auto;overflow:visible;border-right:0;padding-bottom:0}#plPull .ppMain{flex:none}#plPull .ppMain .ppGrid{flex:none;overflow:visible;grid-template-columns:repeat(auto-fill,minmax(104px,1fr))}}";
   document.head.appendChild(st); }
 /* v1.592: แท็บ 🖐 มือจับ / ▬ รางอลูติดขอบ ในหัวกล่องมือจับ */
 function plEhpModeHtml(){ if(snOff("ehp")) return ""; const m=PLPU.mode==="ehp"?"ehp":"knob";
@@ -47098,6 +47161,7 @@ function plEhpDraw(el,C){ const e=v=>escapeHtml(String(v==null?"":v)), inst=C.in
   const done=(res,msg)=>{ const cam=plCamKeep(); sync(0); plCamPut(cam); try{ if(inst) plSelect(inst); else plPanelSel(); }catch(e){} try{ costSchedule(); }catch(e){}
     const sk=res.skip.length; toast(msg+" · "+res.n+" บาน"+(sk?(" · ข้าม "+sk+" บาน ("+[...new Set(res.skip)].slice(0,2).join(" · ")+")"):"")); C.redraw(); };
   const apply=id=>{ PLPU.ehId=id||PLPU.ehId; const res=ehpApplyRows(rows,id,PLPU.ehSide); done(res,id?("▬ มือจับฝัง "+((ehpGet(id)||{}).code||"")):"▬ ถอดมือจับฝัง"); };
+  plpLayout(el);   /* v1.608 */
   el.querySelector("#ppX").onclick=plPullClose; plpKindBind(el,C.redraw);   /* v1.595 */
   /* v1.603: เลือกสีมือจับฝัง — บานที่ใส่อยู่ (เฉพาะรุ่นที่เลือกสีได้) เปลี่ยนทันที · ยังไม่มีบาน = จำไว้ใช้ตอนใส่ */
   const finRefresh=()=>{ const cam=plCamKeep(); _cabFitSig=""; sync(0); plCamPut(cam); try{ costSchedule(); }catch(e){} try{ plAfterRoom(); }catch(e){} };
@@ -47145,9 +47209,14 @@ function plPullOpen(inst,x,y){
   const targets=()=>(whole||PLPU.all)?Object.keys(plCabMap()).filter(plpKindOk):[String(inst)];   /* v1.595: + หมวดตู้ */
   if(PLPU.inst!==inst){ PLPU.q=""; const d0=targets().map(i=>plpDoors(i).map(r=>r.d)).flat().find(d=>d&&(d._pulls||[])[0]&&d._pulls[0]._pl);
     if(d0){ PLPU.pm=d0._pulls[0]._pl.pm||"auto"; PLPU.om=d0._pulls[0]._pl.om||"auto"; } }
-  PLPU.inst=inst; plPullCSS();
+  PLPU.inst=inst; plPullCSS(); PLPU._sc={};   /* v1.608: เปิดใหม่ = รายการเริ่มบนสุด */
   const el=document.createElement("div"); el.id="plPull"; document.body.appendChild(el); PLPU.el=el;
-  const W=Math.min(500,innerWidth*0.94), H=Math.min(innerHeight*0.8,640);
+  const _wd=!snOff("plPullWide"), W=_wd?Math.min(880,innerWidth*0.96):Math.min(500,innerWidth*0.94), H=_wd?Math.min(innerHeight*0.86,700):Math.min(innerHeight*0.8,640);   /* v1.608 */
+  if(_wd) el.addEventListener("pointerdown",ev=>{ if(!ev.target.closest(".ppHd")||ev.target.closest("button,input,label,a")) return; ev.preventDefault();   /* v1.608: ลากหัวหน้าต่าง */
+    const r=el.getBoundingClientRect(), dx=ev.clientX-r.left, dy=ev.clientY-r.top;
+    const mv=e2=>{ el.style.left=Math.max(120-r.width,Math.min(e2.clientX-dx,innerWidth-120))+"px"; el.style.top=Math.max(8,Math.min(e2.clientY-dy,innerHeight-48))+"px"; };
+    const up=()=>{ removeEventListener("pointermove",mv); removeEventListener("pointerup",up); };
+    addEventListener("pointermove",mv); addEventListener("pointerup",up); });
   el.style.left=Math.max(8,Math.min((x!=null?x:innerWidth/2-W/2),innerWidth-W-8))+"px";
   el.style.top=Math.max(8,Math.min((y!=null?y:100),innerHeight-H-8))+"px";
   const list=plpList(); let hid=0; try{ hid=Math.max(pullDefs().length-list.length,0); }catch(e){}
@@ -47188,6 +47257,7 @@ function plPullOpen(inst,x,y){
           +items.map((d,i)=>card(d.code,plpName(d.code),sub(d.code),i)).join("")
           +(!list.length?'<div style="grid-column:1/-1;color:var(--ink-dim);line-height:1.6">ยังไม่มีรุ่นมือจับที่ใส่สเปครู — เพิ่มที่ Element → Fittings (ชนิด = มือจับ · ช่องสเปครู เช่น s128,0,5,0,x)</div>':'')
           +(hid?'<div style="grid-column:1/-1;color:var(--ink-dim);font-size:10.5px;line-height:1.5">อีก '+hid+' รุ่นยังไม่มีสเปครู จึงยังไม่ขึ้นที่นี่ — ใส่สเปครูที่ Element → Fittings แล้วจะเลือกได้</div>':'')+'</div>'));
+    plpLayout(el);   /* v1.608 */
     el.querySelector("#ppX").onclick=plPullClose; plpKindBind(el,draw);   /* v1.595 */
     el.querySelectorAll("[data-pmode]").forEach(b=>b.onclick=()=>{ PLPU.mode=b.dataset.pmode; draw(); });   /* v1.592 */
     { const a=el.querySelector("#ppAll"); if(a) a.onchange=ev=>{ PLPU.all=ev.target.checked; draw(); }; }
@@ -57936,7 +58006,7 @@ function snvSerialize(opt){
     const o={k:m.isMeshStandardMaterial?"S":m.isMeshPhongMaterial?"P":m.isMeshLambertMaterial?"LA":m.isLineDashedMaterial?"LD":m.isLineBasicMaterial?"L":m.isPointsMaterial?"PT":"B"};
     if(m.color) o.c=m.color.getHex();
     if(m.transparent) o.tr=1; if(m.opacity!==1) o.op=Math.round(m.opacity*1000)/1000; if(m.side) o.sd=m.side;
-    if(m.depthWrite===false) o.dw=0; if(m.depthTest===false) o.dt=0; if(m.vertexColors) o.vc=1;
+    if(m.depthWrite===false) o.dw=0; if(m.depthTest===false) o.dt=0; if(m.vertexColors) o.vc=1; if(m.toneMapped===false) o.tm=0;   /* v1.608 */
     if(m.polygonOffset) o.po=[m.polygonOffsetFactor,m.polygonOffsetUnits];
     if(o.k==="S"){ o.r=m.roughness; o.me=m.metalness;
       if(m.emissive&&m.emissive.getHex()){ o.em=m.emissive.getHex(); o.ei=m.emissiveIntensity; }
@@ -58090,7 +58160,12 @@ async function snvBuild(opt){
        ตอนนี้อบโดยเปิดไฟรางชั่วคราว (ไม่แตะเงา/แสงของผู้อบ) · แถบเรืองแสงติดป้าย lg ให้หน้าดูเปิด/ปิดได้ · ปิด SN_OFF.snvLed=1 */
     if(!snOff("snvLed")) window._snvLedForce=true;
     render3D(false);
-    for(let i=0;i<60;i++){ const busy=Object.keys(_texImgC||{}).some(k=>_texImgC[k]&&_texImgC[k].st==="loading"); if(!busy) break; await new Promise(r=>setTimeout(r,150)); }
+    /* ───────── v1.608: ลายหน้าบานในลิงก์ดูงาน ─────────
+       ผู้ใช้ 2/11 17:15: “ลายหน้าบานที่ใส่เอง ไม่ต้องส่งไป CNC แต่ส่งไปลิงก์ดูงานด้วย”
+       แผ่นลาย (doorArtMesh) อยู่ใน root ถูกอบไปกับฉากอยู่แล้ว ตามบานตอนเปิดด้วย id เดียวกัน · คอมเมนต์ 1.604 ที่เขียนว่ายังไม่แสดงเขียนโดยยังไม่ได้ลอง
+       เพิ่ม 2 อย่าง: รอรูปของลายแบบแปะรูปโหลดเสร็จก่อนอบ (ไม่งั้นได้แผ่นเปล่า) · ส่ง toneMapped ไปด้วย โหมดสมจริงในหน้าดูสีเส้นจะได้ตรงกับโปรแกรม
+       ใบตัด MPR BOM ไม่มีลายเหมือนเดิม */
+    for(let i=0;i<60;i++){ const busy=Object.keys(_texImgC||{}).some(k=>_texImgC[k]&&_texImgC[k].st==="loading")||[...DA.img.values()].some(e=>e&&!e.cv); if(!busy) break; await new Promise(r=>setTimeout(r,150)); }
     try{ _skinTexC={}; _skinMatC={}; }catch(e){}
     render3D(false);
     const sc=snvSerialize(opt), meta=snvMeta();
@@ -60965,7 +61040,7 @@ function fittingAgg(boards){   // รวมเดือย + พินรอง�
       /* v1.603: เลือกสีแล้ว = คนละบรรทัด ต่อรหัสสีท้ายชื่อ (ไม่เลือกสี = เหมือนเดิมทุกอย่าง) */
       const _tk=String(b._ehpFin||"");
       bomCutRow(m,b._ehpCode,((el9&&el9.desc)||("มือจับฝัง "+b._ehpName)),((el9&&el9.unit)||"เส้น"),+b._ehpLen||0,"pull",_tk?{tok:_tk}:undefined);
-      { const kk=b._ehpCode+"@"+cutLen(+b._ehpLen||0)+(_tk?("#"+_tk):""); if(m[kk]) m[kk]._ehpRow=1; } }); }catch(e){ console.error("ehp bom:",e); }
+      { const kk=b._ehpCode+"@"+cutLen(+b._ehpLen||0)+(_tk?("#"+_tk):""); if(m[kk]){ m[kk]._ehpRow=1; if(!snOff("ehpAxCode")){ m[kk]._cutName=b._ehpCode; m[kk]._cutEhp=1; } } } }); }catch(e){ console.error("ehp bom:",e); }   /* v1.608: ค้นรหัส AX ตามรุ่น สี ขนาด */
   /* v1.598: บานเลื่อน SDC — ชุดลูกล้อต่อบาน + รางตัดตามยาวช่อง (บน + ล่าง ต่อบาน) */
   if(!snOff("sdc")) try{ (boards||[]).forEach(b=>{ if(!b||!b._sdc||b._virtual||!b._sdc.g) return; const c=sdcCfg(b._sdc.c), F=(((settings.elements||{}).fittings)||[]);
       if(c.kit){ const el=F.find(x=>x&&x.code===c.kit); (m[c.kit]||(m[c.kit]={art:c.kit,dia:"",kind:"slide",name:(el&&el.desc)||("ชุดลูกล้อบานเลื่อน "+c.sys+" (4 ล้อ/บาน)"),unit:(el&&el.unit)||"ชุด",count:0})).count+=1; }
@@ -62076,7 +62151,7 @@ function renderSummary(){
           +((f._fg&&f._fg.mitAlt)?('<div style="font-size:10px;color:#b26a00">คลังไม่มีแบบ'+(f._fg.mitAlt==="45"?"ตัด 45/2ด้าน":"ตัดตรง")+' — ใช้ท่อน'+(f._fg.mitAlt==="45"?"ตัดตรง":"ตัด 45/2ด้าน")+' แทน (ตัดมุมหน้างาน)</div>'):"")
           /* v1.404: ค้นจากชื่อสินค้าแล้วเจอยาวเดียวกันหลายรหัส — ต้องเห็นว่าเลือกตัวไหน */
           +((f._fg&&f._fg.dupCodes)?('<div style="font-size:10px;color:#b26a00">คลังมี '+f._fg.dupCodes.length+' รหัสที่ยาวนี้ ('+escapeHtml(f._fg.dupCodes.join(" · "))+') — ใช้ '+escapeHtml(String(f._fg.code))+' · ตรวจก่อนสั่ง</div>'):"")
-          +((f._fg&&f._fg.byName&&f._cutName)?('<div style="font-size:10px;color:var(--ink-dim)">ค้นจากชื่อสินค้า: “'+escapeHtml(String(f._cutName))+'” + ตัดขนาด '+escapeHtml(String(cutLen(f._cut)))+'</div>'):"")
+          +((f._fg&&f._fg.byName&&f._cutName)?('<div style="font-size:10px;color:var(--ink-dim)">ค้นจากชื่อสินค้า: “'+escapeHtml(String(f._cutName))+'”'+((f._cutEhp&&f._cutTok)?(' + '+escapeHtml(String(f._cutTok))):'')+' + ตัดขนาด '+escapeHtml(String(cutLen(f._cut)))+'</div>'):"")
           /* v1.298: ไม่มีท่อนยาวตรงตัว ใช้ท่อนใกล้เคียงแทน — ต้องเห็นในใบ */
           +((f._fg&&f._fg.near)?('<div style="font-size:10px;color:#b26a00">คลังไม่มีท่อน '+escapeHtml(String(cutLen(f._fg.want)))+' มม. — ใช้ท่อน '+escapeHtml(String(f._fg.near))+' มม. แทน (ความยาวจริง '+escapeHtml(String(f._fg.want))+')</div>'):"")
           /* v1.080: กระจกค้นไม่เจอ ต้องบอกในใบเหมือนกัน */
@@ -72636,7 +72711,7 @@ function build(D,imgs){
     x.rotation=t.ro||0; x.encoding=t.en||3000; x.flipY=t.fy!==0; x.anisotropy=Math.min(8,renderer.capabilities.getMaxAnisotropy()||1); x.needsUpdate=true; return x; });
   var mats=(D.mat||[]).map(function(m){ var p={}, o;
     if(m.c!=null) p.color=m.c; if(m.tr) p.transparent=true; if(m.op!=null) p.opacity=m.op; if(m.sd) p.side=m.sd;
-    if(m.dw===0) p.depthWrite=false; if(m.dt===0) p.depthTest=false; if(m.vc) p.vertexColors=true;
+    if(m.dw===0) p.depthWrite=false; if(m.dt===0) p.depthTest=false; if(m.vc) p.vertexColors=true; if(m.tm===0) p.toneMapped=false;
     if(m.po){ p.polygonOffset=true; p.polygonOffsetFactor=m.po[0]; p.polygonOffsetUnits=m.po[1]; }
     if(m.mp!=null&&tex[m.mp]) p.map=tex[m.mp];
     switch(m.k){
