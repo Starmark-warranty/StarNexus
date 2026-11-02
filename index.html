@@ -3283,7 +3283,7 @@ body[data-theme="dark"] .splash-dots span{background:rgba(255,255,255,.25)}
    ===================================================================== */
 /* ---- APP_META: แหล่งความจริงเดียวของเวอร์ชัน (ดูได้จาก console / คลิกชื่อแอป) ---- */
 const APP_META={
-  name:"StarNexus", version:"1.620", build:"2026-11-02/room-trash",
+  name:"StarNexus", version:"1.621", build:"2026-11-02/col-color-gchair",
   file:"StarNexus.html", basedOn:"Furnitech_V3.html (v3.11)",
   /* ───────── เริ่มนับเวอร์ชันใหม่ที่ 1.001 (21/08/2026) ─────────
      ของเดิมนับมาถึง 42.1 แล้ววิ่งเป็นทศนิยมสองชั้นซึ่งอ่านลำดับยาก
@@ -3291,6 +3291,7 @@ const APP_META={
      ประวัติเก่าเก็บไว้ทั้งหมดตามเลขเดิม ไม่ไล่เขียนใหม่ เพราะเลขในนั้นถูกอ้างถึงไปแล้ว
      รายการที่อยู่ใต้ 1.001 ลงไปจึงเป็นเลขชุดเก่า อ่านต่อกันได้ตามวันที่ */
   changelog:[
+    ["1.621","2026-11-02","FIX+FEAT ห้องออกแบบ — ① สีเสา (ผู้ใช้ 20:45 “เสาแก้สีบ่ได้ ขอสีเดียวกับผนังครับ”): เสาตามสีผนังเส้นที่ใกล้ที่สุด ไม่ทาสี = สีเดียวกับผนัง · มีช่องเลือกสีเองและปุ่มกลับไปตามผนัง ② เก้าอี้เกมมิ่ง (ผู้ใช้ 20:44) เลือกสีได้ คลิกการ์ดแล้ววางหน้าโต๊ะคอมที่ยังไม่มีเก้าอี้ ③ เปิดตั้งค่าในห้องออกแบบ แผงซ้าย/ขวาไม่บังหน้าตั้งค่าแล้ว (ปุ่มกู้คืนถังขยะเคยถูกบัง)"],
     ["1.620","2026-11-02","FEAT ถังขยะห้อง (ผู้ใช้ 20:42 “BACKUP ห้องไว้ได้ไหมครับ ลบไปแล้วเอาไปค้างไว้ที่ถังขยะ จะเข้าถังขยะได้ต้องเข้าที่ตั้งค่าโปรแกรม”) — ลบห้องที่บันทึก = ย้ายไปถังขยะ ไม่หายทันที · ปุ่ม ล้าง / Order ใหม่ / ล้างตู้ / บันทึกทับ สำรองห้องและตู้ลงถังขยะให้เอง · เปิดได้ที่ ⚙ ตั้งค่า › ถังขยะห้องเท่านั้น กู้คืนกลับเข้า 📂 ห้องที่บันทึก หรือลบถาวรได้ · ของสำรองอัตโนมัติเก็บ 20 รายการล่าสุด ห้องที่กดลบเองอยู่จนกว่าจะลบถาวร"],
     ["1.619","2026-11-02","FEAT หมวด ห้องทำงาน · คอม (ผู้ใช้ 20:27 “เพิ่มโต๊ะคอมให้ด้วยครับผม คอม มี RGB พัดลมทำได้ปะ”) — โต๊ะคอมครบชุด (จอ คีย์บอร์ดไฟ เมาส์ เคสกระจก) เลือกเหลือจอหรือโต๊ะเปล่าได้ · คอม RGB แยกชิ้น วางพื้นหรือตั้งระดับเองได้ · พัดลมหมุน ไฟวงแหวนวิ่งสีรุ้ง ตั้งเป็นไฟนิ่งได้ · หยุดเองในโหมดประหยัด โหมดสมจริง และตอนสลับหน้าจอ"],
     ["1.618","2026-11-02","UX กล่องสี แยกทีละบาน (ผู้ใช้ 20:25 “ตอนแยกคนละบาน เลือกได้ไหม ติ๊กเลือก ตอนเลือกควรมี highlight ให้รู้ว่าบานไหน”) — เดิมเป็นแท็บ FrontColor1–6 / FrontShape1–6 ไม่รู้ว่าเลขไหนคือบานไหน ตอนนี้แท็บรวม + แถวติ๊ก บาน 1, บาน 2 … · บานที่ติ๊กเป็นสีฟ้าในจอ มีเลขกำกับทุกบาน · ชี้ที่ช่องติ๊ก = บานนั้นเป็นสีส้ม · คลิกบานในจอก็ติ๊กได้ · หมุนกล้องได้โดยกล่องไม่ปิด · สีและแนวลายเปลี่ยนเฉพาะบานที่ติ๊ก"],
@@ -30388,6 +30389,7 @@ function boardRole(b){
      SN_OFF.plDoorPick=1  แยกทีละบานในกล่องสี กลับเป็นแท็บ FrontColor1–6 แบบเดิม ไม่มีติ๊ก ไม่มีไฮไลต์ (v1.618)
      SN_OFF.plRgbAnim=1   พัดลมคอมไม่หมุน ไฟ RGB นิ่ง (v1.619)
      SN_OFF.plRoomTrash=1 ลบห้องแล้วหายทันทีแบบเดิม ไม่สำรอง ไม่มีถังขยะในตั้งค่า (v1.620)
+     SN_OFF.plColWall=1   เสาเข้มกว่าผนังนิดแบบเดิม ไม่มีช่องเลือกสี (v1.621)
      SN_OFF.plClip=1      ปิด Ctrl+C / Ctrl+V ในห้องออกแบบ (v1.613)
      SN_OFF.plShapeBig=1  แท็บแบบบานในกล่องสี ขนาดการ์ดเล็กและวาดตามสัดส่วนจริงแบบเดิม (v1.613)
      SN_OFF.rndView=1     AI RENDER เปิดโหมดสมจริงทุกครั้งแบบเดิม ไม่มีแถวภาพตั้งต้น (v1.611)
@@ -38783,6 +38785,8 @@ const PLO_T={
      pcdesk = โต๊ะ ดูดชิดผนัง o.dset: ไม่ตั้ง = ครบชุด · "mon" = จอ + คีย์บอร์ด · "none" = โต๊ะเปล่า · คอมบนโต๊ะขยับตามโต๊ะ
      pcase = เคสตู้กระจก หน้า = +Z กระจกหน้าและซ้าย · o.y ตั้งระดับวางได้ · o.rgb="off" = ไฟนิ่ง พัดลมไม่หมุน · ขนาดเป็นค่าทั่วไป แก้ที่แผงได้ */
   pcdesk:{n:"โต๊ะคอม + คอม RGB", s:"โต๊ะคอม", ic:"🖥", w:1400, h:750, d:700, appl:"floor", pcdesk:1, snap:1, prop:1},
+  /* v1.621: ผู้ใช้ 2/11 20:44 (ภาพโต๊ะคอมในห้อง): “ขาดเก้าอี้เกมเมอร์” · หน้า = +Z · o.col = สีตัดเก้าอี้ */
+  gchair:{n:"เก้าอี้เกมมิ่ง", ic:"🪑", w:680, h:1300, d:680, appl:"floor", gchair:1, prop:1},
   pctower:{n:"คอม RGB เคสกระจก", s:"คอม RGB", ic:"🖥", w:230, h:470, d:450, appl:"floor", pcase:1, prop:1},
   ac:{n:"แอร์ติดผนัง", ic:"❄", w:800, h:280, d:210, sill:2100, wall:1, appl:"wall", ac:1, prop:1},
   tv43:{n:"SAMSUNG 43 นิ้ว", s:"ทีวี SAMSUNG 43\"", ic:"📺", w:957, h:558, d:76, sill:950, wall:1, appl:"wall", tv:1, prop:1},
@@ -38955,7 +38959,12 @@ function ploAddMeshes(g){
           if(o.k==="wat"){ box(34,22,34,0,len+8,0,M(0xc9ccd1,{metalness:.6,roughness:.3})); box(44,10,10,24,len+8,0,M(0xd33a2c)); }
           else cyl(uw/2+6,14,0,len,0,M(0x80868c),false); } } }
     else if(o.k==="col"){ const cw=Math.max(+o.w||400,50), cd=Math.max(+o.d||400,50), ch=PLW.on?60:Math.max(+o.h||+r.h||2600,100);   // v1.536: เสา
-      const m=box(cw,ch,cd,0,ch/2,0,M(0xc4bcad,{roughness:.95})); try{ plptApply(m,{k:"wall"},"box"); }catch(e){}   // เข้มกว่าผนังนิด ไม่กลืนกับผนังด้านหลัง (ทาสีผนัง = สีเดียวกับผนัง)
+      /* ───────── v1.621: สีเสา ─────────
+         ผู้ใช้ 2/11 20:45 (ภาพเสาสีเทาในห้องผนังชมพู): “เสาแก้สีบ่ได้ 555 ขอสีเดียวกับผนังครับ”
+         เดิม: ตั้งสีเข้มกว่าผนังตั้งใจให้เห็นเสา และอ่านเฉพาะสี “ผนังทั้งหมด” ห้องที่ทาสีผนังทีละเส้นเสาจึงไม่ตาม · ไม่มีช่องแก้สี
+         ตอนนี้: ตามสีผนังเส้นที่ใกล้เสาที่สุด (ploColWallTgt) ไม่ทาสี = สีผนังตั้งต้น · o.clr = สีที่เลือกเอง · เส้นขอบยังเข้มอยู่ จึงยังเห็นเสา · ปิด SN_OFF.plColWall=1 */
+      const _cw=!snOff("plColWall"), m=box(cw,ch,cd,0,ch/2,0,M(_cw?0xd6cebd:0xc4bcad,{roughness:.95}));
+      if(_cw&&/^#[0-9a-f]{6}$/i.test(String(o.clr||""))) m.material.color.set(o.clr); else try{ plptApply(m,_cw?ploColWallTgt(o):{k:"wall"},"box"); }catch(e){}   // เข้มกว่าผนังนิด ไม่กลืนกับผนังด้านหลัง (ทาสีผนัง = สีเดียวกับผนัง)
       const el=new THREE.LineSegments(new THREE.EdgesGeometry(m.geometry),new THREE.LineBasicMaterial({color:0x5f584c})); el.position.copy(m.position); G.add(el); }
     else if(o.k==="stair"){ const H=Math.max(+o.h||+r.h||2600,300), D=Math.max(+o.d||T.d,600), n=Math.max(3,Math.round(H/175)), rise=H/n, run=D/n, stM=M(0xc8a273);
       const edM=new THREE.LineBasicMaterial({color:0x8a6a44});
@@ -39005,6 +39014,7 @@ function plaIcon(k,s,e){ const F='fill="rgba(160,170,180,.35)"';
     return s+'<rect x="'+(40-hw)+'" y="8" width="'+(2*hw)+'" height="64" rx="3"/><path d="M'+(40-hw)+' 16h'+(2*hw)+'" stroke-width="5"/>'+pl.map(p=>'<rect x="'+(p[0]-p[1]/2)+'" y="20" width="'+p[1]+'" height="11" rx="4" '+F+'/>').join("")+'<path d="M'+(40-hw)+' 38h'+(2*hw)+'"/><rect x="'+(40-hw)+'" y="38" width="'+(2*hw)+'" height="34" rx="3" fill="rgba(160,170,180,.2)"/>'+e; }
   if(k==="nstand") return s+'<rect x="20" y="20" width="40" height="42" rx="2"/><path d="M20 41h40"/><path d="M36 30h8M36 51h8" stroke-width="4"/><path d="M25 62v10M55 62v10"/>'+e;
   if(k==="dress") return s+'<rect x="26" y="8" width="28" height="30" rx="14" fill="rgba(159,199,216,.35)"/><rect x="10" y="38" width="60" height="7"/><rect x="12" y="45" width="20" height="16"/><path d="M12 45v27M68 45v27"/><path d="M18 53h8" stroke-width="3"/>'+e;
+  if(k==="gchair") return s+'<path d="M28 6h24c3 0 5 2 5 5l-3 34H26l-3-34c0-3 2-5 5-5z" fill="rgba(200,30,40,.35)"/><path d="M34 12h12v8H34z" fill="rgba(200,30,40,.7)" stroke-width="1.500"/><path d="M20 44h40v8H20z"/><path d="M14 34v10M66 34v10" stroke-width="4"/><path d="M40 52v12"/><path d="M40 64L22 74M40 64l18 10M40 64v10"/>'+e;   /* v1.621 */
   /* v1.619: คอม */
   if(k==="pctower"||k==="pcdesk"){ const r=[["#ff2d55",16],["#18c964",32],["#2f7bff",48]], tw=k==="pctower", x=tw?28:53, y=tw?10:30, W=tw?24:19, H=tw?60:38, R=tw?7:4.500;
     const cs='<rect x="'+x+'" y="'+y+'" width="'+W+'" height="'+H+'" rx="2" fill="rgba(20,22,30,.9)"/>'+r.map((q,i)=>'<circle cx="'+(x+W/2)+'" cy="'+(y+H*(i+.62)/3.3)+'" r="'+R+'" stroke="'+q[0]+'" stroke-width="2.200" fill="none"/>').join("");
@@ -39365,7 +39375,13 @@ function plaStoolAuto(o){ const L=ploList(), sw=+o.d||400; for(const t of L){ if
     const rr=(+t.yaw||0)*Math.PI/180, off=(+t.d||450)/2+sw/2+40, x=(+t.x||0)+Math.sin(rr)*off, z=(+t.z||0)+Math.cos(rr)*off;
     if(L.some(s=>s&&s.k==="stool"&&s.id!==o.id&&Math.hypot((+s.x||0)-x,(+s.z||0)-z)<sw)) continue;
     o.x=Math.round(x); o.z=Math.round(z); o.yaw=+t.yaw||0; return true; } return false; }
+/* v1.621: เก้าอี้หน้าโต๊ะคอม หันหาโต๊ะ ตรงจอ เบาะเข้าใต้โต๊ะ 120 · โต๊ะที่มีเก้าอี้แล้วข้าม · ไม่มีโต๊ะ = ตำแหน่งเดิม */
+function plaChairAuto(o){ const L=ploList(), dp=+o.d||680; for(const t of L){ if(!t||t.k!=="pcdesk") continue;
+    const rr=(+t.yaw||0)*Math.PI/180, off=(+t.d||700)/2+dp/2-120, mx=(!t.dset&&(+t.w||1400)>=1000)?-(+t.w||1400)*.1:0, x=(+t.x||0)+Math.sin(rr)*off+Math.cos(rr)*mx, z=(+t.z||0)+Math.cos(rr)*off-Math.sin(rr)*mx;
+    if(L.some(s=>s&&s.k==="gchair"&&s.id!==o.id&&Math.hypot((+s.x||0)-x,(+s.z||0)-z)<dp*.6)) continue;
+    o.x=Math.round(x); o.z=Math.round(z); o.yaw=((+t.yaw||0)+180)%360; return true; } return false; }
 function plaAuto(o){ const md=PLO_T[o.k].appl, c=orbit.target; let best=null, bd=Infinity;
+  if(PLO_T[o.k].gchair){ plaChairAuto(o); return true; }   /* v1.621 */
   if(PLO_T[o.k].stool){ plaStoolAuto(o); return true; }   /* v1.616 */
   if((PLO_T[o.k].fridge||PLO_T[o.k].snap)&&!snOff("plFridgeSnap")){ plaFridgeFree(o,[c.x,c.z]); return true; }   /* v1.614: + snap (เตียง · เฟอร์นิเจอร์) */
   if(PLO_T[o.k].fit&&!snOff("ovenFit")&&plaOvenAuto(o,c)) return true;   /* v1.578: เตาอบ = ช่องที่ใส่ได้ในตู้ใกล้กลางจอ */   /* v1.576: คลิกการ์ดตู้เย็น = ที่ว่างชิดผนังใกล้กลางจอ */
@@ -39510,6 +39526,7 @@ function plaSoftBoxGeo(w,h,d,r){ const R=Math.min(r,w/2,h/2,d/2), key=[w,h,d,R].
 function plaStoolGeo(){ if(window._plaStoolG) return window._plaStoolG; const P=[], n=3.2, N=22;
   for(let i=0;i<=N;i++){ const a=-Math.PI/2+Math.PI*i/N, c=Math.cos(a), s=Math.sin(a); P.push(new THREE.Vector2(Math.max(Math.pow(Math.abs(c),2/n),1e-3),Math.sign(s)*Math.pow(Math.abs(s),2/n))); }
   const g=new THREE.LatheGeometry(P,48); window._plaStoolG=g; return g; }
+const PLA_GAME_COL={ red:{n:"ดำ-แดง",c:0xb5121b}, blue:{n:"ดำ-น้ำเงิน",c:0x1457a8}, green:{n:"ดำ-เขียว",c:0x15803d}, white:{n:"ดำ-ขาว",c:0xd9dadb}, purple:{n:"ดำ-ม่วง",c:0x6d28a8}, orange:{n:"ดำ-ส้ม",c:0xd85a10}, black:{n:"ดำล้วน",c:0x2a2c31} };   /* v1.621 */
 function plaPropMesh(o,T,G,box,M,cyl,y0,w,h,d,k){
   const wood=M(0x9a7853,{roughness:.62}), woodL=M(0xa98863,{roughness:.58}), legM=M(0x3b3028,{roughness:.6}), knob=M(0xb9a06a,{metalness:.7,roughness:.3}), mir=M(0xd3e2ea,{metalness:.25,roughness:.12}), C=PLA_PROP_COL[o.col]||PLA_PROP_COL.grey;
   if(T.bed){ const hb=70, fab=M(C.c,{roughness:.93}), sheet=M(0xc9c6bf,{roughness:.88}), duv=M(0xb3b0a8,{roughness:.93}), pil=M(0xd2cfc8,{roughness:.96,vertexColors:true}), acc=M(new THREE.Color(C.c).multiplyScalar(.72),{roughness:.96});
@@ -39532,6 +39549,20 @@ function plaPropMesh(o,T,G,box,M,cyl,y0,w,h,d,k){
     box(w,tT,d,0,y0+tH-tT/2,0,wood); [[-1,-1],[1,-1],[-1,1],[1,1]].forEach(q=>box(34,tH-tT,34,q[0]*(w/2-22),y0+(tH-tT)/2,q[1]*(d/2-22),legM));
     box(dw,dh,d-20,-w/2+dw/2+4,y0+tH-tT-dh/2,0,wood); [0,1].forEach(i=>{ const cy=y0+tH-tT-8-(dh-16)/4-i*((dh-16)/2); box(dw-14,(dh-30)/2,8,-w/2+dw/2+4,cy,d/2-6,woodL); cyl(8,8,14,-w/2+dw/2+4,cy,d/2+4,knob,true); });
     box(mw,mH,24,0,mY,zb+22,wood); box(mw-44,mH-44,3,0,mY,zb+36,mir); return true; }
+  /* v1.621: เก้าอี้เกมมิ่ง — สร้างที่ขนาดมาตรฐาน 680×1300×680 แล้ว scale ตามค่าที่แก้ในแผง */
+  if(T.gchair){ const A=PLA_GAME_COL[o.col]||PLA_GAME_COL.red, blk=M(0x17181c,{roughness:.62}), acc=M(A.c,{roughness:.55}), met=M(0x2c2e33,{roughness:.35,metalness:.6}), chr=M(0x9aa0a8,{roughness:.25,metalness:.75});
+    const C=new THREE.Group(); C.position.set(0,y0,0); C.scale.set(w/680,h/1300,d/680); G.add(C);
+    const so=(P,sx,sy,sz,x,yy,z,rd,m)=>{ const q=new THREE.Mesh(plaSoftBoxGeo(sx,sy,sz,rd),m); q.position.set(x,yy,z); q.castShadow=true; q.receiveShadow=true; P.add(q); return q; };
+    const cy=(r0,r1,l,x,yy,z,m)=>{ const q=new THREE.Mesh(new THREE.CylinderGeometry(r0,r1,l,20),m); q.position.set(x,yy,z); q.castShadow=true; C.add(q); return q; };
+    for(let i=0;i<5;i++){ const a=i*Math.PI*2/5+.31, ax=Math.sin(a), az=Math.cos(a), L=300, sp=so(C,46,26,L,ax*L/2,90,az*L/2,10,met); sp.rotation.y=a; cy(8,8,36,ax*(L-14),62,az*(L-14),chr); const wh=cy(31,31,36,ax*(L-14),31,az*(L-14),blk); wh.rotation.set(0,a,Math.PI/2); }   // ขาห้าแฉก + ล้อ
+    cy(30,38,60,0,112,0,met); cy(22,22,170,0,205,0,chr); const sY=470;                                          // แกนโช้ค
+    so(C,240,40,260,0,sY-114,0,10,met); so(C,500,92,500,0,sY-46,10,34,blk); so(C,190,6,400,0,sY+1,15,2,acc);    // ชุดกลไก เบาะนั่ง แถบกลาง
+    [-1,1].forEach(q=>so(C,72,112,480,q*262,sY-36,10,30,acc));                                                  // ปีกเบาะ
+    [-1,1].forEach(q=>{ so(C,40,190,56,q*306,sY+60,-30,10,met); so(C,96,34,270,q*306,sY+170,-10,14,blk); });    // ท้าวแขน
+    const B=new THREE.Group(); B.position.set(0,sY-30,-220); B.rotation.x=-.17; C.add(B);                        // พนักเอนหลัง
+    so(B,470,810,110,0,410,-10,42,blk); [-1,1].forEach(q=>so(B,86,640,130,q*262,330,-6,36,acc)); so(B,520,120,120,0,755,-12,44,blk);
+    so(B,110,520,6,0,400,47,3,acc); so(B,250,135,78,0,690,60,32,acc); so(B,310,175,92,0,172,62,40,acc);          // แถบกลาง หมอนคอ หมอนหลัง
+    return true; }
   /* v1.619: คอม */
   if(T.pcase){ if(!window._rgbTick) window._rgbTick=setInterval(plaRgbTick,70); plaPcCase(G,M,box,0,y0,0,w,h,d,o.rgb!=="off"); return true; }
   if(T.pcdesk){ const tT=32, tH=Math.max(h,300), blk=M(0x16171b,{roughness:.42,metalness:.45}), set=o.dset||"", zb=-d/2, rgb=new THREE.MeshBasicMaterial({map:plaRgbTex()});
@@ -39698,6 +39729,7 @@ function plaPanel(s,o){ const T=PLO_T[o.k]||{}, F=ploFrameOf(o), md=T.appl;
     +(md==="wall"?fr(T.tv?"ขอบล่างจอสูงจากพื้น":T.ac?"ก้นแอร์สูงจากพื้น":"ก้นฮู้ดสูงจากพื้น",num("sill",o.sill)+'<span class="plU">มม.</span>'):fr(md==="under"?"ก้นตู้ (ระดับติด)":"ระดับวาง (จากพื้น)",num("y",o.y)+'<span class="plU">มม.</span>'))
     +(F?fr("ห่างต้นผนัง",num("off",(+o.t||0)-o.w/2)+'<span class="plNote plNB">ผนังยาว '+Math.round(F.L)+'</span>'):"")
     +((T.bed||T.rug||T.stool||T.sofa)?fr(T.bed?"สีหัวเตียง":T.sofa?"สีผ้า":T.stool?"สีเบาะ":"สีพรม",'<select data-pok="col">'+Object.keys(PLA_PROP_COL).map(c=>'<option value="'+c+'"'+((PLA_PROP_COL[o.col]?o.col:"grey")===c?" selected":"")+'>'+PLA_PROP_COL[c].n+'</option>').join("")+'</select>'):"")   /* v1.614 */
+    +(T.gchair?fr("สีเก้าอี้",'<select data-pok="col">'+Object.keys(PLA_GAME_COL).map(c=>'<option value="'+c+'"'+((PLA_GAME_COL[o.col]?o.col:"red")===c?" selected":"")+'>'+PLA_GAME_COL[c].n+'</option>').join("")+'</select>'):"")   /* v1.621 */
     +(T.pcdesk?fr("ของบนโต๊ะ",'<select data-pok="dset"><option value="">ครบชุด (จอ คีย์บอร์ด คอม RGB)</option><option value="mon"'+(o.dset==="mon"?" selected":"")+'>จอ + คีย์บอร์ด</option><option value="none"'+(o.dset==="none"?" selected":"")+'>โต๊ะเปล่า</option></select>'):"")   /* v1.619 */
     +((T.pcase||(T.pcdesk&&!o.dset))?fr("ไฟ RGB",'<select data-pok="rgb"><option value="">ไฟวิ่ง + พัดลมหมุน</option><option value="off"'+(o.rgb==="off"?" selected":"")+'>ไฟนิ่ง พัดลมไม่หมุน</option></select>'):"")   /* v1.619 */
     +(T.tv?fr("หน้าจอ",'<select data-pok="scr"><option value="">โลโก้ SAMSUNG</option><option value="off"'+(o.scr==="off"?" selected":"")+'>จอดับ</option></select>'):"")   /* v1.614 */
@@ -39719,7 +39751,7 @@ function plaPanel(s,o){ const T=PLO_T[o.k]||{}, F=ploFrameOf(o), md=T.appl;
     else if(k==="dset"){ if(inp.value) o.dset=inp.value; else delete o.dset; }   /* v1.619 */
     else if(k==="rgb"){ if(inp.value==="off") o.rgb="off"; else delete o.rgb; }   /* v1.619 */
     else if(k==="scr"){ if(inp.value==="off") o.scr="off"; else delete o.scr; }   /* v1.614 */
-    else if(k==="col"){ o.col=(T.bed||T.rug||T.stool||T.sofa)?(PLA_PROP_COL[inp.value]?inp.value:"grey"):T.fridge==="wash"?(/^(white|silver|black)$/.test(inp.value)?inp.value:"white"):(PLA_SMEG_COL[inp.value]?inp.value:"cream"); }   /* v1.579: + สีเครื่องซักผ้า */
+    else if(k==="col"){ o.col=T.gchair?(PLA_GAME_COL[inp.value]?inp.value:"red"):(T.bed||T.rug||T.stool||T.sofa)?(PLA_PROP_COL[inp.value]?inp.value:"grey"):T.fridge==="wash"?(/^(white|silver|black)$/.test(inp.value)?inp.value:"white"):(PLA_SMEG_COL[inp.value]?inp.value:"cream"); }   /* v1.579: + สีเครื่องซักผ้า */
     else if(k==="mgap"){ const v=+inp.value; if(isFinite(v)&&v>=0&&v<=30) o.mgap=v; else { plPanelSel(); return; } }   /* v1.588: เว้นบานหลอก */
     else if(k==="ih"){ const v=+inp.value; if(isFinite(v)&&v>=100) o.ih=Math.round(v); else { plPanelSel(); return; } }   /* v1.578: สูงติดตั้งเตา */   /* v1.577: สีตู้เย็น SMEG */   /* v1.576: บานพับตู้เย็น */
     else { const v=+inp.value; if(!isFinite(v)){ plPanelSel(); return; }
@@ -39918,7 +39950,7 @@ function ploPaste(src){ if(ploLocked()) return null; const T=PLO_T[src.k]; if(!T
   let msg="";
   if(T.wall&&o.wk){ if(!ploPasteWall(o)){ o.wk=null; const r=plRoom(); o.x=r.x0+r.w/2; o.z=r.z0+r.d/2; msg=" · ผนังเต็ม วางไว้กลางห้อง ลากไปวางเอง"; } }
   else { let auto=false;
-    if(T.appl&&T.appl!=="wall"){ delete o.host; delete o.inCab; delete o.dF; try{ plaAuto(o); auto=!!o.host||!!T.fridge||!!T.snap||!!T.stool; }catch(e){ console.error("plaAuto:",e); } }
+    if(T.appl&&T.appl!=="wall"){ delete o.host; delete o.inCab; delete o.dF; try{ plaAuto(o); auto=!!o.host||!!T.fridge||!!T.snap||!!T.stool||!!T.gchair; }catch(e){ console.error("plaAuto:",e); } }
     /* เครื่องใช้ที่ได้ตู้เดิมจนทับต้นฉบับ = ปล่อยจากตู้ ให้ผู้ใช้ลากไปตู้ที่ต้องการ (ค้าง host ไว้ แล้วลอยนอกตู้ไม่ได้) */
     if(!auto||ploOverlap(o,+o.x||0,+o.z||0)){ if(o.host){ delete o.host; delete o.inCab; msg=" · ลากไปวางบนตู้ที่ต้องการ"; }
       if(!ploPasteFree(o)) msg=" · ไม่มีที่ว่างข้าง ๆ ลากไปวางเอง"; } }
@@ -40063,7 +40095,7 @@ function ploGrid(tabs,grid){   // v1.538: แบ่งหมวด · การ�
   tabs.innerHTML=ks.map(k=>'<button data-t="'+k[0]+'" class="'+(k[0]===PL.tab?"on":"")+'">'+k[1]+'</button>').join("");
   tabs.querySelectorAll("button").forEach(bt=>bt.onclick=()=>{ PL.tab=bt.dataset.t; plPanelGrid(); });
   const ok=k=>!!PLO_T[k]&&!(PLO_T[k].appl&&snOff("plAppl"))&&!(k==="col"&&snOff("plCol"))&&!((k==="ceil"||k==="ceilu")&&snOff("plCeil"))&&!(PLO_T[k].util&&snOff("plUtil"));
-  const GR=[["ประตู · หน้าต่าง",["door","door2","slide","open","win","win1","winw"]],["โครงสร้าง · ฝ้า",["stair","col","ceil","ceilu"].concat(snOff("plDl")?[]:["dl"])],["งานระบบ",["plug","wat","drn"]],["เครื่องใช้ในครัว",["sink","sink2","sink1","sinku","hob","hobi","hobd","hood1","hood2","hood3","oven"].concat(snOff("plMicroB")?[]:["microb"]).concat(["micro","bin","gas"]).concat(snOff("plFridge")?[]:["fridge1","fridge2","fridgeT"]).concat(snOff("plSmeg")?[]:["smeg"]).concat(snOff("plWash")?[]:["wash"])]].concat(snOff("plProps")?[]:[["ห้องนอน",["bed35","bed5","bed6","nstand","dress","stool","fmirror","flamp","rug","ac"]],["ห้องรับแขก",["sofa2","sofa3","armch","ctable","stable","tvcon","plant"]],["ห้องทำงาน · คอม",["pcdesk","pctower"]],["ทีวีติดผนัง",["tv43","tv55","tv65"]]]);   /* v1.614 */   /* v1.576: + ตู้เย็น */   // v1.546
+  const GR=[["ประตู · หน้าต่าง",["door","door2","slide","open","win","win1","winw"]],["โครงสร้าง · ฝ้า",["stair","col","ceil","ceilu"].concat(snOff("plDl")?[]:["dl"])],["งานระบบ",["plug","wat","drn"]],["เครื่องใช้ในครัว",["sink","sink2","sink1","sinku","hob","hobi","hobd","hood1","hood2","hood3","oven"].concat(snOff("plMicroB")?[]:["microb"]).concat(["micro","bin","gas"]).concat(snOff("plFridge")?[]:["fridge1","fridge2","fridgeT"]).concat(snOff("plSmeg")?[]:["smeg"]).concat(snOff("plWash")?[]:["wash"])]].concat(snOff("plProps")?[]:[["ห้องนอน",["bed35","bed5","bed6","nstand","dress","stool","fmirror","flamp","rug","ac"]],["ห้องรับแขก",["sofa2","sofa3","armch","ctable","stable","tvcon","plant"]],["ห้องทำงาน · คอม",["pcdesk","gchair","pctower"]],["ทีวีติดผนัง",["tv43","tv55","tv65"]]]);   /* v1.614 */   /* v1.576: + ตู้เย็น */   // v1.546
   const K=GR.reduce((a,g)=>a.concat(g[1].filter(ok)),[]);
   { const cn=$("plCatN"); if(cn) cn.textContent=K.length+" แบบ"; }
   const lk=plRoomLocked();
@@ -40152,6 +40184,13 @@ function ploColSnap(o,c){ const r=plRoom(), tol=plwTolPx(20), G=plGrid()||10, hw
   const tmp={x, z, w:o.w, d:o.d}, D=ploColDist(tmp), kx=ref[1]==="l"?"L":"R", kz=ref[0]==="b"?"B":"F", nm={L:"ซ้าย",R:"ขวา",B:"หลัง",F:"หน้า"};
   const f=v=>Math.round(v).toLocaleString("en-US");
   return {x:Math.round(x*10)/10, z:Math.round(z*10)/10, guides:gd, tip:(o.k==="ceil"?ploCeilName(o):o.k==="dl"?"💡 ดาวน์ไลท์":"▮ เสา")+" "+Math.round(+o.w)+"×"+Math.round(+o.d)+" · ห่างผนัง"+nm[kx]+" "+f(D[kx])+" · ห่างผนัง"+nm[kz]+" "+f(D[kz])+(touch?" · ┆ ชิดผนัง":(sx||sz)?" · ┆ ตรงแนวเสา":"")}; }
+/* v1.621: ผนังที่ใกล้เสาที่สุด: ผนังวาดเส้นไหน = {wi} (เส้นนั้นไม่ทาสี ก็ใช้สีผนังทั้งหมด) · ใกล้ผนังห้องสี่เหลี่ยมกว่า = {k:"wall"} */
+function ploColWallTgt(o){ const x=+o.x||0, z=+o.z||0, r=plRoom(); let bd=Infinity, wi=null;
+  const seg=(a,b)=>{ const dx=b[0]-a[0], dz=b[1]-a[1], l=dx*dx+dz*dz, t=l>0?Math.min(Math.max(((x-a[0])*dx+(z-a[1])*dz)/l,0),1):0; return Math.hypot(x-a[0]-t*dx,z-a[1]-t*dz); };
+  try{ plwList().forEach((w,i)=>{ plwFoot(w).forEach(f=>{ const q=f.q||[]; for(let j=0;j<q.length;j++){ const dd=seg(q[j],q[(j+1)%q.length]); if(dd<bd){ bd=dd; wi=i; } } }); }); }catch(e){}
+  if(wi==null) return {k:"wall"}; const W=r.walls||{}, D={left:x-r.x0,right:r.x0+r.w-x,back:z-r.z0,front:r.z0+r.d-z}; let rc=Infinity; Object.keys(D).forEach(k=>{ if(W[k]!==false&&D[k]<rc) rc=D[k]; });
+  return rc<bd?{k:"wall"}:{wi}; }
+function ploColHex(o){ if(/^#[0-9a-f]{6}$/i.test(String(o.clr||""))) return o.clr; let sp=null; try{ sp=plptSpec(ploColWallTgt(o)); }catch(e){} return (sp&&/^#[0-9a-f]{6}$/i.test(String(sp.c||"")))?sp.c:"#d6cebd"; }
 function ploColPanel(s,o){ const r=plRoom(), D=ploColDist(o), ref=PLO_REF[o.ref]?o.ref:"bl", kx=ref[1]==="l"?"L":"R", kz=ref[0]==="b"?"B":"F", nm={L:"ซ้าย",R:"ขวา",B:"หลัง",F:"หน้า"};
   const fr=(lbl,ctl,tip)=>(typeof plF531==="function"&&!snOff("plTidy"))?plF531(lbl,ctl,tip):('<div class="plRow" style="margin-top:5px">'+lbl+' '+ctl+'</div>');
   const num=(k,v,st,w)=>'<input type="number" data-pok="'+k+'" value="'+Math.round(+v||0)+'" step="'+(st||10)+'" style="width:'+(w||70)+'px"><span class="plU">มม.</span>';
@@ -40161,6 +40200,7 @@ function ploColPanel(s,o){ const r=plRoom(), D=ploColDist(o), ref=PLO_REF[o.ref]
     +(o.k==="dl"?fr("ระดับ",'<span class="plNote">ติดฝ้า สูง '+f(plDlY(o))+' (ตามฝ้าตรงนั้น)</span>'):fr(o.k==="ceil"?"ระดับฝ้า (จากพื้น)":"สูง",num("h",o.h||r.h,10)+'<span class="plNote plNB">ห้องสูง '+f(+r.h||2600)+'</span>'))   /* v1.586 */
     +((o.k==="ceil"&&!snOff("plCeilSolid"))?fr("ขอบฝ้า (หน้าตัด)",'<select data-pok="sec">'+plProfAll("cedge").map(p=>'<option value="'+escapeHtml(p.id)+'"'+(p.id===(o.sec||"ce_f")?" selected":"")+'>'+escapeHtml(p.n)+'</option>').join("")+'</select> <button class="ibtn" id="plSecEd" title="วาดหน้าตัดขอบฝ้าเอง">✏</button>',"หน้าตัดขอบฝ้าหลุม/ฝ้าลด")
       +(plMoldCfg(r,"crown").on&&!snOff("plMold")?fr("บัวรอบขอบ",'<label class="plCk"><input type="checkbox" data-pok="crown"'+(o.crown!==false?" checked":"")+'> ใส่บัวฝ้า</label>'):""):"")   /* v1.579 */
+    +((o.k==="col"&&!snOff("plColWall"))?fr("สีเสา",'<input type="color" data-pok="clr" value="'+escapeHtml(ploColHex(o))+'" style="width:44px;height:26px;padding:1px;cursor:pointer"> '+(o.clr?'<button class="ibtn" id="ploClrWall" style="flex:none;width:auto;padding:3px 9px" title="กลับไปใช้สีผนังที่ใกล้ที่สุด">↺ ตามสีผนัง</button>':'<span class="plNote plNB">ตามสีผนัง</span>'),"เลือกสีเอง หรือปล่อยให้ตามสีผนัง"):"")   /* v1.621 */
     +fr("วัดจากมุม",'<select data-pok="ref">'+Object.keys(PLO_REF).map(k=>'<option value="'+k+'"'+(k===ref?" selected":"")+'>'+PLO_REF[k]+'</option>').join("")+'</select>',"มุมห้องที่ใช้บอกตำแหน่งเสา")
     +fr("ห่างผนัง"+nm[kx],num("dx",D[kx],10),"ผิวผนัง"+nm[kx]+"ถึงผิวเสา")
     +fr("ห่างผนัง"+nm[kz],num("dz",D[kz],10),"ผิวผนัง"+nm[kz]+"ถึงผิวเสา")
@@ -40171,6 +40211,7 @@ function ploColPanel(s,o){ const r=plRoom(), D=ploColDist(o), ref=PLO_REF[o.ref]
     if(k==="ref"){ if(PLO_REF[inp.value]) o.ref=inp.value; }
     else if(k==="sec"){ o.sec=inp.value||"ce_f"; }   /* v1.579 */
     else if(k==="crown"){ o.crown=!!inp.checked; }
+    else if(k==="clr"){ o.clr=String(inp.value||"").toLowerCase(); }   /* v1.621 */
     else { const v=+inp.value; if(!isFinite(v)){ plPanelSel(); return; }
       if(k==="w"&&v>=50){ o.w=Math.round(v); ploColPut(o,D0); }
       else if(k==="d"&&v>=50){ o.d=Math.round(v); ploColPut(o,D0); }
@@ -40182,6 +40223,7 @@ function ploColPanel(s,o){ const r=plRoom(), D=ploColDist(o), ref=PLO_REF[o.ref]
   { const b=s.querySelector("#ploRot"); if(b) b.onclick=()=>ploRot(o); }
   { const b=s.querySelector("#ploDel"); if(b) b.onclick=()=>ploDel(o.id); } { const b=s.querySelector("#ploHide"); if(b){ if(snOff("plHide")) b.remove(); else b.onclick=()=>ploHide(o.id,true); } }
   { const b=s.querySelector("#ploDone"); if(b) b.onclick=()=>{ PLO.sel=null; plRoomDraw(); plPanelSel(); }; }
+  { const b=s.querySelector("#ploClrWall"); if(b) b.onclick=()=>{ if(ploLocked()) return; delete o.clr; plRoomDraw(); plPanelSel(); plAfterRoom(); }; }   /* v1.621 */
   { const b=s.querySelector("#plSecEd"); if(b) b.onclick=async()=>{ if(ploLocked()) return; const id=await plProfEdit("cedge",o.sec); if(id===null) return; o.sec=id||"ce_f"; plRoomDraw(); plPanelSel(); plAfterRoom(); }; }   /* v1.579 */ }
 /* ═════════ v1.536: สิ่งกีดขวางที่ไม่ใช่ตู้ → ช่องฟิลเลอร์ ═════════
    ผู้ใช้ 28/10 15:22 (project 59 ภาพตู้ลอย WNR103 “ปิดช่องขวา 4500”): “ดูตำแหน่งปิดช่องขวาให้ด้วย มันไม่คำนวณตามผนังที่สร้าง”
@@ -42446,6 +42488,7 @@ function plPanelOpen(){
     /* ───────── v1.609: แผงห้องออกแบบไม่ทับแถบเครื่องมือล่าง ─────────
        ผู้ใช้ 2/11 18:44 (ภาพแผงห้องสูงเต็มจอ): “เป็นมานานแล้วตั้งแต่เริ่มโหมดนี้ มันไปทับแท็บเครื่องมือ เลือก วัด ย้าย ยืดหด ขยับขึ้นได้ไหม”
        เดิม: แผงลงถึงขอบจอ (bottom 10) ชั้น 320 ทับแถบล่าง (#statusbar ชั้น 40) ฝั่งซ้ายที่เป็นปุ่มเครื่องมือพอดี → ตอนนี้จบเหนือแถบล่าง 8 มม. เนื้อในแผงเลื่อนเหมือนเดิม */
+    "body:has(#setModal.show) #plPanel,body:has(#setModal.show) #plCat,body:has(#setModal.show) #plPull{visibility:hidden!important}"+   /* v1.621: แผงชั้น 320 เคยบังหน้าตั้งค่าชั้น 90 */
     "#plPanel{position:fixed;left:10px;top:64px;bottom:calc(var(--sb,48px) + 8px);width:350px;z-index:320;display:flex;flex-direction:column;background:var(--solid,#fff);color:var(--ink,#111);border-radius:14px;box-shadow:0 18px 50px -14px rgba(0,0,0,.45);overflow:hidden;font-size:12.5px}"
     +"#plPanel h4{margin:0;font-size:12px;color:var(--ink-dim);font-weight:700;letter-spacing:.02em}"
     +"#plPanel .plSec{padding:10px 12px;border-bottom:1px solid var(--line)}"
