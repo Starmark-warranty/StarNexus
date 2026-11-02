@@ -3283,7 +3283,7 @@ body[data-theme="dark"] .splash-dots span{background:rgba(255,255,255,.25)}
    ===================================================================== */
 /* ---- APP_META: แหล่งความจริงเดียวของเวอร์ชัน (ดูได้จาก console / คลิกชื่อแอป) ---- */
 const APP_META={
-  name:"StarNexus", version:"1.609", build:"2026-11-02/hood-door-joint-between-cabs",
+  name:"StarNexus", version:"1.610", build:"2026-11-02/plinth-joint-meas-hud",
   file:"StarNexus.html", basedOn:"Furnitech_V3.html (v3.11)",
   /* ───────── เริ่มนับเวอร์ชันใหม่ที่ 1.001 (21/08/2026) ─────────
      ของเดิมนับมาถึง 42.1 แล้ววิ่งเป็นทศนิยมสองชั้นซึ่งอ่านลำดับยาก
@@ -3291,6 +3291,7 @@ const APP_META={
      ประวัติเก่าเก็บไว้ทั้งหมดตามเลขเดิม ไม่ไล่เขียนใหม่ เพราะเลขในนั้นถูกอ้างถึงไปแล้ว
      รายการที่อยู่ใต้ 1.001 ลงไปจึงเป็นเลขชุดเก่า อ่านต่อกันได้ตามวันที่ */
   changelog:[
+    ["1.610","2026-11-02","CHANGE รอยต่อตีนตู้อยู่ระหว่างตู้ ก่อนถึง 2400 เหมือนฟิลเลอร์บนและไม้ไฟ · ปิด SN_OFF.plinthJoint · UI แถบลอยไม้วัดอยู่กลางช่องระหว่างแผงซ้าย-ขวา ไม่จมใต้แผงห้องออกแบบ · ปิด SN_OFF.mdHudPlace"],
     ["1.609","2026-11-02","FIX บานตู้ฮู้ดก้นบานหาย ~10 มม. — ขอบล่างไม่มีจุดอ้างจึงจำระยะที่ถูกตัดสะสมมาจากรุ่นก่อน ตอนนี้อ้างแผ่นข้าง เว้น 1.5 เท่าขอบบน · CHANGE รอยต่อไม้ไฟและฟิลเลอร์บนอยู่ระหว่างตู้ ก่อนถึง 2400 ไม่อยู่กลางตู้ · ปิด SN_OFF.deFreeBottom · SN_OFF.cabJoint · UI แผงห้องออกแบบไม่ทับแถบเครื่องมือล่าง"],
     ["1.608","2026-11-02","FEAT ใบเบิกมือจับฝังออกรหัส AX จริงตามรุ่น + สี + ขนาดตัด (1 ขนาด = 1 รหัส · รหัสขึ้นต้น 406 · ไม่เจอบอกในใบพร้อมชื่อขอเปิดรหัส · ปิด SN_OFF.ehpAxCode) · ราคาทุนใช้ราคา AX ของรหัสท่อนก่อนราคาต่อเมตร · FIX ลายหน้าบานแบบแปะรูปรอโหลดก่อนอบลงลิงก์ดูงาน + สีเส้นตรงโปรแกรม · UX หน้าต่างมือจับสองฝั่ง รายการรุ่นเต็มความสูง กดแล้วไม่เด้งกลับบน ลากย้ายได้"],
     ["1.607","2026-11-02","FIX มือจับฝัง R122 · R118 วางท่าใหม่ตามภาพผู้ใช้: แผ่นนอนบนหัวบาน ยื่นหน้าบาน หัวห้อยลง ขาลงร่องหลังบาน 2 × 18 — 1.606 ตั้งขึ้นตามแบบ CAD ตรง ๆ บานจึงถูกตัด 45 (ตอนนี้ R122 สั้นลง 2 · R118 2.9 · งานที่ใส่ไว้แล้วแก้ให้เอง) · FEAT ห้องออกแบบ › 🎨 สี เลือกแนวลายหน้าบาน อัตโนมัติ/ตั้ง/นอน เมื่อสีมีลายไม้ · ปิด SN_OFF.plGrainDir · UI การ์ดดีไซน์หน้าบาน: อยู่กลางช่อง · บานตัวอย่างขนาดเดียวกันทุกแบบ · ไม่แสดงรหัสที่ไม่ใช่แบบบาน (0000_Mat16) · FEAT Fitting Global กรองแยกรหัส/ชื่อ/หน่วย/หมวด + คอลัมน์หมวดแทน RecId"],
@@ -21689,6 +21690,20 @@ function mdPaint(cam){
       if(n===ids.length-1&&txt.length) info+=' · <span style="color:'+MD_GC+'">ช่องใส '+txt.join(" · ")+' มม.</span>'; }); } }catch(e){ console.error("mdGap:",e); }
   svg.innerHTML=out;
   if(info!==MD.info){ MD.info=info; const ie=MD.hud&&MD.hud.querySelector("#mdInfo"); if(ie&&ids.length) ie.innerHTML=info; } }
+/* ───────── v1.610: แถบลอยไม้วัดไม่จมใต้แผงข้าง ─────────
+   ผู้ใช้ 2/11 18:55 “ขยับเลย” (เห็นตอนแก้ 1.609: ปุ่ม 📦 ขนาดชิ้นโดนแผงห้องออกแบบบังไปบางส่วน)
+   เดิม: กึ่งกลางจอตายตัว กว้างได้ถึง 820 ชั้น 45 แผงซ้าย/ขวาของห้องออกแบบชั้น 320 จึงทับปลายแถบ · ปุ่มสลับโหมดอยู่ปลายซ้ายพอดี
+   ตอนนี้: จัดกลางช่องว่างระหว่างแผงซ้าย (#list #plPanel) กับแผงขวา (#plCat #insp) ที่สูงลงมาถึงระดับแถบ · ข้อความยาวเกินช่องตัด … เอง
+     แผงเปิด/ปิด/ย่อได้ทุกเมื่อ จึงตรวจทุก 400 มส. เฉพาะตอนแถบแสดงอยู่ · ปิด SN_OFF.mdHudPlace=1 */
+function mdHudPlace(h){ if(!h||!h.isConnected||h.style.display==="none"||snOff("mdHudPlace")) return;
+  const hr=h.getBoundingClientRect(); let L=12, R=innerWidth-12;
+  const rcOf=id=>{ const e=$(id); if(!e) return null; const cs=getComputedStyle(e); if(cs.display==="none"||cs.visibility==="hidden") return null; const rc=e.getBoundingClientRect(); return (rc.width>20&&rc.bottom>hr.top&&rc.top<hr.bottom)?rc:null; };
+  ["list","plPanel"].forEach(id=>{ const rc=rcOf(id); if(rc&&rc.left<innerWidth/2) L=Math.max(L,rc.right+10); });
+  ["plCat","insp"].forEach(id=>{ const rc=rcOf(id); if(rc&&rc.left>innerWidth/2) R=Math.min(R,rc.left-10); });
+  if(R-L<240) return;   /* ช่องแคบเกิน = คงตำแหน่งเดิม */
+  let z=1; { const t0=h.style.transform; h.style.transform="none"; try{ z=uiZoomOf(h)||1; }catch(e){} h.style.transform=t0; }   /* uiZoomOf อ่านจากขอบซ้าย ต้องเอา translateX(-50%) ออกชั่วคราว */
+  const lf=Math.round(((L+R)/2)/z)+"px", mw=Math.round((R-L)/z)+"px";
+  if(h.style.left!==lf) h.style.left=lf; if(h.style.maxWidth!==mw) h.style.maxWidth=mw; }
 /* แถบลอยด้านล่างตอนอยู่ในไม้วัด: สลับ ขนาดชิ้น ⇄ วัด 2 จุด + บอกขนาดชิ้นล่าสุด */
 function mdHud(){
   let h=MD.hud; const on=(state.tool==="measure");
@@ -21702,7 +21717,8 @@ function mdHud(){
       +'<div id="mdInfo" style="min-width:0;color:var(--ink-dim);white-space:nowrap;overflow:hidden;text-overflow:ellipsis"></div>';
     h.querySelectorAll("#mdSeg button").forEach(b=>b.onclick=()=>mdSetMode(b.dataset.m));
     document.body.appendChild(h); MD.hud=h; }
-  h.style.display="flex";
+  h.style.display="flex"; mdHudPlace(h);   /* v1.610 */
+  if(!MD._placeT) MD._placeT=setInterval(()=>{ if(MD.hud) mdHudPlace(MD.hud); },400);
   const m=mdMode(); h.querySelectorAll("#mdSeg button").forEach(b=>b.classList.toggle("sel",b.dataset.m===m));
   const ie=h.querySelector("#mdInfo");
   if(m==="pts") ie.innerHTML="คลิกจุดที่ 1 แล้วจุดที่ 2 · สแนปมุม / กลางขอบ / ผิว · วัดช่องระหว่างชั้น: กด 📦 ขนาดชิ้น แล้วคลิกแผ่นข้าง";   // v1.436
@@ -30340,6 +30356,8 @@ function boardRole(b){
      SN_OFF.doorArt=1     ไม่มีหน้าวาดลายหน้าบาน · ลายที่ใส่ไว้ไม่แสดง (v1.604)
      SN_OFF.ehpRebate=1   มือจับฝังไม่เซาะบ่าหลังบาน (v1.606)
      SN_OFF.hgk3D=1       หูแขวนเป็นกล่องคร่าว ๆ แบบเดิม (v1.606)
+     SN_OFF.plinthJoint=1 ตีนตู้ตัดทุก 2400 จากต้นแนวแบบเดิม (v1.610)
+     SN_OFF.mdHudPlace=1  แถบลอยไม้วัดอยู่กลางจอตายตัวแบบเดิม (v1.610)
      SN_OFF.deFreeBottom=1 บานตู้ฮู้ดก้นบานไม่อ้างแผ่นข้าง (v1.609)
      SN_OFF.cabJoint=1    ไม้ไฟ/ฟิลเลอร์บนตัดทุก 2400 จากต้นแนวแบบเดิม (v1.609)
      SN_OFF.ehpAxCode=1   ใบเบิกมือจับฝังออกรหัสรุ่น ไม่ค้นรหัส AX ตามสี+ขนาด (v1.608)
@@ -49968,7 +49986,8 @@ function applyLineDisplay(){
       ends.forEach(e=>{ if(e.end==="lo") ru.wlo=Math.min(ru.wlo,e.outer); else ru.whi=Math.max(ru.whi,e.outer); });   // แนววิ่งถึงผิวนอกแผ่นปิดข้าง
       const len=ru.whi-ru.wlo, h=ru.y1-ru.y0; if(len<20||h<10) return;
       const outer=ru.front-ru.s*(kind==="ceil"?CSB:SB), ca=outer-ru.s*T/2;
-      const _segs=(kind==="ceil")?cabJointSplit(ru.wlo,ru.whi,ru.cuts,MAXL):null;   /* v1.609: ฟิลเลอร์บนต่อที่ระหว่างตู้ */
+      /* v1.610: ตีนตู้ด้วย — ผู้ใช้ 2/11 18:55 “ตีนตู้ด้วยครับ” · ปิด SN_OFF.plinthJoint=1 = ตีนตู้ตัดทุก 2400 แบบเดิม */
+      const _segs=(kind==="ceil"||!snOff("plinthJoint"))?cabJointSplit(ru.wlo,ru.whi,ru.cuts,MAXL):null;   /* v1.609: ฟิลเลอร์บนต่อที่ระหว่างตู้ */
       const pieces=_segs?_segs.length:Math.max(1,Math.ceil(len/MAXL-1e-6));
       for(let k=0;k<pieces;k++){
         const a0=_segs?_segs[k][0]:ru.wlo+k*MAXL, a1=_segs?_segs[k][1]:Math.min(ru.whi,a0+MAXL), L=a1-a0; if(L<1) continue;
