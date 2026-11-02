@@ -3283,7 +3283,7 @@ body[data-theme="dark"] .splash-dots span{background:rgba(255,255,255,.25)}
    ===================================================================== */
 /* ---- APP_META: แหล่งความจริงเดียวของเวอร์ชัน (ดูได้จาก console / คลิกชื่อแอป) ---- */
 const APP_META={
-  name:"StarNexus", version:"1.597", build:"2026-11-01/ehp-cost-size",
+  name:"StarNexus", version:"1.598", build:"2026-11-02/slide-sdc",
   file:"StarNexus.html", basedOn:"Furnitech_V3.html (v3.11)",
   /* ───────── เริ่มนับเวอร์ชันใหม่ที่ 1.001 (21/08/2026) ─────────
      ของเดิมนับมาถึง 42.1 แล้ววิ่งเป็นทศนิยมสองชั้นซึ่งอ่านลำดับยาก
@@ -3291,6 +3291,7 @@ const APP_META={
      ประวัติเก่าเก็บไว้ทั้งหมดตามเลขเดิม ไม่ไล่เขียนใหม่ เพราะเลขในนั้นถูกอ้างถึงไปแล้ว
      รายการที่อยู่ใต้ 1.001 ลงไปจึงเป็นเลขชุดเก่า อ่านต่อกันได้ตามวันที่ */
   changelog:[
+    ["1.598","2026-11-02","FEAT บานเลื่อน FT Slide SDC32045 (รางเดี่ยว 2 บาน · ราง บน 2 ล่าง 2): ห้องออกแบบ › แผงตู้ › 🚪 บานเลื่อน — สร้างบาน 2 บานในช่องตู้ (สูง = ช่อง − 16 · ซ้อนกลาง 40 · ซ้าย = รางหลัง ขวา = รางหน้า) · ลูกล้อบานละ 4 ห่างขอบ 110 + ช่องเจาะลูกล้อ 60×44 ลึก 12 ผิวหลังบานลง MPR · ราง/ลูกล้อ 3D · ใบเบิก (ชุดลูกล้อต่อบาน · รางตัดตามยาว 4 เส้น) · โหมดเปิดบาน = เลื่อนบาน (ห้องออกแบบ/หน้าดูงาน) · ปรับขนาดตู้แล้วบานตาม (ผู้ใช้ 2/11 07:57)"],
     ["1.597","2026-11-01","CHANGE ราคา (💰) มือจับแบบฝัง แยกบรรทัดตามขนาดตัด (เช่น HW-367 ตัด 897 × 3 เส้น · ตัด 372 × 2 เส้น) แทนรวมเป็นเมตร · ราคาใส่รายขนาด (บาท/เส้น) หรือใส่ราคาต่อเมตรที่ “รหัส@m” ไว้ก็คิดให้ตามยาว (ผู้ใช้ 1/11 18:45 “HW-367 แยกขนาดให้ด้วย”)"],
     ["1.596","2026-11-01","FEAT มือจับแบบฝัง: รูมาร์คที่สันบานด้านที่มือจับอยู่ (กึ่งกลางยาว · กึ่งกลางหนา) ทุกรุ่น · ค่าตั้งต้น Ø5 ลึก 3 · แก้ได้ที่แถว “รูมาร์ค” ในหน้าต่างมือจับแบบฝัง (ใส่/ไม่ใส่ · Ø · ลึก · เลื่อนตามหนา) · บานที่ใส่อยู่แล้วได้รูเอง (ผู้ใช้ 1/11 18:11)"],
     ["1.595","2026-11-01","FEAT หน้าดูงาน: ตะแกรงดึงออก/iMove ดึงลงได้ (แตะในโหมดเปิดบาน · บานปิดอยู่ = เปิดให้ก่อน · ส่งลิงก์ใหม่) · มือจับทั้งห้อง/ทุกตู้ เลือกหมวด ตู้พื้น/ตู้ลอย/ตู้สูง · มือจับแบบฝัง: บานคู่เลือกซ้าย/ขวา = ทั้งสองบานติดฝั่งตรงข้ามบานพับ (เดิมติดบานเดียว) · ✏ แก้รุ่น / ＋ เพิ่มรุ่น = หน้าวาดหน้าตัด (แบบวาดผนัง: คลิกวางจุด · ล็อกตั้งฉาก · พิมพ์ความยาว+Enter · คลิกเลขแก้ความยาว · ลากจุด · ล้อเมาส์ซูม · เห็นหน้าบาน/ขอบบานเป็นที่อ้างอิง) แทนพิมพ์พิกัด · ช่อง “หดบานเพิ่ม” รายรุ่น (เช่น มือจับ 37 + หด 3 = บานสั้นลง 40) · แก้รุ่นแล้วบานที่ใส่อยู่ตัดใหม่ตาม (ผู้ใช้ 1/11 17:40–17:49)"],
@@ -4737,6 +4738,7 @@ function sync(rebuild,save,cm){
   try{ applyLineDisplay(); }catch(e){ console.error("lineDisp:",e); }
   try{ applyCsmPosts(); }catch(e){ console.error("csmPost:",e); }       // v1.368: เสาเหล็ก + ตัวรับชั้น Cosimo (3D + นับใบอุปกรณ์) คิดใหม่ทุกรอบ   // v1.299-local.11: ตีนตู้/แผงปิดบน ไปอยู่ที่จริงใน 3D (ใบตัดยังเป็น 2400 เดิม)
   try{ plpHeal(); }catch(e){ console.error("plpHeal:",e); }   // v1.529: มือจับจากกล่องเลือกบนชิ้นที่ไม่ใส่ → ล้าง
+  try{ sdcHealAll(); }catch(e){ console.error("sdcHeal:",e); }   /* v1.598: บานเลื่อนตามช่องตู้ — หลังโครงตู้นิ่งแล้ว (ช่วงต้น sync แผ่นพื้น/คานยังขยับ 0.5 ชั่วคราว) ก่อนปั้นราง/ลูกล้อ */
   try{ applyPullDrills(); }catch(e){ console.error(e); }   // v9.71: รู/Pocket/รูป 3D ของมือจับ คิดใหม่ทุกครั้ง ขยับบานแล้วตามเอง
   try{ applyD33Brackets(); }catch(e){ console.error("d33:",e); }   // v1.333: ฉากพลาสติก D33 ของคาน (3D + นับใบอุปกรณ์ · ไม่เจาะรู)
   try{ applyBackPanelClips(); }catch(e){ console.error("bpClip:",e); }
@@ -18693,6 +18695,7 @@ function viewBoards(){
     const p=pOf(b); if(p<=0.002) return b;
     if(b._bkKey&&!snOff("bkSlide")){ const dz=Math.max(+b._bkD||300,60)*0.7*p, th=((+b.yaw||0)*Math.PI)/180, fx=Math.sin(th), fz=Math.cos(th);   /* v1.576: ตะแกรงดึงออก 70% ของความลึก ตามหน้าตู้ */
       dTf[b.id]={dz:dz,fx:fx,fz:fz}; return Object.assign({},b,{x:round(b.x+fx*dz), z:round(b.z+fz*dz)}); }
+    if(b._sdc&&!snOff("sdc")){ const t=sdcSlideTf(b,p); if(t){ dTf[b.id]=t; return Object.assign({},b,{x:round(b.x+t.fx*t.dz), z:round(b.z+t.fz*t.dz)}); } }   /* v1.598: บานเลื่อน */
     if(b._dg){ const g=_dwrSpanOf(dg,b); const D=Math.max(g.z1-g.z0,40);
       /* ───────── v15.5: ลิ้นชักต้องเลื่อนออกทาง "หน้าตู้ใบนั้น" ─────────
          เดิมเลื่อนไปทางแกน Z บวกตายตัว ซึ่งถูกเฉพาะตู้ที่หันหน้าตรงตามแกนโลก
@@ -18765,6 +18768,7 @@ function _doorTfAt(ang,prog){
     const p=pOf(b); if(p<=0.002) return;
     if(b._bkKey&&!snOff("bkSlide")){ const dz=Math.max(+b._bkD||300,60)*0.7*p, th=((+b.yaw||0)*Math.PI)/180, fx=Math.sin(th), fz=Math.cos(th);   /* v1.576: ตะแกรงดึงออก 70% ของความลึก ตามหน้าตู้ */
       tf[b.id]={dz:dz, fx:fx, fz:fz}; return; }
+    if(b._sdc&&!snOff("sdc")){ const t=sdcSlideTf(b,p); if(t){ tf[b.id]=t; return; } }   /* v1.598: บานเลื่อน */
     if(b._dg){ const g=_dwrSpanOf(dg,b), D=Math.max(g.z1-g.z0,40), th=((+b.yaw||0)*Math.PI)/180;
       tf[b.id]={dz:_drawerDz(b,D,f,p,_tvC), fx:Math.sin(th), fz:Math.cos(th)}; return; }   // v1.474: ค่าเดียวกับ viewBoards
     if(!b._door||b._box||b._panel||b._dummy) return;
@@ -30019,6 +30023,7 @@ function boardRole(b){
      SN_OFF.plWallSolid=1 ผนังห้องออกแบบกลับไปโปร่งแสงแบบเดิม (v1.379)
      SN_OFF.ovenFitUp=1   เตาอบในช่อง ปรับชั้นใต้เตาแบบ 1.578 (ไม่ขยับชั้นบนเตา) (v1.588)
      SN_OFF.plMicroB=1    ไม่มีการ์ดไมโครเวฟ Built-in (บานหลอกปรับตามหน้ากาก) (v1.588)
+     SN_OFF.sdc=1         บานเลื่อน SDC: ไม่มีปุ่ม · ไม่คิดบานใหม่/ราง/ลูกล้อ/ใบเบิก · ไม่เลื่อน (บานที่สร้างไว้ยังเป็นแผ่นบานธรรมดา) (v1.598)
      SN_OFF.costEhpSize=1 ราคามือจับฝังรวมเป็นเมตรบรรทัดเดียวแบบ 1.592–1.596 (v1.597)
      SN_OFF.ehpMark=1     มือจับฝังไม่ใส่รูมาร์คที่สันบาน (รูที่ใส่ไว้ถูกถอดตอน sync) (v1.596)
      SN_OFF.snvBasket=1   ลิงก์ดูงานที่ส่งหลังตั้ง = ตะแกรง/iMove ในหน้าดูงานดึงไม่ได้ (แบบ 1.594) (v1.595)
@@ -41887,6 +41892,7 @@ function plPanelSel(){
       +'<button class="ibtn" id="plDup" title="ทำสำเนาทั้งตู้ (สี ขา มือจับ ค่าตู้ครบ) วางต่อข้าง ๆ">⧉ สำเนา</button>'
       +'<button class="ibtn" id="plDupM" title="ทำสำเนาแล้วกลับซ้าย-ขวา — รหัส L⇄R เปลี่ยนให้">⧉⇋ สำเนากลับ</button>'
       +'<button class="ibtn" id="plClr" title="เลือกสีแบบรูปย่อ (คลิกขวาที่ตู้ก็ได้)">🎨 สี</button>'
+      +((!snOff("sdc")&&["base","wall","tall"].indexOf(plKindOf(code))>=0)?'<button class="ibtn" id="plSdc" title="บานเลื่อน FT Slide SDC32045 — รางเดี่ยว 2 บาน (ราง บน 2 ล่าง 2) สร้างบานในช่องตู้">🚪 บานเลื่อน</button>':'')   // v1.598
       +((!snOff("plPull")&&plpDoors(inst).length)?'<button class="ibtn" id="plPullB" title="เลือกมือจับแบบรูป — ใส่ทุกบาน/ลิ้นชักของตู้นี้ (หรือทุกตู้)">🖐 มือจับ</button>':'')   // v1.524
       +'<button class="ibtn" id="plSwap" title="เปลี่ยนเป็นรุ่นอื่น ขนาดเท่าเดิม ที่เดิม สีเดิม">🔁 รุ่น</button>'
       +((plKindOf(code)==="filler"&&!plIsSide(inst)&&(plLevelOf(code)==="base"||plLevelOf(code)==="tall"))?('<button class="ibtn" id="plFloor" title="ฟิลเลอร์ลงพื้น (ตีนตู้จบที่ฟิลเลอร์) / ยกเท่าขา (ตีนตู้วิ่งผ่านหน้า)">'+(plFillerFloorOf(inst)?'⬆ ยกเท่าขา':'⬇ ลงพื้น')+'</button>'):'')
@@ -41947,6 +41953,7 @@ function plPanelSel(){
   if(q("#plDrop")) q("#plDrop").onclick=()=>plDropFloor(inst);                 // v1.458
   q("#plClr").onclick=ev=>{ const r=ev.target.getBoundingClientRect(); plColorOpen(inst,plPopX531(r),r.top-40); };   // v1.531: เปิดขวาของแผง
   if(q("#plPullB")) q("#plPullB").onclick=ev=>{ const r=ev.target.getBoundingClientRect(); plPullOpen(inst,plPopX531(r),r.top-80); };   // v1.524
+  if(q("#plSdc")) q("#plSdc").onclick=()=>sdcOpen(inst);   // v1.598
   q("#plMir").onclick=()=>plMirror(inst);
   q("#plDel").onclick=()=>plDelete(inst);
   if(q("#plFL")) q("#plFL").onclick=()=>plFill(inst,"lo");
@@ -45564,6 +45571,144 @@ function ehpHealAll(){ if(snOff("ehp")) return 0; let n=0;
      ค่าตั้ง settings.ehpMark {on, d, dep, z} (ค่าตั้งต้น ใส่ · Ø5 · ลึก 3 · 0) — แถว “รูมาร์ค” ในหน้าต่างมือจับแบบฝัง
      ดูแลทุกรอบ sync (ท้าย ehpHealAll): ตรงค่าตั้งแล้ว = ไม่แตะ · ไม่ตรง = เปลี่ยน · ถอดมือจับ/ปิดรูมาร์ค = เอารูออก
    ปิด SN_OFF.ehpMark */
+/* ═════════ v1.598: บานเลื่อน FT Slide SDC32045 — รางเดี่ยว 2 บาน (ราง บน 2 ล่าง 2) ═════════
+   ผู้ใช้ 2/11 07:57 (แผ่นวิธีติดตั้ง FT Slide SDC32045: ลูกล้อห่างขอบ 110 · รางฝังเดี่ยว A−16 · หนาบาน ≥ 18 · ช่องเจาะลูกล้อ 60 × 44 · 12):
+     “เพิ่มตัวนี้ แบบรางเดี่ยว แต่ 4 ราง บน 2 ล่าง 2 สำหรับ 2 บาน เป็นแบบดึงใส่ ตู้ที่เขียนรอไว้”
+   ถามแล้ว: ตู้ยังไม่มีบาน ให้สร้างบานให้ · ราง+ลูกล้อ 3D · ปรับขนาด/ตำแหน่งบานเอง · เจาะช่องลูกล้อลง MPR · เลื่อนได้ในโหมดเปิดบาน · ใส่จากปุ่มในแผงตู้
+   เดิม: โปรแกรมมีแต่บานพับ/ลิ้นชัก/บานยก — ไม่มีบานเลื่อนในตู้เลย
+   ตอนนี้: ห้องออกแบบ › แผงตู้ › 🚪 บานเลื่อน → กล่องค่า (รหัส · ขนาด · ระยะ · รูปตัวอย่าง) → สร้างบานจริง 2 บาน (เข้าใบตัด/MPR)
+     ช่องตู้ (sdcOpening ในกรอบตู้ที่ขนานแกนแล้ว withCabAxisAligned): ซ้าย-ขวา = ผิวในแผ่นข้างนอกสุด · ล่าง = ผิวบนแผ่นพื้นล่างสุด
+       · บน = ผิวล่างของแผ่นบน/คานหน้าที่สูงสุด · หน้า = ผิวหน้าตู้ (ชิ้นไม่ใช่บาน)
+     บาน: สูง = ช่อง − hDed (16) · กว้าง = (ช่อง + ซ้อนกลาง ov) / 2 · หนา T · กลางความสูงช่อง
+       ซ้าย = รางหลัง · ขวา = รางหน้า · ผิวหน้าบานรางหน้าถอยจากหน้าตู้ rec (4 → กลางรางหน้า = T−5 ตามแบบ “B−5”) · รางหลังถัดไป T + gap (10 → “B+≥10”)
+       ช่องลูกล้อ 4 ช่อง/บาน (pockets face bottom = ผิวหลังบาน · ชิดขอบบน/ล่าง · ห่างขอบข้าง ins 110 · กว้าง pw 60 สูง ph 44 ลึก pd 12) → MPR ผ่าน pocket เดิม
+       d._sdc = {sys, side L/R, trk 0 หน้า/1 หลัง, c ค่าที่ใช้, wo ช่องกว้าง, ocx/yTop/yBot ตำแหน่งช่องเทียบศูนย์บาน}
+       ชื่อ “บานเลื่อน ซ้าย/ขวา” (ไม่มี L/R เดี่ยว — hingeSideOf จะได้ไม่เดาเป็นบานพับ) · _door + _slideDoor (มือจับ/มือจับฝังใส่ได้)
+     ดูแลทุก sync (sdcHealAll ก่อน applyPullDrills): ช่องตู้เปลี่ยน (ปรับขนาด/ย้าย) = คิดบานใหม่ตามค่าที่จำไว้
+     ชิ้น 3D (applyPullDrills): ราง 4 เส้น (ฝังในแผ่นบน/ล่าง rh 12 · กว้าง rw 15 · ยาวเท่าช่อง · ไม่ตามบาน) + ลูกล้อ 4/บาน (_pullOwner = บาน → เลื่อนตาม)
+     ใบเบิก (fittingAgg): ชุดลูกล้อ kit × จำนวนบาน · ราง rail ตัดตามยาวช่อง (บน+ล่าง ต่อบาน)
+     เปิดบาน (viewBoards/_doorTfAt): ซ้ายเลื่อนไปขวา · ขวาเลื่อนไปซ้าย ระยะ = ช่อง − กว้างบาน (ไปซ้อนหลัง/หน้าอีกบาน) · หน้าดูงานใช้ทางลิ้นชัก (f/z)
+   ค่าตั้งต้น settings.sdc · ปิด SN_OFF.sdc */
+const SDC_DEF={sys:"SDC32045", kit:"SDC32045", rail:"SDC32045-R", T:18, hDed:16, ov:40, rec:4, gap:10, rw:15, rh:12, ins:110, pw:60, ph:44, pd:12};
+function sdcCfg(o){ const c=Object.assign({},SDC_DEF,settings.sdc||{},o||{});
+  ["T","hDed","ov","rec","gap","rw","rh","ins","pw","ph","pd"].forEach(k=>{ const v=+c[k]; c[k]=isFinite(v)?v:SDC_DEF[k]; }); return c; }
+function sdcDoors(inst){ return (state.boards||[]).filter(b=>b&&b.cabInst===inst&&b._sdc&&!b._virtual); }
+/* ช่องตู้ — เรียกในกรอบที่ขนานแกนแล้ว (หน้าตู้ = +z) */
+function sdcOpening(inst){
+  const R=(state.boards||[]).filter(b=>b&&b.cabInst===inst&&!b._virtual&&!b._door&&!b._box&&!isGuideLine(b)&&+b.T>0).map(b=>{ const d=worldDims(b);
+    return {b, x0:b.x-d[0]/2, x1:b.x+d[0]/2, y0:b.y-d[1]/2, y1:b.y+d[1]/2, z0:b.z-d[2]/2, z1:b.z+d[2]/2, dx:d[0], dy:d[1], dz:d[2]}; });
+  if(R.length<3) return null;
+  const fZ=Math.max.apply(null,R.map(r=>r.z1));
+  const sides=R.filter(r=>r.dx<=40&&r.dx<r.dy&&r.dx<r.dz).sort((a,b)=>a.x0-b.x0); if(sides.length<2) return null;
+  const sLo=sides[0].x1, sHi=sides[sides.length-1].x0, Wo=sHi-sLo; if(!(Wo>100)) return null;
+  const yMin=Math.min.apply(null,sides.map(r=>r.y0)), yMax=Math.max.apply(null,sides.map(r=>r.y1)), ym=(yMin+yMax)/2;
+  const wide=r=>(Math.min(r.x1,sHi)-Math.max(r.x0,sLo))>Wo*0.6;
+  const flats=R.filter(r=>r.dy<=40&&r.dy<r.dx&&r.dy<r.dz&&wide(r)&&r.z1>fZ-150);
+  const rails=R.filter(r=>r.dz<=40&&r.dz<r.dx&&r.dz<r.dy&&wide(r)&&r.z1>fZ-60&&r.dy<=200);
+  const below=flats.filter(r=>(r.y0+r.y1)/2<ym).sort((a,b)=>a.y0-b.y0), above=flats.concat(rails).filter(r=>(r.y0+r.y1)/2>ym).sort((a,b)=>b.y1-a.y1);
+  const yLo=below.length?below[0].y1:yMin, yHi=above.length?above[0].y0:yMax;
+  return {sLo, sHi, yLo, yHi, fZ, Wo, A:yHi-yLo, top:!!above.length, bot:!!below.length,
+    cab:(R.find(r=>r.b.cab)||{b:{}}).b.cab||""}; }
+/* ช่องตู้แบบรูปทรงปกติ (นอกรอบคิดฉาก) — ทอป/พื้นที่ดรอปไว้ (applyTopDrop) ยกคืนก่อนแล้วดรอปกลับ แบบที่ตัวปรับขนาดตู้ทำ
+   ในรอบ sync ตัวคิดบานทุกตัวเห็นรูปทรงปกติ (topDropUndo ต้นรอบ) — กล่องค่าจึงต้องเห็นแบบเดียวกัน ไม่งั้นตัวเลขต่างกัน 1 มม. */
+function sdcOpeningRaw(inst){ let op=null, und=false;
+  try{ if(typeof topDropUndo==="function"){ topDropUndo(false); und=true; } withCabAxisAligned(inst,()=>{ op=sdcOpening(inst); }); }
+  finally{ if(und) try{ applyTopDrop(); }catch(e){ console.error("sdc td:",e); } }
+  return op; }
+/* ขนาด/ตำแหน่งบานจากช่อง (ไม่แตะ state) */
+function sdcGeo(op,c,side){ const T=c.T, H=op.A-c.hDed, Wd=(op.Wo+c.ov)/2, trk=(side==="L")?1:0;
+  const z=op.fZ-c.rec-T/2-trk*(T+c.gap), x=(side==="L")?(op.sLo+Wd/2):(op.sHi-Wd/2), y=(op.yLo+op.yHi)/2;
+  return {L:round(Wd), W:round(H), T, x:round(x), y:round(y), z:round(z), trk}; }
+function sdcPockets(L,W,c){ const out=[]; [-1,1].forEach(sx=>[-1,1].forEach(sy=>out.push({x:round(sx*(L/2-c.ins-c.pw/2)), y:round(sy*(W/2-c.ph/2)), w:c.pw, h:c.ph, depth:c.pd, r:0, face:"bottom", _sdcPk:true})));
+  return out; }
+/* วางบาน d ตามช่อง (ในกรอบขนานแกน) — คืน true ถ้ามีอะไรเปลี่ยน */
+function sdcLayout(d,op,c){ const g=sdcGeo(op,c,d._sdc.side), near=(a,b)=>Math.abs((+a||0)-(+b||0))<0.05;
+  const pk=sdcPockets(g.L,g.W,c), oldPk=JSON.stringify((d.pockets||[]).filter(q=>q&&q._sdcPk));
+  const same=near(d.L,g.L)&&near(d.W,g.W)&&near(d.T,g.T)&&near(d.x,g.x)&&near(d.y,g.y)&&near(d.z,g.z)&&(+d.yaw||0)===0&&d.orient==="front"&&oldPk===JSON.stringify(pk);
+  const geo={wo:round(op.Wo), ocx:round((op.sLo+op.sHi)/2-g.x), yTop:round(op.yHi-g.y), yBot:round(op.yLo-g.y)};
+  if(same&&JSON.stringify(d._sdc.g||{})===JSON.stringify(geo)) return false;
+  Object.assign(d,{L:g.L, W:g.W, T:g.T, x:g.x, y:g.y, z:g.z, yaw:0, orient:"front"});
+  d.pockets=(d.pockets||[]).filter(q=>!(q&&q._sdcPk)).concat(pk); d._sdc.trk=g.trk; d._sdc.g=geo; return true; }
+function sdcApply(inst,c){ if(snOff("sdc")) return {err:"ปิดอยู่"}; let res=null;
+  withCabAxisAligned(inst,()=>{ const op=sdcOpening(inst); if(!op){ res={err:"หาช่องตู้ไม่เจอ (ต้องมีแผ่นข้างซ้าย-ขวา)"}; return; }
+    const H=op.A-c.hDed, Wd=(op.Wo+c.ov)/2; if(!(H>150)||!(Wd>120)){ res={err:"ช่องตู้เล็กเกินไป ("+Math.round(op.Wo)+" × "+Math.round(op.A)+")"}; return; }
+    const old=state.boards.filter(b=>b&&b.cabInst===inst&&b._door&&!b._virtual&&!b._dg&&!b._box);
+    const tpl=old.find(b=>!b._sdc&&b.mat)||old.find(b=>b.mat)||state.boards.find(b=>b&&b._door&&!b._virtual&&!b._dg&&!b._box&&b.mat)||{};
+    const keepId={}; old.filter(b=>b._sdc).forEach(b=>{ keepId[b._sdc.side]=b.id; });
+    const kill=new Set(old.map(b=>b.id));
+    state.boards=state.boards.filter(b=>b&&!kill.has(b.id)&&!(b._pullOwner&&kill.has(b._pullOwner))&&!(b._frameOwner&&kill.has(b._frameOwner)));
+    const keepOld={}; old.forEach(b=>{ if(b._sdc) keepOld[b._sdc.side]=b; });
+    ["L","R"].forEach(side=>{ const o=keepOld[side]||{};
+      const d={id:keepId[side]||uid(), cab:op.cab||o.cab||undefined, cabInst:inst, name:"บานเลื่อน "+(side==="L"?"ซ้าย":"ขวา"),
+        L:0, W:0, T:c.T, x:0, y:0, z:0, orient:"front", yaw:0, tone:null, r:0, holes:(o.holes||[]).filter(h=>h&&!h._pullDrill&&!h.hingePlate), grooves:[], connectors:[], pockets:[],
+        mat:o.mat||tpl.mat||"$FrontMat1", surfT:o.surfT!=null?o.surfT:(tpl.surfT||""), surfB:o.surfB!=null?o.surfB:(tpl.surfB||""),
+        edges:(o.edges||tpl.edges||["$FrontEdge1","$FrontEdge1","$FrontEdge1","$FrontEdge1"]).slice(), _door:true, _slideDoor:true,
+        _sdc:{sys:c.sys, side, trk:side==="L"?1:0, c:Object.assign({},c)}};
+      if(o._pulls||tpl._pulls) d._pulls=JSON.parse(JSON.stringify(o._pulls||tpl._pulls||[]));
+      if(o._ehp) d._ehp=o._ehp;
+      if(o.part||tpl.part) d.part=o.part||tpl.part; if(tpl.grainCross!=null) d.grainCross=tpl.grainCross;
+      sdcLayout(d,op,c); state.boards.push(d); });
+    res={ok:1, op, n:old.filter(b=>!b._sdc).length}; });
+  return res; }
+function sdcRemove(inst){ const ds=sdcDoors(inst), kill=new Set(ds.map(b=>b.id));
+  state.boards=state.boards.filter(b=>b&&!kill.has(b.id)&&!(b._pullOwner&&kill.has(b._pullOwner))); return ds.length; }
+function sdcHealAll(){ if(snOff("sdc")) return 0; let n=0; const insts=[...new Set((state.boards||[]).filter(b=>b&&b._sdc&&!b._virtual).map(b=>b.cabInst))];
+  insts.forEach(inst=>{ try{ withCabAxisAligned(inst,()=>{ const op=sdcOpening(inst); if(!op) return;
+      sdcDoors(inst).forEach(d=>{ if(sdcLayout(d,op,sdcCfg(d._sdc.c))) n++; }); }); }catch(e){ console.error("sdcHeal:",e); } });
+  return n; }
+/* ชิ้น 3D: ราง (ตามช่อง ไม่ตามบาน) + ลูกล้อ (ตามบาน) — พิกัดในกรอบบาน แล้วหมุนตามบาน */
+function sdcParts(d){ const s=d._sdc, g=s&&s.g; if(!g) return []; const c=sdcCfg(s.c), M=orientMatrix(d.orient,d.yaw||0), out=[];
+  const at=(lx,ly,lz)=>new THREE.Vector3(lx,ly,lz).applyMatrix4(M);
+  const mk=(nm,L,W,T,p,ext)=>Object.assign({id:d.id+":sdc:"+nm, cab:d.cab, cabInst:d.cabInst, name:s.sys+" · "+nm, L, W, T, x:round(d.x+p.x), y:round(d.y+p.y), z:round(d.z+p.z),
+    orient:d.orient, yaw:d.yaw||0, r:0, tone:null, holes:[], grooves:[], connectors:[], mat:"$CarcassBodyMat", surfT:"", surfB:"", edges:["No Edge","No Edge","No Edge","No Edge"],
+    _virtual:true, _sdcPart:true, _metal:"#aeb4bb"}, ext||{});
+  [["รางบน",g.yTop+c.rh/2],["รางล่าง",g.yBot-c.rh/2]].forEach(r=>out.push(mk(r[0]+(s.trk?" (หลัง)":" (หน้า)"),g.wo,c.rh,c.rw,at(g.ocx,r[1],0),{_metal:"#8d939b"})));
+  const L=+d.L, W=+d.W, T=+d.T, ex=Math.min(8,Math.max(c.hDed/2,0));
+  [-1,1].forEach(sx=>[-1,1].forEach(sy=>out.push(mk("ลูกล้อ"+(sy>0?"บน":"ล่าง")+(sx>0?"ขวา":"ซ้าย"),c.pw-6,c.ph,c.pd,
+    at(sx*(L/2-c.ins-c.pw/2), sy*(W/2-c.ph/2+ex), -T/2+c.pd/2+0.3),{_pullOwner:d.id, _metal:"#c3c8ce"}))));
+  return out; }
+/* ระยะเลื่อน (เปิดสุด) + ทิศ (แกนกว้างบาน: ซ้ายไปขวา · ขวาไปซ้าย) */
+function sdcSlideTf(b,p){ const s=b._sdc, g=s&&s.g; if(!g) return null; const dist=Math.max((+g.wo||0)-(+b.L||0),0)*p;
+  const ax=new THREE.Vector3(1,0,0).applyMatrix4(orientMatrix(b.orient,b.yaw||0)), sg=(s.side==="L")?1:-1;
+  return {dz:dist, fx:ax.x*sg, fz:ax.z*sg}; }
+/* กล่องค่า — ห้องออกแบบ › แผงตู้ › 🚪 บานเลื่อน */
+async function sdcOpen(inst){ if(snOff("sdc")) return;
+  let op=null; try{ op=sdcOpeningRaw(inst); }catch(e){ console.error(e); }
+  if(!op){ toast("หาช่องตู้ไม่เจอ — ต้องมีแผ่นข้างซ้าย-ขวา"); return; }
+  const has=sdcDoors(inst), c0=has.length?sdcCfg(has[0]._sdc.c):sdcCfg(), DO="ใส่ / ปรับบานเลื่อน", RM="ถอดบานเลื่อน";
+  const num=(k,l)=>({key:k,label:l,value:c0[k],showIf:x=>x.act!==RM});
+  const pv=x=>{ if(x.act===RM) return '<div style="padding:10px">ถอดบานเลื่อน 2 บาน + ราง/ลูกล้อออกจากตู้นี้</div>';
+    const c=sdcCfg(x), H=op.A-c.hDed, Wd=(op.Wo+c.ov)/2, W=300, Hh=Math.max(150,Math.min(260,W*op.A/op.Wo)), k=Math.min((W-20)/op.Wo,(Hh-20)/op.A);
+    const X=v=>10+(v-op.sLo)*k, Y=v=>Hh-10-(v-op.yLo)*k, gl=sdcGeo(op,c,"L"), gr=sdcGeo(op,c,"R"), bx=(g,f)=>'<rect x="'+X(g.x-g.L/2)+'" y="'+Y(g.y+g.W/2)+'" width="'+(g.L*k)+'" height="'+(g.W*k)+'" fill="'+f+'" stroke="#2b2f36"/>';
+    const rl=(y)=>'<line x1="'+X(op.sLo)+'" x2="'+X(op.sHi)+'" y1="'+y+'" y2="'+y+'" stroke="#8d939b" stroke-width="3"/>';
+    const wh=(g)=>[-1,1].map(sx=>[-1,1].map(sy=>'<rect x="'+X(g.x+sx*(g.L/2-c.ins-c.pw/2)-c.pw/2)+'" y="'+Y(g.y+sy*(g.W/2-c.ph/2)+c.ph/2)+'" width="'+(c.pw*k)+'" height="'+(c.ph*k)+'" fill="#c0392b" opacity=".55"/>').join("")).join("");
+    return '<svg width="'+W+'" height="'+Hh+'" style="display:block;background:#fff;border:1px solid #eceff3;border-radius:6px">'
+      +'<rect x="'+X(op.sLo)+'" y="'+Y(op.yHi)+'" width="'+(op.Wo*k)+'" height="'+(op.A*k)+'" fill="#f3f4f6" stroke="#9aa"/>'+rl(Y(op.yHi)+2)+rl(Y(op.yLo)-2)
+      +bx(gl,"rgba(141,148,158,.55)")+bx(gr,"rgba(239,230,212,.85)")+wh(gl)+wh(gr)+'</svg>'
+      +'<div style="font-size:11.5px;line-height:1.7;margin-top:6px">ช่องตู้ <b>'+round(op.Wo)+' × '+round(op.A)+'</b> มม.'+(op.top?'':' <span style="color:#e58a24">(ไม่เจอแผ่นบน — ใช้ขอบบนแผ่นข้าง)</span>')
+      +'<br>บาน 2 บาน <b>'+round(Wd)+' × '+round(H)+' × '+c.T+'</b> · ซ้อนกลาง '+c.ov+' · ซ้าย = รางหลัง (สีเทา) ขวา = รางหน้า'
+      +'<br>ลูกล้อบานละ 4 (ช่องเจาะ '+c.pw+'×'+c.ph+' ลึก '+c.pd+' ผิวหลังบาน ห่างขอบข้าง '+c.ins+') · ราง '+c.rail+' ยาว '+round(op.Wo)+' × 4 เส้น'
+      +(H<=150||Wd<=120?'<br><b style="color:#c0392b">ช่องเล็กเกินไป</b>':'')+(c.T<18?'<br><b style="color:#e58a24">แบบกำหนดหนาบาน ≥ 18</b>':'')
+      +(has.length?'':((state.boards.some(b=>b&&b.cabInst===inst&&b._door&&!b._virtual&&!b._dg&&!b._box))?'<br><b style="color:#e58a24">บานเดิมของตู้นี้จะถูกเอาออก</b>':''))+'</div>'; };
+  const v=await promptFields("🚪 บานเลื่อน — "+(op.cab||inst),[
+    {key:"act",type:"toggle",label:"ทำอะไร",options:has.length?[DO,RM]:[DO],value:DO},
+    {key:"sys",type:"text",label:"รุ่น",value:c0.sys,showIf:x=>x.act!==RM},
+    {key:"kit",type:"text",label:"รหัสชุดลูกล้อ (ลงใบเบิก ชุด/บาน)",value:c0.kit,showIf:x=>x.act!==RM},
+    {key:"rail",type:"text",label:"รหัสราง (ลงใบเบิก ตัดตามยาว)",value:c0.rail,showIf:x=>x.act!==RM},
+    num("T","หนาบาน (มม.)"), num("ov","ซ้อนกลาง (มม.)"), num("hDed","หักความสูง (ช่อง A − …)"), num("rec","ผิวหน้าบานถอยจากหน้าตู้ (มม.)"), num("gap","ระยะห่างระหว่างบานหน้า-หลัง (มม.)"),
+    num("ins","ลูกล้อห่างขอบข้างบาน (มม.)"), num("pw","ช่องลูกล้อ กว้าง"), num("ph","ช่องลูกล้อ สูง"), num("pd","ช่องลูกล้อ ลึก"),
+    {key:"_pv",type:"preview",label:"รูปตัวอย่าง (มองหน้าตู้)",render:pv}]);
+  if(!v) return;
+  const cam=plCamKeep();
+  if(v.act===RM){ const n=sdcRemove(inst); sync(0); plCamPut(cam); try{ plSelect(inst); }catch(e){} toast("ถอดบานเลื่อน "+n+" บานแล้ว"); return; }
+  const c=sdcCfg({sys:String(v.sys||"").trim()||SDC_DEF.sys, kit:String(v.kit||"").trim(), rail:String(v.rail||"").trim(),
+    T:v.T, ov:v.ov, hDed:v.hDed, rec:v.rec, gap:v.gap, ins:v.ins, pw:v.pw, ph:v.ph, pd:v.pd});
+  const oldN=state.boards.filter(b=>b&&b.cabInst===inst&&b._door&&!b._virtual&&!b._dg&&!b._box&&!b._sdc).length;
+  if(oldN&&!await dialog({title:"ตู้นี้มีบานอยู่ "+oldN+" บาน — เอาออกแล้วใส่บานเลื่อน?",ok:"ใส่บานเลื่อน"})) return;
+  settings.sdc=Object.assign({},c); try{ await catSaveSettings(); }catch(e){ console.error("sdc save:",e); }
+  const r=sdcApply(inst,c); if(!r||r.err){ toast("บานเลื่อน: "+((r&&r.err)||"ไม่สำเร็จ")); return; }
+  sync(0); plCamPut(cam); try{ plSelect(inst); }catch(e){} try{ costSchedule(); }catch(e){}
+  toast("🚪 บานเลื่อน "+c.sys+" · 2 บาน "+round((r.op.Wo+c.ov)/2)+" × "+round(r.op.A-c.hDed)+(r.n?(" · เอาบานเดิมออก "+r.n+" บาน"):"")+" — โหมดเปิดบาน: คลิกบาน = เลื่อน"); }
 function ehpMarkCfg(){ const m=settings.ehpMark||{}, n=(v,d)=>{ const x=+v; return (isFinite(x)&&x>0)?Math.round(x*10)/10:d; };
   return {on:m.on!==false, d:n(m.d,5), dep:n(m.dep,3), z:isFinite(+m.z)?Math.round(+m.z*10)/10:0}; }
 function ehpEdgeOf(S,side){ const A=S&&S[side]; if(!A) return null; return (A.ax==="x")?(A.s>0?"right":"left"):(A.s>0?"back":"front"); }
@@ -51248,7 +51393,7 @@ function applyPullDrills(){
     if(ps.every(p=>p&&p._fromVar)) delete b._pulls; }); }catch(e){ console.error("pullClean:",e); }
   try{ ensurePullsFromVars(); }catch(e){ console.error("pullVar:",e); }   // v13.8
   let n=0;
-  state.boards=state.boards.filter(b=>!(b&&b._pullPart));
+  state.boards=state.boards.filter(b=>!(b&&(b._pullPart||b._sdcPart)));   /* v1.598: + ราง/ลูกล้อบานเลื่อน */
   state.boards.forEach(b=>{
     if(b.holes&&b.holes.length) b.holes=b.holes.filter(h=>!(h&&h._pullDrill));
     if(b.pockets&&b.pockets.length) b.pockets=b.pockets.filter(q=>!(q&&q._pullPk)); });
@@ -51256,6 +51401,7 @@ function applyPullDrills(){
   state.boards.forEach(b=>{ const ps=(b&&b._pulls)||[]; if(!ps.length) return;
     ps.forEach((pu,i)=>{ try{ n+=_drillOnePull(b,pu,i,add); }catch(e){ console.error("pull:",e); } }); });
   if(!snOff("ehp")) state.boards.forEach(b=>{ if(!b||!b._ehp||b._virtual) return; try{ const p=ehpPart(b); if(p) add.push(p); }catch(e){ console.error("ehp:",e); } });   /* v1.592: รางมือจับติดขอบ (ชิ้นลูกของบาน · สร้างใหม่ทุกรอบเหมือนมือจับ) */
+  if(!snOff("sdc")) state.boards.forEach(b=>{ if(!b||!b._sdc||b._virtual) return; try{ sdcParts(b).forEach(p=>add.push(p)); }catch(e){ console.error("sdc:",e); } });   /* v1.598 */
   if(add.length) state.boards=state.boards.concat(add);
   return n;
 }
@@ -56966,7 +57112,7 @@ function snvMeta(){
        ลิงก์ที่ส่งก่อน 1.595 ไม่มีข้อมูลนี้ → ส่งลิงก์ใหม่ · ปิด SN_OFF.snvBasket */
     if(b._bkKey&&!snOff("bkSlide")&&!snOff("snvBasket")){ const k=b._bkKey; keyOf[b.id]=k; if(keys.indexOf(k)<0) keys.push(k); return; }
     if(b._imKey&&!snOff("imove")&&!snOff("snvBasket")){ keyOf[b.id]=b._imKey; return; }
-    if(b._door&&!b._box&&!b._panel&&!b._dummy){ let s=null; try{ s=hingeSideOf(b); }catch(e){} if(s){ keyOf[b.id]=b.id; keys.push(b.id); } } });
+    if(b._door&&!b._box&&!b._panel&&!b._dummy){ let s=null; try{ s=hingeSideOf(b); }catch(e){} if(s||(b._sdc&&!snOff("sdc"))){ keyOf[b.id]=b.id; keys.push(b.id); } } });   /* v1.598: + บานเลื่อน */
   const ang=+settings.doorOpenAngle||100, kp=state.doorPick, kv=state.view; let tf={};
   try{ state.view="assembled"; state.doorPick=keys.slice(); tf=_doorTfAt(ang,{}); }catch(e){ console.error("snv door:",e); }
   finally{ state.doorPick=kp; state.view=kv; }
@@ -59934,7 +60080,11 @@ function fittingAgg(boards){   // รวมเดือย + พินรอง�
   if(!snOff("ehp")) try{ const own=new Set((boards||[]).map(b=>b&&b.id)); (state.boards||[]).forEach(b=>{ if(!b||!b._ehpPart||!(own.has(b._pullOwner)||own.has(b.id))) return;
       const el9=(((settings.elements||{}).fittings)||[]).find(x=>x&&x.code===b._ehpCode);
       bomCutRow(m,b._ehpCode,((el9&&el9.desc)||("มือจับฝัง "+b._ehpName)),((el9&&el9.unit)||"เส้น"),+b._ehpLen||0,"pull");
-      { const kk=b._ehpCode+"@"+cutLen(+b._ehpLen||0); if(m[kk]) m[kk]._ehpRow=1; } }); }catch(e){ console.error("ehp bom:",e); }   /* v1.597: ธงให้ตัวคิดราคาแยกขนาด */
+      { const kk=b._ehpCode+"@"+cutLen(+b._ehpLen||0); if(m[kk]) m[kk]._ehpRow=1; } }); }catch(e){ console.error("ehp bom:",e); }
+  /* v1.598: บานเลื่อน SDC — ชุดลูกล้อต่อบาน + รางตัดตามยาวช่อง (บน + ล่าง ต่อบาน) */
+  if(!snOff("sdc")) try{ (boards||[]).forEach(b=>{ if(!b||!b._sdc||b._virtual||!b._sdc.g) return; const c=sdcCfg(b._sdc.c), F=(((settings.elements||{}).fittings)||[]);
+      if(c.kit){ const el=F.find(x=>x&&x.code===c.kit); (m[c.kit]||(m[c.kit]={art:c.kit,dia:"",kind:"slide",name:(el&&el.desc)||("ชุดลูกล้อบานเลื่อน "+c.sys+" (4 ล้อ/บาน)"),unit:(el&&el.unit)||"ชุด",count:0})).count+=1; }
+      if(c.rail){ const el=F.find(x=>x&&x.code===c.rail); for(let i=0;i<2;i++) bomCutRow(m,c.rail,(el&&el.desc)||("รางบานเลื่อนเดี่ยว "+c.sys),(el&&el.unit)||"เส้น",+b._sdc.g.wo||0,"slide"); } }); }catch(e){ console.error("sdc bom:",e); }   /* v1.597: ธงให้ตัวคิดราคาแยกขนาด */
   /* ───────── v37.6: เฟรมอลูเข้าท่อ "ตัดตามยาว" เหมือนเส้น DX กับรางไฟ ─────────
      ของเดิมออกเป็นรายการรวม 008 × 4 เส้น ซึ่งบอกจำนวนแต่ไม่บอกความยาว
      ทั้งที่รหัสสั่งซื้อจริงผูกกับความยาว (600 = ...0106 · 800 = ...0098)
