@@ -3283,7 +3283,7 @@ body[data-theme="dark"] .splash-dots span{background:rgba(255,255,255,.25)}
    ===================================================================== */
 /* ---- APP_META: แหล่งความจริงเดียวของเวอร์ชัน (ดูได้จาก console / คลิกชื่อแอป) ---- */
 const APP_META={
-  name:"StarNexus", version:"1.640", build:"2026-11-03/pull-card-name",
+  name:"StarNexus", version:"1.641", build:"2026-11-03/fg-tab",
   file:"StarNexus.html", basedOn:"Furnitech_V3.html (v3.11)",
   /* ───────── เริ่มนับเวอร์ชันใหม่ที่ 1.001 (21/08/2026) ─────────
      ของเดิมนับมาถึง 42.1 แล้ววิ่งเป็นทศนิยมสองชั้นซึ่งอ่านลำดับยาก
@@ -3291,6 +3291,7 @@ const APP_META={
      ประวัติเก่าเก็บไว้ทั้งหมดตามเลขเดิม ไม่ไล่เขียนใหม่ เพราะเลขในนั้นถูกอ้างถึงไปแล้ว
      รายการที่อยู่ใต้ 1.001 ลงไปจึงเป็นเลขชุดเก่า อ่านต่อกันได้ตามวันที่ */
   changelog:[
+    ["1.641","2026-11-03","FEAT Fitting Global แยกแท็บ ปุ่ม ↗ แยกแท็บ เปิดค้างไว้หาข้อมูลได้ ค้น กรอง คัดลอก ดูราคาได้เหมือนเดิม อ่านอย่างเดียว ตั้งหมวดในโปรแกรมหลัก · F5 หรือเปิดจาก bookmark อ่านสำเนาในเครื่อง (ผู้ใช้ 13:03)"],
     ["1.640","2026-11-03","UX การ์ดมือจับในหน้ารวมวัสดุใช้ชื่อ AX ตัดถึงรหัสรุ่น เช่น มือจับ แบบระยะ 128 mm. KRIX 510019-4128 · ตาราง AX ยังไม่มาใช้คำอธิบายใน Element · มือจับฝังคงเดิม (ผู้ใช้ 12:05)"],
     ["1.639","2026-11-03","UX กดส่ง Production แล้วเช็คกรุ๊ปขอบให้ สีไหนยังออกหลายรหัสเปิดหน้าต่างกรุ๊ปที่ติ๊กไว้แล้ว กดกรุ๊ปแล้วส่งได้ทันที · ตารางตัดบอกว่ากรุ๊ปอะไรอยู่ (ผู้ใช้ 11:59)"],
     ["1.638","2026-11-03","FIX หน้ารวมวัสดุแสดงไม่ครบ มีแค่แบบที่ใช้มากสุด +1 แบบ (ผู้ใช้ 11:35) — บานพับ ราง LED มือจับ ดีไซน์บาน สีบาน สีโครง เนื้อไม้ ทุกแบบมีการ์ดของตัวเอง · มือจับไม่มีรูปก็มีการ์ด · สีโครงอ่านจาก Carcass ของตู้จริง ไม่หยิบฟิลเลอร์ที่เป็นสีบาน (ผู้ใช้ 11:37 การ์ดสีโครงขึ้น N03P0057N ทั้งที่ตู้เป็น N01M0029N) · ชื่อสีเลขหลักเดียวเช่น AK1 ก็แยกได้ และอ่านจากคำอธิบายผิวได้"],
@@ -25476,7 +25477,7 @@ const SCENE_KEY="sxlocaltrial:boardforge:v1"+(SX_TAB?(":"+SX_TAB):"");
    openSharedIfAny เรียก sync(1) ซึ่งเซฟอัตโนมัติ = สแนปช็อตตู้ใบเดียวทับออเดอร์ทั้งใบ
    เปิดลิงก์เช็คจากหน้าตรวจลิงก์ทีหนึ่ง แล้วรีเฟรชแท็บงาน งาน 37 ตู้เหลือตู้เดียว
    v36.3 คิดเผื่อกรณีสองแท็บทำงานไว้แล้ว แต่ลิงก์ดูอย่างเดียวเป็นกรณีที่สามที่ยังไม่มีใครกัน */
-async function autosave(){ if(state.editing||VIEW_ONLY||_alignHold>0)return;   /* v1.265 */ try{ await store.set(SCENE_KEY,JSON.stringify({boards:state.boards,globalTone:state.globalTone,cabColors:state.cabColors,cabNums:state.cabNums,cabVarTxt:state.cabVarTxt,cabDX:state.cabDX,bcSeq:state.bcSeq,bcMax:state.bcMax,orderLines:state.orderLines,cabDP:state.cabDP,cabFrontEdge:state.cabFrontEdge,cabFrontDir:state.cabFrontDir,room:state.room||null,scenes:state.scenes||[],qPics:state.qPics||[],orderMat:state.orderMat||{},edgeGroup:state.edgeGroup||{},pidLock:state.pidLock||null})); }catch(e){} }   /* v1.337: + orderMat · v1.411: + pidLock */
+async function autosave(){ if(state.editing||VIEW_ONLY||_alignHold>0||fgTabOn())return;   /* v1.265 */ try{ await store.set(SCENE_KEY,JSON.stringify({boards:state.boards,globalTone:state.globalTone,cabColors:state.cabColors,cabNums:state.cabNums,cabVarTxt:state.cabVarTxt,cabDX:state.cabDX,bcSeq:state.bcSeq,bcMax:state.bcMax,orderLines:state.orderLines,cabDP:state.cabDP,cabFrontEdge:state.cabFrontEdge,cabFrontDir:state.cabFrontDir,room:state.room||null,scenes:state.scenes||[],qPics:state.qPics||[],orderMat:state.orderMat||{},edgeGroup:state.edgeGroup||{},pidLock:state.pidLock||null})); }catch(e){} }   /* v1.337: + orderMat · v1.411: + pidLock */
 /* ───────── v1.127: การบันทึกอัตโนมัติกินเวลาเกือบครึ่งของรอบคิดฉาก ─────────
    ตัวบันทึกแปลงข้อมูลทั้งฉากเป็นข้อความใหม่ทุกครั้งที่คิดฉาก ทั้งชิ้น รู ร่อง อุปกรณ์
    ออเดอร์ร้อยสามสิบห้าชิ้นจึงกินสองวินาทีต่อรอบ วัดได้จริงในงานจริง
@@ -30458,6 +30459,7 @@ function boardRole(b){
      SN_OFF.dwgNoCount=1  หน้ารวมวัสดุ กลับมาโชว์จำนวน บาน/จุด/เส้น/ตัว/ชุด (v1.633)
      SN_OFF.dwgPullImg=1  การ์ดมือจับไม่ใช้รูปที่อัปโหลด ไม่มีรูปในหน้าต่าง 🖼 · การ์ดเดียวเหมือนเดิม (v1.633)
      SN_OFF.dwgDoorName=1 ไม่แสดงชื่อรุ่นแบบบานที่ตั้งเอง (v1.633)
+     SN_OFF.fgTab=1       Fitting Global ไม่มีปุ่มแยกแท็บ · ลิงก์ #fgtab เปิดโปรแกรมเต็มตามปกติ (v1.641)
      SN_OFF.dwgPullAxName=1 การ์ดมือจับใช้ชื่อใน Element ก่อนแบบเดิม ไม่ตัดชื่อ AX (v1.640)
      SN_OFF.edgeGroupAsk=1 กดส่ง Production ไม่ถามกรุ๊ปขอบก่อนส่ง (v1.639)
      SN_OFF.dwgMatAll=1   หน้ารวมวัสดุ กลับไปแสดงแค่แบบที่ใช้มากสุดของแต่ละหมวด พร้อมคำว่า +1 แบบ (v1.638)
@@ -37002,7 +37004,7 @@ async function catKindSave(code,kind){
       if(it) it.kind=kind; else { PL.items=null; await plLoadItems(); }
       plPanelGrid(); } }catch(err){ console.error("catKind pl:",err); }
   return true; }
-async function catSaveSettings(){
+async function catSaveSettings(){ if(fgTabOn()) return;   /* v1.641: แท็บ Fitting Global ห้ามเขียนค่าตั้ง */
   try{ lsSet("sxlocaltrial:furnitech:settings",settings); }catch(e){}
   if(settings.cloudAutoSave!==false){ try{ await cloudSaveSettings(); }catch(e){ console.error(e); } }
 }
@@ -64138,7 +64140,7 @@ async function sendSupabaseRun(){
    ตัวที่เรียกเองเบื้องหลัง (บันทึกค่าตั้งต้น · แคตตาล็อก) ไม่เด้งกล่อง ทำงานเงียบเหมือนเดิม
    กดซ้ำระหว่างที่ยังทำอยู่ = ไม่เริ่มรอบใหม่ซ้อน (สองรอบเขียนแถวเดียวกันพร้อมกัน) */
 let _csBusy=null;
-async function cloudSaveSettings(opts){
+async function cloudSaveSettings(opts){ if(fgTabOn()) return;   /* v1.641 */
   if(VIEW_ONLY){ toast("ลิงก์ดูอย่างเดียว — บันทึกขึ้นคลาวด์ไม่ได้"); return; }   // v27.3
   if(_csBusy){ if(opts&&opts.show) toast("กำลังเก็บอยู่ — รอรอบนี้จบก่อน"); return _csBusy; }
   /* v1.348: ระหว่างเก็บ หยุดรอบตรวจไฟล์กลางไว้ก่อน (SXL.hold แบบเดียวกับตอนส่งออเดอร์) ไม่ให้มาแทรกคิวระหว่างขั้น */
@@ -66461,7 +66463,7 @@ async function sxlRestore(ask){var need=0;
  else sxlStatus('เชื่อมตำแหน่งที่จำไว้แล้ว · พร้อม '+sxlReadyN()+' ตาราง'+(sxlLdTxt()?(' · '+sxlLdTxt()):''))}   // v1.391: + เวลาโหลด
 function sxLocalMount(){if(document.getElementById('sxLocalPanel'))return;var C=SXL.cfg;
  var style=document.createElement('style');style.textContent='#sxLocalPanel{position:fixed;inset:0;z-index:999999;background:#0008;display:none;align-items:center;justify-content:center;padding:20px}#sxLocalPanel .sl-box{background:#fff;color:#172c40;width:min(900px,96vw);max-height:92vh;overflow:auto;padding:22px 24px;border-radius:14px;font:14px/1.6 system-ui,sans-serif;text-align:left}#sxLocalPanel h2{margin:0 0 6px;font-size:20px}#sxLocalPanel p{margin:8px 0}#sxLocalPanel button{padding:8px 12px;margin:4px 4px 4px 0;border:1px solid #93a9b8;border-radius:6px;cursor:pointer;background:transparent;color:inherit;font:inherit}#sxLocalPanel button.pri{background:#135e73;color:#fff;border-color:#135e73;font-weight:600}#sxLocalPanel td,#sxLocalPanel th{padding:8px;text-align:left;vertical-align:top;border-bottom:1px solid #8884}#sxLocalPanel table{width:100%;border-collapse:collapse;margin:8px 0}#sxLocalPanel,#sxLocalPanel p,#sxLocalPanel td,#sxLocalPanel th,#sxLocalPanel button{font-family:system-ui,Sarabun,sans-serif;font-size:14px;line-height:1.55}#sxLocalPanel th{font-weight:600;color:#172c40}#sxLocalPanel td,#sxLocalPanel th,#sxLocalPanel small{white-space:normal;overflow:visible;text-overflow:clip;max-width:none}#sxLocalPanel code{font:13px/1.4 ui-monospace,monospace}#sxLocalPanel small{opacity:.85;font-size:12.5px}#sxLocalPanel .sl-note{font-size:13px}#sxLocalPanel .sl-st.ok{color:#17703a}#sxLocalPanel .sl-st.bad{color:#b42d24}#sxLocalPanel .sl-st.off{opacity:.7}#sxLocalPanel .sl-bad{color:#b42d24}#sxLocalPanel .sl-warn{color:#9a5a00}#sxLocalPanel .sl-core{font-size:11px;background:#135e7322;border-radius:4px;padding:1px 5px;margin-left:4px}#sxLocalPanel .sl-note{font-size:13px;opacity:.85}#sxLocalTop{position:fixed;z-index:5000;background:#135e73;color:#fff;padding:10px 14px;border:0;border-radius:9px;cursor:pointer;font:600 13px system-ui,sans-serif;box-shadow:0 2px 10px #0003;'+(C.btnPos||'bottom:54px;right:16px')+'}'+(C.css||'');document.head.append(style);
- var rows=C.tables.map(function(T){return '<tr><td><code>'+T.t+'</code>'+(T.core?'<span class="sl-core">จำเป็น</span>':'')+'<br><small>'+esc2(T.use)+'</small></td><td id="sxl_st_'+T.t+'" class="sl-st"></td><td style="white-space:nowrap">'+(sxlLoadable(T)?'<button data-sxl-pick="'+T.t+'">เลือกไฟล์</button>'+(T.t==='fitting_global'&&sxlOdooOn()?'<button data-sxl-ax="1">ดึงจาก AX</button>':'')+(T.t==='fitting_global'?'<button data-sxl-view="1">ดูรายการ</button>':'')+'<input type="file" accept=".csv,text/csv'+(T.xlsx?',.xlsx,.xlsm':'')+'" id="sxl_in_'+T.t+'" data-sxl-once="'+T.t+'" hidden>':'')+'</td></tr>'}).join('')
+ var rows=C.tables.map(function(T){return '<tr><td><code>'+T.t+'</code>'+(T.core?'<span class="sl-core">จำเป็น</span>':'')+'<br><small>'+esc2(T.use)+'</small></td><td id="sxl_st_'+T.t+'" class="sl-st"></td><td style="white-space:nowrap">'+(sxlLoadable(T)?'<button data-sxl-pick="'+T.t+'">เลือกไฟล์</button>'+(T.t==='fitting_global'&&sxlOdooOn()?'<button data-sxl-ax="1">ดึงจาก AX</button>':'')+(T.t==='fitting_global'?'<button data-sxl-view="1">ดูรายการ</button>'+(snOff('fgTab')?'':'<button data-sxl-tab="1" title="เปิดเป็นแท็บใหม่ เปิดค้างไว้หาข้อมูล">↗ แยกแท็บ</button>'):'')+'<input type="file" accept=".csv,text/csv'+(T.xlsx?',.xlsx,.xlsm':'')+'" id="sxl_in_'+T.t+'" data-sxl-once="'+T.t+'" hidden>':'')+'</td></tr>'}).join('')
   +(C.extraRows||[]).map(function(x){return '<tr><td><b>'+esc2(x.name)+'</b><br><small>'+esc2(x.use)+'</small></td><td class="sl-st off">'+esc2(x.state)+'</td><td></td></tr>'}).join('');
  var acts=(C.actions||[]).map(function(a,i){return '<button data-sxl-act="'+i+'"'+(a.primary?' class="pri"':'')+'>'+esc2(a.label)+'</button>'}).join('');
  var panel=document.createElement('div');panel.id='sxLocalPanel';panel.innerHTML='<div class="sl-box"><h2>'+esc2(C.title)+'</h2><p>'+C.intro+'</p><div><button id="sxlDir" class="pri">เลือกโฟลเดอร์ Server</button><button id="sxLocalReconnect">เชื่อมตำแหน่งที่จำไว้</button><button id="sxLocalCheck">อ่านไฟล์ล่าสุด</button><button id="sxlOdooMig" style="display:none">⬆ ย้ายข้อมูลเข้า Odoo…</button></div><p class="sl-note" id="sxlDirInfo"></p><p class="sl-note" id="sxlWInfo"></p><table><thead><tr><th>ตาราง</th><th>ไฟล์ที่ใช้</th><th></th></tr></thead><tbody>'+rows+'</tbody></table><p>ถ้าเลือกโฟลเดอร์ไม่ได้ เลือกหลายไฟล์พร้อมกันครั้งเดียว (ไม่ติดตามการแก้ไฟล์): <input id="sxLocalUpload" type="file" multiple accept=".csv,text/csv,.xlsx,.xlsm"></p><p id="sxLocalStatus" role="status" style="white-space:pre-wrap"></p><p class="sl-note">เบราว์เซอร์ให้สิทธิ์ผ่านการเลือกเท่านั้น จึงพิมพ์ Path เองไม่ได้ · ตอนเลือกโฟลเดอร์ เบราว์เซอร์จะถามว่าให้ดูไฟล์และแก้ไขไฟล์ ให้อนุญาตทั้งสองอย่างถึงจะบันทึกได้ · โปรแกรมตรวจไฟล์ทุก 10 วินาที อ่านใหม่เมื่อเปลี่ยน'+(C.note?(' · '+C.note):'')+'</p>'+acts+'<button id="sxLocalClose">ปิด</button></div>';document.body.append(panel);
@@ -66480,6 +66482,7 @@ function sxLocalMount(){if(document.getElementById('sxLocalPanel'))return;var C=
  panel.querySelectorAll('[data-sxl-once]').forEach(function(inp){inp.onchange=guard(async function(e){var f=e.target.files[0];e.target.value='';if(f)await sxlOnce([f],inp.dataset.sxlOnce)})});
  document.getElementById('sxLocalUpload').onchange=guard(async function(e){var fs=Array.from(e.target.files);e.target.value='';if(fs.length)await sxlOnce(fs)});
  panel.querySelectorAll('[data-sxl-act]').forEach(function(b){b.onclick=guard(function(){return C.actions[+b.dataset.sxlAct].onClick(hide)})});
+ panel.querySelectorAll('[data-sxl-tab]').forEach(function(b){b.onclick=function(){if(!SXL.s.fitting_global.ready){sxlStatus('ยังไม่มีข้อมูล fitting_global — รอดึงจาก AX หรือเลือกไฟล์ก่อน',true);return}fgTabOpen()}});   /* v1.641: เรียกตรงในคลิก ไม่ให้เบราว์เซอร์กัน pop-up */
  panel.querySelectorAll('[data-sxl-view]').forEach(function(b){b.onclick=guard(function(){sxlFgView()})});   // v1.477 (Odoo v1.425)
  panel.querySelectorAll('[data-sxl-ax]').forEach(function(b){b.onclick=guard(function(){return sxlOdooFG(true)})});
  setInterval(async function(){if(document.hidden||SXL.busy)return;try{await sxlRefresh()}catch(e){sxlStatus('ตรวจไฟล์ไม่สำเร็จ: '+e.message,true)}
@@ -66772,7 +66775,32 @@ function sxlFgMatcher(v,wild){var inc=[],exc=[];String(v||'').toLowerCase().spli
   var t=(wild&&w.indexOf('*')>=0)?new RegExp('^'+w.split('*').map(function(s){return s.replace(/[.+?^${}()|[\]\\]/g,'\\$&')}).join('.*')+'$'):w;(no?exc:inc).push(t)});
  if(!inc.length&&!exc.length)return null;
  return function(h){var has=function(t){return typeof t==='string'?h.indexOf(t)>=0:t.test(h)};return inc.every(has)&&!exc.some(has)}}
+/* ═════════ v1.641: Fitting Global แยกแท็บ เปิดค้างไว้หาข้อมูล ═════════
+   ผู้ใช้ 3/11 13:03 (ภาพหน้าต่าง Fitting Global ซ้อนบนหน้าตั้งค่า): “ทำ Fitting Global แยกเป็นอีกแท็บ 1 เลยได้ไหมครับ อยากเปิดค้างไว้ เพื่อหาข้อมูล”
+   เดิม: เป็นหน้าต่างซ้อน ต้องเข้า ตั้งค่า › ข้อมูล › ดูรายการ ปิดแล้วค้นใหม่ และเปิดค้างแล้วทำงานตู้ไม่ได้
+   ตอนนี้: ปุ่ม ↗ แยกแท็บ เปิดไฟล์โปรแกรมเดิมที่ #fgtab · boot() แยกไป fgTabBoot ไม่สร้างฉาก 3D ไม่ผ่าน sxlStart จึงเบาและตัวกรอง คัดลอก ราคา เป็นโค้ดชุดเดียวกับหน้าต่างเดิม
+     ข้อมูล: ขอจากแท็บหลักผ่าน postMessage (ไฟล์ในเครื่อง file:// อ่าน opener ตรง ๆ ไม่ได้) · แท็บหลักปิดแล้วกด F5 หรือเปิดจาก bookmark = อ่านสำเนาในเครื่อง fg:ax (Odoo) หรือ fg:tab ตัวที่ใหม่กว่า
+     แท็บนี้อ่านอย่างเดียว ห้ามเขียนค่าตั้งกลับ: settings ในแท็บนี้ไม่ได้โหลดเต็ม ถ้าบันทึกจะทับ Variables/Element ของจริง จึงซ่อนการตั้งหมวด และกัน catSaveSettings · cloudSaveSettings · autosave ที่ตัวฟังก์ชัน
+     หมวดอ่านจากค่าตั้งในเครื่องตอนเปิดแท็บ ตั้งหมวดใหม่ในโปรแกรมหลักแล้วกด F5 ที่แท็บนี้ · ปิด SN_OFF.fgTab=1 */
+function fgTabOn(){ return !snOff("fgTab")&&/(^|[#&])fgtab(=1)?($|&)/.test(location.hash||""); }
+function fgTabOpen(){ const w=window.open(location.href.split("#")[0]+"#fgtab","snFgTab"); if(!w){ try{ toast("เบราว์เซอร์กันหน้าต่างใหม่ — อนุญาต pop-up ของหน้านี้ แล้วกดอีกครั้ง"); }catch(e){} return false; } window.__fgTabWin=w; try{ w.focus(); }catch(e){} return true; }
+window.addEventListener("message",function(ev){ const d=ev.data; if(!d||d.t!=="sn-fgtab-need"||fgTabOn()||!ev.source) return; if(ev.source!==window.__fgTabWin&&ev.origin!==location.origin) return; const S=SXL.s.fitting_global;
+  try{ ev.source.postMessage((S&&S.ready&&S.rows&&S.rows.length)?{t:"sn-fgtab-data",rows:S.rows,name:S.name,mod:S.mod,src:S.src}:{t:"sn-fgtab-none"},"*"); }catch(e){ console.error("fgTab:",e); } });
+function fgTabAsk(){ return new Promise(res=>{ let done=false; const fin=v=>{ if(done) return; done=true; removeEventListener("message",on); res(v); }, on=ev=>{ const d=ev.data; if(!d||ev.source!==window.opener) return; if(d.t==="sn-fgtab-data"&&Array.isArray(d.rows)&&d.rows.length) fin(d); else if(d.t==="sn-fgtab-none") fin(null); };
+    addEventListener("message",on); try{ if(!window.opener||window.opener.closed){ fin(null); return; } window.opener.postMessage({t:"sn-fgtab-need"},"*"); }catch(e){ fin(null); return; } setTimeout(()=>fin(null),6000); }); }
+async function fgTabBoot(){ document.title="Fitting Global — StarNexus";
+  try{ const s=await lsGet("sxlocaltrial:furnitech:settings",null); if(s&&Array.isArray(s.fgCatRules)) settings.fgCatRules=s.fgCatRules; }catch(e){ console.warn("fgTab settings:",e); }
+  let D=null; try{ D=await fgTabAsk(); }catch(e){}
+  if(D&&D.src!=="odoo"){ try{ await sxlIdbPut("fg:tab",{rows:D.rows,name:D.name,mod:D.mod,src:D.src}); }catch(e){ console.warn("fgTab put:",e); } }
+  if(!D){ let a=null,b=null; try{ a=await sxlIdbGet("fg:ax"); }catch(e){} try{ b=await sxlIdbGet("fg:tab"); }catch(e){}
+    const A=(a&&Array.isArray(a.rows)&&a.rows.length)?{rows:a.rows,name:"AX · "+SXL_FG_AX.system+"/"+SXL_FG_AX.endpoint,mod:a.at||0,src:"odoo"}:null, B=(b&&Array.isArray(b.rows)&&b.rows.length)?b:null;
+    D=(A&&B)?((+A.mod>=+B.mod)?A:B):(A||B); }
+  try{ if(window.__splashReady) window.__splashReady(); }catch(e){}
+  if(!D){ const m=document.createElement("div"); m.id="sxlFgView"; m.style.cssText="position:fixed;inset:0;z-index:1000000;background:#fff;color:#172c40;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px;font:15px/1.6 system-ui,Sarabun,sans-serif;padding:24px;text-align:center";
+    m.innerHTML='<b style="font-size:18px">ยังไม่มีข้อมูล Fitting Global ในเครื่องนี้</b><div>เปิดโปรแกรมหลัก รอข้อมูลจาก AX แล้วกด ↗ แยกแท็บ ในหน้าต่าง Fitting Global อีกครั้ง</div><button id="fgTabRetry" style="padding:7px 14px;border:1px solid #93a9b8;border-radius:6px;background:transparent;font:inherit;cursor:pointer">ลองใหม่</button>'; document.body.append(m); m.querySelector("#fgTabRetry").onclick=()=>location.reload(); return; }
+  const S=SXL.s.fitting_global; Object.assign(S,{ready:true,rows:D.rows,base:D.rows,name:D.name||"",mod:D.mod||Date.now(),src:D.src||""}); sxlFgView(); }
 function sxlFgView(){
+ var _ft=fgTabOn();   /* v1.641: เปิดเป็นแท็บ อ่านอย่างเดียว */
  var t='fitting_global',S=SXL.s[t];
  if(!S||!S.ready){sxlStatus('ยังไม่มีข้อมูล fitting_global — รอดึงจาก AX หรือเลือกไฟล์ก่อน',true);return}
  var old=document.getElementById('sxlFgView');if(old)old.remove();
@@ -66796,13 +66824,13 @@ function sxlFgView(){
  var fs='width:100%;box-sizing:border-box;padding:5px 7px;border:1px solid #93a9b8;border-radius:6px;font:inherit;font-size:12.5px;font-weight:400;color:inherit;background:#fff',ft='background:#eef3f6;padding:0 10px 7px;border-bottom:1px solid #8886;text-align:left';
  var bs='padding:7px 12px;border:1px solid #93a9b8;border-radius:6px;cursor:pointer;background:transparent;color:inherit;font:inherit';
  var box=document.createElement('div');box.id='sxlFgView';
- box.style.cssText='position:fixed;inset:0;z-index:1000000;background:#0008;display:flex;align-items:center;justify-content:center;padding:20px';
- box.innerHTML='<div style="background:#fff;color:#172c40;width:min(1120px,96vw);height:min(780px,92vh);display:flex;flex-direction:column;padding:18px 20px;border-radius:14px;font:14px/1.55 system-ui,Sarabun,sans-serif;text-align:left">'
-  +'<div style="display:flex;align-items:center;gap:10px"><h2 style="margin:0;font-size:19px;flex:1">Fitting Global · รายการที่โปรแกรมใช้อยู่</h2><button id="sxlFgX" style="'+bs+'">ปิด</button></div>'
+ box.style.cssText='position:fixed;inset:0;z-index:1000000;background:'+(_ft?'#fff':'#0008')+';display:flex;align-items:center;justify-content:center;padding:'+(_ft?'0':'20px');
+ box.innerHTML='<div style="background:#fff;color:#172c40;width:'+(_ft?'100%':'min(1120px,96vw)')+';height:'+(_ft?'100%':'min(780px,92vh)')+';box-sizing:border-box;display:flex;flex-direction:column;padding:18px 20px;border-radius:'+(_ft?'0':'14px')+';font:14px/1.55 system-ui,Sarabun,sans-serif;text-align:left">'
+  +'<div style="display:flex;align-items:center;gap:10px"><h2 style="margin:0;font-size:19px;flex:1">Fitting Global · รายการที่โปรแกรมใช้อยู่</h2>'+((_ft||snOff('fgTab'))?'':('<button id="sxlFgTab" style="'+bs+'" title="เปิดเป็นแท็บใหม่ เปิดค้างไว้หาข้อมูลได้ ทำงานในโปรแกรมต่อได้">↗ แยกแท็บ</button>'))+'<button id="sxlFgX" style="'+bs+((_ft&&!window.opener)?';display:none':'')+'">'+(_ft?'ปิดแท็บ':'ปิด')+'</button></div>'
   +'<p id="sxlFgSrc" style="margin:4px 0 10px;color:#506577;font-size:13px"></p>'
   +'<div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center"><input id="sxlFgQ" type="search" placeholder="ค้นทุกช่อง — เว้นวรรคคั่นหลายคำ" style="flex:1;min-width:220px;padding:8px 10px;border:1px solid #93a9b8;border-radius:6px;font:inherit;color:inherit;background:#fff">'
   +'<label style="white-space:nowrap;cursor:pointer"><input type="checkbox" id="sxlFgC"> ซ่อนที่ยกเลิก</label><button id="sxlFgClr" style="'+bs+'">ล้างตัวกรอง</button><button id="sxlFgStk" style="'+bs+'" title="ดึงราคาล่าสุดจาก StarStock">⟳ ราคา StarStock</button></div>'   /* v1.607: ช่องหน่วยย้ายลงแถวกรอง */
-  +(snOff('fgCatRule')?'':('<div style="display:flex;gap:6px;flex-wrap:wrap;align-items:center;margin-top:8px;font-size:13px"><b style="font-weight:600">🏷 ตั้งหมวด</b><input id="sxlFgCatIn" list="sxlFgCatDl" placeholder="ชื่อหมวด เช่น ขอบ · มือจับ" style="width:190px;padding:5px 8px;border:1px solid #93a9b8;border-radius:6px;font:inherit;color:inherit;background:#fff"><datalist id="sxlFgCatDl"></datalist>'
+  +(snOff('fgCatRule')?'':('<div style="display:'+(_ft?'none':'flex')+';gap:6px;flex-wrap:wrap;align-items:center;margin-top:8px;font-size:13px"><b style="font-weight:600">🏷 ตั้งหมวด</b><input id="sxlFgCatIn" list="sxlFgCatDl" placeholder="ชื่อหมวด เช่น ขอบ · มือจับ" style="width:190px;padding:5px 8px;border:1px solid #93a9b8;border-radius:6px;font:inherit;color:inherit;background:#fff"><datalist id="sxlFgCatDl"></datalist>'
    +'<button id="sxlFgCatSet" style="'+bs+';padding:5px 12px;background:#1f3a5f;color:#fff;border-color:transparent" title="ใช้ช่องกรองรหัสและกรองชื่อในตารางเป็นเงื่อนไข รายการใหม่ที่ตรงจะเข้าหมวดนี้เอง">ตั้งให้รายการที่กรองรหัส/ชื่ออยู่</button><button id="sxlFgCatMg" style="'+bs+';padding:5px 12px"></button><span id="sxlFgCatMsg" style="color:#506577;font-size:12.5px">กรองรหัสหรือชื่อในตารางก่อน · กดช่องหมวดของแถว = ตั้งรายตัว</span></div>'
    +'<div id="sxlFgCatList" style="display:none;max-height:150px;overflow:auto;margin-top:6px;border:1px solid #8884;border-radius:8px;padding:4px 8px;font-size:12.5px"></div>'))
   +'<p id="sxlFgN" role="status" style="margin:8px 0 6px;font-size:13px;color:#506577"></p>'
@@ -66844,7 +66872,7 @@ function sxlFgView(){
   $ct.value=(v==null||v===''&&!cats[''])?'*':v;if($ct.selectedIndex<0)$ct.value='*';
   if(!$cmg)return;var R=rulesOf();$cdl.innerHTML=keys.map(function(c){return '<option value="'+esc2(c)+'"></option>'}).join('');$cmg.textContent='จัดการหมวด ('+R.length+')';
   $clist.innerHTML=R.length?R.map(function(q,k){return '<div style="display:flex;gap:8px;align-items:center;padding:2px 0;border-bottom:1px solid #8882"><b style="min-width:110px">'+esc2(q.c)+'</b><span style="flex:1;color:#506577;font-family:ui-monospace,Consolas,monospace;font-size:12px">'+(q.x?('รหัส = '+esc2(q.x)):[q.fc?('รหัส: '+esc2(q.fc)):'',q.fn?('ชื่อ: '+esc2(q.fn)):''].filter(Boolean).join(' · '))+'</span><span style="white-space:nowrap">'+(ruleN[k]||0).toLocaleString()+' รายการ</span><button data-rd="'+k+'" style="'+bs+';padding:1px 8px;font-size:12px">ลบ</button></div>'}).join(''):'<div style="color:#506577;padding:4px 0">ยังไม่ได้ตั้งหมวด</div>'};
- var catChanged=function(){var sc=$b.parentNode.parentNode.scrollTop;reCat();paintCats();paintSrc();draw();$b.parentNode.parentNode.scrollTop=sc;try{Promise.resolve(catSaveSettings()).catch(function(e){console.error('fgCat:',e)})}catch(e){console.error('fgCat:',e)}};
+ var catChanged=function(){if(_ft)return;var sc=$b.parentNode.parentNode.scrollTop;reCat();paintCats();paintSrc();draw();$b.parentNode.parentNode.scrollTop=sc;try{Promise.resolve(catSaveSettings()).catch(function(e){console.error('fgCat:',e)})}catch(e){console.error('fgCat:',e)}};
  if($cmg){
   box.querySelector('#sxlFgCatSet').onclick=function(){var c=$cin.value.trim(),fc=$fc.value.trim(),fn=$fn.value.trim();
    if(!c){$cmsg.textContent='พิมพ์ชื่อหมวดก่อน';$cin.focus();return}
@@ -66853,7 +66881,7 @@ function sxlFgView(){
    var k=R.indexOf(same||R[R.length-1]);$cmsg.textContent='ตั้งหมวด “'+c+'” แล้ว · '+(ruleN[k]||0).toLocaleString()+' รายการ';};
   $cmg.onclick=function(){$clist.style.display=$clist.style.display==='none'?'block':'none'};
   $clist.onclick=function(e){var b=e.target.closest&&e.target.closest('[data-rd]');if(!b)return;var R=rulesOf().slice();R.splice(+b.getAttribute('data-rd'),1);settings.fgCatRules=R;catChanged()};
-  $b.onclick=function(e){var cp=e.target.closest&&e.target.closest('[data-cp]');if(cp){var seltx='';try{seltx=String(window.getSelection?window.getSelection():'')}catch(er){}if(seltx)return;var tx=String(cp.textContent||'').trim();if(tx){copyText(tx);var bg0=cp.style.background;cp.style.background='#d6f3df';setTimeout(function(){cp.style.background=bg0},450)}return}var cell=e.target.closest&&e.target.closest('[data-ci]');if(!cell||cell.querySelector('input'))return;var i=+cell.getAttribute('data-ci'),code=String(all[i].item_number||''),inp=document.createElement('input'),done=false;
+  $b.onclick=function(e){var cp=e.target.closest&&e.target.closest('[data-cp]');if(cp){var seltx='';try{seltx=String(window.getSelection?window.getSelection():'')}catch(er){}if(seltx)return;var tx=String(cp.textContent||'').trim();if(tx){copyText(tx);var bg0=cp.style.background;cp.style.background='#d6f3df';setTimeout(function(){cp.style.background=bg0},450)}return}if(_ft)return;var cell=e.target.closest&&e.target.closest('[data-ci]');if(!cell||cell.querySelector('input'))return;var i=+cell.getAttribute('data-ci'),code=String(all[i].item_number||''),inp=document.createElement('input'),done=false;
    inp.setAttribute('list','sxlFgCatDl');inp.value=catA[i]||'';inp.placeholder='ชื่อหมวด';inp.style.cssText=fs;cell.innerHTML='';cell.appendChild(inp);inp.focus();inp.select();
    var fin=function(save){if(done)return;done=true;if(!save){var sc=$b.parentNode.parentNode.scrollTop;draw();$b.parentNode.parentNode.scrollTop=sc;return}var c=inp.value.trim(),R=rulesOf().filter(function(q){return String(q.x||'')!==code});if(c)R.push({c:c,x:code});settings.fgCatRules=R;catChanged()};
    inp.onkeydown=function(ev){if(ev.key==='Enter'){ev.preventDefault();fin(true)}else if(ev.key==='Escape'){ev.preventDefault();fin(false)}};inp.onblur=function(){fin(true)}}}
@@ -66861,10 +66889,10 @@ function sxlFgView(){
  /* v1.627: ราคามาทีหลัง = วาดใหม่เอง */
  var onStk=function(){if(!box.isConnected)return;var sc=$b.parentNode.parentNode.scrollTop;paintSrc();draw();$b.parentNode.parentNode.scrollTop=sc};
  try{STK.subs.add(onStk);box.querySelector('#sxlFgStk').onclick=function(){var p=stkLoad(true);paintSrc();if(p&&p.then)p.then(onStk,onStk)};if(snOff('fgPrice'))box.querySelector('#sxlFgStk').style.display='none';else stkWarm().then(function(){return stkLoad(false)}).catch(function(){})}catch(e){console.warn(e)}
- var close=function(){document.removeEventListener('keydown',key,true);try{STK.subs.delete(onStk)}catch(e){}box.remove()};
- var key=function(e){if(e.key==='Escape'){if(e.target&&e.target.getAttribute&&e.target.getAttribute('list')==='sxlFgCatDl'&&e.target.id!=='sxlFgCatIn')return;e.stopPropagation();close()}};
+ var close=function(){if(_ft){try{window.close()}catch(e){}return}document.removeEventListener('keydown',key,true);try{STK.subs.delete(onStk)}catch(e){}box.remove()};
+ var key=function(e){if(_ft)return;if(e.key==='Escape'){if(e.target&&e.target.getAttribute&&e.target.getAttribute('list')==='sxlFgCatDl'&&e.target.id!=='sxlFgCatIn')return;e.stopPropagation();close()}};
  document.addEventListener('keydown',key,true);
- box.querySelector('#sxlFgX').onclick=close;box.onclick=function(e){if(e.target===box)close()};
+ box.querySelector('#sxlFgX').onclick=close;box.onclick=function(e){if(e.target===box)close()};{var _tb=box.querySelector('#sxlFgTab');if(_tb)_tb.onclick=function(){if(fgTabOpen())close()}}   /* v1.641 */
  draw();$q.focus()}
 /* ═════════ v1.477: ย้ายข้อมูลจาก Google Drive เข้า Odoo (ปุ่มเดียว) · ตารางที่ส่งเข้าแล้วเท่านั้นที่เปิดจาก Odoo ═════════
    ผู้ใช้ 19/10 10:28–10:40 (ส่งไฟล์ Odoo v1.434 มา): "สลับโปรแกรมนี้ก่อน เดี๋ยวค่อยไปสลับที่ Production · ทำปุ่มกดส่งเข้า odoo
@@ -68907,9 +68935,10 @@ function gasBadUi(){
 }
 (function(){ var _u=gasUiRefresh; gasUiRefresh=function(){ _u.apply(this,arguments); try{ gasBadUi(); }catch(e){} }; })();
 
-sxlStart();
+if(!fgTabOn()) sxlStart();   /* v1.641: แท็บ Fitting Global ไม่ต้องต่อไฟล์กลาง */
 
 function boot(){ console.log("%c"+appVerStr(),"font-weight:700;color:#007aff");
+  if(fgTabOn()){ fgTabBoot().catch(e=>console.error("fgTab:",e)); return; }   /* v1.641 */
   /* v9.89: เลขเวอร์ชันบนหน้าโหลดอ่านจาก APP_META ที่เดียว ไม่ต้องไปแก้สองที่ */
   try{ document.querySelectorAll(".ver").forEach(e=>{ e.textContent="v"+APP_META.version; }); }catch(e){}
   try{ const _vb=$("appVerBadge"); if(_vb){ _vb.textContent="v"+APP_META.version; _vb.onclick=showAppVersion; } }catch(e){}
