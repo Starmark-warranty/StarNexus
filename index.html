@@ -3283,7 +3283,7 @@ body[data-theme="dark"] .splash-dots span{background:rgba(255,255,255,.25)}
    ===================================================================== */
 /* ---- APP_META: แหล่งความจริงเดียวของเวอร์ชัน (ดูได้จาก console / คลิกชื่อแอป) ---- */
 const APP_META={
-  name:"StarNexus", version:"1.634", build:"2026-11-03/end-depth",
+  name:"StarNexus", version:"1.635", build:"2026-11-03/ceil-box-rules",
   file:"StarNexus.html", basedOn:"Furnitech_V3.html (v3.11)",
   /* ───────── เริ่มนับเวอร์ชันใหม่ที่ 1.001 (21/08/2026) ─────────
      ของเดิมนับมาถึง 42.1 แล้ววิ่งเป็นทศนิยมสองชั้นซึ่งอ่านลำดับยาก
@@ -3291,6 +3291,7 @@ const APP_META={
      ประวัติเก่าเก็บไว้ทั้งหมดตามเลขเดิม ไม่ไล่เขียนใหม่ เพราะเลขในนั้นถูกอ้างถึงไปแล้ว
      รายการที่อยู่ใต้ 1.001 ลงไปจึงเป็นเลขชุดเก่า อ่านต่อกันได้ตามวันที่ */
   changelog:[
+    ["1.635","2026-11-03","FEAT กล่องโค้งถึงฝ้า ไม้ดัดชนฝ้า โครงต่ำกว่า 50 · ก้นถึงฝ้าเกิน 2400 แยกเป็นกล่องบนอีกใบ เดฟตั้งต้น 0 ตั้งเดฟได้ · หัวตู้ถึงพื้นเกิน 2400 กดลงพื้นไม่ได้ · แบบผลิตโชว์ไม้ดัดเหนือโครงและสูงรวม · กล่องไม่ได้ฟิลเลอร์บนตั้งฉากกับแนวตู้อีก (ผู้ใช้ 10:34) · FEAT เตือนกล่องโค้งสีเมลามีน และบานโปรไฟล์ต้องสี P ตำแหน่งที่ 4 แบบขึ้นต้น M ที่ข้อความ แผงตู้ และก่อนส่ง Production (ผู้ใช้ 10:34, 10:37)"],
     ["1.634","2026-11-03","CHANGE กล่องโค้งกับแผ่นปิดข้างที่กดใส่ ตู้ลึก 370–380 ออกลึก 400 อัตโนมัติ ไม่ใช่ 399/386 ตามหน้าบาน (ผู้ใช้ 10:24) · FEAT ช่องปรับลึกกล่องโค้งเอง หน้าอยู่ที่เดิม หลังยืดไปหาผนังสำหรับตู้หน้าเสา ยืดเกินผนังแล้วหน้ายื่นแทน กด ↺ กลับ Auto · ตั้งตารางได้ที่ settings.cvb.autoD"],
     ["1.633","2026-11-03","UX หน้ารวมวัสดุของใบเสนอราคา (ผู้ใช้ 10:08) — เนื้อไม้โชว์หนาเนื้อจริง PB 16 ไม่ใช่ 17 · ไม่นับชิ้น Filler Carcass เป็นบาน การ์ดสีขาวหาย · สีแยกหัวรหัสกับชื่อลาย N03P0057N / PP77 และรวมการ์ดสีหน้าเดียวกัน · เอาจำนวนออกจากทุกการ์ด · FEAT อัปโหลดรูปจริงของมือจับที่ Element › Fittings หรือ 🖼 รูปอุปกรณ์ · มือจับแสดงครบทุกรหัส · 🏷 ตั้งชื่อรุ่นแบบบาน เช่น MCWx58 รุ่น Luciana ที่ปุ่มในใบเสนอราคาหรือ Element › Part"],
     ["1.632","2026-11-03","FEAT ⌒ เติมกล่องโค้งข้างตู้ในห้องออกแบบ ทั้งตู้พื้น ตู้ลอย ตู้สูง (ผู้ใช้ 3/11 09:39 project 63 “อยากให้มีเติมกล่องโค้ง … ปรับ R ได้ ปรับความกว้าง Default 150 R120 … ต่ำสุด กล่อง 100 R80 … ถ้าเลือกกล่องโค้งลงพื้นเลย จะไม่มีกล่องอีกสเตป … จะมีสเตปได้ก็กล่องบนต้องกว้าง 130 เป็นต้นไป เพราะ Set เดฟไว้ 30”) — เลือกตู้แล้วกด กล่องโค้ง ◀ ซ้าย / ขวา ▶ · ตั้งกว้าง (ต่ำสุด 100) R (ต่ำสุด 80 · สูงสุด = กว้าง − 30) ลงพื้น เดฟกล่องขา (ตั้งต้น 30) · กล่องลึกเสมอหน้าบาน สูงเท่าตู้ ตามตู้เมื่อตู้ย้ายหรือเปลี่ยนขนาด · กล่องจาก XML แก้ค่าได้เหมือนกัน และไม่ขึ้นเป็นช่องว่างปลอมแล้ว · ท็อปเคาน์เตอร์โค้งตามกล่อง · ปิด SN_OFF.plCvb"],
@@ -30452,6 +30453,8 @@ function boardRole(b){
      SN_OFF.dwgNoCount=1  หน้ารวมวัสดุ กลับมาโชว์จำนวน บาน/จุด/เส้น/ตัว/ชุด (v1.633)
      SN_OFF.dwgPullImg=1  การ์ดมือจับไม่ใช้รูปที่อัปโหลด ไม่มีรูปในหน้าต่าง 🖼 · การ์ดเดียวเหมือนเดิม (v1.633)
      SN_OFF.dwgDoorName=1 ไม่แสดงชื่อรุ่นแบบบานที่ตั้งเอง (v1.633)
+     SN_OFF.plCvbCeil=1   กล่องโค้งไม่มีตัวเลือกถึงฝ้า ไม่มีกล่องบน · ลงพื้นไม่เช็ค 2400 · กล่องกลับไปนับเป็นตู้ในแนวฟิลเลอร์บน (v1.635)
+     SN_OFF.matRules=1    ไม่เตือนกล่องโค้งสีเมลามีน · บานโปรไฟล์ต้องสี P และแบบขึ้นต้น M (v1.635)
      SN_OFF.plEndD=1      กล่องโค้ง/แผ่นปิดข้าง ลึกเสมอหน้าบานเหมือนเดิม ไม่มี Auto 400 และช่องลึกเอง (v1.634)
      SN_OFF.plCvb=1       ไม่มีปุ่มกล่องโค้งข้างตู้ · กล่องที่มีอยู่กลับไปเป็นตู้ฟิลเลอร์ธรรมดา ลากได้ ไม่ตามตู้ (v1.632)
      SN_OFF.fgCopy=1      Fitting Global กดช่องรหัส/ชื่อแล้วไม่คัดลอก (v1.631)
@@ -37960,7 +37963,7 @@ function plMirror(inst){
   sync(0); plCamPut(cam); plSelect(inst);
 }
 function plDelete(inst){ const g=cabGroups().find(x=>String(x.key)===String(inst)); if(!g) return;
-  try{ if(plIsCvb(inst)){ const I=cvbInfo(inst), o=I&&(String(I.top)===String(inst)?I.kick:I.top); if(o) state.boards=state.boards.filter(b=>!b||String(b.cabInst)!==String(o)); } }catch(e){ console.error("plCvbDel:",e); }   /* v1.632: ลบกล่องบน/กล่องขา = ลบคู่ */
+  try{ if(plIsCvb(inst)){ const I=cvbInfo(inst); if(I) [I.top,I.kick,I.cap].filter(o=>o&&String(o)!==String(inst)).forEach(o=>{ state.boards=state.boards.filter(b=>!b||String(b.cabInst)!==String(o)); }); } }catch(e){ console.error("plCvbDel:",e); }   /* v1.635: + กล่องบน */    /* v1.632: ลบกล่องบน/กล่องขา = ลบคู่ */
   const cam=plCamKeep(); deleteCabinet(g);
   try{ csmBaseRelayout(null); }catch(e){ console.error("csmBase:",e); }    // v1.378: ลบท่อนขา/ชิ้นในช่องที่มีขา → ท่อนที่เหลือคิดใหม่
   plCamPut(cam); plSelect(null); }
@@ -41241,7 +41244,7 @@ function ceilOpenBox(car,fa,lo,hi){
 function ceilTopMode(arr){ const w={}; (arr||[]).forEach(c=>{ const t=Math.round(c.hi[1]); w[t]=(w[t]||0)+Math.max(c.hi[c.wa]-c.lo[c.wa],1); });
   let top=null, bw=-1; Object.keys(w).forEach(t=>{ if(w[t]>bw||(w[t]===bw&&+t>top)){ bw=w[t]; top=+t; } }); return top; }
 /* ห้องออกแบบ: ตู้ในฉากในรูปแบบเดียวกับตัววาด (กรอบโครง · ทิศหน้า) */
-function plCeilCabs(){ return Object.keys(plCabMap()).filter(i=>!plIsLightPanel(i)).map(i=>{ const bs=plBoardsOf(i), f=plFp(bs);
+function plCeilCabs(){ return Object.keys(plCabMap()).filter(i=>!plIsLightPanel(i)&&(snOff("plCvbCeil")||!plIsCvb(i))).map(i=>{   /* v1.635: กล่องโค้งไม่นับในแนวฟิลเลอร์บน */ const bs=plBoardsOf(i), f=plFp(bs);
   const yaw=(((cabYawOf(i)||0)%360)+360)%360, rr=yaw*Math.PI/180, fx=Math.round(Math.sin(rr)), fz=Math.round(Math.cos(rr)), fa=fx?0:2, s=(fx||fz)>0?1:-1;
   const car=bs.filter(b=>b&&!b._virtual&&!b._door&&!b._lineDisp&&!plIsLeg(b)&&(+b.T>0));   // v1.326
   return {i, lo:f.lo, hi:f.hi, door:bs.some(b=>b&&b._door&&!b._virtual), box:ceilOpenBox(car,fa,f.lo,f.hi), side:plSideBoards(bs), legs:bs.some(plIsLeg), fa, s, wa:fa===0?2:0}; }); }
@@ -41317,6 +41320,7 @@ async function plMaint(){
     if(PL.hoodRs){ PL.hoodRs=0; plHoodResnap(); }                            // v1.601: หลัง sync ก้นโครงเข้าที่แล้ว ฮู้ดค่อยตาม
     const n=await plLightSync(false);
     if(ch||n) try{ plRoomDraw(); plPanelSel(); }catch(e){}   // v1.600: + วาดฮู้ดที่ตามก้นตู้
+    try{ matRuleNotify(); }catch(e){ console.error("matRule:",e); }   /* v1.635 */
   } finally{ PL.maintBusy=false; }
 }
 
@@ -41471,7 +41475,7 @@ async function plSideModeSet(si,k,v){ const cam=plCamKeep();
      รหัส: ตู้พื้น BNF065/066 · ตู้ลอย WNF065/066 · ตู้สูง TNF065/066 (settings.cvb.codes) ไม่มีโมเดลในคลัง = ใช้โมเดล BNF เปลี่ยนรหัสให้ · รหัสในคลังที่ไม่ใช่กล่องโค้ง = ใช้รหัส BNF ไม่ทับรุ่นอื่น
      ค่าตั้งเปลี่ยนได้ที่ settings.cvb {W,R,minW,minR,flat,dev,gap,codes}
    ปิด SN_OFF.plCvb */
-function cvbCfg(){ const d={W:150,R:120,minW:100,minR:80,flat:30,dev:30,gap:238,autoD:[[370,380,400]],codes:{base:["BNF065","BNF066"],wall:["WNF065","WNF066"],tall:["TNF065","TNF066"]}}, s=settings.cvb; return (s&&typeof s==="object")?Object.assign(d,s):d; }
+function cvbCfg(){ const d={W:150,R:120,minW:100,minR:80,flat:30,dev:30,gap:238,autoD:[[370,380,400]],maxH:2400,capDrop:50,codes:{base:["BNF065","BNF066"],wall:["WNF065","WNF066"],tall:["TNF065","TNF066"]}}, s=settings.cvb; return (s&&typeof s==="object")?Object.assign(d,s):d; }
 function cvbRMax(W){ const c=cvbCfg(); return Math.max(c.minR,Math.round(+W||0)-c.flat); }
 function cvbRDef(W){ return Math.min(cvbCfg().R,cvbRMax(W)); }
 function cvbKickR(R,W,dev){ const c=cvbCfg(); return Math.max(c.minR,Math.min(R-dev,cvbRMax(W-dev))); }
@@ -41488,6 +41492,44 @@ function cvbAutoD(M){ return plEndBandD(M.carc)||Math.round(M.D); }
 function cvbWallBack(M){ try{ const F=M.F, r=plRoom(); for(const k of Object.keys(PL_WALLS)){ const W=PL_WALLS[k]; if(r.walls[k]&&W.pa===F.fa&&W.s===F.fs){ const fc=plFace(r,k); if((M.back-fc)*F.fs>=-1) return fc; } } }catch(e){} return null; }
 function cvbDims(M,d){ const A=cvbAutoD(M), F=M.F; if(snOff("plEndD")||!(+d>0)) return {D:A,back:M.back,auto:A,manual:false};
   let back=M.back+F.fs*(A-d); const lim=cvbWallBack(M); if(lim!=null&&(back-lim)*F.fs<0) back=lim; return {D:Math.round(+d),back:round(back),auto:A,manual:true}; }
+/* ═════════ v1.635: กล่องโค้งถึงฝ้า · เตือนสีที่ดัด/ทำโปรไฟล์ไม่ได้ ═════════
+   ผู้ใช้ 3/11 10:34 (ภาพตู้เสื้อผ้าถึงฝ้า): “ฝ้า + กับความสูงของกล่อง เกิน 2400 mm. แน่นอน ให้เพิ่มกล่องโค้งที่ไม่เดฟสเตป และเดฟได้ให้เลือกได้
+     ให้โครงกล่องโค้งต่ำกว่าไม้ที่ดัดโค้ง 50 mm. เสมอ ไม้ดัดโค้งก็สูงชิดฝ้าเลย และแบบผลิตก็ขอให้ออกถูกต้อง
+     ถ้ากล่องโค้งยังไม่ถึงพื้น สูงที่ 2400 แล้ว ให้กดลงพื้นไม่ได้”
+   เดิม: กล่องจบที่หัวตู้ เหนือกล่องเป็นช่องโล่ง · ลงพื้นไม่เช็คความยาวไม้ดัด
+   ตอนนี้ (ตู้ลอย/ตู้สูง ติ๊ก “ถึงฝ้า” ในแผงกล่อง · ห้องที่มีฟิลเลอร์บน กดใส่กล่องแล้วติ๊กให้เอง):
+     · ก้นกล่องถึงฝ้าไม่เกิน settings.cvb.maxH 2400 = ใบเดียวถึงฝ้า · เกิน = กล่องหลักจบหัวตู้ + กล่องบนอีกใบ (_cvb.role "cap") เดฟตั้งต้น 0 ไม่มีสเตป ตั้งเดฟได้ เว้าเข้าทั้งหน้าและข้างแบบกล่องขา
+     · ใบที่ชนฝ้า: finH = สูง − capDrop 50 · faceH = สูงเต็ม · แผ่นชั้น ครีบ แผ่นปิด อยู่ในความสูงโครง ไม้ดัดเท่านั้นที่ชนฝ้า
+     · ลงพื้น: หัวตู้ถึงพื้นเกิน 2400 กดไม่ได้ · กล่องแคบที่ต้องลงพื้นแต่ลงไม่ได้ ไม่รับความกว้างนั้น
+     · แบบผลิต: รูปด้านข้างโชว์ไม้ดัดเหนือโครง พร้อมระยะ 50 และสูงรวม · ตารางชิ้นอ่าน F.H กับ finH แยกกันอยู่แล้ว
+     · cvbInfo อ่านบทบาทจาก _cvb เพราะสามใบซ้อนกัน (ขา·หลัก·บน) การซ้อนบอกไม่ได้ว่าใบกลางเป็นอะไร
+   ผู้ใช้ 3/11 10:34: “กล่องโค้ง ถ้าสีที่เลือกคือเมลามีน ย้ำนะครับว่าเมลามีน ดัดโค้งแล้วแตก แจ้งเตือนให้เปลี่ยนสีหน้าบาน”
+   ผู้ใช้ 3/11 10:37: “หน้าบานที่มีโปรไฟล์ด้วย ก็ใส่เมลามีนไม่ได้ ต้องใส่สีที่มี P ตำแหน่งที่ 4 เท่านั้น และแบบบานก็ต้องขึ้นต้นด้วย M เท่านั้น”
+   matRuleIssues: แผ่นดัดสีตัวที่ 4 = M · บานแบบขึ้นต้น M หรือมีลายในตาราง doorReliefMap: สีต้องตัวที่ 4 = P · มีลายแต่รหัสไม่ขึ้นต้น M
+     เตือน (ไม่ห้าม): ข้อความตอนเจอครั้งแรก · แถวแดงในแผงตู้/แผงกล่อง · ถามก่อนส่ง Production · รหัสสีที่อ่านตำแหน่งไม่ได้ (AL618MH) ไม่เตือน
+   ปิด SN_OFF.plCvbCeil · SN_OFF.matRules */
+function cvbCeilY(M){ const y=plSideCeilY(); if(y>0) return y; const r=plRoom(); return +r.h||0; }
+function cvbPlanY(M,spec){ const c=cvbCfg(), useK=M.hasKick&&!spec.floor, y=useK?M.bot:(M.hasKick?M.ylo:M.bot), ceil=(spec.ceil&&!snOff("plCvbCeil"))?cvbCeilY(M):0, on=ceil>M.top+1, one=on&&(ceil-y)<=c.maxH+0.5;
+  return {useK,y,H:round((one?ceil:M.top)-y),drop:one?c.capDrop:0,cap:(on&&!one)?{y:round(M.top),H:round(ceil-M.top)}:null,ceil,on,one}; }
+function cvbNoFloor(M){ return !snOff("plCvbCeil")&&!!M.hasKick&&(M.top-M.ylo)>cvbCfg().maxH+0.5; }
+/* สีที่เลือกในตู้มาก่อน: แผ่นดัด = FrontColor1 · บาน Part FrontShapeP2 / Front2 = FrontColor2 · อื่น ๆ อ่านจากสายวัสดุ */
+function matColorOf(b){ const cc=((state.cabColors||{})[b.cabInst])||{}; if(/^face/.test(String(b._csType||""))&&cc.FrontColor1) return dwgColorHead(cc.FrontColor1);
+  const m=String(b.part||"").trim().match(/^Front(?:ShapeP?)?(\d+)$/i); if(m&&cc["FrontColor"+m[1]]) return dwgColorHead(cc["FrontColor"+m[1]]);
+  let c=""; try{ const n=dwgColorName(b); c=String((n&&n.code)||""); }catch(e){} if(!c){ try{ const sk=surfSkin(b); c=String((sk&&sk.key)||"").replace(/^fxf:/i,""); }catch(e){} } return dwgColorHead(c); }
+function matRuleIssues(onlyInst){ if(snOff("matRules")) return []; const by={}, put=(k,o,cab)=>{ const x=by[k]||(by[k]=Object.assign({cabs:[]},o)); if(cab&&x.cabs.indexOf(cab)<0) x.cabs.push(cab); };
+  (state.boards||[]).forEach(b=>{ if(!b||b._virtual||(onlyInst!=null&&String(b.cabInst)!==String(onlyInst))) return; const cab=String(b.cab||"");
+    if(/^face/.test(String(b._csType||""))){ const c=matColorOf(b), t=costMelToken(c); if(t&&t[3]==="M") put("bend|"+c,{kind:"bend",color:c,msg:"กล่องโค้งสี "+c+" เป็นเมลามีน ดัดโค้งแล้วแตก เปลี่ยนสีหน้าบาน"},cab); return; }
+    if(b._csP||!dwgIsDoor(b)||!dwgDoorReal(b)) return; let s=""; try{ s=String(doorShapeCode(b)||"").trim(); }catch(e){} if(!s) return; const isM=/^M/i.test(s); let rel=false; try{ rel=!!doorReliefProfiles()[s.toUpperCase()]; }catch(e){} if(!isM&&!rel) return;
+    if(!isM) put("style|"+s,{kind:"style",style:s,msg:"บานโปรไฟล์ "+s+" รหัสแบบบานต้องขึ้นต้นด้วย M"},cab);
+    const c=matColorOf(b), t=costMelToken(c); if(t&&t[3]!=="P") put("door|"+s+"|"+c,{kind:"door",style:s,color:c,msg:"บานโปรไฟล์ "+s+" สี "+c+(t[3]==="M"?" เป็นเมลามีน":"")+" ใช้ไม่ได้ ต้องเป็นสีที่ตัวที่ 4 เป็น P"},cab); });
+  return Object.keys(by).map(k=>Object.assign({key:k},by[k])); }
+const _matSeen=new Set();
+function matRuleNotify(){ const L=matRuleIssues(), now=new Set(L.map(x=>x.key)), fresh=L.filter(x=>!_matSeen.has(x.key)); [..._matSeen].forEach(k=>{ if(!now.has(k)) _matSeen.delete(k); }); fresh.forEach(x=>_matSeen.add(x.key)); if(!fresh.length) return;
+  toast("⚠ "+fresh[0].msg+(fresh[0].cabs.length?(" ("+fresh[0].cabs.slice(0,3).join(", ")+")"):"")+(fresh.length>1?(" · และอีก "+(fresh.length-1)+" เรื่อง"):"")); }
+function plMatRuleHtml(inst){ let L=[]; try{ L=matRuleIssues(inst); }catch(e){ console.error("matRule:",e); } if(!L.length) return ""; return '<div class="plNote" style="color:#c62828;font-weight:600;margin:4px 0;line-height:1.5;white-space:normal">'+L.map(x=>"⚠ "+escapeHtml(x.msg)).join("<br>")+'</div>'; }
+async function sendRuleAsk(){ let L=[]; try{ L=matRuleIssues(); }catch(e){ console.error("matRule:",e); return true; } if(!L.length) return true; const E=x=>escapeHtml(String(x==null?"":x));
+  const html='<div style="font-size:12.5px;margin-bottom:6px">สีหรือแบบบานพวกนี้ผลิตจริงแล้วเสียหายได้ ควรแก้ก่อนส่ง</div><div style="max-height:44vh;overflow:auto;font-size:12px;line-height:1.6;border:1px solid var(--line);border-radius:8px;padding:6px 8px">'+L.map(x=>'<div style="padding:3px 0;border-bottom:1px solid var(--line)"><b style="color:#c62828">'+E(x.msg)+'</b>'+(x.cabs.length?('<br><span style="font-family:var(--mono)">'+E(x.cabs.join(", "))+'</span>'):'')+'</div>').join("")+'</div>';
+  return !!(await dialog({title:"เช็ควัสดุก่อนส่ง "+L.length+" เรื่อง",html,ok:"ส่งต่อไปก่อน"})); }
 function cvbIs(bs){ const car=(bs||[]).filter(b=>b&&!b._virtual&&!b._lineDisp); if(!car.length||!car.every(b=>b._csP&&b._csGroup)) return false;
   const sd=car[0]._csP.rSide; if(sd!=="left"&&sd!=="right") return false; return car.some(b=>b._cvb)||/^[BWT]NF\d/.test(catKey(String(car[0].cab||""))); }
 function plIsCvb(inst){ if(snOff("plCvb")) return false; try{ return cvbIs(plBoardsOf(inst)); }catch(e){ return false; } }
@@ -41510,17 +41552,19 @@ function cvbHostM(host){ const bs=plBoardsOf(host); if(!bs.length) return null; 
 function cvbInfo(inst){ inst=String(inst); const bs=plBoardsOf(inst), car=bs.filter(b=>b&&b._csP&&!b._virtual); if(!car.length) return null;
   const side=car[0]._csP.rSide==="right"?"R":"L", yaw=cvbBoxYaw(bs), F=cvbFrame(yaw); if(!F) return null;
   const inOf=f=>side==="L"?cvbEdge(f,F.ra,F.rs):cvbEdge(f,F.ra,-F.rs), bkOf=f=>cvbEdge(f,F.fa,-F.fs), f=plFp(bs), mark=(car.find(b=>b._cvb)||{})._cvb||null;
-  let pair=null, role="top";
-  Object.keys(plCabMap()).forEach(i=>{ if(pair||String(i)===inst||!plIsCvb(i)) return; const bi=plBoardsOf(i), c2=bi.find(b=>b&&b._csP&&!b._virtual); if(!c2) return;
+  let pair=null, role="top", _sib=null;
+  /* v1.635: ใบที่แผงสร้าง บทบาทอยู่ใน _cvb (ขา·หลัก·บน ซ้อนกันสามใบ) */
+  if(mark&&mark.host&&!snOff("plCvbCeil")){ const S={}; Object.keys(plCabMap()).forEach(i=>{ if(!plIsCvb(i)) return; const c2=plBoardsOf(i).find(b=>b&&b._cvb); if(c2&&String(c2._cvb.host)===String(mark.host)&&c2._cvb.side===side) S[c2._cvb.role||"top"]=String(i); }); if(S.top&&S[mark.role||"top"]===inst){ _sib=S; role=mark.role||"top"; } }
+  if(!_sib) Object.keys(plCabMap()).forEach(i=>{ if(pair||String(i)===inst||!plIsCvb(i)) return; const bi=plBoardsOf(i), c2=bi.find(b=>b&&b._csP&&!b._virtual); if(!c2) return;
     if((c2._csP.rSide==="right"?"R":"L")!==side||cvbBoxYaw(bi)!==yaw) return; const fi=plFp(bi); if(Math.abs(inOf(fi)-inOf(f))>3||Math.abs(bkOf(fi)-bkOf(f))>3) return;
     if(Math.abs(fi.hi[1]-f.lo[1])<=3){ pair=String(i); role="top"; } else if(Math.abs(fi.lo[1]-f.hi[1])<=3){ pair=String(i); role="kick"; } });
-  const top=role==="top"?inst:pair, kick=role==="top"?pair:inst, bT=plBoardsOf(top), fT=plFp(bT), fK=kick?plFp(plBoardsOf(kick)):null;
+  const top=_sib?_sib.top:(role==="top"?inst:pair), kick=_sib?(_sib.kick||null):(role==="top"?pair:inst), cap=_sib?(_sib.cap||null):null, bT=plBoardsOf(top), fT=plFp(bT), fK=kick?plFp(plBoardsOf(kick)):null, fC=cap?plFp(plBoardsOf(cap)):null;
   let host=(mark&&mark.host&&plBoardsOf(mark.host).length)?String(mark.host):null;
   if(!host){ const c=plOthers(top).filter(n=>!plIsCvb(n.inst)&&!plIsSide(n.inst)&&!plIsLightPanel(n.inst)&&plYOver(n,fT)&&(((cabYawOf(n.inst)||0)%360+360)%360)===yaw
       &&Math.abs((side==="L"?cvbEdge(n,F.ra,-F.rs):cvbEdge(n,F.ra,F.rs))-inOf(fT))<=30&&n.lo[F.fa]<fT.hi[F.fa]-1&&fT.lo[F.fa]<n.hi[F.fa]-1);
     const sc=n=>(plKindOf(n.code)!=="filler"?2:0)+(plBoardsOf(n.inst).some(x=>x&&x._door)?1:0); c.sort((a,b)=>sc(b)-sc(a)); if(c[0]) host=String(c[0].inst); }
   const W=Math.round((fT.hi[F.ra]-fT.lo[F.ra])*10)/10, Wk=fK?Math.round((fK.hi[F.ra]-fK.lo[F.ra])*10)/10:0;
-  return {inst,side,yaw,F,top,kick,role,host,mark,fT,fK,inner:inOf(fT),back:bkOf(fT),W,D:Math.round((fT.hi[F.fa]-fT.lo[F.fa])*10)/10,H:Math.round((fT.hi[1]-fT.lo[1])*10)/10,R:cvbROf(bT),
+  return {inst,side,yaw,F,top,kick,cap,role,host,mark,fT,fK,fC,ceil:!!(mark&&mark.ceil),capDev:(mark&&+mark.capDev>0)?+mark.capDev:0,inner:inOf(fT),back:bkOf(fT),W,D:Math.round((fT.hi[F.fa]-fT.lo[F.fa])*10)/10,H:Math.round((fT.hi[1]-fT.lo[1])*10)/10,R:cvbROf(bT),
     dev:(mark&&mark.dev!=null)?+mark.dev:(fK?Math.round(W-Wk):cvbCfg().dev), rUser:mark?!!mark.rUser:true}; }
 function cvbFloorOf(I,M){ if(I.mark) return !!I.mark.floor; return !!(M&&M.hasKick&&!I.kick); }
 function cvbOfHost(host,side){ host=String(host); const L=Object.keys(plCabMap()).filter(i=>plIsCvb(i)); for(const i of L){ const I=cvbInfo(i); if(I&&I.host===host&&I.side===side) return I.top||String(i); } return null; }
@@ -41530,12 +41574,12 @@ function plCvbWtMark(S){ if(snOff("plCvb")||!S||!S.slabs) return; S.slabs.forEac
     S.slabs.forEach(s=>{ if(s.kind) return; const so=cvbEdge(s,F.ra,sg), sf=cvbEdge(s,F.fa,F.fs), oo=(so-outer)*sg, of=(sf-front)*F.fs; if(oo<-1||oo>80||of<-1||of>80) return; if(Math.abs(s.lo[1]-I.fT.hi[1])>60) return;
       const sx=F.ra===0?sg:F.fs, sz=F.ra===0?F.fs:sg; (s.cr=s.cr||[]).push({sx,sz,R:I.R+Math.max(oo,of,0)}); }); }); }
 /* แปลน: เส้นรอบกล่องพร้อมมุมโค้ง */
-function dwgCvbPlan(o,c){ const I=c.cvb, F=I.F, f=c.f, sg=I.side==="L"?-F.rs:F.rs, R=cvbROf(c.bs), up=c.lv==="wall"||c.lv==="light", kick=I.role==="kick", w=(up||kick)?0.8:1.2, dash=(up||kick)?"5 3":null, col=up?"#4a4f58":(kick?DWG_THIN:undefined);
+function dwgCvbPlan(o,c){ const I=c.cvb, F=I.F, f=c.f, sg=I.side==="L"?-F.rs:F.rs, R=cvbROf(c.bs), up=c.lv==="wall"||c.lv==="light", kick=I.role!=="top", w=(up||kick)?0.8:1.2, dash=(up||kick)?"5 3":null, col=up?"#4a4f58":(kick?DWG_THIN:undefined);
   const P=(al,fr)=>F.ra===0?[al,fr]:[fr,al], o1=cvbEdge(f,F.ra,sg), i1=cvbEdge(f,F.ra,-sg), fr=cvbEdge(f,F.fa,F.fs), bk=cvbEdge(f,F.fa,-F.fs), pts=[P(i1,bk),P(o1,bk),P(o1,fr-F.fs*R)];
   for(let i=1;i<=16;i++){ const a=i/16*Math.PI/2; pts.push(P(o1-sg*R+sg*R*Math.cos(a),fr-F.fs*R+F.fs*R*Math.sin(a))); } pts.push(P(i1,fr),P(i1,bk));
   for(let i=0;i+1<pts.length;i++) o.L(pts[i][0],pts[i][1],pts[i+1][0],pts[i+1][1],w,col,dash); }
 /* กล่องของตู้นี้ (บน + ขา) ไม่นับเป็นสิ่งกีดขวางของตู้เอง ไม่งั้นตู้กว้างขึ้นแล้วกระโดดข้ามกล่อง */
-function cvbOwnSet(host){ const S=new Set(); if(snOff("plCvb")) return S; Object.keys(plCabMap()).forEach(i=>{ if(!plIsCvb(i)) return; const I=cvbInfo(i); if(I&&I.host===String(host)){ if(I.top) S.add(String(I.top)); if(I.kick) S.add(String(I.kick)); } }); return S; }
+function cvbOwnSet(host){ const S=new Set(); if(snOff("plCvb")) return S; Object.keys(plCabMap()).forEach(i=>{ if(!plIsCvb(i)) return; const I=cvbInfo(i); if(I&&I.host===String(host)){ if(I.top) S.add(String(I.top)); if(I.kick) S.add(String(I.kick)); if(I.cap) S.add(String(I.cap)); } }); return S; }
 function plCvbNoDrag(inst){ if(!plIsCvb(inst)) return false; const I=cvbInfo(inst); return !!(I&&(I.mark||I.host)); }
 /* ที่ว่างข้างตู้ด้านนี้ นับถึงตู้/ผนัง/เสาถัดไป · self = กล่องเดิมไม่นับ */
 function cvbRoom(host,side,self,dUser){ const M=cvbHostM(host); if(!M) return 0; const F=M.F, a=F.ra, sg=side==="L"?-F.rs:F.rs, f=plFp(plBoardsOf(host)), edge=sg>0?f.hi[a]:f.lo[a], skip=new Set((self||[]).filter(Boolean).map(String));
@@ -41555,8 +41599,9 @@ function cvbWrite(inst,s){ const old=plBoardsOf(inst), all=old.filter(b=>b&&b._c
   if(sh.length&&+sh[0].T>0) P.T=+sh[0].T; if(fins.length&&+fins[0].T>0) P.finT=+fins[0].T; if(end&&+end.T>0) P.endT=+end.T;
   P.face=true; P.endOn=true; P.rSide=s.side==="R"?"right":"left"; P.rEdge="back"; P.faceRun=P.faceRun||"full"; if(!(+P.faceT>0.5)) P.faceT=12; if(!(+P.endT>0.5)) P.endT=16;
   const fT=+P.faceT, eT=+P.endT, T=+P.T||16, N0=sh.length; P.sizeMode="total"; P._rawL=s.D; P._rawD=s.W; P.L=Math.max(s.D-fT-eT,20); P.D=Math.max(s.W-(P.faceRun==="full"?fT:0),20); P.R=Math.max(s.R-fT,1); P._tight=false;
-  P.finH=s.H; P.faceH=0; P.endH=0; P.levels=""; P.base=0; P.topGap=0; let g0=+P._cvbGap||(N0>=2?(H0-N0*T)/(N0-1):0); if(!(g0>=150)) g0=c.gap; P._cvbGap=g0;   /* จำระยะชั้นไว้ ไม่งั้นแก้ไปมาระยะหดลงเรื่อย ๆ */
-  P.N=s.H<2*T+1?1:Math.max(2,Math.min(40,Math.ceil((s.H+g0)/(g0+T)-0.02)));
+  const _drop=+s.drop||0, _fH=s.H-_drop;   /* v1.635: ชนฝ้า = โครงต่ำกว่าไม้ดัด */
+  P.finH=_fH; P.faceH=_drop?s.H:0; P.endH=0; P.levels=""; P.base=0; P.topGap=0; let g0=+P._cvbGap||(N0>=2?(H0-N0*T)/(N0-1):0); if(!(g0>=150)) g0=c.gap; P._cvbGap=g0;   /* จำระยะชั้นไว้ ไม่งั้นแก้ไปมาระยะหดลงเรื่อย ๆ */
+  P.N=_fH<2*T+1?1:Math.max(2,Math.min(40,Math.ceil((_fH+g0)/(g0+T)-0.02)));
   const G=CurvedShelf.geom(P), made=CurvedShelf.makeBoards(P,G,"CS"+uid()); if(!made.length) return false;
   const SKIP=new Set(["id","x","y","z","L","W","T","orient","yaw","profile","pockets","holes","grooves","connectors","name","_csP","_csR","_csGroup","_csType","_csEdge","_csSide","_cbDev","_cbR","_cbSpan","_cbSpans","_pkGeo","_pdone","_adjApplied","_bc","_cvb"]), tpl={};
   all.forEach(b=>{ const t=b._csType, n=Object.keys(b).filter(k=>!SKIP.has(k)&&b[k]!=null).length; if(!tpl[t]||n>tpl[t].n) tpl[t]={b,n}; });
@@ -41573,57 +41618,77 @@ async function cvbNewInst(o,W,H,D,y){ const src=o.host||o.top, vars=Object.assig
   const inst=await plAdd(o.pick.add,Math.round(W),{id:o.pick.id,wall:"back",along:0,y,H:Math.round(H),D:Math.round(D),kind:"filler",vars,quiet:true,free:true}); if(!inst) return null;
   if(o.pick.code&&o.pick.code!==o.pick.add) plBoardsOf(inst).forEach(b=>{ if(b) b.cab=o.pick.code; }); return String(inst); }
 /* ให้กล่องบน + กล่องขาตรงค่าที่ตั้ง · async เพราะอาจต้องสร้างใบใหม่ */
-async function cvbApply(o,spec){ const M=o.M, side=o.side, inner=side==="L"?M.L:M.R, useK=M.hasKick&&!spec.floor, y=useK?M.bot:(M.hasKick?M.ylo:M.bot), H=round(M.top-y), _dm=cvbDims(M,spec.d), D=_dm.D, back=_dm.back, W=spec.w;   /* v1.634 */
-  let top=o.top, kick=o.kick;
+async function cvbApply(o,spec){ const M=o.M, side=o.side, inner=side==="L"?M.L:M.R, Y=cvbPlanY(M,spec), useK=Y.useK, y=Y.y, H=Y.H, _dm=cvbDims(M,spec.d), D=_dm.D, back=_dm.back, W=spec.w, cd=Y.cap?(+spec.capDev||0):0;   /* v1.634 · v1.635 */
+  let top=o.top, kick=o.kick, cap=o.cap||null;
   if(!top){ top=await cvbNewInst(o,W,H,D,y); if(!top) return null; }
   if(useK&&!kick){ kick=await cvbNewInst(Object.assign({},o,{top}),W-spec.dev,M.bot-M.ylo,D-spec.dev,M.ylo); if(!kick) return null; }
   if(!useK&&kick){ state.boards=state.boards.filter(b=>!b||String(b.cabInst)!==String(kick)); kick=null; }
-  const mk=role=>({host:o.host||null,side,w:W,r:spec.r,dev:spec.dev,floor:!!spec.floor,rUser:!!spec.rUser,d:_dm.manual?D:null,role});
-  if(!cvbWrite(top,{side,F:M.F,back,inner,y,W,D,H,R:spec.r,mark:mk("top")})) return null;
+  if(Y.cap&&!cap){ cap=await cvbNewInst(Object.assign({},o,{top}),W-cd,Y.cap.H,D-cd,Y.cap.y); if(!cap) return null; }   /* v1.635 */
+  if(!Y.cap&&cap){ state.boards=state.boards.filter(b=>!b||String(b.cabInst)!==String(cap)); cap=null; }
+  const mk=role=>({host:o.host||null,side,w:W,r:spec.r,dev:spec.dev,floor:!!spec.floor,rUser:!!spec.rUser,d:_dm.manual?D:null,ceil:!!spec.ceil,capDev:+spec.capDev||0,role});
+  if(!cvbWrite(top,{side,F:M.F,back,inner,y,W,D,H,R:spec.r,drop:Y.drop,mark:mk("top")})) return null;
   if(kick&&!cvbWrite(kick,{side,F:M.F,back,inner,y:M.ylo,W:W-spec.dev,D:D-spec.dev,H:round(M.bot-M.ylo),R:cvbKickR(spec.r,W,spec.dev),mark:mk("kick")})) return null;
+  if(cap&&!cvbWrite(cap,{side,F:M.F,back,inner,y:Y.cap.y,W:W-cd,D:D-cd,H:Y.cap.H,R:cvbKickR(spec.r,W,cd),drop:cvbCfg().capDrop,mark:mk("cap")})) return null;
   if(kick){ state.cabColors=state.cabColors||{}; state.cabColors[kick]=JSON.parse(JSON.stringify(state.cabColors[top]||{})); }
-  return {top,kick}; }
+  if(cap){ state.cabColors=state.cabColors||{}; state.cabColors[cap]=JSON.parse(JSON.stringify(state.cabColors[top]||{})); }
+  return {top,kick,cap}; }
 /* รวมทุกขั้นเป็น Ctrl+Z ครั้งเดียว · กันตัวตามตู้ทำงานซ้อนระหว่างรอ */
 async function cvbRun(fn){ try{ if(lastSnap==null) lastSnap=snap(); }catch(e){} const u0=undoStack.length, cam=plCamKeep(); let res=null; PL.cvbBusy=true;
   try{ res=await fn(); sync(0); plCamPut(cam); try{ await plPlinthSync(); }catch(e){ console.error("plinth:",e); } try{ await plCeilSync(); }catch(e){ console.error("ceil:",e); } try{ plRoomDraw(); plWtDraw(true); }catch(e){} }
   finally{ PL.cvbBusy=false; } plCamPut(cam); try{ if(undoStack.length>u0+1){ undoStack.splice(u0+1); refreshUndoUI(); } }catch(e){} return res; }
 function cvbLocked(msg){ if(typeof isLocked==="function"&&isLocked()){ try{ guardEdit(msg); }catch(e){} return true; } return false; }
-function cvbSum(w,r,M,spec){ const c=cvbCfg(); return "กล่องโค้ง "+w+" R"+Math.round(r)+(M?(" ลึก "+((+spec.d>0)?Math.round(+spec.d):cvbAutoD(M))):"")+((M&&M.hasKick)?(spec.floor?" · ลงพื้น":(" · กล่องขา "+(w-spec.dev)+" R"+cvbKickR(r,w,spec.dev))):""); }
+function cvbSum(w,r,M,spec){ const c=cvbCfg(), _Y=(M&&spec.ceil)?cvbPlanY(M,spec):null; return "กล่องโค้ง "+w+" R"+Math.round(r)+(M?(" ลึก "+((+spec.d>0)?Math.round(+spec.d):cvbAutoD(M))):"")+((_Y&&_Y.on)?(_Y.cap?(" · กล่องบน "+_Y.cap.H+" ถึงฝ้า"):" · ถึงฝ้าใบเดียว"):"")+((M&&M.hasKick)?(spec.floor?" · ลงพื้น":(" · กล่องขา "+(w-spec.dev)+" R"+cvbKickR(r,w,spec.dev))):""); }
 async function plCvbAdd(host,side){ host=String(host); if(snOff("plCvb")||cvbLocked("ใส่กล่องโค้ง")) return null;
   const ex=cvbOfHost(host,side); if(ex){ plSelect(ex); return ex; }
   const M=cvbHostM(host); if(!M){ toast("ตู้ต้องหันตรงแนวผนังก่อนถึงใส่กล่องโค้งได้"); return null; } if(!/^(base|wall|tall)$/.test(M.lv)){ toast("กล่องโค้งใส่ได้กับตู้พื้น ตู้ลอย ตู้สูง"); return null; }
   const c=cvbCfg(), room=cvbRoom(host,side,[]), lb=side==="L"?"ซ้าย":"ขวา"; if(room<c.minW-1){ toast("ด้าน"+lb+"เหลือที่ "+Math.round(room)+" มม. — กล่องโค้งต้องกว้างอย่างน้อย "+c.minW); return null; }
   const pick=await cvbModel(M.lv,side); if(!pick){ const k=(c.codes.base||[])[side==="R"?1:0]; toast("ไม่พบโมเดลกล่องโค้ง "+k+" ในคลังตู้ — ต้องเป็นรุ่นที่สร้างจากปุ่มกล่องโค้ง"); return null; }
-  const w=Math.min(c.W,Math.floor((room+1)/10)*10), spec={w,r:cvbRDef(w),dev:c.dev,floor:!!(M.hasKick&&w-c.dev<c.minW),rUser:false};
-  const res=await cvbRun(()=>cvbApply({host,side,top:null,kick:null,M,pick},spec)); if(!res){ toast("ใส่กล่องโค้งไม่สำเร็จ"); return null; }
-  plSelect(res.top); toast(cvbSum(w,spec.r,M,spec)+" · ด้าน"+lb+" · แก้ค่าได้ที่แผงซ้าย"); return res.top; }
+  const w=Math.min(c.W,Math.floor((room+1)/10)*10), spec={w,r:cvbRDef(w),dev:c.dev,floor:!!(M.hasKick&&w-c.dev<c.minW),rUser:false,capDev:0,
+    ceil:!snOff("plCvbCeil")&&/^(wall|tall)$/.test(M.lv)&&plSideCeilY()>M.top+1};   /* v1.635: ห้องมีฟิลเลอร์บน = ถึงฝ้าไปด้วย */
+  if(spec.floor&&cvbNoFloor(M)){ toast("กล่องสูงถึงพื้น "+Math.round(M.top-M.ylo)+" เกิน "+c.maxH+" ลงพื้นไม่ได้ และที่ว่าง "+Math.round(room)+" กว้างไม่พอทำกล่องขา (ต้อง "+(c.minW+c.dev)+")"); return null; }
+  { const Y0=cvbPlanY(M,spec); if(Y0.cap&&Y0.cap.H<c.capDrop+30) spec.ceil=false; }
+  const res=await cvbRun(()=>cvbApply({host,side,top:null,kick:null,cap:null,M,pick},spec)); if(!res){ toast("ใส่กล่องโค้งไม่สำเร็จ"); return null; }
+  plSelect(res.top); toast(cvbSum(w,spec.r,M,spec)+" · ด้าน"+lb+" · แก้ค่าได้ที่แผงซ้าย"); try{ matRuleNotify(); }catch(e){} return res.top; }
 /* แก้ค่าจากแผง ตามกติกาที่ผู้ใช้ล็อกไว้ */
 async function plCvbSet(inst,ch){ if(cvbLocked("แก้กล่องโค้ง")) return; const I=cvbInfo(inst); if(!I) return; const c=cvbCfg(), M0=I.host?cvbHostM(I.host):null;
   const M=(M0&&M0.yaw===I.yaw)?M0:{F:I.F,yaw:I.yaw,back:I.back,L:I.inner,R:I.inner,D:I.D,top:I.fT.hi[1],bot:I.fT.lo[1],ylo:I.fK?I.fK.lo[1]:I.fT.lo[1],hasKick:!!I.fK,lv:plLevelOf(I.fT.code),code:""};
-  let w=Math.round(I.W), r=I.R, dev=I.dev, floor=cvbFloorOf(I,M), rUser=I.rUser, d=(I.mark&&+I.mark.d>0)?+I.mark.d:null; const say=[];
+  let w=Math.round(I.W), r=I.R, dev=I.dev, floor=cvbFloorOf(I,M), rUser=I.rUser, d=(I.mark&&+I.mark.d>0)?+I.mark.d:null, ceil=I.ceil, capDev=I.capDev; const say=[], noFl=cvbNoFloor(M);
+  if(ch.ceil!=null) ceil=!!ch.ceil;
+  if(ch.capDev!=null){ const v=Math.round(+ch.capDev); if(!(v>=0)){ plPanelSel(); return; } if(w-v<c.minW){ toast("เดฟ "+v+" ทำให้กล่องบนเหลือ "+(w-v)+" — ต่ำกว่า "+c.minW+" ไม่ได้"); plPanelSel(); return; } capDev=v; }
   if(ch.d!==undefined){ const v=Math.round(parseFloat(ch.d)); d=(v>0)?v:null; }   /* v1.634: ว่าง = Auto */
   if(ch.w!=null){ const v=Math.round(+ch.w); if(!(v>=c.minW)){ toast("กล่องโค้งกว้างต่ำสุด "+c.minW+" มม."); plPanelSel(); return; }
     if(I.host){ const room=cvbRoom(I.host,I.side,[I.top,I.kick],d); if(v>room+1){ toast("ด้านนี้มีที่แค่ "+Math.round(room)+" มม. — ตู้/ผนังถัดไปขวางอยู่"); plPanelSel(); return; } }
-    w=v; if(!rUser) r=cvbRDef(w); }
+    if(noFl&&v-dev<c.minW){ toast("กล่องนี้ลงพื้นไม่ได้เพราะสูงเกิน "+c.maxH+" จึงต้องกว้างตั้งแต่ "+(c.minW+dev)+" เพื่อทำกล่องขา"); plPanelSel(); return; }
+    w=v; if(!rUser) r=cvbRDef(w); if(w-capDev<c.minW){ capDev=Math.max(w-c.minW,0); say.push("เดฟกล่องบนเหลือ "+capDev); } }
   if(ch.r!=null){ const v=Math.round(+ch.r); if(!isFinite(v)){ plPanelSel(); return; } r=v; rUser=true; }
   if(ch.dev!=null){ const v=Math.round(+ch.dev); if(!(v>=0)){ plPanelSel(); return; } if(w-v<c.minW){ toast("เดฟ "+v+" ทำให้กล่องขาเหลือ "+(w-v)+" — ต่ำกว่า "+c.minW+" ไม่ได้"); plPanelSel(); return; } dev=v; }
+  if(ch.floor&&noFl){ toast("สูงถึงพื้น "+Math.round(M.top-M.ylo)+" เกิน "+c.maxH+" ไม้ดัดยาวไม่พอ ลงพื้นไม่ได้"); plPanelSel(); return; }   /* v1.635 */
   if(ch.floor!=null){ if(!ch.floor&&w-dev<c.minW){ toast("กล่องบนต้องกว้างตั้งแต่ "+(c.minW+dev)+" ถึงมีสเตปกล่องขาได้ — กล่อง "+w+" ต้องลงพื้น"); plPanelSel(); return; } floor=!!ch.floor; }
   const rMax=cvbRMax(w); if(r>rMax){ say.push("R สูงสุดของกล่อง "+w+" คือ R"+rMax); r=rMax; } if(r<c.minR){ say.push("R ต่ำสุดคือ R"+c.minR); r=c.minR; }
   if(M.hasKick&&!floor&&w-dev<c.minW){ floor=true; say.push("กล่อง "+w+" ต้องลงพื้น (กล่องขาต่ำกว่า "+c.minW+" ไม่ได้)"); }
+  if(noFl&&floor){ floor=false; say.push("สูงถึงพื้นเกิน "+c.maxH+" เอาลงพื้นออก"); }
+  { const Y0=cvbPlanY(M,{floor,ceil}); if(Y0.cap&&Y0.cap.H<c.capDrop+30){ ceil=false; say.push("เหนือหัวตู้เหลือ "+Y0.cap.H+" ทำกล่องบนไม่ได้"); } }
   if(d!=null){ const dMin=Math.round(r)+c.flat; if(d<dMin){ say.push("กล่อง R"+Math.round(r)+" ลึกต่ำสุด "+dMin); d=dMin; } if(d===cvbAutoD(M)) d=null; }   /* v1.634: เท่าค่า Auto = นับเป็น Auto ตามตู้ต่อได้ */
-  const spec={w,r,dev,floor,rUser,d}, res=await cvbRun(()=>cvbApply({host:I.host,side:I.side,top:I.top,kick:I.kick,M,pick:{add:String(plFp(plBoardsOf(I.top)).code),code:"",id:String(plFp(plBoardsOf(I.top)).code)}},spec));
+  /* v1.635: เดิมสร้างใบใหม่ (กล่องขา กล่องบน) จากรหัสกล่องเดิมตรง ๆ กล่อง TNF066 ที่ยืมโมเดล BNF066 จึงหาโมเดลไม่เจอ ขึ้น “แก้กล่องโค้งไม่สำเร็จ” */
+  let _pk=null; try{ _pk=await cvbModel(/^(base|wall|tall)$/.test(M.lv)?M.lv:plLevelOf(String(plFp(plBoardsOf(I.top)).code)),I.side); }catch(e){}
+  const spec={w,r,dev,floor,rUser,d,ceil,capDev}, res=await cvbRun(()=>cvbApply({host:I.host,side:I.side,top:I.top,kick:I.kick,cap:I.cap,M,pick:_pk||{add:String(plFp(plBoardsOf(I.top)).code),code:"",id:String(plFp(plBoardsOf(I.top)).code)}},spec));
   if(!res){ toast("แก้กล่องโค้งไม่สำเร็จ"); plPanelSel(); return; }
-  plSelect(res.top); toast((say.length?("⚠ "+say.join(" · ")+" · "):"")+cvbSum(w,r,M,spec)); }
+  plSelect(res.top); toast((say.length?("⚠ "+say.join(" · ")+" · "):"")+cvbSum(w,r,M,spec)); try{ matRuleNotify(); }catch(e){} }
 /* ตามตู้: ขนาด/ที่วางเปลี่ยน → คิดกล่องใหม่ (เฉพาะกล่องที่สร้าง/แก้ด้วยแผงนี้) */
-function plCvbAlign(inst){ if(PL.cvbBusy||snOff("plCvb")||(typeof isLocked==="function"&&isLocked())) return false; const I=cvbInfo(inst); if(!I||!I.mark||I.role==="kick"||!I.host) return false; const M=cvbHostM(I.host); if(!M) return false;
+function plCvbAlign(inst){ if(PL.cvbBusy||snOff("plCvb")||(typeof isLocked==="function"&&isLocked())) return false; const I=cvbInfo(inst); if(!I||!I.mark||I.role!=="top"||!I.host) return false; const M=cvbHostM(I.host); if(!M) return false;
   let ch=false; if(I.kick){ const a=JSON.stringify((state.cabColors||{})[I.top]||{}); if(a!==JSON.stringify((state.cabColors||{})[I.kick]||{})){ state.cabColors[I.kick]=JSON.parse(a); ch=true; } }   /* สีตามกล่องบน */
-  const k=I.mark, useK=M.hasKick&&!k.floor, y=useK?M.bot:(M.hasKick?M.ylo:M.bot), H=M.top-y, _dm=cvbDims(M,k.d), D=_dm.D, inner=I.side==="L"?M.L:M.R;   /* v1.634 */
+  if(I.cap){ const a=JSON.stringify((state.cabColors||{})[I.top]||{}); if(a!==JSON.stringify((state.cabColors||{})[I.cap]||{})){ state.cabColors[I.cap]=JSON.parse(a); ch=true; } }   /* v1.635 */
+  const k=I.mark, Y=cvbPlanY(M,k), useK=Y.useK, y=Y.y, H=Y.H, _dm=cvbDims(M,k.d), D=_dm.D, inner=I.side==="L"?M.L:M.R, cd=Y.cap?(+k.capDev||0):0;   /* v1.634 · v1.635 */
+  if(Y.cap&&!I.cap) return ch;   /* เพิ่งเกิน 2400: ต้องสร้างใบใหม่ ทำเมื่อแก้ค่าในแผง */
+  const capOff=!!I.cap&&(!Y.cap||Math.abs(I.fC.lo[1]-Y.cap.y)>1||Math.abs((I.fC.hi[1]-I.fC.lo[1])-Y.cap.H)>1||Math.abs((I.fC.hi[I.F.fa]-I.fC.lo[I.F.fa])-(D-cd))>1||Math.abs(cvbEdge(I.fC,I.F.fa,-I.F.fs)-_dm.back)>1);
   if(useK&&!I.kick) return ch;   /* เพิ่งใส่ขา: ต้องสร้างใบใหม่ ทำเมื่อแก้ค่าในแผง */
-  const off=I.yaw!==M.yaw||Math.abs(I.fT.lo[1]-y)>1||Math.abs((I.fT.hi[1]-I.fT.lo[1])-H)>1||Math.abs(I.D-D)>0.6||Math.abs(I.inner-inner)>1||Math.abs(I.back-_dm.back)>1;   /* v1.634: 399 → 400 ต้องขยับ */
+  const off=I.yaw!==M.yaw||Math.abs(I.fT.lo[1]-y)>1||Math.abs((I.fT.hi[1]-I.fT.lo[1])-H)>1||Math.abs(I.D-D)>0.6||Math.abs(I.inner-inner)>1||Math.abs(I.back-_dm.back)>1||capOff;   /* v1.634: 399 → 400 ต้องขยับ */
   if(!off&&!(!useK&&I.kick)) return ch;
-  let kick=I.kick; if(!useK&&kick){ state.boards=state.boards.filter(b=>!b||String(b.cabInst)!==String(kick)); kick=null; }
-  const w=Math.round(I.W), spec={w,r:Math.min(Math.max(I.mark.r||I.R,cvbCfg().minR),cvbRMax(w)),dev:I.dev,floor:!!k.floor,rUser:!!k.rUser}, mk=role=>({host:I.host,side:I.side,w,r:spec.r,dev:spec.dev,floor:spec.floor,rUser:spec.rUser,d:_dm.manual?D:null,role});
-  cvbWrite(I.top,{side:I.side,F:M.F,back:_dm.back,inner,y,W:w,D,H:round(H),R:spec.r,mark:mk("top")});
+  let kick=I.kick, cap=I.cap; if(!useK&&kick){ state.boards=state.boards.filter(b=>!b||String(b.cabInst)!==String(kick)); kick=null; }
+  if(!Y.cap&&cap){ state.boards=state.boards.filter(b=>!b||String(b.cabInst)!==String(cap)); cap=null; }
+  const w=Math.round(I.W), spec={w,r:Math.min(Math.max(I.mark.r||I.R,cvbCfg().minR),cvbRMax(w)),dev:I.dev,floor:!!k.floor,rUser:!!k.rUser}, mk=role=>({host:I.host,side:I.side,w,r:spec.r,dev:spec.dev,floor:spec.floor,rUser:spec.rUser,d:_dm.manual?D:null,ceil:!!k.ceil,capDev:+k.capDev||0,role});
+  cvbWrite(I.top,{side:I.side,F:M.F,back:_dm.back,inner,y,W:w,D,H:round(H),R:spec.r,drop:Y.drop,mark:mk("top")});
+  if(cap) cvbWrite(cap,{side:I.side,F:M.F,back:_dm.back,inner,y:Y.cap.y,W:w-cd,D:D-cd,H:Y.cap.H,R:cvbKickR(spec.r,w,cd),drop:cvbCfg().capDrop,mark:mk("cap")});
   if(kick) cvbWrite(kick,{side:I.side,F:M.F,back:_dm.back,inner,y:M.ylo,W:w-spec.dev,D:D-spec.dev,H:round(M.bot-M.ylo),R:cvbKickR(spec.r,w,spec.dev),mark:mk("kick")});
   return true; }
 /* แถวในแผงตู้ */
@@ -41635,18 +41700,23 @@ function plCvbRowHtml(inst,code){ if(snOff("plCvb")||plIsSide(inst)||plIsLightPa
 function plCvbPanel(s,inst){ const I=cvbInfo(inst); if(!I){ s.innerHTML=""; return; } const c=cvbCfg(), M0=I.host?cvbHostM(I.host):null, M=(M0&&M0.yaw===I.yaw)?M0:null, hasK=M?M.hasKick:!!I.kick, floor=cvbFloorOf(I,M), code=String(plFp(plBoardsOf(I.top)).code), w=Math.round(I.W), rMax=cvbRMax(w), over=I.R>rMax+0.5, low=I.R<c.minR-0.5, must=w-I.dev<c.minW;
   const num=(id,v,st,mn,mx)=>'<input type="number" id="'+id+'" value="'+v+'" step="'+st+'" min="'+mn+'"'+(mx!=null?' max="'+mx+'"':'')+' style="width:70px"><span class="plU">มม.</span>';
   const fr=(l,ctl,tip)=>plF531(l,ctl,tip), hostC=I.host?plFp(plBoardsOf(I.host)).code:"", lb=I.side==="L"?"ซ้าย":"ขวา", Wk=w-I.dev;
+  const noFl=!!M&&cvbNoFloor(M), ceilOK=!snOff("plCvbCeil")&&!!M&&/^(wall|tall)$/.test(M.lv)&&cvbCeilY(M)>M.top+1, _Yc=ceilOK?cvbPlanY(M,{floor,ceil:I.ceil}):null;   /* v1.635 */
   s.innerHTML='<div class="plRow plSelHd"><div class="plSelL1"><h4>กล่องโค้ง</h4><b title="'+escapeHtml(code)+'">'+escapeHtml(code)+'</b></div>'
-    +'<div class="plNote" style="font-size:11px">'+w+'×'+Math.round(I.H)+'×'+Math.round(I.D)+' มม. · '+(I.host?('ด้าน'+lb+'ของ '+escapeHtml(hostC)):'<span style="color:#d33">ไม่ได้ชิดตู้</span>')+(I.role==="kick"?' · เลือกกล่องขาอยู่':'')+'</div></div>'
+    +'<div class="plNote" style="font-size:11px">'+w+'×'+Math.round(I.H)+'×'+Math.round(I.D)+' มม. · '+(I.host?('ด้าน'+lb+'ของ '+escapeHtml(hostC)):'<span style="color:#d33">ไม่ได้ชิดตู้</span>')+(I.role==="kick"?' · เลือกกล่องขาอยู่':I.role==="cap"?' · เลือกกล่องบนอยู่':'')+'</div></div>'+plMatRuleHtml(I.top)
     +fr("กว้าง",num("cvbW",w,10,c.minW),"ต่ำสุด "+c.minW+" · ขยายออกด้านนอก ฝั่งชิดตู้อยู่ที่เดิม")
     +fr("R โค้ง",num("cvbR",Math.round(I.R),5,c.minR,rMax)+'<span class="plNote plNB">R'+c.minR+(rMax>c.minR?('–'+rMax):'')+'</span>',"รัศมีด้านนอก · ต่ำสุด "+c.minR+" · สูงสุด = กว้าง − "+c.flat+" (กล่องแคบกว่า "+(c.minR+c.flat)+" ใช้ R"+c.minR+")")
     +((over||low)?'<div class="plNote" style="color:#b45309;margin:2px 0 4px;line-height:1.5">ตอนนี้ R'+Math.round(I.R)+' นอกช่วงที่กำหนด แก้ค่าใดก็ได้แล้วจะเข้าช่วงเอง</div>':'')
     +(snOff("plEndD")?'':fr("ลึก",num("cvbD",Math.round(I.D),10,Math.round(Math.min(I.R,rMax))+c.flat)+((I.mark&&+I.mark.d>0)?'<button class="ibtn" id="cvbDA" style="flex:none;width:auto;padding:2px 7px;white-space:nowrap" title="กลับไปใช้ค่าอัตโนมัติ">↺ Auto</button>':'<span class="plNote plNB">Auto</span>'),(c.autoD||[]).map(x=>"ตู้ลึก "+x[0]+"–"+x[1]+" = "+x[2]).join(" · ")+" · ตู้อื่นเสมอหน้าบาน · ตั้งเอง: หน้ากล่องอยู่ที่เดิม หลังยืดไปหาผนัง เช่นตู้อยู่หน้าเสาแต่กล่องจบนอกเสา · ลึกเกินผนัง = หน้ายื่นออก · เว้นว่าง = Auto"))
-    +(hasK?(fr("ลงพื้น",'<label style="white-space:normal"><input type="checkbox" id="cvbFl"'+(floor?" checked":"")+(must?" disabled":"")+'> กล่องโค้งถึงพื้น ไม่มีกล่องขา</label>',"ไม่ติ๊ก = มีกล่องขาอีกใบ เว้าเข้าเท่าเดฟ")
-      +(must?'<div class="plNote" style="margin:2px 0 4px;line-height:1.5">กล่องบนต้องกว้างตั้งแต่ '+(c.minW+I.dev)+' ถึงมีสเตปได้</div>':'')
+    +(I.H>c.maxH+0.5?'<div class="plNote" style="color:#c62828;font-weight:600;margin:2px 0 4px;line-height:1.5">⚠ กล่องสูง '+Math.round(I.H)+' เกิน '+c.maxH+' ไม้ดัดยาวไม่พอ</div>':'')
+    +(hasK?(fr("ลงพื้น",'<label style="white-space:normal"><input type="checkbox" id="cvbFl"'+(floor?" checked":"")+((must||noFl)?" disabled":"")+'> กล่องโค้งถึงพื้น ไม่มีกล่องขา</label>',"ไม่ติ๊ก = มีกล่องขาอีกใบ เว้าเข้าเท่าเดฟ")
+      +(noFl?'<div class="plNote" style="margin:2px 0 4px;line-height:1.5">สูงถึงพื้น '+Math.round(M.top-M.ylo)+' เกิน '+c.maxH+' ไม้ดัดยาวไม่พอ ลงพื้นไม่ได้</div>':(must?'<div class="plNote" style="margin:2px 0 4px;line-height:1.5">กล่องบนต้องกว้างตั้งแต่ '+(c.minW+I.dev)+' ถึงมีสเตปได้</div>':''))
       +(floor?'':fr("เดฟกล่องขา",num("cvbDev",I.dev,5,0)+'<span class="plNote plNB">กล่องขา '+Wk+' R'+cvbKickR(Math.min(I.R,rMax),w,I.dev)+'</span>',"กล่องขาเว้าเข้าจากกล่องบนทั้งด้านหน้าและด้านข้าง"))):"")
+    +(ceilOK?(fr("ถึงฝ้า",'<label style="white-space:normal"><input type="checkbox" id="cvbCeil"'+(I.ceil?" checked":"")+'> ไม้ดัดชนฝ้า โครงต่ำกว่า '+c.capDrop+'</label>',"เกิน "+c.maxH+" แยกเป็นกล่องบนอีกใบ")
+      +((I.ceil&&_Yc&&_Yc.on)?(_Yc.cap?('<div class="plNote" style="margin:2px 0 4px;line-height:1.5">รวมสูง '+Math.round(_Yc.ceil-_Yc.y)+' เกิน '+c.maxH+' แยกกล่องบนสูง '+_Yc.cap.H+' โครง '+(_Yc.cap.H-c.capDrop)+'</div>'+fr("เดฟกล่องบน",num("cvbCapD",I.capDev,5,0)+'<span class="plNote plNB">0 = ไม่มีสเตป</span>',"กล่องบนเว้าเข้าจากกล่องหลักทั้งด้านหน้าและด้านข้าง")):('<div class="plNote" style="margin:2px 0 4px;line-height:1.5">ใบเดียวสูง '+Math.round(_Yc.H)+' โครง '+Math.round(_Yc.H-c.capDrop)+'</div>')):'')):'')
     +'<div class="plRow plBtns plAct" style="margin-top:8px"><button class="ibtn" id="cvbClr" title="เลือกสีกล่อง กล่องขาตามสีนี้">🎨 สี</button>'+(I.host?'<button class="ibtn" id="cvbHost" title="เลือกตู้ที่กล่องนี้อยู่ข้าง">↩ เลือกตู้</button>':'')+'<button class="ibtn" id="plDel" title="ลบกล่องบนและกล่องขา (Del)" style="color:#d33">🗑 ลบ</button></div>';
   const q=id=>s.querySelector(id), on=(id,fn)=>{ const el=q(id); if(!el) return; el.onchange=()=>fn(el); el.onkeydown=ev=>{ if(ev.key==="Enter"){ ev.preventDefault(); el.blur(); } }; };
-  on("#cvbW",el=>plCvbSet(inst,{w:parseFloat(el.value)})); on("#cvbR",el=>plCvbSet(inst,{r:parseFloat(el.value)})); on("#cvbDev",el=>plCvbSet(inst,{dev:parseFloat(el.value)})); on("#cvbD",el=>plCvbSet(inst,{d:el.value}));
+  on("#cvbW",el=>plCvbSet(inst,{w:parseFloat(el.value)})); on("#cvbR",el=>plCvbSet(inst,{r:parseFloat(el.value)})); on("#cvbDev",el=>plCvbSet(inst,{dev:parseFloat(el.value)})); on("#cvbD",el=>plCvbSet(inst,{d:el.value})); on("#cvbCapD",el=>plCvbSet(inst,{capDev:parseFloat(el.value)}));
+  { const el=q("#cvbCeil"); if(el) el.onchange=()=>plCvbSet(inst,{ceil:el.checked}); }   /* v1.635 */
   { const el=q("#cvbDA"); if(el) el.onclick=()=>plCvbSet(inst,{d:""}); }   /* v1.634 */
   { const el=q("#cvbFl"); if(el) el.onchange=()=>plCvbSet(inst,{floor:el.checked}); }
   q("#cvbClr").onclick=ev=>{ const r=ev.target.getBoundingClientRect(); plColorOpen(I.top,plPopX531(r),r.top-40); };
@@ -42088,7 +42158,7 @@ function plWtSlabs(){
     let f; try{ f=plFp(bs); }catch(e){ return; } if(!f||!isFinite(f.lo[0])) return;
     let lv=""; try{ lv=plLevelOf(f.code); }catch(e){} if(lv!=="base") return;
     if(!(f.ylo<300)) return;                                        // ยืนพื้น (กล่องหลังเคาน์เตอร์ BNF068 ลอยเหนือท็อป ไม่นับ)
-    if(plIsCvb(inst)&&(cvbInfo(inst)||{}).role==="kick") return;   /* v1.632: กล่องขาอยู่ใต้กล่องบน ไม่มีท็อป */
+    if(plIsCvb(inst)&&["kick","cap"].indexOf((cvbInfo(inst)||{}).role)>=0) return;   /* v1.632: กล่องขาอยู่ใต้กล่องบน ไม่มีท็อป · v1.635: + กล่องบน */
     const yaw=(((cvbYawFor(inst)||0)%360)+360)%360, wk=Object.keys(PL_WALLS).find(k=>PL_WALLS[k].yaw===yaw); if(!wk) return;
     const lo=f.lo.slice(), hi=f.hi.slice();
     bs.forEach(b=>{ if(!b||b._virtual||plIsLeg(b)||!(+b.T>0)) return; const d=worldDims(b), c=[b.x,b.y,b.z];
@@ -43386,6 +43456,7 @@ function plPanelSel(){
       +'<button class="ibtn" id="plFR"'+(g.hi.gap>=3&&g.hi.gap<=600?'':' disabled')+'>ปิดช่องขวา '+Math.max(g.hi.gap,0)+' ▶</button></div>'):'')
     +((g&&!plIsSide(inst)&&!plIsLightPanel(inst)&&plKindOf(code)!=="filler"&&/^(base|wall|tall)$/.test(plSideLvOf(inst)))?('<div class="plRow plBtns" style="margin-top:4px" title="แผ่นปิดข้างตู้ ('+({base:'BFF',wall:'WFF',tall:'TFF'})[plSideLvOf(inst)]+'###) — สูงตามตู้ ลึกเสมอบาน · ลงพื้น/ถึงฝ้า ตามแผงห้อง">แผ่นปิดข้าง '   // v1.317
       +'<button class="ibtn" id="plSdL"'+(g.lo.gap>=10?'':' disabled')+'>◀ ซ้าย</button><button class="ibtn" id="plSdR"'+(g.hi.gap>=10?'':' disabled')+'>ขวา ▶</button></div>'):'')
+    +plMatRuleHtml(inst)                                                         /* v1.635: สีเมลามีน · บานโปรไฟล์ */
     +plCvbRowHtml(inst,code)                                                     /* v1.632: กล่องโค้งข้างตู้ */
     +(plIsSide(inst)?(()=>{ const lv3=plLevelOf(code), bm=plSideBotOf(inst), tm=plSideTopOf(inst), ho=plSideHost(inst), cy=plSideCeilY();   // v1.317
       return '<div class="plRow plBtns" style="margin-top:6px">แผ่นปิดข้าง'+(ho?(' <span style="font-size:10.5px;color:var(--ink-dim)">ปิด '+escapeHtml(plFp(plBoardsOf(ho.inst)).code)+'</span>'):' <span style="font-size:10.5px;color:#d33">ไม่ได้ชิดตู้</span>')
@@ -44438,7 +44509,7 @@ function dwgPlan(C){ const r=plRoom(), T=100, cabs=C||dwgCabs();
     if(c.lv==="wall"||c.lv==="light") o.R(c.lo[0],c.lo[2],c.hi[0],c.hi[2],{w:0.8,dash:"5 3",col:"#4a4f58"});
     else { o.R(c.f.lo[0],c.f.lo[2],c.f.hi[0],c.f.hi[2],{w:1.2,fill:"#fff"}); o.R(c.lo[0],c.lo[2],c.hi[0],c.hi[2],{w:0.5,col:DWG_THIN});
       if(c.lv==="tall"){ o.L(c.f.lo[0],c.f.lo[2],c.f.hi[0],c.f.hi[2],0.4,DWG_THIN); o.L(c.f.lo[0],c.f.hi[2],c.f.hi[0],c.f.lo[2],0.4,DWG_THIN); } } });
-  cabs.forEach(c=>{ if(c.cvb&&c.cvb.role==="kick") return;   /* v1.632: เลขเดียวต่อกล่อง */ const cx=(c.lo[0]+c.hi[0])/2, cz=(c.lo[2]+c.hi[2])/2, W=c.wk?PL_WALLS[c.wk]:null, up=(c.lv==="wall"||c.lv==="light");
+  cabs.forEach(c=>{ if(c.cvb&&c.cvb.role!=="top") return;   /* v1.632: เลขเดียวต่อกล่อง · v1.635: + กล่องบน */ const cx=(c.lo[0]+c.hi[0])/2, cz=(c.lo[2]+c.hi[2])/2, W=c.wk?PL_WALLS[c.wk]:null, up=(c.lv==="wall"||c.lv==="light");
     let px=cx, pz=cz; if(W&&Math.min(c.hi[0]-c.lo[0],c.hi[2]-c.lo[2])>200){ const sh=(Math.abs(c.hi[W.pa]-c.lo[W.pa])/2)*0.45*(up?-1:1)*W.s; if(W.pa===0) px+=sh; else pz+=sh; }
     const wAlong=W?(c.f.hi[W.ax]-c.f.lo[W.ax]):999;
     if(Math.max(c.hi[0]-c.lo[0],c.hi[2]-c.lo[2])>=150){ o.num(px,pz-4*k,c.n); if(wAlong>=100) o.T(px,pz+12*k,c.code,{px:6.3,col:"#3a3f48",bg:1}); } });   // ฟิลเลอร์/แผ่นปิดแคบ = เลขอย่างเดียว
@@ -44538,7 +44609,7 @@ function dwgElev(wk,C,SECS){ const r=plRoom(), cabs=(C||dwgCabs()).filter(c=>dwg
   let wt={slabs:[],bs:[]}; try{ wt=plWtSlabs(); }catch(e){}
   wt.slabs.filter(s=>s.wk===wk||Math.min(Math.abs(s.lo[W.pa]-plFace(r,wk)),Math.abs(s.hi[W.pa]-plFace(r,wk)))<=5).forEach(s=>{ const u=U(s.lo[A],s.hi[A]); o.R(u[0],-s.hi[1],u[1],-s.lo[1],{w:2.2,fill:"#3b3d42",col:"#1d1d1f"}); });
   dwgVert(o,wt.bs.filter(s=>s.wk===wk),U,A,hs);   // v1.522: บัว + ผนังตามชนิด
-  cabs.forEach(c=>{ const u=U(c.f.lo[A],c.f.hi[A]), cx=(u[0]+u[1])/2, cy=-(c.f.lo[1]+c.f.hi[1])/2; if(u[1]-u[0]<120||(c.cvb&&c.cvb.role==="kick")) return;
+  cabs.forEach(c=>{ const u=U(c.f.lo[A],c.f.hi[A]), cx=(u[0]+u[1])/2, cy=-(c.f.lo[1]+c.f.hi[1])/2; if(u[1]-u[0]<120||(c.cvb&&c.cvb.role!=="top")) return;
     o.num(cx,cy-5*k,c.n); o.T(cx,cy+12*k,c.code,{px:6.5,bg:1}); });
   /* ระยะ */
   const lowRow=cabs.filter(c=>c.lv==="base"||c.lv==="tall"||c.lv==="other"), upRow=cabs.filter(c=>c.lv==="wall"||c.lv==="light"||c.lv==="tall");
@@ -51234,7 +51305,11 @@ function applyLineDisplay(){
   }
   if(src.ceil.length){
     const H=Math.max(+src.ceil[0].W||150,10);
-    const items=ceilPlan(cabs,H).items;                              // v1.315: บนตู้ชั้นบนสุดของแต่ละช่อง (ตู้ต่อบนได้แผง ตู้ข้างล่างไม่ได้)
+    /* ───────── v1.635: กล่องโค้งไม่ได้ฟิลเลอร์บนของตัวเอง ─────────
+       ผู้ใช้ 3/11 10:34 (ภาพตู้เสื้อผ้า กล่องโค้งข้างตู้มีแผ่นฟิลเลอร์วิ่งตามแนวลึกของกล่อง)
+       เดิม: กล่องมี yaw ต่างจากตู้ 90° จึงเป็นอีกแนว ได้ฟิลเลอร์บนตั้งฉากกับแนวตู้ · กล่องบนถึงฝ้าก็จะดันระดับฝ้าของแนวนั้นขึ้นไปอีก
+       ตอนนี้: ไม่นับกล่องโค้งในแผนฟิลเลอร์บน ส่วนเหนือกล่องใช้ตัวเลือกถึงฝ้าในแผงกล่อง */
+    const items=ceilPlan(snOff("plCvbCeil")?cabs:cabs.filter(c=>!plIsCvb(c.i)),H).items;                              // v1.315: บนตู้ชั้นบนสุดของแต่ละช่อง (ตู้ต่อบนได้แผง ตู้ข้างล่างไม่ได้)
     made+=build("ceil",runsOf(items));
   }
   return made;
@@ -63721,6 +63796,7 @@ async function sendSupabase(){
   if(!state.boards.length){toast("ยังไม่มีชิ้นงาน");return;}
   if(snOff("sendBox")) return sendSupabaseOld();
   if(_sendBusy){ toast("กำลังส่งอยู่ — รอรอบนี้จบก่อน"); return _sendBusy; }
+  if(!await sendRuleAsk()) return;   /* v1.635: สีเมลามีนบนกล่องโค้ง · บานโปรไฟล์ */
   if(!await sendMissAsk()) return;   /* v1.627 */
   _sendBusy=sendSupabaseRun();
   try{ return await _sendBusy; }finally{ _sendBusy=null; } }
@@ -70956,7 +71032,7 @@ const CurvedShelf = (function(){
       row("ช่องว่างระหว่างครีบ (แถวเต็ม)", G.nFu>1? rnd(G.gapFu)+" มม." : "—")+
       (G.Rr>0? row("ปลายขวา R"+rnd(G.Rr), "เส้นตรงนำ <b>"+rnd1(G.leadR)+"</b> · กินเข้ามา "+rnd(G.Rr+G.clrR)) : "")+
       (G.Rl>0? row("ปลายซ้าย R"+rnd(G.Rl), "เส้นตรงนำ <b>"+rnd1(G.leadL)+"</b> · กินเข้ามา "+rnd(G.Rl+G.clrL)) : "")+
-      row("<b>ขนาดรวมของกล่อง</b>", "<b>"+rnd(G.totW)+" × "+rnd(G.totD)+" × "+rnd(P.finH)+"</b> มม.")+
+      row("<b>ขนาดรวมของกล่อง</b>", "<b>"+rnd(G.totW)+" × "+rnd(G.totD)+" × "+rnd(Math.max(P.finH,(G.face&&G.face.H)||0))+"</b> มม."+((G.face&&G.face.H>P.finH+0.5)?(" (โครง "+rnd(P.finH)+")"):""))+
       row("แผ่นชั้นที่ต้องตัด (L × D)", "<b>"+rnd(P.L)+" × "+rnd(P.D)+"</b> × "+rnd(P.T)+" มม.")+
       (G.endPanel? row("&nbsp;&nbsp;กว้าง = ชั้น + ดัด + ปิด",
         rnd(G.L)+" + "+(G.face?rnd(G.face.T):0)+" + "+rnd(G.endPanel.T)) : "")+
@@ -71036,8 +71112,11 @@ const CurvedShelf = (function(){
        (หักที่วางโซ่ระยะ 130 px ออกก่อน) ไม่ใช่ความกว้างกรอบเต็ม
        เดิมตู้เตี้ย ๆ (สูง 720) สเกลถูกจำกัดด้วยความกว้าง รูปเลยเต็มกรอบ
        แล้วเส้นระยะรวมที่ +118 ไปโผล่ในพื้นที่ผังที่ x=660 */
-    const sc=Math.min((fw-130)/Math.max(P.L,1), fh/Math.max(P.finH,1));
+    /* v1.635: ไม้ดัดสูงกว่าโครง (ชนฝ้า) รูปต้องเห็นส่วนเกิน และระยะรวมวัดถึงหัวไม้ดัด */
+    const _faceTop=Math.max(P.finH,...(G.faces||[]).map(F=>+F.H||0)), _over=_faceTop>P.finH+0.5;
+    const sc=Math.min((fw-130)/Math.max(P.L,1), fh/Math.max(_faceTop,1));
     const EX=u=>fx+(u+P.L/2)*sc, EY=v=>fy+fh-v*sc;
+    if(_over) s+='<rect x="'+EX(-P.L/2).toFixed(1)+'" y="'+EY(_faceTop).toFixed(1)+'" width="'+(P.L*sc).toFixed(1)+'" height="'+((_faceTop-P.finH)*sc).toFixed(1)+'" fill="#f4e7b5" stroke="'+INK+'" stroke-width="1"/>';
     s+='<rect x="'+EX(-P.L/2).toFixed(1)+'" y="'+EY(P.finH).toFixed(1)+'" width="'+(P.L*sc).toFixed(1)+'" height="'+(P.finH*sc).toFixed(1)+'" fill="none" stroke="'+THIN+'" stroke-width=".8" stroke-dasharray="6 5"/>';
     if(G.endPanel){ const E=G.endPanel;
       s+='<rect x="'+EX(E.cx-E.T/2).toFixed(1)+'" y="'+EY(E.H).toFixed(1)+'" width="'+Math.max(E.T*sc,2).toFixed(1)+'" height="'+(E.H*sc).toFixed(1)+'" fill="#8a6d3b" stroke="'+INK+'" stroke-width="1"/>'; }
@@ -71046,9 +71125,9 @@ const CurvedShelf = (function(){
          '" fill="'+(back?"#dde5ef":"#c9d6e6")+'" stroke="'+INK+'" stroke-width="1"'+(back?' stroke-dasharray="7 4"':'')+'/>'; });
     G.levels.forEach(v=>{ s+='<rect x="'+EX(-P.L/2).toFixed(1)+'" y="'+EY(v+P.T/2).toFixed(1)+'" width="'+(P.L*sc).toFixed(1)+'" height="'+Math.max(P.T*sc,1.4).toFixed(1)+'" fill="#b9a27a" stroke="'+INK+'" stroke-width=".9"/>'; });
     s+=dimH(EX(-P.L/2),EX(P.L/2),EY(0)+40,rnd(P.L));
-    s+=chainV(uniq([0].concat(G.levels.map(v=>v+P.T/2)).concat([P.finH])),EY,EX(P.L/2)+46);
-    s+=dimV(EY(0),EY(P.finH),EX(P.L/2)+118,rnd(P.finH));
-    s+='<text x="'+fx+'" y="'+(fy+fh+64)+'" font-family="\'Sarabun\',sans-serif" font-size="12" fill="'+THIN+'">เส้นทึบ = ครีบแถวหน้า · เส้นประ = ครีบแถวหลัง · ระยะแนวตั้งวัดถึงผิวบนชั้น</text>';
+    s+=chainV(uniq([0].concat(G.levels.map(v=>v+P.T/2)).concat([P.finH,_faceTop])),EY,EX(P.L/2)+46);
+    s+=dimV(EY(0),EY(_faceTop),EX(P.L/2)+118,rnd(_faceTop));
+    s+='<text x="'+fx+'" y="'+(fy+fh+64)+'" font-family="\'Sarabun\',sans-serif" font-size="12" fill="'+THIN+'">เส้นทึบ = ครีบแถวหน้า · เส้นประ = ครีบแถวหลัง · ระยะแนวตั้งวัดถึงผิวบนชั้น</text>'+(_over?('<text x="'+fx+'" y="'+(fy+fh+80)+'" font-family="\'Sarabun\',sans-serif" font-size="12" font-weight="700" fill="'+INK+'">สีเหลือง = ไม้ดัดเหนือโครง '+rnd(_faceTop-P.finH)+' ชนฝ้า</text>'):'');
     // --- PLAN ---
     s+='<text x="660" y="92" font-family="\'Sarabun\',sans-serif" font-size="15" font-weight="700" fill="'+INK+'">PLAN (แผ่นชั้น มองบน)</text>';
     const pw=880, ph=300, px=660, py=120;
