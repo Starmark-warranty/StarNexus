@@ -3283,7 +3283,7 @@ body[data-theme="dark"] .splash-dots span{background:rgba(255,255,255,.25)}
    ===================================================================== */
 /* ---- APP_META: แหล่งความจริงเดียวของเวอร์ชัน (ดูได้จาก console / คลิกชื่อแอป) ---- */
 const APP_META={
-  name:"StarNexus", version:"1.629", build:"2026-11-03/wall-niche",
+  name:"StarNexus", version:"1.630", build:"2026-11-03/cost-no-glass",
   file:"StarNexus.html", basedOn:"Furnitech_V3.html (v3.11)",
   /* ───────── เริ่มนับเวอร์ชันใหม่ที่ 1.001 (21/08/2026) ─────────
      ของเดิมนับมาถึง 42.1 แล้ววิ่งเป็นทศนิยมสองชั้นซึ่งอ่านลำดับยาก
@@ -3291,6 +3291,7 @@ const APP_META={
      ประวัติเก่าเก็บไว้ทั้งหมดตามเลขเดิม ไม่ไล่เขียนใหม่ เพราะเลขในนั้นถูกอ้างถึงไปแล้ว
      รายการที่อยู่ใต้ 1.001 ลงไปจึงเป็นเลขชุดเก่า อ่านต่อกันได้ตามวันที่ */
   changelog:[
+    ["1.630","2026-11-03","FIX ราคาทุน/ใบเสนอราคา: กระจกไม่คิดซ้ำในหน้าไม้ และ FRAMEALU ไม่คิดในหน้าผิว (ผู้ใช้ 3/11 09:45 ภาพหน้า 💰 FC08 GLASS 08 mm. 0.70 ตร.ม. + FRAMEALU 4.05 ตร.ม.: “หน้าไม้ ตัว Fc08 ต้องตัดออกเพราะมันคือกระจกครับ อยู่หน้า Fitting แล้วครับ ตัดออกจากใบเสนอราคา · หน้าผิว เอา FRAMEALU ออกจากใบเสนอราคาด้วยครับ”) — กระจกคิดในแถว Fitting ที่เดียว ไม่คิดไม้ ผิว ขอบ ของแผ่นกระจกอีก · รหัสผิวที่ไม่คิดตั้งที่ settings.costNoSurf (ตั้งต้น FRAMEALU) · ปิด SN_OFF.costNoGlass / SN_OFF.costNoSurf · FIX ลากคลุมข้อความในหน้าต่างแล้วปล่อยเมาส์นอกหน้าต่าง หน้าต่างปิด (ผู้ใช้ 09:47 ภาพ Fitting Global “ตอนคลุมแล้วเมาส์ ออกนอกหน้าต่าง มันปิดลงครับ”) — แก้รวมทุกหน้าต่างแบบคลิกพื้นหลังปิด · ปิด SN_OFF.clickOutGuard"],
     ["1.629","2026-11-03","FEAT ซุ้มหลุมโค้งในผนัง (ผู้ใช้ 3/11 08:49 ภาพห้องทานข้าวมีหลุมโค้ง “ทำผนัง โค้ง ฝ้า หลุมโค้งยังไง” · 08:52 “เอาข้อ 1 ก่อนครับ”) — การ์ด ⌓ ซุ้มหลุมโค้ง ใน 🚪 ของในห้อง ลากติดผนังได้ทั้งผนังห้องและผนังที่วาด ตั้งกว้าง สูง ลึก สูงจากพื้น รัศมีโค้งบน (โค้งเต็ม / มุมโค้ง / เหลี่ยม) สีในหลุม ชั้นไม้ในหลุม (ของตกแต่งในภาพ ไม่เข้าแบบผลิต) · ผนังเว้าจริง ขึ้นในโหมดสมจริงและภาพเรนเดอร์ · ลากตู้เข้าหลุม: ตู้ที่พอดีช่องและไม่ติดส่วนโค้ง จะดูดเข้าก้นหลุมเอง · ปิด SN_OFF.plNiche"],
     ["1.628","2026-11-03","FIX หน้า 💰 รหัสตกบรรทัด (ผู้ใช้ 3/11 08:45 ภาพ 8101937 / 6: “รหัสตก เลข 6 ครับ”) — ช่องรหัสตั้งให้ตัดได้ทุกตัวอักษร พอช่องชื่อยาวก็บีบช่องรหัสจนเลขท้ายตกไปบรรทัดใหม่ ตอนนี้รหัสอยู่บรรทัดเดียวเสมอ ช่องชื่อเป็นฝ่ายขึ้นบรรทัดใหม่แทน"],
     ["1.627","2026-11-03","FEAT ขอโค้ด · ราคา · หมวด (ผู้ใช้ 3/11 08:24–08:29 “ดึงราคาใน Starstock มาใส่ไว้ที่นี่สิครับ · ผมจะเพิ่มหมวด ตั้งหมวดยังไง · ไม่มี ก็แนะนำให้ไปขอโค้ด เหมือนตอนส่งออกหา Production · ผมจะตั้งเองไว้ใช้ในโปรแกรม ใน AX ไม่มีหมวด”) — ① ก่อนส่ง Production ถ้ามีของไม่มีรหัส ถามก่อน พร้อมชื่อไว้ขอเปิดรหัสและปุ่มคัดลอก · รายการ BOM และหน้า 💰 มีชื่อขอโค้ดเหมือนกัน · ขอบที่ไม่มีใน AX เข้ารายการนี้ด้วย · หน้า 💰 แยก “มีใน AX ยังไม่มีราคา” ออกจาก “ไม่มีใน AX” ② Fitting Global มีคอลัมน์ราคาจาก StarStock กรองมี/ไม่มีราคาได้ เก็บชุดล่าสุดไว้ในเครื่อง เปิดครั้งต่อไปมีราคาทันที อัปเดตเองเมื่อ StarStock เปลี่ยน ③ ตั้งหมวดเอง: กรองรหัส/ชื่อแล้วกดตั้งหมวด รายการใหม่ที่ตรงเงื่อนไขเข้าหมวดเอง · กดช่องหมวดของแถว = ตั้งรายตัว · บันทึกร่วมทุกเครื่อง · ปิด SN_OFF.sendMissCode fgPrice fgCatRule"],
@@ -30441,6 +30442,9 @@ function boardRole(b){
      SN_OFF.plAlignStay=1 จัดแนวแล้วตู้หลบของที่ทับกันอยู่ก่อนแบบเดิม (ดีดไปช่องว่าง) (v1.600)
      SN_OFF.rszAdjBox=1   ปรับขนาดตู้ที่ชิ้นโครงมีสูตรปรับ วัดฐานก่อนถอดสูตรแบบเดิม (หดซ้ำ) (v1.600)
      SN_OFF.sdcGroove=1   บานเลื่อน SDC ไม่เซาะร่องฝังรางในแผ่นพื้น/แผ่นบน (ร่องที่เซาะไว้ถูกถอดตอน sync) (v1.599)
+     SN_OFF.clickOutGuard=1 ลากคลุมข้อความในหน้าต่างแล้วปล่อยเมาส์นอกหน้าต่าง หน้าต่างปิดแบบเดิม (v1.630)
+     SN_OFF.costNoGlass=1 แผ่นกระจกกลับมาคิดในหน้าไม้ ผิว ขอบ ของราคาทุน (นับซ้ำกับแถว Fitting) (v1.630)
+     SN_OFF.costNoSurf=1  รหัสผิวใน settings.costNoSurf (FRAMEALU) กลับมาคิดในหน้าผิว (v1.630)
      SN_OFF.plNiche=1     ไม่มีการ์ดซุ้มหลุมโค้ง · ที่วางไว้ไม่เจาะผนังและไม่วาด (ข้อมูลยังอยู่) · ตู้ไม่ดูดเข้าหลุม (v1.629)
      SN_OFF.sendMissCode=1 ส่ง Production โดยไม่ถามเรื่องรหัสที่ยังไม่มีใน AX (v1.627)
      SN_OFF.fgPrice=1     Fitting Global ไม่มีคอลัมน์ราคา ไม่เก็บชุดราคาในเครื่อง · ราคาโหลดเฉพาะตอนเปิดหน้า 💰 (v1.627)
@@ -42467,6 +42471,28 @@ function costIsMel(key,code){ if(costCfg().melAuto===false) return false; return
 function costZero(v){ if(v==null) return false; const x=(typeof v==="object")?v.p:v; return x!==""&&x!=null&&isFinite(+x)&&+x===0; }
 function costHas(kind,key,code){ const v=costCfg()[kind][key]; return costPrice(kind,key,code)>0||costZero(v)||(kind==="surf"&&v==null&&costIsMel(key,code)); }   // v1.514: costPrice รวมราคา AX จาก StarStock แล้ว
 /* รายการที่ใช้: ไม้ (ตร.ม.) · ขอบ (ม.) · Fitting (หน่วย / ม.) — key = รหัสที่ใช้เก็บราคา */
+/* ───────── v1.630: กระจกกับ FRAMEALU ไม่เข้าหน้าไม้/ผิวของราคาทุน ─────────
+   ผู้ใช้ 3/11 09:45 (ภาพหน้า 💰 FC08 GLASS 08 mm. · FRAMEALU): “หน้าไม้ ตัว Fc08 ต้องตัดออกเพราะมันคือกระจกครับ อยู่หน้า Fitting แล้วครับ ตัดออกจากใบเสนอราคา · หน้าผิว เอา FRAMEALU ออกจากใบเสนอราคาด้วยครับ”
+   เดิม: costItems เดินทุกแผ่นในใบตัด แผ่นกระจก (ชั้นกระจก _glassShelf · วัสดุ FC08) จึงถูกคิดเป็นไม้ตามพื้นที่ ซ้ำกับแถวกระจกของ glassBOM ใน Fitting
+     แถมยังนับผิวและขอบที่แผ่นเดิมเคยมี (_glassPrev เก็บแต่ค่าเก่า ช่อง surf/edges ยังค้าง) ทั้งที่กระจกไม่มีผิวไม่มีขอบ
+     บานเฟรมอลูใส่รหัสผิว FRAMEALU ใน Part พื้นที่จึงมาขึ้นหน้าผิวทั้งที่ค่าเฟรมไม่ได้คิดตามตารางเมตร
+   ตอนนี้: แผ่นกระจกข้ามทั้งแผ่น (ไม้ ผิว ขอบ ไม่นับเป็นยังไม่ผูกวัสดุ) คงเหลือแถวกระจกใน Fitting ที่เดียว
+     รหัสผิวในรายการ settings.costNoSurf (ตั้งต้น FRAMEALU คั่นด้วย ,) ไม่คิดในหน้าผิว · ราคาที่เคยใส่ไว้ยังอยู่ในคลังราคา แค่ไม่ถูกนับ
+   ปิด SN_OFF.costNoGlass / SN_OFF.costNoSurf */
+/* ───────── v1.630: ลากคลุมข้อความแล้วปล่อยเมาส์นอกหน้าต่าง หน้าต่างต้องไม่ปิด ─────────
+   ผู้ใช้ 3/11 09:47 (ภาพ Fitting Global ช่องตั้งหมวดคลุม “406” อยู่): “ตอนคลุมแล้วเมาส์ ออกนอกหน้าต่าง มันปิดลงครับ”
+   เดิม: หน้าต่างแบบคลิกพื้นหลังเพื่อปิด เขียนว่า click ที่ target===พื้นหลัง → ปิด กดในช่องกรอกแล้วปล่อยบนพื้นหลัง เบราว์เซอร์ส่ง click ให้ตัวแม่ร่วมของสองจุด ซึ่งก็คือพื้นหลัง หน้าต่างจึงปิด ข้อความที่พิมพ์หาย
+     รูปแบบนี้มีหลายสิบหน้าต่าง (Fitting Global · แบบผลิต · ลิงก์แชร์ · แจ้งเตือน ฯลฯ) แก้รายตัวไม่ทัน
+   ตอนนี้: ดักที่ window ชั้น capture ครั้งเดียวจบ ถ้ากดเริ่มที่ลูกข้างใน แต่ click มาตกที่กล่องเต็มจอแบบ fixed (พื้นหลังหน้าต่าง) = ไม่ใช่การคลิกพื้นหลังจริง กลืนทิ้ง
+     กดและปล่อยบนพื้นหลังจริง ยังปิดได้ตามเดิม · ปุ่ม (กดไอคอนในปุ่ม ปล่อยบนขอบปุ่ม) ไม่โดน เพราะปุ่มไม่ใช่กล่องเต็มจอ · ปิด SN_OFF.clickOutGuard */
+(function(){ let down=null;
+  window.addEventListener("pointerdown",e=>{ down=e.target; },true);
+  window.addEventListener("click",e=>{ const d=down, t=e.target; down=null; try{ if(snOff("clickOutGuard")) return;
+      if(!d||!t||t===d||t===document.body||t===document.documentElement||t.id==="app"||!t.contains||!t.contains(d)) return;
+      if(getComputedStyle(t).position!=="fixed") return; const rc=t.getBoundingClientRect(); if(rc.width<innerWidth*.7||rc.height<innerHeight*.7) return;
+      e.stopImmediatePropagation(); e.preventDefault(); }catch(err){} },true); })();
+function costSkipGlass(b,code,pid){ if(snOff("costNoGlass")) return false; try{ return isGlassBoard(b,pid||code)||!!isGlassMat(code); }catch(e){ return false; } }
+function costSkipSurf(sc,sp){ if(snOff("costNoSurf")) return false; const L=String(settings.costNoSurf==null?"FRAMEALU":settings.costNoSurf).split(/[,\s]+/).map(v=>v.trim().toUpperCase()).filter(Boolean); return L.indexOf(String(sc||"").trim().toUpperCase())>=0||L.indexOf(String(sp||"").trim().toUpperCase())>=0; }
 function costItems(boards,fitRows){
   const R={fit:new Map(),mat:new Map(),surf:new Map(),edge:new Map(),unres:0};
   const add=(m,key,o,q)=>{ let x=m.get(key); if(!x){ x=Object.assign({key,qty:0},o); m.set(key,x); } x.qty+=q; };
@@ -42474,12 +42500,14 @@ function costItems(boards,fitRows){
   cut.forEach(b=>{ try{ const el=effLinks(b), bd=blankDims(b), th=coreThickOf(b,bd.T);
       const code=String(matCodeForThick(resolveLink(el.mat,b),th)||"").trim(), pid=String(matCodeForThick(resolveOut(el.mat,b),th)||"").trim(), key=pid||code;
       const a=(+bd.L||0)*(+bd.W||0)/1e6;
+      if(costSkipGlass(b,code,pid)) return;   /* v1.630: กระจกคิดใน Fitting ที่เดียว */
       if(!key||key[0]==="$") R.unres++;
       else if(a>0){ const e=elemByCode(code); add(R.mat,key,{code,name:String((e&&elemDesc(e))||code),unit:"ตร.ม.",T:+th||0},a); }
       /* v1.441: ผิวบน + ผิวล่าง — รหัสเดียวกับตอนส่งออก (SURFACE_TOP / SURFACE_BOTTOM) · ด้านละเต็มพื้นที่ */
       if(a>0) [el.surfT,el.surfB].forEach(lk=>{ const raw=String(lk==null?"":lk).trim(); if(!raw||/^no\s*surf/i.test(raw)) return;
         let sc="", sp=""; try{ sc=String(resolveLink(lk,b)||"").trim(); }catch(e){} try{ sp=String(resolveOut(lk,b)||"").trim(); }catch(e){}
         const sk=sp||sc; if(!sk||sk[0]==="$"){ R.unres++; return; } if(/^k?_?no_?surf/i.test(sk)) return;
+        if(costSkipSurf(sc,sp)) return;   /* v1.630: FRAMEALU */
         const se=elemByCode(sc); add(R.surf,sk,{code:sc||sk,name:String((se&&elemDesc(se))||sc||sk),unit:"ตร.ม."},a); });
       edgeUsage(b).forEach(u=>{ const k=String(u.out||"").trim(); if(!k||k[0]==="$"){ R.unres++; return; }
         add(R.edge,k,{code:k,name:u.tag?("ขอบ "+u.tag):k,unit:"ม."},(+u.mm||0)/1000); });
