@@ -3283,7 +3283,7 @@ body[data-theme="dark"] .splash-dots span{background:rgba(255,255,255,.25)}
    ===================================================================== */
 /* ---- APP_META: แหล่งความจริงเดียวของเวอร์ชัน (ดูได้จาก console / คลิกชื่อแอป) ---- */
 const APP_META={
-  name:"StarNexus", version:"1.645", build:"2026-11-03/size-input",
+  name:"StarNexus", version:"1.646", build:"2026-11-03/quote-names",
   file:"StarNexus.html", basedOn:"Furnitech_V3.html (v3.11)",
   /* ───────── เริ่มนับเวอร์ชันใหม่ที่ 1.001 (21/08/2026) ─────────
      ของเดิมนับมาถึง 42.1 แล้ววิ่งเป็นทศนิยมสองชั้นซึ่งอ่านลำดับยาก
@@ -3291,6 +3291,7 @@ const APP_META={
      ประวัติเก่าเก็บไว้ทั้งหมดตามเลขเดิม ไม่ไล่เขียนใหม่ เพราะเลขในนั้นถูกอ้างถึงไปแล้ว
      รายการที่อยู่ใต้ 1.001 ลงไปจึงเป็นเลขชุดเก่า อ่านต่อกันได้ตามวันที่ */
   changelog:[
+    ["1.646","2026-11-03","FIX ชื่อในใบเสนอราคา (ผู้ใช้ 15:48 ภาพแถว TNF066 ชื่อ ฟิลเลอร์ · MWA114 ชื่อเป็นรหัส: แก้ชื่อที่ออกได้ไหมครับ เป็น กล่องโค้ง ครับ TNF066 · MWA021 ก็คือ ตู้เสื้อผ้า 2 บานเปิด · MWA114 ตู้ช่องโล่งครับ) — กล่องโค้งทุกรหัสชื่อ กล่องโค้ง · ตั้งชื่อตั้งต้น MWA021 MWA114 ขึ้นทั้งใบเสนอราคาและการ์ดแคตตาล็อก · ชื่อที่ตั้งเองในแคตตาล็อกมาก่อนเสมอ"],
     ["1.645","2026-11-03","UI ช่องขนาดตู้ในแผงห้องออกแบบเห็นเลข 4 หลักครบ (ผู้ใช้ 15:01 ภาพ ก 900 ส 230 ล 580: ช่องตู้ เห็นเลขไม่เต็ม) — ลูกศรเพิ่มลดกินที่ในช่อง 2300 จึงเหลือ 230 เอาลูกศรออก ยังเลือกขนาดจากรายการและกดลูกศรขึ้นลงบนคีย์บอร์ดได้"],
     ["1.644","2026-11-03","FIX แถว 1F019-1-064 และบานเลื่อนหายจาก Element หลังดึงค่าส่วนกลาง (ผู้ใช้ 14:34 ภาพหน้าต่างมือจับ: อยู่ไหนครับ) — ค่าส่วนกลางทับรายการ Element แต่ธงเคยเพิ่มแล้วค้างในเครื่อง โปรแกรมจึงเข้าใจว่าผู้ใช้ลบเองและไม่ใส่คืน แก้ให้ธงตามค่าที่โหลด และใส่แถวคืนรอบเดียวให้เครื่องที่ธงค้างแล้ว · แท็บมือจับแบบฝังแสดงมือจับฝังเซาะร่องด้วย"],
     ["1.643","2026-11-03","FEAT+FIX แบบในใบเสนอราคา — ① ภาพด้านหน้าแสดงฟิลเลอร์บน ② ผนังที่ปิดไว้แต่มีตู้ชน + ผนังที่วาดเอง ขึ้นเป็นผนังลายขีดในภาพด้านหน้าและแปลน ③ ของในห้องเพิ่มคนยืน ปรับความสูงและสีเสื้อได้ ขึ้นในภาพด้านหน้ากับแปลน (ผู้ใช้ 13:54: ทำไมไม่เห็น ฟิลเลอร์บนครับ เส้นทางซ้าย ภาพด้านหน้า จริงๆ ต้องเห็นผนัง ด้วยครับ ภาพด้านบน ด้วย เหมือนภาพตัด Section ครับ เพิ่มคนไปยืนได้ไหมครับ สัก 1 คน)"],
@@ -36846,6 +36847,11 @@ function cabDescSet(code,txt){ try{ const k=String(code||"").trim().toUpperCase(
    เก็บเป็นตารางที่แก้ได้ที่ settings.cabCodeMap แทนที่จะฝังไว้ในโค้ด
    คีย์ยาวกว่าถูกจับก่อน BND จึงชนะ BN และ BN ชนะ B
    ตัวไหนไม่มีในตารางก็ข้ามไป ไม่เดาให้ ดีกว่าเดาผิดแล้วเชื่อผิดกันทั้งทีม */
+/* ───────── v1.646: ชื่อตู้ตั้งต้นรายรหัส ─────────
+   ผู้ใช้ 3/11 15:48 (ภาพใบเสนอราคา TNF066 ชื่อ “ฟิลเลอร์” · MWA114 ชื่อเป็นรหัส): “MWA021 ก็คือ ตู้เสื้อผ้า 2 บานเปิด · MWA114 ตู้ช่องโล่งครับ”
+   เดิม: รหัสที่ไม่ได้ตั้งชื่อในแคตตาล็อก ใช้คำอธิบายในคลัง แล้วเดาจากหัวรหัส หัว MWA ไม่อยู่ในตารางแปล จึงเหลือตัวรหัส และรหัสเหล่านี้ไม่มีใน Excel ของ v1.642
+   แก้: ตารางนี้อยู่ถัดจากชื่อในแคตตาล็อก (ชื่อที่ตั้งเองมาก่อนเสมอ) ใช้ทั้งใบเสนอราคาและการ์ดแคตตาล็อก */
+const CAB_NAME_DEF={MWA021:"ตู้เสื้อผ้า 2 บานเปิด",MWA114:"ตู้ช่องโล่ง",WNF065:"กล่องโค้ง",WNF066:"กล่องโค้ง",TNF065:"กล่องโค้ง",TNF066:"กล่องโค้ง"};
 const CABCODE_MAP_DEF={
   "BND":"ตู้พื้น · 1 ลิ้นชัก",
   "BNL":"ตู้พื้น · บานเปิดซ้าย",
@@ -37068,7 +37074,7 @@ async function openCatalog(){
         const nW=catSizes(e.w,e.mW).length;
         return '<tr data-c="'+escapeHtml(c)+'"><td><div class="ctImg" data-c="'+escapeHtml(c)+'" style="width:68px;height:68px;border-radius:8px;background:var(--hover,#f1f3f6);display:flex;align-items:center;justify-content:center;font-size:10px;color:var(--muted)">—</div></td>'
           +'<td style="font-family:var(--mono);font-size:12px;white-space:nowrap">'+escapeHtml(c)+'<div class="muted" style="font-size:10.5px">'+escapeHtml(mdl)+'</div></td>'
-          +'<td>'+inp(c,"name",e.name,200,cabDescGet(c)||cabCodeDesc(c)||"")+'</td>'
+          +'<td>'+inp(c,"name",e.name,200,CAB_NAME_DEF[catKey(c)]||cabDescGet(c)||cabCodeDesc(c)||"")+'</td>'
           +'<td><select class="nameinp ctF" data-c="'+escapeHtml(c)+'" data-f="kind" style="font-size:12px;padding:4px 6px">'+kindOpts(e.kind)+'</select></td>'
           +'<td>'+inp(c,"w",e.w,110,e.mW?String(e.mW):"")+'<div class="muted" style="font-size:10px">'+(nW?(nW+" ขนาด"):"")+'</div></td>'
           +'<td>'+inp(c,"h",e.h,90,e.mH?String(e.mH):"")+'</td><td>'+inp(c,"d",e.d,90,e.mD?String(e.mD):"")+'</td>'
@@ -44070,11 +44076,14 @@ function plqLines(){
   cabs.forEach(cb=>{ const inst=cb.inst, bs=cb.bs, d=cb.d, o=cb.o;
     const code=String((d&&d.f&&d.f.code)||"").trim(); sumCost+=o.total+cb.extra; miss+=o.miss.length;
     const cut=t=>String(t||"").replace(/\s*[·\-–,|]?\s*\d{2,5}(?:\.\d+)?\s*[x×*X]\s*\d{2,5}(?:\.\d+)?(?:\s*[x×*X]\s*\d{2,5}(?:\.\d+)?)?\s*(?:มม\.?|mm|ซม\.?|cm)?/g,"").replace(/[\s·\-–,|]+$/,"").replace(/^[\s·\-–,|]+/,"").trim();   // ขนาดรุ่นในคำอธิบายไม่ตรงขนาดจริง (แบบโปสเตอร์ v1.460)
-    let en="", gen=""; try{ const e=catalogOf(code)||{}; en=cut(e.name||cabDescGet(code)); gen=cut(cabCodeDesc(code)); }catch(_){}   // en = ชื่อที่ตั้งเอง · gen = ชื่อเดาจากรหัส (B=ตู้พื้น W=ตู้ลอย …)
+    /* v1.646: + ชื่อตั้งต้นรายรหัส CAB_NAME_DEF · กล่องโค้งทุกรหัส (ตามค่าตั้งกล่องโค้ง หรือจาก XML) ชื่อ “กล่องโค้ง” เว้นแต่ตั้งชื่อในแคตตาล็อกเอง
+       เดิมกล่องอยู่หมวดฟิลเลอร์ จึงออกคำว่า “ฟิลเลอร์” ในใบเสนอราคา */
+    let en="", gen="", _ownNm=""; try{ const e=catalogOf(code)||{}; _ownNm=cut(e.name); en=cut(e.name||CAB_NAME_DEF[catKey(code)]||cabDescGet(code)); gen=cut(cabCodeDesc(code)); }catch(_){}   // en = ชื่อที่ตั้งเอง · gen = ชื่อเดาจากรหัส (B=ตู้พื้น W=ตู้ลอย …)
+    let isCv=false; try{ const cc=cvbCfg().codes||{}; isCv=plIsCvb(inst)||Object.keys(cc).some(k=>(cc[k]||[]).some(x=>catKey(x)===catKey(code))); }catch(_){}
     const W=d?Math.round(+d.W||0):0, H=d?Math.round(+d.H||0):0, D=d?Math.round(+d.D||0):0, cost=Math.round((o.total+cb.extra)*100)/100;   // v1.518: + ส่วนที่ปันมา
     let isF=false; try{ isF=!!code&&plKindOf(code)==="filler"; }catch(_){}
     /* ชื่อตั้งต้น: ชิ้นแผ่นเดียว (บางสุด ≤ 30 มม. เช่น BFF001 กว้าง 15) ชื่อเดาจากรหัสจะออก “ตู้พื้น” ผิด → ใช้ “แผ่นปิด / แผ่นตกแต่ง” · เซลล์แก้ชื่อรายแถวได้ (Q.nm) */
-    const nm=bs.some(b=>b&&b._csmRail)?"ราวแขวน":bs.some(b=>b&&b._plLightPanel)?"แผ่นไม้ไฟ":isF?(en||"ฟิลเลอร์")
+    const nm=bs.some(b=>b&&b._csmRail)?"ราวแขวน":bs.some(b=>b&&b._plLightPanel)?"แผ่นไม้ไฟ":isCv?(_ownNm||"กล่องโค้ง"):isF?(en||"ฟิลเลอร์")
       :(W&&H&&D&&Math.min(W,H,D)<=30)?(en||"แผ่นปิด / แผ่นตกแต่ง"):(en||gen||code||"ชิ้นงาน");
     const pk=(code||("#"+inst))+"|"+W+"|"+H+"|"+D, key=pk+"|"+Math.round(cost);   // % รายแถวผูกกับรหัส+ขนาด (pk) — ใส่ราคาทุนเพิ่มทีหลัง % ไม่หาย
     let x=0; try{ const f=d&&d.f; if(f&&isFinite(f.lo[0])) x=(f.lo[0]+f.hi[0])/2+((f.lo[2]+f.hi[2])/2)*0.001; }catch(_){}
@@ -45505,7 +45514,7 @@ const CAB_TH_GZ="H4sIAAAAAAAC/+y9W28dx5U/+pz5FI3/eSGRLU5duvqSN5miLMXU5WzTjmdwXhi
 let cabThMap=null, cabThBusy=false;
 function cabThLoad(){ if(cabThMap||cabThBusy||snOff("cabTh")) return; if(typeof DecompressionStream==="undefined"){ cabThMap={}; return; } cabThBusy=true;
   (async()=>{ const u=Uint8Array.from(atob(CAB_TH_GZ),c=>c.charCodeAt(0)); const t=await new Response(new Blob([u]).stream().pipeThrough(new DecompressionStream("gzip"))).text();
-    const m={}; t.split("\n").forEach(l=>{ const i=l.indexOf("\t"); if(i>0) m[l.slice(0,i)]=l.slice(i+1); }); cabThMap=m; try{ if(PL.items) plPanelGrid(); }catch(e){} })()
+    const m={}; t.split("\n").forEach(l=>{ const i=l.indexOf("\t"); if(i>0) m[l.slice(0,i)]=l.slice(i+1); }); Object.assign(m,CAB_NAME_DEF); /* v1.646 */ cabThMap=m; try{ if(PL.items) plPanelGrid(); }catch(e){} })()
     .catch(e=>{ console.error("cabTh:",e); cabThMap={}; }).finally(()=>{ cabThBusy=false; }); }
 function cabThName(code){ if(!cabThMap){ cabThLoad(); return ""; } const k=catKey(code); return cabThMap[k]||cabThMap[k.replace(/-NEW$/,"")]||""; }
 function plPanelGrid(){
