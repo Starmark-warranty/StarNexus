@@ -3283,7 +3283,7 @@ body[data-theme="dark"] .splash-dots span{background:rgba(255,255,255,.25)}
    ===================================================================== */
 /* ---- APP_META: แหล่งความจริงเดียวของเวอร์ชัน (ดูได้จาก console / คลิกชื่อแอป) ---- */
 const APP_META={
-  name:"StarNexus", version:"1.626", build:"2026-11-03/edge-ax-up",
+  name:"StarNexus", version:"1.627", build:"2026-11-03/fg-price-cat",
   file:"StarNexus.html", basedOn:"Furnitech_V3.html (v3.11)",
   /* ───────── เริ่มนับเวอร์ชันใหม่ที่ 1.001 (21/08/2026) ─────────
      ของเดิมนับมาถึง 42.1 แล้ววิ่งเป็นทศนิยมสองชั้นซึ่งอ่านลำดับยาก
@@ -3291,6 +3291,7 @@ const APP_META={
      ประวัติเก่าเก็บไว้ทั้งหมดตามเลขเดิม ไม่ไล่เขียนใหม่ เพราะเลขในนั้นถูกอ้างถึงไปแล้ว
      รายการที่อยู่ใต้ 1.001 ลงไปจึงเป็นเลขชุดเก่า อ่านต่อกันได้ตามวันที่ */
   changelog:[
+    ["1.627","2026-11-03","FEAT ขอโค้ด · ราคา · หมวด (ผู้ใช้ 3/11 08:24–08:29 “ดึงราคาใน Starstock มาใส่ไว้ที่นี่สิครับ · ผมจะเพิ่มหมวด ตั้งหมวดยังไง · ไม่มี ก็แนะนำให้ไปขอโค้ด เหมือนตอนส่งออกหา Production · ผมจะตั้งเองไว้ใช้ในโปรแกรม ใน AX ไม่มีหมวด”) — ① ก่อนส่ง Production ถ้ามีของไม่มีรหัส ถามก่อน พร้อมชื่อไว้ขอเปิดรหัสและปุ่มคัดลอก · รายการ BOM และหน้า 💰 มีชื่อขอโค้ดเหมือนกัน · ขอบที่ไม่มีใน AX เข้ารายการนี้ด้วย · หน้า 💰 แยก “มีใน AX ยังไม่มีราคา” ออกจาก “ไม่มีใน AX” ② Fitting Global มีคอลัมน์ราคาจาก StarStock กรองมี/ไม่มีราคาได้ เก็บชุดล่าสุดไว้ในเครื่อง เปิดครั้งต่อไปมีราคาทันที อัปเดตเองเมื่อ StarStock เปลี่ยน ③ ตั้งหมวดเอง: กรองรหัส/ชื่อแล้วกดตั้งหมวด รายการใหม่ที่ตรงเงื่อนไขเข้าหมวดเอง · กดช่องหมวดของแถว = ตั้งรายตัว · บันทึกร่วมทุกเครื่อง · ปิด SN_OFF.sendMissCode fgPrice fgCatRule"],
     ["1.626","2026-11-03","FEAT รหัสขอบตามที่มีใน AX (ผู้ใช้ 3/11 08:17 “น่าจะต้องให้มันหาขอบที่มีใน AX ครับ เช่น 81021376 มันไม่มี แต่มันมีที่ 81022376 ครับ ขอบทุกตัวจะมีที่สูงกว่าเสมอ ยกเว้นถ้าไม่มี ค่อยบอกว่าใน AX ยังไม่มี”) — ความกว้างที่คำนวณได้ไม่มีใน Fitting Global = ใช้ความกว้างถัดไปที่สูงกว่า ทั้งไฟล์ส่งออก รายการตัด และราคา · ไม่มีเลย = รหัสเดิม ขึ้นเตือนและ “ไม่มีใน AX” · มือจับ (“ตัวมือจับ ได้ลองหารายการใน AX หรือยังครับ”): ค้น 1F019-1-064 ในชื่อ AX เอง เจอรายการเดียวใส่ Purchase Item ID ให้ · หน้า 💰 บอกเหตุผลใต้ “ไม่มีใน AX” · ปิด SN_OFF.edgeAxPick SN_OFF.pullAxAuto"],
     ["1.625","2026-11-03","FEAT มือจับฝังเซาะร่อง 1F019-1-064 (ผู้ใช้ 3/11 07:47 ภาพ Futuretech “เพิ่มมือจับตัวนี้ให้หน่อย แล้วก็ตั้งไว้ใน Element ด้วยครับ เดี๋ยวผมไปใส่รหัส AX เอง”) — แถวใน Element → Fittings รหัส AX ว่างไว้ · ร่องในบาน 71×33 ลึก 9 มุม R3 (ประเมินจากแบบ ภาพไม่บอกยาวตัวฝัง) · รูปทรง 3D ใหม่ pull3D = flush ขอบโค้ง 76×38 ปากหลุม 64×22 ลึกรวม 15 โครมเงา · การ์ดในกล่อง 🖐 เห็นรูปจริง · บานเลื่อนวางมือจับใหม่ อยู่ด้านนอก ห่างขอบพ้นระยะซ้อน (เดิมไปอยู่ด้านในที่บานอีกใบบัง) · เลือกมือจับรุ่นปกติบนบานที่มีมือจับฝัง = ถอดมือจับฝังให้ (เดิมซ้อนกันสองแบบ) · ปิด SN_OFF.pullFlush pull1F019 sdcPullIn pullDropEhp"],
     ["1.624","2026-11-03","CHANGE ไม่ตกเศษ (ผู้ใช้ 3/11 08:04 “บานเลื่อน และตัวมือจับแบบฝังขอให้ไม่ตกเศษครับ เช่น 2147.2 ก็ปัดลง 2147.8 ก็ปัดลงเสมอ · มือจับแบบฝังทุกตัว ต้องไม่ตกเศษ และบานที่มีมือจับอยู่ด้วย”) — บานเลื่อน + บานที่มีมือจับฝัง ทั้งกว้างและสูง ปัดลงเป็นเลขเต็มเสมอ ความยาวมือจับฝังจึงเป็นเลขเต็มตาม · แกนที่มือจับอยู่ ขอบตรงข้ามมือจับอยู่กับที่ · อีกแกน ด้านบานพับอยู่กับที่ ไม่มีบานพับ = เศษแบ่งสองข้าง · บานเลื่อนยึดขอบนอกติดแผ่นข้าง · ถอดมือจับ = บานคืนขนาดเดิมรวมเศษ · งานเก่าปรับเองตอนเปิด · ปิด SN_OFF.sdcInt SN_OFF.ehpInt · FIX กรอบเลือกสีฟ้าเกินตู้ (ผู้ใช้ 08:06 “ทำไมเส้นสีฟ้า เกินตู้ไปเยอะจัง”) ของที่ปั้นจากโมเดล Fitting หลายชิ้น เช่น ราวแขวน กรอบใช้ตำแหน่งชิ้นแรกที่ปลายราว บวกขนาดเต็มราว จึงเกินซ้าย ~390 · FEAT แถวบานเลื่อนใน Element → Fittings (ผู้ใช้ 08:08 “บานเลื่อนตั้งรหัสออกได้ที่ไหน … หาไม่เจอ”) SDC32045 + SDC32045-R ใส่รหัส AX ที่ Purchase Item ID · ปิด SN_OFF.sdcElem"],
@@ -17085,6 +17086,7 @@ async function fgWaitReady(ms){ const t0=Date.now(); while(!fgTableReady()&&Date
 function fgOnReady(){
   try{ _edgeAx=null; }catch(e){}   /* v1.626: ตารางใหม่ = สร้างดัชนีขอบใหม่ */
   try{ pullAxAuto(); }catch(e){ console.error("pullAxAuto:",e); }   /* v1.626 */
+  try{ if(!snOff("fgPrice")) stkWarm().then(()=>stkLoad(false)).catch(e=>console.warn("stkLoad:",e)); }catch(e){}   /* v1.627: ราคา StarStock มาพร้อมตาราง AX */
   if(snOff("fgRetry")) return 0; let n=0;
   Object.keys(_fgTray).forEach(k=>{ if(!_fgTray[k]&&!_fgTrayBusy.has(k)){ delete _fgTray[k]; n++; } });
   try{ Object.keys(_glassKindByPre).forEach(k=>{ if(!_glassKindByPre[k]) delete _glassKindByPre[k]; }); }catch(e){}
@@ -30434,6 +30436,9 @@ function boardRole(b){
      SN_OFF.plAlignStay=1 จัดแนวแล้วตู้หลบของที่ทับกันอยู่ก่อนแบบเดิม (ดีดไปช่องว่าง) (v1.600)
      SN_OFF.rszAdjBox=1   ปรับขนาดตู้ที่ชิ้นโครงมีสูตรปรับ วัดฐานก่อนถอดสูตรแบบเดิม (หดซ้ำ) (v1.600)
      SN_OFF.sdcGroove=1   บานเลื่อน SDC ไม่เซาะร่องฝังรางในแผ่นพื้น/แผ่นบน (ร่องที่เซาะไว้ถูกถอดตอน sync) (v1.599)
+     SN_OFF.sendMissCode=1 ส่ง Production โดยไม่ถามเรื่องรหัสที่ยังไม่มีใน AX (v1.627)
+     SN_OFF.fgPrice=1     Fitting Global ไม่มีคอลัมน์ราคา ไม่เก็บชุดราคาในเครื่อง · ราคาโหลดเฉพาะตอนเปิดหน้า 💰 (v1.627)
+     SN_OFF.fgCatRule=1   ไม่ใช้หมวดที่ตั้งเองใน Fitting Global (v1.627)
      SN_OFF.edgeAxPick=1  รหัสขอบใช้ความกว้าง หนา+3 ตรง ๆ ไม่หาขนาดที่มีใน AX (v1.626)
      SN_OFF.pullAxAuto=1  ไม่ค้นรหัส AX ของมือจับ 1F019-1-064 ให้เอง (v1.626)
      SN_OFF.pullFlush=1   มือจับ pull3D = flush ไม่วาดรูป 3D มีแค่ร่องในบาน (v1.625)
@@ -30929,6 +30934,13 @@ function edgeAxFill(code,w){ const c=String(code||""), ex=c.replace(/xx/gi,Strin
   const L=M.get(k); if(!L||!L.length||L.indexOf(+w)>=0) return ex; const up=L.find(v=>v>+w); return up?c.replace(/xx/gi,String(up)):ex; }
 /* รหัสขอบที่ได้ ไม่มีใน AX จริง ๆ (ตารางยังไม่มา = ยังไม่รู้ ไม่เตือน) */
 function edgeAxMissing(code,w){ if(snOff("edgeAxPick")) return false; const k=edgeAxKey(code); if(!k) return false; const M=edgeAxIndex(); if(!M) return false; const L=M.get(k); return !(L&&L.some(v=>v>=+w)); }
+/* ───────── v1.627: ขอบที่ต้องขอเปิดรหัส ─────────
+   ผู้ใช้ 3/11 08:26: “ไม่มี ก็แนะนำให้ไปขอโค้ด เหมือนที่ตอนส่งออกหา production เราก็มีเช็คกระจก โน่นนี่นั้น อยู่แล้วไง”
+   รับรหัสที่คิดแล้ว (81056376) · ตารางยังไม่มา หรือมีกว้างเท่า/สูงกว่าอยู่ = null · ลายเดียวกันมีกว้างอื่น = ปั้นชื่อขอรหัสจากชื่อกว้างใหญ่สุด เปลี่ยนเฉพาะตัวเลขหน้ากว้าง */
+function edgeAxMissInfo(code){ if(snOff("edgeAxPick")) return null; const q=/^([89]\d{2})(\d{2})(\d{3})(_.*)?$/.exec(String(code||"").trim()); if(!q) return null; const M=edgeAxIndex(); if(!M) return null;
+  const w=+q[2], L=M.get(q[1]+"xx"+q[3]); if(L&&L.some(v=>v>=w)) return null; let phrase="";
+  if(L&&L.length){ const top=L[L.length-1]; let nm=""; try{ nm=costFgName(q[1]+String(top)+q[3]); }catch(e){} if(nm){ const re=new RegExp("(หน้ากว้าง\\s*)"+top+"(?![0-9])"); if(re.test(nm)) phrase=nm.replace(re,"$1"+w); } }
+  return {pre:q[1]+"xx"+q[3],L:"",phrase,why:(L&&L.length)?("ลาย "+q[3]+" ใน AX กว้างสุด "+L[L.length-1]+" ไม่ถึง "+w+" — ต้องขอเปิดรหัส "+q[0]):("รหัส "+q[0]+" ลายนี้ยังไม่มีใน AX — ต้องขอเปิดรหัส")}; }
 function edgeOut(linkName,b){ if(!linkName||linkName==="No Edge")return ""; const code=resolveLink(linkName,b);
   if(!code||/no[_\s]?edge/i.test(code))return ""; return edgeAxFill(purchaseOf(code),edgeBandW(b)); }
 // แกะความหนาจากรหัสวัสดุ (เช่น MD19→19, K_PB_16→16) หรือใช้ Thickness ที่ตั้งใน Element Materials
@@ -42179,6 +42191,19 @@ function stkCsv(text){ let s=String(text||""); if(s.charCodeAt(0)===0xFEFF) s=s.
     if(ch==='"') q=true; else if(ch===","){ row.push(f); f=""; } else if(ch==="\n"||ch==="\r"){ if(ch==="\r"&&s[i+1]==="\n") i++; row.push(f); f=""; if(row.length>1||row[0]!=="") rows.push(row); row=[]; } else f+=ch; }
   if(f!==""||row.length){ row.push(f); rows.push(row); }
   const h=(rows.shift()||[]).map(x=>String(x).trim()); return rows.map(r=>{ const o={}; h.forEach((k,j)=>{ o[k]=r[j]==null?"":r[j]; }); return o; }); }
+/* ───────── v1.627: ราคา StarStock อยู่ในโปรแกรมเลย ─────────
+   ผู้ใช้ 3/11 08:24: “คุณก็ดึงราคาใน Starstock มาใส่ไว้ที่นี่สิครับ โปรแกรมเราแทน จากนั้น คุณก็จะหาทั้งมือจับ ขอบ หรืออื่นๆ ได้จากโปรแกรมตัวเอง”
+   เดิม: โหลดจาก Google Drive ต่อเมื่อเปิดหน้าราคา ทุกครั้งที่เปิดโปรแกรมต้องรอใหม่ · Fitting Global ไม่เห็นราคา
+   ตอนนี้: ชุดล่าสุดเก็บใน IndexedDB ของเครื่อง (stk:snap) เปิดโปรแกรมแล้วใช้ได้ทันที เน็ตล่มก็ยังมี · ตาราง Fitting Global มาแล้วตรวจกับ StarStock ต่อ เปลี่ยนค่อยโหลดใหม่
+     ไม่ลงไฟล์งาน ไม่เข้าลิงก์แชร์ และไม่เข้า app_settings (ราคาเป็นข้อมูลภายใน ตามข้อตกลงเดิมของ StarStock) · ปิด SN_OFF.fgPrice */
+function stkSnapPut(){ if(snOff("fgPrice")||!STK.map) return; try{ const rows=[]; STK.map.forEach(e=>rows.push([e.code,e.name,e.unit,e.pp,e.pc,e.ps,e.ep,e.eby||"",e.eat||""]));
+    Promise.resolve(sxlIdbPut("stk:snap",{u:STK.u,at:STK.at,rows})).catch(e=>console.warn("stkSnap:",e)); }catch(e){ console.warn("stkSnap:",e); } }
+let _stkWarmP=null;
+function stkWarm(){ if(snOff("costStock")||snOff("fgPrice")||STK.map) return Promise.resolve(); if(_stkWarmP) return _stkWarmP;
+  _stkWarmP=(async()=>{ try{ const s=await sxlIdbGet("stk:snap"); if(!s||!Array.isArray(s.rows)||!s.rows.length||STK.map) return;
+      const m=new Map(); s.rows.forEach(a=>{ const c=String(a[0]||"").trim(); if(c) m.set(c.toUpperCase(),{code:c,name:a[1]||"",unit:a[2]||"",pp:+a[3]||0,pc:+a[4]||0,ps:+a[5]||0,ep:+a[6]||0,eby:a[7]||"",eat:a[8]||""}); });
+      STK.map=m; STK.u=String(s.u||""); STK.at=+s.at||0; STK.ver++; STK.memo.clear(); try{ costSchedule(); }catch(e){} STK.subs.forEach(f=>{ try{ f(); }catch(e){} });
+    }catch(e){ console.warn("stkWarm:",e); } })(); return _stkWarmP; }
 async function stkLoad(force){
   if(snOff("costStock")) return null;
   if(STK.busy) return STK.busy;
@@ -42201,7 +42226,7 @@ async function stkLoad(force){
         m.set(k.toUpperCase(),{code:k,name:String(r.name||""),unit:String(r.unit||"").trim(),pp:num(r.price_purch),pc:num(r.price_cost),ps:num(r.price_sales),ep:0}); });
       Object.keys(ed).forEach(k=>{ const e=ed[k]; if(!e||e.price==null||e.price==="") return; const K=String(k).trim().toUpperCase();
         let x=m.get(K); if(!x){ x={code:String(k),name:"",unit:"",pp:0,pc:0,ps:0}; m.set(K,x); } x.ep=num(e.price); x.eby=String(e.by||""); x.eat=String(e.at||""); });
-      STK.map=m; STK.u=sig; STK.at=Date.now(); STK.err=""; STK.ver++; STK.memo.clear();
+      STK.map=m; STK.u=sig; STK.at=Date.now(); STK.err=""; STK.ver++; STK.memo.clear(); stkSnapPut();   /* v1.627 */
       return m; }
     catch(e){ STK.err="โหลดราคา AX ไม่ได้ — "+((e&&e.message)||e); console.warn("StarStock ราคา:",e); return STK.map; }
     finally{ STK.busy=null; try{ costSchedule(); }catch(e){} STK.subs.forEach(f=>{ try{ f(); }catch(e){} }); } })();
@@ -42252,14 +42277,22 @@ function stkTxt(r){ const e=r.e, u=e.unit||"หน่วย"; return [e.pp?("ซ
 /* ───────── v1.626: “ไม่มีใน AX” บอกเหตุผล ─────────
    ผู้ใช้ 3/11 08:17 (ภาพหน้า 💰 R118@2147mm#AL616MH “ไม่มีใน AX”): “ตัวมือจับ ได้ลองหารายการใน Ax หรือยังครับ”
    ตัวค้นรหัสมือจับฝัง (cutLookupEhp) รู้อยู่แล้วว่าติดตรงไหน แต่บอกแค่ในใบเบิก หน้า 💰 จึงดูเหมือนไม่ได้ค้น · ตอนนี้เอาเหตุผลชุดเดียวกันมาแสดง */
-function costAxWhy(kind,x){ if(kind!=="fit"||!x) return ""; try{ const ck=/^(.+)@(\d+(?:\.\d+)?)mm(?:#(.*))?$/.exec(String(x.key||""));
+function costAxPhrase(kind,x){ if(!x) return ""; try{ if(kind==="edge"){ const m=edgeAxMissInfo(x.key); return (m&&m.phrase)||""; } if(kind!=="fit") return "";
+    const ck=/^(.+)@(\d+(?:\.\d+)?)mm(?:#(.*))?$/.exec(String(x.key||"")); if(!ck) return ""; const m=_fgMiss["~N:"+ck[1]+"|"+cutLen(+ck[2])+(ck[3]?("|"+ck[3]):"")]; return (m&&m.phrase)||""; }catch(e){ return ""; } }   /* v1.627 */
+function costAxWhy(kind,x){ if(!x) return ""; if(kind==="edge"){ try{ const _m=edgeAxMissInfo(x.key); return _m?String(_m.why):""; }catch(e){ return ""; } } if(kind!=="fit") return ""; try{ const ck=/^(.+)@(\d+(?:\.\d+)?)mm(?:#(.*))?$/.exec(String(x.key||""));
     if(ck){ const m=_fgMiss["~N:"+ck[1]+"|"+cutLen(+ck[2])+(ck[3]?("|"+ck[3]):"")]; return (m&&m.why)?String(m.why):""; }
     const h=_pullAxHits[String(x.code||"").trim()]; if(!h) return "";
     return h.rows.length?("ค้นชื่อ “"+h.word+"” ใน AX เจอ "+h.rows.length+" รายการ เลือกเองที่ Element → Purchase Item ID: "+h.rows.slice(0,3).join(" · ")+(h.rows.length>3?" …":"")):("ค้นชื่อ “"+h.words.join("” “")+"” ใน Fitting Global แล้วไม่เจอ");
   }catch(e){ return ""; } }
 function stkCell(kind,x){
   if(!STK.map) return '<span style="color:var(--ink-dim)">'+(STK.busy?"…":"—")+'</span>';
-  const r=stkFor(kind,x.key,x.code); if(!r){ const _why=costAxWhy(kind,x); return '<span style="color:var(--ink-dim)" title="ไม่พบรหัสนี้ใน items/info.csv ของ StarStock">ไม่มีใน AX</span>'+(_why?('<div style="font-size:10.5px;line-height:1.35;color:#e58a24;max-width:260px;white-space:normal">'+escapeHtml(_why)+'</div>'):''); }   /* v1.626: บอกว่าค้นแล้วติดตรงไหน */
+  const r=stkFor(kind,x.key,x.code);
+  if(!r){ /* v1.626: บอกว่าค้นแล้วติดตรงไหน · v1.627: แยกมีรหัสแต่ไม่มีราคา + ชื่อไว้ขอโค้ด */
+    const _has=[String(x.key||"").replace(/@m$/,""),String(x.code||"")].some(c=>{ try{ return !!(c&&costFgName(c)); }catch(e){ return false; } });
+    if(_has) return '<span style="color:var(--ink-dim)" title="รหัสนี้มีใน Fitting Global แต่ไม่มีแถวราคาใน items/info.csv ของ StarStock">มีใน AX · ยังไม่มีราคา</span>';
+    const _why=costAxWhy(kind,x), _ph=costAxPhrase(kind,x);
+    return '<span style="color:var(--ink-dim)" title="ไม่พบรหัสนี้ใน items/info.csv ของ StarStock">ไม่มีใน AX</span>'+((_why||_ph)?('<div style="font-size:10.5px;line-height:1.35;color:#e58a24;max-width:260px;white-space:normal">'+escapeHtml(_why)
+      +(_ph?(' <button type="button" class="ibtn" style="padding:0 6px;font-size:10.5px" title="'+escapeHtml(_ph)+'" data-t="'+escapeHtml(_ph)+'" onclick="copyText(this.getAttribute(\'data-t\'))">📋 คัดลอกชื่อขอโค้ด</button>'):'')+'</div>'):''); }
   const e=r.e, u=escapeHtml(e.unit||"หน่วย"), own=costSrc(kind,x.key,x.code), use=own==="stk";
   const line1=[e.pp?('ซื้อ <b>'+stkR(e.pp)+'</b>'):'', e.pc?('ทุน '+stkR(e.pc)):'', e.ep?('<span title="ตั้งเองในหน้า STOCK'+(e.eby?(' โดย '+escapeHtml(e.eby)):'')+'">StarStock <b>'+stkR(e.ep)+'</b></span>'):''].filter(Boolean).join(' · ');
   const line2=r.p>0?('→ <b>'+stkR(r.p)+'</b>/'+escapeHtml(COST_TABS[kind].u.replace(/^ราคา\//,""))+(r.note?(' <span style="color:var(--ink-dim)">'+escapeHtml(r.note)+'</span>'):'')):('<span style="color:#e58a24">'+escapeHtml(r.why||"")+'</span>');
@@ -62902,7 +62935,7 @@ function cutMissReport(rows){
   (list||[]).forEach(f=>{
     if(!f||f._fg) return;
     let ms=null;
-    try{ if(+f._cut>0) ms=cutMissOf(f); else if(f._gcut) ms=glassMissOf(f); }catch(e){}
+    try{ if(+f._cut>0) ms=cutMissOf(f); else if(f._gcut) ms=glassMissOf(f); else if(f.grp==="edge") ms=edgeAxMissInfo(f.art); }catch(e){}   /* v1.627: + ขอบ */
     if(!ms) return;
     const phrase=String(ms.phrase||"").trim();
     const key=phrase||((ms.pre||f.art||"")+"|"+(ms.L||""));
@@ -63232,10 +63265,27 @@ function sendDiag(){
       +"\nตาราง: "+SXL.cfg.tables.map(T=>{ const S=SXL.s[T.t]||{};
         return T.t+"="+(S.ready?"✓":((T.load===false||T.lazy)?"เขียนอย่างเดียว":"✗"))+(S.nW?(" +"+S.nW):"")+(S.err?(" ["+S.err+"]"):"")+(S.werr?(" ["+S.werr+"]"):""); }).join(" · ");
   }catch(e){ return "diag: "+e.message; } }
+/* ───────── v1.627: ก่อนส่ง Production บอกของที่ยังไม่มีรหัสใน AX ─────────
+   ผู้ใช้ 3/11 08:26 (ภาพ R118 AL616MH มีตัด 428 · 1398 · 1951 · 1954 · 2178 ไม่มี 2147): “ไม่มี ก็แนะนำให้ไปขอโค้ด เหมือนที่ตอนส่งออกหา production เราก็มีเช็คกระจก โน่นนี่นั้น อยู่แล้วไง”
+   เดิม: ขั้นส่งค้นรหัสท่อน/กระจก แต่ไม่เจอก็ส่งเงียบ ๆ รายการอยู่ลึกใน 📋 รายการ BOM ต้องเปิดดูเอง
+   ตอนนี้: กดส่ง → ค้นรหัสให้ครบ (รอไม่เกิน 15 วิ) → มีของไม่มีรหัส = ถามก่อน พร้อมชื่อไว้ขอเปิดรหัสและปุ่มคัดลอก · เลือกส่งต่อไปก่อนได้ ไม่ห้าม เพราะบางงานต้องส่งก่อนแล้วค่อยตามรหัส
+     ใช้รายการชุดเดียวกับ 📋 รายการ BOM (cutMissReport) · ปิด SN_OFF.sendMissCode */
+let _sendAsking=false;
+async function sendMissAsk(){ if(snOff("sendMissCode")) return true; if(_sendAsking) return false; _sendAsking=true;
+  try{ try{ await Promise.race([Promise.resolve(cutLookupReady()).catch(()=>{}),new Promise(r=>setTimeout(r,15000))]); }catch(e){}
+    let ms=[]; try{ ms=cutMissReport(); }catch(e){ console.error("sendMiss:",e); return true; } if(!ms.length) return true;
+    const E=x=>escapeHtml(String(x==null?"":x)), all=ms.map(m=>m.phrase||((m.name||m.art)+" — "+m.why)).join("\n");
+    const html='<div style="font-size:12.5px;margin-bottom:6px">ส่งได้ แต่รหัสพวกนี้สั่งของใน AX ไม่ได้ ควรขอเปิดรหัสก่อน แล้วค่อยส่งใหม่</div>'
+      +'<div style="max-height:44vh;overflow:auto;font-size:12px;line-height:1.6;border:1px solid var(--line);border-radius:8px;padding:6px 8px">'
+      +ms.map(m=>'<div style="padding:3px 0;border-bottom:1px solid var(--line)"><b>'+E(m.name||m.art)+'</b>'+(m.count?(' ×'+(Math.round(m.count*100)/100)):'')+'<br>'+(m.phrase?('<span style="font-family:var(--mono)">'+E(m.phrase)+'</span>'):('<span style="color:#b26a00">'+E(m.why)+'</span>'))+'</div>').join("")+'</div>'
+      +'<button type="button" class="ibtn" style="margin-top:6px;padding:3px 10px" data-t="'+E(all)+'" onclick="copyText(this.getAttribute(\'data-t\'))">📋 คัดลอกทั้งหมด</button>';
+    return !!(await dialog({title:"ยังไม่มีรหัสใน AX "+ms.length+" รายการ",html,ok:"ส่งต่อไปก่อน"}));
+  }finally{ _sendAsking=false; } }
 async function sendSupabase(){
   if(!state.boards.length){toast("ยังไม่มีชิ้นงาน");return;}
   if(snOff("sendBox")) return sendSupabaseOld();
   if(_sendBusy){ toast("กำลังส่งอยู่ — รอรอบนี้จบก่อน"); return _sendBusy; }
+  if(!await sendMissAsk()) return;   /* v1.627 */
   _sendBusy=sendSupabaseRun();
   try{ return await _sendBusy; }finally{ _sendBusy=null; } }
 /* ───────── v1.346: งานเบื้องหลังหลังกล่องส่ง — ป้ายมุมจอบอกว่ายังทำอะไรอยู่ + เตือนก่อนปิดหน้า ─────────
@@ -65875,6 +65925,8 @@ var SXL_FG_KNOWN=/^(itemid|itemnumber|item_number|displayproductnumber|itemname|
 function sxlFgCatKey(o){var ks=Object.keys(o||{}),a=ks.filter(function(k){return /หมวด|categor|^(main_?)?(item_?)?group|^cat(_|id|name|code)?$/i.test(k)})[0];if(a)return a;
  var u=ks.filter(function(k){return !SXL_FG_KNOWN.test(k)});return u.length===1?u[0]:''}
 function sxlFgCat(r){if(!r)return'';var c=r.category;if(c==null||c==='')c=r['หมวดหลัก']||r['หมวด']||r.main_category||r.item_group||'';return String(c==null?'':c).trim()}
+function sxlFgPrice(r){var e=null;try{if(!snOff('fgPrice')&&typeof STK!=='undefined'&&STK.map)e=STK.map.get(String(r&&r.item_number||'').trim().toUpperCase())}catch(x){}if(!e)return{v:0,t:''};   /* v1.627: ราคาที่ใช้ตามกติกา StarStock — ตั้งเอง → ซื้อ → ทุน */
+ return{v:e.ep>0?e.ep:e.pp>0?e.pp:e.pc>0?e.pc:0,t:[e.ep?('ตั้งเองใน StarStock '+stkR(e.ep)):'',e.pp?('ซื้อ '+stkR(e.pp)):'',e.pc?('ทุน '+stkR(e.pc)):''].filter(Boolean).join(' · ')+(e.unit?(' / '+e.unit):'')}}
 async function sxlOdooFGLive(manual){   // v1.424: ดึงสดจาก AX ผ่านทะเบียน API ของ Odoo (ระบบ ax_star_nexus · endpoint fitting_global)
  if(!sxlOdooOn())return false;var t='fitting_global',T=sxlCfg(t),S=SXL.s[t];
  try{
@@ -66125,8 +66177,20 @@ function sxlFgView(){
  var all=S.rows.slice().sort(function(a,b){var x=String(a.item_number||''),y=String(b.item_number||'');return x<y?-1:x>y?1:0});
  var dead=function(r){return /^\s*\(?ยกเลิก\)?/.test(String(r.product_name||''))};
  var units={};all.forEach(function(r){var u=String(r.unit==null?'':r.unit);units[u]=(units[u]||0)+1});
- var cats={};all.forEach(function(r){var c=sxlFgCat(r);cats[c]=(cats[c]||0)+1});var catN=Object.keys(cats).filter(Boolean).length;   /* v1.607 */
  var lcC=all.map(function(r){return String(r.item_number||'').toLowerCase()}),lcN=all.map(function(r){return String(r.product_name||'').toLowerCase()});
+ /* ───────── v1.627: หมวดตั้งเองในโปรแกรม ─────────
+    ผู้ใช้ 3/11 08:24–08:29: “ผมจะเพิ่มหมวด ตั้งหมวดยังไง ในโปรแกรมนี้ · ผมจะตั้งเองไว้ใช้ในโปรแกรม ใน AX ไม่มีหมวดครับ”
+    เดิม (v1.607): ช่องหมวดรอคอลัมน์จาก AX ซึ่งไม่มี จึงปิดไว้ตลอด
+    ตอนนี้: เก็บเป็นเงื่อนไขใน settings.fgCatRules (ไม่เขียนลง AX) {c:ชื่อหมวด, fc:กรองรหัส, fn:กรองชื่อ} หรือ {c, x:รหัสตรงตัว}
+      ใช้เงื่อนไขแทนการจำทีละรหัส เพราะรายการมีแสนกว่าแถว และรหัสใหม่ที่ตรงเงื่อนไขจะเข้าหมวดเอง · เงื่อนไขหลังทับเงื่อนไขก่อน · ตั้งรายตัวชนะเสมอ · ถ้าวันหน้า AX ส่งคอลัมน์หมวดมา ใช้เป็นค่าตั้งต้นได้ทันที
+      บันทึกด้วย catSaveSettings ทุกเครื่องเห็นเหมือนกัน · ปิด SN_OFF.fgCatRule */
+ var cats={},catN=0,catA=[],ruleN=[];
+ var rulesOf=function(){return (!snOff('fgCatRule')&&Array.isArray(settings.fgCatRules))?settings.fgCatRules:[]};
+ var reCat=function(){catA=all.map(sxlFgCat);var R=rulesOf(),own=[];ruleN=R.map(function(){return 0});
+  [0,1].forEach(function(pass){R.forEach(function(q,k){if((pass===1)!==!!q.x)return;var x=String(q.x||''),fC=x?null:sxlFgMatcher(q.fc,true),fN=x?null:sxlFgMatcher(q.fn);if(!x&&!fC&&!fN)return;
+   for(var i=0;i<all.length;i++){if(x?String(all[i].item_number||'')===x:((!fC||fC(lcC[i]))&&(!fN||fN(lcN[i])))){catA[i]=String(q.c||'');own[i]=k}}})});own.forEach(function(k){ruleN[k]++});
+  cats={};catA.forEach(function(c){cats[c]=(cats[c]||0)+1});catN=Object.keys(cats).filter(Boolean).length};
+ reCat();
  var fs='width:100%;box-sizing:border-box;padding:5px 7px;border:1px solid #93a9b8;border-radius:6px;font:inherit;font-size:12.5px;font-weight:400;color:inherit;background:#fff',ft='background:#eef3f6;padding:0 10px 7px;border-bottom:1px solid #8886;text-align:left';
  var bs='padding:7px 12px;border:1px solid #93a9b8;border-radius:6px;cursor:pointer;background:transparent;color:inherit;font:inherit';
  var box=document.createElement('div');box.id='sxlFgView';
@@ -66135,37 +66199,68 @@ function sxlFgView(){
   +'<div style="display:flex;align-items:center;gap:10px"><h2 style="margin:0;font-size:19px;flex:1">Fitting Global · รายการที่โปรแกรมใช้อยู่</h2><button id="sxlFgX" style="'+bs+'">ปิด</button></div>'
   +'<p id="sxlFgSrc" style="margin:4px 0 10px;color:#506577;font-size:13px"></p>'
   +'<div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center"><input id="sxlFgQ" type="search" placeholder="ค้นทุกช่อง — เว้นวรรคคั่นหลายคำ" style="flex:1;min-width:220px;padding:8px 10px;border:1px solid #93a9b8;border-radius:6px;font:inherit;color:inherit;background:#fff">'
-  +'<label style="white-space:nowrap;cursor:pointer"><input type="checkbox" id="sxlFgC"> ซ่อนที่ยกเลิก</label><button id="sxlFgClr" style="'+bs+'">ล้างตัวกรอง</button></div>'   /* v1.607: ช่องหน่วยย้ายลงแถวกรอง */
+  +'<label style="white-space:nowrap;cursor:pointer"><input type="checkbox" id="sxlFgC"> ซ่อนที่ยกเลิก</label><button id="sxlFgClr" style="'+bs+'">ล้างตัวกรอง</button><button id="sxlFgStk" style="'+bs+'" title="ดึงราคาล่าสุดจาก StarStock">⟳ ราคา StarStock</button></div>'   /* v1.607: ช่องหน่วยย้ายลงแถวกรอง */
+  +(snOff('fgCatRule')?'':('<div style="display:flex;gap:6px;flex-wrap:wrap;align-items:center;margin-top:8px;font-size:13px"><b style="font-weight:600">🏷 ตั้งหมวด</b><input id="sxlFgCatIn" list="sxlFgCatDl" placeholder="ชื่อหมวด เช่น ขอบ · มือจับ" style="width:190px;padding:5px 8px;border:1px solid #93a9b8;border-radius:6px;font:inherit;color:inherit;background:#fff"><datalist id="sxlFgCatDl"></datalist>'
+   +'<button id="sxlFgCatSet" style="'+bs+';padding:5px 12px;background:#1f3a5f;color:#fff;border-color:transparent" title="ใช้ช่องกรองรหัสและกรองชื่อในตารางเป็นเงื่อนไข รายการใหม่ที่ตรงจะเข้าหมวดนี้เอง">ตั้งให้รายการที่กรองรหัส/ชื่ออยู่</button><button id="sxlFgCatMg" style="'+bs+';padding:5px 12px"></button><span id="sxlFgCatMsg" style="color:#506577;font-size:12.5px">กรองรหัสหรือชื่อในตารางก่อน · กดช่องหมวดของแถว = ตั้งรายตัว</span></div>'
+   +'<div id="sxlFgCatList" style="display:none;max-height:150px;overflow:auto;margin-top:6px;border:1px solid #8884;border-radius:8px;padding:4px 8px;font-size:12.5px"></div>'))
   +'<p id="sxlFgN" role="status" style="margin:8px 0 6px;font-size:13px;color:#506577"></p>'
   +'<div style="flex:1;overflow:auto;border:1px solid #8884;border-radius:8px"><table style="width:100%;border-collapse:collapse;font-size:13px">'
-  +'<thead style="position:sticky;top:0;z-index:1;background:#eef3f6"><tr>'+['รหัส (item_number)','ชื่อ (product_name)','หน่วย','หมวด'].map(function(h){return '<th style="background:#eef3f6;padding:7px 10px 4px;text-align:left;font-weight:600;white-space:nowrap">'+h+'</th>'}).join('')+'</tr>'   /* v1.607: หมวด แทน RecId + แถวกรอง */
+  +'<thead style="position:sticky;top:0;z-index:1;background:#eef3f6"><tr>'+['รหัส (item_number)','ชื่อ (product_name)','หน่วย','ราคา','หมวด'].map(function(h){return '<th style="background:#eef3f6;padding:7px 10px 4px;text-align:left;font-weight:600;white-space:nowrap">'+h+'</th>'}).join('')+'</tr>'   /* v1.607: หมวด แทน RecId + แถวกรอง */
   +'<tr><th style="'+ft+';width:170px"><input id="sxlFgFC" type="search" placeholder="กรองรหัส" title="เว้นวรรค = ต้องมีครบทุกคำ · -คำ = ไม่เอา · 34WAD* = ขึ้นต้นด้วย · *187 = ลงท้ายด้วย" style="'+fs+'"></th>'
   +'<th style="'+ft+'"><input id="sxlFgFN" type="search" placeholder="กรองชื่อ — เช่น LM126 AL622MH -R1mm" title="เว้นวรรค = ต้องมีครบทุกคำ · -คำ = ไม่เอาคำนั้น" style="'+fs+'"></th>'
   +'<th style="'+ft+';width:118px"><select id="sxlFgU" style="'+fs+'"><option value="*">ทุกหน่วย</option>'+Object.keys(units).sort().map(function(u){return '<option value="'+esc2(u)+'">'+esc2(u||'(ว่าง)')+' · '+units[u].toLocaleString()+'</option>'}).join('')+'</select></th>'
-  +'<th style="'+ft+';width:190px"><select id="sxlFgCt"'+(catN?'':' disabled title="รอคอลัมน์หมวดจาก AX — มีข้อมูลแล้วช่องนี้เปิดเอง"')+' style="'+fs+'"><option value="*">'+(catN?'ทุกหมวด':'ยังไม่มีหมวด')+'</option>'+Object.keys(cats).sort(function(a,b){return a.localeCompare(b,'th',{numeric:true})}).map(function(c){return '<option value="'+esc2(c)+'">'+esc2(c||'(ไม่มีหมวด)')+' · '+cats[c].toLocaleString()+'</option>'}).join('')+'</select></th></tr></thead>'
+  +'<th style="'+ft+';width:104px"><select id="sxlFgP" title="กรองตามราคาจาก StarStock" style="'+fs+'"><option value="*">ทุกราคา</option><option value="1">มีราคา</option><option value="0">ไม่มีราคา</option></select></th>'   /* v1.627 */
+  +'<th style="'+ft+';width:170px"><select id="sxlFgCt" style="'+fs+'"></select></th></tr></thead>'
   +'<tbody id="sxlFgB"></tbody></table></div></div>';
  document.body.append(box);
- var $q=box.querySelector('#sxlFgQ'),$u=box.querySelector('#sxlFgU'),$c=box.querySelector('#sxlFgC'),$b=box.querySelector('#sxlFgB'),$n=box.querySelector('#sxlFgN'),$fc=box.querySelector('#sxlFgFC'),$fn=box.querySelector('#sxlFgFN'),$ct=box.querySelector('#sxlFgCt');
- box.querySelector('#sxlFgSrc').textContent=(SXL_SRC[S.src]||'ไฟล์')+' · '+S.name+' · ได้ข้อมูลเมื่อ '+new Date(S.mod).toLocaleString('th-TH')+' · ทั้งหมด '+all.length.toLocaleString()+' รายการ (ชื่อขึ้นต้น ยกเลิก '+all.filter(dead).length.toLocaleString()+')'+(catN?(' · '+catN.toLocaleString()+' หมวด'):' · ยังไม่มีคอลัมน์หมวดจากต้นทาง');
+ var $q=box.querySelector('#sxlFgQ'),$u=box.querySelector('#sxlFgU'),$c=box.querySelector('#sxlFgC'),$b=box.querySelector('#sxlFgB'),$n=box.querySelector('#sxlFgN'),$fc=box.querySelector('#sxlFgFC'),$fn=box.querySelector('#sxlFgFN'),$ct=box.querySelector('#sxlFgCt'),$p=box.querySelector('#sxlFgP');
+ var nDead=all.filter(dead).length,paintSrc=function(){box.querySelector('#sxlFgSrc').textContent=(SXL_SRC[S.src]||'ไฟล์')+' · '+S.name+' · ได้ข้อมูลเมื่อ '+new Date(S.mod).toLocaleString('th-TH')+' · ทั้งหมด '+all.length.toLocaleString()+' รายการ (ชื่อขึ้นต้น ยกเลิก '+nDead.toLocaleString()+')'+(catN?(' · '+catN.toLocaleString()+' หมวด'):' · ยังไม่ได้ตั้งหมวด')
+   +(snOff('fgPrice')?'':(' · '+(STK.busy?'กำลังโหลดราคา StarStock…':STK.map?('ราคา StarStock ถึง '+new Date(STK.at).toLocaleString('th-TH')+(STK.err?' (โหลดใหม่ไม่ได้ ใช้ชุดเดิม)':'')):(STK.err?('ราคา: '+STK.err):'ยังไม่มีราคา StarStock'))))};
+ paintSrc();
  var td='padding:6px 10px;border-bottom:1px solid #8883;vertical-align:top';
  var draw=function(){
-  var fQ=sxlFgMatcher($q.value),fC=sxlFgMatcher($fc.value,true),fN=sxlFgMatcher($fn.value),ct=$ct.value,u=$u.value,hide=$c.checked,out=[],n=0;   /* v1.607 */
+  var fQ=sxlFgMatcher($q.value),fC=sxlFgMatcher($fc.value,true),fN=sxlFgMatcher($fn.value),ct=$ct.value,u=$u.value,hide=$c.checked,pf=$p.value,out=[],n=0;   /* v1.607 · v1.627: + ราคา */
   for(var i=0;i<all.length;i++){var r=all[i];
    if(u!=='*'&&String(r.unit==null?'':r.unit)!==u)continue;
-   if(ct!=='*'&&sxlFgCat(r)!==ct)continue;
+   if(ct!=='*'&&catA[i]!==ct)continue;
    if(hide&&dead(r))continue;
    if(fC&&!fC(lcC[i]))continue;
    if(fN&&!fN(lcN[i]))continue;
-   if(fQ&&!fQ(lcC[i]+' '+lcN[i]+' '+sxlFgCat(r).toLowerCase()))continue;
-   n++;if(out.length<SXL_FG_LIM)out.push(r)}
-  $b.innerHTML=out.map(function(r){return '<tr'+(dead(r)?' style="color:#8a97a3"':'')+'><td style="'+td+';font-family:ui-monospace,Consolas,monospace;white-space:nowrap">'+esc2(r.item_number)+'</td><td style="'+td+'">'+esc2(r.product_name)+'</td><td style="'+td+';white-space:nowrap">'+esc2(r.unit)+'</td><td style="'+td+'">'+(sxlFgCat(r)?esc2(sxlFgCat(r)):'<span style="color:#9aa7b3">—</span>')+'</td></tr>'}).join('')
-   ||'<tr><td colspan="4" style="padding:24px;text-align:center;color:#506577">ไม่พบรายการที่ตรง</td></tr>';
+   if(fQ&&!fQ(lcC[i]+' '+lcN[i]+' '+catA[i].toLowerCase()))continue;
+   if(pf!=='*'&&((sxlFgPrice(r).v>0)!==(pf==='1')))continue;
+   n++;if(out.length<SXL_FG_LIM)out.push(i)}
+  $b.innerHTML=out.map(function(i){var r=all[i],pv=sxlFgPrice(r);return '<tr'+(dead(r)?' style="color:#8a97a3"':'')+'><td style="'+td+';font-family:ui-monospace,Consolas,monospace;white-space:nowrap">'+esc2(r.item_number)+'</td><td style="'+td+'">'+esc2(r.product_name)+'</td><td style="'+td+';white-space:nowrap">'+esc2(r.unit)+'</td><td style="'+td+';white-space:nowrap;text-align:right" title="'+esc2(pv.t)+'">'+(pv.v>0?esc2(stkR(pv.v)):'<span style="color:#9aa7b3">—</span>')+'</td><td'+(snOff('fgCatRule')?'':' data-ci="'+i+'" title="กดเพื่อตั้งหมวดรายการนี้"')+' style="'+td+(snOff('fgCatRule')?'':';cursor:pointer')+'">'+(catA[i]?esc2(catA[i]):'<span style="color:#9aa7b3">—</span>')+'</td></tr>'}).join('')
+   ||'<tr><td colspan="5" style="padding:24px;text-align:center;color:#506577">ไม่พบรายการที่ตรง</td></tr>';
   $n.textContent='ตรง '+n.toLocaleString()+' รายการ'+(n>out.length?' · แสดง '+out.length.toLocaleString()+' แถวแรก — พิมพ์คำค้นเพิ่มเพื่อให้แคบลง':'');
   $b.parentNode.parentNode.scrollTop=0};
- var tm=null;$q.oninput=$fc.oninput=$fn.oninput=function(){clearTimeout(tm);tm=setTimeout(draw,150)};$u.onchange=draw;$c.onchange=draw;$ct.onchange=draw;   /* v1.607 */
- box.querySelector('#sxlFgClr').onclick=function(){$q.value=$fc.value=$fn.value='';$u.value=$ct.value='*';$c.checked=false;draw();$q.focus()};
- var close=function(){document.removeEventListener('keydown',key,true);box.remove()};
- var key=function(e){if(e.key==='Escape'){e.stopPropagation();close()}};
+ var tm=null;$q.oninput=$fc.oninput=$fn.oninput=function(){clearTimeout(tm);tm=setTimeout(draw,150)};$u.onchange=draw;$c.onchange=draw;$ct.onchange=draw;$p.onchange=draw;   /* v1.607 · v1.627 */
+ box.querySelector('#sxlFgClr').onclick=function(){$q.value=$fc.value=$fn.value='';$u.value=$ct.value=$p.value='*';$c.checked=false;draw();$q.focus()};
+ /* v1.627: ช่องเลือกหมวด · รายชื่อให้เลือก · รายการเงื่อนไข */
+ var $cin=box.querySelector('#sxlFgCatIn'),$cdl=box.querySelector('#sxlFgCatDl'),$cmg=box.querySelector('#sxlFgCatMg'),$clist=box.querySelector('#sxlFgCatList'),$cmsg=box.querySelector('#sxlFgCatMsg');
+ var paintCats=function(){var v=$ct.value,keys=Object.keys(cats).filter(Boolean).sort(function(a,b){return a.localeCompare(b,'th',{numeric:true})});
+  $ct.innerHTML='<option value="*">'+(catN?'ทุกหมวด':'ยังไม่ได้ตั้งหมวด')+'</option>'+(catN&&cats['']?('<option value="">(ไม่มีหมวด) · '+cats[''].toLocaleString()+'</option>'):'')+keys.map(function(c){return '<option value="'+esc2(c)+'">'+esc2(c)+' · '+cats[c].toLocaleString()+'</option>'}).join('');
+  $ct.value=(v==null||v===''&&!cats[''])?'*':v;if($ct.selectedIndex<0)$ct.value='*';
+  if(!$cmg)return;var R=rulesOf();$cdl.innerHTML=keys.map(function(c){return '<option value="'+esc2(c)+'"></option>'}).join('');$cmg.textContent='จัดการหมวด ('+R.length+')';
+  $clist.innerHTML=R.length?R.map(function(q,k){return '<div style="display:flex;gap:8px;align-items:center;padding:2px 0;border-bottom:1px solid #8882"><b style="min-width:110px">'+esc2(q.c)+'</b><span style="flex:1;color:#506577;font-family:ui-monospace,Consolas,monospace;font-size:12px">'+(q.x?('รหัส = '+esc2(q.x)):[q.fc?('รหัส: '+esc2(q.fc)):'',q.fn?('ชื่อ: '+esc2(q.fn)):''].filter(Boolean).join(' · '))+'</span><span style="white-space:nowrap">'+(ruleN[k]||0).toLocaleString()+' รายการ</span><button data-rd="'+k+'" style="'+bs+';padding:1px 8px;font-size:12px">ลบ</button></div>'}).join(''):'<div style="color:#506577;padding:4px 0">ยังไม่ได้ตั้งหมวด</div>'};
+ var catChanged=function(){var sc=$b.parentNode.parentNode.scrollTop;reCat();paintCats();paintSrc();draw();$b.parentNode.parentNode.scrollTop=sc;try{Promise.resolve(catSaveSettings()).catch(function(e){console.error('fgCat:',e)})}catch(e){console.error('fgCat:',e)}};
+ if($cmg){
+  box.querySelector('#sxlFgCatSet').onclick=function(){var c=$cin.value.trim(),fc=$fc.value.trim(),fn=$fn.value.trim();
+   if(!c){$cmsg.textContent='พิมพ์ชื่อหมวดก่อน';$cin.focus();return}
+   if(!fc&&!fn){$cmsg.textContent='กรองรหัสหรือกรองชื่อในตารางก่อน แล้วค่อยกดตั้ง';$fn.focus();return}
+   var R=rulesOf().slice(),same=R.filter(function(q){return !q.x&&String(q.fc||'')===fc&&String(q.fn||'')===fn})[0];if(same)same.c=c;else R.push({c:c,fc:fc,fn:fn});settings.fgCatRules=R;catChanged();
+   var k=R.indexOf(same||R[R.length-1]);$cmsg.textContent='ตั้งหมวด “'+c+'” แล้ว · '+(ruleN[k]||0).toLocaleString()+' รายการ';};
+  $cmg.onclick=function(){$clist.style.display=$clist.style.display==='none'?'block':'none'};
+  $clist.onclick=function(e){var b=e.target.closest&&e.target.closest('[data-rd]');if(!b)return;var R=rulesOf().slice();R.splice(+b.getAttribute('data-rd'),1);settings.fgCatRules=R;catChanged()};
+  $b.onclick=function(e){var cell=e.target.closest&&e.target.closest('[data-ci]');if(!cell||cell.querySelector('input'))return;var i=+cell.getAttribute('data-ci'),code=String(all[i].item_number||''),inp=document.createElement('input'),done=false;
+   inp.setAttribute('list','sxlFgCatDl');inp.value=catA[i]||'';inp.placeholder='ชื่อหมวด';inp.style.cssText=fs;cell.innerHTML='';cell.appendChild(inp);inp.focus();inp.select();
+   var fin=function(save){if(done)return;done=true;if(!save){var sc=$b.parentNode.parentNode.scrollTop;draw();$b.parentNode.parentNode.scrollTop=sc;return}var c=inp.value.trim(),R=rulesOf().filter(function(q){return String(q.x||'')!==code});if(c)R.push({c:c,x:code});settings.fgCatRules=R;catChanged()};
+   inp.onkeydown=function(ev){if(ev.key==='Enter'){ev.preventDefault();fin(true)}else if(ev.key==='Escape'){ev.preventDefault();fin(false)}};inp.onblur=function(){fin(true)}}}
+ paintCats();
+ /* v1.627: ราคามาทีหลัง = วาดใหม่เอง */
+ var onStk=function(){if(!box.isConnected)return;var sc=$b.parentNode.parentNode.scrollTop;paintSrc();draw();$b.parentNode.parentNode.scrollTop=sc};
+ try{STK.subs.add(onStk);box.querySelector('#sxlFgStk').onclick=function(){var p=stkLoad(true);paintSrc();if(p&&p.then)p.then(onStk,onStk)};if(snOff('fgPrice'))box.querySelector('#sxlFgStk').style.display='none';else stkWarm().then(function(){return stkLoad(false)}).catch(function(){})}catch(e){console.warn(e)}
+ var close=function(){document.removeEventListener('keydown',key,true);try{STK.subs.delete(onStk)}catch(e){}box.remove()};
+ var key=function(e){if(e.key==='Escape'){if(e.target&&e.target.getAttribute&&e.target.getAttribute('list')==='sxlFgCatDl'&&e.target.id!=='sxlFgCatIn')return;e.stopPropagation();close()}};
  document.addEventListener('keydown',key,true);
  box.querySelector('#sxlFgX').onclick=close;box.onclick=function(e){if(e.target===box)close()};
  draw();$q.focus()}
