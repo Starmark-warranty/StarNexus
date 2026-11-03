@@ -3283,7 +3283,7 @@ body[data-theme="dark"] .splash-dots span{background:rgba(255,255,255,.25)}
    ===================================================================== */
 /* ---- APP_META: แหล่งความจริงเดียวของเวอร์ชัน (ดูได้จาก console / คลิกชื่อแอป) ---- */
 const APP_META={
-  name:"StarNexus", version:"1.646", build:"2026-11-03/quote-names",
+  name:"StarNexus", version:"1.647", build:"2026-11-03/door-color-desc",
   file:"StarNexus.html", basedOn:"Furnitech_V3.html (v3.11)",
   /* ───────── เริ่มนับเวอร์ชันใหม่ที่ 1.001 (21/08/2026) ─────────
      ของเดิมนับมาถึง 42.1 แล้ววิ่งเป็นทศนิยมสองชั้นซึ่งอ่านลำดับยาก
@@ -3291,6 +3291,7 @@ const APP_META={
      ประวัติเก่าเก็บไว้ทั้งหมดตามเลขเดิม ไม่ไล่เขียนใหม่ เพราะเลขในนั้นถูกอ้างถึงไปแล้ว
      รายการที่อยู่ใต้ 1.001 ลงไปจึงเป็นเลขชุดเก่า อ่านต่อกันได้ตามวันที่ */
   changelog:[
+    ["1.647","2026-11-03","FIX การ์ดสีหน้าบานใช้คำอธิบายผิดแถว (ผู้ใช้ 15:56 ภาพ N00S0018N สีโครง Starmark_TOA PUM1 HG56 · สีหน้าบาน HG56 · Surface StarmarkWhite Emboss: รูปแรกรายละเอียดถูกครับ รูป 2 เอามาจากไหน) — การ์ดบานอ่านคำอธิบายจากแถวผิว (Surfaces) แก้ให้อ่านคำอธิบายของรหัสสีจากแท็บสี/วัสดุก่อน และรหัสเดียวกับการ์ดสีโครงใช้ข้อความเดียวกัน"],
     ["1.646","2026-11-03","FIX ชื่อในใบเสนอราคา (ผู้ใช้ 15:48 ภาพแถว TNF066 ชื่อ ฟิลเลอร์ · MWA114 ชื่อเป็นรหัส: แก้ชื่อที่ออกได้ไหมครับ เป็น กล่องโค้ง ครับ TNF066 · MWA021 ก็คือ ตู้เสื้อผ้า 2 บานเปิด · MWA114 ตู้ช่องโล่งครับ) — กล่องโค้งทุกรหัสชื่อ กล่องโค้ง · ตั้งชื่อตั้งต้น MWA021 MWA114 ขึ้นทั้งใบเสนอราคาและการ์ดแคตตาล็อก · ชื่อที่ตั้งเองในแคตตาล็อกมาก่อนเสมอ"],
     ["1.645","2026-11-03","UI ช่องขนาดตู้ในแผงห้องออกแบบเห็นเลข 4 หลักครบ (ผู้ใช้ 15:01 ภาพ ก 900 ส 230 ล 580: ช่องตู้ เห็นเลขไม่เต็ม) — ลูกศรเพิ่มลดกินที่ในช่อง 2300 จึงเหลือ 230 เอาลูกศรออก ยังเลือกขนาดจากรายการและกดลูกศรขึ้นลงบนคีย์บอร์ดได้"],
     ["1.644","2026-11-03","FIX แถว 1F019-1-064 และบานเลื่อนหายจาก Element หลังดึงค่าส่วนกลาง (ผู้ใช้ 14:34 ภาพหน้าต่างมือจับ: อยู่ไหนครับ) — ค่าส่วนกลางทับรายการ Element แต่ธงเคยเพิ่มแล้วค้างในเครื่อง โปรแกรมจึงเข้าใจว่าผู้ใช้ลบเองและไม่ใส่คืน แก้ให้ธงตามค่าที่โหลด และใส่แถวคืนรอบเดียวให้เครื่องที่ธงค้างแล้ว · แท็บมือจับแบบฝังแสดงมือจับฝังเซาะร่องด้วย"],
@@ -30464,6 +30465,7 @@ function boardRole(b){
      SN_OFF.dwgNoCount=1  หน้ารวมวัสดุ กลับมาโชว์จำนวน บาน/จุด/เส้น/ตัว/ชุด (v1.633)
      SN_OFF.dwgPullImg=1  การ์ดมือจับไม่ใช้รูปที่อัปโหลด ไม่มีรูปในหน้าต่าง 🖼 · การ์ดเดียวเหมือนเดิม (v1.633)
      SN_OFF.dwgDoorName=1 ไม่แสดงชื่อรุ่นแบบบานที่ตั้งเอง (v1.633)
+     SN_OFF.dwgColorDesc=1 การ์ดสีหน้าบานใช้คำอธิบายจากแถวผิวแบบเดิม (v1.647)
      SN_OFF.seedFollow=1  ธงเพิ่มแถว Element ไม่ตามค่าที่โหลด แบบก่อน v1.644
      SN_OFF.ehpFlushCard=1 แท็บมือจับแบบฝังไม่แสดงมือจับฝังเซาะร่อง (v1.644)
      SN_OFF.dwgWallTouch=1 แบบวาดเฉพาะผนังที่เปิดในห้อง + ผนังที่วาดเอง ไม่นับผนังที่ปิดแต่มีตู้ชน (v1.643)
@@ -45341,6 +45343,14 @@ function dwgColorSub(cp,desc){ let d=String(desc==null?"":desc).trim(); if(snOff
   const U=d.toUpperCase(), H=String(cp.code).toUpperCase(), P=String(cp.pat||"").toUpperCase();
   if(!d||U===H||U.startsWith(H+"_")||U===String(cp.raw).toUpperCase()) return cp.pat||"";
   if(!P||U.indexOf(P)>=0) return d; return cp.pat+" · "+d; }
+/* ───────── v1.647: คำอธิบายบนการ์ดสีหน้าบาน ─────────
+   ผู้ใช้ 3/11 15:56 (ภาพการ์ด N00S0018N: สีโครง “Starmark_TOA PUM1 HG56” · สีหน้าบาน “HG56 · Surface StarmarkWhite Emboss”): “รูปแรก รายละเอียดถูก ครับ รูป 2 เอามาจากไหน”
+   เดิม: การ์ดบานเอาคำอธิบายของแถวผิวใน Element → Surfaces ซึ่งเป็นคนละแถวกับรหัสสี ถ้าแถวผิวยังถือคำอธิบายของสีอื่น การ์ดก็ออกชื่อสีอื่น
+   แก้: หาจากแถวรหัสสีในแท็บ Colors แล้ว Materials ตรงรหัสก่อน ตามด้วยรหัสมีท้าย เช่น _MHMR ไม่นับข้อความขึ้นต้น Surface · ไม่เจอ = คำอธิบายเดิม
+     รหัสเดียวกับการ์ดสีโครงใช้ข้อความเดียวกันเสมอ · ปิด SN_OFF.dwgColorDesc=1 */
+function dwgColorDesc(code){ if(snOff("dwgColorDesc")) return ""; const H=dwgColorHead(code), U=String(H).toUpperCase(); if(!U) return ""; const ok=d=>{ d=String(d||"").trim(); return d&&!/from\s*XML/i.test(d)&&!/^surface\b/i.test(d)&&d.toUpperCase()!==U; };
+  for(const tab of ["colors","materials"]){ const L=((settings.elements||{})[tab])||[], hit=L.find(x=>x&&String(x.code||"").trim().toUpperCase()===U&&ok(elemDesc(x)))||L.find(x=>x&&String(x.code||"").trim().toUpperCase().startsWith(U+"_")&&ok(elemDesc(x))); if(hit) return String(elemDesc(hit)).trim(); }
+  return ""; }
 async function dwgMatTiles(C){ const cabs=(C||dwgCabs()).filter(c=>c.lv!=="rail"&&c.lv!=="light"), tiles=[];
   const _cnt=t=>snOff("dwgNoCount")?t:"";   /* v1.633: จำนวนบนการ์ด */
   /* ───────── v1.638: หน้ารวมวัสดุแสดงครบทุกแบบ ─────────
@@ -45372,14 +45382,16 @@ async function dwgMatTiles(C){ const cabs=(C||dwgCabs()).filter(c=>c.lv!=="rail"
   if(doors.length&&!snOff("dwgColorCode")){   /* v1.567: แยกตามรหัสสีของบาน (สูงสุด 4) · หัว = รหัสสี */
     const byC={}; doors.forEach(x=>{ if(x.b._box) return; const cn=dwgColorName(x.b), k=dwgColorHead((cn&&cn.code)||"?"); (byC[k]=byC[k]||{cn,L:[]}).L.push(x); });   /* v1.633: รวมตามหัวรหัส */
     const G=Object.values(byC).sort((a,b)=>b.L.length-a.L.length).slice(0,_cap(4));
-    for(const g of G){ const sw=(await dwgSwatch(g.L[0].b))||(g.cn?dwgPlainSw():null); if(sw){ const cp=dwgColorParts((g.cn&&g.cn.code)||sw.code,sw.code); tiles.push({h:"สีหน้าบาน", img:sw.url, t:cp.code, s:[dwgColorSub(cp,(g.cn&&g.cn.desc)||(sw.name&&sw.name!==sw.code?sw.name:"")), _cnt(G.length>1?(g.L.length+" บาน"):"")].filter(Boolean).join(" · ")}); } } }
+    for(const g of G){ const sw=(await dwgSwatch(g.L[0].b))||(g.cn?dwgPlainSw():null); if(sw){ const cp=dwgColorParts((g.cn&&g.cn.code)||sw.code,sw.code); tiles.push({h:"สีหน้าบาน", img:sw.url, t:cp.code, s:[dwgColorSub(cp,dwgColorDesc(cp.code)||(g.cn&&g.cn.desc)||(sw.name&&sw.name!==sw.code?sw.name:"")), _cnt(G.length>1?(g.L.length+" บาน"):"")].filter(Boolean).join(" · ")}); } } }
   else if(doors.length){ const sw=await dwgSwatch(doors[0].b); if(sw) tiles.push({h:"สีหน้าบาน", img:sw.url, t:sw.code, s:sw.name&&sw.name!==sw.code?sw.name:""}); }
   if(_all){ const byK=new Map(), isS=b=>b&&!b._door&&!b._virtual&&b.orient==="side"&&+b.T>0;   /* v1.638: สีโครงทุกสี */
     const _cnOf=b=>{ try{ return dwgColorName(b); }catch(e){ return null; } };
     const addK=c=>{ const S=c.bs.filter(isS); if(!S.length) return; const cc=((state.cabColors||{})[c.inst])||{}, want=dwgColorHead(cc.Carcass||""); let sb=S[0], cn=_cnOf(sb); if(want&&(!cn||dwgColorHead(cn.code)!==want)){ const hit=S.find(b=>{ const n=_cnOf(b); return n&&dwgColorHead(n.code)===want; }); if(hit){ sb=hit; cn=_cnOf(hit); } } const code=String(cc.Carcass||(cn&&cn.code)||"").trim(), k=dwgColorHead(code)||"?"; if(!byK.has(k)) byK.set(k,{b:sb,code,cn:(cn&&dwgColorHead(cn.code)===k)?cn:null}); };
     cabs.filter(_realCab).forEach(c=>addK(c)); if(!byK.size) cabs.some(c=>{ addK(c); return byK.size>0; });
-    for(const g of byK.values()){ const sw=await dwgSwatch(g.b), sw2=sw||dwgPlainSw(), cp=dwgColorParts(g.code||sw2.code,sw2.code); tiles.push({h:"สีโครงตู้ด้านใน", img:sw2.url, t:cp.code, s:dwgColorSub(cp,(g.cn&&g.cn.desc)||(sw2.name&&sw2.name!==sw2.code?sw2.name:""))}); } }
+    for(const g of byK.values()){ const sw=await dwgSwatch(g.b), sw2=sw||dwgPlainSw(), cp=dwgColorParts(g.code||sw2.code,sw2.code); tiles.push({h:"สีโครงตู้ด้านใน", img:sw2.url, t:cp.code, s:dwgColorSub(cp,(g.cn&&g.cn.desc)||dwgColorDesc(cp.code)||(sw2.name&&sw2.name!==sw2.code?sw2.name:""))}); } }
   else { const side=[]; cabs.forEach(c=>c.bs.forEach(b=>{ if(b&&!b._door&&!b._virtual&&b.orient==="side"&&+b.T>0) side.push(b); })); if(side.length){ const sw=await dwgSwatch(side[0]); if(sw||dwgColorName(side[0])){ const cn=dwgColorName(side[0]), sw2=sw||dwgPlainSw(), cp=dwgColorParts((cn&&cn.code)||sw2.code,sw2.code); tiles.push({h:"สีโครงตู้ด้านใน", img:sw2.url, t:cp.code, s:dwgColorSub(cp,(cn&&cn.desc)||(sw2.name&&sw2.name!==sw2.code?sw2.name:""))}); } } }   /* v1.567: หัว = รหัสสี */
+  /* v1.647: รหัสเดียวกับการ์ดสีโครง = ข้อความเดียวกัน */
+  if(!snOff("dwgColorDesc")){ const kt=tiles.filter(t=>t.h==="สีโครงตู้ด้านใน"&&t.s); tiles.forEach(t=>{ if(t.h!=="สีหน้าบาน") return; const m=kt.find(x=>x.t===t.t); if(m) t.s=m.s; }); }
   try{ const S0=plWtOn()?plWtSlabs():null; if(S0&&S0.slabs.length){ const T=plWt(), M=PLWT_MATS[T.mat]||PLWT_MATS.granite, S=S0, col=String(T.color||"").trim()||M.c;
       const cv=document.createElement("canvas"); cv.width=cv.height=220; const g=cv.getContext("2d"); g.fillStyle=col; g.fillRect(0,0,220,220);
       const _pmI=snOff("plMarble")?null:await plmImgFor(T); if(_pmI){ try{ g.drawImage(_pmI.img,0,0,_pmI.sw,_pmI.sh,0,0,220,220); }catch(e){} }   /* v1.562: ลายหินจริง */
