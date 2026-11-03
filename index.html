@@ -3283,7 +3283,7 @@ body[data-theme="dark"] .splash-dots span{background:rgba(255,255,255,.25)}
    ===================================================================== */
 /* ---- APP_META: แหล่งความจริงเดียวของเวอร์ชัน (ดูได้จาก console / คลิกชื่อแอป) ---- */
 const APP_META={
-  name:"StarNexus", version:"1.642", build:"2026-11-03/cab-th",
+  name:"StarNexus", version:"1.643", build:"2026-11-03/dwg-wall-person",
   file:"StarNexus.html", basedOn:"Furnitech_V3.html (v3.11)",
   /* ───────── เริ่มนับเวอร์ชันใหม่ที่ 1.001 (21/08/2026) ─────────
      ของเดิมนับมาถึง 42.1 แล้ววิ่งเป็นทศนิยมสองชั้นซึ่งอ่านลำดับยาก
@@ -3291,6 +3291,7 @@ const APP_META={
      ประวัติเก่าเก็บไว้ทั้งหมดตามเลขเดิม ไม่ไล่เขียนใหม่ เพราะเลขในนั้นถูกอ้างถึงไปแล้ว
      รายการที่อยู่ใต้ 1.001 ลงไปจึงเป็นเลขชุดเก่า อ่านต่อกันได้ตามวันที่ */
   changelog:[
+    ["1.643","2026-11-03","FEAT+FIX แบบในใบเสนอราคา — ① ภาพด้านหน้าแสดงฟิลเลอร์บน ② ผนังที่ปิดไว้แต่มีตู้ชน + ผนังที่วาดเอง ขึ้นเป็นผนังลายขีดในภาพด้านหน้าและแปลน ③ ของในห้องเพิ่มคนยืน ปรับความสูงและสีเสื้อได้ ขึ้นในภาพด้านหน้ากับแปลน (ผู้ใช้ 13:54: ทำไมไม่เห็น ฟิลเลอร์บนครับ เส้นทางซ้าย ภาพด้านหน้า จริงๆ ต้องเห็นผนัง ด้วยครับ ภาพด้านบน ด้วย เหมือนภาพตัด Section ครับ เพิ่มคนไปยืนได้ไหมครับ สัก 1 คน)"],
     ["1.642","2026-11-03","FEAT การ์ดแคตตาล็อกห้องออกแบบแสดงชื่อตู้ภาษาไทยใต้รหัส จาก Excel ของผู้ใช้ 6,581 รหัส ไม่เจอรหัส = ชื่อหมวดแบบเดิม ชื่อที่ตั้งเองมาก่อน ค้นด้วยชื่อไทยได้ สะกด ลื้นชัก แก้เป็น ลิ้นชัก (ผู้ใช้: ใส่ชื่อตู้ ภาษาไทยไปให้ผมหน่อยครับ เอาเท่าที่เจอครับ ใส่ใต้ รหัสตู้)"],
     ["1.641","2026-11-03","FEAT Fitting Global แยกแท็บ ปุ่ม ↗ แยกแท็บ เปิดค้างไว้หาข้อมูลได้ ค้น กรอง คัดลอก ดูราคาได้เหมือนเดิม อ่านอย่างเดียว ตั้งหมวดในโปรแกรมหลัก · F5 หรือเปิดจาก bookmark อ่านสำเนาในเครื่อง (ผู้ใช้ 13:03)"],
     ["1.640","2026-11-03","UX การ์ดมือจับในหน้ารวมวัสดุใช้ชื่อ AX ตัดถึงรหัสรุ่น เช่น มือจับ แบบระยะ 128 mm. KRIX 510019-4128 · ตาราง AX ยังไม่มาใช้คำอธิบายใน Element · มือจับฝังคงเดิม (ผู้ใช้ 12:05)"],
@@ -30460,6 +30461,9 @@ function boardRole(b){
      SN_OFF.dwgNoCount=1  หน้ารวมวัสดุ กลับมาโชว์จำนวน บาน/จุด/เส้น/ตัว/ชุด (v1.633)
      SN_OFF.dwgPullImg=1  การ์ดมือจับไม่ใช้รูปที่อัปโหลด ไม่มีรูปในหน้าต่าง 🖼 · การ์ดเดียวเหมือนเดิม (v1.633)
      SN_OFF.dwgDoorName=1 ไม่แสดงชื่อรุ่นแบบบานที่ตั้งเอง (v1.633)
+     SN_OFF.dwgWallTouch=1 แบบวาดเฉพาะผนังที่เปิดในห้อง + ผนังที่วาดเอง ไม่นับผนังที่ปิดแต่มีตู้ชน (v1.643)
+     SN_OFF.dwgCeilFill=1 ภาพด้านหน้าไม่วาดฟิลเลอร์บน (v1.643)
+     SN_OFF.plPerson=1    ไม่มีการ์ดคนยืน และไม่วาดคนในแบบ (v1.643)
      SN_OFF.cabTh=1       การ์ดแคตตาล็อกไม่แสดงชื่อตู้ภาษาไทย กลับเป็นชื่อหมวดแบบเดิม (v1.642)
      SN_OFF.fgTab=1       Fitting Global ไม่มีปุ่มแยกแท็บ · ลิงก์ #fgtab เปิดโปรแกรมเต็มตามปกติ (v1.641)
      SN_OFF.dwgPullAxName=1 การ์ดมือจับใช้ชื่อใน Element ก่อนแบบเดิม ไม่ตัดชื่อ AX (v1.640)
@@ -38961,6 +38965,8 @@ const PLO_T={
   /* v1.621: ผู้ใช้ 2/11 20:44 (ภาพโต๊ะคอมในห้อง): “ขาดเก้าอี้เกมเมอร์” · หน้า = +Z · o.col = สีตัดเก้าอี้ */
   gchair:{n:"เก้าอี้เกมมิ่ง", ic:"🪑", w:680, h:1300, d:680, appl:"floor", gchair:1, prop:1},
   pctower:{n:"คอม RGB เคสกระจก", s:"คอม RGB", ic:"🖥", w:230, h:470, d:450, appl:"floor", pcase:1, prop:1},
+  /* v1.643: ผู้ใช้ 3/11 13:54 (ภาพแบบด้านหน้า + แคตตาล็อกของในห้อง): “เพิ่มคนไปยืนได้ไหมครับ สัก 1 คน” — คนเทียบสัดส่วน หน้า = +Z · h = ส่วนสูง · o.col = สีเสื้อ · ไม่เข้าใบเสนอราคา · ปิด SN_OFF.plPerson=1 */
+  person:{n:"คนยืน", s:"คน", ic:"🧍", w:600, h:1700, d:320, appl:"floor", person:1, prop:1},
   ac:{n:"แอร์ติดผนัง", ic:"❄", w:800, h:280, d:210, sill:2100, wall:1, appl:"wall", ac:1, prop:1},
   tv43:{n:"SAMSUNG 43 นิ้ว", s:"ทีวี SAMSUNG 43\"", ic:"📺", w:957, h:558, d:76, sill:950, wall:1, appl:"wall", tv:1, prop:1},
   tv55:{n:"SAMSUNG 55 นิ้ว", s:"ทีวี SAMSUNG 55\"", ic:"📺", w:1225, h:709, d:77, sill:800, wall:1, appl:"wall", tv:1, prop:1},
@@ -39252,6 +39258,7 @@ function plaIcon(k,s,e){ const F='fill="rgba(160,170,180,.35)"';
     return s+'<rect x="'+(40-hw)+'" y="8" width="'+(2*hw)+'" height="64" rx="3"/><path d="M'+(40-hw)+' 16h'+(2*hw)+'" stroke-width="5"/>'+pl.map(p=>'<rect x="'+(p[0]-p[1]/2)+'" y="20" width="'+p[1]+'" height="11" rx="4" '+F+'/>').join("")+'<path d="M'+(40-hw)+' 38h'+(2*hw)+'"/><rect x="'+(40-hw)+'" y="38" width="'+(2*hw)+'" height="34" rx="3" fill="rgba(160,170,180,.2)"/>'+e; }
   if(k==="nstand") return s+'<rect x="20" y="20" width="40" height="42" rx="2"/><path d="M20 41h40"/><path d="M36 30h8M36 51h8" stroke-width="4"/><path d="M25 62v10M55 62v10"/>'+e;
   if(k==="dress") return s+'<rect x="26" y="8" width="28" height="30" rx="14" fill="rgba(159,199,216,.35)"/><rect x="10" y="38" width="60" height="7"/><rect x="12" y="45" width="20" height="16"/><path d="M12 45v27M68 45v27"/><path d="M18 53h8" stroke-width="3"/>'+e;
+  if(k==="person") return s+'<circle cx="40" cy="13" r="8" fill="rgba(79,101,121,.3)"/><path d="M29 26h22c3 0 5 2 5 5l2 21h-6l-3-16v14H31V36l-3 16h-6l2-21c0-3 2-5 5-5z" fill="rgba(79,101,121,.3)"/><path d="M33 50v24M47 50v24M40 54v20"/>'+e;   /* v1.643 */
   if(k==="gchair") return s+'<path d="M28 6h24c3 0 5 2 5 5l-3 34H26l-3-34c0-3 2-5 5-5z" fill="rgba(200,30,40,.35)"/><path d="M34 12h12v8H34z" fill="rgba(200,30,40,.7)" stroke-width="1.500"/><path d="M20 44h40v8H20z"/><path d="M14 34v10M66 34v10" stroke-width="4"/><path d="M40 52v12"/><path d="M40 64L22 74M40 64l18 10M40 64v10"/>'+e;   /* v1.621 */
   /* v1.619: คอม */
   if(k==="pctower"||k==="pcdesk"){ const r=[["#ff2d55",16],["#18c964",32],["#2f7bff",48]], tw=k==="pctower", x=tw?28:53, y=tw?10:30, W=tw?24:19, H=tw?60:38, R=tw?7:4.500;
@@ -39787,6 +39794,23 @@ function plaPropMesh(o,T,G,box,M,cyl,y0,w,h,d,k){
     box(w,tT,d,0,y0+tH-tT/2,0,wood); [[-1,-1],[1,-1],[-1,1],[1,1]].forEach(q=>box(34,tH-tT,34,q[0]*(w/2-22),y0+(tH-tT)/2,q[1]*(d/2-22),legM));
     box(dw,dh,d-20,-w/2+dw/2+4,y0+tH-tT-dh/2,0,wood); [0,1].forEach(i=>{ const cy=y0+tH-tT-8-(dh-16)/4-i*((dh-16)/2); box(dw-14,(dh-30)/2,8,-w/2+dw/2+4,cy,d/2-6,woodL); cyl(8,8,14,-w/2+dw/2+4,cy,d/2+4,knob,true); });
     box(mw,mH,24,0,mY,zb+22,wood); box(mw-44,mH-44,3,0,mY,zb+36,mir); return true; }
+  /* ───────── v1.643: คนยืน ─────────
+     สร้างที่ขนาดมาตรฐาน กว้าง 600 สูง 1700 ลึก 320 แล้ว scale ตามค่าที่แก้ในแผง · r128 ไม่มี CapsuleGeometry จึงใช้ Lathe ทำลำตัวกับขา
+     หน้าไม่มีรายละเอียด แบบหุ่นเทียบสัดส่วนในงานสถาปัตย์ */
+  if(T.person){ const A=PLA_PROP_COL[o.col]||PLA_PROP_COL.blue, shirt=M(A.c,{roughness:.86}), pant=M(0x23262b,{roughness:.88}), skin=M(0xc8956d,{roughness:.62}), shoe=M(0x15161a,{roughness:.55}), hair=M(0x1d1712,{roughness:.8});
+    const P=new THREE.Group(); P.position.set(0,y0,0); P.scale.set(w/600,h/1700,d/320); G.add(P);
+    const lat=(pts,x,sz,m)=>{ const q=new THREE.Mesh(new THREE.LatheGeometry(pts.map(p=>new THREE.Vector2(p[0],p[1])),28),m); q.position.x=x; q.scale.z=sz; q.castShadow=true; q.receiveShadow=true; P.add(q); return q; };
+    const sph=(sx,sy,sz,x,yy,z,m)=>{ const q=new THREE.Mesh(new THREE.SphereGeometry(1,24,18),m); q.scale.set(sx,sy,sz); q.position.set(x,yy,z); q.castShadow=true; P.add(q); return q; };
+    const limb=(a,b,r0,r1,m)=>{ const v=new THREE.Vector3(b[0]-a[0],b[1]-a[1],b[2]-a[2]), L=v.length(), q=new THREE.Mesh(new THREE.CylinderGeometry(r1,r0,L,20),m); q.position.set((a[0]+b[0])/2,(a[1]+b[1])/2,(a[2]+b[2])/2); q.quaternion.setFromUnitVectors(new THREE.Vector3(0,1,0),v.normalize()); q.castShadow=true; P.add(q); return q; };
+    [-1,1].forEach(s=>{ lat([[0,58],[44,62],[46,120],[54,240],[60,340],[56,440],[54,480],[62,560],[74,720],[82,860],[0,900]],s*86,.95,pant);   // ขา
+      const q=new THREE.Mesh(plaSoftBoxGeo(100,64,270,26),shoe); q.position.set(s*86,32,38); q.castShadow=true; P.add(q);                       // รองเท้า
+      sph(52,54,52,s*204,1362,0,shirt); limb([s*204,1362,0],[s*226,1075,5],50,42,shirt); sph(42,42,42,s*226,1075,5,shirt);                      // ไหล่ ต้นแขน ศอก
+      limb([s*226,1075,5],[s*234,815,28],38,28,skin); sph(28,58,36,s*236,752,32,skin); });                                                      // แขนท่อนล่าง มือ
+    lat([[0,800],[100,808],[160,850],[168,900],[150,960],[0,1000]],0,.62,pant);                                                                 // สะโพก
+    lat([[0,870],[178,875],[172,960],[150,1040],[160,1150],[182,1260],[186,1340],[165,1400],[90,1440],[0,1450]],0,.62,shirt);                   // ลำตัว เสื้อคลุมสะโพก
+    lat([[0,1430],[52,1430],[46,1500],[0,1510]],0,1,skin); sph(84,110,96,0,1590,8,skin);                                                        // คอ ศีรษะ
+    const hr=new THREE.Mesh(new THREE.SphereGeometry(1,24,14,0,Math.PI*2,0,Math.PI*.42),hair); hr.scale.set(90,118,104); hr.position.set(0,1590,6); hr.castShadow=true; P.add(hr); sph(86,92,84,0,1572,-22,hair);   // ผมบน ผมท้ายทอย
+    return true; }
   /* v1.621: เก้าอี้เกมมิ่ง — สร้างที่ขนาดมาตรฐาน 680×1300×680 แล้ว scale ตามค่าที่แก้ในแผง */
   if(T.gchair){ const A=PLA_GAME_COL[o.col]||PLA_GAME_COL.red, blk=M(0x17181c,{roughness:.62}), acc=M(A.c,{roughness:.55}), met=M(0x2c2e33,{roughness:.35,metalness:.6}), chr=M(0x9aa0a8,{roughness:.25,metalness:.75});
     const C=new THREE.Group(); C.position.set(0,y0,0); C.scale.set(w/680,h/1300,d/680); G.add(C);
@@ -39966,7 +39990,7 @@ function plaPanel(s,o){ const T=PLO_T[o.k]||{}, F=ploFrameOf(o), md=T.appl;
     +fr(T.bed?"สูงหัวเตียง":/^(sink1|sinku)$/.test(o.k)?"ลึกอ่าง":/^(sink|sink2|hob|hobi|hobd)$/.test(o.k)?"หนาตัวเครื่อง":"สูง",num("h",o.h)+'<span class="plU">มม.</span>')
     +(md==="wall"?fr(T.tv?"ขอบล่างจอสูงจากพื้น":T.ac?"ก้นแอร์สูงจากพื้น":"ก้นฮู้ดสูงจากพื้น",num("sill",o.sill)+'<span class="plU">มม.</span>'):fr(md==="under"?"ก้นตู้ (ระดับติด)":"ระดับวาง (จากพื้น)",num("y",o.y)+'<span class="plU">มม.</span>'))
     +(F?fr("ห่างต้นผนัง",num("off",(+o.t||0)-o.w/2)+'<span class="plNote plNB">ผนังยาว '+Math.round(F.L)+'</span>'):"")
-    +((T.bed||T.rug||T.stool||T.sofa)?fr(T.bed?"สีหัวเตียง":T.sofa?"สีผ้า":T.stool?"สีเบาะ":"สีพรม",'<select data-pok="col">'+Object.keys(PLA_PROP_COL).map(c=>'<option value="'+c+'"'+((PLA_PROP_COL[o.col]?o.col:"grey")===c?" selected":"")+'>'+PLA_PROP_COL[c].n+'</option>').join("")+'</select>'):"")   /* v1.614 */
+    +((T.bed||T.rug||T.stool||T.sofa||T.person)?fr(T.bed?"สีหัวเตียง":T.person?"สีเสื้อ":T.sofa?"สีผ้า":T.stool?"สีเบาะ":"สีพรม",'<select data-pok="col">'+Object.keys(PLA_PROP_COL).map(c=>'<option value="'+c+'"'+((PLA_PROP_COL[o.col]?o.col:(T.person?"blue":"grey"))===c?" selected":"")+'>'+PLA_PROP_COL[c].n+'</option>').join("")+'</select>'):"")   /* v1.614 */
     +(T.gchair?fr("สีเก้าอี้",'<select data-pok="col">'+Object.keys(PLA_GAME_COL).map(c=>'<option value="'+c+'"'+((PLA_GAME_COL[o.col]?o.col:"red")===c?" selected":"")+'>'+PLA_GAME_COL[c].n+'</option>').join("")+'</select>'):"")   /* v1.621 */
     +(T.pcdesk?fr("ของบนโต๊ะ",'<select data-pok="dset"><option value="">ครบชุด (จอ คีย์บอร์ด คอม RGB)</option><option value="mon"'+(o.dset==="mon"?" selected":"")+'>จอ + คีย์บอร์ด</option><option value="none"'+(o.dset==="none"?" selected":"")+'>โต๊ะเปล่า</option></select>'):"")   /* v1.619 */
     +((T.pcase||(T.pcdesk&&!o.dset))?fr("ไฟ RGB",'<select data-pok="rgb"><option value="">ไฟวิ่ง + พัดลมหมุน</option><option value="off"'+(o.rgb==="off"?" selected":"")+'>ไฟนิ่ง พัดลมไม่หมุน</option></select>'):"")   /* v1.619 */
@@ -39989,7 +40013,7 @@ function plaPanel(s,o){ const T=PLO_T[o.k]||{}, F=ploFrameOf(o), md=T.appl;
     else if(k==="dset"){ if(inp.value) o.dset=inp.value; else delete o.dset; }   /* v1.619 */
     else if(k==="rgb"){ if(inp.value==="off") o.rgb="off"; else delete o.rgb; }   /* v1.619 */
     else if(k==="scr"){ if(inp.value==="off") o.scr="off"; else delete o.scr; }   /* v1.614 */
-    else if(k==="col"){ o.col=T.gchair?(PLA_GAME_COL[inp.value]?inp.value:"red"):(T.bed||T.rug||T.stool||T.sofa)?(PLA_PROP_COL[inp.value]?inp.value:"grey"):T.fridge==="wash"?(/^(white|silver|black)$/.test(inp.value)?inp.value:"white"):(PLA_SMEG_COL[inp.value]?inp.value:"cream"); }   /* v1.579: + สีเครื่องซักผ้า */
+    else if(k==="col"){ o.col=T.person?(PLA_PROP_COL[inp.value]?inp.value:"blue"):T.gchair?(PLA_GAME_COL[inp.value]?inp.value:"red"):(T.bed||T.rug||T.stool||T.sofa)?(PLA_PROP_COL[inp.value]?inp.value:"grey"):T.fridge==="wash"?(/^(white|silver|black)$/.test(inp.value)?inp.value:"white"):(PLA_SMEG_COL[inp.value]?inp.value:"cream"); }   /* v1.579: + สีเครื่องซักผ้า */
     else if(k==="mgap"){ const v=+inp.value; if(isFinite(v)&&v>=0&&v<=30) o.mgap=v; else { plPanelSel(); return; } }   /* v1.588: เว้นบานหลอก */
     else if(k==="ih"){ const v=+inp.value; if(isFinite(v)&&v>=100) o.ih=Math.round(v); else { plPanelSel(); return; } }   /* v1.578: สูงติดตั้งเตา */   /* v1.577: สีตู้เย็น SMEG */   /* v1.576: บานพับตู้เย็น */
     else { const v=+inp.value; if(!isFinite(v)){ plPanelSel(); return; }
@@ -40335,7 +40359,7 @@ function ploGrid(tabs,grid){   // v1.538: แบ่งหมวด · การ�
   tabs.innerHTML=ks.map(k=>'<button data-t="'+k[0]+'" class="'+(k[0]===PL.tab?"on":"")+'">'+k[1]+'</button>').join("");
   tabs.querySelectorAll("button").forEach(bt=>bt.onclick=()=>{ PL.tab=bt.dataset.t; plPanelGrid(); });
   const ok=k=>!!PLO_T[k]&&!(PLO_T[k].appl&&snOff("plAppl"))&&!(k==="col"&&snOff("plCol"))&&!((k==="ceil"||k==="ceilu")&&snOff("plCeil"))&&!(PLO_T[k].util&&snOff("plUtil"));
-  const GR=[["ประตู · หน้าต่าง",["door","door2","slide","open","win","win1","winw"]],["โครงสร้าง · ฝ้า",["stair","col","ceil","ceilu"].concat(snOff("plNiche")?[]:["niche"]).concat(snOff("plDl")?[]:["dl"])],["งานระบบ",["plug","wat","drn"]],["เครื่องใช้ในครัว",["sink","sink2","sink1","sinku","hob","hobi","hobd","hood1","hood2","hood3","oven"].concat(snOff("plMicroB")?[]:["microb"]).concat(["micro","bin","gas"]).concat(snOff("plFridge")?[]:["fridge1","fridge2","fridgeT"]).concat(snOff("plSmeg")?[]:["smeg"]).concat(snOff("plWash")?[]:["wash"])]].concat(snOff("plProps")?[]:[["ห้องนอน",["bed35","bed5","bed6","nstand","dress","stool","fmirror","flamp","rug","ac"]],["ห้องรับแขก",["sofa2","sofa3","armch","ctable","stable","tvcon","plant"]],["ห้องทำงาน · คอม",["pcdesk","gchair","pctower"]],["ทีวีติดผนัง",["tv43","tv55","tv65"]]]);   /* v1.614 */   /* v1.576: + ตู้เย็น */   // v1.546
+  const GR=[["ประตู · หน้าต่าง",["door","door2","slide","open","win","win1","winw"]],["โครงสร้าง · ฝ้า",["stair","col","ceil","ceilu"].concat(snOff("plNiche")?[]:["niche"]).concat(snOff("plDl")?[]:["dl"])],["งานระบบ",["plug","wat","drn"]],["เครื่องใช้ในครัว",["sink","sink2","sink1","sinku","hob","hobi","hobd","hood1","hood2","hood3","oven"].concat(snOff("plMicroB")?[]:["microb"]).concat(["micro","bin","gas"]).concat(snOff("plFridge")?[]:["fridge1","fridge2","fridgeT"]).concat(snOff("plSmeg")?[]:["smeg"]).concat(snOff("plWash")?[]:["wash"])]].concat(snOff("plProps")?[]:[["ห้องนอน",["bed35","bed5","bed6","nstand","dress","stool","fmirror","flamp","rug","ac"]],["ห้องรับแขก",["sofa2","sofa3","armch","ctable","stable","tvcon","plant"]],["ห้องทำงาน · คอม",["pcdesk","gchair","pctower"]],["ทีวีติดผนัง",["tv43","tv55","tv65"]]].concat(snOff("plPerson")?[]:[["คน · เทียบสัดส่วน",["person"]]]));   /* v1.643 */   /* v1.614 */   /* v1.576: + ตู้เย็น */   // v1.546
   const K=GR.reduce((a,g)=>a.concat(g[1].filter(ok)),[]);
   { const cn=$("plCatN"); if(cn) cn.textContent=K.length+" แบบ"; }
   const lk=plRoomLocked();
@@ -40533,6 +40557,7 @@ function ploCeilPk(o,r){ const H=+r.h||2600, hz=Math.max(+o.h||H,300), lo=Math.m
 function ploUtilPk(o,F,th){ const T=PLO_T[o.k]||{}, uw=Math.max(+o.w||T.w||60,8), uh=Math.max(+o.h||T.h||60,8), yc=Math.max(+o.sill||0,0);
   if(F){ const pw=Math.max(uw,90), ph=Math.max(uh,90); return [pw,ph,th+220,yc-ph/2]; } return [150,220,150,0]; }
 function ploCardSub(k){ const T=PLO_T[k]||{};
+  if(T.person) return "สูง "+T.h+" · วางพื้น";   /* v1.643 */
   if(T.tv) return T.w+"×"+T.h+" · ติดผนัง";   /* v1.614 */
   if(T.appl) return T.w+"×"+T.d+({top:" · บนท็อป",under:" · ใต้ตู้ลอย",wall:" · ติดผนัง",cab:" · ฝังในตู้",floor:" · วางพื้น"}[T.appl]||"");   // v1.546
   if(k==="niche") return T.w+"×"+T.h+" · ลึก "+T.d;   /* v1.629 */
@@ -44551,10 +44576,48 @@ function dwgNew(id,cx0,cy0,cx1,cy1,Wpx,Hpx,Mpx){
     +(o.defs.length?('<defs>'+o.defs.join("")+'</defs>'):'')+o.els.join("")+'</svg>';
   return o; }
 /* ผนัง: แถบลายขีดหนา T นอกผิวห้อง */
-function dwgWallsPlan(o,r,T,fill){ Object.keys(PL_WALLS).forEach(k=>{ const x0=r.x0, x1=r.x0+r.w, z0=r.z0, z1=r.z0+r.d;
-  if(!r.walls[k]){ const s={back:[x0,z0,x1,z0],front:[x0,z1,x1,z1],left:[x0,z0,x0,z1],right:[x1,z0,x1,z1]}[k]; o.L(s[0],s[1],s[2],s[3],0.6,DWG_THIN,"6 4"); return; }
+/* ───────── v1.643: ผนังในแบบ ─────────
+   ผู้ใช้ 3/11 13:54 (ภาพด้านหน้า ตู้เริ่มที่ฟิลเลอร์ชิดขอบซ้าย ไม่มีผนัง): “เส้นทางซ้าย ภาพด้านหน้า จริงๆ ต้องเห็นผนัง ด้วยครับ ภาพด้านบน ด้วย เหมือนภาพตัด Section ครับ”
+   เดิม: วาดผนังลายขีดเฉพาะ r.walls[k] ที่เปิด แต่ผนังหน้าปิดเป็นค่าตั้งต้น และผนังห้องสี่เหลี่ยมถูกปิดทั้งหมดเมื่อวาดผนังเอง แบบจึงเหลือแค่เส้น ส่วนผนังที่วาดเองไม่ขึ้นในแบบเลย
+   ตอนนี้: dwgWallOn = เปิดอยู่ หรือมีตู้ชนขอบห้องด้านนั้น (ห่างไม่เกิน 50) · ด้านที่ไม่มีตู้ชนยังเป็นเส้นประเหมือนเดิม
+     ถ้ามีผนังที่วาดเอง ไม่เดาผนังห้องสี่เหลี่ยมเพิ่ม วาดรูปผนังจริงแทน: แปลน = dwgPlwPlan · ภาพด้านหน้า = ช่วงที่ตั้งฉากกับผนังนี้และชนผนังนี้ (dwgPlwCut)
+   ปิด SN_OFF.dwgWallTouch=1 */
+function dwgWallOn(r,k,cabs){ if(r.walls[k]) return true; if(snOff("dwgWallTouch")) return false;
+  try{ if(!snOff("plDrawWall")&&plwList().length) return false; }catch(e){}
+  const W=PL_WALLS[k], P=W.pa, face=plFace(r,k);
+  return (cabs||[]).some(c=>c&&c.lv!=="rail"&&c.lv!=="light"&&Math.abs((W.s>0?c.lo[P]:c.hi[P])-face)<=50); }
+function dwgPlwPlan(o,fill){ if(snOff("dwgWallTouch")||snOff("plDrawWall")) return;
+  plwList().forEach(w=>plwFoot(w).forEach(f=>{ o.els.push('<path d="M'+f.q.map(p=>p[0]+" "+p[1]).join(" L")+' Z" fill="'+fill+'" stroke="'+DWG_INK+'" stroke-width="1.1" vector-effect="non-scaling-stroke"/>'); })); }
+function dwgPlwCut(o,r,wk,uOf,fill){ if(snOff("dwgWallTouch")||snOff("plDrawWall")) return; const W=PL_WALLS[wk], ai=W.ax===0?0:1, pi=W.pa===0?0:1, face=plFace(r,wk);
+  plwList().forEach(w=>{ const Hw=Math.max(+w.h||plwDefH(),10); plwFoot(w).forEach(f=>{ if(Math.abs(f.d[ai])>.35) return; if(Math.min(...f.q.map(p=>Math.abs(p[pi]-face)))>150) return;
+    const us=f.q.map(p=>uOf(p[ai])); o.R(Math.min(...us),-Hw,Math.max(...us),0,{w:1,fill}); }); }); }
+/* ───────── v1.643: ฟิลเลอร์บนในภาพด้านหน้า ─────────
+   ผู้ใช้ 3/11 13:54: “ทำไมไม่เห็น ฟิลเลอร์บนครับ”
+   เดิม: ฟิลเลอร์บนเป็นชิ้นแสดงผล ld:ceil (_virtual _lineDisp) ตัววาดตู้ข้ามชิ้นเสมือน ภาพด้านหน้าจึงไม่มี ทั้งที่ 3D และรูปตัด (v1.545) มี
+   ตอนนี้: วาดทุกท่อนตามรอยต่อจริง ที่แนวทับตู้ของผนังนี้ ไม้ปิดปลาย (_lineEnd) ไม่วาด เพราะตั้งฉากกับภาพ · ปิด SN_OFF.dwgCeilFill=1 */
+function dwgCeilFills(cabs,U,A,P){ if(snOff("dwgCeilFill")) return []; const out=[];
+  (state.boards||[]).forEach(b=>{ if(!b||!b._lineDisp||b._lineEnd||!/^ld:ceil:/.test(String(b.id))||!(+b.T>0)) return; const d=worldDims(b), p=[b.x,b.y,b.z]; if(d[A]<=d[P]) return; const a0=p[A]-d[A]/2, a1=p[A]+d[A]/2;
+    if(!cabs.some(c=>Math.min(a1,c.hi[A])-Math.max(a0,c.lo[A])>1&&p[P]>=c.lo[P]-60&&p[P]<=c.hi[P]+60)) return;
+    out.push({u:U(a0,a1),y0:p[1]-d[1]/2,y1:p[1]+d[1]/2}); }); return out; }
+/* ───────── v1.643: คนยืนในแบบ ─────────
+   ภาพด้านหน้า: ขึ้นเฉพาะผนังที่มีแบบและอยู่ใกล้คนที่สุด ไม่ซ้ำทุกภาพ · ทึบบางส่วนให้ยังเห็นเส้นตู้ · แปลน: ไหล่ + ศีรษะ + จมูกบอกทิศหน้า */
+function dwgPersons(){ try{ if(snOff("plPerson")||snOff("plObj")) return []; return ploList().filter(o=>o&&PLO_T[o.k]&&PLO_T[o.k].person&&!ploHid(o)); }catch(e){ return []; } }
+function dwgPersonElev(o,r,wk,all,uOf){ const P=dwgPersons(); if(!P.length) return; const W=PL_WALLS[wk], walls=dwgElevWalls(all);
+  const R=[[46,1490],[52,1440],[190,1395],[250,1350],[278,1070],[286,800],[290,720],[262,680],[232,720],[226,810],[214,1060],[176,1250],[150,1040],[172,880],[170,700],[140,470],[130,330],[104,70],[130,30],[130,0],[40,0],[48,70],[42,330],[46,470],[22,800]];
+  const L=R.slice().reverse().map(p=>[-p[0],p[1]]), Q=[[0,830]].concat(L,[[0,1500]],R,[[0,830]]);
+  const at=v=>(wk==="back"||wk==="front")?(+v.x||0):(+v.z||0);
+  P.forEach(p=>{ let best=null, bd=Infinity; walls.forEach(k=>{ const Wk=PL_WALLS[k], dist=Math.abs((Wk.pa===0?(+p.x||0):(+p.z||0))-plFace(r,k)); if(dist<bd){ bd=dist; best=k; } }); if(best!==wk) return;
+    const u=uOf(at(p)), h=Math.max(+p.h||1700,100), sx=Math.max(+p.w||600,50)/600, sy=h/1700, X=v=>Math.round((u+v*sx)*10)/10, Y=v=>Math.round(-v*sy*10)/10;
+    let d='M'+X(Q[0][0])+' '+Y(Q[0][1]); for(let i=0;i<Q.length-1;i++){ const a=Q[Math.max(i-1,0)], b=Q[i], c=Q[i+1], e=Q[Math.min(i+2,Q.length-1)];
+      d+=' C'+X(b[0]+(c[0]-a[0])/6)+' '+Y(b[1]+(c[1]-a[1])/6)+' '+X(c[0]-(e[0]-b[0])/6)+' '+Y(c[1]-(e[1]-b[1])/6)+' '+X(c[0])+' '+Y(c[1]); }
+    o.els.push('<g fill="#dfe3e9" fill-opacity=".82" stroke="#3f4550" stroke-width=".9"><path d="'+d+' Z" vector-effect="non-scaling-stroke"/><ellipse cx="'+X(0)+'" cy="'+Y(1590)+'" rx="'+(84*sx)+'" ry="'+(110*sy)+'" vector-effect="non-scaling-stroke"/></g>');
+    o.T(u,-h-5*o.k,"คน สูง "+Math.round(h),{px:6,bg:1,col:"#3a3f48"}); }); }
+function dwgPersonPlan(o){ dwgPersons().forEach(p=>{ const x=+p.x||0, z=+p.z||0, w=Math.max(+p.w||600,50), d=Math.max(+p.d||320,50);
+  o.els.push('<g transform="translate('+x+' '+z+') rotate('+(-(+p.yaw||0))+')" fill="#dfe3e9" stroke="#3f4550" stroke-width=".9"><ellipse cx="0" cy="0" rx="'+(w/2)+'" ry="'+(d/2)+'" vector-effect="non-scaling-stroke"/><path d="M'+(-w*.07)+' '+(d*.26)+' L0 '+(d*.62)+' L'+(w*.07)+' '+(d*.26)+'" vector-effect="non-scaling-stroke"/><circle cx="0" cy="0" r="'+(w*.17)+'" fill="#fff" vector-effect="non-scaling-stroke"/></g>'); }); }
+function dwgWallsPlan(o,r,T,fill){ let _dcs=[]; try{ _dcs=dwgCabs(); }catch(e){} Object.keys(PL_WALLS).forEach(k=>{ const x0=r.x0, x1=r.x0+r.w, z0=r.z0, z1=r.z0+r.d;
+  if(!dwgWallOn(r,k,_dcs)){ const s={back:[x0,z0,x1,z0],front:[x0,z1,x1,z1],left:[x0,z0,x0,z1],right:[x1,z0,x1,z1]}[k]; o.L(s[0],s[1],s[2],s[3],0.6,DWG_THIN,"6 4"); return; }
   const b={back:[x0-T,z0-T,x1+T,z0],front:[x0-T,z1,x1+T,z1+T],left:[x0-T,z0-T,x0,z1+T],right:[x1,z0-T,x1+T,z1+T]}[k];
-  o.R(b[0],b[1],b[2],b[3],{w:1.1,fill}); }); o.R(r.x0,r.z0,r.x0+r.w,r.z0+r.d,{w:0.8}); }
+  o.R(b[0],b[1],b[2],b[3],{w:1.1,fill}); }); o.R(r.x0,r.z0,r.x0+r.w,r.z0+r.d,{w:0.8}); dwgPlwPlan(o,fill); }   /* v1.643: + ผนังที่วาดเอง */
 function dwgOnWall(c,r,k,tol){ const W=PL_WALLS[k]; if(c.wk!==k) return false; const back=W.s>0?c.f.lo[W.pa]:c.f.hi[W.pa]; if(Math.abs(back-plFace(r,k))<=(tol||150)) return true;
   /* v1.629: ตู้ในซุ้มหลุม หลังตู้อยู่ลึกกว่าผิวผนัง ยังเป็นตู้ของผนังนี้ (ไม่งั้นหายจากแบบผนัง) */
   try{ if(!snOff("plNiche")){ const beh=(plFace(r,k)-back)*W.s, F=ploFrames().find(x=>x.key==="r:"+k), cc=(c.f.lo[W.ax]+c.f.hi[W.ax])/2, tc=F?(cc-F.a[W.ax===0?0:1])*F.d[W.ax===0?0:1]:0;
@@ -44574,6 +44637,7 @@ function dwgPlan(C){ const r=plRoom(), T=100, cabs=C||dwgCabs();
     let px=cx, pz=cz; if(W&&Math.min(c.hi[0]-c.lo[0],c.hi[2]-c.lo[2])>200){ const sh=(Math.abs(c.hi[W.pa]-c.lo[W.pa])/2)*0.45*(up?-1:1)*W.s; if(W.pa===0) px+=sh; else pz+=sh; }
     const wAlong=W?(c.f.hi[W.ax]-c.f.lo[W.ax]):999;
     if(Math.max(c.hi[0]-c.lo[0],c.hi[2]-c.lo[2])>=150){ o.num(px,pz-4*k,c.n); if(wAlong>=100) o.T(px,pz+12*k,c.code,{px:6.3,col:"#3a3f48",bg:1}); } });   // ฟิลเลอร์/แผ่นปิดแคบ = เลขอย่างเดียว
+  dwgPersonPlan(o);   /* v1.643 */
   /* ระยะตามผนัง */
   const rowGap=15*k, base=T+10*k, axisRange={back:[r.x0,r.x0+r.w],front:[r.x0,r.x0+r.w],left:[r.z0,r.z0+r.d],right:[r.z0,r.z0+r.d]};
   const done={};
@@ -44603,7 +44667,7 @@ function dwgUtilElev(wk,C){ const r=plRoom(), W=PL_WALLS[wk], A=W.ax, Lw=A===0?r
   const uT=t=>(wk==="back"||wk==="right")?t:Lw-t;                                    // t ตามกรอบผนังห้อง (ploFrames: วัดจากมุมใน)
   const o=dwgNew("du"+wk,-Tw,-H,Lw+Tw,0,760,470,80), k=o.k, hb=o.hatch("w",7), FA="#b8bcc4";
   const leftWall=wk==="back"?"left":wk==="right"?"back":wk==="left"?"front":"right", rightWall=wk==="back"?"right":wk==="right"?"front":wk==="left"?"back":"left";
-  if(r.walls[leftWall]) o.R(-Tw,-H,0,0,{w:1,fill:hb}); if(r.walls[rightWall]) o.R(Lw,-H,Lw+Tw,0,{w:1,fill:hb});
+  { const _ua=C||dwgCabs(); if(dwgWallOn(r,leftWall,_ua)) o.R(-Tw,-H,0,0,{w:1,fill:hb}); if(dwgWallOn(r,rightWall,_ua)) o.R(Lw,-H,Lw+Tw,0,{w:1,fill:hb}); }   /* v1.643 */
   o.L(-Tw,0,Lw+Tw,0,1.6); o.L(0,-H,Lw,-H,0.6,DWG_THIN,"8 4");
   (C||dwgCabs()).filter(c=>dwgOnWall(c,r,wk)).forEach(c=>{ const u=U(c.f.lo[A],c.f.hi[A]); o.R(u[0],-c.f.hi[1],u[1],-c.f.lo[1],{w:0.6,col:FA,dash:"5 3"});
     if(u[1]-u[0]>=180) o.T((u[0]+u[1])/2,-(c.f.lo[1]+c.f.hi[1])/2,c.code,{px:6,col:"#9aa0aa"}); });
@@ -44651,7 +44715,9 @@ function dwgElev(wk,C,SECS){ const r=plRoom(), cabs=(C||dwgCabs()).filter(c=>dwg
   const U=(a,b)=>{ const u1=uOf(a), u2=uOf(b); return [Math.min(u1,u2),Math.max(u1,u2)]; };
   const o=dwgNew("de"+wk,-Tw,-H,Lw+Tw,0,760,470,80), k=o.k, hb=o.hatch("w",7), hs=o.hatch("s",4,"#9aa0aa");
   const leftWall=wk==="back"?"left":wk==="right"?"back":wk==="left"?"front":"right", rightWall=wk==="back"?"right":wk==="right"?"front":wk==="left"?"back":"left";
-  if(r.walls[leftWall]) o.R(-Tw,-H,0,0,{w:1,fill:hb}); if(r.walls[rightWall]) o.R(Lw,-H,Lw+Tw,0,{w:1,fill:hb});
+  const _all=C||dwgCabs();   /* v1.643: ผนังที่ปิดแต่มีตู้ชน + ผนังที่วาดเอง */
+  if(dwgWallOn(r,leftWall,_all)) o.R(-Tw,-H,0,0,{w:1,fill:hb}); if(dwgWallOn(r,rightWall,_all)) o.R(Lw,-H,Lw+Tw,0,{w:1,fill:hb});
+  dwgPlwCut(o,r,wk,uOf,hb);
   o.L(-Tw,0,Lw+Tw,0,1.6); o.L(0,-H,Lw,-H,0.6,DWG_THIN,"8 4");
   /* ตู้/ท็อปของผนังข้างที่ชิดผนังนี้ (มุม L) — เห็นเป็นด้านข้าง วาดจาง ไม่ใส่เลข */
   const face=plFace(r,wk), P=W.pa;
@@ -44670,6 +44736,10 @@ function dwgElev(wk,C,SECS){ const r=plRoom(), cabs=(C||dwgCabs()).filter(c=>dwg
   let wt={slabs:[],bs:[]}; try{ wt=plWtSlabs(); }catch(e){}
   wt.slabs.filter(s=>s.wk===wk||Math.min(Math.abs(s.lo[W.pa]-plFace(r,wk)),Math.abs(s.hi[W.pa]-plFace(r,wk)))<=5).forEach(s=>{ const u=U(s.lo[A],s.hi[A]); o.R(u[0],-s.hi[1],u[1],-s.lo[1],{w:2.2,fill:"#3b3d42",col:"#1d1d1f"}); });
   dwgVert(o,wt.bs.filter(s=>s.wk===wk),U,A,hs);   // v1.522: บัว + ผนังตามชนิด
+  /* v1.643: ฟิลเลอร์บน + คนยืน · ป้ายอยู่ที่ท่อนยาวสุด ท่อนที่แคบหรือเตี้ยกว่าตัวหนังสือไม่ใส่ป้าย */
+  const _cf=dwgCeilFills(cabs,U,A,W.pa); _cf.forEach(q=>o.R(q.u[0],-q.y1,q.u[1],-q.y0,{w:1,fill:"#f3f4f6"}));
+  { const q=_cf.slice().sort((a,b)=>(b.u[1]-b.u[0])-(a.u[1]-a.u[0]))[0]; if(q&&(q.u[1]-q.u[0])/k>=70&&(q.y1-q.y0)/k>=9) o.T((q.u[0]+q.u[1])/2,-(q.y0+q.y1)/2+2.2*k,"ฟิลเลอร์บน สูง "+Math.round(q.y1-q.y0),{px:6,col:"#3a3f48"}); }
+  dwgPersonElev(o,r,wk,_all,uOf);
   cabs.forEach(c=>{ const u=U(c.f.lo[A],c.f.hi[A]), cx=(u[0]+u[1])/2, cy=-(c.f.lo[1]+c.f.hi[1])/2; if(u[1]-u[0]<120||(c.cvb&&c.cvb.role!=="top")) return;
     o.num(cx,cy-5*k,c.n); o.T(cx,cy+12*k,c.code,{px:6.5,bg:1}); });
   /* ระยะ */
@@ -44682,6 +44752,7 @@ function dwgElev(wk,C,SECS){ const r=plRoom(), cabs=(C||dwgCabs()).filter(c=>dwg
   wt.slabs.filter(s=>s.wk===wk).forEach(s=>add(s.hi[1]));
   wt.bs.filter(s=>s.wk===wk&&s.kind==="up").forEach(s=>add(s.hi[1]));   // v1.522: ยอดบัวหิน
   upRow.forEach(c=>{ add(c.f.ylo); add(c.f.hi[1]); });
+  _cf.forEach(q=>{ add(q.y0); add(q.y1); });   /* v1.643 */
   const lvs=[...new Set(lv.map(v=>Math.round(v)))].sort((a,b)=>a-b).map(v=>-v).reverse();
   o.chain(lvs,Lw+Tw+12*k,Lw,false); o.chain([-H,0],Lw+Tw+27*k,null,false);
   (SECS||[]).filter(s=>s.wk===wk).forEach(s=>{ const u=uOf(s.cA); dwgCutMark(o,u,-H-36*k,44*k,s.lbl); });   // v1.522: เส้นตัด Section
