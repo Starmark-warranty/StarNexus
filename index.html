@@ -3283,7 +3283,7 @@ body[data-theme="dark"] .splash-dots span{background:rgba(255,255,255,.25)}
    ===================================================================== */
 /* ---- APP_META: แหล่งความจริงเดียวของเวอร์ชัน (ดูได้จาก console / คลิกชื่อแอป) ---- */
 const APP_META={
-  name:"StarNexus", version:"1.630", build:"2026-11-03/cost-no-glass",
+  name:"StarNexus", version:"1.631", build:"2026-11-03/fg-click-copy",
   file:"StarNexus.html", basedOn:"Furnitech_V3.html (v3.11)",
   /* ───────── เริ่มนับเวอร์ชันใหม่ที่ 1.001 (21/08/2026) ─────────
      ของเดิมนับมาถึง 42.1 แล้ววิ่งเป็นทศนิยมสองชั้นซึ่งอ่านลำดับยาก
@@ -3291,6 +3291,7 @@ const APP_META={
      ประวัติเก่าเก็บไว้ทั้งหมดตามเลขเดิม ไม่ไล่เขียนใหม่ เพราะเลขในนั้นถูกอ้างถึงไปแล้ว
      รายการที่อยู่ใต้ 1.001 ลงไปจึงเป็นเลขชุดเก่า อ่านต่อกันได้ตามวันที่ */
   changelog:[
+    ["1.631","2026-11-03","UX Fitting Global: กดช่องรหัสหรือช่องชื่อ = คัดลอก (ผู้ใช้ 3/11 09:50 ภาพตาราง H001… “ทำให้ช่องรหัส กับช่องชื่อ กดแล้ว Copy ได้ไหมครับ”) — ช่องกะพริบเขียวบอกว่าคัดลอกแล้ว · ลากคลุมข้อความบางส่วนยังทำได้ ไม่ทับที่คลุมไว้ · ปิด SN_OFF.fgCopy"],
     ["1.630","2026-11-03","FIX ราคาทุน/ใบเสนอราคา: กระจกไม่คิดซ้ำในหน้าไม้ และ FRAMEALU ไม่คิดในหน้าผิว (ผู้ใช้ 3/11 09:45 ภาพหน้า 💰 FC08 GLASS 08 mm. 0.70 ตร.ม. + FRAMEALU 4.05 ตร.ม.: “หน้าไม้ ตัว Fc08 ต้องตัดออกเพราะมันคือกระจกครับ อยู่หน้า Fitting แล้วครับ ตัดออกจากใบเสนอราคา · หน้าผิว เอา FRAMEALU ออกจากใบเสนอราคาด้วยครับ”) — กระจกคิดในแถว Fitting ที่เดียว ไม่คิดไม้ ผิว ขอบ ของแผ่นกระจกอีก · รหัสผิวที่ไม่คิดตั้งที่ settings.costNoSurf (ตั้งต้น FRAMEALU) · ปิด SN_OFF.costNoGlass / SN_OFF.costNoSurf · FIX ลากคลุมข้อความในหน้าต่างแล้วปล่อยเมาส์นอกหน้าต่าง หน้าต่างปิด (ผู้ใช้ 09:47 ภาพ Fitting Global “ตอนคลุมแล้วเมาส์ ออกนอกหน้าต่าง มันปิดลงครับ”) — แก้รวมทุกหน้าต่างแบบคลิกพื้นหลังปิด · ปิด SN_OFF.clickOutGuard"],
     ["1.629","2026-11-03","FEAT ซุ้มหลุมโค้งในผนัง (ผู้ใช้ 3/11 08:49 ภาพห้องทานข้าวมีหลุมโค้ง “ทำผนัง โค้ง ฝ้า หลุมโค้งยังไง” · 08:52 “เอาข้อ 1 ก่อนครับ”) — การ์ด ⌓ ซุ้มหลุมโค้ง ใน 🚪 ของในห้อง ลากติดผนังได้ทั้งผนังห้องและผนังที่วาด ตั้งกว้าง สูง ลึก สูงจากพื้น รัศมีโค้งบน (โค้งเต็ม / มุมโค้ง / เหลี่ยม) สีในหลุม ชั้นไม้ในหลุม (ของตกแต่งในภาพ ไม่เข้าแบบผลิต) · ผนังเว้าจริง ขึ้นในโหมดสมจริงและภาพเรนเดอร์ · ลากตู้เข้าหลุม: ตู้ที่พอดีช่องและไม่ติดส่วนโค้ง จะดูดเข้าก้นหลุมเอง · ปิด SN_OFF.plNiche"],
     ["1.628","2026-11-03","FIX หน้า 💰 รหัสตกบรรทัด (ผู้ใช้ 3/11 08:45 ภาพ 8101937 / 6: “รหัสตก เลข 6 ครับ”) — ช่องรหัสตั้งให้ตัดได้ทุกตัวอักษร พอช่องชื่อยาวก็บีบช่องรหัสจนเลขท้ายตกไปบรรทัดใหม่ ตอนนี้รหัสอยู่บรรทัดเดียวเสมอ ช่องชื่อเป็นฝ่ายขึ้นบรรทัดใหม่แทน"],
@@ -30442,6 +30443,7 @@ function boardRole(b){
      SN_OFF.plAlignStay=1 จัดแนวแล้วตู้หลบของที่ทับกันอยู่ก่อนแบบเดิม (ดีดไปช่องว่าง) (v1.600)
      SN_OFF.rszAdjBox=1   ปรับขนาดตู้ที่ชิ้นโครงมีสูตรปรับ วัดฐานก่อนถอดสูตรแบบเดิม (หดซ้ำ) (v1.600)
      SN_OFF.sdcGroove=1   บานเลื่อน SDC ไม่เซาะร่องฝังรางในแผ่นพื้น/แผ่นบน (ร่องที่เซาะไว้ถูกถอดตอน sync) (v1.599)
+     SN_OFF.fgCopy=1      Fitting Global กดช่องรหัส/ชื่อแล้วไม่คัดลอก (v1.631)
      SN_OFF.clickOutGuard=1 ลากคลุมข้อความในหน้าต่างแล้วปล่อยเมาส์นอกหน้าต่าง หน้าต่างปิดแบบเดิม (v1.630)
      SN_OFF.costNoGlass=1 แผ่นกระจกกลับมาคิดในหน้าไม้ ผิว ขอบ ของราคาทุน (นับซ้ำกับแถว Fitting) (v1.630)
      SN_OFF.costNoSurf=1  รหัสผิวใน settings.costNoSurf (FRAMEALU) กลับมาคิดในหน้าผิว (v1.630)
@@ -31400,10 +31402,13 @@ function colorFromTemplateDialog(tpl0,headNode){
   setTimeout(()=>{ try{ iNew.focus(); }catch(e){} },30);
 }
 // คัดลอกข้อความเข้าคลิปบอร์ด (มี fallback)
+/* ───────── v1.631: เบราว์เซอร์ไม่ให้สิทธิ์คลิปบอร์ด ตัวสำรองไม่เคยทำงาน ─────────
+   เดิม throw ใน .then เป็นคนละจังหวะกับ try จึงไม่ถูกจับ ตัวสำรองไม่ทำงาน ไม่มีข้อความบอก (พบตอนทดสอบกดคัดลอกใน Fitting Global)
+   ตอนนี้ปฏิเสธเมื่อไหร่ก็ลงตัวสำรองทันที และบอกตามจริงถ้าคัดลอกไม่ได้ */
 function copyText(t){ const done=()=>toast("คัดลอก “"+t+"” แล้ว");
-  try{ navigator.clipboard.writeText(t).then(done,()=>{throw 0;}); }
-  catch(e){ const ta=document.createElement("textarea"); ta.value=t; document.body.appendChild(ta); ta.select();
-    try{document.execCommand("copy");}catch(_){} ta.remove(); done(); } }
+  const old=()=>{ const ta=document.createElement("textarea"); ta.value=t; ta.style.cssText="position:fixed;left:0;top:0;opacity:0"; document.body.appendChild(ta); ta.select(); let ok=false;
+    try{ ok=document.execCommand("copy"); }catch(_){} ta.remove(); if(ok) done(); else toast("คัดลอกไม่ได้ — เบราว์เซอร์ไม่อนุญาต ลองลากคลุมแล้วกด Ctrl+C"); };
+  try{ navigator.clipboard.writeText(t).then(done,old); }catch(e){ old(); } }
 // Copy แม่+ลูกทั้ง Family → ตัวใหม่ เปลี่ยนเลขในชื่อแม่และลูกให้อัตโนมัติ
 // เช่น FrontColor1 (ลูก $Front1Surfacetop, $FrontEdge1) → เลข 2 → FrontColor2 ($Front2Surfacetop, $FrontEdge2)
 // รองรับ Family อื่นในอนาคต (Handle1, Drawer1, …) — จับ "เลขกลุ่มท้ายสุด" ของชื่อแม่เป็นตัวเปลี่ยน
@@ -66354,7 +66359,7 @@ function sxlFgView(){
    if(fQ&&!fQ(lcC[i]+' '+lcN[i]+' '+catA[i].toLowerCase()))continue;
    if(pf!=='*'&&((sxlFgPrice(r).v>0)!==(pf==='1')))continue;
    n++;if(out.length<SXL_FG_LIM)out.push(i)}
-  $b.innerHTML=out.map(function(i){var r=all[i],pv=sxlFgPrice(r);return '<tr'+(dead(r)?' style="color:#8a97a3"':'')+'><td style="'+td+';font-family:ui-monospace,Consolas,monospace;white-space:nowrap">'+esc2(r.item_number)+'</td><td style="'+td+'">'+esc2(r.product_name)+'</td><td style="'+td+';white-space:nowrap">'+esc2(r.unit)+'</td><td style="'+td+';white-space:nowrap;text-align:right" title="'+esc2(pv.t)+'">'+(pv.v>0?esc2(stkR(pv.v)):'<span style="color:#9aa7b3">—</span>')+'</td><td'+(snOff('fgCatRule')?'':' data-ci="'+i+'" title="กดเพื่อตั้งหมวดรายการนี้"')+' style="'+td+(snOff('fgCatRule')?'':';cursor:pointer')+'">'+(catA[i]?esc2(catA[i]):'<span style="color:#9aa7b3">—</span>')+'</td></tr>'}).join('')
+  $b.innerHTML=out.map(function(i){var r=all[i],pv=sxlFgPrice(r);var cpA=snOff('fgCopy')?'':' data-cp="1" title="กดเพื่อคัดลอก"';/* ───────── v1.631: กดช่องรหัส/ชื่อ = คัดลอก (ผู้ใช้ 09:50) ───────── เดิมต้องลากคลุมเอง ซึ่งพลาดง่ายตอนชื่อยาว ตัวรับอยู่ใน $b.onclick · มีข้อความที่คลุมอยู่ = ไม่คัดลอกทับ */return '<tr'+(dead(r)?' style="color:#8a97a3"':'')+'><td'+cpA+' style="'+td+';font-family:ui-monospace,Consolas,monospace;white-space:nowrap'+(cpA?';cursor:copy':'')+'">'+esc2(r.item_number)+'</td><td'+cpA+' style="'+td+(cpA?';cursor:copy':'')+'">'+esc2(r.product_name)+'</td><td style="'+td+';white-space:nowrap">'+esc2(r.unit)+'</td><td style="'+td+';white-space:nowrap;text-align:right" title="'+esc2(pv.t)+'">'+(pv.v>0?esc2(stkR(pv.v)):'<span style="color:#9aa7b3">—</span>')+'</td><td'+(snOff('fgCatRule')?'':' data-ci="'+i+'" title="กดเพื่อตั้งหมวดรายการนี้"')+' style="'+td+(snOff('fgCatRule')?'':';cursor:pointer')+'">'+(catA[i]?esc2(catA[i]):'<span style="color:#9aa7b3">—</span>')+'</td></tr>'}).join('')
    ||'<tr><td colspan="5" style="padding:24px;text-align:center;color:#506577">ไม่พบรายการที่ตรง</td></tr>';
   $n.textContent='ตรง '+n.toLocaleString()+' รายการ'+(n>out.length?' · แสดง '+out.length.toLocaleString()+' แถวแรก — พิมพ์คำค้นเพิ่มเพื่อให้แคบลง':'');
   $b.parentNode.parentNode.scrollTop=0};
@@ -66376,7 +66381,7 @@ function sxlFgView(){
    var k=R.indexOf(same||R[R.length-1]);$cmsg.textContent='ตั้งหมวด “'+c+'” แล้ว · '+(ruleN[k]||0).toLocaleString()+' รายการ';};
   $cmg.onclick=function(){$clist.style.display=$clist.style.display==='none'?'block':'none'};
   $clist.onclick=function(e){var b=e.target.closest&&e.target.closest('[data-rd]');if(!b)return;var R=rulesOf().slice();R.splice(+b.getAttribute('data-rd'),1);settings.fgCatRules=R;catChanged()};
-  $b.onclick=function(e){var cell=e.target.closest&&e.target.closest('[data-ci]');if(!cell||cell.querySelector('input'))return;var i=+cell.getAttribute('data-ci'),code=String(all[i].item_number||''),inp=document.createElement('input'),done=false;
+  $b.onclick=function(e){var cp=e.target.closest&&e.target.closest('[data-cp]');if(cp){var seltx='';try{seltx=String(window.getSelection?window.getSelection():'')}catch(er){}if(seltx)return;var tx=String(cp.textContent||'').trim();if(tx){copyText(tx);var bg0=cp.style.background;cp.style.background='#d6f3df';setTimeout(function(){cp.style.background=bg0},450)}return}var cell=e.target.closest&&e.target.closest('[data-ci]');if(!cell||cell.querySelector('input'))return;var i=+cell.getAttribute('data-ci'),code=String(all[i].item_number||''),inp=document.createElement('input'),done=false;
    inp.setAttribute('list','sxlFgCatDl');inp.value=catA[i]||'';inp.placeholder='ชื่อหมวด';inp.style.cssText=fs;cell.innerHTML='';cell.appendChild(inp);inp.focus();inp.select();
    var fin=function(save){if(done)return;done=true;if(!save){var sc=$b.parentNode.parentNode.scrollTop;draw();$b.parentNode.parentNode.scrollTop=sc;return}var c=inp.value.trim(),R=rulesOf().filter(function(q){return String(q.x||'')!==code});if(c)R.push({c:c,x:code});settings.fgCatRules=R;catChanged()};
    inp.onkeydown=function(ev){if(ev.key==='Enter'){ev.preventDefault();fin(true)}else if(ev.key==='Escape'){ev.preventDefault();fin(false)}};inp.onblur=function(){fin(true)}}}
