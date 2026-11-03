@@ -3283,7 +3283,7 @@ body[data-theme="dark"] .splash-dots span{background:rgba(255,255,255,.25)}
    ===================================================================== */
 /* ---- APP_META: แหล่งความจริงเดียวของเวอร์ชัน (ดูได้จาก console / คลิกชื่อแอป) ---- */
 const APP_META={
-  name:"StarNexus", version:"1.636", build:"2026-11-03/edge-group",
+  name:"StarNexus", version:"1.637", build:"2026-11-03/end-depth-560-580",
   file:"StarNexus.html", basedOn:"Furnitech_V3.html (v3.11)",
   /* ───────── เริ่มนับเวอร์ชันใหม่ที่ 1.001 (21/08/2026) ─────────
      ของเดิมนับมาถึง 42.1 แล้ววิ่งเป็นทศนิยมสองชั้นซึ่งอ่านลำดับยาก
@@ -3291,6 +3291,7 @@ const APP_META={
      ประวัติเก่าเก็บไว้ทั้งหมดตามเลขเดิม ไม่ไล่เขียนใหม่ เพราะเลขในนั้นถูกอ้างถึงไปแล้ว
      รายการที่อยู่ใต้ 1.001 ลงไปจึงเป็นเลขชุดเก่า อ่านต่อกันได้ตามวันที่ */
   changelog:[
+    ["1.637","2026-11-03","CHANGE กล่องโค้งกับแผ่นปิดข้างที่กดใส่ ตู้ลึก 560 มีบานออก 580 · ตู้ลึก 580 มีบานออก 600 ไม่ใช่ 579/599 ตามหน้าบาน · ตู้เปิดโล่งและตู้ลึกอื่นคงเดิม (ผู้ใช้ 11:04)"],
     ["1.636","2026-11-03","FEAT 🔗 กรุ๊ปขอบในหน้า 💰 แท็บขอบ — สีเดียวกันรวมเป็นหน้ากว้างเดียว เช่น 80819297 · 80822297 → 80825297 ใช้รหัสนี้ทั้งราคา BOM ตารางตัด และส่ง Production ระดับออเดอร์ · ชิ้นที่ต้องการกว้างกว่าปลายทางไม่ถูกแทน · หนาต่างกันไม่รวมเอง แต่เลือกปลายทางข้ามความหนาได้ (ผู้ใช้ 10:01)"],
     ["1.635","2026-11-03","FEAT กล่องโค้งถึงฝ้า ไม้ดัดชนฝ้า โครงต่ำกว่า 50 · ก้นถึงฝ้าเกิน 2400 แยกเป็นกล่องบนอีกใบ เดฟตั้งต้น 0 ตั้งเดฟได้ · หัวตู้ถึงพื้นเกิน 2400 กดลงพื้นไม่ได้ · แบบผลิตโชว์ไม้ดัดเหนือโครงและสูงรวม · กล่องไม่ได้ฟิลเลอร์บนตั้งฉากกับแนวตู้อีก (ผู้ใช้ 10:34) · FEAT เตือนกล่องโค้งสีเมลามีน และบานโปรไฟล์ต้องสี P ตำแหน่งที่ 4 แบบขึ้นต้น M ที่ข้อความ แผงตู้ และก่อนส่ง Production (ผู้ใช้ 10:34, 10:37)"],
     ["1.634","2026-11-03","CHANGE กล่องโค้งกับแผ่นปิดข้างที่กดใส่ ตู้ลึก 370–380 ออกลึก 400 อัตโนมัติ ไม่ใช่ 399/386 ตามหน้าบาน (ผู้ใช้ 10:24) · FEAT ช่องปรับลึกกล่องโค้งเอง หน้าอยู่ที่เดิม หลังยืดไปหาผนังสำหรับตู้หน้าเสา ยืดเกินผนังแล้วหน้ายื่นแทน กด ↺ กลับ Auto · ตั้งตารางได้ที่ settings.cvb.autoD"],
@@ -41473,7 +41474,7 @@ async function plSideAdd(inst,side){
   const back=W.s>0?f.lo[W.pa]:f.hi[W.pa]; let fr=NaN; try{ fr=plDoorFront(inst,wk); }catch(e){}
   let D=Math.round(Math.abs((isFinite(fr)?fr:(W.s>0?f.hi[W.pa]:f.lo[W.pa]))-back));
   /* v1.634: ตู้ลึก 370–380 แผ่นปิดข้างลึก 400 ตามกล่องโค้ง (ผู้ใช้ 3/11 10:24 “แผ่นปิดข้างก็ด้วย ไม่เอา 399 หรือ 386”) มาก่อนขนาดในแคตตาล็อก */
-  const _bd=plEndBandD(Math.abs(f.hi[W.pa]-f.lo[W.pa])); if(_bd) D=_bd;
+  const _bd=plEndBandD(Math.abs(f.hi[W.pa]-f.lo[W.pa]),plHasDoor(inst)); if(_bd) D=_bd;   /* v1.637: + 560 · 580 ที่มีบาน */
   else { const e=catalogOf(pick.c)||{}, ds=catSizes(e.d); if(ds.length) D=ds.find(v=>v>=D-0.5)||ds[ds.length-1]; }
   const si=await plAdd(pick.c, Math.round(T), {wall:wk, along, y:sp.bot, H:Math.round(sp.top-sp.bot), D, off:plOffOf(inst), kind:"side",
     vars:Object.assign({},(state.cabColors||{})[inst]||{}), quiet:true});
@@ -41511,7 +41512,7 @@ async function plSideModeSet(si,k,v){ const cam=plCamKeep();
      รหัส: ตู้พื้น BNF065/066 · ตู้ลอย WNF065/066 · ตู้สูง TNF065/066 (settings.cvb.codes) ไม่มีโมเดลในคลัง = ใช้โมเดล BNF เปลี่ยนรหัสให้ · รหัสในคลังที่ไม่ใช่กล่องโค้ง = ใช้รหัส BNF ไม่ทับรุ่นอื่น
      ค่าตั้งเปลี่ยนได้ที่ settings.cvb {W,R,minW,minR,flat,dev,gap,codes}
    ปิด SN_OFF.plCvb */
-function cvbCfg(){ const d={W:150,R:120,minW:100,minR:80,flat:30,dev:30,gap:238,autoD:[[370,380,400]],maxH:2400,capDrop:50,codes:{base:["BNF065","BNF066"],wall:["WNF065","WNF066"],tall:["TNF065","TNF066"]}}, s=settings.cvb; return (s&&typeof s==="object")?Object.assign(d,s):d; }
+function cvbCfg(){ const d={W:150,R:120,minW:100,minR:80,flat:30,dev:30,gap:238,autoD:[[370,380,400],[560,560,580,1],[580,580,600,1]],maxH:2400,capDrop:50,codes:{base:["BNF065","BNF066"],wall:["WNF065","WNF066"],tall:["TNF065","TNF066"]}}, s=settings.cvb; return (s&&typeof s==="object")?Object.assign(d,s):d; }
 function cvbRMax(W){ const c=cvbCfg(); return Math.max(c.minR,Math.round(+W||0)-c.flat); }
 function cvbRDef(W){ return Math.min(cvbCfg().R,cvbRMax(W)); }
 function cvbKickR(R,W,dev){ const c=cvbCfg(); return Math.max(c.minR,Math.min(R-dev,cvbRMax(W-dev))); }
@@ -41523,8 +41524,14 @@ function cvbKickR(R,W,dev){ const c=cvbCfg(); return Math.max(c.minR,Math.min(R-
      · ช่องลึกในแผงกล่อง เก็บที่ _cvb.d: หน้ากล่องอยู่ที่เดิม หลังยืดไปหาผนัง (ตู้หน้าเสา กล่องจบนอกเสา) · ยืดเกินผนังหลัง = หลังชิดผนังแล้วหน้ายื่นแทน
        เว้นว่างหรือกด ↺ = กลับ Auto · ค่าที่ตั้งเองคงอยู่เมื่อตู้ย้ายหรือเปลี่ยนขนาด
    ปิด SN_OFF.plEndD=1 */
-function plEndBandD(carc){ if(snOff("plEndD")) return 0; const L=cvbCfg().autoD||[]; for(const r of L){ if(+carc>=+r[0]-0.5&&+carc<=+r[1]+0.5) return +r[2]||0; } return 0; }
-function cvbAutoD(M){ return plEndBandD(M.carc)||Math.round(M.D); }
+/* ───────── v1.637: ตู้ลึก 560 กับ 580 ─────────
+   ผู้ใช้ 3/11 11:04: “ตู้ที่ลึก 560 แล้วมีบาน กล่องก็ 580 mm. ตู้ลึก 580 แล้วมีบาน กล่องก็ 600 mm.”
+   เดิม: ตารางมีแค่ 370–380 ตู้ลึกอื่นเสมอหน้าบาน จึงได้ 579 กับ 599
+   ตอนนี้: แถวตาราง [ลึกต่ำ, ลึกสูง, ลึกกล่อง, ต้องมีบาน] · 560 และ 580 ต้องมีบาน ตู้เปิดโล่งยังเสมอหน้าโครงเหมือนเดิม · 370–380 คงไม่ดูบานตามที่ผู้ใช้สั่ง 10:24 · ตู้ลึกอื่น เช่น 570 ยังเสมอหน้าบาน */
+function plEndBandD(carc,door){ if(snOff("plEndD")) return 0; const L=cvbCfg().autoD||[]; for(const r of L){ if(+carc>=+r[0]-0.5&&+carc<=+r[1]+0.5&&(!r[3]||door)) return +r[2]||0; } return 0; }
+function plEndBandTxt(){ return (cvbCfg().autoD||[]).map(x=>"ตู้ลึก "+(+x[0]===+x[1]?x[0]:(x[0]+"–"+x[1]))+(x[3]?" มีบาน":"")+" = "+x[2]).join(" · "); }
+function plHasDoor(inst){ return plBoardsOf(inst).some(b=>b&&!b._virtual&&b._door&&!b._box&&(+b.T>0)&&!plIsLeg(b)); }
+function cvbAutoD(M){ return plEndBandD(M.carc,M.door)||Math.round(M.D); }
 function cvbWallBack(M){ try{ const F=M.F, r=plRoom(); for(const k of Object.keys(PL_WALLS)){ const W=PL_WALLS[k]; if(r.walls[k]&&W.pa===F.fa&&W.s===F.fs){ const fc=plFace(r,k); if((M.back-fc)*F.fs>=-1) return fc; } } }catch(e){} return null; }
 function cvbDims(M,d){ const A=cvbAutoD(M), F=M.F; if(snOff("plEndD")||!(+d>0)) return {D:A,back:M.back,auto:A,manual:false};
   let back=M.back+F.fs*(A-d); const lim=cvbWallBack(M); if(lim!=null&&(back-lim)*F.fs<0) back=lim; return {D:Math.round(+d),back:round(back),auto:A,manual:true}; }
@@ -41583,7 +41590,7 @@ function cvbROf(bs){ const b=(bs||[]).find(x=>x&&x._csP&&!x._virtual); if(!b) re
 function cvbHostM(host){ const bs=plBoardsOf(host); if(!bs.length) return null; const f=plFp(bs), F=cvbFrame(cabYawOf(host)); if(!F||!isFinite(f.lo[0])) return null;
   const W={pa:F.fa,s:F.fs}; let fr=cvbEdge(f,F.fa,F.fs); bs.filter(b=>b&&!b._virtual&&b._door&&!b._box&&(+b.T>0)&&!plIsLeg(b)).forEach(b=>{ const v=_plFront(b,W); fr=F.fs>0?Math.max(fr,v):Math.min(fr,v); });
   const back=cvbEdge(f,F.fa,-F.fs), lv=plSideLvOf(host), hasKick=lv!=="wall"&&(f.lo[1]-f.ylo)>=20;
-  return {F,yaw:F.yaw,lv,code:f.code,back,front:fr,D:Math.abs(fr-back),carc:Math.round(Math.abs(cvbEdge(f,F.fa,F.fs)-back)*10)/10,top:round(f.hi[1]),bot:round(f.lo[1]-plLightOf(host)-plNomLift(host,f)),ylo:round(f.ylo),hasKick,L:cvbEdge(f,F.ra,-F.rs),R:cvbEdge(f,F.ra,F.rs)}; }
+  return {F,yaw:F.yaw,lv,code:f.code,back,front:fr,D:Math.abs(fr-back),carc:Math.round(Math.abs(cvbEdge(f,F.fa,F.fs)-back)*10)/10,door:plHasDoor(host),top:round(f.hi[1]),bot:round(f.lo[1]-plLightOf(host)-plNomLift(host,f)),ylo:round(f.ylo),hasKick,L:cvbEdge(f,F.ra,-F.rs),R:cvbEdge(f,F.ra,F.rs)}; }
 /* ข้อมูลกล่อง: ด้าน · คู่บน/ขา (ดูจากการซ้อนกัน) · ตู้เจ้าของ · ค่าปัจจุบัน */
 function cvbInfo(inst){ inst=String(inst); const bs=plBoardsOf(inst), car=bs.filter(b=>b&&b._csP&&!b._virtual); if(!car.length) return null;
   const side=car[0]._csP.rSide==="right"?"R":"L", yaw=cvbBoxYaw(bs), F=cvbFrame(yaw); if(!F) return null;
@@ -41731,7 +41738,7 @@ function plCvbAlign(inst){ if(PL.cvbBusy||snOff("plCvb")||(typeof isLocked==="fu
 function plCvbRowHtml(inst,code){ if(snOff("plCvb")||plIsSide(inst)||plIsLightPanel(inst)||csmIsCode(code)||plKindOf(code)==="filler"||!/^(base|wall|tall)$/.test(plSideLvOf(inst))||!cvbFrame(cabYawOf(inst))) return "";
   const has=s=>{ try{ return !!cvbOfHost(inst,s); }catch(e){ return false; } }, room=s=>{ try{ return cvbRoom(inst,s,[]); }catch(e){ return 0; } }, min=cvbCfg().minW;
   const bt=(id,s,lb)=>{ const h=has(s), ok=h||room(s)>=min-1; return '<button class="ibtn" id="'+id+'"'+(ok?'':' disabled title="ด้านนี้เหลือที่ไม่ถึง '+min+' มม."')+'>'+(h?("✓ "+lb):lb)+'</button>'; };
-  return '<div class="plRow plBtns" style="margin-top:4px" title="กล่องโค้งปิดปลายตู้ ซ้ายขวามองจากหน้าตู้ · ตั้งต้นกว้าง 150 R120 สูงเท่าตู้ · ตู้ลึก 370–380 กล่องลึก 400 · ✓ = มีแล้ว กดเพื่อเลือกแก้ค่า">กล่องโค้ง '+bt("plCvL","L","◀ ซ้าย")+bt("plCvR","R","ขวา ▶")+'</div>'; }
+  return '<div class="plRow plBtns" style="margin-top:4px" title="กล่องโค้งปิดปลายตู้ ซ้ายขวามองจากหน้าตู้ · ตั้งต้นกว้าง 150 R120 สูงเท่าตู้ · ลึก: '+escapeHtml(plEndBandTxt())+' · ✓ = มีแล้ว กดเพื่อเลือกแก้ค่า">กล่องโค้ง '+bt("plCvL","L","◀ ซ้าย")+bt("plCvR","R","ขวา ▶")+'</div>'; }
 /* แผงกล่องที่เลือก */
 function plCvbPanel(s,inst){ const I=cvbInfo(inst); if(!I){ s.innerHTML=""; return; } const c=cvbCfg(), M0=I.host?cvbHostM(I.host):null, M=(M0&&M0.yaw===I.yaw)?M0:null, hasK=M?M.hasKick:!!I.kick, floor=cvbFloorOf(I,M), code=String(plFp(plBoardsOf(I.top)).code), w=Math.round(I.W), rMax=cvbRMax(w), over=I.R>rMax+0.5, low=I.R<c.minR-0.5, must=w-I.dev<c.minW;
   const num=(id,v,st,mn,mx)=>'<input type="number" id="'+id+'" value="'+v+'" step="'+st+'" min="'+mn+'"'+(mx!=null?' max="'+mx+'"':'')+' style="width:70px"><span class="plU">มม.</span>';
@@ -41742,7 +41749,7 @@ function plCvbPanel(s,inst){ const I=cvbInfo(inst); if(!I){ s.innerHTML=""; retu
     +fr("กว้าง",num("cvbW",w,10,c.minW),"ต่ำสุด "+c.minW+" · ขยายออกด้านนอก ฝั่งชิดตู้อยู่ที่เดิม")
     +fr("R โค้ง",num("cvbR",Math.round(I.R),5,c.minR,rMax)+'<span class="plNote plNB">R'+c.minR+(rMax>c.minR?('–'+rMax):'')+'</span>',"รัศมีด้านนอก · ต่ำสุด "+c.minR+" · สูงสุด = กว้าง − "+c.flat+" (กล่องแคบกว่า "+(c.minR+c.flat)+" ใช้ R"+c.minR+")")
     +((over||low)?'<div class="plNote" style="color:#b45309;margin:2px 0 4px;line-height:1.5">ตอนนี้ R'+Math.round(I.R)+' นอกช่วงที่กำหนด แก้ค่าใดก็ได้แล้วจะเข้าช่วงเอง</div>':'')
-    +(snOff("plEndD")?'':fr("ลึก",num("cvbD",Math.round(I.D),10,Math.round(Math.min(I.R,rMax))+c.flat)+((I.mark&&+I.mark.d>0)?'<button class="ibtn" id="cvbDA" style="flex:none;width:auto;padding:2px 7px;white-space:nowrap" title="กลับไปใช้ค่าอัตโนมัติ">↺ Auto</button>':'<span class="plNote plNB">Auto</span>'),(c.autoD||[]).map(x=>"ตู้ลึก "+x[0]+"–"+x[1]+" = "+x[2]).join(" · ")+" · ตู้อื่นเสมอหน้าบาน · ตั้งเอง: หน้ากล่องอยู่ที่เดิม หลังยืดไปหาผนัง เช่นตู้อยู่หน้าเสาแต่กล่องจบนอกเสา · ลึกเกินผนัง = หน้ายื่นออก · เว้นว่าง = Auto"))
+    +(snOff("plEndD")?'':fr("ลึก",num("cvbD",Math.round(I.D),10,Math.round(Math.min(I.R,rMax))+c.flat)+((I.mark&&+I.mark.d>0)?'<button class="ibtn" id="cvbDA" style="flex:none;width:auto;padding:2px 7px;white-space:nowrap" title="กลับไปใช้ค่าอัตโนมัติ">↺ Auto</button>':'<span class="plNote plNB">Auto</span>'),plEndBandTxt()+" · ตู้อื่นเสมอหน้าบาน · ตั้งเอง: หน้ากล่องอยู่ที่เดิม หลังยืดไปหาผนัง เช่นตู้อยู่หน้าเสาแต่กล่องจบนอกเสา · ลึกเกินผนัง = หน้ายื่นออก · เว้นว่าง = Auto"))
     +(I.H>c.maxH+0.5?'<div class="plNote" style="color:#c62828;font-weight:600;margin:2px 0 4px;line-height:1.5">⚠ กล่องสูง '+Math.round(I.H)+' เกิน '+c.maxH+' ไม้ดัดยาวไม่พอ</div>':'')
     +(hasK?(fr("ลงพื้น",'<label style="white-space:normal"><input type="checkbox" id="cvbFl"'+(floor?" checked":"")+((must||noFl)?" disabled":"")+'> กล่องโค้งถึงพื้น ไม่มีกล่องขา</label>',"ไม่ติ๊ก = มีกล่องขาอีกใบ เว้าเข้าเท่าเดฟ")
       +(noFl?'<div class="plNote" style="margin:2px 0 4px;line-height:1.5">สูงถึงพื้น '+Math.round(M.top-M.ylo)+' เกิน '+c.maxH+' ไม้ดัดยาวไม่พอ ลงพื้นไม่ได้</div>':(must?'<div class="plNote" style="margin:2px 0 4px;line-height:1.5">กล่องบนต้องกว้างตั้งแต่ '+(c.minW+I.dev)+' ถึงมีสเตปได้</div>':''))
