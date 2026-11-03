@@ -3283,7 +3283,7 @@ body[data-theme="dark"] .splash-dots span{background:rgba(255,255,255,.25)}
    ===================================================================== */
 /* ---- APP_META: แหล่งความจริงเดียวของเวอร์ชัน (ดูได้จาก console / คลิกชื่อแอป) ---- */
 const APP_META={
-  name:"StarNexus", version:"1.635", build:"2026-11-03/ceil-box-rules",
+  name:"StarNexus", version:"1.636", build:"2026-11-03/edge-group",
   file:"StarNexus.html", basedOn:"Furnitech_V3.html (v3.11)",
   /* ───────── เริ่มนับเวอร์ชันใหม่ที่ 1.001 (21/08/2026) ─────────
      ของเดิมนับมาถึง 42.1 แล้ววิ่งเป็นทศนิยมสองชั้นซึ่งอ่านลำดับยาก
@@ -3291,6 +3291,7 @@ const APP_META={
      ประวัติเก่าเก็บไว้ทั้งหมดตามเลขเดิม ไม่ไล่เขียนใหม่ เพราะเลขในนั้นถูกอ้างถึงไปแล้ว
      รายการที่อยู่ใต้ 1.001 ลงไปจึงเป็นเลขชุดเก่า อ่านต่อกันได้ตามวันที่ */
   changelog:[
+    ["1.636","2026-11-03","FEAT 🔗 กรุ๊ปขอบในหน้า 💰 แท็บขอบ — สีเดียวกันรวมเป็นหน้ากว้างเดียว เช่น 80819297 · 80822297 → 80825297 ใช้รหัสนี้ทั้งราคา BOM ตารางตัด และส่ง Production ระดับออเดอร์ · ชิ้นที่ต้องการกว้างกว่าปลายทางไม่ถูกแทน · หนาต่างกันไม่รวมเอง แต่เลือกปลายทางข้ามความหนาได้ (ผู้ใช้ 10:01)"],
     ["1.635","2026-11-03","FEAT กล่องโค้งถึงฝ้า ไม้ดัดชนฝ้า โครงต่ำกว่า 50 · ก้นถึงฝ้าเกิน 2400 แยกเป็นกล่องบนอีกใบ เดฟตั้งต้น 0 ตั้งเดฟได้ · หัวตู้ถึงพื้นเกิน 2400 กดลงพื้นไม่ได้ · แบบผลิตโชว์ไม้ดัดเหนือโครงและสูงรวม · กล่องไม่ได้ฟิลเลอร์บนตั้งฉากกับแนวตู้อีก (ผู้ใช้ 10:34) · FEAT เตือนกล่องโค้งสีเมลามีน และบานโปรไฟล์ต้องสี P ตำแหน่งที่ 4 แบบขึ้นต้น M ที่ข้อความ แผงตู้ และก่อนส่ง Production (ผู้ใช้ 10:34, 10:37)"],
     ["1.634","2026-11-03","CHANGE กล่องโค้งกับแผ่นปิดข้างที่กดใส่ ตู้ลึก 370–380 ออกลึก 400 อัตโนมัติ ไม่ใช่ 399/386 ตามหน้าบาน (ผู้ใช้ 10:24) · FEAT ช่องปรับลึกกล่องโค้งเอง หน้าอยู่ที่เดิม หลังยืดไปหาผนังสำหรับตู้หน้าเสา ยืดเกินผนังแล้วหน้ายื่นแทน กด ↺ กลับ Auto · ตั้งตารางได้ที่ settings.cvb.autoD"],
     ["1.633","2026-11-03","UX หน้ารวมวัสดุของใบเสนอราคา (ผู้ใช้ 10:08) — เนื้อไม้โชว์หนาเนื้อจริง PB 16 ไม่ใช่ 17 · ไม่นับชิ้น Filler Carcass เป็นบาน การ์ดสีขาวหาย · สีแยกหัวรหัสกับชื่อลาย N03P0057N / PP77 และรวมการ์ดสีหน้าเดียวกัน · เอาจำนวนออกจากทุกการ์ด · FEAT อัปโหลดรูปจริงของมือจับที่ Element › Fittings หรือ 🖼 รูปอุปกรณ์ · มือจับแสดงครบทุกรหัส · 🏷 ตั้งชื่อรุ่นแบบบาน เช่น MCWx58 รุ่น Luciana ที่ปุ่มในใบเสนอราคาหรือ Element › Part"],
@@ -4181,7 +4182,7 @@ const settings=Object.assign({},DEF_SETTINGS);
 /* v28.3: orderLines = รายการในแท็บ เส้น/Line ของ XML (Accessory · Plinth · Worktop ฯลฯ)
    เดิมอ่านขึ้นมาโชว์ในหน้าตรวจแล้วทิ้งไป โหลดเข้าฉากปุ๊บก็หายทันที
    เก็บติดฉากไว้ จึงเปิดดูทีหลังได้ และเอาออกใบอุปกรณ์ตอนส่งออกได้ */
-const state={ boards:[], selectedId:null, view:"assembled", globalTone:0, showLabels:false, snap:10, tool:"select", shadows:false, ghost:false, eco:true, snapCorner:true, cabColors:{}, hidden:[], explode:0, doorPick:[], doorProg:{}, bcSeq:{}, bcMax:{}, orderLines:[], cabDP:{}, orderMat:{} };   // v1.337: orderMat = วัสดุทั้งออเดอร์ (บังคับ Family ลูก)
+const state={ boards:[], selectedId:null, view:"assembled", globalTone:0, showLabels:false, snap:10, tool:"select", shadows:false, ghost:false, eco:true, snapCorner:true, cabColors:{}, hidden:[], explode:0, doorPick:[], doorProg:{}, bcSeq:{}, bcMax:{}, orderLines:[], cabDP:{}, orderMat:{}, edgeGroup:{} };   // v1.337: orderMat = วัสดุทั้งออเดอร์ (บังคับ Family ลูก)
 let _nestQuiet=0; // v1.223: >0 = ตู้ในช่องกำลังปรับขนาดกลางรอบคิดฉาก ห้ามวาด/commit ซ้อน (ไม่ปิดล็อก Filler)
 let _fzDepth=0;   // v1.216: >0 = ชิ้นในโซน Filler ถูกถอดออกจากฉากชั่วคราว (ดู withFixZonesDetached) ห้ามวาด/commit กลางทาง
 
@@ -5050,7 +5051,7 @@ let undoStack=[], redoStack=[], lastSnap=null;
 /* v1.297: Ctrl+Z ต้องย้อนค่าประจำตู้ด้วย ไม่ใช่แค่ชิ้น — เดิมเก็บแต่ boards
    เปลี่ยนสีในช่อง Variables หรือวางคุณสมบัติตู้แล้วกด Ctrl+Z ชิ้นย้อน แต่สีกับค่าปรับบานค้างของใหม่ ไม่ตรงกัน */
 let _clrBak=null;   /* v1.612: ของที่ปุ่ม ล้าง เอาออกและไม่อยู่ใน snap — คืนตอน Ctrl+Z */
-const SNAP_CAB_KEYS=["cabColors","cabDP","cabVarTxt","cabFrontEdge","cabFrontDir","orderMat"];   // v1.337: + วัสดุทั้งออเดอร์ (Ctrl+Z ย้อนพร้อมความหนาชิ้น)
+const SNAP_CAB_KEYS=["cabColors","cabDP","cabVarTxt","cabFrontEdge","cabFrontDir","orderMat","edgeGroup"];   /* v1.636: + กรุ๊ปขอบ */   // v1.337: + วัสดุทั้งออเดอร์ (Ctrl+Z ย้อนพร้อมความหนาชิ้น)
 function snap(){ const cab={}; SNAP_CAB_KEYS.forEach(k=>{ if(state[k]) cab[k]=state[k]; });
   return JSON.stringify({boards:state.boards,globalTone:state.globalTone,cab:cab,room:snOff("plUndo")?undefined:(state.room||null)}); }   /* v1.540: + ห้อง (Ctrl+Z ย้อนผนัง/ประตู/หน้าต่างได้) */
 // รูที่ชิ้นอื่นมาเจาะฝากไว้ (src=เจ้าของ): ถ้าเจ้าของถูกลบไม่ว่าทางไหน รูต้องหายตาม — กวาดกลางทุกครั้งที่ commit
@@ -25471,7 +25472,7 @@ const SCENE_KEY="sxlocaltrial:boardforge:v1"+(SX_TAB?(":"+SX_TAB):"");
    openSharedIfAny เรียก sync(1) ซึ่งเซฟอัตโนมัติ = สแนปช็อตตู้ใบเดียวทับออเดอร์ทั้งใบ
    เปิดลิงก์เช็คจากหน้าตรวจลิงก์ทีหนึ่ง แล้วรีเฟรชแท็บงาน งาน 37 ตู้เหลือตู้เดียว
    v36.3 คิดเผื่อกรณีสองแท็บทำงานไว้แล้ว แต่ลิงก์ดูอย่างเดียวเป็นกรณีที่สามที่ยังไม่มีใครกัน */
-async function autosave(){ if(state.editing||VIEW_ONLY||_alignHold>0)return;   /* v1.265 */ try{ await store.set(SCENE_KEY,JSON.stringify({boards:state.boards,globalTone:state.globalTone,cabColors:state.cabColors,cabNums:state.cabNums,cabVarTxt:state.cabVarTxt,cabDX:state.cabDX,bcSeq:state.bcSeq,bcMax:state.bcMax,orderLines:state.orderLines,cabDP:state.cabDP,cabFrontEdge:state.cabFrontEdge,cabFrontDir:state.cabFrontDir,room:state.room||null,scenes:state.scenes||[],qPics:state.qPics||[],orderMat:state.orderMat||{},pidLock:state.pidLock||null})); }catch(e){} }   /* v1.337: + orderMat · v1.411: + pidLock */
+async function autosave(){ if(state.editing||VIEW_ONLY||_alignHold>0)return;   /* v1.265 */ try{ await store.set(SCENE_KEY,JSON.stringify({boards:state.boards,globalTone:state.globalTone,cabColors:state.cabColors,cabNums:state.cabNums,cabVarTxt:state.cabVarTxt,cabDX:state.cabDX,bcSeq:state.bcSeq,bcMax:state.bcMax,orderLines:state.orderLines,cabDP:state.cabDP,cabFrontEdge:state.cabFrontEdge,cabFrontDir:state.cabFrontDir,room:state.room||null,scenes:state.scenes||[],qPics:state.qPics||[],orderMat:state.orderMat||{},edgeGroup:state.edgeGroup||{},pidLock:state.pidLock||null})); }catch(e){} }   /* v1.337: + orderMat · v1.411: + pidLock */
 /* ───────── v1.127: การบันทึกอัตโนมัติกินเวลาเกือบครึ่งของรอบคิดฉาก ─────────
    ตัวบันทึกแปลงข้อมูลทั้งฉากเป็นข้อความใหม่ทุกครั้งที่คิดฉาก ทั้งชิ้น รู ร่อง อุปกรณ์
    ออเดอร์ร้อยสามสิบห้าชิ้นจึงกินสองวินาทีต่อรอบ วัดได้จริงในงานจริง
@@ -30453,6 +30454,7 @@ function boardRole(b){
      SN_OFF.dwgNoCount=1  หน้ารวมวัสดุ กลับมาโชว์จำนวน บาน/จุด/เส้น/ตัว/ชุด (v1.633)
      SN_OFF.dwgPullImg=1  การ์ดมือจับไม่ใช้รูปที่อัปโหลด ไม่มีรูปในหน้าต่าง 🖼 · การ์ดเดียวเหมือนเดิม (v1.633)
      SN_OFF.dwgDoorName=1 ไม่แสดงชื่อรุ่นแบบบานที่ตั้งเอง (v1.633)
+     SN_OFF.edgeGroup=1   ไม่มีปุ่มกรุ๊ปขอบ · ส่งออกและราคาใช้รหัสขอบตามหน้ากว้างจริงแบบเดิม (v1.636)
      SN_OFF.plCvbCeil=1   กล่องโค้งไม่มีตัวเลือกถึงฝ้า ไม่มีกล่องบน · ลงพื้นไม่เช็ค 2400 · กล่องกลับไปนับเป็นตู้ในแนวฟิลเลอร์บน (v1.635)
      SN_OFF.matRules=1    ไม่เตือนกล่องโค้งสีเมลามีน · บานโปรไฟล์ต้องสี P และแบบขึ้นต้น M (v1.635)
      SN_OFF.plEndD=1      กล่องโค้ง/แผ่นปิดข้าง ลึกเสมอหน้าบานเหมือนเดิม ไม่มี Auto 400 และช่องลึกเอง (v1.634)
@@ -30967,8 +30969,42 @@ function edgeAxMissInfo(code){ if(snOff("edgeAxPick")) return null; const q=/^([
   const w=+q[2], L=M.get(q[1]+"xx"+q[3]); if(L&&L.some(v=>v>=w)) return null; let phrase="";
   if(L&&L.length){ const top=L[L.length-1]; let nm=""; try{ nm=costFgName(q[1]+String(top)+q[3]); }catch(e){} if(nm){ const re=new RegExp("(หน้ากว้าง\\s*)"+top+"(?![0-9])"); if(re.test(nm)) phrase=nm.replace(re,"$1"+w); } }
   return {pre:q[1]+"xx"+q[3],L:"",phrase,why:(L&&L.length)?("ลาย "+q[3]+" ใน AX กว้างสุด "+L[L.length-1]+" ไม่ถึง "+w+" — ต้องขอเปิดรหัส "+q[0]):("รหัส "+q[0]+" ลายนี้ยังไม่มีใน AX — ต้องขอเปิดรหัส")}; }
+/* ═════════ v1.636: 🔗 กรุ๊ปขอบ — สีเดียวกันซื้อหน้ากว้างเดียว ═════════
+   ผู้ใช้ 3/11 10:01 (ภาพ 💰 แท็บขอบ 80819297 · 80822297 · 80825297): “น่าจะต้องเพิ่มคำสั่งกรุ๊ปขอบ เช่น 80822 80819 80825 กรุ๊ปเหลือ 80825
+     แล้วใช้รหัสเดียวกันนี้แทนทุกขอบตอนส่งออกไปหา Production ด้วย · มันจะติดขั้นต่ำในการซื้อ ควรซื้อความหนาเดียว และหน้ากว้างเดียว ถ้าสีเดียวกัน”
+   เดิม: หน้ากว้างขอบคิดจากหนาชิ้นทีละแผ่น (edgeBandW) สีเดียวจึงแตกเป็น 2–3 รหัส ซื้อแต่ละรหัสติดขั้นต่ำ
+   ตอนนี้: state.edgeGroup = {"808xx297":"80825297"} ระดับออเดอร์ (undo · บันทึก · เปิด · ไฟล์ .json · ลิงก์แชร์ · ล้างตอนออเดอร์ใหม่)
+     เก็บเป็นแบบรหัส ไม่ใช่รายรหัส ตู้ที่เพิ่มทีหลังหน้ากว้างใหม่จึงเข้ากรุ๊ปเอง · edgeOut กับ expCellTxt แทนรหัสที่ปลายทาง: ราคา BOM ตารางตัด ส่งออก Production เห็นรหัสเดียวกันหมด
+     ชิ้นที่ต้องการกว้างกว่าปลายทางไม่ถูกแทน เพราะแถบแคบกว่าชิ้นติดไม่ได้ (ยังเห็นเป็นอีกแถวในหน้าต่างกรุ๊ป)
+     หน้าต่างกรุ๊ป: แถวละสี+ความหนา ตั้งต้นปลายทาง = หน้ากว้างมากสุดที่งานใช้ · เลือกกว้างกว่าที่มีใน AX ได้ · หนาต่างกันไม่รวมเอง แต่เลือกรหัสของความหนาอื่นเป็นปลายทางได้
+   ปิด SN_OFF.edgeGroup=1 */
+function edgeGroupMap(code){ const c=String(code==null?"":code).trim(), M=state.edgeGroup; if(!c||!M||window.__egOff||snOff("edgeGroup")) return code; const q=/^([89]\d{2})(\d{2})(\d{3})(_.*)?$/.exec(c); if(!q) return code;
+  const to=String(M[q[1]+"xx"+q[3]]||""), r=/^([89]\d{2})(\d{2})(\d{3})(_.*)?$/.exec(to); if(!r||to===c||+q[2]>+r[2]) return code; return to; }
+function edgeGroupRows(){ let R=null; window.__egOff=true; try{ R=costItems(costAllBoards(),[]); }catch(e){ console.error("edgeGroup:",e); } finally{ window.__egOff=false; } if(!R) return []; const G=new Map();
+  R.edge.forEach(x=>{ const q=/^([89]\d{2})(\d{2})(\d{3})(_.*)?$/.exec(String(x.key||"").trim()); if(!q) return; const k=q[1]+"xx"+q[3]; let g=G.get(k); if(!g){ g={key:k,pre:q[1],col:q[3],name:String(x.name||""),codes:[]}; G.set(k,g); } g.codes.push({code:String(x.key),w:+q[2],m:+x.qty||0,sfx:q[4]||""}); });
+  let A=null; try{ A=edgeAxIndex(); }catch(e){} const out=[...G.values()];
+  out.forEach(g=>{ g.codes.sort((a,b)=>a.w-b.w); const t=g.codes[g.codes.length-1]; g.w=t.w; g.top=t.code; g.more=[]; const L=A&&A.get(g.key); if(L) L.filter(v=>v>t.w).forEach(v=>g.more.push(g.pre+String(v).padStart(2,"0")+g.col+t.sfx)); });
+  return out.sort((a,b)=>a.col.localeCompare(b.col)||a.pre.localeCompare(b.pre)); }
+function edgeGroupCount(){ return Object.keys(state.edgeGroup||{}).length; }
+function edgeGroupDlg(){ return new Promise(res=>{ const rows=edgeGroupRows(), M0=state.edgeGroup||{}, E=escapeHtml, first=!Object.keys(M0).length, same=g=>rows.filter(o=>o!==g&&o.col===g.col&&o.w>=g.w);
+  const show=rows.filter(g=>g.codes.length>1||M0[g.key]||same(g).length), ov=document.createElement("div"); ov.id="edgeGroupDlg"; ov.style.cssText="position:fixed;inset:0;z-index:440;background:rgba(0,0,0,.35);display:flex;align-items:center;justify-content:center";
+  const fm=v=>(Math.round(v*100)/100).toLocaleString();
+  ov.innerHTML='<div style="background:var(--solid,#fff);color:var(--ink,#222);border-radius:12px;box-shadow:0 10px 40px rgba(0,0,0,.35);padding:14px;width:min(680px,94vw);max-height:86vh;overflow:auto;font-size:13px">'
+    +'<div style="display:flex;align-items:center;margin-bottom:6px"><b>🔗 กรุ๊ปขอบ — สีเดียวกันใช้หน้ากว้างเดียว</b><span style="flex:1"></span><button class="ibtn" data-f="x" style="width:auto;flex:none">✕</button></div>'
+    +'<div style="font-size:11.5px;color:var(--ink-dim,#777);margin-bottom:8px;line-height:1.55">รหัสปลายทางแทนทุกขอบในออเดอร์นี้ ทั้งราคา BOM ตารางตัด และตอนส่ง Production · ชิ้นที่ต้องการกว้างกว่าปลายทางจะไม่ถูกแทน</div>'
+    +(show.length?show.map(g=>{ const own=g.codes.map(x=>x.code), opts=[g.top].concat(g.more,same(g).map(o=>o.top)).filter((v,i,a)=>a.indexOf(v)===i), cur=M0[g.key]&&opts.indexOf(M0[g.key])>=0?M0[g.key]:g.top, on=M0[g.key]||(first&&g.codes.length>1);
+        return '<div style="padding:8px 0;border-top:1px solid var(--line,#eee)"><label style="display:flex;gap:8px;align-items:center;flex-direction:row;color:var(--ink);font-size:13px"><input type="checkbox" data-g="'+E(g.key)+'"'+(on?" checked":"")+' style="width:auto;flex:none"><b style="font-family:var(--mono)">'+E(g.key)+'</b><span style="color:var(--ink-dim,#777);font-size:12px">'+E(g.name)+'</span></label>'
+          +'<div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:4px 0 0 24px;font-size:12px"><span style="font-family:var(--mono)">'+g.codes.map(x=>E(x.code)+' <span style="color:var(--ink-dim,#777)">'+fm(x.m)+' ม.</span>').join(" · ")+'</span><span>→</span><select data-t="'+E(g.key)+'" style="width:auto;flex:none;font-family:var(--mono)">'+opts.map(v=>'<option value="'+E(v)+'"'+(v===cur?" selected":"")+'>'+E(v)+(own.indexOf(v)<0?" (ใหม่)":"")+'</option>').join("")+'</select></div></div>'; }).join(""):'<div style="color:var(--ink-dim,#777);padding:10px 0;border-top:1px solid var(--line,#eee)">ขอบแต่ละสีในงานนี้ใช้หน้ากว้างเดียวอยู่แล้ว</div>')
+    +'<div style="display:flex;gap:6px;justify-content:flex-end;margin-top:10px"><button class="ibtn" data-f="clr" style="width:auto;flex:none">ล้างกรุ๊ป</button><span style="flex:1"></span><button class="ibtn" data-f="x" style="width:auto;flex:none">ยกเลิก</button><button class="ibtn" data-f="ok" style="width:auto;flex:none;font-weight:600">ตกลง</button></div></div>';
+  const done=ch=>{ ov.remove(); res(ch); };
+  ov.addEventListener("click",ev=>{ const b=ev.target.closest("[data-f]"); if(!b){ if(ev.target===ov) done(false); return; } const f=b.dataset.f;
+    if(f==="x"){ done(false); return; } if(f==="clr"){ ov.querySelectorAll("[data-g]").forEach(i=>{ i.checked=false; }); return; }
+    if(f==="ok"){ const M2={}; ov.querySelectorAll("[data-g]").forEach(i=>{ if(!i.checked) return; const k=i.dataset.g, s=ov.querySelector('select[data-t="'+CSS.escape(k)+'"]'); if(s&&s.value) M2[k]=s.value; });
+      if(JSON.stringify(M2)===JSON.stringify(M0)){ done(false); return; } try{ if(lastSnap==null) lastSnap=snap(); }catch(e){} state.edgeGroup=M2; try{ sync(0); }catch(e){ console.error(e); } try{ autosave(); }catch(e){}
+      const say=Object.keys(M2).map(k=>k+" → "+M2[k]); toast(say.length?("🔗 กรุ๊ปขอบ "+say.join(" · ")):"ล้างกรุ๊ปขอบแล้ว"); done(true); } });
+  document.body.appendChild(ov); }); }
 function edgeOut(linkName,b){ if(!linkName||linkName==="No Edge")return ""; const code=resolveLink(linkName,b);
-  if(!code||/no[_\s]?edge/i.test(code))return ""; return edgeAxFill(purchaseOf(code),edgeBandW(b)); }
+  if(!code||/no[_\s]?edge/i.test(code))return ""; return edgeGroupMap(edgeAxFill(purchaseOf(code),edgeBandW(b))); }   /* v1.636: + กรุ๊ปขอบ */
 // แกะความหนาจากรหัสวัสดุ (เช่น MD19→19, K_PB_16→16) หรือใช้ Thickness ที่ตั้งใน Element Materials
 function thickFromMat(code){ if(!code)return 0; const e=elemByCode(code); if(e&&parseFloat(e.thick)>0)return parseFloat(e.thick);
   const m=String(code).match(/(?:^|[^0-9])([0-9]{1,2})(?:[^0-9]|$)/); if(m){ const v=parseInt(m[1],10); if(v>=5&&v<=60)return v; } return 0; }
@@ -42955,10 +42991,11 @@ function costEditor(opt){
     else if(tab==="surf") o.innerHTML='ผิวบน + ผิวล่าง ด้านละเต็มพื้นที่ชิ้น · เผื่อเศษผิว <input id="cpWaste" type="number" min="0" step="1" value="'+(+c.surfWaste||0)+'" style="width:58px"> % · ผิวที่รวมในราคาแผ่นแล้ว (เมลามีนสำเร็จ) ใส่ <b>0</b>'
       +' <button class="ibtn" id="cpZero" style="padding:2px 8px;font-size:11px;margin-left:6px" title="ใส่ 0 ให้ทุกแถวที่แสดงอยู่และยังไม่มีราคา = ไม่คิดเพิ่ม">ตั้ง 0 ให้ทุกแถวที่แสดง (รวมในราคาแผ่น)</button>'   // v1.441
       +'<div style="margin-top:4px"><label title="รหัสสีแบบ G01M0349Y · N01M0029N — ตัวที่ 4 เป็น M = เมลามีน (รวมในราคาแผ่น) · พิมพ์ราคาเองในตารางชนะกฎนี้"><input type="checkbox" id="cpMel"'+(c.melAuto!==false?' checked':'')+'> ผิวรหัสสีตัวที่ 4 = <b>M</b> (G01M · G02M …) = เมลามีน คิด 0 ให้เอง</label></div>';   // v1.442
-    else if(tab==="edge") o.innerHTML='ยาวขอบจากตัวคิดขอบตัวเดียวกับ BOM · เผื่อขอบ <input id="cpWaste" type="number" min="0" step="1" value="'+(+c.edgeWaste||0)+'" style="width:58px"> %';
+    else if(tab==="edge") o.innerHTML='ยาวขอบจากตัวคิดขอบตัวเดียวกับ BOM · เผื่อขอบ <input id="cpWaste" type="number" min="0" step="1" value="'+(+c.edgeWaste||0)+'" style="width:58px"> %'+(snOff("edgeGroup")?'':(' <button class="ibtn" id="cpEdgeG" style="padding:2px 8px;font-size:11px;margin-left:6px" title="สีเดียวกันรวมเป็นหน้ากว้างเดียว ใช้รหัสนี้ตอนส่ง Production ด้วย">🔗 กรุ๊ปขอบ'+(edgeGroupCount()?(' ('+edgeGroupCount()+' สี)'):'')+'</button>'));   /* v1.636 */
     else o.innerHTML='จำนวนจากรายการ BOM Fitting (ตัวเดียวกับตอนส่งออก) · ของตัดยาว (โปรไฟล์/รางไฟ/เฟรม) ใส่ราคาต่อเมตร';
     const w=Q("#cpWaste"); if(w) w.onchange=()=>{ const v=Math.max(0,parseFloat(w.value)||0); if(tab==="mat") c.waste=v; else if(tab==="surf") c.surfWaste=v; else c.edgeWaste=v; costSaveSoon(st); };
     const mc=Q("#cpMel"); if(mc) mc.onchange=()=>{ c.melAuto=!!mc.checked; costSaveSoon(st); paint(); };   // v1.442
+    const eg=Q("#cpEdgeG"); if(eg) eg.onclick=async()=>{ const ch=await edgeGroupDlg(); if(ch){ close(); costEditor(Object.assign({},opt,{tab:"edge",onlyMissing:false})); } };   /* v1.636: รายการคิดตอนเปิดหน้าต่าง จึงเปิดใหม่ */
     const z=Q("#cpZero"); if(z) z.onclick=()=>{ let n=0; rowsOf(tab).forEach(x=>{ if(!costHas(tab,x.key,x.code)){ c[tab][x.key]={p:0,at:today}; x._keep=1; n++; } }); if(n){ costSaveSoon(st); paint(); } toast(n?("ตั้ง 0 (รวมในราคาแผ่น) "+n+" รายการ"):"ไม่มีแถวที่ยังไม่มีราคา"); }; };
   const paint=()=>{ paintTabs(); paintOpt(); const L=rowsOf(tab), T=Q("#cpTbl");
     const th='style="position:sticky;top:0;background:var(--solid,#fff);text-align:left;padding:6px 6px;border-bottom:1px solid var(--line);font-weight:600"';
@@ -48654,7 +48691,7 @@ async function nextOrderNo(){
    ถ้าก๊อปไปเขียนอีกที่ วันหน้าเพิ่มช่องใหม่ (แบบ cabDP) แล้วลืมอีกที่ = ห้องที่บันทึกหายช่องนั้นเงียบ ๆ
    ช่องใหม่ที่ผูกกับออเดอร์ ใส่ที่นี่ที่เดียว (ทางเปิด = cloudLoadOrder ซึ่งห้องพร้อมตู้ก็ใช้ตัวเดียวกัน) */
 function orderDataNow(oid){
-  return {order:true,orderId:oid,boards:JSON.parse(JSON.stringify(state.boards)),globalTone:state.globalTone,cabColors:state.cabColors,cabNums:state.cabNums,cabVarTxt:state.cabVarTxt,cabDX:state.cabDX,orderLines:state.orderLines,cabDP:state.cabDP,cabFrontEdge:state.cabFrontEdge,cabFrontDir:state.cabFrontDir,room:state.room||null,scenes:state.scenes||[],qPics:state.qPics||[],orderMat:state.orderMat||{},pidLock:state.pidLock||null}; }
+  return {order:true,orderId:oid,boards:JSON.parse(JSON.stringify(state.boards)),globalTone:state.globalTone,cabColors:state.cabColors,cabNums:state.cabNums,cabVarTxt:state.cabVarTxt,cabDX:state.cabDX,orderLines:state.orderLines,cabDP:state.cabDP,cabFrontEdge:state.cabFrontEdge,cabFrontDir:state.cabFrontDir,room:state.room||null,scenes:state.scenes||[],qPics:state.qPics||[],orderMat:state.orderMat||{},edgeGroup:state.edgeGroup||{},pidLock:state.pidLock||null}; }
 async function cloudSaveOrder(){
   if(VIEW_ONLY){ toast("ลิงก์ดูอย่างเดียว — บันทึกขึ้นคลาวด์ไม่ได้"); return; }   // v27.3
 
@@ -48726,7 +48763,7 @@ async function newOrder(opts){
   const _keepRoom=(keepRm&&state.room)?JSON.parse(JSON.stringify(state.room)):null;   // v1.540
   state.boards=[]; state.selectedId=null; state.selectedCab=null; cabSelClear(); state.hidden=[];
   state.cabColors={}; state.cabNums={}; state.cabVarTxt={}; state.cabDX={};
-  state.bcSeq={}; state.bcMax={}; state.orderLines=[]; state.room=_keepRoom; state.scenes=_keepRoom?(state.scenes||[]):[]; state.qPics=[];   /* v1.568: ภาพใบเสนอราคาเป็นของตู้ชุดเดิม = ล้าง */ try{ scnAfterLoad(); }catch(e){}   /* v1.541: เก็บห้อง = เก็บฉาก */ state.cabDP={}; state.orderMat={};   /* v1.337 */
+  state.bcSeq={}; state.bcMax={}; state.orderLines=[]; state.room=_keepRoom; state.scenes=_keepRoom?(state.scenes||[]):[]; state.qPics=[];   /* v1.568: ภาพใบเสนอราคาเป็นของตู้ชุดเดิม = ล้าง */ try{ scnAfterLoad(); }catch(e){}   /* v1.541: เก็บห้อง = เก็บฉาก */ state.cabDP={}; state.orderMat={}; state.edgeGroup={};   /* v1.337 · v1.636 */
   state.pidLock=null; _pidAdopt={}; _pidProdP={};                                                        /* v1.411 */
   state.doorPick=[]; state.doorProg={}; state.explode=0;
   try{ if(typeof clearMeasure==="function") clearMeasure(); }catch(e){}
@@ -48755,7 +48792,7 @@ async function cloudLoadOrder(oid,pre){
     remapRuleRefs(norm,idMap); remapHoleSrc(norm,idMap); healHoleSrc(norm);
     state.boards=norm; if(src.globalTone!=null)state.globalTone=src.globalTone; if(src.cabColors)state.cabColors=src.cabColors;
     if(src.cabNums)state.cabNums=src.cabNums; if(src.cabVarTxt)state.cabVarTxt=src.cabVarTxt; if(src.cabDX)state.cabDX=src.cabDX;
-    state.orderLines=src.orderLines||[]; state.room=src.room||null; state.scenes=Array.isArray(src.scenes)?src.scenes:[]; state.qPics=Array.isArray(src.qPics)?src.qPics:[];   /* v1.568 */ try{ scnAfterLoad(); }catch(e){}   /* v1.541 */ state.cabDP=src.cabDP||{}; state.orderMat=src.orderMat||{};   /* v1.337 */                  // v28.3/v30.5
+    state.orderLines=src.orderLines||[]; state.room=src.room||null; state.scenes=Array.isArray(src.scenes)?src.scenes:[]; state.qPics=Array.isArray(src.qPics)?src.qPics:[];   /* v1.568 */ try{ scnAfterLoad(); }catch(e){}   /* v1.541 */ state.cabDP=src.cabDP||{}; state.orderMat=src.orderMat||{}; state.edgeGroup=src.edgeGroup||{};   /* v1.337 · v1.636 */                  // v28.3/v30.5
     state.pidLock=src.pidLock||null; _pidAdopt={}; _pidProdP={};                                         /* v1.411: ล็อกเลขชิ้นของออเดอร์นี้ (ไม่มี = ไปอ่านจาก Production ตอนเปิดหน้าส่งออก) */
     /* v7.16: ออเดอร์ที่เซฟไว้ก่อนหน้านี้มีค่าผิดฝังอยู่ (ชั้นลึกเกิน ทะลุแผ่นหลัง)
        เพราะตอนสร้าง refitInterior ข้ามไปตอนตู้หมุน · เปิดกลับมาก็ต้องซ่อมให้ด้วย
@@ -56495,7 +56532,7 @@ async function renderLoader(){
         remapRuleRefs(state.boards,idMap); remapHoleSrc(state.boards,idMap); healHoleSrc(state.boards);
         if(saved.globalTone!=null)state.globalTone=saved.globalTone; if(saved.cabColors)state.cabColors=saved.cabColors;
         if(saved.cabNums)state.cabNums=saved.cabNums; if(saved.cabVarTxt)state.cabVarTxt=saved.cabVarTxt; if(saved.cabDX)state.cabDX=saved.cabDX;
-        state.orderLines=saved.orderLines||[]; state.room=saved.room||null; state.scenes=Array.isArray(saved.scenes)?saved.scenes:[]; state.qPics=Array.isArray(saved.qPics)?saved.qPics:[];   /* v1.568 */ try{ scnAfterLoad(); }catch(e){}   /* v1.541 */ state.cabDP=saved.cabDP||{}; state.orderMat=saved.orderMat||{};   /* v1.337 */          // v28.3/v30.5
+        state.orderLines=saved.orderLines||[]; state.room=saved.room||null; state.scenes=Array.isArray(saved.scenes)?saved.scenes:[]; state.qPics=Array.isArray(saved.qPics)?saved.qPics:[];   /* v1.568 */ try{ scnAfterLoad(); }catch(e){}   /* v1.541 */ state.cabDP=saved.cabDP||{}; state.orderMat=saved.orderMat||{}; state.edgeGroup=saved.edgeGroup||{};   /* v1.337 · v1.636 */          // v28.3/v30.5
         if(saved.bcSeq)state.bcSeq=saved.bcSeq; if(saved.bcMax)state.bcMax=saved.bcMax;   // v9.22: เลขบาร์โค้ดที่จำไว้
         state.pidLock=saved.pidLock||null;                                                  // v1.411: เลขชิ้นที่ล็อกหลังส่ง Production
     if(saved.cabDX)state.cabDX=saved.cabDX;                                          // v11.2
@@ -59263,7 +59300,7 @@ function shareId(){ let s2=""; const A="abcdefghijkmnpqrstuvwxyz23456789";
 function sharePayloadBase(){
   return { v:1, globalTone:state.globalTone,
            cabColors:state.cabColors, cabNums:state.cabNums, cabVarTxt:state.cabVarTxt,
-           cabDX:state.cabDX, bcSeq:state.bcSeq, bcMax:state.bcMax, orderLines:state.orderLines, cabDP:state.cabDP,cabFrontEdge:state.cabFrontEdge,cabFrontDir:state.cabFrontDir,room:(state.room&&state.room.quote)?Object.assign({},state.room,{quote:undefined}):(state.room||null), orderMat:state.orderMat||{} };   /* v1.337 */
+           cabDX:state.cabDX, bcSeq:state.bcSeq, bcMax:state.bcMax, orderLines:state.orderLines, cabDP:state.cabDP,cabFrontEdge:state.cabFrontEdge,cabFrontDir:state.cabFrontDir,room:(state.room&&state.room.quote)?Object.assign({},state.room,{quote:undefined}):(state.room||null), orderMat:state.orderMat||{}, edgeGroup:state.edgeGroup||{} };   /* v1.337 */
   /* ───────── v1.515: ลิงก์แชร์ไม่พาใบเสนอราคาไปด้วย ─────────
      state.room.quote (v1.515) เก็บชื่อ/ที่อยู่/โทรลูกค้า กำไร % ส่วนลด — เดิม payload แชร์ส่ง state.room ทั้งก้อน = คนเปิดลิงก์เห็นได้
      ตัด quote ออกเฉพาะตอนแชร์ (undefined = JSON ไม่เขียนคีย์) · บันทึกออเดอร์/ไฟล์ .json ยังเก็บครบ · ลายเซ็นลิงก์ไม่เปลี่ยนเพราะแก้ใบเสนอราคา */
@@ -60568,6 +60605,7 @@ async function openSharedIfAny(){
     if(o.cabNums)state.cabNums=o.cabNums;
     if(o.cabVarTxt)state.cabVarTxt=o.cabVarTxt;
     if(o.cabDX)state.cabDX=o.cabDX;
+    state.edgeGroup=o.edgeGroup||{};   /* v1.636 */
     state.orderMat=o.orderMat||{};   // v1.337: วัสดุทั้งออเดอร์ — หน้าดูผ่านลิงก์ต้องเห็นรหัสวัสดุเดียวกับต้นทาง
     /* v1.170 FIX: บรรทัดนี้เคยมี fitAll&&fitAll() ต่อท้าย ซึ่งไม่มีฟังก์ชันชื่อนั้นในไฟล์เลย
        ตัวแปรที่ไม่เคยประกาศ -> ReferenceError ทุกครั้งที่เปิดลิงก์แชร์ ถูก catch ข้างล่างกลืนไว้
@@ -61973,7 +62011,7 @@ function exportJSON(){
   /* v11.2: ไฟล์โปรเจกต์เคยเก็บแค่ชิ้นงาน ค่าที่ผูกกับตู้ (เส้นโปรไฟล์ · สี · ตัวแปร) จึงหายไปกับไฟล์
      เปิดไฟล์กลับมาแล้วเส้นโปรไฟล์หายทั้งงาน เพราะตัวสร้างเส้นไม่เจอรายการว่าตู้ไหนติดอะไรไว้ */
   download("starnexus-project.json",JSON.stringify({boards:state.boards,globalTone:state.globalTone,
-    bcSeq:state.bcSeq,bcMax:state.bcMax,orderLines:state.orderLines,cabDP:state.cabDP,cabFrontEdge:state.cabFrontEdge,cabFrontDir:state.cabFrontDir,room:state.room||null,scenes:state.scenes||[],qPics:state.qPics||[],orderMat:state.orderMat||{},   /* v1.337 · v1.541 ฉาก */
+    bcSeq:state.bcSeq,bcMax:state.bcMax,orderLines:state.orderLines,cabDP:state.cabDP,cabFrontEdge:state.cabFrontEdge,cabFrontDir:state.cabFrontDir,room:state.room||null,scenes:state.scenes||[],qPics:state.qPics||[],orderMat:state.orderMat||{},edgeGroup:state.edgeGroup||{},   /* v1.337 · v1.541 ฉาก */
     pidLock:state.pidLock||null,   /* v1.411 */
     cabDX:state.cabDX,cabColors:state.cabColors,cabNums:state.cabNums,cabVarTxt:state.cabVarTxt},null,2),
     "application/json");
@@ -64250,7 +64288,7 @@ function expCellTxt(link,board,isEdge,isSurf){ if(!link) return {t:"—",w:false
   const code=resolveLink(link,board);
   if(!code || /no[_\s]?edge/i.test(code) || link==="No Edge") return {t:"—",w:false};
   const e=elemByCode(code); let out=(e&&e.itemId)?e.itemId:(e?e.code:code);
-  let _axMiss=false; if(isEdge){ const _w=edgeBandW(board); _axMiss=edgeAxMissing(out,_w); out=edgeAxFill(out,_w); }   /* v1.626 */
+  let _axMiss=false; if(isEdge){ const _w=edgeBandW(board); _axMiss=edgeAxMissing(out,_w); out=edgeAxFill(out,_w); const _gp=edgeGroupMap(out); if(_gp!==out){ out=_gp; _axMiss=false; } }   /* v1.626 · v1.636: กรุ๊ปขอบ */
   return {t:out, w:!(e&&e.itemId)||_axMiss}; }
 function renderCutList(){
   if(!state.boards.length){ $("cutBody").innerHTML='<div class="empty">ยังไม่มีตู้</div>'; return; }
@@ -64652,7 +64690,7 @@ function readFile(f){const r=new FileReader();
     if(o.cabDX)state.cabDX=o.cabDX;
     if(o.bcSeq)state.bcSeq=o.bcSeq; if(o.bcMax)state.bcMax=o.bcMax;
     state.pidLock=o.pidLock||null; _pidAdopt={}; _pidProdP={};                                             // v1.411
-    state.orderLines=o.orderLines||[]; state.room=o.room||null; state.scenes=Array.isArray(o.scenes)?o.scenes:[]; state.qPics=Array.isArray(o.qPics)?o.qPics:[];   /* v1.568 */ try{ scnAfterLoad(); }catch(e){}   /* v1.541 */ state.cabDP=o.cabDP||{}; state.orderMat=o.orderMat||{};   /* v1.337 */                      // v28.3/v30.5
+    state.orderLines=o.orderLines||[]; state.room=o.room||null; state.scenes=Array.isArray(o.scenes)?o.scenes:[]; state.qPics=Array.isArray(o.qPics)?o.qPics:[];   /* v1.568 */ try{ scnAfterLoad(); }catch(e){}   /* v1.541 */ state.cabDP=o.cabDP||{}; state.orderMat=o.orderMat||{}; state.edgeGroup=o.edgeGroup||{};   /* v1.337 · v1.636 */                      // v28.3/v30.5
     state.selectedId=null;buildGTones();sync(1); refreshSkins();   // v1.065
     try{ const _nh=adjShelfSideHeal(); if(_nh){ sync(0); toast("ชั้นปรับ "+_nh+" แผ่นยาวเต็มช่อง — ร่นข้างละ 1 มม. ตามค่าที่ตั้งไว้ให้แล้ว"); } }catch(e){ console.error("adjShelfSideHeal:",e); }   // v1.414
     try{ symfixHealStale(); }catch(e){ console.error("symfixHeal:",e); }   /* v1.403 */
