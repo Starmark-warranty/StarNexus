@@ -3283,7 +3283,7 @@ body[data-theme="dark"] .splash-dots span{background:rgba(255,255,255,.25)}
    ===================================================================== */
 /* ---- APP_META: แหล่งความจริงเดียวของเวอร์ชัน (ดูได้จาก console / คลิกชื่อแอป) ---- */
 const APP_META={
-  name:"StarNexus", version:"1.650", build:"2026-11-03/jwa-place",
+  name:"StarNexus", version:"1.651", build:"2026-11-03/jwa-light",
   file:"StarNexus.html", basedOn:"Furnitech_V3.html (v3.11)",
   /* ───────── เริ่มนับเวอร์ชันใหม่ที่ 1.001 (21/08/2026) ─────────
      ของเดิมนับมาถึง 42.1 แล้ววิ่งเป็นทศนิยมสองชั้นซึ่งอ่านลำดับยาก
@@ -3291,6 +3291,7 @@ const APP_META={
      ประวัติเก่าเก็บไว้ทั้งหมดตามเลขเดิม ไม่ไล่เขียนใหม่ เพราะเลขในนั้นถูกอ้างถึงไปแล้ว
      รายการที่อยู่ใต้ 1.001 ลงไปจึงเป็นเลขชุดเก่า อ่านต่อกันได้ตามวันที่ */
   changelog:[
+    ["1.651","2026-11-03","FEAT ระบบงานผนัง JWA ชุดสาม (ผู้ใช้ 16:29 ข้อ 9 10) — แผงชุดผนังเลือกไม้วิ่งไฟ บน ล่าง ซ้าย ขวา ได้ไม่เกิน 2 ด้าน โครงกับแผ่นหน้าเดฟรับไม้ ขนาดนอกเท่าเดิม · ติ๊กมีไฟ = รางไฟตามโมเดลไม้ไฟของห้อง · ไม่ติ๊ก = ไม้ปิดเฉย ๆ"],
     ["1.650","2026-11-03","FEAT ระบบงานผนัง JWA ชุดสอง (ผู้ใช้ 16:29 ข้อ 1 3) — แผงตู้มีปุ่มชุดผนัง ซ้าย ขวา ต่อจากผิวนอกแผ่นปิดข้าง · หลังตู้ ผนังเต็มหลังตู้แล้วตู้ขยับออกเท่าผนัง ลบผนังแล้วตู้กลับ · สูงถึงฝ้า เกิน 2400 ยกโครงแล้วใช้แผ่นขา · เสาติดผนัง โครงทั้งแนวลึกเท่าเสา + 20 ช่วงหน้าเสาโครงตื้น แผ่นหน้าปิดเสา ลบเสาแล้วกลับ"],
     ["1.649","2026-11-03","FEAT ระบบงานผนัง JWA ชุดแรก (ผู้ใช้ 16:29 ข้อ 2 4 5 6 7 8) — สูง ≥ 1100 คานกลางมีคานนอนบนคานตั้ง แบ่ง 2 ช่วง รวมคาน 5 แนว · เหล็กฉาก ส155×40×40 หนา 1.2 สูงไม่เกิน 1000 = 2 ตัว เกิน = 4 ตัว ไม่ตรงคาน · ฉาก B-06 FITDG00402 + แป้นแขวน FITWS00020 ตามจำนวนเหล็กฉาก เข้าใบเบิก · แผงตู้เลือกหน้าบานลงถึงพื้น · ถึงพื้นเกิน 2400 หรือไม่เลือก = แผ่นขาเสมอแผ่นหน้า ไม่เดฟ · ไม่มีตีนตู้เดฟใต้ JWA"],
     ["1.648","2026-11-03","FEAT แท็บ Fitting Global ตั้งหมวดได้ (ผู้ใช้ 16:40 ภาพหน้าต่างหลักมีแถวตั้งหมวด แท็บแยกไม่มี: ดูตัวที่แยกแท็บให้หน่อย มันไม่มีตั้งหมวดแยก) — แถวตั้งหมวด จัดการหมวด และกดช่องหมวดรายแถวใช้ในแท็บได้ โปรแกรมหลักเป็นคนบันทึก ค่าตั้งส่วนอื่นไม่ถูกทับ · สองฝั่งอัปเดตตามกันทันที"],
@@ -30470,6 +30471,7 @@ function boardRole(b){
      SN_OFF.dwgNoCount=1  หน้ารวมวัสดุ กลับมาโชว์จำนวน บาน/จุด/เส้น/ตัว/ชุด (v1.633)
      SN_OFF.dwgPullImg=1  การ์ดมือจับไม่ใช้รูปที่อัปโหลด ไม่มีรูปในหน้าต่าง 🖼 · การ์ดเดียวเหมือนเดิม (v1.633)
      SN_OFF.dwgDoorName=1 ไม่แสดงชื่อรุ่นแบบบานที่ตั้งเอง (v1.633)
+     SN_OFF.jwaLight=1    ชุดผนังไม่มีตัวเลือกไม้วิ่งไฟ (v1.651)
      SN_OFF.jwaCol=1      โครงผนังไม่ลึกตามเสา (v1.650)
      SN_OFF.jwaHost=1     แผงตู้ไม่มีปุ่มชุดผนัง (v1.650)
      SN_OFF.jwa=1         ปิดระบบงานผนัง JWA ทั้งชุด ตู้ JWA เป็นตู้ธรรมดาตามโมเดล (v1.649)
@@ -37170,7 +37172,7 @@ function plCabMap(){ const m={};
 function plBoardsOf(inst){ return state.boards.filter(b=>b&&String(b.cabInst)===String(inst)&&!b._lineDisp); }
 /* กรอบตัวตู้ (ไม่รวมบาน/ขา/ชิ้นแสดงผล) + ก้นล่างสุดที่รวมขา */
 function plFp(bs){
-  const car=bs.filter(b=>(!b._virtual||b._csmRail)&&!b._door&&!plIsLeg(b)&&(+b.T>0)&&b._jwaGen!=="kick");   /* v1.649: แผ่นขา JWA ไม่นับขนาดตู้ */ // v1.390: ราวแขวน Cosimo เป็นชิ้นเสมือน (ไม่ลงใบตัด) แต่ลาก/วางเป็นใบได้
+  const car=bs.filter(b=>(!b._virtual||b._csmRail)&&!b._door&&!plIsLeg(b)&&(+b.T>0)&&b._jwaGen!=="kick"&&!b._jwaLt);   /* v1.649: แผ่นขา JWA ไม่นับขนาดตู้ · v1.651: + ไม้วิ่งไฟ */ // v1.390: ราวแขวน Cosimo เป็นชิ้นเสมือน (ไม่ลงใบตัด) แต่ลาก/วางเป็นใบได้
   const src=car.length?car:bs.filter(b=>!b._virtual);
   const lo=[Infinity,Infinity,Infinity], hi=[-Infinity,-Infinity,-Infinity];
   src.forEach(b=>{ const d=worldDims(b), c=[b.x,b.y,b.z];
@@ -41140,7 +41142,7 @@ function plAutoTT(inst){
    ตู้ลอยที่ใส่: โครงหดจากข้างล่างขึ้นไป g มม. (ความหนาไม้ไฟปัดขึ้นเป็นหลักสิบ 19 → 20) ขนาดตู้เต็มคงเดิม
    บานยืดลงปิด g ด้วย Design Parameter ExtendBottom{g}mm · ไม้ไฟวิ่งเป็นแผ่นยาวต่อกันทั้งแนวใต้โครง ท่อนละไม่เกิน 2400
    ระยะที่หดจำไว้ที่ชิ้น (_plLight) จึงคืนขนาดเดิมได้ · แผ่นไม้ไฟติดธง _plLightPanel ระบบสร้าง/ลบเอง (ลากไม่ได้) */
-function plIsLightPanel(inst){ return plBoardsOf(inst).some(b=>b&&b._plLightPanel); }
+function plIsLightPanel(inst){ return plBoardsOf(inst).some(b=>b&&(b._plLightPanel||b._jwaLt)); }   /* v1.651: ไม้วิ่งไฟของชุดผนังไม่นับเป็นตู้ ไม่ขึ้นแนวบาน/ช่องว่าง */
 function plLightOf(inst){ const b=plBoardsOf(inst).find(x=>x&&x._plLight!=null); return b?Math.max(+b._plLight||0,0):0; }
 function plLightMark(inst,g){ plBoardsOf(inst).forEach(b=>{ if(!b||b._virtual) return; if(g>0) b._plLight=g; else delete b._plLight; }); }
 function plLightT(){ return Math.max(+plRoom().lightT||19,1); }
@@ -41271,7 +41273,7 @@ async function plLightSync(force){
   const runs=(r.lightOn&&code)?plLightRuns():[];
   runs.forEach(u=>{ u.segs=cabJointSplit(u.a0,u.a1,u.cuts,MAXL); });   /* v1.609: รอยต่ออยู่ในลายเซ็น งานเก่าที่ต่อกลางตู้จึงถูกจัดใหม่ */
   const sig=JSON.stringify([code,T,runs.map(u=>[u.wk,Math.round(u.a0),Math.round(u.a1),Math.round(u.bot),Math.round(u.D),Math.round(u.off),u.segs.map(q=>Math.round(q[1]))])]);
-  const have=Object.keys(plCabMap()).filter(plIsLightPanel);
+  const have=Object.keys(plCabMap()).filter(i=>plIsLightPanel(i)&&!plBoardsOf(i).some(b=>b&&b._jwaLt));   /* v1.651: ไม้วิ่งไฟของชุดผนังมีตัวดูแลเอง */
   if(!force&&sig===r.lightSig&&(runs.length?have.length>0:!have.length)) return false;
   PL.lightBusy=true; const cam=plCamKeep(); let made=0, miss=false, tReal=0;
   try{
@@ -41848,12 +41850,37 @@ function jwaHeal(inst){ let P=jwaParts(inst); if(!P) return 0; try{ if(jwaDepthH
     while(old.length>want.length){ jwaDrop(old.pop()); n++; }
     want.forEach((y,i)=>{ let b=old[i]; if(!b){ b=jwaClone(m,"rail","Back Rail Upright"); n++; } b.x=m.x; b.z=m.z; b.L=m.L; b.W=m.W; b.T=m.T; b.y=y; });
     const fl=P.bs.find(b=>b._jwaGen==="flat"); if(two){ const b=fl||jwaClone(top,"flat","Mid Rail Flat"); if(!fl) n++; b.x=top.x; b.z=top.z; b.L=top.L; b.W=top.W; b.T=top.T; b.y=round(cy+m.W/2+top.T/2); } else if(fl){ jwaDrop(fl); n++; } }
-  const pn=P.panel, kk=P.bs.find(b=>b._jwaGen==="kick"), leg=P.lo>5; let needK=false;
-  if(pn){ const o=pn._jwa||{}, full=leg&&o.floor!==false&&P.hi<=c.maxH+0.5; pn.adj=pn.adj||{}; if(pn._jwaW0==null){ const v0=pn._de&&pn._de.B&&parseFloat(pn._de.B.v); pn._jwaW0=isFinite(v0)?v0:(parseFloat(pn.adj.W0)||0); } const w0=full?(+pn._jwaW0+P.lo):+pn._jwaW0; if(Math.abs((parseFloat(pn.adj.W0)||0)-w0)>0.01){ pn.adj.W0=String(round(w0)); n++; } needK=leg&&!full; }
-  if(needK){ const b=kk||jwaClone(pn,"kick","Kick Panel"); if(!kk){ ["_door","_panel","_dummy","_de","_zx","adj","_adjApplied"].forEach(k=>{ delete b[k]; }); n++; } b.L=pn.L; b.W=round(P.lo); b.T=pn.T; b.x=pn.x; b.z=pn.z; b.y=round(P.lo/2); } else if(kk){ jwaDrop(kk); n++; }
+  const pn=P.panel, kk=P.bs.find(b=>b._jwaGen==="kick"), lt0=(pn&&pn._jwa&&pn._jwa.lt)||{}, kH=round(P.lo-(lt0.B?plLightGap():0)), leg=kH>5; let needK=false;
+  if(pn){ const o=pn._jwa||{}, full=leg&&!lt0.B&&o.floor!==false&&P.hi<=c.maxH+0.5; pn.adj=pn.adj||{}; if(pn._jwaW0==null){ const v0=pn._de&&pn._de.B&&parseFloat(pn._de.B.v); pn._jwaW0=isFinite(v0)?v0:(parseFloat(pn.adj.W0)||0); } const w0=full?(+pn._jwaW0+P.lo):+pn._jwaW0; if(Math.abs((parseFloat(pn.adj.W0)||0)-w0)>0.01){ pn.adj.W0=String(round(w0)); n++; } needK=leg&&!full; }
+  if(needK){ const b=kk||jwaClone(pn,"kick","Kick Panel"); if(!kk){ ["_door","_panel","_dummy","_de","_zx","adj","_adjApplied"].forEach(k=>{ delete b[k]; }); n++; } b.L=pn.L; b.W=kH; b.T=pn.T; b.x=pn.x; b.z=pn.z; b.y=round(kH/2); } else if(kk){ jwaDrop(kk); n++; }
+  if(pn) n+=jwaLightHeal(P,lt0,inst);
   return n; }
+/* ───────── v1.651: ไม้วิ่งไฟบนผนัง ─────────
+   ผู้ใช้ 3/11 16:29 ข้อ 9: “ไม้วิ่งไฟใต้ตู้ อยากให้เลือกมาแปะที่ผนังได้ด้วย แต่ผนังต้องเลือกได้ 4 ด้าน โดยเลือกใส่ 1 ด้าน หรือ 2 ด้าน แล้วแต่ User โดยก็เดฟโครงรับไม้วิ่งไฟไปเลย”
+   ข้อ 10: “ไม้วิ่งไฟนั้นก็เลือกได้ด้วย ถ้าเขาไม่เอาไฟ มันก็คือไม้ปิดเฉย ๆ”
+   เดิม: ไม้ไฟมีแค่ใต้ตู้ลอย เป็นตู้แยก (plLightSync) วางแนวนอนอย่างเดียว
+   ตอนนี้: ค่าเก็บที่แผ่น _jwa.lt {T,B,L,R,led} · ติ๊กด้านไหน โครงกับแผ่นหน้าสั้นลงเท่าช่องไม้ไฟ (plLightGap) ขนาดนอกเท่าเดิม แล้ววางไม้ลึกจากผนังถึงผิวแผ่นหน้า
+     ไม้ใช้ Part และสีเดียวกับแผ่นหน้า เป็นคนละ cabInst (แบบไม้ไฟครัว) เพราะตัวคิดบาน/doorDepthHeal อ่านทุกชิ้นในตู้ ไม้ที่ลึกถึงผิวแผ่นจะดันแผ่นหน้าออกทุกรอบ · บน/ล่างวิ่งคลุมมุมเมื่อมีด้านข้างด้วย · รางไฟคัดจากโมเดลไม้ไฟของห้อง (lightCode) ทิศร่องตามโมเดล
+     ด้านล่าง: ไม่ลงพื้นแผ่นเดียว ใต้ไม้เป็นแผ่นขา · ปิดด้วย SN_OFF.jwaLight=1 */
+function jwaLightHeal(P,lt,inst){ const pn=P.panel, F=P.F, T=plLightT(), g=plLightGap(); let n=0; const off=snOff("jwaLight"), put=(b,r,y,f)=>{ const p=[0,0,0]; p[F.ra]=r; p[F.fa]=f; const nx=round(p[0]), nz=round(p[2]), ny=round(y); if(Math.abs(b.x-nx)>0.05||Math.abs(b.y-ny)>0.05||Math.abs(b.z-nz)>0.05) n++; b.x=nx; b.y=ny; b.z=nz; };
+  const r0=P.at(P.sides[0],F.ra)-P.ds[0][F.ra]/2, r1=P.at(P.sides[1],F.ra)+P.ds[1][F.ra]/2, leftLow=F.rs>0, face=P.at(pn,F.fa)+F.fs*pn.T/2, Dt=round(Math.abs(face-P.back)), fc=(P.back+face)/2, lowOn=leftLow?lt.L:lt.R, highOn=leftLow?lt.R:lt.L, ra0=r0-(lowOn?g:0), ra1=r1+(highOn?g:0);
+  ["T","B","L","R"].forEach(k=>{ const tag="lt"+k, li=String(inst)+"lt"+k, ex=(state.boards||[]).find(b=>b&&String(b.cabInst)===li&&b._jwaLt&&!b._lineDisp); if(off||!lt[k]){ if(ex){ jwaDrop(ex); try{ delete (state.cabColors||{})[li]; }catch(e){} n++; } return; } let b=ex; if(!b){ b=jwaClone(pn,tag,"ไม้วิ่งไฟ"); ["_door","_panel","_dummy","_de","_zx","adj","_adjApplied"].forEach(q=>{ delete b[q]; }); b.cabInst=li; b.cab=String(plRoom().lightCode||"WEF253").trim()||"WEF253"; b._jwaLt=1; b._jwaLtOf=String(inst); delete b._jwaGen; n++; } state.cabColors=state.cabColors||{}; state.cabColors[li]=Object.assign({},state.cabColors[inst]);
+    const flat=k==="T"||k==="B"; b.orient=flat?"flat":"side"; b.yaw=P.Y; b.T=T; b.W=Dt; b.L=flat?round(ra1-ra0):round(P.H);
+    if(flat) put(b,(ra0+ra1)/2,k==="T"?P.hi+T/2:P.lo-T/2,fc); else { const low=(k==="L")===leftLow; put(b,low?r0-T/2:r1+T/2,(P.lo+P.hi)/2,fc); }
+    const want=(lt.led&&pn._jwa&&pn._jwa.ledRec)?pn._jwa.ledRec:null; if(want){ if(!b._leds) { b._leds=JSON.parse(JSON.stringify(want)); n++; } b.name="ไม้วิ่งไฟ"; } else { if(b._leds){ delete b._leds; n++; } b.name="ไม้ปิด"; } });
+  return n; }
+async function jwaLedTpl(){ const code=String(plRoom().lightCode||"WEF253").trim(); try{ const m=await fetchCabModel((PL.ids||{})[catKey(code)]||code), b=m&&m.boards&&m.boards.find(x=>x&&!x._virtual&&ledList(x).length); if(b) return JSON.parse(JSON.stringify(ledList(b))); }catch(e){} const ex=(state.boards||[]).find(x=>x&&x._plLightPanel&&!x._virtual&&ledList(x).length); return ex?JSON.parse(JSON.stringify(ledList(ex))):null; }
+async function jwaLightSet(inst,k,on){ if(typeof isLocked==="function"&&isLocked()){ try{ guardEdit("แก้ไม้วิ่งไฟ"); }catch(e){} return false; } const P=jwaParts(inst); if(!P||!P.panel) return false; const pn=P.panel, o=pn._jwa=Object.assign({},pn._jwa), lt=o.lt=Object.assign({led:true},o.lt), cnt=["T","B","L","R"].filter(q=>lt[q]).length; if(!!lt[k]===!!on) return false; if(on&&cnt>=2){ toast("ไม้วิ่งไฟเลือกได้ไม่เกิน 2 ด้าน"); return false; }
+  if(lt.led&&!o.ledRec){ const R=await jwaLedTpl(); if(R) o.ledRec=R; else toast("ไม่พบรางไฟในโมเดล "+String(plRoom().lightCode||"WEF253")+" — ได้เป็นไม้ปิดไปก่อน"); }
+  const g=plLightGap(), sg=on?-1:1, r0=P.at(P.sides[0],P.F.ra)-P.ds[0][P.F.ra]/2, r1=P.at(P.sides[1],P.F.ra)+P.ds[1][P.F.ra]/2, cam=plCamKeep(); lt[k]=!!on;
+  try{ plDpUnapply(inst); }catch(e){}
+  if(k==="T"||k==="B") resizeCabinetTo(inst,0,round(P.H+sg*g),0); else resizeCabinetTo(inst,round(r1-r0+sg*g),0,0);
+  if(k==="B"){ plShift(inst,[0,-sg*g,0]); plBoardsOf(inst).forEach(b=>{ if(plIsLeg(b)&&b.rule) b.rule.h=Math.max((+b.rule.h||100)-sg*g,10); }); }
+  if(k==="L"){ const d=[0,0,0]; d[P.F.ra]=-sg*g*P.F.rs; plShift(inst,d); }
+  sync(0); plCamPut(cam); try{ plSelect(inst); }catch(e){} return true; }
 function jwaStrip(inst){ const P=jwaParts(inst); if(!P) return; P.bs.filter(b=>b._jwaGen).forEach(jwaDrop); if(P.panel&&P.panel._jwaW0!=null&&P.panel.adj) P.panel.adj.W0=String(P.panel._jwaW0); state.boards=state.boards.filter(b=>!(b&&b._jwaFit&&String(b.cabInst)===String(inst))); }
-function jwaHealAll(){ if(snOff("jwa")) return 0; let n=0; jwaInsts().forEach(i=>{ n+=jwaHeal(i); }); return n; }
+function jwaHealAll(){ if(snOff("jwa")) return 0; let n=0; const L=jwaInsts(); L.forEach(i=>{ n+=jwaHeal(i); });
+  /* v1.651: ลบชุดผนัง = ไม้วิ่งไฟของใบนั้นออกตาม */ const have=new Set(L.map(String)), bad=(state.boards||[]).filter(b=>b&&b._jwaLtOf&&!have.has(String(b._jwaLtOf))); if(bad.length){ bad.forEach(b=>{ try{ delete (state.cabColors||{})[b.cabInst]; }catch(e){} jwaDrop(b); }); n+=bad.length; } return n; }
 /* รูปทรงคร่าว ๆ ของอุปกรณ์ — โมเดลที่ผู้ใช้มีใน Fitting 3D ชนะเสมอ (_ts เก่ามาก ค่าส่วนกลางทับได้) */
 function jwaEnsureFits(){ const M=settings.fitModels=settings.fitModels||{}, a=jwaCfg().angle, c=jwaCfg(), pt=(L,W,T,x,y,z)=>({L,W,T,x,y,z,orient:"front",yaw:0,tone:4}), put=(k,parts)=>{ if(!M[k]) M[k]={_ts:"2000-01-01T00:00:00.000Z",parts}; };
   const off=(a.w-a.t)/2, zo=(a.d-a.t)/2; [["L",-1],["R",1]].forEach(q=>{ put("JW_ANGLE_"+q[0],[pt(a.w,a.h,a.t,0,0,-zo),pt(a.t,a.h,a.d,q[1]*off,0,0)]);
@@ -41892,9 +41919,13 @@ function jwaPanelHtml(inst){ if(!jwaIsInst(inst)) return jwaHostHtml(inst); cons
   return '<div class="plRow" style="margin-top:6px"><h4>🧱 ระบบงานผนัง</h4></div>'
     +(leg&&pn?('<label style="display:flex;gap:6px;align-items:center;cursor:pointer;margin:2px 0"><input type="checkbox" id="jwaFloor"'+(fl?' checked':'')+'> หน้าบานลงถึงพื้น</label>'
       +'<div class="plNote" style="white-space:normal;line-height:1.5">'+(over?('ถึงพื้นเกิน '+c.maxH+' ลงแผ่นเดียวไม่ได้ ใช้แผ่นขา '+Math.round(P.lo)+' เสมอแผ่นหน้า'):fl?'แผ่นเดียวสูง '+Math.round(P.hi):('แผ่นขา '+Math.round(P.lo)+' เสมอแผ่นหน้า ไม่เดฟ'))+'</div>'):'')
+    +(snOff("jwaLight")?'':(()=>{ const lt=(pn&&pn._jwa&&pn._jwa.lt)||{}, ck=(k,lb)=>'<label style="display:inline-flex;gap:3px;align-items:center;cursor:pointer"><input type="checkbox" data-jwalt="'+k+'"'+(lt[k]?' checked':'')+'> '+lb+'</label>', any=["T","B","L","R"].some(k=>lt[k]);   /* v1.651 */
+      return pn?('<div class="plRow" style="flex-wrap:wrap;gap:8px;margin:3px 0"><span style="font-size:12px">ไม้วิ่งไฟ</span>'+ck("T","บน")+ck("B","ล่าง")+ck("L","ซ้าย")+ck("R","ขวา")+(any?'<label style="display:inline-flex;gap:3px;align-items:center;cursor:pointer;margin-left:6px"><input type="checkbox" id="jwaLed"'+(lt.led!==false?' checked':'')+'> มีไฟ</label>':'')+'</div>'):''; })())
     +'<div class="plNote" style="white-space:normal;line-height:1.5">คาน '+nR+' แนว · เหล็กฉาก '+nA+' ตัว · B-06 กับแป้นแขวน '+nA+' ชุด</div>'
     +((P.H>c.maxH+0.5)?'<div class="plNote" style="color:#c62828;white-space:normal">โครงสูงเกิน '+c.maxH+' ไม้ยาวไม่พอ</div>':''); }
-function jwaPanelBind(s,inst){ s.querySelectorAll("[data-jwah]").forEach(b=>{ b.onclick=()=>{ jwaAdd(inst,b.dataset.jwah).catch(e=>{ console.error("jwaAdd:",e); toast("ใส่ชุดผนังไม่สำเร็จ"); }); }; }); const f=s.querySelector("#jwaFloor"); if(!f) return; f.onchange=()=>{ if(typeof isLocked==="function"&&isLocked()){ f.checked=!f.checked; try{ guardEdit("แก้ระบบงานผนัง"); }catch(e){} return; } const P=jwaParts(inst); if(!P||!P.panel) return; P.panel._jwa=Object.assign({},P.panel._jwa,{floor:!!f.checked}); const cam=plCamKeep(); sync(0); plCamPut(cam); try{ plSelect(inst); }catch(e){} }; }
+function jwaPanelBind(s,inst){ s.querySelectorAll("[data-jwalt]").forEach(b=>{ b.onchange=()=>{ jwaLightSet(inst,b.dataset.jwalt,b.checked).then(ok=>{ if(!ok){ try{ plPanelSel(); }catch(e){} } }).catch(e=>{ console.error("jwaLight:",e); toast("ตั้งไม้วิ่งไฟไม่สำเร็จ"); }); }; });
+  { const le=s.querySelector("#jwaLed"); if(le) le.onchange=async()=>{ const P=jwaParts(inst); if(!P||!P.panel) return; if(typeof isLocked==="function"&&isLocked()){ le.checked=!le.checked; try{ guardEdit("แก้ไม้วิ่งไฟ"); }catch(e){} return; } const o=P.panel._jwa=Object.assign({},P.panel._jwa), lt=o.lt=Object.assign({},o.lt); lt.led=!!le.checked; if(lt.led&&!o.ledRec){ const R=await jwaLedTpl(); if(R) o.ledRec=R; else toast("ไม่พบรางไฟในโมเดล "+String(plRoom().lightCode||"WEF253")+" — ได้เป็นไม้ปิดไปก่อน"); } const cam=plCamKeep(); sync(0); plCamPut(cam); try{ plSelect(inst); }catch(e){} }; }
+  s.querySelectorAll("[data-jwah]").forEach(b=>{ b.onclick=()=>{ jwaAdd(inst,b.dataset.jwah).catch(e=>{ console.error("jwaAdd:",e); toast("ใส่ชุดผนังไม่สำเร็จ"); }); }; }); const f=s.querySelector("#jwaFloor"); if(!f) return; f.onchange=()=>{ if(typeof isLocked==="function"&&isLocked()){ f.checked=!f.checked; try{ guardEdit("แก้ระบบงานผนัง"); }catch(e){} return; } const P=jwaParts(inst); if(!P||!P.panel) return; P.panel._jwa=Object.assign({},P.panel._jwa,{floor:!!f.checked}); const cam=plCamKeep(); sync(0); plCamPut(cam); try{ plSelect(inst); }catch(e){} }; }
 function plCvbPanel(s,inst){ const I=cvbInfo(inst); if(!I){ s.innerHTML=""; return; } const c=cvbCfg(), M0=I.host?cvbHostM(I.host):null, M=(M0&&M0.yaw===I.yaw)?M0:null, hasK=M?M.hasKick:!!I.kick, floor=cvbFloorOf(I,M), code=String(plFp(plBoardsOf(I.top)).code), w=Math.round(I.W), rMax=cvbRMax(w), over=I.R>rMax+0.5, low=I.R<c.minR-0.5, must=w-I.dev<c.minW;
   const num=(id,v,st,mn,mx)=>'<input type="number" id="'+id+'" value="'+v+'" step="'+st+'" min="'+mn+'"'+(mx!=null?' max="'+mx+'"':'')+' style="width:70px"><span class="plU">มม.</span>';
   const fr=(l,ctl,tip)=>plF531(l,ctl,tip), hostC=I.host?plFp(plBoardsOf(I.host)).code:"", lb=I.side==="L"?"ซ้าย":"ขวา", Wk=w-I.dev;
@@ -44184,7 +44215,7 @@ function plqLines(){
     const W=d?Math.round(+d.W||0):0, H=d?Math.round(+d.H||0):0, D=d?Math.round(+d.D||0):0, cost=Math.round((o.total+cb.extra)*100)/100;   // v1.518: + ส่วนที่ปันมา
     let isF=false; try{ isF=!!code&&plKindOf(code)==="filler"; }catch(_){}
     /* ชื่อตั้งต้น: ชิ้นแผ่นเดียว (บางสุด ≤ 30 มม. เช่น BFF001 กว้าง 15) ชื่อเดาจากรหัสจะออก “ตู้พื้น” ผิด → ใช้ “แผ่นปิด / แผ่นตกแต่ง” · เซลล์แก้ชื่อรายแถวได้ (Q.nm) */
-    const nm=bs.some(b=>b&&b._csmRail)?"ราวแขวน":bs.some(b=>b&&b._plLightPanel)?"แผ่นไม้ไฟ":isCv?(_ownNm||"กล่องโค้ง"):isF?(en||"ฟิลเลอร์")
+    const nm=bs.some(b=>b&&b._csmRail)?"ราวแขวน":bs.some(b=>b&&b._plLightPanel)?"แผ่นไม้ไฟ":bs.some(b=>b&&b._jwaLt)?String(bs[0].name||"ไม้วิ่งไฟ"):isCv?(_ownNm||"กล่องโค้ง"):isF?(en||"ฟิลเลอร์")
       :(W&&H&&D&&Math.min(W,H,D)<=30)?(en||"แผ่นปิด / แผ่นตกแต่ง"):(en||gen||code||"ชิ้นงาน");
     const pk=(code||("#"+inst))+"|"+W+"|"+H+"|"+D, key=pk+"|"+Math.round(cost);   // % รายแถวผูกกับรหัส+ขนาด (pk) — ใส่ราคาทุนเพิ่มทีหลัง % ไม่หาย
     let x=0; try{ const f=d&&d.f; if(f&&isFinite(f.lo[0])) x=(f.lo[0]+f.hi[0])/2+((f.lo[2]+f.hi[2])/2)*0.001; }catch(_){}
@@ -50955,7 +50986,7 @@ function syncLegCount(inst,W){
 }
 function reapplyLegs(inst){   // จัดเฉพาะขาตู้เกาะมุมโครง — ไม่แตะคาน (กันคานที่ย้ายเองเด้งกลับ)
   if(cabYawOf(inst)) return withCabAxisAligned(inst,()=>reapplyLegs(inst));
-  const carc=state.boards.filter(b=>b.cabInst===inst&&!b._door&&!b._virtual&&!isRail(b)&&(b.T>0)&&b._jwaGen!=="kick");   /* v1.649: แผ่นขา JWA ถึงพื้น ไม่ใช่ก้นโครง */
+  const carc=state.boards.filter(b=>b.cabInst===inst&&!b._door&&!b._virtual&&!isRail(b)&&(b.T>0)&&b._jwaGen!=="kick"&&!b._jwaLt);   /* v1.649: แผ่นขา JWA ถึงพื้น ไม่ใช่ก้นโครง · v1.651: + ไม้วิ่งไฟ */
   if(!carc.length)return; let mnx=Infinity,mxx=-Infinity,mnz=Infinity,mxz=-Infinity,mny=Infinity;
   carc.forEach(b=>{ const d=worldDims(b); mnx=Math.min(mnx,b.x-d[0]/2); mxx=Math.max(mxx,b.x+d[0]/2);
     mnz=Math.min(mnz,b.z-d[2]/2); mxz=Math.max(mxz,b.z+d[2]/2); mny=Math.min(mny,b.y-d[1]/2); });
@@ -55701,7 +55732,7 @@ function _cabLocalDims(b){ return b.orient==="flat"?[b.L,b.T,b.W]:(b.orient==="s
 function _cabMinLocal(inst,yaw){
   const r=-(yaw||0)*Math.PI/180, cs=Math.cos(r), sn=Math.sin(r);
   const m=[Infinity,Infinity,Infinity];
-  state.boards.filter(b=>b.cabInst===inst&&!b._door&&!b._virtual&&b._jwaGen!=="kick").forEach(b=>{   /* v1.649: แผ่นขา JWA ถึงพื้น ไม่ใช่ก้นโครง ไม่งั้นโครงลอยขึ้นทุกครั้งที่ปรับขนาด */
+  state.boards.filter(b=>b.cabInst===inst&&!b._door&&!b._virtual&&b._jwaGen!=="kick"&&!b._jwaLt).forEach(b=>{   /* v1.649: แผ่นขา JWA ถึงพื้น ไม่ใช่ก้นโครง ไม่งั้นโครงลอยขึ้นทุกครั้งที่ปรับขนาด */
     const d=_cabLocalDims(b), lx=b.x*cs+b.z*sn, lz=-b.x*sn+b.z*cs;
     m[0]=Math.min(m[0],lx-d[0]/2); m[1]=Math.min(m[1],b.y-d[1]/2); m[2]=Math.min(m[2],lz-d[2]/2); });
   return m.every(v=>isFinite(v))?m:null;
