@@ -3283,7 +3283,7 @@ body[data-theme="dark"] .splash-dots span{background:rgba(255,255,255,.25)}
    ===================================================================== */
 /* ---- APP_META: แหล่งความจริงเดียวของเวอร์ชัน (ดูได้จาก console / คลิกชื่อแอป) ---- */
 const APP_META={
-  name:"StarNexus", version:"1.628", build:"2026-11-03/cost-code-nowrap",
+  name:"StarNexus", version:"1.629", build:"2026-11-03/wall-niche",
   file:"StarNexus.html", basedOn:"Furnitech_V3.html (v3.11)",
   /* ───────── เริ่มนับเวอร์ชันใหม่ที่ 1.001 (21/08/2026) ─────────
      ของเดิมนับมาถึง 42.1 แล้ววิ่งเป็นทศนิยมสองชั้นซึ่งอ่านลำดับยาก
@@ -3291,6 +3291,7 @@ const APP_META={
      ประวัติเก่าเก็บไว้ทั้งหมดตามเลขเดิม ไม่ไล่เขียนใหม่ เพราะเลขในนั้นถูกอ้างถึงไปแล้ว
      รายการที่อยู่ใต้ 1.001 ลงไปจึงเป็นเลขชุดเก่า อ่านต่อกันได้ตามวันที่ */
   changelog:[
+    ["1.629","2026-11-03","FEAT ซุ้มหลุมโค้งในผนัง (ผู้ใช้ 3/11 08:49 ภาพห้องทานข้าวมีหลุมโค้ง “ทำผนัง โค้ง ฝ้า หลุมโค้งยังไง” · 08:52 “เอาข้อ 1 ก่อนครับ”) — การ์ด ⌓ ซุ้มหลุมโค้ง ใน 🚪 ของในห้อง ลากติดผนังได้ทั้งผนังห้องและผนังที่วาด ตั้งกว้าง สูง ลึก สูงจากพื้น รัศมีโค้งบน (โค้งเต็ม / มุมโค้ง / เหลี่ยม) สีในหลุม ชั้นไม้ในหลุม (ของตกแต่งในภาพ ไม่เข้าแบบผลิต) · ผนังเว้าจริง ขึ้นในโหมดสมจริงและภาพเรนเดอร์ · ลากตู้เข้าหลุม: ตู้ที่พอดีช่องและไม่ติดส่วนโค้ง จะดูดเข้าก้นหลุมเอง · ปิด SN_OFF.plNiche"],
     ["1.628","2026-11-03","FIX หน้า 💰 รหัสตกบรรทัด (ผู้ใช้ 3/11 08:45 ภาพ 8101937 / 6: “รหัสตก เลข 6 ครับ”) — ช่องรหัสตั้งให้ตัดได้ทุกตัวอักษร พอช่องชื่อยาวก็บีบช่องรหัสจนเลขท้ายตกไปบรรทัดใหม่ ตอนนี้รหัสอยู่บรรทัดเดียวเสมอ ช่องชื่อเป็นฝ่ายขึ้นบรรทัดใหม่แทน"],
     ["1.627","2026-11-03","FEAT ขอโค้ด · ราคา · หมวด (ผู้ใช้ 3/11 08:24–08:29 “ดึงราคาใน Starstock มาใส่ไว้ที่นี่สิครับ · ผมจะเพิ่มหมวด ตั้งหมวดยังไง · ไม่มี ก็แนะนำให้ไปขอโค้ด เหมือนตอนส่งออกหา Production · ผมจะตั้งเองไว้ใช้ในโปรแกรม ใน AX ไม่มีหมวด”) — ① ก่อนส่ง Production ถ้ามีของไม่มีรหัส ถามก่อน พร้อมชื่อไว้ขอเปิดรหัสและปุ่มคัดลอก · รายการ BOM และหน้า 💰 มีชื่อขอโค้ดเหมือนกัน · ขอบที่ไม่มีใน AX เข้ารายการนี้ด้วย · หน้า 💰 แยก “มีใน AX ยังไม่มีราคา” ออกจาก “ไม่มีใน AX” ② Fitting Global มีคอลัมน์ราคาจาก StarStock กรองมี/ไม่มีราคาได้ เก็บชุดล่าสุดไว้ในเครื่อง เปิดครั้งต่อไปมีราคาทันที อัปเดตเองเมื่อ StarStock เปลี่ยน ③ ตั้งหมวดเอง: กรองรหัส/ชื่อแล้วกดตั้งหมวด รายการใหม่ที่ตรงเงื่อนไขเข้าหมวดเอง · กดช่องหมวดของแถว = ตั้งรายตัว · บันทึกร่วมทุกเครื่อง · ปิด SN_OFF.sendMissCode fgPrice fgCatRule"],
     ["1.626","2026-11-03","FEAT รหัสขอบตามที่มีใน AX (ผู้ใช้ 3/11 08:17 “น่าจะต้องให้มันหาขอบที่มีใน AX ครับ เช่น 81021376 มันไม่มี แต่มันมีที่ 81022376 ครับ ขอบทุกตัวจะมีที่สูงกว่าเสมอ ยกเว้นถ้าไม่มี ค่อยบอกว่าใน AX ยังไม่มี”) — ความกว้างที่คำนวณได้ไม่มีใน Fitting Global = ใช้ความกว้างถัดไปที่สูงกว่า ทั้งไฟล์ส่งออก รายการตัด และราคา · ไม่มีเลย = รหัสเดิม ขึ้นเตือนและ “ไม่มีใน AX” · มือจับ (“ตัวมือจับ ได้ลองหารายการใน AX หรือยังครับ”): ค้น 1F019-1-064 ในชื่อ AX เอง เจอรายการเดียวใส่ Purchase Item ID ให้ · หน้า 💰 บอกเหตุผลใต้ “ไม่มีใน AX” · ปิด SN_OFF.edgeAxPick SN_OFF.pullAxAuto"],
@@ -19540,7 +19541,7 @@ function realBuildRoom(){
   const wall=(name,n,p)=>{ const wg=new THREE.Group(); wg.name="realWall_"+name; g.add(wg);
     REAL.walls.push({g:wg,n:new THREE.Vector3(n[0],n[1],n[2]),p:new THREE.Vector3(p[0],p[1],p[2]),hid:false}); return wg; };
   // พื้น
-  { const fl=new THREE.Mesh(new THREE.PlaneGeometry(w,d),floorM); fl.rotation.x=-Math.PI/2; fl.position.set(cx,R.y0,cz); fl.receiveShadow=true; g.add(fl); if(R.plWalls) try{ realPlFloor(fl); }catch(e){ console.error("realPlFloor:",e); } }   /* v1.566: แบบพื้นที่ตั้ง */
+  { const fl=new THREE.Mesh(new THREE.PlaneGeometry(w,d),floorM); fl.rotation.x=-Math.PI/2; fl.position.set(cx,R.y0,cz); fl.receiveShadow=true; fl.userData.realFl=1; g.add(fl); if(R.plWalls) try{ realPlFloor(fl); }catch(e){ console.error("realPlFloor:",e); } }   /* v1.566: แบบพื้นที่ตั้ง */
   const SK=90, SKT=14;
   // ผนังหลัง (หลังตู้) — บัวเชิงผนังเว้นช่วงที่ตู้ตั้ง
   if(!(R.plWalls&&realPlW(R,"back"))) { const wg=wall("back",[0,0,1],[0,0,R.z0]);   /* v1.566: ผนังที่เปิดในห้องออกแบบ = ผนังจริง (realPlWalls) */
@@ -19623,7 +19624,7 @@ function realPlWalls(g,R,wall,P){ const r=plRoom(), T=100, rp=(root&&root.positi
     try{ ploRectHoles(m,k,r); }catch(e){ console.error("realPl holes:",e); }
     m.position.x+=rp.x; m.position.y+=rp.y; m.position.z+=rp.z; m.castShadow=true; m.receiveShadow=true; wg.add(m);
     const F=FR.find(f=>f.key==="r:"+k); if(!F) return; const NO=[-F.ni[0],-F.ni[1]], Pt=(t,o)=>[F.a[0]+F.d[0]*t+NO[0]*o+rp.x, F.a[1]+F.d[1]*t+NO[1]*o+rp.z];
-    ploList().filter(o=>o&&o.wk==="r:"+k&&PLO_T[o.k]&&PLO_T[o.k].hole).forEach(o=>{ const w=+o.w||PLO_T[o.k].w, h=+o.h||PLO_T[o.k].h, y0=Math.max(+o.sill||0,0)+rp.y, tc=+o.t||0, win=/^win/.test(o.k);
+    ploList().filter(o=>o&&o.wk==="r:"+k&&PLO_T[o.k]&&PLO_T[o.k].hole&&!PLO_T[o.k].niche).forEach(o=>{ const w=+o.w||PLO_T[o.k].w, h=+o.h||PLO_T[o.k].h, y0=Math.max(+o.sill||0,0)+rp.y, tc=+o.t||0, win=/^win/.test(o.k);   /* v1.629: หลุมมีก้น ไม่ต้องมีห้องโถงด้านหลัง */
       const c=Pt(tc,F.oo+(win?170:800)), along=F.d[0]!==0, bxs=along?[w+60,h+60,win?300:20]:[win?300:20,h+60,w+60];
       const b=new THREE.Mesh(new THREE.BoxGeometry(bxs[0],bxs[1],bxs[2]),win?skyM:hallM); b.position.set(c[0],y0+h/2,c[1]); b.castShadow=false; b.receiveShadow=!win; if(win) b.userData._rptSkip=true; wg.add(b);
       if(win&&(!best||w*h>best.a)){ const p0=Pt(tc-w/2,F.oo+2), cc=Pt(tc,F.oo+60); best={a:w*h, p:[p0[0],y0,p0[1]], u:[F.d[0]*w,0,F.d[1]*w], v:[0,h,0], c:new THREE.Vector3(cc[0],y0+h/2+h*.15,cc[1]), yc:y0+h/2, h, w}; } }); });
@@ -19715,11 +19716,14 @@ function realPlProps(g){ if(!g) return;
     if(keep&&typeof ploCamOk==="function"&&!ploCamOk(c)){ if(c.visible) c.visible=false; }   /* v1.571: ประตู/หน้าต่างของผนังฝั่งกล้อง (ผนังถูกซ่อน) ซ่อนตาม */
     else if(keep){ any=true; if(!c.visible){ c.visible=true; }
       c.traverse(x=>{ if(x.userData&&x.userData.ploSelLine&&x.visible){ x.visible=false; x.userData._realHid=1; }
+        /* v1.629: ชิ้นหลุมใช้สีผนังของโหมดสมจริง ให้กลืนกับผนัง · คืนใน realPlPropsOff */
+        if(T.niche&&x.isMesh&&x.userData&&x.userData.plNiche==="floor"&&!x.userData._m0&&REAL.grp&&REAL.room){ const fm=REAL.grp.children.find(q=>q.userData&&q.userData.realFl); if(fm){ x.userData._m0=x.material; x.userData._mKeep=1; x.material=fm.material; x.renderOrder=0; ploNicheFloorUv(x,REAL.room.x0,REAL.room.z0,REAL.room.x1-REAL.room.x0,REAL.room.z1-REAL.room.z0); } }
+        if(T.niche&&x.isMesh&&x.userData&&x.userData.plNiche&&x.userData.plNiche!=="floor"&&!x.userData._m0){ x.userData._m0=x.material; try{ const hx=(x.userData.plNiche==="in"&&/^#[0-9a-f]{6}$/i.test(String(o.clr||"")))?o.clr:null, wmx=realPlWallMat(); if(hx){ wmx.map=null; wmx.color.copy(realLin(hx)); } wmx.side=THREE.DoubleSide; x.material=wmx; }catch(e){ console.error("plNiche real:",e); } }
         if(T.hole&&x.isMesh&&x.material&&x.material.transparent&&x.material.opacity<0.6) x.userData._rptSkip=1; }); }   /* v1.566: กระจกประตู/หน้าต่างไม่บังแสงในภาพแสงจริง */
     else if(c.visible){ c.visible=false; c.userData._realHid=1; } });
   if(g.visible!==any) g.visible=any;
   try{ if(PL.wtSelGrp&&PL.wtSelGrp.visible) PL.wtSelGrp.visible=false; }catch(e){} }
-function realPlPropsOff(g){ if(!g) return; g.traverse(x=>{ if(x.userData&&x.userData._realHid){ x.visible=true; delete x.userData._realHid; } }); }
+function realPlPropsOff(g){ if(!g) return; g.traverse(x=>{ if(x.userData&&x.userData._realHid){ x.visible=true; delete x.userData._realHid; } if(x.userData&&x.userData._m0){ if(!x.userData._mKeep) try{ x.material.dispose(); }catch(e){} else { try{ const r=plRoom(); ploNicheFloorUv(x,r.x0,r.z0,+r.w||1,+r.d||1); x.renderOrder=-1; }catch(e){} } x.material=x.userData._m0; delete x.userData._m0; delete x.userData._mKeep; } }); }   /* v1.629: + คืนวัสดุหลุม */
 function _realMatsDirty(){
   scene.traverse(o=>{ if(o.material) (Array.isArray(o.material)?o.material:[o.material]).forEach(m=>{ if(m) m.needsUpdate=true; }); }); }
 /* ── เงามุม (SSAO) + โทน ACES ── ทุกอย่างวาดลงบัฟเฟอร์ทศนิยม (MSAA 4) ก่อน แล้วค่อยผสมลงจอ */
@@ -30437,6 +30441,7 @@ function boardRole(b){
      SN_OFF.plAlignStay=1 จัดแนวแล้วตู้หลบของที่ทับกันอยู่ก่อนแบบเดิม (ดีดไปช่องว่าง) (v1.600)
      SN_OFF.rszAdjBox=1   ปรับขนาดตู้ที่ชิ้นโครงมีสูตรปรับ วัดฐานก่อนถอดสูตรแบบเดิม (หดซ้ำ) (v1.600)
      SN_OFF.sdcGroove=1   บานเลื่อน SDC ไม่เซาะร่องฝังรางในแผ่นพื้น/แผ่นบน (ร่องที่เซาะไว้ถูกถอดตอน sync) (v1.599)
+     SN_OFF.plNiche=1     ไม่มีการ์ดซุ้มหลุมโค้ง · ที่วางไว้ไม่เจาะผนังและไม่วาด (ข้อมูลยังอยู่) · ตู้ไม่ดูดเข้าหลุม (v1.629)
      SN_OFF.sendMissCode=1 ส่ง Production โดยไม่ถามเรื่องรหัสที่ยังไม่มีใน AX (v1.627)
      SN_OFF.fgPrice=1     Fitting Global ไม่มีคอลัมน์ราคา ไม่เก็บชุดราคาในเครื่อง · ราคาโหลดเฉพาะตอนเปิดหน้า 💰 (v1.627)
      SN_OFF.fgCatRule=1   ไม่ใช้หมวดที่ตั้งเองใน Fitting Global (v1.627)
@@ -37340,7 +37345,7 @@ function plRoomDraw(){
   try{ plwFloorFit(); }catch(e){ console.error("plwFloorFit:",e); }   // v1.534: ปิดผนังห้องสี่เหลี่ยมอยู่ = พื้นครอบผนังที่วาดทุกเส้น
   const r=plRoom(), g=new THREE.Group(); g.name="plRoom"; const T=100;
   const fl=new THREE.Mesh(new THREE.PlaneGeometry(r.w,r.d), new THREE.MeshBasicMaterial({color:0xb9a47c,transparent:true,opacity:.30,depthWrite:false}));
-  fl.rotation.x=-Math.PI/2; fl.position.set(r.x0+r.w/2,0.8,r.z0+r.d/2); fl.renderOrder=-1; g.add(fl);
+  fl.rotation.x=-Math.PI/2; fl.position.set(r.x0+r.w/2,0.8,r.z0+r.d/2); fl.renderOrder=-1; fl.userData.plFloor=1; g.add(fl);   /* v1.629: ธงให้พื้นซุ้มหลุมใช้วัสดุเดียวกัน */
   fl.onBeforeRender=(rd,sc,cam)=>{ const M=fl.material; if(!M) return; if(M.userData._dw==null) M.userData._dw=!!M.depthWrite;   /* v1.541: กล้องต่ำกว่าพื้น = ไม่วาดพื้น (มองขึ้นเห็นฝ้า) */
     const on=snOff("plCeilMesh")||cam.position.y>0; M.colorWrite=on; M.depthWrite=on&&M.userData._dw; };
   try{ plDlInit(r); }catch(e){ console.error("plDlInit:",e); }                        // v1.586: ดาวน์ไลท์ 4 ดวงตั้งต้น
@@ -37994,10 +37999,11 @@ function plDragApply(){
       d[a]+=bs2; });
     plShift(g.inst,d);
   }
-  g.wall=wk;
+  let _nc=null; if(wk||plwH){ try{ _nc=plNicheFit(g.inst); }catch(e){ console.error("plNicheFit:",e); } }   /* v1.629: ตู้เข้าซุ้มหลุม */
+  g.wall=_nc?null:wk;
   _fastFrame=true; try{ render3D(false); }finally{ _fastFrame=false; }
   try{ updateSelBox(); }catch(e){}
-  const tip=$("plDragTip"); if(tip){ const o=wk?plOffOf(g.inst):0; tip.textContent=plwH?("ติดผนังที่วาด "+plwH.lbl):(wk?("ติดผนัง"+PL_WALLS[wk].lbl+(o>0?(" · ห่างผนัง "+o):"")):"วางอิสระ"); }   // v1.533
+  const tip=$("plDragTip"); if(tip){ const o=wk?plOffOf(g.inst):0; tip.textContent=_nc?("⌓ เข้าซุ้มหลุม · ลึก "+(+_nc.d||0)):plwH?("ติดผนังที่วาด "+plwH.lbl):(wk?("ติดผนัง"+PL_WALLS[wk].lbl+(o>0?(" · ห่างผนัง "+o):"")):"วางอิสระ"); }   // v1.533
 }
 function plDragUp(){
   const g=PL.drag; if(!g) return; PL.drag=null;
@@ -38797,6 +38803,7 @@ const PLO_T={
   col  :{n:"เสา", ic:"▮", w:400, d:400, col:1},
   ceil :{n:"ฝ้าลด", ic:"▭", w:1500, d:1500, rect:1},                          // v1.538: พื้นที่ฝ้า (ระดับฝ้า h จากพื้น · ต่ำกว่าฝ้าห้อง = ฝ้าลด)
   ceilu:{n:"ฝ้าหลุม", ic:"▭", w:1500, d:1500, rect:1, alias:"ceil"},
+  niche:{n:"ซุ้มหลุมโค้ง", ic:"⌓", w:1600, h:2300, d:300, sill:0, wall:1, hole:1, niche:1},   // v1.629: หลุมมีก้นในผนัง ไม่ทะลุ (d = ลึกจากผิวผนัง · rc = รัศมีโค้งบน ไม่ตั้ง = โค้งเต็ม · clr = สีในหลุม)
   dl   :{n:"ไฟดาวน์ไลท์", ic:"💡", w:90, d:90},   // v1.586: ติดฝ้า (ระดับตามฝ้าตรงนั้น) · ใช้ทางลาก/แผงของเสา          // v1.538: การ์ดฝ้าหลุม = ชนิด ceil ที่สูงกว่าฝ้าห้อง
   plug :{n:"ปลั๊กไฟ", ic:"🔌", w:120, h:75, sill:1100, wall:1, util:1},        // v1.538: งานระบบ (sill = ความสูงถึงศูนย์ · ไม่เจาะผนัง · ลงพื้นได้)
   wat  :{n:"ท่อน้ำดี", ic:"🚰", w:20, h:20, sill:500, wall:1, util:1},
@@ -38879,7 +38886,71 @@ function ploPose(o,F){
     return {x:F.a[0]+F.d[0]*t+no[0]*mid, z:F.a[1]+F.d[1]*t+no[1]*mid, rot:Math.atan2(F.ni[0],F.ni[1]), th:Math.max(F.oo-F.oi,40), F, t}; }
   return {x:+o.x||0, z:+o.z||0, rot:(+o.yaw||0)*Math.PI/180, th:120, F:null}; }
 function ploOpenings(key){ if(snOff("plObj")) return [];
-  return ploList().filter(o=>o&&o.wk===key&&PLO_T[o.k]&&PLO_T[o.k].hole).map(o=>{ const y0=Math.max(+o.sill||0,0); return {t0:o.t-o.w/2, t1:o.t+o.w/2, y0, y1:y0+o.h}; }); }
+  return ploList().filter(o=>o&&o.wk===key&&PLO_T[o.k]&&PLO_T[o.k].hole&&!(PLO_T[o.k].niche&&(snOff("plNiche")||ploHid(o)))).map(o=>{ const y0=Math.max(+o.sill||0,0), op={t0:o.t-o.w/2, t1:o.t+o.w/2, y0, y1:y0+o.h}; if(PLO_T[o.k].niche) op.nic=o; return op; }); }   /* v1.629: หลุมที่ซ่อน = ผนังเต็ม (ไม่มีชิ้นปิด จะเห็นรูสี่เหลี่ยม) */
+/* ═════════ v1.629: ⌓ ซุ้มหลุมโค้งในผนัง ═════════
+   ผู้ใช้ 3/11 08:49 (ภาพห้องทานข้าว ผนังมีหลุมโค้ง + ชั้นไม้ + ตู้ลอยในหลุม): “ทำผนัง โค้ง ฝ้า หลุมโค้งยังไง” · 08:52 “เอาข้อ 1 ก่อนครับ”
+   เดิม: ของบนผนังมีแต่ประตู/หน้าต่าง/ช่องเปิด สี่เหลี่ยมทะลุผนัง ไม่มีหลุมมีก้น ไม่มีของโค้ง
+   ตอนนี้: ชนิด niche ติดผนังเหมือนประตู จึงลาก คัดลอก ซ่อน undo บันทึกไปกับงานได้เหมือนกัน
+     ตัวเจาะผนัง (ploWallGeo) แบ่งท่อนได้แค่สี่เหลี่ยม จึงไม่แตะมัน: เจาะช่องสี่เหลี่ยมเท่ากรอบหลุมตามเดิม แล้วปิดมุมสองข้างบนด้วยแผ่นสีผนังเจาะปากโค้ง + ผนังหลุม + ก้นหลุม
+       แผ่นปิดเยื้องหน้าผิวผนัง 0.6 มม. ทับเส้นขอบช่องสี่เหลี่ยมของผนังให้หาย · ใช้ได้ทั้งผนังห้องและผนังที่วาด ความหนาผนังเท่าไหร่ก็ได้ (หลุมลึกกว่าผนังได้ ด้านหลังไม่มีใครเห็น ผนังซ่อนเมื่อไหร่หลุมซ่อนตาม ploCamVis)
+     โหมดสมจริง: ผนังใช้สีคนละสูตร (realLin) จึงเปลี่ยนวัสดุชิ้นหลุมตอนเข้าโหมด (realPlProps) และคืนตอนออก · เส้นขอบใช้ธง ploSelLine ซ่อนในภาพ
+     กล่องคลิกอยู่ที่ก้นหลุม ไม่ใช่หน้าผนัง ไม่งั้นบังตู้ที่อยู่ในหลุม คลิกตู้ไม่ได้
+     ตู้: plNicheFit ท้ายการลากตู้ติดผนัง ตู้กว้างไม่เกินหลุม ศูนย์ตู้อยู่ในช่วงหลุม ไม่ต่ำกว่าก้นหลุม มุมบนไม่ติดส่วนโค้ง = ดูดกลาง/ชิดขอบแล้วดันเข้าก้นหลุม
+       ไม่ใช้ระยะห่างผนัง (_plOff) เพราะตัวนั้นบวกอย่างเดียวและหลายจุดนับว่าติดผนัง · ตู้ในหลุมจึงเป็นตู้วางอิสระ ลากออกแล้วกลับมาติดผนังเอง
+   ปิด SN_OFF.plNiche */
+function ploNicheR(o){ const w=Math.max(+o.w||1600,20), h=Math.max(+o.h||2300,20), R=(o.rc==null||o.rc==="")?w/2:Math.max(+o.rc||0,0); return Math.min(R,w/2,h); }
+/* ความสูงเพดานหลุม ณ ระยะ t ตามแนวผนัง (นับส่วนโค้ง) */
+function ploNicheTop(o,t){ const w=+o.w||1600, h=+o.h||2300, R=ploNicheR(o), y0=Math.max(+o.sill||0,0), hw=w/2, dx=Math.abs(t-(+o.t||0)); if(dx>hw+0.01) return y0; if(dx<=hw-R) return y0+h; const q=Math.min(dx-(hw-R),R); return y0+h-R+Math.sqrt(Math.max(R*R-q*q,0)); }
+/* เส้นปากหลุม จากล่างซ้าย ขึ้น โค้ง ลงล่างขวา · [x,y,nx,ny] n = ปกติชี้เข้ากลางหลุม · มุมเหลี่ยมมีจุดซ้ำคนละปกติ */
+function ploNichePath(w,h,R){ const hw=w/2, P=[[-hw,0,1,0]];
+  if(R>0.5){ const n=Math.max(8,Math.min(48,Math.ceil(R/20))); for(let i=0;i<=n;i++){ const a=Math.PI-i/n*Math.PI/2, c=Math.cos(a), s=Math.sin(a); P.push([-hw+R+R*c,h-R+R*s,-c,-s]); }
+    for(let i=0;i<=n;i++){ const a=Math.PI/2-i/n*Math.PI/2, c=Math.cos(a), s=Math.sin(a); P.push([hw-R+R*c,h-R+R*s,-c,-s]); } }
+  else P.push([-hw,h,1,0],[-hw,h,0,-1],[hw,h,0,-1],[hw,h,-1,0]);
+  P.push([hw,0,-1,0]); return P; }
+/* พื้นหลุมต่อลายกับพื้นห้อง: UV นับจากมุมห้อง เดินเลยขอบได้เพราะลายเป็น repeat */
+function ploNicheFloorUv(m,x0,z0,W,D){ try{ const g=m.geometry, pa=g.attributes.position, ua=g.attributes.uv, v=new THREE.Vector3(); m.updateWorldMatrix(true,false); for(let i=0;i<pa.count;i++){ v.fromBufferAttribute(pa,i).applyMatrix4(m.matrixWorld); ua.setXY(i,(v.x-x0)/W,1-(v.z-z0)/D); } ua.needsUpdate=true; }catch(e){} }
+function ploNicheShelves(o,h){ return String(o.sv||"").split(/[,\s]+/).map(Number).filter(v=>isFinite(v)&&v>0&&v<h); }
+function ploNicheMesh(o,T,G,F,M,line,w,h0,y0,th,r,box,g){ if(snOff("plNiche")) return;
+  const D=Math.max(+o.d||T.d||300,20), H=F?ploWallH(F):(+r.h||2600), h=Math.max(Math.min(h0,H-y0),20), R=Math.min(ploNicheR(o),h), hw=w/2, zf=th/2+1, zb=th/2-D, col=0x8f8470;
+  const tgt=(F&&F.wi!=null)?{wi:F.wi}:{k:"wall"}, P=ploNichePath(w-6,h-3,Math.min(R,(w-6)/2));   /* ร่น 3 มม. จากขอบช่องที่ผนังเจาะ ผิวหลุมจะไม่ทับหน้าตัดผนัง (เห็นเป็นลายขั้นบันได) */
+  if(plPlanOn()){ const ly=PLAN_CUT+6; line([[-hw,ly,th/2],[-hw,ly,zb],[hw,ly,zb],[hw,ly,th/2]],0x1f2937); return; }   /* มุมแปลน = เส้นรอบหลุม */
+  const wallM=M(0xd6cebd,{roughness:.95,side:THREE.DoubleSide}); const add=(geo,mat,kind)=>{ const m=new THREE.Mesh(geo,mat); m.castShadow=true; m.receiveShadow=true; m.userData.plNiche=kind; G.add(m); return m; };
+  try{ plptApply({material:wallM,geometry:null},tgt,"ext"); }catch(e){ console.error("plNiche paint:",e); }
+  const innerM=/^#[0-9a-f]{6}$/i.test(String(o.clr||""))?M(new THREE.Color(o.clr),{roughness:.95,side:THREE.DoubleSide}):wallM;
+  /* แผ่นปิดมุมบน: กรอบนอกเลยช่องผนังเล็กน้อย เดินกลับตามปากโค้ง */
+  const sh=new THREE.Shape(), hp=hw-3; sh.moveTo(-hw-2,0); sh.lineTo(-hw-2,h+2); sh.lineTo(hw+2,h+2); sh.lineTo(hw+2,0); sh.lineTo(hp,0); for(let i=P.length-2;i>=1;i--) sh.lineTo(P[i][0],P[i][1]); sh.lineTo(-hp,0); sh.lineTo(-hw-2,0);
+  const gF=new THREE.ShapeGeometry(sh); gF.translate(0,y0,zf); add(gF,wallM,"wall");
+  /* ผนังใส่รูป: ผนังที่เจาะช่องมี UV เป็นมม.ตามพิกัดจริง (ploRectHoles) แผ่นปิดมุมต้องนับแบบเดียวกัน ลายจึงต่อกัน */
+  if(wallM.map){ try{ G.updateMatrix(); const c=gF.clone().applyMatrix4(G.matrix); plptUvMM(c); gF.attributes.uv.copy(c.attributes.uv); gF.attributes.uv.needsUpdate=true; c.dispose(); }catch(e){ console.error("plNiche uv:",e); } }
+  /* ผนังหลุม + เพดานโค้ง: ปกติกำหนดเอง ส่วนโค้งเรียบไม่เป็นเหลี่ยม */
+  const pos=[], nor=[], uv=[]; let s=0; const tri=(a,b,c)=>{ [a,b,c].forEach(q=>{ pos.push(q[0],q[1],q[2]); nor.push(q[3],q[4],0); uv.push(q[5],q[6]); }); };
+  for(let i=0;i+1<P.length;i++){ const a=P[i], b=P[i+1], s2=s+Math.hypot(b[0]-a[0],b[1]-a[1]), fa=[a[0],a[1]+y0,zf,a[2],a[3],s,0], fb=[b[0],b[1]+y0,zf,b[2],b[3],s2,0], ba=[a[0],a[1]+y0,zb,a[2],a[3],s,D], bb=[b[0],b[1]+y0,zb,b[2],b[3],s2,D]; tri(fa,bb,fb); tri(fa,ba,bb); s=s2; }
+  const gL=new THREE.BufferGeometry(); gL.setAttribute("position",new THREE.Float32BufferAttribute(pos,3)); gL.setAttribute("normal",new THREE.Float32BufferAttribute(nor,3)); gL.setAttribute("uv",new THREE.Float32BufferAttribute(uv,2)); add(gL,innerM,"in");
+  /* ก้นหลุม (ผนังหลัง) */
+  const sb=new THREE.Shape(); P.forEach((q,i)=>{ if(i===0) sb.moveTo(q[0],q[1]); else sb.lineTo(q[0],q[1]); }); sb.closePath();
+  /* มุมออกแบบไม่มีเงาจริง ก้นหลุมสีเดียวกับผนังจะกลืน จึงเข้มลงนิดเดียว · เลือกสีในหลุมเอง = สีตรงตามที่เลือก · โหมดสมจริงใช้แสงจริง */
+  let backM=innerM; if(innerM===wallM&&!wallM.map){ backM=wallM.clone(); backM.color.multiplyScalar(0.93); }
+  const gB=new THREE.ShapeGeometry(sb); gB.translate(0,y0,zb); add(gB,backM,"in");
+  /* พื้นหลุม: ติดพื้นห้อง = สีพื้น · ลอย = สีในหลุม */
+  let flM=innerM, fk="in"; const room=(g&&g.children)?g.children.find(c=>c.userData&&c.userData.plFloor):null; if(y0<1&&room){ flM=room.material; fk="floor"; }
+  const gP=new THREE.PlaneGeometry(w-3,zf-zb); gP.rotateX(-Math.PI/2); gP.translate(0,y0+0.5,(zf+zb)/2); const mP=add(gP,flM,fk);
+  if(fk==="floor"){ mP.castShadow=false; mP.renderOrder=room.renderOrder; mP.position.y=0.3; G.updateMatrix(); mP.updateMatrix(); const gw=new THREE.Vector3(), rw=+r.w||1, rd=+r.d||1; try{ const pa=gP.attributes.position, ua=gP.attributes.uv, mx=new THREE.Matrix4().multiplyMatrices(G.matrix,mP.matrix); for(let i=0;i<pa.count;i++){ gw.fromBufferAttribute(pa,i).applyMatrix4(mx); ua.setXY(i,(gw.x-r.x0)/rw,1-(gw.z-r.z0)/rd); } ua.needsUpdate=true; }catch(e){ console.error("plNiche floor:",e); } }
+  /* ชั้นไม้ในหลุม (o.sv = ความสูงจากก้นหลุม คั่นด้วย ,) กว้างตามช่อง ณ ขอบบนของแผ่น ไม่ทะลุส่วนโค้ง · ของตกแต่งในภาพ ไม่เข้าแบบผลิต */
+  { const st=Math.max(+o.svT||30,5), sm=M(/^#[0-9a-f]{6}$/i.test(String(o.fc||""))?new THREE.Color(o.fc).convertSRGBToLinear():new THREE.Color("#b98a5a").convertSRGBToLinear(),{roughness:.55});
+    ploNicheShelves(o,h).forEach(yy=>{ const top=Math.min(yy+st,h), q=top-(h-R), hw2=q>0?(hw-R+Math.sqrt(Math.max(R*R-q*q,0))):hw; if(hw2<20) return; const m=box(2*hw2,st,D,0,y0+top-st/2,zb+D/2,sm); m.receiveShadow=true; }); }
+  /* เส้นขอบ: ปากโค้ง · ก้นหลุม · ไม่ขึ้นในโหมดสมจริง */
+  [[zf+0.2],[zb+0.2]].forEach(q=>{ const l=line(P.map(p=>[p[0],p[1]+y0,q[0]]),col); l.userData.ploSelLine=1; });
+  { const c=[-hw+3,hw-3].map(x=>line([[x,y0+1,zf],[x,y0+1,zb]],col)); c.forEach(l=>{ l.userData.ploSelLine=1; }); if(y0>=1){ const l=line([[-hw,y0+0.8,zf+0.2],[hw,y0+0.8,zf+0.2]],col); l.userData.ploSelLine=1; } } }
+/* ตู้ที่ลากมาติดผนังตรงหลุม → ดูดเข้าหลุม · คืนหลุมที่เข้า หรือ null */
+function plNicheFit(inst){ if(snOff("plNiche")||snOff("plObj")) return null; const L=ploList().filter(o=>o&&PLO_T[o.k]&&PLO_T[o.k].niche&&o.wk&&!ploHid(o)); if(!L.length) return null;
+  const FR=ploFrames(), f=plFp(plBoardsOf(inst));
+  for(const o of L){ const F=ploFrameOf(o,FR); if(!F) continue; const ax=Math.abs(F.d[0])>0.999?0:Math.abs(F.d[1])>0.999?2:-1; if(ax<0) continue; const pa=ax===0?2:0;   /* ผนังตรงแนวแกนเท่านั้น (ตู้วางเอียงไม่ได้อยู่แล้ว) */
+    const no=-F.ni[pa===0?0:1], a0=F.a[ax===0?0:1], ap=F.a[pa===0?0:1], ds=F.d[ax===0?0:1], back=no>0?f.hi[pa]:f.lo[pa]; if(Math.abs(back-(ap+no*(+F.oi||0)))>6) continue;
+    const t1=(f.lo[ax]-a0)*ds, t2=(f.hi[ax]-a0)*ds, tl=Math.min(t1,t2), th=Math.max(t1,t2), w=+o.w||0, c=+o.t||0, nl=c-w/2, nh=c+w/2, cc=(tl+th)/2; if(th-tl>w+0.5||cc<nl||cc>nh) continue;
+    let dt=0; if(Math.abs(cc-c)<PL_SNAP) dt=c-cc; else if(tl<nl||Math.abs(tl-nl)<PL_SNAP) dt=nl-tl; else if(th>nh||Math.abs(th-nh)<PL_SNAP) dt=nh-th;
+    const y0=Math.max(+o.sill||0,0); if(f.lo[1]<y0-1) continue; if(f.hi[1]>ploNicheTop(o,tl+dt)+0.5||f.hi[1]>ploNicheTop(o,th+dt)+0.5) continue;
+    const d=[0,0,0]; d[ax]=dt*ds; d[pa]=no*Math.max(+o.d||PLO_T[o.k].d||0,0); plShift(inst,d); return o; }
+  return null; }
 /* ผนังหนึ่งช่วง (รอยเท้า q + เส้น a·d·ni) สูง H เจาะช่อง ops → Geometry ก้อนเดียว */
 function ploWallGeo(f,H,ops){
   const mk=(q,y0,y1)=>{ const g=new THREE.ExtrudeGeometry(plwShapeGeo(q),{depth:Math.max(y1-y0,0.5),bevelEnabled:false}); g.rotateX(-Math.PI/2);
@@ -39007,6 +39078,7 @@ function ploAddMeshes(g){
           const l=line(pts,0x7f93a6); try{ const m0=l.material; l.material=new THREE.LineDashedMaterial({color:0x7f93a6,dashSize:60,gapSize:40}); l.computeLineDistances(); m0.dispose(); }catch(e){} } }
       else { const pw=(w-2*fw)/2+30; box(pw,h-2*fw,6,-(w-2*fw)/4+15,y0+h/2,10,glassM); box(pw,h-2*fw,6,(w-2*fw)/4-15,y0+h/2,-10,glassM); box(40,h-2*fw,fd*0.7,0,y0+h/2,0,frameM); }
       if(snOff("plWinNoSill")) box(w+80,20,80,0,y0-10,th/2+30,frameM); } }   /* v1.539: ผู้ใช้ 16:58 “ตรงหน้าต่างไม่เอาขอบที่ยื่น” — ไม่มีขอบรองด้านใน (SN_OFF.plWinNoSill=1 = มีแบบเดิม) */                                                  // ขอบรองด้านใน · v1.538: } ปิด else มุมแปลน
+    else if(T.niche){ try{ ploNicheMesh(o,T,G,F,M,line,w,h,y0,th,r,box,g); }catch(e){ console.error("plNiche:",e); } }   /* v1.629: ซุ้มหลุมโค้ง */
     else if(T.appl){ try{ plaMesh(o,T,G,box,M,th,r); }catch(e){ console.error("plaMesh:",e); } }   // v1.546: เครื่องใช้ในครัว
     else if(o.k==="dl"){ const yc=plDlY(o), R0=Math.max(+o.w||90,40)/2;   /* v1.586: ดาวน์ไลท์ — ขอบขาว + หน้าเรืองแสง · เห็นเมื่อกล้องต่ำกว่าฝ้า หรือมุมแปลน */
       const rim=new THREE.Mesh(new THREE.CylinderGeometry(R0,R0,8,28),new THREE.MeshStandardMaterial({color:0xf2f2f0,roughness:.4})); rim.position.y=yc-4; G.add(rim);
@@ -39044,7 +39116,7 @@ function ploAddMeshes(g){
       const ap=[]; for(let i=0;i<n;i++){ const y=(i+1)*rise+3, z0=-D/2+i*run; ap.push([0,y,z0+run*0.15],[0,y,z0+run*0.85]); }
       line(ap,0x7c2d12); const zt=D/2-run*0.15, yt=H+3; line([[-w*0.18,yt,zt-run*0.6],[0,yt,zt],[w*0.18,yt,zt-run*0.6]],0x7c2d12); }
     /* กล่องคลิก (มองไม่เห็น) + กรอบเลือก */
-    const pk=T.appl?plaPk(o,T,th):o.k==="ceil"?ploCeilPk(o,r):T.util?ploUtilPk(o,F,th):o.k==="stair"?[w,Math.max(+o.h||+r.h||2600,300),Math.max(+o.d||T.d,600),0]:o.k==="dl"?[Math.max(+o.w||90,40),30,Math.max(+o.w||90,40),plDlY(o)-30]:o.k==="col"?[Math.max(+o.w||400,50),PLW.on?60:Math.max(+o.h||+r.h||2600,100),Math.max(+o.d||400,50),0]:[w,h,th+40,y0];
+    const pk=T.appl?plaPk(o,T,th):o.k==="ceil"?ploCeilPk(o,r):T.util?ploUtilPk(o,F,th):o.k==="stair"?[w,Math.max(+o.h||+r.h||2600,300),Math.max(+o.d||T.d,600),0]:o.k==="dl"?[Math.max(+o.w||90,40),30,Math.max(+o.w||90,40),plDlY(o)-30]:o.k==="col"?[Math.max(+o.w||400,50),PLW.on?60:Math.max(+o.h||+r.h||2600,100),Math.max(+o.d||400,50),0]:T.niche?[w,h,20,y0,th/2-Math.max(+o.d||T.d||300,20)+10]:[w,h,th+40,y0];   /* v1.629: หลุม = กล่องคลิกที่ก้นหลุม */
     const pick=new THREE.Mesh(new THREE.BoxGeometry(pk[0],pk[1],pk[2]),new THREE.MeshBasicMaterial({visible:false}));
     pick.position.set(0,pk[3]+pk[1]/2,pk[4]||0); /* v1.546: ฮู้ดติดผนังอยู่หน้าผนัง */ pick.userData.ploPick=1; pick.userData.plo=o.id; G.add(pick);
     if(PLO.sel===o.id){ const sel=new THREE.LineSegments(new THREE.EdgesGeometry(pick.geometry),new THREE.LineBasicMaterial({color:0x2563eb,depthTest:false})); sel.position.copy(pick.position); sel.renderOrder=999; sel.userData.ploSelLine=1; G.add(sel); }   /* v1.548: โหมดสมจริงซ่อนขอบที่เลือก */
@@ -39862,6 +39934,7 @@ function ploNew(k){ const T=PLO_T[k], r=plRoom(); if(!T) return null;
   const o={id:uid(), k, w:T.w, h:(k==="stair"||k==="col")?(+r.h||2600):T.h, sill:T.sill||0, d:T.d||0, wk:null, t:0, x:r.x0+r.w/2, z:r.z0+r.d/2, yaw:0, hinge:"L", swing:"in"};
   if(!T.sill) delete o.sill; if(!T.d) delete o.d;
   if(k==="col"){ delete o.hinge; delete o.swing; o.ref="bl"; }
+  if(T.niche){ delete o.hinge; delete o.swing; o.h=Math.min(T.h,Math.max((+r.h||2600)-100,200)); }   /* v1.629 */
   if(k==="ceil"||k==="ceilu"){ o.k="ceil"; o.h=Math.round((+r.h||2600)+(k==="ceilu"?200:-300)); delete o.hinge; delete o.swing; o.ref="bl"; }   // v1.538
   if(T.util){ delete o.hinge; delete o.swing; o.ref="bl"; }
   if(T.appl){ delete o.hinge; delete o.swing; if(T.appl!=="wall") o.y=0; if(T.code) o.code=T.code; }   /* v1.565: รุ่นที่มีรหัสในตัว (เตา HAFELE LUCIEN) */   // v1.546                   // v1.538                // v1.536: เสาวัดระยะจากมุมหลังซ้ายเป็นค่าตั้งต้น
@@ -40148,6 +40221,7 @@ function ploIcon(k){ const s='<svg viewBox="0 0 80 80" width="70" height="70" fi
   if(k==="door2") return s+'<rect x="10" y="8" width="60" height="66" fill="rgba(200,162,115,.25)"/><path d="M40 8v66"/><circle cx="34" cy="44" r="3" fill="currentColor"/><circle cx="46" cy="44" r="3" fill="currentColor"/>'+e;
   if(k==="slide") return s+'<rect x="8" y="8" width="64" height="66"/><rect x="12" y="12" width="32" height="60" fill="rgba(200,162,115,.25)"/><rect x="36" y="14" width="32" height="58" fill="rgba(200,162,115,.18)"/><path d="M20 42h14M30 38l4 4-4 4"/>'+e;
   if(k==="open") return s+'<path d="M20 74V10h40v64" stroke-dasharray="6 5"/><path d="M8 74h64"/>'+e;
+  if(k==="niche") return s+'<path d="M18 74V34a22 22 0 0 1 44 0V74" fill="rgba(160,150,130,.28)"/><path d="M26 74V36a14 14 0 0 1 28 0V74" stroke-width="2"/><path d="M8 74h64"/>'+e;   /* v1.629 */
   if(k==="win") return s+'<rect x="12" y="16" width="56" height="44" fill="rgba(159,199,216,.35)"/><path d="M40 16v44"/><path d="M8 64h64"/>'+e;
   if(k==="win1") return s+'<rect x="24" y="8" width="32" height="62" fill="rgba(159,199,216,.35)"/><path d="M52 12L28 39L52 66" stroke-width="1.6" stroke-dasharray="4 3"/><path d="M50 33v12" stroke-width="4"/><path d="M8 74h64"/>'+e;   // v1.539
   if(k==="winw") return s+'<rect x="8" y="18" width="64" height="40" fill="rgba(159,199,216,.35)"/><path d="M40 18v40"/><path d="M18 38h14M28 34l4 4-4 4"/><path d="M6 62h68"/>'+e;
@@ -40166,7 +40240,7 @@ function ploGrid(tabs,grid){   // v1.538: แบ่งหมวด · การ�
   tabs.innerHTML=ks.map(k=>'<button data-t="'+k[0]+'" class="'+(k[0]===PL.tab?"on":"")+'">'+k[1]+'</button>').join("");
   tabs.querySelectorAll("button").forEach(bt=>bt.onclick=()=>{ PL.tab=bt.dataset.t; plPanelGrid(); });
   const ok=k=>!!PLO_T[k]&&!(PLO_T[k].appl&&snOff("plAppl"))&&!(k==="col"&&snOff("plCol"))&&!((k==="ceil"||k==="ceilu")&&snOff("plCeil"))&&!(PLO_T[k].util&&snOff("plUtil"));
-  const GR=[["ประตู · หน้าต่าง",["door","door2","slide","open","win","win1","winw"]],["โครงสร้าง · ฝ้า",["stair","col","ceil","ceilu"].concat(snOff("plDl")?[]:["dl"])],["งานระบบ",["plug","wat","drn"]],["เครื่องใช้ในครัว",["sink","sink2","sink1","sinku","hob","hobi","hobd","hood1","hood2","hood3","oven"].concat(snOff("plMicroB")?[]:["microb"]).concat(["micro","bin","gas"]).concat(snOff("plFridge")?[]:["fridge1","fridge2","fridgeT"]).concat(snOff("plSmeg")?[]:["smeg"]).concat(snOff("plWash")?[]:["wash"])]].concat(snOff("plProps")?[]:[["ห้องนอน",["bed35","bed5","bed6","nstand","dress","stool","fmirror","flamp","rug","ac"]],["ห้องรับแขก",["sofa2","sofa3","armch","ctable","stable","tvcon","plant"]],["ห้องทำงาน · คอม",["pcdesk","gchair","pctower"]],["ทีวีติดผนัง",["tv43","tv55","tv65"]]]);   /* v1.614 */   /* v1.576: + ตู้เย็น */   // v1.546
+  const GR=[["ประตู · หน้าต่าง",["door","door2","slide","open","win","win1","winw"]],["โครงสร้าง · ฝ้า",["stair","col","ceil","ceilu"].concat(snOff("plNiche")?[]:["niche"]).concat(snOff("plDl")?[]:["dl"])],["งานระบบ",["plug","wat","drn"]],["เครื่องใช้ในครัว",["sink","sink2","sink1","sinku","hob","hobi","hobd","hood1","hood2","hood3","oven"].concat(snOff("plMicroB")?[]:["microb"]).concat(["micro","bin","gas"]).concat(snOff("plFridge")?[]:["fridge1","fridge2","fridgeT"]).concat(snOff("plSmeg")?[]:["smeg"]).concat(snOff("plWash")?[]:["wash"])]].concat(snOff("plProps")?[]:[["ห้องนอน",["bed35","bed5","bed6","nstand","dress","stool","fmirror","flamp","rug","ac"]],["ห้องรับแขก",["sofa2","sofa3","armch","ctable","stable","tvcon","plant"]],["ห้องทำงาน · คอม",["pcdesk","gchair","pctower"]],["ทีวีติดผนัง",["tv43","tv55","tv65"]]]);   /* v1.614 */   /* v1.576: + ตู้เย็น */   // v1.546
   const K=GR.reduce((a,g)=>a.concat(g[1].filter(ok)),[]);
   { const cn=$("plCatN"); if(cn) cn.textContent=K.length+" แบบ"; }
   const lk=plRoomLocked();
@@ -40187,7 +40261,15 @@ function ploPanel(s){ const o=ploGet(PLO.sel); if(!o){ PLO.sel=null; return; } i
   let h='<div class="plRow"><h4>'+T.ic+' '+escapeHtml(T.n)+'</h4><span class="plNote" style="margin-left:auto">'+(F?escapeHtml(F.lbl):(T.wall?"ยังไม่ติดผนัง":"วางบนพื้น"))+'</span></div>'
     +fr("กว้าง",num("w",o.w,10))
     +fr(stair?"สูง (ถึงชั้นบน)":"สูง",num("h",o.h,10))
-    +(T.sill!=null||o.sill!=null?fr("สูงจากพื้น",num("sill",o.sill,10),"ขอบล่างหน้าต่างสูงจากพื้น"):"")
+    +(T.sill!=null||o.sill!=null?fr("สูงจากพื้น",num("sill",o.sill,10),T.niche?"ก้นหลุมสูงจากพื้น · 0 = หลุมถึงพื้น":"ขอบล่างหน้าต่างสูงจากพื้น"):"")
+    /* v1.629: ค่าของซุ้มหลุมโค้ง */
+    +(T.niche?(fr("ลึก",num("d",o.d||T.d,10),"ลึกจากผิวผนังถึงก้นหลุม")
+      +fr("รัศมีโค้งบน",num("rc",ploNicheR(o),10)+(o.rc!=null?' <button class="ibtn" data-pr="rc" title="โค้งเต็มครึ่งวงกลม ตามความกว้าง">⌓ โค้งเต็ม</button>':'<span class="plNote plNB">โค้งเต็ม</span>'),"0 = เหลี่ยม · ไม่เกินครึ่งความกว้าง")
+      +fr("สีในหลุม",'<input type="color" data-pok="clr" value="'+escapeHtml(/^#[0-9a-f]{6}$/i.test(String(o.clr||""))?o.clr:(((()=>{ try{ const sp=plptSpec((F&&F.wi!=null)?{wi:F.wi}:{k:"wall"}); return sp&&/^#[0-9a-f]{6}$/i.test(String(sp.c||""))?sp.c:"#d6cebd"; }catch(e){ return "#d6cebd"; } })())))+'" style="width:44px;height:24px;padding:0;border:0;background:none">'+(o.clr?' <button class="ibtn" data-pr="clr" title="กลับเป็นสีผนัง">↺ สีผนัง</button>':'<span class="plNote plNB">ตามผนัง</span>'))
+      +fr("ชั้นไม้",'<input type="text" data-pok="sv" value="'+escapeHtml(String(o.sv||""))+'" placeholder="เช่น 1100, 1600" style="width:110px"><span class="plU">มม.</span>',"ความสูงจากก้นหลุมถึงขอบบนของชั้นลบความหนา คั่นด้วยจุลภาค · เป็นของตกแต่งในภาพ ไม่เข้าแบบผลิต")
+      +(o.sv?fr("ชั้นหนา",num("svT",o.svT||30,5))+fr("สีชั้น",'<input type="color" data-pok="fc" value="'+escapeHtml(/^#[0-9a-f]{6}$/i.test(String(o.fc||""))?o.fc:"#b98a5a")+'" style="width:44px;height:24px;padding:0;border:0;background:none">'+(o.fc?' <button class="ibtn" data-pr="fc" title="สีตั้งต้น">↺</button>':'')):"")
+      +(F&&F.wi!=null&&(+o.d||T.d)>(+F.oo-(+F.oi))?'<div class="plNote" style="margin-top:4px;line-height:1.5;color:#b45309">ลึกกว่าผนังเส้นนี้ (หนา '+Math.round(F.oo-F.oi)+') ด้านหลังผนังจะเห็นหลุมโผล่</div>':"")
+      +'<div class="plNote" style="margin-top:4px;line-height:1.5">ลากตู้ไปติดผนังตรงหลุม ตู้ที่พอดีจะเข้าก้นหลุมเอง</div>'):"")
     +(stair?fr("ยาว (ระยะเดิน)",num("d",o.d,50)+'<span class="plNote plNB">'+Math.max(3,Math.round((+o.h||2600)/175))+' ขั้น · ลูกตั้ง '+Math.round((+o.h||2600)/Math.max(3,Math.round((+o.h||2600)/175)))+' · ลูกนอน '+Math.round((+o.d||3300)/Math.max(3,Math.round((+o.h||2600)/175)))+'</span>'):"")
     +((isWin&&F)?fr("ห่างฝ้า",num("top",ploTopGap(o,F),10),"ขอบบนหน้าต่างถึงหัวผนัง/ฝ้า — แก้แล้วเลื่อนทั้งบาน (สูงเท่าเดิม) · v1.539"):"")
     +(hg?fr("บานพับ",'<select data-pok="hinge"><option value="L"'+(o.hinge!=="R"?" selected":"")+'>ซ้าย (มองจากในห้อง)</option><option value="R"'+(o.hinge==="R"?" selected":"")+'>ขวา</option></select>'):"")
@@ -40202,7 +40284,10 @@ function ploPanel(s){ const o=ploGet(PLO.sel); if(!o){ PLO.sel=null; return; } i
   s.innerHTML=h;
   s.querySelectorAll("[data-pok]").forEach(inp=>inp.onchange=()=>{ const k=inp.dataset.pok; if(ploLocked()){ plPanelSel(); return; }
     if(k==="hinge"||k==="swing") o[k]=inp.value;
-    else if(k==="fc"||k==="lc"||k==="dp"){ if(inp.value&&!(k==="dp"&&inp.value==="flat")) o[k]=inp.value; else delete o[k]; }   /* v1.566: สี/ลาย */
+    else if(k==="fc"||k==="lc"||k==="dp"||(k==="clr"&&T.niche)){ if(inp.value&&!(k==="dp"&&inp.value==="flat")) o[k]=inp.value; else delete o[k]; }   /* v1.566: สี/ลาย · v1.629: + สีในหลุม */
+    else if(T.niche&&k==="sv"){ const q=String(inp.value||"").split(/[,\s]+/).map(Number).filter(v=>isFinite(v)&&v>0).map(Math.round); if(q.length) o.sv=q.join(","); else { delete o.sv; delete o.svT; delete o.fc; } }
+    else if(T.niche&&k==="svT"){ const v=+inp.value; if(!isFinite(v)||v<5){ plPanelSel(); return; } o.svT=Math.round(v); }
+    else if(T.niche&&(k==="rc"||k==="d")){ const v=+inp.value; if(!isFinite(v)||v<0||(k==="d"&&v<20)){ plPanelSel(); return; } o[k]=Math.round(v); }   /* v1.629: ลึก · รัศมีโค้ง (ค่าเดิมของบันไดห้ามต่ำกว่า 300 ไม่เกี่ยว) */
     else { const v=+inp.value; if(!isFinite(v)) return;
       if(k==="w"&&v>=200) { const e0=(+o.t||0)-o.w/2; o.w=Math.round(v); if(F) o.t=e0+o.w/2; }
       else if(k==="h"&&v>=200) o.h=Math.round(v);
@@ -40355,6 +40440,7 @@ function ploUtilPk(o,F,th){ const T=PLO_T[o.k]||{}, uw=Math.max(+o.w||T.w||60,8)
 function ploCardSub(k){ const T=PLO_T[k]||{};
   if(T.tv) return T.w+"×"+T.h+" · ติดผนัง";   /* v1.614 */
   if(T.appl) return T.w+"×"+T.d+({top:" · บนท็อป",under:" · ใต้ตู้ลอย",wall:" · ติดผนัง",cab:" · ฝังในตู้",floor:" · วางพื้น"}[T.appl]||"");   // v1.546
+  if(k==="niche") return T.w+"×"+T.h+" · ลึก "+T.d;   /* v1.629 */
   if(k==="col") return T.w+"×"+T.d+" · สูงถึงฝ้า"; if(k==="stair") return "กว้าง "+T.w+" · ยาว "+T.d;
   if(k==="ceil") return T.w+"×"+T.d+" · ต่ำกว่าฝ้าห้อง 300"; if(k==="ceilu") return T.w+"×"+T.d+" · สูงกว่าฝ้าห้อง 200";
   if(k==="plug") return "ปลั๊กคู่ · สูง "+T.sill; if(k==="wat"||k==="drn") return "Ø"+T.w+" · ติดผนัง / ขึ้นจากพื้น";
@@ -44060,7 +44146,11 @@ function dwgWallsPlan(o,r,T,fill){ Object.keys(PL_WALLS).forEach(k=>{ const x0=r
   if(!r.walls[k]){ const s={back:[x0,z0,x1,z0],front:[x0,z1,x1,z1],left:[x0,z0,x0,z1],right:[x1,z0,x1,z1]}[k]; o.L(s[0],s[1],s[2],s[3],0.6,DWG_THIN,"6 4"); return; }
   const b={back:[x0-T,z0-T,x1+T,z0],front:[x0-T,z1,x1+T,z1+T],left:[x0-T,z0-T,x0,z1+T],right:[x1,z0-T,x1+T,z1+T]}[k];
   o.R(b[0],b[1],b[2],b[3],{w:1.1,fill}); }); o.R(r.x0,r.z0,r.x0+r.w,r.z0+r.d,{w:0.8}); }
-function dwgOnWall(c,r,k,tol){ const W=PL_WALLS[k]; if(c.wk!==k) return false; const back=W.s>0?c.f.lo[W.pa]:c.f.hi[W.pa]; return Math.abs(back-plFace(r,k))<=(tol||150); }
+function dwgOnWall(c,r,k,tol){ const W=PL_WALLS[k]; if(c.wk!==k) return false; const back=W.s>0?c.f.lo[W.pa]:c.f.hi[W.pa]; if(Math.abs(back-plFace(r,k))<=(tol||150)) return true;
+  /* v1.629: ตู้ในซุ้มหลุม หลังตู้อยู่ลึกกว่าผิวผนัง ยังเป็นตู้ของผนังนี้ (ไม่งั้นหายจากแบบผนัง) */
+  try{ if(!snOff("plNiche")){ const beh=(plFace(r,k)-back)*W.s, F=ploFrames().find(x=>x.key==="r:"+k), cc=(c.f.lo[W.ax]+c.f.hi[W.ax])/2, tc=F?(cc-F.a[W.ax===0?0:1])*F.d[W.ax===0?0:1]:0;
+    if(F&&beh>0&&ploList().some(o=>o&&o.wk==="r:"+k&&PLO_T[o.k]&&PLO_T[o.k].niche&&!ploHid(o)&&beh<=(+o.d||0)+5&&Math.abs(tc-(+o.t||0))<=(+o.w||0)/2)) return true; } }catch(e){}
+  return false; }
 /* ── แปลนทั้งห้อง ── */
 function dwgPlan(C){ const r=plRoom(), T=100, cabs=C||dwgCabs();
   const o=dwgNew("dp",r.x0-T,r.z0-T,r.x0+r.w+T,r.z0+r.d+T,760,470,84), k=o.k, hb=o.hatch("w",7);
@@ -44108,7 +44198,9 @@ function dwgUtilElev(wk,C){ const r=plRoom(), W=PL_WALLS[wk], A=W.ax, Lw=A===0?r
   (C||dwgCabs()).filter(c=>dwgOnWall(c,r,wk)).forEach(c=>{ const u=U(c.f.lo[A],c.f.hi[A]); o.R(u[0],-c.f.hi[1],u[1],-c.f.lo[1],{w:0.6,col:FA,dash:"5 3"});
     if(u[1]-u[0]>=180) o.T((u[0]+u[1])/2,-(c.f.lo[1]+c.f.hi[1])/2,c.code,{px:6,col:"#9aa0aa"}); });
   try{ plWtSlabs().slabs.filter(s=>s.wk===wk||Math.min(Math.abs(s.lo[W.pa]-plFace(r,wk)),Math.abs(s.hi[W.pa]-plFace(r,wk)))<=5).forEach(s=>{ const u=U(s.lo[A],s.hi[A]); o.R(u[0],-s.hi[1],u[1],-s.lo[1],{w:0.8,col:FA,fill:"#f1f2f4"}); }); }catch(e){}
-  try{ ploOpenings("r:"+wk).forEach(op=>{ const a=uT(op.t0), b=uT(op.t1); o.R(Math.min(a,b),-op.y1,Math.max(a,b),-op.y0,{w:0.6,col:FA,dash:"2 3"}); }); }catch(e){}
+  try{ ploOpenings("r:"+wk).forEach(op=>{ const a=uT(op.t0), b=uT(op.t1);
+    if(op.nic){ const n=op.nic, Pth=ploNichePath(+n.w,op.y1-op.y0,ploNicheR(n)); for(let i=0;i+1<Pth.length;i++) o.L(uT(+n.t+Pth[i][0]),-(op.y0+Pth[i][1]),uT(+n.t+Pth[i+1][0]),-(op.y0+Pth[i+1][1]),0.6,FA,"2 3"); return; }   /* v1.629: ซุ้มหลุม = เส้นตามรูปโค้ง */
+    o.R(Math.min(a,b),-op.y1,Math.max(a,b),-op.y0,{w:0.6,col:FA,dash:"2 3"}); }); }catch(e){}
   const NM={plug:"ปลั๊ก",wat:"น้ำดี",drn:"น้ำทิ้ง"}, CL={plug:"#e8590c",wat:"#1c7ed6",drn:"#495057"}, us=[];
   ut.slice().sort((a,b)=>uT(+a.t||0)-uT(+b.t||0)).forEach((q,i)=>{ const u=uT(+q.t||0), yc=Math.max(+q.sill||0,0), w=Math.max(+q.w||PLO_T[q.k].w,20), h=Math.max(+q.h||PLO_T[q.k].h,20), col=CL[q.k]||"#e8590c";
     us.push(u);

@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="th"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover"><meta name="generator" content="StarNexus 1.628"><title>StarNexus — ดูงาน 3D</title><style>
+<html lang="th"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover"><meta name="generator" content="StarNexus 1.629"><title>StarNexus — ดูงาน 3D</title><style>
 :root{--bg:#e7e8ee;--panel:rgba(255,255,255,.94);--solid:#fff;--ink:#172c40;--dim:#5b6b7c;--line:#d5dae2;--accent:#1e5fa8;--warn:#e8590c;--shadow:0 10px 30px -12px rgba(16,32,56,.35)}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html,body{margin:0;height:100%;background:var(--bg);color:var(--ink);font:14px/1.5 system-ui,-apple-system,"Segoe UI","Noto Sans Thai","Sarabun",sans-serif;overflow:hidden;overscroll-behavior:none}
@@ -1401,7 +1401,7 @@ function realBuildRoom(){
   const wall=(name,n,p)=>{ const wg=new THREE.Group(); wg.name="realWall_"+name; g.add(wg);
     REAL.walls.push({g:wg,n:new THREE.Vector3(n[0],n[1],n[2]),p:new THREE.Vector3(p[0],p[1],p[2]),hid:false}); return wg; };
   // พื้น
-  { const fl=new THREE.Mesh(new THREE.PlaneGeometry(w,d),floorM); fl.rotation.x=-Math.PI/2; fl.position.set(cx,R.y0,cz); fl.receiveShadow=true; g.add(fl); if(R.plWalls) try{ realPlFloor(fl); }catch(e){ console.error("realPlFloor:",e); } }   /* v1.566: แบบพื้นที่ตั้ง */
+  { const fl=new THREE.Mesh(new THREE.PlaneGeometry(w,d),floorM); fl.rotation.x=-Math.PI/2; fl.position.set(cx,R.y0,cz); fl.receiveShadow=true; fl.userData.realFl=1; g.add(fl); if(R.plWalls) try{ realPlFloor(fl); }catch(e){ console.error("realPlFloor:",e); } }   /* v1.566: แบบพื้นที่ตั้ง */
   const SK=90, SKT=14;
   // ผนังหลัง (หลังตู้) — บัวเชิงผนังเว้นช่วงที่ตู้ตั้ง
   if(!(R.plWalls&&realPlW(R,"back"))) { const wg=wall("back",[0,0,1],[0,0,R.z0]);   /* v1.566: ผนังที่เปิดในห้องออกแบบ = ผนังจริง (realPlWalls) */
