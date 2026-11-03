@@ -3283,7 +3283,7 @@ body[data-theme="dark"] .splash-dots span{background:rgba(255,255,255,.25)}
    ===================================================================== */
 /* ---- APP_META: แหล่งความจริงเดียวของเวอร์ชัน (ดูได้จาก console / คลิกชื่อแอป) ---- */
 const APP_META={
-  name:"StarNexus", version:"1.643", build:"2026-11-03/dwg-wall-person",
+  name:"StarNexus", version:"1.644", build:"2026-11-03/seed-row-back",
   file:"StarNexus.html", basedOn:"Furnitech_V3.html (v3.11)",
   /* ───────── เริ่มนับเวอร์ชันใหม่ที่ 1.001 (21/08/2026) ─────────
      ของเดิมนับมาถึง 42.1 แล้ววิ่งเป็นทศนิยมสองชั้นซึ่งอ่านลำดับยาก
@@ -3291,6 +3291,7 @@ const APP_META={
      ประวัติเก่าเก็บไว้ทั้งหมดตามเลขเดิม ไม่ไล่เขียนใหม่ เพราะเลขในนั้นถูกอ้างถึงไปแล้ว
      รายการที่อยู่ใต้ 1.001 ลงไปจึงเป็นเลขชุดเก่า อ่านต่อกันได้ตามวันที่ */
   changelog:[
+    ["1.644","2026-11-03","FIX แถว 1F019-1-064 และบานเลื่อนหายจาก Element หลังดึงค่าส่วนกลาง (ผู้ใช้ 14:34 ภาพหน้าต่างมือจับ: อยู่ไหนครับ) — ค่าส่วนกลางทับรายการ Element แต่ธงเคยเพิ่มแล้วค้างในเครื่อง โปรแกรมจึงเข้าใจว่าผู้ใช้ลบเองและไม่ใส่คืน แก้ให้ธงตามค่าที่โหลด และใส่แถวคืนรอบเดียวให้เครื่องที่ธงค้างแล้ว · แท็บมือจับแบบฝังแสดงมือจับฝังเซาะร่องด้วย"],
     ["1.643","2026-11-03","FEAT+FIX แบบในใบเสนอราคา — ① ภาพด้านหน้าแสดงฟิลเลอร์บน ② ผนังที่ปิดไว้แต่มีตู้ชน + ผนังที่วาดเอง ขึ้นเป็นผนังลายขีดในภาพด้านหน้าและแปลน ③ ของในห้องเพิ่มคนยืน ปรับความสูงและสีเสื้อได้ ขึ้นในภาพด้านหน้ากับแปลน (ผู้ใช้ 13:54: ทำไมไม่เห็น ฟิลเลอร์บนครับ เส้นทางซ้าย ภาพด้านหน้า จริงๆ ต้องเห็นผนัง ด้วยครับ ภาพด้านบน ด้วย เหมือนภาพตัด Section ครับ เพิ่มคนไปยืนได้ไหมครับ สัก 1 คน)"],
     ["1.642","2026-11-03","FEAT การ์ดแคตตาล็อกห้องออกแบบแสดงชื่อตู้ภาษาไทยใต้รหัส จาก Excel ของผู้ใช้ 6,581 รหัส ไม่เจอรหัส = ชื่อหมวดแบบเดิม ชื่อที่ตั้งเองมาก่อน ค้นด้วยชื่อไทยได้ สะกด ลื้นชัก แก้เป็น ลิ้นชัก (ผู้ใช้: ใส่ชื่อตู้ ภาษาไทยไปให้ผมหน่อยครับ เอาเท่าที่เจอครับ ใส่ใต้ รหัสตู้)"],
     ["1.641","2026-11-03","FEAT Fitting Global แยกแท็บ ปุ่ม ↗ แยกแท็บ เปิดค้างไว้หาข้อมูลได้ ค้น กรอง คัดลอก ดูราคาได้เหมือนเดิม อ่านอย่างเดียว ตั้งหมวดในโปรแกรมหลัก · F5 หรือเปิดจาก bookmark อ่านสำเนาในเครื่อง (ผู้ใช้ 13:03)"],
@@ -30461,6 +30462,8 @@ function boardRole(b){
      SN_OFF.dwgNoCount=1  หน้ารวมวัสดุ กลับมาโชว์จำนวน บาน/จุด/เส้น/ตัว/ชุด (v1.633)
      SN_OFF.dwgPullImg=1  การ์ดมือจับไม่ใช้รูปที่อัปโหลด ไม่มีรูปในหน้าต่าง 🖼 · การ์ดเดียวเหมือนเดิม (v1.633)
      SN_OFF.dwgDoorName=1 ไม่แสดงชื่อรุ่นแบบบานที่ตั้งเอง (v1.633)
+     SN_OFF.seedFollow=1  ธงเพิ่มแถว Element ไม่ตามค่าที่โหลด แบบก่อน v1.644
+     SN_OFF.ehpFlushCard=1 แท็บมือจับแบบฝังไม่แสดงมือจับฝังเซาะร่อง (v1.644)
      SN_OFF.dwgWallTouch=1 แบบวาดเฉพาะผนังที่เปิดในห้อง + ผนังที่วาดเอง ไม่นับผนังที่ปิดแต่มีตู้ชน (v1.643)
      SN_OFF.dwgCeilFill=1 ภาพด้านหน้าไม่วาดฟิลเลอร์บน (v1.643)
      SN_OFF.plPerson=1    ไม่มีการ์ดคนยืน และไม่วาดคนในแบบ (v1.643)
@@ -35632,7 +35635,12 @@ async function processXmlText(text,opts){ opts=opts||{}; try{
 /* v1.343: src = ค่าตั้งที่ได้มาแล้วในมือ (จากไฟล์กลาง) ใช้ตัวนั้นเลย ไม่อ่านคืนจากที่เก็บในเบราว์เซอร์
    เดิม cloudLoadSettings เขียนลงที่เก็บแล้วอ่านคืน — เขียนไม่ลง (ใหญ่เกิน) = อ่านได้ของเก่า ค่าตั้งใหม่หายเงียบ */
 async function loadSettings(src){ const s=(src&&typeof src==="object")?src:await lsGet("sxlocaltrial:furnitech:settings",null);
-  if(s&&typeof s==="object"){ Object.assign(settings,DEF_SETTINGS,s);
+  /* ───────── v1.644: ธงเพิ่มแถว Element ต้องตามค่าที่โหลด ─────────
+     ผู้ใช้ 3/11 14:34 (ภาพหน้าต่างมือจับ ไม่มี 1F019-1-064): “อยู่ไหนครับ”
+     เดิม: Object.assign ทับเฉพาะคีย์ที่มีในค่าที่โหลด ค่าส่วนกลางมี elements แต่ไม่มีธง pullSeed แถวจึงหาย ธงในเครื่องค้าง
+       ensurePull1F019 เห็นธงแล้วเข้าใจว่าผู้ใช้ลบเอง ไม่ใส่คืน · sdcEnsureElems กับ pullAxDone พังแบบเดียวกัน
+     แก้: คีย์ธงที่ค่าที่โหลดไม่มี = ลบออกก่อนรวม · เครื่องที่ธงค้างจนบันทึกขึ้นส่วนกลางไปแล้ว ใช้ธงรุ่นใหม่ "#2" ใส่แถวคืนอีกรอบเดียว · ปิด SN_OFF.seedFollow=1 */
+  if(s&&typeof s==="object"){ try{ if(!snOff("seedFollow")) ["pullSeed","sdcElemSeed","pullAxDone"].forEach(k=>{ if(!(k in s)) delete settings[k]; }); }catch(e){} Object.assign(settings,DEF_SETTINGS,s);
     /* v1.466: รูยึดหูแขวนที่แผ่นข้าง ขยับขึ้น 16 — ชุดค่าที่ยังเป็น 23 (ค่าตั้งต้นเดิม) เปลี่ยนเป็น 7 ครั้งเดียว
        ธง hangSideDownV ไม่อยู่ใน DEF_SETTINGS (ไม่งั้น Object.assign ด้านบนเติมธงให้ก่อน แล้วไม่เคยย้ายเลย)
        ตั้งกลับเป็น 23 เองทีหลังได้ — มีธงแล้วไม่ย้ายซ้ำ */
@@ -47811,8 +47819,8 @@ function sdcInt(v){ return snOff("sdcInt")?round(v):Math.floor((+v||0)+1e-6); }
 function sdcEnsureElems(){ if(snOff("sdc")||snOff("sdcElem")) return false;
   try{ settings.elements=settings.elements||{}; const L=settings.elements.fittings=settings.elements.fittings||[], seen=settings.sdcElemSeed=settings.sdcElemSeed||{}, c=sdcCfg(); let n=0;
     [[c.kit,"ชุดลูกล้อบานเลื่อน "+c.sys+" (4 ล้อ/บาน)","ชุด"],[c.rail,"รางบานเลื่อนเดี่ยว "+c.sys,"เส้น"]].forEach(r=>{ const cd=String(r[0]||"").trim(); if(!cd) return;
-      if(L.some(f=>f&&String(f.code||"").trim().toLowerCase()===cd.toLowerCase())){ seen[cd]=1; return; }
-      if(seen[cd]) return; L.push({code:cd,desc:r[1],dia:"",unit:r[2],itemId:"",asSet:"",kind:"บานเลื่อน",folder:"บานเลื่อน"}); seen[cd]=1; n++; });
+      if(L.some(f=>f&&String(f.code||"").trim().toLowerCase()===cd.toLowerCase())){ seen[cd]=1; seen[cd+"#2"]=1; return; }   /* v1.644: ธงรุ่นใหม่ ดูคอมเมนต์ใน loadSettings */
+      if(seen[cd+"#2"]) return; L.push({code:cd,desc:r[1],dia:"",unit:r[2],itemId:"",asSet:"",kind:"บานเลื่อน",folder:"บานเลื่อน"}); seen[cd]=1; seen[cd+"#2"]=1; n++; });
     if(n){ try{ lsSet("sxlocaltrial:furnitech:settings",settings); }catch(e){} } return n>0;
   }catch(e){ console.error("sdcElems:",e); return false; } }
 function sdcGeo(op,c,side){ const T=c.T, H=op.A-c.hDed, Wd=(op.Wo+c.ov)/2, trk=(side==="L")?1:0, Li=sdcInt(Wd), Wi=sdcInt(H);
@@ -48621,6 +48629,11 @@ function plEhpDraw(el,C){ const e=v=>escapeHtml(String(v==null?"":v)), inst=C.in
   PLPU.ehSide=PLPU.ehSide||"auto";
   const rows=[], seen=new Set(); C.targets().forEach(i=>plpDoors(i).forEach(r=>{ if(r&&r.d&&!seen.has(r.d.id)){ seen.add(r.d.id); rows.push(r); } }));
   const cands=single?plpCands(String(inst)):[], lib=ehpLib(), us=ehpUsage(rows), nOn=rows.filter(r=>r.d._ehp).length;
+  /* ───────── v1.644: มือจับฝังเซาะร่องในแท็บแบบฝัง ─────────
+     ผู้ใช้ 3/11 14:34: มองหา 1F019-1-064 ในแท็บ “มือจับแบบฝัง” แล้วไม่เจอ เพราะรุ่นนี้เจาะร่องในหน้าบาน ไม่ใช่รางติดขอบบาน จึงอยู่แท็บ “มือจับ” อย่างเดียว
+     แก้: การ์ดรุ่น pull3D = flush ขึ้นแท็บนี้ด้วย กดแล้วใส่แบบมือจับปกติ (ไม่ตัดบาน และถอดมือจับฝังเดิมให้) · ปิด SN_OFF.ehpFlushCard=1 */
+  const flL=snOff("ehpFlushCard")?[]:plpList().filter(d=>pullIsFlush(d.code)), flU=flL.length?plpUsage(C.targets()):{u:{},n:0};
+  const flCard=(d,i)=>{ const n=flU.u[d.code]||0; return '<div class="ppT'+(n&&n===flU.n?" on":"")+'" data-efl="'+i+'" title="'+e(d.code+" · "+plpName(d.code))+'"><div class="ppSw" data-flc="'+e(d.code)+'">…</div><b>'+e(d.code)+'</b><small>ฝังเซาะร่องในบาน · บานขนาดเดิม</small><div class="ppUse">'+(n?("✓ ใส่อยู่ "+n+(flU.n>1?("/"+flU.n):"")+" บาน"):"")+'</div></div>'; };
   const chip=(v,lbl,tt)=>'<button data-es="'+v+'" class="'+(PLPU.ehSide===v?"on":"")+'"'+(tt?' title="'+e(tt)+'"':'')+'>'+lbl+'</button>';
   const card=(P,i)=>{ const n=P?(us[P.id]||0):(rows.length-nOn), D=P?ehpDims(P):null;
     return '<div class="ppT'+(P&&n&&n===rows.length?" on":"")+'" data-ei="'+i+'" title="'+e(P?(P.code+" · "+P.n+" · สูง "+D.h+(ehpGap(P)?(" + หดเพิ่ม "+ehpGap(P)):"")+" (บานสั้นลง "+round(D.h+ehpGap(P))+")"):"ไม่มีมือจับฝัง — บานกลับขนาดเดิม")+'">'
@@ -48650,7 +48663,7 @@ function plEhpDraw(el,C){ const e=v=>escapeHtml(String(v==null?"":v)), inst=C.in
     +'<div style="padding:6px 12px 0;color:var(--ink-dim);font-size:10.5px;line-height:1.5">ใส่แล้วบานสั้นลงเท่าความสูงมือจับฝัง แล้วปัดลงเป็นเลขเต็ม (บานและมือจับไม่มีเศษ) · ใบตัด/MPR ใช้ขนาดใหม่ · มือจับเดิมของบานนั้นถูกถอด</div>'
     +(cands.length?('<div class="ppDr"><div class="ppDrH"><b>บานที่ใส่</b><span>กดที่บาน = ใส่ / ถอด รายบาน</span></div>'+plpDoorsSvg(cands)+'</div>'):'')
     +(!rows.length?('<div style="padding:16px 12px;color:var(--ink-dim)">'+(whole?'ห้องนี้':'ตู้ใบนี้')+'ไม่มีบานหรือลิ้นชักให้ใส่</div>')
-      :('<div class="ppGrid">'+card(null,-1)+lib.map((P,i)=>card(P,i)).join("")
+      :('<div class="ppGrid">'+card(null,-1)+lib.map((P,i)=>card(P,i)).join("")+flL.map(flCard).join("")
         +'<div class="ppT" data-enew="1" title="เพิ่มรุ่นเอง"><div class="ppSw" style="font-size:26px">＋</div><b>เพิ่มรุ่น</b><small>รหัส · หน้าตัด</small></div>'
         +(snOff("ehpSect")?'':'<div class="ppT" data-esec="1" title="เอาหน้าตัดจากคลัง Section (เส้นที่วาด/นำเข้า DXF ไว้ เช่น HW-367) มาเป็นมือจับฝัง"><div class="ppSw" style="font-size:24px">▤</div><b>จากคลัง Section</b><small>เช่น HW-367</small></div>')   /* v1.594 */
         +'</div>'
@@ -48686,6 +48699,10 @@ function plEhpDraw(el,C){ const e=v=>escapeHtml(String(v==null?"":v)), inst=C.in
   el.querySelectorAll("[data-di]").forEach(g=>g.onclick=()=>{ const r=cands[+g.dataset.di]; if(!r||!r.d) return; const id=r.d._ehp?null:(PLPU.ehId||(lib[0]&&lib[0].id));
     const res=ehpApplyRows([r],id,PLPU.ehSide); done(res,id?"▬ ใส่มือจับฝัง":"▬ ถอดมือจับฝัง"); });
   el.querySelectorAll(".ppT[data-ei]").forEach(t=>t.onclick=ev=>{ if(ev.target.closest(".ppEd")) return; const i=+t.dataset.ei; if(ploLocked()) return; apply(i<0?null:(lib[i]&&lib[i].id)); });
+  /* v1.644: การ์ดมือจับฝังเซาะร่อง + รูปย่อแบบแท็บมือจับ */
+  el.querySelectorAll(".ppT[data-efl]").forEach(t=>t.onclick=()=>{ if(ploLocked()) return; const d=flL[+t.dataset.efl]; if(d&&C.applyPull) C.applyPull(d.code,"🖐 มือจับ "+d.code); });
+  { const sw=[...el.querySelectorAll("[data-flc]")], need=[...new Set(sw.map(s=>s.dataset.flc).filter(c=>!PLPU.th[plpKey(c)]))]; if(need.length){ const got=plpShots(need); need.forEach(c=>{ PLPU.th[plpKey(c)]=got[c]||""; }); }
+    sw.forEach(s=>{ const u=PLPU.th[plpKey(s.dataset.flc)]; if(u){ s.style.backgroundImage='url("'+u+'")'; s.textContent=""; } else s.textContent=s.dataset.flc; }); }
   el.querySelectorAll(".ppDel").forEach(b=>b.onclick=async ev=>{ ev.stopPropagation(); if(ploLocked()) return; const P=lib[+b.dataset.ed]; if(await ehpDelete(P)){ if(PLPU.ehId===P.id) PLPU.ehId=null; const cam=plCamKeep(); sync(0); plCamPut(cam); try{ costSchedule(); }catch(er){} toast("ลบรุ่น "+P.code+" ออกจากรายการแล้ว"); C.redraw(); } });   /* v1.601 */
   { const bk=el.querySelector("#ppEhpBack"); if(bk) bk.onclick=async ev=>{ ev.preventDefault(); settings.ehpHide=[]; try{ await catSaveSettings(); }catch(er){} toast("คืนรุ่นมือจับฝังที่ลบแล้ว"); C.redraw(); }; }   /* v1.601 */
   el.querySelectorAll(".ppEd:not(.ppDel)").forEach(b=>b.onclick=async ev=>{ ev.stopPropagation(); const P=lib[+b.dataset.ee]; const row=await ehpEdit(P); if(row){ const nr=ehpReapply(row.id); toast("บันทึกรุ่น "+row.code+" แล้ว"+(nr?(" · ตัดบานที่ใช้รุ่นนี้ใหม่ "+nr+" บาน"):"")); sync(0); try{ costSchedule(); }catch(er){} C.redraw(); } });   /* v1.595: บานที่ใส่อยู่ตามรุ่นที่แก้ */
@@ -48733,7 +48750,7 @@ function plPullOpen(inst,x,y){
     else plPullApplyRows([r],"",PLPU.pm,PLPU.om);
     sync(0); plCamPut(cam); try{ if(inst) plSelect(inst); }catch(e){} draw(); };
   const draw=()=>{
-    if(PLPU.mode==="ehp"&&!snOff("ehp")) return plEhpDraw(el,{inst,whole,code,targets,redraw:draw});   /* v1.592 */
+    if(PLPU.mode==="ehp"&&!snOff("ehp")) return plEhpDraw(el,{inst,whole,code,targets,redraw:draw,applyPull:apply});   /* v1.592 · v1.644: + ใส่มือจับฝังเซาะร่องจากแท็บนี้ */
     const us=plpUsage(targets()), q=String(PLPU.q||"").trim().toLowerCase(), e=v=>escapeHtml(String(v==null?"":v));
     const single=!whole&&!PLPU.all, cands=single?plpCands(String(inst)):[];   // v1.529
     const items=list.filter(d=>!q||String(d.code).toLowerCase().indexOf(q)>=0||plpName(d.code).toLowerCase().indexOf(q)>=0);
@@ -52599,7 +52616,8 @@ function ensureSamplePull(){
    เพิ่มแถวครั้งเดียว: มีรหัสนี้แล้วไม่แตะ (รหัส AX ที่ใส่ไว้ไม่หาย) · settings.pullSeed จำไว้ ผู้ใช้ลบแถวแล้วไม่ใส่คืน · ปิด SN_OFF.pull1F019 */
 function ensurePull1F019(){ if(snOff("pull1F019")) return false;
   try{ settings.elements=settings.elements||{}; const L=settings.elements.fittings=settings.elements.fittings||[], seen=settings.pullSeed=settings.pullSeed||{}, cd="1F019-1-064";
-    if(L.some(f=>f&&String(f.code||"").trim().toLowerCase()===cd.toLowerCase())){ seen[cd]=1; return false; } if(seen[cd]) return false;
+    /* v1.644: ธงรุ่นใหม่ "#2" ดูคอมเมนต์ใน loadSettings · ใส่แถวคืน = ล้างธงค้นรหัส AX ให้ค้นใหม่ */
+    if(L.some(f=>f&&String(f.code||"").trim().toLowerCase()===cd.toLowerCase())){ seen[cd]=1; seen[cd+"#2"]=1; return false; } if(seen[cd+"#2"]) return false; seen[cd+"#2"]=1; if(settings.pullAxDone) delete settings.pullAxDone[cd];
     L.push({code:cd,desc:"มือจับฝัง 1F019-1-064 Zinc โครมเงา",dia:"",unit:"ตัว",itemId:"",asSet:"",kind:"มือจับ",folder:"มือจับ",
       pullDrill:"",pullPocket:"0,0,71,33,9,t,3",pull3D:"flush",pullFinish:"chrome",pullLen:"76",pullT:"38",pullH:"7"});
     seen[cd]=1; try{ lsSet("sxlocaltrial:furnitech:settings",settings); }catch(e){} return true;
