@@ -3283,7 +3283,7 @@ body[data-theme="dark"] .splash-dots span{background:rgba(255,255,255,.25)}
    ===================================================================== */
 /* ---- APP_META: แหล่งความจริงเดียวของเวอร์ชัน (ดูได้จาก console / คลิกชื่อแอป) ---- */
 const APP_META={
-  name:"StarNexus", version:"1.622", build:"2026-11-03/sdc-wardrobe",
+  name:"StarNexus", version:"1.623", build:"2026-11-03/sdc-ehp-side",
   file:"StarNexus.html", basedOn:"Furnitech_V3.html (v3.11)",
   /* ───────── เริ่มนับเวอร์ชันใหม่ที่ 1.001 (21/08/2026) ─────────
      ของเดิมนับมาถึง 42.1 แล้ววิ่งเป็นทศนิยมสองชั้นซึ่งอ่านลำดับยาก
@@ -3291,6 +3291,7 @@ const APP_META={
      ประวัติเก่าเก็บไว้ทั้งหมดตามเลขเดิม ไม่ไล่เขียนใหม่ เพราะเลขในนั้นถูกอ้างถึงไปแล้ว
      รายการที่อยู่ใต้ 1.001 ลงไปจึงเป็นเลขชุดเก่า อ่านต่อกันได้ตามวันที่ */
   changelog:[
+    ["1.623","2026-11-03","FEAT+FIX บานเลื่อน (ผู้ใช้ 3/11 07:49–07:53 “มันเลือกให้อยู่คนละฝั่งไม่ได้ครับ” · “โหมดธรรมดา ต้องมีให้เลือกบานเลื่อนด้วยครับ”) — ① มือจับฝังเลือกด้านรายบานได้ทุกแบบบาน (แถว ‘ด้านรายบาน’ ในกล่อง 🖐) รูปบานเห็นแถบมือจับตามด้าน เปลี่ยนรุ่นแล้วด้านที่เลือกเองไม่หาย ② บานเลื่อน อัตโนมัติ = ด้านนอก คนละฝั่ง (เดิมไม่มีบานพับให้สลับ จึงไปด้านบนทั้งคู่) ③ แก้บานเลื่อนไม่ถูกตัดตามมือจับฝัง (ตัวคิดบานเลื่อนตั้งกลับเต็มใบทุก sync จนบาน + มือจับยาวเกินช่อง) ระยะเลื่อนหักตามจริง ④ มือจับยื่นหน้าที่ติดบานรางหลังด้านในหรือบน/ล่าง เตือนว่าชนบานหน้า ⑤ กล่องเพิ่มหน้าบานโหมดธรรมดามีชนิด ‘บานเลื่อน’ กดตกลงแล้วเปิดกล่องตั้งค่าบานเลื่อน · ปิด SN_OFF.sdcEhp SN_OFF.ehpPerDoor SN_OFF.addDoorSdc"],
     ["1.622","2026-11-03","FIX ปุ่ม 🚪 บานเลื่อน ขึ้นกับตู้เสื้อผ้าด้วย (ผู้ใช้ 3/11 07:35 “ใส่บานเลื่อนยังไงนะ”) — เดิมโชว์เฉพาะหมวดตู้พื้น/ตู้ลอย/ตู้สูง รหัส MWA… เป็นหมวดอื่น ๆ จึงไม่มีปุ่ม ทั้งที่ตัวคิดบานใช้ได้ · ตอนนี้ตู้ทรงตู้สูงทุกรหัสมีปุ่ม"],
     ["1.621","2026-11-02","FIX+FEAT ห้องออกแบบ — ① สีเสา (ผู้ใช้ 20:45 “เสาแก้สีบ่ได้ ขอสีเดียวกับผนังครับ”): เสาตามสีผนังเส้นที่ใกล้ที่สุด ไม่ทาสี = สีเดียวกับผนัง · มีช่องเลือกสีเองและปุ่มกลับไปตามผนัง ② เก้าอี้เกมมิ่ง (ผู้ใช้ 20:44) เลือกสีได้ คลิกการ์ดแล้ววางหน้าโต๊ะคอมที่ยังไม่มีเก้าอี้ ③ เปิดตั้งค่าในห้องออกแบบ แผงซ้าย/ขวาไม่บังหน้าตั้งค่าแล้ว (ปุ่มกู้คืนถังขยะเคยถูกบัง)"],
     ["1.620","2026-11-02","FEAT ถังขยะห้อง (ผู้ใช้ 20:42 “BACKUP ห้องไว้ได้ไหมครับ ลบไปแล้วเอาไปค้างไว้ที่ถังขยะ จะเข้าถังขยะได้ต้องเข้าที่ตั้งค่าโปรแกรม”) — ลบห้องที่บันทึก = ย้ายไปถังขยะ ไม่หายทันที · ปุ่ม ล้าง / Order ใหม่ / ล้างตู้ / บันทึกทับ สำรองห้องและตู้ลงถังขยะให้เอง · เปิดได้ที่ ⚙ ตั้งค่า › ถังขยะห้องเท่านั้น กู้คืนกลับเข้า 📂 ห้องที่บันทึก หรือลบถาวรได้ · ของสำรองอัตโนมัติเก็บ 20 รายการล่าสุด ห้องที่กดลบเองอยู่จนกว่าจะลบถาวร"],
@@ -10747,6 +10748,17 @@ function parseRowsSpec(txt){
    ต่างกันแค่ช่องที่เลือก ซึ่งเป็นงานที่คอมพิวเตอร์ควรทำซ้ำให้เอง
    รับค่าที่ตั้งไว้แล้วเข้ามาได้ ตอนเลือก "ทุกช่อง" จึงวนเรียกตัวเองต่อได้เลย
    โดยใช้ค่าชุดเดียวกันทุกช่อง เปลี่ยนแค่ชื่อช่อง */
+/* ───────── v1.623: กล่องเพิ่มหน้าบานมีชนิด “บานเลื่อน” ─────────
+   ผู้ใช้ 3/11 07:53 (ภาพกล่องเพิ่มหน้าบาน): “โหมดธรรมดา ต้องมีให้เลือกบานเลื่อนด้วยครับ”
+   เดิม: บานเลื่อนใส่ได้จากปุ่มในห้องออกแบบเท่านั้น
+   ตอนนี้: เลือกชนิดบานเลื่อน → ช่องของบานเปิด/ลิ้นชักซ่อนหมด → กดตกลงแล้วเปิดกล่องตั้งค่าเดียวกับในห้อง (sdcOpen) เพราะบานเลื่อนคิดจากช่องตู้ทั้งใบ ไม่ใช้ช่องย่อย/จำนวนบาน
+     ตู้หมุนอยู่: addDoor ทำงานในกรอบแกนตรง (runCabAligned) แต่ sdcOpen จัดแกนเอง จึงรอให้กรอบหมุนกลับก่อนค่อยเปิด · ปิด SN_OFF.addDoorSdc */
+const ADDDOOR_SDC="บานเลื่อน";
+function addDoorSdcFields(F){ if(snOff("sdc")||snOff("addDoorSdc")) return F;
+  F.forEach(f=>{ if(!f||f.key==="kind") return; const o=f.showIf; f.showIf=x=>x.kind!==ADDDOOR_SDC&&(o?o(x):true); });
+  const k=F.find(f=>f&&f.key==="kind"); if(k) k.options=k.options.concat([ADDDOOR_SDC]);
+  F.splice(1,0,{key:"__sdcNote",type:"note",label:"บานเลื่อน 2 บาน เต็มช่องตู้ · กดตกลงเพื่อตั้งรุ่น ราง ลูกล้อ และดูรูปตัวอย่าง",showIf:x=>x.kind===ADDDOOR_SDC});
+  return F; }
 async function addDoor(preset){
   const sel=selBoard();
   if(!sel){toast("เลือกชิ้นในตู้ที่จะใส่หน้าบานก่อน");return;}
@@ -10777,7 +10789,7 @@ async function addDoor(preset){
     .slice().sort((a,b)=>a.x-b.x);
   const vcompsX=[]; for(let i=0;i<sidesAll.length-1;i++){ vcompsX.push({l:sidesAll[i], r:sidesAll[i+1]}); }
   const zoneXOpts=["ทั้งกว้าง"].concat(vcompsX.map((c,i)=>"ช่องกว้าง "+(i+1)+" ("+Math.round((c.r?c.r.x:0)-(c.l?c.l.x:0))+" มม.)"));
-  const v=preset||await promptFields("เพิ่มหน้าบาน / ลิ้นชัก",[
+  const v=preset||await promptFields("เพิ่มหน้าบาน / ลิ้นชัก",addDoorSdcFields([
     {key:"kind",label:"ชนิด",type:"toggle",options:["บานเปิด","ลิ้นชัก","บานกระจก","แผงปิด (บานหลอก)"],value:"บานเปิด"},
     {key:"panelDepth",label:"Depth — ระยะจมเข้าจากหน้าตู้ (มม. · 0 = ทับนอกเหมือนหน้าบาน หลังแผงแนบหน้าตู้ · เช่น 100 = จมเข้าไปในตู้ 100)",value:0,showIf:v=>v.kind==="แผงปิด (บานหลอก)"},
     /* v9.06: แผงปิดหน้าคาน มักต้องคุมความสูงเองเป็นตัวเลข/สูตร ไม่ใช่กินเต็มช่อง
@@ -10840,8 +10852,9 @@ async function addDoor(preset){
       {name:"ล่าง",mkey:"mB",vkey:"vB",mode:"ทับ",val:1.5},
       {name:"ซ้าย",mkey:"mL",vkey:"vL",mode:"ทับ",val:1.5},
       {name:"ขวา",mkey:"mR",vkey:"vR",mode:"ทับ",val:1.5}]},
-    {key:"gap",label:"ช่องระหว่างบาน/ลิ้นชัก (มม.)",value:3}]);
+    {key:"gap",label:"ช่องระหว่างบาน/ลิ้นชัก (มม.)",value:3}]));
   if(!v)return;
+  if(v.kind===ADDDOOR_SDC){ const _i=sel.cabInst; setTimeout(()=>{ sdcOpen(_i).catch(e=>console.error("sdcOpen:",e)); },0); return; }   /* v1.623 */
   const bb0=cabBBox(carc.length?carc:grp.boards);
   const T=Math.max(v.T||1,3), g=Math.max(v.gap||0,0);
   const zc=bb0.zmax+T/2;
@@ -30409,6 +30422,9 @@ function boardRole(b){
      SN_OFF.plAlignStay=1 จัดแนวแล้วตู้หลบของที่ทับกันอยู่ก่อนแบบเดิม (ดีดไปช่องว่าง) (v1.600)
      SN_OFF.rszAdjBox=1   ปรับขนาดตู้ที่ชิ้นโครงมีสูตรปรับ วัดฐานก่อนถอดสูตรแบบเดิม (หดซ้ำ) (v1.600)
      SN_OFF.sdcGroove=1   บานเลื่อน SDC ไม่เซาะร่องฝังรางในแผ่นพื้น/แผ่นบน (ร่องที่เซาะไว้ถูกถอดตอน sync) (v1.599)
+     SN_OFF.sdcEhp=1      บานเลื่อนกับมือจับฝังแบบเดิม ไม่ตัดบาน · อัตโนมัติไปด้านบน (v1.623)
+     SN_OFF.ehpPerDoor=1  กล่องมือจับฝังไม่มีแถวเลือกด้านรายบาน รูปบานไม่มีแถบมือจับ (v1.623)
+     SN_OFF.addDoorSdc=1  กล่องเพิ่มหน้าบานไม่มีชนิดบานเลื่อน (v1.623)
      SN_OFF.sdc=1         บานเลื่อน SDC: ไม่มีปุ่ม · ไม่คิดบานใหม่/ราง/ลูกล้อ/ใบเบิก · ไม่เลื่อน (บานที่สร้างไว้ยังเป็นแผ่นบานธรรมดา) (v1.598)
      SN_OFF.costEhpSize=1 ราคามือจับฝังรวมเป็นเมตรบรรทัดเดียวแบบ 1.592–1.596 (v1.597)
      SN_OFF.ehpMark=1     มือจับฝังไม่ใส่รูมาร์คที่สันบาน (รูที่ใส่ไว้ถูกถอดตอน sync) (v1.596)
@@ -46911,10 +46927,15 @@ function ehpSides(d){ const M=orientMatrix(d.orient,d.yaw), ex=new THREE.Vector3
   const to=k?new THREE.Vector3(d.x-cx/k,0,d.z-cz/k):ez.clone(), sz=(ez.dot(to)>=0)?1:-1, n=ez.clone().multiplyScalar(sz);
   const right=new THREE.Vector3(0,1,0).cross(n), sx=(ex.dot(right)>=0)?1:-1, sy=(ey.y>=0)?1:-1;
   return {ex,ey,ez,sz, top:{ax:"y",s:sy}, bottom:{ax:"y",s:-sy}, right:{ax:"x",s:sx}, left:{ax:"x",s:-sx}}; }
-function ehpHingeSide(d,S){ const hc=(d.connectors||[]).find(c=>c&&c.type==="hinge"); let e=hc&&hc.edge; if(!e&&d._dg==null){ try{ e=hingeSideOf(d); }catch(er){} }
+function ehpHingeSide(d,S){ if(d&&d._sdc&&!snOff("sdcEhp")) return null;   /* v1.623: บานเลื่อนไม่มีบานพับ */ const hc=(d.connectors||[]).find(c=>c&&c.type==="hinge"); let e=hc&&hc.edge; if(!e&&d._dg==null){ try{ e=hingeSideOf(d); }catch(er){} }
   if(!e) return null; const ax=(e==="left"||e==="right")?"x":"y", s=(e==="right"||e==="top")?1:-1;
   return ["top","bottom","left","right"].find(k=>S[k].ax===ax&&S[k].s===s)||null; }
-function ehpAutoSide(d,S){ const h=ehpHingeSide(d,S), hh=worldDims(d)[1]; let s=((d.y-hh/2)>=1200)?"bottom":"top";
+/* ───────── v1.623: บานเลื่อน อัตโนมัติ = ด้านนอก คนละฝั่ง ─────────
+   ผู้ใช้ 3/11 07:51 “มันเลือกให้อยู่คนละฝั่งไม่ได้ครับ”
+   เดิม: กฎอัตโนมัติอิงความสูงตู้ (ตู้พื้น/ตู้สูง = บน) และบานคู่สลับฝั่งได้เพราะมีบานพับ · บานเลื่อนไม่มีบานพับ จึงไปด้านบนทั้งคู่ และกดซ้าย/ขวาก็ไปด้านเดียวกันทั้งคู่
+   ตอนนี้: บานซ้ายติดซ้าย บานขวาติดขวา · อยากได้แบบอื่นเลือกที่แถว “ด้านรายบาน” */
+function ehpAutoSide(d,S){ if(d&&d._sdc&&!snOff("sdcEhp")) return (d._sdc.side==="L")?"left":"right";
+  const h=ehpHingeSide(d,S), hh=worldDims(d)[1]; let s=((d.y-hh/2)>=1200)?"bottom":"top";
   if(h===s) s=(s==="top")?"bottom":"top"; return s; }
 function ehpShift(d,S,side,cut){ const A=S[side], k=(A.ax==="y")?"W":"L", v=((A.ax==="y")?S.ey:S.ex).clone().multiplyScalar(-A.s*cut/2);
   d[k]=Math.round((+d[k]-cut)*1000)/1000; d.x+=v.x; d.y+=v.y; d.z+=v.z; }
@@ -46928,7 +46949,7 @@ function ehpHealAll(){ if(snOff("ehp")) return 0; let n=0;
   (state.boards||[]).forEach(d=>{ if(!d||!d._ehp||d._virtual) return; const P=ehpGet(d._ehp.id); if(!P||!P.fromBack) return;
     const want=Math.round((ehpDims(P).h+ehpGap(P))*10)/10; if(Math.abs((+d._ehp.cut||0)-want)<0.01) return;
     try{ ehpApplyRows([{d}],P.id,d._ehp.side); n++; }catch(e){ console.error("ehpFromBack:",e); } });
-  (state.boards||[]).forEach(d=>{ if(!d||!d._ehp||d._virtual||ehpCut(d)) return; const S=ehpSides(d); if(!S[d._ehp.side]) return;
+  (state.boards||[]).forEach(d=>{ if(!d||!d._ehp||d._virtual||ehpCut(d)) return; if(d._sdc&&!snOff("sdc")&&!snOff("sdcEhp")) return;   /* v1.623: บานเลื่อนตัดที่ sdcLayout */ const S=ehpSides(d); if(!S[d._ehp.side]) return;
     /* ───────── v1.601: ขอบที่ไม่มีสเปคไม่ถูกตั้งกลับเต็มใบ จึงห้ามตัดซ้ำ ─────────
        ตัวเดิมถือว่าบานต่างจากที่จำ = ถูกคิดใหม่เต็มใบ → ตัดอีกรอบ · แต่บานตู้ฮู้ด (WAT070 มือจับล่าง) ขอบล่างไม่มีสเปค ขอบนั้นไม่เคยถูกคืน
        ปรับสูง/ย้ายตู้ทีไร ก้นบานถูกตัดเพิ่มอีก 3 สะสมไปเรื่อย (งานครัว3 ก้นบานห่างก้นโครง 16) · ตอนนี้จำขนาดใหม่อย่างเดียว · ปิด SN_OFF.ehpFreeEdge=1 */
@@ -46999,7 +47020,15 @@ function sdcGeo(op,c,side){ const T=c.T, H=op.A-c.hDed, Wd=(op.Wo+c.ov)/2, trk=(
 function sdcPockets(L,W,c){ const out=[]; [-1,1].forEach(sx=>[-1,1].forEach(sy=>out.push({x:round(sx*(L/2-c.ins-c.pw/2)), y:round(sy*(W/2-c.ph/2)), w:c.pw, h:c.ph, depth:c.pd, r:0, face:"bottom", _sdcPk:true})));
   return out; }
 /* วางบาน d ตามช่อง (ในกรอบขนานแกน) — คืน true ถ้ามีอะไรเปลี่ยน */
+/* ───────── v1.623: บานเลื่อนถูกตัดตามมือจับฝัง ─────────
+   เดิม: ehpSet ตัดบานแล้ว แต่ตัวคิดบานเลื่อน (ทำงานหลัง ehpHealAll ทุก sync) ตั้งบานกลับเต็มใบ ตัวมือจับจึงไปอยู่นอกบาน
+     บาน + มือจับยาวเกินช่องเท่าความสูงมือจับ (R118 เกิน 2.9 · รุ่นอื่นเกินมากกว่านั้น) ใบตัด/MPR ก็ได้บานเต็มใบ
+   ตอนนี้: คิดขนาดบานจากช่องแล้วหักตามด้านมือจับที่นี่จุดเดียว · รูลูกล้อและตำแหน่งราง (ocx · yTop · yBot) คิดจากบานหลังหัก ราง/ช่องจึงอยู่ที่เดิม
+     งานเก่าที่บานเต็มใบอยู่ ได้ขนาดถูกเองตอนเปิด · lw จำนอกกรอบแกนตรง (sdcHealAll) · ปิด SN_OFF.sdcEhp */
 function sdcLayout(d,op,c){ const g=sdcGeo(op,c,d._sdc.side), near=(a,b)=>Math.abs((+a||0)-(+b||0))<0.05;
+  if(d._ehp&&!snOff("sdcEhp")){ const ct=+d._ehp.cut||0, k=d._ehp.side;
+    if(ct>0){ if(k==="left"){ g.L=round(g.L-ct); g.x=round(g.x+ct/2); } else if(k==="right"){ g.L=round(g.L-ct); g.x=round(g.x-ct/2); }
+      else if(k==="top"){ g.W=round(g.W-ct); g.y=round(g.y-ct/2); } else if(k==="bottom"){ g.W=round(g.W-ct); g.y=round(g.y+ct/2); } } }
   const pk=sdcPockets(g.L,g.W,c), oldPk=JSON.stringify((d.pockets||[]).filter(q=>q&&q._sdcPk));
   const same=near(d.L,g.L)&&near(d.W,g.W)&&near(d.T,g.T)&&near(d.x,g.x)&&near(d.y,g.y)&&near(d.z,g.z)&&(+d.yaw||0)===0&&d.orient==="front"&&oldPk===JSON.stringify(pk);
   const geo={wo:round(op.Wo), ocx:round((op.sLo+op.sHi)/2-g.x), yTop:round(op.yHi-g.y), yBot:round(op.yLo-g.y)};
@@ -47043,7 +47072,9 @@ function sdcGrooves(inst,op,ds){ const want=new Map();
 function sdcHealAll(){ if(snOff("sdc")) return 0; let n=0; const insts=[...new Set((state.boards||[]).filter(b=>b&&b._sdc&&!b._virtual).map(b=>b.cabInst))];
   insts.forEach(inst=>{ try{ withCabAxisAligned(inst,()=>{ const op=sdcOpening(inst); if(!op) return;
       const ds=sdcDoors(inst); ds.forEach(d=>{ if(sdcLayout(d,op,sdcCfg(d._sdc.c))) n++; });
-      n+=sdcGrooves(inst,op,ds); }); }catch(e){ console.error("sdcHeal:",e); } });
+      n+=sdcGrooves(inst,op,ds); });
+    if(!snOff("sdcEhp")) sdcDoors(inst).forEach(d=>{ if(!d._ehp) return; d._ehp.lw=ehpSig(d); ehpMarkSync(d); ehpRebateSync(d); });   /* v1.623: จำขนาดหลังตัด · ร่อง/รูมาร์คตามขนาดใหม่ */
+  }catch(e){ console.error("sdcHeal:",e); } });
   /* v1.599: ร่องค้างของตู้ที่ไม่มีบานเลื่อนแล้ว */
   try{ const left=new Set(); (state.boards||[]).forEach(p=>{ if(p&&!p._virtual&&(p.grooves||[]).some(g=>g&&g._sdcG)&&insts.indexOf(p.cabInst)<0) left.add(p.cabInst); });
     left.forEach(inst=>{ n+=sdcGrooves(inst,null,[]); }); }catch(e){ console.error("sdcGroove clean:",e); }
@@ -47060,10 +47091,16 @@ function sdcParts(d){ const s=d._sdc, g=s&&s.g; if(!g) return []; const c=sdcCfg
     at(sx*(L/2-c.ins-c.pw/2), sy*(W/2-c.ph/2+ex), -T/2+c.pd/2+0.3),{_pullOwner:d.id, _metal:"#c3c8ce"}))));
   return out; }
 /* ระยะเลื่อน (เปิดสุด) + ทิศ (แกนกว้างบาน: ซ้ายไปขวา · ขวาไปซ้าย) */
-function sdcSlideTf(b,p){ const s=b._sdc, g=s&&s.g; if(!g) return null; const dist=Math.max((+g.wo||0)-(+b.L||0),0)*p;
+function sdcSlideTf(b,p){ const s=b._sdc, g=s&&s.g; if(!g) return null;
+  const _ct=(b._ehp&&!snOff("sdcEhp")&&(b._ehp.side==="left"||b._ehp.side==="right"))?(+b._ehp.cut||0):0;   /* v1.623: บานสั้นลงเท่ามือจับ แต่ขนาดรวมเท่าเดิม ระยะเลื่อนจึงต้องไม่เพิ่ม */
+  const dist=Math.max((+g.wo||0)-(+b.L||0)-_ct,0)*p;
   const ax=new THREE.Vector3(1,0,0).applyMatrix4(orientMatrix(b.orient,b.yaw||0)), sg=(s.side==="L")?1:-1;
   return {dz:dist, fx:ax.x*sg, fz:ax.z*sg}; }
 /* กล่องค่า — ห้องออกแบบ › แผงตู้ › 🚪 บานเลื่อน */
+/* v1.623: กล่องนี้เปิดจากโหมดธรรมดาได้แล้ว — plSelect วาดแผงของห้องออกแบบ ห้ามเรียกนอกห้อง · บานที่เลือกอยู่อาจถูกแทนไปแล้ว จึงเลือกชิ้นในตู้ใหม่ */
+function sdcReselect(inst){ if(PL.on){ try{ plSelect(inst); }catch(e){} return; }
+  const s=state.boards.find(b=>b&&b.id===state.selectedId); if(!s||s.cabInst!==inst){ const b=state.boards.find(x=>x&&x.cabInst===inst&&!x._virtual); state.selectedId=b?b.id:null; }
+  try{ renderList(); showInspector(); }catch(e){} }
 async function sdcOpen(inst){ if(snOff("sdc")) return;
   let op=null; try{ op=sdcOpeningRaw(inst); }catch(e){ console.error(e); }
   if(!op){ toast("หาช่องตู้ไม่เจอ — ต้องมีแผ่นข้างซ้าย-ขวา"); return; }
@@ -47095,14 +47132,14 @@ async function sdcOpen(inst){ if(snOff("sdc")) return;
     {key:"_pv",type:"preview",label:"รูปตัวอย่าง (มองหน้าตู้)",render:pv}]);
   if(!v) return;
   const cam=plCamKeep();
-  if(v.act===RM){ const n=sdcRemove(inst); sync(0); plCamPut(cam); try{ plSelect(inst); }catch(e){} toast("ถอดบานเลื่อน "+n+" บานแล้ว"); return; }
+  if(v.act===RM){ const n=sdcRemove(inst); sync(0); plCamPut(cam); sdcReselect(inst); toast("ถอดบานเลื่อน "+n+" บานแล้ว"); return; }
   const c=sdcCfg({sys:String(v.sys||"").trim()||SDC_DEF.sys, kit:String(v.kit||"").trim(), rail:String(v.rail||"").trim(),
     T:v.T, ov:v.ov, hDed:v.hDed, rec:v.rec, gap:v.gap, ins:v.ins, pw:v.pw, ph:v.ph, pd:v.pd, rw:v.rw, rh:v.rh});
   const oldN=state.boards.filter(b=>b&&b.cabInst===inst&&b._door&&!b._virtual&&!b._dg&&!b._box&&!b._sdc).length;
   if(oldN&&!await dialog({title:"ตู้นี้มีบานอยู่ "+oldN+" บาน — เอาออกแล้วใส่บานเลื่อน?",ok:"ใส่บานเลื่อน"})) return;
   settings.sdc=Object.assign({},c); try{ await catSaveSettings(); }catch(e){ console.error("sdc save:",e); }
   const r=sdcApply(inst,c); if(!r||r.err){ toast("บานเลื่อน: "+((r&&r.err)||"ไม่สำเร็จ")); return; }
-  sync(0); plCamPut(cam); try{ plSelect(inst); }catch(e){} try{ costSchedule(); }catch(e){}
+  sync(0); plCamPut(cam); sdcReselect(inst); try{ costSchedule(); }catch(e){}
   toast("🚪 บานเลื่อน "+c.sys+" · 2 บาน "+round((r.op.Wo+c.ov)/2)+" × "+round(r.op.A-c.hDed)+(r.n?(" · เอาบานเดิมออก "+r.n+" บาน"):"")+" — โหมดเปิดบาน: คลิกบาน = เลื่อน"); }
 function ehpMarkCfg(){ const m=settings.ehpMark||{}, n=(v,d)=>{ const x=+v; return (isFinite(x)&&x>0)?Math.round(x*10)/10:d; };
   return {on:m.on!==false, d:n(m.d,5), dep:n(m.dep,3), z:isFinite(+m.z)?Math.round(+m.z*10)/10:0}; }
@@ -47128,10 +47165,11 @@ function ehpRebateSync(d){ if(!d) return false; const cur=(d.grooves||[]).filter
   d.grooves=(d.grooves||[]).filter(g=>!(g&&g._ehpGr)); if(want) d.grooves.push(want); return true; }
 function ehpSet(d,id,side){ if(!d) return {err:"ไม่พบบาน"}; const S=ehpSides(d);
   const _fin0=d._ehp?ehpFinKey(d._ehp):String((typeof PLPU!=="undefined"&&PLPU.ehFin)||"");   /* v1.603: เปลี่ยนด้าน/รุ่นแล้วสีเดิมยังอยู่ · บานใหม่ = สีที่เลือกไว้ */
+  const _own0=(d._ehp&&d._ehp.own&&!snOff("ehpPerDoor"))?String(d._ehp.side||""):"";   /* v1.623: ด้านที่เลือกรายบาน — เปลี่ยนรุ่น/อัตโนมัติ ไม่ทับ */
   if(d._ehp){ const o=d._ehp; if(S[o.side]&&ehpCut(d)) ehpShift(d,S,o.side,-(+o.cut||0)); delete d._ehp; }   /* ยังตัดอยู่ = คืน · ถูกตั้งเต็มใบไปแล้ว = ไม่ต้อง */
   if(!id) return {ok:1, off:1};
   const P=ehpGet(id); if(!P) return {err:"ไม่พบรุ่นมือจับฝัง"};
-  if(!side||side==="auto") side=ehpAutoSide(d,S); if(!S[side]) return {err:"ด้านไม่ถูก"};
+  if(!side||side==="auto") side=_own0||ehpAutoSide(d,S); if(!S[side]) return {err:"ด้านไม่ถูก"};
   /* ───────── v1.595: บานคู่ เลือกซ้าย/ขวา แล้วติดบานเดียว ─────────
      ผู้ใช้ 1/11 17:44 (ภาพ BAT070 บานเปิดคู่ เลือก “ซ้าย” → ✓ ใส่อยู่แค่บานขวา): “พอเลือกซ้ายมันจะติดแค่ 1 บาน แก้ไขด้วย บานเปิดคู่
        ถ้าเลือกมือจับอยู่แนวตรง ก็ ออโต้ อยู่ ตรงข้ามบานพับเลย”
@@ -47141,13 +47179,29 @@ function ehpSet(d,id,side){ if(!d) return {err:"ไม่พบบาน"}; cons
   const hs=ehpHingeSide(d,S); if(hs&&hs===side){ if(snOff("ehpFlip")) return {err:"ด้าน"+EHP_TH[side]+"เป็นด้านบานพับ", hinge:1};
     side={left:"right",right:"left",top:"bottom",bottom:"top"}[side]; if(!S[side]) return {err:"ด้านไม่ถูก"}; }
   const cut=Math.round((ehpDims(P).h+ehpGap(P))*10)/10, dim=(S[side].ax==="y")?+d.W:+d.L; if(!(cut>0)||dim-cut<60) return {err:"บานเหลือไม่พอ ("+Math.round(dim)+" − "+cut+")"};
-  ehpShift(d,S,side,cut); d._ehp={id:P.id, side, cut, code:P.code, lw:ehpSig(d)}; if(_fin0) d._ehp.fin=_fin0; return {ok:1, side}; }
+  ehpShift(d,S,side,cut); d._ehp={id:P.id, side, cut, code:P.code, lw:ehpSig(d)}; if(_fin0) d._ehp.fin=_fin0; if(_own0&&_own0===side) d._ehp.own=1; return {ok:1, side}; }
+/* ───────── v1.623: เตือนมือจับฝังชนบานหน้า ─────────
+   บานรางหลังอยู่หลังบานหน้าเท่าระยะห่าง c.gap (ตั้งต้น 10) · R118/R122 ยื่นหน้าบาน 27 → ติดด้านใน/บน/ล่าง บานหลังถูกบานหน้าขวาง · ด้านนอกยังเลื่อนได้เกือบสุด
+   เตือนอย่างเดียว ไม่ห้าม เพราะผู้ใช้อาจปรับระยะห่างเองทีหลัง */
+function sdcEhpClash(d){ if(!d||!d._sdc||!d._ehp||snOff("sdcEhp")||+d._sdc.trk!==1) return ""; const P=ehpGet(d._ehp.id); if(!P) return "";
+  const c=sdcCfg(d._sdc.c), pro=round(-ehpDims(P,+d.T||18).u0), out=(d._sdc.side==="L")?"left":"right";
+  if(d._ehp.side===out||!(pro>(+c.gap||0))) return "";
+  return P.code+" ยื่นหน้าบาน "+pro+" มม. บานรางหลังห่างบานหน้าแค่ "+c.gap+" จะชนกัน ควรติดด้านนอก"; }
+/* ───────── v1.623: แถวเลือกด้านรายบาน ─────────
+   ผู้ใช้ 3/11 07:51 “มันเลือกให้อยู่คนละฝั่งไม่ได้ครับ”
+   เดิม: ปุ่มด้านใช้กับทุกบานพร้อมกัน บานคู่ที่มีบานพับสลับฝั่งให้เอง แต่บานเลื่อนหรือบานไม่มีข้อมูลบานพับไปด้านเดียวกันหมด
+   ตอนนี้: เปิดกล่องรายตู้ และมีบานใส่มือจับฝังตั้งแต่ 2 บาน = มีปุ่มบน/ล่าง/ซ้าย/ขวา รายบาน · ด้านบานพับกดไม่ได้
+     เลือกแล้วจำที่บาน (_ehp.own) เปลี่ยนรุ่นด้านไม่หาย · กดปุ่มด้านแถวบน = กลับมาคุมพร้อมกัน · ปิด SN_OFF.ehpPerDoor */
+function plEhpDoorRow(cands){ if(snOff("ehpPerDoor")) return ""; const on=(cands||[]).filter(r=>r&&r.d&&r.d._ehp); if(on.length<2) return "";
+  return '<div class="ppOpt" style="gap:5px 12px"><b>ด้านรายบาน</b>'+on.map(r=>{ const k=cands.indexOf(r), S=ehpSides(r.d), hs=ehpHingeSide(r.d,S), cur=r.d._ehp.side;
+    return '<span style="display:inline-flex;align-items:center;gap:3px;flex-wrap:wrap"><span style="margin-right:2px">'+escapeHtml(String(r.d.name||("บาน "+(k+1))))+'</span>'
+      +["left","right","top","bottom"].map(s=>'<button data-esd="'+k+':'+s+'" class="'+(cur===s?"on":"")+'"'+(hs===s?' disabled style="opacity:.35;cursor:not-allowed" title="ด้านบานพับ"':'')+'>'+EHP_TH[s]+'</button>').join("")+'</span>'; }).join("")+'</div>'; }
 /* ใส่/ถอดหลายบาน → จำสเปคขอบบาน + เจาะรูฐานบานพับใหม่ · rows = [{d,i}] (แบบ plpDoors) */
 function ehpApplyRows(rows,id,side){ const out={n:0, skip:[], insts:new Set()}, done=new Set();
   (rows||[]).forEach(r=>{ const d=r&&r.d; if(!d||done.has(d.id)) return; done.add(d.id);
     if(id&&(d._pulls||[]).length){ try{ plPullApplyRows([r],"",PLPU.pm,PLPU.om); }catch(e){} }   /* มือจับเดิมของบานนี้ถอดออก */
     const had=!!d._ehp, res=ehpSet(d,id,side); try{ ehpMarkSync(d); }catch(e){}   /* v1.596 */ try{ ehpRebateSync(d); }catch(e){ console.error("ehpRebate:",e); }   /* v1.606 */
-    if(res.ok){ if(id||had){ out.n++; out.insts.add(d.cabInst); } } else { out.skip.push(res.err); if(had) out.insts.add(d.cabInst); } });
+    if(res.ok){ if(id||had){ out.n++; out.insts.add(d.cabInst); } if(id){ const _w=sdcEhpClash(d); if(_w) out.warn=_w; } } else { out.skip.push(res.err); if(had) out.insts.add(d.cabInst); } });   /* v1.623: + เตือนชนบานหน้า */
   out.insts.forEach(inst=>{   /* ไม่จำสเปคขอบใหม่ — สเปคคือบานเต็มใบ (รวมราง) · ราง = หักทีหลังทุกรอบ (ehpHealAll) ปรับขนาดตู้แล้วจึงตามถูก */
     try{ state.boards.filter(x=>x.cabInst===inst&&x._door&&(x.connectors||[]).some(k=>k.type==="hinge"&&k.plate!==false)).forEach(x=>{ try{ drillHingePlateHoles(x); }catch(e){} }); }catch(e){} });
   return out; }
@@ -47696,6 +47750,9 @@ function plpDoorsSvg(cands){
     if(on&&pu){ try{ const lv=pullLive(a.d,pu); if(!pullIsNo(lv.code)){ const c=pullCenterOn(a.d,pu,lv), info=plpInfo(lv.code), V=String(lv.ori||"H").toUpperCase()[0]==="V", len=Math.max(info.knob?30:info.len,30), th=Math.max(12,(a.x1-a.x0)*0.025);
         const mx=a.cx+(+c.x||0), my=a.cy+(+c.y||0);
         o.push('<rect x="'+e(mx-(V?th/2:len/2))+'" y="'+e(Y(my+(V?len/2:th/2)))+'" width="'+e(V?th:len)+'" height="'+e(V?len:th)+'" rx="'+e(th/2)+'" fill="#3b3f46"/>'); } }catch(err){} }
+    if(on&&a.d._ehp&&!snOff("ehpPerDoor")){ const s=a.d._ehp.side, w=a.x1-a.x0, h=a.y1-a.y0, th=Math.max(30,Math.min(w,h)*0.14), lf=a.x0+4, tp=Y(a.y1)+4;   /* v1.623: แถบบอกด้านมือจับฝัง */
+      const bx=(x,y,W,H)=>'<rect x="'+e(x)+'" y="'+e(y)+'" width="'+e(W)+'" height="'+e(H)+'" fill="#3b3f46"/>';
+      if(s==="left") o.push(bx(lf,tp,th,h-8)); else if(s==="right") o.push(bx(a.x1-4-th,tp,th,h-8)); else if(s==="top") o.push(bx(lf,tp,w-8,th)); else if(s==="bottom") o.push(bx(lf,Y(a.y0)-4-th,w-8,th)); }
     if(!on) o.push('<text x="'+e(a.cx)+'" y="'+e(Y(a.cy))+'" font-size="'+e(Math.min(a.x1-a.x0,a.y1-a.y0)*0.28)+'" text-anchor="middle" dominant-baseline="middle" fill="#6b7280">✕</text>');
     o.push('</g>'); });
   return o.join("")+'</svg>'; }
@@ -47760,8 +47817,9 @@ function plEhpDraw(el,C){ const e=v=>escapeHtml(String(v==null?"":v)), inst=C.in
       +(whole?'':'<label style="margin-left:auto;display:flex;gap:4px;align-items:center;cursor:pointer"><input type="checkbox" id="ppAll"'+(PLPU.all?" checked":"")+'> ทุกตู้</label>')
       +'<button class="ibtn" id="ppX" style="flex:none;width:auto;padding:3px 9px'+(whole?';margin-left:auto':'')+'">✕</button></div>'
     +plpKindHtml(whole||PLPU.all)   /* v1.595 */
-    +'<div class="ppOpt"><b>ด้านที่ติด</b>'+chip("auto","อัตโนมัติ","ลิ้นชัก/ตู้พื้น = บน · ตู้ลอย = ล่าง · ถ้าตรงด้านบานพับ = สลับฝั่ง")+chip("top","บน")+chip("bottom","ล่าง")+chip("left","ซ้าย","ด้านนี้เป็นบานพับ = ไปฝั่งตรงข้ามเอง (บานคู่ = ขอบชนกลางทั้งสองบาน)")+chip("right","ขวา","ด้านนี้เป็นบานพับ = ไปฝั่งตรงข้ามเอง (บานคู่ = ขอบชนกลางทั้งสองบาน)")
+    +'<div class="ppOpt"><b>ด้านที่ติด</b>'+chip("auto","อัตโนมัติ","ลิ้นชัก/ตู้พื้น = บน · ตู้ลอย = ล่าง · ถ้าตรงด้านบานพับ = สลับฝั่ง · บานเลื่อน = ด้านนอก คนละฝั่ง")+chip("top","บน")+chip("bottom","ล่าง")+chip("left","ซ้าย","ด้านนี้เป็นบานพับ = ไปฝั่งตรงข้ามเอง (บานคู่ = ขอบชนกลางทั้งสองบาน)")+chip("right","ขวา","ด้านนี้เป็นบานพับ = ไปฝั่งตรงข้ามเอง (บานคู่ = ขอบชนกลางทั้งสองบาน)")
       +'<span style="margin-left:auto;color:var(--ink-dim)">'+(snOff("ehpFlip")?"ด้านบานพับใส่ไม่ได้":"ตรงบานพับ = ไปฝั่งตรงข้ามเอง")+'</span></div>'
+    +(single?plEhpDoorRow(cands):"")   /* v1.623 */
     +(()=>{ if(snOff("ehpFin")) return "";   /* v1.603: แถวเลือกสี — โชว์ตามรุ่นที่ใส่อยู่/กำลังเลือก */
         const on=rows.filter(r=>r.d._ehp), Pm=ehpGet((on[0]&&on[0].d._ehp.id)||PLPU.ehId||"")||null; if(!Pm) return "";
         const allow=ehpFinAllow(Pm), use=on.filter(r=>ehpFinAllow(ehpGet(r.d._ehp.id))), cur=[...new Set(use.map(r=>ehpFinKey(r.d._ehp)))], one=cur.length===1?cur[0]:(use.length?null:String(PLPU.ehFin||""));
@@ -47783,7 +47841,7 @@ function plEhpDraw(el,C){ const e=v=>escapeHtml(String(v==null?"":v)), inst=C.in
         +'</div>'
         +((!snOff("ehpDel")&&ehpHidden().length)?('<div style="padding:0 12px 10px;font-size:11px;color:var(--ink-dim)">ลบรุ่นไว้ '+ehpHidden().length+' รุ่น · <a href="#" id="ppEhpBack">↺ คืนรุ่นที่ลบ</a></div>'):'')));   /* v1.601 */
   const done=(res,msg)=>{ const cam=plCamKeep(); sync(0); plCamPut(cam); try{ if(inst) plSelect(inst); else plPanelSel(); }catch(e){} try{ costSchedule(); }catch(e){}
-    const sk=res.skip.length; toast(msg+" · "+res.n+" บาน"+(sk?(" · ข้าม "+sk+" บาน ("+[...new Set(res.skip)].slice(0,2).join(" · ")+")"):"")); C.redraw(); };
+    const sk=res.skip.length; toast(msg+" · "+res.n+" บาน"+(sk?(" · ข้าม "+sk+" บาน ("+[...new Set(res.skip)].slice(0,2).join(" · ")+")"):"")+(res.warn?(" · ⚠ "+res.warn):"")); C.redraw(); };   /* v1.623: + เตือนชนบานหน้า */
   const apply=id=>{ PLPU.ehId=id||PLPU.ehId; const res=ehpApplyRows(rows,id,PLPU.ehSide); done(res,id?("▬ มือจับฝัง "+((ehpGet(id)||{}).code||"")):"▬ ถอดมือจับฝัง"); };
   plpLayout(el);   /* v1.608 */
   el.querySelector("#ppX").onclick=plPullClose; plpKindBind(el,C.redraw);   /* v1.595 */
@@ -47805,7 +47863,11 @@ function plEhpDraw(el,C){ const e=v=>escapeHtml(String(v==null?"":v)), inst=C.in
     toast(m.on?("รูมาร์คมือจับฝัง Ø"+ehpMarkCfg().d+" ลึก "+ehpMarkCfg().dep):"ไม่ใส่รูมาร์คมือจับฝัง"); C.redraw(); });
   el.querySelectorAll("[data-pmode]").forEach(b=>b.onclick=()=>{ PLPU.mode=b.dataset.pmode; C.redraw(); });
   { const a=el.querySelector("#ppAll"); if(a) a.onchange=ev=>{ PLPU.all=ev.target.checked; C.redraw(); }; }
-  el.querySelectorAll("[data-es]").forEach(b=>b.onclick=()=>{ PLPU.ehSide=b.dataset.es; if(nOn){ const on=rows.filter(r=>r.d._ehp), res={n:0,skip:[]}; on.forEach(r=>{ const id=r.d._ehp.id, x=ehpApplyRows([r],id,PLPU.ehSide); res.n+=x.n; res.skip=res.skip.concat(x.skip); }); done(res,"▬ ย้ายด้านมือจับฝัง "+(EHP_TH[PLPU.ehSide]||"อัตโนมัติ")); } else C.redraw(); });
+  el.querySelectorAll("[data-es]").forEach(b=>b.onclick=()=>{ PLPU.ehSide=b.dataset.es; if(nOn){ const on=rows.filter(r=>r.d._ehp), res={n:0,skip:[]}; on.forEach(r=>{ delete r.d._ehp.own; /* v1.623: ปุ่มแถวบน = คุมพร้อมกันอีกครั้ง */ const id=r.d._ehp.id, x=ehpApplyRows([r],id,PLPU.ehSide); res.n+=x.n; res.skip=res.skip.concat(x.skip); if(x.warn) res.warn=x.warn; }); done(res,"▬ ย้ายด้านมือจับฝัง "+(EHP_TH[PLPU.ehSide]||"อัตโนมัติ")); } else C.redraw(); });
+  /* v1.623: เลือกด้านรายบาน — จำด้านของทุกบานในตู้ไว้ จะได้ไม่ถูกกฎอัตโนมัติทับตอนเปลี่ยนรุ่น */
+  el.querySelectorAll("[data-esd]").forEach(b=>b.onclick=()=>{ if(ploLocked()) return; const a=String(b.dataset.esd).split(":"), r=cands[+a[0]], s=a[1]; if(!r||!r.d||!r.d._ehp||r.d._ehp.side===s) return;
+    const res=ehpApplyRows([r],r.d._ehp.id,s); PLPU.ehSide="auto"; cands.forEach(q=>{ if(q&&q.d&&q.d._ehp) q.d._ehp.own=1; });
+    done(res,"▬ "+(r.d.name||"บาน")+" มือจับฝังด้าน"+(EHP_TH[s]||"")); });
   el.querySelectorAll("[data-di]").forEach(g=>g.onclick=()=>{ const r=cands[+g.dataset.di]; if(!r||!r.d) return; const id=r.d._ehp?null:(PLPU.ehId||(lib[0]&&lib[0].id));
     const res=ehpApplyRows([r],id,PLPU.ehSide); done(res,id?"▬ ใส่มือจับฝัง":"▬ ถอดมือจับฝัง"); });
   el.querySelectorAll(".ppT[data-ei]").forEach(t=>t.onclick=ev=>{ if(ev.target.closest(".ppEd")) return; const i=+t.dataset.ei; if(ploLocked()) return; apply(i<0?null:(lib[i]&&lib[i].id)); });
