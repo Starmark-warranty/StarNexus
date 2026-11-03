@@ -3283,7 +3283,7 @@ body[data-theme="dark"] .splash-dots span{background:rgba(255,255,255,.25)}
    ===================================================================== */
 /* ---- APP_META: แหล่งความจริงเดียวของเวอร์ชัน (ดูได้จาก console / คลิกชื่อแอป) ---- */
 const APP_META={
-  name:"StarNexus", version:"1.637", build:"2026-11-03/end-depth-560-580",
+  name:"StarNexus", version:"1.638", build:"2026-11-03/material-page-all",
   file:"StarNexus.html", basedOn:"Furnitech_V3.html (v3.11)",
   /* ───────── เริ่มนับเวอร์ชันใหม่ที่ 1.001 (21/08/2026) ─────────
      ของเดิมนับมาถึง 42.1 แล้ววิ่งเป็นทศนิยมสองชั้นซึ่งอ่านลำดับยาก
@@ -3291,6 +3291,7 @@ const APP_META={
      ประวัติเก่าเก็บไว้ทั้งหมดตามเลขเดิม ไม่ไล่เขียนใหม่ เพราะเลขในนั้นถูกอ้างถึงไปแล้ว
      รายการที่อยู่ใต้ 1.001 ลงไปจึงเป็นเลขชุดเก่า อ่านต่อกันได้ตามวันที่ */
   changelog:[
+    ["1.638","2026-11-03","FIX หน้ารวมวัสดุแสดงไม่ครบ มีแค่แบบที่ใช้มากสุด +1 แบบ (ผู้ใช้ 11:35) — บานพับ ราง LED มือจับ ดีไซน์บาน สีบาน สีโครง เนื้อไม้ ทุกแบบมีการ์ดของตัวเอง · มือจับไม่มีรูปก็มีการ์ด · สีโครงอ่านจาก Carcass ของตู้จริง ไม่หยิบฟิลเลอร์ที่เป็นสีบาน (ผู้ใช้ 11:37 การ์ดสีโครงขึ้น N03P0057N ทั้งที่ตู้เป็น N01M0029N) · ชื่อสีเลขหลักเดียวเช่น AK1 ก็แยกได้ และอ่านจากคำอธิบายผิวได้"],
     ["1.637","2026-11-03","CHANGE กล่องโค้งกับแผ่นปิดข้างที่กดใส่ ตู้ลึก 560 มีบานออก 580 · ตู้ลึก 580 มีบานออก 600 ไม่ใช่ 579/599 ตามหน้าบาน · ตู้เปิดโล่งและตู้ลึกอื่นคงเดิม (ผู้ใช้ 11:04)"],
     ["1.636","2026-11-03","FEAT 🔗 กรุ๊ปขอบในหน้า 💰 แท็บขอบ — สีเดียวกันรวมเป็นหน้ากว้างเดียว เช่น 80819297 · 80822297 → 80825297 ใช้รหัสนี้ทั้งราคา BOM ตารางตัด และส่ง Production ระดับออเดอร์ · ชิ้นที่ต้องการกว้างกว่าปลายทางไม่ถูกแทน · หนาต่างกันไม่รวมเอง แต่เลือกปลายทางข้ามความหนาได้ (ผู้ใช้ 10:01)"],
     ["1.635","2026-11-03","FEAT กล่องโค้งถึงฝ้า ไม้ดัดชนฝ้า โครงต่ำกว่า 50 · ก้นถึงฝ้าเกิน 2400 แยกเป็นกล่องบนอีกใบ เดฟตั้งต้น 0 ตั้งเดฟได้ · หัวตู้ถึงพื้นเกิน 2400 กดลงพื้นไม่ได้ · แบบผลิตโชว์ไม้ดัดเหนือโครงและสูงรวม · กล่องไม่ได้ฟิลเลอร์บนตั้งฉากกับแนวตู้อีก (ผู้ใช้ 10:34) · FEAT เตือนกล่องโค้งสีเมลามีน และบานโปรไฟล์ต้องสี P ตำแหน่งที่ 4 แบบขึ้นต้น M ที่ข้อความ แผงตู้ และก่อนส่ง Production (ผู้ใช้ 10:34, 10:37)"],
@@ -30455,6 +30456,7 @@ function boardRole(b){
      SN_OFF.dwgNoCount=1  หน้ารวมวัสดุ กลับมาโชว์จำนวน บาน/จุด/เส้น/ตัว/ชุด (v1.633)
      SN_OFF.dwgPullImg=1  การ์ดมือจับไม่ใช้รูปที่อัปโหลด ไม่มีรูปในหน้าต่าง 🖼 · การ์ดเดียวเหมือนเดิม (v1.633)
      SN_OFF.dwgDoorName=1 ไม่แสดงชื่อรุ่นแบบบานที่ตั้งเอง (v1.633)
+     SN_OFF.dwgMatAll=1   หน้ารวมวัสดุ กลับไปแสดงแค่แบบที่ใช้มากสุดของแต่ละหมวด พร้อมคำว่า +1 แบบ (v1.638)
      SN_OFF.edgeGroup=1   ไม่มีปุ่มกรุ๊ปขอบ · ส่งออกและราคาใช้รหัสขอบตามหน้ากว้างจริงแบบเดิม (v1.636)
      SN_OFF.plCvbCeil=1   กล่องโค้งไม่มีตัวเลือกถึงฝ้า ไม่มีกล่องบน · ลงพื้นไม่เช็ค 2400 · กล่องกลับไปนับเป็นตู้ในแนวฟิลเลอร์บน (v1.635)
      SN_OFF.matRules=1    ไม่เตือนกล่องโค้งสีเมลามีน · บานโปรไฟล์ต้องสี P และแบบขึ้นต้น M (v1.635)
@@ -45207,7 +45209,7 @@ function dwgDoorSvg(b,opt){ const e=v=>Math.round(v*10)/10;
       ตอนนี้รวมตามหัวรหัส · ชื่อท้ายอ่านจากรหัสนั้นเอง > รหัสผิวที่ใช้จริง > Surface ใน Element ที่ขึ้นต้นด้วยรหัสสี (N03P0057N_PP77 → PP77)
       ท้ายแบบ _MHMR (ชนิดไม้) หรือรหัสสีอีกตัวไม่นับเป็นชื่อลาย · ปิด SN_OFF.dwgColorPat=1
    ③ จำนวน: ตัด บาน/จุด/เส้น/ตัว/ชุด ออกจากทุกการ์ด · “+1 แบบ” คงไว้ เพราะบอกว่ามีรุ่นอื่นอีก ไม่ใช่ยอดของ · ปิด SN_OFF.dwgNoCount=1 */
-const DWG_COLOR_RE=/^[A-Z]\d{2}[A-Z]\d{3,}[A-Z]?$/i, DWG_PAT_RE=/^[A-Z]{1,4}\d{2,5}$/i;
+const DWG_COLOR_RE=/^[A-Z]\d{2}[A-Z]\d{3,}[A-Z]?$/i, DWG_PAT_RE=/^[A-Z]{1,4}\d{1,5}$/i;   /* v1.638: ชื่อสีเลขหลักเดียวด้วย ผู้ใช้ 30/10 “MK630 , AK1 , AA7” */
 function dwgDoorReal(b){ if(snOff("dwgDoorReal")||!b||!(b._dummy||b._panel)) return true; if(/front/i.test(String(b.part||""))) return true;
   let c=""; try{ c=String(doorShapeCode(b)||"").trim(); }catch(e){} return !!c; }
 function dwgColorHead(code){ const raw=String(code==null?"":code).trim(); if(snOff("dwgColorPat")) return raw; const h=_ctBare(raw).split("_")[0]; return DWG_COLOR_RE.test(h)?h:raw; }
@@ -45216,6 +45218,7 @@ function dwgColorParts(code,skin){ const raw=String(code==null?"":code).trim(), 
   let pat=pick(_ctBare(raw).split("_").slice(1).join("_"));
   if(!pat.length){ const sk=_ctBare(String(skin||"").replace(/^fxf:/i,"")); if(sk.toUpperCase().startsWith(head.toUpperCase()+"_")) pat=pick(sk.slice(head.length+1)); }
   if(!pat.length){ try{ for(const s of ctSurfFor(head)){ pat=pick(ctPattern(s,head).join("_")); if(pat.length) break; } }catch(e){} }
+  if(!pat.length){ try{ for(const s of ctSurfFor(head)){ const e=elemByCode(s); pat=pick(String((e&&elemDesc(e))||"")).filter(x=>x!==head.toUpperCase()); if(pat.length) break; } }catch(e){} }   /* v1.638: ชื่อสีอยู่ในคำอธิบายผิว */
   return {raw,code:head,pat:pat.join(" ")}; }
 function dwgColorSub(cp,desc){ let d=String(desc==null?"":desc).trim(); if(snOff("dwgColorPat")) return d; d=d.replace(/\(?\s*from\s*XML\s*\)?/ig,"").trim();
   const U=d.toUpperCase(), H=String(cp.code).toUpperCase(), P=String(cp.pat||"").toUpperCase();
@@ -45223,10 +45226,20 @@ function dwgColorSub(cp,desc){ let d=String(desc==null?"":desc).trim(); if(snOff
   if(!P||U.indexOf(P)>=0) return d; return cp.pat+" · "+d; }
 async function dwgMatTiles(C){ const cabs=(C||dwgCabs()).filter(c=>c.lv!=="rail"&&c.lv!=="light"), tiles=[];
   const _cnt=t=>snOff("dwgNoCount")?t:"";   /* v1.633: จำนวนบนการ์ด */
+  /* ───────── v1.638: หน้ารวมวัสดุแสดงครบทุกแบบ ─────────
+     ผู้ใช้ 3/11 11:35 (ภาพหน้าต่าง 🖼 มีบานพับ 2 รุ่น ราง 2 รุ่น มือจับ · ภาพหน้ารวมวัสดุมีบานพับ 1 ราง 1 “+1 แบบ”): “วัสดุ ไม่ครบ ตามหน้านี้”
+     เดิม: แต่ละหมวดหยิบเฉพาะแบบที่ใช้มากสุด ที่เหลือเป็นคำว่า +1 แบบ · ดีไซน์บานตัดที่ 6 · สีบานตัดที่ 4 · มือจับตัดที่ 4 · สีโครงกับเนื้อไม้ดูแค่ชิ้นแรกของงาน · มือจับที่ไม่มีชิ้น 3D ไม่มีการ์ด
+     ตอนนี้: ทุกแบบมีการ์ดของตัวเอง หน้ากระดาษขึ้นหน้าใหม่ทุก 10 ช่องอยู่แล้ว
+       บานพับ ราง LED รวมตามรหัส ไม่แตกการ์ดซ้ำ · มือจับไม่มีรูปก็มีการ์ด (รหัส + ชื่อ)
+       สีโครง อ่าน Carcass ของตู้จริง ไม่นับแผ่นปิดข้าง ฟิลเลอร์ กล่องโค้ง เพราะแผ่นพวกนั้นเป็นสีบาน จะได้การ์ดสีโครงที่ไม่จริง
+         ผู้ใช้ 3/11 11:37 (ภาพการ์ดสีโครง N03P0057N PP77): “โครงด้านใน มัน MK630 ไม่ใช่หรอ” — เดิมหยิบแผ่นข้างแผ่นแรกของงาน project 63 คือฟิลเลอร์ BNF001 ซึ่ง Carcass = N03P0057N ส่วนตู้จริงทุกใบ N01M0029N
+       เนื้อไม้ นับเฉพาะที่อ่านเป็น PB/MDF ได้ ไม่นับบานเฟรมอลู · ไม่เจอเลยใช้ชิ้นแรกแบบเดิม
+     ปิด SN_OFF.dwgMatAll=1 */
+  const _all=!snOff("dwgMatAll"), _cap=n=>_all?Infinity:n, _realCab=c=>!c.cvb&&!plIsSide(c.inst)&&plKindOf(c.code)!=="filler", _uniqArt=L=>{ const o=new Map(); L.forEach(x=>{ const k=String(x.art||x.name||""); if(o.has(k)) o.get(k).count=(+o.get(k).count||0)+(+x.count||0); else o.set(k,Object.assign({},x)); }); return [...o.values()]; };
   const doors=[]; cabs.forEach(c=>c.bs.forEach(b=>{ if(dwgIsDoor(b)&&dwgDoorReal(b)) doors.push({b,c}); }));   /* v1.633: ไม่นับชิ้นโครงฟิลเลอร์ */
   /* v1.527: แบบหน้าบาน = รหัสแบบ (Exxx01 …) · ภาพเส้นด้านหน้า + Section (dwgDoorSvg) · บานที่พบบ่อยสุดของแบบนั้นเป็นตัวแทน */
   if(!snOff("dwgDoorLine")){ const byD={}; doors.forEach(x=>{ if(x.b._box||!dwgDoorIsDesign(x.b)) return; /* v1.607 */ const dd=dwgDoorDesign(x.b); (byD[dd.code]=byD[dd.code]||{dd,L:[]}).L.push(x); });
-    Object.values(byD).sort((a,b)=>b.L.length-a.L.length).slice(0,6).forEach(G=>{
+    Object.values(byD).sort((a,b)=>b.L.length-a.L.length).slice(0,_cap(6)).forEach(G=>{
       const sz={}; G.L.forEach(x=>{ const k=Math.round(+x.b.L||0)+"x"+Math.round(+x.b.W||0); sz[k]=(sz[k]||0)+1; });
       const kk=Object.keys(sz).sort((a,b)=>sz[b]-sz[a]||(+b.split("x")[0]*+b.split("x")[1])-(+a.split("x")[0]*+a.split("x")[1]))[0];
       const pick=(G.L.find(x=>Math.round(+x.b.L||0)+"x"+Math.round(+x.b.W||0)===kk)||G.L[0]).b;
@@ -45234,17 +45247,22 @@ async function dwgMatTiles(C){ const cabs=(C||dwgCabs()).filter(c=>c.lv!=="rail"
       tiles.push({h:"ดีไซน์หน้าบาน", svg, t:G.dd.code, s:[G.dd.desc,_cnt(G.L.length+" บาน")].filter(Boolean).join(" · ")}); }); }
   /* แบบหน้าบาน: Part ของบาน (สูงสุด 3 แบบ) · ภาพ = บานจริงจาก 3D — v1.527: ใช้เมื่อปิด SN_OFF.dwgDoorLine=1 */
   const byPart={}; if(snOff("dwgDoorLine")) doors.forEach(x=>{ const k=String(x.b.part||"").trim()||"หน้าบาน"; (byPart[k]=byPart[k]||[]).push(x); });
-  Object.keys(byPart).sort((a,b)=>byPart[b].length-byPart[a].length).slice(0,3).forEach(k=>{ const L=byPart[k];
+  Object.keys(byPart).sort((a,b)=>byPart[b].length-byPart[a].length).slice(0,_cap(3)).forEach(k=>{ const L=byPart[k];
     const pick=L.slice().sort((a,b)=>{ const da=worldDims(a.b), db=worldDims(b.b); return (db[0]*db[1]+db[2]*db[1])-(da[0]*da[1]+da[2]*da[1]); })[0];
     const d=worldDims(pick.b), lo=[pick.b.x-d[0]/2,pick.b.y-d[1]/2,pick.b.z-d[2]/2], hi=[pick.b.x+d[0]/2,pick.b.y+d[1]/2,pick.b.z+d[2]/2];
     let url=""; try{ url=dwgShot(lo,hi,cabYawOf(pick.c.inst),300,0.1); }catch(e){}
     tiles.push({h:"ดีไซน์หน้าบาน", img:url, t:k, s:_cnt(L.length+" บาน")}); });
   if(doors.length&&!snOff("dwgColorCode")){   /* v1.567: แยกตามรหัสสีของบาน (สูงสุด 4) · หัว = รหัสสี */
     const byC={}; doors.forEach(x=>{ if(x.b._box) return; const cn=dwgColorName(x.b), k=dwgColorHead((cn&&cn.code)||"?"); (byC[k]=byC[k]||{cn,L:[]}).L.push(x); });   /* v1.633: รวมตามหัวรหัส */
-    const G=Object.values(byC).sort((a,b)=>b.L.length-a.L.length).slice(0,4);
+    const G=Object.values(byC).sort((a,b)=>b.L.length-a.L.length).slice(0,_cap(4));
     for(const g of G){ const sw=(await dwgSwatch(g.L[0].b))||(g.cn?dwgPlainSw():null); if(sw){ const cp=dwgColorParts((g.cn&&g.cn.code)||sw.code,sw.code); tiles.push({h:"สีหน้าบาน", img:sw.url, t:cp.code, s:[dwgColorSub(cp,(g.cn&&g.cn.desc)||(sw.name&&sw.name!==sw.code?sw.name:"")), _cnt(G.length>1?(g.L.length+" บาน"):"")].filter(Boolean).join(" · ")}); } } }
   else if(doors.length){ const sw=await dwgSwatch(doors[0].b); if(sw) tiles.push({h:"สีหน้าบาน", img:sw.url, t:sw.code, s:sw.name&&sw.name!==sw.code?sw.name:""}); }
-  { const side=[]; cabs.forEach(c=>c.bs.forEach(b=>{ if(b&&!b._door&&!b._virtual&&b.orient==="side"&&+b.T>0) side.push(b); })); if(side.length){ const sw=await dwgSwatch(side[0]); if(sw||dwgColorName(side[0])){ const cn=dwgColorName(side[0]), sw2=sw||dwgPlainSw(), cp=dwgColorParts((cn&&cn.code)||sw2.code,sw2.code); tiles.push({h:"สีโครงตู้ด้านใน", img:sw2.url, t:cp.code, s:dwgColorSub(cp,(cn&&cn.desc)||(sw2.name&&sw2.name!==sw2.code?sw2.name:""))}); } } }   /* v1.567: หัว = รหัสสี */
+  if(_all){ const byK=new Map(), isS=b=>b&&!b._door&&!b._virtual&&b.orient==="side"&&+b.T>0;   /* v1.638: สีโครงทุกสี */
+    const _cnOf=b=>{ try{ return dwgColorName(b); }catch(e){ return null; } };
+    const addK=c=>{ const S=c.bs.filter(isS); if(!S.length) return; const cc=((state.cabColors||{})[c.inst])||{}, want=dwgColorHead(cc.Carcass||""); let sb=S[0], cn=_cnOf(sb); if(want&&(!cn||dwgColorHead(cn.code)!==want)){ const hit=S.find(b=>{ const n=_cnOf(b); return n&&dwgColorHead(n.code)===want; }); if(hit){ sb=hit; cn=_cnOf(hit); } } const code=String(cc.Carcass||(cn&&cn.code)||"").trim(), k=dwgColorHead(code)||"?"; if(!byK.has(k)) byK.set(k,{b:sb,code,cn:(cn&&dwgColorHead(cn.code)===k)?cn:null}); };
+    cabs.filter(_realCab).forEach(c=>addK(c)); if(!byK.size) cabs.some(c=>{ addK(c); return byK.size>0; });
+    for(const g of byK.values()){ const sw=await dwgSwatch(g.b), sw2=sw||dwgPlainSw(), cp=dwgColorParts(g.code||sw2.code,sw2.code); tiles.push({h:"สีโครงตู้ด้านใน", img:sw2.url, t:cp.code, s:dwgColorSub(cp,(g.cn&&g.cn.desc)||(sw2.name&&sw2.name!==sw2.code?sw2.name:""))}); } }
+  else { const side=[]; cabs.forEach(c=>c.bs.forEach(b=>{ if(b&&!b._door&&!b._virtual&&b.orient==="side"&&+b.T>0) side.push(b); })); if(side.length){ const sw=await dwgSwatch(side[0]); if(sw||dwgColorName(side[0])){ const cn=dwgColorName(side[0]), sw2=sw||dwgPlainSw(), cp=dwgColorParts((cn&&cn.code)||sw2.code,sw2.code); tiles.push({h:"สีโครงตู้ด้านใน", img:sw2.url, t:cp.code, s:dwgColorSub(cp,(cn&&cn.desc)||(sw2.name&&sw2.name!==sw2.code?sw2.name:""))}); } } }   /* v1.567: หัว = รหัสสี */
   try{ const S0=plWtOn()?plWtSlabs():null; if(S0&&S0.slabs.length){ const T=plWt(), M=PLWT_MATS[T.mat]||PLWT_MATS.granite, S=S0, col=String(T.color||"").trim()||M.c;
       const cv=document.createElement("canvas"); cv.width=cv.height=220; const g=cv.getContext("2d"); g.fillStyle=col; g.fillRect(0,0,220,220);
       const _pmI=snOff("plMarble")?null:await plmImgFor(T); if(_pmI){ try{ g.drawImage(_pmI.img,0,0,_pmI.sw,_pmI.sh,0,0,220,220); }catch(e){} }   /* v1.562: ลายหินจริง */
@@ -45261,7 +45279,7 @@ async function dwgMatTiles(C){ const cabs=(C||dwgCabs()).filter(c=>c.lv!=="rail"
   { const pulls=[]; cabs.forEach(c=>c.bs.forEach(b=>{ if(b&&b._pullPart&&b._pull) pulls.push({b,c}); }));
     /* v1.633: มือจับทุกรหัสในงาน (สูงสุด 4) เดิมแสดงแค่รหัสแรก อัปโหลดรูปรหัสที่สองแล้วจะไม่เห็นผล */
     const _pcs=[...new Set(pulls.map(x=>String(x.b._pull)))];
-    for(const code of (snOff("dwgPullImg")?_pcs.slice(0,1):_pcs.slice(0,4))){ const same=pulls.filter(x=>String(x.b._pull)===code), p0=same[0], grp=same.filter(x=>x.b._pullOwner===p0.b._pullOwner).map(x=>x.b);
+    for(const code of (snOff("dwgPullImg")?_pcs.slice(0,1):_pcs.slice(0,_cap(4)))){ const same=pulls.filter(x=>String(x.b._pull)===code), p0=same[0], grp=same.filter(x=>x.b._pullOwner===p0.b._pullOwner).map(x=>x.b);
       const lo=[Infinity,Infinity,Infinity], hi=[-Infinity,-Infinity,-Infinity]; grp.forEach(b=>{ const d=worldDims(b); [b.x,b.y,b.z].forEach((v,a)=>{ lo[a]=Math.min(lo[a],v-d[a]/2); hi[a]=Math.max(hi[a],v+d[a]/2); }); });
       /* ───────── v1.603: มือจับฝัง (HW-367) แสดงเฉพาะหน้าตัด ─────────
          ผู้ใช้ 2/11 15:51 (ภาพการ์ดมือจับ = รูปถ่ายบานลายไม้จาก 3D): “ตัวมือจับ HW-367 แสดง เฉพาะ SECTION ครับ”
@@ -45277,23 +45295,30 @@ async function dwgMatTiles(C){ const cabs=(C||dwgCabs()).filter(c=>c.lv!=="rail"
       else tiles.push({h:"มือจับ", img:url, t:code, s:[nm&&nm!==code?nm:"",fins.join(" + "),_cnt(n+" จุด")].filter(Boolean).join(" · ")}); }
     /* v1.633: มือจับที่ไม่มีชิ้น 3D ให้ถ่าย แต่มีรูปอัปโหลดไว้ */
     if(!snOff("dwgPullImg")){ let _pr=[]; try{ _pr=fittingAgg(cabs.reduce((a,c)=>a.concat(c.bs),[])).filter(x=>x&&x.kind==="pull"&&x.art); }catch(e){}
-      const _sn=new Set(_pcs); _pr.forEach(r=>{ const c=String(r.art); if(_sn.has(c)) return; _sn.add(c); const im=dwgPullImg(c); if(!im) return; let nm=""; try{ const el=pullFitEl(c); nm=String((el&&el.desc)||costFgName(c)||""); }catch(e){} tiles.push({h:"มือจับ", img:im, t:c, s:nm&&nm!==c?nm:""}); }); } }
+      const _sn=new Set(_pcs); _pr.forEach(r=>{ const c=String(r.art); if(_sn.has(c)) return; _sn.add(c); const im=dwgPullImg(c); if(!im&&!_all) return; let nm="";   /* v1.638: ไม่มีรูปก็มีการ์ด */ try{ const el=pullFitEl(c); nm=String((el&&el.desc)||costFgName(c)||""); }catch(e){} tiles.push({h:"มือจับ", img:im, t:c, s:nm&&nm!==c?nm:""}); }); } }
   if(!snOff("dwgCore")){ const dm=doors.length?dwgBoardMat(doors[0].b):null; let cm=null;   /* v1.567: รูปเนื้อไม้จริง แยกโครงตู้/หน้าบาน (เนื้อเดียวกัน = ช่องเดียว) */
     cabs.some(c=>c.bs.some(b=>{ if(b&&!b._door&&!b._virtual&&b.orient==="side"&&+b.T>0){ cm=dwgBoardMat(b); return true; } return false; }));
-    const G=[]; [["โครงตู้",cm],["หน้าบาน",dm]].forEach(([lb,m])=>{ if(!m||/^\$/.test(String(m.code||""))) return;   /* ยังแปลงลิงก์ไม่ได้ ($FrontMat1) = ไม่แสดง */ const core=dwgCoreOf(m), k=(core||m.code)+"|"+m.t, o=G.find(x=>x.k===k); if(o){ o.lb.push(lb); return; } G.push({k,lb:[lb],m,core}); });
+    const _src=[["โครงตู้",cm],["หน้าบาน",dm]];
+    if(_all){ const seen=new Set(), push=(lb,b)=>{ const sg=lb+"|"+String(b.part||"")+"|"+Math.round(+b.T||0); if(seen.has(sg)) return; seen.add(sg); const m=dwgBoardMat(b); if(m&&!/^\$/.test(String(m.code||""))&&dwgCoreOf(m)) _src.push([lb,m]); };   /* v1.638: ทุกเนื้อไม้ */
+      cabs.filter(_realCab).forEach(c=>{ const sb=c.bs.find(b=>b&&!b._door&&!b._virtual&&b.orient==="side"&&+b.T>0); if(sb) push("โครงตู้",sb); }); doors.forEach(x=>{ if(!x.b._frameDoor) push("หน้าบาน",x.b); });
+      if(_src.length>2) _src.splice(0,2); }
+    const G=[]; _src.forEach(([lb,m])=>{ if(!m||/^\$/.test(String(m.code||""))) return;   /* ยังแปลงลิงก์ไม่ได้ ($FrontMat1) = ไม่แสดง */ const core=dwgCoreOf(m), k=(core||m.code)+"|"+m.t, o=G.find(x=>x.k===k); if(o){ if(o.lb.indexOf(lb)<0) o.lb.push(lb); return; } G.push({k,lb:[lb],m,core}); });
     G.forEach(x=>tiles.push({h:"เนื้อไม้"+x.lb.join(" + "), img:x.core?DWG_CORE_IMG[x.core]:"", icon:x.core?"":"board", t:(x.core?x.core+" ":"")+x.m.t+" มม.", s:String(x.m.name||x.m.code)})); }
   else { const dm=doors.length?dwgBoardMat(doors[0].b):null; let cm=null; cabs.some(c=>c.bs.some(b=>{ if(b&&!b._door&&!b._virtual&&b.orient==="side"&&+b.T>0){ cm=dwgBoardMat(b); return true; } return false; }));
     const ln=[dm?("หน้าบาน "+(dm.name||dm.code)+" "+dm.t+" mm"):"", cm?("โครงตู้ "+(cm.name||cm.code)+" "+cm.t+" mm"):""].filter(Boolean);
     if(ln.length) tiles.push({h:"โครงสร้าง", icon:"board", t:ln[0], s:ln.slice(1).join(" · ")}); }
   { let rows=[]; try{ rows=fittingAgg(cabs.reduce((a,c)=>a.concat(c.bs),[])); }catch(e){}
     const hg=rows.filter(x=>x&&x.kind==="hinge").sort((a,b)=>b.count-a.count)[0], sl=rows.filter(x=>x&&x.kind==="slide").sort((a,b)=>b.count-a.count)[0];
-    if(!snOff("dwgFitSplit")){ [["hinge","บานพับ","ตัว"],["slide","ราง","ชุด"]].forEach(([k,h,u])=>{ const L=rows.filter(x=>x&&x.kind===k).sort((a,b)=>b.count-a.count); if(!L.length) return;   /* v1.567: แยกช่อง · มีถึงแสดง */
+    if(!snOff("dwgFitSplit")&&_all){ [["hinge","บานพับ","ตัว"],["slide","ราง","ชุด"]].forEach(([k,h,u])=>{ _uniqArt(rows.filter(x=>x&&x.kind===k)).sort((a,b)=>b.count-a.count).forEach(r0=>{ const nm=String(r0.name||r0.art||""), fim=dwgFitImg(r0,k);   /* v1.638: ทุกรุ่น */
+        tiles.push({h, img:fim, icon:fim?"":k, t:nm, s:[r0.art&&String(r0.art)!==nm?String(r0.art):"", _cnt((+r0.count||0)+" "+(r0.unit||u))].filter(Boolean).join(" · ")}); }); }); }
+    else if(!snOff("dwgFitSplit")){ [["hinge","บานพับ","ตัว"],["slide","ราง","ชุด"]].forEach(([k,h,u])=>{ const L=rows.filter(x=>x&&x.kind===k).sort((a,b)=>b.count-a.count); if(!L.length) return;   /* v1.567: แยกช่อง · มีถึงแสดง */
         const r0=L[0], n=L.reduce((a,x)=>a+(+x.count||0),0), nm=String(r0.name||r0.art||"");
         const fim=dwgFitImg(r0,k);   /* v1.581: รูปอุปกรณ์จริง */
         tiles.push({h, img:fim, icon:fim?"":k, t:nm, s:[r0.art&&String(r0.art)!==nm?String(r0.art):"", _cnt(n+" "+(r0.unit||u)), L.length>1?("+"+(L.length-1)+" แบบ"):""].filter(Boolean).join(" · ")}); }); }
     else if(hg||sl) tiles.push({h:"Fitting", icon:"hinge", t:hg?String(hg.name||hg.art):String(sl.name||sl.art), s:(hg&&sl)?String(sl.name||sl.art):""});
     const led=rows.filter(x=>x&&x.kind==="led").sort((a,b)=>b.count-a.count)[0];
-    if(led){ const lim=dwgFitImg(led,"led"); tiles.push({h:"LED", img:lim, icon:lim?"":"led", t:String(led.name||led.art), s:String(led.art||"")}); }   /* v1.586 */ }
+    if(_all) _uniqArt(rows.filter(x=>x&&x.kind==="led")).sort((a,b)=>b.count-a.count).forEach(r0=>{ const lim=dwgFitImg(r0,"led"); tiles.push({h:"LED", img:lim, icon:lim?"":"led", t:String(r0.name||r0.art), s:String(r0.art||"")}); });   /* v1.638: ทุกรุ่น */
+    else if(led){ const lim=dwgFitImg(led,"led"); tiles.push({h:"LED", img:lim, icon:lim?"":"led", t:String(led.name||led.art), s:String(led.art||"")}); }   /* v1.586 */ }
   return tiles; }
 function dwgIcon(kind){
   if(kind==="board") return '<svg viewBox="0 0 120 80"><g fill="#cfe0c8" stroke="#6f8a66" stroke-width="1.2">'+[0,1,2,3].map(i=>'<path d="M'+(10+i*6)+' '+(58-i*12)+' l70 -14 l26 10 l-70 14 z"/>').join("")+'</g></svg>';
