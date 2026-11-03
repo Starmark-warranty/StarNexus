@@ -3283,7 +3283,7 @@ body[data-theme="dark"] .splash-dots span{background:rgba(255,255,255,.25)}
    ===================================================================== */
 /* ---- APP_META: แหล่งความจริงเดียวของเวอร์ชัน (ดูได้จาก console / คลิกชื่อแอป) ---- */
 const APP_META={
-  name:"StarNexus", version:"1.625", build:"2026-11-03/pull-1f019",
+  name:"StarNexus", version:"1.626", build:"2026-11-03/edge-ax-up",
   file:"StarNexus.html", basedOn:"Furnitech_V3.html (v3.11)",
   /* ───────── เริ่มนับเวอร์ชันใหม่ที่ 1.001 (21/08/2026) ─────────
      ของเดิมนับมาถึง 42.1 แล้ววิ่งเป็นทศนิยมสองชั้นซึ่งอ่านลำดับยาก
@@ -3291,6 +3291,7 @@ const APP_META={
      ประวัติเก่าเก็บไว้ทั้งหมดตามเลขเดิม ไม่ไล่เขียนใหม่ เพราะเลขในนั้นถูกอ้างถึงไปแล้ว
      รายการที่อยู่ใต้ 1.001 ลงไปจึงเป็นเลขชุดเก่า อ่านต่อกันได้ตามวันที่ */
   changelog:[
+    ["1.626","2026-11-03","FEAT รหัสขอบตามที่มีใน AX (ผู้ใช้ 3/11 08:17 “น่าจะต้องให้มันหาขอบที่มีใน AX ครับ เช่น 81021376 มันไม่มี แต่มันมีที่ 81022376 ครับ ขอบทุกตัวจะมีที่สูงกว่าเสมอ ยกเว้นถ้าไม่มี ค่อยบอกว่าใน AX ยังไม่มี”) — ความกว้างที่คำนวณได้ไม่มีใน Fitting Global = ใช้ความกว้างถัดไปที่สูงกว่า ทั้งไฟล์ส่งออก รายการตัด และราคา · ไม่มีเลย = รหัสเดิม ขึ้นเตือนและ “ไม่มีใน AX” · มือจับ (“ตัวมือจับ ได้ลองหารายการใน AX หรือยังครับ”): ค้น 1F019-1-064 ในชื่อ AX เอง เจอรายการเดียวใส่ Purchase Item ID ให้ · หน้า 💰 บอกเหตุผลใต้ “ไม่มีใน AX” · ปิด SN_OFF.edgeAxPick SN_OFF.pullAxAuto"],
     ["1.625","2026-11-03","FEAT มือจับฝังเซาะร่อง 1F019-1-064 (ผู้ใช้ 3/11 07:47 ภาพ Futuretech “เพิ่มมือจับตัวนี้ให้หน่อย แล้วก็ตั้งไว้ใน Element ด้วยครับ เดี๋ยวผมไปใส่รหัส AX เอง”) — แถวใน Element → Fittings รหัส AX ว่างไว้ · ร่องในบาน 71×33 ลึก 9 มุม R3 (ประเมินจากแบบ ภาพไม่บอกยาวตัวฝัง) · รูปทรง 3D ใหม่ pull3D = flush ขอบโค้ง 76×38 ปากหลุม 64×22 ลึกรวม 15 โครมเงา · การ์ดในกล่อง 🖐 เห็นรูปจริง · บานเลื่อนวางมือจับใหม่ อยู่ด้านนอก ห่างขอบพ้นระยะซ้อน (เดิมไปอยู่ด้านในที่บานอีกใบบัง) · เลือกมือจับรุ่นปกติบนบานที่มีมือจับฝัง = ถอดมือจับฝังให้ (เดิมซ้อนกันสองแบบ) · ปิด SN_OFF.pullFlush pull1F019 sdcPullIn pullDropEhp"],
     ["1.624","2026-11-03","CHANGE ไม่ตกเศษ (ผู้ใช้ 3/11 08:04 “บานเลื่อน และตัวมือจับแบบฝังขอให้ไม่ตกเศษครับ เช่น 2147.2 ก็ปัดลง 2147.8 ก็ปัดลงเสมอ · มือจับแบบฝังทุกตัว ต้องไม่ตกเศษ และบานที่มีมือจับอยู่ด้วย”) — บานเลื่อน + บานที่มีมือจับฝัง ทั้งกว้างและสูง ปัดลงเป็นเลขเต็มเสมอ ความยาวมือจับฝังจึงเป็นเลขเต็มตาม · แกนที่มือจับอยู่ ขอบตรงข้ามมือจับอยู่กับที่ · อีกแกน ด้านบานพับอยู่กับที่ ไม่มีบานพับ = เศษแบ่งสองข้าง · บานเลื่อนยึดขอบนอกติดแผ่นข้าง · ถอดมือจับ = บานคืนขนาดเดิมรวมเศษ · งานเก่าปรับเองตอนเปิด · ปิด SN_OFF.sdcInt SN_OFF.ehpInt · FIX กรอบเลือกสีฟ้าเกินตู้ (ผู้ใช้ 08:06 “ทำไมเส้นสีฟ้า เกินตู้ไปเยอะจัง”) ของที่ปั้นจากโมเดล Fitting หลายชิ้น เช่น ราวแขวน กรอบใช้ตำแหน่งชิ้นแรกที่ปลายราว บวกขนาดเต็มราว จึงเกินซ้าย ~390 · FEAT แถวบานเลื่อนใน Element → Fittings (ผู้ใช้ 08:08 “บานเลื่อนตั้งรหัสออกได้ที่ไหน … หาไม่เจอ”) SDC32045 + SDC32045-R ใส่รหัส AX ที่ Purchase Item ID · ปิด SN_OFF.sdcElem"],
     ["1.623","2026-11-03","FEAT+FIX บานเลื่อน (ผู้ใช้ 3/11 07:49–07:53 “มันเลือกให้อยู่คนละฝั่งไม่ได้ครับ” · “โหมดธรรมดา ต้องมีให้เลือกบานเลื่อนด้วยครับ”) — ① มือจับฝังเลือกด้านรายบานได้ทุกแบบบาน (แถว ‘ด้านรายบาน’ ในกล่อง 🖐) รูปบานเห็นแถบมือจับตามด้าน เปลี่ยนรุ่นแล้วด้านที่เลือกเองไม่หาย ② บานเลื่อน อัตโนมัติ = ด้านนอก คนละฝั่ง (เดิมไม่มีบานพับให้สลับ จึงไปด้านบนทั้งคู่) ③ แก้บานเลื่อนไม่ถูกตัดตามมือจับฝัง (ตัวคิดบานเลื่อนตั้งกลับเต็มใบทุก sync จนบาน + มือจับยาวเกินช่อง) ระยะเลื่อนหักตามจริง ④ มือจับยื่นหน้าที่ติดบานรางหลังด้านในหรือบน/ล่าง เตือนว่าชนบานหน้า ⑤ กล่องเพิ่มหน้าบานโหมดธรรมดามีชนิด ‘บานเลื่อน’ กดตกลงแล้วเปิดกล่องตั้งค่าบานเลื่อน · ปิด SN_OFF.sdcEhp SN_OFF.ehpPerDoor SN_OFF.addDoorSdc"],
@@ -17082,6 +17083,8 @@ const _fgTrayBusy=new Set();
 function fgTableReady(){ try{ const S=(typeof SXL!=="undefined"&&SXL&&SXL.s)?SXL.s.fitting_global:null; return !S||!!S.ready; }catch(e){ return true; } }
 async function fgWaitReady(ms){ const t0=Date.now(); while(!fgTableReady()&&Date.now()-t0<ms) await new Promise(r=>setTimeout(r,1500)); return fgTableReady(); }
 function fgOnReady(){
+  try{ _edgeAx=null; }catch(e){}   /* v1.626: ตารางใหม่ = สร้างดัชนีขอบใหม่ */
+  try{ pullAxAuto(); }catch(e){ console.error("pullAxAuto:",e); }   /* v1.626 */
   if(snOff("fgRetry")) return 0; let n=0;
   Object.keys(_fgTray).forEach(k=>{ if(!_fgTray[k]&&!_fgTrayBusy.has(k)){ delete _fgTray[k]; n++; } });
   try{ Object.keys(_glassKindByPre).forEach(k=>{ if(!_glassKindByPre[k]) delete _glassKindByPre[k]; }); }catch(e){}
@@ -30431,6 +30434,8 @@ function boardRole(b){
      SN_OFF.plAlignStay=1 จัดแนวแล้วตู้หลบของที่ทับกันอยู่ก่อนแบบเดิม (ดีดไปช่องว่าง) (v1.600)
      SN_OFF.rszAdjBox=1   ปรับขนาดตู้ที่ชิ้นโครงมีสูตรปรับ วัดฐานก่อนถอดสูตรแบบเดิม (หดซ้ำ) (v1.600)
      SN_OFF.sdcGroove=1   บานเลื่อน SDC ไม่เซาะร่องฝังรางในแผ่นพื้น/แผ่นบน (ร่องที่เซาะไว้ถูกถอดตอน sync) (v1.599)
+     SN_OFF.edgeAxPick=1  รหัสขอบใช้ความกว้าง หนา+3 ตรง ๆ ไม่หาขนาดที่มีใน AX (v1.626)
+     SN_OFF.pullAxAuto=1  ไม่ค้นรหัส AX ของมือจับ 1F019-1-064 ให้เอง (v1.626)
      SN_OFF.pullFlush=1   มือจับ pull3D = flush ไม่วาดรูป 3D มีแค่ร่องในบาน (v1.625)
      SN_OFF.pull1F019=1   ไม่เพิ่มแถวมือจับ 1F019-1-064 ใน Element ให้เอง (v1.625)
      SN_OFF.sdcPullIn=1   มือจับบนบานเลื่อนวางระยะจากขอบตามค่าตั้งปกติ ไม่หลบระยะซ้อน · ฝั่งเดาแบบเดิม (v1.625)
@@ -30906,8 +30911,26 @@ function edgeBandW(b){
   if(isCoreBoard(b)) return coreBandW(t);
   return Math.max(19, t+3);
 }
+/* ───────── v1.626: รหัสขอบตามที่มีจริงใน AX ─────────
+   ผู้ใช้ 3/11 08:17 (ภาพ Fitting Global ค้น 810…376 มี 19 · 22 · 25 · 28 · 30 · 32 · 42 · 55 ไม่มี 21):
+     “น่าจะต้องให้มันหาขอบที่มีใน AX ครับ เช่น 81021376 มันไม่มี แต่มันมีที่ 81022376 ครับ ขอบทุกตัวจะมีที่สูงกว่าเสมอ ยกเว้นถ้าไม่มี ค่อยบอกว่าใน AX ยังไม่มี”
+   เดิม: ไม้ 18 → หนา+3 = 21 → 81021376 ตรง ๆ ไม่ดูว่ามีรหัสนี้ไหม ใบเบิกและไฟล์ส่งออกจึงได้รหัสที่สั่งไม่ได้ ราคาก็ขึ้นไม่มีใน AX
+   ตอนนี้: รหัสแบบ [8|9]TTxxSSS (TT = หนา · xx = กว้าง · SSS = ลาย) มีกว้างที่คำนวณได้ = ใช้เลย · ไม่มี = กว้างถัดไปที่สูงกว่าซึ่งมีในลายเดียวกัน
+     ไม่มีที่สูงกว่า / ลายนี้ไม่มีเลย = รหัสเดิมตามสูตร ไม่เดา → รายการตัดขึ้นสีเตือน หน้า 💰 ขึ้นไม่มีใน AX
+     ดัชนีสร้างครั้งเดียวจาก Fitting Global ล้างทุกครั้งที่ตารางโหลดใหม่ (fgOnReady) · ตารางยังไม่มา = ใช้สูตรเดิมไปก่อน แล้ว sync ใหม่ตอนตารางมา
+     รหัสที่ขึ้นต้นด้วยอย่างอื่นไม่เข้ากฎนี้ · ตัดแถว (ยกเลิก) ทิ้ง · ไม้ไม่ถูกแตะ ปรับเฉพาะรหัส · ปิด SN_OFF.edgeAxPick */
+let _edgeAx=null;
+function edgeAxIndex(){ if(_edgeAx) return _edgeAx; let S=null; try{ S=(typeof SXL!=="undefined"&&SXL&&SXL.s)?SXL.s.fitting_global:null; }catch(e){} if(!S||!S.ready) return null;
+  const rows=S.rows||S.base||[]; if(!rows.length) return null; const m=new Map();
+  rows.forEach(r=>{ const q=/^([89]\d{2})(\d{2})(\d{3})$/.exec(String((r&&r.item_number)||"").trim()); if(!q||/^\s*"?\(?ยกเลิก/.test(String(r.product_name||""))) return; const k=q[1]+"xx"+q[3]; let a=m.get(k); if(!a){ a=[]; m.set(k,a); } a.push(+q[2]); });
+  m.forEach(a=>a.sort((x,y)=>x-y)); return (_edgeAx=m); }
+function edgeAxKey(code){ const q=/^([89]\d{2})xx(\d{3})(_.*)?$/i.exec(String(code||"").trim()); return q?(q[1]+"xx"+q[2]):""; }
+function edgeAxFill(code,w){ const c=String(code||""), ex=c.replace(/xx/gi,String(w)); if(snOff("edgeAxPick")) return ex; const k=edgeAxKey(c); if(!k) return ex; const M=edgeAxIndex(); if(!M) return ex;
+  const L=M.get(k); if(!L||!L.length||L.indexOf(+w)>=0) return ex; const up=L.find(v=>v>+w); return up?c.replace(/xx/gi,String(up)):ex; }
+/* รหัสขอบที่ได้ ไม่มีใน AX จริง ๆ (ตารางยังไม่มา = ยังไม่รู้ ไม่เตือน) */
+function edgeAxMissing(code,w){ if(snOff("edgeAxPick")) return false; const k=edgeAxKey(code); if(!k) return false; const M=edgeAxIndex(); if(!M) return false; const L=M.get(k); return !(L&&L.some(v=>v>=+w)); }
 function edgeOut(linkName,b){ if(!linkName||linkName==="No Edge")return ""; const code=resolveLink(linkName,b);
-  if(!code||/no[_\s]?edge/i.test(code))return ""; return purchaseOf(code).replace(/xx/gi,String(edgeBandW(b))); }
+  if(!code||/no[_\s]?edge/i.test(code))return ""; return edgeAxFill(purchaseOf(code),edgeBandW(b)); }
 // แกะความหนาจากรหัสวัสดุ (เช่น MD19→19, K_PB_16→16) หรือใช้ Thickness ที่ตั้งใน Element Materials
 function thickFromMat(code){ if(!code)return 0; const e=elemByCode(code); if(e&&parseFloat(e.thick)>0)return parseFloat(e.thick);
   const m=String(code).match(/(?:^|[^0-9])([0-9]{1,2})(?:[^0-9]|$)/); if(m){ const v=parseInt(m[1],10); if(v>=5&&v<=60)return v; } return 0; }
@@ -35527,6 +35550,7 @@ async function loadSettings(src){ const s=(src&&typeof src==="object")?src:await
   ensureSampleLeg();      // ใส่ขาตู้ตัวอย่างถ้ายังไม่มีเลย
   ensureSamplePull();     // v9.71: ตัวอย่างมือจับ ไว้ให้เห็นรูปแบบสเปครู
   try{ sdcEnsureElems(); }catch(e){ console.error(e); }   // v1.624: แถวบานเลื่อนใน Element ไว้ใส่รหัส AX
+  try{ pullAxAuto(); }catch(e){ console.error(e); }       // v1.626: ตาราง AX มาก่อนค่าตั้ง = ค้นตอนนี้
   ensureSampleSection();  // v9.83: ตัวอย่างหน้าตัดกล่องอลู ไว้ลองบานเฟรม
   ensureSampleHangRail(); // ซีรีส์ราวแขวนตัวอย่าง (lenMap ตามยาว)
   ensureCoverScrew();     // v1.254: แถวสกรูยึดแผ่นปิด
@@ -42225,9 +42249,17 @@ function stkPrice(kind,key,code){ const r=stkFor(kind,key,code); return (r&&r.p>
 /* ข้อความสั้นของราคา AX (CSV / title) */
 function stkTxt(r){ const e=r.e, u=e.unit||"หน่วย"; return [e.pp?("ซื้อ "+stkR(e.pp)+"/"+u):"", e.pc?("ทุน "+stkR(e.pc)+"/"+u):"", e.ep?("StarStock "+stkR(e.ep)+"/"+u):""].filter(Boolean).join(" · ")+(r.p>0?(" → "+stkR(r.p)):(r.why?(" · "+r.why):"")); }
 /* ช่อง “ราคา AX” ในหน้า 💰 */
+/* ───────── v1.626: “ไม่มีใน AX” บอกเหตุผล ─────────
+   ผู้ใช้ 3/11 08:17 (ภาพหน้า 💰 R118@2147mm#AL616MH “ไม่มีใน AX”): “ตัวมือจับ ได้ลองหารายการใน Ax หรือยังครับ”
+   ตัวค้นรหัสมือจับฝัง (cutLookupEhp) รู้อยู่แล้วว่าติดตรงไหน แต่บอกแค่ในใบเบิก หน้า 💰 จึงดูเหมือนไม่ได้ค้น · ตอนนี้เอาเหตุผลชุดเดียวกันมาแสดง */
+function costAxWhy(kind,x){ if(kind!=="fit"||!x) return ""; try{ const ck=/^(.+)@(\d+(?:\.\d+)?)mm(?:#(.*))?$/.exec(String(x.key||""));
+    if(ck){ const m=_fgMiss["~N:"+ck[1]+"|"+cutLen(+ck[2])+(ck[3]?("|"+ck[3]):"")]; return (m&&m.why)?String(m.why):""; }
+    const h=_pullAxHits[String(x.code||"").trim()]; if(!h) return "";
+    return h.rows.length?("ค้นชื่อ “"+h.word+"” ใน AX เจอ "+h.rows.length+" รายการ เลือกเองที่ Element → Purchase Item ID: "+h.rows.slice(0,3).join(" · ")+(h.rows.length>3?" …":"")):("ค้นชื่อ “"+h.words.join("” “")+"” ใน Fitting Global แล้วไม่เจอ");
+  }catch(e){ return ""; } }
 function stkCell(kind,x){
   if(!STK.map) return '<span style="color:var(--ink-dim)">'+(STK.busy?"…":"—")+'</span>';
-  const r=stkFor(kind,x.key,x.code); if(!r) return '<span style="color:var(--ink-dim)" title="ไม่พบรหัสนี้ใน items/info.csv ของ StarStock">ไม่มีใน AX</span>';
+  const r=stkFor(kind,x.key,x.code); if(!r){ const _why=costAxWhy(kind,x); return '<span style="color:var(--ink-dim)" title="ไม่พบรหัสนี้ใน items/info.csv ของ StarStock">ไม่มีใน AX</span>'+(_why?('<div style="font-size:10.5px;line-height:1.35;color:#e58a24;max-width:260px;white-space:normal">'+escapeHtml(_why)+'</div>'):''); }   /* v1.626: บอกว่าค้นแล้วติดตรงไหน */
   const e=r.e, u=escapeHtml(e.unit||"หน่วย"), own=costSrc(kind,x.key,x.code), use=own==="stk";
   const line1=[e.pp?('ซื้อ <b>'+stkR(e.pp)+'</b>'):'', e.pc?('ทุน '+stkR(e.pc)):'', e.ep?('<span title="ตั้งเองในหน้า STOCK'+(e.eby?(' โดย '+escapeHtml(e.eby)):'')+'">StarStock <b>'+stkR(e.ep)+'</b></span>'):''].filter(Boolean).join(' · ');
   const line2=r.p>0?('→ <b>'+stkR(r.p)+'</b>/'+escapeHtml(COST_TABS[kind].u.replace(/^ราคา\//,""))+(r.note?(' <span style="color:var(--ink-dim)">'+escapeHtml(r.note)+'</span>'):'')):('<span style="color:#e58a24">'+escapeHtml(r.why||"")+'</span>');
@@ -51850,6 +51882,20 @@ function ensurePull1F019(){ if(snOff("pull1F019")) return false;
       pullDrill:"",pullPocket:"0,0,71,33,9,t,3",pull3D:"flush",pullFinish:"chrome",pullLen:"76",pullT:"38",pullH:"7"});
     seen[cd]=1; try{ lsSet("sxlocaltrial:furnitech:settings",settings); }catch(e){} return true;
   }catch(e){ console.error("pull1F019:",e); return false; } }
+/* ───────── v1.626: ค้นรหัส AX ของมือจับรุ่นนี้เอง ─────────
+   ผู้ใช้ 3/11 08:17: “ตัวมือจับ ได้ลองหารายการใน Ax หรือยังครับ”
+   ทำตอน Fitting Global โหลดเสร็จ เฉพาะแถวที่ Purchase Item ID ยังว่าง: ค้นชื่อ AX แบบพอดีคำ จากรหัสเต็มไปรหัสรุ่น (1F019-1-064 → 1F019)
+     รหัสเต็มเจอรายการเดียว = ใส่ให้ แล้วจำใน settings.pullAxDone (ผู้ใช้ลบออกเองไม่ใส่คืน) · หลายรายการ หรือเจอแค่รหัสรุ่น (อาจเป็นคนละขนาด เช่น 1F019-1-096) = ไม่เดา บอกรายการในหน้า 💰 · ไม่เจอ = บอกว่าค้นแล้วไม่เจอ
+     ค่าที่ผู้ใช้ใส่เองไม่ถูกแตะ · ปิด SN_OFF.pullAxAuto */
+const _pullAxHits={}, PULL_AX_AUTO=[["1F019-1-064","1F019-1","1F019"]];
+function pullAxAuto(){ if(snOff("pullAxAuto")||!settings||!settings.elements) return 0; let S=null; try{ S=(typeof SXL!=="undefined"&&SXL&&SXL.s)?SXL.s.fitting_global:null; }catch(e){} if(!S||!S.ready) return 0;
+  const rows=S.rows||S.base||[], done=settings.pullAxDone=settings.pullAxDone||{}, nm=r=>String((r&&r.product_name)||"").replace(/^"+/,"").trim(); let n=0;
+  PULL_AX_AUTO.forEach(words=>{ const cd=words[0], el=((settings.elements.fittings)||[]).find(f=>f&&String(f.code||"").trim().toLowerCase()===cd.toLowerCase()); delete _pullAxHits[cd];
+    if(!el||String(el.itemId||"").trim()||done[cd]) return; let hit=[], word="", full=false;
+    for(const w of words){ const re=new RegExp("(^|[^A-Za-z0-9])"+w.replace(/[.*+?^${}()|[\]\\]/g,"\\$&")+"([^A-Za-z0-9]|$)","i"); hit=rows.filter(r=>{ const t=nm(r); return re.test(t)&&String(r.item_number||"").trim()&&!/^\(?ยกเลิก/.test(t)&&!/^ค่า/.test(t); }); if(hit.length){ word=w; full=(w===cd); break; } }
+    if(full&&hit.length===1){ el.itemId=String(hit[0].item_number).trim(); done[cd]=1; n++; try{ lsSet("sxlocaltrial:furnitech:settings",settings); }catch(e){} try{ toast("มือจับ "+cd+": พบรหัส AX "+el.itemId+" ใส่ให้แล้ว"); }catch(e){} }
+    else _pullAxHits[cd]={word:word,words:words,rows:hit.map(r=>String(r.item_number).trim())}; });
+  return n; }
 function pullIsFlush(code){ if(snOff("pullFlush")) return false; const el=pullFitEl(code); return /^(flush|ฝัง)$/i.test(String((el&&el.pull3D)||"").trim()); }
 function ensurePullDefFor(code){   // รหัสจาก XML ที่ยังไม่มีในคลัง -> สร้างแถวเปล่าให้ไปกรอกสเปครู
   const cd=String(code||"").trim(); if(!cd) return null;
@@ -63642,8 +63688,8 @@ function expCellTxt(link,board,isEdge,isSurf){ if(!link) return {t:"—",w:false
   const code=resolveLink(link,board);
   if(!code || /no[_\s]?edge/i.test(code) || link==="No Edge") return {t:"—",w:false};
   const e=elemByCode(code); let out=(e&&e.itemId)?e.itemId:(e?e.code:code);
-  if(isEdge) out=out.replace(/xx/gi,String(edgeBandW(board)));
-  return {t:out, w:!(e&&e.itemId)}; }
+  let _axMiss=false; if(isEdge){ const _w=edgeBandW(board); _axMiss=edgeAxMissing(out,_w); out=edgeAxFill(out,_w); }   /* v1.626 */
+  return {t:out, w:!(e&&e.itemId)||_axMiss}; }
 function renderCutList(){
   if(!state.boards.length){ $("cutBody").innerHTML='<div class="empty">ยังไม่มีตู้</div>'; return; }
   const groups=orderGroups(); let pid=0, warnN=0;
