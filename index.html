@@ -3283,7 +3283,7 @@ body[data-theme="dark"] .splash-dots span{background:rgba(255,255,255,.25)}
    ===================================================================== */
 /* ---- APP_META: แหล่งความจริงเดียวของเวอร์ชัน (ดูได้จาก console / คลิกชื่อแอป) ---- */
 const APP_META={
-  name:"StarNexus", version:"1.624", build:"2026-11-03/ehp-sdc-int",
+  name:"StarNexus", version:"1.625", build:"2026-11-03/pull-1f019",
   file:"StarNexus.html", basedOn:"Furnitech_V3.html (v3.11)",
   /* ───────── เริ่มนับเวอร์ชันใหม่ที่ 1.001 (21/08/2026) ─────────
      ของเดิมนับมาถึง 42.1 แล้ววิ่งเป็นทศนิยมสองชั้นซึ่งอ่านลำดับยาก
@@ -3291,6 +3291,7 @@ const APP_META={
      ประวัติเก่าเก็บไว้ทั้งหมดตามเลขเดิม ไม่ไล่เขียนใหม่ เพราะเลขในนั้นถูกอ้างถึงไปแล้ว
      รายการที่อยู่ใต้ 1.001 ลงไปจึงเป็นเลขชุดเก่า อ่านต่อกันได้ตามวันที่ */
   changelog:[
+    ["1.625","2026-11-03","FEAT มือจับฝังเซาะร่อง 1F019-1-064 (ผู้ใช้ 3/11 07:47 ภาพ Futuretech “เพิ่มมือจับตัวนี้ให้หน่อย แล้วก็ตั้งไว้ใน Element ด้วยครับ เดี๋ยวผมไปใส่รหัส AX เอง”) — แถวใน Element → Fittings รหัส AX ว่างไว้ · ร่องในบาน 71×33 ลึก 9 มุม R3 (ประเมินจากแบบ ภาพไม่บอกยาวตัวฝัง) · รูปทรง 3D ใหม่ pull3D = flush ขอบโค้ง 76×38 ปากหลุม 64×22 ลึกรวม 15 โครมเงา · การ์ดในกล่อง 🖐 เห็นรูปจริง · บานเลื่อนวางมือจับใหม่ อยู่ด้านนอก ห่างขอบพ้นระยะซ้อน (เดิมไปอยู่ด้านในที่บานอีกใบบัง) · เลือกมือจับรุ่นปกติบนบานที่มีมือจับฝัง = ถอดมือจับฝังให้ (เดิมซ้อนกันสองแบบ) · ปิด SN_OFF.pullFlush pull1F019 sdcPullIn pullDropEhp"],
     ["1.624","2026-11-03","CHANGE ไม่ตกเศษ (ผู้ใช้ 3/11 08:04 “บานเลื่อน และตัวมือจับแบบฝังขอให้ไม่ตกเศษครับ เช่น 2147.2 ก็ปัดลง 2147.8 ก็ปัดลงเสมอ · มือจับแบบฝังทุกตัว ต้องไม่ตกเศษ และบานที่มีมือจับอยู่ด้วย”) — บานเลื่อน + บานที่มีมือจับฝัง ทั้งกว้างและสูง ปัดลงเป็นเลขเต็มเสมอ ความยาวมือจับฝังจึงเป็นเลขเต็มตาม · แกนที่มือจับอยู่ ขอบตรงข้ามมือจับอยู่กับที่ · อีกแกน ด้านบานพับอยู่กับที่ ไม่มีบานพับ = เศษแบ่งสองข้าง · บานเลื่อนยึดขอบนอกติดแผ่นข้าง · ถอดมือจับ = บานคืนขนาดเดิมรวมเศษ · งานเก่าปรับเองตอนเปิด · ปิด SN_OFF.sdcInt SN_OFF.ehpInt · FIX กรอบเลือกสีฟ้าเกินตู้ (ผู้ใช้ 08:06 “ทำไมเส้นสีฟ้า เกินตู้ไปเยอะจัง”) ของที่ปั้นจากโมเดล Fitting หลายชิ้น เช่น ราวแขวน กรอบใช้ตำแหน่งชิ้นแรกที่ปลายราว บวกขนาดเต็มราว จึงเกินซ้าย ~390 · FEAT แถวบานเลื่อนใน Element → Fittings (ผู้ใช้ 08:08 “บานเลื่อนตั้งรหัสออกได้ที่ไหน … หาไม่เจอ”) SDC32045 + SDC32045-R ใส่รหัส AX ที่ Purchase Item ID · ปิด SN_OFF.sdcElem"],
     ["1.623","2026-11-03","FEAT+FIX บานเลื่อน (ผู้ใช้ 3/11 07:49–07:53 “มันเลือกให้อยู่คนละฝั่งไม่ได้ครับ” · “โหมดธรรมดา ต้องมีให้เลือกบานเลื่อนด้วยครับ”) — ① มือจับฝังเลือกด้านรายบานได้ทุกแบบบาน (แถว ‘ด้านรายบาน’ ในกล่อง 🖐) รูปบานเห็นแถบมือจับตามด้าน เปลี่ยนรุ่นแล้วด้านที่เลือกเองไม่หาย ② บานเลื่อน อัตโนมัติ = ด้านนอก คนละฝั่ง (เดิมไม่มีบานพับให้สลับ จึงไปด้านบนทั้งคู่) ③ แก้บานเลื่อนไม่ถูกตัดตามมือจับฝัง (ตัวคิดบานเลื่อนตั้งกลับเต็มใบทุก sync จนบาน + มือจับยาวเกินช่อง) ระยะเลื่อนหักตามจริง ④ มือจับยื่นหน้าที่ติดบานรางหลังด้านในหรือบน/ล่าง เตือนว่าชนบานหน้า ⑤ กล่องเพิ่มหน้าบานโหมดธรรมดามีชนิด ‘บานเลื่อน’ กดตกลงแล้วเปิดกล่องตั้งค่าบานเลื่อน · ปิด SN_OFF.sdcEhp SN_OFF.ehpPerDoor SN_OFF.addDoorSdc"],
     ["1.622","2026-11-03","FIX ปุ่ม 🚪 บานเลื่อน ขึ้นกับตู้เสื้อผ้าด้วย (ผู้ใช้ 3/11 07:35 “ใส่บานเลื่อนยังไงนะ”) — เดิมโชว์เฉพาะหมวดตู้พื้น/ตู้ลอย/ตู้สูง รหัส MWA… เป็นหมวดอื่น ๆ จึงไม่มีปุ่ม ทั้งที่ตัวคิดบานใช้ได้ · ตอนนี้ตู้ทรงตู้สูงทุกรหัสมีปุ่ม"],
@@ -6928,6 +6929,7 @@ function shapeLocalGeo(b){
   if(b._shape==="ehp") return ehpGeo(b);                                              // v1.592: รางอลูมือจับติดขอบบาน
   if(b._shape==="hgk") return hgkGeo(b);                                              // v1.606: หูแขวนครัว
   if(b._shape==="flatPull") return pullFlatGeo(b);                                    // v1.446: มือจับบาร์แบน
+  if(b._shape==="flushPull") return flushPullGeo(b);                                  // v1.625: มือจับฝังเซาะร่อง
   throw new Error("unknown shape");
 }
 /* v7.80: แผ่นที่มี Pocket ไม่ทะลุ -> หั่นเป็นชั้นตามระดับก้นหลุม
@@ -30429,6 +30431,10 @@ function boardRole(b){
      SN_OFF.plAlignStay=1 จัดแนวแล้วตู้หลบของที่ทับกันอยู่ก่อนแบบเดิม (ดีดไปช่องว่าง) (v1.600)
      SN_OFF.rszAdjBox=1   ปรับขนาดตู้ที่ชิ้นโครงมีสูตรปรับ วัดฐานก่อนถอดสูตรแบบเดิม (หดซ้ำ) (v1.600)
      SN_OFF.sdcGroove=1   บานเลื่อน SDC ไม่เซาะร่องฝังรางในแผ่นพื้น/แผ่นบน (ร่องที่เซาะไว้ถูกถอดตอน sync) (v1.599)
+     SN_OFF.pullFlush=1   มือจับ pull3D = flush ไม่วาดรูป 3D มีแค่ร่องในบาน (v1.625)
+     SN_OFF.pull1F019=1   ไม่เพิ่มแถวมือจับ 1F019-1-064 ใน Element ให้เอง (v1.625)
+     SN_OFF.sdcPullIn=1   มือจับบนบานเลื่อนวางระยะจากขอบตามค่าตั้งปกติ ไม่หลบระยะซ้อน · ฝั่งเดาแบบเดิม (v1.625)
+     SN_OFF.pullDropEhp=1 เลือกมือจับรุ่นปกติแล้วไม่ถอดมือจับฝังของบานนั้น (v1.625)
      SN_OFF.sdcInt=1      บานเลื่อนมีเศษตามช่องตู้แบบเดิม ไม่ปัดลงเป็นเลขเต็ม (v1.624)
      SN_OFF.sdcElem=1     ไม่เพิ่มแถวบานเลื่อนใน Element → Fittings ให้เอง (v1.624)
      SN_OFF.ehpInt=1      บานที่มีมือจับฝังมีเศษแบบเดิม ไม่ปัดลงเป็นเลขเต็ม (v1.624)
@@ -32673,13 +32679,13 @@ const ELEM_FORM={
              ["legClip","ขาตู้ — รหัสกิ๊ฟยึดแผ่นปิดขา (เว้นว่าง = ใช้รหัสกลางในตั้งค่า) · ออกให้เฉพาะขาแถวหน้า 1 ตัว/ขา"],
              ["pullDrill","มือจับ — สเปครูเจาะ พิกัดนับจากศูนย์กลางมือจับ · x,y,Ø,ลึก,ฝั่ง (b=หลังบาน t=หน้าบาน x=ทะลุ) · s128 = คู่ห่าง 128 · หลายบรรทัดคั่นด้วย ; เช่น s128,0,5,0,x ; s128,0,8,1,b"],
              ["pullPocket","มือจับ — สเปค Pocket กรอบเดียวกัน · x,y,กว้าง,สูง,ลึก,ฝั่ง,R เช่น 0,0,150,22,3,b = คว้านหลังบาน 150×22 ลึก 3"],
-             ["pull3D","มือจับ — รูปใน 3D (v1.331): knob = ปุ่มกลม · bar = ก้านกลม+เสา · flat = บาร์แบนตั้งฉากกับบาน (v1.446) · box = กล่องแบบเดิม · เว้นว่าง = รูเดียวเป็นปุ่ม สองรูเป็นก้าน"],
+             ["pull3D","มือจับ — รูปใน 3D (v1.331): knob = ปุ่มกลม · bar = ก้านกลม+เสา · flat = บาร์แบนตั้งฉากกับบาน (v1.446) · flush = มือจับฝังเซาะร่อง ขอบโค้ง ไม่ต้องมีรูเจาะ ใส่ pullPocket แทน (v1.625) · box = กล่องแบบเดิม · เว้นว่าง = รูเดียวเป็นปุ่ม สองรูเป็นก้าน"],
              ["pullFinish","มือจับ — สีผิว 3D: brass ทองเหลือง · gold ทอง · chrome โครม · nickel นิกเกิล/สแตนเลส · black ดำ · bronze บรอนซ์ · copper ทองแดง · white ขาว · หรือ #HEX · เว้นว่าง = เดาจากคำอธิบาย ไม่เจอใช้ค่าในตั้งค่า"],
              ["pullDia","มือจับ — Ø ปุ่ม / Ø ก้าน ใน 3D (มม.) · เว้นว่าง = ปุ่ม 32 · ก้าน 12"],
-             ["pullH","มือจับ — ยื่นจากหน้าบาน ใน 3D (มม.) · เว้นว่าง = ปุ่ม 26 · ก้าน 34 · บาร์แบน 26"],
+             ["pullH","มือจับ — ยื่นจากหน้าบาน ใน 3D (มม.) · เว้นว่าง = ปุ่ม 26 · ก้าน 34 · บาร์แบน 26 · ฝังเซาะร่อง 7"],
              /* ───────── v1.446: บาร์แบน (pull3D = flat) ───────── */
-             ["pullLen","มือจับ — บาร์แบน (pull3D = flat): ยาวรวม (มม.) · เว้นว่าง = ระยะรู + ขากว้าง (ปลายเสมอขา) · ยาวกว่านั้น = คานยื่นเลยขา"],
-             ["pullT","มือจับ — บาร์แบน: หนาแผ่น ที่เห็นจากหน้าบาน (มม.) · เว้นว่าง = 6"],
+             ["pullLen","มือจับ — ฝังเซาะร่อง (flush): ยาวขอบ (เว้นว่าง 76 · ปากหลุมสั้นกว่าขอบ 12) · บาร์แบน (pull3D = flat): ยาวรวม (มม.) · เว้นว่าง = ระยะรู + ขากว้าง (ปลายเสมอขา) · ยาวกว่านั้น = คานยื่นเลยขา"],
+             ["pullT","มือจับ — ฝังเซาะร่อง (flush): กว้างขอบ (เว้นว่าง 38 · ปากหลุมแคบกว่าขอบ 16) · บาร์แบน: หนาแผ่น ที่เห็นจากหน้าบาน (มม.) · เว้นว่าง = 6"],
              ["pullBar","มือจับ — บาร์แบน: คานบนหนา วัดตามแนวยื่นจากบาน (มม.) · เว้นว่าง = 6.5"],
              ["pullLeg","มือจับ — บาร์แบน: ขากว้าง วัดตามแนวยาวมือจับ ขาอยู่กึ่งกลางรู (มม.) · เว้นว่าง = 22"],
              ["bdx","ตำแหน่ง: เลื่อน X จากกึ่งกลางช่อง (มม. · +ขวา · 0=กลาง)"],
@@ -47602,7 +47608,9 @@ function plpInfo(code){ const def=pullDef(code), el=pullFitEl(code)||{}; let xs=
   try{ xs=parseDrillSpec(_pullSpecC((def&&def.drill)||""),0,0,18).map(h=>h.x); }catch(e){}
   const span=xs.length?(Math.max.apply(null,xs)-Math.min.apply(null,xs)):0, sty=String(el.pull3D||"").trim().toLowerCase();
   if(!xs.length){ let pk=[]; try{ pk=parsePocketSpec(_pullSpecC((def&&def.pocket)||""),0,0,18); }catch(e){}
-    const w=pk.length?Math.max.apply(null,pk.map(q=>+q.w||0)):0; return {len:w||100, span:0, knob:false, pocket:true}; }
+    const w=pk.length?Math.max.apply(null,pk.map(q=>+q.w||0)):0;
+    if(pullIsFlush(code)) return {len:(+el.pullLen>=20)?+el.pullLen:(w||76), span:0, knob:false, pocket:true, flush:true, wid:((+el.pullT>=12)?+el.pullT:38)/2};   /* v1.625: นับยาวตามขอบ ไม่ใช่ร่อง */
+    return {len:w||100, span:0, knob:false, pocket:true}; }
   if(/^(flat|แบน|บาร์แบน|plate)$/.test(sty)){ const leg=(+el.pullLeg>=2)?+el.pullLeg:22, fl=+el.pullLen||0;
     return {len:(fl>=Math.max(span,leg)+1)?fl:((span<1)?Math.max(leg*3,60):(span+leg)), span:Math.round(span), knob:false}; }
   const knob=/^(knob|ปุ่ม)$/.test(sty)||(!/^(bar|ก้าน)$/.test(sty)&&span<1);
@@ -47649,7 +47657,7 @@ function plpCands(inst){ let rows=[]; try{ rows=cabDoorIndex(inst).slice(); }cat
     rows.push({d:b,i:0}); });
   return rows; }
 /* ฝั่งที่ไม่มีบานพับ (บานไม่มีข้อมูลบานพับ) — บานอยู่ซ้ายของตู้ = บานพับซ้าย → มือจับขวา */
-function plpSideGuess(d){ try{ const yw=(+cabYawOf(d.cabInst)||0)*Math.PI/180, lx=b=>(+b.x||0)*Math.cos(yw)-(+b.z||0)*Math.sin(yw);
+function plpSideGuess(d){ if(d&&d._sdc&&!snOff("sdcPullIn")) return (d._sdc.side==="L")?"Left":"Right";   /* v1.625: บานเลื่อนจับด้านนอก — ด้านในถูกบานอีกใบซ้อนบัง */ try{ const yw=(+cabYawOf(d.cabInst)||0)*Math.PI/180, lx=b=>(+b.x||0)*Math.cos(yw)-(+b.z||0)*Math.sin(yw);
     const cs=state.boards.filter(b=>b&&b.cabInst===d.cabInst&&!b._virtual&&!b._door&&(+b.T>0)); if(!cs.length) return "Right";
     const xs=cs.map(lx), mid=(Math.min.apply(null,xs)+Math.max.apply(null,xs))/2, v=lx(d);
     return (v<mid-5)?"Right":(v>mid+5)?"Left":"Right"; }catch(e){ return "Right"; } }
@@ -47677,6 +47685,8 @@ function plpPlace(d,info,pm,om){
   if(v==="Tall"){ v="Down"; X=1000-y0; }
   else if(v!=="Middle") X=info.knob?E:(alongV?E+hl:E);
   if(h!=="Middle") Y=info.knob?E:(alongH?E+hl:E);
+  /* v1.625: บานเลื่อน — ตอนเลื่อนสลับข้าง ขอบนอกไปอยู่หลังบานอีกใบเท่าระยะซ้อน มือจับต้องพ้นระยะนั้น (ซ้อน 40 + ครึ่งมือจับ + เผื่อ 6) */
+  if(h!=="Middle"&&d._sdc&&!snOff("sdcPullIn")){ try{ const cw=alongH?hl:(info.knob?(+info.len||32)/2:(info.flush?(+info.wid||19):10)); Y=Math.max(Y,(+sdcCfg(d._sdc.c).ov||0)+cw+6); }catch(e){ console.error("sdcPull:",e); } }
   const nX=alongV?hl+10:15, nY=alongH?hl+10:15;
   if(v!=="Middle"){ if(W<2*nX){ v="Middle"; X=0; } else X=Math.max(nX,Math.min(X,W-nX)); }
   if(h!=="Middle"){ if(L<2*nY){ h="Middle"; Y=0; } else Y=Math.max(nY,Math.min(Y,L-nY)); }
@@ -47721,6 +47731,8 @@ function plPullApplyRows(rows,code,pm,om){
     if(!c){ if((d._pulls||[]).length) n++; delete d._pulls; setF("pullField","NoPull");
       if(i&&!snOff("plPullVar")){ plpSetCoord(d.cabInst,F("pullXField")+i,null); plpSetCoord(d.cabInst,F("pullYField")+i,null); }   // v1.530: ล้างระยะที่ทับไว้ของบานนี้
       return; }
+    /* v1.625: บานหนึ่งใช้มือจับแบบเดียว — ฝั่งมือจับฝังถอดมือจับปกติอยู่แล้ว ฝั่งนี้ยังไม่ถอด จึงซ้อนกันทั้งสองแบบและบานถูกตัดสั้นค้าง */
+    if(d._ehp&&!snOff("pullDropEhp")){ try{ ehpApplyRows([{d,i}],null,"auto"); }catch(e){ console.error("pullDropEhp:",e); } }
     const pl=plpPlace(d,plpInfo(c),pm,om);
     /* v1.530: บานมีลำดับ = ระยะชี้ไปที่ตัวแปรของตู้ (ตรวจ/แก้ได้ที่ Variables ตู้นี้) · X0/Y0 = ค่าสำรองถ้าตัวแปรไม่มี */
     let Xs=String(pl.X), Ys=String(pl.Y);
@@ -47749,6 +47761,13 @@ function plpIcon2D(code){ const cv=document.createElement("canvas"); cv.width=cv
   const w=info.len*s, gr=g.createLinearGradient(0,92,0,108); gr.addColorStop(0,"#fff"); gr.addColorStop(.45,P.c); gr.addColorStop(1,"#555");
   g.fillStyle=gr; g.beginPath(); g.moveTo(100-w/2+6,93); g.lineTo(100+w/2-6,93); g.arc(100+w/2-6,100,7,-Math.PI/2,Math.PI/2); g.lineTo(100-w/2+6,107); g.arc(100-w/2+6,100,7,Math.PI/2,Math.PI*1.5); g.fill();
   return cv.toDataURL("image/png"); }
+/* v1.625: รูปการ์ดของมือจับฝัง — บานต้องมีหลุมจริง ไม่งั้นแผ่นทึบบังหลุมในตัวมือจับ */
+function plpDoorGeoFor(code,def,Ld,Wd,T){ if(!pullIsFlush(code)) return new THREE.BoxGeometry(Ld,Wd,T);
+  let pk=null; try{ pk=parsePocketSpec(_pullSpecC((def&&def.pocket)||""),0,0,T)[0]||null; }catch(e){}
+  const hw=((pk&&+pk.w)||71)/2, hh=((pk&&+pk.h)||33)/2, s=new THREE.Shape(), o=new THREE.Path();
+  s.moveTo(-Ld/2,-Wd/2); s.lineTo(Ld/2,-Wd/2); s.lineTo(Ld/2,Wd/2); s.lineTo(-Ld/2,Wd/2); s.lineTo(-Ld/2,-Wd/2);
+  o.moveTo(-hw,-hh); o.lineTo(-hw,hh); o.lineTo(hw,hh); o.lineTo(hw,-hh); o.lineTo(-hw,-hh); s.holes.push(o);
+  const g=new THREE.ExtrudeGeometry(s,{depth:T,bevelEnabled:false}); g.translate(0,0,-T/2); return g; }
 function plpShots(codes){ const out={};
   if(typeof noGL!=="undefined"&&noGL||!renderer||typeof THREE==="undefined"){ codes.forEach(c=>{ out[c]=plpIcon2D(c); }); return out; }
   const keep={pr:renderer.getPixelRatio(), sz:renderer.getSize(new THREE.Vector2())}, junk=[];
@@ -47756,14 +47775,14 @@ function plpShots(codes){ const out={};
     codes.forEach(code=>{ let url="";
       try{ const def=pullDef(code), info=plpInfo(code); let hs=[];
         try{ hs=parseDrillSpec(_pullSpecC((def&&def.drill)||""),0,0,18); }catch(e){}
-        if(!def||!hs.length||settings.pull3D===false){ out[code]=plpIcon2D(code); return; }
+        if(!def||(!hs.length&&!pullIsFlush(code))||settings.pull3D===false){ out[code]=plpIcon2D(code); return; }   /* v1.625: + มือจับฝังเซาะร่อง */
         const Ld=Math.max(info.len*1.6,150), Wd=Math.max(Ld*0.55,90), T=18;
         const d={id:"__plpv", cab:"", cabInst:"__plpv", name:"Door", L:Ld, W:Wd, T, x:0, y:0, z:0, orient:"front", yaw:0, holes:[]}, add=[];
         _pull3D(d,{code, ori:"H", pos:"Center", X:0, Y:0},0,hs,{x:0,y:0},false,add);
         const sc=new THREE.Scene(); sc.background=new THREE.Color("#f3f4f6");
         sc.add(new THREE.HemisphereLight(0xffffff,0x9a958c,0.75));
         const dl=new THREE.DirectionalLight(0xffffff,0.85); dl.position.set(0.5,0.9,1.2); sc.add(dl);
-        const dg=new THREE.BoxGeometry(Ld,Wd,T), dm=new THREE.MeshStandardMaterial({color:new THREE.Color("#ebe8e2"), roughness:.65, metalness:0}); junk.push(dg,dm);
+        const dg=plpDoorGeoFor(code,def,Ld,Wd,T), dm=new THREE.MeshStandardMaterial({color:new THREE.Color("#ebe8e2"), roughness:.65, metalness:0}); junk.push(dg,dm);
         sc.add(new THREE.Mesh(dg,dm));
         let zt=T/2;
         add.forEach(p=>{ let g=null; try{ g=p._shape?shapeLocalGeo(p):new THREE.BoxGeometry(Math.max(+p.L||2,2),Math.max(+p.W||2,2),Math.max(+p.T||2,2)); g.applyMatrix4(orientMatrix(p.orient,p.yaw)); }catch(e){ g=null; }
@@ -51808,16 +51827,30 @@ function pullDef(code){ const c=String(code||"").trim().toLowerCase();
   return pullDefs().find(d=>String(d.code).toLowerCase()===c)||null; }
 function ensureSamplePull(){
   try{ settings.elements=settings.elements||{}; settings.elements.fittings=settings.elements.fittings||[];
-    if(settings.elements.fittings.some(f=>/มือจับ|\bpull\b/i.test(String(f&&f.kind||"")))) return false;
+    if(settings.elements.fittings.some(f=>/มือจับ|\bpull\b/i.test(String(f&&f.kind||"")))){ ensurePull1F019(); return false; }
     settings.elements.fittings.push(
       {code:"PULL_128",desc:"มือจับ 128 มม. (ตัวอย่าง)",dia:"",unit:"ตัว",itemId:"",asSet:"",kind:"มือจับ",
        pullDrill:"s128,0,5,0,x",pullPocket:""},
       {code:"KNOB_1",desc:"ปุ่มจับ รูเดียว (ตัวอย่าง)",dia:"",unit:"ตัว",itemId:"",asSet:"",kind:"มือจับ",
        pullDrill:"0,0,5,0,x",pullPocket:""});
+    ensurePull1F019();
     try{ lsSet("sxlocaltrial:furnitech:settings",settings); }catch(e){}
     return true;
   }catch(e){ console.error(e); return false; }
 }
+/* ───────── v1.625: มือจับฝังเซาะร่อง 1F019-1-064 ─────────
+   ผู้ใช้ 3/11 07:47 (ภาพ Futuretech มือจับฝัง Zinc): “เพิ่มมือจับตัวนี้ให้หน่อย แล้วก็ตั้งไว้ใน Element ด้วยครับ เดี๋ยวผมไปใส่รหัส AX เอง”
+   เลขจากแบบ: ขอบ 76×38 · ปากหลุมยาว 64 · ลึกรวม 15 · ตัวฝังกว้าง 32 · แบบวาดไม่ตรงสเกล แต่เทียบสัดส่วนในรูปเดียวกันได้ ปากหลุมกว้าง ≈ 22 · ขอบโค้งสูง ≈ 7 · ตัวฝังลึก ≈ 8
+   แบบไม่บอกยาวตัวฝัง: เดาจากขอบเกินตัวฝังด้านกว้างข้างละ 3 จึงยาว ≈ 70 · ร่องเผื่อข้างละ 0.5 ลึกเผื่อ 1 = 71×33 ลึก 9 มุม R3 (ดอก Ø6) ผู้ใช้แก้ได้ที่ช่อง pullPocket
+   เพิ่มแถวครั้งเดียว: มีรหัสนี้แล้วไม่แตะ (รหัส AX ที่ใส่ไว้ไม่หาย) · settings.pullSeed จำไว้ ผู้ใช้ลบแถวแล้วไม่ใส่คืน · ปิด SN_OFF.pull1F019 */
+function ensurePull1F019(){ if(snOff("pull1F019")) return false;
+  try{ settings.elements=settings.elements||{}; const L=settings.elements.fittings=settings.elements.fittings||[], seen=settings.pullSeed=settings.pullSeed||{}, cd="1F019-1-064";
+    if(L.some(f=>f&&String(f.code||"").trim().toLowerCase()===cd.toLowerCase())){ seen[cd]=1; return false; } if(seen[cd]) return false;
+    L.push({code:cd,desc:"มือจับฝัง 1F019-1-064 Zinc โครมเงา",dia:"",unit:"ตัว",itemId:"",asSet:"",kind:"มือจับ",folder:"มือจับ",
+      pullDrill:"",pullPocket:"0,0,71,33,9,t,3",pull3D:"flush",pullFinish:"chrome",pullLen:"76",pullT:"38",pullH:"7"});
+    seen[cd]=1; try{ lsSet("sxlocaltrial:furnitech:settings",settings); }catch(e){} return true;
+  }catch(e){ console.error("pull1F019:",e); return false; } }
+function pullIsFlush(code){ if(snOff("pullFlush")) return false; const el=pullFitEl(code); return /^(flush|ฝัง)$/i.test(String((el&&el.pull3D)||"").trim()); }
 function ensurePullDefFor(code){   // รหัสจาก XML ที่ยังไม่มีในคลัง -> สร้างแถวเปล่าให้ไปกรอกสเปครู
   const cd=String(code||"").trim(); if(!cd) return null;
   settings.elements=settings.elements||{}; settings.elements.fittings=settings.elements.fittings||[];
@@ -51875,7 +51908,7 @@ function _drillOnePull(d,pu,idx,add){
   pk.forEach(q0=>{ const q=map(q0.x,q0.y); d.pockets=d.pockets||[];
     d.pockets.push({x:round(c.x+q.x), y:round(c.y+q.y), w:round(V?q0.h:q0.w), h:round(V?q0.w:q0.h),
       depth:q0.depth, face:q0.face, r:q0.r, _pullPk:true}); n++; });
-  if(settings.pull3D!==false && hs.length) _pull3D(d,lv,idx,hs,c,V,add);
+  if(settings.pull3D!==false && (hs.length||pullIsFlush(lv.code))) _pull3D(d,lv,idx,hs,c,V,add);   /* v1.625: มือจับฝังเซาะร่องไม่มีรูเจาะ */
   return n;
 }
 /* รูปมือจับตั้งต้น — กล่องคานกับเสาสองต้น ไว้ให้เห็นว่าบานนี้มีมือจับและอยู่ตรงไหน
@@ -51952,6 +51985,29 @@ function pullFlatShape(len,H,span,leg,bar,r){
   s.lineTo(-xb,-hh);
   return s;
 }
+/* ───────── v1.625: รูปทรงมือจับฝังเซาะร่อง (ปั้นตามภาพ 1F019) ─────────
+   ตามภาพ: ขอบสี่เหลี่ยมหน้าโค้งนูน ลาดลงจนบางที่ขอบนอก · ปากหลุมมุมมน มีลบมุมรอบปาก · ผนังเทลงพื้นหลุม · ตัวฝังเล็กกว่าขอบจมในบาน
+   ปั้นเป็นวงรอบซ้อนกัน แต่ละวงมีจำนวนจุดเท่ากัน จึงต่อเป็นผิวเรียบได้โดยไม่ต้องใช้ boolean
+   z = 0 คือผิวหน้าบาน · ขนาดชิ้น L×W×T = ยาว×กว้าง×ลึกรวม (แนวตั้งสลับ L/W) · ปากหลุมสั้นกว่าขอบ 12 แคบกว่าขอบ 16 */
+function flushPullGeo(b){ const alongX=!((+b.W||0)>(+b.L||0));
+  const L=Math.max(alongX?+b.L:+b.W,20), W=Math.max(alongX?+b.W:+b.L,12), H=Math.max(+b._flH||7,1.5), D=Math.max(+b._flD||8,2), lip=Math.min(1,H/3);
+  const oL=Math.max(L-12,L*.55), oW=Math.max(W-16,W*.4), bL=Math.min(+b._flBL||L-6,L), bW=Math.min(+b._flBW||W-6,W), rO=Math.min(1.6,W/8), rI=Math.min(4,oW/3), floorZ=-Math.max(D-1.5,.5);
+  const loop=(hx,hy,r)=>{ r=Math.max(Math.min(r,hx-.01,hy-.01),.01); const C=[[hx-r,hy-r],[-(hx-r),hy-r],[-(hx-r),-(hy-r)],[hx-r,-(hy-r)]], P=[];
+    C.forEach((q,i)=>{ const a0=i*Math.PI/2, n=C[(i+1)%4]; for(let k=0;k<=6;k++){ const a=a0+k*Math.PI/12; P.push([q[0]+r*Math.cos(a),q[1]+r*Math.sin(a)]); }
+      const a1=a0+Math.PI/2, sx=q[0]+r*Math.cos(a1), sy=q[1]+r*Math.sin(a1), ex=n[0]+r*Math.cos(a1), ey=n[1]+r*Math.sin(a1); for(let s=1;s<8;s++) P.push([sx+(ex-sx)*s/8,sy+(ey-sy)*s/8]); });
+    return P; };
+  const zTop=(x,y)=>{ const gy=Math.pow(Math.max(1-Math.pow(Math.abs(y)/(W/2),2.6),0),.45), dx=Math.max(Math.abs(x)-oL/2,0)/Math.max(L/2-oL/2,.01), gx=Math.pow(Math.max(1-Math.pow(dx,2.4)*.85,.02),.5); return lip+(H-lip)*gy*gx; };
+  const strip=rs=>{ const n=rs[0].length, pos=[], idx=[]; rs.forEach(r=>r.forEach(p=>pos.push(p[0],p[1],p[2])));
+    for(let j=0;j<rs.length-1;j++) for(let i=0;i<n;i++){ const a=j*n+i, c=j*n+(i+1)%n, e=(j+1)*n+i, f=(j+1)*n+(i+1)%n; idx.push(a,c,f,a,f,e); }
+    const g=new THREE.BufferGeometry(); g.setAttribute("position",new THREE.Float32BufferAttribute(pos,3)); g.setAttribute("uv",new THREE.Float32BufferAttribute(new Array(pos.length/3*2).fill(0),2)); g.setIndex(idx); g.computeVertexNormals(); return g; };
+  const at=(lp,z)=>lp.map(p=>[p[0],p[1],(typeof z==="function")?z(p[0],p[1]):z]);
+  const lO=loop(L/2,W/2,rO), lI=loop(oL/2,oW/2,rI), lB=loop(bL/2,bW/2,Math.min(1.5,bW/8)), mix=(t)=>lO.map((p,i)=>[p[0]+(lI[i][0]-p[0])*t,p[1]+(lI[i][1]-p[1])*t]);
+  const dome=[]; for(let j=0;j<=10;j++) dome.push(at(mix(j/10),zTop));
+  const rimZ=Math.min.apply(null,lI.map(p=>zTop(p[0],p[1]))), ins=(d,z)=>at(loop(oL/2-d,oW/2-d,rI-d*.5),z);
+  const well=[at(lI,zTop),ins(.5,(x,y)=>zTop(x,y)-.25),ins(.8,(x,y)=>zTop(x,y)-.9),ins(1.1,rimZ-2.2),ins(1.9,floorZ+1.4),ins(2.5,floorZ+.45),ins(3.1,floorZ)];
+  const fl=ins(3.1,floorZ), toC=(lp,k)=>lp.map(p=>[p[0]*k,p[1]*k,p[2]]);
+  const g=mergeGeos([strip(dome),strip(well),strip([fl,toC(fl,.5),toC(fl,0)]),strip([at(lO,0),at(lO,zTop)]),strip([at(lB,0),at(lO,0)]),strip([at(lB,-D),at(lB,0)]),strip([toC(at(lB,-D),0),at(lB,-D)])]);
+  g.translate(0,0,-(H-D)/2); if(!alongX) g.rotateZ(Math.PI/2); return g; }
 function pullFlatGeo(b){
   const H=Math.max(+b.T||1,2), alongX=!((+b.W||0)>(+b.L||0));
   const len=Math.max(alongX?(+b.L||1):(+b.W||1),6), t=Math.max(alongX?(+b.W||1):(+b.L||1),0.6);
@@ -51984,6 +52040,12 @@ function _pull3D(d,pu,idx,hs,c,V,add){
       _virtual:true, _pullPart:true, _pull:pu.code, _pullOwner:d.id }, ext||{})); };
   /* v1.331: แบบสมจริง */
   const el=pullFitEl(pu.code), sty=String((el&&el.pull3D)||"").trim().toLowerCase();
+  /* v1.625: มือจับฝังเซาะร่อง — ตัวฝังลึกตามร่องในบาน (หลุมจริงจาก Pocket) ขอบโค้งนูนจากหน้าบาน · ศูนย์ชิ้นคิดจากผิวหน้าบาน */
+  if(pullIsFlush(pu.code)){ const def=pullDef(pu.code); let pk=null; try{ pk=parsePocketSpec(_pullSpecC((def&&def.pocket)||""),0,0,T)[0]||null; }catch(e){}
+    const Lf=(+(el&&el.pullLen)>=20)?+el.pullLen:76, Wf=(+(el&&el.pullT)>=12)?+el.pullT:38, Hf=(+(el&&el.pullH)>=1.5)?+el.pullH:7, Df=Math.max(((pk&&+pk.depth)||9)-1,2), q=mp((pk&&+pk.x)||0,(pk&&+pk.y)||0);
+    put(c.x+q.x, c.y+q.y, T/2+(Hf-Df)/2, V?Wf:Lf, V?Lf:Wf, Hf+Df, "flush", "f", {_shape:"flushPull", _flH:Hf, _flD:Df, _flBL:pk?Math.max(+pk.w-1,10):Lf-6, _flBW:pk?Math.max(+pk.h-1,6):Wf-6, _metal:pullFinishOf(el)});
+    return; }
+  if(!hs.length) return;   /* v1.625: ไม่มีรู = ไม่มีตำแหน่งให้วาดแบบอื่น */
   if(!snOff("pullReal")&&settings.pull3DStyle!=="box"&&!/^(box|กล่อง)$/.test(sty)){
     const fin=pullFinishOf(el), nD=+(el&&el.pullDia)||0, nH=+(el&&el.pullH)||0;
     /* v1.446: บาร์แบน — ชิ้นเดียวทั้งตัว (คาน+ขา) ขาอยู่กึ่งกลางรู */
