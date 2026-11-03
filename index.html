@@ -3283,7 +3283,7 @@ body[data-theme="dark"] .splash-dots span{background:rgba(255,255,255,.25)}
    ===================================================================== */
 /* ---- APP_META: แหล่งความจริงเดียวของเวอร์ชัน (ดูได้จาก console / คลิกชื่อแอป) ---- */
 const APP_META={
-  name:"StarNexus", version:"1.651", build:"2026-11-03/jwa-light",
+  name:"StarNexus", version:"1.652", build:"2026-11-03/dark-gloss",
   file:"StarNexus.html", basedOn:"Furnitech_V3.html (v3.11)",
   /* ───────── เริ่มนับเวอร์ชันใหม่ที่ 1.001 (21/08/2026) ─────────
      ของเดิมนับมาถึง 42.1 แล้ววิ่งเป็นทศนิยมสองชั้นซึ่งอ่านลำดับยาก
@@ -3291,6 +3291,7 @@ const APP_META={
      ประวัติเก่าเก็บไว้ทั้งหมดตามเลขเดิม ไม่ไล่เขียนใหม่ เพราะเลขในนั้นถูกอ้างถึงไปแล้ว
      รายการที่อยู่ใต้ 1.001 ลงไปจึงเป็นเลขชุดเก่า อ่านต่อกันได้ตามวันที่ */
   changelog:[
+    ["1.652","2026-11-03","FIX+UI สีบาน (ผู้ใช้ 17:18 ภาพบานสีเข้ม N00S0114N_HG103 ลาย PCWx50 กับคำเตือน) — ① สีเข้มเส้นบานเป็นสีขาว เห็นลาย ② ดูตอนออกแบบ HG เงา MU ด้าน ③ แก้กฎที่ผมเข้าใจผิด: แบบบานขึ้นต้น P คืองานทำสี ไม่เตือน · งานเคลือบ บานขึ้นต้น M ยังต้องใช้สีตัวที่ 4 = P"],
     ["1.651","2026-11-03","FEAT ระบบงานผนัง JWA ชุดสาม (ผู้ใช้ 16:29 ข้อ 9 10) — แผงชุดผนังเลือกไม้วิ่งไฟ บน ล่าง ซ้าย ขวา ได้ไม่เกิน 2 ด้าน โครงกับแผ่นหน้าเดฟรับไม้ ขนาดนอกเท่าเดิม · ติ๊กมีไฟ = รางไฟตามโมเดลไม้ไฟของห้อง · ไม่ติ๊ก = ไม้ปิดเฉย ๆ"],
     ["1.650","2026-11-03","FEAT ระบบงานผนัง JWA ชุดสอง (ผู้ใช้ 16:29 ข้อ 1 3) — แผงตู้มีปุ่มชุดผนัง ซ้าย ขวา ต่อจากผิวนอกแผ่นปิดข้าง · หลังตู้ ผนังเต็มหลังตู้แล้วตู้ขยับออกเท่าผนัง ลบผนังแล้วตู้กลับ · สูงถึงฝ้า เกิน 2400 ยกโครงแล้วใช้แผ่นขา · เสาติดผนัง โครงทั้งแนวลึกเท่าเสา + 20 ช่วงหน้าเสาโครงตื้น แผ่นหน้าปิดเสา ลบเสาแล้วกลับ"],
     ["1.649","2026-11-03","FEAT ระบบงานผนัง JWA ชุดแรก (ผู้ใช้ 16:29 ข้อ 2 4 5 6 7 8) — สูง ≥ 1100 คานกลางมีคานนอนบนคานตั้ง แบ่ง 2 ช่วง รวมคาน 5 แนว · เหล็กฉาก ส155×40×40 หนา 1.2 สูงไม่เกิน 1000 = 2 ตัว เกิน = 4 ตัว ไม่ตรงคาน · ฉาก B-06 FITDG00402 + แป้นแขวน FITWS00020 ตามจำนวนเหล็กฉาก เข้าใบเบิก · แผงตู้เลือกหน้าบานลงถึงพื้น · ถึงพื้นเกิน 2400 หรือไม่เลือก = แผ่นขาเสมอแผ่นหน้า ไม่เดฟ · ไม่มีตีนตู้เดฟใต้ JWA"],
@@ -5821,6 +5822,15 @@ function skinTexture(sk,cross){
   if(cross) tex.rotation=Math.PI/2;
   return (_skinTexC[k]=tex);
 }
+let _skinGlossEnvT=null;
+function skinGlossEnv(){ if(_skinGlossEnvT) return _skinGlossEnvT; if(typeof renderer==="undefined"||!renderer) return null; const c=document.createElement("canvas"); c.width=512; c.height=256; const g=c.getContext("2d"); g.fillStyle="#2a2a2c"; g.fillRect(0,0,512,256); const y=g.createLinearGradient(0,0,0,256); y.addColorStop(0,"#8a8a8c"); y.addColorStop(.45,"#2a2a2c"); y.addColorStop(1,"#141416"); g.fillStyle=y; g.fillRect(0,0,512,256); g.fillStyle="#ffffff"; [[30,16],[92,10],[170,22],[262,12],[330,18],[436,10]].forEach(q=>g.fillRect(q[0],28,q[1],150));
+  const t=new THREE.CanvasTexture(c); t.mapping=THREE.EquirectangularReflectionMapping; const pm=new THREE.PMREMGenerator(renderer); _skinGlossEnvT=pm.fromEquirectangular(t).texture; pm.dispose(); t.dispose(); return _skinGlossEnvT; }
+function skinFinish(key){ if(snOff("skinFinish")) return ""; const s=String(key||""); return /(^|[_\s-])HG\d*($|[_\s-])/i.test(s)?"HG":/(^|[_\s-])MU\d*($|[_\s-])/i.test(s)?"MU":""; }
+/* v1.652: ความสว่างของผิว 0–1 มีรูปอ่านจากรูป ไม่มีอ่านจากสีพื้น · ใช้เลือกสีเส้นขอบ */
+const _skinLumC=new Map();
+function skinLum(sk,hasImg){ const k=String(sk.key)+"|"+sk.base+"|"+(hasImg?1:0); if(_skinLumC.has(k)) return _skinLumC.get(k); let v=null;
+  if(hasImg&&sk.img&&sk.img.img){ try{ const c=document.createElement("canvas"); c.width=c.height=8; const g=c.getContext("2d"); g.drawImage(sk.img.img,0,0,8,8); const d=g.getImageData(0,0,8,8).data; let t=0; for(let i=0;i<d.length;i+=4) t+=.299*d[i]+.587*d[i+1]+.114*d[i+2]; v=t/(64*255); }catch(e){} }
+  if(v==null){ try{ const q=new THREE.Color(sk.base); v=.299*q.r+.587*q.g+.114*q.b; }catch(e){ v=1; } } _skinLumC.set(k,v); return v; }
 function skinMat(sk,dbl,b){
   /* v28.5.4: แนวลายมาจากตัวชิ้น ไม่ใช่จากผิว — ผิวเดียวกันคนละชิ้นจึงหันลายคนละทางได้
      เดิมเช็ค state.grainOn ซึ่งไม่มีอยู่จริงในโปรแกรม (ตัวจริงชื่อ state.showGrain)
@@ -5834,7 +5844,13 @@ function skinMat(sk,dbl,b){
   if(_skinMatC[k]) return _skinMatC[k];
   const o={ color:new THREE.Color(sk.base), roughness:.72, metalness:0 };
   if(!flat){ o.map=skinTexture(sk,cross); o.color=new THREE.Color(0xffffff); }
-  const m=new THREE.MeshStandardMaterial(o);
+  /* ───────── v1.652: ผิวเงากับผิวด้าน ─────────
+     ผู้ใช้ 3/11 17:18 (ภาพ N00S0114N_HG103 กับ N00S0115N_MU103 สีเดียวกัน): “ทำยังไงให้ เวลาดูตอนออกแบบ สีมันต่างกัน HG มันเงา MU มันด้าน”
+     เดิม: ทุกผิว roughness .72 สีเดียวกันจึงเหมือนกันทุกอย่าง
+     แก้: อ่านท้ายรหัสผิว · HG = ผิวลื่น เคลือบใส สะท้อนแถบแสง (skinGlossEnv พื้นมืด แถบสว่าง ไม่ทำให้สีซีด) · MU = ด้าน ไม่สะท้อน · รหัสอื่นคงเดิม · ปิด SN_OFF.skinFinish=1 */
+  const fin=skinFinish(sk.key); if(fin==="HG"){ o.roughness=.14; o.reflectivity=1; o.clearcoat=1; o.clearcoatRoughness=.04; try{ const ev=skinGlossEnv(); if(ev){ o.envMap=ev; o.envMapIntensity=1.25; } }catch(e){ console.warn("glossEnv:",e); } } else if(fin==="MU"){ o.roughness=.96; }
+  const m=fin==="HG"?new THREE.MeshPhysicalMaterial(o):new THREE.MeshStandardMaterial(o);
+  m.userData.sxLum=skinLum(sk,hasImg);   /* v1.652 */
   if(state.ghost){ m.transparent=true; m.opacity=.32; m.depthWrite=false; }
   if(dbl) m.side=THREE.DoubleSide;
   return (_skinMatC[k]=m);
@@ -5916,6 +5932,10 @@ function orientMatrix(orient,yaw){
 }
 // base face shape (centered, x=L, y=W) with circular through-holes added
 const edgeMat=new THREE.LineBasicMaterial({color:0x111111});
+/* ───────── v1.652: เส้นบนสีเข้ม ─────────
+   ผู้ใช้ 3/11 17:18 (ภาพบาน N00S0114N ลาย PCWx50 มองแทบไม่เห็น): “สีโทนมืด เส้นบานต้องขาวไหม ครับ มองไม่เห็น ลายหน้าบานเลย”
+   เดิม: เส้นขอบดำเสมอ บนสีเข้มจึงกลืน · แก้: ผิวสว่างต่ำกว่า .42 ใช้เส้นสีขาวนวล · ปิด SN_OFF.darkEdge=1 */
+const edgeMatLight=new THREE.LineBasicMaterial({color:0xe6e6e6});
 /* ── v20.1: แคชรูปทรง + เส้นขอบของชิ้น ─────────────────────────────
    ตัวที่กินเวลาที่สุดตอนวาดฉากคือการปั้นรูปทรง (ควักรู/เพ/ร่อง ด้วย ExtrudeGeometry)
    กับ EdgesGeometry ที่ไล่หาเส้นขอบจากสามเหลี่ยมทุกอันใหม่ทุกครั้ง
@@ -6533,7 +6553,8 @@ function skinPairApply(b,r){
 function addEdges(mesh,geo){
   /* v13.7: ถ้าชิ้นเตรียมเส้นขอบมาเองแล้ว (แผ่นที่เซาะร่อง — ตัดรอยต่อชั้นออกแล้ว) ใช้ตัวนั้น */
   const pre=geo&&geo.userData&&geo.userData.edges;
-  const el=new THREE.LineSegments(pre||new THREE.EdgesGeometry(geo,25),edgeMat);
+  let _em=edgeMat; try{ const m0=Array.isArray(mesh.material)?mesh.material[0]:mesh.material, lm=m0&&m0.userData&&m0.userData.sxLum; if(!snOff("darkEdge")&&lm!=null&&lm<.42) _em=edgeMatLight; }catch(e){}   /* v1.652 */
+  const el=new THREE.LineSegments(pre||new THREE.EdgesGeometry(geo,25),_em);
   el.raycast=function(){}; el.userData.edge=true; mesh.add(el); return el; }
 function isBlind(h,b){ return !!h.face && (h.depth>0) && h.depth < (b.T||18)-0.5; }   // รูตัน (ไม่ทะลุ)
 /* v7.27: ร่อง/บากทะลุรูปสี่เหลี่ยมกลางแผ่น (b.cuts) — เจาะเป็นรูจริงในเนื้อไม้
@@ -30471,6 +30492,8 @@ function boardRole(b){
      SN_OFF.dwgNoCount=1  หน้ารวมวัสดุ กลับมาโชว์จำนวน บาน/จุด/เส้น/ตัว/ชุด (v1.633)
      SN_OFF.dwgPullImg=1  การ์ดมือจับไม่ใช้รูปที่อัปโหลด ไม่มีรูปในหน้าต่าง 🖼 · การ์ดเดียวเหมือนเดิม (v1.633)
      SN_OFF.dwgDoorName=1 ไม่แสดงชื่อรุ่นแบบบานที่ตั้งเอง (v1.633)
+     SN_OFF.skinFinish=1  ผิว HG กับ MU เงาเท่ากันแบบเดิม (v1.652)
+     SN_OFF.darkEdge=1    เส้นขอบบนสีเข้มเป็นสีดำแบบเดิม (v1.652)
      SN_OFF.jwaLight=1    ชุดผนังไม่มีตัวเลือกไม้วิ่งไฟ (v1.651)
      SN_OFF.jwaCol=1      โครงผนังไม่ลึกตามเสา (v1.650)
      SN_OFF.jwaHost=1     แผงตู้ไม่มีปุ่มชุดผนัง (v1.650)
@@ -41631,7 +41654,10 @@ function matColorOf(b){ const cc=((state.cabColors||{})[b.cabInst])||{}; if(/^fa
 function matRuleIssues(onlyInst){ if(snOff("matRules")) return []; const by={}, put=(k,o,cab)=>{ const x=by[k]||(by[k]=Object.assign({cabs:[]},o)); if(cab&&x.cabs.indexOf(cab)<0) x.cabs.push(cab); };
   (state.boards||[]).forEach(b=>{ if(!b||b._virtual||(onlyInst!=null&&String(b.cabInst)!==String(onlyInst))) return; const cab=String(b.cab||"");
     if(/^face/.test(String(b._csType||""))){ const c=matColorOf(b), t=costMelToken(c); if(t&&t[3]==="M") put("bend|"+c,{kind:"bend",color:c,msg:"กล่องโค้งสี "+c+" เป็นเมลามีน ดัดโค้งแล้วแตก เปลี่ยนสีหน้าบาน"},cab); return; }
-    if(b._csP||!dwgIsDoor(b)||!dwgDoorReal(b)) return; let s=""; try{ s=String(doorShapeCode(b)||"").trim(); }catch(e){} if(!s) return; const isM=/^M/i.test(s); let rel=false; try{ rel=!!doorReliefProfiles()[s.toUpperCase()]; }catch(e){} if(!isM&&!rel) return;
+    /* ───────── v1.652: แบบบาน P คืองานทำสี ─────────
+       ผู้ใช้ 3/11 17:18 (ภาพคำเตือน PCWx50 สี N00S0114N): “งานที่แบบบานขึ้นต้น ด้วย P คืองานทำสี เลือกสีที่ขึ้นต้น ด้วย N00S ถูกแล้ว · งานเคลือบ บานขึ้นต้นด้วย M ครับผมก็บอกไปแล้ว”
+       เดิม (1.635): ผมตีความเกิน นับทุกแบบที่มีลายเป็นงานเคลือบ PCWx50 จึงโดนเตือนทั้งสองข้อ · แก้: ขึ้นต้น P ไม่ตรวจกฎเคลือบ */
+    if(b._csP||!dwgIsDoor(b)||!dwgDoorReal(b)) return; let s=""; try{ s=String(doorShapeCode(b)||"").trim(); }catch(e){} if(!s||/^P/i.test(s)) return; const isM=/^M/i.test(s); let rel=false; try{ rel=!!doorReliefProfiles()[s.toUpperCase()]; }catch(e){} if(!isM&&!rel) return;
     if(!isM) put("style|"+s,{kind:"style",style:s,msg:"บานโปรไฟล์ "+s+" รหัสแบบบานต้องขึ้นต้นด้วย M"},cab);
     const c=matColorOf(b), t=costMelToken(c); if(t&&t[3]!=="P") put("door|"+s+"|"+c,{kind:"door",style:s,color:c,msg:"บานโปรไฟล์ "+s+" สี "+c+(t[3]==="M"?" เป็นเมลามีน":"")+" ใช้ไม่ได้ ต้องเป็นสีที่ตัวที่ 4 เป็น P"},cab); });
   return Object.keys(by).map(k=>Object.assign({key:k},by[k])); }
