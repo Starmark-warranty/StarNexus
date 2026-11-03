@@ -3283,7 +3283,7 @@ body[data-theme="dark"] .splash-dots span{background:rgba(255,255,255,.25)}
    ===================================================================== */
 /* ---- APP_META: แหล่งความจริงเดียวของเวอร์ชัน (ดูได้จาก console / คลิกชื่อแอป) ---- */
 const APP_META={
-  name:"StarNexus", version:"1.627", build:"2026-11-03/fg-price-cat",
+  name:"StarNexus", version:"1.628", build:"2026-11-03/cost-code-nowrap",
   file:"StarNexus.html", basedOn:"Furnitech_V3.html (v3.11)",
   /* ───────── เริ่มนับเวอร์ชันใหม่ที่ 1.001 (21/08/2026) ─────────
      ของเดิมนับมาถึง 42.1 แล้ววิ่งเป็นทศนิยมสองชั้นซึ่งอ่านลำดับยาก
@@ -3291,6 +3291,7 @@ const APP_META={
      ประวัติเก่าเก็บไว้ทั้งหมดตามเลขเดิม ไม่ไล่เขียนใหม่ เพราะเลขในนั้นถูกอ้างถึงไปแล้ว
      รายการที่อยู่ใต้ 1.001 ลงไปจึงเป็นเลขชุดเก่า อ่านต่อกันได้ตามวันที่ */
   changelog:[
+    ["1.628","2026-11-03","FIX หน้า 💰 รหัสตกบรรทัด (ผู้ใช้ 3/11 08:45 ภาพ 8101937 / 6: “รหัสตก เลข 6 ครับ”) — ช่องรหัสตั้งให้ตัดได้ทุกตัวอักษร พอช่องชื่อยาวก็บีบช่องรหัสจนเลขท้ายตกไปบรรทัดใหม่ ตอนนี้รหัสอยู่บรรทัดเดียวเสมอ ช่องชื่อเป็นฝ่ายขึ้นบรรทัดใหม่แทน"],
     ["1.627","2026-11-03","FEAT ขอโค้ด · ราคา · หมวด (ผู้ใช้ 3/11 08:24–08:29 “ดึงราคาใน Starstock มาใส่ไว้ที่นี่สิครับ · ผมจะเพิ่มหมวด ตั้งหมวดยังไง · ไม่มี ก็แนะนำให้ไปขอโค้ด เหมือนตอนส่งออกหา Production · ผมจะตั้งเองไว้ใช้ในโปรแกรม ใน AX ไม่มีหมวด”) — ① ก่อนส่ง Production ถ้ามีของไม่มีรหัส ถามก่อน พร้อมชื่อไว้ขอเปิดรหัสและปุ่มคัดลอก · รายการ BOM และหน้า 💰 มีชื่อขอโค้ดเหมือนกัน · ขอบที่ไม่มีใน AX เข้ารายการนี้ด้วย · หน้า 💰 แยก “มีใน AX ยังไม่มีราคา” ออกจาก “ไม่มีใน AX” ② Fitting Global มีคอลัมน์ราคาจาก StarStock กรองมี/ไม่มีราคาได้ เก็บชุดล่าสุดไว้ในเครื่อง เปิดครั้งต่อไปมีราคาทันที อัปเดตเองเมื่อ StarStock เปลี่ยน ③ ตั้งหมวดเอง: กรองรหัส/ชื่อแล้วกดตั้งหมวด รายการใหม่ที่ตรงเงื่อนไขเข้าหมวดเอง · กดช่องหมวดของแถว = ตั้งรายตัว · บันทึกร่วมทุกเครื่อง · ปิด SN_OFF.sendMissCode fgPrice fgCatRule"],
     ["1.626","2026-11-03","FEAT รหัสขอบตามที่มีใน AX (ผู้ใช้ 3/11 08:17 “น่าจะต้องให้มันหาขอบที่มีใน AX ครับ เช่น 81021376 มันไม่มี แต่มันมีที่ 81022376 ครับ ขอบทุกตัวจะมีที่สูงกว่าเสมอ ยกเว้นถ้าไม่มี ค่อยบอกว่าใน AX ยังไม่มี”) — ความกว้างที่คำนวณได้ไม่มีใน Fitting Global = ใช้ความกว้างถัดไปที่สูงกว่า ทั้งไฟล์ส่งออก รายการตัด และราคา · ไม่มีเลย = รหัสเดิม ขึ้นเตือนและ “ไม่มีใน AX” · มือจับ (“ตัวมือจับ ได้ลองหารายการใน AX หรือยังครับ”): ค้น 1F019-1-064 ในชื่อ AX เอง เจอรายการเดียวใส่ Purchase Item ID ให้ · หน้า 💰 บอกเหตุผลใต้ “ไม่มีใน AX” · ปิด SN_OFF.edgeAxPick SN_OFF.pullAxAuto"],
     ["1.625","2026-11-03","FEAT มือจับฝังเซาะร่อง 1F019-1-064 (ผู้ใช้ 3/11 07:47 ภาพ Futuretech “เพิ่มมือจับตัวนี้ให้หน่อย แล้วก็ตั้งไว้ใน Element ด้วยครับ เดี๋ยวผมไปใส่รหัส AX เอง”) — แถวใน Element → Fittings รหัส AX ว่างไว้ · ร่องในบาน 71×33 ลึก 9 มุม R3 (ประเมินจากแบบ ภาพไม่บอกยาวตัวฝัง) · รูปทรง 3D ใหม่ pull3D = flush ขอบโค้ง 76×38 ปากหลุม 64×22 ลึกรวม 15 โครมเงา · การ์ดในกล่อง 🖐 เห็นรูปจริง · บานเลื่อนวางมือจับใหม่ อยู่ด้านนอก ห่างขอบพ้นระยะซ้อน (เดิมไปอยู่ด้านในที่บานอีกใบบัง) · เลือกมือจับรุ่นปกติบนบานที่มีมือจับฝัง = ถอดมือจับฝังให้ (เดิมซ้อนกันสองแบบ) · ปิด SN_OFF.pullFlush pull1F019 sdcPullIn pullDropEhp"],
@@ -42538,7 +42539,11 @@ function costEditor(opt){
     T.innerHTML='<tr><th '+th+'>รหัส</th><th '+th+'>ชื่อ</th>'+(szOn?'<th '+th+'>ขนาด</th>':'')+'<th '+th+'>หน่วย</th><th '+th.replace("left","right")+'>ใช้ใน'+(opt.inst?'ตู้นี้':'งานนี้')+'</th>'+(stkOn?'<th '+th+' title="จาก StarStock (Google Drive): ราคาซื้อ · ราคาทุนใน AX ต่อหน่วยของ AX แล้วแปลงเป็นหน่วยของ SN">ราคา AX</th>':'')+'<th '+th+'>'+COST_TABS[tab].u+'</th><th '+th.replace("left","right")+'>รวม</th></tr>'
       +(L.length?L.map((x,i)=>{ const p=costPrice(tab,x.key,x.code), own=costNum(c[tab][x.key]), z0=costZero(c[tab][x.key]), mel=(tab==="surf"&&c[tab][x.key]==null&&costIsMel(x.key,x.code));
         const sub=(x.code&&x.code!==x.key.replace(/@m$/,""))?('<div style="font-size:10.5px;color:var(--ink-dim)">'+escapeHtml(x.code)+'</div>'):'';
-        return '<tr data-i="'+i+'" style="border-bottom:1px solid var(--line)"><td style="padding:4px 6px;font-family:var(--mono);font-size:11.5px;word-break:break-all">'+escapeHtml(x.key)+sub+'</td>'
+        /* ───────── v1.628: รหัสไม่ตกบรรทัด ─────────
+           ผู้ใช้ 3/11 08:45 (ภาพหน้า 💰 8101937 / 6): “รหัสตก เลข 6 ครับ”
+           เดิม: word-break:break-all ตัดได้ทุกตัวอักษร ตารางจึงบีบช่องรหัสก่อน พอชื่อยาว เลขท้ายรหัสก็ตกไปบรรทัดใหม่ อ่านเป็นคนละรหัส
+           ตอนนี้: รหัสบรรทัดเดียวเสมอ ช่องชื่อเป็นฝ่ายขึ้นบรรทัดใหม่ · รหัสยาวมาก = ตารางเลื่อนซ้ายขวาได้ (กล่องมี overflow:auto อยู่แล้ว) */
+        return '<tr data-i="'+i+'" style="border-bottom:1px solid var(--line)"><td style="padding:4px 6px;font-family:var(--mono);font-size:11.5px;white-space:nowrap">'+escapeHtml(x.key)+sub+'</td>'
           +'<td style="padding:4px 6px">'+costNameCell(tab,x)+'</td>'+(szOn?(()=>{ const z=costSizeOf(tab,x); return '<td style="padding:4px 6px;white-space:nowrap;font-family:var(--mono);font-size:11.5px"'+(z.title?(' title="'+escapeHtml(z.title)+'"'):'')+'>'+escapeHtml(z.t)+'</td>'; })():'')+'<td style="padding:4px 6px;white-space:nowrap">'+escapeHtml(String(x.unit||""))+'</td>'   /* v1.518: ชื่อจาก StarStock · v1.602: + ขนาด */
           +'<td style="padding:4px 6px;text-align:right;font-family:var(--mono)">'+fmtQ(x,tab)+'</td>'
           +(stkOn?('<td style="padding:4px 6px;font-size:11px;line-height:1.35">'+stkCell(tab,x)+'</td>'):'')   /* v1.514 */
