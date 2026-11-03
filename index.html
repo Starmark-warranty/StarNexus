@@ -3283,7 +3283,7 @@ body[data-theme="dark"] .splash-dots span{background:rgba(255,255,255,.25)}
    ===================================================================== */
 /* ---- APP_META: แหล่งความจริงเดียวของเวอร์ชัน (ดูได้จาก console / คลิกชื่อแอป) ---- */
 const APP_META={
-  name:"StarNexus", version:"1.647", build:"2026-11-03/door-color-desc",
+  name:"StarNexus", version:"1.648", build:"2026-11-03/fg-tab-cat",
   file:"StarNexus.html", basedOn:"Furnitech_V3.html (v3.11)",
   /* ───────── เริ่มนับเวอร์ชันใหม่ที่ 1.001 (21/08/2026) ─────────
      ของเดิมนับมาถึง 42.1 แล้ววิ่งเป็นทศนิยมสองชั้นซึ่งอ่านลำดับยาก
@@ -3291,6 +3291,7 @@ const APP_META={
      ประวัติเก่าเก็บไว้ทั้งหมดตามเลขเดิม ไม่ไล่เขียนใหม่ เพราะเลขในนั้นถูกอ้างถึงไปแล้ว
      รายการที่อยู่ใต้ 1.001 ลงไปจึงเป็นเลขชุดเก่า อ่านต่อกันได้ตามวันที่ */
   changelog:[
+    ["1.648","2026-11-03","FEAT แท็บ Fitting Global ตั้งหมวดได้ (ผู้ใช้ 16:40 ภาพหน้าต่างหลักมีแถวตั้งหมวด แท็บแยกไม่มี: ดูตัวที่แยกแท็บให้หน่อย มันไม่มีตั้งหมวดแยก) — แถวตั้งหมวด จัดการหมวด และกดช่องหมวดรายแถวใช้ในแท็บได้ โปรแกรมหลักเป็นคนบันทึก ค่าตั้งส่วนอื่นไม่ถูกทับ · สองฝั่งอัปเดตตามกันทันที"],
     ["1.647","2026-11-03","FIX การ์ดสีหน้าบานใช้คำอธิบายผิดแถว (ผู้ใช้ 15:56 ภาพ N00S0018N สีโครง Starmark_TOA PUM1 HG56 · สีหน้าบาน HG56 · Surface StarmarkWhite Emboss: รูปแรกรายละเอียดถูกครับ รูป 2 เอามาจากไหน) — การ์ดบานอ่านคำอธิบายจากแถวผิว (Surfaces) แก้ให้อ่านคำอธิบายของรหัสสีจากแท็บสี/วัสดุก่อน และรหัสเดียวกับการ์ดสีโครงใช้ข้อความเดียวกัน"],
     ["1.646","2026-11-03","FIX ชื่อในใบเสนอราคา (ผู้ใช้ 15:48 ภาพแถว TNF066 ชื่อ ฟิลเลอร์ · MWA114 ชื่อเป็นรหัส: แก้ชื่อที่ออกได้ไหมครับ เป็น กล่องโค้ง ครับ TNF066 · MWA021 ก็คือ ตู้เสื้อผ้า 2 บานเปิด · MWA114 ตู้ช่องโล่งครับ) — กล่องโค้งทุกรหัสชื่อ กล่องโค้ง · ตั้งชื่อตั้งต้น MWA021 MWA114 ขึ้นทั้งใบเสนอราคาและการ์ดแคตตาล็อก · ชื่อที่ตั้งเองในแคตตาล็อกมาก่อนเสมอ"],
     ["1.645","2026-11-03","UI ช่องขนาดตู้ในแผงห้องออกแบบเห็นเลข 4 หลักครบ (ผู้ใช้ 15:01 ภาพ ก 900 ส 230 ล 580: ช่องตู้ เห็นเลขไม่เต็ม) — ลูกศรเพิ่มลดกินที่ในช่อง 2300 จึงเหลือ 230 เอาลูกศรออก ยังเลือกขนาดจากรายการและกดลูกศรขึ้นลงบนคีย์บอร์ดได้"],
@@ -66919,12 +66920,25 @@ function sxlFgMatcher(v,wild){var inc=[],exc=[];String(v||'').toLowerCase().spli
 function fgTabOn(){ return !snOff("fgTab")&&/(^|[#&])fgtab(=1)?($|&)/.test(location.hash||""); }
 function fgTabOpen(){ const w=window.open(location.href.split("#")[0]+"#fgtab","snFgTab"); if(!w){ try{ toast("เบราว์เซอร์กันหน้าต่างใหม่ — อนุญาต pop-up ของหน้านี้ แล้วกดอีกครั้ง"); }catch(e){} return false; } window.__fgTabWin=w; try{ w.focus(); }catch(e){} return true; }
 window.addEventListener("message",function(ev){ const d=ev.data; if(!d||d.t!=="sn-fgtab-need"||fgTabOn()||!ev.source) return; if(ev.source!==window.__fgTabWin&&ev.origin!==location.origin) return; const S=SXL.s.fitting_global;
-  try{ ev.source.postMessage((S&&S.ready&&S.rows&&S.rows.length)?{t:"sn-fgtab-data",rows:S.rows,name:S.name,mod:S.mod,src:S.src}:{t:"sn-fgtab-none"},"*"); }catch(e){ console.error("fgTab:",e); } });
+  try{ ev.source.postMessage((S&&S.ready&&S.rows&&S.rows.length)?{t:"sn-fgtab-data",rows:S.rows,name:S.name,mod:S.mod,src:S.src,rules:Array.isArray(settings.fgCatRules)?settings.fgCatRules:[]}:{t:"sn-fgtab-none"},"*"); }catch(e){ console.error("fgTab:",e); } });
+/* ───────── v1.648: ตั้งหมวดจากแท็บแยก ─────────
+   ผู้ใช้ 3/11 16:40 (ภาพหน้าต่างหลักมีแถว 🏷 ตั้งหมวด · แท็บแยกไม่มี): “ดูตัวที่แยกแท็บให้หน่อย มันไม่มีตั้ง หมวดแยก”
+   เดิม (1.641): แท็บอ่านอย่างเดียว เพราะ settings ในแท็บโหลดไม่ครบ ถ้าบันทึกเองจะทับ Variables/Element ของจริง จึงซ่อนแถวตั้งหมวด
+   แก้: แท็บส่งเฉพาะรายการหมวดให้โปรแกรมหลักเป็นคนบันทึก (แท็บยังบันทึกค่าตั้งเองไม่ได้เหมือนเดิม) · โปรแกรมหลักแก้หมวด = ส่งกลับให้แท็บวาดใหม่
+     โปรแกรมหลักปิดอยู่ = เก็บรายการหมวดลงในเครื่องโดยอ่านค่าตั้งเต็มก่อน แล้วบอกผู้ใช้ เพราะยังไม่ขึ้นส่วนกลาง */
+function fgTabCatSend(R){ let ok=false; try{ if(window.opener&&!window.opener.closed){ window.opener.postMessage({t:"sn-fgtab-cat",rules:R},"*"); ok=true; } }catch(e){} if(ok) return;
+  (async()=>{ try{ const s=await lsGet("sxlocaltrial:furnitech:settings",null); if(s&&typeof s==="object"){ s.fgCatRules=R; await lsSet("sxlocaltrial:furnitech:settings",s); toast("โปรแกรมหลักปิดอยู่ หมวดเก็บในเครื่องนี้ก่อน ยังไม่ขึ้นส่วนกลาง เปิดโปรแกรมหลักแล้วตั้งอีกครั้ง"); } else toast("โปรแกรมหลักปิดอยู่ บันทึกหมวดไม่ได้"); }catch(e){ console.error("fgTabCat:",e); toast("บันทึกหมวดไม่สำเร็จ"); } })(); }
+function fgTabCatPush(R){ try{ const w=window.__fgTabWin; if(w&&!w.closed) w.postMessage({t:"sn-fgtab-cat",rules:R},"*"); }catch(e){} }
+window.addEventListener("message",function(ev){ const d=ev.data; if(!d||d.t!=="sn-fgtab-cat"||!Array.isArray(d.rules)) return; const rules=d.rules.filter(q=>q&&typeof q==="object"&&String(q.c||"").trim());
+  if(fgTabOn()){ if(!window.opener||ev.source!==window.opener) return; settings.fgCatRules=rules; window.dispatchEvent(new Event("sn-fgcat")); return; }
+  if(ev.source!==window.__fgTabWin&&ev.origin!==location.origin&&!(ev.origin==="null"&&location.protocol==="file:")) return;
+  settings.fgCatRules=rules; window.dispatchEvent(new Event("sn-fgcat")); try{ Promise.resolve(catSaveSettings()).catch(e=>console.error("fgCat:",e)); }catch(e){ console.error("fgCat:",e); } });
 function fgTabAsk(){ return new Promise(res=>{ let done=false; const fin=v=>{ if(done) return; done=true; removeEventListener("message",on); res(v); }, on=ev=>{ const d=ev.data; if(!d||ev.source!==window.opener) return; if(d.t==="sn-fgtab-data"&&Array.isArray(d.rows)&&d.rows.length) fin(d); else if(d.t==="sn-fgtab-none") fin(null); };
     addEventListener("message",on); try{ if(!window.opener||window.opener.closed){ fin(null); return; } window.opener.postMessage({t:"sn-fgtab-need"},"*"); }catch(e){ fin(null); return; } setTimeout(()=>fin(null),6000); }); }
 async function fgTabBoot(){ document.title="Fitting Global — StarNexus";
   try{ const s=await lsGet("sxlocaltrial:furnitech:settings",null); if(s&&Array.isArray(s.fgCatRules)) settings.fgCatRules=s.fgCatRules; }catch(e){ console.warn("fgTab settings:",e); }
   let D=null; try{ D=await fgTabAsk(); }catch(e){}
+  if(D&&Array.isArray(D.rules)) settings.fgCatRules=D.rules;   /* v1.648: หมวดล่าสุดจากโปรแกรมหลัก */
   if(D&&D.src!=="odoo"){ try{ await sxlIdbPut("fg:tab",{rows:D.rows,name:D.name,mod:D.mod,src:D.src}); }catch(e){ console.warn("fgTab put:",e); } }
   if(!D){ let a=null,b=null; try{ a=await sxlIdbGet("fg:ax"); }catch(e){} try{ b=await sxlIdbGet("fg:tab"); }catch(e){}
     const A=(a&&Array.isArray(a.rows)&&a.rows.length)?{rows:a.rows,name:"AX · "+SXL_FG_AX.system+"/"+SXL_FG_AX.endpoint,mod:a.at||0,src:"odoo"}:null, B=(b&&Array.isArray(b.rows)&&b.rows.length)?b:null;
@@ -66964,7 +66978,7 @@ function sxlFgView(){
   +'<p id="sxlFgSrc" style="margin:4px 0 10px;color:#506577;font-size:13px"></p>'
   +'<div style="display:flex;gap:8px;flex-wrap:wrap;align-items:center"><input id="sxlFgQ" type="search" placeholder="ค้นทุกช่อง — เว้นวรรคคั่นหลายคำ" style="flex:1;min-width:220px;padding:8px 10px;border:1px solid #93a9b8;border-radius:6px;font:inherit;color:inherit;background:#fff">'
   +'<label style="white-space:nowrap;cursor:pointer"><input type="checkbox" id="sxlFgC"> ซ่อนที่ยกเลิก</label><button id="sxlFgClr" style="'+bs+'">ล้างตัวกรอง</button><button id="sxlFgStk" style="'+bs+'" title="ดึงราคาล่าสุดจาก StarStock">⟳ ราคา StarStock</button></div>'   /* v1.607: ช่องหน่วยย้ายลงแถวกรอง */
-  +(snOff('fgCatRule')?'':('<div style="display:'+(_ft?'none':'flex')+';gap:6px;flex-wrap:wrap;align-items:center;margin-top:8px;font-size:13px"><b style="font-weight:600">🏷 ตั้งหมวด</b><input id="sxlFgCatIn" list="sxlFgCatDl" placeholder="ชื่อหมวด เช่น ขอบ · มือจับ" style="width:190px;padding:5px 8px;border:1px solid #93a9b8;border-radius:6px;font:inherit;color:inherit;background:#fff"><datalist id="sxlFgCatDl"></datalist>'
+  +(snOff('fgCatRule')?'':('<div style="display:flex;gap:6px;flex-wrap:wrap;align-items:center;margin-top:8px;font-size:13px"><b style="font-weight:600">🏷 ตั้งหมวด</b><input id="sxlFgCatIn" list="sxlFgCatDl" placeholder="ชื่อหมวด เช่น ขอบ · มือจับ" style="width:190px;padding:5px 8px;border:1px solid #93a9b8;border-radius:6px;font:inherit;color:inherit;background:#fff"><datalist id="sxlFgCatDl"></datalist>'
    +'<button id="sxlFgCatSet" style="'+bs+';padding:5px 12px;background:#1f3a5f;color:#fff;border-color:transparent" title="ใช้ช่องกรองรหัสและกรองชื่อในตารางเป็นเงื่อนไข รายการใหม่ที่ตรงจะเข้าหมวดนี้เอง">ตั้งให้รายการที่กรองรหัส/ชื่ออยู่</button><button id="sxlFgCatMg" style="'+bs+';padding:5px 12px"></button><span id="sxlFgCatMsg" style="color:#506577;font-size:12.5px">กรองรหัสหรือชื่อในตารางก่อน · กดช่องหมวดของแถว = ตั้งรายตัว</span></div>'
    +'<div id="sxlFgCatList" style="display:none;max-height:150px;overflow:auto;margin-top:6px;border:1px solid #8884;border-radius:8px;padding:4px 8px;font-size:12.5px"></div>'))
   +'<p id="sxlFgN" role="status" style="margin:8px 0 6px;font-size:13px;color:#506577"></p>'
@@ -67006,7 +67020,9 @@ function sxlFgView(){
   $ct.value=(v==null||v===''&&!cats[''])?'*':v;if($ct.selectedIndex<0)$ct.value='*';
   if(!$cmg)return;var R=rulesOf();$cdl.innerHTML=keys.map(function(c){return '<option value="'+esc2(c)+'"></option>'}).join('');$cmg.textContent='จัดการหมวด ('+R.length+')';
   $clist.innerHTML=R.length?R.map(function(q,k){return '<div style="display:flex;gap:8px;align-items:center;padding:2px 0;border-bottom:1px solid #8882"><b style="min-width:110px">'+esc2(q.c)+'</b><span style="flex:1;color:#506577;font-family:ui-monospace,Consolas,monospace;font-size:12px">'+(q.x?('รหัส = '+esc2(q.x)):[q.fc?('รหัส: '+esc2(q.fc)):'',q.fn?('ชื่อ: '+esc2(q.fn)):''].filter(Boolean).join(' · '))+'</span><span style="white-space:nowrap">'+(ruleN[k]||0).toLocaleString()+' รายการ</span><button data-rd="'+k+'" style="'+bs+';padding:1px 8px;font-size:12px">ลบ</button></div>'}).join(''):'<div style="color:#506577;padding:4px 0">ยังไม่ได้ตั้งหมวด</div>'};
- var catChanged=function(){if(_ft)return;var sc=$b.parentNode.parentNode.scrollTop;reCat();paintCats();paintSrc();draw();$b.parentNode.parentNode.scrollTop=sc;try{Promise.resolve(catSaveSettings()).catch(function(e){console.error('fgCat:',e)})}catch(e){console.error('fgCat:',e)}};
+ /* v1.648: แท็บส่งให้โปรแกรมหลักบันทึก · โปรแกรมหลักบันทึกแล้วส่งให้แท็บ · onCat = อีกฝั่งแก้มา วาดใหม่อย่างเดียว */
+ var catChanged=function(){var sc=$b.parentNode.parentNode.scrollTop;reCat();paintCats();paintSrc();draw();$b.parentNode.parentNode.scrollTop=sc;if(_ft){fgTabCatSend(rulesOf());return}try{Promise.resolve(catSaveSettings()).catch(function(e){console.error('fgCat:',e)})}catch(e){console.error('fgCat:',e)}fgTabCatPush(rulesOf())};
+ var onCat=function(){if(!box.isConnected){window.removeEventListener('sn-fgcat',onCat);return}var sc=$b.parentNode.parentNode.scrollTop;reCat();paintCats();paintSrc();draw();$b.parentNode.parentNode.scrollTop=sc};window.addEventListener('sn-fgcat',onCat);
  if($cmg){
   box.querySelector('#sxlFgCatSet').onclick=function(){var c=$cin.value.trim(),fc=$fc.value.trim(),fn=$fn.value.trim();
    if(!c){$cmsg.textContent='พิมพ์ชื่อหมวดก่อน';$cin.focus();return}
@@ -67015,7 +67031,7 @@ function sxlFgView(){
    var k=R.indexOf(same||R[R.length-1]);$cmsg.textContent='ตั้งหมวด “'+c+'” แล้ว · '+(ruleN[k]||0).toLocaleString()+' รายการ';};
   $cmg.onclick=function(){$clist.style.display=$clist.style.display==='none'?'block':'none'};
   $clist.onclick=function(e){var b=e.target.closest&&e.target.closest('[data-rd]');if(!b)return;var R=rulesOf().slice();R.splice(+b.getAttribute('data-rd'),1);settings.fgCatRules=R;catChanged()};
-  $b.onclick=function(e){var cp=e.target.closest&&e.target.closest('[data-cp]');if(cp){var seltx='';try{seltx=String(window.getSelection?window.getSelection():'')}catch(er){}if(seltx)return;var tx=String(cp.textContent||'').trim();if(tx){copyText(tx);var bg0=cp.style.background;cp.style.background='#d6f3df';setTimeout(function(){cp.style.background=bg0},450)}return}if(_ft)return;var cell=e.target.closest&&e.target.closest('[data-ci]');if(!cell||cell.querySelector('input'))return;var i=+cell.getAttribute('data-ci'),code=String(all[i].item_number||''),inp=document.createElement('input'),done=false;
+  $b.onclick=function(e){var cp=e.target.closest&&e.target.closest('[data-cp]');if(cp){var seltx='';try{seltx=String(window.getSelection?window.getSelection():'')}catch(er){}if(seltx)return;var tx=String(cp.textContent||'').trim();if(tx){copyText(tx);var bg0=cp.style.background;cp.style.background='#d6f3df';setTimeout(function(){cp.style.background=bg0},450)}return}var cell=e.target.closest&&e.target.closest('[data-ci]');if(!cell||cell.querySelector('input'))return;var i=+cell.getAttribute('data-ci'),code=String(all[i].item_number||''),inp=document.createElement('input'),done=false;
    inp.setAttribute('list','sxlFgCatDl');inp.value=catA[i]||'';inp.placeholder='ชื่อหมวด';inp.style.cssText=fs;cell.innerHTML='';cell.appendChild(inp);inp.focus();inp.select();
    var fin=function(save){if(done)return;done=true;if(!save){var sc=$b.parentNode.parentNode.scrollTop;draw();$b.parentNode.parentNode.scrollTop=sc;return}var c=inp.value.trim(),R=rulesOf().filter(function(q){return String(q.x||'')!==code});if(c)R.push({c:c,x:code});settings.fgCatRules=R;catChanged()};
    inp.onkeydown=function(ev){if(ev.key==='Enter'){ev.preventDefault();fin(true)}else if(ev.key==='Escape'){ev.preventDefault();fin(false)}};inp.onblur=function(){fin(true)}}}
