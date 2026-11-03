@@ -3283,7 +3283,7 @@ body[data-theme="dark"] .splash-dots span{background:rgba(255,255,255,.25)}
    ===================================================================== */
 /* ---- APP_META: แหล่งความจริงเดียวของเวอร์ชัน (ดูได้จาก console / คลิกชื่อแอป) ---- */
 const APP_META={
-  name:"StarNexus", version:"1.638", build:"2026-11-03/material-page-all",
+  name:"StarNexus", version:"1.639", build:"2026-11-03/edge-group-send",
   file:"StarNexus.html", basedOn:"Furnitech_V3.html (v3.11)",
   /* ───────── เริ่มนับเวอร์ชันใหม่ที่ 1.001 (21/08/2026) ─────────
      ของเดิมนับมาถึง 42.1 แล้ววิ่งเป็นทศนิยมสองชั้นซึ่งอ่านลำดับยาก
@@ -3291,6 +3291,7 @@ const APP_META={
      ประวัติเก่าเก็บไว้ทั้งหมดตามเลขเดิม ไม่ไล่เขียนใหม่ เพราะเลขในนั้นถูกอ้างถึงไปแล้ว
      รายการที่อยู่ใต้ 1.001 ลงไปจึงเป็นเลขชุดเก่า อ่านต่อกันได้ตามวันที่ */
   changelog:[
+    ["1.639","2026-11-03","UX กดส่ง Production แล้วเช็คกรุ๊ปขอบให้ สีไหนยังออกหลายรหัสเปิดหน้าต่างกรุ๊ปที่ติ๊กไว้แล้ว กดกรุ๊ปแล้วส่งได้ทันที · ตารางตัดบอกว่ากรุ๊ปอะไรอยู่ (ผู้ใช้ 11:59)"],
     ["1.638","2026-11-03","FIX หน้ารวมวัสดุแสดงไม่ครบ มีแค่แบบที่ใช้มากสุด +1 แบบ (ผู้ใช้ 11:35) — บานพับ ราง LED มือจับ ดีไซน์บาน สีบาน สีโครง เนื้อไม้ ทุกแบบมีการ์ดของตัวเอง · มือจับไม่มีรูปก็มีการ์ด · สีโครงอ่านจาก Carcass ของตู้จริง ไม่หยิบฟิลเลอร์ที่เป็นสีบาน (ผู้ใช้ 11:37 การ์ดสีโครงขึ้น N03P0057N ทั้งที่ตู้เป็น N01M0029N) · ชื่อสีเลขหลักเดียวเช่น AK1 ก็แยกได้ และอ่านจากคำอธิบายผิวได้"],
     ["1.637","2026-11-03","CHANGE กล่องโค้งกับแผ่นปิดข้างที่กดใส่ ตู้ลึก 560 มีบานออก 580 · ตู้ลึก 580 มีบานออก 600 ไม่ใช่ 579/599 ตามหน้าบาน · ตู้เปิดโล่งและตู้ลึกอื่นคงเดิม (ผู้ใช้ 11:04)"],
     ["1.636","2026-11-03","FEAT 🔗 กรุ๊ปขอบในหน้า 💰 แท็บขอบ — สีเดียวกันรวมเป็นหน้ากว้างเดียว เช่น 80819297 · 80822297 → 80825297 ใช้รหัสนี้ทั้งราคา BOM ตารางตัด และส่ง Production ระดับออเดอร์ · ชิ้นที่ต้องการกว้างกว่าปลายทางไม่ถูกแทน · หนาต่างกันไม่รวมเอง แต่เลือกปลายทางข้ามความหนาได้ (ผู้ใช้ 10:01)"],
@@ -30456,6 +30457,7 @@ function boardRole(b){
      SN_OFF.dwgNoCount=1  หน้ารวมวัสดุ กลับมาโชว์จำนวน บาน/จุด/เส้น/ตัว/ชุด (v1.633)
      SN_OFF.dwgPullImg=1  การ์ดมือจับไม่ใช้รูปที่อัปโหลด ไม่มีรูปในหน้าต่าง 🖼 · การ์ดเดียวเหมือนเดิม (v1.633)
      SN_OFF.dwgDoorName=1 ไม่แสดงชื่อรุ่นแบบบานที่ตั้งเอง (v1.633)
+     SN_OFF.edgeGroupAsk=1 กดส่ง Production ไม่ถามกรุ๊ปขอบก่อนส่ง (v1.639)
      SN_OFF.dwgMatAll=1   หน้ารวมวัสดุ กลับไปแสดงแค่แบบที่ใช้มากสุดของแต่ละหมวด พร้อมคำว่า +1 แบบ (v1.638)
      SN_OFF.edgeGroup=1   ไม่มีปุ่มกรุ๊ปขอบ · ส่งออกและราคาใช้รหัสขอบตามหน้ากว้างจริงแบบเดิม (v1.636)
      SN_OFF.plCvbCeil=1   กล่องโค้งไม่มีตัวเลือกถึงฝ้า ไม่มีกล่องบน · ลงพื้นไม่เช็ค 2400 · กล่องกลับไปนับเป็นตู้ในแนวฟิลเลอร์บน (v1.635)
@@ -30989,19 +30991,25 @@ function edgeGroupRows(){ let R=null; window.__egOff=true; try{ R=costItems(cost
   out.forEach(g=>{ g.codes.sort((a,b)=>a.w-b.w); const t=g.codes[g.codes.length-1]; g.w=t.w; g.top=t.code; g.more=[]; const L=A&&A.get(g.key); if(L) L.filter(v=>v>t.w).forEach(v=>g.more.push(g.pre+String(v).padStart(2,"0")+g.col+t.sfx)); });
   return out.sort((a,b)=>a.col.localeCompare(b.col)||a.pre.localeCompare(b.pre)); }
 function edgeGroupCount(){ return Object.keys(state.edgeGroup||{}).length; }
-function edgeGroupDlg(){ return new Promise(res=>{ const rows=edgeGroupRows(), M0=state.edgeGroup||{}, E=escapeHtml, first=!Object.keys(M0).length, same=g=>rows.filter(o=>o!==g&&o.col===g.col&&o.w>=g.w);
+/* ───────── v1.639: กดส่ง Production แล้วเช็คกรุ๊ปขอบให้ก่อน ─────────
+   ผู้ใช้ 3/11 11:59 (ภาพใบสั่งของ 80825297 · 80819297 · 80822297 และตาราง EDGECODE1–4 ใน Production ยังสามรหัส): “ตอนส่งออก ไม่ได้กรุ๊ปเอจให้ด้วยหรอครับ” · “กรุ๊ปแล้วทุกชิ้นจะต้องออกโค้ตที่กรุ๊ปด้วยครับ”
+   ตรวจแล้ว: ทาง export ใช้รหัสกรุ๊ปครบ (_e1–_e4 กับแถว TYP7 มาจาก edgeOut) แต่กรุ๊ปมีผลเฉพาะออเดอร์ที่กด 🔗 แล้ว ซึ่งปุ่มอยู่ลึกในหน้า 💰 กดส่งโดยไม่ได้กรุ๊ปก็ออกไปหลายรหัสเงียบ ๆ
+   ตอนนี้: sendEdgeAsk ก่อนส่ง ถ้ามีสีที่ยังออกมากกว่า 1 รหัส เปิดหน้าต่างกรุ๊ปให้ ติ๊กไว้แล้ว กดปุ่มเดียว · ส่งแบบไม่กรุ๊ปได้ · ยกเลิกการส่งได้
+     ตารางตัดบอกว่ากรุ๊ปอะไรอยู่ · ปิด SN_OFF.edgeGroupAsk=1 */
+async function sendEdgeAsk(){ if(snOff("edgeGroup")||snOff("edgeGroupAsk")) return true; let L=[]; try{ L=edgeGroupRows().filter(g=>new Set(g.codes.map(x=>edgeGroupMap(x.code))).size>1); }catch(e){ console.error("edgeGroup:",e); return true; } if(!L.length) return true; return (await edgeGroupDlg({send:true}))!==null; }
+function edgeGroupDlg(opt){ const _send=!!(opt&&opt.send); return new Promise(res=>{ const rows=edgeGroupRows(), M0=state.edgeGroup||{}, E=escapeHtml, first=!Object.keys(M0).length, same=g=>rows.filter(o=>o!==g&&o.col===g.col&&o.w>=g.w);
   const show=rows.filter(g=>g.codes.length>1||M0[g.key]||same(g).length), ov=document.createElement("div"); ov.id="edgeGroupDlg"; ov.style.cssText="position:fixed;inset:0;z-index:440;background:rgba(0,0,0,.35);display:flex;align-items:center;justify-content:center";
   const fm=v=>(Math.round(v*100)/100).toLocaleString();
   ov.innerHTML='<div style="background:var(--solid,#fff);color:var(--ink,#222);border-radius:12px;box-shadow:0 10px 40px rgba(0,0,0,.35);padding:14px;width:min(680px,94vw);max-height:86vh;overflow:auto;font-size:13px">'
-    +'<div style="display:flex;align-items:center;margin-bottom:6px"><b>🔗 กรุ๊ปขอบ — สีเดียวกันใช้หน้ากว้างเดียว</b><span style="flex:1"></span><button class="ibtn" data-f="x" style="width:auto;flex:none">✕</button></div>'
+    +'<div style="display:flex;align-items:center;margin-bottom:6px"><b>'+(_send?'🔗 ก่อนส่ง Production — ขอบสีเดียวกันยังแยกหน้ากว้าง':'🔗 กรุ๊ปขอบ — สีเดียวกันใช้หน้ากว้างเดียว')+'</b><span style="flex:1"></span><button class="ibtn" data-f="x" style="width:auto;flex:none">✕</button></div>'
     +'<div style="font-size:11.5px;color:var(--ink-dim,#777);margin-bottom:8px;line-height:1.55">รหัสปลายทางแทนทุกขอบในออเดอร์นี้ ทั้งราคา BOM ตารางตัด และตอนส่ง Production · ชิ้นที่ต้องการกว้างกว่าปลายทางจะไม่ถูกแทน</div>'
-    +(show.length?show.map(g=>{ const own=g.codes.map(x=>x.code), opts=[g.top].concat(g.more,same(g).map(o=>o.top)).filter((v,i,a)=>a.indexOf(v)===i), cur=M0[g.key]&&opts.indexOf(M0[g.key])>=0?M0[g.key]:g.top, on=M0[g.key]||(first&&g.codes.length>1);
+    +(show.length?show.map(g=>{ const own=g.codes.map(x=>x.code), opts=[g.top].concat(g.more,same(g).map(o=>o.top)).filter((v,i,a)=>a.indexOf(v)===i), cur=M0[g.key]&&opts.indexOf(M0[g.key])>=0?M0[g.key]:g.top, on=M0[g.key]||((first||_send)&&g.codes.length>1);
         return '<div style="padding:8px 0;border-top:1px solid var(--line,#eee)"><label style="display:flex;gap:8px;align-items:center;flex-direction:row;color:var(--ink);font-size:13px"><input type="checkbox" data-g="'+E(g.key)+'"'+(on?" checked":"")+' style="width:auto;flex:none"><b style="font-family:var(--mono)">'+E(g.key)+'</b><span style="color:var(--ink-dim,#777);font-size:12px">'+E(g.name)+'</span></label>'
           +'<div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:4px 0 0 24px;font-size:12px"><span style="font-family:var(--mono)">'+g.codes.map(x=>E(x.code)+' <span style="color:var(--ink-dim,#777)">'+fm(x.m)+' ม.</span>').join(" · ")+'</span><span>→</span><select data-t="'+E(g.key)+'" style="width:auto;flex:none;font-family:var(--mono)">'+opts.map(v=>'<option value="'+E(v)+'"'+(v===cur?" selected":"")+'>'+E(v)+(own.indexOf(v)<0?" (ใหม่)":"")+'</option>').join("")+'</select></div></div>'; }).join(""):'<div style="color:var(--ink-dim,#777);padding:10px 0;border-top:1px solid var(--line,#eee)">ขอบแต่ละสีในงานนี้ใช้หน้ากว้างเดียวอยู่แล้ว</div>')
-    +'<div style="display:flex;gap:6px;justify-content:flex-end;margin-top:10px"><button class="ibtn" data-f="clr" style="width:auto;flex:none">ล้างกรุ๊ป</button><span style="flex:1"></span><button class="ibtn" data-f="x" style="width:auto;flex:none">ยกเลิก</button><button class="ibtn" data-f="ok" style="width:auto;flex:none;font-weight:600">ตกลง</button></div></div>';
+    +'<div style="display:flex;gap:6px;justify-content:flex-end;margin-top:10px">'+(_send?'<button class="ibtn" data-f="skip" style="width:auto;flex:none">ส่งแบบไม่กรุ๊ป</button>':'<button class="ibtn" data-f="clr" style="width:auto;flex:none">ล้างกรุ๊ป</button>')+'<span style="flex:1"></span><button class="ibtn" data-f="x" style="width:auto;flex:none">'+(_send?'ยกเลิกการส่ง':'ยกเลิก')+'</button><button class="ibtn" data-f="ok" style="width:auto;flex:none;font-weight:600">'+(_send?'กรุ๊ปแล้วส่ง':'ตกลง')+'</button></div></div>';
   const done=ch=>{ ov.remove(); res(ch); };
-  ov.addEventListener("click",ev=>{ const b=ev.target.closest("[data-f]"); if(!b){ if(ev.target===ov) done(false); return; } const f=b.dataset.f;
-    if(f==="x"){ done(false); return; } if(f==="clr"){ ov.querySelectorAll("[data-g]").forEach(i=>{ i.checked=false; }); return; }
+  ov.addEventListener("click",ev=>{ const b=ev.target.closest("[data-f]"); if(!b){ if(ev.target===ov) done(_send?null:false); return; } const f=b.dataset.f;
+    if(f==="x"){ done(_send?null:false); return; } if(f==="skip"){ done(false); return; } if(f==="clr"){ ov.querySelectorAll("[data-g]").forEach(i=>{ i.checked=false; }); return; }
     if(f==="ok"){ const M2={}; ov.querySelectorAll("[data-g]").forEach(i=>{ if(!i.checked) return; const k=i.dataset.g, s=ov.querySelector('select[data-t="'+CSS.escape(k)+'"]'); if(s&&s.value) M2[k]=s.value; });
       if(JSON.stringify(M2)===JSON.stringify(M0)){ done(false); return; } try{ if(lastSnap==null) lastSnap=snap(); }catch(e){} state.edgeGroup=M2; try{ sync(0); }catch(e){ console.error(e); } try{ autosave(); }catch(e){}
       const say=Object.keys(M2).map(k=>k+" → "+M2[k]); toast(say.length?("🔗 กรุ๊ปขอบ "+say.join(" · ")):"ล้างกรุ๊ปขอบแล้ว"); done(true); } });
@@ -63867,6 +63875,7 @@ async function sendSupabase(){
   if(snOff("sendBox")) return sendSupabaseOld();
   if(_sendBusy){ toast("กำลังส่งอยู่ — รอรอบนี้จบก่อน"); return _sendBusy; }
   if(!await sendRuleAsk()) return;   /* v1.635: สีเมลามีนบนกล่องโค้ง · บานโปรไฟล์ */
+  if(!await sendEdgeAsk()) return;   /* v1.639: กรุ๊ปขอบก่อนส่ง */
   if(!await sendMissAsk()) return;   /* v1.627 */
   _sendBusy=sendSupabaseRun();
   try{ return await _sendBusy; }finally{ _sendBusy=null; } }
@@ -64328,6 +64337,7 @@ function renderCutList(){
   const _pp=orderPidPlan();   /* v1.411: เลขชิ้นเดียวกับใบส่งออก (เดิมนับเองทีละแถว ไม่แตกเพาะโครง เลขจึงไม่ตรงใบส่งออกตั้งแต่ก้อนเพาะโครงแรก) */
   let html=`<div class="muted" style="font-size:12px;margin-bottom:6px">ค่าที่จะส่งออกจริง (วัสดุ/ผิว/ขอบ = Purchase Item ID) · <span style="color:#b25b00">ส้ม = ยังไม่ได้ตั้ง Purchase Item ID ใน Element (จะส่งออกเป็น code)</span></div>`;
   const cell=(link,board,isEdge,isSurf)=>{ const c=expCellTxt(link,board,isEdge,isSurf); if(c.w)warnN++; return `<td class="${c.w?"warn":""}" title="${escapeHtml(link||"")}">${escapeHtml(c.t)}</td>`; };
+  if(edgeGroupCount()&&!snOff("edgeGroup")) html+='<div style="margin:0 0 8px;padding:6px 10px;border:1px solid var(--accent);border-radius:9px;font-size:12px">🔗 ออเดอร์นี้กรุ๊ปขอบ: <b style="font-family:var(--mono)">'+escapeHtml(Object.keys(state.edgeGroup).map(k=>k+" → "+state.edgeGroup[k]).join(" · "))+'</b></div>';   /* v1.639 */
   let totN=0, macroN=0;
   /* v1.411: สถานะล็อกเลขชิ้น/บาร์โค้ด */
   if(!snOff("pidLock")){ const L=state.pidLock, oidNow=String(orderId()||"").trim();
