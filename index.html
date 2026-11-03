@@ -3283,7 +3283,7 @@ body[data-theme="dark"] .splash-dots span{background:rgba(255,255,255,.25)}
    ===================================================================== */
 /* ---- APP_META: แหล่งความจริงเดียวของเวอร์ชัน (ดูได้จาก console / คลิกชื่อแอป) ---- */
 const APP_META={
-  name:"StarNexus", version:"1.648", build:"2026-11-03/fg-tab-cat",
+  name:"StarNexus", version:"1.649", build:"2026-11-03/jwa-frame",
   file:"StarNexus.html", basedOn:"Furnitech_V3.html (v3.11)",
   /* ───────── เริ่มนับเวอร์ชันใหม่ที่ 1.001 (21/08/2026) ─────────
      ของเดิมนับมาถึง 42.1 แล้ววิ่งเป็นทศนิยมสองชั้นซึ่งอ่านลำดับยาก
@@ -3291,6 +3291,7 @@ const APP_META={
      ประวัติเก่าเก็บไว้ทั้งหมดตามเลขเดิม ไม่ไล่เขียนใหม่ เพราะเลขในนั้นถูกอ้างถึงไปแล้ว
      รายการที่อยู่ใต้ 1.001 ลงไปจึงเป็นเลขชุดเก่า อ่านต่อกันได้ตามวันที่ */
   changelog:[
+    ["1.649","2026-11-03","FEAT ระบบงานผนัง JWA ชุดแรก (ผู้ใช้ 16:29 ข้อ 2 4 5 6 7 8) — สูง ≥ 1100 คานกลางมีคานนอนบนคานตั้ง แบ่ง 2 ช่วง รวมคาน 5 แนว · เหล็กฉาก ส155×40×40 หนา 1.2 สูงไม่เกิน 1000 = 2 ตัว เกิน = 4 ตัว ไม่ตรงคาน · ฉาก B-06 FITDG00402 + แป้นแขวน FITWS00020 ตามจำนวนเหล็กฉาก เข้าใบเบิก · แผงตู้เลือกหน้าบานลงถึงพื้น · ถึงพื้นเกิน 2400 หรือไม่เลือก = แผ่นขาเสมอแผ่นหน้า ไม่เดฟ · ไม่มีตีนตู้เดฟใต้ JWA"],
     ["1.648","2026-11-03","FEAT แท็บ Fitting Global ตั้งหมวดได้ (ผู้ใช้ 16:40 ภาพหน้าต่างหลักมีแถวตั้งหมวด แท็บแยกไม่มี: ดูตัวที่แยกแท็บให้หน่อย มันไม่มีตั้งหมวดแยก) — แถวตั้งหมวด จัดการหมวด และกดช่องหมวดรายแถวใช้ในแท็บได้ โปรแกรมหลักเป็นคนบันทึก ค่าตั้งส่วนอื่นไม่ถูกทับ · สองฝั่งอัปเดตตามกันทันที"],
     ["1.647","2026-11-03","FIX การ์ดสีหน้าบานใช้คำอธิบายผิดแถว (ผู้ใช้ 15:56 ภาพ N00S0018N สีโครง Starmark_TOA PUM1 HG56 · สีหน้าบาน HG56 · Surface StarmarkWhite Emboss: รูปแรกรายละเอียดถูกครับ รูป 2 เอามาจากไหน) — การ์ดบานอ่านคำอธิบายจากแถวผิว (Surfaces) แก้ให้อ่านคำอธิบายของรหัสสีจากแท็บสี/วัสดุก่อน และรหัสเดียวกับการ์ดสีโครงใช้ข้อความเดียวกัน"],
     ["1.646","2026-11-03","FIX ชื่อในใบเสนอราคา (ผู้ใช้ 15:48 ภาพแถว TNF066 ชื่อ ฟิลเลอร์ · MWA114 ชื่อเป็นรหัส: แก้ชื่อที่ออกได้ไหมครับ เป็น กล่องโค้ง ครับ TNF066 · MWA021 ก็คือ ตู้เสื้อผ้า 2 บานเปิด · MWA114 ตู้ช่องโล่งครับ) — กล่องโค้งทุกรหัสชื่อ กล่องโค้ง · ตั้งชื่อตั้งต้น MWA021 MWA114 ขึ้นทั้งใบเสนอราคาและการ์ดแคตตาล็อก · ชื่อที่ตั้งเองในแคตตาล็อกมาก่อนเสมอ"],
@@ -4726,6 +4727,7 @@ function sync(rebuild,save,cm){
      ชิ้นพวกนี้จึงออกไฟล์เป็น "ไม่ใช้ Part" ทั้งที่ตั้งค่าไว้แล้ว วัสดุกับขอบจึงว่าง
      ไล่เติมทีละจุดเสี่ยงตกหล่นอีก จึงดักที่นี่จุดเดียว ทุกครั้งที่ฉากถูกคิดใหม่
      ติดธงไว้กับชิ้นที่ผ่านการเติมแล้ว ชิ้นที่ผู้ใช้ตั้งใจล้าง Part เองจึงไม่ถูกเติมคืน */
+  try{ jwaHealAll(); }catch(e){ console.error("jwaHeal:",e); }   /* v1.649: ก่อนคิดรูเดือยและขนาดบาน */
   try{ kitFamHeal(); }catch(e){ console.error("kitFamHeal:",e); }   // v1.523: ออเดอร์เก่าที่ชุด = รหัสสี (ล้างครั้งเดียว ไม่มีอะไรปนก็ไม่ทำอะไร)
   try{
     let _npd=0;
@@ -4790,6 +4792,7 @@ function sync(rebuild,save,cm){
   try{ plpHeal(); }catch(e){ console.error("plpHeal:",e); }   // v1.529: มือจับจากกล่องเลือกบนชิ้นที่ไม่ใส่ → ล้าง
   try{ sdcHealAll(); }catch(e){ console.error("sdcHeal:",e); }   /* v1.598: บานเลื่อนตามช่องตู้ — หลังโครงตู้นิ่งแล้ว (ช่วงต้น sync แผ่นพื้น/คานยังขยับ 0.5 ชั่วคราว) ก่อนปั้นราง/ลูกล้อ */
   try{ applyPullDrills(); }catch(e){ console.error(e); }   // v9.71: รู/Pocket/รูป 3D ของมือจับ คิดใหม่ทุกครั้ง ขยับบานแล้วตามเอง
+  try{ jwaFitsAll(); }catch(e){ console.error("jwaFits:",e); }   /* v1.649: เหล็กฉาก B-06 แป้นแขวน หลังโครงนิ่ง */
   try{ applyD33Brackets(); }catch(e){ console.error("d33:",e); }   // v1.333: ฉากพลาสติก D33 ของคาน (3D + นับใบอุปกรณ์ · ไม่เจาะรู)
   try{ applyBackPanelClips(); }catch(e){ console.error("bpClip:",e); }
   try{ applyCutTrays(); }catch(e){ console.error("cutTray:",e); }   // v1.532: ถาดช้อนในลิ้นชักลูกเล็ก (ชิ้นเสมือน · เลื่อนตามลิ้นชัก)
@@ -30466,6 +30469,7 @@ function boardRole(b){
      SN_OFF.dwgNoCount=1  หน้ารวมวัสดุ กลับมาโชว์จำนวน บาน/จุด/เส้น/ตัว/ชุด (v1.633)
      SN_OFF.dwgPullImg=1  การ์ดมือจับไม่ใช้รูปที่อัปโหลด ไม่มีรูปในหน้าต่าง 🖼 · การ์ดเดียวเหมือนเดิม (v1.633)
      SN_OFF.dwgDoorName=1 ไม่แสดงชื่อรุ่นแบบบานที่ตั้งเอง (v1.633)
+     SN_OFF.jwa=1         ปิดระบบงานผนัง JWA ทั้งชุด ตู้ JWA เป็นตู้ธรรมดาตามโมเดล (v1.649)
      SN_OFF.dwgColorDesc=1 การ์ดสีหน้าบานใช้คำอธิบายจากแถวผิวแบบเดิม (v1.647)
      SN_OFF.seedFollow=1  ธงเพิ่มแถว Element ไม่ตามค่าที่โหลด แบบก่อน v1.644
      SN_OFF.ehpFlushCard=1 แท็บมือจับแบบฝังไม่แสดงมือจับฝังเซาะร่อง (v1.644)
@@ -37163,7 +37167,7 @@ function plCabMap(){ const m={};
 function plBoardsOf(inst){ return state.boards.filter(b=>b&&String(b.cabInst)===String(inst)&&!b._lineDisp); }
 /* กรอบตัวตู้ (ไม่รวมบาน/ขา/ชิ้นแสดงผล) + ก้นล่างสุดที่รวมขา */
 function plFp(bs){
-  const car=bs.filter(b=>(!b._virtual||b._csmRail)&&!b._door&&!plIsLeg(b)&&(+b.T>0));   // v1.390: ราวแขวน Cosimo เป็นชิ้นเสมือน (ไม่ลงใบตัด) แต่ลาก/วางเป็นใบได้
+  const car=bs.filter(b=>(!b._virtual||b._csmRail)&&!b._door&&!plIsLeg(b)&&(+b.T>0)&&b._jwaGen!=="kick");   /* v1.649: แผ่นขา JWA ไม่นับขนาดตู้ */ // v1.390: ราวแขวน Cosimo เป็นชิ้นเสมือน (ไม่ลงใบตัด) แต่ลาก/วางเป็นใบได้
   const src=car.length?car:bs.filter(b=>!b._virtual);
   const lo=[Infinity,Infinity,Infinity], hi=[-Infinity,-Infinity,-Infinity];
   src.forEach(b=>{ const d=worldDims(b), c=[b.x,b.y,b.z];
@@ -41799,6 +41803,62 @@ function plCvbRowHtml(inst,code){ if(snOff("plCvb")||plIsSide(inst)||plIsLightPa
   const bt=(id,s,lb)=>{ const h=has(s), ok=h||room(s)>=min-1; return '<button class="ibtn" id="'+id+'"'+(ok?'':' disabled title="ด้านนี้เหลือที่ไม่ถึง '+min+' มม."')+'>'+(h?("✓ "+lb):lb)+'</button>'; };
   return '<div class="plRow plBtns" style="margin-top:4px" title="กล่องโค้งปิดปลายตู้ ซ้ายขวามองจากหน้าตู้ · ตั้งต้นกว้าง 150 R120 สูงเท่าตู้ · ลึก: '+escapeHtml(plEndBandTxt())+' · ✓ = มีแล้ว กดเพื่อเลือกแก้ค่า">กล่องโค้ง '+bt("plCvL","L","◀ ซ้าย")+bt("plCvR","R","ขวา ▶")+'</div>'; }
 /* แผงกล่องที่เลือก */
+/* ═════════ v1.649: ระบบงานผนัง JWA ชุดแรก ═════════
+   ผู้ใช้ 3/11 16:29 (แนบ project 66): “ตู้ JWA ผมเรียกว่าระบบงานผนังแล้วกันนะครับ”
+   เดิม: JWA เป็นตู้ธรรมดาตามโมเดล คาน 3 แนวทุกความสูง ไม่มีอุปกรณ์ยึด ใต้ตู้มีขาเป็นตีนตู้เดฟ
+   ข้อ 4 “ระยะสูง 2300 ต้องมีอีก 2 อัน · ต้องมีคานนอนอยู่บนคานตั้งในชิ้นคานกลาง · 1100 ขึ้นไปให้มี 2 ช่วง” (ผู้ใช้ตอบ: นับตามความสูง)
+     → สูงโครง ≥ 1100: คานกลางกลางโครงพอดี มีคานนอนวางบน แบ่ง 2 ช่วง · เพิ่มคานตั้งกลางแต่ละช่วง รวม 5 แนว · ต่ำกว่า = 3 แนวตามโมเดล
+   ข้อ 5 เหล็กฉาก ส155 ลึก 40 กว้าง 40 หนา 1.2 ในเฟรม ยึดผนังกับไม้ข้าง · สูงไม่เกิน 1000 = ซ้ายขวา 2 ตัว · เกิน = 4 ตัว · วางกลางช่องว่างระหว่างคาน ไม่ตรงคาน · ยังไม่มีรหัส จึงไม่เข้าใบเบิก (ตั้ง settings.jwa.angleCode)
+   ข้อ 6–7 ฉาก B-06 FITDG00402 ยิงไม้ข้าง รับแป้นแขวน FITWS00020 ที่ยิงหลังแผ่น · จำนวนตามเหล็กฉาก (ผู้ใช้เลือก) · รูปทรงคร่าว ๆ รอ PDF · มีโมเดลใน Fitting 3D แล้วใช้ของเดิม
+   ข้อ 2 + 8 เลือกที่แผงตู้ว่าหน้าบานลงถึงพื้น: ถึงพื้นไม่เกิน 2400 = แผ่นเดียวถึงพื้น · เกิน หรือไม่เลือก = แผ่นขาเสมอแผ่นหน้า ไม่เดฟ · ค่าเก็บที่แผ่น _jwa.floor
+   ชิ้นที่สร้าง: _jwaGen rail/flat/kick เป็นชิ้นจริง เข้าใบตัด · _jwaFit เป็นชิ้นเสมือน สร้างใหม่ทุก sync · ปิด SN_OFF.jwa=1 */
+function jwaCfg(){ const d={prefix:"JWA",maxH:2400,twoBay:1100,angleMax:1000,angle:{h:155,d:40,w:40,t:1.2},angleCode:"",b06:"FITDG00402",hook:"FITWS00020"}, s=settings.jwa; return (s&&typeof s==="object")?Object.assign(d,s):d; }
+function jwaCode(c){ return !snOff("jwa")&&catKey(c).indexOf(String(jwaCfg().prefix).toUpperCase())===0; }
+function jwaIsInst(i){ const b=(state.boards||[]).find(x=>x&&String(x.cabInst)===String(i)&&!x._virtual&&!x._lineDisp); return !!b&&jwaCode(b.cab); }
+function jwaInsts(){ const out=new Set(); (state.boards||[]).forEach(b=>{ if(b&&b.cabInst!=null&&!b._virtual&&!b._lineDisp&&jwaCode(b.cab)) out.add(b.cabInst); }); return [...out]; }
+function jwaParts(inst){ const bs=(state.boards||[]).filter(b=>b&&String(b.cabInst)===String(inst)&&!b._virtual&&!b._lineDisp); if(!bs.length||!jwaCode(bs[0].cab)) return null;
+  const Y=(((+cabYawOf(inst)||0)%360)+360)%360, F=cvbFrame(Y); if(!F) return null; const at=(b,a)=>[b.x,b.y,b.z][a], base=bs.filter(b=>!b._jwaGen);
+  const sides=base.filter(b=>!b._door&&b.orient==="side"&&+b.T>0).sort((p,q)=>at(p,F.ra)-at(q,F.ra)), flats=base.filter(b=>!b._door&&b.orient==="flat"&&+b.T>0).sort((p,q)=>p.y-q.y), rails=base.filter(b=>!b._door&&b.orient==="front"&&+b.T>0).sort((p,q)=>p.y-q.y);
+  if(sides.length<2||flats.length<2) return null; const ds=sides.map(worldDims), lo=Math.min(...sides.map((b,i)=>b.y-ds[i][1]/2)), hi=Math.max(...sides.map((b,i)=>b.y+ds[i][1]/2)), mid=at(sides[0],F.fa), hd=ds[0][F.fa]/2;
+  return {bs,F,Y,sides,ds,flats,rails,panel:base.find(b=>b._door)||null,lo,hi,H:hi-lo,back:mid-F.fs*hd,front:mid+F.fs*hd,at}; }
+function jwaClone(src,gen,name){ const b=JSON.parse(JSON.stringify(src)); b.id=uid(); ["_bc","_datum","rule","_tdF","_tdSb","_tdSt","_railSwap","_jwa","_jwaW0"].forEach(k=>{ delete b[k]; }); b.holes=[]; b.grooves=[]; b._pdone=1; b._jwaGen=gen; b.name=name; state.boards.push(b); return b; }
+function jwaDrop(b){ const i=state.boards.indexOf(b); if(i>=0) state.boards.splice(i,1); }
+function jwaHeal(inst){ const P=jwaParts(inst); if(!P) return 0; const c=jwaCfg(), R=P.rails; let n=0;
+  if(R.length===3){ const m=R[1], cy=round((P.lo+P.hi)/2), two=P.H>=c.twoBay-0.5, top=P.flats[P.flats.length-1]; if(m._datum) delete m._datum; if(Math.abs(m.y-cy)>0.05) m.y=cy;
+    const want=two?[round((R[0].y+cy)/2),round((cy+R[2].y)/2)]:[], old=P.bs.filter(b=>b._jwaGen==="rail");
+    while(old.length>want.length){ jwaDrop(old.pop()); n++; }
+    want.forEach((y,i)=>{ let b=old[i]; if(!b){ b=jwaClone(m,"rail","Back Rail Upright"); n++; } b.x=m.x; b.z=m.z; b.L=m.L; b.W=m.W; b.T=m.T; b.y=y; });
+    const fl=P.bs.find(b=>b._jwaGen==="flat"); if(two){ const b=fl||jwaClone(top,"flat","Mid Rail Flat"); if(!fl) n++; b.x=top.x; b.z=top.z; b.L=top.L; b.W=top.W; b.T=top.T; b.y=round(cy+m.W/2+top.T/2); } else if(fl){ jwaDrop(fl); n++; } }
+  const pn=P.panel, kk=P.bs.find(b=>b._jwaGen==="kick"), leg=P.lo>5; let needK=false;
+  if(pn){ const o=pn._jwa||{}, full=leg&&o.floor!==false&&P.hi<=c.maxH+0.5; pn.adj=pn.adj||{}; if(pn._jwaW0==null){ const v0=pn._de&&pn._de.B&&parseFloat(pn._de.B.v); pn._jwaW0=isFinite(v0)?v0:(parseFloat(pn.adj.W0)||0); } const w0=full?(+pn._jwaW0+P.lo):+pn._jwaW0; if(Math.abs((parseFloat(pn.adj.W0)||0)-w0)>0.01){ pn.adj.W0=String(round(w0)); n++; } needK=leg&&!full; }
+  if(needK){ const b=kk||jwaClone(pn,"kick","Kick Panel"); if(!kk){ ["_door","_panel","_dummy","_de","_zx","adj","_adjApplied"].forEach(k=>{ delete b[k]; }); n++; } b.L=pn.L; b.W=round(P.lo); b.T=pn.T; b.x=pn.x; b.z=pn.z; b.y=round(P.lo/2); } else if(kk){ jwaDrop(kk); n++; }
+  return n; }
+function jwaStrip(inst){ const P=jwaParts(inst); if(!P) return; P.bs.filter(b=>b._jwaGen).forEach(jwaDrop); if(P.panel&&P.panel._jwaW0!=null&&P.panel.adj) P.panel.adj.W0=String(P.panel._jwaW0); state.boards=state.boards.filter(b=>!(b&&b._jwaFit&&String(b.cabInst)===String(inst))); }
+function jwaHealAll(){ if(snOff("jwa")) return 0; let n=0; jwaInsts().forEach(i=>{ n+=jwaHeal(i); }); return n; }
+/* รูปทรงคร่าว ๆ ของอุปกรณ์ — โมเดลที่ผู้ใช้มีใน Fitting 3D ชนะเสมอ (_ts เก่ามาก ค่าส่วนกลางทับได้) */
+function jwaEnsureFits(){ const M=settings.fitModels=settings.fitModels||{}, a=jwaCfg().angle, c=jwaCfg(), pt=(L,W,T,x,y,z)=>({L,W,T,x,y,z,orient:"front",yaw:0,tone:4}), put=(k,parts)=>{ if(!M[k]) M[k]={_ts:"2000-01-01T00:00:00.000Z",parts}; };
+  const off=(a.w-a.t)/2, zo=(a.d-a.t)/2; [["L",-1],["R",1]].forEach(q=>{ put("JW_ANGLE_"+q[0],[pt(a.w,a.h,a.t,0,0,-zo),pt(a.t,a.h,a.d,q[1]*off,0,0)]);
+    put(c.b06+(q[0]==="R"?"_R":""),[pt(2,58,40,q[1]*11.5,0,0),pt(25,58,2,0,0,19)]); });
+  put(c.hook,[pt(35,54,3,0,0,2.5),pt(35,14,8,0,20,0)]); }
+function jwaBays(P){ const R=P.bs.filter(b=>!b._door&&!b._jwaGen?b.orient==="front"||b.orient==="flat":b._jwaGen==="rail"||b._jwaGen==="flat").map(b=>{ const d=worldDims(b)[1]; return [b.y-d/2,b.y+d/2]; }).sort((p,q)=>p[0]-q[0]), out=[]; let y=P.lo;
+  R.forEach(q=>{ if(q[0]>y+1) out.push([y,q[0]]); y=Math.max(y,q[1]); }); if(P.hi>y+1) out.push([y,P.hi]); return out; }
+function jwaFitY(P){ const c=jwaCfg(), B=jwaBays(P).filter(q=>q[1]-q[0]>=c.angle.h); if(!B.length) return []; if(P.H<=c.angleMax+0.5) return [B[B.length-1]]; return B.length>1?[B[0],B[B.length-1]]:[B[0]]; }
+function jwaFitsAll(){ if(snOff("jwa")) return 0; state.boards=state.boards.filter(b=>!(b&&b._jwaFit)); const L=jwaInsts(); if(!L.length) return 0; jwaEnsureFits(); const c=jwaCfg(), a=c.angle; let n=0;
+  L.forEach(i=>{ const P=jwaParts(i); if(!P) return; const F=P.F, kk=P.bs.find(b=>b._jwaGen==="kick"), pn=P.panel; if(kk&&pn){ kk.L=pn.L; kk.x=pn.x; kk.z=pn.z; } const hook=(settings.fitModels||{})[c.hook]?c.hook:"HANGBRACKET_Z", hb=(()=>{ try{ const q=fitModelBBox(hook); return q?[q.x1-q.x0,q.y1-q.y0,q.z1-q.z0]:null; }catch(e){ return null; } })()||[35,54,8];
+    const box=(tag,kind,code,mdl,L0,W0,T0,r,y,f)=>{ const p=[0,y,0]; p[F.ra]=r; p[F.fa]=f; state.boards.push({id:"jw:"+i+":"+tag+":"+(n++),name:kind==="angle"?"เหล็กฉากยึดผนัง":kind==="b06"?"ฉาก B-06":"แป้นแขวน",cab:P.bs[0].cab,cabInst:i,L:L0,W:W0,T:T0,orient:"front",yaw:P.Y,x:round(p[0]),y:round(y),z:round(p[2]),tone:4,r:0,edges:["","","",""],holes:[],grooves:[],connectors:[],mat:"",part:"",surfT:"",surfB:"",_virtual:true,_jwaFit:kind,_jwaCode:code,_fitModel:mdl,_pdone:1}); };
+    jwaFitY(P).forEach((q,k)=>{ const mid=(q[0]+q[1])/2, room=q[1]-q[0]>=a.h+58+8, ya=room?mid-33:mid, yb=room?mid+(a.h+8)/2:mid;
+      [0,1].forEach(si=>{ const s=P.sides[si], dir=si?-1:1, inner=P.at(s,F.ra)+dir*P.ds[si][F.ra]/2, left=dir*F.rs>0;
+        box("a"+k+si,"angle",String(c.angleCode||""),"JW_ANGLE_"+(left?"L":"R"),a.w,a.h,a.d,inner+dir*a.w/2,ya,P.back+F.fs*a.d/2);
+        box("b"+k+si,"b06",c.b06,c.b06+(left?"":"_R"),25,58,40,inner+dir*12.5,yb,P.front-F.fs*20);
+        box("h"+k+si,"hook",c.hook,hook,hb[0],hb[1],hb[2],inner+dir*(hb[0]/2+2),yb,P.front-F.fs*hb[2]/2); }); }); });
+  return n; }
+function jwaPanelHtml(inst){ if(!jwaIsInst(inst)) return ""; const P=jwaParts(inst); if(!P) return ""; const c=jwaCfg(), pn=P.panel, leg=P.lo>5, fl=!(pn&&pn._jwa&&pn._jwa.floor===false), over=P.hi>c.maxH+0.5, nA=jwaFitY(P).length*2, nR=P.bs.filter(b=>b._jwaGen==="rail").length+P.rails.length;
+  return '<div class="plRow" style="margin-top:6px"><h4>🧱 ระบบงานผนัง</h4></div>'
+    +(leg&&pn?('<label style="display:flex;gap:6px;align-items:center;cursor:pointer;margin:2px 0"><input type="checkbox" id="jwaFloor"'+(fl?' checked':'')+'> หน้าบานลงถึงพื้น</label>'
+      +'<div class="plNote" style="white-space:normal;line-height:1.5">'+(over?('ถึงพื้นเกิน '+c.maxH+' ลงแผ่นเดียวไม่ได้ ใช้แผ่นขา '+Math.round(P.lo)+' เสมอแผ่นหน้า'):fl?'แผ่นเดียวสูง '+Math.round(P.hi):('แผ่นขา '+Math.round(P.lo)+' เสมอแผ่นหน้า ไม่เดฟ'))+'</div>'):'')
+    +'<div class="plNote" style="white-space:normal;line-height:1.5">คาน '+nR+' แนว · เหล็กฉาก '+nA+' ตัว · B-06 กับแป้นแขวน '+nA+' ชุด</div>'
+    +((P.H>c.maxH+0.5)?'<div class="plNote" style="color:#c62828;white-space:normal">โครงสูงเกิน '+c.maxH+' ไม้ยาวไม่พอ</div>':''); }
+function jwaPanelBind(s,inst){ const f=s.querySelector("#jwaFloor"); if(!f) return; f.onchange=()=>{ if(typeof isLocked==="function"&&isLocked()){ f.checked=!f.checked; try{ guardEdit("แก้ระบบงานผนัง"); }catch(e){} return; } const P=jwaParts(inst); if(!P||!P.panel) return; P.panel._jwa=Object.assign({},P.panel._jwa,{floor:!!f.checked}); const cam=plCamKeep(); sync(0); plCamPut(cam); try{ plSelect(inst); }catch(e){} }; }
 function plCvbPanel(s,inst){ const I=cvbInfo(inst); if(!I){ s.innerHTML=""; return; } const c=cvbCfg(), M0=I.host?cvbHostM(I.host):null, M=(M0&&M0.yaw===I.yaw)?M0:null, hasK=M?M.hasKick:!!I.kick, floor=cvbFloorOf(I,M), code=String(plFp(plBoardsOf(I.top)).code), w=Math.round(I.W), rMax=cvbRMax(w), over=I.R>rMax+0.5, low=I.R<c.minR-0.5, must=w-I.dev<c.minW;
   const num=(id,v,st,mn,mx)=>'<input type="number" id="'+id+'" value="'+v+'" step="'+st+'" min="'+mn+'"'+(mx!=null?' max="'+mx+'"':'')+' style="width:70px"><span class="plU">มม.</span>';
   const fr=(l,ctl,tip)=>plF531(l,ctl,tip), hostC=I.host?plFp(plBoardsOf(I.host)).code:"", lb=I.side==="L"?"ซ้าย":"ขวา", Wk=w-I.dev;
@@ -43566,6 +43626,7 @@ function plPanelSel(){
     +((g&&!plIsSide(inst)&&!plIsLightPanel(inst)&&plKindOf(code)!=="filler"&&/^(base|wall|tall)$/.test(plSideLvOf(inst)))?('<div class="plRow plBtns" style="margin-top:4px" title="แผ่นปิดข้างตู้ ('+({base:'BFF',wall:'WFF',tall:'TFF'})[plSideLvOf(inst)]+'###) — สูงตามตู้ ลึกเสมอบาน · ลงพื้น/ถึงฝ้า ตามแผงห้อง">แผ่นปิดข้าง '   // v1.317
       +'<button class="ibtn" id="plSdL"'+(g.lo.gap>=10?'':' disabled')+'>◀ ซ้าย</button><button class="ibtn" id="plSdR"'+(g.hi.gap>=10?'':' disabled')+'>ขวา ▶</button></div>'):'')
     +plMatRuleHtml(inst)                                                         /* v1.635: สีเมลามีน · บานโปรไฟล์ */
+    +jwaPanelHtml(inst)                                                          /* v1.649 */
     +plCvbRowHtml(inst,code)                                                     /* v1.632: กล่องโค้งข้างตู้ */
     +(plIsSide(inst)?(()=>{ const lv3=plLevelOf(code), bm=plSideBotOf(inst), tm=plSideTopOf(inst), ho=plSideHost(inst), cy=plSideCeilY();   // v1.317
       return '<div class="plRow plBtns" style="margin-top:6px">แผ่นปิดข้าง'+(ho?(' <span style="font-size:10.5px;color:var(--ink-dim)">ปิด '+escapeHtml(plFp(plBoardsOf(ho.inst)).code)+'</span>'):' <span style="font-size:10.5px;color:#d33">ไม่ได้ชิดตู้</span>')
@@ -43593,6 +43654,7 @@ function plPanelSel(){
   if(q("#csmGrp")) q("#csmGrp").onchange=ev=>{ PL.csmGroup=!!ev.target.checked; };   // v1.381
   if(q("#csmColW")) q("#csmColW").onchange=ev=>{ settings.csm=Object.assign({}, (settings.csm&&typeof settings.csm==="object")?settings.csm:{}, {colW:!!ev.target.checked}); try{ catSaveSettings(); }catch(e){} };   // v1.377
   { const ap=()=>plResize(inst,+q("#plW").value,+q("#plH").value,+q("#plD").value);
+    try{ jwaPanelBind(s,inst); }catch(e){ console.error("jwaPanel:",e); }   /* v1.649 */
     q("#plApply").onclick=ap; ["#plW","#plH","#plD"].forEach(id=>{ q(id).onkeydown=ev=>{ if(ev.key==="Enter"){ ev.preventDefault(); ap(); } }; }); }
   q("#plDup").onclick=()=>plDup(inst,false);
   q("#plSwap").onclick=ev=>{ const rc=ev.target.getBoundingClientRect(); plSwapOpen(inst,rc.right+10,rc.top-60); };
@@ -50857,7 +50919,7 @@ function syncLegCount(inst,W){
 }
 function reapplyLegs(inst){   // จัดเฉพาะขาตู้เกาะมุมโครง — ไม่แตะคาน (กันคานที่ย้ายเองเด้งกลับ)
   if(cabYawOf(inst)) return withCabAxisAligned(inst,()=>reapplyLegs(inst));
-  const carc=state.boards.filter(b=>b.cabInst===inst&&!b._door&&!b._virtual&&!isRail(b)&&(b.T>0));
+  const carc=state.boards.filter(b=>b.cabInst===inst&&!b._door&&!b._virtual&&!isRail(b)&&(b.T>0)&&b._jwaGen!=="kick");   /* v1.649: แผ่นขา JWA ถึงพื้น ไม่ใช่ก้นโครง */
   if(!carc.length)return; let mnx=Infinity,mxx=-Infinity,mnz=Infinity,mxz=-Infinity,mny=Infinity;
   carc.forEach(b=>{ const d=worldDims(b); mnx=Math.min(mnx,b.x-d[0]/2); mxx=Math.max(mxx,b.x+d[0]/2);
     mnz=Math.min(mnz,b.z-d[2]/2); mxz=Math.max(mxz,b.z+d[2]/2); mny=Math.min(mny,b.y-d[1]/2); });
@@ -51440,7 +51502,7 @@ function applyLineDisplay(){
     const legBot=legs.length?Math.min(...legs.map(l=>l.y-worldDims(l)[1]/2)):null;
     /* v1.308: ตู้ที่ไม่มีขาแต่ยกจากพื้น 20–300 (ฟิลเลอร์ข้างตู้บนขา) ยืนบนแนวตีนตู้เดียวกัน */
     const lifted=!legs.length&&lo[1]>=20&&lo[1]<=300&&!bs.some(b=>b._door&&!b._virtual);
-    cabs.push({i, side:plSideBoards(bs), box:ceilOpenBox(car,fa,lo,hi), legs:legs.length>0||lifted, realLeg:legs.length>0, legBot:legs.length?legBot:(lifted?0:null), door:bs.some(b=>b._door&&!b._virtual),
+    cabs.push({i, side:plSideBoards(bs), box:ceilOpenBox(car,fa,lo,hi), legs:!jwaIsInst(i)&&(legs.length>0||lifted), realLeg:!jwaIsInst(i)&&legs.length>0, legBot:jwaIsInst(i)?null:(legs.length?legBot:(lifted?0:null)),   /* v1.649: ใต้ JWA เป็นแผ่นเสมอหน้า ไม่มีตีนตู้เดฟ */ door:bs.some(b=>b._door&&!b._virtual),
       lo, hi, fa, s, wa, front:(s>0?hi[fa]:lo[fa])});
   });
   /* ต่อตู้เป็นแนว: ทิศหน้าเดียวกัน · หน้าโครงเหลื่อมไม่เกินระยะร่น · ช่วงความสูงตรงกัน · ช่องว่างไม่เกิน 200 */
@@ -55603,7 +55665,7 @@ function _cabLocalDims(b){ return b.orient==="flat"?[b.L,b.T,b.W]:(b.orient==="s
 function _cabMinLocal(inst,yaw){
   const r=-(yaw||0)*Math.PI/180, cs=Math.cos(r), sn=Math.sin(r);
   const m=[Infinity,Infinity,Infinity];
-  state.boards.filter(b=>b.cabInst===inst&&!b._door&&!b._virtual).forEach(b=>{
+  state.boards.filter(b=>b.cabInst===inst&&!b._door&&!b._virtual&&b._jwaGen!=="kick").forEach(b=>{   /* v1.649: แผ่นขา JWA ถึงพื้น ไม่ใช่ก้นโครง ไม่งั้นโครงลอยขึ้นทุกครั้งที่ปรับขนาด */
     const d=_cabLocalDims(b), lx=b.x*cs+b.z*sn, lz=-b.x*sn+b.z*cs;
     m[0]=Math.min(m[0],lx-d[0]/2); m[1]=Math.min(m[1],b.y-d[1]/2); m[2]=Math.min(m[2],lz-d[2]/2); });
   return m.every(v=>isFinite(v))?m:null;
@@ -56102,6 +56164,8 @@ async function fixZoneDialog(b){
   else toast("ล็อก Filler ซ้าย "+res.L+" ชิ้น ("+res.l+" มม.) · ขวา "+res.R+" ชิ้น ("+res.r+" มม.)");
 }
 function resizeCabinetTo(inst, W, H, D, lock){
+  /* v1.649: ปรับขนาด JWA คิดจากโครงเดิมของโมเดล ชิ้นที่สร้างเองและแผ่นถึงพื้นทำให้คิดสัดส่วนผิด (ขาหด) · sync สร้างคืนตามขนาดใหม่ */
+  try{ if(jwaIsInst(inst)) jwaStrip(inst); }catch(e){ console.error("jwaStrip:",e); }
   try{ topDropUndo(); }catch(e){}                      // v1.447: ปรับขนาดบนรูปทรงปกติ (ทอป/คานเสมอขอบ) — sync ถัดไปดรอปคืนเอง
   if(!_fzDepth){ const zs=fixZoneOf(inst,true); if(zs&&zs.size) return _resizeWithFixZones(inst,zs,W,H,D,lock||{}); }   // v1.216
   const _yaw0=cabYawOf(inst), _m0=_cabMinLocal(inst,_yaw0);
@@ -62477,6 +62541,8 @@ function frameSrcOf(boards){
 }
 function fittingAgg(boards){   // รวมเดือย + พินรองรับชั้น เป็นรายการ fitting
   const m={};
+  /* v1.649: อุปกรณ์ระบบงานผนัง — นับเฉพาะตัวที่มีรหัส */
+  try{ boards.forEach(b=>{ if(!b||!b._jwaFit||!b._jwaCode) return; const a=fitCodeMain(b._jwaCode), el=fitDef(b._jwaCode)||fitDef(a); (m[a]||(m[a]={art:a,dia:(el&&el.dia)||"",kind:"part",name:(el&&el.desc)||a,unit:(el&&el.unit)||"ตัว",count:0,_pidList:fitPidList(b._jwaCode)})).count+=1; }); }catch(e){ console.error("jwaFit:",e); }
   /* v29.0: ทุกช่องที่คนพิมพ์รหัสเองใช้กติกาเดียวกัน — หลายรหัส = ของตัวเดียวกัน ไล่หาทีละตัว */
   try{ partFitRows(boards).forEach(r=>{ const a=fitCodeMain(r.code), el=fitDef(r.code)||fitDef(a);   // v28.5
     (m[a]||(m[a]={art:a,dia:(el&&el.dia)||"",kind:"part",
