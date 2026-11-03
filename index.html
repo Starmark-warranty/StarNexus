@@ -3283,7 +3283,7 @@ body[data-theme="dark"] .splash-dots span{background:rgba(255,255,255,.25)}
    ===================================================================== */
 /* ---- APP_META: แหล่งความจริงเดียวของเวอร์ชัน (ดูได้จาก console / คลิกชื่อแอป) ---- */
 const APP_META={
-  name:"StarNexus", version:"1.639", build:"2026-11-03/edge-group-send",
+  name:"StarNexus", version:"1.640", build:"2026-11-03/pull-card-name",
   file:"StarNexus.html", basedOn:"Furnitech_V3.html (v3.11)",
   /* ───────── เริ่มนับเวอร์ชันใหม่ที่ 1.001 (21/08/2026) ─────────
      ของเดิมนับมาถึง 42.1 แล้ววิ่งเป็นทศนิยมสองชั้นซึ่งอ่านลำดับยาก
@@ -3291,6 +3291,7 @@ const APP_META={
      ประวัติเก่าเก็บไว้ทั้งหมดตามเลขเดิม ไม่ไล่เขียนใหม่ เพราะเลขในนั้นถูกอ้างถึงไปแล้ว
      รายการที่อยู่ใต้ 1.001 ลงไปจึงเป็นเลขชุดเก่า อ่านต่อกันได้ตามวันที่ */
   changelog:[
+    ["1.640","2026-11-03","UX การ์ดมือจับในหน้ารวมวัสดุใช้ชื่อ AX ตัดถึงรหัสรุ่น เช่น มือจับ แบบระยะ 128 mm. KRIX 510019-4128 · ตาราง AX ยังไม่มาใช้คำอธิบายใน Element · มือจับฝังคงเดิม (ผู้ใช้ 12:05)"],
     ["1.639","2026-11-03","UX กดส่ง Production แล้วเช็คกรุ๊ปขอบให้ สีไหนยังออกหลายรหัสเปิดหน้าต่างกรุ๊ปที่ติ๊กไว้แล้ว กดกรุ๊ปแล้วส่งได้ทันที · ตารางตัดบอกว่ากรุ๊ปอะไรอยู่ (ผู้ใช้ 11:59)"],
     ["1.638","2026-11-03","FIX หน้ารวมวัสดุแสดงไม่ครบ มีแค่แบบที่ใช้มากสุด +1 แบบ (ผู้ใช้ 11:35) — บานพับ ราง LED มือจับ ดีไซน์บาน สีบาน สีโครง เนื้อไม้ ทุกแบบมีการ์ดของตัวเอง · มือจับไม่มีรูปก็มีการ์ด · สีโครงอ่านจาก Carcass ของตู้จริง ไม่หยิบฟิลเลอร์ที่เป็นสีบาน (ผู้ใช้ 11:37 การ์ดสีโครงขึ้น N03P0057N ทั้งที่ตู้เป็น N01M0029N) · ชื่อสีเลขหลักเดียวเช่น AK1 ก็แยกได้ และอ่านจากคำอธิบายผิวได้"],
     ["1.637","2026-11-03","CHANGE กล่องโค้งกับแผ่นปิดข้างที่กดใส่ ตู้ลึก 560 มีบานออก 580 · ตู้ลึก 580 มีบานออก 600 ไม่ใช่ 579/599 ตามหน้าบาน · ตู้เปิดโล่งและตู้ลึกอื่นคงเดิม (ผู้ใช้ 11:04)"],
@@ -30457,6 +30458,7 @@ function boardRole(b){
      SN_OFF.dwgNoCount=1  หน้ารวมวัสดุ กลับมาโชว์จำนวน บาน/จุด/เส้น/ตัว/ชุด (v1.633)
      SN_OFF.dwgPullImg=1  การ์ดมือจับไม่ใช้รูปที่อัปโหลด ไม่มีรูปในหน้าต่าง 🖼 · การ์ดเดียวเหมือนเดิม (v1.633)
      SN_OFF.dwgDoorName=1 ไม่แสดงชื่อรุ่นแบบบานที่ตั้งเอง (v1.633)
+     SN_OFF.dwgPullAxName=1 การ์ดมือจับใช้ชื่อใน Element ก่อนแบบเดิม ไม่ตัดชื่อ AX (v1.640)
      SN_OFF.edgeGroupAsk=1 กดส่ง Production ไม่ถามกรุ๊ปขอบก่อนส่ง (v1.639)
      SN_OFF.dwgMatAll=1   หน้ารวมวัสดุ กลับไปแสดงแค่แบบที่ใช้มากสุดของแต่ละหมวด พร้อมคำว่า +1 แบบ (v1.638)
      SN_OFF.edgeGroup=1   ไม่มีปุ่มกรุ๊ปขอบ · ส่งออกและราคาใช้รหัสขอบตามหน้ากว้างจริงแบบเดิม (v1.636)
@@ -44871,13 +44873,21 @@ function dwgFitImg(r,k){ if(snOff("dwgFitImg")||!r) return ""; const L=dwgFitLib
      อัปโหลดได้สองทาง: Element › Fittings › รูปวัสดุจริง หรือหน้าต่าง 🖼 ในใบเสนอราคา · ใช้ได้ทุกงาน · ปิด SN_OFF.dwgPullImg=1 */
 function dwgPullImg(code){ if(snOff("dwgPullImg")||snOff("dwgFitImg")) return ""; const L=dwgFitLib(), c=String(code||"").trim(); if(!c) return ""; if(L[c]) return L[c];
   const lc=c.toLowerCase(), k=Object.keys(L).find(x=>x.toLowerCase()===lc); return k?L[k]:""; }
+/* ───────── v1.640: ชื่อมือจับบนการ์ด = ชื่อ AX ตัดถึงรหัสรุ่น ─────────
+   ผู้ใช้ 3/11 12:05 (ภาพการ์ด “มือจับ 128 มม.” + ภาพชื่อ “มือจับ แบบระยะ 128 mm. KRIX 510019-4128”): “ตรงมือจับ เอารายละเอียดถึงแค่นี้ไปใส่ ตามรูป 2”
+   เดิม: ใช้คำอธิบายใน Element ก่อน จึงได้ชื่อย่อ ไม่มียี่ห้อกับรุ่น
+   ตอนนี้: ใช้ชื่อ AX ตัดตั้งแต่ [ ออก แล้วจบที่รหัสรุ่นตัวแรก เช่น 510019-4128 · 1F019-1-064 · 155.00.123 · ไม่เจอรหัสรุ่น = ทั้งชื่อถึงก่อน [
+     ตาราง AX ยังไม่มา = คำอธิบายใน Element เหมือนเดิม · มือจับฝังคงชื่อใน Element เพราะชื่อ AX เป็นชื่อแท่งยาว · ปิด SN_OFF.dwgPullAxName=1 */
+function dwgPullName(code,ehp){ const c=String(code||"").trim(); let el=null; try{ el=pullFitEl(c); }catch(e){} const ed=String((el&&el.desc)||""); let ax=""; try{ ax=String(costFgName(c)||""); }catch(e){}
+  if(snOff("dwgPullAxName")||ehp) return ed||ax; if(!ax) return ed; let n=ax.split("[")[0].trim();
+  const m=n.match(/^.*?(?:\b(?=[A-Z-]*\d)[0-9A-Z]{3,}(?:-[0-9A-Z]+)+|\b\d{3}\.\d{2}\.\d{3})(?=[\s,;]|$)/); if(m) n=m[0].trim(); return n||ed; }
 function dwgFitImgPick(key,done){ const fi=document.createElement("input"); fi.type="file"; fi.accept="image/*";
   fi.onchange=()=>{ const file=fi.files&&fi.files[0]; if(!file) return; const rd=new FileReader(); rd.onload=async()=>{ let url=String(rd.result||"");
       try{ const im=await plpImg(url); if(im){ const k=Math.min(1,320/Math.max(im.width,im.height)), c=document.createElement("canvas"); c.width=Math.max(1,Math.round(im.width*k)); c.height=Math.max(1,Math.round(im.height*k));
           const g=c.getContext("2d"); g.fillStyle="#fff"; g.fillRect(0,0,c.width,c.height); g.drawImage(im,0,0,c.width,c.height); url=c.toDataURL("image/jpeg",0.85); } }catch(e){ console.error("fitImg:",e); }
       dwgFitLib()[key]=url; try{ await catSaveSettings(); }catch(e){ console.error("fitImg save:",e); } if(done) done(); }; rd.readAsDataURL(file); }; fi.click(); }
 function dwgFitImgEdit(){ return new Promise(res=>{ let rows=[]; try{ const C=dwgCabs().filter(c=>c.lv!=="rail"&&c.lv!=="light"), _all=fittingAgg(C.reduce((a,c)=>a.concat(c.bs),[])); rows=_all.filter(x=>x&&(x.kind==="hinge"||x.kind==="slide"||x.kind==="led"));   /* v1.586: + LED */
-    if(!snOff("dwgPullImg")){ const seen=new Set(), put=(art,count,unit)=>{ const c=String(art||"").trim(); if(!c||seen.has(c)) return; seen.add(c); let nm=""; try{ const el=pullFitEl(c); nm=String((el&&el.desc)||costFgName(c)||""); }catch(e){} rows.push({art:c,kind:"pull",name:nm,count,unit}); };   /* v1.633: + มือจับ */
+    if(!snOff("dwgPullImg")){ const seen=new Set(), put=(art,count,unit)=>{ const c=String(art||"").trim(); if(!c||seen.has(c)) return; seen.add(c); let nm=""; try{ nm=dwgPullName(c); }catch(e){} rows.push({art:c,kind:"pull",name:nm,count,unit}); };   /* v1.633: + มือจับ */
       C.forEach(c=>c.bs.forEach(b=>{ if(b&&b._pullPart&&b._pull) put(b._pull,0,""); })); _all.forEach(x=>{ if(x&&x.kind==="pull") put(x.art,0,""); }); } }catch(e){ console.error("fitImg rows:",e); }
   const L=dwgFitLib(), e=escapeHtml, ov=document.createElement("div"); ov.id="dwgFitDlg"; ov.style.cssText="position:fixed;inset:0;z-index:440;background:rgba(0,0,0,.35);display:flex;align-items:center;justify-content:center";
   const paint=()=>{ ov.innerHTML='<div style="background:var(--solid,#fff);color:var(--ink,#222);border-radius:12px;box-shadow:0 10px 40px rgba(0,0,0,.35);padding:14px;width:min(560px,94vw);max-height:86vh;overflow:auto;font-size:13px">'
@@ -45296,14 +45306,14 @@ async function dwgMatTiles(C){ const cabs=(C||dwgCabs()).filter(c=>c.lv!=="rail"
       const _ehB=(!snOff("dwgEhpSec")&&p0.b._ehpPart)?(state.boards.find(d=>d&&d.id===p0.b._pullOwner)||null):null, _ehP=(_ehB&&_ehB._ehp)?ehpGet(_ehB._ehp.id):null, _pIm=dwgPullImg(code);   /* v1.633: รูปจริงมาก่อน */
       let _ehSvg=""; if(_ehP&&!_pIm){ try{ _ehSvg=ehpSecSvg(_ehP,p0.b._ehpFin); }catch(e){ console.error("ehpSecSvg:",e); } }
       let url=_pIm; if(!_ehSvg&&!url){ try{ url=dwgShot(lo,hi,cabYawOf(p0.c.inst),260,0.5); }catch(e){} }
-      let nm=""; try{ const el=pullFitEl(code); nm=String((el&&el.desc)||costFgName(code)||""); }catch(e){}
+      let nm=""; try{ nm=dwgPullName(code,!!_ehP); }catch(e){}   /* v1.640 */
       const n=new Set(pulls.map(x=>x.b._pullOwner+"|"+x.b._pull)).size;
       const fins=_ehP?[...new Set(same.map(x=>String(x.b._ehpFin||"")))].filter(Boolean):[];
       if(_ehSvg) tiles.push({h:"มือจับ", svg:_ehSvg, t:code, s:[nm&&nm!==code?nm:"",fins.join(" + "),_cnt(same.length+" เส้น")].filter(Boolean).join(" · ")});
       else tiles.push({h:"มือจับ", img:url, t:code, s:[nm&&nm!==code?nm:"",fins.join(" + "),_cnt(n+" จุด")].filter(Boolean).join(" · ")}); }
     /* v1.633: มือจับที่ไม่มีชิ้น 3D ให้ถ่าย แต่มีรูปอัปโหลดไว้ */
     if(!snOff("dwgPullImg")){ let _pr=[]; try{ _pr=fittingAgg(cabs.reduce((a,c)=>a.concat(c.bs),[])).filter(x=>x&&x.kind==="pull"&&x.art); }catch(e){}
-      const _sn=new Set(_pcs); _pr.forEach(r=>{ const c=String(r.art); if(_sn.has(c)) return; _sn.add(c); const im=dwgPullImg(c); if(!im&&!_all) return; let nm="";   /* v1.638: ไม่มีรูปก็มีการ์ด */ try{ const el=pullFitEl(c); nm=String((el&&el.desc)||costFgName(c)||""); }catch(e){} tiles.push({h:"มือจับ", img:im, t:c, s:nm&&nm!==c?nm:""}); }); } }
+      const _sn=new Set(_pcs); _pr.forEach(r=>{ const c=String(r.art); if(_sn.has(c)) return; _sn.add(c); const im=dwgPullImg(c); if(!im&&!_all) return; let nm="";   /* v1.638: ไม่มีรูปก็มีการ์ด */ try{ nm=dwgPullName(c); }catch(e){} tiles.push({h:"มือจับ", img:im, t:c, s:nm&&nm!==c?nm:""}); }); } }
   if(!snOff("dwgCore")){ const dm=doors.length?dwgBoardMat(doors[0].b):null; let cm=null;   /* v1.567: รูปเนื้อไม้จริง แยกโครงตู้/หน้าบาน (เนื้อเดียวกัน = ช่องเดียว) */
     cabs.some(c=>c.bs.some(b=>{ if(b&&!b._door&&!b._virtual&&b.orient==="side"&&+b.T>0){ cm=dwgBoardMat(b); return true; } return false; }));
     const _src=[["โครงตู้",cm],["หน้าบาน",dm]];
