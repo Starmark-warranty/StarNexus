@@ -3283,7 +3283,7 @@ body[data-theme="dark"] .splash-dots span{background:rgba(255,255,255,.25)}
    ===================================================================== */
 /* ---- APP_META: แหล่งความจริงเดียวของเวอร์ชัน (ดูได้จาก console / คลิกชื่อแอป) ---- */
 const APP_META={
-  name:"StarNexus", version:"1.623", build:"2026-11-03/sdc-ehp-side",
+  name:"StarNexus", version:"1.624", build:"2026-11-03/ehp-sdc-int",
   file:"StarNexus.html", basedOn:"Furnitech_V3.html (v3.11)",
   /* ───────── เริ่มนับเวอร์ชันใหม่ที่ 1.001 (21/08/2026) ─────────
      ของเดิมนับมาถึง 42.1 แล้ววิ่งเป็นทศนิยมสองชั้นซึ่งอ่านลำดับยาก
@@ -3291,6 +3291,7 @@ const APP_META={
      ประวัติเก่าเก็บไว้ทั้งหมดตามเลขเดิม ไม่ไล่เขียนใหม่ เพราะเลขในนั้นถูกอ้างถึงไปแล้ว
      รายการที่อยู่ใต้ 1.001 ลงไปจึงเป็นเลขชุดเก่า อ่านต่อกันได้ตามวันที่ */
   changelog:[
+    ["1.624","2026-11-03","CHANGE ไม่ตกเศษ (ผู้ใช้ 3/11 08:04 “บานเลื่อน และตัวมือจับแบบฝังขอให้ไม่ตกเศษครับ เช่น 2147.2 ก็ปัดลง 2147.8 ก็ปัดลงเสมอ · มือจับแบบฝังทุกตัว ต้องไม่ตกเศษ และบานที่มีมือจับอยู่ด้วย”) — บานเลื่อน + บานที่มีมือจับฝัง ทั้งกว้างและสูง ปัดลงเป็นเลขเต็มเสมอ ความยาวมือจับฝังจึงเป็นเลขเต็มตาม · แกนที่มือจับอยู่ ขอบตรงข้ามมือจับอยู่กับที่ · อีกแกน ด้านบานพับอยู่กับที่ ไม่มีบานพับ = เศษแบ่งสองข้าง · บานเลื่อนยึดขอบนอกติดแผ่นข้าง · ถอดมือจับ = บานคืนขนาดเดิมรวมเศษ · งานเก่าปรับเองตอนเปิด · ปิด SN_OFF.sdcInt SN_OFF.ehpInt · FIX กรอบเลือกสีฟ้าเกินตู้ (ผู้ใช้ 08:06 “ทำไมเส้นสีฟ้า เกินตู้ไปเยอะจัง”) ของที่ปั้นจากโมเดล Fitting หลายชิ้น เช่น ราวแขวน กรอบใช้ตำแหน่งชิ้นแรกที่ปลายราว บวกขนาดเต็มราว จึงเกินซ้าย ~390 · FEAT แถวบานเลื่อนใน Element → Fittings (ผู้ใช้ 08:08 “บานเลื่อนตั้งรหัสออกได้ที่ไหน … หาไม่เจอ”) SDC32045 + SDC32045-R ใส่รหัส AX ที่ Purchase Item ID · ปิด SN_OFF.sdcElem"],
     ["1.623","2026-11-03","FEAT+FIX บานเลื่อน (ผู้ใช้ 3/11 07:49–07:53 “มันเลือกให้อยู่คนละฝั่งไม่ได้ครับ” · “โหมดธรรมดา ต้องมีให้เลือกบานเลื่อนด้วยครับ”) — ① มือจับฝังเลือกด้านรายบานได้ทุกแบบบาน (แถว ‘ด้านรายบาน’ ในกล่อง 🖐) รูปบานเห็นแถบมือจับตามด้าน เปลี่ยนรุ่นแล้วด้านที่เลือกเองไม่หาย ② บานเลื่อน อัตโนมัติ = ด้านนอก คนละฝั่ง (เดิมไม่มีบานพับให้สลับ จึงไปด้านบนทั้งคู่) ③ แก้บานเลื่อนไม่ถูกตัดตามมือจับฝัง (ตัวคิดบานเลื่อนตั้งกลับเต็มใบทุก sync จนบาน + มือจับยาวเกินช่อง) ระยะเลื่อนหักตามจริง ④ มือจับยื่นหน้าที่ติดบานรางหลังด้านในหรือบน/ล่าง เตือนว่าชนบานหน้า ⑤ กล่องเพิ่มหน้าบานโหมดธรรมดามีชนิด ‘บานเลื่อน’ กดตกลงแล้วเปิดกล่องตั้งค่าบานเลื่อน · ปิด SN_OFF.sdcEhp SN_OFF.ehpPerDoor SN_OFF.addDoorSdc"],
     ["1.622","2026-11-03","FIX ปุ่ม 🚪 บานเลื่อน ขึ้นกับตู้เสื้อผ้าด้วย (ผู้ใช้ 3/11 07:35 “ใส่บานเลื่อนยังไงนะ”) — เดิมโชว์เฉพาะหมวดตู้พื้น/ตู้ลอย/ตู้สูง รหัส MWA… เป็นหมวดอื่น ๆ จึงไม่มีปุ่ม ทั้งที่ตัวคิดบานใช้ได้ · ตอนนี้ตู้ทรงตู้สูงทุกรหัสมีปุ่ม"],
     ["1.621","2026-11-02","FIX+FEAT ห้องออกแบบ — ① สีเสา (ผู้ใช้ 20:45 “เสาแก้สีบ่ได้ ขอสีเดียวกับผนังครับ”): เสาตามสีผนังเส้นที่ใกล้ที่สุด ไม่ทาสี = สีเดียวกับผนัง · มีช่องเลือกสีเองและปุ่มกลับไปตามผนัง ② เก้าอี้เกมมิ่ง (ผู้ใช้ 20:44) เลือกสีได้ คลิกการ์ดแล้ววางหน้าโต๊ะคอมที่ยังไม่มีเก้าอี้ ③ เปิดตั้งค่าในห้องออกแบบ แผงซ้าย/ขวาไม่บังหน้าตั้งค่าแล้ว (ปุ่มกู้คืนถังขยะเคยถูกบัง)"],
@@ -20479,7 +20480,7 @@ function render3D(refit){
         /* ───────── v1.466: แผงข้างเหล็ก ALTO/K40 — แผงจริง 13 มม. + รางซ่อนใต้ 3 ท่อน + คลิปล็อก (+ ราวเหลี่ยม) แทนกล่องเขียวโปร่ง ─────────
            แผง (_altoPick) เข้า meshes ให้คลิกเลือกได้เหมือนเดิม · ท่อนราง/คลิป/ราว โชว์อย่างเดียว · ไม่ได้ = ตกไปวาดกล่องแบบเดิม */
         if(b._alto&&b._box&&b.orient==="side"&&alto3DOn()){ try{ const _am=alto3DMeshes(b);
-          if(_am.length){ _am.forEach(m=>{ root.add(m); if(m.userData._altoPick) meshes.push({mesh:m,id:b.id,d}); });
+          if(_am.length){ _am.forEach(m=>{ root.add(m); if(m.userData._altoPick) meshes.push({mesh:m,id:b.id,d,c:[b.x,b.y,b.z]}); });
             if(state.showLabels){const sa=numberSprite(String(i+1));sa.position.set(b.x,b.y+d[1]/2+labelScale*.7,b.z);sa.scale.set(labelScale,labelScale,1);sa.userData.label=true;root.add(sa);}
             return; } }catch(e){ console.error("alto3D:",e); } }
         // ผูกโมเดล Fitting Studio (เช่น ขาตู้ใช้รูปที่วาดเอง): จัดให้ ท็อปโมเดล = ก้นตู้ · กึ่งกลาง x/z ตรง anchor
@@ -20506,7 +20507,7 @@ function render3D(refit){
               mm.quaternion.setFromRotationMatrix(M2);
               mm.position.set(round(b.x+rel.x),round(b.y+rel.y),round(b.z+rel.z)); }
             else mm.position.set(round(pp.x+oxL),round(pp.y+oyL),round(pp.z+ozL));
-            mm.userData.id=b.id; if(!solid)mm.renderOrder=2; root.add(mm); meshes.push({mesh:mm,id:b.id,d}); addEdges(mm,g2); });
+            mm.userData.id=b.id; if(!solid)mm.renderOrder=2; root.add(mm); meshes.push({mesh:mm,id:b.id,d,c:[b.x,b.y,b.z]}); addEdges(mm,g2); });
           if(state.showLabels){const s2=numberSprite(String(i+1));s2.position.set(b.x,b.y+d[1]/2+labelScale*.7,b.z);s2.scale.set(labelScale,labelScale,1);s2.userData.label=true;root.add(s2);}
           return;
         }catch(e){ console.error(e); } }
@@ -20524,7 +20525,7 @@ function render3D(refit){
             let go; if(pp[0]==="t"){ go=new THREE.CylinderGeometry(.5,.5,pp[1],24); go.rotateZ(Math.PI/2); go.scale(1,pp[2],pp[3]); } else go=new THREE.BoxGeometry(pp[1],pp[2],pp[3]);
             const rel=new THREE.Vector3(pp[4],pp[5],0).applyMatrix4(Mo), mo=new THREE.Mesh(go,metalMat(pp[6]));
             mo.quaternion.setFromRotationMatrix(Mo); mo.position.set(round(b.x+rel.x),round(b.y+rel.y),round(b.z+rel.z));
-            mo.userData.id=b.id; root.add(mo); meshes.push({mesh:mo,id:b.id,d}); });
+            mo.userData.id=b.id; root.add(mo); meshes.push({mesh:mo,id:b.id,d,c:[b.x,b.y,b.z]}); });
           if(state.showLabels){const so=numberSprite(String(i+1));so.position.set(b.x,b.y+d[1]/2+labelScale*.7,b.z);so.scale.set(labelScale,labelScale,1);so.userData.label=true;root.add(so);}
           return;
         }catch(e){ console.error("hangRailOval3D:",e); } }
@@ -20544,7 +20545,7 @@ function render3D(refit){
             m3.quaternion.setFromRotationMatrix(M3);
             m3.position.set(round(b.x+rel3.x),round(b.y+rel3.y),round(b.z+rel3.z));
             m3.userData.id=b.id; if(!solid3)m3.renderOrder=2;
-            root.add(m3); meshes.push({mesh:m3,id:b.id,d}); addEdges(m3,g3); });
+            root.add(m3); meshes.push({mesh:m3,id:b.id,d,c:[b.x,b.y,b.z]}); addEdges(m3,g3); });
           if(state.showLabels){const s3=numberSprite(String(i+1));s3.position.set(b.x,b.y+d[1]/2+labelScale*.7,b.z);s3.scale.set(labelScale,labelScale,1);s3.userData.label=true;root.add(s3);}
           return;
         }catch(e){ console.error("hangRail3D:",e); } }
@@ -20774,6 +20775,12 @@ function applyHingeHL(){                                   // เรียกซ
    อยู่บน scene (ไม่ใช่ root) เหมือน selBox — render3D ล้างลูกของ root ทุกรอบแต่ไม่แตะ scene
    render3D เรียก updateSelBox ตอนท้ายอยู่แล้ว กรอบจึงตามชิ้นที่ขยับ/สร้าง mesh ใหม่เอง */
 let _msGrp=null, _msMat=null;
+/* ───────── v1.624: กรอบเลือกสีฟ้าเกินตู้ ─────────
+   ผู้ใช้ 3/11 08:06 (ภาพตู้ 900 กรอบฟ้าเกินไปทางซ้าย): “ทำไมเส้นสีฟ้า เกินตู้ไปเยอะจัง บัคอะไร”
+   ต้นเหตุ: ของที่ปั้นจากโมเดล Fitting (ราวแขวน ฯลฯ) มีหลาย mesh ต่อชิ้น แต่ละ mesh อยู่ตำแหน่งของชิ้นย่อย และเก็บ d เป็นขนาดเต็มของชิ้น
+     กรอบเลือกหยิบ mesh แรก (ขายึดปลายราวซ้าย) ± ครึ่งยาวราว 800 จึงเกินซ้ายไปราว 390 · ตู้ไหนมีราวแขวนก็เป็น ไม่เกี่ยวกับบานเลื่อน
+   แก้: mesh ชิ้นย่อยจำศูนย์กลางของชิ้นไว้ใน c · กรอบเลือกใช้ c ก่อน · ชิ้นปกติไม่มี c ใช้ตำแหน่ง mesh เหมือนเดิม (เปิดบาน/กระจายชิ้นยังตาม) */
+function selCenterOf(o){ return o.c||[o.mesh.position.x,o.mesh.position.y,o.mesh.position.z]; }
 function updateMultiSelBoxes(){
   if(typeof THREE==="undefined"||!scene||!root) return;
   const ids=partSelIds();
@@ -20784,7 +20791,7 @@ function updateMultiSelBoxes(){
   ids.forEach(id=>{ if(id===state.selectedId) return;
     const o=meshes.find(m=>m.id===id); if(!o||!o.mesh||!o.d) return;
     const ls=new THREE.LineSegments(new THREE.EdgesGeometry(new THREE.BoxGeometry(o.d[0]*1.02,o.d[1]*1.02,o.d[2]*1.02)),_msMat);
-    ls.position.copy(o.mesh.position).add(root.position); ls.renderOrder=2; _msGrp.add(ls); });
+    { const _c=selCenterOf(o); ls.position.set(_c[0],_c[1],_c[2]).add(root.position); } ls.renderOrder=2; _msGrp.add(ls); });
   _msGrp.visible=true; invalidate();
 }
 function updateSelBox(){
@@ -20796,7 +20803,7 @@ function updateSelBox(){
       const bs2=gg.flatMap(x=>x.boards);
       let mn=[1e9,1e9,1e9],mx=[-1e9,-1e9,-1e9],got=false;
       bs2.forEach(bb=>{ const o=meshes.find(m=>m.id===bb.id); if(!o)return; got=true;
-        const p=[o.mesh.position.x,o.mesh.position.y,o.mesh.position.z];
+        const p=selCenterOf(o);
         for(let a=0;a<3;a++){mn[a]=Math.min(mn[a],p[a]-o.d[a]/2);mx[a]=Math.max(mx[a],p[a]+o.d[a]/2);} });
       if(got){ selBox.geometry.dispose();
         selBox.geometry=new THREE.EdgesGeometry(new THREE.BoxGeometry((mx[0]-mn[0])+6,(mx[1]-mn[1])+6,(mx[2]-mn[2])+6));
@@ -20804,7 +20811,7 @@ function updateSelBox(){
         selBox.visible=true; return; } }
     const g=cabGroups().find(x=>x.key===state.selectedCab);
     if(g&&g.boards.length){ let mn=[1e9,1e9,1e9],mx=[-1e9,-1e9,-1e9],got=false;
-      g.boards.forEach(bb=>{ const o=meshes.find(m=>m.id===bb.id); if(!o)return; got=true; const p=[o.mesh.position.x,o.mesh.position.y,o.mesh.position.z];
+      g.boards.forEach(bb=>{ const o=meshes.find(m=>m.id===bb.id); if(!o)return; got=true; const p=selCenterOf(o);
         for(let a=0;a<3;a++){mn[a]=Math.min(mn[a],p[a]-o.d[a]/2);mx[a]=Math.max(mx[a],p[a]+o.d[a]/2);} });
       if(got){ selBox.geometry.dispose();
         selBox.geometry=new THREE.EdgesGeometry(new THREE.BoxGeometry((mx[0]-mn[0])+6,(mx[1]-mn[1])+6,(mx[2]-mn[2])+6));
@@ -20815,7 +20822,7 @@ function updateSelBox(){
   if(!o){selBox.visible=false;invalidate();return;}
   selBox.geometry.dispose();
   selBox.geometry=new THREE.EdgesGeometry(new THREE.BoxGeometry(o.d[0]*1.02,o.d[1]*1.02,o.d[2]*1.02));
-  selBox.position.copy(o.mesh.position).add(root.position); selBox.visible=true; invalidate();
+  { const _c=selCenterOf(o); selBox.position.set(_c[0],_c[1],_c[2]).add(root.position); } selBox.visible=true; invalidate();
 }
 
 function fitView(ext){ modelRadius=ext*0.7+150; orbit.radius=modelRadius*2.4; orbit.theta=.85; orbit.phi=state.view==="exploded"?.7:.95; invalidate(); }
@@ -30422,6 +30429,9 @@ function boardRole(b){
      SN_OFF.plAlignStay=1 จัดแนวแล้วตู้หลบของที่ทับกันอยู่ก่อนแบบเดิม (ดีดไปช่องว่าง) (v1.600)
      SN_OFF.rszAdjBox=1   ปรับขนาดตู้ที่ชิ้นโครงมีสูตรปรับ วัดฐานก่อนถอดสูตรแบบเดิม (หดซ้ำ) (v1.600)
      SN_OFF.sdcGroove=1   บานเลื่อน SDC ไม่เซาะร่องฝังรางในแผ่นพื้น/แผ่นบน (ร่องที่เซาะไว้ถูกถอดตอน sync) (v1.599)
+     SN_OFF.sdcInt=1      บานเลื่อนมีเศษตามช่องตู้แบบเดิม ไม่ปัดลงเป็นเลขเต็ม (v1.624)
+     SN_OFF.sdcElem=1     ไม่เพิ่มแถวบานเลื่อนใน Element → Fittings ให้เอง (v1.624)
+     SN_OFF.ehpInt=1      บานที่มีมือจับฝังมีเศษแบบเดิม ไม่ปัดลงเป็นเลขเต็ม (v1.624)
      SN_OFF.sdcEhp=1      บานเลื่อนกับมือจับฝังแบบเดิม ไม่ตัดบาน · อัตโนมัติไปด้านบน (v1.623)
      SN_OFF.ehpPerDoor=1  กล่องมือจับฝังไม่มีแถวเลือกด้านรายบาน รูปบานไม่มีแถบมือจับ (v1.623)
      SN_OFF.addDoorSdc=1  กล่องเพิ่มหน้าบานไม่มีชนิดบานเลื่อน (v1.623)
@@ -35510,6 +35520,7 @@ async function loadSettings(src){ const s=(src&&typeof src==="object")?src:await
   ensureSampleHanger(); ensureHangerH1(); ensureAngle3();   // ใส่หูแขวนตัวอย่างถ้ายังไม่มีเลย — เช็คทุกครั้ง (กันคลาวด์ทับแล้วหาย) · v1.234: เหล็กฉาก 3 ขา ด้วย
   ensureSampleLeg();      // ใส่ขาตู้ตัวอย่างถ้ายังไม่มีเลย
   ensureSamplePull();     // v9.71: ตัวอย่างมือจับ ไว้ให้เห็นรูปแบบสเปครู
+  try{ sdcEnsureElems(); }catch(e){ console.error(e); }   // v1.624: แถวบานเลื่อนใน Element ไว้ใส่รหัส AX
   ensureSampleSection();  // v9.83: ตัวอย่างหน้าตัดกล่องอลู ไว้ลองบานเฟรม
   ensureSampleHangRail(); // ซีรีส์ราวแขวนตัวอย่าง (lenMap ตามยาว)
   ensureCoverScrew();     // v1.254: แถวสกรูยึดแผ่นปิด
@@ -46942,6 +46953,21 @@ function ehpShift(d,S,side,cut){ const A=S[side], k=(A.ax==="y")?"W":"L", v=((A.
 /* ขนาด/ตำแหน่งบานหลังตัดครั้งล่าสุด — ตัวคิดบานจากสเปคขอบ (applyDoorSpecs) ตั้งบานกลับเต็มใบทุกรอบ sync
    ไม่ตรงกับที่จำ = บานถูกตั้งใหม่แล้ว → ตัดอีกครั้ง (ehpHealAll ท้ายตัวคิดบานใน sync) · ตรง = ยังตัดอยู่ ไม่ซ้ำ */
 function ehpSig(d){ return [+d.L,+d.W,+d.x,+d.y,+d.z]; }
+/* ───────── v1.624: บานที่มีมือจับฝังไม่ตกเศษ ─────────
+   ผู้ใช้ 3/11 08:04 “มือจับแบบฝังทุกตัว ต้องไม่ตกเศษ และบานที่มีมือจับอยู่ด้วย”
+   เดิม: บาน = เต็มใบ − ระยะมือจับ ได้เศษตามช่องไฟ (เช่น 720.2 × 197 · 396.5) ความยาวมือจับเท่าขอบบาน จึงมีเศษตาม
+   ตอนนี้: ปัดลงเป็นเลขเต็มทั้งกว้างและสูง หลังหักมือจับ · มือจับยาวเท่าขอบบาน จึงเป็นเลขเต็มเอง
+     ปัดแล้วบานขยับน้อยที่สุดและไม่ทำให้รูบานพับเพี้ยน: แกนเดียวกับมือจับ ขอบตรงข้ามมือจับอยู่กับที่ · อีกแกน ด้านบานพับอยู่กับที่ · ไม่มีบานพับ = เศษแบ่งสองข้าง
+     จำเศษที่ตัดไว้ที่ _ehp.fl เป็นค่าตามแกนบาน (หมุนตู้แล้วยังถูก) ถอด/ย้ายด้าน = คืนก่อนคิดใหม่ บานจึงกลับขนาดเดิมตรงเป๊ะ
+     บานเลื่อนคิดที่ sdcLayout ไม่ผ่านตรงนี้ · ปิด SN_OFF.ehpInt */
+function ehpFloor(d,S){ if(snOff("ehpInt")||!d||!d._ehp||(d._sdc&&!snOff("sdc")&&!snOff("sdcEhp"))) return false;
+  S=S||ehpSides(d); const A=S[d._ehp.side]; if(!A) return false;
+  const fl=v=>Math.floor((+v||0)+1e-6), r3=v=>Math.round(v*1000)/1000, dL=r3((+d.L)-fl(d.L)), dW=r3((+d.W)-fl(d.W)); if(!(dL>0)&&!(dW>0)) return false;
+  const hs=ehpHingeSide(d,S), dir=ax=>{ if(A.ax===ax) return -A.s; const H=hs&&S[hs]; return (H&&H.ax===ax)?H.s:0; }, sx=dir("x")*dL/2, sy=dir("y")*dW/2;
+  d.L=fl(d.L); d.W=fl(d.W); d.x=r3(d.x+S.ex.x*sx+S.ey.x*sy); d.y=r3(d.y+S.ex.y*sx+S.ey.y*sy); d.z=r3(d.z+S.ex.z*sx+S.ey.z*sy);
+  const o=d._ehp.fl||{dL:0,dW:0,sx:0,sy:0}; d._ehp.fl={dL:r3(o.dL+dL), dW:r3(o.dW+dW), sx:r3(o.sx+sx), sy:r3(o.sy+sy)}; return true; }
+function ehpUnfloor(d,S){ const f=d&&d._ehp&&d._ehp.fl; if(!f) return false; const r3=v=>Math.round(v*1000)/1000, sx=+f.sx||0, sy=+f.sy||0;
+  d.L=r3(+d.L+(+f.dL||0)); d.W=r3(+d.W+(+f.dW||0)); d.x=r3(d.x-(S.ex.x*sx+S.ey.x*sy)); d.y=r3(d.y-(S.ex.y*sx+S.ey.y*sy)); d.z=r3(d.z-(S.ex.z*sx+S.ey.z*sy)); delete d._ehp.fl; return true; }
 function ehpCut(d){ const e=d._ehp; if(!e||!Array.isArray(e.lw)) return false; const s=ehpSig(d); return s.every((v,i)=>Math.abs(v-e.lw[i])<0.06); }
 function ehpHealAll(){ if(snOff("ehp")) return 0; let n=0;
   /* ───────── v1.607: งานที่ใส่ R122/R118 ไว้ตอน 1.606 บานถูกตัดไป 45 ─────────
@@ -46954,8 +46980,10 @@ function ehpHealAll(){ if(snOff("ehp")) return 0; let n=0;
        ตัวเดิมถือว่าบานต่างจากที่จำ = ถูกคิดใหม่เต็มใบ → ตัดอีกรอบ · แต่บานตู้ฮู้ด (WAT070 มือจับล่าง) ขอบล่างไม่มีสเปค ขอบนั้นไม่เคยถูกคืน
        ปรับสูง/ย้ายตู้ทีไร ก้นบานถูกตัดเพิ่มอีก 3 สะสมไปเรื่อย (งานครัว3 ก้นบานห่างก้นโครง 16) · ตอนนี้จำขนาดใหม่อย่างเดียว · ปิด SN_OFF.ehpFreeEdge=1 */
     { const sp=d._de, k={top:"T",bottom:"B",left:"L",right:"R"}[d._ehp.side], stack=(k==="T"||k==="B")&&sp&&(+sp.vn||1)>1;
-      if(!snOff("ehpFreeEdge")&&!stack&&(!sp||sp[k]==null)){ d._ehp.lw=ehpSig(d); return; } }
-    ehpShift(d,S,d._ehp.side,+d._ehp.cut||0); d._ehp.lw=ehpSig(d); n++; });
+      if(!snOff("ehpFreeEdge")&&!stack&&(!sp||sp[k]==null)){ ehpFloor(d,S); d._ehp.lw=ehpSig(d); return; } }
+    delete d._ehp.fl;   /* v1.624: บานถูกตั้งเต็มใบมาใหม่ เศษเก่าไม่เกี่ยวแล้ว */ ehpShift(d,S,d._ehp.side,+d._ehp.cut||0); ehpFloor(d,S); d._ehp.lw=ehpSig(d); n++; });
+  /* v1.624: งานเก่าที่บานตัดแล้วแต่ยังมีเศษ (ด่านบนข้ามเพราะขนาดตรงกับที่จำ) */
+  (state.boards||[]).forEach(d=>{ if(!d||!d._ehp||d._virtual) return; if(ehpFloor(d)){ d._ehp.lw=ehpSig(d); n++; } });
   try{ (state.boards||[]).forEach(d=>{ if(d&&!d._virtual&&(d._ehp||(d.holes||[]).some(h=>h&&h._ehpMark))) ehpMarkSync(d); }); }catch(e){ console.error("ehpMark:",e); }   /* v1.596 */
   try{ (state.boards||[]).forEach(d=>{ if(d&&!d._virtual&&(d._ehp||(d.grooves||[]).some(g=>g&&g._ehpGr))) ehpRebateSync(d); }); }catch(e){ console.error("ehpRebate:",e); }   /* v1.606 */
   return n; }
@@ -47014,9 +47042,26 @@ function sdcOpeningRaw(inst){ let op=null, und=false;
   finally{ if(und) try{ applyTopDrop(); }catch(e){ console.error("sdc td:",e); } }
   return op; }
 /* ขนาด/ตำแหน่งบานจากช่อง (ไม่แตะ state) */
-function sdcGeo(op,c,side){ const T=c.T, H=op.A-c.hDed, Wd=(op.Wo+c.ov)/2, trk=(side==="L")?1:0;
-  const z=op.fZ-c.rec-T/2-trk*(T+c.gap), x=(side==="L")?(op.sLo+Wd/2):(op.sHi-Wd/2), y=(op.yLo+op.yHi)/2;
-  return {L:round(Wd), W:round(H), T, x:round(x), y:round(y), z:round(z), trk}; }
+/* ───────── v1.624: บานเลื่อนไม่ตกเศษ ─────────
+   ผู้ใช้ 3/11 08:04 “บานเลื่อน และตัวมือจับแบบฝังขอให้ไม่ตกเศษครับ เช่น 2147.2 ก็ปัดลง 2147.8 ก็ปัดลงเสมอ”
+   เดิม: กว้าง/สูงตามช่องตู้ตรง ๆ (451.6 × 2147.2)
+   ตอนนี้: ปัดลงเป็นเลขเต็มเสมอ (451 × 2147) · ขอบนอกยังชิดแผ่นข้าง เศษไปหายที่ซ้อนกลาง · แนวสูงเศษแบ่งบน-ล่าง · ปิด SN_OFF.sdcInt */
+function sdcInt(v){ return snOff("sdcInt")?round(v):Math.floor((+v||0)+1e-6); }
+/* ───────── v1.624: แถวบานเลื่อนใน Element → Fittings ─────────
+   ผู้ใช้ 3/11 08:08 (ภาพ Element → Fittings): “แล้วบานเลื่อนตั้งรหัสออกได้ที่ไหนครับ · หาไม่เจอ”
+   เดิม: รหัสชุดลูกล้อ/รางตั้งได้แค่ในกล่อง 🚪 บานเลื่อน ใน Element ไม่มีแถว จึงไม่มีที่ใส่รหัส AX (Purchase Item ID) และชื่อ/หน่วยแก้ไม่ได้
+   ตอนนี้: เพิ่มแถวให้เองตามรหัสที่ใช้อยู่ ค่าตั้งต้น SDC32045 กับ SDC32045-R โฟลเดอร์ “บานเลื่อน” · รหัส AX ปล่อยว่างให้ผู้ใช้ใส่เอง
+     ชื่อในแถวตรงกับชื่อที่ใบเบิกใช้อยู่ ใบเบิกงานเดิมจึงไม่เปลี่ยน · มีรหัสนั้นแล้วไม่แตะ · จำไว้ใน settings.sdcElemSeed ผู้ใช้ลบแถวเองแล้วไม่ใส่คืน · ปิด SN_OFF.sdcElem */
+function sdcEnsureElems(){ if(snOff("sdc")||snOff("sdcElem")) return false;
+  try{ settings.elements=settings.elements||{}; const L=settings.elements.fittings=settings.elements.fittings||[], seen=settings.sdcElemSeed=settings.sdcElemSeed||{}, c=sdcCfg(); let n=0;
+    [[c.kit,"ชุดลูกล้อบานเลื่อน "+c.sys+" (4 ล้อ/บาน)","ชุด"],[c.rail,"รางบานเลื่อนเดี่ยว "+c.sys,"เส้น"]].forEach(r=>{ const cd=String(r[0]||"").trim(); if(!cd) return;
+      if(L.some(f=>f&&String(f.code||"").trim().toLowerCase()===cd.toLowerCase())){ seen[cd]=1; return; }
+      if(seen[cd]) return; L.push({code:cd,desc:r[1],dia:"",unit:r[2],itemId:"",asSet:"",kind:"บานเลื่อน",folder:"บานเลื่อน"}); seen[cd]=1; n++; });
+    if(n){ try{ lsSet("sxlocaltrial:furnitech:settings",settings); }catch(e){} } return n>0;
+  }catch(e){ console.error("sdcElems:",e); return false; } }
+function sdcGeo(op,c,side){ const T=c.T, H=op.A-c.hDed, Wd=(op.Wo+c.ov)/2, trk=(side==="L")?1:0, Li=sdcInt(Wd), Wi=sdcInt(H);
+  const z=op.fZ-c.rec-T/2-trk*(T+c.gap), x=(side==="L")?(op.sLo+Li/2):(op.sHi-Li/2), y=(op.yLo+op.yHi)/2;
+  return {L:Li, W:Wi, T, x:round(x), y:round(y), z:round(z), trk, wd:Wd, h:H}; }
 function sdcPockets(L,W,c){ const out=[]; [-1,1].forEach(sx=>[-1,1].forEach(sy=>out.push({x:round(sx*(L/2-c.ins-c.pw/2)), y:round(sy*(W/2-c.ph/2)), w:c.pw, h:c.ph, depth:c.pd, r:0, face:"bottom", _sdcPk:true})));
   return out; }
 /* วางบาน d ตามช่อง (ในกรอบขนานแกน) — คืน true ถ้ามีอะไรเปลี่ยน */
@@ -47027,8 +47072,9 @@ function sdcPockets(L,W,c){ const out=[]; [-1,1].forEach(sx=>[-1,1].forEach(sy=>
      งานเก่าที่บานเต็มใบอยู่ ได้ขนาดถูกเองตอนเปิด · lw จำนอกกรอบแกนตรง (sdcHealAll) · ปิด SN_OFF.sdcEhp */
 function sdcLayout(d,op,c){ const g=sdcGeo(op,c,d._sdc.side), near=(a,b)=>Math.abs((+a||0)-(+b||0))<0.05;
   if(d._ehp&&!snOff("sdcEhp")){ const ct=+d._ehp.cut||0, k=d._ehp.side;
-    if(ct>0){ if(k==="left"){ g.L=round(g.L-ct); g.x=round(g.x+ct/2); } else if(k==="right"){ g.L=round(g.L-ct); g.x=round(g.x-ct/2); }
-      else if(k==="top"){ g.W=round(g.W-ct); g.y=round(g.y-ct/2); } else if(k==="bottom"){ g.W=round(g.W-ct); g.y=round(g.y+ct/2); } } }
+    if(ct>0){ /* v1.624: หักจากขนาดก่อนปัด แล้วปัดลงทีเดียว · ขอบนอกของชุดบาน + มือจับ ชิดแผ่นข้างเสมอ */
+      if(k==="left"||k==="right"){ const isL=d._sdc.side==="L", Ln=sdcInt(g.wd-ct); g.L=Ln; g.x=round(isL?(op.sLo+(k==="left"?ct:0)+Ln/2):(op.sHi-(k==="right"?ct:0)-Ln/2)); }
+      else if(k==="top"||k==="bottom"){ const cy=(op.yLo+op.yHi)/2; g.W=sdcInt(g.h-ct); g.y=round(k==="top"?(cy-ct/2):(cy+ct/2)); } } }
   const pk=sdcPockets(g.L,g.W,c), oldPk=JSON.stringify((d.pockets||[]).filter(q=>q&&q._sdcPk));
   const same=near(d.L,g.L)&&near(d.W,g.W)&&near(d.T,g.T)&&near(d.x,g.x)&&near(d.y,g.y)&&near(d.z,g.z)&&(+d.yaw||0)===0&&d.orient==="front"&&oldPk===JSON.stringify(pk);
   const geo={wo:round(op.Wo), ocx:round((op.sLo+op.sHi)/2-g.x), yTop:round(op.yHi-g.y), yBot:round(op.yLo-g.y)};
@@ -47115,7 +47161,7 @@ async function sdcOpen(inst){ if(snOff("sdc")) return;
       +'<rect x="'+X(op.sLo)+'" y="'+Y(op.yHi)+'" width="'+(op.Wo*k)+'" height="'+(op.A*k)+'" fill="#f3f4f6" stroke="#9aa"/>'+rl(Y(op.yHi)+2)+rl(Y(op.yLo)-2)
       +bx(gl,"rgba(141,148,158,.55)")+bx(gr,"rgba(239,230,212,.85)")+wh(gl)+wh(gr)+'</svg>'
       +'<div style="font-size:11.5px;line-height:1.7;margin-top:6px">ช่องตู้ <b>'+round(op.Wo)+' × '+round(op.A)+'</b> มม.'+(op.top?'':' <span style="color:#e58a24">(ไม่เจอแผ่นบน — ใช้ขอบบนแผ่นข้าง)</span>')
-      +'<br>บาน 2 บาน <b>'+round(Wd)+' × '+round(H)+' × '+c.T+'</b> · ซ้อนกลาง '+c.ov+' · ซ้าย = รางหลัง (สีเทา) ขวา = รางหน้า'
+      +'<br>บาน 2 บาน <b>'+sdcInt(Wd)+' × '+sdcInt(H)+' × '+c.T+'</b> · ซ้อนกลาง '+c.ov+' · ซ้าย = รางหลัง (สีเทา) ขวา = รางหน้า'
       +'<br>ลูกล้อบานละ 4 (ช่องเจาะ '+c.pw+'×'+c.ph+' ลึก '+c.pd+' ผิวหลังบาน ห่างขอบข้าง '+c.ins+') · ราง '+c.rail+' ยาว '+round(op.Wo)+' × 4 เส้น'
       +(snOff("sdcGroove")?'':('<br>ร่องฝังราง '+c.rw+'×'+c.rh+': '+[op.botB?('แผ่นพื้น “'+escapeHtml(op.botB.name||"")+'” ผิวบน 2 ร่อง'):'<span style="color:#e58a24">ไม่เจอแผ่นพื้น</span>',
         op.topB?('แผ่นบน “'+escapeHtml(op.topB.name||"")+'” ผิวล่าง 2 ร่อง'):'<span style="color:#e58a24">ด้านบนเป็นคาน/ไม่มีแผ่นบน — ไม่เซาะ (ยึดรางใต้คานเอง)</span>'].join(' · ')))   /* v1.599 */
@@ -47124,8 +47170,8 @@ async function sdcOpen(inst){ if(snOff("sdc")) return;
   const v=await promptFields("🚪 บานเลื่อน — "+(op.cab||inst),[
     {key:"act",type:"toggle",label:"ทำอะไร",options:has.length?[DO,RM]:[DO],value:DO},
     {key:"sys",type:"text",label:"รุ่น",value:c0.sys,showIf:x=>x.act!==RM},
-    {key:"kit",type:"text",label:"รหัสชุดลูกล้อ (ลงใบเบิก ชุด/บาน)",value:c0.kit,showIf:x=>x.act!==RM},
-    {key:"rail",type:"text",label:"รหัสราง (ลงใบเบิก ตัดตามยาว)",value:c0.rail,showIf:x=>x.act!==RM},
+    {key:"kit",type:"text",label:"รหัสชุดลูกล้อ (ลงใบเบิก ชุด/บาน · รหัส AX ใส่ที่ Element → Fittings ช่อง Purchase Item ID)",value:c0.kit,showIf:x=>x.act!==RM},
+    {key:"rail",type:"text",label:"รหัสราง (ลงใบเบิก ตัดตามยาว · รหัส AX ใส่ที่ Element → Fittings ช่อง Purchase Item ID)",value:c0.rail,showIf:x=>x.act!==RM},
     num("T","หนาบาน (มม.)"), num("ov","ซ้อนกลาง (มม.)"), num("hDed","หักความสูง (ช่อง A − …)"), num("rec","ผิวหน้าบานถอยจากหน้าตู้ (มม.)"), num("gap","ระยะห่างระหว่างบานหน้า-หลัง (มม.)"),
     num("ins","ลูกล้อห่างขอบข้างบาน (มม.)"), num("pw","ช่องลูกล้อ กว้าง"), num("ph","ช่องลูกล้อ สูง"), num("pd","ช่องลูกล้อ ลึก"),
     num("rw","ร่องฝังราง กว้าง (มม.)"), num("rh","ร่องฝังราง ลึก (มม.)"),   /* v1.599 */
@@ -47137,10 +47183,10 @@ async function sdcOpen(inst){ if(snOff("sdc")) return;
     T:v.T, ov:v.ov, hDed:v.hDed, rec:v.rec, gap:v.gap, ins:v.ins, pw:v.pw, ph:v.ph, pd:v.pd, rw:v.rw, rh:v.rh});
   const oldN=state.boards.filter(b=>b&&b.cabInst===inst&&b._door&&!b._virtual&&!b._dg&&!b._box&&!b._sdc).length;
   if(oldN&&!await dialog({title:"ตู้นี้มีบานอยู่ "+oldN+" บาน — เอาออกแล้วใส่บานเลื่อน?",ok:"ใส่บานเลื่อน"})) return;
-  settings.sdc=Object.assign({},c); try{ await catSaveSettings(); }catch(e){ console.error("sdc save:",e); }
+  settings.sdc=Object.assign({},c); sdcEnsureElems();   /* v1.624: เปลี่ยนรหัสแล้วมีแถวใน Element ตาม */ try{ await catSaveSettings(); }catch(e){ console.error("sdc save:",e); }
   const r=sdcApply(inst,c); if(!r||r.err){ toast("บานเลื่อน: "+((r&&r.err)||"ไม่สำเร็จ")); return; }
   sync(0); plCamPut(cam); sdcReselect(inst); try{ costSchedule(); }catch(e){}
-  toast("🚪 บานเลื่อน "+c.sys+" · 2 บาน "+round((r.op.Wo+c.ov)/2)+" × "+round(r.op.A-c.hDed)+(r.n?(" · เอาบานเดิมออก "+r.n+" บาน"):"")+" — โหมดเปิดบาน: คลิกบาน = เลื่อน"); }
+  toast("🚪 บานเลื่อน "+c.sys+" · 2 บาน "+sdcInt((r.op.Wo+c.ov)/2)+" × "+sdcInt(r.op.A-c.hDed)+(r.n?(" · เอาบานเดิมออก "+r.n+" บาน"):"")+" — โหมดเปิดบาน: คลิกบาน = เลื่อน"); }
 function ehpMarkCfg(){ const m=settings.ehpMark||{}, n=(v,d)=>{ const x=+v; return (isFinite(x)&&x>0)?Math.round(x*10)/10:d; };
   return {on:m.on!==false, d:n(m.d,5), dep:n(m.dep,3), z:isFinite(+m.z)?Math.round(+m.z*10)/10:0}; }
 function ehpEdgeOf(S,side){ const A=S&&S[side]; if(!A) return null; return (A.ax==="x")?(A.s>0?"right":"left"):(A.s>0?"back":"front"); }
@@ -47166,7 +47212,7 @@ function ehpRebateSync(d){ if(!d) return false; const cur=(d.grooves||[]).filter
 function ehpSet(d,id,side){ if(!d) return {err:"ไม่พบบาน"}; const S=ehpSides(d);
   const _fin0=d._ehp?ehpFinKey(d._ehp):String((typeof PLPU!=="undefined"&&PLPU.ehFin)||"");   /* v1.603: เปลี่ยนด้าน/รุ่นแล้วสีเดิมยังอยู่ · บานใหม่ = สีที่เลือกไว้ */
   const _own0=(d._ehp&&d._ehp.own&&!snOff("ehpPerDoor"))?String(d._ehp.side||""):"";   /* v1.623: ด้านที่เลือกรายบาน — เปลี่ยนรุ่น/อัตโนมัติ ไม่ทับ */
-  if(d._ehp){ const o=d._ehp; if(S[o.side]&&ehpCut(d)) ehpShift(d,S,o.side,-(+o.cut||0)); delete d._ehp; }   /* ยังตัดอยู่ = คืน · ถูกตั้งเต็มใบไปแล้ว = ไม่ต้อง */
+  if(d._ehp){ const o=d._ehp; if(S[o.side]&&ehpCut(d)){ ehpUnfloor(d,S); /* v1.624: คืนเศษก่อน */ ehpShift(d,S,o.side,-(+o.cut||0)); } delete d._ehp; }   /* ยังตัดอยู่ = คืน · ถูกตั้งเต็มใบไปแล้ว = ไม่ต้อง */
   if(!id) return {ok:1, off:1};
   const P=ehpGet(id); if(!P) return {err:"ไม่พบรุ่นมือจับฝัง"};
   if(!side||side==="auto") side=_own0||ehpAutoSide(d,S); if(!S[side]) return {err:"ด้านไม่ถูก"};
@@ -47179,7 +47225,7 @@ function ehpSet(d,id,side){ if(!d) return {err:"ไม่พบบาน"}; cons
   const hs=ehpHingeSide(d,S); if(hs&&hs===side){ if(snOff("ehpFlip")) return {err:"ด้าน"+EHP_TH[side]+"เป็นด้านบานพับ", hinge:1};
     side={left:"right",right:"left",top:"bottom",bottom:"top"}[side]; if(!S[side]) return {err:"ด้านไม่ถูก"}; }
   const cut=Math.round((ehpDims(P).h+ehpGap(P))*10)/10, dim=(S[side].ax==="y")?+d.W:+d.L; if(!(cut>0)||dim-cut<60) return {err:"บานเหลือไม่พอ ("+Math.round(dim)+" − "+cut+")"};
-  ehpShift(d,S,side,cut); d._ehp={id:P.id, side, cut, code:P.code, lw:ehpSig(d)}; if(_fin0) d._ehp.fin=_fin0; if(_own0&&_own0===side) d._ehp.own=1; return {ok:1, side}; }
+  ehpShift(d,S,side,cut); d._ehp={id:P.id, side, cut, code:P.code, lw:ehpSig(d)}; if(_fin0) d._ehp.fin=_fin0; if(_own0&&_own0===side) d._ehp.own=1; if(ehpFloor(d,S)) d._ehp.lw=ehpSig(d);   /* v1.624 */ return {ok:1, side}; }
 /* ───────── v1.623: เตือนมือจับฝังชนบานหน้า ─────────
    บานรางหลังอยู่หลังบานหน้าเท่าระยะห่าง c.gap (ตั้งต้น 10) · R118/R122 ยื่นหน้าบาน 27 → ติดด้านใน/บน/ล่าง บานหลังถูกบานหน้าขวาง · ด้านนอกยังเลื่อนได้เกือบสุด
    เตือนอย่างเดียว ไม่ห้าม เพราะผู้ใช้อาจปรับระยะห่างเองทีหลัง */
@@ -47832,7 +47878,7 @@ function plEhpDraw(el,C){ const e=v=>escapeHtml(String(v==null?"":v)), inst=C.in
         return '<div class="ppOpt" style="flex-wrap:wrap;gap:5px"><b>รูมาร์ค</b><label style="display:flex;gap:3px;align-items:center;cursor:pointer"><input type="checkbox" data-mk="on"'+(c.on?' checked':'')+'> ใส่</label>'
           +'Ø '+ni("d",c.d)+' ลึก '+ni("dep",c.dep)+' เลื่อนตามหนา '+ni("z",c.z)
           +'<span style="color:var(--ink-dim);font-size:10.5px">กลางสันด้านที่มือจับอยู่ · ทุกรุ่น</span></div>'; })())
-    +'<div style="padding:6px 12px 0;color:var(--ink-dim);font-size:10.5px;line-height:1.5">ใส่แล้วบานสั้นลงเท่าความสูงมือจับฝัง (ขนาดรวมเท่าเดิม) · ใบตัด/MPR ใช้ขนาดใหม่ · มือจับเดิมของบานนั้นถูกถอด</div>'
+    +'<div style="padding:6px 12px 0;color:var(--ink-dim);font-size:10.5px;line-height:1.5">ใส่แล้วบานสั้นลงเท่าความสูงมือจับฝัง แล้วปัดลงเป็นเลขเต็ม (บานและมือจับไม่มีเศษ) · ใบตัด/MPR ใช้ขนาดใหม่ · มือจับเดิมของบานนั้นถูกถอด</div>'
     +(cands.length?('<div class="ppDr"><div class="ppDrH"><b>บานที่ใส่</b><span>กดที่บาน = ใส่ / ถอด รายบาน</span></div>'+plpDoorsSvg(cands)+'</div>'):'')
     +(!rows.length?('<div style="padding:16px 12px;color:var(--ink-dim)">'+(whole?'ห้องนี้':'ตู้ใบนี้')+'ไม่มีบานหรือลิ้นชักให้ใส่</div>')
       :('<div class="ppGrid">'+card(null,-1)+lib.map((P,i)=>card(P,i)).join("")
