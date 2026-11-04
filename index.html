@@ -3283,7 +3283,7 @@ body[data-theme="dark"] .splash-dots span{background:rgba(255,255,255,.25)}
    ===================================================================== */
 /* ---- APP_META: แหล่งความจริงเดียวของเวอร์ชัน (ดูได้จาก console / คลิกชื่อแอป) ---- */
 const APP_META={
-  name:"StarNexus", version:"1.666", build:"2026-11-04/cat-lazy",
+  name:"StarNexus", version:"1.667", build:"2026-11-04/hw367-mill",
   file:"StarNexus.html", basedOn:"Furnitech_V3.html (v3.11)",
   /* ───────── เริ่มนับเวอร์ชันใหม่ที่ 1.001 (21/08/2026) ─────────
      ของเดิมนับมาถึง 42.1 แล้ววิ่งเป็นทศนิยมสองชั้นซึ่งอ่านลำดับยาก
@@ -3291,6 +3291,7 @@ const APP_META={
      ประวัติเก่าเก็บไว้ทั้งหมดตามเลขเดิม ไม่ไล่เขียนใหม่ เพราะเลขในนั้นถูกอ้างถึงไปแล้ว
      รายการที่อยู่ใต้ 1.001 ลงไปจึงเป็นเลขชุดเก่า อ่านต่อกันได้ตามวันที่ */
   changelog:[
+    ["1.667","2026-11-04","FEAT+CHANGE (ผู้ใช้ 21:53–21:55 แบบ HW-367 + project 38) — ① มือจับฝัง HW-367 แนวนอน บากหัวท้ายตามแบบ (บาก 45 เหลือ 20 · R3/R1 · เดือยเริ่มที่ 30) ตั้งต้นบาก เลือกตัดตรงได้ที่กล่อง 🖐 · แนวตั้งไม่บาก · ใบเบิก/ราคาแยกบรรทัด ② แบบผลิตงานสั่งทำ HW-367 ทุกขนาดใน Order หน้าละ 1 ขนาด/สี/บาก ไม่บาก = แบบไม่มีบาก ③ ระยะบานพับเลขเต็ม ไม่ตกเศษ .25 สมมาตรหัวท้ายให้สลับบานได้ หลบชั้นก็เลขเต็ม รูฐานบานพับแผ่นข้างตามเอง งานเก่าด้วย · ปิด SN_OFF.ehpMill / hingeInt"],
     ["1.666","2026-11-04","PERF แคตตาล็อกห้องออกแบบรองรับตู้หลักพันใบ (ผู้ใช้ 20:44 “ถ้าตู้สัก 2000 ใบ โหลดนาน” · 21:33 สั่งทำ) — ① FIX อ่านรายชื่อโฟลเดอร์ thumbs ซ้ำทุกรูป (445 ใบ = 445 รอบ · 2,000 ใบ แท็บดับก่อนเสร็จ) เหลือครั้งเดียว ② โหลดรูปเฉพาะใบที่เห็น เลิกแผ่นบังรอรูปครบของ v1.312 ใบที่ยังไม่ถึงคิวเป็นกรอบเทา ③ วาดการ์ดทีละ 60 ใบ เลื่อนถึงท้ายค่อยเพิ่ม · ช่องค้นหาหน่วง 0.15 วิ · ชื่อไทยพร้อม/เปลี่ยนขนาด ไม่วาดการ์ดใหม่ทั้งหมด · ปิด SN_OFF.plLazyThumb / plCardChunk"],
     ["1.665","2026-11-04","FEAT+UX ท็อปเคาน์เตอร์ (ผู้ใช้ 18:50 project 37) — ① บัวหินตั้งความหนาเองได้ แยกจากท็อป ช่องว่าง = เท่าท็อปตามเดิม ② ติ๊กบัวไว้แต่บัวไม่ขึ้นเพราะเคยเลือกแล้วกดลบออกหมด เดิมมีแค่ข้อความเล็กท้ายกลุ่ม ตอนนี้เตือนใต้ช่องบัวพร้อมปุ่มคืนเฉพาะบัว ผนังก็เหมือนกัน · ติ๊กบัวใหม่ตอนที่ตัดออกหมด = คืนให้เอง · ปิด SN_OFF.plWtUpT"],
     ["1.664","2026-11-04","FEAT ห้องออกแบบ · ผนังเหนือบัว (ผู้ใช้ 17:18 ภาพแผงท็อปกับผนังหิน) — เพิ่มตัวเลือก หิน (คนละแบบกับท็อป) ตั้งวัสดุ หนา สี ลาย ขนาดลาย และราคาทุนของผนังแยกจากท็อปได้ อัปโหลดรูปหินของผนังเองได้ · 3D ใบเสนอราคา แบบ และหน้ารวมวัสดุแยกตามผนัง · บัวหินยังใช้วัสดุเดียวกับท็อป งานเดิมไม่เปลี่ยน · ปิดตัวเลือก SN_OFF.plWtW2"],
@@ -4775,6 +4776,7 @@ function sync(rebuild,save,cm){
       try{ drsKitApply(i2); }catch(e){ console.error("drsKit:",e); } });   // v1.220 · v1.221
     try{ nestRefitAll(); }catch(e){ console.error("nest:",e); }          // v1.222
   }catch(e){ console.error(e); } }
+  try{ hingePlateHeal(); }catch(e){ console.error("hingePlateHeal:",e); }   // v1.667: รูฐานบานพับตามระยะบนบาน
   try{ ehpHealAll(); }catch(e){ console.error("ehpHeal:",e); }   /* v1.592: รางมือจับติดขอบ — บานที่ตัวคิดบานตั้งเต็มใบ หักรางกลับ */
   try{ applyPanelHeights(); }catch(e){ console.error(e); }  // v9.06: แผงปิดที่ผูกสูตรความสูงไว้
   try{ applyPanelWidths(); }catch(e){ console.error(e); }   // v19.0: แผงปิดที่ผูกสูตรความกว้างไว้
@@ -7518,6 +7520,32 @@ function formulaRuleText(name){ const fs=getFormulas();
   return f?f.rule:DEF_DOWEL_RULE; }
 function dowelRuleFor(X,name){ for(const r of rulesFromText(formulaRuleText(name))) if(X>=r.min&&X<=r.max) return r; return null; }
 // returns the along-edge positions (board-local, centered in [-len/2 .. +len/2])
+/* ───────── v1.667: ระยะบานพับเลขเต็ม สลับบานได้ ─────────
+   ผู้ใช้ 4/11 21:53 (ภาพแบบบาน 2097: 96 · 476.25 · 668.25 · 284.25 · 476.25 · 96): “ไม่ต้องสนสูตรผมแล้วก็ได้ … ผมอยากได้แบบไม่ตกเศษ .25 เลย เอาเลขเต็มๆ
+     บานพับที่ไม่ชน บานตกสลับกันได้ในของจริง กันพลาด แต่โปรแกรมเราจะต้องไม่พลาด ส่วนพอเจอชั้น ขยับขึ้นก็ต้องไม่ตกเศษเช่นกัน”
+   เดิม: สูตร 96 : 1 : 1 : 1 : 96 หารช่วงกลางเท่ากันตรง ๆ บาน 2097 จึงได้ 572.25 · 1048.5 · 1524.75
+   ตอนนี้: จำนวนบานพับกับระยะหัวท้ายยังตามสูตร · ปัดเป็นเลขเต็มวัดจากขอบบานที่ใกล้กว่า แล้วใช้ค่าเดียวกันทั้งสองฝั่ง
+     บานหมุน 180° (สลับซ้าย/ขวา) รูจึงตรงกันทุกตัว: 96 · 572 · 1048 · 1525 · 2001
+     ระยะหลบชั้นเป็นก้าว 96 อยู่แล้ว บวกจากเลขเต็มจึงยังเป็นเลขเต็ม: ตัวกลางขึ้น 192 = 96 · 476 · 668 · 285 · 476 · 96
+     ข้อจำกัดที่เลี่ยงไม่ได้: บานยาวเลขคี่ + บานพับเลขคี่ ตัวกลางอยู่ที่ .5 พอดี เลือกเลขเต็มตามที่สั่ง สลับบานแล้วตัวกลางต่าง 1 มม. (บานพับปรับสูงต่ำได้)
+       บานที่ตัวบานเองมีเศษ เช่น 726.1 ระยะจากขอบสองฝั่งยังเต็ม เศษไปอยู่ช่องกลางช่องเดียว
+     ไม่แตะ: บานพับที่พิมพ์ระยะเอง (โหมดกำหนดเอง มี c.first) · เดือย/มินิฟิกไม่เกี่ยว · ปิด SN_OFF.hingeInt */
+function hingeIntAlong(arr,len){ if(snOff("hingeInt")||!Array.isArray(arr)||!arr.length||!(len>0)) return arr;
+  const half=len/2, n=arr.length, idx=arr.map((v,i)=>i).sort((x,y)=>arr[x]-arr[y]), a=idx.map(i=>arr[i]+half), o=a.slice();
+  for(let i=0;i<Math.floor(n/2);i++){ const j=n-1-i, d0=a[i], d1=len-a[j];
+    if(Math.abs(d0-d1)<0.6){ const d=Math.round((d0+d1)/2+1e-6); o[i]=d; o[j]=len-d; }   // คู่สมมาตร = ค่าเดียวกันสองฝั่ง
+    else { o[i]=Math.round(d0); o[j]=len-Math.round(d1); } }                             // สูตรหัวท้ายไม่เท่ากัน = ปัดแยกกัน
+  if(n%2){ const m=(n-1)/2; o[m]=(Math.abs(a[m]-half)<0.6)?Math.floor(half+1e-6):Math.round(a[m]); }
+  const out=arr.slice(); idx.forEach((i,k)=>{ out[i]=o[k]-half; }); return out; }
+/* รูฐานบานพับบนแผ่นข้างเก็บเป็นตำแหน่งจริงตอนเจาะ ระยะบนบานเปลี่ยนแล้วไม่ตามเอง → จำลายเซ็นระยะไว้ที่ตัวเชื่อม ไม่ตรง = เจาะใหม่
+   ครอบคลุมงานเก่าและตู้จากคลัง (เปิดมารอบแรกเจาะใหม่หมด รูจะตรงกับบานเสมอ) · เรียกใน sync หลังตัวคิดบาน */
+function hingePlateHeal(){ if(snOff("hingeInt")) return 0; let n=0;
+  (state.boards||[]).forEach(d=>{ if(!d||!d._door||d._virtual||d._box||d._panel||d._dummy||!(d.connectors||[]).length) return;
+    const c=d.connectors.find(k=>k&&k.type==="hinge"); if(!c||c.plate===false) return;
+    let sg=""; try{ sg=connectorPoints(d,c).pts.map(p=>Math.round(p.x*10)/10+","+Math.round(p.y*10)/10).join(";"); }catch(e){ return; }
+    if(c._pSig===sg) return;
+    try{ drillHingePlateHoles(d); c._pSig=sg; n++; }catch(e){ console.error("hingePlateHeal:",e); } });
+  return n; }
 /* v7.30: ออฟเซ็ตรายตัว (c.shift[i] มม. ตามแนวขอบ · + = ขึ้น/ไปทางปลาย)
    ใช้กับบานพับที่ต้องหลบชั้น — ตำแหน่งฐานยังมาจากสูตรเดิม แค่บวกส่วนต่างทีหลัง
    จึงยังเปลี่ยนสูตร/จำนวนได้ตามปกติ และ render + MPR + เจาะฐานใช้ค่าเดียวกันหมด */
@@ -7527,7 +7555,8 @@ function dowelAlong(c,len){
      ถ้าตัวเชื่อมกลับไปคิดจากสูตรเอง สองฝั่งจะไม่ตรงกันทันทีที่มีการขยับให้พ้นขอบ
      ผูกไว้กับความยาวขอบที่ใช้คิด — ขนาดเปลี่ยนแล้วยังไม่ถูกคิดใหม่ ก็ถอยไปใช้สูตรตามเดิม */
   if(c&&Array.isArray(c.at)&&c.at.length&&Math.abs((+c.atLen||0)-len)<0.05) return c.at.slice();
-  const out=dowelAlong0(c,len);
+  let out=dowelAlong0(c,len);
+  if(c&&c.type==="hinge"&&c.first==null) out=hingeIntAlong(out,len);   // v1.667: บานพับเลขเต็ม สมมาตรหัวท้าย
   /* ───────── v1.461: ระยะหลบเดือยที่เจาะชนกันคนละผิว (c._dodge · mateDodgePlan เป็นคนใส่) บวกเพิ่มจาก c.shift ─────────
      เดิมมีแต่ c.shift (บานพับหลบชั้น) · ระยะหลบเก็บแยกเพื่อไม่ทับค่าที่ตั้งเอง และคิดใหม่ได้ทุกรอบ · ปิดฟีเจอร์ = ไม่บวก */
   const sh=c&&c.shift, dd=(c&&Array.isArray(c._dodge)&&c._dodge.length&&mateDodgeOn())?c._dodge:null;
@@ -9412,7 +9441,7 @@ function openHingeModal(b){
   let formula=pickFx(exist&&exist.formula?exist.formula:settings.hingeFormulaActive);
   let fromBack=exist?!!exist.fromBack:false, count=exist&&exist.count?exist.count:2, first=exist&&exist.first!=null?exist.first:100, pitch=exist&&exist.pitch?exist.pitch:Math.max((b.W||500)-200,100);
   let plate=exist?(exist.plate!==false):true;
-  function previewPositions(name,X){ const txt=(fs.find(f=>f.name===name)||fs[0]||{rule:DEF_DOWEL_RULE}).rule; let r=null; for(const rr of parseDowelRules(txt)) if(X>=rr.min&&X<=rr.max){r=rr;break;} if(!r)return null; return rulePositions(r,X); }
+  function previewPositions(name,X){ const txt=(fs.find(f=>f.name===name)||fs[0]||{rule:DEF_DOWEL_RULE}).rule; let r=null; for(const rr of parseDowelRules(txt)) if(X>=rr.min&&X<=rr.max){r=rr;break;} if(!r)return null; const _rp=rulePositions(r,X); return hingeIntAlong(_rp.map(p=>p-X/2),X).map(p=>p+X/2); }   /* v1.667: ตัวอย่างเลขเต็มตรงกับของจริง */
   function paint(){
     const X=Math.round(edgeLen[side]||b.W||0);
     const fxOpts=fs.map(f=>`<option value="${escapeHtml(f.name)}" ${f.name===formula?"selected":""}>${escapeHtml(f.name)}</option>`).join("");
@@ -27037,7 +27066,7 @@ async function cutLookupSeq(codes,len,hint,v){
    ไม่มียาวตรงตัว = ใช้ท่อนที่ห่างไม่เกิน cutNearTol (ตั้งต้น 1 มม. เหมือน v1.298 · บอกในใบ)
    ไม่เจอเลย แต่ Element ของซีรีส์ผูก Purchase ID ไว้ = ค้นแบบรหัสขึ้นต้นต่อ (ของเดิม)
    ยาวเดียวกันมีหลายรหัส = เลือกชื่อที่ขึ้นต้นด้วย "ราว" ก่อน แล้วรหัสเรียงน้อยไปมาก และบอกในใบว่ามีรหัสไหนบ้าง */
-function cutNameKey(f){ return "~N:"+String((f&&f._cutName)||"").trim()+"|"+cutLen(f&&f._cut)+((f&&f._cutEhp&&f._cutTok)?("|"+String(f._cutTok).trim()):""); }   /* v1.608: มือจับฝัง สีต่างกัน = คนละรหัส */
+function cutNameKey(f){ return "~N:"+String((f&&f._cutName)||"").trim()+"|"+cutLen(f&&f._cut)+((f&&f._cutEhp&&f._cutTok)?("|"+String(f._cutTok).trim()):"")+((f&&f._cutEhp&&f._cutMill!=null)?("|m"+f._cutMill):""); }   /* v1.608: มือจับฝัง สีต่างกัน = คนละรหัส */
 function cutNameRows(sb,word){
   if(_fgCutNames[word]) return _fgCutNames[word];
   const kw=(String(settings.cutLookupKey||DEF_SETTINGS.cutLookupKey||"ตัดขนาด")).trim();
@@ -27082,8 +27111,10 @@ async function cutLookupEhp(f){
     const _e=t=>String(t).replace(/[.*+?^${}()|[\]\\]/g,"\\$&"), nm=x=>String(x.product_name||"").replace(/^"+/,"").trim();
     const whole=t=>new RegExp("(^|[^A-Za-z0-9])"+_e(t)+"([^A-Za-z0-9]|$)","i"), wRe=whole(word), up=pre.toUpperCase();
     const base=R.rows.filter(x=>String(x.item_number||"").trim().toUpperCase().indexOf(up)===0&&wRe.test(nm(x)));
-    const rows=tok?base.filter(x=>whole(tok).test(nm(x))):base;
-    let r=cutNamePick(rows,L0);
+    let rows=tok?base.filter(x=>whole(tok).test(nm(x))):base;
+    /* v1.667: บาก = ชื่อใน AX มี Milling · ตัดตรง = ไม่มี · คลังมีแบบเดียว ใช้แบบนั้นแล้วบอกในใบ */
+    let _millAlt=""; if(f._cutMill!=null&&!snOff("ehpMill")){ const isM=x=>/mill?ing|มิลลิ่ง|บาก/i.test(nm(x)), r2=rows.filter(x=>f._cutMill?isM(x):!isM(x)); if(r2.length) rows=r2; else if(rows.length) _millAlt=f._cutMill?"m":"s"; }
+    let r=cutNamePick(rows,L0); if(r&&_millAlt) r.millAlt=_millAlt;
     if(!r){ const tol=Math.max(+((settings.cutNearTol!=null)?settings.cutNearTol:DEF_SETTINGS.cutNearTol)||0,0), cand=[];
       if(tol>0) for(let n=Math.floor(raw-tol); n<=Math.ceil(raw+tol); n++) if(n>0&&n!==L0&&Math.abs(n-raw)<=tol+1e-6) cand.push(n);
       cand.sort((a,b)=>(Math.abs(a-raw)-Math.abs(b-raw))||(b-a));
@@ -27474,10 +27505,11 @@ function bomCutRow(m,code,desc,unit,len,kind,vx){
   /* v1.277: เส้นเฟรม — สีกับปลาย 45° เป็นคนละรหัสสั่งซื้อ จึงแยกบรรทัดด้วย (vx ไม่ส่งมา = เหมือนเดิมทุกค่า) */
   const tok=(vx&&vx.tok)?String(vx.tok).trim():"", mit=(vx&&vx.miter!=null)?!!vx.miter:null;
   const vsec=(vx&&vx.sec)?String(vx.sec).trim():"";                          // v1.284: รหัสหน้าตัด ใช้ตัดสินว่าบังคับแบบปลายตัดไหม
-  const k=code+"@"+L+(tok?("#"+tok):"")+(mit==null?"":(mit?"#45":"#90"));   // คนละความยาว = คนละบรรทัด
-  const nm=cutSizeName(tok?(desc+" "+tok):desc,L)+(mit?" ตัด 45/2ด้าน":"");
+  const mil=(vx&&vx.mill!=null)?(+vx.mill||0):null;                          // v1.667: มือจับฝังสั่งทำ — บากกับตัดตรงเป็นคนละงาน คนละบรรทัด
+  const k=code+"@"+L+(tok?("#"+tok):"")+(mit==null?"":(mit?"#45":"#90"))+(mil?"#mill":"");   // คนละความยาว = คนละบรรทัด
+  const nm=cutSizeName(tok?(desc+" "+tok):desc,L)+(mit?" ตัด 45/2ด้าน":"")+(mil?(" บากหัวท้าย "+mil):"");
   (m[k]||(m[k]={art:code,dia:"",kind:kind||"len",name:nm,unit:unit||"เส้น",count:0,_cut:L,
-    _cutTok:tok||undefined, _cutMiter:(mit==null?undefined:mit), _cutSec:vsec||undefined})).count+=1;
+    _cutTok:tok||undefined, _cutMiter:(mit==null?undefined:mit), _cutSec:vsec||undefined, _cutMill:(mil==null?undefined:(mil?1:0))})).count+=1;
   /* v13.1: ชื่อจากคลังจะถูกเติมทีหลังตอนรู้ Purchase ID แล้ว (ดู fittingAgg) เพราะรหัสในคลังผูกกับ Purchase ID ไม่ใช่รหัสภายใน */
 }
 /* ═════════ v14.0: รายการไฟ — เส้นไฟ · หม้อแปลง · สายต่อ ═════════
@@ -30191,6 +30223,8 @@ function boardRole(b){
      SN_OFF.frontEdge3D=1 ปิดเฉพาะแถบขอบหน้าตู้ใน 3D ค่ายังออกไฟล์ตามเดิม (v1.141)
      SN_OFF.chandle=1     ปิดการให้คานหน้าตู้ใช้สีหน้าบาน กลับไปใช้สีตู้ (v1.146)
      SN_OFF.dpRail=1      ปิดการใส่คานปิดรอยต่อจากคำสั่งปรับบาน (v1.148)
+     SN_OFF.ehpMill=1     มือจับฝัง HW-367 ไม่บากหัวท้าย ไม่มีหน้าแบบสั่งทำ (v1.667)
+     SN_OFF.hingeInt=1    ระยะบานพับกลับเป็นตามสูตรตรง ๆ มีเศษได้ (v1.667)
      SN_OFF.plLazyThumb=1 แคตตาล็อกห้องออกแบบกลับไปรอรูปครบทุกใบ มีแผ่นบัง แบบ v1.312 (วาดการ์ดครบทุกใบด้วย) (v1.666)
      SN_OFF.plCardChunk=1 วาดการ์ดแคตตาล็อกครบทุกใบทีเดียว ช่องค้นหาไม่หน่วง (รูปยังโหลดเฉพาะใบที่เห็น) (v1.666)
      SN_OFF.plWtUpT=1     บัวหินหนาเท่าท็อปเสมอ ไม่มีช่องหนาบัว (v1.665)
@@ -43485,7 +43519,7 @@ function costItems(boards,fitRows){
          ราคา (costPrice): ใส่รายขนาดเอง (บาท/เส้น) · ไม่ได้ใส่ = ราคาต่อเมตรของ “รหัส@m” (ที่ใส่ไว้เดิม/AX) × ยาว — ราคาเดิมที่ใส่ไว้ยังใช้ได้
          เส้นอื่น (เฟรมอลู · มือจับโปรไฟล์ · DX · รางไฟ) ยังรวมเป็นเมตรเหมือนเดิม · ปิด SN_OFF.costEhpSize */
     /* v1.608: เจอรหัส AX แล้ว base กลายเป็นรหัสท่อน — กุญแจราคาคงรหัสรุ่นเดิม ราคาที่ใส่รายขนาดไว้จึงไม่หาย · code = รหัสท่อน เพื่อหาราคา AX ของท่อนนั้น */
-    if(r._ehpRow&&+r._cut>0&&!snOff("costEhpSize")){ const _kb=(r._fg&&r._pidSrc)?String(r._pidSrc):base, _rc=(r._fg&&r._fg.code)?String(r._fg.code):""; add(R.fit,_kb+"@"+(+r._cut)+"mm"+(r._cutTok?("#"+r._cutTok):""),{code:_rc||String(r.art||base),pid:String(r.purchase||""),name:String(r.name||base),unit:"เส้น",perM:false,cutMM:+r._cut},(+r.count||0)); return; }
+    if(r._ehpRow&&+r._cut>0&&!snOff("costEhpSize")){ const _kb=(r._fg&&r._pidSrc)?String(r._pidSrc):base, _rc=(r._fg&&r._fg.code)?String(r._fg.code):""; add(R.fit,_kb+"@"+(+r._cut)+"mm"+(r._cutTok?("#"+r._cutTok):"")+(r._cutMill?"#mill":""),{code:_rc||String(r.art||base),pid:String(r.purchase||""),name:String(r.name||base),unit:"เส้น",perM:false,cutMM:+r._cut},(+r.count||0)); return; }
     const perM=(+r._cut>0), key=perM?base+"@m":base, q=perM?(+r.count||0)*(+r._cut)/1000:(+r.count||0);
     let nm=String(r.name||base); if(perM){ try{ const d=fitDef(r.art); if(d&&d.desc) nm=String(d.desc); }catch(e){} }
     add(R.fit,key,{code:String(r.art||base),pid:String(r.purchase||""),name:nm,unit:perM?"ม.":String(r.unit||"ชิ้น"),perM},q);
@@ -48589,6 +48623,7 @@ function ehpRebateSync(d){ if(!d) return false; const cur=(d.grooves||[]).filter
   d.grooves=(d.grooves||[]).filter(g=>!(g&&g._ehpGr)); if(want) d.grooves.push(want); return true; }
 function ehpSet(d,id,side){ if(!d) return {err:"ไม่พบบาน"}; const S=ehpSides(d);
   const _fin0=d._ehp?ehpFinKey(d._ehp):String((typeof PLPU!=="undefined"&&PLPU.ehFin)||"");   /* v1.603: เปลี่ยนด้าน/รุ่นแล้วสีเดิมยังอยู่ · บานใหม่ = สีที่เลือกไว้ */
+  const _mill0=d._ehp?d._ehp.mill:undefined;   /* v1.667: เปลี่ยนด้าน/รุ่นแล้วที่เลือกตัดตรงยังอยู่ */
   const _own0=(d._ehp&&d._ehp.own&&!snOff("ehpPerDoor"))?String(d._ehp.side||""):"";   /* v1.623: ด้านที่เลือกรายบาน — เปลี่ยนรุ่น/อัตโนมัติ ไม่ทับ */
   if(d._ehp){ const o=d._ehp; if(S[o.side]&&ehpCut(d)){ ehpUnfloor(d,S); /* v1.624: คืนเศษก่อน */ ehpShift(d,S,o.side,-(+o.cut||0)); } delete d._ehp; }   /* ยังตัดอยู่ = คืน · ถูกตั้งเต็มใบไปแล้ว = ไม่ต้อง */
   if(!id) return {ok:1, off:1};
@@ -48603,7 +48638,7 @@ function ehpSet(d,id,side){ if(!d) return {err:"ไม่พบบาน"}; cons
   const hs=ehpHingeSide(d,S); if(hs&&hs===side){ if(snOff("ehpFlip")) return {err:"ด้าน"+EHP_TH[side]+"เป็นด้านบานพับ", hinge:1};
     side={left:"right",right:"left",top:"bottom",bottom:"top"}[side]; if(!S[side]) return {err:"ด้านไม่ถูก"}; }
   const cut=Math.round((ehpDims(P).h+ehpGap(P))*10)/10, dim=(S[side].ax==="y")?+d.W:+d.L; if(!(cut>0)||dim-cut<60) return {err:"บานเหลือไม่พอ ("+Math.round(dim)+" − "+cut+")"};
-  ehpShift(d,S,side,cut); d._ehp={id:P.id, side, cut, code:P.code, lw:ehpSig(d)}; if(_fin0) d._ehp.fin=_fin0; if(_own0&&_own0===side) d._ehp.own=1; if(ehpFloor(d,S)) d._ehp.lw=ehpSig(d);   /* v1.624 */ return {ok:1, side}; }
+  ehpShift(d,S,side,cut); d._ehp={id:P.id, side, cut, code:P.code, lw:ehpSig(d)}; if(_fin0) d._ehp.fin=_fin0; if(_mill0===false) d._ehp.mill=false; if(_own0&&_own0===side) d._ehp.own=1; if(ehpFloor(d,S)) d._ehp.lw=ehpSig(d);   /* v1.624 */ return {ok:1, side}; }
 /* ───────── v1.623: เตือนมือจับฝังชนบานหน้า ─────────
    บานรางหลังอยู่หลังบานหน้าเท่าระยะห่าง c.gap (ตั้งต้น 10) · R118/R122 ยื่นหน้าบาน 27 → ติดด้านใน/บน/ล่าง บานหลังถูกบานหน้าขวาง · ด้านนอกยังเลื่อนได้เกือบสุด
    เตือนอย่างเดียว ไม่ห้าม เพราะผู้ใช้อาจปรับระยะห่างเองทีหลัง */
@@ -48680,6 +48715,119 @@ function ehpSecSvg(P,fin){ const LS=ehpLoops(P,18).filter(l=>l&&l.length>=3); if
     +'<path d="M'+e(xd)+' '+e(y0)+' V'+e(yH1)+' M'+e(xd-fs*0.35)+' '+e(y0)+' H'+e(xd+fs*0.35)+' M'+e(xd-fs*0.35)+' '+e(yH1)+' H'+e(xd+fs*0.35)+'" fill="none" '+st+'/>'
     +'<text x="'+e((x0+x1)/2)+'" y="'+e(yd+fs*1.25)+'" text-anchor="middle" font-size="'+e(fs)+'" fill="#2b2f36">'+r1(w)+'</text>'
     +'<text x="'+e(xd+fs*0.55)+'" y="'+e((y0+yH1)/2+fs*0.35)+'" font-size="'+e(fs)+'" fill="#2b2f36">'+r1(yH1-y0)+'</text></svg>'; }
+/* ───────── v1.667: มือจับฝัง HW-367 แนวนอน บากหัวท้าย ─────────
+   ผู้ใช้ 4/11 21:53 (แบบ “มือจับแบบฝัง HW-367 Milling [ตามแบบ] ชุบอโนไดซ์ Dark Brown(ด้าน)+แฮร์ไลน์”): “เมื่อมันอยู่แนวนอน มันจะต้องบากหัวท้าย Default ไว้บากก่อน แล้วให้เลือกได้ภายหลัง”
+   เดิม: หน้าตัดยาวตลอดเส้น ปลายตัดตรงเสมอ
+   ตามแบบ: ปลายละ 45 ตัดส่วนที่ยื่นหน้าบานออก เหลือแผ่นกว้าง 20 จากขอบหลัง · มุมเว้า R3 · มุมนูน R1 · เดือยหนามเริ่มที่ 30 จากปลาย · ปากงุ้มเริ่มที่ 45
+   ตอนนี้: _ehp.mill === false = ตัดตรง · ไม่มีค่า = บาก (ตั้งต้น) · บากเฉพาะขอบบน/ล่างของบาน แนวตั้งตัดตรงเสมอ · สั้นกว่า 120 ไม่บาก
+     รุ่นที่สั่งทำ = settings.ehpMillCodes (ไม่ตั้ง = HW-367) · ขนาดแก้ได้ที่ settings.ehpMill · ปิด SN_OFF.ehpMill
+     ไม่แตะบาน: บานสั้นลงเท่าเดิม รูบานพับไม่เปลี่ยน */
+const EHP_MILL_DEF={len:45, keep:20, fin:30, ri:3, ro:1};
+function ehpMillCodes(){ return String(settings.ehpMillCodes!=null?settings.ehpMillCodes:"HW-367").split(/[,\s|]+/).map(x=>x.trim().toUpperCase()).filter(Boolean); }
+function ehpMade(P){ if(!P||snOff("ehpMill")) return false; const L=ehpMillCodes(), c=String(P.code||"").trim().toUpperCase(), q=String(P.sec||"").trim().toUpperCase(); return (!!c&&L.indexOf(c)>=0)||(!!q&&L.indexOf(q)>=0); }
+function ehpMillCfg(){ const o=(settings.ehpMill&&typeof settings.ehpMill==="object")?settings.ehpMill:{}, c=Object.assign({},EHP_MILL_DEF); Object.keys(EHP_MILL_DEF).forEach(k=>{ if(+o[k]>0) c[k]=+o[k]; }); return c; }
+function ehpMillOn(d,P,A,len){ if(!d||!d._ehp||!ehpMade(P)||!A||A.ax!=="y"||d._ehp.mill===false) return null; const c=ehpMillCfg(); return (len>=2*c.len+30)?c:null; }
+/* ตัดรูปหน้าตัดด้วยเส้นตรงแกนเดียว (ax 0 = u · 1 = v) */
+function ehpClip(poly,ax,val,keepHi){ const out=[], n=poly.length, inS=q=>keepHi?(q[ax]>=val-1e-6):(q[ax]<=val+1e-6);
+  for(let i=0;i<n;i++){ const a=poly[i], b=poly[(i+1)%n], ia=inS(a), ib=inS(b); if(ia) out.push([a[0],a[1]]);
+    if(ia!==ib){ const t=(val-a[ax])/(b[ax]-a[ax]); out.push([a[0]+(b[0]-a[0])*t, a[1]+(b[1]-a[1])*t]); } }
+  return out; }
+/* แยกหน้าตัดเป็น แผ่น + เดือย + ปากงุ้ม — w = ระยะจากขอบหลังแผ่น (ตรงกับเลขในแบบ) */
+function ehpSectBits(pts,keep){ const P=(pts||[]).map(q=>[+q[0],+q[1]]), us=P.map(q=>q[0]), vs=P.map(q=>q[1]), u0=Math.min(...us), u1=Math.max(...us), h=Math.max(...vs), cut=u1-keep;
+  const under=poly=>{ const q=ehpClip(poly,1,0,false), n=q.length; return q.filter((p,i)=>Math.abs(p[1])>1e-6||q[(i-1+n)%n][1]<-1e-6||q[(i+1)%n][1]<-1e-6); };
+  const fin=under(ehpClip(P,0,cut,true)), lip=under(ehpClip(P,0,cut,false)), rng=q=>q.length?[u1-Math.max(...q.map(p=>p[0])),u1-Math.min(...q.map(p=>p[0]))]:[0,0], dep=q=>q.length?-Math.min(...q.map(p=>p[1])):0;
+  return {u0,u1,W:u1-u0,h,fin,lip,wFin:rng(fin),wLip:rng(lip),dFin:dep(fin),dLip:dep(lip)}; }
+/* เส้นรอบแผ่นตามแบบ (t = ตามยาว · w = จากขอบหลัง) ทิศเดียวรอบรูป */
+function ehpMillOutline(L,W,c){ const pts=[], PI=Math.PI, arc=(cx,cy,r,a0,a1,n)=>{ for(let i=0;i<=n;i++){ const a=a0+(a1-a0)*i/n; pts.push([cx+r*Math.cos(a),cy+r*Math.sin(a)]); } };
+  const nl=+c.len, kp=+c.keep, ri=+c.ri, ro=+c.ro;
+  arc(L-ro,ro,ro,-PI/2,0,3); arc(L-ro,kp-ro,ro,0,PI/2,3); arc(L-nl+ri,kp+ri,ri,-PI/2,-PI,4); arc(L-nl-ro,W-ro,ro,0,PI/2,3);
+  arc(nl+ro,W-ro,ro,PI/2,PI,3); arc(nl-ri,kp+ri,ri,0,-PI/2,4); arc(ro,kp-ro,ro,PI/2,PI,3); arc(ro,ro,ro,PI,1.5*PI,3);
+  return pts; }
+function ehpMillGeo(b){ const c=b._ehpMill, T=+b._ehpT||18, h=+b._ehpH||3, len=Math.max(+b._ehpLenG||100,10), s=+b._ehpS||1, sz=+b._ehpSz||1, B=ehpSectBits(b._ehpPts,c.keep);
+  const zc=sz*(T/2-(B.u0+B.u1)/2), zr=u=>sz*(T/2-u)-zc, vr=v=>s*(v-h/2);
+  const ext=(poly,t0,t1)=>{ if(!poly||poly.length<3||!(t1>t0)) return null; const sh=new THREE.Shape(); poly.forEach((q,i)=>{ const a=-zr(q[0]), y=vr(q[1]); if(i) sh.lineTo(a,y); else sh.moveTo(a,y); });
+    const g=new THREE.ExtrudeGeometry(sh,{depth:t1-t0,bevelEnabled:false,curveSegments:2}); g.translate(0,0,t0-len/2); g.rotateY(Math.PI/2); return g; };
+  const pl=new THREE.Shape(); ehpMillOutline(len,B.W,c).forEach((q,i)=>{ const x=q[0]-len/2, y=zr(B.u1-q[1]); if(i) pl.lineTo(x,y); else pl.moveTo(x,y); });
+  const gp=new THREE.ExtrudeGeometry(pl,{depth:h,bevelEnabled:false,curveSegments:2}); gp.rotateX(Math.PI/2); gp.translate(0,h/2,0);
+  const g=mergeGeos([gp,ext(B.lip,c.len,len-c.len),ext(B.fin,c.fin,len-c.fin)]); if(g) g.computeVertexNormals(); return g; }
+/* ───────── v1.667: แบบผลิตงานสั่งทำ HW-367 ทุกขนาดใน Order ─────────
+   ผู้ใช้ 21:54–21:55: “HW-367 ต้องออกแบบผลิตงานสั่งทำครับ ทุกขนาดใน order · ถ้าไม่มีบากก็ต้องออกแบบผลิตงานสั่งทำด้วย แต่บากก็จะไม่มีบากในแบบ”
+   เดิม: ใบเบิกบอกแค่รหัส+ขนาด ไม่มีแบบส่งโรงงาน
+   ตอนนี้: ปุ่ม งานสั่งทำ (และเล่มแบบผลิตรวม) มีหน้าละ 1 แบบ แยกตาม รุ่น · ยาว · สี · บาก/ตัดตรง · ยาวสุดขึ้นก่อน
+     ด้านหน้าเลขยาวจริง (ยาวเกินกระดาษมีรอยตัด) · บาก = DETAIL A ระยะ 30 · 20 · 45 · R1 · R3 · รูป 3 มิติ 2 มุม · หน้าตัด · ตาราง · ตัดตรง = แบบเดียวกันแต่ไม่มีบากทุกจุด */
+function ehpMillGroups(bs){ if(snOff("ehpMill")) return []; const own=bs?new Set(bs.map(b=>b&&b.id)):null, G={}, order=[], B=state.boards||[], byId={}; B.forEach(b=>{ if(b) byId[b.id]=b; });
+  B.forEach(p=>{ if(!p||!p._ehpPart||!p._ehpMade) return; if(own&&!own.has(p._pullOwner)&&!own.has(p.id)) return;
+    const d=byId[p._pullOwner], e=d&&d._ehp, Pm=e&&ehpGet(e.id); if(!Pm) return;
+    const L=round(+p._ehpLen||0), fin=String(p._ehpFin||""), k=[p._ehpCode,L,fin,p._ehpMill?1:0].join("|");
+    const g=G[k]||(G[k]={code:p._ehpCode,P:Pm,L,fin,mill:p._ehpMill||null,qty:0,ids:[],labs:[]}); if(g.qty===0) order.push(k);
+    g.qty++; g.ids.push(String(d.id)); const lb=(String(d.cab||"")+" "+String(d.name||"")).trim(); if(g.labs.indexOf(lb)<0) g.labs.push(lb); });
+  return order.map(k=>G[k]).sort((a,b)=>(b.L-a.L)||((b.mill?1:0)-(a.mill?1:0))||a.fin.localeCompare(b.fin)); }
+function ehpMillTitle(g){ const f=g.fin?ehpFinGet(g.fin):null, d=f?String(f.d||f.k):"", ft=g.fin?((/อโนไดซ์/.test(d)?d:("ชุบอโนไดซ์ "+d))):"ยังไม่ระบุสี";
+  return "มือจับแบบฝัง "+g.code+(g.mill?" Milling [ตามแบบ]":" ตัดตรง (ไม่บาก)")+" "+ft; }
+function ehpMillSheet(P,g,page,pages){ const {SW,SH,INK,DIM,THIN,rnd1,esc,dimH,dimV,frame}=SVGKit, Pm=g.P, mill=g.mill, c=mill||ehpMillCfg(), L=+g.L;
+  const LS=ehpLoops(Pm,18).filter(l=>l&&l.length>=3), B=ehpSectBits(LS[0],c.keep), W=B.W;
+  const F="font-family=\"'Sarabun',sans-serif\"", T=(x,y,t,o)=>{ o=o||{}; return `<text x="${rnd1(x)}" y="${rnd1(y)}" ${F} font-size="${o.fs||13}"${o.a?` text-anchor="${o.a}"`:""}${o.b?' font-weight="700"':''} fill="${o.c||INK}">${esc(t)}</text>`; };
+  const LN=(xa,ya,xb,yb,cl,w,da)=>`<line x1="${rnd1(xa)}" y1="${rnd1(ya)}" x2="${rnd1(xb)}" y2="${rnd1(yb)}" stroke="${cl||INK}" stroke-width="${w||1}"${da?` stroke-dasharray="${da}"`:""}/>`;
+  const POLY=(pts,fill,sw,cl)=>`<path d="M${pts.map(q=>rnd1(q[0])+" "+rnd1(q[1])).join(" L")} Z" fill="${fill||"none"}" stroke="${cl||INK}" stroke-width="${sw||1.2}" stroke-linejoin="round"/>`;
+  const fill="#f1efe9", tagEnd=mill?("บาก "+c.len+" หัวท้าย"):"ตัดตรง ไม่บาก";
+  let s=`<svg class="sp-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${SW} ${SH}" width="${SW}" height="${SH}"><rect width="${SW}" height="${SH}" fill="#fff"/>`+frame();
+  s+=T(34,56,ehpMillTitle(g),{fs:24,b:1});
+  s+=T(34,84,"ยาว "+L+" มม. · "+g.qty+" เส้น"+(g.fin?(" · สี "+g.fin):"")+" · "+tagEnd,{fs:16,c:"#444"});
+  /* ── ด้านหน้า ── */
+  const x0=150, xMax=1450, sE=2.9, H=W*sE, brk=L*sE>xMax-x0, X1=brk?xMax:x0+L*sE, ye=170, tx=t=>brk?((t<=L/2)?(x0+t*sE):(X1-(L-t)*sE)):(x0+t*sE), yw=w=>ye+w*sE;
+  const OUT=mill?ehpMillOutline(L,W,c):[[0,0],[L,0],[L,W],[0,W]];
+  s+=POLY(OUT.map(q=>[tx(q[0]),yw(q[1])]),fill,1.5);
+  { const fa=mill?c.fin:0, fb=mill?L-c.fin:L, la=mill?c.len:0, lb=mill?L-c.len:L, xa=tx(fa), xb=tx(fb);
+    s+=LN(xa,yw(B.wFin[0]),xb,yw(B.wFin[0]),INK,.9,"7 4")+LN(xa,yw(B.wFin[1]),xb,yw(B.wFin[1]),INK,.9,"7 4");
+    if(mill) s+=LN(xa,yw(B.wFin[0]),xa,yw(B.wFin[1]),INK,.9,"3 3")+LN(xb,yw(B.wFin[0]),xb,yw(B.wFin[1]),INK,.9,"3 3");
+    s+=LN(tx(la),yw(B.wLip[0]),tx(lb),yw(B.wLip[0]),INK,.9,"7 4"); }
+  if(brk){ const xm=(x0+X1)/2, zig=(x,y0,y1)=>`M${x} ${y0} L${x} ${(y0+y1)/2-9} L${x+8} ${(y0+y1)/2-3} L${x-8} ${(y0+y1)/2+3} L${x} ${(y0+y1)/2+9} L${x} ${y1}`;
+    s+=`<rect x="${xm-13}" y="${ye-4}" width="26" height="${rnd1(H+8)}" fill="#fff"/><path d="${zig(xm-13,ye-8,ye+H+8)} ${zig(xm+13,ye-8,ye+H+8)}" fill="none" stroke="${INK}" stroke-width="1"/>`; }
+  s+=dimH(x0,X1,ye-34,String(L));
+  s+=dimV(ye,ye+H,x0-40,String(rnd1(W)));
+  if(mill){ s+=dimH(x0,tx(c.len),ye+H+34,String(c.len))+dimH(tx(L-c.len),X1,ye+H+34,String(c.len))+dimV(ye,yw(c.keep),X1+36,String(c.keep)); }
+  /* ── รูป 3 มิติ 2 มุม (ไม่ตามสเกลยาว) ── */
+  { const Ld=Math.min(L,330), kI=1.35, ax=.86*kI, ay=.40*kI, bx=-.55*kI, by=.45*kI, cIso=mill&&Ld>=2*c.len+30?c:null;
+    const prisms=(ox,oy,list)=>{ let o=""; const pr=(t,w,v)=>[ox+t*ax+w*bx, oy+t*ay+w*by-v*kI];
+      list.forEach(p=>{ const n=p.poly.length, walls=[]; for(let i=0;i<n;i++){ const a=p.poly[i], b=p.poly[(i+1)%n]; walls.push({d:(a[0]+b[0])/2*ay+(a[1]+b[1])/2*by, q:[pr(a[0],a[1],p.v1),pr(b[0],b[1],p.v1),pr(b[0],b[1],p.v0),pr(a[0],a[1],p.v0)]}); }
+        walls.sort((x,y)=>x.d-y.d).forEach(w=>{ o+=POLY(w.q,"#d9d6cd",.6); });
+        o+=POLY(p.poly.map(q=>pr(q[0],q[1],p.v1)),"#f4f2ec",.9); });
+      return o; };
+    const plate=cIso?ehpMillOutline(Ld,W,cIso):[[0,0],[Ld,0],[Ld,W],[0,W]], rc=(t0,t1,w0,w1)=>[[t0,w0],[t1,w0],[t1,w1],[t0,w1]], fa=cIso?cIso.fin:0, la=cIso?cIso.len:0, mir=q=>q.map(p=>[p[0],W-p[1]]);
+    s+=prisms(96,420,[{poly:rc(la,Ld-la,B.wLip[0],B.wLip[1]),v0:-B.dLip,v1:0},{poly:plate,v0:0,v1:B.h}]);     // มองจากด้านบน
+    s+=prisms(64,520,[{poly:mir(plate).reverse(),v0:-B.h,v1:0},{poly:mir(rc(fa,Ld-fa,B.wFin[0],B.wFin[1])),v0:0,v1:B.dFin},{poly:mir(rc(la,Ld-la,B.wLip[0],B.wLip[1])),v0:0,v1:B.dLip}]);   // พลิกดูด้านเดือย
+    s+=T(40,392,"รูป 3 มิติ (ไม่ตามสเกลความยาว)",{fs:12,c:THIN}); }
+  /* ── หน้าตัด ── */
+  { const kS=mill?4.6:10, sx=mill?640:930, sy=mill?470:560, xs=u=>sx+(u-B.u0)*kS, ys=v=>sy-v*kS, vMin=-Math.max(B.dFin,B.dLip);
+    s+=T(sx,sy-B.h*kS-44,"หน้าตัด "+g.code,{fs:14,b:1});
+    s+=`<path d="${LS.map(l=>"M"+l.map(q=>rnd1(xs(+q[0]))+" "+rnd1(ys(+q[1]))).join(" L")+" Z").join(" ")}" fill="#cfd2d6" fill-rule="evenodd" stroke="${INK}" stroke-width="1.1" stroke-linejoin="round"/>`;
+    s+=dimH(xs(B.u0),xs(B.u1),ys(vMin)+26,String(rnd1(W)))+dimV(ys(B.h),ys(vMin),xs(B.u1)+24,String(rnd1(B.h-vMin)));
+    if(mill) s+=dimH(xs(B.u1-c.keep),xs(B.u1),ys(B.h)-14,String(c.keep)); }
+  /* ── DETAIL A ── */
+  if(mill){ const xd=1000, yd=490, k=7, Tw=76, px=t=>xd+t*k, py=w=>yd+w*k, nl=c.len, kp=c.keep, ri=c.ri, ro=c.ro, A=(r,sw,t,w)=>`A${r*k} ${r*k} 0 0 ${sw} ${rnd1(px(t))} ${rnd1(py(w))}`;
+    s+=T(xd,yd-58,"DETAIL A (ปลายอีกด้านสมมาตร)",{fs:14,b:1});
+    s+=`<path d="M${px(Tw)} ${py(0)} L${px(ro)} ${py(0)} ${A(ro,0,0,ro)} L${px(0)} ${py(kp-ro)} ${A(ro,0,ro,kp)} L${px(nl-ri)} ${py(kp)} ${A(ri,1,nl,kp+ri)} L${px(nl)} ${py(W-ro)} ${A(ro,0,nl+ro,W)} L${px(Tw)} ${py(W)} L${px(Tw)} ${py(W*.62)} L${px(Tw)+7} ${py(W*.55)} L${px(Tw)-7} ${py(W*.45)} L${px(Tw)} ${py(W*.38)} Z" fill="${fill}" stroke="${INK}" stroke-width="1.6" stroke-linejoin="round"/>`;
+    s+=LN(px(c.fin),py(B.wFin[0]),px(Tw),py(B.wFin[0]),INK,.9,"7 4")+LN(px(c.fin),py(B.wFin[1]),px(Tw),py(B.wFin[1]),INK,.9,"7 4")+LN(px(c.fin),py(B.wFin[0]),px(c.fin),py(B.wFin[1]),INK,.9,"3 3");
+    s+=LN(px(nl),py(B.wLip[0]),px(Tw),py(B.wLip[0]),INK,.9,"7 4");
+    s+=dimH(px(0),px(c.fin),yd-24,String(c.fin))+dimV(py(0),py(kp),xd-34,String(kp))+dimH(px(0),px(nl),py(W)+34,String(nl));
+    s+=T(px(nl/2),py((kp+W)/2)+5,"MILLING",{fs:14,b:1,a:"middle"});
+    const lead=(xa,ya,xb,yb,t,an)=>LN(xa,ya,xb,yb,DIM,.8)+T(xb+(an==="end"?-4:4),yb-3,t,{fs:13,c:DIM,a:an||"start"});
+    s+=lead(px(.3),py(.3),xd-34,yd-34,"ลบมุมด้านบน R"+ro,"end");
+    s+=lead(px(.3),py(kp-.3),xd-48,py(kp)+30,"R"+ro,"end");
+    s+=lead(px(nl-ri*.3),py(kp+ri*.3),px(nl)+64,py(kp)+6,"R"+ri);
+    s+=lead(px(nl+.3),py(W-.3),px(nl)+78,py(W)+18,"R"+ro); }
+  else s+=T(930,728,"ปลายตัดตรงทั้งสองด้าน ไม่มีบาก · เดือยและปากงุ้มยาวตลอดเส้น",{fs:14,c:"#444"});
+  /* ── ตาราง + กล่องชื่อแบบ ── */
+  const rows=[["รหัสรุ่น",g.code],["ชนิดปลาย",tagEnd],["ยาว",L+" มม."],["จำนวน",g.qty+" เส้น"],["สี",g.fin?(g.fin+" · "+String((ehpFinGet(g.fin)||{}).d||"")):"ยังไม่ระบุสี — เลือกในกล่อง 🖐 มือจับ"],["ใช้กับ",g.labs.join(" · ")]];
+  s+=SVGKit.kvTable(40,SH-40-(28+rows.length*24),800,rows,"รายการสั่งทำ · หน่วย มม.",{rh:24,lw:120,fs:12.5});
+  s+=SVGKit.titleBlock([["PROJECT",P.project||"-","TYPE","HANDLE · สั่งทำ"],["CODE",String(g.code),"UNIT","MM"],["SIZE",L+" มม.","QTY",g.qty+" เส้น"],["COLOR",g.fin||"-","END",mill?"บาก":"ตัดตรง"]],page,pages,"HANDLE · "+g.code);
+  return s+"</svg>"; }
+function ehpMillTabTitle(g){ return g.code+" · "+g.L+" มม. · "+(g.mill?"บาก":"ตัดตรง")+(g.fin?(" · "+g.fin):"")+" ×"+g.qty; }
+/* แถวเลือกบาก/ตัดตรงในกล่อง 🖐 — มีเฉพาะตอนใส่รุ่นที่สั่งทำอยู่ */
+function plEhpMillRow(rows){ if(snOff("ehpMill")) return ""; const on=(rows||[]).filter(r=>r&&r.d&&r.d._ehp&&ehpMade(ehpGet(r.d._ehp.id))); if(!on.length) return "";
+  const hz=on.filter(r=>{ const A=ehpSides(r.d)[r.d._ehp.side]; return A&&A.ax==="y"; }), nB=hz.filter(r=>r.d._ehp.mill!==false).length, all=on.every(r=>r.d._ehp.mill!==false), none=on.every(r=>r.d._ehp.mill===false), c=ehpMillCfg();
+  return '<div class="ppOpt"><b>ปลายแนวนอน</b><button data-emill="1" class="'+(all?"on":"")+'" title="ตามแบบ: บาก '+c.len+' เหลือ '+c.keep+' · เดือยเริ่มที่ '+c.fin+'">บากหัวท้าย '+c.len+'</button><button data-emill="0" class="'+(none?"on":"")+'">ตัดตรง ไม่บาก</button>'
+    +'<span style="margin-left:auto;color:var(--ink-dim)">'+(hz.length?("แนวนอน "+hz.length+" เส้น · บาก "+nB+" เส้น"):"ตอนนี้ติดแนวตั้ง จึงไม่บาก")+'</span></div>'; }
 function ehpPart(d){ const e=d._ehp, P=e&&ehpGet(e.id); if(!P) return null; const S=ehpSides(d), A=S[e.side]; if(!A) return null;
   const T=Math.max(+d.T||18,1), LS=ehpLoops(P,T), D=ehpDims(P,T), len=(A.ax==="y")?+d.L:+d.W, h=D.h, dep=D.u1-D.u0;   /* v1.594: ความหนาบานจริง (รุ่นจากคลัง Section) */
   const ax=(A.ax==="y")?S.ey:S.ex, half=((A.ax==="y")?+d.W:+d.L)/2;
@@ -48688,9 +48836,10 @@ function ehpPart(d){ const e=d._ehp, P=e&&ehpGet(e.id); if(!P) return null; cons
   return {id:d.id+":ehp", cab:d.cab, cabInst:d.cabInst, name:P.code+" · มือจับฝัง "+EHP_TH[e.side], L:(A.ax==="y")?len:dep, W:(A.ax==="y")?h:len, T:dep,
     x:c.x, y:c.y, z:c.z, orient:d.orient, yaw:d.yaw||0, r:d.r||0, tone:null, holes:[], grooves:[], connectors:[], mat:"$CarcassBodyMat", surfT:"", surfB:"", edges:["No Edge","No Edge","No Edge","No Edge"],
     _virtual:true, _pullPart:true, _pull:P.code, _pullOwner:d.id, _ehpPart:true, _ehpCode:P.code, _ehpName:P.n, _ehpLen:Math.round(len*10)/10,
-    _shape:"ehp", _ehpPts:LS[0], _ehpLoops:LS, _ehpAx:A.ax, _ehpS:A.s, _ehpSz:S.sz, _ehpT:T, _ehpH:h, _ehpLenG:len, _metal:((e.fin&&ehpFinAllow(P)&&ehpFinGet(e.fin))?ehpFinColor(e.fin):EHP_FIN_DEF), _ehpFin:((e.fin&&ehpFinAllow(P)&&ehpFinGet(e.fin))?String(ehpFinGet(e.fin).k):"")}; }   /* v1.603: สีตามที่เลือก */
+    _shape:"ehp", _ehpPts:LS[0], _ehpLoops:LS, _ehpAx:A.ax, _ehpS:A.s, _ehpSz:S.sz, _ehpT:T, _ehpH:h, _ehpLenG:len, _metal:((e.fin&&ehpFinAllow(P)&&ehpFinGet(e.fin))?ehpFinColor(e.fin):EHP_FIN_DEF), _ehpFin:((e.fin&&ehpFinAllow(P)&&ehpFinGet(e.fin))?String(ehpFinGet(e.fin).k):""), _ehpMade:ehpMade(P)||undefined, _ehpMill:ehpMillOn(d,P,A,len)||undefined}; }   /* v1.603: สีตามที่เลือก */
 /* หน้าตัด → Extrude ตามยาวขอบ (พิกัดชิ้นเอง กลาง = ศูนย์ราง) */
-function ehpGeo(b){ const pts=b._ehpPts||[], T=+b._ehpT||18, h=+b._ehpH||20, len=Math.max(+b._ehpLenG||100,10), s=+b._ehpS||1, sz=+b._ehpSz||1;
+function ehpGeo(b){ if(b._ehpMill&&b._ehpAx==="y"){ try{ const gm=ehpMillGeo(b); if(gm) return gm; }catch(e){ console.error("ehpMillGeo:",e); } }   /* v1.667: บากหัวท้าย */
+  const pts=b._ehpPts||[], T=+b._ehpT||18, h=+b._ehpH||20, len=Math.max(+b._ehpLenG||100,10), s=+b._ehpS||1, sz=+b._ehpSz||1;
   const us=pts.map(q=>+q[0]), u0=Math.min.apply(null,us), u1=Math.max.apply(null,us), zc=sz*(T/2-(u0+u1)/2);
   const zr=u=>sz*(T/2-u)-zc, vr=v=>s*(v-h/2);   /* u → แกน Z ชิ้น · v → แกนขอบ (ออกจากบาน) */
   const sh=new THREE.Shape(), ax=b._ehpAx;
@@ -49262,6 +49411,7 @@ function plEhpDraw(el,C){ const e=v=>escapeHtml(String(v==null?"":v)), inst=C.in
     +'<div class="ppOpt"><b>ด้านที่ติด</b>'+chip("auto","อัตโนมัติ","ลิ้นชัก/ตู้พื้น = บน · ตู้ลอย = ล่าง · ถ้าตรงด้านบานพับ = สลับฝั่ง · บานเลื่อน = ด้านนอก คนละฝั่ง")+chip("top","บน")+chip("bottom","ล่าง")+chip("left","ซ้าย","ด้านนี้เป็นบานพับ = ไปฝั่งตรงข้ามเอง (บานคู่ = ขอบชนกลางทั้งสองบาน)")+chip("right","ขวา","ด้านนี้เป็นบานพับ = ไปฝั่งตรงข้ามเอง (บานคู่ = ขอบชนกลางทั้งสองบาน)")
       +'<span style="margin-left:auto;color:var(--ink-dim)">'+(snOff("ehpFlip")?"ด้านบานพับใส่ไม่ได้":"ตรงบานพับ = ไปฝั่งตรงข้ามเอง")+'</span></div>'
     +(single?plEhpDoorRow(cands):"")   /* v1.623 */
+    +plEhpMillRow(rows)   /* v1.667 */
     +(()=>{ if(snOff("ehpFin")) return "";   /* v1.603: แถวเลือกสี — โชว์ตามรุ่นที่ใส่อยู่/กำลังเลือก */
         const on=rows.filter(r=>r.d._ehp), Pm=ehpGet((on[0]&&on[0].d._ehp.id)||PLPU.ehId||"")||null; if(!Pm) return "";
         const allow=ehpFinAllow(Pm), use=on.filter(r=>ehpFinAllow(ehpGet(r.d._ehp.id))), cur=[...new Set(use.map(r=>ehpFinKey(r.d._ehp)))], one=cur.length===1?cur[0]:(use.length?null:String(PLPU.ehFin||""));
@@ -49289,6 +49439,7 @@ function plEhpDraw(el,C){ const e=v=>escapeHtml(String(v==null?"":v)), inst=C.in
   el.querySelector("#ppX").onclick=plPullClose; plpKindBind(el,C.redraw);   /* v1.595 */
   /* v1.603: เลือกสีมือจับฝัง — บานที่ใส่อยู่ (เฉพาะรุ่นที่เลือกสีได้) เปลี่ยนทันที · ยังไม่มีบาน = จำไว้ใช้ตอนใส่ */
   const finRefresh=()=>{ const cam=plCamKeep(); _cabFitSig=""; sync(0); plCamPut(cam); try{ costSchedule(); }catch(e){} try{ plAfterRoom(); }catch(e){} };
+  el.querySelectorAll("[data-emill]").forEach(bt=>bt.onclick=()=>{ if(ploLocked()) return; const v=bt.dataset.emill==="1"; rows.forEach(r=>{ if(!r.d._ehp||!ehpMade(ehpGet(r.d._ehp.id))) return; if(v) delete r.d._ehp.mill; else r.d._ehp.mill=false; }); finRefresh(); C.redraw(); toast(v?"บากหัวท้ายมือจับแนวนอน":"มือจับตัดตรง ไม่บาก"); });   /* v1.667 */
   const finSet=v=>{ if(ploLocked()) return; PLPU.ehFin=v; const on=rows.filter(r=>r.d._ehp&&ehpFinAllow(ehpGet(r.d._ehp.id))); on.forEach(r=>{ if(v) r.d._ehp.fin=v; else delete r.d._ehp.fin; });
     if(on.length){ finRefresh(); toast("▬ สีมือจับฝัง "+(v||"ยังไม่ระบุ")+" · "+on.length+" บาน"); } C.redraw(); };
   el.querySelectorAll("[data-ef]").forEach(b=>b.onclick=()=>finSet(b.dataset.ef));
@@ -63246,8 +63397,8 @@ function fittingAgg(boards){   // รวมเดือย + พินรอง�
       const el9=(((settings.elements||{}).fittings)||[]).find(x=>x&&x.code===b._ehpCode);
       /* v1.603: เลือกสีแล้ว = คนละบรรทัด ต่อรหัสสีท้ายชื่อ (ไม่เลือกสี = เหมือนเดิมทุกอย่าง) */
       const _tk=String(b._ehpFin||"");
-      bomCutRow(m,b._ehpCode,((el9&&el9.desc)||("มือจับฝัง "+b._ehpName)),((el9&&el9.unit)||"เส้น"),+b._ehpLen||0,"pull",_tk?{tok:_tk}:undefined);
-      { const kk=b._ehpCode+"@"+cutLen(+b._ehpLen||0)+(_tk?("#"+_tk):""); if(m[kk]){ m[kk]._ehpRow=1; if(!snOff("ehpAxCode")){ m[kk]._cutName=b._ehpCode; m[kk]._cutEhp=1; } } } }); }catch(e){ console.error("ehp bom:",e); }   /* v1.608: ค้นรหัส AX ตามรุ่น สี ขนาด */
+      bomCutRow(m,b._ehpCode,((el9&&el9.desc)||("มือจับฝัง "+b._ehpName)),((el9&&el9.unit)||"เส้น"),+b._ehpLen||0,"pull",b._ehpMade?{tok:_tk,mill:b._ehpMill?(+b._ehpMill.len||45):0}:(_tk?{tok:_tk}:undefined));   /* v1.667 */
+      { const kk=b._ehpCode+"@"+cutLen(+b._ehpLen||0)+(_tk?("#"+_tk):"")+(b._ehpMill?"#mill":""); if(m[kk]){ m[kk]._ehpRow=1; if(!snOff("ehpAxCode")){ m[kk]._cutName=b._ehpCode; m[kk]._cutEhp=1; } } } }); }catch(e){ console.error("ehp bom:",e); }   /* v1.608: ค้นรหัส AX ตามรุ่น สี ขนาด */
   /* v1.598: บานเลื่อน SDC — ชุดลูกล้อต่อบาน + รางตัดตามยาวช่อง (บน + ล่าง ต่อบาน) */
   if(!snOff("sdc")) try{ (boards||[]).forEach(b=>{ if(!b||!b._sdc||b._virtual||!b._sdc.g) return; const c=sdcCfg(b._sdc.c), F=(((settings.elements||{}).fittings)||[]);
       if(c.kit){ const el=F.find(x=>x&&x.code===c.kit); (m[c.kit]||(m[c.kit]={art:c.kit,dia:"",kind:"slide",name:(el&&el.desc)||("ชุดลูกล้อบานเลื่อน "+c.sys+" (4 ล้อ/บาน)"),unit:(el&&el.unit)||"ชุด",count:0})).count+=1; }
@@ -64355,6 +64506,7 @@ function renderSummary(){
           /* v1.081: ได้ขนาดตรงแต่วิธีเก็บริมไม่ตรงแม่แบบ ต้องเห็น ไม่ใช่ผ่านไปเงียบ ๆ */
           +((f._fg&&f._fg.alt&&f._gcut)?'<div style="font-size:10px;color:#b26a00">ชนิดกับขนาดตรง แต่ลักษณะขอบไม่ตรง — ตรวจก่อนสั่ง</div>':"")
           /* v1.284: ได้ท่อนที่ปลายตัดคนละแบบกับที่แบบบานตั้งไว้ — ของถูกต้น ถูกสี ถูกความยาว แต่ต้องตัดมุมเอง */
+          +((f._fg&&f._fg.millAlt)?('<div style="font-size:10px;color:#b26a00">คลังไม่มีแบบ'+(f._fg.millAlt==="m"?"บาก (Milling)":"ตัดตรง")+' ของท่อนนี้ — ใช้รหัสอีกแบบไปก่อน ตรวจก่อนสั่ง</div>'):"")   /* v1.667 */
           +((f._fg&&f._fg.mitAlt)?('<div style="font-size:10px;color:#b26a00">คลังไม่มีแบบ'+(f._fg.mitAlt==="45"?"ตัด 45/2ด้าน":"ตัดตรง")+' — ใช้ท่อน'+(f._fg.mitAlt==="45"?"ตัดตรง":"ตัด 45/2ด้าน")+' แทน (ตัดมุมหน้างาน)</div>'):"")
           /* v1.404: ค้นจากชื่อสินค้าแล้วเจอยาวเดียวกันหลายรหัส — ต้องเห็นว่าเลือกตัวไหน */
           +((f._fg&&f._fg.dupCodes)?('<div style="font-size:10px;color:#b26a00">คลังมี '+f._fg.dupCodes.length+' รหัสที่ยาวนี้ ('+escapeHtml(f._fg.dupCodes.join(" · "))+') — ใช้ '+escapeHtml(String(f._fg.code))+' · ตรวจก่อนสั่ง</div>'):"")
@@ -71270,7 +71422,8 @@ const ShopPaper = (function(){
       let cps=[]; try{ cps=csmPostGroups(bs); }catch(e){ console.error("csmPaper:",e); }   // v1.374: แบบเสาเหล็ก Cosimo (สั่งทำ)
       let rgs=null; try{ rgs=csmRailGroups(bs); }catch(e){ console.error("csmRailPaper:",e); }   // v1.393: แบบราวแขวน
       const rpgs=rgs?csmRailPages(rgs):[];
-      const n=frms.length+gls.length+cps.length+rpgs.length;
+      let ehs=[]; try{ ehs=ehpMillGroups(bs); }catch(e){ console.error("ehpMill:",e); }   // v1.667: แบบ HW-367 ทุกขนาด
+      const n=frms.length+gls.length+cps.length+rpgs.length+ehs.length;
       frms.forEach((fd,i)=>{ const k="frm"+i;
         out[k]=sheetFrameSec({...P},fd,i+1,n,bb);
         titles[k]="เฟรมหน้าบาน · "+((fd.b.name||"บาน")+" ×"+fd.qty);
@@ -71288,6 +71441,10 @@ const ShopPaper = (function(){
         try{ out[k]=csmRailSheet({...P},rgs,pg,frms.length+gls.length+cps.length+i+1,n); }catch(e){ console.error("csmRailSheet:",e); return; }
         titles[k]="ราวแขวน Cosimo"+(rpgs.length>1?(" "+(i+1)+"/"+rpgs.length):"")+" · "+rgs.n+" ราว"; cabOf[k]="ราวแขวน Cosimo"; order.push(k);
         if(i===0) csmRailBkey(rgs,k,bkey); });
+      ehs.forEach((g,i)=>{ const k="ehm"+i;                                  // v1.667
+        try{ out[k]=ehpMillSheet({...P},g,frms.length+gls.length+cps.length+rpgs.length+i+1,n); }catch(e){ console.error("ehpMillSheet:",e); return; }
+        titles[k]=ehpMillTabTitle(g); cabOf[k]="มือจับฝังสั่งทำ"; order.push(k);
+        g.ids.forEach(id=>{ if(!bkey[id]) bkey[id]=k; bkey[id+":ehp"]=k; }); });
       out._cab=cabOf; out._titles=titles; out._order=order; out._bkey=bkey;
       out._empty=!n;
       return out;
@@ -71330,7 +71487,8 @@ const ShopPaper = (function(){
     let cps=[]; try{ cps=csmPostGroups(bs); }catch(e){ console.error("csmPaper:",e); }   // v1.374: แบบเสาเหล็ก Cosimo ท้ายเล่ม
     let rgs=null; try{ rgs=csmRailGroups(bs); }catch(e){ console.error("csmRailPaper:",e); }   // v1.393: แบบราวแขวน ต่อจากแบบเสา
     const rpgs=rgs?csmRailPages(rgs):[];
-    const pages=1+nCs+parts.length+frms.length+gls.length+cores.length+cps.length+rpgs.length;
+    let ehs=[]; try{ ehs=ehpMillGroups(bs); }catch(e){ console.error("ehpMill:",e); }   // v1.667: แบบ HW-367 ทุกขนาด ท้ายเล่ม
+    const pages=1+nCs+parts.length+frms.length+gls.length+cores.length+cps.length+rpgs.length+ehs.length;
     const out={ summary:sheetSummary({...P},bs,bb,grab3D(),pages), flat:sheetFlatten({...P},bs,bb) };
     const titles={ summary:"หน้ารวม (Plan+Front+Side+3D)" };
     let csOrder=[];
@@ -71355,6 +71513,10 @@ const ShopPaper = (function(){
     rpgs.forEach((pg,i)=>{ const k="rail"+i;
       try{ out[k]=csmRailSheet({...P},rgs,pg,2+csOrder.length+parts.length+frms.length+gls.length+cores.length+cps.length+i,pages); _rlOk.push(k); }catch(e){ console.error("csmRailSheet:",e); }
       titles[k]="ราวแขวน Cosimo"+(rpgs.length>1?(" "+(i+1)+"/"+rpgs.length):"")+" · "+rgs.n+" ราว"; });
+    const _ehOk=[];                                                             // v1.667
+    ehs.forEach((g,i)=>{ const k="ehm"+i;
+      try{ out[k]=ehpMillSheet({...P},g,2+csOrder.length+parts.length+frms.length+gls.length+cores.length+cps.length+rpgs.length+i,pages); _ehOk.push(k); }catch(e){ console.error("ehpMillSheet:",e); }
+      titles[k]=ehpMillTabTitle(g); });
     /* v5.6: ตัดหน้ากางแผ่นรวมออก — ข้อมูลซ้ำกับหน้าแผ่นแยกชิ้นที่ละเอียดกว่า */
     /* v23.7: ผูกว่าแต่ละหน้าเป็นของตู้ไหน ไว้ให้แถบแท็บจับกลุ่ม */
     const cabOf={};
@@ -71365,9 +71527,10 @@ const ShopPaper = (function(){
     cores.forEach((c,i)=>{ cabOf["core"+i]=_nm(c.b); });
     _cpOk.forEach(k=>{ cabOf[k]="เสาเหล็ก Cosimo"; });
     _rlOk.forEach(k=>{ cabOf[k]="ราวแขวน Cosimo"; });                          // v1.393
+    _ehOk.forEach(k=>{ cabOf[k]="มือจับฝังสั่งทำ"; });                           // v1.667
     out._cab=cabOf;
     out._order=["summary"].concat(csOrder).concat(parts.map(p=>"part"+p.n))
-      .concat(frms.map((f,i)=>"frm"+i)).concat(gls.map((g,i)=>"gls"+i)).concat(cores.map((c,i)=>"core"+i)).concat(_cpOk).concat(_rlOk);
+      .concat(frms.map((f,i)=>"frm"+i)).concat(gls.map((g,i)=>"gls"+i)).concat(cores.map((c,i)=>"core"+i)).concat(_cpOk).concat(_rlOk).concat(_ehOk);
     /* v1.184: ชิ้นไหนอยู่หน้าแบบไหน · ใช้ตอนสแกนแล้วกดดูแบบของชิ้นนั้นโดยตรง */
     const bkey={};
     parts.forEach(p=>(p.ids||[]).forEach(id=>{ bkey[id]="part"+p.n; }));
@@ -71377,6 +71540,7 @@ const ShopPaper = (function(){
     cores.forEach((c,i)=>{ const b=c&&c.b; if(b&&b.id) bkey[String(b.id)]="core"+i; });
     _cpOk.forEach(k=>{ const g=cps[+k.slice(3)]; if(g) csmPostBkey(g,k,bkey); });   // v1.382: เสา Cosimo → หน้าแบบเสา
     if(_rlOk.length) csmRailBkey(rgs,_rlOk[0],bkey);                          // v1.393: ราวแขวน → หน้าแบบราว
+    _ehOk.forEach(k=>{ const g=ehs[+k.slice(3)]; if(g) g.ids.forEach(id=>{ bkey[id+":ehp"]=k; }); });   // v1.667
     out._bkey=bkey;
     out._titles=titles;
     return out;
@@ -74661,7 +74825,7 @@ const RND=(function(){
       <div class="cb-fld"><label>พิมพ์เฉพาะ</label></div>
       <div class="sp-seg">
         <button class="sp-only on" data-only="all">ทุกหน้า</button>
-        <button class="sp-only" data-only="frm" title="แบบที่ส่งทำข้างนอก — แบบเฟรมหน้าบาน และแบบกระจก">งานสั่งทำ</button>
+        <button class="sp-only" data-only="frm" title="แบบที่ส่งทำข้างนอก — แบบเฟรมหน้าบาน แบบกระจก เสา/ราว Cosimo และมือจับฝัง HW-367 ทุกขนาด">งานสั่งทำ</button>
       </div>
       <button class="ibtn" id="spRefreshBtn" style="width:100%;justify-content:center;margin-bottom:12px">🔄 อัปเดตแบบจากฉาก</button>
       <div style="font-size:11px;font-weight:600;color:var(--ink-faint);margin-bottom:7px">หัวกระดาษ (Title Block)</div>
