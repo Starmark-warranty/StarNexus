@@ -3283,7 +3283,7 @@ body[data-theme="dark"] .splash-dots span{background:rgba(255,255,255,.25)}
    ===================================================================== */
 /* ---- APP_META: แหล่งความจริงเดียวของเวอร์ชัน (ดูได้จาก console / คลิกชื่อแอป) ---- */
 const APP_META={
-  name:"StarNexus", version:"1.664", build:"2026-11-04/wt-wall2",
+  name:"StarNexus", version:"1.665", build:"2026-11-04/wt-upT",
   file:"StarNexus.html", basedOn:"Furnitech_V3.html (v3.11)",
   /* ───────── เริ่มนับเวอร์ชันใหม่ที่ 1.001 (21/08/2026) ─────────
      ของเดิมนับมาถึง 42.1 แล้ววิ่งเป็นทศนิยมสองชั้นซึ่งอ่านลำดับยาก
@@ -3291,6 +3291,7 @@ const APP_META={
      ประวัติเก่าเก็บไว้ทั้งหมดตามเลขเดิม ไม่ไล่เขียนใหม่ เพราะเลขในนั้นถูกอ้างถึงไปแล้ว
      รายการที่อยู่ใต้ 1.001 ลงไปจึงเป็นเลขชุดเก่า อ่านต่อกันได้ตามวันที่ */
   changelog:[
+    ["1.665","2026-11-04","FEAT+UX ท็อปเคาน์เตอร์ (ผู้ใช้ 18:50 project 37) — ① บัวหินตั้งความหนาเองได้ แยกจากท็อป ช่องว่าง = เท่าท็อปตามเดิม ② ติ๊กบัวไว้แต่บัวไม่ขึ้นเพราะเคยเลือกแล้วกดลบออกหมด เดิมมีแค่ข้อความเล็กท้ายกลุ่ม ตอนนี้เตือนใต้ช่องบัวพร้อมปุ่มคืนเฉพาะบัว ผนังก็เหมือนกัน · ติ๊กบัวใหม่ตอนที่ตัดออกหมด = คืนให้เอง · ปิด SN_OFF.plWtUpT"],
     ["1.664","2026-11-04","FEAT ห้องออกแบบ · ผนังเหนือบัว (ผู้ใช้ 17:18 ภาพแผงท็อปกับผนังหิน) — เพิ่มตัวเลือก หิน (คนละแบบกับท็อป) ตั้งวัสดุ หนา สี ลาย ขนาดลาย และราคาทุนของผนังแยกจากท็อปได้ อัปโหลดรูปหินของผนังเองได้ · 3D ใบเสนอราคา แบบ และหน้ารวมวัสดุแยกตามผนัง · บัวหินยังใช้วัสดุเดียวกับท็อป งานเดิมไม่เปลี่ยน · ปิดตัวเลือก SN_OFF.plWtW2"],
     ["1.663","2026-11-04","FIX คาน DX (ผู้ใช้ 17:32 project 72) — แผ่นปิดข้างโดนบากตามคาน DX ของตู้ข้าง ๆ เพราะแผ่นหนาขึ้นตามผิวจนทับปลายคานแค่ 0.7 มม. ก็นับว่าคานพาดผ่าน · ตอนนี้แผ่นปิดข้างไม่โดนบากเลย และแผ่นข้างของตู้อื่นต้องโดนคานทับเกินครึ่งความหนาถึงจะบาก คานยาวข้ามหลายตู้ยังบากตู้ที่พาดผ่านเหมือนเดิม งานเดิมคืนแผ่นเรียบเองตอนเปิด · ปิด SN_OFF.dxCoverKeep"],
     ["1.662","2026-11-04","FIX คานปิดรอยต่อจากคำสั่ง TH (ผู้ใช้ 17:23 project 71 ตู้ BND263) — คาน 70 ที่โปรแกรมใส่เองกลับมาทุกครั้ง ลบไม่ออก และบังหน้าคาน DX ที่แปลงไปแล้ว เพราะคานนี้ถูกลบและสร้างใหม่ทุกรอบ sync โดยไม่ดูว่าผู้ใช้ลบแล้วหรือมีคาน DX ปิดช่องอยู่แล้ว · ตอนนี้ลบแล้วจำไว้ที่บานบนของช่อง ไม่สร้างคืน · ช่องที่มีคาน DX อยู่แล้วไม่สร้าง งานเดิมหายเองตอนเปิด · แก้ค่า Design Parameter ของตู้ = เริ่มคิดใหม่ · ปิด SN_OFF.dpRailKeep ② เปิดไฟล์แล้วคาน DX กลางย้ายผิดที่และหายไป 1 ตัว เพราะรหัสบานอ้างอิงของคาน DX ไม่ถูกแปลงตอนเปิดไฟล์และตอนคัดลอกตู้ แก้แล้ว"],
@@ -30189,6 +30190,7 @@ function boardRole(b){
      SN_OFF.frontEdge3D=1 ปิดเฉพาะแถบขอบหน้าตู้ใน 3D ค่ายังออกไฟล์ตามเดิม (v1.141)
      SN_OFF.chandle=1     ปิดการให้คานหน้าตู้ใช้สีหน้าบาน กลับไปใช้สีตู้ (v1.146)
      SN_OFF.dpRail=1      ปิดการใส่คานปิดรอยต่อจากคำสั่งปรับบาน (v1.148)
+     SN_OFF.plWtUpT=1     บัวหินหนาเท่าท็อปเสมอ ไม่มีช่องหนาบัว (v1.665)
      SN_OFF.dxCoverKeep=1 แผ่นปิดข้างและแผ่นข้างตู้อื่นโดนบากตามคาน DX แม้ทับนิดเดียว แบบเดิม (v1.663)
      SN_OFF.dpRailKeep=1  คานปิดรอยต่อสร้างคืนทุกรอบแบบเดิม ไม่จำที่ลบ ไม่ดูคาน DX (v1.662)
      (v1.149 เลิกเดาสีคานแล้ว ต้องเลือกเองที่หน้า Variables ตู้ · SN_OFF.chandleFallback จึงไม่มีผลอีก)
@@ -42462,8 +42464,9 @@ function plWtGrpHtml531(grp){
       +F("ยื่นหน้า",inp("over",T.over,56,' type="number" step="5"')+mm+'<span class="plNote">เลยหน้าบาน</span>')
       +F("ยื่นข้าง",inp("side",T.side,56,' type="number" step="5"')+mm+'<span class="plNote">ปลายที่ไม่ชนผนัง</span>',"ปลายท็อปที่ไม่ชนผนัง")
       +'<div class="plDiv"></div>'
-      +F(ck("up",T.up,"บัวหิน"),T.up?('สูง '+inp("upH",T.upH,56,' type="number" step="10"')+mm):'<span class="plNote">ไม่มีบัว</span>',"บัวหินชิดผนังบนท็อป — หินชนิดเดียวกับท็อป หนาเท่าท็อป")
+      +F(ck("up",T.up,"บัวหิน"),T.up?('สูง '+inp("upH",T.upH,56,' type="number" step="10"')+mm):'<span class="plNote">ไม่มีบัว</span>',"บัวหินชิดผนังบนท็อป — หินชนิดเดียวกับท็อป")+plWtUpRows(T,S,F)   /* v1.665 */
       +F("ผนังเหนือ"+(T.up?'บัว':'ท็อป'),sel("wall",plWtWallKeys(T).map(k=>[k,k==="none"?(T.up?"ไม่มีผนัง (มีแต่บัวหิน)":"ไม่มี"):PLWT_WALLS[k]]),W))
+      +(W!=="none"?plWtCutWarn(T,S,"wall","ผนัง"):'')   /* v1.665 */
       +(W==="stone2"?plWtW2Rows(T,F):'')   /* v1.664 */
       +(W==="glass"?(F("ชนิดกระจก",sel("glass",Object.keys(PLWT_GLASS).map(k=>[k,PLWT_GLASS[k].n]),T.glass))
           +F("หนากระจก",sel("glassT",PLWT_GLASS_T.map(v=>[v,v+" มม."]),plWtGlassT(T)))
@@ -42699,6 +42702,18 @@ function plWtWallName(T){ T=T||plWt(); const w=T.wall, nm=v=>String(v||"").trim(
 /* v1.527: ผู้ใช้ 21:05 “กระจกใส่หนาได้ด้วยครับ” — เดิมกระจกหนา 6 ตายตัว · ตอนนี้ T.glassT (ตั้งต้น 6) */
 const PLWT_GLASS_T=[4,5,6,8,10,12];
 function plWtGlassT(T){ const v=+((T||{}).glassT); return (v>=2&&v<=25)?v:6; }
+/* ───────── v1.665: หนาบัวแยกจากท็อป · เตือนเมื่อบัวถูกตัดออก ─────────
+   ผู้ใช้ 4/11 18:50 (project 37 ท็อป 40 ติ๊กบัวไว้): “บิวหินไม่ขึ้น เป็นเพราะความหนาไหม ไม่งั้น ต้องแยกให้เลือกความหนาได้”
+   ตรวจไฟล์แล้วไม่เกี่ยวกับความหนา: T.cut มีบัวทั้งแนวหลังกับชิ้นข้าง จากการเลือกชิ้นแล้วกด Del ติ๊กบัวไว้ก็ไม่ขึ้น บอกแค่บรรทัดเล็กท้ายกลุ่มจนหาไม่เจอ
+   เดิม บัวหนาเท่าท็อปตายตัว ท็อป 40 ได้บัว 40 ซึ่งงานจริงใช้บางกว่า
+   ตอนนี้ T.upT = หนาบัว ไม่มีค่า = เท่าท็อป งานเดิมผลเหมือนเดิม · เตือนใต้ช่องบัว/ผนังพร้อมปุ่มคืนเฉพาะชนิดนั้น · ติ๊กบัวใหม่ตอนที่ตัดออกหมด = คืนให้เอง ตัดบางช่วงใต้ฮู้ดยังคงไว้ */
+function plWtUpT(T){ const v=+((T||{}).upT); return (v>0&&!snOff("plWtUpT"))?v:Math.max(+((T||{}).t)||20,1); }
+function plWtCutWarn(T,S,k,nm){ if(snOff("plWtSel")) return ""; const n=plWtCutList(T).filter(c=>c.k===k).length; if(!n) return "";
+  const any=(S.bs||[]).some(b=>b.kind===k), btn='<a href="#" class="plWtCutK" data-k="'+k+'">↩ คืน'+nm+'</a>';
+  return any?'<div class="plNote" style="margin:2px 0 4px">✂ ตัด'+nm+'ออก '+n+' ช่วง · '+btn+'</div>'
+    :((S.slabs||[]).some(x=>x.onW)?'<div class="plNote" style="margin:2px 0 4px;color:#e58a24">⚠ '+nm+'ไม่ขึ้นเพราะถูกตัดออกหมด · '+btn+'</div>':''); }
+function plWtUpRows(T,S,F){ if(!T.up) return "";
+  return (snOff("plWtUpT")?"":F("หนาบัว",'<input data-tk="upT" type="number" step="1" min="0" value="'+(+T.upT>0?+T.upT:"")+'" placeholder="'+(+T.t||20)+'" style="width:64px"><span class="plU">มม.</span><span class="plNote">ว่าง = เท่าท็อป</span>',"ความหนาบัวหิน ไม่ใส่ = เท่าท็อป"))+plWtCutWarn(T,S,"up","บัว"); }
 function plWtWallT(T){ return T.wall==="stone"?Math.max(+T.t||20,1):T.wall==="stone2"?Math.max(+plWtW2(T).t||20,1):T.wall==="tile"?10:T.wall==="glass"?plWtGlassT(T):0; }
 function plWtHTxt(L){ const h=L.map(b=>b.h); if(!h.length) return ""; const a=Math.min(...h), b=Math.max(...h); return a===b?String(a):(a+"–"+b); }   // สูงผนังหลายช่วง → “500–650”
 function plWtWallKey(T){ if(T.wall==="stone2"){ const w=plWtW2(T); return "wall:stone2:"+w.mat+":"+(+w.t||0); }   /* v1.664 */ return "wall:"+T.wall+(T.wall==="glass"?(":"+T.glass+(plWtGlassT(T)!==6?(":"+plWtGlassT(T)):"")):""); }   // v1.527: ราคาจำแยกตามหนา (6 = คีย์เดิม)
@@ -42779,7 +42794,7 @@ function plWtSlabs(){
   const hoods=plWtHoods(), cuts=plWtCutList(T);   // v1.548: ขอบฮู้ด = จุดแบ่งช่วงให้เลือก · ช่วงที่ผู้ใช้ตัดออก
   out.slabs.forEach(sl=>{ if(!sl.onW) return; const A=sl.ax, P=sl.pa, W=PL_WALLS[sl.wk], y0=sl.hi[1], f0=sl.f0!=null?sl.f0:face(sl.wk);   // v1.536: ผิวผนังที่วาด
     const yDef=(+r.wallBot>0)?+r.wallBot:y0+600, segs=[];
-    if(upOn) segs.push({kind:"up", mat:"stone", y0, y1:y0+Math.round(+T.upH), th:t});
+    if(upOn) segs.push({kind:"up", mat:"stone", y0, y1:y0+Math.round(+T.upH), th:plWtUpT(T)});   /* v1.665: เดิม th:t */
     if(wallOn) segs.push({kind:"wall", mat:T.wall, y0:y0+(upOn?Math.round(+T.upH):0), th:tW});
     segs.forEach(sg=>{ let a0=sl.lo[A], a1=sl.hi[A];
       const cut=o=>{ if(!o||!o.onW) return null; const Wo=PL_WALLS[o.wk]; return (o.f0!=null?o.f0:face(o.wk))+Wo.s*sg.th; };
@@ -42944,9 +42959,10 @@ function plWtGrpHtml(grp){
       '<div class="plRow" style="margin-top:4px">วัสดุ '+sel("mat",Object.keys(PLWT_MATS).map(k=>[k,PLWT_MATS[k].n]),T.mat)+inp("t","หนา (มม.)",T.t,58,' type="number" step="1" list="plWtTl"')+dl+'</div>'
       +'<div class="plRow" style="margin-top:4px">'+inp("clr","สี/รุ่น",T.clr,120,' placeholder="เช่น ดำอินเดีย"')+clr("color",String(T.color||"").trim()||plmBase(T)||M.c)+'</div>'+plmRowOld(T)
       +'<div class="plRow" style="margin-top:4px">'+inp("over","ยื่นหน้า (เลยบาน)",T.over,48,' type="number" step="5"')+inp("side","ยื่นข้าง",T.side,44,' type="number" step="5" title="ปลายท็อปที่ไม่ชนผนัง"')+'มม.</div>'
-      +'<div class="plRow" style="margin-top:6px;padding-top:4px;border-top:1px dashed var(--line)"><label title="บัวหินชิดผนังบนท็อป — หินชนิดเดียวกับท็อป หนาเท่าท็อป"><input type="checkbox" data-tk="up"'+(T.up?" checked":"")+'> บัวหิน</label>'
-        +(T.up?inp("upH","สูง (มม.)",T.upH,52,' type="number" step="10"'):'')+'</div>'
+      +'<div class="plRow" style="margin-top:6px;padding-top:4px;border-top:1px dashed var(--line)"><label title="บัวหินชิดผนังบนท็อป — หินชนิดเดียวกับท็อป"><input type="checkbox" data-tk="up"'+(T.up?" checked":"")+'> บัวหิน</label>'
+        +(T.up?inp("upH","สูง (มม.)",T.upH,52,' type="number" step="10"'):'')+'</div>'+plWtUpRows(T,S,(l,c)=>'<div class="plRow" style="margin-top:4px;padding-left:12px">'+l+' '+c+'</div>')
       +'<div class="plRow" style="margin-top:4px">ผนังเหนือ'+(T.up?'บัว':'ท็อป')+' '+sel("wall",plWtWallKeys(T).map(k=>[k,k==="none"?(T.up?"ไม่มีผนัง (มีแต่บัวหิน)":"ไม่มี"):PLWT_WALLS[k]]),W)+'</div>'
+      +(W!=="none"?plWtCutWarn(T,S,"wall","ผนัง"):'')   /* v1.665 */
       +(W==="stone2"?plWtW2Rows(T,(l,c)=>'<div class="plRow" style="margin-top:4px;padding-left:12px">'+l+' '+c+'</div>'):'')   /* v1.664 */
       +(W==="glass"?('<div class="plRow" style="margin-top:4px;padding-left:12px">ชนิด '+sel("glass",Object.keys(PLWT_GLASS).map(k=>[k,PLWT_GLASS[k].n]),T.glass)+' หนา '+sel("glassT",PLWT_GLASS_T.map(v=>[v,v+" มม."]),plWtGlassT(T))+inp("glassClr","สี/รุ่น",T.glassClr,90,' placeholder="เช่น ดำ"')+clr("glassColor",String(T.glassColor||"").trim()||gl.c)+'</div>'):'')
       +(W==="tile"?('<div class="plRow" style="margin-top:4px;padding-left:12px">ขนาด (กว้าง×สูง) '+sel("tile",PLWT_TILES.map(v=>[v,v.replace("x","×")]),T.tile)+inp("tileClr","สี/รุ่น",T.tileClr,90,' placeholder="เช่น ขาวเงา"')+clr("tileColor",T.tileColor||"#e9e6df")+'</div>'):'')
@@ -42960,12 +42976,13 @@ function plWtWire(s){ if(!s) return; const T=plWt();
   const go=async(k,el)=>{ let v=el.type==="checkbox"?el.checked:el.value;
     if(k==="pat"&&v==="+up"){ el.value=String(T.pat||""); plmUploadPick(); return; }   /* v1.562: อัปโหลดรูปหิน */
     if(k==="w2_pat"&&v==="+up"){ const w=plWtW2(T); el.value=String(w.pat||""); plmUploadPick(w); return; }   /* v1.664: รูปหินของผนัง */
-    if(["t","over","side","upH","wallH","cost","wallCost","glassT","patMM","w2_t","w2_patMM"].includes(k)){ v=parseFloat(v); if(!isFinite(v)) v=0; if(k!=="over") v=Math.max(v,0); }
+    if(["t","over","side","upH","wallH","cost","wallCost","glassT","patMM","w2_t","w2_patMM","upT"].includes(k)){ v=parseFloat(v); if(!isFinite(v)) v=0; if(k!=="over") v=Math.max(v,0); }
     if(k==="clr"||k==="glassClr"||k==="tileClr"||k==="w2_clr") v=String(v||"").slice(0,60);
     const key0=T.mat+"|"+T.t, wk0=plWtWallKey(T);
     if(k.indexOf("w2_")===0){ const w=plWtW2(T), q=k.slice(3); w[q]=v; try{ plmOnSet(w,q,v); }catch(e){ console.error("plm:",e); }   /* v1.664: ค่าของผนังเก็บใน T.w2 */
       if(q==="mat"){ const M2=PLWT_MATS[v]||PLWT_MATS.granite; if(M2.t.indexOf(+w.t)<0) w.t=M2.t[0]; w.color=""; } }
     else { T[k]=v; try{ plmOnSet(T,k,v); }catch(e){ console.error("plm:",e); } }
+    if(k==="up"&&v&&!snOff("plWtUpT")&&!plWtSlabs().bs.some(b=>b.kind==="up")) T.cut=(Array.isArray(T.cut)?T.cut:[]).filter(c=>!c||c.k!=="up");   /* v1.665 */
     if(k==="mat"){ const M=PLWT_MATS[v]||PLWT_MATS.granite; if(M.t.indexOf(+T.t)<0) T.t=M.t[0]; T.color=""; }
     if(k==="glass") T.glassColor="";
     /* ราคาทุน/ตร.ม. จำในเครื่อง — หิน ต่อ วัสดุ|หนา · ผนัง ต่อชนิด (กระเบื้อง / กระจกแต่ละแบบ) · สลับชุด = ใช้ราคาที่เคยใส่ของชุดนั้น */
@@ -42980,6 +42997,7 @@ function plWtWire(s){ if(!s) return; const T=plWt();
     plWtDraw(true); plPanelRoom(); plAfterRoom(); try{ costSchedule(); }catch(e){} };
   s.querySelectorAll("[data-tk]").forEach(el=>{ el.onchange=()=>go(el.dataset.tk,el); });
   { const rs=s.querySelector("#plWtCutReset"); if(rs) rs.onclick=ev=>{ ev.preventDefault(); plwtCutReset(); }; }   // v1.548
+  s.querySelectorAll(".plWtCutK").forEach(a=>{ a.onclick=ev=>{ ev.preventDefault(); plwtCutReset(a.dataset.k); }; });   /* v1.665 */
   ["color","glassColor","tileColor","vein"].forEach(k=>{ const c=s.querySelector('input[data-tk="'+k+'"]'); if(c) c.oninput=()=>{ T[k]=c.value; plWtDraw(true); }; });
   ["color","vein"].forEach(k=>{ const c=s.querySelector('input[data-tk="w2_'+k+'"]'); if(c) c.oninput=()=>{ plWtW2(T)[k]=c.value; plWtDraw(true); }; }); }   /* v1.664 */
 /* ═════════ v1.548: คลิกท็อป = Dim · เลือกบัว/ผนังเหนือท็อปทีละช่วง แล้วตัดออก ═════════
@@ -43097,9 +43115,9 @@ function plwtDel(){ const S=PL.tpick; if(!S) return false;
   const nm=plwtName(S,T), L=Math.round(S.side?(S.hi[S.pa]-S.lo[S.pa]):(S.hi[A]-S.lo[A]));
   PL.tpick=null; plWtDraw(true); plwtSelDraw(); try{ plSelect(null); }catch(e){} try{ plPanelRoom(); }catch(e){} plAfterRoom(); try{ costSchedule(); }catch(e){}
   toast("✂ ตัด"+nm+" ช่วงยาว "+L+" ออกแล้ว — เอาคืน Ctrl+Z หรือแผงห้อง › ท็อป ↩ คืนที่ตัด"); return true; }
-function plwtCutReset(){ const T=plWt(), n=plWtCutList(T).length; if(!n) return false; if(ploLocked()) return false;
-  T.cut=[]; plWtDraw(true); try{ plPanelRoom(); }catch(e){} plAfterRoom(); try{ costSchedule(); }catch(e){}
-  toast("↩ คืนบัว/ผนังที่ตัดไว้ "+n+" ช่วงแล้ว"); return true; }
+function plwtCutReset(kk){ const T=plWt(), n=plWtCutList(T).filter(c=>!kk||c.k===kk).length; if(!n) return false; if(ploLocked()) return false;   /* v1.665: kk = คืนเฉพาะ up หรือ wall */
+  T.cut=kk?T.cut.filter(c=>!c||c.k!==kk):[]; plWtDraw(true); try{ plPanelRoom(); }catch(e){} plAfterRoom(); try{ costSchedule(); }catch(e){}
+  toast("↩ คืน"+(kk==="up"?"บัว":kk==="wall"?"ผนัง":"บัว/ผนัง")+"ที่ตัดไว้ "+n+" ช่วงแล้ว"); return true; }
 function plWtCutNote(){ if(snOff("plWtSel")) return ""; const n=plWtCutList(plWt()).length;
   return '<div class="plNote" style="margin-top:3px">'+(n?('✂ ตัดบัว/ผนังออก '+n+' ช่วง · <a href="#" id="plWtCutReset">↩ คืนที่ตัดทั้งหมด</a>'):'คลิกท็อป/ผนังเหนือท็อป = ดูขนาด · เลือกผนังแล้วกด Del = ตัดช่วงนั้นออก (เช่น ใต้ฮู้ด)')+'</div>'; }
 function plwtKeyDown(e){ if(snOff("plWtSel")||typeof PL==="undefined"||!PL.on||!PL.tpick||PLW.on||PLO.sel) return; const t=e.target;
@@ -44573,7 +44591,7 @@ function plqLines(){
         sizeTxt:S.slabs.map(s=>cm(s.len)+"×"+cm(s.dep)).join(" + "), sx:Infinity});
       /* v1.522: บัวหิน (ราคาหิน) + ผนัง (หิน = ราคาหิน · กระเบื้อง/กระจก = ราคาผนัง) · pk _wtbs เดิมใช้กับผนัง (% รายแถวเดิมไม่หาย) */
       const ups=S.bs.filter(b=>b.kind==="up"), wls=S.bs.filter(b=>b.kind!=="up");
-      if(ups.length) lines.push({key:"_wtup", pk:"_wtup", code:"", name:"บัว"+plWtName(T)+" สูง "+Math.round(+T.upH||0)+" มม. หนา "+(+T.t||0)+" มม.", W:0,H:0,D:0, qty:sm.u, uom:"ตร.ม.", cost:c, miss:c>0?0:1, wt:1,
+      if(ups.length) lines.push({key:"_wtup", pk:"_wtup", code:"", name:"บัว"+plWtName(T)+" สูง "+Math.round(+T.upH||0)+" มม. หนา "+plWtUpT(T)+" มม.", W:0,H:0,D:0, qty:sm.u, uom:"ตร.ม.", cost:c, miss:c>0?0:1, wt:1,
         sizeTxt:ups.map(b=>cm(b.len)+"×"+cm(b.h)).join(" + "), sx:Infinity});
       if(wls.length){ const wc=T.wall==="stone"?c:(+T.wallCost||0); lines.push({key:"_wtbs", pk:"_wtbs", code:"", name:plWtWallName(T)+(T.wall==="stone"?(" หนา "+(+T.t||0)+" มม."):T.wall==="stone2"?(" หนา "+(+plWtW2(T).t||0)+" มม."):""), W:0,H:0,D:0, qty:sm.w, uom:"ตร.ม.", cost:wc, miss:wc>0?0:1, wt:1,
         sizeTxt:wls.map(b=>cm(b.len)+"×"+cm(b.h)).join(" + "), sx:Infinity}); }
@@ -45396,7 +45414,7 @@ function dwgWorktop(C){ let wt={slabs:[],bs:[]}; try{ wt=plWtSlabs(); }catch(e){
     const endA=s.trimLo?s.hi[A]:s.lo[A], atE=endA+(s.trimLo?1:-1)*12*k;
     o.chain([Math.min(front,back),Math.max(front,back)],atE,endA,!hz); });
   const _wl=wt.bs.find(b=>b.kind!=="up");   // v1.522
-  const note=plWtName(Tp)+" หนา "+(+Tp.t||0)+" มม. · ท็อป "+sm.a.toFixed(2)+" ตร.ม."+(sm.nu?(" · บัวหินสูง "+Math.round(+Tp.upH)+" มม. "+sm.u.toFixed(2)+" ตร.ม."):"")+(_wl?(" · "+plWtWallName(Tp)+" สูง "+plWtHTxt(wt.bs.filter(b=>b.kind!=="up"))+" มม. "+sm.w.toFixed(2)+" ตร.ม."):"")+" · ยื่นหน้าเลยบาน "+(+Tp.over||0)+" มม.";
+  const note=plWtName(Tp)+" หนา "+(+Tp.t||0)+" มม. · ท็อป "+sm.a.toFixed(2)+" ตร.ม."+(sm.nu?(" · บัวหินสูง "+Math.round(+Tp.upH)+" มม. "+(plWtUpT(Tp)!==(+Tp.t||20)?("หนา "+plWtUpT(Tp)+" มม. "):"")+sm.u.toFixed(2)+" ตร.ม."):"")+(_wl?(" · "+plWtWallName(Tp)+" สูง "+plWtHTxt(wt.bs.filter(b=>b.kind!=="up"))+" มม. "+sm.w.toFixed(2)+" ตร.ม."):"")+" · ยื่นหน้าเลยบาน "+(+Tp.over||0)+" มม.";
   o.T(r.x0+r.w/2,r.z0+r.d+T+30*k,note,{px:8,col:"#3a3f48"});
   return {key:"wt", title:"แปลนท็อป (Worktop plan)", svg:o.svg()}; }
 /* ── ภาพ 3D มุมตรงของกล่อง (บาน/มือจับ) สำหรับหน้ารวมวัสดุ ── */
@@ -45875,7 +45893,7 @@ async function dwgMatTiles(C){ const cabs=(C||dwgCabs()).filter(c=>c.lv!=="rail"
       else if(T.mat!=="wood"){ for(let i=0;i<900;i++){ g.fillStyle="rgba(255,255,255,"+(Math.random()*0.22)+")"; g.fillRect(Math.random()*220,Math.random()*220,1+Math.random()*2,1+Math.random()*2); } }
       else { g.strokeStyle="rgba(60,35,10,.18)"; for(let i=0;i<26;i++){ g.beginPath(); g.moveTo(0,i*9+Math.random()*4); g.bezierCurveTo(70,i*9+6,150,i*9-6,220,i*9+Math.random()*4); g.stroke(); } }
       const _up=S.bs.find(b=>b.kind==="up"), _wl=S.bs.find(b=>b.kind!=="up");   // v1.522
-      tiles.push({h:"ท็อป"+(_up?" + บัวหิน":"")+(_wl&&_wl.mat==="stone"?" + ผนัง":""), img:cv.toDataURL("image/jpeg",0.86), t:plWtName(T), s:"หนา "+(+T.t||0)+" มม."+(_up?(" · บัวสูง "+_up.h):"")+(_wl&&_wl.mat==="stone"?(" · ผนังสูง "+plWtHTxt(S.bs.filter(b=>b.kind!=="up"))):"")});
+      tiles.push({h:"ท็อป"+(_up?" + บัวหิน":"")+(_wl&&_wl.mat==="stone"?" + ผนัง":""), img:cv.toDataURL("image/jpeg",0.86), t:plWtName(T), s:"หนา "+(+T.t||0)+" มม."+(_up?(" · บัวสูง "+_up.h+(plWtUpT(T)!==(+T.t||20)?(" หนา "+plWtUpT(T)):"")):"")+(_wl&&_wl.mat==="stone"?(" · ผนังสูง "+plWtHTxt(S.bs.filter(b=>b.kind!=="up"))):"")});
       if(_wl&&_wl.mat!=="stone"){ const c2=document.createElement("canvas"); c2.width=c2.height=220; const g2=c2.getContext("2d");
         if(_wl.mat==="tile"){ g2.fillStyle=T.tileColor||"#e9e6df"; g2.fillRect(0,0,220,220); const tw=+String(T.tile||"300x600").split("x")[0]||300, th=+String(T.tile||"300x600").split("x")[1]||600, sc=220/1200;
           g2.strokeStyle="rgba(110,104,95,.7)"; g2.lineWidth=2; for(let x=0;x<=220;x+=tw*sc){ g2.beginPath(); g2.moveTo(x,0); g2.lineTo(x,220); g2.stroke(); } for(let y=0;y<=220;y+=th*sc){ g2.beginPath(); g2.moveTo(0,y); g2.lineTo(220,y); g2.stroke(); } }
