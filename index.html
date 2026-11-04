@@ -3283,7 +3283,7 @@ body[data-theme="dark"] .splash-dots span{background:rgba(255,255,255,.25)}
    ===================================================================== */
 /* ---- APP_META: แหล่งความจริงเดียวของเวอร์ชัน (ดูได้จาก console / คลิกชื่อแอป) ---- */
 const APP_META={
-  name:"StarNexus", version:"1.653", build:"2026-11-04/cvb-island",
+  name:"StarNexus", version:"1.654", build:"2026-11-04/b06-3d",
   file:"StarNexus.html", basedOn:"Furnitech_V3.html (v3.11)",
   /* ───────── เริ่มนับเวอร์ชันใหม่ที่ 1.001 (21/08/2026) ─────────
      ของเดิมนับมาถึง 42.1 แล้ววิ่งเป็นทศนิยมสองชั้นซึ่งอ่านลำดับยาก
@@ -3291,6 +3291,7 @@ const APP_META={
      ประวัติเก่าเก็บไว้ทั้งหมดตามเลขเดิม ไม่ไล่เขียนใหม่ เพราะเลขในนั้นถูกอ้างถึงไปแล้ว
      รายการที่อยู่ใต้ 1.001 ลงไปจึงเป็นเลขชุดเก่า อ่านต่อกันได้ตามวันที่ */
   changelog:[
+    ["1.654","2026-11-04","UI+FEAT (ผู้ใช้ 08:15 08:20) — ① 3D เหล็กฉาก B-06 ตามแบบจริง 40×58×25 หนา 2 รู Ø7 2 รู ปีกสั้นมีร่องแขวน 3 ร่อง ปีกยาวนอนตามแนวลึกแนบไม้ข้าง เดิมเป็นแผ่นคร่าว ๆ ใบเบิกไม่เปลี่ยน ปิด SN_OFF.jwaB06 ② คานนอนเลือกวางแนวลึกชิดแผ่นข้างได้ (rule.edgeRun) ปรับขนาดตู้แล้วกว้างคงที่ ยาวตามลึก ใช้กับตู้ลิ้นชัก MWA237 ที่ด้านบนเป็นแผ่นนอนซ้าย ขวา หลัง ไม่มีคานหน้า"],
     ["1.653","2026-11-04","FEAT กล่องโค้ง (ผู้ใช้ 07:41 project 69) — ① กล่องยาวเกิน 400 เพิ่มครีบแถวในกึ่งกลาง 1 อัน ยาว 400 พอดีไม่เพิ่ม ใช้กับกล่องจากแผงและจาก XML งานเก่าได้เองตอนเปิดห้องออกแบบ ปิด SN_OFF.plCvbFinIn ② กล่องโค้ง Island R หัว-ท้าย แผ่นดัดใบเดียว ยาวปิดตู้หลังชนกัน 2 ใบ ปุ่มอยู่แผงตู้ แผงกล่องสลับกลับเป็นปลายเดียวได้ กล่องขา กล่องบน ท็อป แปลน ตามสองปลาย ปิด SN_OFF.plCvbIsland"],
     ["1.652","2026-11-03","FIX+UI สีบาน (ผู้ใช้ 17:18 ภาพบานสีเข้ม N00S0114N_HG103 ลาย PCWx50 กับคำเตือน) — ① สีเข้มเส้นบานเป็นสีขาว เห็นลาย ② ดูตอนออกแบบ HG เงา MU ด้าน ③ แก้กฎที่ผมเข้าใจผิด: แบบบานขึ้นต้น P คืองานทำสี ไม่เตือน · งานเคลือบ บานขึ้นต้น M ยังต้องใช้สีตัวที่ 4 = P"],
     ["1.651","2026-11-03","FEAT ระบบงานผนัง JWA ชุดสาม (ผู้ใช้ 16:29 ข้อ 9 10) — แผงชุดผนังเลือกไม้วิ่งไฟ บน ล่าง ซ้าย ขวา ได้ไม่เกิน 2 ด้าน โครงกับแผ่นหน้าเดฟรับไม้ ขนาดนอกเท่าเดิม · ติ๊กมีไฟ = รางไฟตามโมเดลไม้ไฟของห้อง · ไม่ติ๊ก = ไม้ปิดเฉย ๆ"],
@@ -6837,7 +6838,9 @@ function shapeLocalGeo(b){
     b._pts.forEach(pp=>{x0=Math.min(x0,pp[0]);x1=Math.max(x1,pp[0]);y0=Math.min(y0,pp[1]);y1=Math.max(y1,pp[1]);});
     const cx=(x0+x1)/2, cy=(y0+y1)/2;
     const sh=new THREE.Shape(); b._pts.forEach((pp,i)=>{ i?sh.lineTo(pp[0]-cx,pp[1]-cy):sh.moveTo(pp[0]-cx,pp[1]-cy); }); sh.closePath();
-    const g=new THREE.ExtrudeGeometry(sh,{depth:T,bevelEnabled:false}); g.translate(0,0,-T/2); return g; }
+    /* v1.654: รูกลมทะลุใน prism (_holes [[x,y,r]…] พิกัดเดียวกับ _pts) — เหล็กฉาก B-06 · ไม่มี _holes = เหมือนเดิม */
+    (Array.isArray(b._holes)?b._holes:[]).forEach(h=>{ const ph=new THREE.Path(); ph.absarc(h[0]-cx,h[1]-cy,h[2],0,Math.PI*2,true); sh.holes.push(ph); });
+    const g=new THREE.ExtrudeGeometry(sh,{depth:T,bevelEnabled:false,curveSegments:16}); g.translate(0,0,-T/2); return g; }
   /* ───────── v9.83: หน้าตัด (Section) รีดยาวตามขอบบาน ─────────
      ใช้กับเฟรมอลู · รางไฟ · DX2 — ของที่หน้าตัดคงที่แล้วยืดยาวได้
      พิกัดหน้าตัด: X = ลึกเข้าไปในบาน (0 = ขอบนอกบาน) · Y = ตามความหนาบาน (0 = ผิวหลัง)
@@ -30551,6 +30554,7 @@ function boardRole(b){
      SN_OFF.acdHeal=1     ไม่ถามล้างเดือย/มินิฟิกที่ใส่เกินบนหน้าบาน (v1.588)
      SN_OFF.ovenNear=1    เตาที่ไม่อยู่พื้นช่องพอดี = “หาช่องของเตาไม่เจอ” แบบเดิม ไม่หาช่องใกล้สุด (v1.588)
      SN_OFF.sideSplitDoor=1 แผ่นปิดข้าง 2 ชิ้น (สูงเกินแผ่น) แบ่งครึ่งเท่ากันแบบเดิม ไม่ย้ายรอยต่อไปขอบล่างบานบน (v1.587)
+     SN_OFF.jwaB06=1      เหล็กฉาก B-06 เป็นแผ่นคร่าว ๆ แบบ 1.649 (v1.654)
      SN_OFF.plCvbFinIn=1  กล่องโค้งยาวเกิน 400 ไม่เพิ่มครีบแถวใน (v1.653)
      SN_OFF.plCvbIsland=1 ไม่มีปุ่มกล่องโค้ง Island ปิด 2 ตู้ · กล่องที่มีอยู่แล้วยังอยู่ (v1.653)
      SN_OFF.csmBase=1     ไม่มีขาแผ่นไม้ Cosimo (ไม่สร้าง/ไม่จัดใหม่ · เสายืนพื้นทุกต้น · ไม่มีติ๊กขาที่แผง) — ท่อนขาที่มีอยู่แล้วยังเป็นไม้ในงาน (v1.378) */
@@ -41970,9 +41974,30 @@ function jwaStrip(inst){ const P=jwaParts(inst); if(!P) return; P.bs.filter(b=>b
 function jwaHealAll(){ if(snOff("jwa")) return 0; let n=0; const L=jwaInsts(); L.forEach(i=>{ n+=jwaHeal(i); });
   /* v1.651: ลบชุดผนัง = ไม้วิ่งไฟของใบนั้นออกตาม */ const have=new Set(L.map(String)), bad=(state.boards||[]).filter(b=>b&&b._jwaLtOf&&!have.has(String(b._jwaLtOf))); if(bad.length){ bad.forEach(b=>{ try{ delete (state.cabColors||{})[b.cabInst]; }catch(e){} jwaDrop(b); }); n+=bad.length; } return n; }
 /* รูปทรงคร่าว ๆ ของอุปกรณ์ — โมเดลที่ผู้ใช้มีใน Fitting 3D ชนะเสมอ (_ts เก่ามาก ค่าส่วนกลางทับได้) */
+/* ───────── v1.654: 3D เหล็กฉาก B-06 ตามแบบจริง ─────────
+   ผู้ใช้ 4/11 08:20 (แบบ “เหล็กฉากยึดเสา B-06 หนา 2 mm. ขนาด 40x58x25 mm. ชุบซิงค์”): “เอาไปเติม 3D ให้หน่อย”
+   เดิม (1.649): ผมทำคร่าว ๆ รอแบบ แผ่นทึบ 2 แผ่น ปีกยาวตั้ง 58 ลึก 40 ปีกสั้นสูง 58 ไม่มีร่อง
+   ตอนนี้: · ปีกยาว 58 × 40 หนา 2 มุมปลาย R2 · รู Ø7 2 รู ห่างปลาย 12 กับ 37 กลางความสูง
+     · ปีกสั้น 25 × 40 นับจากขอบอิสระ (u) · ร่องบน/ล่างเปิดออกขอบ กว้าง 7 ที่ u 6.5–13.5 ลึก 8 ก้น R3.5 · ร่องกลางเปิดออกขอบอิสระ สูง 7 ลึก 13 ก้น R3.5 · มุมปากร่องและมุมขอบอิสระ R2
+     · 15.5 ในแบบ = กลางปีกถึงศูนย์ก้นร่องบน/ล่าง (20 − 8 + 3.5) ตรงกับที่คิด
+     · ปีกยาวจบที่หลังปีกสั้น (ยาว 56 + หนาปีกสั้น 2 = 58) ไม่ซ้อนกัน ภาพจึงไม่กะพริบ
+   การวาง: ผู้ใช้ 3/11 “ยิงที่เฟรมไม้ด้านข้าง แล้วรับกับหน้าบาน” → ปีกยาวนอนตามแนวลึกแนบไม้ข้าง สูง 40 · ปีกสั้นอยู่หน้าหันเข้ากลางตู้ · ผิวหน้าปีกสั้นห่างระนาบหน้าโครง 3 (เท่าแผ่นแป้นสับ) · ผมอนุมานจากรูปแบบและระยะนี้ แบบไม่ได้บอกทิศติดตั้ง
+   โมเดลที่โปรแกรมเคยใส่ให้ (_ts 2000 ไม่มี _b06) ถูกแทนที่เอง · โมเดลที่ผู้ใช้ทำใน Fitting 3D (_ts จริง) ไม่แตะ · ใบเบิกไม่เปลี่ยน · ปิด SN_OFF.jwaB06 */
+function jwaB06Parts(sg){ const A=(o,cx,cy,r,a0,a1,n)=>{ for(let i=0;i<=n;i++){ const t=(a0+(a1-a0)*i/n)*Math.PI/180; o.push([cx+r*Math.cos(t),cy+r*Math.sin(t)]); } };
+  const u=[]; u.push([25,-20]);
+  A(u,15.5,-18,2,-90,-180,8); A(u,10,-15.5,3.5,0,180,16); A(u,4.5,-18,2,0,-90,8); A(u,2,-18,2,-90,-180,8);
+  A(u,2,-5.5,2,180,90,8); A(u,9.5,0,3.5,-90,90,16); A(u,2,5.5,2,-90,-180,8); A(u,2,18,2,180,90,8);
+  A(u,4.5,18,2,90,0,8); A(u,10,15.5,3.5,180,360,16); A(u,15.5,18,2,180,90,8); u.push([25,20]);
+  const P3=v=>Math.round(v*1000)/1000, dd=a=>a.filter((p,i)=>i===0||Math.hypot(p[0]-a[i-1][0],p[1]-a[i-1][1])>1e-6);
+  const flange=dd(u.map(p=>[P3(-sg*(12.5-p[0])),P3(p[1])]));
+  const lg=[]; lg.push([-20,27]); A(lg,-18,-27,2,180,270,8); A(lg,18,-27,2,270,360,8); lg.push([20,27]);
+  const tone={tone:4}; return [Object.assign({name:"ปีกยาว",_shape:"prism",_pts:dd(lg).map(p=>[P3(p[0]),P3(p[1])]),_holes:[[0,-17,3.5],[0,8,3.5]],L:40,W:56,T:2,x:sg*11.5,y:0,z:-1,orient:"side",yaw:0},tone),
+    Object.assign({name:"ปีกสั้น",_shape:"prism",_pts:flange,L:25,W:40,T:2,x:0,y:0,z:28,orient:"front",yaw:0},tone)]; }
 function jwaEnsureFits(){ const M=settings.fitModels=settings.fitModels||{}, a=jwaCfg().angle, c=jwaCfg(), pt=(L,W,T,x,y,z)=>({L,W,T,x,y,z,orient:"front",yaw:0,tone:4}), put=(k,parts)=>{ if(!M[k]) M[k]={_ts:"2000-01-01T00:00:00.000Z",parts}; };
   const off=(a.w-a.t)/2, zo=(a.d-a.t)/2; [["L",-1],["R",1]].forEach(q=>{ put("JW_ANGLE_"+q[0],[pt(a.w,a.h,a.t,0,0,-zo),pt(a.t,a.h,a.d,q[1]*off,0,0)]);
-    put(c.b06+(q[0]==="R"?"_R":""),[pt(2,58,40,q[1]*11.5,0,0),pt(25,58,2,0,0,19)]); });
+    const _kb=c.b06+(q[0]==="R"?"_R":""), _ob=M[_kb];
+    if(snOff("jwaB06")){ if(_ob&&_ob._b06) delete M[_kb]; put(_kb,[pt(2,58,40,q[1]*11.5,0,0),pt(25,58,2,0,0,19)]); }
+    else if(!_ob||(_ob._ts==="2000-01-01T00:00:00.000Z"&&_ob._b06!==654)) M[_kb]={_ts:"2000-01-01T00:00:00.000Z",_b06:654,parts:jwaB06Parts(q[1])}; });   /* v1.654 */
   put(c.hook,[pt(35,54,3,0,0,2.5),pt(35,14,8,0,20,0)]); }
 function jwaBays(P){ const R=P.bs.filter(b=>!b._door&&!b._jwaGen?b.orient==="front"||b.orient==="flat":b._jwaGen==="rail"||b._jwaGen==="flat").map(b=>{ const d=worldDims(b)[1]; return [b.y-d/2,b.y+d/2]; }).sort((p,q)=>p[0]-q[0]), out=[]; let y=P.lo;
   R.forEach(q=>{ if(q[0]>y+1) out.push([y,q[0]]); y=Math.max(y,q[1]); }); if(P.hi>y+1) out.push([y,P.hi]); return out; }
@@ -41980,10 +42005,11 @@ function jwaFitY(P){ const c=jwaCfg(), B=jwaBays(P).filter(q=>q[1]-q[0]>=c.angle
 function jwaFitsAll(){ if(snOff("jwa")) return 0; state.boards=state.boards.filter(b=>!(b&&b._jwaFit)); const L=jwaInsts(); if(!L.length) return 0; jwaEnsureFits(); const c=jwaCfg(), a=c.angle; let n=0;
   L.forEach(i=>{ const P=jwaParts(i); if(!P) return; const F=P.F, kk=P.bs.find(b=>b._jwaGen==="kick"), pn=P.panel; if(kk&&pn){ kk.L=pn.L; kk.x=pn.x; kk.z=pn.z; } const hook=(settings.fitModels||{})[c.hook]?c.hook:"HANGBRACKET_Z", hb=(()=>{ try{ const q=fitModelBBox(hook); return q?[q.x1-q.x0,q.y1-q.y0,q.z1-q.z0]:null; }catch(e){ return null; } })()||[35,54,8];
     const box=(tag,kind,code,mdl,L0,W0,T0,r,y,f)=>{ const p=[0,y,0]; p[F.ra]=r; p[F.fa]=f; state.boards.push({id:"jw:"+i+":"+tag+":"+(n++),name:kind==="angle"?"เหล็กฉากยึดผนัง":kind==="b06"?"ฉาก B-06":"แป้นแขวน",cab:P.bs[0].cab,cabInst:i,L:L0,W:W0,T:T0,orient:"front",yaw:P.Y,x:round(p[0]),y:round(y),z:round(p[2]),tone:4,r:0,edges:["","","",""],holes:[],grooves:[],connectors:[],mat:"",part:"",surfT:"",surfB:"",_virtual:true,_jwaFit:kind,_jwaCode:code,_fitModel:mdl,_pdone:1}); };
-    jwaFitY(P).forEach((q,k)=>{ const mid=(q[0]+q[1])/2, room=q[1]-q[0]>=a.h+58+8, ya=room?mid-33:mid, yb=room?mid+(a.h+8)/2:mid;
+    const _bOld=snOff("jwaB06"), _bH=_bOld?58:40;   /* v1.654: B-06 สูง 40 ตามแบบ (ปีกยาวนอน) */
+    jwaFitY(P).forEach((q,k)=>{ const mid=(q[0]+q[1])/2, room=q[1]-q[0]>=a.h+_bH+8, ya=room?mid-(_bH+8)/2:mid, yb=room?mid+(a.h+8)/2:mid;
       [0,1].forEach(si=>{ const s=P.sides[si], dir=si?-1:1, inner=P.at(s,F.ra)+dir*P.ds[si][F.ra]/2, left=dir*F.rs>0;
         box("a"+k+si,"angle",String(c.angleCode||""),"JW_ANGLE_"+(left?"L":"R"),a.w,a.h,a.d,inner+dir*a.w/2,ya,P.back+F.fs*a.d/2);
-        box("b"+k+si,"b06",c.b06,c.b06+(left?"":"_R"),25,58,40,inner+dir*12.5,yb,P.front-F.fs*20);
+        if(_bOld) box("b"+k+si,"b06",c.b06,c.b06+(left?"":"_R"),25,58,40,inner+dir*12.5,yb,P.front-F.fs*20); else box("b"+k+si,"b06",c.b06,c.b06+(left?"":"_R"),25,40,58,inner+dir*12.5,yb,P.front-F.fs*32);   /* v1.654 */
         box("h"+k+si,"hook",c.hook,hook,hb[0],hb[1],hb[2],inner+dir*(hb[0]/2+2),yb,P.front-F.fs*hb[2]/2); }); }); });
   return n; }
 /* ───────── v1.650: ใส่ชุดผนังจากแผงตู้ ─────────
@@ -50886,6 +50912,11 @@ function deriveRail(rule,f,inst){
   if(rule.spanShelf){ const sh=refBoard(rule.spanShelf); if(sh){ const w=worldDims(sh)[0]; spanL=sh.x-w/2; spanR=sh.x+w/2; }
     else if(rule.spanX){ spanL=rule.spanX.lo; spanR=rule.spanX.hi; } }
   else if(rule.spanX){ spanL=rule.spanX.lo; spanR=rule.spanX.hi; }
+  /* ───────── v1.654: คานนอนวิ่งแนวลึก ชิดแผ่นข้าง ─────────
+     ผู้ใช้ 4/11 08:15 (ภาพตู้ลิ้นชัก MWA237 ด้านบนมีแผ่นนอนซ้าย ขวา หลัง ไม่มีคานหน้า)
+     เดิม: แผ่นนอนธรรมดาถูก refitInterior ยืดเป็นชั้นเต็มตู้ทุกครั้งที่ปรับขนาด · คานวิ่งได้แค่แนวกว้าง · spanX เป็นพิกัดสัมบูรณ์ ตู้กว้างขึ้นแล้วฝั่งขวาหลุด
+     ตอนนี้: rule.edgeRun {side:"L"|"R", w, less} กว้าง w ชิดผิวในแผ่นข้าง · ยาวแนวลึก = ลึกตู้ − less · ไม่ตั้ง = เหมือนเดิม */
+  if(rule.edgeRun&&isFinite(f.innerL)&&isFinite(f.innerR)){ const _ew=Math.max(evalCabExpr(rule.edgeRun.w,inst,70)||70,5); if(rule.edgeRun.side==="R"){ spanR=f.innerR; spanL=f.innerR-_ew; } else { spanL=f.innerL; spanR=f.innerL+_ew; } }
   /* rule.spanX เก็บเป็นพิกัดสัมบูรณ์ตั้งแต่ตอนสร้าง · ถ้าตู้ถูกย้าย/ก็อป/นำเข้าใหม่
      ค่านั้นจะชี้ออกนอกตู้ · คานกินพื้นที่เกินผิวในตู้ไม่ได้อยู่แล้ว -> ตัดให้อยู่ในกรอบเสมอ */
   if(isFinite(f.innerL)&&isFinite(f.innerR)){
@@ -50898,7 +50929,7 @@ function deriveRail(rule,f,inst){
     }
   }
   const span=Math.max(round(spanR-spanL),20), x=round((spanL+spanR)/2);
-  const railW=Math.max(evalCabExpr(rule.railW,inst,70)||70,5), T=Math.max(rule.T||f.T||16,3);   // v7.62: หน้ากว้างคานรับ $D7 ได้
+  const railW=rule.edgeRun?Math.max(round((f.frontZ-f.rearZ)-(+rule.edgeRun.less||0)),5):Math.max(evalCabExpr(rule.railW,inst,70)||70,5), T=Math.max(rule.T||f.T||16,3);   // v7.62: หน้ากว้างคานรับ $D7 ได้
   let vFrom=(rule.refV&&rule.refV.from)||"บน", vOff=Math.max((rule.refV&&rule.refV.off)||0,0);
   let shelfRef=null;
   if(rule.refShelf){ const sh=refBoard(rule.refShelf); if(sh){ const sh1=worldDims(sh)[1]; const gap=Math.max(rule.shelfGap||0,0);
