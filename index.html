@@ -3283,7 +3283,7 @@ body[data-theme="dark"] .splash-dots span{background:rgba(255,255,255,.25)}
    ===================================================================== */
 /* ---- APP_META: แหล่งความจริงเดียวของเวอร์ชัน (ดูได้จาก console / คลิกชื่อแอป) ---- */
 const APP_META={
-  name:"StarNexus", version:"1.656", build:"2026-11-04/pl-2side",
+  name:"StarNexus", version:"1.657", build:"2026-11-04/pl-switch",
   file:"StarNexus.html", basedOn:"Furnitech_V3.html (v3.11)",
   /* ───────── เริ่มนับเวอร์ชันใหม่ที่ 1.001 (21/08/2026) ─────────
      ของเดิมนับมาถึง 42.1 แล้ววิ่งเป็นทศนิยมสองชั้นซึ่งอ่านลำดับยาก
@@ -3291,6 +3291,7 @@ const APP_META={
      ประวัติเก่าเก็บไว้ทั้งหมดตามเลขเดิม ไม่ไล่เขียนใหม่ เพราะเลขในนั้นถูกอ้างถึงไปแล้ว
      รายการที่อยู่ใต้ 1.001 ลงไปจึงเป็นเลขชุดเก่า อ่านต่อกันได้ตามวันที่ */
   changelog:[
+    ["1.657","2026-11-04","CHANGE ห้องออกแบบ (ผู้ใช้ 14:51 “สวิสต์ อย่างเดียว”) — การ์ดปลั๊กสวิตช์เปลี่ยนเป็น 🔘 สวิตช์ไฟ ไม่มีเต้ารับ ตัดตัวเลือกแบบในแผงออก ทั้ง 3D ไอคอน และหน้างานระบบในใบเสนอราคาเป็นสวิตช์ล้วน · ไฟล์ที่บันทึกจาก 1.656 เปิดได้ และแสดงเป็นสวิตช์ไฟ"],
     ["1.656","2026-11-04","FEAT ห้องออกแบบ (ผู้ใช้ 14:34) — ① ของติดผนังกรอกระยะได้ทั้ง 2 ฝั่ง: ปลั๊ก ท่อ = ศูนย์ห่างซ้าย ศูนย์ห่างขวา · ประตู หน้าต่าง ซุ้ม เครื่องใช้ติดผนัง = ขอบห่างซ้าย ขอบห่างขวา (มองจากในห้อง) แก้ช่องไหนอีกช่องคิดให้เอง ไม่ต้องลบกับความยาวผนังเอง · ป้ายตอนลากบอกซ้าย ขวา ด้วย ② การ์ดใหม่ 🔘 ปลั๊กสวิตช์ ในกลุ่มงานระบบ เลือกแบบ ปลั๊ก + สวิตช์ หรือ สวิตช์อย่างเดียว ลาก ติดผนัง ขึ้นจากพื้น ได้เหมือนปลั๊ก มีใน 3D แบบผนัง และภาพ AR · ปิด SN_OFF.plTwoSide SN_OFF.plSwitch"],
     ["1.655","2026-11-04","UX ห้องออกแบบ (ผู้ใช้ 13:36) — ① แถบล่างของแผง (ตู้ในห้อง ราคา ต้นทุน ปุ่มใบเสนอราคา AI RENDER โหมดสมจริง บันทึกภาพ รายละเอียด) พับลงเหลือบรรทัดเดียวได้ จำค่าไว้ · ② กดปลั๊ก ประตู หน้าต่าง เสา ฝ้า ผนัง ท็อป เครื่องใช้ หรือตู้ แผงเหลือเฉพาะตัวปรับของชิ้นนั้น กลุ่มตั้งค่าห้องและรายการช่องว่างซ่อนไปอยู่หลังแถบ 🏠 ตั้งค่าห้อง กดเปิดดูได้ เลิกเลือกแล้วกลับมาเอง · ③ กลุ่มตั้งค่าห้องเปิดทีละกลุ่ม เปิดกลุ่มใหม่ กลุ่มเดิมพับ · ปิด SN_OFF.plFootFold SN_OFF.plFocus SN_OFF.plGrpOne"],
     ["1.654","2026-11-04","UI+FEAT (ผู้ใช้ 08:15 08:20) — ① 3D เหล็กฉาก B-06 ตามแบบจริง 40×58×25 หนา 2 รู Ø7 2 รู ปีกสั้นมีร่องแขวน 3 ร่อง ปีกยาวนอนตามแนวลึกแนบไม้ข้าง เดิมเป็นแผ่นคร่าว ๆ ใบเบิกไม่เปลี่ยน ปิด SN_OFF.jwaB06 ② คานนอนเลือกวางแนวลึกชิดแผ่นข้างได้ (rule.edgeRun) ปรับขนาดตู้แล้วกว้างคงที่ ยาวตามลึก ใช้กับตู้ลิ้นชัก MWA237 ที่ด้านบนเป็นแผ่นนอนซ้าย ขวา หลัง ไม่มีคานหน้า"],
@@ -30559,7 +30560,7 @@ function boardRole(b){
      SN_OFF.plFootFold=1  แถบล่างของแผงห้องออกแบบพับไม่ได้ (v1.655)
      SN_OFF.plFocus=1     เลือกชิ้นแล้วกลุ่มตั้งค่าห้องยังเปิดอยู่ แบบเดิม (v1.655)
      SN_OFF.plTwoSide=1   ของติดผนังกรอกระยะจากต้นผนังช่องเดียว แบบเดิม (v1.656)
-     SN_OFF.plSwitch=1    ไม่มีการ์ดปลั๊กสวิตช์ (ข้อมูลเดิมยังวาด) (v1.656)
+     SN_OFF.plSwitch=1    ไม่มีการ์ดสวิตช์ไฟ (ข้อมูลเดิมยังวาด) (v1.656 · ชื่อใหม่ v1.657)
      SN_OFF.plGrpOne=1    กลุ่มตั้งค่าห้องเปิดพร้อมกันหลายกลุ่มได้ แบบเดิม (v1.655)
      SN_OFF.jwaB06=1      เหล็กฉาก B-06 เป็นแผ่นคร่าว ๆ แบบ 1.649 (v1.654)
      SN_OFF.plCvbFinIn=1  กล่องโค้งยาวเกิน 400 ไม่เพิ่มครีบแถวใน (v1.653)
@@ -38973,7 +38974,11 @@ const PLO_T={
      ผู้ใช้ 4/11 14:34: “มีปลั๊ก แล้วขอมี ปลั๊กสวิสต์ ด้วยครับ”
      เดิม งานระบบมีแค่ปลั๊ก น้ำดี น้ำทิ้ง จุดสวิตช์ไฟจึงต้องใช้ปลั๊กแทน แบบกับแปลนแยกกันไม่ออก
      ตอนนี้ ชนิดใหม่ใช้ทางเดียวกับปลั๊กทุกอย่าง (T.util) ต่างแค่หน้าตา · o.swm="s" = สวิตช์อย่างเดียว ไม่มีค่า = ปลั๊ก + สวิตช์ */
-  plugsw:{n:"ปลั๊กสวิตช์", ic:"🔘", w:120, h:75, sill:1100, wall:1, util:1},
+  /* ───────── v1.657: เป็นสวิตช์ล้วน ─────────
+     ผู้ใช้ 4/11 14:51 ตอบว่า “สวิสต์ อย่างเดียว”
+     เดิม (v1.656) ผมเดาว่าเป็นปลั๊กกับสวิตช์ในหน้ากากเดียว ตั้งเป็นค่าเริ่มต้น และมีตัวเลือกแบบในแผง
+     ตอนนี้ เหลือสวิตช์อย่างเดียว ตัดตัวเลือกออก · ชื่อชนิดในข้อมูลยังเป็น plugsw เพื่อให้ไฟล์ที่บันทึกจาก 1.656 เปิดได้ · ค่า o.swm ในไฟล์เก่าไม่ถูกใช้แล้ว */
+  plugsw:{n:"สวิตช์ไฟ", ic:"🔘", w:120, h:75, sill:1100, wall:1, util:1},
   plug :{n:"ปลั๊กไฟ", ic:"🔌", w:120, h:75, sill:1100, wall:1, util:1},        // v1.538: งานระบบ (sill = ความสูงถึงศูนย์ · ไม่เจาะผนัง · ลงพื้นได้)
   wat  :{n:"ท่อน้ำดี", ic:"🚰", w:20, h:20, sill:500, wall:1, util:1},
   drn  :{n:"ท่อน้ำเสีย", ic:"⭕", w:55, h:55, sill:400, wall:1, util:1},
@@ -39280,9 +39285,9 @@ function ploAddMeshes(g){
     else if(T.util){ const uw=Math.max(+o.w||T.w,8), uh=Math.max(+o.h||T.h,8), yc=Math.max(+o.sill||0,0), cl=o.k==="wat"?0x2b7bd6:0x9aa0a6;   // v1.538: ปลั๊ก/ท่อ
       const cyl=(r0,len,x,y,z,mat,horiz)=>{ const c=new THREE.Mesh(new THREE.CylinderGeometry(r0,r0,len,20),mat); if(horiz) c.rotation.x=Math.PI/2; c.position.set(x,y,z); c.castShadow=true; G.add(c); return c; };
       if(F){ const zf=th/2;
-        /* v1.656: ปลั๊กสวิตช์ หน้ากากเดียว ซ้ายเต้ารับ ขวาปุ่มกด · สวิตช์อย่างเดียว ปุ่มอยู่กลาง */
-        if(o.k==="plugsw"){ const so=o.swm==="s", rx=so?0:uw*0.22; box(uw,uh,10,0,yc,zf+5,M(0xf7f7f5,{roughness:.4})); if(!so) box(uw*0.26,uh*0.42,2,-uw*0.22,yc,zf+11,M(0x3a3a3a));
-          box(uw*0.26,uh*0.66,4,rx,yc,zf+12,M(0xaeaca4,{roughness:.35})); box(uw*0.1,uh*0.06,1,rx,yc+uh*0.18,zf+14.5,M(0x3a3a3a)); }
+        /* v1.657: สวิตช์ไฟ หน้ากากขาว ปุ่มกดอยู่กลาง (v1.656 มีเต้ารับด้วย ผู้ใช้ไม่ต้องการ) */
+        if(o.k==="plugsw"){ box(uw,uh,10,0,yc,zf+5,M(0xf7f7f5,{roughness:.4}));
+          box(uw*0.26,uh*0.66,4,0,yc,zf+12,M(0xaeaca4,{roughness:.35})); box(uw*0.1,uh*0.06,1,0,yc+uh*0.18,zf+14.5,M(0x3a3a3a)); }
         else if(o.k==="plug"){ box(uw,uh,10,0,yc,zf+5,M(0xf7f7f5,{roughness:.4})); [-1,1].forEach(sg=>box(uw*0.26,uh*0.42,2,sg*uw*0.22,yc,zf+11,M(0x3a3a3a))); }
         else { const len=o.k==="wat"?70:90; cyl(uw/2,len,0,yc,zf+len/2,M(cl,{roughness:.5}),true);
           if(o.k==="wat"){ box(34,34,22,0,yc,zf+len+8,M(0xc9ccd1,{metalness:.6,roughness:.3})); box(10,10,44,0,yc+24,zf+len+8,M(0xd33a2c)); }
@@ -40439,7 +40444,7 @@ function ploIcon(k){ const s='<svg viewBox="0 0 80 80" width="70" height="70" fi
   if(k==="dl") return s+'<circle cx="40" cy="40" r="22" fill="rgba(255,226,170,.55)"/><circle cx="40" cy="40" r="13" fill="rgba(255,200,90,.9)"/><path d="M40 8v8M40 64v8M8 40h8M64 40h8"/>'+e;   // v1.586
   if(k==="ceil") return s+'<path d="M8 14h64M8 14v58M72 14v58M8 72h64"/><rect x="22" y="14" width="36" height="14" fill="rgba(160,150,130,.3)"/>'+e;   // v1.538
   if(k==="ceilu") return s+'<path d="M8 26h14V12h36v14h14M8 26v46M72 26v46M8 72h64"/>'+e;
-  if(k==="plugsw") return s+'<rect x="18" y="24" width="44" height="32" rx="4"/><rect x="25" y="33" width="9" height="14" fill="currentColor"/><rect x="42" y="30" width="13" height="20" rx="1"/><path d="M42 40h13"/>'+e;   // v1.656
+  if(k==="plugsw") return s+'<rect x="18" y="24" width="44" height="32" rx="4"/><rect x="33" y="30" width="14" height="20" rx="1"/><path d="M33 40h14"/>'+e;   // v1.657: สวิตช์ล้วน
   if(k==="plug") return s+'<rect x="18" y="24" width="44" height="32" rx="4"/><rect x="27" y="33" width="9" height="14" fill="currentColor"/><rect x="44" y="33" width="9" height="14" fill="currentColor"/>'+e;
   if(k==="wat") return s.replace('stroke="currentColor"','stroke="#2b7bd6"')+'<path d="M10 40h34"/><rect x="44" y="30" width="18" height="20"/><path d="M53 30V16M46 16h14"/>'+e;
   { const ai=plaIcon(k,s,e); if(ai) return ai; }   // v1.546
@@ -40657,7 +40662,7 @@ function ploCardSub(k){ const T=PLO_T[k]||{};
   if(k==="niche") return T.w+"×"+T.h+" · ลึก "+T.d;   /* v1.629 */
   if(k==="col") return T.w+"×"+T.d+" · สูงถึงฝ้า"; if(k==="stair") return "กว้าง "+T.w+" · ยาว "+T.d;
   if(k==="ceil") return T.w+"×"+T.d+" · ต่ำกว่าฝ้าห้อง 300"; if(k==="ceilu") return T.w+"×"+T.d+" · สูงกว่าฝ้าห้อง 200";
-  if(k==="plugsw") return "ปลั๊ก + สวิตช์ · สูง "+T.sill;   /* v1.656 */
+  if(k==="plugsw") return "สวิตช์ · สูง "+T.sill;   /* v1.657 */
   if(k==="plug") return "ปลั๊กคู่ · สูง "+T.sill; if(k==="wat"||k==="drn") return "Ø"+T.w+" · ติดผนัง / ขึ้นจากพื้น";
   return T.w+"×"+T.h+(T.sill?(" · สูงจากพื้น "+T.sill):""); }
 /* ── 🔒 ล็อกห้อง ── */
@@ -40722,9 +40727,8 @@ function ploUtilPanel(s,o){ const T=PLO_T[o.k]||{}, F=ploFrameOf(o), r=plRoom(),
   const num=(k,v,st,w)=>'<input type="number" data-pok="'+k+'" value="'+Math.round(+v||0)+'" step="'+(st||10)+'" style="width:'+(w||70)+'px"><span class="plU">มม.</span>';
   const ref=PLO_REF[o.ref]?o.ref:"bl", kx=ref[1]==="l"?"L":"R", kz=ref[0]==="b"?"B":"F", nm={L:"ซ้าย",R:"ขวา",B:"หลัง",F:"หน้า"}, D=ploPtDist(o), plug=o.k==="plug"||o.k==="plugsw";   /* v1.656: ปลั๊กสวิตช์ใช้ช่องหน้ากากเดียวกับปลั๊ก */
   let h='<div class="plRow"><h4>'+T.ic+' '+escapeHtml(T.n||"")+'</h4><span class="plNote" style="margin-left:auto">'+(F?escapeHtml(F.lbl):"ขึ้นจากพื้น")+'</span></div>'
-    +(o.k==="plugsw"?fr("แบบ",'<select data-pok="swm"><option value="ps"'+(o.swm!=="s"?" selected":"")+'>ปลั๊ก + สวิตช์</option><option value="s"'+(o.swm==="s"?" selected":"")+'>สวิตช์อย่างเดียว</option></select>'):"")   /* v1.656 */
     +(plug?fr("หน้ากาก",num("w",o.w,5,58)+' × '+num("h",o.h,5,58)):fr("ขนาดท่อ Ø",num("w",o.w,1)));
-  if(F) h+=fr("สูงจากพื้น",num("sill",o.sill,10)+'<span class="plNote plNB">ถึงศูนย์</span>',"ความสูงจากพื้นถึงศูนย์"+(plug?"ปลั๊ก":"ท่อ"))
+  if(F) h+=fr("สูงจากพื้น",num("sill",o.sill,10)+'<span class="plNote plNB">ถึงศูนย์</span>',"ความสูงจากพื้นถึงศูนย์"+(o.k==="plugsw"?"สวิตช์":plug?"ปลั๊ก":"ท่อ"))
       +(!snOff("plTwoSide")?ploSideRows(o,F,fr,num,false):fr("ศูนย์ห่างต้นผนัง",num("offc",o.t,10)+'<span class="plNote plNB">ผนังยาว '+f(F.L)+' · ห่างปลาย '+f(F.L-(+o.t||0))+'</span>'));   /* v1.656 */
   else h+=fr("วัดจากมุม",'<select data-pok="ref">'+Object.keys(PLO_REF).map(k=>'<option value="'+k+'"'+(k===ref?" selected":"")+'>'+PLO_REF[k]+'</option>').join("")+'</select>')
       +fr("ศูนย์ห่างผนัง"+nm[kx],num("dx",D[kx],10))+fr("ศูนย์ห่างผนัง"+nm[kz],num("dz",D[kz],10));
@@ -40733,7 +40737,6 @@ function ploUtilPanel(s,o){ const T=PLO_T[o.k]||{}, F=ploFrameOf(o), r=plRoom(),
   s.innerHTML=h;
   s.querySelectorAll("[data-pok]").forEach(inp=>inp.onchange=()=>{ const k=inp.dataset.pok; if(ploLocked()){ plPanelSel(); return; }
     if(k==="ref"){ if(PLO_REF[inp.value]) o.ref=inp.value; }
-    else if(k==="swm"){ if(inp.value==="s") o.swm="s"; else delete o.swm; }   /* v1.656 */
     else { const v=+inp.value; if(!isFinite(v)){ plPanelSel(); return; } const D0=ploPtDist(o);
       if(k==="w"&&v>=8) o.w=Math.round(v); else if(k==="h"&&v>=8) o.h=Math.round(v);
       else if(k==="sill"&&v>=0) o.sill=Math.round(v);
@@ -45055,21 +45058,21 @@ function dwgUtilElev(wk,C){ const r=plRoom(), W=PL_WALLS[wk], A=W.ax, Lw=A===0?r
   try{ ploOpenings("r:"+wk).forEach(op=>{ const a=uT(op.t0), b=uT(op.t1);
     if(op.nic){ const n=op.nic, Pth=ploNichePath(+n.w,op.y1-op.y0,ploNicheR(n)); for(let i=0;i+1<Pth.length;i++) o.L(uT(+n.t+Pth[i][0]),-(op.y0+Pth[i][1]),uT(+n.t+Pth[i+1][0]),-(op.y0+Pth[i+1][1]),0.6,FA,"2 3"); return; }   /* v1.629: ซุ้มหลุม = เส้นตามรูปโค้ง */
     o.R(Math.min(a,b),-op.y1,Math.max(a,b),-op.y0,{w:0.6,col:FA,dash:"2 3"}); }); }catch(e){}
-  const NM={plug:"ปลั๊ก",plugsw:"ปลั๊กสวิตช์",wat:"น้ำดี",drn:"น้ำทิ้ง"}, CL={plug:"#e8590c",plugsw:"#e8590c",wat:"#1c7ed6",drn:"#495057"}, us=[];   /* v1.656: + ปลั๊กสวิตช์ */
+  const NM={plug:"ปลั๊ก",plugsw:"สวิตช์",wat:"น้ำดี",drn:"น้ำทิ้ง"}, CL={plug:"#e8590c",plugsw:"#e8590c",wat:"#1c7ed6",drn:"#495057"}, us=[];   /* v1.656: + ปลั๊กสวิตช์ */
   ut.slice().sort((a,b)=>uT(+a.t||0)-uT(+b.t||0)).forEach((q,i)=>{ const u=uT(+q.t||0), yc=Math.max(+q.sill||0,0), w=Math.max(+q.w||PLO_T[q.k].w,20), h=Math.max(+q.h||PLO_T[q.k].h,20), col=CL[q.k]||"#e8590c";
     us.push(u);
-    if(q.k==="plugsw"){ const so=q.swm==="s", rx=so?0:w*0.22; o.R(u-w/2,-(yc+h/2),u+w/2,-(yc-h/2),{w:1.4,col,fill:"#fff4e6",rx:2}); if(!so) o.R(u-w*0.28,-(yc+h*0.2),u-w*0.16,-(yc-h*0.2),{w:0.8,col,fill:col});   /* v1.656: ปุ่มกด = สี่เหลี่ยมมีเส้นคาด */
-      o.R(u+rx-w*0.13,-(yc+h*0.33),u+rx+w*0.13,-(yc-h*0.33),{w:1,col,fill:"#fff"}); o.L(u+rx-w*0.13,-yc,u+rx+w*0.13,-yc,0.8,col); }
+    if(q.k==="plugsw"){ o.R(u-w/2,-(yc+h/2),u+w/2,-(yc-h/2),{w:1.4,col,fill:"#fff4e6",rx:2});   /* v1.657: ปุ่มกดกลางหน้ากาก = สี่เหลี่ยมมีเส้นคาด */
+      o.R(u-w*0.13,-(yc+h*0.33),u+w*0.13,-(yc-h*0.33),{w:1,col,fill:"#fff"}); o.L(u-w*0.13,-yc,u+w*0.13,-yc,0.8,col); }
     else if(q.k==="plug"){ o.R(u-w/2,-(yc+h/2),u+w/2,-(yc-h/2),{w:1.4,col,fill:"#fff4e6",rx:2}); [-1,1].forEach(sg=>o.R(u+sg*w*0.22-w*0.06,-(yc+h*0.2),u+sg*w*0.22+w*0.06,-(yc-h*0.2),{w:0.8,col,fill:col})); }
     else { const rr=Math.max(w,30)/2; o.els.push('<circle cx="'+u+'" cy="'+(-yc)+'" r="'+rr+'" fill="'+(q.k==="wat"?"#d0e4ff":"#e9ecef")+'" stroke="'+col+'" stroke-width="1.6" vector-effect="non-scaling-stroke"/>');
       o.els.push('<circle cx="'+u+'" cy="'+(-yc)+'" r="'+(rr*0.4)+'" fill="'+col+'"/>'); }
-    const lab=(q.k==="plugsw"&&q.swm==="s"?"สวิตช์":(NM[q.k]||q.k))+" สูง "+Math.round(yc), near=us.slice(0,-1).filter(v=>Math.abs(v-u)<260).length;   /* จุดใกล้กัน = ป้ายเลื่อนขึ้นทีละชั้น ไม่ทับกัน */
+    const lab=(NM[q.k]||q.k)+" สูง "+Math.round(yc), near=us.slice(0,-1).filter(v=>Math.abs(v-u)<260).length;   /* จุดใกล้กัน = ป้ายเลื่อนขึ้นทีละชั้น ไม่ทับกัน */
     o.T(u,-(yc+Math.max(h,40)/2)-(6+12*near)*k,lab,{px:7,b:1,col,bg:1});
     o.chain([-yc,0],u+Math.max(w,40)/2+9*k,u+Math.max(w,30)/2,false); });                   // สูงจากพื้นถึงศูนย์
   o.chain([0].concat(us.map(v=>Math.max(0,Math.min(Lw,v))),[Lw]).sort((a,b)=>a-b),12*k,0,true);   // ระยะจากมุมห้องต่อเนื่อง
   o.chain([0,Lw],27*k,null,true);
   o.T(-Tw,-H-14*k,"Dim เฉพาะงานระบบ · ระยะถึงศูนย์ · สูงจากพื้นสำเร็จ",{px:6.5,a:"start",col:"#6b7280"});
-  return {key:"util_"+wk, title:"งานระบบ — ด้าน"+W.lbl+" (ปลั๊ก · ท่อ · มองจากในห้อง)", svg:o.svg()}; }
+  return {key:"util_"+wk, title:"งานระบบ — ด้าน"+W.lbl+" (ปลั๊ก · สวิตช์ · ท่อ · มองจากในห้อง)", svg:o.svg()}; }
 function dwgElevWalls(C){ const r=plRoom(), cabs=C||dwgCabs(); return Object.keys(PL_WALLS).filter(k=>cabs.some(c=>dwgOnWall(c,r,k))); }
 /* v1.522: บัว/ผนังเหนือท็อปในภาพด้านหน้า — u0,u1 = ช่วงแนวนอน · บัว/หิน = เข้ม/ลายขีด · กระเบื้อง = ตารางตามขนาด · กระจก = เส้นเฉียงคู่ */
 function dwgVert(o,list,U,A,hs){ const k=o.k, T=plWt(), tw=+String(T.tile||"300x600").split("x")[0]||300, th=+String(T.tile||"300x600").split("x")[1]||600;
