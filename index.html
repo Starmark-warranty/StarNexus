@@ -3283,7 +3283,7 @@ body[data-theme="dark"] .splash-dots span{background:rgba(255,255,255,.25)}
    ===================================================================== */
 /* ---- APP_META: แหล่งความจริงเดียวของเวอร์ชัน (ดูได้จาก console / คลิกชื่อแอป) ---- */
 const APP_META={
-  name:"StarNexus", version:"1.672", build:"2026-11-05/pull-pos",
+  name:"StarNexus", version:"1.673", build:"2026-11-05/inner-filler",
   file:"StarNexus.html", basedOn:"Furnitech_V3.html (v3.11)",
   /* ───────── เริ่มนับเวอร์ชันใหม่ที่ 1.001 (21/08/2026) ─────────
      ของเดิมนับมาถึง 42.1 แล้ววิ่งเป็นทศนิยมสองชั้นซึ่งอ่านลำดับยาก
@@ -3291,6 +3291,7 @@ const APP_META={
      ประวัติเก่าเก็บไว้ทั้งหมดตามเลขเดิม ไม่ไล่เขียนใหม่ เพราะเลขในนั้นถูกอ้างถึงไปแล้ว
      รายการที่อยู่ใต้ 1.001 ลงไปจึงเป็นเลขชุดเก่า อ่านต่อกันได้ตามวันที่ */
   changelog:[
+    ["1.673","2026-11-05","FIX กล่องสี: บาน 3 กับ 5 ของ MWA050 เป็นบานใน (ผู้ใช้ 00:52 project 36) — ไม้ปิดข้าง Filler Front ของลิ้นชักในตู้ใช้ช่อง FrontShapeP3 · P5 แต่ไม่มีธงบาน จึงตกไปอยู่แท็บบานนอก · ตอนนี้แผ่นหน้าที่ผูกช่องบานนับเป็นหน้าของช่องนั้นด้วย"],
     ["1.672","2026-11-05","FEAT+FIX (ผู้ใช้ 5/11 00:35) ① กล่องมือจับ: เลือกกลางมือจับสูงจากล่างบาน 900 · 1000 หรือพิมพ์เอง เฉพาะบานสูง ② ระยะห่างขอบบาน (เดิม 35) ปรับได้ทุกบานในงาน แล้วแยกรายตู้ได้ ③ FIX แบบ LM126: เพิ่มหน้าตัดจริง หนารวม 19 เดือยเกือบกลาง · แบบบอกหนารวม"],
     ["1.671","2026-11-05","FEAT (ผู้ใช้ 4/11 23:37 ทำต่อหลังท็อป) ① ห้องออกแบบเลือกขาตู้รายตู้หรือหลายใบได้ รวมตู้รหัสนอกหมวด ② ปุ่มหูแขวนในห้องออกแบบ ใส่ทีละหลายใบได้ ③ แบบผลิตงานสั่งทำ LM126 ทุกขนาดใน Order: ยาวตาม BOM · ขาเสียบเว้นปลายด้านละ 50 · R3 สี่จุด"],
     ["1.670","2026-11-05","FIX+FEAT กระจกแบนไม่รับ Part ไม้อีก ตั้งหนา 5 หรือ 6 รายชิ้นได้ · แบบผลิตมีภาพตัดบ่ารับกระจก + แถวหลุม CNC แยกจากช่องใน · ห้องออกแบบมี 🧲 แปะบนตู้ ช่องสูงจากพื้น 🙈 ซ่อน ◎ เฉพาะตู้นี้ 👁 แสดงทุกตู้ (ผู้ใช้ 23:56 · 00:00 project 36) · ห้องออกแบบ (ผู้ใช้ 23:45) — ① แท็บ K_Fitting_Concept ในกล่องสี ขึ้นทุกชุดแล้ว เดิมขึ้นเฉพาะรหัสที่เคยมากับ XML INT02 จึงไม่มี ② แผงซ้ายมีปุ่ม 📋 คัดลอกคุณสมบัติ แล้ว 📌 วางใส่ตู้ที่เลือก หลายใบได้ ไม่แตะขนาด: สีตู้ สีบาน แบบบาน มือจับ (มีหรือไม่มี) Fitting Concept ติ๊กเลือกรายการได้ ③ ตู้ที่มีบานหรือลิ้นชักอยู่หลังบาน กล่องสีแยกแท็บบานนอกกับบานใน เลือกสีบานนอกแล้วไม่ติดเข้าข้างใน · SN_OFF.plKitOpts · SN_OFF.plCopy · SN_OFF.plInnerFront"],
@@ -48258,7 +48259,7 @@ function plColorFams(inst){
     [b.mat,b.surfT,b.surfB].forEach(l=>{ if(l) used.add(String(l)); }); });
   let nd=0; try{ nd=mem.reduce((a,i2)=>a+realDoorsOf(i2).length,0); }catch(e){}
   /* v1.670: ช่องที่มีบานใช้อยู่จริง (Part FrontShapeP6) ต้องขึ้น แม้เลขเกินจำนวนบาน · project 36 ลิ้นชักในตู้ AWC054 ใช้ช่อง 4 กับ 6 มีหน้ารวม 4 บาน */
-  const _slotUsed=new Set(); state.boards.forEach(b=>{ if(!b||b._virtual||!b._door||b._box||mem.indexOf(b.cabInst)<0) return; const _m=/Front(?:Shape)?P?(\d+)/i.exec(String(b.part||"")); if(_m) _slotUsed.add(+_m[1]); });
+  const _slotUsed=new Set(); state.boards.forEach(b=>{ if(!b||b._virtual||!(b._door||plFrontPart(b))||b._box||mem.indexOf(b.cabInst)<0) return; const _m=/Front(?:Shape)?P?(\d+)/i.exec(String(b.part||"")); if(_m) _slotUsed.add(+_m[1]); });
   const out=[], seen=new Set();
   flattenVars(settings.vars||[]).forEach(f=>{
     if(!f||f.type!=="Family"||!f.name||seen.has(f.name)) return; seen.add(f.name);
@@ -48346,8 +48347,13 @@ function plFamNo(nm){ const m=/(\d+)\s*$/.exec(String(nm||"")); return m?+m[1]:0
      หน้าซ้อนสนิทขนาดเท่ากัน (ไม้ปะหน้า) ไม่นับเป็นบานใน · ช่องเดียวที่มีทั้งบานนอกและบานใน แยกสีด้วยช่องไม่ได้ จึงคงอยู่กับบานนอกและขึ้นข้อความเตือนในกล่องสี
    ปิด SN_OFF.plInnerFront */
 const PL_IN_SUF="·ใน";
+/* ───────── v1.673: แผ่นหน้าที่ผูกช่องบาน แต่ไม่มีธงบาน ─────────
+   ผู้ใช้ 5/11 00:52 (ภาพแท็บ FrontColor บานนอก (1,2,3,5) · บานใน (4,6)): “บาน 3 กับ 5 มันก็บานในครับ”
+   เดิม: นับเฉพาะชิ้นที่มีธง _door · project 36: AWC054 ไม้ปิดข้าง Filler Front L/R ใช้ Part FrontShapeP3 · P5 ไม่มีธงบาน ช่อง 3 กับ 5 จึงไม่มีชิ้นให้ตัดสิน ตกไปอยู่แท็บบานนอก
+   ตอนนี้: ชิ้นที่ Part ลงท้าย FrontShapeP<เลข> นับเป็นหน้าของช่องนั้น ทั้งแยกบานใน ปุ่มเลือกบาน และรายการช่อง · ไม่แตะ _door ลำดับบาน และมือจับ */
+function plFrontPart(b){ return !!b&&!b._virtual&&!b._box&&/Front(?:Shape)?P\d+\s*$/i.test(String(b.part||"")); }
 function plInnerIds(mem){ const out=new Set(); if(snOff("plInnerFront")) return out; const set=new Set((mem||[]).map(String));
-  const ds=(state.boards||[]).filter(b=>b&&!b._virtual&&b._door&&!b._box&&!b._glass&&b.orient==="front"&&+b.T>0&&set.has(String(b.cabInst))); if(ds.length<2) return out;
+  const ds=(state.boards||[]).filter(b=>b&&!b._virtual&&(b._door||plFrontPart(b))&&!b._box&&!b._glass&&b.orient==="front"&&+b.T>0&&set.has(String(b.cabInst))); if(ds.length<2) return out;   /* v1.673 */
   const geo=ds.map(b=>{ const y=(+b.yaw||0)*Math.PI/180, sn=Math.sin(y), cs=Math.cos(y); return {b,p:b.x*sn+b.z*cs,u:b.x*cs-b.z*sn,y:+b.y||0,L:+b.L||0,W:+b.W||0,T:+b.T||0,yw:Math.round(((+b.yaw||0)%360+360)%360)}; });
   geo.forEach(a=>{ const A=a.L*a.W; if(!(A>0)) return; if(geo.some(o=>{ if(o===a||o.yw!==a.yw) return false; const gap=(o.p-o.T/2)-(a.p+a.T/2); if(gap<-0.5) return false;
       const ou=Math.min(a.u+a.L/2,o.u+o.L/2)-Math.max(a.u-a.L/2,o.u-o.L/2), oy=Math.min(a.y+a.W/2,o.y+o.W/2)-Math.max(a.y-a.W/2,o.y-o.W/2); if(ou<=0||oy<=0||ou*oy<0.25*A) return false;
@@ -48359,7 +48365,7 @@ function plInnerNames(inst){ const out=new Set(); out.shared=[]; if(snOff("plInn
       if(nI===s.doors.length) names.forEach(nm=>{ if(plFamNo(nm)===s.n) out.add(nm); }); else if(!t[2]&&out.shared.indexOf(s.n)<0) out.shared.push(s.n); }); });
   return out; }
 function plDoorSlots(inst,f){ if(!f) return []; const cf=plColorFams(inst), mem=new Set(cf.mem.map(String)), has=new Set(f.names), shp=/shape/i.test(f.key), by=new Map();
-  (state.boards||[]).forEach(b=>{ if(!b||b._virtual||!b._door||b._box||!(+b.T>0)||!mem.has(String(b.cabInst))) return; let nm="";
+  (state.boards||[]).forEach(b=>{ if(!b||b._virtual||!(b._door||plFrontPart(b))||b._box||!(+b.T>0)||!mem.has(String(b.cabInst))) return; let nm="";   /* v1.673 */
     try{ if(shp){ const i=nodePathFams(String(b.part||"").trim()); nm=(i&&i.fams&&i.fams[0])?i.fams[0].name:""; } else { const c=skinColor(b); nm=(c&&c.fam)||""; } }catch(e){}
     let n=has.has(nm)?plFamNo(nm):0; if(!n){ const m=/Front(?:Shape)?P?(\d+)/i.exec(String(b.part||"")); if(m) n=+m[1]; } if(!n) return;
     if(!by.has(n)) by.set(n,[]); by.get(n).push(b); });
