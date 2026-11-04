@@ -3283,7 +3283,7 @@ body[data-theme="dark"] .splash-dots span{background:rgba(255,255,255,.25)}
    ===================================================================== */
 /* ---- APP_META: แหล่งความจริงเดียวของเวอร์ชัน (ดูได้จาก console / คลิกชื่อแอป) ---- */
 const APP_META={
-  name:"StarNexus", version:"1.670", build:"2026-11-05/pl-stick",
+  name:"StarNexus", version:"1.671", build:"2026-11-05/pl-leg-hang",
   file:"StarNexus.html", basedOn:"Furnitech_V3.html (v3.11)",
   /* ───────── เริ่มนับเวอร์ชันใหม่ที่ 1.001 (21/08/2026) ─────────
      ของเดิมนับมาถึง 42.1 แล้ววิ่งเป็นทศนิยมสองชั้นซึ่งอ่านลำดับยาก
@@ -3291,6 +3291,7 @@ const APP_META={
      ประวัติเก่าเก็บไว้ทั้งหมดตามเลขเดิม ไม่ไล่เขียนใหม่ เพราะเลขในนั้นถูกอ้างถึงไปแล้ว
      รายการที่อยู่ใต้ 1.001 ลงไปจึงเป็นเลขชุดเก่า อ่านต่อกันได้ตามวันที่ */
   changelog:[
+    ["1.671","2026-11-05","FEAT (ผู้ใช้ 4/11 23:37 ทำต่อหลังท็อป) ① ห้องออกแบบเลือกขาตู้รายตู้หรือหลายใบได้ รวมตู้รหัสนอกหมวด ② ปุ่มหูแขวนในห้องออกแบบ ใส่ทีละหลายใบได้ ③ แบบผลิตงานสั่งทำ LM126 ทุกขนาดใน Order: ยาวตาม BOM · ขาเสียบเว้นปลายด้านละ 50 · R3 สี่จุด"],
     ["1.670","2026-11-05","FIX+FEAT กระจกแบนไม่รับ Part ไม้อีก ตั้งหนา 5 หรือ 6 รายชิ้นได้ · แบบผลิตมีภาพตัดบ่ารับกระจก + แถวหลุม CNC แยกจากช่องใน · ห้องออกแบบมี 🧲 แปะบนตู้ ช่องสูงจากพื้น 🙈 ซ่อน ◎ เฉพาะตู้นี้ 👁 แสดงทุกตู้ (ผู้ใช้ 23:56 · 00:00 project 36) · ห้องออกแบบ (ผู้ใช้ 23:45) — ① แท็บ K_Fitting_Concept ในกล่องสี ขึ้นทุกชุดแล้ว เดิมขึ้นเฉพาะรหัสที่เคยมากับ XML INT02 จึงไม่มี ② แผงซ้ายมีปุ่ม 📋 คัดลอกคุณสมบัติ แล้ว 📌 วางใส่ตู้ที่เลือก หลายใบได้ ไม่แตะขนาด: สีตู้ สีบาน แบบบาน มือจับ (มีหรือไม่มี) Fitting Concept ติ๊กเลือกรายการได้ ③ ตู้ที่มีบานหรือลิ้นชักอยู่หลังบาน กล่องสีแยกแท็บบานนอกกับบานใน เลือกสีบานนอกแล้วไม่ติดเข้าข้างใน · SN_OFF.plKitOpts · SN_OFF.plCopy · SN_OFF.plInnerFront"],
     ["1.669","2026-11-04","FEAT กระจกตั้งชนิดรายชิ้นได้ (ผู้ใช้ 23:37 ท็อปเกาะ MWA240 กระจกใสชาทองหนา 5) — ชิ้นที่มี _glassKind ใบสั่งออกชนิดนั้น 3D เห็นสีตามชนิด · ชิ้นอื่นใช้ชนิดจากตั้งค่าเหมือนเดิม"],
     ["1.668","2026-11-04","FEAT รางไฟเลือกช่องที่ไม่เอาไฟได้ (ผู้ใช้ 23:09 project 35 ตู้ MWA116 ชั้นตาย 5 แผ่น) — หน้าต่าง 💡 รางไฟบนแผ่นนี้ มีรายการช่องให้ติ๊กออก ใช้ได้ทั้งตอนใส่และหลังใส่ · คลิกขวาที่ตัวรางมี 💡 ไม่เอาไฟช่องนี้ · ร่องหยุดใต้ชั้นตามช่องที่เอาไฟ ไม่เหลือร่องเปล่าในช่องที่ปิด · SN_OFF.ledCompOff"],
@@ -18257,7 +18258,7 @@ function _hangerSideHoles(all,topBot,def){
   });
   return n;
 }
-function _reapplyFits(){ _cabFitSig=""; render3D(false); renderList(); autosave(); commit(); }
+function _reapplyFits(){ _cabFitSig=""; render3D(false); renderList(); autosave(); commit(); try{ if(typeof PL!=="undefined"&&PL.on) plPanelSel(); }catch(e){} }   /* v1.671: แผงห้องออกแบบบอกสถานะหูแขวนทันที */
 function addHangerMenu(b,x,y){   // เมนูเลือกแบบหูแขวน (ตู้ลอย) — เก็บ _hangerCode ที่แผ่นหลัง · ไม่มีแผ่นหลังก็เก็บที่พื้น/โครง (ไม่บาก)
   ensureSampleHanger(); ensureHangerH1(); ensureSampleZBracket(); ensureAngle3();   // กันเมนูว่าง + มีแป้นสับ/เหล็กฉากให้เลือกเสมอ
   const inst=b.cabInst||("c:"+(b.cab||""));
@@ -30314,6 +30315,9 @@ function boardRole(b){
      SN_OFF.pkSection=1   แบบผลิตไม่มีกล่องภาพตัดหลุม CNC / บ่ารับกระจก (v1.670)
      SN_OFF.plStick=1     แผงห้องออกแบบไม่มีปุ่มแปะบนตู้และช่องสูงจากพื้น (v1.670)
      SN_OFF.plHide=1      แผงห้องออกแบบไม่มีปุ่มซ่อนตู้ เฉพาะตู้นี้ แสดงทุกตู้ (v1.670)
+     SN_OFF.plLegPick=1   แผงห้องออกแบบไม่มีตัวเลือกขาตู้รายตู้ ขาตามค่าห้องอย่างเดียว (v1.671)
+     SN_OFF.plHanger=1    แผงห้องออกแบบไม่มีปุ่มหูแขวน (v1.671)
+     SN_OFF.ehpEnd=1      LM126 ไม่ออกแบบงานสั่งทำ (v1.671)
      SN_OFF.plInnerFront=1 กล่องสีรวมบานในกับบานนอกเป็นแท็บเดียวแบบเดิม (v1.670)
      SN_OFF.ledCompOff=1  รางไฟเลือกช่องไม่ได้ ใส่ทุกช่องแบบเดิม · ค่าที่ติ๊กไว้ยังอยู่ในไฟล์ (v1.668)
      SN_OFF.ehpMill=1     มือจับฝัง HW-367 ไม่บากหัวท้าย ไม่มีหน้าแบบสั่งทำ (v1.667)
@@ -37991,10 +37995,18 @@ function plOtherFloor(inst,f){
 function plDropFloor(inst){ const f=plFp(plBoardsOf(inst)), lo=f.ylo; if(!isFinite(lo)||Math.abs(lo)<=0.5) return;
   const cam=plCamKeep(); plShift(inst,[0,-lo,0]); plBoardsOf(inst).forEach(b=>{ if(b) delete b._plYFix; });   /* v1.670 */ sync(0); plCamPut(cam); plSelect(inst);
   toast("วางพื้นแล้ว (เดิม"+(lo>0?"ลอย ":"จม ")+Math.round(Math.abs(lo))+" มม.)"); }
+/* ───────── v1.671: เลือกขาตู้รายตู้ในห้องออกแบบ ─────────
+   ผู้ใช้ 4/11 23:37 (ภาพห้อง ALTO): “หน้าห้องออกแบบไม่มีให้เลือกใส่ขาตู้ครับ”
+   เดิม: ห้องมีแค่ช่องสูงขา ค่าเดียวทั้งห้อง เฉพาะตู้รหัส B/T · ตู้ MWA… ใส่ขาไม่ได้เลย และเลือกรุ่นขาหรือไม่เอาขารายใบไม่ได้
+   ตอนนี้: แผงตู้มีช่อง ขาตู้ เลือกได้ทีละใบหรือหลายใบ · เก็บที่ชิ้น (_plLeg): ไม่มีค่า = ตามห้อง · "none" = ไม่มีขา · รหัส = รุ่นนั้น สูงตามรุ่น
+     ตู้รหัสนอกหมวด: เลือกรุ่นแล้วยกขึ้นบนขา · เลือก ไม่มีขา = ถอดขาแล้วใช้กติกาเดิม · ตู้ลอยไม่มีช่องนี้ · ปิด SN_OFF.plLegPick */
+function plLegPickOf(bs){ if(snOff("plLegPick")) return ""; const b=(bs||[]).find(x=>x&&x._plLeg); return b?String(b._plLeg):""; }
+function plLegPickDef(pick){ if(!pick||pick==="none") return null; try{ ensureSampleLeg(); }catch(e){} return legDefs().find(d=>d.code===pick)||null; }
 function plApplyLegs(inst){
-  const r=plRoom(), H=Math.max(+r.legH||0,0), bs=plBoardsOf(inst), f=plFp(bs), lv=plLevelOf(f.code);
-  if(lv==="other") return plOtherFloor(inst,f);                               // v1.458
-  if(lv!=="base"&&lv!=="tall") return false;
+  const r=plRoom(), bs=plBoardsOf(inst), f=plFp(bs), lv=plLevelOf(f.code), _pick=plLegPickOf(bs), _pdef=plLegPickDef(_pick);
+  const H=_pick==="none"?0:(_pdef?_pdef.legH:Math.max(+r.legH||0,0));   /* v1.671 */
+  if(lv==="other"&&!_pdef) return plOtherFloor(inst,f);                               // v1.458
+  if(lv!=="base"&&lv!=="tall"&&lv!=="other") return false;
   const isF=plKindOf(f.code)==="filler", legs=bs.filter(plIsLeg); let ch=false;
   /* v1.309: ฟิลเลอร์ — ยกเท่าขา (ตีนตู้วิ่งผ่านหน้า) หรือ ลงพื้น (ตีนตู้จบที่ฟิลเลอร์) · หัวเสมอตู้ที่มันเกาะ ความสูงยืดตาม */
   if(isF){
@@ -38007,8 +38019,8 @@ function plApplyLegs(inst){
     return ch;
   }
   if(H>0){
-    if(!isF){ const curH=legs.length?Math.max(...legs.map(l=>+((l.rule||{}).h)||0)):0;
-      if(!legs.length||Math.abs(curH-H)>0.5){ const def=plLegDef(H);
+    if(!isF){ const curH=legs.length?Math.max(...legs.map(l=>+((l.rule||{}).h)||0)):0, _curC=legs.length?String((legs[0].rule||{}).code||""):"";
+      if(!legs.length||Math.abs(curH-H)>0.5||(_pdef&&_curC!==_pdef.code)){ const def=_pdef||plLegDef(H);
         if(def){ try{ setCabLegVar(inst,def.code); }catch(e){}
           _placeLegSet({cab:f.code},inst,{h:H,d:def.legD,inset:def.legInset,code:def.code,modelCode:(def.legModel||def.code),
             mid:"อัตโนมัติ (ตามตารางความกว้าง)",lift:"ไม่ยก"},0,f.lo[1],true); ch=true; } } }
@@ -38870,12 +38882,13 @@ function plmsPanel(s){ const K=cabSelKeys(), codes=K.map(k=>{ try{ return plFp(p
     +'<div class="plNote" style="font-size:11px;line-height:1.5;margin-top:3px">'+escapeHtml(codes.join(" · "))+'</div>'
     +'<div class="plNote" style="font-size:11px;line-height:1.55;margin-top:5px">ลากตู้ใบไหนก็ได้ในชุด = ย้ายทั้งชุด (ลงกริด · ดูดผนัง · Alt = อิสระ) · ซิงค์/เตา/ฮู้ดที่ติดตู้ย้ายตาม<br>Ctrl+คลิก เพิ่ม/เอาออก · Ctrl+ลาก = กรอบ · Esc เลิกเลือก</div>'
     +'<div class="plBar" style="margin-top:6px"><button class="ibtn" id="plmsAllB">⬚ เลือกทั้งหมด</button><button class="ibtn" id="plmsNone">✕ เลิกเลือก</button>'
-    +'<button class="ibtn" id="plmsDelB" style="grid-column:1/-1;color:#b42318">🗑 ลบ '+K.length+' ตู้</button></div>';
+    +'<button class="ibtn" id="plmsDelB" style="grid-column:1/-1;color:#b42318">🗑 ลบ '+K.length+' ตู้</button></div>'
+    +plLegHtml(K)+(plHangBtn(K)?('<div class="plRow plBtns" style="margin-top:6px">'+plHangBtn(K)+'</div>'):"");   /* v1.671 */
   const q=x=>s.querySelector(x);
   if(q("#plmsAllB")) q("#plmsAllB").onclick=()=>plmsSelAll();
   if(q("#plmsNone")) q("#plmsNone").onclick=()=>plmsClear();
   if(q("#plmsDelB")) q("#plmsDelB").onclick=()=>plmsDelete();
-  plCpMount(s,K); /* v1.670 */ }
+  plCpMount(s,K); /* v1.670 */ plLegWire(s,K); plHangWire(s,K); /* v1.671 */ }
 /* ───────── v1.562: ของในห้องที่ติดตู้ (o.host) ย้าย/หมุนตามตู้ ─────────
    เดิม plaResnap ถูกเรียกแค่ตอนแก้ขนาดในแผง — ลากตู้แล้วซิงค์/ฮู้ดลอยค้างที่เดิม
    จำตำแหน่งเทียบศูนย์ตู้ก่อนลาก → หลังวางหมุนตาม yaw ที่เปลี่ยน (สูตรเดียวกับ rotateCabBoards) + ย้ายตามศูนย์ใหม่ → plaResnap ให้ชิดผิวเดิม */
@@ -44263,6 +44276,49 @@ function plHideBar(){ const top=$("plTop"), sel=$("plSelSec"); if(!top||!sel) re
   if(q("#plHideB")) q("#plHideB").onclick=()=>plHideCabs(K);
   if(q("#plIsoB")) q("#plIsoB").onclick=()=>plIsoCabs(K);
   if(q("#plShowB")) q("#plShowB").onclick=()=>plShowAll(); }
+/* v1.671: ช่องขาตู้ + ปุ่มหูแขวน ใช้ร่วมกันทั้งแผงตู้เดี่ยวและแผงหลายตู้ */
+function plNestKid(inst){ try{ return String(varRootInst(inst))!==String(inst); }catch(e){ return false; } }   /* ตู้ในช่องตามตู้แม่ ตั้งเองไม่ได้ */
+function plLegOk(inst){ try{ const f=plFp(plBoardsOf(inst)), lv=plLevelOf(f.code); if(plNestKid(inst)) return false; /* ตู้รหัสนอกหมวดที่ซ้อนบนตู้อื่น ลอยสูง หรือแปะไว้ ไม่มีขา */ if(lv==="other"){ const bs=plBoardsOf(inst); if(bs.some(x=>x&&x._plYFix)||f.ylo>300||plSomethingBelow(inst,f)) return false; } return (lv==="base"||lv==="tall"||lv==="other")&&plKindOf(f.code)!=="filler"&&!csmIsCode(f.code)&&!plIsCvb(inst)&&!plIsSide(inst)&&!plIsLightPanel(inst); }catch(e){ return false; } }
+function plLegHtml(K){ if(snOff("plLegPick")||VIEW_ONLY) return ""; const K2=(K||[]).filter(plLegOk); if(!K2.length) return ""; try{ ensureSampleLeg(); }catch(e){}
+  /* ตู้รหัสนอกหมวดที่มีขามาจาก XML อยู่แล้ว ต้องขึ้นรุ่นที่ใส่อยู่ ไม่ใช่ ไม่มีขา */
+  const _cur=i=>{ const bs=plBoardsOf(i), p=plLegPickOf(bs); if(p) return p; if(plLevelOf(plFp(bs).code)!=="other") return ""; const l=bs.find(plIsLeg); return l?String((l.rule||{}).code||""):""; };
+  const vals=[...new Set(K2.map(_cur))], cur=vals.length===1?vals[0]:"?", onlyOther=K2.every(i=>plLevelOf(plFp(plBoardsOf(i)).code)==="other"), H=Math.round(+plRoom().legH||0), defs=legDefs();
+  const op=(v,t)=>'<option value="'+escapeHtml(v)+'"'+(v===cur?" selected":"")+'>'+escapeHtml(t)+'</option>';
+  return '<div class="plRow plBtns" style="margin-top:6px"><label title="เลือกขาตู้ของตู้ที่เลือก — รุ่นไหนสูงเท่าไหร่ตั้งที่ Element → Fittings">ขาตู้ <select id="plLegSel" style="max-width:190px">'
+    +(cur==="?"?'<option value="?" selected>— หลายแบบ —</option>':"")
+    +(onlyOther?op("","ไม่มีขา"):(op("","ตามห้อง ("+(H>0?("สูง "+H):"ไม่มีขา")+")")+op("none","ไม่มีขา")))
+    +((cur&&cur!=="?"&&cur!=="none"&&!defs.some(d=>d.code===cur))?op(cur,cur):"")
+    +defs.map(d=>op(d.code,(d.desc||d.code)+" · สูง "+Math.round(d.legH))).join("")+'</select></label></div>'; }
+async function plLegSet(K,val){ if(typeof isLocked==="function"&&isLocked()){ try{ guardEdit("เปลี่ยนขาตู้"); }catch(e){} return; } const K2=(K||[]).filter(plLegOk); if(!K2.length) return; const cam=plCamKeep();
+  K2.forEach(i=>{ const isO=plLevelOf(plFp(plBoardsOf(i)).code)==="other", v=(isO&&val==="none")?"":val, y0=plFp(plBoardsOf(i)).lo[1]; let mem=[]; try{ mem=varMemberInsts(i).filter(m=>String(m)!==String(i)); }catch(e){}
+    plBoardsOf(i).forEach(b=>{ if(!b||b._virtual) return; if(v) b._plLeg=v; else delete b._plLeg; });
+    if(isO&&!v){ try{ removeLegsOfInst(i,true); }catch(e){ console.error("plLeg:",e); } }
+    try{ plAlignCab(i); }catch(e){ console.error("plLeg:",e); }
+    const dy=plFp(plBoardsOf(i)).lo[1]-y0; if(Math.abs(dy)>0.01) mem.forEach(m=>plShift(m,[0,dy,0])); });   /* ตู้ในช่องยกตามตู้แม่ */
+  try{ await plPlinthSync(); }catch(e){ console.error("plinth:",e); }
+  sync(0); plCamPut(cam); try{ plPanelSel(); }catch(e){}
+  const d=plLegPickDef(val); toast((K2.length>1?(K2.length+" ใบ · "):"")+(d?("ขาตู้ "+(d.desc||d.code)+" สูง "+Math.round(d.legH)):(val==="none"?"ไม่มีขา":"ขาตู้ตามห้อง"))); }
+function plLegWire(s,K){ const x=s.querySelector("#plLegSel"); if(x) x.onchange=()=>{ if(x.value==="?") return; plLegSet(K,x.value); }; }
+/* ───────── v1.671: หูแขวนในห้องออกแบบ ใส่ทีละหลายใบ ─────────
+   ผู้ใช้ 4/11 23:37: “หน้าออกแบบควรให้มีเลือกใส่หูแขวนได้ด้วยครับ และก็กดเลือกใส่ทีละหลายใบได้ครับ”
+   เดิม: หูแขวนอยู่ในเมนูคลิกขวาหน้าช่าง ทีละตู้ · ห้องออกแบบไม่มีทางใส่
+   ตอนนี้: ตู้เดียว = เมนูเต็มเดิม (รุ่น ข้าง ช่อง) · หลายใบ = เลือกรุ่นครั้งเดียวลงทุกใบ ข้างและช่องที่ตั้งไว้เดิมยังอยู่ · ตู้พื้น/ตู้สูง/ฟิลเลอร์ไม่มีปุ่ม · ปิด SN_OFF.plHanger */
+function plHangOk(inst){ try{ const f=plFp(plBoardsOf(inst)), lv=plLevelOf(f.code); if(plNestKid(inst)) return false; return (lv==="wall"||lv==="other")&&plKindOf(f.code)!=="filler"&&!csmIsCode(f.code)&&!plIsCvb(inst)&&!plIsSide(inst)&&!plIsLightPanel(inst); }catch(e){ return false; } }
+function plHangHost(inst){ const carc=plBoardsOf(inst).filter(z=>z&&!z._door&&!z._virtual), bk=carc.filter(z=>z.orient==="front").sort((a,c)=>a.z-c.z)[0], host=bk||carc.filter(z=>z.orient==="flat").sort((a,c)=>a.y-c.y)[0]||carc[0]; return {carc,host}; }
+function plHangCode(inst){ const b=plBoardsOf(inst).find(z=>z&&z._hangerCode&&!z._virtual); return b?String(b._hangerCode):""; }
+function plHangSet(K,code){ let n=0; K.forEach(i=>{ const {carc,host}=plHangHost(i); if(!host) return; const o=carc.find(z=>z._hangerCode)||{}, sd=o._hangerSide||"", by=o._hangerBays||"";
+    carc.forEach(z=>{ delete z._hangerCode; delete z._hangerSide; delete z._hangerBays; });
+    if(code){ host._hangerCode=code; if(sd) host._hangerSide=sd; if(by) host._hangerBays=by; } n++; }); _reapplyFits(); return n; }
+function plHangOpen(K,x,y){ const K2=(K||[]).filter(plHangOk); if(!K2.length) return; if(typeof isLocked==="function"&&isLocked()){ try{ guardEdit("ใส่หูแขวน"); }catch(e){} return; }
+  try{ ensureSampleHanger(); ensureHangerH1(); ensureSampleZBracket(); ensureAngle3(); }catch(e){}
+  if(K2.length===1){ const {host}=plHangHost(K2[0]); if(host) addHangerMenu(host,x,y); return; }
+  const defs=hangerDefs(); if(!defs.length){ toast("ยังไม่มีแบบหูแขวนใน Element — สร้างที่ Element → Fittings แล้วตั้ง kind = หูแขวน"); return; }
+  const cur=K2.map(plHangCode), items=defs.map(d=>{ const nOn=cur.filter(c=>c===d.code).length; return {label:(nOn===K2.length?"● ":(nOn?"◐ ":"○ "))+(d.desc||d.code)+"  ("+d.bw+"×"+d.bh+"×"+d.bd+")", fn:()=>{ const n=plHangSet(K2,d.code); toast("ใส่หูแขวน "+(d.desc||d.code)+" "+n+" ใบ"); }}; });
+  if(cur.some(Boolean)){ items.push({label:"──────────",fn:()=>{}}); items.push({label:"✕ เอาหูแขวนออกทั้ง "+K2.length+" ใบ",danger:true,fn:()=>{ plHangSet(K2,""); toast("เอาหูแขวนออก "+K2.length+" ใบแล้ว"); }}); }
+  varCtxShow(x,y,items); }
+function plHangBtn(K){ if(snOff("plHanger")||VIEW_ONLY) return ""; const K2=(K||[]).filter(plHangOk); if(!K2.length) return ""; const nOn=K2.filter(plHangCode).length;
+  return '<button class="ibtn" id="plHangB" title="เลือกหูแขวนของตู้ที่เลือก">🪝 หูแขวน'+(nOn?(K2.length>1?(" "+nOn+"/"+K2.length):" ✓"):"")+'</button>'; }
+function plHangWire(s,K){ const g=s.querySelector("#plHangB"); if(g) g.onclick=ev=>{ const r=ev.target.getBoundingClientRect(); plHangOpen(K,r.right+6,r.top); }; }
 function plPanelSel(){
   Promise.resolve().then(()=>{ try{ plHideBar(); }catch(e){ console.error("plHideBar:",e); } });   /* v1.670 */
   Promise.resolve().then(()=>{ try{ plFocusApply(); }catch(e){ console.error("plFocus:",e); } });   /* v1.655: หลังวาดแผงจบ ก่อนจอวาดภาพ — ฟังก์ชันนี้มีทางออกหลายจุด */
@@ -44312,10 +44368,12 @@ function plPanelSel(){
       +'<button class="ibtn" id="plSwap" title="เปลี่ยนเป็นรุ่นอื่น ขนาดเท่าเดิม ที่เดิม สีเดิม">🔁 รุ่น</button>'
       +((plKindOf(code)==="filler"&&!plIsSide(inst)&&(plLevelOf(code)==="base"||plLevelOf(code)==="tall"))?('<button class="ibtn" id="plFloor" title="ฟิลเลอร์ลงพื้น (ตีนตู้จบที่ฟิลเลอร์) / ยกเท่าขา (ตีนตู้วิ่งผ่านหน้า)">'+(plFillerFloorOf(inst)?'⬆ ยกเท่าขา':'⬇ ลงพื้น')+'</button>'):'')
       +((plLevelOf(code)!=="wall"&&!csmIsCode(code)&&Math.abs(+d.f.ylo||0)>0.5)?('<button class="ibtn" id="plDrop" title="เลื่อนตู้ใบนี้ลงให้ก้น (รวมขา) แตะพื้นพอดี — ตอนนี้'+((+d.f.ylo>0)?'ลอย ':'จม ')+Math.round(Math.abs(+d.f.ylo))+' มม.">⬇ ลงพื้น</button>'):'')   // v1.458
+      +plHangBtn([inst])   /* v1.671 */
       +'<button class="ibtn" id="plRot" title="หมุน 90° (R)">'+(tdy531?'⟳ หมุน':'⟳')+'</button><button class="ibtn" id="plMir" title="กลับซ้าย-ขวา (รหัส L⇄R)">⇋ กลับ</button>'
       +'<button class="ibtn" id="plDel" title="ลบ (Del)" style="color:#d33">'+(tdy531?'🗑 ลบ':'ลบ')+'</button></div>'
     +plCpHtml([inst])   /* v1.670 */
     +plGlassHtml(inst)+plStickHtml(inst,code)   /* v1.670 */
+    +plLegHtml([inst])   /* v1.671 */
     +(csmIsCode(code)?csmSelHtml(inst):'')                                   // v1.368
     +(()=>{ const dp=plDpVal(inst), tt=plDpTT(inst), bev=plTopBevel(inst), md=plTTMode(inst), lv2=plLevelOf(code), rr=plRoom();   // v1.313
       return '<div class="plRow plBtns" style="margin-top:6px"><label title="Design Parameter ของตู้ใบนี้ เช่น TT30mm_ExtendBottom20mm — คำสั่งปรับบาน (กฎอยู่ที่ ตั้งค่า → Design Parameter) · ว่าง = Standard">DP <input id="plDp" value="'+escapeHtml(dp)+'" placeholder="Standard" style="width:140px;font-family:var(--mono);font-size:11px"></label>'
@@ -44374,6 +44432,7 @@ function plPanelSel(){
   if(q("#plDrop")) q("#plDrop").onclick=()=>plDropFloor(inst);                 // v1.458
   q("#plClr").onclick=ev=>{ const r=ev.target.getBoundingClientRect(); plColorOpen(inst,plPopX531(r),r.top-40); };   // v1.531: เปิดขวาของแผง
   plCpWire(s,[inst]); plGlassWire(s,inst); plStickWire(s,inst);   /* v1.670 */
+  plLegWire(s,[inst]); plHangWire(s,[inst]);   /* v1.671 */
   if(q("#plPullB")) q("#plPullB").onclick=ev=>{ const r=ev.target.getBoundingClientRect(); plPullOpen(inst,plPopX531(r),r.top-80); };   // v1.524
   if(q("#plSdc")) q("#plSdc").onclick=()=>sdcOpen(inst);   // v1.598
   q("#plMir").onclick=()=>plMirror(inst);
@@ -49022,9 +49081,17 @@ function ehpSecSvg(P,fin){ const LS=ehpLoops(P,18).filter(l=>l&&l.length>=3); if
      ไม่แตะบาน: บานสั้นลงเท่าเดิม รูบานพับไม่เปลี่ยน */
 const EHP_MILL_DEF={len:45, keep:20, fin:30, ri:3, ro:1};
 function ehpMillCodes(){ return String(settings.ehpMillCodes!=null?settings.ehpMillCodes:"HW-367").split(/[,\s|]+/).map(x=>x.trim().toUpperCase()).filter(Boolean); }
-function ehpMade(P){ if(!P||snOff("ehpMill")) return false; const L=ehpMillCodes(), c=String(P.code||"").trim().toUpperCase(), q=String(P.sec||"").trim().toUpperCase(); return (!!c&&L.indexOf(c)>=0)||(!!q&&L.indexOf(q)>=0); }
+/* ───────── v1.671: แบบงานสั่งทำ LM126 ─────────
+   ผู้ใช้ 4/11 23:37 (แบบ มือจับอลูมิเนียม LM126): BOM · ขาเสียบเว้นปลายด้านละ 50 · R3 สี่จุด · Detail A สูง 30 ขา 11 ห่าง 8 หนา 2.8
+   เดิม: LM126 ออกใบเบิกอย่างเดียว ไม่มีแบบส่งโรงงาน และงานสั่งทำมีแบบเฉพาะ HW-367 ซึ่งปลายบากคนละแบบ
+   ตอนนี้: LM126 ทุกขนาดมีหน้าแบบในปุ่ม งานสั่งทำ และเล่มรวม · ตามแนวตั้งและแนวนอนเหมือนกัน · ใบเบิก รหัส AX และรูปทรง 3D เท่าเดิม
+     เลขในแบบอ่านจากหน้าตัดจริงในคลัง · ค่าเว้นปลายกับ R แก้ได้ที่ settings.ehpEnd · ปิด SN_OFF.ehpEnd */
+const EHP_END_DEF={LM126:{fin:50,r:3}};
+function ehpEndCfg(P){ if(!P||snOff("ehpEnd")) return null; const tb=(settings.ehpEnd&&typeof settings.ehpEnd==="object")?settings.ehpEnd:EHP_END_DEF, c=String(P.code||"").trim().toUpperCase(), q=String(P.sec||"").trim().toUpperCase();
+  const k=Object.keys(tb).find(z=>{ const K=String(z).toUpperCase(); return [c,q].some(x=>x===K||(x.indexOf(K)===0&&!/[0-9]/.test(x.charAt(K.length)))); }); return k?tb[k]:null; }
+function ehpMade(P){ if(ehpEndCfg(P)) return true; if(!P||snOff("ehpMill")) return false; const L=ehpMillCodes(), c=String(P.code||"").trim().toUpperCase(), q=String(P.sec||"").trim().toUpperCase(); return (!!c&&L.indexOf(c)>=0)||(!!q&&L.indexOf(q)>=0); }
 function ehpMillCfg(){ const o=(settings.ehpMill&&typeof settings.ehpMill==="object")?settings.ehpMill:{}, c=Object.assign({},EHP_MILL_DEF); Object.keys(EHP_MILL_DEF).forEach(k=>{ if(+o[k]>0) c[k]=+o[k]; }); return c; }
-function ehpMillOn(d,P,A,len){ if(!d||!d._ehp||!ehpMade(P)||!A||A.ax!=="y"||d._ehp.mill===false) return null; const c=ehpMillCfg(); return (len>=2*c.len+30)?c:null; }
+function ehpMillOn(d,P,A,len){ if(ehpEndCfg(P)) return null; /* v1.671 */ if(!d||!d._ehp||!ehpMade(P)||!A||A.ax!=="y"||d._ehp.mill===false) return null; const c=ehpMillCfg(); return (len>=2*c.len+30)?c:null; }
 /* ตัดรูปหน้าตัดด้วยเส้นตรงแกนเดียว (ax 0 = u · 1 = v) */
 function ehpClip(poly,ax,val,keepHi){ const out=[], n=poly.length, inS=q=>keepHi?(q[ax]>=val-1e-6):(q[ax]<=val+1e-6);
   for(let i=0;i<n;i++){ const a=poly[i], b=poly[(i+1)%n], ia=inS(a), ib=inS(b); if(ia) out.push([a[0],a[1]]);
@@ -49057,12 +49124,67 @@ function ehpMillGroups(bs){ if(snOff("ehpMill")) return []; const own=bs?new Set
   B.forEach(p=>{ if(!p||!p._ehpPart||!p._ehpMade) return; if(own&&!own.has(p._pullOwner)&&!own.has(p.id)) return;
     const d=byId[p._pullOwner], e=d&&d._ehp, Pm=e&&ehpGet(e.id); if(!Pm) return;
     const L=round(+p._ehpLen||0), fin=String(p._ehpFin||""), k=[p._ehpCode,L,fin,p._ehpMill?1:0].join("|");
-    const g=G[k]||(G[k]={code:p._ehpCode,P:Pm,L,fin,mill:p._ehpMill||null,qty:0,ids:[],labs:[]}); if(g.qty===0) order.push(k);
+    const g=G[k]||(G[k]={code:p._ehpCode,P:Pm,L,fin,mill:p._ehpMill||null,end:p._ehpEnd||null,qty:0,ids:[],labs:[]}); if(g.qty===0) order.push(k);
     g.qty++; g.ids.push(String(d.id)); const lb=(String(d.cab||"")+" "+String(d.name||"")).trim(); if(g.labs.indexOf(lb)<0) g.labs.push(lb); });
   return order.map(k=>G[k]).sort((a,b)=>(b.L-a.L)||((b.mill?1:0)-(a.mill?1:0))||a.fin.localeCompare(b.fin)); }
 function ehpMillTitle(g){ const f=g.fin?ehpFinGet(g.fin):null, d=f?String(f.d||f.k):"", ft=g.fin?((/อโนไดซ์/.test(d)?d:("ชุบอโนไดซ์ "+d))):"ยังไม่ระบุสี";
+  if(g.end) return "มือจับ อลูมิเนียม "+g.code+" [ตามแบบ] "+ft;   /* v1.671 */
   return "มือจับแบบฝัง "+g.code+(g.mill?" Milling [ตามแบบ]":" ตัดตรง (ไม่บาก)")+" "+ft; }
-function ehpMillSheet(P,g,page,pages){ const {SW,SH,INK,DIM,THIN,rnd1,esc,dimH,dimV,frame}=SVGKit, Pm=g.P, mill=g.mill, c=mill||ehpMillCfg(), L=+g.L;
+/* v1.671: แบบ LM126 จัดหน้าตามแบบของผู้ใช้ ด้านข้างบน · Detail A ล่างซ้าย · รูป 3 มิติขวา */
+function ehpEndBits(pts){ const P=(pts||[]).map(q=>[+q[0],+q[1]]), us=P.map(q=>q[0]), vs=P.map(q=>q[1]), u0=Math.min(...us), u1=Math.max(...us), top=Math.max(...vs), bot=Math.min(...vs), W=u1-u0;
+  const up=ehpClip(P,1,0,true), dn=bot<-0.01?ehpClip(P,1,0,false):[], dU=dn.filter(q=>q[1]<-0.01).map(q=>q[0]), ba=dU.length?Math.min(...dU):u0, bb=dU.length?Math.max(...dU):u0;
+  const uT=(P.find(q=>Math.abs(q[1]-top)<1e-6)||[u1])[0], far=P.filter(q=>Math.abs(q[0]-uT)>W*0.5&&q[1]>0), vS=far.length?Math.max(...far.map(q=>q[1])):0, uS=far.length?far.find(q=>Math.abs(q[1]-vS)<1e-6)[0]:(uT>(u0+u1)/2?u0:u1);
+  const flip=uT<(u0+u1)/2;   /* ปีกสูงอยู่ขวาเสมอ ตามแบบ */
+  const offL=flip?(u1-bb):(ba-u0), bT=bb-ba;
+  return {P,up,dn,u0,u1,W,top,bot,ba,bb,uT,uS,vS,flip,offL,bT}; }
+function ehpEndSheet(P,g,page,pages){ const {SW,SH,INK,DIM,THIN,rnd1,esc,dimH,dimV,frame}=SVGKit, Pm=g.P, E=g.end, L=+g.L, fin=+E.fin||0, rr=+E.r||0;
+  const LS=ehpLoops(Pm,18).filter(l=>l&&l.length>=3), B=ehpEndBits(LS[0]), H=B.top-B.bot;
+  const F="font-family=\"'Sarabun',sans-serif\"", T=(x,y,t,o)=>{ o=o||{}; return `<text x="${rnd1(x)}" y="${rnd1(y)}" ${F} font-size="${o.fs||13}"${o.a?` text-anchor="${o.a}"`:""}${o.b?' font-weight="700"':''} fill="${o.c||INK}">${esc(t)}</text>`; };
+  const LN=(xa,ya,xb,yb,cl,w,da)=>`<line x1="${rnd1(xa)}" y1="${rnd1(ya)}" x2="${rnd1(xb)}" y2="${rnd1(yb)}" stroke="${cl||INK}" stroke-width="${w||1}"${da?` stroke-dasharray="${da}"`:""}/>`;
+  const POLY=(pts,fill,sw,cl)=>`<path d="M${pts.map(q=>rnd1(q[0])+" "+rnd1(q[1])).join(" L")} Z" fill="${fill||"none"}" stroke="${cl||INK}" stroke-width="${sw||1.2}" stroke-linejoin="round"/>`;
+  const CIR=(x,y,r)=>`<circle cx="${rnd1(x)}" cy="${rnd1(y)}" r="${r}" fill="none" stroke="${DIM}" stroke-width="1" stroke-dasharray="6 4"/>`;
+  let s=`<svg class="sp-svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${SW} ${SH}" width="${SW}" height="${SH}"><rect width="${SW}" height="${SH}" fill="#fff"/>`+frame();
+  s+=T(34,56,ehpMillTitle(g),{fs:24,b:1});
+  s+=T(34,84,"ยาว "+L+" มม. · "+g.qty+" เส้น"+(g.fin?(" · สี "+g.fin):"")+" · ขาเสียบเว้นปลายด้านละ "+fin+" · R"+rr+" สี่จุด",{fs:16,c:"#444"});
+  /* ── ด้านข้าง ── */
+  const x0=170, xMax=1420, sE=2.9, brk=L*sE>xMax-x0, X1=brk?xMax:x0+L*sE, ye=160, tx=t=>brk?((t<=L/2)?(x0+t*sE):(X1-(L-t)*sE)):(x0+t*sE), yv=v=>ye+(B.top-v)*sE, rP=rr*sE;
+  /* ตัวมือจับ: มุมบนของปีกสูงโค้ง R ตามแบบ */
+  s+=`<path d="M${rnd1(x0)} ${rnd1(yv(0))} L${rnd1(x0)} ${rnd1(yv(B.top)+rP)} Q${rnd1(x0)} ${rnd1(yv(B.top))} ${rnd1(x0+rP)} ${rnd1(yv(B.top))} L${rnd1(X1-rP)} ${rnd1(yv(B.top))} Q${rnd1(X1)} ${rnd1(yv(B.top))} ${rnd1(X1)} ${rnd1(yv(B.top)+rP)} L${rnd1(X1)} ${rnd1(yv(0))} Z" fill="#f1efe9" stroke="${INK}" stroke-width="1.5"/>`;
+  if(B.vS>0) s+=LN(x0,yv(B.vS),X1,yv(B.vS),INK,.9);
+  /* ขาเสียบเว้นปลาย */
+  const bx0=tx(fin), bx1=tx(L-fin);
+  if(B.bot<-0.01) s+=`<rect x="${rnd1(bx0)}" y="${rnd1(yv(0))}" width="${rnd1(bx1-bx0)}" height="${rnd1((0-B.bot)*sE)}" fill="#55585c" stroke="${INK}" stroke-width="1"/>`;
+  if(brk){ const xm=(x0+X1)/2, y0=ye-6, y1=yv(B.bot)+6, ym=(y0+y1)/2, zig=x=>`M${x} ${y0} L${x} ${ym-9} L${x+8} ${ym-3} L${x-8} ${ym+3} L${x} ${ym+9} L${x} ${y1}`;
+    s+=`<rect x="${xm-13}" y="${y0+2}" width="26" height="${rnd1(y1-y0-4)}" fill="#fff"/><path d="${zig(xm-13)} ${zig(xm+13)}" fill="none" stroke="${INK}" stroke-width="1"/>`; }
+  s+=dimH(x0,X1,ye-36,String(L));
+  s+=dimH(x0,bx0,yv(B.bot)+34,String(fin))+dimH(bx1,X1,yv(B.bot)+34,String(fin));
+  const lead=(xa,ya,xb,yb,t,an)=>LN(xa,ya,xb,yb,DIM,.9)+T(xb+(an==="end"?-4:4),yb-3,t,{fs:14,c:DIM,a:an||"start"});
+  s+=lead(x0+rP*.3,yv(B.top)+rP*.3,x0-34,ye-14,"R"+rr,"end")+lead(X1-rP*.3,yv(B.top)+rP*.3,X1+34,ye-14,"R"+rr);
+  s+=T((x0+X1)/2,yv(B.bot)+64,"มือจับ อลูมิเนียม "+g.code,{fs:15,b:1,a:"middle"});
+  /* ── Detail A ── */
+  { const kS=Math.min(7.5,300/Math.max(H,1),240/Math.max(B.W,1)), sx=110, sy=390+B.top*kS, xs=u=>B.flip?(sx+(B.u1-u)*kS):(sx+(u-B.u0)*kS), ys=v=>sy-v*kS, xL=sx, xR=sx+B.W*kS;
+    s+=`<circle cx="${sx-34}" cy="${rnd1(ys(B.top)+6)}" r="30" fill="none" stroke="${INK}" stroke-width="1" stroke-dasharray="7 4"/>`+T(sx-34,ys(B.top)+11,"Detail A",{fs:13,b:1,a:"middle"});
+    s+=`<path d="${LS.map(l=>"M"+l.map(q=>rnd1(xs(+q[0]))+" "+rnd1(ys(+q[1]))).join(" L")+" Z").join(" ")}" fill="#cfd2d6" fill-rule="evenodd" stroke="${INK}" stroke-width="1.2" stroke-linejoin="round"/>`;
+    s+=LN(xR,ys(B.top),xR+46,ys(B.top),DIM,.7)+LN(xR,ys(0),xR+46,ys(0),DIM,.7)+dimV(ys(B.top),ys(0),xR+38,String(rnd1(B.top)));
+    if(B.bot<-0.01){ s+=LN(xs(B.flip?B.ba:B.bb),ys(B.bot),xR+46,ys(B.bot),DIM,.7)+dimV(ys(0),ys(B.bot),xR+38,String(rnd1(-B.bot)));
+      const bL=Math.min(xs(B.ba),xs(B.bb)), bR=Math.max(xs(B.ba),xs(B.bb)), yd=ys(B.bot)+28;
+      s+=LN(xL,ys(0)+4,xL,yd+4,DIM,.7)+LN(bL,ys(B.bot),bL,yd+4,DIM,.7)+LN(bR,ys(B.bot),bR,yd+4,DIM,.7);
+      s+=dimH(xL,bL,yd,String(rnd1(B.offL)))+LN(bR,yd,bR+18,yd,DIM,1)+T(bR+22,yd+5,String(rnd1(B.bT)),{fs:13,c:DIM}); } }
+  /* ── รูป 3 มิติ ไม่ตามสเกลความยาว ── */
+  { const Ld=Math.min(L,500), k=1.05, ax=.86*k, ay=.42*k, bx=(B.flip?-1:1)*.62*k, by=-.34*k, ox=620, oy=480, pr=(t,u,v)=>{ const w=u-B.u0; return [ox+t*ax+w*bx*3, oy+t*ay+w*by*3-v*k*3]; }, tb=Math.min(fin,Ld*.18);
+    const walls=(poly,t0,t1,fill)=>{ let o=""; const n=poly.length, W=[]; for(let i=0;i<n;i++){ const a=poly[i], c=poly[(i+1)%n]; W.push({d:(a[0]+c[0])/2*by*3-(a[1]+c[1])/2*3, q:[pr(t0,a[0],a[1]),pr(t0,c[0],c[1]),pr(t1,c[0],c[1]),pr(t1,a[0],a[1])]}); }
+      W.sort((x,y)=>y.d-x.d).forEach(w=>{ o+=POLY(w.q,fill,.7); }); return o+POLY(poly.map(q=>pr(t1,q[0],q[1])),"#f4f2ec",.9); };
+    if(B.dn.length>2) s+=walls(B.dn.filter(q=>q[1]<=0),tb,Ld-tb,"#a9abae");
+    if(B.up.length>2) s+=walls(B.up,0,Ld,"#dfdcd3");
+    const pT0=pr(0,B.uT,B.top), pT1=pr(Ld,B.uT,B.top), pS0=pr(0,B.uS,B.vS), pS1=pr(Ld,B.uS,B.vS);
+    [[pT0,-46,-34,"end"],[pS0,-52,18,"end"],[pT1,48,-22,""],[pS1,44,62,""]].forEach(a=>{ const q=a[0]; s+=CIR(q[0],q[1],20)+lead(q[0]+(a[1]<0?-14:14),q[1]+(a[2]<0?-14:14),q[0]+a[1],q[1]+a[2],"R"+rr,a[3]||undefined); });
+    s+=T(ox,oy+Ld*ay+78,"รูป 3 มิติ (ไม่ตามสเกลความยาว) · ปีกทั้งสองลบมุม R"+rr+" ปลายละ 2 จุด",{fs:12,c:THIN}); }
+  /* ── ตาราง + กล่องชื่อแบบ ── */
+  const rows=[["รหัสรุ่น",g.code],["ยาว",L+" มม. (ตาม BOM)"],["จำนวน",g.qty+" เส้น"],["ขาเสียบ","เว้นปลายด้านละ "+fin+" (ยาวขา "+rnd1(L-2*fin)+")"],["ลบมุม","R"+rr+" สี่จุด ปลายละ 2"],["สี",g.fin?(g.fin+" · "+String((ehpFinGet(g.fin)||{}).d||"")):"ยังไม่ระบุสี"],["ใช้กับ",g.labs.slice(0,6).join(" · ")+(g.labs.length>6?(" +"+(g.labs.length-6)):"")]];
+  s+=SVGKit.kvTable(40,SH-40-(28+rows.length*24),800,rows,"รายการสั่งทำ · หน่วย มม.",{rh:24,lw:120,fs:12.5});
+  s+=SVGKit.titleBlock([["PROJECT",P.project||"-","TYPE","HANDLE · สั่งทำ"],["CODE",String(g.code),"UNIT","MM"],["SIZE",L+" มม.","QTY",g.qty+" เส้น"],["COLOR",g.fin||"-","END","R"+rr+" · เว้นขา "+fin]],page,pages,"HANDLE · "+g.code);
+  return s+"</svg>"; }
+function ehpMillSheet(P,g,page,pages){ if(g&&g.end) return ehpEndSheet(P,g,page,pages);   /* v1.671 */ const {SW,SH,INK,DIM,THIN,rnd1,esc,dimH,dimV,frame}=SVGKit, Pm=g.P, mill=g.mill, c=mill||ehpMillCfg(), L=+g.L;
   const LS=ehpLoops(Pm,18).filter(l=>l&&l.length>=3), B=ehpSectBits(LS[0],c.keep), W=B.W;
   const F="font-family=\"'Sarabun',sans-serif\"", T=(x,y,t,o)=>{ o=o||{}; return `<text x="${rnd1(x)}" y="${rnd1(y)}" ${F} font-size="${o.fs||13}"${o.a?` text-anchor="${o.a}"`:""}${o.b?' font-weight="700"':''} fill="${o.c||INK}">${esc(t)}</text>`; };
   const LN=(xa,ya,xb,yb,cl,w,da)=>`<line x1="${rnd1(xa)}" y1="${rnd1(ya)}" x2="${rnd1(xb)}" y2="${rnd1(yb)}" stroke="${cl||INK}" stroke-width="${w||1}"${da?` stroke-dasharray="${da}"`:""}/>`;
@@ -49120,9 +49242,9 @@ function ehpMillSheet(P,g,page,pages){ const {SW,SH,INK,DIM,THIN,rnd1,esc,dimH,d
   s+=SVGKit.kvTable(40,SH-40-(28+rows.length*24),800,rows,"รายการสั่งทำ · หน่วย มม.",{rh:24,lw:120,fs:12.5});
   s+=SVGKit.titleBlock([["PROJECT",P.project||"-","TYPE","HANDLE · สั่งทำ"],["CODE",String(g.code),"UNIT","MM"],["SIZE",L+" มม.","QTY",g.qty+" เส้น"],["COLOR",g.fin||"-","END",mill?"บาก":"ตัดตรง"]],page,pages,"HANDLE · "+g.code);
   return s+"</svg>"; }
-function ehpMillTabTitle(g){ return g.code+" · "+g.L+" มม. · "+(g.mill?"บาก":"ตัดตรง")+(g.fin?(" · "+g.fin):"")+" ×"+g.qty; }
+function ehpMillTabTitle(g){ return g.code+" · "+g.L+" มม. · "+(g.end?("เว้นขา "+g.end.fin):(g.mill?"บาก":"ตัดตรง"))+(g.fin?(" · "+g.fin):"")+" ×"+g.qty; }
 /* แถวเลือกบาก/ตัดตรงในกล่อง 🖐 — มีเฉพาะตอนใส่รุ่นที่สั่งทำอยู่ */
-function plEhpMillRow(rows){ if(snOff("ehpMill")) return ""; const on=(rows||[]).filter(r=>r&&r.d&&r.d._ehp&&ehpMade(ehpGet(r.d._ehp.id))); if(!on.length) return "";
+function plEhpMillRow(rows){ if(snOff("ehpMill")) return ""; const on=(rows||[]).filter(r=>r&&r.d&&r.d._ehp&&ehpMade(ehpGet(r.d._ehp.id))&&!ehpEndCfg(ehpGet(r.d._ehp.id)));   /* v1.671: LM126 ไม่มีบาก */ if(!on.length) return "";
   const hz=on.filter(r=>{ const A=ehpSides(r.d)[r.d._ehp.side]; return A&&A.ax==="y"; }), nB=hz.filter(r=>r.d._ehp.mill!==false).length, all=on.every(r=>r.d._ehp.mill!==false), none=on.every(r=>r.d._ehp.mill===false), c=ehpMillCfg();
   return '<div class="ppOpt"><b>ปลายแนวนอน</b><button data-emill="1" class="'+(all?"on":"")+'" title="ตามแบบ: บาก '+c.len+' เหลือ '+c.keep+' · เดือยเริ่มที่ '+c.fin+'">บากหัวท้าย '+c.len+'</button><button data-emill="0" class="'+(none?"on":"")+'">ตัดตรง ไม่บาก</button>'
     +'<span style="margin-left:auto;color:var(--ink-dim)">'+(hz.length?("แนวนอน "+hz.length+" เส้น · บาก "+nB+" เส้น"):"ตอนนี้ติดแนวตั้ง จึงไม่บาก")+'</span></div>'; }
@@ -49134,7 +49256,7 @@ function ehpPart(d){ const e=d._ehp, P=e&&ehpGet(e.id); if(!P) return null; cons
   return {id:d.id+":ehp", cab:d.cab, cabInst:d.cabInst, name:P.code+" · มือจับฝัง "+EHP_TH[e.side], L:(A.ax==="y")?len:dep, W:(A.ax==="y")?h:len, T:dep,
     x:c.x, y:c.y, z:c.z, orient:d.orient, yaw:d.yaw||0, r:d.r||0, tone:null, holes:[], grooves:[], connectors:[], mat:"$CarcassBodyMat", surfT:"", surfB:"", edges:["No Edge","No Edge","No Edge","No Edge"],
     _virtual:true, _pullPart:true, _pull:P.code, _pullOwner:d.id, _ehpPart:true, _ehpCode:P.code, _ehpName:P.n, _ehpLen:Math.round(len*10)/10,
-    _shape:"ehp", _ehpPts:LS[0], _ehpLoops:LS, _ehpAx:A.ax, _ehpS:A.s, _ehpSz:S.sz, _ehpT:T, _ehpH:h, _ehpLenG:len, _metal:((e.fin&&ehpFinAllow(P)&&ehpFinGet(e.fin))?ehpFinColor(e.fin):EHP_FIN_DEF), _ehpFin:((e.fin&&ehpFinAllow(P)&&ehpFinGet(e.fin))?String(ehpFinGet(e.fin).k):""), _ehpMade:ehpMade(P)||undefined, _ehpMill:ehpMillOn(d,P,A,len)||undefined}; }   /* v1.603: สีตามที่เลือก */
+    _shape:"ehp", _ehpPts:LS[0], _ehpLoops:LS, _ehpAx:A.ax, _ehpS:A.s, _ehpSz:S.sz, _ehpT:T, _ehpH:h, _ehpLenG:len, _metal:((e.fin&&ehpFinAllow(P)&&ehpFinGet(e.fin))?ehpFinColor(e.fin):EHP_FIN_DEF), _ehpFin:((e.fin&&ehpFinAllow(P)&&ehpFinGet(e.fin))?String(ehpFinGet(e.fin).k):""), _ehpMade:ehpMade(P)||undefined, _ehpEnd:ehpEndCfg(P)||undefined, _ehpMill:ehpMillOn(d,P,A,len)||undefined}; }   /* v1.603: สีตามที่เลือก */
 /* หน้าตัด → Extrude ตามยาวขอบ (พิกัดชิ้นเอง กลาง = ศูนย์ราง) */
 function ehpGeo(b){ if(b._ehpMill&&b._ehpAx==="y"){ try{ const gm=ehpMillGeo(b); if(gm) return gm; }catch(e){ console.error("ehpMillGeo:",e); } }   /* v1.667: บากหัวท้าย */
   const pts=b._ehpPts||[], T=+b._ehpT||18, h=+b._ehpH||20, len=Math.max(+b._ehpLenG||100,10), s=+b._ehpS||1, sz=+b._ehpSz||1;
@@ -63732,7 +63854,7 @@ function fittingAgg(boards){   // รวมเดือย + พินรอง�
       const el9=(((settings.elements||{}).fittings)||[]).find(x=>x&&x.code===b._ehpCode);
       /* v1.603: เลือกสีแล้ว = คนละบรรทัด ต่อรหัสสีท้ายชื่อ (ไม่เลือกสี = เหมือนเดิมทุกอย่าง) */
       const _tk=String(b._ehpFin||"");
-      bomCutRow(m,b._ehpCode,((el9&&el9.desc)||("มือจับฝัง "+b._ehpName)),((el9&&el9.unit)||"เส้น"),+b._ehpLen||0,"pull",b._ehpMade?{tok:_tk,mill:b._ehpMill?(+b._ehpMill.len||45):0}:(_tk?{tok:_tk}:undefined));   /* v1.667 */
+      bomCutRow(m,b._ehpCode,((el9&&el9.desc)||("มือจับฝัง "+b._ehpName)),((el9&&el9.unit)||"เส้น"),+b._ehpLen||0,"pull",(b._ehpMade&&!b._ehpEnd)?{tok:_tk,mill:b._ehpMill?(+b._ehpMill.len||45):0}:(_tk?{tok:_tk}:undefined));   /* v1.667 */
       { const kk=b._ehpCode+"@"+cutLen(+b._ehpLen||0)+(_tk?("#"+_tk):"")+(b._ehpMill?"#mill":""); if(m[kk]){ m[kk]._ehpRow=1; if(!snOff("ehpAxCode")){ m[kk]._cutName=b._ehpCode; m[kk]._cutEhp=1; } } } }); }catch(e){ console.error("ehp bom:",e); }   /* v1.608: ค้นรหัส AX ตามรุ่น สี ขนาด */
   /* v1.598: บานเลื่อน SDC — ชุดลูกล้อต่อบาน + รางตัดตามยาวช่อง (บน + ล่าง ต่อบาน) */
   if(!snOff("sdc")) try{ (boards||[]).forEach(b=>{ if(!b||!b._sdc||b._virtual||!b._sdc.g) return; const c=sdcCfg(b._sdc.c), F=(((settings.elements||{}).fittings)||[]);
