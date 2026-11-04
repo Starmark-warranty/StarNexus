@@ -3283,7 +3283,7 @@ body[data-theme="dark"] .splash-dots span{background:rgba(255,255,255,.25)}
    ===================================================================== */
 /* ---- APP_META: แหล่งความจริงเดียวของเวอร์ชัน (ดูได้จาก console / คลิกชื่อแอป) ---- */
 const APP_META={
-  name:"StarNexus", version:"1.661", build:"2026-11-04/mcwx03",
+  name:"StarNexus", version:"1.662", build:"2026-11-04/dp-rail-del",
   file:"StarNexus.html", basedOn:"Furnitech_V3.html (v3.11)",
   /* ───────── เริ่มนับเวอร์ชันใหม่ที่ 1.001 (21/08/2026) ─────────
      ของเดิมนับมาถึง 42.1 แล้ววิ่งเป็นทศนิยมสองชั้นซึ่งอ่านลำดับยาก
@@ -3291,6 +3291,7 @@ const APP_META={
      ประวัติเก่าเก็บไว้ทั้งหมดตามเลขเดิม ไม่ไล่เขียนใหม่ เพราะเลขในนั้นถูกอ้างถึงไปแล้ว
      รายการที่อยู่ใต้ 1.001 ลงไปจึงเป็นเลขชุดเก่า อ่านต่อกันได้ตามวันที่ */
   changelog:[
+    ["1.662","2026-11-04","FIX คานปิดรอยต่อจากคำสั่ง TH (ผู้ใช้ 17:23 project 71 ตู้ BND263) — คาน 70 ที่โปรแกรมใส่เองกลับมาทุกครั้ง ลบไม่ออก และบังหน้าคาน DX ที่แปลงไปแล้ว เพราะคานนี้ถูกลบและสร้างใหม่ทุกรอบ sync โดยไม่ดูว่าผู้ใช้ลบแล้วหรือมีคาน DX ปิดช่องอยู่แล้ว · ตอนนี้ลบแล้วจำไว้ที่บานบนของช่อง ไม่สร้างคืน · ช่องที่มีคาน DX อยู่แล้วไม่สร้าง งานเดิมหายเองตอนเปิด · แก้ค่า Design Parameter ของตู้ = เริ่มคิดใหม่ · ปิด SN_OFF.dpRailKeep ② เปิดไฟล์แล้วคาน DX กลางย้ายผิดที่และหายไป 1 ตัว เพราะรหัสบานอ้างอิงของคาน DX ไม่ถูกแปลงตอนเปิดไฟล์และตอนคัดลอกตู้ แก้แล้ว"],
     ["1.661","2026-11-04","FIX ลายหน้าบาน 3D (ผู้ใช้ 16:55 แจ้งรหัสใหม่) — รหัสแบบบานที่ถูกต้องคือ MCWx03 ไม่ใช่ MxWx03 บานรหัส MCWx03 ขึ้นลายแล้ว รูปทรงเท่าเดิม กรอบ 25 หนา 19 ลูกฟักกลาง 22"],
     ["1.660","2026-11-04","FEAT ลายหน้าบาน 3D แบบ MxWx03 (ผู้ใช้ 16:44 ภาพ Section A-A) — กรอบรอบบานกว้าง 25 หนา 19 · บ่าตั้ง 1 แล้วเฉียงขึ้นลูกฟักกลางหนา 22 · ฝังเป็นแบบในตัวโปรแกรม บานที่ FrontShape = MxWx03 ขึ้นลายเองโดยไม่ต้องแก้ตั้งค่า พิมพ์รหัสเดียวกันในตาราง ลายหน้าบาน 3D เพื่อแก้ทับได้ · โชว์อย่างเดียวเหมือนลายอื่น ไม่ออก CNC ใบไม้ · ปิด SN_OFF.drBuiltin"],
     ["1.659","2026-11-04","FIX จัดหน้าบาน (ผู้ใช้ 16:20 project 70) — ตู้บานคู่ที่มีเสาแบ่งสั้น ๆ อยู่หลังบาน (MWA223 เสาเฉพาะช่องบน) กดตกลงในจัดหน้าบานแล้วบานสองใบกว้างเต็มตู้ทับกัน ต่อให้ไม่ได้แก้ค่าอะไร สาเหตุคือตอนเก็บสเปคนับเสาที่ทับความสูงบานแค่นิดเดียวว่าคั่นบาน แต่ตอนหาขอบอ้างอิงไม่นับเสาเดียวกันเพราะเตี้ยเกินครึ่ง บานแต่ละใบจึงไปอ้างแผ่นข้างทั้งสองฝั่ง · ตอนนี้ใช้เกณฑ์เดียวกัน เสาต้องสูงคร่อมแถวอย่างน้อยครึ่งหนึ่งถึงจะคั่นบาน และงานที่บานทับกันไปแล้วจะกลับเป็นบานคู่เองตอนเปิด ② พิมพ์ระยะขอบบานแล้วได้ไม่ตรง (ไม้ 19 พิมพ์ 5 ได้ 9.5 · พิมพ์ 15 ได้ 19) เพราะตอนเก็บสเปคเลือกโหมดขอบที่ใกล้สุดแล้วตัดค่าติดลบเป็น 0 ตอนนี้ค่าที่ติดลบวัดจากผิวนอกแทน จึงได้เท่าที่พิมพ์ · ปิด SN_OFF.deCutTall SN_OFF.deCapNeg"],
@@ -5134,8 +5135,13 @@ function remapBoardRefs(boards,idMap){
     if(b._zx){ ["l","r"].forEach(k=>{ if(b._zx[k]!=null){ const v=M(b._zx[k]); if(v!==b._zx[k]){ b._zx[k]=v; n++; } } });
       ["oL","oR"].forEach(k=>{ const e=b._zx[k];
         if(e&&e.ref!=null){ const v=M(e.ref); if(v!==e.ref){ e.ref=v; n++; } } }); }
-    ["_frameOwner","_ledOwner","_pullOwner","_dxOwner","_sinkOwner","_hrShelf"].forEach(k=>{   // v1.238: _hrShelf ตกหล่นมาตั้งแต่ v1.228
+    /* ───────── v1.662: บานอ้างอิงของคาน DX ต้องแปลงรหัสตามด้วย ─────────
+       ตรวจเจอตอนแก้ project 71: เปิดไฟล์แล้วทุกชิ้นได้รหัสใหม่ แต่ _dxAnchor _dxAnchorB ยังเป็นรหัสเก่า ซึ่งตอนนี้กลายเป็นชิ้นอื่น
+       dxRefitFaces จึงย้ายคาน DX กลางไปตามชิ้นผิดตัว (BND263: 684 ไปที่ 498) ทับอีกตัวแล้วถูกรวมเป็นตัวเดียว คาน DX หาย 1 ตัวทุกครั้งที่เปิดงาน
+       คัดลอกตู้ก็โดนเหมือนกัน คานไปอ้างบานของตู้ต้นฉบับ · ตอนนี้แปลงพร้อมฟิลด์อ้างอิงอื่น รวมกฎที่จำไว้ _dxRule */
+    ["_frameOwner","_ledOwner","_pullOwner","_dxOwner","_sinkOwner","_hrShelf","_dxAnchor","_dxAnchorB"].forEach(k=>{   // v1.238: _hrShelf ตกหล่นมาตั้งแต่ v1.228
       if(b[k]!=null){ const v=M(b[k]); if(v!==b[k]){ b[k]=v; n++; } } });
+    if(b._dxRule) ["refShelf","refShelfB","spanShelf","refDShelf"].forEach(k=>{ if(b._dxRule[k]!=null){ const v=M(b._dxRule[k]); if(v!==b._dxRule[k]){ b._dxRule[k]=v; n++; } } });
     /* v1.258: รหัสชุดลิ้นชัก (_dg) สร้างจาก uid() ไม่ใช่ id ของชิ้นไหน จึงไม่เคยอยู่ใน idMap
        ของเดิมผ่านไปทั้งค่าเดิม — โหลดโมเดลเดียวกันสองตู้ (LTD002 สองใบ) กล่องทั้งสองใบได้รหัสชุดเดียวกัน
        ตัวเจาะเดือย/สกรูรอยต่อกล่องจับรวมเป็นชุดเดียว หยิบได้แค่ใบแรก ใบที่สองไม่มีรูสกรูยิงเลย
@@ -12260,11 +12266,22 @@ function dpRailGaps(inst){
   }
   return out;
 }
+function dpGapHasDx(inst,g){ const lo=g.y-g.gap/2, hi=g.y+g.gap/2;
+  return state.boards.some(x=>{ if(!x||!x._dx||x.orient!=="front") return false; if(x.cabInst!==inst&&!(Array.isArray(x._dxSeg)&&x._dxSeg.some(s=>s&&s.i===inst))) return false;
+    const h=worldDims(x)[1]; return Math.min(x.y+h/2,hi)-Math.max(x.y-h/2,lo)>=Math.max(g.gap*0.5,1); }); }
+/* v1.662: จำว่าช่องนี้ไม่เอาคานอัตโนมัติ ไว้ที่บานบนของช่อง (rule.refShelf) */
+function dpRailMarkOff(b){ if(!b||!b._dpRail||snOff("dpRailKeep")) return; const id=b.rule&&b.rule.refShelf, up=id!=null?state.boards.find(x=>x&&x.id===id&&x.cabInst===b.cabInst):null; if(up) up._dpNoRail=1; }
 function applyDpRail(inst){
   if(!inst||snOff("dpRail")) return null;
   const had=state.boards.filter(b=>b&&b._dpRail&&String(b.cabInst||"")===String(inst)).length;
   if(had) state.boards=state.boards.filter(b=>!(b&&b._dpRail&&String(b.cabInst||"")===String(inst)));
-  const gaps=dpRailGaps(inst);
+  /* ───────── v1.662: คานปิดรอยต่อที่ลบแล้ว หรือมีคาน DX อยู่แล้ว ไม่สร้างคืน ─────────
+     ผู้ใช้ 4/11 17:23 (project 71 · BND263 คำสั่ง TT30mm_TH30mm): “คาน 70 mm. ที่บังอยู่หน้าคาน DX ... มันลบแล้วไม่ออก บัค”
+     เดิม sync ทุกรอบเรียก applyXmlDesignParam → ลบคานธง _dpRail ทั้งหมดแล้วสร้างใหม่ตามรอยต่อ จึงจำไม่ได้ว่าผู้ใช้ลบไปแล้ว
+       แปลงคานเป็น DX (railToDx) ก็เหมือนกัน รอบถัดไปคาน 70 กลับมาบังหน้าคาน DX ทั้งที่ออกใบตัดซ้ำด้วย
+     ตอนนี้ ข้ามช่องที่บานบนมีธง _dpNoRail (deleteBoard railToDx ตั้งให้ · อยู่กับชิ้นบาน จึงไปกับบันทึกและ Ctrl+Z ไม่ต้องเพิ่มช่องใน state)
+       และข้ามช่องที่มีคาน DX ทับรอยต่ออยู่ วัดจากตำแหน่งจริง เพราะรหัสอ้างอิงใน _dxRule ไม่ถูกแปลงตอนเปิดไฟล์ · งานเดิมจึงหายเองโดยไม่ต้องลบ */
+  const gaps=dpRailGaps(inst).filter(g=>snOff("dpRailKeep")||!(g.up&&g.up._dpNoRail)&&!dpGapHasDx(inst,g));
   if(!gaps.length) return {made:0, removed:had, gaps:0};
   let made=0;
   try{
@@ -15173,6 +15190,7 @@ async function railToDx(b){
   const frontZ=f.frontZ-setb, floorD=Math.max(dxD-T2,10);
   const yBack =fromTop?(lvl-dxH/2):(lvl+dxH/2);
   const yFloor=fromTop?(lvl-dxH+T/2):(lvl+dxH-T/2);
+  try{ dpRailMarkOff(b); }catch(e){ console.error("dpRailOff:",e); }   /* v1.662: แปลงคานรอยต่อเป็น DX แล้ว ลบ DX ทีหลังก็ไม่สร้างคาน 70 คืน */
   const gid="DX"+uid();
   const mk=(nm,L,W2,Tt,x,y,z,orient)=>({ id:uid(),name:nm,orient,yaw:0,tone:null,r:0,
      L:round(L),W:round(W2),T:round(Tt),x:round(x),y:round(y),z:round(z),
@@ -15228,6 +15246,8 @@ function dxToRail(b){
     withCabAxisAligned(inst,()=>{ const f2=cabFaces(inst);
       nb=makeRailBoard(inst,p._dxName||"Front Rail",r,f2,p.cab); state.boards.push(nb); });
   }
+  /* v1.662: DX ที่มาจากคานรอยต่อ แปลงกลับ = คืนเป็นคานอัตโนมัติ ให้ตัวสร้างวางตรงรอยต่อใหม่ ไม่ซ้อนสองตัว */
+  if(nb&&/\(Seam\)/.test(String(p._dxName||""))&&!snOff("dpRailKeep")){ nb._dpRail=1; state.boards.forEach(x=>{ if(x&&x.cabInst===inst&&x._dpNoRail) delete x._dpNoRail; }); }
   if(nb) state.selectedId=nb.id;
   buildGTones(); sync(1);
   toast("เปลี่ยนคาน DX กลับเป็นคานปกติแล้ว"+(anyNotch?" · คืนแผ่นข้างที่บากไว้":""));
@@ -22738,6 +22758,7 @@ function clearBackGrooves(inst,exceptId){
 function deleteBoard(id){
   if(isLocked()){ guardEdit("ลบชิ้น"); return; }   // v27.3
 const b=state.boards.find(x=>x.id===id);if(!b)return;
+  try{ dpRailMarkOff(b); }catch(e){ console.error("dpRailOff:",e); }   /* v1.662: คานปิดรอยต่อที่ลบเอง ไม่สร้างคืน */
   /* v9.09: ลบแผ่นหลังใบสุดท้ายของตู้ = ล้างร่องรับแผ่นหลังของตู้ใบนั้นให้ด้วย
      ถ้ายังมีแผ่นหลังใบอื่นอยู่ในตู้ (ตู้แบ่งช่องหลายแผ่น) ไม่แตะร่อง */
   let _bg=null;
@@ -30157,6 +30178,7 @@ function boardRole(b){
      SN_OFF.frontEdge3D=1 ปิดเฉพาะแถบขอบหน้าตู้ใน 3D ค่ายังออกไฟล์ตามเดิม (v1.141)
      SN_OFF.chandle=1     ปิดการให้คานหน้าตู้ใช้สีหน้าบาน กลับไปใช้สีตู้ (v1.146)
      SN_OFF.dpRail=1      ปิดการใส่คานปิดรอยต่อจากคำสั่งปรับบาน (v1.148)
+     SN_OFF.dpRailKeep=1  คานปิดรอยต่อสร้างคืนทุกรอบแบบเดิม ไม่จำที่ลบ ไม่ดูคาน DX (v1.662)
      (v1.149 เลิกเดาสีคานแล้ว ต้องเลือกเองที่หน้า Variables ตู้ · SN_OFF.chandleFallback จึงไม่มีผลอีก)
      SN_OFF.autoPart=1    ปิดการผูก Part ตั้งต้นอัตโนมัติ (v1.124)
      SN_OFF.floorFix=1    ปิดการตรึงพื้น (v1.120/1.122)
@@ -32608,6 +32630,7 @@ function openCabVars(board){
       const v=String(dp.value||"").trim();
       state.cabDP=state.cabDP||{};
       if(v) state.cabDP[inst]=v; else delete state.cabDP[inst];
+      state.boards.forEach(x=>{ if(x&&x.cabInst===inst&&x._dpNoRail) delete x._dpNoRail; });   /* v1.662: แก้คำสั่งบาน = คิดคานใหม่ทุกช่อง ทางเอาคานที่ลบไปคืน */
       /* ขนาดบานตั้งต้นถูกจำไว้เพื่อคืนค่าก่อนปรับใหม่ ล้างทิ้งเพื่อให้คิดสดรอบหน้า
          ไม่งั้นค่าปรับจะทบกันไปเรื่อย ๆ ซึ่งเป็นกับดักที่ v30.4 เคยเจอมาแล้ว */
       try{ state.cabDPBase={}; }catch(e){}
