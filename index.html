@@ -3283,7 +3283,7 @@ body[data-theme="dark"] .splash-dots span{background:rgba(255,255,255,.25)}
    ===================================================================== */
 /* ---- APP_META: แหล่งความจริงเดียวของเวอร์ชัน (ดูได้จาก console / คลิกชื่อแอป) ---- */
 const APP_META={
-  name:"StarNexus", version:"1.657", build:"2026-11-04/pl-switch",
+  name:"StarNexus", version:"1.658", build:"2026-11-04/plo-id",
   file:"StarNexus.html", basedOn:"Furnitech_V3.html (v3.11)",
   /* ───────── เริ่มนับเวอร์ชันใหม่ที่ 1.001 (21/08/2026) ─────────
      ของเดิมนับมาถึง 42.1 แล้ววิ่งเป็นทศนิยมสองชั้นซึ่งอ่านลำดับยาก
@@ -3291,6 +3291,7 @@ const APP_META={
      ประวัติเก่าเก็บไว้ทั้งหมดตามเลขเดิม ไม่ไล่เขียนใหม่ เพราะเลขในนั้นถูกอ้างถึงไปแล้ว
      รายการที่อยู่ใต้ 1.001 ลงไปจึงเป็นเลขชุดเก่า อ่านต่อกันได้ตามวันที่ */
   changelog:[
+    ["1.658","2026-11-04","FIX ห้องออกแบบ (ผู้ใช้ 15:29 ภาพหน้าต่างสองฝั่งติดกรอบเลือกพร้อมกัน) — กดหน้าต่างบานหนึ่ง อีกบานติดไปด้วย แก้ขนาดแล้วไปเปลี่ยนบานตรงข้าม ลบก็ลบผิดบาน สาเหตุคือของสองชิ้นได้รหัสเดียวกัน เพราะเปิดงานใหม่แล้วตัวนับรหัสไม่นับของในห้อง ห้องที่ไม่มีตู้จึงเริ่มนับ b1 ใหม่ทับของเดิม · ตอนนี้ตัวนับนับของในห้องด้วย ของใหม่รหัสไม่ซ้ำ และไฟล์เดิมที่ซ้ำอยู่แล้วแก้ให้เองตอนเปิดห้อง ไม่ต้องลบวางใหม่ · ปิด SN_OFF.plIdFix"],
     ["1.657","2026-11-04","CHANGE ห้องออกแบบ (ผู้ใช้ 14:51 “สวิสต์ อย่างเดียว”) — การ์ดปลั๊กสวิตช์เปลี่ยนเป็น 🔘 สวิตช์ไฟ ไม่มีเต้ารับ ตัดตัวเลือกแบบในแผงออก ทั้ง 3D ไอคอน และหน้างานระบบในใบเสนอราคาเป็นสวิตช์ล้วน · ไฟล์ที่บันทึกจาก 1.656 เปิดได้ และแสดงเป็นสวิตช์ไฟ"],
     ["1.656","2026-11-04","FEAT ห้องออกแบบ (ผู้ใช้ 14:34) — ① ของติดผนังกรอกระยะได้ทั้ง 2 ฝั่ง: ปลั๊ก ท่อ = ศูนย์ห่างซ้าย ศูนย์ห่างขวา · ประตู หน้าต่าง ซุ้ม เครื่องใช้ติดผนัง = ขอบห่างซ้าย ขอบห่างขวา (มองจากในห้อง) แก้ช่องไหนอีกช่องคิดให้เอง ไม่ต้องลบกับความยาวผนังเอง · ป้ายตอนลากบอกซ้าย ขวา ด้วย ② การ์ดใหม่ 🔘 ปลั๊กสวิตช์ ในกลุ่มงานระบบ เลือกแบบ ปลั๊ก + สวิตช์ หรือ สวิตช์อย่างเดียว ลาก ติดผนัง ขึ้นจากพื้น ได้เหมือนปลั๊ก มีใน 3D แบบผนัง และภาพ AR · ปิด SN_OFF.plTwoSide SN_OFF.plSwitch"],
     ["1.655","2026-11-04","UX ห้องออกแบบ (ผู้ใช้ 13:36) — ① แถบล่างของแผง (ตู้ในห้อง ราคา ต้นทุน ปุ่มใบเสนอราคา AI RENDER โหมดสมจริง บันทึกภาพ รายละเอียด) พับลงเหลือบรรทัดเดียวได้ จำค่าไว้ · ② กดปลั๊ก ประตู หน้าต่าง เสา ฝ้า ผนัง ท็อป เครื่องใช้ หรือตู้ แผงเหลือเฉพาะตัวปรับของชิ้นนั้น กลุ่มตั้งค่าห้องและรายการช่องว่างซ่อนไปอยู่หลังแถบ 🏠 ตั้งค่าห้อง กดเปิดดูได้ เลิกเลือกแล้วกลับมาเอง · ③ กลุ่มตั้งค่าห้องเปิดทีละกลุ่ม เปิดกลุ่มใหม่ กลุ่มเดิมพับ · ปิด SN_OFF.plFootFold SN_OFF.plFocus SN_OFF.plGrpOne"],
@@ -5367,7 +5368,14 @@ let uidc=1; const uid=()=>"b"+(uidc++);
    เดิมดูแค่ id ชิ้น · แต่ inst ของตู้/ท่อนขา Cosimo ก็ mint จาก uid() (เช่น b195 ท่อนขาผนังหลัง) และมักสูงกว่า id ชิ้นสูงสุดในไฟล์
    project 26: เปิดห้องออกแบบ → จัดขาผนังขวาใหม่ได้ inst = b195 ชนท่อนขาผนังหลัง → สองท่อนกลายเป็นตู้เดียว แล้วรอบถัดไปลบทิ้ง (ขาผนังขวาหาย)
    ตอนนี้ดัน counter ให้พ้นทั้ง id และ cabInst */
-function syncUid(){ try{ for(const b of (state.boards||[])){ if(!b) continue; for(const v of [b.id,b.cabInst]){ const mch=/^b(\d+)$/.exec(String(v==null?"":v)); if(mch){ const n=+mch[1]; if(n>=uidc)uidc=n+1; } } } }catch(e){} }
+function syncUid(){ try{ for(const b of (state.boards||[])){ if(!b) continue; for(const v of [b.id,b.cabInst]){ const mch=/^b(\d+)$/.exec(String(v==null?"":v)); if(mch){ const n=+mch[1]; if(n>=uidc)uidc=n+1; } } }
+    /* ───────── v1.658: นับรหัสของในห้องด้วย ─────────
+       ผู้ใช้ 4/11 15:29 (ภาพหน้าต่างสองฝั่งติดกรอบเลือกพร้อมกัน): “กดเลือกจะแก้ไขขนาดหน้าต่างด้านซ้าย แต่มันติดหน้าต่างฝั่งตรงข้ามด้วย กดเอาออกไม่ได้”
+       เดิม ตัวนับเริ่ม 1 ทุกครั้งที่เปิดโปรแกรม และดันพ้นเฉพาะรหัสชิ้นไม้ · ของในห้องใช้ตัวนับเดียวกันแต่ไม่ถูกนับ ห้องที่ไม่มีตู้จึงได้ b1 b2 ... ทับของเดิม
+         ทุกจุดอ้างของในห้องด้วยรหัส (กรอบเลือก แผง ลาก ลบ) รหัสซ้ำจึงติดกรอบสองชิ้น แผงเปิดชิ้นที่อยู่ก่อนในรายการ แก้ขนาดเลยไปโดนอีกชิ้น
+       ตอนนี้ นับ state.room.obj ด้วย · ploNew ploPaste เรียกก่อนออกรหัสทุกครั้ง · ของที่ซ้ำอยู่แล้วในไฟล์เก่าดู ploIdFix */
+    const _ro=state.room&&state.room.obj; if(Array.isArray(_ro)) for(const o of _ro){ const mch=/^b(\d+)$/.exec(String(o&&o.id!=null?o.id:"")); if(mch){ const n=+mch[1]; if(n>=uidc)uidc=n+1; } }
+  }catch(e){} }
 const round=n=>Math.round(n*10)/10;
 const fmt=n=>Math.abs(n-Math.round(n))<0.05?String(Math.round(n)):n.toFixed(1);
 
@@ -30559,6 +30567,7 @@ function boardRole(b){
      SN_OFF.sideSplitDoor=1 แผ่นปิดข้าง 2 ชิ้น (สูงเกินแผ่น) แบ่งครึ่งเท่ากันแบบเดิม ไม่ย้ายรอยต่อไปขอบล่างบานบน (v1.587)
      SN_OFF.plFootFold=1  แถบล่างของแผงห้องออกแบบพับไม่ได้ (v1.655)
      SN_OFF.plFocus=1     เลือกชิ้นแล้วกลุ่มตั้งค่าห้องยังเปิดอยู่ แบบเดิม (v1.655)
+     SN_OFF.plIdFix=1     ไม่แก้รหัสซ้ำของในห้องตอนวาด (v1.658)
      SN_OFF.plTwoSide=1   ของติดผนังกรอกระยะจากต้นผนังช่องเดียว แบบเดิม (v1.656)
      SN_OFF.plSwitch=1    ไม่มีการ์ดสวิตช์ไฟ (ข้อมูลเดิมยังวาด) (v1.656 · ชื่อใหม่ v1.657)
      SN_OFF.plGrpOne=1    กลุ่มตั้งค่าห้องเปิดพร้อมกันหลายกลุ่มได้ แบบเดิม (v1.655)
@@ -39214,8 +39223,12 @@ function plDlInit(r){ if(snOff("plDl")||snOff("plObj")||!r||r.dlInit||r.ceilShow
   r.dlInit=1; const L=ploList(); if(L.some(o=>o&&o.k==="dl")) return 0; let n=0;
   [0.25,0.75].forEach(fx=>[0.25,0.75].forEach(fz=>{ const o=ploNew("dl"); if(!o) return; o.x=Math.round(r.x0+r.w*fx); o.z=Math.round(r.z0+r.d*fz); delete o.hinge; delete o.swing; o.ref="bl"; L.push(o); n++; }));
   return n; }
+/* ───────── v1.658: แก้รหัสซ้ำในงานเดิม ─────────
+   งานที่บันทึกจากรุ่นก่อนอาจมีของรหัสซ้ำอยู่แล้ว ถ้าแก้แค่ตัวนับ ผู้ใช้ยังต้องลบแล้ววางใหม่เอง
+   จึงตรวจทุกครั้งที่วาดของในห้อง ชิ้นแรกคงรหัสเดิม ชิ้นถัดไปได้รหัสใหม่ · ไม่แตะขนาดหรือตำแหน่ง · ทำก่อนวาด กล่องคลิกจึงได้รหัสที่ถูกตั้งแต่ครั้งแรก */
+function ploIdFix(){ if(snOff("plIdFix")) return 0; const seen=new Set(); let n=0; ploList().forEach(o=>{ if(!o) return; if(o.id==null||seen.has(o.id)){ syncUid(); o.id=uid(); n++; } seen.add(o.id); }); if(n) console.log("ห้องออกแบบ: แก้รหัสซ้ำของในห้อง "+n+" ชิ้น"); return n; }
 function ploAddMeshes(g){
-  if(snOff("plObj")) return; const L=ploList().filter(o=>o&&(!PLW.on||o.k==="col")&&(o.k!=="col"||!snOff("plCol"))&&!scnApplHid(o)&&!ploHid(o));   /* v1.565: ฉากซ่อนตู้พื้น/ตู้ลอย = ซ่อนเครื่องใช้ระดับนั้น */ if(!L.length) return;
+  if(snOff("plObj")) return; ploIdFix(); const L=ploList().filter(o=>o&&(!PLW.on||o.k==="col")&&(o.k!=="col"||!snOff("plCol"))&&!scnApplHid(o)&&!ploHid(o));   /* v1.565: ฉากซ่อนตู้พื้น/ตู้ลอย = ซ่อนเครื่องใช้ระดับนั้น */ if(!L.length) return;
   try{ ploDimDraw(g); }catch(e){ console.error("ploDim:",e); }              // v1.538: Dim ของที่ลาก/เลือกอยู่   // v1.536: ตอนวาดผนังเห็นแต่เสา (เตี้ย)
   if(PLO.drag&&PLO.guides) PLO.guides.forEach(G=>{ try{ plwDashLine(g,G[0],G[1],G[2],G[3],8); }catch(e){} });   // v1.536: เส้นช่วยตอนลากเสา
   const FR=ploFrames(), r=plRoom();
@@ -40146,6 +40159,7 @@ async function plaDelModel(mid){ const L=plaLib(), i=L.findIndex(x=>x&&x.id===mi
   L.splice(i,1); try{ await catSaveSettings(); }catch(e){} try{ plPanelSel(); plPanelGrid(); }catch(e){} toast("ลบรุ่นแล้ว"); return true; }
 /* ── วาง / เลือก / ลาก ── */
 function ploNew(k){ const T=PLO_T[k], r=plRoom(); if(!T) return null;
+  syncUid();   /* v1.658: กันรหัสซ้ำกับของที่อยู่ในห้องแล้ว */
   const o={id:uid(), k, w:T.w, h:(k==="stair"||k==="col")?(+r.h||2600):T.h, sill:T.sill||0, d:T.d||0, wk:null, t:0, x:r.x0+r.w/2, z:r.z0+r.d/2, yaw:0, hinge:"L", swing:"in"};
   if(!T.sill) delete o.sill; if(!T.d) delete o.d;
   if(k==="col"){ delete o.hinge; delete o.swing; o.ref="bl"; }
@@ -40306,6 +40320,7 @@ function ploPasteWall(o){ const G=plGrid()||10, gap=(PLO_T[o.k]||{}).util?30:100
       if(!ploClash(o,F.key,t,gap)){ o.wk=F.key; o.t=Math.round(t); const P=ploPose(o,F); o.x=Math.round(P.x); o.z=Math.round(P.z); o.yaw=Math.round(P.rot*180/Math.PI); return true; } } }
   return false; }
 function ploPaste(src){ if(ploLocked()) return null; const T=PLO_T[src.k]; if(!T) return null;
+  syncUid();   /* v1.658 */
   const o=JSON.parse(JSON.stringify(src)); o.id=uid(); delete o.hid;
   let msg="";
   if(T.wall&&o.wk){ if(!ploPasteWall(o)){ o.wk=null; const r=plRoom(); o.x=r.x0+r.w/2; o.z=r.z0+r.d/2; msg=" · ผนังเต็ม วางไว้กลางห้อง ลากไปวางเอง"; } }
