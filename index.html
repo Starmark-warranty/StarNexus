@@ -3283,7 +3283,7 @@ body[data-theme="dark"] .splash-dots span{background:rgba(255,255,255,.25)}
    ===================================================================== */
 /* ---- APP_META: แหล่งความจริงเดียวของเวอร์ชัน (ดูได้จาก console / คลิกชื่อแอป) ---- */
 const APP_META={
-  name:"StarNexus", version:"1.654", build:"2026-11-04/b06-3d",
+  name:"StarNexus", version:"1.655", build:"2026-11-04/pl-focus",
   file:"StarNexus.html", basedOn:"Furnitech_V3.html (v3.11)",
   /* ───────── เริ่มนับเวอร์ชันใหม่ที่ 1.001 (21/08/2026) ─────────
      ของเดิมนับมาถึง 42.1 แล้ววิ่งเป็นทศนิยมสองชั้นซึ่งอ่านลำดับยาก
@@ -3291,6 +3291,7 @@ const APP_META={
      ประวัติเก่าเก็บไว้ทั้งหมดตามเลขเดิม ไม่ไล่เขียนใหม่ เพราะเลขในนั้นถูกอ้างถึงไปแล้ว
      รายการที่อยู่ใต้ 1.001 ลงไปจึงเป็นเลขชุดเก่า อ่านต่อกันได้ตามวันที่ */
   changelog:[
+    ["1.655","2026-11-04","UX ห้องออกแบบ (ผู้ใช้ 13:36) — ① แถบล่างของแผง (ตู้ในห้อง ราคา ต้นทุน ปุ่มใบเสนอราคา AI RENDER โหมดสมจริง บันทึกภาพ รายละเอียด) พับลงเหลือบรรทัดเดียวได้ จำค่าไว้ · ② กดปลั๊ก ประตู หน้าต่าง เสา ฝ้า ผนัง ท็อป เครื่องใช้ หรือตู้ แผงเหลือเฉพาะตัวปรับของชิ้นนั้น กลุ่มตั้งค่าห้องและรายการช่องว่างซ่อนไปอยู่หลังแถบ 🏠 ตั้งค่าห้อง กดเปิดดูได้ เลิกเลือกแล้วกลับมาเอง · ③ กลุ่มตั้งค่าห้องเปิดทีละกลุ่ม เปิดกลุ่มใหม่ กลุ่มเดิมพับ · ปิด SN_OFF.plFootFold SN_OFF.plFocus SN_OFF.plGrpOne"],
     ["1.654","2026-11-04","UI+FEAT (ผู้ใช้ 08:15 08:20) — ① 3D เหล็กฉาก B-06 ตามแบบจริง 40×58×25 หนา 2 รู Ø7 2 รู ปีกสั้นมีร่องแขวน 3 ร่อง ปีกยาวนอนตามแนวลึกแนบไม้ข้าง เดิมเป็นแผ่นคร่าว ๆ ใบเบิกไม่เปลี่ยน ปิด SN_OFF.jwaB06 ② คานนอนเลือกวางแนวลึกชิดแผ่นข้างได้ (rule.edgeRun) ปรับขนาดตู้แล้วกว้างคงที่ ยาวตามลึก ใช้กับตู้ลิ้นชัก MWA237 ที่ด้านบนเป็นแผ่นนอนซ้าย ขวา หลัง ไม่มีคานหน้า"],
     ["1.653","2026-11-04","FEAT กล่องโค้ง (ผู้ใช้ 07:41 project 69) — ① กล่องยาวเกิน 400 เพิ่มครีบแถวในกึ่งกลาง 1 อัน ยาว 400 พอดีไม่เพิ่ม ใช้กับกล่องจากแผงและจาก XML งานเก่าได้เองตอนเปิดห้องออกแบบ ปิด SN_OFF.plCvbFinIn ② กล่องโค้ง Island R หัว-ท้าย แผ่นดัดใบเดียว ยาวปิดตู้หลังชนกัน 2 ใบ ปุ่มอยู่แผงตู้ แผงกล่องสลับกลับเป็นปลายเดียวได้ กล่องขา กล่องบน ท็อป แปลน ตามสองปลาย ปิด SN_OFF.plCvbIsland"],
     ["1.652","2026-11-03","FIX+UI สีบาน (ผู้ใช้ 17:18 ภาพบานสีเข้ม N00S0114N_HG103 ลาย PCWx50 กับคำเตือน) — ① สีเข้มเส้นบานเป็นสีขาว เห็นลาย ② ดูตอนออกแบบ HG เงา MU ด้าน ③ แก้กฎที่ผมเข้าใจผิด: แบบบานขึ้นต้น P คืองานทำสี ไม่เตือน · งานเคลือบ บานขึ้นต้น M ยังต้องใช้สีตัวที่ 4 = P"],
@@ -30554,6 +30555,9 @@ function boardRole(b){
      SN_OFF.acdHeal=1     ไม่ถามล้างเดือย/มินิฟิกที่ใส่เกินบนหน้าบาน (v1.588)
      SN_OFF.ovenNear=1    เตาที่ไม่อยู่พื้นช่องพอดี = “หาช่องของเตาไม่เจอ” แบบเดิม ไม่หาช่องใกล้สุด (v1.588)
      SN_OFF.sideSplitDoor=1 แผ่นปิดข้าง 2 ชิ้น (สูงเกินแผ่น) แบ่งครึ่งเท่ากันแบบเดิม ไม่ย้ายรอยต่อไปขอบล่างบานบน (v1.587)
+     SN_OFF.plFootFold=1  แถบล่างของแผงห้องออกแบบพับไม่ได้ (v1.655)
+     SN_OFF.plFocus=1     เลือกชิ้นแล้วกลุ่มตั้งค่าห้องยังเปิดอยู่ แบบเดิม (v1.655)
+     SN_OFF.plGrpOne=1    กลุ่มตั้งค่าห้องเปิดพร้อมกันหลายกลุ่มได้ แบบเดิม (v1.655)
      SN_OFF.jwaB06=1      เหล็กฉาก B-06 เป็นแผ่นคร่าว ๆ แบบ 1.649 (v1.654)
      SN_OFF.plCvbFinIn=1  กล่องโค้งยาวเกิน 400 ไม่เพิ่มครีบแถวใน (v1.653)
      SN_OFF.plCvbIsland=1 ไม่มีปุ่มกล่องโค้ง Island ปิด 2 ตู้ · กล่องที่มีอยู่แล้วยังอยู่ (v1.653)
@@ -42122,7 +42126,64 @@ function plFootOpen(){ const sum=[]; let warn=false;
   try{ if(plCeilRow()) sum.push("ฟิลเลอร์บน "+plCeilNeed()+" เส้น"); }catch(e){}
   try{ const m=plPrice().miss; if(m) sum.push("ยังไม่มีราคา "+m+" ใบ"); }catch(e){}
   return '<details class="plGrp" data-g="foot"'+((plGrpOpen("foot",false)||warn)?' open':'')+'><summary>รายละเอียด<small>'+escapeHtml(sum.join(" · "))+(warn?' ⚠':'')+'</small></summary>'; }
-function plRoomGrpWire(s){ s.querySelectorAll("details.plGrp[data-g]").forEach(d=>{ d.ontoggle=()=>plGrpSave(d.dataset.g,d.open); }); }
+function plRoomGrpWire(s){ s.querySelectorAll("details.plGrp[data-g]").forEach(d=>{ d.ontoggle=()=>plGrpSave(d.dataset.g,d.open);
+    /* v1.655: กดเปิดกลุ่มไหน กลุ่มอื่นในแผงเดียวกันพับ · จับที่คลิกหัวกลุ่ม ไม่ใช้ toggle เพราะ toggle เกิดตอนวาดแผงใหม่ด้วย (กลุ่มที่จำว่าเปิดจะปิดกันเอง) · ปิด SN_OFF.plGrpOne */
+    const sm=d.querySelector(":scope>summary"); if(sm&&!snOff("plGrpOne")) sm.addEventListener("click",()=>{ if(d.open) return; s.querySelectorAll("details.plGrp[data-g]").forEach(o=>{ if(o!==d&&o.open&&!o.contains(d)&&!d.contains(o)) o.open=false; }); }); }); }
+/* ───────── v1.655: แผงห้องออกแบบเหลือเฉพาะของที่กดอยู่ · แถบล่างพับลงได้ ─────────
+   ผู้ใช้ 4/11 13:36 (ภาพแผงตอนเลือกปลั๊ก):
+     “ตรงช่วงที่เป็น ใบเสนอราคา เพิ่มให้ มีปิดซ่อนลงล่างไปได้ครับ 4 ปุ่ม กับตู้ ในห้อง”
+     “เมื่อกดปลั๊กให้แสดง เกี่ยวกับ ปลั๊ก ตัวอื่นให้ มันกลับเข้าไปครับ ตัวอื่นๆ ด้วยนะ กดตัวไหนให้มีฟังก์ชั่นปรับได้เฉพาะ ตัวนั้น”
+   เดิม: แถบล่างกินความสูงตายตัวราว 42% ของจอ · เลือกชิ้นแล้วตัวปรับของชิ้นไปต่อท้ายกลุ่มตั้งค่าห้องที่เปิดอยู่
+     ปลั๊กจึงโผล่แค่ขอบล่าง ต้องเลื่อนหาในช่องแคบ ๆ
+   ตอนนี้:
+     · plFootFold ใส่แถบพับบนสุดของ #plFoot พับแล้วเหลือบรรทัดเดียว “ตู้ในห้อง n ใบ · ราคาขาย” ใช้ที่เก็บเดิมของกลุ่มพับ (sn_plGrp คีย์ __foot)
+     · plFocusApply เรียกทุกครั้งที่ plPanelSel ทำงาน มีของเลือกอยู่ = ซ่อนกลุ่มตั้งค่าห้อง ช่องว่างที่ควรปิด Cosimo ด้วยคลาสบน #plTop
+       ใช้ !important เพราะ plPanelGaps plPanelCsm ตั้ง style.display เองทุกรอบ · ซ่อนไว้เฉย ๆ ไม่วาดใหม่ ค่ากลุ่มที่เปิดอยู่จึงกลับมาเหมือนเดิมเมื่อเลิกเลือก
+     · แถบ 🏠 ตั้งค่าห้อง เปิดดูกลุ่มห้องได้โดยไม่เลิกเลือก เลือกชิ้นอื่น = พับกลับ · ช่องเสา Cosimo ยังอยู่เมื่อตู้ที่เลือกเป็น Cosimo เพราะเป็นตัวปรับของมันเอง
+     · ผู้ช่วย AI ชี้ปุ่มที่ซ่อนอยู่ = เปิดให้เห็นก่อน (goOpenDetails)
+   ไม่แตะข้อมูลงาน · ปิด SN_OFF.plFootFold SN_OFF.plFocus */
+function plCss655(){ if(document.getElementById("plCSS655")) return; const st=document.createElement("style"); st.id="plCSS655";
+  st.textContent="#plFoot .plFoldBar{display:flex;align-items:center;justify-content:center;gap:6px;width:100%;border:0;background:none;margin:0;padding:0 0 5px;font:inherit;font-size:11px;line-height:1.3;color:var(--ink-dim);cursor:pointer}"
+    +"#plFoot .plFoldBar:hover{color:var(--ink)}"
+    +"#plFoot.plFootOff{padding-top:7px!important;padding-bottom:7px!important}"
+    +"#plFoot.plFootOff>*:not(.plFoldBar){display:none!important}"
+    +"#plFoot.plFootOff .plFoldBar{justify-content:space-between;padding:0;font-size:12px;color:var(--ink)}"
+    +"#plFoot.plFootOff .plFoldBar b{font-weight:700}"
+    +"#plRoomBar{display:flex;align-items:center;gap:6px;width:100%;box-sizing:border-box;border:0;border-bottom:1px solid var(--line);background:none;margin:0;padding:7px 14px;font:inherit;font-size:12px;font-weight:600;color:var(--ink);cursor:pointer;text-align:left}"
+    +"#plRoomBar:hover{background:rgba(0,0,0,.04)}"
+    +"#plRoomBar small{font-weight:400;color:var(--ink-dim)}"
+    +"#plRoomBar i{margin-left:auto;font-style:normal;color:var(--ink-dim)}"
+    +"#plTop.plFocus:not(.plPeek) #plRoomSec,#plTop.plFocus:not(.plPeek) #plGapSec{display:none!important}"
+    +"#plTop.plFocus:not(.plPeek):not(.plFocusCsm) #plCsmSec{display:none!important}";
+  document.head.appendChild(st); }
+function plFootFoldSet(open){ const s=$("plFoot"); if(!s) return; plGrpSave("__foot",!!open); s.classList.toggle("plFootOff",!open); const b=s.querySelector(":scope>.plFoldBar"); if(b) plFootFoldBar(b,!!open); }
+function plFootFoldBar(b,open){ let p={n:0,sum:0}; try{ p=plPrice(); }catch(e){}
+  b.title=open?"พับแถบนี้ลงล่าง ให้แผงด้านบนมีที่มากขึ้น":"แสดงราคา ปุ่มใบเสนอราคา AI RENDER โหมดสมจริง บันทึกภาพ";
+  b.setAttribute("aria-expanded",open?"true":"false");
+  b.innerHTML=open?'▾ พับแถบนี้':('<span>ตู้ในห้อง <b>'+p.n+'</b> ใบ</span><span>ราคาขาย <b>'+plMoney(p.sum)+'</b></span><span>▴</span>'); }
+function plFootFold(s){ if(!s) return; if(snOff("plFootFold")){ s.classList.remove("plFootOff"); return; } plCss655();
+  const open=plGrpOpen("__foot",true), b=document.createElement("button"); b.type="button"; b.className="plFoldBar"; plFootFoldBar(b,open);
+  b.onclick=()=>plFootFoldSet(s.classList.contains("plFootOff"));
+  s.insertBefore(b,s.firstChild); s.classList.toggle("plFootOff",!open); }
+/* ชิ้นที่แผงกำลังแสดงตัวปรับ · เงื่อนไขและลำดับเดียวกับหัว plPanelSel · ว่าง = ไม่ได้เลือกอะไร */
+function plFocusKey(){
+  if(!snOff("plObj")&&PLO.sel&&ploGet(PLO.sel)) return "o:"+PLO.sel;
+  const inst=plSelInst();
+  if(!snOff("plWallSel")&&PL.wpick&&!inst&&plwsOk(PL.wpick)) return "w:"+JSON.stringify(PL.wpick);
+  if(!snOff("plWtSel")&&PL.tpick&&!inst) return "t:"+PL.tpick.t+":"+PL.tpick.wk+":"+PL.tpick.kind+":"+PL.tpick.side+":"+PL.tpick.lo;
+  if(plmsOn()) return "m";
+  return inst?("c:"+inst):""; }
+function plFocusApply(){ const top=$("plTop"); if(!top) return; let bar=$("plRoomBar");
+  if(snOff("plFocus")){ top.classList.remove("plFocus","plPeek","plFocusCsm"); if(bar) bar.style.display="none"; return; }
+  plCss655(); const key=plFocusKey(), changed=key!==PL.focusKey; if(changed){ PL.focusKey=key; PL.roomPeek=false; }
+  if(!bar){ bar=document.createElement("button"); bar.type="button"; bar.id="plRoomBar"; top.insertBefore(bar,top.firstChild);
+    bar.onclick=()=>{ PL.roomPeek=!PL.roomPeek; plFocusApply(); top.scrollTop=0; }; }
+  const on=!!key, r=plRoom(); let csm=false;
+  if(key.indexOf("c:")===0){ try{ csm=csmIsCode(plFp(plBoardsOf(key.slice(2))).code); }catch(e){} }
+  top.classList.toggle("plFocus",on); top.classList.toggle("plPeek",on&&!!PL.roomPeek); top.classList.toggle("plFocusCsm",on&&csm);
+  bar.style.display=on?"":"none"; bar.title=PL.roomPeek?"ซ่อนกลุ่มตั้งค่าห้อง":"ดูกลุ่มตั้งค่าห้อง โดยไม่เลิกเลือกชิ้นนี้";
+  bar.innerHTML='🏠 ตั้งค่าห้อง <small>'+Math.round(+r.w||0)+'×'+Math.round(+r.d||0)+'×'+Math.round(+r.h||0)+'</small><i>'+(PL.roomPeek?'▾':'▸')+'</i>';
+  if(changed) top.scrollTop=0; }
 /* ───────── v1.531: จัดระเบียบแผงห้องออกแบบ ─────────
    ผู้ใช้ 28/10/2026 07:54 (ภาพแผงห้องออกแบบ): “จัดระเบียบ UI ให้เข้าที่หน่อยครับ”
    เดิม (ถึง 1.530):
@@ -43749,6 +43810,7 @@ function plPanelWalls(){ const ws=$("plWall"); if(!ws) return; const r=plRoom();
   const on=Object.keys(PL_WALLS).filter(k=>r.walls[k]); if(on.indexOf(PL.wall)<0) PL.wall=on[0]||"back";
   ws.innerHTML=Object.keys(PL_WALLS).map(k=>'<option value="'+k+'"'+(k===PL.wall?" selected":"")+(r.walls[k]?"":" disabled")+'>ลงผนัง'+PL_WALLS[k].lbl+'</option>').join(""); }
 function plPanelSel(){
+  Promise.resolve().then(()=>{ try{ plFocusApply(); }catch(e){ console.error("plFocus:",e); } });   /* v1.655: หลังวาดแผงจบ ก่อนจอวาดภาพ — ฟังก์ชันนี้มีทางออกหลายจุด */
   try{ plmsDraw(); }catch(e){}   /* v1.562: กรอบฟ้ารายตู้ตามชุดที่เลือก */
   try{ plDimDraw(); }catch(e){}                                              // v1.310
   const s=$("plSelSec"); if(!s) return;
@@ -43926,6 +43988,7 @@ function plPanelFoot(){
   { const gb=s.querySelector("#plGlbBtn"); if(gb) gb.onclick=()=>exportGlb({room:true}); } { const rb2=s.querySelector("#plRendBtn"); if(rb2) rb2.onclick=()=>{ try{ RND.open(); }catch(e){ console.error("render:",e); toast("เปิดหน้า Render ไม่สำเร็จ"); } }; }   /* v1.562 */   // v1.459
   { const rb=s.querySelector("#plRealBtn"); if(rb) rb.onclick=()=>realToggle(); const sb=s.querySelector("#plSnapBtn"); if(sb) sb.onclick=()=>realSnapSave(); }   // v1.528
   plRoomGrpWire(s);
+  try{ plFootFold(s); }catch(e){ console.error("plFootFold:",e); }   /* v1.655 */
 }
 /* ═════════ v1.457: 🖼 โปสเตอร์ขาย จากห้องออกแบบ ═════════
    ผู้ใช้ 15/10 11:31–11:33: อยากกดออกโปสเตอร์ขายเฟอร์จากห้องออกแบบ แบบรูปตัวอย่าง
@@ -72932,7 +72995,8 @@ const SNAI=(function(){
   const goVis=el=>{ if(!el||!el.isConnected) return false; const r=el.getBoundingClientRect(); if(r.width<2||r.height<2) return false;
     try{ return getComputedStyle(el).visibility!=="hidden"; }catch(e){ return true; } };
   function goZ(el){ let z=0; for(let e=el;e&&e!==document.body&&e.nodeType===1;e=e.parentElement){ try{ const cs=getComputedStyle(e), v=parseInt(cs.zIndex,10); if(isFinite(v)&&cs.position!=="static") z=Math.max(z,v); }catch(_){} } return z; }
-  function goOpenDetails(el){ for(let d=el&&el.closest&&el.closest("details");d;d=d.parentElement&&d.parentElement.closest("details")){ if(!d.open){ d.open=true; try{ if(d.dataset&&d.dataset.g) plGrpSave(d.dataset.g,true); }catch(e){} } } }
+  function goOpenDetails(el){ try{ if(el&&el.closest){ const _t=$("plTop"); if(el.closest("#plRoomSec,#plGapSec,#plCsmSec")&&_t&&_t.classList.contains("plFocus")&&!PL.roomPeek){ PL.roomPeek=true; plFocusApply(); } if(el.closest("#plFoot")&&!snOff("plFootFold")) plFootFoldSet(true); } }catch(e){}   /* v1.655: ปุ่มที่ชี้อยู่ในส่วนที่ซ่อน = เปิดให้เห็นก่อน */
+    for(let d=el&&el.closest&&el.closest("details");d;d=d.parentElement&&d.parentElement.closest("details")){ if(!d.open){ d.open=true; try{ if(d.dataset&&d.dataset.g) plGrpSave(d.dataset.g,true); }catch(e){} } } }
   function boardScreen(b){ try{ const dom=renderer&&renderer.domElement, rc=dom&&dom.getBoundingClientRect(); if(!rc||!rc.width) return null;
       const m=(meshes||[]).find(x=>x&&x.id===b.id&&!x.groove), v=new THREE.Vector3(b.x,b.y,b.z); if(m&&m.mesh) m.mesh.getWorldPosition(v);
       v.project(camera); if(!(v.z<1)||!isFinite(v.x)) return {x:rc.left+rc.width/2,y:rc.top+rc.height/2};
