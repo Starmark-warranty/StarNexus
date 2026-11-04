@@ -3283,7 +3283,7 @@ body[data-theme="dark"] .splash-dots span{background:rgba(255,255,255,.25)}
    ===================================================================== */
 /* ---- APP_META: แหล่งความจริงเดียวของเวอร์ชัน (ดูได้จาก console / คลิกชื่อแอป) ---- */
 const APP_META={
-  name:"StarNexus", version:"1.665", build:"2026-11-04/wt-upT",
+  name:"StarNexus", version:"1.666", build:"2026-11-04/cat-lazy",
   file:"StarNexus.html", basedOn:"Furnitech_V3.html (v3.11)",
   /* ───────── เริ่มนับเวอร์ชันใหม่ที่ 1.001 (21/08/2026) ─────────
      ของเดิมนับมาถึง 42.1 แล้ววิ่งเป็นทศนิยมสองชั้นซึ่งอ่านลำดับยาก
@@ -3291,6 +3291,7 @@ const APP_META={
      ประวัติเก่าเก็บไว้ทั้งหมดตามเลขเดิม ไม่ไล่เขียนใหม่ เพราะเลขในนั้นถูกอ้างถึงไปแล้ว
      รายการที่อยู่ใต้ 1.001 ลงไปจึงเป็นเลขชุดเก่า อ่านต่อกันได้ตามวันที่ */
   changelog:[
+    ["1.666","2026-11-04","PERF แคตตาล็อกห้องออกแบบรองรับตู้หลักพันใบ (ผู้ใช้ 20:44 “ถ้าตู้สัก 2000 ใบ โหลดนาน” · 21:33 สั่งทำ) — ① FIX อ่านรายชื่อโฟลเดอร์ thumbs ซ้ำทุกรูป (445 ใบ = 445 รอบ · 2,000 ใบ แท็บดับก่อนเสร็จ) เหลือครั้งเดียว ② โหลดรูปเฉพาะใบที่เห็น เลิกแผ่นบังรอรูปครบของ v1.312 ใบที่ยังไม่ถึงคิวเป็นกรอบเทา ③ วาดการ์ดทีละ 60 ใบ เลื่อนถึงท้ายค่อยเพิ่ม · ช่องค้นหาหน่วง 0.15 วิ · ชื่อไทยพร้อม/เปลี่ยนขนาด ไม่วาดการ์ดใหม่ทั้งหมด · ปิด SN_OFF.plLazyThumb / plCardChunk"],
     ["1.665","2026-11-04","FEAT+UX ท็อปเคาน์เตอร์ (ผู้ใช้ 18:50 project 37) — ① บัวหินตั้งความหนาเองได้ แยกจากท็อป ช่องว่าง = เท่าท็อปตามเดิม ② ติ๊กบัวไว้แต่บัวไม่ขึ้นเพราะเคยเลือกแล้วกดลบออกหมด เดิมมีแค่ข้อความเล็กท้ายกลุ่ม ตอนนี้เตือนใต้ช่องบัวพร้อมปุ่มคืนเฉพาะบัว ผนังก็เหมือนกัน · ติ๊กบัวใหม่ตอนที่ตัดออกหมด = คืนให้เอง · ปิด SN_OFF.plWtUpT"],
     ["1.664","2026-11-04","FEAT ห้องออกแบบ · ผนังเหนือบัว (ผู้ใช้ 17:18 ภาพแผงท็อปกับผนังหิน) — เพิ่มตัวเลือก หิน (คนละแบบกับท็อป) ตั้งวัสดุ หนา สี ลาย ขนาดลาย และราคาทุนของผนังแยกจากท็อปได้ อัปโหลดรูปหินของผนังเองได้ · 3D ใบเสนอราคา แบบ และหน้ารวมวัสดุแยกตามผนัง · บัวหินยังใช้วัสดุเดียวกับท็อป งานเดิมไม่เปลี่ยน · ปิดตัวเลือก SN_OFF.plWtW2"],
     ["1.663","2026-11-04","FIX คาน DX (ผู้ใช้ 17:32 project 72) — แผ่นปิดข้างโดนบากตามคาน DX ของตู้ข้าง ๆ เพราะแผ่นหนาขึ้นตามผิวจนทับปลายคานแค่ 0.7 มม. ก็นับว่าคานพาดผ่าน · ตอนนี้แผ่นปิดข้างไม่โดนบากเลย และแผ่นข้างของตู้อื่นต้องโดนคานทับเกินครึ่งความหนาถึงจะบาก คานยาวข้ามหลายตู้ยังบากตู้ที่พาดผ่านเหมือนเดิม งานเดิมคืนแผ่นเรียบเองตอนเปิด · ปิด SN_OFF.dxCoverKeep"],
@@ -30190,6 +30191,8 @@ function boardRole(b){
      SN_OFF.frontEdge3D=1 ปิดเฉพาะแถบขอบหน้าตู้ใน 3D ค่ายังออกไฟล์ตามเดิม (v1.141)
      SN_OFF.chandle=1     ปิดการให้คานหน้าตู้ใช้สีหน้าบาน กลับไปใช้สีตู้ (v1.146)
      SN_OFF.dpRail=1      ปิดการใส่คานปิดรอยต่อจากคำสั่งปรับบาน (v1.148)
+     SN_OFF.plLazyThumb=1 แคตตาล็อกห้องออกแบบกลับไปรอรูปครบทุกใบ มีแผ่นบัง แบบ v1.312 (วาดการ์ดครบทุกใบด้วย) (v1.666)
+     SN_OFF.plCardChunk=1 วาดการ์ดแคตตาล็อกครบทุกใบทีเดียว ช่องค้นหาไม่หน่วง (รูปยังโหลดเฉพาะใบที่เห็น) (v1.666)
      SN_OFF.plWtUpT=1     บัวหินหนาเท่าท็อปเสมอ ไม่มีช่องหนาบัว (v1.665)
      SN_OFF.dxCoverKeep=1 แผ่นปิดข้างและแผ่นข้างตู้อื่นโดนบากตามคาน DX แม้ทับนิดเดียว แบบเดิม (v1.663)
      SN_OFF.dpRailKeep=1  คานปิดรอยต่อสร้างคืนทุกรอบแบบเดิม ไม่จำที่ลบ ไม่ดูคาน DX (v1.662)
@@ -37030,14 +37033,24 @@ function catPrice(code,W){
   return (e.unit==="m")?Math.round(+e.price*Math.max(+W||+e.mW||0,0)/1000):Math.round(+e.price);
 }
 /* ---------- รูปย่อ ---------- */
-let _thumbIdx=null, _thumbDir=null, _thumbUrl={}, _thumbR=null;
+let _thumbIdx=null, _thumbDir=null, _thumbUrl={}, _thumbR=null, _thumbIdxJob=null;
 function _thumbDirReset(){ const d=texImgDir(); if(d!==_thumbDir){ _thumbDir=d; _thumbIdx=null; _thumbUrl={}; } return d; }
+/* ───────── v1.666: อ่านรายชื่อโฟลเดอร์ thumbs ครั้งเดียว ─────────
+   ผู้ใช้ 4/11 20:44 (ภาพแคตตาล็อก 445 รุ่น): “ถ้าตู้สัก 2000 ใบ โหลดนาน”
+   เดิม: จำรายชื่อไว้ต่อเมื่ออ่านจบแล้ว แต่แคตตาล็อกขอรูปทุกใบพร้อมกันในรอบเดียว ทุกใบจึงเห็นว่ายังไม่มีรายชื่อ แล้วเริ่มอ่านเองหมด
+     445 ใบ = อ่าน 445 รอบ รวม 198,025 รายการ · 2,000 ใบ = 4 ล้านรายการ วัดแล้วแท็บดับก่อนเสร็จ · เปิดผ่าน Odoo แต่ละรอบคือคำขอ /asset/list หนึ่งครั้ง
+   แก้: ใครมาขอตอนกำลังอ่านอยู่ ให้รอรอบเดียวกัน · เปลี่ยนโฟลเดอร์ระหว่างอ่าน ผลรอบเก่าไม่ทับของใหม่ */
 async function _thumbIndex(){
   const d=_thumbDirReset(); if(!d) return {};
   if(_thumbIdx) return _thumbIdx;
-  const m={}; try{ const td=await d.getDirectoryHandle("thumbs");
-    for await (const [name,h] of td.entries()){ if(h&&h.kind==="file"&&/\.png$/i.test(name)) m[name.replace(/\.png$/i,"").toUpperCase()]=h; } }catch(e){}
-  return (_thumbIdx=m);
+  if(_thumbIdxJob&&_thumbIdxJob.d===d) return _thumbIdxJob.p;
+  const job={d,p:null}; _thumbIdxJob=job;
+  job.p=(async()=>{ const m={}; try{ const td=await d.getDirectoryHandle("thumbs");
+      for await (const [name,h] of td.entries()){ if(h&&h.kind==="file"&&/\.png$/i.test(name)) m[name.replace(/\.png$/i,"").toUpperCase()]=h; } }catch(e){}
+    if(_thumbDir===d) _thumbIdx=m;
+    if(_thumbIdxJob===job) _thumbIdxJob=null;
+    return m; })();
+  return job.p;
 }
 async function thumbUrl(code){
   const k=catKey(code); if(_thumbUrl[k]) return _thumbUrl[k];
@@ -41222,8 +41235,53 @@ function plGridWait(txt,done,tot){
   ov.querySelector(".gwTxt").textContent=txt;
   ov.querySelector(".gwBar").style.width=(tot>0?Math.round(done*100/tot):15)+"%";
 }
+/* ───────── v1.666: โหลดรูปตู้เฉพาะใบที่เห็น ─────────
+   เดิม (v1.312): บังแคตตาล็อกจนรูปครบทุกใบ เพราะการ์ดที่ขึ้นเป็นรหัสเปล่าดูเหมือนพร้อมแล้วทั้งที่ยังโหลด
+     ตู้หลักพันใบ อ่านรูปหลายพันไฟล์และถอดรหัสภาพครบก่อนใช้ได้ ทั้งที่จอเห็นแค่ราว 15 ใบ · วัดที่ 2,000 ใบ หลังแก้ _thumbIndex แล้วยังรอ 25 วิ จอค้าง 22 วิ · พิมพ์ค้นหา 1 ตัวรออีก 17 วิ
+   ตอนนี้: IntersectionObserver ดูเฉพาะการ์ดที่เข้าจอ (เผื่อ 300 px) อ่านพร้อมกันไม่เกิน 8 รูป · การ์ดที่เลื่อนผ่านไปก่อนถึงคิวไม่อ่าน
+     ใบที่ยังไม่ถึงคิวเป็นกรอบเทา ไม่แสดงรหัสในกรอบ (คงเจตนา v1.312 ว่าไม่ทำให้ดูเหมือนไม่มีรูป) · ไม่มีรูปจริงค่อยขึ้น “ยังไม่มีรูป”
+     รูปที่เคยอ่านแล้ว plCardHtml ใส่ src ให้เลย ไม่ต้องรอคิว
+   ปิด SN_OFF.plLazyThumb = ทางเดิมด้านล่าง */
+function plLazyOn(){ return !snOff("plLazyThumb")&&typeof IntersectionObserver!=="undefined"; }
+function plGridLazyStop(){ [PL._thIO,PL._moreIO].forEach(io=>{ if(io){ try{ io.disconnect(); }catch(e){} } }); PL._thIO=null; PL._moreIO=null; if(PL._thQ) PL._thQ.clear(); }
+function plGridThumbsLazy(grid){
+  plGridWait(null); plGridLazyStop();
+  const tok=PL.gridTok=(PL.gridTok||0)+1, Q=new Set(); PL._thQ=Q;
+  let act=0, io=null;
+  const load=async im=>{ if(!im.isConnected) return; let u="";
+    try{ u=await thumbUrl(im.dataset.code); }catch(e){}
+    if(tok!==PL.gridTok||!im.isConnected) return;
+    if(u){ im.decoding="async"; im.src=u; try{ await im.decode(); }catch(e){} if(!im.isConnected) return; }
+    const th=im.parentNode, n=th&&th.querySelector(".plNo"); if(th) th.classList.remove("plSk");
+    if(u){ im.style.display=""; if(n) n.remove(); }
+    else if(n) n.innerHTML=escapeHtml(im.dataset.code)+'<br><span style="font-size:10px;opacity:.8">ยังไม่มีรูป</span>'; };
+  const pump=()=>{ while(act<8&&Q.size){ const im=Q.values().next().value; Q.delete(im); if(im.parentNode&&io) io.unobserve(im.parentNode); act++;
+      load(im).catch(e=>console.warn("plThumb",e)).finally(()=>{ act--; pump(); }); } };
+  io=new IntersectionObserver(es=>{ es.forEach(e=>{ const im=e.target.querySelector("img[data-code]"); if(!im) return; if(e.isIntersecting) Q.add(im); else Q.delete(im); }); pump(); },{root:grid,rootMargin:"300px 0px"});
+  PL._thIO=io; plGridThumbsAdd(grid);
+}
+/* การ์ดที่เพิ่งเพิ่มเข้าแคตตาล็อก (เลื่อนเพิ่ม · เปลี่ยนขนาด) เข้าคิวรูปชุดเดียวกัน */
+function plGridThumbsAdd(root){ const io=PL._thIO; if(!io||!root) return; root.querySelectorAll(".plTh.plSk").forEach(th=>io.observe(th)); }
+/* ───────── v1.666: เลื่อนถึงท้ายค่อยวาดการ์ดเพิ่ม ─────────
+   เดิมวาดการ์ดทุกใบทีเดียว 2,000 ใบ = 20,000 ชิ้นบนหน้า 0.24 วิ ทุกครั้งที่พิมพ์ค้นหา/กดแท็บ
+   ตอนนี้วาดทีละ 60 ใบ ป้ายท้ายรายการเข้าใกล้จอ (600 px) ค่อยเพิ่ม · ปิด SN_OFF.plCardChunk */
+function plCardMoreTxt(n,tot){ return "แสดง "+n.toLocaleString()+" / "+tot.toLocaleString()+" รุ่น · เลื่อนลงเพื่อดูเพิ่ม"; }
+function plCardMoreWire(grid){ if(PL._moreIO){ try{ PL._moreIO.disconnect(); }catch(e){} PL._moreIO=null; }
+  const el=grid.querySelector(".plMore"); if(!el) return;
+  const io=new IntersectionObserver(es=>{ if(es.some(e=>e.isIntersecting)) plCardMore(); },{root:grid,rootMargin:"600px 0px"});
+  io.observe(el); PL._moreIO=io; }
+function plCardMore(){ const grid=$("plGrid"), el=grid&&grid.querySelector(".plMore"), list=PL.gridList; if(!el||!list) return;
+  const a=PL.gridN||0, b=Math.min(a+60,list.length), t=document.createElement("template");
+  t.innerHTML=list.slice(a,b).map((x,k)=>plCardHtml(x,a+k)).join("");
+  const nodes=[...t.content.children]; el.before(t.content); PL.gridN=b;
+  nodes.forEach(cd=>{ plCardWire(cd,list); plGridThumbsAdd(cd); });
+  if(b>=list.length){ el.remove(); if(PL._moreIO){ try{ PL._moreIO.disconnect(); }catch(e){} PL._moreIO=null; } return; }
+  el.textContent=plCardMoreTxt(b,list.length);
+  /* ป้ายยังอยู่ในระยะ (จอสูง/ลากแถบเลื่อนลงสุด) ตัวดูไม่แจ้งซ้ำเอง ต้องสั่งดูใหม่ ไม่งั้นรายการค้าง */
+  if(PL._moreIO){ PL._moreIO.unobserve(el); PL._moreIO.observe(el); } }
 /* โหลดรูปของการ์ดทั้งหมดในแคตตาล็อก แล้วค่อยเปิดให้กด */
 function plGridThumbs(grid){
+  if(plLazyOn()) return plGridThumbsLazy(grid);   // v1.666
   const ims=[...grid.querySelectorAll("img[data-code]")], tok=PL.gridTok=(PL.gridTok||0)+1, tot=ims.length;
   let done=0, shown=false;
   const upd=()=>{ if(tok!==PL.gridTok||PL.gwSkip===tok) return;
@@ -43628,6 +43686,7 @@ function plPanelOpen(){
     +".plCard:hover{border-color:var(--accent)}"
     +".plCard .plTh{height:96px;display:flex;align-items:center;justify-content:center;border-radius:7px;background:rgba(127,127,127,.08);overflow:hidden}"
     +".plCard .plTh img{max-width:100%;max-height:100%}"
+    +".plCard .plTh.plSk .plNo{visibility:hidden}"   /* v1.666: รูปยังไม่ถึงคิว = กรอบเทา ไม่ขึ้นรหัสในกรอบ */
     +".plCard b{font-size:12px}.plCard small{color:var(--ink-dim);font-size:10.5px;min-height:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}"
     +".plCard small.plThN{font-size:11px;line-height:1.25;white-space:normal;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical}.plCard>div:last-child{margin-top:auto}"   /* v1.642: ชื่อไทยตัดที่ 3 บรรทัด แถวขนาดชิดล่างการ์ด */
     +".plCard select{font-size:11px;padding:2px}"
@@ -43675,7 +43734,9 @@ function plPanelOpen(){
     plCatShow(plGrpOpen("cat",true),true); }
   const tip=document.createElement("div"); tip.id="plDragTip"; document.body.appendChild(tip);
   p.querySelector("#plClose").onclick=()=>plToggle(false);
-  cp.querySelector("#plQ").oninput=ev=>{ PL.q=ev.target.value; plPanelGrid(); };
+  /* v1.666: พิมพ์ติดกันวาดรอบเดียว (หน่วง 0.15 วิ) · ปิด SN_OFF.plCardChunk */
+  cp.querySelector("#plQ").oninput=ev=>{ PL.q=ev.target.value; clearTimeout(PL._qT); if(snOff("plCardChunk")){ plPanelGrid(); return; }
+    PL._qT=setTimeout(()=>{ PL._qT=0; try{ plPanelGrid(); }catch(e){ console.error("plQ:",e); } },150); };
   const ws=cp.querySelector("#plWall"); ws.onchange=()=>{ PL.wall=ws.value; };
   return p;
 }
@@ -43712,7 +43773,7 @@ function plCatShow(on,init){ const c=PL.cat, t=PL.catTab; if(!c) return; on=!!on
   document.body.classList.toggle("plCatOn",on);
   if(!init) plGrpSave("cat",on);
   try{ invalidate(); }catch(e){} }
-function plCatDrop(){ if(PL.cat){ PL.cat.remove(); PL.cat=null; } if(PL.catTab){ PL.catTab.remove(); PL.catTab=null; }
+function plCatDrop(){ try{ plGridLazyStop(); clearTimeout(PL._qT); PL.gridSig=null; PL.gridN=0; PL.gridList=null; }catch(e){}   /* v1.666 */ if(PL.cat){ PL.cat.remove(); PL.cat=null; } if(PL.catTab){ PL.catTab.remove(); PL.catTab=null; }
   document.body.classList.remove("plCatOn"); }
 function plPanelRoom(){
   const s=$("plRoomSec"); if(!s) return; const r=plRoom();
@@ -46025,13 +46086,50 @@ const CAB_TH_GZ="H4sIAAAAAAAC/+y9W28dx5U/+pz5FI3/eSGRLU5duvqSN5miLMXU5WzTjmdwXhi
 let cabThMap=null, cabThBusy=false;
 function cabThLoad(){ if(cabThMap||cabThBusy||snOff("cabTh")) return; if(typeof DecompressionStream==="undefined"){ cabThMap={}; return; } cabThBusy=true;
   (async()=>{ const u=Uint8Array.from(atob(CAB_TH_GZ),c=>c.charCodeAt(0)); const t=await new Response(new Blob([u]).stream().pipeThrough(new DecompressionStream("gzip"))).text();
-    const m={}; t.split("\n").forEach(l=>{ const i=l.indexOf("\t"); if(i>0) m[l.slice(0,i)]=l.slice(i+1); }); Object.assign(m,CAB_NAME_DEF); /* v1.646 */ cabThMap=m; try{ if(PL.items) plPanelGrid(); }catch(e){} })()
+    const m={}; t.split("\n").forEach(l=>{ const i=l.indexOf("\t"); if(i>0) m[l.slice(0,i)]=l.slice(i+1); }); Object.assign(m,CAB_NAME_DEF); /* v1.646 */ cabThMap=m; try{ if(PL.items) plCardNames(); }catch(e){} })()
     .catch(e=>{ console.error("cabTh:",e); cabThMap={}; }).finally(()=>{ cabThBusy=false; }); }
 function cabThName(code){ if(!cabThMap){ cabThLoad(); return ""; } const k=catKey(code); return cabThMap[k]||cabThMap[k.replace(/-NEW$/,"")]||""; }
+/* ───────── v1.666: แยกการ์ดใบเดียวออกจาก plPanelGrid ─────────
+   เดิมสร้าง/ผูกการ์ดรวดเดียวใน plPanelGrid แก้ใบเดียวหรือเติมทีหลังไม่ได้ ทุกอย่างต้องวาดใหม่ทั้งรายการ
+     รวมทั้งตอนชื่อไทยแตกเสร็จ ซึ่งเกิดหลังเริ่มโหลดรูป → รูปทุกใบถูกอ่าน 2 รอบ (445 ใบ = 890 ครั้ง)
+   ตอนนี้: plCardHtml / plCardWire ต่อใบ · ชื่อไทยพร้อม = เปลี่ยนแค่บรรทัดชื่อ (plCardNames) · เปลี่ยนขนาด = วาดใบนั้น (plCardRedraw)
+   ชื่อคลาส/ลำดับข้อมูลบนการ์ดเหมือนเดิม */
+function plCardSub(x){ const kn=(CAT_KINDS.find(k=>k[0]===x.kind)||["",""])[1], own=(x.name&&x.name!==kn)?x.name:"", th=own?"":cabThName(x.code);   // v1.642: ชื่อไทยใต้รหัส
+  return th?'<small class="plThN" title="'+escapeHtml(th)+'">'+escapeHtml(th)+'</small>':'<small>'+escapeHtml(own||kn)+'</small>'; }
+function plCardHtml(x,i){ const e=x.e||{}; const sz=catSizes(e.w,e.mW); const w0=PL.wsel[x.code]||(sz.indexOf(+e.mW)>=0?+e.mW:sz[0]||0);
+  const pr=w0?catPrice(x.code,w0):0;
+  if(x._rail) return '<div class="plCard" data-i="'+i+'"><div class="plTh">'+csmRailIcon(x._rail)+'</div>'   // v1.390: ราวแขวน (ไม่มีโมเดลในคลัง)
+    +'<b>'+escapeHtml(x.code)+'</b><small>'+escapeHtml(x.name)+'</small><div style="display:flex;gap:4px;align-items:center"><small>'+(x._rail==="c"?"ขนาดคงที่":"ยาวตามช่อง")+'</small></div></div>';
+  const lazy=plLazyOn(), u0=lazy?_thumbUrl[catKey(x.code)]:"";
+  return '<div class="plCard" data-i="'+i+'"><div class="plTh'+((lazy&&!u0)?' plSk':'')+'">'
+    +(u0?'<img data-code="'+escapeHtml(x.code)+'" alt="" src="'+escapeHtml(u0)+'">'
+      :'<img data-code="'+escapeHtml(x.code)+'" alt="" style="display:none"><span class="plNo" style="color:var(--ink-dim);font-size:11px">'+escapeHtml(x.code)+'</span>')+'</div>'
+    +'<b>'+escapeHtml(x.code)+'</b>'+plCardSub(x)
+    +'<div style="display:flex;gap:4px;align-items:center">'
+    +(sz.length>1?'<select data-ws="'+i+'">'+sz.map(v=>'<option'+(v===w0?" selected":"")+'>'+v+'</option>').join("")+'</select>'
+      :'<small>'+(w0?("กว้าง "+w0):"ขนาดโมเดล")+'</small>')
+    +'<small style="margin-left:auto;font-weight:700;color:var(--ink)">'+(pr>0?plMoney(pr):"")+'</small></div></div>'; }
+function plCardWire(cd,list){ const x=list[+cd.dataset.i];
+  try{ plCatDragWire(cd,x); }catch(e){ console.error("catDrag:",e); }          // v1.373: กดค้างลากลงจอ 3D
+  cd.onclick=async ev=>{ if(ev.target&&ev.target.tagName==="SELECT") return;
+    if(cd._dragged){ cd._dragged=0; return; }                                // v1.373: เพิ่งลากลงจอไปแล้ว ไม่วางซ้ำ
+    if(cd._busy) return; cd._busy=1; cd.style.opacity=.5;
+    try{ await plAdd(x.code, PL.wsel[x.code]||0); }catch(err){ console.error(err); toast("วางตู้ไม่ได้: "+(err.message||err)); }
+    finally{ cd._busy=0; cd.style.opacity=""; } };
+  const se=cd.querySelector("select[data-ws]");
+  if(se){ se.onclick=ev=>ev.stopPropagation();
+    se.onchange=()=>{ PL.wsel[x.code]=+se.value; if(plLazyOn()&&!snOff("plCardChunk")) plCardRedraw(cd,list); else plPanelGrid(); }; } }
+function plCardRedraw(cd,list){ const i=+cd.dataset.i, t=document.createElement("template"); t.innerHTML=plCardHtml(list[i],i); const n=t.content.firstElementChild; if(!n) return;
+  cd.replaceWith(n); plCardWire(n,list); plGridThumbsAdd(n); }
+/* ชื่อไทยแตกเสร็จทีหลัง: เปลี่ยนแค่บรรทัดชื่อ รูปที่กำลังโหลดไม่เริ่มใหม่ · มีคำค้นอยู่ = ต้องกรองใหม่ (ค้นด้วยชื่อไทยได้) */
+function plCardNames(){ if(!plLazyOn()||String(PL.q||"").trim()||!PL.gridList){ plPanelGrid(); return; }
+  if(PL.tab==="_room") return; const grid=$("plGrid"); if(!grid) return;
+  grid.querySelectorAll(".plCard[data-i]").forEach(cd=>{ const x=PL.gridList[+cd.dataset.i]; if(!x||x._rail) return;
+    const b=cd.querySelector(":scope>b"), sm=b&&b.nextElementSibling; if(sm&&sm.tagName==="SMALL") sm.outerHTML=plCardSub(x); }); }
 function plPanelGrid(){
   try{ cabThLoad(); }catch(e){}   // v1.642
   const tabs=$("plTabs"), grid=$("plGrid"); if(!tabs||!grid) return;
-  if(!snOff("plObj")&&PL.tab==="_room"){ try{ ploGrid(tabs,grid); }catch(e){ console.error("ploGrid:",e); } return; }   // v1.535: แท็บประตู/หน้าต่าง/บันได
+  if(!snOff("plObj")&&PL.tab==="_room"){ try{ plGridLazyStop(); PL.gridSig=null; ploGrid(tabs,grid); }catch(e){ console.error("ploGrid:",e); } return; }   // v1.535: แท็บประตู/หน้าต่าง/บันได · v1.666: หยุดคิวรูปตู้ กลับมา = เริ่มบนสุด
   if(!PL.items){ grid.innerHTML='<div style="grid-column:1/-1;color:var(--ink-dim)">กำลังอ่านคลังตู้…</div>'; try{ plGridWait("กำลังอ่านคลังตู้…",0,0); }catch(e){} return; }
   const have=new Set(PL.items.map(x=>x.kind));
   const ks=[["","ทั้งหมด"]].concat(CAT_KINDS.filter(k=>have.has(k[0]))).concat(snOff("plObj")?[]:[["_room",PLO_TAB]]);   // v1.535
@@ -46041,29 +46139,19 @@ function plPanelGrid(){
   const q=String(PL.q||"").trim().toUpperCase();
   const list=PL.items.filter(x=>(!PL.tab||x.kind===PL.tab)&&(!q||x.code.indexOf(q)>=0||String(x.name).toUpperCase().indexOf(q)>=0||cabThName(x.code).toUpperCase().indexOf(q)>=0));   // v1.642: ค้นด้วยชื่อไทยได้
   { const cn=$("plCatN"); if(cn) cn.textContent=(list.length!==PL.items.length?(list.length+" / "+PL.items.length):list.length)+" รุ่น"; }   // v1.367: หัวแผงแคตตาล็อกขวา
+  /* v1.666: วาดทีละ 60 ใบ · ตัวกรองเดิม (ของในห้องเปลี่ยน · ลบรุ่น ฯลฯ) = คงจำนวนที่เลื่อนมาแล้วกับตำแหน่งเลื่อน · ตัวกรองใหม่ = เริ่มบนสุด */
+  const chunk=plLazyOn()&&!snOff("plCardChunk"), sig=(PL.tab||"")+"\u0001"+q, same=PL.gridSig===sig, st0=grid.scrollTop;
+  const n=chunk?Math.min(same?Math.max(PL.gridN||0,60):60,list.length):list.length;
+  try{ _thumbDirReset(); }catch(e){}                                           // รูปที่จำไว้ต้องเป็นของโฟลเดอร์ปัจจุบัน
+  PL.gridSig=sig; PL.gridList=list; PL.gridN=n;
   grid.innerHTML=(PL.itemsSrc==="all"?'<div style="grid-column:1/-1;color:var(--ink-dim);font-size:11px">ยังไม่ได้ติ๊ก "ขึ้นในห้องออกแบบ" ในแคตตาล็อก — แสดงทุกรุ่นในคลังไปก่อน</div>':'')
     +(list.length?"":'<div style="grid-column:1/-1;color:var(--ink-dim)">ไม่มีรุ่นในหมวดนี้</div>')
-    +list.map((x,i)=>{ const e=x.e||{}; const sz=catSizes(e.w,e.mW); const w0=PL.wsel[x.code]||(sz.indexOf(+e.mW)>=0?+e.mW:sz[0]||0);
-      const pr=w0?catPrice(x.code,w0):0;
-      if(x._rail) return '<div class="plCard" data-i="'+i+'"><div class="plTh">'+csmRailIcon(x._rail)+'</div>'   // v1.390: ราวแขวน (ไม่มีโมเดลในคลัง)
-        +'<b>'+escapeHtml(x.code)+'</b><small>'+escapeHtml(x.name)+'</small><div style="display:flex;gap:4px;align-items:center"><small>'+(x._rail==="c"?"ขนาดคงที่":"ยาวตามช่อง")+'</small></div></div>';
-      return '<div class="plCard" data-i="'+i+'"><div class="plTh"><img data-code="'+escapeHtml(x.code)+'" alt="" style="display:none"><span class="plNo" style="color:var(--ink-dim);font-size:11px">'+escapeHtml(x.code)+'</span></div>'
-        +'<b>'+escapeHtml(x.code)+'</b>'+(()=>{ const kn=(CAT_KINDS.find(k=>k[0]===x.kind)||["",""])[1], own=(x.name&&x.name!==kn)?x.name:"", th=own?"":cabThName(x.code);   // v1.642: ชื่อไทยใต้รหัส
-          return th?'<small class="plThN" title="'+escapeHtml(th)+'">'+escapeHtml(th)+'</small>':'<small>'+escapeHtml(own||kn)+'</small>'; })()
-        +'<div style="display:flex;gap:4px;align-items:center">'
-        +(sz.length>1?'<select data-ws="'+i+'">'+sz.map(v=>'<option'+(v===w0?" selected":"")+'>'+v+'</option>').join("")+'</select>'
-          :'<small>'+(w0?("กว้าง "+w0):"ขนาดโมเดล")+'</small>')
-        +'<small style="margin-left:auto;font-weight:700;color:var(--ink)">'+(pr>0?plMoney(pr):"")+'</small></div></div>'; }).join("");
-  grid.querySelectorAll(".plCard").forEach(cd=>{ const x=list[+cd.dataset.i];
-    try{ plCatDragWire(cd,x); }catch(e){ console.error("catDrag:",e); }          // v1.373: กดค้างลากลงจอ 3D
-    cd.onclick=async ev=>{ if(ev.target&&ev.target.tagName==="SELECT") return;
-      if(cd._dragged){ cd._dragged=0; return; }                                // v1.373: เพิ่งลากลงจอไปแล้ว ไม่วางซ้ำ
-      if(cd._busy) return; cd._busy=1; cd.style.opacity=.5;
-      try{ await plAdd(x.code, PL.wsel[x.code]||0); }catch(err){ console.error(err); toast("วางตู้ไม่ได้: "+(err.message||err)); }
-      finally{ cd._busy=0; cd.style.opacity=""; } }; });
-  grid.querySelectorAll("select[data-ws]").forEach(se=>{ se.onclick=ev=>ev.stopPropagation();
-    se.onchange=()=>{ const x=list[+se.dataset.ws]; PL.wsel[x.code]=+se.value; plPanelGrid(); }; });
-  plGridThumbs(grid);                                                         // v1.312: รอรูปให้ครบ (บังแคตตาล็อก + นับ x / y)
+    +list.slice(0,n).map((x,i)=>plCardHtml(x,i)).join("")
+    +(n<list.length?'<div class="plMore" style="grid-column:1/-1;text-align:center;color:var(--ink-dim);font-size:11px;padding:10px 0">'+plCardMoreTxt(n,list.length)+'</div>':'');
+  if(chunk) grid.scrollTop=same?st0:0;
+  grid.querySelectorAll(".plCard").forEach(cd=>plCardWire(cd,list));
+  plGridThumbs(grid);                                                         // v1.312: รอรูปให้ครบ (บังแคตตาล็อก + นับ x / y) · v1.666: โหลดเฉพาะใบที่เห็น
+  if(chunk) plCardMoreWire(grid);
 }
 /* ห้องครอบตู้ที่มีอยู่: หลังห้อง = หลังตู้ที่ลึกสุด · กว้าง/ลึกปัดขึ้นทีละ 100 */
 function plFitRoom(force){
