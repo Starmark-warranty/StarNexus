@@ -3283,7 +3283,7 @@ body[data-theme="dark"] .splash-dots span{background:rgba(255,255,255,.25)}
    ===================================================================== */
 /* ---- APP_META: แหล่งความจริงเดียวของเวอร์ชัน (ดูได้จาก console / คลิกชื่อแอป) ---- */
 const APP_META={
-  name:"StarNexus", version:"1.677", build:"2026-11-05/part-ask",
+  name:"StarNexus", version:"1.678", build:"2026-11-05/cost-tab",
   file:"StarNexus.html", basedOn:"Furnitech_V3.html (v3.11)",
   /* ───────── เริ่มนับเวอร์ชันใหม่ที่ 1.001 (21/08/2026) ─────────
      ของเดิมนับมาถึง 42.1 แล้ววิ่งเป็นทศนิยมสองชั้นซึ่งอ่านลำดับยาก
@@ -3291,6 +3291,7 @@ const APP_META={
      ประวัติเก่าเก็บไว้ทั้งหมดตามเลขเดิม ไม่ไล่เขียนใหม่ เพราะเลขในนั้นถูกอ้างถึงไปแล้ว
      รายการที่อยู่ใต้ 1.001 ลงไปจึงเป็นเลขชุดเก่า อ่านต่อกันได้ตามวันที่ */
   changelog:[
+    ["1.678","2026-11-05","FEAT+CHANGE (ผู้ใช้ 10:19) ① ห้องที่บันทึกจัดหมวดได้ ซ้อนหมวดในหมวดได้ ลากห้องเข้าหมวดหรือกดปุ่ม 📁 · ② ปุ่มใบเสนอราคาเปลี่ยนเป็น 💰 ราคาต้นทุน เอายืนราคาออก เพิ่ม DL % และ OH % (คิดจากค่าวัสดุ · ราคาขาย = ต้นทุนรวม + กำไร %) ③ PDF เหลือแบบสำหรับวางงาน ไม่มีรายการตู้ ราคา ยอดรวม เงื่อนไขชำระเงิน และช่องลงนาม ④ แท็บราคาต้นทุนกดดูรายตู้ได้: วัสดุ · ผิว (บอกบน/ล่าง) · ขอบ · อุปกรณ์ พร้อมราคา ⑤ อุปกรณ์/ชิ้นที่ไม่อยู่กับตู้ แยกเป็นแถวของห้อง ไม่เฉลี่ยเข้าตู้แล้ว ⑥ แยกเป็น 2 แท็บ ราคาต้นทุน กับ แบบวางงาน · แบบ ภาพ และ PDF คิดเมื่อเปิดแท็บแบบครั้งแรก · ปิด SN_OFF.plRoomCat / plqNoPrice"],
     ["1.677","2026-11-05","FIX+FEAT ① เลข Part กระโดด (project 75 · LRT005-01 เป็น P13–15 · P19 · P22–24 · P83–87): กด Transfer หรือออก MPR แล้วถ้าออเดอร์เคยส่งเลขไปแล้วและมีตู้ที่แก้ จะถามให้เลือก 3 ทาง — เรียงใหม่เฉพาะตู้ที่แก้ (ทั้งใบเรียงติดกัน มีเลขว่างพอก็เติมเข้าไป ตู้อื่นเลขเดิม) · เจนใหม่ทั้งออเดอร์ · ใช้เลขเดิมที่ส่ง Production แล้ว · ไม่มีอะไรเปลี่ยนไม่ถาม เลือกเลขเดิมแล้วไม่ถามซ้ำ · กดออก MPR ครั้งแรกล็อกเลขด้วย (เดิมล็อกเฉพาะตอน Transfer) · มีปุ่มในหน้ารายการชิ้น · ปิด SN_OFF.pidAsk / pidLockMpr ② กดคานสีหน้าบานแล้วคาน DX ไม่ได้สี: ตัวเลือกนับเฉพาะคานปกติ ชิ้น DX Panel/Floor/Back/Top ไม่มี rule จึงตกหล่น · กล่องขึ้น “ตู้ใบนี้ยังไม่มี” · ตอนนี้นับคาน DX ด้วยทั้งชุด · ปิด SN_OFF.chandleDx"],
     ["1.676","2026-11-05","FIX ลากตู้เข้าหาแถว Cosimo ต้องเว้นเสาปลาย (เจอตอนเทียบผลของ 1.675): 1.675 เอาขาแผ่นไม้ออกจากของขวาง ตู้ที่ลากจากช่องกว้างจึงไปชิดหน้าช่อง 3947 ทับแนวเสา แล้วเสาปลายหายเงียบ ๆ เพราะนับว่าชนตู้ — ตอนนี้ลากแล้วหยุดที่ผิวเสา 3966 · กด Alt ค้างระหว่างลาก = ชิดช่องไม่มีเสาแบบเดิม · ป้ายบอกตอนลาก · ทำสำเนา/เปลี่ยนรุ่นไม่กระทบ"],
     ["1.675","2026-11-05","FIX+UX ลากตู้เข้าช่องในห้องออกแบบ (ผู้ใช้ 07:52 project 74 “ปรับโปรแกรมให้ ลากเข้าช่องง่ายๆ หน่อยครับ”: ลาก MWA021 กว้าง 1009.5 เข้าช่องระหว่างเสาปลาย Cosimo กับตู้ข้าง ๆ แล้วตู้ไม่ขยับเลย ค้างนอกห้อง) — ขาแผ่นไม้ Cosimo ไม่ขวางตู้ (ขาจัดตามช่องเอง · เดิมยื่นเลยเสาปลาย 4 ก็ปิดช่องทั้งช่อง) · ตู้พอดีช่องดูดเข้าเองเมื่อชี้ใกล้ ชนสองฝั่งชนะชนฝั่งเดียว นับผิวเสาปลายด้วย · ช่องแคบกว่าตู้ไม่เกิน 10 เข้าได้พร้อมบอกว่าทับเท่าไหร่ · ป้ายตอนลากบอกเหตุผลเมื่อเข้าไม่ได้ · SN_OFF.plSlotEasy"],
@@ -30321,6 +30322,8 @@ function boardRole(b){
      SN_OFF.frontEdge3D=1 ปิดเฉพาะแถบขอบหน้าตู้ใน 3D ค่ายังออกไฟล์ตามเดิม (v1.141)
      SN_OFF.chandle=1     ปิดการให้คานหน้าตู้ใช้สีหน้าบาน กลับไปใช้สีตู้ (v1.146)
      SN_OFF.chandleDx=1   คาน DX ไม่รับสีคานหน้าตู้ ใช้สีตู้แบบเดิม (v1.677)
+     SN_OFF.plRoomCat=1   รายการห้องที่บันทึกไม่มีหมวด แบบเดิม (v1.678)
+     SN_OFF.plqNoPrice=1  PDF กลับเป็นใบเสนอราคามีราคา · อุปกรณ์นอกตู้เฉลี่ยเข้าตู้แบบเดิม (v1.678)
      SN_OFF.pidAsk=1      กด Transfer/ออก MPR แล้วไม่ถามเรื่องเลข Part ใช้เลขเดิมต่อท้ายแบบเดิม (v1.677)
      SN_OFF.pidLockMpr=1  ออก MPR แล้วไม่ล็อกเลข Part ล็อกเฉพาะตอน Transfer แบบเดิม (v1.677)
      SN_OFF.dpRail=1      ปิดการใส่คานปิดรอยต่อจากคำสั่งปรับบาน (v1.148)
@@ -33072,7 +33075,7 @@ const ELEM_FORM={
              ["__h","Part List Information"],
              ["itemId","Purchase Item ID — ของชิ้นเดียวกันที่มีหลายรหัสในคลัง (รหัสเก่า/รหัสใหม่ ที่ยังใช้อยู่ทั้งคู่) ใส่ได้หลายรหัสคั่นด้วย , เช่น 414LT0000007,TPP0000083 · เวลาหาท่อนตามความยาว ระบบไล่ถามทีละรหัสตามลำดับที่พิมพ์ จนเจอความยาวนั้น เจอที่รหัสไหนก็ใช้ของรหัสนั้น · ยังเป็นของชิ้นเดียวและออกบรรทัดเดียวเสมอ ไม่ใช่ของคนละตัว (ของคนละตัวให้ผูกเป็นลูกข้างล่างแทน)"],
              ["supplier","Supplier"],["notes","Notes"],
-             ["__h","รูปวัสดุจริง (รูปจากซัพพลายเออร์) — แสดงในหน้ารวมวัสดุของใบเสนอราคา"],["__fitImg","__fitImg"],   /* v1.633 */
+             ["__h","รูปวัสดุจริง (รูปจากซัพพลายเออร์) — แสดงในหน้ารวมวัสดุของแบบวางงาน"],["__fitImg","__fitImg"],   /* v1.633 */
              ["__h","โมเดล 3D (Fitting Studio) — ใช้กับขาตู้/วางอุปกรณ์ · รหัสเดียวกับ Element นี้"],
              ["__fit3d","__fit3d"],
              ["__h","🪵 ตัวยึดไม้เพาะโครง (เหล็กตัว T) — ใส่เฉพาะ Element ที่เป็นตัวยึด"],
@@ -33896,7 +33899,7 @@ function renderElements(){
       paintF(); form.appendChild(fld); return; }
     if(f[0]==="__doorName"){ const cd=String(cur.code||"").trim(); if(snOff("dwgDoorName")||!/^[A-Za-z][^_\s]*$/.test(cd)) return;   /* รหัสแบบ 0000_Mat16 ไม่ใช่แบบบาน */
       const K=cd.toUpperCase();
-      fld.innerHTML='<label>ชื่อรุ่นแบบบาน — แสดงใต้รหัสในใบเสนอราคา (เช่น รุ่น Luciana)</label><input class="nameinp emDoorName" value="'+escapeHtml(String(dwgDoorNames()[K]||""))+'" placeholder="เว้นว่าง = ไม่แสดง" style="width:100%">';
+      fld.innerHTML='<label>ชื่อรุ่นแบบบาน — แสดงใต้รหัสในแบบวางงาน (เช่น รุ่น Luciana)</label><input class="nameinp emDoorName" value="'+escapeHtml(String(dwgDoorNames()[K]||""))+'" placeholder="เว้นว่าง = ไม่แสดง" style="width:100%">';
       fld.querySelector(".emDoorName").onchange=async ev=>{ const v=ev.target.value.trim(), M=dwgDoorNames(); if(v) M[K]=v; else delete M[K]; try{ await catSaveSettings(); }catch(err){ console.error(err); } };
       form.appendChild(fld); return; }
     if(f[0]==="__fit3d"){
@@ -40438,8 +40441,8 @@ function plaPanel(s,o){ const T=PLO_T[o.k]||{}, F=ploFrameOf(o), md=T.appl;
     +'<div class="plRow plBtns" style="margin-top:8px">'+(md!=="wall"?'<button class="ibtn" id="ploRot">⟳ หมุน (R)</button>':'')
       +'<button class="ibtn" id="plaSave" title="เก็บชื่อ รหัส ขนาด เป็นรุ่น — ขึ้นเป็นการ์ดในแคตตาล็อก ใช้ได้ทุกเครื่อง">💾 บันทึกเป็นรุ่น</button>'
       +(cur?'<button class="ibtn" id="plaDelM" title="เอารุ่นนี้ออกจากรายการรุ่น (ชิ้นที่วางแล้วยังอยู่)">✕ ลบรุ่นจากรายการ</button>':'')
-      +'<button class="ibtn" id="ploHide" title="ซ่อนชิ้นนี้ — ไม่วาดในห้อง/ภาพ/ใบเสนอราคา · แสดงคืนที่แผงห้อง (แถบ ซ่อนอยู่)">🙈 ซ่อน</button><button class="ibtn" id="ploDel" style="color:#d33">🗑 ลบ (Del)</button><button class="ibtn" id="ploDone">✓ เสร็จ</button></div>'
-    +'<div class="plNote" style="margin-top:4px">'+(T.niche&&!snOff("plaNiche")?"ชี้ช่องโล่งในตู้ (ไม่มีบานบัง) = วางในช่อง · ":"")+({top:"ลากไปชี้ท็อป/ตู้พื้น — หันตามตู้ ใกล้กลางตู้ดูดเข้ากลาง",under:"ลากไปชี้ตู้ลอย (ตู้ฮู้ด) — ติดก้นตู้ กลางตู้",cab:"ลากไปชี้ตู้ — หน้าเสมอหน้าบาน กลางตู้",wall:T.prop?"ลากไปชี้ผนัง":"ลากไปชี้ผนัง — ปล่องขึ้นถึงฝ้า",floor:"ลากบนพื้น · R หมุน"}[md]||"")+' · ภาพอย่างเดียว ไม่เข้าใบตัด/ใบเสนอราคา</div>';
+      +'<button class="ibtn" id="ploHide" title="ซ่อนชิ้นนี้ — ไม่วาดในห้อง/ภาพ/แบบวางงาน · แสดงคืนที่แผงห้อง (แถบ ซ่อนอยู่)">🙈 ซ่อน</button><button class="ibtn" id="ploDel" style="color:#d33">🗑 ลบ (Del)</button><button class="ibtn" id="ploDone">✓ เสร็จ</button></div>'
+    +'<div class="plNote" style="margin-top:4px">'+(T.niche&&!snOff("plaNiche")?"ชี้ช่องโล่งในตู้ (ไม่มีบานบัง) = วางในช่อง · ":"")+({top:"ลากไปชี้ท็อป/ตู้พื้น — หันตามตู้ ใกล้กลางตู้ดูดเข้ากลาง",under:"ลากไปชี้ตู้ลอย (ตู้ฮู้ด) — ติดก้นตู้ กลางตู้",cab:"ลากไปชี้ตู้ — หน้าเสมอหน้าบาน กลางตู้",wall:T.prop?"ลากไปชี้ผนัง":"ลากไปชี้ผนัง — ปล่องขึ้นถึงฝ้า",floor:"ลากบนพื้น · R หมุน"}[md]||"")+' · ภาพอย่างเดียว ไม่เข้าใบตัด/ราคาต้นทุน</div>';
   s.innerHTML=h;
   s.querySelectorAll("[data-pok]").forEach(inp=>inp.onchange=()=>{ const k=inp.dataset.pok; if(ploLocked()){ plPanelSel(); return; }
     if(k==="mdl"){ if(inp.value) plaUseModel(o,inp.value); else { o.w=T.w; o.h=T.h; o.d=T.d; delete o.mdl; o.code=""; } plaResnap(o); }
@@ -40839,7 +40842,7 @@ function ploPanel(s){ const o=ploGet(PLO.sel); if(!o){ PLO.sel=null; return; } i
     +(door?fr("เปิด",'<select data-pok="swing"><option value="in"'+(o.swing!=="out"?" selected":"")+'>เข้าห้อง</option><option value="out"'+(o.swing==="out"?" selected":"")+'>ออกนอกห้อง</option></select>'):"")
     +(F?(!snOff("plTwoSide")?ploSideRows(o,F,fr,num,true):fr("ห่างต้นผนัง",num("off",(+o.t||0)-o.w/2,10)+'<span class="plNote plNB">ผนังยาว '+Math.round(F.L)+' · ห่างปลาย '+Math.round(F.L-(+o.t||0)-o.w/2)+'</span>',"ระยะจากต้นช่วงผนังถึงขอบชิ้น")):"")   /* v1.656 */
     +'<div class="plRow plBtns" style="margin-top:8px">'+((stair||hg)?'<button class="ibtn" id="ploRot">'+(stair?'⟳ หมุน 90°':'⇋ สลับบานพับ')+' (R)</button>':'')
-      +'<button class="ibtn" id="ploHide" title="ซ่อนชิ้นนี้ — ไม่วาดในห้อง/ภาพ/ใบเสนอราคา · แสดงคืนที่แผงห้อง (แถบ ซ่อนอยู่)">🙈 ซ่อน</button><button class="ibtn" id="ploDel" style="color:#d33">🗑 ลบ (Del)</button><button class="ibtn" id="ploDone">✓ เสร็จ</button></div>';
+      +'<button class="ibtn" id="ploHide" title="ซ่อนชิ้นนี้ — ไม่วาดในห้อง/ภาพ/แบบวางงาน · แสดงคืนที่แผงห้อง (แถบ ซ่อนอยู่)">🙈 ซ่อน</button><button class="ibtn" id="ploDel" style="color:#d33">🗑 ลบ (Del)</button><button class="ibtn" id="ploDone">✓ เสร็จ</button></div>';
   s.innerHTML=h;
   s.querySelectorAll("[data-pok]").forEach(inp=>inp.onchange=()=>{ const k=inp.dataset.pok; if(ploLocked()){ plPanelSel(); return; }
     if(k==="hinge"||k==="swing") o[k]=inp.value;
@@ -40921,7 +40924,7 @@ function ploColPanel(s,o){ const r=plRoom(), D=ploColDist(o), ref=PLO_REF[o.ref]
     +fr("ห่างผนัง"+nm[kx],num("dx",D[kx],10),"ผิวผนัง"+nm[kx]+"ถึงผิวเสา")
     +fr("ห่างผนัง"+nm[kz],num("dz",D[kz],10),"ผิวผนัง"+nm[kz]+"ถึงผิวเสา")
     +'<div class="plNote" style="margin-top:4px">ระยะจากผิวผนังถึงผิวเสา · อีกฝั่ง: ห่างผนัง'+nm[kx==="L"?"R":"L"]+' '+f(D[kx==="L"?"R":"L"])+' · ห่างผนัง'+nm[kz==="B"?"F":"B"]+' '+f(D[kz==="B"?"F":"B"])+'</div>'
-    +'<div class="plRow plBtns" style="margin-top:8px"><button class="ibtn" id="ploRot">⟳ หมุน 90° (R)</button><button class="ibtn" id="ploHide" title="ซ่อนชิ้นนี้ — ไม่วาดในห้อง/ภาพ/ใบเสนอราคา · แสดงคืนที่แผงห้อง (แถบ ซ่อนอยู่)">🙈 ซ่อน</button><button class="ibtn" id="ploDel" style="color:#d33">🗑 ลบ (Del)</button><button class="ibtn" id="ploDone">✓ เสร็จ</button></div>';
+    +'<div class="plRow plBtns" style="margin-top:8px"><button class="ibtn" id="ploRot">⟳ หมุน 90° (R)</button><button class="ibtn" id="ploHide" title="ซ่อนชิ้นนี้ — ไม่วาดในห้อง/ภาพ/แบบวางงาน · แสดงคืนที่แผงห้อง (แถบ ซ่อนอยู่)">🙈 ซ่อน</button><button class="ibtn" id="ploDel" style="color:#d33">🗑 ลบ (Del)</button><button class="ibtn" id="ploDone">✓ เสร็จ</button></div>';
   s.querySelectorAll("[data-pok]").forEach(inp=>inp.onchange=()=>{ const k=inp.dataset.pok; if(ploLocked()){ plPanelSel(); return; }
     const D0=ploColDist(o);
     if(k==="ref"){ if(PLO_REF[inp.value]) o.ref=inp.value; }
@@ -41075,7 +41078,7 @@ function ploUtilPanel(s,o){ const T=PLO_T[o.k]||{}, F=ploFrameOf(o), r=plRoom(),
   else h+=fr("วัดจากมุม",'<select data-pok="ref">'+Object.keys(PLO_REF).map(k=>'<option value="'+k+'"'+(k===ref?" selected":"")+'>'+PLO_REF[k]+'</option>').join("")+'</select>')
       +fr("ศูนย์ห่างผนัง"+nm[kx],num("dx",D[kx],10))+fr("ศูนย์ห่างผนัง"+nm[kz],num("dz",D[kz],10));
   h+='<div class="plRow plBtns" style="margin-top:8px"><button class="ibtn" id="ploMnt">'+(F?'⬇ ย้ายขึ้นจากพื้น':'⬆ ติดผนังใกล้สุด')+'</button>'
-    +'<button class="ibtn" id="ploHide" title="ซ่อนชิ้นนี้ — ไม่วาดในห้อง/ภาพ/ใบเสนอราคา · แสดงคืนที่แผงห้อง (แถบ ซ่อนอยู่)">🙈 ซ่อน</button><button class="ibtn" id="ploDel" style="color:#d33">🗑 ลบ (Del)</button><button class="ibtn" id="ploDone">✓ เสร็จ</button></div>';
+    +'<button class="ibtn" id="ploHide" title="ซ่อนชิ้นนี้ — ไม่วาดในห้อง/ภาพ/แบบวางงาน · แสดงคืนที่แผงห้อง (แถบ ซ่อนอยู่)">🙈 ซ่อน</button><button class="ibtn" id="ploDel" style="color:#d33">🗑 ลบ (Del)</button><button class="ibtn" id="ploDone">✓ เสร็จ</button></div>';
   s.innerHTML=h;
   s.querySelectorAll("[data-pok]").forEach(inp=>inp.onchange=()=>{ const k=inp.dataset.pok; if(ploLocked()){ plPanelSel(); return; }
     if(k==="ref"){ if(PLO_REF[inp.value]) o.ref=inp.value; }
@@ -42584,7 +42587,7 @@ function plCss655(){ if(document.getElementById("plCSS655")) return; const st=do
   document.head.appendChild(st); }
 function plFootFoldSet(open){ const s=$("plFoot"); if(!s) return; plGrpSave("__foot",!!open); s.classList.toggle("plFootOff",!open); const b=s.querySelector(":scope>.plFoldBar"); if(b) plFootFoldBar(b,!!open); }
 function plFootFoldBar(b,open){ let p={n:0,sum:0}; try{ p=plPrice(); }catch(e){}
-  b.title=open?"พับแถบนี้ลงล่าง ให้แผงด้านบนมีที่มากขึ้น":"แสดงราคา ปุ่มใบเสนอราคา AI RENDER โหมดสมจริง บันทึกภาพ";
+  b.title=open?"พับแถบนี้ลงล่าง ให้แผงด้านบนมีที่มากขึ้น":"แสดงราคา ปุ่มราคาต้นทุน AI RENDER โหมดสมจริง บันทึกภาพ";
   b.setAttribute("aria-expanded",open?"true":"false");
   b.innerHTML=open?'▾ พับแถบนี้':('<span>ตู้ในห้อง <b>'+p.n+'</b> ใบ</span><span>ราคาขาย <b>'+plMoney(p.sum)+'</b></span><span>▴</span>'); }
 function plFootFold(s){ if(!s) return; if(snOff("plFootFold")){ s.classList.remove("plFootOff"); return; } plCss655();
@@ -42781,7 +42784,7 @@ function plWtGrpHtml531(grp){
 function plPopX531(rc){ const P=PL&&PL.panel; return ((P&&!snOff("plTidy"))?Math.max(rc.right,P.getBoundingClientRect().right):rc.right)+10; }
 /* แถบล่างส่วนบน: ตู้ในห้อง + ราคาขาย · ปุ่ม (ใบเสนอราคา / Blender / สมจริง / บันทึกภาพ) ตาราง 2 คอลัมน์ — เงื่อนไขเดียวกับ plPanelFoot เดิม */
 function plFootTop531(p){ const B=[];
-  if(!VIEW_ONLY){ if(!snOff("plQuote")) B.push('<button class="ibtn" id="plQuoteBtn" title="ใบเสนอราคา A4 — ราคาตั้งต้นจากต้นทุนตู้ + กำไร % ของเซลล์ · พิมพ์ / บันทึก PDF">🧾 ใบเสนอราคา</button>');
+  if(!VIEW_ONLY){ if(!snOff("plQuote")) B.push('<button class="ibtn" id="plQuoteBtn" title="ราคาต้นทุนรายตู้ (วัสดุ ผิว ขอบ อุปกรณ์ + DL OH) · แบบสำหรับวางงาน PDF ไม่มีราคา">💰 ราคาต้นทุน</button>');
     else if(!snOff("plPoster")) B.push('<button class="ibtn" id="plPosterBtn" title="ภาพห้อง 3D + รายการตู้ ขนาด ราคา + แปลน → PNG">🖼 โปสเตอร์ขาย</button>'); }
   if(!VIEW_ONLY&&realCanUse()&&!snOff("plRender")) B.push('<button class="ibtn" id="plRendBtn" title="ส่งภาพฉาก 🎬 ที่เลือกให้ AI (Gemini) แต่งเป็นภาพสมจริงทันที — หรือเลือกเรนเดอร์แสงจริงในเครื่อง">'+(typeof rndLbl==="function"?rndLbl():"🎬 Render")+'</button>');   /* v1.562: แทน 🧊 ส่งออก Blender (ผู้ใช้ “เอาออกเลย”) */
   else if(!snOff("glbExport")) B.push('<button class="ibtn" id="plGlbBtn" title="ห้อง + ตู้ทั้งหมดเป็นไฟล์ 3D (.glb) — เปิดใน Blender แล้วเรนเดอร์เหมือนจริงได้ฟรี">🧊 ส่งออก Blender</button>');
@@ -43708,11 +43711,12 @@ function costItems(boards,fitRows){
       if(!key||key[0]==="$") R.unres++;
       else if(a>0){ const e=elemByCode(code); add(R.mat,key,{code,name:String((e&&elemDesc(e))||code),unit:"ตร.ม.",T:+th||0},a); }
       /* v1.441: ผิวบน + ผิวล่าง — รหัสเดียวกับตอนส่งออก (SURFACE_TOP / SURFACE_BOTTOM) · ด้านละเต็มพื้นที่ */
-      if(a>0) [el.surfT,el.surfB].forEach(lk=>{ const raw=String(lk==null?"":lk).trim(); if(!raw||/^no\s*surf/i.test(raw)) return;
+      if(a>0) [el.surfT,el.surfB].forEach((lk,_si)=>{ const raw=String(lk==null?"":lk).trim(); if(!raw||/^no\s*surf/i.test(raw)) return;   /* v1.678: _si = 0 ผิวบน · 1 ผิวล่าง */
         let sc="", sp=""; try{ sc=String(resolveLink(lk,b)||"").trim(); }catch(e){} try{ sp=String(resolveOut(lk,b)||"").trim(); }catch(e){}
         const sk=sp||sc; if(!sk||sk[0]==="$"){ R.unres++; return; } if(/^k?_?no_?surf/i.test(sk)) return;
         if(costSkipSurf(sc,sp)) return;   /* v1.630: FRAMEALU */
-        const se=elemByCode(sc); add(R.surf,sk,{code:sc||sk,name:String((se&&elemDesc(se))||sc||sk),unit:"ตร.ม."},a); });
+        const se=elemByCode(sc); add(R.surf,sk,{code:sc||sk,name:String((se&&elemDesc(se))||sc||sk),unit:"ตร.ม."},a);
+        { const _xs=R.surf.get(sk); if(_si) _xs.qB=(_xs.qB||0)+a; else _xs.qT=(_xs.qT||0)+a; } });   /* v1.678: หน้าราคาต้นทุนบอกว่าเป็นผิวบนหรือล่าง */
       edgeUsage(b).forEach(u=>{ const k=String(u.out||"").trim(); if(!k||k[0]==="$"){ R.unres++; return; }
         add(R.edge,k,{code:k,name:u.tag?("ขอบ "+u.tag):k,unit:"ม."},(+u.mm||0)/1000); });
     }catch(e){} });
@@ -44164,27 +44168,83 @@ function plRoomLibBar(){ if(snOff("plRoomLib")) return ""; const r=(typeof state
     +'<button class="ibtn" id="plrlOpen" title="รายการห้องที่บันทึกไว้ในไฟล์กลาง — ห้องที่มีตู้ เลือกได้ว่าเปิดห้อง + ตู้ (แทนฉาก เหมือนเปิดออเดอร์) หรือเฉพาะห้อง (ตู้ในฉากอยู่ที่เดิม)">📂 เปิดห้องที่บันทึก</button>'
     +'<button class="ibtn" id="plrlNew" title="ล้างตู้ทั้งหมดแต่เก็บห้องไว้ — เริ่มออเดอร์ใหม่ (เอาห้องนี้ไปปรับใช้บ้านหลังอื่น) หรือล้างแค่ตู้">🧹 ล้างตู้ · เก็บห้อง</button></div>'
     +(r.libName?('<div class="plNote" style="margin-top:3px">ห้องนี้มาจาก/บันทึกเป็น “'+escapeHtml(String(r.libName))+'”</div>'):''); }
+/* ═════════ v1.678: หมวดห้องที่บันทึก ซ้อนกันได้ ═════════
+   ผู้ใช้ 5/11/2026 10:19 (ภาพรายการห้องที่บันทึก): “ออกแบบ UI เพิ่มเติมคือ ให้จัด หมวดหมู่ ห้อง หรือ หมวด ได้ ครับ เช่น ห้องหมวดงาน Showroom CDC หรือที่อื่นๆ แยกหมวดในหมวดได้เพิ่มด้วย”
+   เดิม: ทุกห้องเรียงแถวเดียวตามวันที่ ห้องเยอะแล้วหายาก
+   ตอนนี้: หมวดเก็บแถวเดียวใน app_settings คีย์ plroomcats {v,list:[{id,name,pid}]} ทุกเครื่องเห็นเหมือนกัน · ห้องจำแค่ cat = id หมวด (เปลี่ยนชื่อ/ย้ายหมวดไม่ต้องเขียนห้องใหม่)
+     ห้องที่หมวดหายไป = ยังไม่จัดหมวด ห้องไม่หาย · ลบหมวด = ห้องและหมวดลูกขึ้นไปอยู่หมวดแม่ · ก่อนเขียนอ่านล่าสุดเสมอ กันทับหมวดที่เครื่องอื่นเพิ่งเพิ่ม
+     ปิด SN_OFF.plRoomCat=1 */
+const PLRC_KEY="plroomcats", PLRC={sel:""};   // sel: "" ทั้งหมด · "_none" ยังไม่จัดหมวด · หรือ id หมวด
+async function plRoomCatsRead(){ const db=await getDB(), res=await db.from("app_settings").select("key,value").eq("key",PLRC_KEY).maybeSingle(); if(res&&res.error) throw res.error;
+  let v=res&&res.data&&res.data.value; try{ if(typeof v==="string") v=JSON.parse(v); }catch(e){ v=null; }
+  const L=(v&&Array.isArray(v.list))?v.list.filter(x=>x&&x.id&&String(x.name||"").trim()):[], ids=new Set(L.map(x=>x.id));
+  L.forEach(x=>{ if(x.pid&&(!ids.has(x.pid)||x.pid===x.id)) x.pid=""; }); return L; }
+async function plRoomCatsWrite(list){ const db=await getDB(), res=await db.from("app_settings").upsert({key:PLRC_KEY,value:JSON.stringify({v:1,list})},{onConflict:"key"}); if(res&&res.error) throw res.error; return list; }
+function plRoomCatKids(list,pid){ return list.filter(x=>String(x.pid||"")===String(pid||"")).sort((a,b)=>String(a.name).localeCompare(String(b.name),"th")); }
+function plRoomCatDesc(list,id){ const out=new Set([id]); let more=true, g=0; while(more&&g++<30){ more=false; list.forEach(x=>{ if(x.pid&&out.has(x.pid)&&!out.has(x.id)){ out.add(x.id); more=true; } }); } return out; }
+function plRoomCatPath(list,id){ const out=[]; let c=list.find(x=>x.id===id), g=0; while(c&&g++<30){ out.unshift(c.name); c=c.pid?list.find(x=>x.id===c.pid):null; } return out.join(" › "); }
+function plRoomCatOpts(list,sel,skip,none){ const out=[], walk=(pid,d)=>plRoomCatKids(list,pid).forEach(c=>{ if(skip&&skip.has(c.id)) return; out.push('<option value="'+escapeHtml(c.id)+'"'+(c.id===sel?" selected":"")+'>'+"\u3000".repeat(d)+escapeHtml(c.name)+'</option>'); walk(c.id,d+1); }); walk("",0);
+  return '<option value=""'+(sel?"":" selected")+'>'+escapeHtml(none||"— ไม่จัดหมวด —")+'</option>'+out.join(""); }
+async function plRoomLibSetCat(x,id){ const db=await getDB(), val=Object.assign({},x); delete val.key; if(id) val.cat=id; else delete val.cat;
+  const res=await db.from("app_settings").upsert({key:x.key,value:JSON.stringify(val)},{onConflict:"key"}); if(res&&res.error) throw res.error;
+  if(id) x.cat=id; else delete x.cat;
+  try{ const r=state.room; if(r&&r.libName&&r.libName===x.name) r.libCat=id||""; }catch(e){} }
+function plRoomCatNew(pid){ return {id:"c"+Date.now().toString(36)+Math.random().toString(36).slice(2,6), name:"", pid:pid||""}; }
+async function plRoomCatAdd(m,pid){ const list0=m._cats||[], pn=pid?plRoomCatPath(list0,pid):"";
+  const nm=await dialog({title:pn?("หมวดย่อยใน “"+pn+"”"):"หมวดใหม่", input:true, value:"", placeholder:"เช่น Showroom CDC", ok:"สร้าง"});
+  const t=String(nm==null?"":nm).trim().replace(/\s+/g," ").slice(0,60); if(!t) return null;
+  const list=await plRoomCatsRead(), c=Object.assign(plRoomCatNew(pid),{name:t}); list.push(c); await plRoomCatsWrite(list); m._cats=list; return c; }
+async function plRoomCatEdit(m,id){ const list0=m._cats||[], c0=list0.find(x=>x.id===id); if(!c0) return false;
+  const nm=await dialog({title:"แก้หมวด “"+c0.name+"”", input:true, value:c0.name, ok:"บันทึก",
+    html:'<label style="display:block;font-size:12px;margin-bottom:6px">อยู่ใต้หมวด<select id="plrcPid" style="display:block;width:100%;margin-top:3px;font-size:13px;padding:5px 7px;border:1px solid var(--line);border-radius:7px">'+plRoomCatOpts(list0,c0.pid||"",plRoomCatDesc(list0,id),"— ชั้นบนสุด —")+'</select></label>'});
+  const pidEl=document.getElementById("plrcPid"), pid=(pidEl&&pidEl.value)||"", t=String(nm==null?"":nm).trim().replace(/\s+/g," ").slice(0,60); if(!t) return false;
+  const list=await plRoomCatsRead(), c=list.find(x=>x.id===id); if(!c) return false; c.name=t; c.pid=plRoomCatDesc(list,id).has(pid)?(c.pid||""):pid; await plRoomCatsWrite(list); m._cats=list; return true; }
+async function plRoomCatDel(m,id){ const list0=m._cats||[], c0=list0.find(x=>x.id===id); if(!c0) return false; const up=c0.pid||"", n=(m._list||[]).filter(x=>x.cat===id).length;
+  if(!(await dialog({title:"ลบหมวด “"+c0.name+"”?", ok:"ลบหมวด", html:'<div style="font-size:12.5px;line-height:1.6">ห้องไม่หาย'+(n?(' · ห้อง '+n+' รายการ'):'')+' และหมวดย่อย ย้ายขึ้นไปที่ '+escapeHtml(up?("“"+plRoomCatPath(list0,up)+"”"):"ยังไม่จัดหมวด/ชั้นบนสุด")+'</div>'}))) return false;
+  for(const x of (m._list||[]).filter(y=>y.cat===id)) await plRoomLibSetCat(x,up);
+  const list=(await plRoomCatsRead()).filter(x=>x.id!==id); list.forEach(x=>{ if(x.pid===id) x.pid=up; }); await plRoomCatsWrite(list); m._cats=list; if(m._cat===id){ m._cat=up; PLRC.sel=up; } return true; }
+async function plRoomLibMove(m,x){ let cats=m._cats||[];
+  const res=await dialog({title:"ย้าย “"+(x.name||"")+"” ไปหมวด", ok:"ย้าย", extra:{label:"＋ หมวดใหม่…",id:"new"},
+    html:'<select id="plrcMove" style="display:block;width:100%;font-size:13px;padding:6px 8px;border:1px solid var(--line);border-radius:7px">'+plRoomCatOpts(cats,x.cat||"")+'</select>'});
+  const el=document.getElementById("plrcMove"), sel=(el&&el.value)||""; if(!res) return false;
+  let id=sel; if(res==="new"){ const c=await plRoomCatAdd(m,sel); if(!c) return false; id=c.id; }
+  await plRoomLibSetCat(x,id); return true; }
+function plRoomLibTree(m){ const box=m.querySelector("#plrlTree"); if(!box) return; const list=m._cats||[], L=m._list||[], sel=m._cat||"", ids=new Set(list.map(c=>c.id)), count={}; let none=0;
+  m._shut=m._shut||new Set();
+  L.forEach(x=>{ if(x.cat&&ids.has(x.cat)){ let c=list.find(y=>y.id===x.cat), g=0; while(c&&g++<30){ count[c.id]=(count[c.id]||0)+1; c=c.pid?list.find(y=>y.id===c.pid):null; } } else none++; });
+  const row=(id,icon,nm,n,d,kids)=>'<div class="plrcRow'+(sel===id?' on':'')+'" data-cat="'+escapeHtml(id)+'" style="padding-left:'+(6+d*14)+'px"><span class="plrcX"'+(kids?(' data-tg="'+escapeHtml(id)+'">'+(m._shut.has(id)?'▸':'▾')):'>')+'</span><span class="plrcN" title="'+escapeHtml(nm)+'">'+icon+' '+escapeHtml(nm)+'</span><span class="plrcC">'+n+'</span></div>';
+  let h=row("","🗂","ทั้งหมด",L.length,0,false)+row("_none","📄","ยังไม่จัดหมวด",none,0,false);
+  const walk=(pid,d)=>plRoomCatKids(list,pid).forEach(c=>{ const ks=plRoomCatKids(list,c.id).length>0; h+=row(c.id,"📁",c.name,count[c.id]||0,d,ks); if(ks&&!m._shut.has(c.id)) walk(c.id,d+1); }); walk("",0);
+  box.innerHTML=h;
+  const isC=!!sel&&sel!=="_none"&&ids.has(sel), ed=m.querySelector("#plrcEdit"), dl=m.querySelector("#plrcDel"), nw=m.querySelector("#plrcNew");
+  if(ed) ed.disabled=!isC; if(dl) dl.disabled=!isC; if(nw) nw.textContent=isC?"＋ หมวดย่อย":"＋ หมวดใหม่"; }
 async function plRoomLibList(){ const db=await getDB(); const res=await db.from("app_settings").select("key,value").like("key",PLRL_PFX+"%"); if(res.error) throw res.error;
   return (res.data||[]).map(x=>{ let v=x&&x.value; try{ if(typeof v==="string") v=JSON.parse(v); }catch(e){ v=null; } return (v&&v.room)?Object.assign({key:x.key},v):null; })
     .filter(Boolean).sort((a,b)=>String(b.at||"").localeCompare(String(a.at||""))); }
 async function plRoomLibSave(){ if(snOff("plRoomLib")) return false; const r=plRoom();
   let def=r.libName||""; if(!def){ try{ const oe=$("exOrderId"); if(oe&&String(oe.value||"").trim()) def="ห้อง "+String(oe.value).trim(); }catch(e){} }
+  /* v1.678: เลือกหมวดตอนบันทึก · ห้องเดิมอยู่หมวดเดิม · ห้องใหม่ตามหมวดที่เปิดอยู่ */
+  const _catOn=!snOff("plRoomCat"); let _cats=[]; if(_catOn){ try{ _cats=await plRoomCatsRead(); }catch(e){ console.error("plRoomCat:",e); } }
+  const _catDef=(r.libCat&&_cats.some(c=>c.id===r.libCat))?r.libCat:((PLRC.sel&&PLRC.sel!=="_none"&&_cats.some(c=>c.id===PLRC.sel))?PLRC.sel:"");
   const nm0=await dialog({title:"💾 บันทึกห้อง — เอาไปใช้กับออเดอร์อื่นได้", input:true, value:def, placeholder:"ชื่อห้อง เช่น บ้านคุณเอ · ครัวชั้น 1", ok:"บันทึก",
-    html:'<div style="font-size:12px;line-height:1.6;color:var(--ink-dim)">'+escapeHtml(plRoomSum(r))+'<br>เก็บผนัง ประตู หน้าต่าง เสา ฝ้า ปลั๊ก/ท่อ สีผนัง/พื้น ขนาดห้อง และค่าห้อง (ขา ฟิลเลอร์ ไม้ไฟ …) · ลงไฟล์กลาง ทุกเครื่องเห็น</div>'+plRoomLibCabChk()});   /* v1.547: + ติ๊กเก็บตู้ */
+    html:'<div style="font-size:12px;line-height:1.6;color:var(--ink-dim)">'+escapeHtml(plRoomSum(r))+'<br>เก็บผนัง ประตู หน้าต่าง เสา ฝ้า ปลั๊ก/ท่อ สีผนัง/พื้น ขนาดห้อง และค่าห้อง (ขา ฟิลเลอร์ ไม้ไฟ …) · ลงไฟล์กลาง ทุกเครื่องเห็น</div>'+plRoomLibCabChk()+(_catOn?('<label style="display:block;font-size:12px;margin-top:6px">หมวด<select id="plrcSave" style="display:block;width:100%;margin-top:3px;font-size:13px;padding:5px 7px;border:1px solid var(--line);border-radius:7px">'+plRoomCatOpts(_cats,_catDef)+'</select></label>'):'')});   /* v1.547: + ติ๊กเก็บตู้ · v1.678: + หมวด */
   const withCab=plRoomLibCabOn();   /* v1.547: อ่านช่องติ๊กก่อนกล่องถามอันถัดไปจะเขียนทับ */
+  let catId=null; { const _ce=document.getElementById("plrcSave"); if(_catOn&&_ce&&_ce.isConnected) catId=_ce.value||""; }   /* v1.678 */
   if(nm0==null) return false; const nm=String(nm0).trim().replace(/\s+/g," ").slice(0,80); if(!nm){ toast("ใส่ชื่อห้องก่อน"); return false; }
   const key=PLRL_PFX+nm; let bz=null;   // v1.547: กล่องรอตอนเขียนห้อง + ตู้
   try{ const db=await getDB();
     const ex=await db.from("app_settings").select("key,value").eq("key",key).maybeSingle();   /* v1.620: + value */
     if(ex&&ex.data&&!(await dialog({title:"มีห้องชื่อ “"+nm+"” อยู่แล้ว — บันทึกทับ?", ok:"บันทึกทับ"}))) return false;
     try{ if(ex&&ex.data){ let ov=ex.data.value; if(typeof ov==="string") ov=JSON.parse(ov); if(ov&&ov.room) await plTrashAuto(ov,"ถูกบันทึกทับ"); } }catch(e){ console.error("roomTrash:",e); }   /* v1.620: ของเดิมไม่หาย */
-    const room=JSON.parse(JSON.stringify(r)); delete room.libName;
+    if(catId==null){ try{ let _ov=ex&&ex.data&&ex.data.value; if(typeof _ov==="string") _ov=JSON.parse(_ov); catId=(_ov&&_ov.cat)||""; }catch(e){ catId=""; } }   /* v1.678: ไม่มีช่องหมวด = คงหมวดเดิม */
+    const room=JSON.parse(JSON.stringify(r)); delete room.libName; delete room.libCat;
     const ord=withCab?plRoomLibOrd():null;   // v1.547: ก้อนเดียวกับ Save Order (ไม่รวม room — อยู่ที่ val.room แล้ว)
     const val={v:ord?2:1, name:nm, at:new Date().toISOString(), sum:plRoomSum(room)+(ord?(" · ตู้ "+ord.ncab+" ใบ"):""), room};
     if(ord){ val.ord=ord.data; val.ncab=ord.ncab; val.nb=ord.nb; }
+    if(catId) val.cat=catId;   /* v1.678 */
     try{ if(ord&&typeof busyOpen==="function"&&!snOff("saveBusy")){ bz=busyOpen("กำลังบันทึกห้อง “"+nm+"”"); bz.step("เขียนห้อง + ตู้ "+ord.ncab+" ใบ ("+ord.nb+" ชิ้น) ลงไฟล์กลาง…",45); await bz.tick(); } }catch(e){ bz=null; }
     const res=await db.from("app_settings").upsert({key, value:JSON.stringify(val)},{onConflict:"key"}); if(res&&res.error) throw res.error;
-    r.libName=nm; try{ autosave(); }catch(e){} try{ plPanelRoom(); }catch(e){}
+    r.libName=nm; r.libCat=catId||""; try{ autosave(); }catch(e){} try{ plPanelRoom(); }catch(e){}
     toast("💾 บันทึกห้อง “"+nm+"” แล้ว"+(ord?(" พร้อมตู้ "+ord.ncab+" ใบ"):"")+" — เปิดใช้ได้ที่ 📂 เปิดห้องที่บันทึก (ทุกเครื่องที่ใช้ไฟล์กลางเดียวกัน)"); return true; }
   catch(e){ console.error("plRoomLibSave:",e); toast("บันทึกห้องไม่สำเร็จ: "+((e&&e.message)||e)); return false; }
   finally{ try{ if(bz) bz.done(); }catch(e){} } }
@@ -44195,7 +44255,7 @@ async function plRoomLibLoad(x){ if(!x||!x.room) return false; if(ploLocked()) r
   if(plRoomLibHasCab(x)){ const ch=await plRoomLibAsk(x,nCab); if(!ch) return false; if(ch!=="room") return await plRoomLibLoadAll(x); _asked=true; }
   if(!_asked&&plRoomHas()&&!(await dialog({title:"เปิดห้อง “"+(x.name||"")+"” แทนห้องตอนนี้?", ok:"เปิดใช้",
       html:'<div style="font-size:12.5px;line-height:1.6">ห้องตอนนี้ (ผนัง ประตู หน้าต่าง …) ถูกแทนทั้งหมด'+(nCab?(' · ตู้ในฉาก '+nCab+' ใบอยู่ที่เดิม (อาจต้องลากเข้าผนังใหม่)'):'')+'<br><span style="opacity:.7">เผลอกด Ctrl+Z ย้อนได้</span></div>'}))) return false;
-  const room=JSON.parse(JSON.stringify(x.room)); room.libName=x.name||"";
+  const room=JSON.parse(JSON.stringify(x.room)); room.libName=x.name||""; room.libCat=x.cat||"";   /* v1.678: libCat */
   state.room=room; PL.wpick=null; PLO.sel=null; PLO.drag=null;
   try{ if(PLW.on) plwStop(); }catch(e){}
   plRoomDraw(); plPanelRoom(); plPanelSel(); try{ plPanelGrid(); }catch(e){} try{ plCamRoom(); }catch(e){} plAfterRoom();
@@ -44229,7 +44289,7 @@ async function plRoomLibAsk(x,nCab){ const nb=plRoomLibNb(), oid=String((x.ord&&
       +'<b>เฉพาะห้อง</b> = ใช้แค่ผนัง ประตู หน้าต่าง ฯลฯ'+(nCab?(' · ตู้ในฉาก '+nCab+' ใบอยู่ที่เดิม'):'')+' (เอาห้องไปใช้บ้านหลังอื่น)<br>'
       +'<span style="opacity:.7">เผลอกด Ctrl+Z ย้อนได้</span></div>'}); }
 async function plRoomLibLoadAll(x){ if(!plRoomLibHasCab(x)) return false;
-  const room=JSON.parse(JSON.stringify(x.room)); room.libName=x.name||"";
+  const room=JSON.parse(JSON.stringify(x.room)); room.libName=x.name||""; room.libCat=x.cat||"";   /* v1.678: libCat */
   const src=JSON.parse(JSON.stringify(x.ord)); src.room=room;
   try{ if(PLW.on) plwStop(); }catch(e){}
   PL.wpick=null; PLO.sel=null; PLO.drag=null;
@@ -44246,27 +44306,52 @@ async function plRoomLibDel(x){ if(!x) return false; const _tr=!snOff("plRoomTra
 async function plRoomLibFill(m,quick){ const box=m.querySelector("#plrlList"); if(!box) return;
   if(!quick||!m._list){ try{ m._list=await plRoomLibList(); }catch(e){ console.error("plRoomLib:",e); box.innerHTML='<div style="padding:14px;color:#d33">อ่านรายการห้องไม่ได้: '+escapeHtml(String((e&&e.message)||e))+'</div>'; return; } }
   const q=String((m.querySelector("#plrlQ")||{}).value||"").trim().toLowerCase();
-  const L=m._list.filter(x=>!q||String(x.name||"").toLowerCase().indexOf(q)>=0);
-  if(!L.length){ box.innerHTML='<div style="padding:14px;color:var(--ink-dim)">'+(m._list.length?'ไม่พบชื่อที่ค้น':'ยังไม่มีห้องที่บันทึก — กด 💾 บันทึกห้อง')+'</div>'; return; }
+  /* v1.678: หมวดที่เลือก (รวมหมวดย่อย) · ค้นชื่อ = ค้นทุกหมวด */
+  const _co=!snOff("plRoomCat"); if(_co&&(!quick||!m._cats)){ try{ m._cats=await plRoomCatsRead(); }catch(e){ console.error("plRoomCat:",e); m._cats=m._cats||[]; } }
+  const _cs=(_co&&m._cats)||[], _ids=new Set(_cs.map(c=>c.id)), _sel=_co?(m._cat||""):""; if(_sel&&_sel!=="_none"&&!_ids.has(_sel)){ m._cat=""; PLRC.sel=""; return plRoomLibFill(m,true); }
+  const _in=(_sel&&_sel!=="_none")?plRoomCatDesc(_cs,_sel):null;
+  const L=m._list.filter(x=>{ if(q) return String(x.name||"").toLowerCase().indexOf(q)>=0; if(!_sel) return true; const c=(x.cat&&_ids.has(x.cat))?x.cat:""; return _sel==="_none"?!c:!!(c&&_in.has(c)); });
+  if(_co) plRoomLibTree(m);
+  if(!L.length){ box.innerHTML='<div style="padding:14px;color:var(--ink-dim)">'+(q?'ไม่พบชื่อที่ค้น':(m._list.length?'หมวดนี้ยังไม่มีห้อง — ลากห้องมาวาง หรือกดปุ่ม 📁 ที่ห้อง':'ยังไม่มีห้องที่บันทึก — กด 💾 บันทึกห้อง'))+'</div>'; return; }
   box.innerHTML=L.map((x,i)=>'<div class="plrlRow" data-i="'+i+'" style="display:flex;align-items:center;gap:8px;padding:8px 10px;border-bottom:.5px solid var(--line)">'
-    +'<div style="flex:1;min-width:0"><b>'+escapeHtml(String(x.name||""))+'</b>'+plRoomLibBadge(x)+'<div style="font-size:11px;color:var(--ink-dim);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">'+escapeHtml(plRoomSum(x.room))+' · '+escapeHtml(plRoomLibDate(x.at))+'</div></div>'
+    +'<div style="flex:1;min-width:0"><b>'+escapeHtml(String(x.name||""))+'</b>'+plRoomLibBadge(x)+((_co&&x.cat&&_ids.has(x.cat)&&x.cat!==_sel)?(' <span class="plrcP" title="หมวด">📁 '+escapeHtml(plRoomCatPath(_cs,x.cat))+'</span>'):'')+'<div style="font-size:11px;color:var(--ink-dim);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">'+escapeHtml(plRoomSum(x.room))+' · '+escapeHtml(plRoomLibDate(x.at))+'</div></div>'
     +'<button class="ibtn" data-a="use" style="flex:none;width:auto;padding:5px 14px;background:var(--accent);color:#fff;border-color:transparent">เปิดใช้</button>'
-    +'<button class="ibtn" data-a="del" title="ลบห้องนี้ออกจากไฟล์กลาง" style="flex:none;width:auto;padding:5px 9px;color:#d33">🗑</button></div>').join("");
+    +(_co?'<button class="ibtn" data-a="mv" title="ย้ายไปหมวด (หรือลากห้องไปวางบนหมวด)" style="flex:none;width:auto;padding:5px 9px">📁</button>':'')+'<button class="ibtn" data-a="del" title="ลบห้องนี้ออกจากไฟล์กลาง" style="flex:none;width:auto;padding:5px 9px;color:#d33">🗑</button></div>').join("");
   box.querySelectorAll(".plrlRow").forEach(row=>{ const x=L[+row.dataset.i];
     row.querySelector('[data-a="use"]').onclick=async()=>{ if(await plRoomLibLoad(x)) m.remove(); };
-    row.querySelector('[data-a="del"]').onclick=async()=>{ if(await plRoomLibDel(x)) plRoomLibFill(m); }; }); }
+    row.querySelector('[data-a="del"]').onclick=async()=>{ if(await plRoomLibDel(x)) plRoomLibFill(m); };
+    if(_co){ const _mv=row.querySelector('[data-a="mv"]'); if(_mv) _mv.onclick=async()=>{ try{ if(await plRoomLibMove(m,x)) plRoomLibFill(m,true); }catch(e){ console.error("plRoomCat:",e); toast("ย้ายห้องไม่สำเร็จ: "+((e&&e.message)||e)); } };
+      row.draggable=true; row.ondragstart=ev=>{ m._drag=x; try{ ev.dataTransfer.effectAllowed="move"; ev.dataTransfer.setData("text/plain",String(x.name||"")); }catch(_){} }; row.ondragend=()=>{ m._drag=null; }; } }); }
 async function plRoomLibOpen(){ if(snOff("plRoomLib")) return; let m=$("plRoomLib"); if(m) m.remove();
   m=document.createElement("div"); m.className="modal show"; m.id="plRoomLib";
-  m.innerHTML='<div class="card" style="width:min(680px,94vw)"><div class="mh"><h3>📂 ห้องที่บันทึกไว้</h3><button class="closeX" data-x>&times;</button></div>'
+  /* v1.678: แถบหมวดด้านซ้าย */
+  const _co=!snOff("plRoomCat"); m._cat=_co?(PLRC.sel||""):""; if(_co&&!$("plrcCSS")){ const st=document.createElement("style"); st.id="plrcCSS"; st.textContent=
+    "#plrlBody{display:flex;gap:10px;min-height:0}#plrlSide{flex:0 0 220px;min-width:0;display:flex;flex-direction:column;gap:6px}#plrlTree{flex:1;max-height:min(60vh,520px);overflow:auto;border:.5px solid var(--line);border-radius:8px;padding:4px}"
+    +".plrcRow{display:flex;align-items:center;gap:3px;padding:5px 7px;border-radius:7px;cursor:pointer;font-size:12.5px;user-select:none}.plrcRow:hover{background:var(--panel,#f4f5f7)}.plrcRow.on{background:rgba(37,99,235,.12);color:#1d4ed8;font-weight:600}.plrcRow.drop{outline:2px dashed #2563eb;outline-offset:-2px}"
+    +".plrcX{flex:0 0 14px;text-align:center;font-size:10px;color:var(--ink-dim)}.plrcN{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.plrcC{flex:none;font-size:11px;color:var(--ink-dim)}"
+    +".plrcP{display:inline-block;margin-left:6px;padding:1px 7px;border-radius:9px;font-size:10.5px;background:var(--panel,#f0f1f3);color:var(--ink-dim);vertical-align:1px}"
+    +"@media (max-width:700px){#plrlBody{flex-direction:column}#plrlSide{flex:none}#plrlTree{max-height:160px}}";
+    document.head.appendChild(st); }
+  m.innerHTML='<div class="card" style="width:min('+(_co?920:680)+'px,94vw)"><div class="mh"><h3>📂 ห้องที่บันทึกไว้</h3><button class="closeX" data-x>&times;</button></div>'
     +'<div class="mbody"><div style="display:flex;gap:8px;align-items:center;margin-bottom:8px"><input id="plrlQ" placeholder="🔍 ค้นหาชื่อห้อง…" autocomplete="off" style="flex:1;min-width:0;font-size:12.5px;padding:6px 9px;border:1px solid var(--line);border-radius:7px">'
     +'<button class="ibtn" id="plrlSave2" style="flex:none;width:auto;padding:6px 12px">💾 บันทึกห้องตอนนี้…</button></div>'
-    +'<div id="plrlList" style="max-height:min(60vh,520px);overflow:auto;border:.5px solid var(--line);border-radius:8px"><div style="padding:14px;color:var(--ink-dim)">กำลังโหลด…</div></div>'
+    +(_co?'<div id="plrlBody"><div id="plrlSide"><div id="plrlTree"></div><div style="display:flex;gap:4px"><button class="ibtn" id="plrcNew" style="flex:1;padding:5px 6px;font-size:12px">＋ หมวดใหม่</button><button class="ibtn" id="plrcEdit" title="แก้ชื่อ / ย้ายหมวด" style="flex:none;width:auto;padding:5px 9px">✎</button><button class="ibtn" id="plrcDel" title="ลบหมวด (ห้องไม่หาย)" style="flex:none;width:auto;padding:5px 9px">🗑</button></div></div>':'')
+    +'<div id="plrlList" style="'+(_co?'flex:1;min-width:0;':'')+'max-height:min(60vh,520px);overflow:auto;border:.5px solid var(--line);border-radius:8px"><div style="padding:14px;color:var(--ink-dim)">กำลังโหลด…</div></div>'+(_co?'</div>':'')
     +'<div style="font-size:11px;color:var(--ink-dim);margin-top:6px;line-height:1.6">เก็บในไฟล์กลาง (ตาราง app_settings) — ทุกเครื่องที่ใช้ข้อมูลชุดเดียวกันเห็นเหมือนกัน · ห้องที่บันทึกพร้อมตู้ = เลือกเปิดห้อง + ตู้ (แทนฉาก เหมือนเปิดออเดอร์) หรือเฉพาะห้อง (ตู้ในฉากอยู่ที่เดิม) · ปรับห้องแล้ว 💾 บันทึกเป็นชื่อใหม่ได้</div></div></div>';
   document.body.appendChild(m);
   const close=()=>m.remove();
   m.querySelector("[data-x]").onclick=close; m.addEventListener("pointerdown",ev=>{ if(ev.target===m) close(); });
   m.querySelector("#plrlSave2").onclick=async()=>{ if(await plRoomLibSave()) plRoomLibFill(m); };
   m.querySelector("#plrlQ").oninput=()=>plRoomLibFill(m,true);
+  if(_co){ const tree=m.querySelector("#plrlTree"), safe=f=>async()=>{ try{ await f(); await plRoomLibFill(m,true); }catch(e){ console.error("plRoomCat:",e); toast("แก้หมวดไม่สำเร็จ: "+((e&&e.message)||e)); } };   /* v1.678 */
+    tree.onclick=ev=>{ const tg=ev.target.closest("[data-tg]"); if(tg){ const id=tg.dataset.tg; if(m._shut.has(id)) m._shut.delete(id); else m._shut.add(id); plRoomLibTree(m); return; }
+      const r=ev.target.closest("[data-cat]"); if(!r) return; m._cat=r.dataset.cat; PLRC.sel=m._cat; plRoomLibFill(m,true); };
+    tree.ondragover=ev=>{ const r=ev.target.closest("[data-cat]"); if(!r||!m._drag) return; ev.preventDefault(); tree.querySelectorAll(".drop").forEach(x=>x.classList.remove("drop")); if(r.dataset.cat) r.classList.add("drop"); };
+    tree.ondragleave=ev=>{ if(ev.target===tree) tree.querySelectorAll(".drop").forEach(x=>x.classList.remove("drop")); };
+    tree.ondrop=ev=>{ ev.preventDefault(); const r=ev.target.closest("[data-cat]"), x=m._drag; m._drag=null; tree.querySelectorAll(".drop").forEach(y=>y.classList.remove("drop")); if(!r||!x||!r.dataset.cat) return; const id=r.dataset.cat==="_none"?"":r.dataset.cat; safe(()=>plRoomLibSetCat(x,id))(); };
+    m.querySelector("#plrcNew").onclick=safe(async()=>{ const s=m._cat&&m._cat!=="_none"?m._cat:""; const c=await plRoomCatAdd(m,s); if(c){ m._cat=c.id; PLRC.sel=c.id; if(s) m._shut&&m._shut.delete(s); } });
+    m.querySelector("#plrcEdit").onclick=safe(()=>plRoomCatEdit(m,m._cat));
+    m.querySelector("#plrcDel").onclick=safe(()=>plRoomCatDel(m,m._cat)); }
   await plRoomLibFill(m); }
 async function plClearCabsKeepRoom(){ if(typeof isLocked==="function"&&isLocked()){ try{ guardEdit("ล้างตู้"); }catch(e){} return false; }
   const n=(state.boards||[]).filter(b=>b&&!b._virtual).length;
@@ -44563,7 +44648,7 @@ function plPanelFoot(){
   const s=$("plFoot"); if(!s) return; const p=plPrice();
   const tdy531=!snOff("plTidy");   // v1.531: ตู้ในห้อง + ราคาขาย · ปุ่มตาราง 2×2 (plFootTop531)
   s.innerHTML=(tdy531?plFootTop531(p):('<div class="plRow"><span>ตู้ในห้อง <b>'+p.n+'</b> ใบ</span><span style="margin-left:auto;font-size:15px;font-weight:800">'+plMoney(p.sum)+'</span></div>'
-    +'<div class="plRow" style="margin:6px 0 2px">'+(VIEW_ONLY?'':!snOff("plQuote")?'<button class="ibtn" id="plQuoteBtn" style="flex:1" title="ใบเสนอราคา A4 — ราคาตั้งต้นจากต้นทุนตู้ + กำไร % ของเซลล์ · พิมพ์ / บันทึก PDF">🧾 ใบเสนอราคา</button>':(snOff("plPoster")?'':'<button class="ibtn" id="plPosterBtn" style="flex:1" title="ภาพห้อง 3D + รายการตู้ ขนาด ราคา + แปลน → PNG">🖼 โปสเตอร์ขาย</button>'))   /* v1.515: แทนโปสเตอร์ (SN_OFF.plQuote=1 = โปสเตอร์เดิม) */   // v1.457
+    +'<div class="plRow" style="margin:6px 0 2px">'+(VIEW_ONLY?'':!snOff("plQuote")?'<button class="ibtn" id="plQuoteBtn" style="flex:1" title="ราคาต้นทุนรายตู้ (วัสดุ ผิว ขอบ อุปกรณ์ + DL OH) · แบบสำหรับวางงาน PDF ไม่มีราคา">💰 ราคาต้นทุน</button>':(snOff("plPoster")?'':'<button class="ibtn" id="plPosterBtn" style="flex:1" title="ภาพห้อง 3D + รายการตู้ ขนาด ราคา + แปลน → PNG">🖼 โปสเตอร์ขาย</button>'))   /* v1.515: แทนโปสเตอร์ (SN_OFF.plQuote=1 = โปสเตอร์เดิม) */   // v1.457
     +((!VIEW_ONLY&&realCanUse()&&!snOff("plRender"))?'<button class="ibtn" id="plRendBtn" style="flex:1" title="ส่งภาพฉาก 🎬 ที่เลือกให้ AI (Gemini) แต่งเป็นภาพสมจริงทันที — หรือเลือกเรนเดอร์แสงจริงในเครื่อง">'+(typeof rndLbl==="function"?rndLbl():"🎬 Render")+'</button>':snOff("glbExport")?'':'<button class="ibtn" id="plGlbBtn" style="flex:1" title="ห้อง + ตู้ทั้งหมดเป็นไฟล์ 3D (.glb) — เปิดใน Blender แล้วเรนเดอร์เหมือนจริงได้ฟรี">🧊 ส่งออก Blender</button>')+'</div>'   // v1.459
     +((VIEW_ONLY||!realCanUse())?'':('<div class="plRow" style="margin:0 0 2px">'   // v1.528: ✨ โหมดสมจริง + 📷 บันทึกภาพ อยู่ในห้องออกแบบ
       +'<button class="ibtn" id="plRealBtn" style="flex:1'+(REAL.on?';background:var(--accent);color:#fff;border-color:var(--accent)':'')+'" title="ห้องจริง แสงจริง ตามห้องที่ออกแบบ — ลากหมุนดูได้">'+(REAL.on?'✕ ออกจากสมจริง':'✨ โหมดสมจริง')+'</button>'
@@ -44581,7 +44666,7 @@ function plPanelFoot(){
     +'<div style="color:var(--ink-dim);font-size:11px;margin-top:4px">ตู้ในห้องคือออเดอร์จริงแล้ว — ใบตัด / BOM / ส่งออก ใช้ต่อได้เลย</div></details>';
   { const b=s.querySelector("#plPlSync"); if(b) b.onclick=()=>plPlinthSync(); }
   { const pb=s.querySelector("#plPosterBtn"); if(pb) pb.onclick=()=>{ plPosterOpen().catch(e=>{ console.error("poster:",e); toast("เปิดโปสเตอร์ไม่สำเร็จ — ดู console"); }); }; }   // v1.457
-  { const qb=s.querySelector("#plQuoteBtn"); if(qb) qb.onclick=()=>{ plQuoteOpen().catch(e=>{ console.error("quote:",e); toast("เปิดใบเสนอราคาไม่สำเร็จ — ดู console"); }); }; }   // v1.515
+  { const qb=s.querySelector("#plQuoteBtn"); if(qb) qb.onclick=()=>{ plQuoteOpen().catch(e=>{ console.error("quote:",e); toast("เปิดหน้าราคาต้นทุนไม่สำเร็จ — ดู console"); }); }; }   // v1.515
   { const gb=s.querySelector("#plGlbBtn"); if(gb) gb.onclick=()=>exportGlb({room:true}); } { const rb2=s.querySelector("#plRendBtn"); if(rb2) rb2.onclick=()=>{ try{ RND.open(); }catch(e){ console.error("render:",e); toast("เปิดหน้า Render ไม่สำเร็จ"); } }; }   /* v1.562 */   // v1.459
   { const rb=s.querySelector("#plRealBtn"); if(rb) rb.onclick=()=>realToggle(); const sb=s.querySelector("#plSnapBtn"); if(sb) sb.onclick=()=>realSnapSave(); }   // v1.528
   plRoomGrpWire(s);
@@ -44947,14 +45032,27 @@ const PLQ_NOTE_515="1. ราคานี้ยืนราคาตามวั
 const PLQ_NOTE="1. เงื่อนไขการชำระเงิน: ชำระ 40% ณ วันสั่งซื้อ · ชำระ 60% ก่อนกำหนดติดตั้ง 7 วัน\n2. ช่องทางการชำระเงิน: เงินสด / บัตรเครดิต / เช็คสั่งจ่ายในนาม บจก. สตาร์มาร์คแมนูแฟคเชอริ่ง / โอนเงินเข้าบัญชี บจก. สตาร์มาร์คแมนูแฟคเชอริ่ง ธนาคารกรุงเทพ สาขาถนนเศรษฐกิจ 1 สมุทรสาคร บัญชีกระแสรายวัน เลขที่ 072-3-01086-4\n3. ราคานี้ไม่รวมงานระบบไฟฟ้า งานย้ายปลั๊กไฟ และงานระบบประปา";
 function plqDefCo(){ return {name:"", addr:"", tax:"", tel:"", email:"", logo:"", logoOff:false, sales:"", salesTel:""}; }   // v1.516: logo ว่าง + logoOff ไม่ติ๊ก = โลโก้ Starmark
 function plqLogo(C){ return (C&&C.logo)||((C&&C.logoOff)||snOff("snLogo")?"":SN_LOGO_URL); }
+/* ═════════ v1.678: ใบเสนอราคา → ราคาต้นทุน + แบบสำหรับวางงาน ═════════
+   ผู้ใช้ 5/11/2026 10:19 (ภาพหน้าต่างใบเสนอราคา): “ตรงใบเสนอราคาเปลี่ยนชื่อเป็น ราคาต้นทุน เอายืนราคา ออก เพิ่ม ราคา Dl และ OH ให้ใส่ เปอร์เซนด้วย”
+     “เอา รายการตู้ ราคา ออก ใน PDF จะตัดให้เหลือ แค่ แบบสำหรับ วางงานครับ ไม่เกี่ยวกับราคาเลย”
+     “ช่องซ้าย อยากได้ 1. รายการวัสดุในตู้ใบนั้นๆ ว่ามีอะไร กับราคา 2. รายการผิว แยกด้วยถ้าผิวบนล่างไม่เหมือนกัน + ราคา 3. รายการขอบ + ราคา ทั้งหมดของตู้ 4. รายการอุปกรณ์ + ราคา
+      5. แยกอุปกรณ์ ที่ไม่อยู่ กับ ตู้ ออก มาเป็นรายการ อุปกรณ์ ของห้องนี้ เพิ่ม พร้อมรายการ และ ราคา 6. อาจจะต้องปรับ ให้ไปออกอีกแท็บ เลยไหมครับ หรือไม่ดี แนะนำ ด้วย”
+   เดิม: หน้าต่างเดียว ฟอร์มซ้าย + ภาพ A4 ขวา · PDF = ใบเสนอราคามีตารางราคา เงื่อนไขชำระเงิน ช่องลงนาม · ตารางบอกแค่ทุนรวมต่อใบ
+     อุปกรณ์/ชิ้นนอกตู้เฉลี่ยเข้าราคาตู้ (v1.518) จึงไม่รู้ว่าต้นทุนมาจากอะไร
+   ตอนนี้: สองแท็บ — ราคาต้นทุน เต็มหน้าต่าง · แบบวางงาน = ฟอร์ม + ภาพ A4 ที่ไม่มีราคาเลย
+     DL/OH = % ของค่าวัสดุ · ราคาขาย = (ค่าวัสดุ + DL + OH) × (1 + กำไร %) · % ล่าสุดจำในเครื่อง (ไปกับข้อมูลบริษัท)
+     ของนอกตู้ = ของทั้งงาน (costOfAll) − ผลรวมรายตู้ แยกทีละรายการ เป็นแถว _room · แบบ ภาพ และภาพห้องคิดเมื่อเปิดแท็บแบบครั้งแรก
+     ปิด SN_OFF.plqNoPrice=1 = PDF มีราคาและเฉลี่ยของนอกตู้แบบเดิม */
+function plqNoPrice(){ return !snOff("plqNoPrice"); }
 function plqData(){ const r=plRoom(); if(!r.quote||typeof r.quote!=="object") r.quote={};
   const q=r.quote, oid=((typeof orderId==="function"&&String(orderId()||"").match(/^\d{10}/))||[""])[0];
   const d=new Date(), p=n=>String(n).padStart(2,"0");
-  const def={no:"QT-"+(oid||(String(d.getFullYear()).slice(2)+p(d.getMonth()+1)+p(d.getDate()))), date:d.getFullYear()+"-"+p(d.getMonth()+1)+"-"+p(d.getDate()), valid:30,
+  const def={no:(plqNoPrice()?"DW-":"QT-")+(oid||(String(d.getFullYear()).slice(2)+p(d.getMonth()+1)+p(d.getDate()))), date:d.getFullYear()+"-"+p(d.getMonth()+1)+"-"+p(d.getDate()), valid:30,
     cust:"", custAddr:"", custTel:"", proj:"", markup:0, pct:{}, nm:{}, disc:0, vat:"add", round:10, note:PLQ_NOTE, img:true, picTop:true, picPage:true, picFirst:true, att:{plan:true, elev:true, sec:true, wt:true, mat:true}};   // v1.568: picTop/picPage = ภาพประกอบ Render/AI   // v1.521: att = แบบที่แนบ
   Object.keys(def).forEach(k=>{ if(q[k]==null) q[k]=(typeof def[k]==="object")?JSON.parse(JSON.stringify(def[k])):def[k]; });
   if(!q.pct||typeof q.pct!=="object") q.pct={}; if(!q.nm||typeof q.nm!=="object") q.nm={};
   if(q.note===PLQ_NOTE_515) q.note=PLQ_NOTE;   // v1.518: ข้อความเดาเดิมที่ไม่ได้แก้ → เงื่อนไขจริง
+  if(plqNoPrice()){ if(q.note===PLQ_NOTE) q.note=""; if(/^QT-\d{6,10}$/.test(String(q.no||""))) q.no="DW-"+String(q.no).slice(3); }   /* v1.678: เงื่อนไขชำระเงินตั้งต้นไม่พิมพ์ลงแบบ · ที่พิมพ์เองยังอยู่ */
   return q; }
 /* แถวของใบ: ตู้ในห้อง (รหัส+ขนาด+ต้นทุนเดียวกัน = แถวเดียว) · ต้นทุนตู้รวมชิ้น/อุปกรณ์นอกตู้ที่ปันมาให้แล้ว (v1.518) */
 /* ───────── v1.518: ชิ้น/อุปกรณ์นอกตู้ รวมเข้าราคาตู้ (ผู้ใช้ 16:47 “รายการชิ้นส่วน/อุปกรณ์ในใบเสนอราคาให้ตัดออก แล้วเอารายการอุปกรณ์ราคาของมันผูกไปกับตู้ คิดราคารวมไปในตู้เลย”) ─────────
@@ -44983,6 +45081,29 @@ function plqExtra(cabs,all){
   const rest=(all&&isFinite(all.total))?(all.total-cabs.reduce((a,c)=>a+c.cost,0)-sumL):0; if(rest>0.5) pool+=rest;
   if(pool>0){ const tw=cabs.reduce((a,c)=>a+wOf(c),0); cabs.forEach(c=>share(c,pool*wOf(c)/tw,"อุปกรณ์/ชิ้นส่วนในงาน (เฉลี่ยตามราคาตู้)")); }
   return pool; }
+/* v1.678: ของที่ไม่อยู่กับตู้ = ของทั้งงาน − ผลรวมรายตู้ ทีละรายการ · ค่าเดียวกับ costCalc (เผื่อเศษเท่ากัน) */
+function plqRoomRest(cabs,all){ if(!all||!all.R) return null;
+  const c=costCfg(), W={mat:+c.waste||0,surf:+c.surfWaste||0,edge:+c.edgeWaste||0,fit:0}, F={mat:"wood",surf:"surf",edge:"edge",fit:"fit"};
+  const o={wood:0,surf:0,edge:0,fit:0,total:0,miss:[],R:{mat:new Map(),surf:new Map(),edge:new Map(),fit:new Map()}};
+  Object.keys(F).forEach(k=>{ const used=new Map();
+    cabs.forEach(cb=>{ const m=cb.o&&cb.o.R&&cb.o.R[k]; if(m) m.forEach((x,key)=>{ const u=used.get(key)||{q:0,t:0,b:0}; u.q+=+x.qty||0; u.t+=+x.qT||0; u.b+=+x.qB||0; used.set(key,u); }); });
+    all.R[k].forEach((x,key)=>{ const u=used.get(key)||{q:0,t:0,b:0}, q=(+x.qty||0)-u.q; if(q<=0.0005) return;
+      const y=Object.assign({},x,{qty:q}); if(k==="surf"){ y.qT=Math.max(0,(+x.qT||0)-u.t); y.qB=Math.max(0,(+x.qB||0)-u.b); }
+      o.R[k].set(key,y); const p=+x.p||0;
+      if(p>0) o[F[k]]+=p*q*(1+W[k]/100); else if(!costHas(k,key,x.code)) o.miss.push([k,y]); }); });
+  o.total=o.wood+o.surf+o.edge+o.fit;
+  return (o.R.mat.size||o.R.surf.size||o.R.edge.size||o.R.fit.size)?o:null; }
+/* v1.678: รายละเอียดแถว — วัสดุ · ผิว (บน/ล่าง) · ขอบ · อุปกรณ์ · ต้นทุนต่อ 1 ใบ */
+function plqDetHtml(r){ const o=r&&r.o; if(!o||!o.R) return ""; const e=s=>escapeHtml(String(s==null?"":s));
+  const c=costCfg(), W={mat:+c.waste||0,surf:+c.surfWaste||0,edge:+c.edgeWaste||0,fit:0};
+  const fq=(q,u)=>/ตร\.ม|^ม\.$/.test(String(u||""))?(+q||0).toFixed(2):String(Math.round((+q||0)*100)/100);
+  const side=x=>{ const a=+x.qT||0, b=+x.qB||0; if(a>0.0005&&b>0.0005) return "บน "+a.toFixed(2)+" · ล่าง "+b.toFixed(2); if(a>0.0005) return "ผิวบน"; if(b>0.0005) return "ผิวล่าง"; return ""; };
+  const boxes=[["mat","วัสดุ"],["surf","ผิว"],["edge","ขอบ"],["fit","อุปกรณ์"]].map(t=>{ const k=t[0];
+    const rows=[...o.R[k].values()].map(x=>{ const p=+x.p||0; return {x,p,amt:p*(+x.qty||0)*(1+W[k]/100),no:!(p>0)&&!costHas(k,x.key,x.code)}; }).sort((a,b)=>b.amt-a.amt), tot=rows.reduce((a,y)=>a+y.amt,0);
+    return '<div class="dbox" data-kind="'+k+'"><div class="dbh"><b>'+t[1]+'</b>'+(W[k]?'<span>เผื่อเศษ '+W[k]+'%</span>':'')+'<b class="m">'+plqMoney(tot)+'</b></div>'
+      +(rows.length?'<table class="dtb"><tr><th>รายการ</th><th class="r">จำนวน</th><th class="r">ราคา</th><th class="r">รวม</th></tr>'+rows.map(y=>{ const x=y.x, sd=k==="surf"?side(x):"", cd=String(x.code||x.key||""), nm=String(x.name||cd);
+          return '<tr><td>'+e(nm)+((cd&&cd!==nm)||sd?('<div class="dsm">'+((cd&&cd!==nm)?e(cd):'')+((cd&&cd!==nm)&&sd?' · ':'')+e(sd)+'</div>'):'')+'</td><td class="r">'+fq(x.qty,x.unit)+' '+e(x.unit||"")+'</td><td class="r">'+(y.no?'<span style="color:#c05a00">ยังไม่มีราคา</span>':plqMoney(y.p))+'</td><td class="r">'+plqMoney(y.amt)+'</td></tr>'; }).join("")+'</table>':'<div class="dsm" style="padding:4px 0">ไม่มี</div>')+'</div>'; }).join("");
+  return (r.room?'':('<div class="dsm" style="margin:0 0 5px">ต้นทุนวัสดุต่อ 1 ใบ '+plqMoney(o.total)+(r.qty>1?(' · × '+r.qty+' ใบ = '+plqMoney(o.total*r.qty)):'')+'</div>'))+'<div class="dgrid">'+boxes+'</div>'; }
 function plqLines(){
   const m=plCabMap(), byKey={}, lines=[]; let sumCost=0, miss=0;
   /* v1.518: รอบแรกคิดต้นทุนรายตู้ + กรอบตำแหน่ง → ปันชิ้น/อุปกรณ์นอกตู้ (plqExtra) → รอบสองจัดแถว */
@@ -44990,7 +45111,7 @@ function plqLines(){
     let d=null; try{ d=plLocalDims(inst); }catch(e){} let fp=null; try{ fp=plFp(bs); }catch(e){}
     const o=costCalc(bs,costFitRows(bs)); cabs.push({inst, bs, d, fp, o, cost:o.total}); });
   let all=null; try{ all=costOfAll(); }catch(e){}
-  const merge=!snOff("plqMerge")&&cabs.length>0; if(merge) plqExtra(cabs,all); else cabs.forEach(c=>{ c.extra=0; c.det=[]; });
+  const merge=!snOff("plqMerge")&&cabs.length>0&&!plqNoPrice(); if(merge) plqExtra(cabs,all);   /* v1.678: ของนอกตู้แยกแถวของห้อง ไม่เฉลี่ยเข้าตู้ */ else cabs.forEach(c=>{ c.extra=0; c.det=[]; });
   cabs.forEach(cb=>{ const inst=cb.inst, bs=cb.bs, d=cb.d, o=cb.o;
     const code=String((d&&d.f&&d.f.code)||"").trim(); sumCost+=o.total+cb.extra; miss+=o.miss.length;
     const cut=t=>String(t||"").replace(/\s*[·\-–,|]?\s*\d{2,5}(?:\.\d+)?\s*[x×*X]\s*\d{2,5}(?:\.\d+)?(?:\s*[x×*X]\s*\d{2,5}(?:\.\d+)?)?\s*(?:มม\.?|mm|ซม\.?|cm)?/g,"").replace(/[\s·\-–,|]+$/,"").replace(/^[\s·\-–,|]+/,"").trim();   // ขนาดรุ่นในคำอธิบายไม่ตรงขนาดจริง (แบบโปสเตอร์ v1.460)
@@ -45006,7 +45127,7 @@ function plqLines(){
     const pk=(code||("#"+inst))+"|"+W+"|"+H+"|"+D, key=pk+"|"+Math.round(cost);   // % รายแถวผูกกับรหัส+ขนาด (pk) — ใส่ราคาทุนเพิ่มทีหลัง % ไม่หาย
     let x=0; try{ const f=d&&d.f; if(f&&isFinite(f.lo[0])) x=(f.lo[0]+f.hi[0])/2+((f.lo[2]+f.hi[2])/2)*0.001; }catch(_){}
     let g=byKey[key]; if(!g){ g=byKey[key]={key, pk, code, name:nm, W, H, D, qty:0, cost, miss:0, sx:Infinity, extra:Math.round(cb.extra*100)/100, det:cb.det.slice()}; lines.push(g); }
-    g.qty++; g.miss+=o.miss.length; g.sx=Math.min(g.sx,x); (g.insts=g.insts||[]).push(inst); });   // v1.521: inst ของแถว → เลขในแบบ
+    g.qty++; g.o=g.o||o; g.miss+=o.miss.length; g.sx=Math.min(g.sx,x); (g.insts=g.insts||[]).push(inst); });   // v1.521: inst ของแถว → เลขในแบบ
   lines.sort((a,b)=>a.sx-b.sx);
   /* v1.520: ท็อปเคาน์เตอร์ + วอผนัง — จำนวนเป็น ตร.ม. · ราคาทุน = ราคา/ตร.ม. ที่ตั้งในแผงห้อง */
   try{ if(plWtOn()){ const T=plWt(), S=plWtSlabs(), sm=plWtSum(S), c=+T.cost||0, cm=v=>String(Math.round(v)/10);
@@ -45019,7 +45140,8 @@ function plqLines(){
       if(wls.length){ const wc=T.wall==="stone"?c:(+T.wallCost||0); lines.push({key:"_wtbs", pk:"_wtbs", code:"", name:plWtWallName(T)+(T.wall==="stone"?(" หนา "+(+T.t||0)+" มม."):T.wall==="stone2"?(" หนา "+(+plWtW2(T).t||0)+" มม."):""), W:0,H:0,D:0, qty:sm.w, uom:"ตร.ม.", cost:wc, miss:wc>0?0:1, wt:1,
         sizeTxt:wls.map(b=>cm(b.len)+"×"+cm(b.h)).join(" + "), sx:Infinity}); }
       if(!(c>0)&&(S.slabs.length)) miss++; } }catch(e){ console.error("quote worktop:",e); }
-  if(all){ const rest=Math.round((all.total-sumCost)*100)/100; if(rest>1) lines.push({key:"_rest", pk:"_rest", code:"", name:"ชิ้นส่วน / อุปกรณ์อื่นในงาน", W:0, H:0, D:0, qty:1, cost:rest, miss:0, rest:1});
+  if(all&&plqNoPrice()){ const ro=plqRoomRest(cabs,all); if(ro) lines.push({key:"_room", pk:"_room", code:"", name:"อุปกรณ์ / ชิ้นส่วนของห้องนี้ (ไม่อยู่กับตู้)", W:0, H:0, D:0, qty:1, cost:Math.round(ro.total*100)/100, miss:ro.miss.length, room:1, o:ro, sx:Infinity}); }   /* v1.678 */
+  if(all){ const rest=Math.round((all.total-sumCost)*100)/100; if(rest>1&&!plqNoPrice()) lines.push({key:"_rest", pk:"_rest", code:"", name:"ชิ้นส่วน / อุปกรณ์อื่นในงาน", W:0, H:0, D:0, qty:1, cost:rest, miss:0, rest:1});
     miss=all.miss.length+lines.filter(g=>g.wt&&g.miss).length; }   // v1.520: + ท็อปที่ยังไม่ใส่ราคา
   return {lines, miss, all}; }
 function plqRound(v,r){ r=+r||1; return r<=1?Math.round(v):Math.ceil(v/r-1e-9)*r; }
@@ -45038,14 +45160,15 @@ function plqDateTh(s){ const m=/^(\d{4})-(\d{2})-(\d{2})/.exec(String(s||"")); i
 const plqMoney=v=>(Math.round((+v||0)*100)/100).toLocaleString("th-TH",{minimumFractionDigits:2,maximumFractionDigits:2});
 /* คิดราคาทั้งใบ */
 function plqCalc(Q,L){
+  const dlp=Math.max(0,+Q.dl||0), ohp=Math.max(0,+Q.oh||0), kf=1+(dlp+ohp)/100;   /* v1.678: DL OH = % ของค่าวัสดุ */
   const rows=L.lines.map(g=>{ const own=Q.pct[g.pk], pct=(own!=null&&own!==""&&isFinite(+own))?+own:(+Q.markup||0);
-    const unit=plqRound(g.cost*(1+pct/100),Q.round), tot=Math.round(unit*g.qty*100)/100, nm=String((Q.nm&&Q.nm[g.pk])||"").trim();   // v1.520: จำนวนเป็นทศนิยมได้ (ตร.ม.)
-    return Object.assign({},g,{auto:g.name, name:nm||g.name, pct, own:(own!=null&&own!==""), unit, tot}); });
+    const full=g.cost*kf, unit=plqRound(full*(1+pct/100),Q.round), tot=Math.round(unit*g.qty*100)/100, nm=String((Q.nm&&Q.nm[g.pk])||"").trim();   // v1.520: จำนวนเป็นทศนิยมได้ (ตร.ม.)
+    return Object.assign({},g,{auto:g.name, name:nm||g.name, pct, own:(own!=null&&own!==""), full:Math.round(full*100)/100, unit, tot}); });
   const sub=rows.reduce((a,r)=>a+r.tot,0), disc=Math.max(0,+Q.disc||0), after=Math.max(0,sub-disc);
   let vat=0, pre=after, grand=after;
   if(Q.vat==="add"){ vat=Math.round(after*7)/100; grand=after+vat; } else if(Q.vat==="incl"){ vat=Math.round(after*700/107)/100; pre=after-vat; }
-  const cost=rows.reduce((a,r)=>a+r.cost*r.qty,0);
-  return {rows, sub, disc, after, vat, pre, grand, cost, gp:(Q.vat==="incl"?pre:after)-cost}; }
+  const cost=rows.reduce((a,r)=>a+r.cost*r.qty,0), dl=cost*dlp/100, oh=cost*ohp/100, fullCost=cost+dl+oh;
+  return {rows, sub, disc, after, vat, pre, grand, cost, dlp, ohp, dl, oh, full:fullCost, gp:(Q.vat==="incl"?pre:after)-fullCost}; }
 /* หน้า A4 (HTML ทั้งหน้า) — ใช้ทั้งภาพตัวอย่างและตอนพิมพ์ */
 /* v1.521: หน้าแนบท้ายใบ — A = {figs:[{key,title,svg}], mat:[การ์ด]} */
 /* ═════════ v1.568: ภาพประกอบใบเสนอราคา จาก 🎬 Render / AI / Gemini เว็บ ═════════
@@ -45066,7 +45189,7 @@ function plqPicShrink(url,max,q){ return new Promise(ok=>{ const im=new Image();
 function plqPicState(key,url){ const p=plqPics().find(x=>x.key&&x.key===key); return !p?0:(p.sig===plqSig(url)?1:2); }   /* 0 ไม่มี · 1 ภาพเดียวกัน · 2 ภาพเปลี่ยน */
 function plqPicsChanged(){ try{ if(PLQ.el&&PLQ.picsChanged) PLQ.picsChanged(); }catch(e){ console.warn("qPic:",e); } try{ autosave(); }catch(e){} }
 async function plqPicAdd(url,o){ o=o||{}; if(snOff("plqPics")||!url) return false; const P=plqPics(), i=o.key?P.findIndex(x=>x.key===o.key):-1;
-  if(i<0&&P.length>=PLQ_PIC_MAX){ toast("ใส่ภาพในใบเสนอราคาได้สูงสุด "+PLQ_PIC_MAX+" ภาพ — ลบภาพเก่าในหน้า 🧾 ใบเสนอราคา ก่อน"); return false; }
+  if(i<0&&P.length>=PLQ_PIC_MAX){ toast("ใส่ภาพในแบบวางงานได้สูงสุด "+PLQ_PIC_MAX+" ภาพ — ลบภาพเก่าในแท็บแบบวางงานก่อน"); return false; }
   const r=await plqPicShrink(url,1600,0.84); if(!r){ toast("อ่านภาพไม่ได้"); return false; }
   const it={id:(i>=0?P[i].id:("qp"+Date.now().toString(36)+Math.random().toString(36).slice(2,5))), key:o.key||"", sig:o.key?plqSig(url):"", url:r.url, w:r.w, h:r.h,
     name:String(o.name||"ภาพ").slice(0,60), src:String(o.src||"upload").slice(0,40), at:Date.now()};
@@ -45076,8 +45199,8 @@ function plqTopImg(Q){ if(plqPicFirst(Q)) return "";   /* v1.573: ภาพป�
   if(Q.img===false) return ""; const P=snOff("plqPics")?[]:plqPics(); return (P.length&&Q.picTop!==false)?P[0].url:PLQ.img; }
 function plqPicNote(p){ const s=String((p&&p.src)||"");
   return s==="render"?"ภาพจำลอง 3D เพื่อประกอบการนำเสนอ — สีและวัสดุจริงอาจต่างจากภาพเล็กน้อย"
-    :s==="upload"?"ภาพประกอบเพื่อการนำเสนอ — ขนาด สี วัสดุ และรายละเอียดจริงยึดตามแบบและรายการในใบเสนอราคานี้"
-    :"ภาพจำลองบรรยากาศ (AI) เพื่อประกอบการนำเสนอ — ขนาด สี วัสดุ และรายละเอียดจริงยึดตามแบบและรายการในใบเสนอราคานี้"; }
+    :s==="upload"?("ภาพประกอบเพื่อการนำเสนอ — ขนาด สี วัสดุ และรายละเอียดจริงยึดตาม"+(plqNoPrice()?"แบบนี้":"แบบและรายการในใบเสนอราคานี้"))
+    :("ภาพจำลองบรรยากาศ (AI) เพื่อประกอบการนำเสนอ — ขนาด สี วัสดุ และรายละเอียดจริงยึดตาม"+(plqNoPrice()?"แบบนี้":"แบบและรายการในใบเสนอราคานี้")); }
 function plqPicPages(Q){ return (snOff("plqPics")||Q.picPage===false)?[]:plqPics().filter(p=>p&&p.url); }
 /* ───────── v1.573: ภาพประกอบขึ้นก่อนใบเสนอราคา ─────────
    ผู้ใช้ 30/10 16:21 (test.pdf 11 หน้า): “ใบเสนอราคา เอาภาพที่เป็นหน้าแนวนอนที่มาจากการเจนขึ้นก่อน แล้วต่อด้วยใบเสนอราคา แล้วเอาภาพที่อยู่ในใบเสนอราคาออก”
@@ -45090,7 +45213,7 @@ function plqAttHtml(Q,C,A,mode){ const PP=(mode==="pics"||!plqPicFirst(Q))?plqPi
   const figs=(A.figs||[]).filter(f=>at[String(f.key).split("_")[0]]!==false), matH=(!noDwg&&at.mat!==false)?dwgMatHtml(A.mat):"";
   if(!figs.length&&!matH&&!PP.length) return "";
   const lg=plqLogo(C), hd=(n,pic)=>'<div class="dwh">'+(lg?'<img src="'+e(lg)+'" alt="">':'<b>'+e(C.name||"")+'</b>')
-      +'<div><b>'+(pic?'ภาพประกอบใบเสนอราคา':'แบบประกอบใบเสนอราคา')+'</b> เลขที่ '+e(Q.no||"-")+(Q.cust?(' · '+e(Q.cust)):'')+(Q.proj?(' · '+e(Q.proj)):'')+'<br><span>'+(pic?'ภาพเพื่อประกอบการนำเสนอ':'หน่วย มม. · แบบเพื่อประกอบการเสนอราคา ขนาดจริงวัดหน้างานอีกครั้งก่อนผลิต')+'</span></div>'+(n?'<em>'+e(n)+'</em>':'')+'</div>';
+      +'<div><b>'+(plqNoPrice()?(pic?'ภาพประกอบแบบ':'แบบสำหรับวางงาน'):(pic?'ภาพประกอบใบเสนอราคา':'แบบประกอบใบเสนอราคา'))+'</b> เลขที่ '+e(Q.no||"-")+(Q.cust?(' · '+e(Q.cust)):'')+(Q.proj?(' · '+e(Q.proj)):'')+'<br><span>'+(pic?'ภาพเพื่อประกอบการนำเสนอ':(plqNoPrice()?'หน่วย มม. · แบบสำหรับวางงาน':'หน่วย มม. · แบบเพื่อประกอบการเสนอราคา')+' ขนาดจริงวัดหน้างานอีกครั้งก่อนผลิต')+'</span></div>'+(n?'<em>'+e(n)+'</em>':'')+'</div>';
   if(mode==="pics") return PP.map((p,i)=>'<section class="dwl dwi">'+hd("ภาพ "+(i+1)+"/"+PP.length,1)+'<div class="dwf dwfi"><img src="'+p.url+'" alt=""></div>'   /* v1.573 */
     +'<div class="ft">ภาพจำลอง'+(p.name?(' — '+e(p.name)):'')+'</div><div class="fn">'+e(plqPicNote(p))+'</div></section>').join("");
   /* ───────── v1.526: หน้าแบบเป็นกระดาษแนวนอน ─────────
@@ -45110,6 +45233,9 @@ function plqAttHtml(Q,C,A,mode){ const PP=(mode==="pics"||!plqPicFirst(Q))?plqPi
     +Array.from({length:mp},(_,i)=>'<section class="dwl dwm">'+hd("แผ่น "+(++k)+"/"+tot)+'<div class="ft" style="margin:2mm 0 3mm">รายละเอียดวัสดุ'+(i?" (ต่อ)":"")+'</div>'
       +dwgMatHtml(MT.slice(i*PER,(i+1)*PER)).replace('<div class="mtl">','<div class="mtl mtl5">')+'</section>').join(""); }
 function plqHtml(Q,C,K,img,A){
+  /* v1.678: _np = แบบสำหรับวางงาน ไม่มีราคา · ไม่มีภาพ ไม่มีหมายเหตุ = ไม่มีหน้าปก (หัวแบบทุกแผ่นมีโลโก้ เลขที่ ลูกค้าอยู่แล้ว)
+     ส่วนที่ตัดออกยังอยู่แบบซ่อน เพราะข้อความ/รูปที่แปะไว้ (Q.ann) จำจุดยึดเป็นลำดับ — ตำแหน่งบนแผ่นแบบจะได้ไม่เลื่อน */
+  const _np=plqNoPrice(), _picH=plqPicFirst(Q)?plqAttHtml(Q,C,A,"pics"):"", _attH=plqAttHtml(Q,C,A), _noteTxt=String(Q.note||"").trim(), _cover=!_np||!!img||!!_noteTxt||(!_picH&&!_attH);
   const e=s=>escapeHtml(String(s==null?"":s)), nl=s=>e(s).replace(/\n/g,"<br>"), cm=v=>String(Math.round((+v||0)/10*10)/10).replace(/\.0$/,"");
   const rowsH=K.rows.map((r,i)=>'<tr><td class="c">'+(i+1)+'</td><td><b>'+e(r.name)+'</b>'+(r.code&&r.code!==r.name?('<div class="sm">'+e(r.code)+'</div>'):'')+'</td>'
     +'<td class="c">'+(r.sizeTxt?('<span style="font-size:11px">'+e(r.sizeTxt)+'</span>'):(r.W&&r.H&&r.D?(cm(r.W)+' × '+cm(r.D)+' × '+cm(r.H)):'-'))+'</td><td class="c">'+(r.uom?((Math.round(r.qty*100)/100).toFixed(2)+' '+e(r.uom)):r.qty)+'</td><td class="r">'+plqMoney(r.unit)+'</td><td class="r">'+plqMoney(r.tot)+'</td></tr>').join("");
@@ -45119,7 +45245,7 @@ function plqHtml(Q,C,K,img,A){
       :Q.vat==="incl"?tr("มูลค่าก่อนภาษี",plqMoney(K.pre))+tr("ภาษีมูลค่าเพิ่ม 7% (รวมในราคาแล้ว)",plqMoney(K.vat))+tr("ยอดรวมทั้งสิ้น",plqMoney(K.grand),1)
       :tr("ยอดรวมทั้งสิ้น",plqMoney(K.grand),1));
   const exp=(()=>{ const m=/^(\d{4})-(\d{2})-(\d{2})/.exec(Q.date||""); if(!m||!(+Q.valid>0)) return ""; const d=new Date(+m[1],+m[2]-1,+m[3]+(+Q.valid)), p=n=>String(n).padStart(2,"0"); return plqDateTh(d.getFullYear()+"-"+p(d.getMonth()+1)+"-"+p(d.getDate())); })();
-  return '<!doctype html><html lang="th"><head><meta charset="utf-8"><title>'+e(("ใบเสนอราคา "+(Q.no||"")+" "+(Q.cust||"")).trim())+'</title>'
+  return '<!doctype html><html lang="th"><head><meta charset="utf-8"><title>'+e(((_np?"แบบสำหรับวางงาน ":"ใบเสนอราคา ")+(Q.no||"")+" "+(Q.cust||"")).trim())+'</title>'
     +'<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;600;700&display=swap" rel="stylesheet">'
     +'<style>@page{size:A4;margin:0}@page dw{size:A4 landscape;margin:0}'   /* v1.526: ขอบ 0 = เบราว์เซอร์ไม่พิมพ์ลิงก์/วันที่ที่ขอบกระดาษ · เว้นขอบเองด้วย .pw/.psp (บน-ล่าง ซ้ำทุกหน้า) และ .pg กว้าง 186 กลางหน้า (ข้าง 12) */
     +'.pwb{break-before:page;page-break-before:always}@media screen{.pwb{margin-top:8mm;border-top:1px dashed #b8c0cc}}'   /* v1.573: ใบเสนอราคาต่อจากหน้าภาพ */
@@ -45150,20 +45276,22 @@ function plqHtml(Q,C,K,img,A){
     +'.sum{display:flex;gap:14px;margin-top:8px;page-break-inside:avoid}.words{flex:1;align-self:flex-end;background:#f3f5f8;border-radius:6px;padding:8px 10px;font-weight:600}'
     +'table.tt2{width:78mm;border-collapse:collapse}table.tt2 td{padding:4px 6px;border-bottom:1px solid #e5e7eb}table.tt2 tr.g td{background:#1f3b57;color:#fff;font-weight:700;font-size:13.5px;border:0}'
     +'.end{page-break-inside:avoid;break-inside:avoid}.note{margin-top:8px;font-size:11.5px;color:#374151;page-break-inside:avoid}.note b{color:#1d232b}.sig{display:flex;gap:16px;margin-top:16px;page-break-inside:avoid}.sig div{flex:1;text-align:center;font-size:11.5px;color:#4b5563}.sig i{display:block;border-bottom:1px solid #9ca3af;height:30px;margin-bottom:3px}'
-    +'</style></head><body>'+(plqPicFirst(Q)?plqAttHtml(Q,C,A,"pics"):'')+'<table class="pw'+(plqPicFirst(Q)?' pwb':'')+'"><thead><tr><td><div class="psp"></div></td></tr></thead><tfoot><tr><td><div class="psp"></div></td></tr></tfoot><tbody><tr><td><div class="pg">'   // v1.526: ขอบบน/ล่างทุกหน้า
+    +'.imgc img{max-height:225mm;object-fit:contain;background:#f3f4f6}.xh{display:none}'   /* v1.678 */
+    +'</style></head><body>'+_picH+(_cover?('<table class="pw'+(plqPicFirst(Q)?' pwb':'')+'"><thead><tr><td><div class="psp"></div></td></tr></thead><tfoot><tr><td><div class="psp"></div></td></tr></tfoot><tbody><tr><td><div class="pg">'):'<div class="xh"><div class="pg">')   // v1.526: ขอบบน/ล่างทุกหน้า
     +'<div class="hd">'+(plqLogo(C)?'<img src="'+e(plqLogo(C))+'" alt="">':'')   /* v1.516: ตั้งต้น = โลโก้ Starmark */+'<div class="co"><b>'+e(C.name||"ชื่อบริษัท")+'</b>'+(C.addr?'<div>'+nl(C.addr)+'</div>':'')
       +([C.tel?("โทร. "+e(C.tel)):"",C.email?e(C.email):""].filter(Boolean).length?('<div>'+[C.tel?("โทร. "+e(C.tel)):"",C.email?e(C.email):""].filter(Boolean).join(" · ")+'</div>'):'')+(C.tax?('<div>เลขประจำตัวผู้เสียภาษี '+e(C.tax)+'</div>'):'')+'</div>'   /* v1.518: เรียงแบบหัวใบเสนอราคาของบริษัท — ที่อยู่ / โทร / เลขผู้เสียภาษี คนละบรรทัด */
-      +'<div class="tt"><h1>ใบเสนอราคา</h1><div class="en">QUOTATION</div></div></div>'
+      +(_np?'<div class="tt"><h1>แบบสำหรับวางงาน</h1><div class="en">LAYOUT DRAWING</div></div></div>':'<div class="tt"><h1>ใบเสนอราคา</h1><div class="en">QUOTATION</div></div></div>')
     +'<div class="meta"><div class="box"><div class="l">ลูกค้า</div><b>'+e(Q.cust||"-")+'</b>'+(Q.custAddr?'<div>'+nl(Q.custAddr)+'</div>':'')+(Q.custTel?'<div>โทร '+e(Q.custTel)+'</div>':'')+(Q.proj?'<div>โครงการ / ห้อง: '+e(Q.proj)+'</div>':'')+'</div>'
       +'<div class="box" style="flex:0 0 66mm"><div class="kv"><span>เลขที่</span><b>'+e(Q.no||"-")+'</b><span>วันที่</span><span>'+e(plqDateTh(Q.date))+'</span>'
-      +(exp?'<span>ยืนราคาถึง</span><span>'+e(exp)+' ('+(+Q.valid)+' วัน)</span>':'')+(C.sales?'<span>ผู้เสนอราคา</span><span>'+e(C.sales)+(C.salesTel?(' · '+e(C.salesTel)):'')+'</span>':'')+'</div></div></div>'
-    +(img?'<div class="img'+((!snOff("plqPics")&&plqPics().length&&img===plqPics()[0].url)?' imgp':'')+'"><img src="'+img+'" alt=""></div>':'')   /* v1.568 */
+      +((exp&&!_np)?'<span>ยืนราคาถึง</span><span>'+e(exp)+' ('+(+Q.valid)+' วัน)</span>':'')+(C.sales?'<span>'+(_np?'ผู้จัดทำ':'ผู้เสนอราคา')+'</span><span>'+e(C.sales)+(C.salesTel?(' · '+e(C.salesTel)):'')+'</span>':'')+'</div></div></div>'
+    +(img?'<div class="img'+(_np?' imgc':'')+((!snOff("plqPics")&&plqPics().length&&img===plqPics()[0].url)?' imgp':'')+'"><img src="'+img+'" alt=""></div>':'')   /* v1.568 */
+    +(_np?('<table class="it xh"></table><div class="sum xh"></div><div class="end">'+(_noteTxt?'<div class="note"><b>หมายเหตุ</b><br>'+nl(Q.note)+'</div>':'<div class="note xh"></div>')+'<div class="sig xh"></div></div>'):(''
     +'<table class="it"><thead><tr><th style="width:9mm">ลำดับ</th><th>รายการ</th><th style="width:34mm">ขนาด ก×ล×ส (ซม.)</th><th style="width:13mm">จำนวน</th><th style="width:25mm">ราคา/หน่วย</th><th style="width:27mm">จำนวนเงิน</th></tr></thead><tbody>'
       +(rowsH||'<tr><td colspan="6" class="c" style="padding:14px;color:#6b7280">ยังไม่มีตู้ในห้อง</td></tr>')+'</tbody></table>'
     +'<div class="sum"><div class="words">('+e(plqBaht(K.grand))+')</div><table class="tt2">'+tot+'</table></div>'
     +'<div class="end">'+(String(Q.note||"").trim()?'<div class="note"><b>เงื่อนไข / หมายเหตุ</b><br>'+nl(Q.note)+'</div>':'')
-    +'<div class="sig"><div><i></i>ผู้เสนอราคา'+(C.sales?('<br>('+e(C.sales)+')'):'<br>')+'<br>วันที่ ........................</div><div><i></i>ผู้อนุมัติ<br><br>วันที่ ........................</div><div><i></i>ลูกค้ายืนยันการสั่งซื้อ<br><br>วันที่ ........................</div></div></div>'   /* .end = เงื่อนไข + ลายเซ็น ขึ้นหน้าใหม่ไปด้วยกัน */
-    +'</div></td></tr></tbody></table>'+plqAttHtml(Q,C,A)+'</body></html>'; }   /* v1.521: + แบบ/หน้ารวมวัสดุ · v1.526: ใบเสนอราคาอยู่ในตารางเว้นขอบ แบบอยู่นอกตาราง (เปลี่ยนแนวกระดาษได้) */
+    +'<div class="sig"><div><i></i>ผู้เสนอราคา'+(C.sales?('<br>('+e(C.sales)+')'):'<br>')+'<br>วันที่ ........................</div><div><i></i>ผู้อนุมัติ<br><br>วันที่ ........................</div><div><i></i>ลูกค้ายืนยันการสั่งซื้อ<br><br>วันที่ ........................</div></div></div>'))   /* .end = เงื่อนไข + ลายเซ็น ขึ้นหน้าใหม่ไปด้วยกัน */
+    +(_cover?'</div></td></tr></tbody></table>':'</div></div>')+_attH+'</body></html>'; }   /* v1.521: + แบบ/หน้ารวมวัสดุ · v1.526: ใบเสนอราคาอยู่ในตารางเว้นขอบ แบบอยู่นอกตาราง (เปลี่ยนแนวกระดาษได้) */
 async function plqShot(){
   if(typeof noGL!=="undefined"&&noGL||!renderer) return "";
   try{ let B={}; try{ B=Object.assign(plpDefBrand(),await lsGet(PLP_LS,{})||{}); }catch(e){ B=plpDefBrand(); }
@@ -45197,32 +45325,49 @@ async function plQuoteOpen(){
     +"#plQuote .ibtn{flex:none;padding:5px 11px;font-size:12px}#plQuote .qa .ibtn[data-a=print]{flex:1;padding:9px 12px;font-size:13px}"
     +"#plQuote .qa{padding:10px 14px;border-top:1px solid var(--line,#ddd);display:flex;gap:6px;flex-wrap:wrap;align-items:center}"
     +"#plQuote .qv{flex:1;min-width:0;background:#d9d6d0;overflow:auto;padding:16px;display:flex;justify-content:center}"
-    +"#plQuote .qv iframe{border:0;background:#fff;box-shadow:0 10px 30px -10px rgba(0,0,0,.5);transform-origin:top center;flex:none}";
+    +"#plQuote .qv iframe{border:0;background:#fff;box-shadow:0 10px 30px -10px rgba(0,0,0,.5);transform-origin:top center;flex:none}"
+    /* v1.678: สองแท็บ · ตารางราคาต้นทุน */
+    +"#plQuote .qw{flex-direction:column}#plQuote .qf{width:min(430px,42vw)}"
+    +"#plQuote .qtop{flex:none;display:flex;align-items:center;gap:6px;padding:9px 12px;border-bottom:1px solid var(--line,#ddd)}"
+    +"#plQuote .qtab{font:inherit;font-size:13.5px;font-weight:600;padding:7px 14px;border:1px solid var(--line,#ddd);border-radius:9px;background:transparent;color:var(--ink-dim,#666);cursor:pointer}#plQuote .qtab.on{background:var(--accent,#2f6fed);color:#fff;border-color:transparent}"
+    +"#plQuote .qpanes{flex:1;min-height:0;display:flex}#plQuote .qcost{min-width:0;padding-bottom:0}#plQuote .qpdf{flex:1;min-width:0;min-height:0;display:flex}"
+    +"#plQuote .qcost .lt{font-size:12.5px}#plQuote .qcost .lt tr.ln{cursor:pointer}#plQuote .qcost .lt tr.ln:hover td{background:var(--panel,#f6f7f9)}#plQuote .qcost .lt td{padding:5px 6px}#plQuote .qcost .lt th{padding:5px 6px;position:sticky;top:-10px;background:var(--solid,#fff);z-index:1}"
+    +"#plQuote .xp{display:inline-block;width:16px;color:var(--ink-dim,#777);font-size:11px}#plQuote tr.dt>td{background:var(--panel,#f6f7f9);padding:8px 10px 12px 26px}"
+    +"#plQuote .dgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}@media (max-width:900px){#plQuote .dgrid{grid-template-columns:minmax(0,1fr)}}"
+    +"#plQuote .dbox{background:var(--solid,#fff);border:1px solid var(--line,#e3e3e3);border-radius:8px;padding:6px 9px;min-width:0}#plQuote .dbh{display:flex;gap:8px;align-items:baseline;font-size:12.5px;margin-bottom:2px}#plQuote .dbh span{color:var(--ink-dim,#777);font-size:11px}#plQuote .dbh .m{margin-left:auto;font-family:var(--mono,monospace)}"
+    +"#plQuote .dtb{width:100%;border-collapse:collapse;font-size:11.5px}#plQuote .dtb th{text-align:left;color:var(--ink-dim,#777);font-weight:500;border-bottom:1px solid var(--line,#ddd);padding:2px 4px}#plQuote .dtb td{border-bottom:1px solid var(--line,#eee);padding:3px 4px;vertical-align:top}#plQuote .dtb .r{text-align:right;white-space:nowrap;font-family:var(--mono,monospace)}#plQuote .dsm{font-size:10.5px;color:var(--ink-dim,#777)}"
+    +"#plQuote .qcost .tot{position:sticky;bottom:0;z-index:2;margin-top:auto;background:var(--solid,#fff);border:1px solid var(--line,#ddd);grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:6px 14px;box-shadow:0 -8px 14px -12px rgba(0,0,0,.4)}#plQuote .tc{display:flex;flex-direction:column;gap:1px;font-size:11.5px;color:var(--ink-dim,#666)}#plQuote .tc b{font-size:14px;color:var(--ink,#111)}";
     document.head.appendChild(st); }
   const ov=document.createElement("div"); ov.id="plQuote"; PLQ.el=ov;
   const inp=(k,lbl,ph,type)=>'<label>'+lbl+'<input data-q="'+k+'" '+(type?('type="'+type+'" '):'')+'value="'+e(Q[k])+'" placeholder="'+e(ph||"")+'"></label>';
   const cin=(k,lbl,ph)=>'<label>'+lbl+'<input data-c="'+k+'" value="'+e(C[k])+'" placeholder="'+e(ph||"")+'"></label>';
-  ov.innerHTML='<div class="qw"><div class="qf"><div class="qh"><b style="font-size:15px">🧾 ใบเสนอราคา</b><span style="color:var(--ink-dim);font-size:11.5px">ราคาตั้งต้น = ต้นทุนตู้ + กำไร %</span>'
-      +'<button class="ibtn" data-a="x" style="margin-left:auto">ปิด</button></div><div class="qb">'
+  /* v1.678: แท็บราคาต้นทุน / แท็บแบบวางงาน (PDF ไม่มีราคา) */
+  ov.innerHTML='<div class="qw"><div class="qtop"><button class="qtab on" data-tab="cost">💰 ราคาต้นทุน</button><button class="qtab" data-tab="pdf">📐 แบบสำหรับวางงาน (PDF)</button>'
+      +'<button class="ibtn" data-a="x" style="margin-left:auto">ปิด</button></div><div class="qpanes"><div class="qb qcost" id="plqPaneCost">'
     +'<div id="plqWarn"></div>'
-    +'<h5>ราคา</h5><div class="row"><label>กำไร % ทั้งใบ<input data-q="markup" type="number" step="1" value="'+e(Q.markup)+'" style="font-size:16px;font-weight:700"></label>'
-      +'<label>ปัดราคาต่อหน่วย<select data-q="round"><option value="1"'+(+Q.round<=1?" selected":"")+'>ไม่ปัด (ทั้งบาท)</option><option value="10"'+(+Q.round===10?" selected":"")+'>ขึ้นหลักสิบ</option><option value="100"'+(+Q.round===100?" selected":"")+'>ขึ้นหลักร้อย</option></select></label></div>'
-    +'<div class="row"><label>ส่วนลด (บาท)<input data-q="disc" type="number" step="1" min="0" value="'+e(Q.disc)+'"></label>'
+    +'<div class="row"><label title="ค่าแรงทางตรง คิดเป็น % ของค่าวัสดุ">DL %<input data-q="dl" type="number" step="0.5" min="0" value="'+e(Q.dl)+'" style="font-size:15px;font-weight:700"></label>'
+      +'<label title="ค่าโสหุ้ย คิดเป็น % ของค่าวัสดุ">OH %<input data-q="oh" type="number" step="0.5" min="0" value="'+e(Q.oh)+'" style="font-size:15px;font-weight:700"></label>'
+      +'<label>กำไร % ทั้งงาน<input data-q="markup" type="number" step="1" value="'+e(Q.markup)+'" style="font-size:15px;font-weight:700"></label>'
+      +'<label>ปัดราคาต่อหน่วย<select data-q="round"><option value="1"'+(+Q.round<=1?" selected":"")+'>ไม่ปัด (ทั้งบาท)</option><option value="10"'+(+Q.round===10?" selected":"")+'>ขึ้นหลักสิบ</option><option value="100"'+(+Q.round===100?" selected":"")+'>ขึ้นหลักร้อย</option></select></label>'
+      +'<label>ส่วนลด (บาท)<input data-q="disc" type="number" step="1" min="0" value="'+e(Q.disc)+'"></label>'
       +'<label>VAT<select data-q="vat"><option value="add"'+(Q.vat==="add"?" selected":"")+'>บวก VAT 7% เพิ่ม</option><option value="incl"'+(Q.vat==="incl"?" selected":"")+'>ราคารวม VAT แล้ว</option><option value="none"'+(Q.vat==="none"?" selected":"")+'>ไม่มี VAT</option></select></label></div>'
-    +'<div style="font-size:11px;color:var(--ink-dim)">ทุน = ค่าวัสดุ (ไม้ ผิว ขอบ Fitting) ยังไม่รวมค่าแรง ขนส่ง ติดตั้ง — ตั้ง % ให้ครอบคลุม · ช่อง % ในตารางใส่ทับรายแถวได้</div>'
+    +'<div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap"><span style="font-size:11px;color:var(--ink-dim)">DL OH คิดจากค่าวัสดุ · ราคาขาย = ต้นทุนรวม + กำไร % · กดแถวเพื่อดูรายการ · ราคาหน้านี้ไม่ออกใน PDF</span>'
+      +'<button class="ibtn" data-a="xpAll" style="margin-left:auto">เปิดทุกแถว</button><button class="ibtn" data-a="xpNone">ปิดทุกแถว</button><button class="ibtn" data-a="costAll">💰 แก้ราคาวัสดุ…</button></div>'
     +'<table class="lt" id="plqLines"></table>'
-    +'<div class="tot" id="plqTot"></div>'
+    +'<div class="tot" id="plqTot"></div></div>'
+    +'<div class="qpdf" id="plqPanePdf" style="display:none"><div class="qf"><div class="qb">'
+    +'<div style="font-size:11.5px;color:var(--ink-dim);line-height:1.5">PDF นี้มีแค่แบบสำหรับวางงาน ไม่มีราคา</div>'
     +'<h5>ลูกค้า</h5>'+inp("cust","ชื่อลูกค้า","คุณ…")+'<label>ที่อยู่<textarea data-q="custAddr" rows="2">'+e(Q.custAddr)+'</textarea></label>'
       +'<div class="row">'+inp("custTel","โทร")+inp("proj","โครงการ / ห้อง")+'</div>'
-    +'<h5>ใบเสนอราคา</h5><div class="row">'+inp("no","เลขที่")+inp("date","วันที่","","date")+inp("valid","ยืนราคา (วัน)","","number")+'</div>'
+    +'<h5>เอกสาร</h5><div class="row">'+inp("no","เลขที่")+inp("date","วันที่","","date")+'</div>'
       +'<label style="flex-direction:row;align-items:center;gap:6px;color:var(--ink);font-size:12.5px"><input type="checkbox" data-q="img"'+(Q.img!==false?" checked":"")+'> ใส่ภาพห้อง 3D (มุมกล้องตามจอตอนนี้) <button class="ibtn" data-a="shot" style="padding:1px 8px;font-size:11px;margin-left:auto">ถ่ายใหม่</button></label>'
       +(snOff("plqPics")?'':'<h5>ภาพประกอบ (Render / AI)</h5><div id="plqPics"></div>')   /* v1.568 */
-      +'<label>เงื่อนไข / หมายเหตุ<textarea data-q="note" rows="4">'+e(Q.note)+'</textarea></label>'
-      +(snOff("plqDwg")?'':('<h5>แนบท้ายใบ</h5><div style="display:flex;flex-wrap:wrap;gap:4px 12px;font-size:12.5px">'+[["plan","แปลน"],["elev","ด้านหน้า"],["sec","Section"],["wt","แปลนท็อป"],["util","งานระบบ"],["mat","หน้ารวมวัสดุ"]]
+      +'<label>หมายเหตุในแบบ (ว่าง = ไม่พิมพ์)<textarea data-q="note" rows="3">'+e(Q.note)+'</textarea></label>'
+      +(snOff("plqDwg")?'':('<h5>แบบที่ออกใน PDF</h5><div style="display:flex;flex-wrap:wrap;gap:4px 12px;font-size:12.5px">'+[["plan","แปลน"],["elev","ด้านหน้า"],["sec","Section"],["wt","แปลนท็อป"],["util","งานระบบ"],["mat","หน้ารวมวัสดุ"]]
         .map(x=>'<label style="flex-direction:row;align-items:center;gap:4px;color:var(--ink);font-size:12.5px"><input type="checkbox" data-att="'+x[0]+'"'+((Q.att||{})[x[0]]!==false?" checked":"")+'> '+x[1]+'</label>').join("")+'</div><div id="plqAttSay" style="font-size:11px;color:var(--ink-dim)"></div>'+(snOff("dwgFitImg")?'':'<button class="ibtn" data-a="fitImg" style="padding:2px 9px;font-size:11.5px;align-self:flex-start" title="รูปบานพับ/ราง/มือจับบนหน้ารวมวัสดุ">🖼 รูปอุปกรณ์…</button>')+(snOff("dwgDoorName")?'':'<button class="ibtn" data-a="doorName" style="padding:2px 9px;font-size:11.5px;align-self:flex-start" title="คำต่อท้ายแบบบาน เช่น MCWx58 รุ่น Luciana">🏷 ชื่อรุ่นแบบบาน…</button>')+''))   /* v1.521 */
-    +'<h5>บริษัท · ผู้เสนอราคา (จำในเครื่องนี้)</h5>'+cin("name","ชื่อบริษัท / ร้าน")+'<label>ที่อยู่<textarea data-c="addr" rows="2">'+e(C.addr)+'</textarea></label>'
+    +'<h5>บริษัท · ผู้จัดทำ (จำในเครื่องนี้)</h5>'+cin("name","ชื่อบริษัท / ร้าน")+'<label>ที่อยู่<textarea data-c="addr" rows="2">'+e(C.addr)+'</textarea></label>'
       +'<div class="row">'+cin("tax","เลขผู้เสียภาษี")+cin("tel","โทร")+'</div><div class="row">'+cin("email","อีเมล / เว็บ")+'<label>โลโก้<span style="display:flex;gap:4px"><button class="ibtn" data-a="logo" style="flex:1">เลือกรูป…</button><button class="ibtn" data-a="logoSM" title="ใช้โลโก้ Starmark">Starmark</button><button class="ibtn" data-a="logoX" title="เอาโลโก้ออก">✕</button></span></label></div>'
-      +'<div class="row">'+cin("sales","ชื่อผู้เสนอราคา")+cin("salesTel","โทรผู้เสนอราคา")+'</div>'
+      +'<div class="row">'+cin("sales","ชื่อผู้จัดทำ")+cin("salesTel","โทรผู้จัดทำ")+'</div>'
     +'</div><div class="qa"><button class="ibtn" data-a="print" style="background:var(--accent);color:#fff;border-color:transparent;font-weight:700">🖨 พิมพ์ / บันทึก PDF</button>'
       +'<span id="plqSay" style="font-size:11.5px;color:var(--ink-dim)"></span>'
       /* ───────── v1.573: ทำ PDF ไม่ต้องหมุนหน้า ─────────
@@ -45231,28 +45376,33 @@ async function plQuoteOpen(){
          ปลายทาง “บันทึกเป็น PDF” ของ Chrome/Edge ใช้ขนาดหน้าตาม @page ทีละหน้า (ทดสอบแล้ว: ใบ 595×842 · ภาพ/แบบ 842×595) → บอกไว้ข้างปุ่ม · ปิด SN_OFF.plqPdfTip */
       +(snOff("plqPdfTip")?'':'<div id="plqPdfTip" style="flex-basis:100%;font-size:11px;color:var(--ink-dim);line-height:1.5">📄 ทำไฟล์ PDF: ในหน้าพิมพ์ ช่อง <b>ปลายทาง</b> เลือก <b>บันทึกเป็น PDF</b> (Save as PDF) — หน้าภาพ/แบบเป็นแนวนอนในไฟล์เลย ไม่ต้องหมุน · ถ้าเลือก Microsoft Print to PDF หน้าแนวนอนจะถูกหมุนลงกระดาษแนวตั้ง</div>')+'</div></div>'
     +'<div style="flex:1;min-width:0;min-height:0;display:flex;flex-direction:column">'+(snOff("plqAnn")?'':plqAnnTbHtml())   /* v1.580: แถบแก้คำ/แปะ */
-    +'<div class="qv" id="plqView"><iframe id="plqFrame" title="ตัวอย่างใบเสนอราคา" style="width:794px;height:1123px"></iframe></div></div></div>';
+    +'<div class="qv" id="plqView"><iframe id="plqFrame" title="ตัวอย่างแบบสำหรับวางงาน" style="width:794px;height:1123px"></iframe></div></div></div></div></div>';
   document.body.appendChild(ov);
   const say=t=>{ const s=ov.querySelector("#plqSay"); if(s) s.textContent=t||""; };
   const saveCo=()=>{ try{ lsSet(PLQ_LS,PLQ.co); }catch(e){} };
   let L=plqLines(), K=null;
-  const fit=()=>{ const v=ov.querySelector("#plqView"), f=ov.querySelector("#plqFrame"); if(!v||!f) return; const k=Math.min(1,(v.clientWidth-32)/794), H=parseFloat(f.style.height)||1123; f.style.transform="scale("+k+")"; f.style.marginBottom=(-(1-k)*H)+"px"; };
+  let _tab="cost", _pdfDone=false;   /* v1.678: แบบ ภาพ และ PDF คิดเมื่อเปิดแท็บแบบครั้งแรก — ดูราคาอย่างเดียวไม่ต้องจ่ายค่านี้ */
+  if(!PLQ.open||PLQ.openFor!==ov){ PLQ.open=new Set(["_room"]); PLQ.openFor=ov; }
+  if(Q.dl==null) Q.dl=(+C.dl||0); if(Q.oh==null) Q.oh=(+C.oh||0);
+  const fit=()=>{ const v=ov.querySelector("#plqView"), f=ov.querySelector("#plqFrame"); if(!v||!f||!v.clientWidth) return; const k=Math.min(1,(v.clientWidth-32)/794), H=parseFloat(f.style.height)||1123; f.style.transform="scale("+k+")"; f.style.marginBottom=(-(1-k)*H)+"px"; };
   const paint=()=>{ K=plqCalc(Q,L);
     const w=ov.querySelector("#plqWarn"), mk=+Q.markup||0;
-    w.innerHTML=(L.miss?('<div class="warn">⚠ ต้นทุนยังไม่ครบ '+L.miss+' รายการ — ราคาในใบอาจต่ำกว่าจริง<button class="ibtn" data-a="cost" style="margin-left:auto;padding:2px 8px;font-size:11px">💰 ใส่ราคาที่ขาด…</button></div>'):'')
-      +(!mk&&!K.rows.some(r=>r.own&&+r.pct)?'<div class="warn" style="margin-top:4px">ยังไม่ได้ใส่กำไร % — ราคาในใบตอนนี้ = ราคาทุน</div>':'');
-    ov.querySelector("#plqLines").innerHTML='<tr><th>รายการ</th><th class="r">จำนวน</th><th class="r">ทุน/หน่วย</th><th class="r">%</th><th class="r">ราคา/หน่วย</th><th class="r">รวม</th></tr>'
-      +(K.rows.length?K.rows.map(r=>'<tr><td><input data-nk="'+e(r.pk)+'" value="'+e((Q.nm&&Q.nm[r.pk])||"")+'" placeholder="'+e(r.auto)+'" title="ชื่อในใบ — ว่าง = ชื่อตั้งต้น" style="width:100%;font-family:inherit">'+(r.code?('<div style="font-size:10.5px;color:var(--ink-dim)">'+e(r.code)+(r.W?(' · '+r.W+'×'+r.D+'×'+r.H):'')+'</div>'):'')
-        +(r.extra>=0.01?('<div style="font-size:10.5px;color:#2b6cb0" title="'+e((r.det||[]).join("\n"))+'">ทุนรวม ชิ้น/อุปกรณ์นอกตู้ +'+plqMoney(r.extra)+'/ใบ</div>'):'')   /* v1.518: บอกเซลล์ว่าบวกอะไรเข้าตู้นี้ (ไม่พิมพ์ลงใบ) */+(r.miss?' <span title="ต้นทุนตู้นี้ยังขาดราคา '+r.miss+' รายการ" style="color:#e58a24">⚠</span>':'')+'</td>'
-        +'<td class="r">'+(r.uom?((Math.round(r.qty*100)/100).toFixed(2)+'<div style="font-size:10px;color:var(--ink-dim)">'+e(r.uom)+'</div>'):r.qty)+'</td><td class="r">'+plqMoney(r.cost)+'</td><td class="r"><input data-pk="'+e(r.pk)+'" type="number" step="1" value="'+(r.own?e(Q.pct[r.pk]):"")+'" placeholder="'+e(mk)+'"></td>'
-        +'<td class="r">'+plqMoney(r.unit)+'</td><td class="r">'+plqMoney(r.tot)+'</td></tr>').join(""):'<tr><td colspan="6" style="color:var(--ink-dim);padding:10px 4px">ยังไม่มีตู้ในห้อง</td></tr>');
-    const gpBase=(Q.vat==="incl"?K.pre:K.after), gpPct=gpBase>0?Math.round(K.gp/gpBase*1000)/10:0;
-    ov.querySelector("#plqTot").innerHTML='<span title="ต้นทุน = ค่าวัสดุจากหน้า 💰 ราคาทุน (ไม้ ผิว ขอบ Fitting) — ยังไม่รวมค่าแรง ขนส่ง ติดตั้ง">ต้นทุนวัสดุรวม (ไม่พิมพ์ลงใบ)</span><b>'+plqMoney(K.cost)+'</b><span>ราคาขายรวม</span><b>'+plqMoney(K.sub)+'</b>'
-      +(K.disc?('<span>หลังหักส่วนลด</span><b>'+plqMoney(K.after)+'</b>'):'')
-      +'<span>กำไรขั้นต้น (ก่อน VAT)</span><b style="color:'+(K.gp<0?'#c92a2a':'#2b8a3e')+'">'+plqMoney(K.gp)+' ('+gpPct+'%)</b>'
-      +'<span>ยอดรวมทั้งสิ้นในใบ</span><b style="font-size:14px">'+plqMoney(K.grand)+'</b>';
+    w.innerHTML=(L.miss?('<div class="warn">⚠ ต้นทุนยังไม่ครบ '+L.miss+' รายการ — ต้นทุนอาจต่ำกว่าจริง<button class="ibtn" data-a="cost" style="margin-left:auto;padding:2px 8px;font-size:11px">💰 ใส่ราคาที่ขาด…</button></div>'):'')
+      +(!mk&&!K.rows.some(r=>r.own&&+r.pct)?'<div class="warn" style="margin-top:4px">ยังไม่ได้ใส่กำไร % — ราคาขายตอนนี้ = ต้นทุนรวม</div>':'');
+    /* v1.678: กดแถว = ดูรายการวัสดุ ผิว ขอบ อุปกรณ์ · แถวของห้องเปิดไว้ตั้งแต่แรก */
+    ov.querySelector("#plqLines").innerHTML='<tr><th>รายการ</th><th class="r">จำนวน</th><th class="r">วัสดุ/หน่วย</th><th class="r">DL+OH/หน่วย</th><th class="r">ทุนรวม/หน่วย</th><th class="r">กำไร %</th><th class="r">ราคา/หน่วย</th><th class="r">รวม</th></tr>'
+      +(K.rows.length?K.rows.map(r=>{ const on=!!r.o&&PLQ.open.has(r.pk);
+        return '<tr class="ln"'+(r.o?(' data-xp="'+e(r.pk)+'"'):'')+'><td><span class="xp">'+(r.o?(on?'▾':'▸'):'')+'</span><b>'+e(r.name)+'</b>'+(r.miss?' <span title="ต้นทุนยังขาดราคา '+r.miss+' รายการ" style="color:#e58a24">⚠</span>':'')
+          +((r.code||r.sizeTxt)?('<div style="font-size:10.5px;color:var(--ink-dim);padding-left:16px">'+e(r.code||"")+(r.W?(' · '+r.W+'×'+r.D+'×'+r.H):'')+(r.sizeTxt?e(r.sizeTxt):'')+'</div>'):'')+'</td>'
+          +'<td class="r">'+(r.uom?((Math.round(r.qty*100)/100).toFixed(2)+'<div style="font-size:10px;color:var(--ink-dim)">'+e(r.uom)+'</div>'):r.qty)+'</td><td class="r">'+plqMoney(r.cost)+'</td><td class="r">'+plqMoney(r.full-r.cost)+'</td><td class="r"><b>'+plqMoney(r.full)+'</b></td>'
+          +'<td class="r"><input data-pk="'+e(r.pk)+'" type="number" step="1" value="'+(r.own?e(Q.pct[r.pk]):"")+'" placeholder="'+e(mk)+'"></td><td class="r">'+plqMoney(r.unit)+'</td><td class="r">'+plqMoney(r.tot)+'</td></tr>'
+          +(on?('<tr class="dt"><td colspan="8">'+plqDetHtml(r)+'</td></tr>'):''); }).join(""):'<tr><td colspan="8" style="color:var(--ink-dim);padding:10px 4px">ยังไม่มีตู้ในห้อง</td></tr>');
+    const gpBase=(Q.vat==="incl"?K.pre:K.after), gpPct=gpBase>0?Math.round(K.gp/gpBase*1000)/10:0, tc=(l,v,st)=>'<div class="tc"><span>'+l+'</span><b style="font-family:var(--mono,monospace)'+(st||'')+'">'+v+'</b></div>';
+    ov.querySelector("#plqTot").innerHTML=tc("ค่าวัสดุรวม",plqMoney(K.cost))+tc("DL "+K.dlp+"%",plqMoney(K.dl))+tc("OH "+K.ohp+"%",plqMoney(K.oh))+tc("ต้นทุนรวม",plqMoney(K.full))
+      +tc("ราคาขายรวม",plqMoney(K.sub))+(K.disc?tc("หลังหักส่วนลด",plqMoney(K.after)):'')
+      +tc("กำไรขั้นต้น (ก่อน VAT) "+gpPct+"%",plqMoney(K.gp),';color:'+(K.gp<0?'#c92a2a':'#2b8a3e'))+tc("ยอดรวมทั้งสิ้น",plqMoney(K.grand));
     preview(); };
-  const preview=()=>{ clearTimeout(PLQ.tmr); PLQ.tmr=setTimeout(()=>{ const f=ov.querySelector("#plqFrame"); if(!f) return;
+  const preview=()=>{ if(_tab!=="pdf") return; clearTimeout(PLQ.tmr); PLQ.tmr=setTimeout(()=>{ const f=ov.querySelector("#plqFrame"); if(!f) return;
       f.onload=()=>{ try{ plqAnnApply(f.contentDocument,Q,true); }catch(err){ console.error("plqAnn:",err); }   /* v1.580: แก้คำ + ของที่แปะ */
         try{ const h=Math.max(1123,f.contentDocument.documentElement.scrollHeight); f.style.height=h+"px"; fit(); }catch(_){} };   // v1.521: หลายหน้า = กรอบสูงตามเนื้อหา
       f.srcdoc=plqHtml(Q,PLQ.co,K||plqCalc(Q,L),plqTopImg(Q),PLQ.att); fit(); },150); };
@@ -45264,18 +45414,19 @@ async function plQuoteOpen(){
         +'<img src="'+p.url+'" alt="" style="display:block;width:100%;aspect-ratio:16/9;object-fit:cover">'
         +'<div style="display:flex;gap:3px;align-items:center;padding:3px 4px;background:var(--solid,#fff);font-size:10.5px"><span style="flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap" title="'+e(p.name)+'">'+(i?'':'⭐ ')+e(p.name)+'</span>'
         +(i?'<button class="ibtn" data-a="picUp" data-i="'+i+'" title="ขึ้นเป็นภาพแรก" style="padding:0 5px;font-size:10.5px;flex:none">⭐</button>':'')
-        +'<button class="ibtn" data-a="picX" data-i="'+i+'" title="เอาออกจากใบเสนอราคา" style="padding:0 5px;font-size:10.5px;flex:none">✕</button></div></div>').join("")+'</div>')
-      :'<div style="font-size:11.5px;color:var(--ink-dim);line-height:1.6">ยังไม่มี — 🎬 AI RENDER แล้วกด <b>🧾 ใส่ใบเสนอราคา</b> บนการ์ดภาพ (ภาพ AI / Gemini เว็บ) หรือ 📂 เพิ่มภาพที่ดาวน์โหลดมา</div>')
+        +'<button class="ibtn" data-a="picX" data-i="'+i+'" title="เอาออกจากแบบวางงาน" style="padding:0 5px;font-size:10.5px;flex:none">✕</button></div></div>').join("")+'</div>')
+      :'<div style="font-size:11.5px;color:var(--ink-dim);line-height:1.6">ยังไม่มี — 🎬 AI RENDER แล้วกด <b>📐 ใส่แบบวางงาน</b> บนการ์ดภาพ (ภาพ AI / Gemini เว็บ) หรือ 📂 เพิ่มภาพที่ดาวน์โหลดมา</div>')
       +'<div style="display:flex;gap:6px;flex-wrap:wrap;align-items:center;margin:4px 0"><button class="ibtn" data-a="picAdd" '+sb+'>📂 เพิ่มภาพ…</button>'
       +((typeof RND!=="undefined"&&!snOff("plRender"))?'<button class="ibtn" data-a="picRnd" '+sb+'>🎬 เปิด AI RENDER</button>':'')
       +'<span style="font-size:11px;color:var(--ink-dim)">'+P.length+'/'+PLQ_PIC_MAX+' ภาพ</span></div>'
-      +(P.length?((snOff("plqPicFirst")?'':'<label style="flex-direction:row;align-items:center;gap:6px;color:var(--ink);font-size:12.5px"><input type="checkbox" data-q="picFirst"'+(Q.picFirst!==false?" checked":"")+'> ภาพประกอบขึ้นหน้าแรก ก่อนใบเสนอราคา (ในใบไม่ใส่ภาพ)</label>')   /* v1.573 */
+      +(P.length?((snOff("plqPicFirst")?'':'<label style="flex-direction:row;align-items:center;gap:6px;color:var(--ink);font-size:12.5px"><input type="checkbox" data-q="picFirst"'+(Q.picFirst!==false?" checked":"")+'> ภาพประกอบขึ้นหน้าแรก (ไม่มีหน้าปกภาพห้อง)</label>')   /* v1.573 */
         +'<label style="flex-direction:row;align-items:center;gap:6px;color:var(--ink);font-size:12.5px"><input type="checkbox" data-q="picPage"'+(Q.picPage!==false?" checked":"")+'> แนบภาพเต็มหน้า (A4 แนวนอน)'+(plqPicFirst(Q)?'':' ต่อท้ายใบ')+'</label>'
-        +(plqPicFirst(Q)?'<div style="font-size:11px;color:var(--ink-dim);line-height:1.5">ลำดับในไฟล์: ภาพประกอบ (แนวนอน) → ใบเสนอราคา (ไม่มีภาพหัวใบ) → แบบแนบท้าย</div>'
+        +(plqPicFirst(Q)?'<div style="font-size:11px;color:var(--ink-dim);line-height:1.5">ลำดับในไฟล์: ภาพประกอบ (แนวนอน) → แบบ</div>'
           :'<label style="flex-direction:row;align-items:center;gap:6px;color:var(--ink);font-size:12.5px"><input type="checkbox" data-q="picTop"'+(Q.picTop!==false?" checked":"")+'> ภาพแรก (⭐) ขึ้นหัวใบแทนภาพห้อง 3D</label>')):''); };
   PLQ.picsChanged=()=>{ if(PLQ.el!==ov) return; picsPaint(); PLQ.dirty=true; preview(); };
   ov.addEventListener("input",ev=>{ const t=ev.target;
-    if(t.dataset.q!=null&&t.type!=="checkbox"&&t.tagName!=="SELECT"){ Q[t.dataset.q]=(t.type==="number")?(t.value===""?"":+t.value):t.value; PLQ.dirty=true; if(["markup","disc"].includes(t.dataset.q)){ K=plqCalc(Q,L); repaintLight(); } else preview(); return; }
+    if(t.dataset.q!=null&&t.type!=="checkbox"&&t.tagName!=="SELECT"){ Q[t.dataset.q]=(t.type==="number")?(t.value===""?"":+t.value):t.value; PLQ.dirty=true; if(t.dataset.q==="dl"||t.dataset.q==="oh"){ PLQ.co[t.dataset.q]=+t.value||0; saveCo(); }   /* v1.678: % ล่าสุดเป็นค่าตั้งต้นของงานถัดไป */
+      if(["markup","disc","dl","oh"].includes(t.dataset.q)){ K=plqCalc(Q,L); repaintLight(); } else preview(); return; }
     if(t.dataset.pk!=null){ if(t.value==="") delete Q.pct[t.dataset.pk]; else Q.pct[t.dataset.pk]=+t.value; PLQ.dirty=true; repaintLight(); return; }
     if(t.dataset.nk!=null){ if(!t.value.trim()) delete Q.nm[t.dataset.nk]; else Q.nm[t.dataset.nk]=t.value; PLQ.dirty=true; K=plqCalc(Q,L); preview(); return; }
     if(t.dataset.c!=null){ PLQ.co[t.dataset.c]=t.value; saveCo(); preview(); } });
@@ -45286,8 +45437,13 @@ async function plQuoteOpen(){
   ov.addEventListener("change",ev=>{ const t=ev.target;
     if(t.dataset.q!=null&&(t.type==="checkbox"||t.tagName==="SELECT")){ Q[t.dataset.q]=(t.type==="checkbox")?t.checked:(t.dataset.q==="round"?+t.value:t.value); PLQ.dirty=true;
       if(t.dataset.q==="img"&&t.checked&&!PLQ.img) shoot(); if(t.dataset.q==="picFirst"||t.dataset.q==="picPage") picsPaint(); paint(); } });   /* v1.573: ตัวเลือกภาพเปลี่ยนตามลำดับหน้า */
-  ov.addEventListener("click",async ev=>{ const b=ev.target.closest("[data-a]"); if(!b) return; const a=b.dataset.a;
+  ov.addEventListener("click",async ev=>{
+    const _tb=ev.target.closest("[data-tab]"); if(_tb){ setTab(_tb.dataset.tab); return; }   /* v1.678 */
+    const _xr=ev.target.closest("[data-xp]"); if(_xr&&!ev.target.closest("input")){ const pk=_xr.dataset.xp; if(PLQ.open.has(pk)) PLQ.open.delete(pk); else PLQ.open.add(pk); paint(); return; }
+    const b=ev.target.closest("[data-a]"); if(!b) return; const a=b.dataset.a;
     if(a==="x"){ plqClose(); return; }
+    if(a==="xpAll"){ L.lines.forEach(g=>{ if(g.o) PLQ.open.add(g.pk); }); paint(); return; }
+    if(a==="xpNone"){ PLQ.open.clear(); paint(); return; }
     if(a==="shot"){ shoot(); return; }
     if(a==="fitImg"){ const ch=await dwgFitImgEdit(); if(ch&&PLQ.att){ dwgMatTiles().then(tl=>{ if(PLQ.el!==ov) return; PLQ.att.mat=tl; preview(); }).catch(err=>console.error(err)); } return; }   /* v1.581 */
     if(a==="doorName"){ const ch=await dwgDoorNameEdit(); if(ch&&PLQ.att){ dwgMatTiles().then(tl=>{ if(PLQ.el!==ov) return; PLQ.att.mat=tl; preview(); }).catch(err=>console.error(err)); } return; }   /* v1.633 */
@@ -45305,7 +45461,7 @@ async function plQuoteOpen(){
       fi.onchange=()=>{ const f=fi.files&&fi.files[0]; if(!f) return; const rd=new FileReader(); rd.onload=async()=>{ let url=String(rd.result||"");
           try{ const im=await plpImg(url); if(im){ const mx=500, s=Math.min(1,mx/Math.max(im.width,im.height)), c=document.createElement("canvas"); c.width=Math.max(1,Math.round(im.width*s)); c.height=Math.max(1,Math.round(im.height*s)); c.getContext("2d").drawImage(im,0,0,c.width,c.height); url=c.toDataURL("image/png"); } }catch(_){}
           PLQ.co.logo=url; PLQ.co.logoOff=false; saveCo(); preview(); }; rd.readAsDataURL(f); }; fi.click(); return; }
-    if(a==="cost"){ const co=costEditor({onlyMissing:true}); if(co){   /* ovCard = z 430 อยู่เหนือหน้าต่างนี้ (410) อยู่แล้ว */
+    if(a==="cost"||a==="costAll"){ const co=costEditor(a==="cost"?{onlyMissing:true}:{}); if(co){   /* ovCard = z 430 อยู่เหนือหน้าต่างนี้ (410) อยู่แล้ว */
         const iv=setInterval(()=>{ if(!co.isConnected){ clearInterval(iv); if(PLQ.el===ov){ L=plqLines(); paint(); } } },400); } return; }
     if(a==="print"){ const html=plqHtml(Q,PLQ.co,plqCalc(Q,L),plqTopImg(Q),PLQ.att), fr=document.createElement("iframe");
       fr.style.cssText="position:fixed;right:0;bottom:0;width:0;height:0;border:0;visibility:hidden"; document.body.appendChild(fr);
@@ -45316,14 +45472,19 @@ async function plQuoteOpen(){
   ov.addEventListener("keydown",ev=>{ if(ev.key==="Escape"){ ev.preventDefault(); plqClose(); } ev.stopPropagation(); });   // ปุ่มลัดของโปรแกรม (Del/Ctrl+Z) ไม่ทะลุไปถึงตู้ในห้อง
   addEventListener("resize",fit);
   try{ plqAnnBind(ov,Q,()=>preview()); }catch(e){ console.error("plqAnnBind:",e); }   /* v1.580 */
-  paint(); picsPaint();   /* v1.568 */
-  if(Q.img!==false) shoot();
-  /* v1.521: แบบ (SVG) คิดทันที · หน้ารวมวัสดุมีภาพ 3D/รูปลายผิว คิดตามหลัง */
+  /* v1.678: แบบ (SVG) หน้ารวมวัสดุ และภาพห้อง ทำตอนเปิดแท็บแบบครั้งแรก */
   PLQ.att={figs:[], mat:null};
-  if(!snOff("plqDwg")){ try{ PLQ.att.figs=dwgAll(); }catch(e){ console.error("dwgAll:",e); }
-    const asay=ov.querySelector("#plqAttSay"); if(asay) asay.textContent="แบบ "+PLQ.att.figs.length+" ภาพ · กำลังทำหน้ารวมวัสดุ…";
-    setTimeout(()=>{ dwgMatTiles().then(tl=>{ if(PLQ.el!==ov) return; PLQ.att.mat=tl; const s2=ov.querySelector("#plqAttSay"); if(s2) s2.textContent="แบบ "+PLQ.att.figs.length+" ภาพ · วัสดุ "+((tl&&tl.length)||0)+" ช่อง"; preview(); })
-      .catch(e=>{ console.error("dwgMatTiles:",e); }); },400); }
+  const pdfInit=()=>{ if(_pdfDone) return; _pdfDone=true;
+    if(Q.img!==false) shoot();
+    /* v1.521: แบบ (SVG) คิดทันที · หน้ารวมวัสดุมีภาพ 3D/รูปลายผิว คิดตามหลัง */
+    if(!snOff("plqDwg")){ try{ PLQ.att.figs=dwgAll(); }catch(e){ console.error("dwgAll:",e); }
+      const asay=ov.querySelector("#plqAttSay"); if(asay) asay.textContent="แบบ "+PLQ.att.figs.length+" ภาพ · กำลังทำหน้ารวมวัสดุ…";
+      setTimeout(()=>{ dwgMatTiles().then(tl=>{ if(PLQ.el!==ov) return; PLQ.att.mat=tl; const s2=ov.querySelector("#plqAttSay"); if(s2) s2.textContent="แบบ "+PLQ.att.figs.length+" ภาพ · วัสดุ "+((tl&&tl.length)||0)+" ช่อง"; preview(); })
+        .catch(e=>{ console.error("dwgMatTiles:",e); }); },400); } };
+  const setTab=t=>{ _tab=t==="pdf"?"pdf":"cost"; ov.querySelectorAll("[data-tab]").forEach(x=>x.classList.toggle("on",x.dataset.tab===_tab));
+    ov.querySelector("#plqPaneCost").style.display=_tab==="cost"?"":"none"; ov.querySelector("#plqPanePdf").style.display=_tab==="pdf"?"":"none";
+    if(_tab==="pdf"){ pdfInit(); fit(); preview(); } };
+  paint(); picsPaint();   /* v1.568 */
   if(!snOff("costStock")&&typeof stkLoad==="function"&&!STK.map) stkLoad(false).then(()=>{ if(PLQ.el===ov){ L=plqLines(); paint(); } });   // ราคา AX มาทีหลัง = คิดใหม่
 }
 /* ═════════ v1.580: ใบเสนอราคา — แก้คำ + แปะข้อความ / กล่อง / ลูกศร / รูป ═════════
@@ -46068,7 +46229,7 @@ function doorArtOpen(door){ if(snOff("doorArt")){ toast("ปิดฟังก�
       +'<div class="daH">รูปลายเส้น JPG / PNG</div><div class="daR"><button class="daB" id="daPick">🖼 เลือกรูป…</button><span style="color:var(--ink-dim);font-size:10.5px">หรือลากมาวาง · Ctrl+V</span><input id="daFile" type="file" accept="image/*" style="display:none"></div><div id="daImg"></div>'
       +'<div class="daH">ตัวอย่างบานขนาดอื่น</div><div class="daR" id="daPrev" style="align-items:flex-end;gap:10px"></div><div id="daUse" style="margin-top:8px;color:#b45309;font-size:11px;line-height:1.4"></div></div></div>'
     +'<div class="daR" style="padding:10px 14px;border-top:1px solid var(--line)"><b>ใส่ให้</b><button class="daB" data-sc="door">บานนี้</button><button class="daB" data-sc="cab">ทุกบานในตู้นี้ ('+scopes.cab.length+')</button>'+(shape?'<button class="daB" data-sc="shape">แบบ '+E(shape)+' ('+scopes.shape.length+')</button>':'')+'<button class="daB" data-sc="all">ทั้งงาน ('+scopes.all.length+')</button>'
-      +'<span style="color:var(--ink-dim);font-size:10.5px;margin-left:6px">โชว์ใน 3D และแบบเสนอราคา · ใบตัด/MPR ไม่เปลี่ยน</span><button class="daB" id="daOff" style="margin-left:auto">ถอดลาย</button><button class="daB" id="daNo">ยกเลิก</button><button class="daB" id="daOk" style="background:var(--accent);color:#fff;border-color:transparent;font-weight:600">บันทึกและใส่</button></div></div>';
+      +'<span style="color:var(--ink-dim);font-size:10.5px;margin-left:6px">โชว์ใน 3D และแบบวางงาน · ใบตัด/MPR ไม่เปลี่ยน</span><button class="daB" id="daOff" style="margin-left:auto">ถอดลาย</button><button class="daB" id="daNo">ยกเลิก</button><button class="daB" id="daOk" style="background:var(--accent);color:#fff;border-color:transparent;font-weight:600">บันทึกและใส่</button></div></div>';
   const Q=q=>ov.querySelector(q), QA=q=>[...ov.querySelectorAll(q)], cv=Q("#daCv"), wrap=Q("#daWrap");
   let k=1, ox=0, oy=0;
   const snap=v=>snapOn?Math.round(v/5)*5:Math.round(v*10)/10;
@@ -74115,7 +74276,7 @@ const SNAI=(function(){
        ชี้อย่างเดียว ไม่กดแทน (ผู้ใช้เลือก) · ตำแหน่งหาร uiZoomOf (body[data-uiz] ซูมลูกของ body) · ชั้น = ชั้นของที่ชี้ + 5 (เมนูคลิกขวา 130 → 135 · แผงห้อง 320 → 325 · ตั้งค่า 90 → 95)
        ผู้ช่วยบังของที่ชี้ = ซ่อนผู้ช่วยระหว่างชี้ · ปิด SN_OFF.aiGoto */
   const GO_LSK="snAI:gomap:v1";
-  const GO_SEED={"plClose":{"l":"✓ เสร็จ","g":""},"plFitRoom":{"l":"⤢ ครอบตู้ที่มี","g":""},"plCam":{"l":"🎥 มุมห้อง","g":""},"plClrAll":{"l":"🎨 สีทั้งออเดอร์","g":""},"plPullAll":{"l":"🖐 มือจับทั้งห้อง","g":""},"plwGo2":{"l":"✏ วาดผนังจากแปลน","g":""},"plptGo":{"l":"🖌 สีผนัง · พื้น","g":""},"plRoomLock":{"l":"🔓 ล็อกห้อง","g":""},"plrlSave":{"l":"💾 บันทึกห้อง","g":""},"plrlOpen":{"l":"📂 เปิดห้องที่บันทึก","g":""},"plrlNew":{"l":"🧹 ล้างตู้ · เก็บห้อง","g":""},"plCeilShow":{"l":"แสดงฝ้า","g":"ขนาดห้อง · ผนัง · Dim"},"plDimGap":{"l":"■ ระยะถึงผนัง/ตู้ข้าง","g":"ขนาดห้อง · ผนัง · Dim"},"plDimSize":{"l":"■ ขนาดตู้","g":"ขนาดห้อง · ผนัง · Dim"},"plPlMat":{"l":"ตีนตู้","g":"ขา · ตีนตู้ · ฟิลเลอร์ · ไม้ไฟ"},"plFFloor":{"l":"ฟิลเลอร์ลงพื้น","g":"ขา · ตีนตู้ · ฟิลเลอร์ · ไม้ไฟ"},"plCeilOn":{"l":"ฟิลเลอร์บน","g":"ขา · ตีนตู้ · ฟิลเลอร์ · ไม้ไฟ"},"plCeilH":{"l":"ฟิลเลอร์บน","g":"ขา · ตีนตู้ · ฟิลเลอร์ · ไม้ไฟ"},"plLtOn":{"l":"ไม้ไฟใต้ตู้ลอย","g":"ขา · ตีนตู้ · ฟิลเลอร์ · ไม้ไฟ"},"plLtCode":{"l":"ไม้ไฟใต้ตู้ลอย","g":"ขา · ตีนตู้ · ฟิลเลอร์ · ไม้ไฟ"},"plSdFloor":{"l":"ตู้พื้น/สูง ลงพื้น","g":"ขา · ตีนตู้ · ฟิลเลอร์ · ไม้ไฟ"},"plSdCeil":{"l":"ตู้ลอย/สูง ถึงฝ้า","g":"ขา · ตีนตู้ · ฟิลเลอร์ · ไม้ไฟ"},"plBvTT":{"l":"บานเพบน","g":"ขา · ตีนตู้ · ฟิลเลอร์ · ไม้ไฟ"},"plwGo":{"l":"✏ วาดผนังจากแปลน (มองจากบน)","g":"✏ ผนังที่วาด (แปลน)"},"plApply":{"l":"ปรับขนาด","g":"ตู้ที่เลือก"},"plDup":{"l":"⧉ สำเนา","g":"ตู้ที่เลือก"},"plDupM":{"l":"⧉⇋ สำเนากลับ","g":"ตู้ที่เลือก"},"plClr":{"l":"🎨 สี","g":"ตู้ที่เลือก"},"plSwap":{"l":"🔁 รุ่น","g":"ตู้ที่เลือก"},"plRot":{"l":"⟳ หมุน","g":"ตู้ที่เลือก"},"plMir":{"l":"⇋ กลับ","g":"ตู้ที่เลือก"},"plDel":{"l":"🗑 ลบ","g":"ตู้ที่เลือก"},"plDp":{"l":"DP","g":"ตู้ที่เลือก"},"plTT":{"l":"Trim Top","g":"ตู้ที่เลือก"},"plOff":{"l":"ห่างผนัง","g":"ตู้ที่เลือก"},"plFL":{"l":"◀ ปิดช่องซ้าย","g":"ตู้ที่เลือก"},"plFR":{"l":"ปิดช่องขวา ▶","g":"ตู้ที่เลือก"},"plSdL":{"l":"◀ ซ้าย","g":"ตู้ที่เลือก"},"plSdR":{"l":"ขวา ▶","g":"ตู้ที่เลือก"},"plAlignAll":{"l":"จัดแนวทั้งห้อง","g":""},"plCostEdit":{"l":"💰 ใส่ราคาที่ขาด","g":"ท้ายแผง"},"plQuoteBtn":{"l":"🧾 ใบเสนอราคา","g":"ท้ายแผง"},"plRendBtn":{"l":"🎬 AI RENDER","g":"ท้ายแผง"},"plRealBtn":{"l":"✨ โหมดสมจริง","g":"ท้ายแผง"},"plSnapBtn":{"l":"📷 บันทึกภาพ","g":"ท้ายแผง"},"@size":{"l":"ขนาดห้อง · ผนัง · Dim","g":"กลุ่ม"},"@work":{"l":"ขา · ตีนตู้ · ฟิลเลอร์ · ไม้ไฟ · ปิดข้าง","g":"กลุ่ม"},"@line":{"l":"แนวตู้ลอย / ตู้สูง","g":"กลุ่ม"},"@wt":{"l":"ท็อปเคาน์เตอร์ · ผนังเหนือท็อป","g":"กลุ่ม"},"@dw":{"l":"✏ ผนังที่วาด (แปลน)","g":"กลุ่ม"},"@foot":{"l":"รายละเอียด","g":"กลุ่ม"},"plCatHide":{"l":"ซ่อน ▸","g":"แคตตาล็อก"},"plWall":{"l":"ตู้ที่กดจากแคตตาล็อกไปลงผนังไหน","g":"แคตตาล็อก"}};
+  const GO_SEED={"plClose":{"l":"✓ เสร็จ","g":""},"plFitRoom":{"l":"⤢ ครอบตู้ที่มี","g":""},"plCam":{"l":"🎥 มุมห้อง","g":""},"plClrAll":{"l":"🎨 สีทั้งออเดอร์","g":""},"plPullAll":{"l":"🖐 มือจับทั้งห้อง","g":""},"plwGo2":{"l":"✏ วาดผนังจากแปลน","g":""},"plptGo":{"l":"🖌 สีผนัง · พื้น","g":""},"plRoomLock":{"l":"🔓 ล็อกห้อง","g":""},"plrlSave":{"l":"💾 บันทึกห้อง","g":""},"plrlOpen":{"l":"📂 เปิดห้องที่บันทึก","g":""},"plrlNew":{"l":"🧹 ล้างตู้ · เก็บห้อง","g":""},"plCeilShow":{"l":"แสดงฝ้า","g":"ขนาดห้อง · ผนัง · Dim"},"plDimGap":{"l":"■ ระยะถึงผนัง/ตู้ข้าง","g":"ขนาดห้อง · ผนัง · Dim"},"plDimSize":{"l":"■ ขนาดตู้","g":"ขนาดห้อง · ผนัง · Dim"},"plPlMat":{"l":"ตีนตู้","g":"ขา · ตีนตู้ · ฟิลเลอร์ · ไม้ไฟ"},"plFFloor":{"l":"ฟิลเลอร์ลงพื้น","g":"ขา · ตีนตู้ · ฟิลเลอร์ · ไม้ไฟ"},"plCeilOn":{"l":"ฟิลเลอร์บน","g":"ขา · ตีนตู้ · ฟิลเลอร์ · ไม้ไฟ"},"plCeilH":{"l":"ฟิลเลอร์บน","g":"ขา · ตีนตู้ · ฟิลเลอร์ · ไม้ไฟ"},"plLtOn":{"l":"ไม้ไฟใต้ตู้ลอย","g":"ขา · ตีนตู้ · ฟิลเลอร์ · ไม้ไฟ"},"plLtCode":{"l":"ไม้ไฟใต้ตู้ลอย","g":"ขา · ตีนตู้ · ฟิลเลอร์ · ไม้ไฟ"},"plSdFloor":{"l":"ตู้พื้น/สูง ลงพื้น","g":"ขา · ตีนตู้ · ฟิลเลอร์ · ไม้ไฟ"},"plSdCeil":{"l":"ตู้ลอย/สูง ถึงฝ้า","g":"ขา · ตีนตู้ · ฟิลเลอร์ · ไม้ไฟ"},"plBvTT":{"l":"บานเพบน","g":"ขา · ตีนตู้ · ฟิลเลอร์ · ไม้ไฟ"},"plwGo":{"l":"✏ วาดผนังจากแปลน (มองจากบน)","g":"✏ ผนังที่วาด (แปลน)"},"plApply":{"l":"ปรับขนาด","g":"ตู้ที่เลือก"},"plDup":{"l":"⧉ สำเนา","g":"ตู้ที่เลือก"},"plDupM":{"l":"⧉⇋ สำเนากลับ","g":"ตู้ที่เลือก"},"plClr":{"l":"🎨 สี","g":"ตู้ที่เลือก"},"plSwap":{"l":"🔁 รุ่น","g":"ตู้ที่เลือก"},"plRot":{"l":"⟳ หมุน","g":"ตู้ที่เลือก"},"plMir":{"l":"⇋ กลับ","g":"ตู้ที่เลือก"},"plDel":{"l":"🗑 ลบ","g":"ตู้ที่เลือก"},"plDp":{"l":"DP","g":"ตู้ที่เลือก"},"plTT":{"l":"Trim Top","g":"ตู้ที่เลือก"},"plOff":{"l":"ห่างผนัง","g":"ตู้ที่เลือก"},"plFL":{"l":"◀ ปิดช่องซ้าย","g":"ตู้ที่เลือก"},"plFR":{"l":"ปิดช่องขวา ▶","g":"ตู้ที่เลือก"},"plSdL":{"l":"◀ ซ้าย","g":"ตู้ที่เลือก"},"plSdR":{"l":"ขวา ▶","g":"ตู้ที่เลือก"},"plAlignAll":{"l":"จัดแนวทั้งห้อง","g":""},"plCostEdit":{"l":"💰 ใส่ราคาที่ขาด","g":"ท้ายแผง"},"plQuoteBtn":{"l":"💰 ราคาต้นทุน","g":"ท้ายแผง"},"plRendBtn":{"l":"🎬 AI RENDER","g":"ท้ายแผง"},"plRealBtn":{"l":"✨ โหมดสมจริง","g":"ท้ายแผง"},"plSnapBtn":{"l":"📷 บันทึกภาพ","g":"ท้ายแผง"},"@size":{"l":"ขนาดห้อง · ผนัง · Dim","g":"กลุ่ม"},"@work":{"l":"ขา · ตีนตู้ · ฟิลเลอร์ · ไม้ไฟ · ปิดข้าง","g":"กลุ่ม"},"@line":{"l":"แนวตู้ลอย / ตู้สูง","g":"กลุ่ม"},"@wt":{"l":"ท็อปเคาน์เตอร์ · ผนังเหนือท็อป","g":"กลุ่ม"},"@dw":{"l":"✏ ผนังที่วาด (แปลน)","g":"กลุ่ม"},"@foot":{"l":"รายละเอียด","g":"กลุ่ม"},"plCatHide":{"l":"ซ่อน ▸","g":"แคตตาล็อก"},"plWall":{"l":"ตู้ที่กดจากแคตตาล็อกไปลงผนังไหน","g":"แคตตาล็อก"}};
   const cssq=x=>String(x).replace(/["\\]/g,"\\$&");
   function goLbl(el){ if(!el) return ""; let t=String(el.textContent||"").replace(/\s+/g," ").trim();
     if(!t||t.length<2) t=String(el.getAttribute("title")||el.getAttribute("aria-label")||"").split(/ — |\n|\(/)[0].trim();
@@ -75025,8 +75186,8 @@ const RND=(function(){
       if(!f){ toast("วางได้เฉพาะไฟล์ภาพ"); return; } if(!it){ toast("ลากภาพไปวางบนการ์ดภาพที่ต้องการ"); return; } webPut(it,f); }); }
   function qBtn(it,k){ if(snOff("plqPics")||(typeof VIEW_ONLY!=="undefined"&&VIEW_ONLY)||typeof plqPicState!=="function") return "";   /* v1.568: 🧾 ใส่ใบเสนอราคา */
     const url=k==="ai"?((it.ai||{}).url):it.url, st=plqPicState(it.id+":"+k,url);
-    return '<button class="ibtn rnQ" data-k="'+k+'" title="'+(st===1?"กดอีกครั้ง = เอาออกจากใบเสนอราคา":"ใส่ภาพนี้ในใบเสนอราคา (หน้า 🧾 ใบเสนอราคา)")+'" style="font-size:11.5px;padding:3px 9px;white-space:nowrap'
-      +(st===1?';background:#e7f6ec;border-color:#7cc290;color:#1e6b35':'')+'">'+(st===1?'✓ อยู่ในใบเสนอราคา':st===2?'🧾 อัปเดตในใบเสนอราคา':'🧾 ใส่ใบเสนอราคา')+'</button>'; }
+    return '<button class="ibtn rnQ" data-k="'+k+'" title="'+(st===1?"กดอีกครั้ง = เอาออกจากแบบวางงาน":"ใส่ภาพนี้ในแบบวางงาน (หน้า 💰 ราคาต้นทุน › แท็บแบบวางงาน)")+'" style="font-size:11.5px;padding:3px 9px;white-space:nowrap'
+      +(st===1?';background:#e7f6ec;border-color:#7cc290;color:#1e6b35':'')+'">'+(st===1?'✓ อยู่ในแบบวางงาน':st===2?'📐 อัปเดตในแบบวางงาน':'📐 ใส่แบบวางงาน')+'</button>'; }
   function webPanel(it){ const w=it.web||{}, b=(c,t)=>'<button class="ibtn '+c+'" style="display:inline-flex;flex:none;width:auto;font-size:11px;padding:2px 8px;margin:1px 0;vertical-align:middle">'+t+'</button>';   /* .ibtn = flex:1 → ไม่ให้ยืดเต็มบรรทัด */
     return '<div class="rnWP" style="margin:0 9px 9px;padding:8px 10px;border-radius:8px;background:rgba(255,211,107,.16);border:.5px solid rgba(229,181,58,.6);font-size:11.5px;line-height:1.8">'
       +'<div style="display:flex;align-items:center;gap:6px"><b style="flex:1;min-width:0">🍌 Gemini เว็บ — ฟรีตามโควตาบัญชี Google</b>'+b("rnWX","✕")+'</div>'
@@ -75035,7 +75196,7 @@ const RND=(function(){
       +'<div>② '+b("rnWT","📋 คัดลอกคำสั่ง")+' แล้ว Ctrl+V ในช่องพิมพ์ของ Gemini → กดส่ง (มีเครื่องมือ 🍌 สร้างรูปภาพ ให้เลือกด้วย)</div>'
       +(snOff("rndSplit")?('<div>③ ได้ภาพแล้ว คลิกขวาที่ภาพ → <b>คัดลอกรูปภาพ</b> แล้วกลับมากด '+b("rnWV","📥 วางภาพผล")+' · หรือ Ctrl+V ในหน้านี้ · ลากไฟล์มาวางบนการ์ด · '+b("rnWF","📂 เลือกไฟล์")+'</div>')
         :'<div>③ ได้ภาพแล้ว ใน Gemini คลิกขวาที่ภาพ → <b>คัดลอกรูปภาพ</b> แล้วกลับมาวางที่ช่อง <b>② ภาพที่ได้จากการเจน</b> ทางขวา (📥 วางภาพผล · Ctrl+V · ลากไฟล์ · 📂 เลือกไฟล์)</div>')   /* v1.573 */
-      +(snOff("plqPics")?'':'<div>④ ได้ภาพแล้วกด <b>🧾 ใส่ใบเสนอราคา</b> ใต้ภาพ'+(snOff("rndSplit")?'':'ทางขวา')+' → ขึ้นในหน้า 🧾 ใบเสนอราคา</div>')
+      +(snOff("plqPics")?'':'<div>④ ได้ภาพแล้วกด <b>📐 ใส่แบบวางงาน</b> ใต้ภาพ'+(snOff("rndSplit")?'':'ทางขวา')+' → ขึ้นในแท็บแบบวางงาน</div>')
       +'<div class="muted" style="font-size:10.5px;line-height:1.5">ใช้บัญชี Google ที่ล็อกอินในเบราว์เซอร์ ไม่ต้องใช้คีย์ · ภาพฟรีอาจมีลายน้ำ ✦ เล็ก ๆ ที่มุม · โควตาฟรีต่อวัน Google เป็นคนกำหนด</div></div>'; }
   /* ---------- หน้าต่าง ---------- */
   async function open(){ await load();
@@ -75144,7 +75305,7 @@ const RND=(function(){
       /* v1.573: หัวสองฝั่ง — ① ข้อมูลสำหรับไปเจนภาพ (เดิม “ผลลัพธ์”) · ② ภาพที่ได้จากการเจน */
       :('<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px;margin:16px 0 8px;padding-top:12px;border-top:.5px solid var(--line)">'
         +'<div><div style="font-weight:700;font-size:13.5px">① ข้อมูลสำหรับไปเจนภาพ'+(res.length?' ('+res.length+')':'')+'</div><div class="muted" style="font-size:11px;line-height:1.5">ภาพฉาก + คำสั่ง — ส่งด้วย 🤖 AI แต่งต่อ (คีย์ที่เปิด billing) หรือ 🍌 Gemini เว็บ (ฟรี)</div></div>'
-        +'<div><div style="font-weight:700;font-size:13.5px">② ภาพที่ได้จากการเจน ('+res.filter(x=>x.ai&&x.ai.url).length+'/'+res.length+')</div><div class="muted" style="font-size:11px;line-height:1.5">ตรวจรายละเอียดตู้ แล้วกด 🧾 ใส่ใบเสนอราคา</div></div></div>'
+        +'<div><div style="font-weight:700;font-size:13.5px">② ภาพที่ได้จากการเจน ('+res.filter(x=>x.ai&&x.ai.url).length+'/'+res.length+')</div><div class="muted" style="font-size:11px;line-height:1.5">ตรวจรายละเอียดตู้ แล้วกด 📐 ใส่แบบวางงาน</div></div></div>'
         +(res.length?'<div style="display:flex;flex-direction:column;gap:14px">'+res.map(card).join("")+'</div>':'<div class="muted">ยังไม่มีภาพ — เลือกฉากด้านบน แล้วกด ▶ '+((O.eng==="ai"&&!snOff("rndAi"))?'AI RENDER':'เรนเดอร์')+'</div>')));
     B.innerHTML=h; wire(B); }
   function wire(B){ const q=x=>B.querySelector(x);
@@ -75174,9 +75335,9 @@ const RND=(function(){
       const t2=wq(".rnWT2"); if(t2) t2.onclick=async()=>{ webFor=it.id; toast((await copyTxt(webPrompt(it)))?"📋 คัดลอกคำสั่งแล้ว — วางในช่องพิมพ์ของ Gemini / ChatGPT ได้":"คัดลอกคำสั่งไม่ได้"); };
       const rR=wq(".rnDZ"); if(rR) rR.onclick=ev=>{ if(ev.target.closest&&ev.target.closest("button,a,input")) return; if(webFor!==it.id){ webFor=it.id; draw(); } };
       el.querySelectorAll(".rnQ").forEach(q=>q.onclick=async()=>{ const k=q.dataset.k, url=k==="ai"?((it.ai||{}).url):it.url, key=it.id+":"+k;   /* v1.568 */
-        if(!url) return; if(plqPicState(key,url)===1){ plqPicDel(key); toast("เอาภาพออกจากใบเสนอราคาแล้ว"); draw(); return; }
+        if(!url) return; if(plqPicState(key,url)===1){ plqPicDel(key); toast("เอาภาพออกจากแบบวางงานแล้ว"); draw(); return; }
         q.disabled=true; const ok=await plqPicAdd(url,{key, name:it.name, src:k==="ai"?String((it.ai&&it.ai.model)||"AI"):"render"});
-        if(ok) toast("🧾 ใส่ภาพ “"+it.name+"” ในใบเสนอราคาแล้ว — ดูที่ 🧾 ใบเสนอราคา (ภาพประกอบ)"); draw(); });
+        if(ok) toast("🧾 ใส่ภาพ “"+it.name+"” ในแบบวางงานแล้ว — ดูที่ 💰 ราคาต้นทุน › แท็บแบบวางงาน"); draw(); });
       el.querySelector(".rnA").onclick=async()=>{ it.ai=Object.assign({},it.ai||{},{busy:true,err:""}); draw();
         try{ const r=await enhance(it); it.ai={url:r.url, model:r.model}; }
         catch(e){ console.warn("render AI:",(e&&e.message)||e); it.ai=Object.assign({},it.ai,{err:String((e&&e.message)||e), free:!!(e&&e.free)}); }   /* v1.568: free = ไฮไลต์ 🍌 */
