@@ -3283,7 +3283,7 @@ body[data-theme="dark"] .splash-dots span{background:rgba(255,255,255,.25)}
    ===================================================================== */
 /* ---- APP_META: แหล่งความจริงเดียวของเวอร์ชัน (ดูได้จาก console / คลิกชื่อแอป) ---- */
 const APP_META={
-  name:"StarNexus", version:"1.683", build:"2026-11-05/floor-edge",
+  name:"StarNexus", version:"1.684", build:"2026-11-05/door-mold",
   file:"StarNexus.html", basedOn:"Furnitech_V3.html (v3.11)",
   /* ───────── เริ่มนับเวอร์ชันใหม่ที่ 1.001 (21/08/2026) ─────────
      ของเดิมนับมาถึง 42.1 แล้ววิ่งเป็นทศนิยมสองชั้นซึ่งอ่านลำดับยาก
@@ -3291,6 +3291,7 @@ const APP_META={
      ประวัติเก่าเก็บไว้ทั้งหมดตามเลขเดิม ไม่ไล่เขียนใหม่ เพราะเลขในนั้นถูกอ้างถึงไปแล้ว
      รายการที่อยู่ใต้ 1.001 ลงไปจึงเป็นเลขชุดเก่า อ่านต่อกันได้ตามวันที่ */
   changelog:[
+    ["1.684","2026-11-05","FEAT แบบบาน PxWx02 (ผู้ใช้ 14:08 ภาพแบบ + DETAIL-A) — คิ้ว D37 กว้าง 16 สูง 16 ฝังลงบาน 2 ห่างขอบบาน 50 เข้ามุม 45 · 3D ขึ้นคิ้วจริงรอบบาน (โค้งวาดตามภาพ) · ออก MPR ร่องกว้าง 16 ลึก 2 ที่ไฟล์ผิวหน้าบาน 4 ท่อน · ภาพบานในแบบวัสดุมีกรอบคิ้วและหน้าตัด · บานเล็กกว่า 142 มม. ไม่ใส่คิ้ว · รับรหัส PxWx02 · Pxxx02 · PCWx02 · FIX คลิกขวาในหน้า Variables แล้วรายการเสนอของเบราว์เซอร์บังเมนู (ผู้ใช้ 14:20) เลิกโฟกัสช่องพิมพ์ก่อนเปิดเมนู"],
     ["1.683","2026-11-05","FIX เส้นขอบตู้และแผ่นปิดข้างหายตรงรอยต่อพื้นกับผนัง ดูเหมือนตู้จมพื้น (ผู้ใช้ 13:35 ส่งภาพเทียบ) — พื้นห้องเคยลอยเหนือก้นตู้ 0.8 มม. พื้นทึบจึงบังเส้นล่างมิด ส่วนผนังเส้นอยู่บนผิวพอดีบางจุดหาย · ลดพื้นเหลือ 0.1 มม. และดันผิวพื้นกับผนังถอยด้วย polygonOffset เห็นเส้นครบทุกมุมกล้อง กริดกับเงาใต้พื้นทึบย้ายลงไม่ให้ทะลุขึ้นมา · ดันผิวแผ่นถอยนิดเดียวด้วย เส้นขอบตู้เต็มเส้น ไม่ขาดเป็นประตอนมองเฉียง · FIX บานพับหลบคานทั้งที่ไม่ชน (ผู้ใช้ 13:47 project 76 ตัวที่ 2 จากบนถูกดันขึ้น 288) — คานเคยใช้เกณฑ์เดียวกับชั้น ต้องห่างผิวคาน 87.9 มม. เปลี่ยนเป็นตั้งค่า hingeRailClear ตั้งต้น 40 มม. จากผิวคานถึงศูนย์บานพับ"],
     ["1.682","2026-11-05","FEAT ชุดตู้ (ผู้ใช้ 11:33 ภาพห้อง 003 MODEL_ALTO) — ① เลือกตู้ 2 ใบขึ้นไป กด 🧩 บันทึกเป็นชุดตู้ แล้วชุดขึ้นแท็บ 🧩 ชุดตู้ ในแคตตาล็อกขวา คลิกหรือกดค้างลากลงห้องได้ แต่ละตู้ยังมีรหัสของตัวเอง เก็บสี ตัวแปร อุปกรณ์ เครื่องใช้ที่ติดตู้ และค่าท็อป ② ลากทั้งชุดเข้าใกล้ผนังอื่น = ทั้งก้อนหันตามผนังนั้นและชิดผนัง รวมผนังที่วาดเอง Alt = ไม่หมุนไม่ดูด ③ กด 🔁 รุ่น แล้วคลิกการ์ดในแคตตาล็อกขวาเปลี่ยนรุ่นได้เลย"],
     ["1.681","2026-11-05","FIX Out of Memory ตอนเปิดชุดใหญ่ (ผู้ใช้ 10:10 · เครื่อง RAM 16 GB การ์ดจอ 4 GB) — ทดสอบด้วยรูปลายผิว 3000 px: เปิดงานแต่ละครั้งรูปค้างในการ์ดจอเพิ่ม 32 รูปไม่เคยคืน (เปิด 4 รอบ 113 รูป) ① ทาสีใหม่/เปิดงานใหม่ คืนรูปเก่าก่อน ② รูปลายผิวย่อเหลือด้านยาว 2048 px (6000 px เดิมกิน 5.1 GB เหลือ 1.4 GB) ③ รหัสสีที่ใช้ไฟล์เดียวกันโหลดครั้งเดียว ④ Ctrl+Z ไม่เก็บรูปห้องซ้ำทุกครั้ง และจำกัดขนาดประวัติ · ปิด SN_OFF.skinDrop / texImgCap / snapLite · FEAT ชื่อห้องที่เปิดอยู่ขึ้นหัวแผงมุมบนซ้าย (ผู้ใช้ 11:33)"],
@@ -6294,6 +6295,66 @@ function doorReliefGeo(L,W,T,prof,orient,yaw,cut,cups){
    ปิดได้ SN_OFF.reliefPanel */
 function reliefPanel(b){ return !!(b&&!b._door&&!b._virtual&&b.orient==="front"&&!snOff("reliefPanel")&&/^FrontShapeP\d+$/i.test(String(b.part||"").trim())); }
 /* คืนรูปทรงลายหน้าบานถ้าบานใบนี้มีลายและลงได้ · ไม่มี = null (วาดแผ่นเรียบตามเดิม) */
+/* ═════════ v1.684: แบบบานมีคิ้ว PxWx02 ═════════
+   ผู้ใช้ 5/11/2026 14:08 (ภาพแบบ PxWx02 + DETAIL-A คิ้ว D37): “ทำ 3D แบบบานให้ทีครับ ติ้ว กว้าง 16 สูง 16 ครับ ส่วนที่เป็นโค้งคุณลองวาดเอา คิ้วจะฝังลงไปในบาน 2 mm.
+     เผื่อออก MPR ด้วยนะครับ ตี CNC เผื่อฝังคิ้ว ครับ ร่องเอาพอดี คือ 16 mm ลึก 2 คิ้ว Set จากขอบบาน 50 mm. คิ้ว เข้า 45 หากันนะครับ”
+   เดิม: ลายหน้าบาน (v1.247 doorRelief) แกะลงจากผิวอย่างเดียว ทำของที่นูนเหนือผิวไม่ได้ และโชว์อย่างเดียว ไม่ออกไฟล์เจาะ
+   ตอนนี้:
+     · 3D: doorMoldGeo รีดหน้าตัดรอบบาน ทุกจุดของหน้าตัดอยู่บนเส้นทแยงมุมจึงเข้ามุม 45 เอง · สีตามผิวหน้าบาน
+       โหมดประหยัดก็วาด เพราะเป็นโหมดตั้งต้นของโปรแกรม ซ่อนไว้จะเหมือนไม่ได้ทำ และรูปทรงเบา บานละ 176 สามเหลี่ยม (ลาย relief วาดเฉพาะปิดโหมดประหยัด เพราะตาข่ายหนาแน่นกว่ามาก)
+     · หน้าตัด: กว้าง 16 สูง 16 (ฝัง 2 เหนือผิว 14) ไล่จากขอบนอก: ผนังตั้ง → โค้ง R4.5 ถึงยอด → โค้ง S ลงถึงบ่าเตี้ยด้านในสูง 8.5 · ไม่มีเลขในแบบ ผมอ่านทรงจาก DETAIL-A
+     · MPR: doorMoldGrooveSync ใส่ร่องปกติของชิ้น 4 ท่อน ธง _moldGr คิดใหม่ทุกรอบ render ใน applyPartDrills จึงตามขนาดบานและรหัสแบบบานเอง
+       แนวนอนวิ่งเต็ม แนวตั้งอยู่ระหว่างกลาง มุมไม่กัดซ้ำ · ออก <112 ที่ไฟล์ผิวหน้าบาน (บานพับอยู่ไฟล์ผิวหลัง บานจึงมี 2 ไฟล์) · ชิ้นจาก FXF ไม่เติมร่อง เพราะไฟล์เจาะตาม imos
+     · บานเล็ก (เหลือกลางน้อยกว่า 10 มม.) ไม่มีทั้งคิ้วและร่อง
+     · รหัส: แบบเขียน PxWx02 แต่ในหน้า Variables ของผู้ใช้ (ภาพ 14:20) ค่าคือ Pxxx02 และครั้งก่อน MxWx03 รหัสจริงคือ MCWx03 จึงรับ P + 2 ตัวอะไรก็ได้ + x02 (PxWx02 · Pxxx02 · PCWx02 …)
+   เพิ่มแบบใหม่: ต่อแถวใน DOOR_MOLD_BUILTIN · ปิด SN_OFF.doorMold */
+function doorMoldPts37(){ const P=[[0,-2],[0,9.5]];
+  for(let i=1;i<=8;i++){ const a=Math.PI-(Math.PI/2)*(i/8); P.push([round(4.5+4.5*Math.cos(a)),round(9.5+4.5*Math.sin(a))]); }
+  for(let i=1;i<=10;i++){ const t=i/10; P.push([round(4.5+10*t),round(14-5.5*(1-Math.cos(Math.PI*t))/2)]); }
+  P.push([16,8.5],[16,-2]); return P; }
+const DOOR_MOLD_BUILTIN=[{id:"D37", re:/^P[A-Z0-9]{2}X02$/i, off:50, w:16, h:16, emb:2, dep:2}];
+function doorMoldSpec(b){ if(snOff("doorMold")||!b||!(b._door||reliefPanel(b))||b._virtual||b._box||b._glass||b._frameDoor||b._noPanel||b.orient!=="front") return null;
+  const code=String(doorShapeCode(b)||"").trim(); if(!code) return null; const sp=DOOR_MOLD_BUILTIN.find(x=>x.re.test(code)); if(!sp) return null;
+  const L=+b.L||0, W=+b.W||0, m=2*(sp.off+sp.w); if(L-m<10||W-m<10) return null;
+  if(!sp.pts) sp.pts=doorMoldPts37(); return sp; }
+const _moldSz=new Map(), _moldC=new Map();
+/* ด้านหน้าบานอยู่ผิว +z หรือ −z ของชิ้น (ตัวเดียวกับ ehpSides) · เดินทุกชิ้นในฉาก จึงจำต่อบาน
+   ต้องคิดจากบานตัวจริง: ตอนกางบาน render3D ส่งสำเนาที่หมุนแล้วมา ถ้าคิดจากสำเนา ผิวหน้าอาจกลับข้าง คิ้วไปโผล่หลังบาน */
+function doorFrontSign(b){ let v=_moldSz.get(b.id); if(v==null){ const o=state.boards.find(x=>x&&x.id===b.id)||b; v=ehpSides(o).sz; if(_moldSz.size>4000) _moldSz.clear(); _moldSz.set(b.id,v); } return v; }
+function doorMoldGrooveSync(b){ if(!b) return 0; const has=!!(b.grooves&&b.grooves.some(g=>g&&g._moldGr)); if(!has&&!b._door&&!reliefPanel(b)) return 0;
+  const sp=b._fxf?null:doorMoldSpec(b); let want=[];
+  if(sp){ const L=+b.L, W=+b.W, F=doorFrontSign(b)>0?"top":"bottom", a=sp.off+sp.w/2, base={face:F,width:sp.w,depth:sp.dep,end:"sq",_moldGr:true};
+    [1,-1].forEach(s=>want.push(Object.assign({axis:"len",pos:round(s*(W/2-a)),off0:sp.off,off1:sp.off},base)));
+    [1,-1].forEach(s=>want.push(Object.assign({axis:"wid",pos:round(s*(L/2-a)),off0:sp.off+sp.w,off1:sp.off+sp.w},base))); }
+  if(!has&&!want.length) return 0;
+  const cur=(b.grooves||[]).filter(g=>g&&g._moldGr); if(JSON.stringify(cur)===JSON.stringify(want)) return 0;
+  b.grooves=(b.grooves||[]).filter(g=>!(g&&g._moldGr)).concat(want); return 1; }
+function doorMoldGeo(L,W,T,sp,sz,orient,yaw){ const key=[L,W,T,sp.id,sz,orient,yaw||0].join("|"), hit=_moldC.get(key); if(hit) return hit;
+  const pts=sp.pts, n=pts.length, hx=L/2-sp.off, hy=W/2-sp.off, z0=sz*T/2, seg=[], arc=[0];
+  for(let i=0;i<n;i++){ const a=pts[i], c=pts[(i+1)%n], dx=c[0]-a[0], dy=c[1]-a[1], ln=Math.hypot(dx,dy)||1; seg.push([-dy/ln,dx/ln]); arc.push(arc[i]+ln); }
+  /* โค้งเรียบ · มุมคม (เกิน 35°) แยก normal ตามด้าน */
+  const nAt=(i,own)=>{ const o=seg[own], other=seg[own===i?(i-1+n)%n:i]; if(o[0]*other[0]+o[1]*other[1]<Math.cos(35*Math.PI/180)) return o; const x=o[0]+other[0], y=o[1]+other[1], q=Math.hypot(x,y)||1; return [x/q,y/q]; };
+  const pos=[], nor=[], uv=[];
+  [[0,1],[0,-1],[1,0],[-1,0]].forEach(o=>{ const t=[-o[1],o[0]], alongX=o[0]===0;
+    const P=(k,e)=>{ const q=pts[k], hO=(alongX?hy:hx)-q[0], hT=(alongX?hx:hy)-q[0]; return [o[0]*hO+t[0]*e*hT, o[1]*hO+t[1]*e*hT, z0+sz*q[1]]; };
+    const N=m=>[-m[0]*o[0],-m[0]*o[1],sz*m[1]];
+    const U=(v,s)=>alongX?[s/L,(v[0]+L/2)/W]:[(v[0]+L/2+s)/L,(v[1]+W/2)/W];
+    for(let i=0;i<n;i++){ const j=(i+1)%n, A=P(i,-1), B=P(i,1), C=P(j,1), D=P(j,-1), nA=N(nAt(i,i)), nC=N(nAt(j,i));
+      const ab=[B[0]-A[0],B[1]-A[1],B[2]-A[2]], ad=[D[0]-A[0],D[1]-A[1],D[2]-A[2]], cx=ab[1]*ad[2]-ab[2]*ad[1], cy=ab[2]*ad[0]-ab[0]*ad[2], cz=ab[0]*ad[1]-ab[1]*ad[0], fw=(cx*(nA[0]+nC[0])+cy*(nA[1]+nC[1])+cz*(nA[2]+nC[2]))>=0;
+      const V=[[A,nA,arc[i]],[B,nA,arc[i]],[C,nC,arc[i+1]],[D,nC,arc[i+1]]], ord=fw?[0,1,2,0,2,3]:[0,2,1,0,3,2];
+      ord.forEach(k=>{ const v=V[k]; pos.push(v[0][0],v[0][1],v[0][2]); nor.push(v[1][0],v[1][1],v[1][2]); const u=U(v[0],v[2]); uv.push(u[0],u[1]); }); } });
+  const g=new THREE.BufferGeometry(); g.setAttribute("position",new THREE.Float32BufferAttribute(pos,3)); g.setAttribute("normal",new THREE.Float32BufferAttribute(nor,3)); g.setAttribute("uv",new THREE.Float32BufferAttribute(uv,2));
+  /* เส้นขอบ: เส้นสันคิ้ว + เส้นเข้ามุม จาก EdgesGeometry · เส้นที่คิ้วโผล่จากผิวบาน ไม่มีจุดหักในหน้าตัด จึงวาดเพิ่มสองวงที่ผิวบาน */
+  const e0=new THREE.EdgesGeometry(g,25), lines=Array.from(e0.attributes.position.array); e0.dispose();
+  [0,sp.w].forEach(u=>{ const X=hx-u, Y=hy-u, Z=z0+sz*0.05, c=[[-X,-Y],[X,-Y],[X,Y],[-X,Y]]; c.forEach((p,i)=>{ const q=c[(i+1)%4]; lines.push(p[0],p[1],Z,q[0],q[1],Z); }); });
+  const eg=new THREE.BufferGeometry(); eg.setAttribute("position",new THREE.Float32BufferAttribute(lines,3));
+  const M=orientMatrix(orient,yaw); g.applyMatrix4(M); eg.applyMatrix4(M);
+  g.userData={_keep:true}; eg.userData={_keep:true}; g.userData.edges=eg;
+  if(_moldC.size>400){ _moldC.forEach(v=>{ try{ v.dispose(); if(v.userData&&v.userData.edges) v.userData.edges.dispose(); }catch(e){} }); _moldC.clear(); }
+  _moldC.set(key,g); return g; }
+function doorMoldMesh(b,bm){ if(settings.doorRelief3D===false) return null; const sp=doorMoldSpec(b); if(!sp) return null;
+  const sz=doorFrontSign(b), g=doorMoldGeo(+b.L,+b.W,+b.T,sp,sz,b.orient,b.yaw), ms=bm.mats, mat=Array.isArray(ms)?(ms[sz>0?1:2]||ms[1]||ms[0]):ms;
+  const m=new THREE.Mesh(g,mat); m.position.set(b.x,b.y,b.z); m.userData.id=b.id; m.userData.doorMold=1; m.castShadow=m.receiveShadow=true; addEdges(m,g); return m; }
 function doorReliefFor(b){
   try{
     /* v1.249: ค่าตั้งต้นของ v1.247 ที่ยังไม่ได้แก้เอง → เติมตั้งทะลุตามแบบให้ (ที่แก้เองแล้วไม่แตะ) */
@@ -20807,6 +20868,7 @@ function render3D(refit){
       mesh.userData.thru=!!(b._glass&&(b._virtual||b._framePart));
       addEdges(mesh,_rlg||bm.geo);
       root.add(mesh); meshes.push({mesh,id:b.id,d});
+      try{ const _dm=doorMoldMesh(b,bm); if(_dm){ root.add(_dm); meshes.push({mesh:_dm,id:b.id,d,groove:true}); } }catch(e){ console.error("doorMold:",e); }   /* v1.684: คิ้วรอบบาน */
       if(b._art&&!snOff("doorArt")){ try{ const _da=doorArtMesh(b); if(_da){ root.add(_da); meshes.push({mesh:_da,id:b.id,d,groove:true}); } }catch(e){ console.error("doorArt:",e); } }   /* v1.604: ลายหน้าบาน */
       { const fb=shoeTiltWrap(b,buildFrontEdgeBand(b)); if(fb) root.add(fb); }   // v1.141: แถบขอบหน้าตู้ (โชว์อย่างเดียว) · v1.423 ชิ้นเอียงหมุนตาม
       if(state.overlapIds&&state.overlapIds.includes(b.id)){ const hl=new THREE.Mesh(new THREE.BoxGeometry(d[0],d[1],d[2]), new THREE.MeshBasicMaterial({color:0xe5484d,transparent:true,opacity:.45,depthWrite:false})); hl.position.set(b.x,b.y,b.z); hl.renderOrder=3; hl.userData.id=b.id; root.add(hl); }
@@ -30325,6 +30387,7 @@ function applyPartDrills(){
   state.boards.forEach(b=>{
     if(b.holes&&b.holes.length) b.holes=b.holes.filter(h=>!(h&&h._partDrill));
     if(b.pockets&&b.pockets.length) b.pockets=b.pockets.filter(q=>!(q&&q._partPk));
+    try{ n+=doorMoldGrooveSync(b); }catch(e){ console.error("doorMold:",e); }   /* v1.684: ร่องฝังคิ้ว */
     let ls=[]; try{ ls=partDrillList(b); }catch(e){ console.error(e); }
     try{ const sr=screwRuleHoles(b); if(sr.length) ls=ls.concat(sr); }catch(e){ console.error("screwRule:",e); }   // v1.217
     /* v20.4: รูที่สันเก็บธง through ไว้ตามเดิม — ทะลุของรูสันคือทะลุตามความยาว/กว้าง ไม่ใช่ความหนา
@@ -30386,6 +30449,7 @@ function boardRole(b){
      SN_OFF.plFloorEdge=1 พื้นห้องลอย 0.8 มม. ผนังไม่ดันถอย เส้นขอบตู้หายตรงรอยต่อแบบเดิม (v1.683)
      SN_OFF.edgeCrisp=1   ผิวแผ่นไม่ดันถอย เส้นขอบขาดเป็นประเมื่อมองเฉียงแบบเดิม (v1.683)
      SN_OFF.hingeRailClear=1 บานพับหลบคานด้วยเกณฑ์เดียวกับชั้นแบบเดิม ต้องห่างผิวคาน 87.9 มม. (v1.683)
+     SN_OFF.doorMold=1    บาน PxWx02 ไม่มีคิ้วใน 3D และไม่ออกร่องฝังคิ้วใน MPR (v1.684)
      SN_OFF.plRoomBlank=1 ไม่มีปุ่มห้องเปล่า/ห้องตัวอย่าง · ห้องเริ่มต้นมีผนัง 3 ด้านแบบเดิม (v1.679)
      SN_OFF.pidAsk=1      กด Transfer/ออก MPR แล้วไม่ถามเรื่องเลข Part ใช้เลขเดิมต่อท้ายแบบเดิม (v1.677)
      SN_OFF.pidLockMpr=1  ออก MPR แล้วไม่ล็อกเลข Part ล็อกเฉพาะตอน Transfer แบบเดิม (v1.677)
@@ -31594,6 +31658,11 @@ function newVarNode(type){ return {name:"",type:type||"Material",def:"",order:""
 function nodeContains(parent,node){ if(!parent.children)return false; for(const c of parent.children){ if(c===node)return true; if(nodeContains(c,node))return true; } return false; }
 function varCtxHide(){ const m=$("varCtx"); if(m)m.classList.remove("show"); }
 function varCtxShow(x,y,items){ const m=$("varCtx"); if(!m)return; m.innerHTML="";
+  /* ───────── v1.684: รายการเสนอของเบราว์เซอร์บังเมนูคลิกขวา ─────────
+     ผู้ใช้ 5/11 14:20 (ภาพรายการ ECAx01 ECxG01 ทับเมนู Copy/Save As): “555 กล่องบังกัน”
+     เดิม: คลิกขวาที่ช่อง Family ช่องได้โฟกัส เบราว์เซอร์เปิดรายการ datalist ซึ่งเป็นหน้าต่างของระบบ อยู่เหนือทุกอย่าง ตั้ง z-index ไม่ได้
+     ตอนนี้: เลิกโฟกัสช่องที่มี datalist ก่อนเปิดเมนู รายการปิดเอง · เมนูนี้ไม่ได้ใช้โฟกัสของช่อง · ค่าที่พิมพ์ค้างบันทึกตามปกติ */
+  try{ const _a=document.activeElement; if(_a&&_a.tagName==="INPUT"&&_a.getAttribute("list")) _a.blur(); }catch(e){}
   items.forEach(it=>{ const b=document.createElement("button"); b.textContent=it.label; if(it.danger)b.className="danger"; b.onclick=ev=>{ ev.stopPropagation(); varCtxHide(); it.fn(); }; m.appendChild(b); });
   m.classList.add("show"); const w=m.offsetWidth||170,h=m.offsetHeight||100; m.style.left=Math.max(6,Math.min(x,innerWidth-w-8))+"px"; m.style.top=Math.max(6,Math.min(y,innerHeight-h-8))+"px"; }
 async function saveVars(name){ await lsSet("sxlocaltrial:furnitech:settings",settings); renderInspectorIfOpen(); toast("บันทึก "+(name||"ตัวแปร")+" แล้ว"); }
@@ -46616,6 +46685,8 @@ function dwgDoorSvg(b,opt){ const e=v=>Math.round(v*10)/10;
     ds.forEach(d=>{ const v=inB(prof.thrV,d), h=inB(prof.thrH,d);
       if(v){ ln(d,0,d,W,0.7); ln(L-d,0,L-d,W,0.7); } if(h){ ln(0,d,L,d,0.7); ln(0,W-d,L,W-d,0.7); }
       if(!v&&!h) rc(d,d,L-2*d,W-2*d,"none",0.7); }); }
+  let _ms=null; try{ _ms=doorMoldSpec(b); }catch(er){}   /* v1.684: กรอบคิ้วบนภาพหน้าบาน + เส้นเข้ามุม */
+  if(_ms){ const a=_ms.off, c=_ms.off+_ms.w; rc(a,a,L-2*a,W-2*a,"none",0.8); rc(c,c,L-2*c,W-2*c,"none",0.8); [[a,a,c,c],[L-a,a,L-c,c],[a,W-a,c,W-c],[L-a,W-a,L-c,W-c]].forEach(q=>ln(q[0],q[1],q[2],q[3],0.6)); }
   if(cut&&cut.cf>0&&cut.cf<Math.min(L,W)/2){ glass(cut.cf,cut.cf,L-2*cut.cf,W-2*cut.cf); if(cut.frame) rc(0,0,L,W,"none",2.2); }
   bev.forEach(v=>{ const w=+v.w||0; if(!(w>0)) return; const da=(v.from==="front")?"6 4":"";
     if(v.side==="top") ln(0,w,L,w,0.8,da); else if(v.side==="bottom") ln(0,W-w,L,W-w,0.8,da);
@@ -46640,11 +46711,12 @@ function dwgDoorSvg(b,opt){ const e=v=>Math.round(v*10)/10;
     wood(top?flat(d):endPts(true), top?endPts(false):flat(W-d));
     try{ const lp=es.ls[0], bx=es.bx; pg(lp.map(p=>{ const X=p[0]-bx.x0, Y=(p[1]-bx.y0)/Math.max(bx.h,0.1)*T; return [xb+Y*Sx, top?X:(W-X)]; }),"#ece6da"); }catch(err){} }
   else wood(endPts(true),endPts(false));
+  if(_ms) [false,true].forEach(bt=>pg(_ms.pts.map(q=>[xf+Math.max(q[1],0)*Sx,bt?W-(_ms.off+q[0]*Sx):(_ms.off+q[0]*Sx)]),"#ece6da"));   /* v1.684: หน้าตัดคิ้วบนผิวหน้า · ขยายสองแกนเท่ากับความหนาบานในภาพ ไม่งั้นคิ้วกลายเป็นเข็มยาว */
   /* ป้าย */
   const ty=W+fs*1.5;
   if(!smp) o.push('<text x="'+e(L/2)+'" y="'+e(ty)+'" font-size="'+e(fs)+'" text-anchor="middle" fill="#3a3f48">'+Math.round(L)+'×'+Math.round(W)+'</text>');   /* v1.607: บานตัวอย่างไม่ใช่ขนาดจริง */
   o.push('<text x="'+e(smp?(X0+ST)/2:(X0+ST))+'" y="'+e(ty)+'" font-size="'+e(fs)+'" text-anchor="'+(smp?"middle":"end")+'" fill="#3a3f48">หนา '+Math.round(T*10)/10+'</text>');
-  const vw=L+g+ST+pad*2, vh=W+fs*2.2+pad*2;   /* v1.607: เดิมกันที่ขวา fs*6 รูปจึงเอียงซ้าย */
+  const vw=L+g+ST+pad*2+(_ms?(_ms.h-_ms.emb)*Sx:0), vh=W+fs*2.2+pad*2;   /* v1.607: เดิมกันที่ขวา fs*6 รูปจึงเอียงซ้าย · v1.684: เผื่อคิ้วที่ยื่นจากผิวหน้า */
   return '<svg class="dsg" xmlns="http://www.w3.org/2000/svg" viewBox="'+e(-pad)+' '+e(-pad)+' '+e(vw)+' '+e(vh)+'" preserveAspectRatio="xMidYMid meet" font-family="Sarabun,Leelawadee UI,Tahoma,sans-serif">'+o.join("")+'</svg>'; }
 /* ───────── v1.633: หน้ารวมวัสดุ — บานขาว · ชื่อท้ายสี · เลิกโชว์จำนวน ─────────
    ผู้ใช้ 3/11 10:08: “เช็คให้หน่อยไม่มีบานไหนสีขาวนะครับ ติดมาจากตัวไหน” · “สีพวก N03P ที่มี P มักจะมีชื่อต่อท้ายเช่น PP77 เอามาแสดงด้านล่างเป็นรายละเอียด … ทุกวัสดุที่แสดง ไม่ต้อง Cal จำนวนมาใส่”
