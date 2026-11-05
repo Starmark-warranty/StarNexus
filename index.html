@@ -3283,7 +3283,7 @@ body[data-theme="dark"] .splash-dots span{background:rgba(255,255,255,.25)}
    ===================================================================== */
 /* ---- APP_META: แหล่งความจริงเดียวของเวอร์ชัน (ดูได้จาก console / คลิกชื่อแอป) ---- */
 const APP_META={
-  name:"StarNexus", version:"1.679", build:"2026-11-05/room-start",
+  name:"StarNexus", version:"1.681", build:"2026-11-05/mem-fix",
   file:"StarNexus.html", basedOn:"Furnitech_V3.html (v3.11)",
   /* ───────── เริ่มนับเวอร์ชันใหม่ที่ 1.001 (21/08/2026) ─────────
      ของเดิมนับมาถึง 42.1 แล้ววิ่งเป็นทศนิยมสองชั้นซึ่งอ่านลำดับยาก
@@ -3291,6 +3291,8 @@ const APP_META={
      ประวัติเก่าเก็บไว้ทั้งหมดตามเลขเดิม ไม่ไล่เขียนใหม่ เพราะเลขในนั้นถูกอ้างถึงไปแล้ว
      รายการที่อยู่ใต้ 1.001 ลงไปจึงเป็นเลขชุดเก่า อ่านต่อกันได้ตามวันที่ */
   changelog:[
+    ["1.681","2026-11-05","FIX Out of Memory ตอนเปิดชุดใหญ่ (ผู้ใช้ 10:10 · เครื่อง RAM 16 GB การ์ดจอ 4 GB) — ทดสอบด้วยรูปลายผิว 3000 px: เปิดงานแต่ละครั้งรูปค้างในการ์ดจอเพิ่ม 32 รูปไม่เคยคืน (เปิด 4 รอบ 113 รูป) ① ทาสีใหม่/เปิดงานใหม่ คืนรูปเก่าก่อน ② รูปลายผิวย่อเหลือด้านยาว 2048 px (6000 px เดิมกิน 5.1 GB เหลือ 1.4 GB) ③ รหัสสีที่ใช้ไฟล์เดียวกันโหลดครั้งเดียว ④ Ctrl+Z ไม่เก็บรูปห้องซ้ำทุกครั้ง และจำกัดขนาดประวัติ · ปิด SN_OFF.skinDrop / texImgCap / snapLite · FEAT ชื่อห้องที่เปิดอยู่ขึ้นหัวแผงมุมบนซ้าย (ผู้ใช้ 11:33)"],
+    ["1.680","2026-11-05","FEAT+CHANGE (ผู้ใช้ 11:18) ① ปุ่ม ⬇ Excel ในแท็บราคาต้นทุน ได้ไฟล์ .xlsx ตามฟอร์ม ชื่อตู้ กว้าง ลึก สูง จำนวน หมายเหตุ หมวด RM สินค้า RM จำนวน RM · แถวแรกของตู้มีข้อมูลตู้ แถวถัดไปเฉพาะ RM · หมวด โครงสร้าง หน้าบาน Fitting · จำนวน RM ต่อ 1 ใบ ไม่รวมเผื่อเศษ ② % กำไรในแถบยอดเทียบ DM + DL + OH (เดิมเทียบราคาขาย) · คำบนจอบอก DM ชัดเจน · วิธีคิดราคาขายไม่เปลี่ยน"],
     ["1.679","2026-11-05","FEAT+FIX (ผู้ใช้ 10:59 11:03) ① ไอคอนโฟลเดอร์สวย เลือกได้ 20 สี ในหน้าเลือกห้อง · เลือกหมวดแล้วเห็นหมวดย่อยเป็นไอคอนใหญ่ ② เปิดโปรแกรมมาเข้าหน้าเลือกห้องออกแบบเลย เลือกแล้วเข้าห้องออกแบบทันที · ติ๊กปิดได้ในหน้านั้น ③ ปุ่มห้องเปล่า (ไม่มีผนัง) · ห้องตัวอย่าง (ค่าตั้งต้นเดิม) · งานล่าสุด · หน้าหลักโปรแกรม · ไม่มีตู้และไม่มีห้อง เริ่มเป็นห้องเปล่า ④ FIX ห้องล็อกอยู่เปิดห้องที่บันทึกอื่นไม่ได้ · ปิด SN_OFF.plStart / plRoomBlank"],
     ["1.678","2026-11-05","FEAT+CHANGE (ผู้ใช้ 10:19) ① ห้องที่บันทึกจัดหมวดได้ ซ้อนหมวดในหมวดได้ ลากห้องเข้าหมวดหรือกดปุ่ม 📁 · ② ปุ่มใบเสนอราคาเปลี่ยนเป็น 💰 ราคาต้นทุน เอายืนราคาออก เพิ่ม DL % และ OH % (คิดจากค่าวัสดุ · ราคาขาย = ต้นทุนรวม + กำไร %) ③ PDF เหลือแบบสำหรับวางงาน ไม่มีรายการตู้ ราคา ยอดรวม เงื่อนไขชำระเงิน และช่องลงนาม ④ แท็บราคาต้นทุนกดดูรายตู้ได้: วัสดุ · ผิว (บอกบน/ล่าง) · ขอบ · อุปกรณ์ พร้อมราคา ⑤ อุปกรณ์/ชิ้นที่ไม่อยู่กับตู้ แยกเป็นแถวของห้อง ไม่เฉลี่ยเข้าตู้แล้ว ⑥ แยกเป็น 2 แท็บ ราคาต้นทุน กับ แบบวางงาน · แบบ ภาพ และ PDF คิดเมื่อเปิดแท็บแบบครั้งแรก · ปิด SN_OFF.plRoomCat / plqNoPrice"],
     ["1.677","2026-11-05","FIX+FEAT ① เลข Part กระโดด (project 75 · LRT005-01 เป็น P13–15 · P19 · P22–24 · P83–87): กด Transfer หรือออก MPR แล้วถ้าออเดอร์เคยส่งเลขไปแล้วและมีตู้ที่แก้ จะถามให้เลือก 3 ทาง — เรียงใหม่เฉพาะตู้ที่แก้ (ทั้งใบเรียงติดกัน มีเลขว่างพอก็เติมเข้าไป ตู้อื่นเลขเดิม) · เจนใหม่ทั้งออเดอร์ · ใช้เลขเดิมที่ส่ง Production แล้ว · ไม่มีอะไรเปลี่ยนไม่ถาม เลือกเลขเดิมแล้วไม่ถามซ้ำ · กดออก MPR ครั้งแรกล็อกเลขด้วย (เดิมล็อกเฉพาะตอน Transfer) · มีปุ่มในหน้ารายการชิ้น · ปิด SN_OFF.pidAsk / pidLockMpr ② กดคานสีหน้าบานแล้วคาน DX ไม่ได้สี: ตัวเลือกนับเฉพาะคานปกติ ชิ้น DX Panel/Floor/Back/Top ไม่มี rule จึงตกหล่น · กล่องขึ้น “ตู้ใบนี้ยังไม่มี” · ตอนนี้นับคาน DX ด้วยทั้งชุด · ปิด SN_OFF.chandleDx"],
@@ -5099,8 +5101,16 @@ let undoStack=[], redoStack=[], lastSnap=null;
    เปลี่ยนสีในช่อง Variables หรือวางคุณสมบัติตู้แล้วกด Ctrl+Z ชิ้นย้อน แต่สีกับค่าปรับบานค้างของใหม่ ไม่ตรงกัน */
 let _clrBak=null;   /* v1.612: ของที่ปุ่ม ล้าง เอาออกและไม่อยู่ใน snap — คืนตอน Ctrl+Z */
 const SNAP_CAB_KEYS=["cabColors","cabDP","cabVarTxt","cabFrontEdge","cabFrontDir","orderMat","edgeGroup"];   /* v1.636: + กรุ๊ปขอบ */   // v1.337: + วัสดุทั้งออเดอร์ (Ctrl+Z ย้อนพร้อมความหนาชิ้น)
+/* v1.681: รูปในห้อง (texLib · รูปที่แปะในแบบ) ไม่เปลี่ยนบ่อย เก็บครั้งเดียวใน _snapImg แล้วภาพประวัติเก็บแค่รหัสอ้างอิง
+   เดิมทุก Ctrl+Z เก็บรูปเต็ม 120 ภาพ · ห้องที่มีรูปหิน 640 KB ประวัติกิน 186 MB ทั้งที่งานมี 7 ตู้ */
+const _snapImg=new Map(), UNDO_CH_MAX=150e6;
+function _snapImgList(r){ const out=[]; if(!r||snOff("snapLite")) return out; const add=e=>{ if(e&&typeof e.src==="string"&&(e.src.length>4096||e.src.indexOf("@snapimg:")===0)) out.push(e); };
+  if(Array.isArray(r.texLib)) r.texLib.forEach(add); if(r.quote&&Array.isArray(r.quote.ann)) r.quote.ann.forEach(add); return out; }
+function _snapImgBack(r){ _snapImgList(r).forEach(e=>{ if(e.src.indexOf("@snapimg:")===0) e.src=_snapImg.get(e.src)||""; }); }
+function undoTrim(){ if(undoStack.length>120) undoStack.shift(); if(snOff("snapLite")) return; let t=0; for(const s of undoStack) t+=s.length; while(t>UNDO_CH_MAX&&undoStack.length>10) t-=undoStack.shift().length; }
 function snap(){ const cab={}; SNAP_CAB_KEYS.forEach(k=>{ if(state[k]) cab[k]=state[k]; });
-  return JSON.stringify({boards:state.boards,globalTone:state.globalTone,cab:cab,room:snOff("plUndo")?undefined:(state.room||null)}); }   /* v1.540: + ห้อง (Ctrl+Z ย้อนผนัง/ประตู/หน้าต่างได้) */
+  const _im=_snapImgList(state.room), _bk=_im.map(e=>e.src); _im.forEach(e=>{ const t="@snapimg:"+e.src.length+":"+e.src.slice(-40); _snapImg.set(t,e.src); e.src=t; });
+  try{ return JSON.stringify({boards:state.boards,globalTone:state.globalTone,cab:cab,room:snOff("plUndo")?undefined:(state.room||null)}); }finally{ _im.forEach((e,i)=>{ e.src=_bk[i]; }); } }   /* v1.540: + ห้อง (Ctrl+Z ย้อนผนัง/ประตู/หน้าต่างได้) */
 // รูที่ชิ้นอื่นมาเจาะฝากไว้ (src=เจ้าของ): ถ้าเจ้าของถูกลบไม่ว่าทางไหน รูต้องหายตาม — กวาดกลางทุกครั้งที่ commit
 /* v37.8: h.src ส่วนใหญ่คือ "id ของชิ้นที่เป็นเจ้าของรู" แต่ไม่ใช่ทุกตัว
    รูของระบบบางชุดใช้ src เป็น "ป้ายชื่อผัง" ไม่ใช่ id ของชิ้น (หูแขวนกระจก = "glasshanger")
@@ -5322,7 +5332,7 @@ function commit(){ if(_alignHold>0) return;   /* v1.265: ตู้ยังค�
     if(_am&&_am.bad) toast("⚠ เจาะรูคู่อัตโนมัติได้ผลผิดปกติ — คืนรูเดิมไว้แล้ว ตรวจในฉาก (คลิกขวา → 🔗 เชื่อมเดือย) · ปุ่มส่งออกจะเชื่อมทั้งออเดอร์ให้อีกชั้น");
     else if(_am&&_am.changed&&!_am.quiet) toast("🔗 เจาะรูคู่เดือย/มินิฟิกให้แล้ว — รูใหม่ "+_am.nw+(_am.gone?(" · ล้าง/ย้ายรูเดิม "+_am.gone):"")+(_am.cabs>1?(" ("+_am.cabs+" ตู้)"):""));
   }catch(e){ console.error("autoMate:",e); }
-  const cur=snap(); if(cur===lastSnap)return; if(lastSnap!=null)undoStack.push(lastSnap); lastSnap=cur; redoStack.length=0; if(undoStack.length>120)undoStack.shift(); refreshUndoUI();
+  const cur=snap(); if(cur===lastSnap)return; if(lastSnap!=null)undoStack.push(lastSnap); lastSnap=cur; redoStack.length=0; undoTrim(); refreshUndoUI();
   if(settings.overlapWarn){ const ov=checkOverlaps(); const ids=[...new Set(ov.flatMap(o=>[o.a.id,o.b.id]))]; const changed=ids.join()!==((state.overlapIds||[]).join()); state.overlapIds=ids; if(changed)render3D(false); if(ov.length)toast("⚠ พบชิ้นซ้อนกัน "+ov.length+" คู่ (ไฮไลต์แดง) — ถ้าตั้งใจให้ไม้ทับ ข้ามได้"); }
   else if(state.overlapIds&&state.overlapIds.length){ state.overlapIds=[]; render3D(false); } }
 // ตรวจชิ้นไม้ที่ซ้อนกันใน 3D (AABB ทับกันเกิน tol ทั้ง 3 แกน) — งานเฟอร์ฯ ชิ้นไม่ควรซ้อน
@@ -5379,7 +5389,7 @@ function clearOverlapHL(){ if(state.overlapIds&&state.overlapIds.length){ state.
 function restoreSnap(str){ const o=JSON.parse(str); state.boards=o.boards; state.globalTone=o.globalTone;
   try{ plPlinthColorSoon.skip=Date.now()+1500; }catch(e){}   /* v1.569: ย้อน/ทำซ้ำ ไม่ทำตีนตู้ใหม่ (ไม่ล้างประวัติทำซ้ำ) */
   if(_clrBak&&Array.isArray(o.boards)&&o.boards.length){ state.scenes=_clrBak.scenes; state.orderLines=_clrBak.lines; state.qPics=_clrBak.pics; _clrBak=null; try{ scnAfterLoad(); }catch(e){} }   /* v1.612 */
-  let _rmR=false; if(Object.prototype.hasOwnProperty.call(o,"room")&&!snOff("plUndo")){ state.room=o.room||null; _rmR=true; }   /* v1.540: ห้องย้อนตาม (ภาพเก่าก่อน 1.540 ไม่มีห้อง = ห้องอยู่ที่เดิม) */
+  let _rmR=false; if(Object.prototype.hasOwnProperty.call(o,"room")&&!snOff("plUndo")){ state.room=o.room||null; _snapImgBack(state.room); _rmR=true; }   /* v1.540: ห้องย้อนตาม (ภาพเก่าก่อน 1.540 ไม่มีห้อง = ห้องอยู่ที่เดิม) */
   if(o.cab) SNAP_CAB_KEYS.forEach(k=>{ state[k]=o.cab[k]||{}; });   /* v1.297 */
   try{ if(!snOff("plCeilColor")) plLineRowsFromCabs(); }catch(e){ console.error("lineRows:",e); }   /* v1.613 */
   if(!selBoard())state.selectedId=null; buildGTones();
@@ -5439,7 +5449,8 @@ function toneOf(b){ return b.tone==null?state.globalTone:b.tone; }
    แนวลายในรูปตรวจเอง (รูปลายตั้งหรือลายนอนก็ได้) แล้วหมุนให้วิ่งตามแนวลายของชิ้นเสมอ
    อ่านโฟลเดอร์ครั้งเดียวต่อการเชื่อม แล้วโหลดรูปเมื่อมีชิ้นขอใช้ครั้งแรก โหลดเสร็จค่อยวาดฉากใหม่ทีเดียว
    ลิงก์ดูอย่างเดียว/QR ไม่มีโฟลเดอร์ Server จึงใช้ลายวาดเองตามเดิม (รูปไม่ถูกเขียนลง _skin เพราะเก็บแบบ non-enumerable) */
-let _texImgC={}, _texImgDir=null, _texImgIdx=null, _texImgT=0;
+let _texImgC={}, _texImgDir=null, _texImgIdx=null, _texImgT=0, _texImgFile={};   /* v1.681: _texImgFile = แคชต่อไฟล์ */
+const TEX_IMG_MAX=2048;   /* v1.681: ด้านยาวสูงสุดของรูปลายผิว · 1 ผืน 600 มม. = 3.4 จุดต่อมม. พอสำหรับดูในห้อง */
 /* v1.477: เปิดผ่าน Odoo — ย้ายรูปเข้า Odoo แล้ว (ป้าย assets) = รูปลายผิว/รูปย่อจาก Odoo · ยังไม่ย้าย = Google Drive ตามเดิม · ไม่มี Drive = Odoo (Odoo v1.427) */
 /* ───────── v1.494: เปิดผ่าน Odoo = รูปลายผิว/รูปย่อตู้ที่ Odoo เสมอ ─────────
    ผู้ใช้ 23/10/2026 09:24 (ภาพคู่: Odoo › รูปภาพ › รูปลายผิว 8 รูป · หน้ารูปลายผิวในโปรแกรมที่ /nexus/starnexus “รูปบน Google Drive (9)”):
@@ -5452,7 +5463,7 @@ let _texImgC={}, _texImgDir=null, _texImgIdx=null, _texImgT=0;
 function texImgDir(){ try{ if(!snOff("imgOdoo")&&typeof sxlOdbOn==="function"&&sxlOdbOn()&&!snOff("odooTables")&&typeof sxlVDir==="function") return sxlVDir();   // v1.494
   if(typeof sxlOdbOn==="function"&&sxlOdbOn()&&typeof SXL_ODB!=="undefined"&&SXL_ODB.mig&&SXL_ODB.mig.assets&&!snOff("odooTables")) return sxlVDir();
   return (window.SXL&&window.SXL.dir)||(typeof sxlVDir==="function"?sxlVDir():null)||null; }catch(e){ return null; } }
-function _texImgReset(d){ _texImgDir=d; _texImgC={}; _texImgIdx=null; }
+function _texImgReset(d){ _texImgDir=d; _texImgC={}; _texImgIdx=null; _texImgFile={}; }
 /* เรียกจาก onRender ของไฟล์กลาง — เพิ่งเลือก/เชื่อมโฟลเดอร์ใหม่ รูปต้องขึ้นเองโดยไม่ต้องแตะอะไร */
 function texImgDirCheck(){ const d=texImgDir(); if(d!==_texImgDir){ _texImgReset(d); if(d){ try{ refreshSkins(); }catch(e){} try{ if(PL.on&&PL.items) plPanelGrid(); }catch(e){} } } }   // v1.312: แคตตาล็อกห้องออกแบบโหลดรูปใหม่
 function _texImgIndex(d){
@@ -5484,17 +5495,25 @@ async function _texImgLoad(d,c,r){
   try{
     const idx=await _texImgIndex(d), h=_texImgFind(idx,c);
     if(!h){ r.st="none"; return; }
-    /* v1.440: บน Google Drive ไฟล์ใหญ่ (≥ 2 MB) ได้ตัวอ่านทีหลัง (LazyFile) ไม่ใช่ Blob — เดิมส่งเข้า createObjectURL ตรง ๆ แล้วพัง รูปไม่ขึ้น */
+    /* v1.681: รหัสสีหลายตัวชี้ไฟล์เดียว = โหลดครั้งเดียว ใช้รูปร่วมกัน */
+    const _fk=snOff("texImgCap")?("#"+c):String(h.name||c);
+    let _fp=_texImgFile[_fk]; if(!_fp) _fp=_texImgFile[_fk]=_texImgDecode(h);
+    let _I=null; try{ _I=await _fp; }catch(e){ delete _texImgFile[_fk]; throw e; }
+    if(texImgDir()!==d) return;
+    Object.assign(r,_I); r.st="ok";
+    clearTimeout(_texImgT); _texImgT=setTimeout(()=>{ try{ refreshSkins(true); }catch(e){} },120);
+  }catch(e){ console.warn("🖼 รูปผิว "+c+" โหลดไม่ได้:",e); r.st="none"; }
+}
+async function _texImgDecode(h){
+    /* v1.440: บน Google Drive ไฟล์ใหญ่ (≥ 2 MB) ได้ตัวอ่านทีหลัง (LazyFile) ไม่ใช่ Blob — เดิมส่งเข้า createObjectURL ตรง ๆ แล้วพัง รูปไมขึ้น */
     let f=await h.getFile(); if(f&&!(f instanceof Blob)&&typeof f.toBlob==="function") f=await f.toBlob();
     const url=URL.createObjectURL(f), img=new Image();
     img.src=url; try{ await img.decode(); } finally{ URL.revokeObjectURL(url); }
-    if(texImgDir()!==d) return;                                  // เปลี่ยนโฟลเดอร์ระหว่างโหลด ทิ้งผลเก่า
-    r.img=img; r.w=img.naturalWidth||1; r.h=img.naturalHeight||1; r.name=f.name;
-    r.vert=_texImgVertical(img);
+    /* v1.681: ดูดสีและแนวลายจากรูปเต็ม แล้วเก็บรูปย่อ · รูปเต็มปล่อยคืนหน่วยความจำ */
+    const r={img, w:img.naturalWidth||1, h:img.naturalHeight||1, name:f.name}; r.vert=_texImgVertical(img);
     try{ r.pick=pickSkinFromImage(img); }catch(e){ r.pick=null; }
-    r.st="ok";
-    clearTimeout(_texImgT); _texImgT=setTimeout(()=>{ try{ refreshSkins(true); }catch(e){} },120);   // v1.306: รูปโหลดเสร็จ = ทาใหม่ ไม่ดึงกล้องกลับไปมุมตั้งต้น   // หลายรูปเสร็จติดกัน วาดใหม่ครั้งเดียว
-  }catch(e){ console.warn("🖼 รูปผิว "+c+" โหลดไม่ได้:",e); r.st="none"; }
+    { const k=snOff("texImgCap")?1:Math.min(1,TEX_IMG_MAX/Math.max(r.w,r.h)); if(k<1){ const c2=document.createElement("canvas"); c2.width=Math.max(4,Math.round(r.w*k)); c2.height=Math.max(4,Math.round(r.h*k)); const g2=c2.getContext("2d"); g2.imageSmoothingQuality="high"; g2.drawImage(img,0,0,c2.width,c2.height); r.img=c2; r.w=c2.width; r.h=c2.height; } }
+    return r;   // v1.306: รูปโหลดเสร็จ = ทาใหม่ ไม่ดึงกล้องกลับไปมุมตั้งต้น   // หลายรูปเสร็จติดกัน วาดใหม่ครั้งเดียว
 }
 /* ───────── v1.308: หารูปจากรหัสแม่ด้วย ─────────
    รหัสผิวที่ resolve ออกมามักมีท้ายตามแบบบาน เช่น G01M0349Y_BT4 · G01M0349Y_EC (แบบบาน ECxx01)
@@ -5766,13 +5785,27 @@ function boardSkinPair(b){
   return {top:t,bot:bo};
 }
 let _skinTexC={}, _skinMatC={};
+/* ═════════ v1.681: Out of Memory ตอนเปิดชุดใหญ่ ═════════
+   ผู้ใช้ 5/11/2026 10:10 (ภาพแท็บดับ Error code: Out of Memory ทั้ง Edge และ Chrome): “เปิด บน Edge และChrome ไม่ได้ สาเหตุ น่าจะ RAM ไม่พอ” · “งานอื่นๆ เปิดได้ แต่ ถ้าชุดใหญ่ๆ มันไม่ได้”
+     11:20 สเปคเครื่อง Ryzen 5 8645HS · RAM 16 GB · การ์ดจอ 4 GB
+   หาเจอจากการวัดด้วยรูปลายผิวขนาดจริงในเครื่องทดสอบ (ตู้ 55 ใบ 6 รูป):
+     ① refreshSkins ล้างแคชด้วยการตั้ง {} ไม่ได้ dispose — three.js ไม่คืนรูปในการ์ดจอให้เอง ทุกครั้งที่เปิดงาน/ทาสีใหม่ รูปชุดเดิมค้างอยู่ แล้วอัปโหลดชุดใหม่ซ้อน
+        นับจาก renderer.info: เปิดงาน 4 รอบ รูปค้าง 49 → 81 → 113 · รูปละ 3000 px = 64 MB ต่อรูป
+     ② รูปลายผิวใช้ขนาดเต็ม รูป 6000 px กินเครื่อง 5.1 GB · ย่อ 2000 px เหลือ 1.4 GB
+     ③ _texImgC แยกตามรหัสสี รหัส _BT4 _EC ที่ใช้ไฟล์เดียวกันโหลดและอัปโหลดซ้ำ — 6 ไฟล์กลายเป็น 8 ภาพ 16 รูปในการ์ดจอ
+     ④ undo เก็บ snap() ทั้งงาน 120 ภาพ รวมรูปในห้อง (texLib) ทุกภาพ · มีอักษรไทยในงาน สตริงจึงใช้ 2 ไบต์ต่ออักษร
+   ทำไมชุดใหญ่พังก่อน: ชุดใหญ่ใช้หลายสี จำนวนรูปคูณตามรอบที่เปิด งานเล็กใช้ไม่กี่รูปจึงไม่ถึงเพดาน
+   แก้: skinCacheDrop คืนรูปและวัสดุเก่า (ของที่ยังใช้อยู่ three อัปโหลดกลับเองตอนวาด) · TEX_IMG_MAX 2048 px · แคชต่อไฟล์ _texImgFile · snap เก็บรูปเป็นรหัสอ้างอิง · undoTrim
+   ปิด SN_OFF.skinDrop · texImgCap · snapLite */
+function skinCacheDrop(){ if(!snOff("skinDrop")){ try{ Object.values(_skinTexC).forEach(t=>{ try{ t.dispose(); }catch(e){} }); Object.values(_skinMatC).forEach(m=>{ try{ m.dispose(); }catch(e){} }); }catch(e){} }
+  _skinTexC={}; _skinMatC={}; }
 /* ───────── v1.065: ล้างแคชผิวเมื่อค่าสีของตู้เปลี่ยนชุด ─────────
    ผิวถูกจำไว้เป็นวัสดุสำเร็จเพื่อไม่ต้องปั้นใหม่ทุกเฟรม ซึ่งจำเป็นเรื่องความเร็ว
    แต่ตอนเปิดออเดอร์กลับมา ค่าสีของตู้ถูกใส่คืนทีหลังลำดับที่วาดภาพครั้งแรกไปแล้ว
    ชิ้นจึงถูกทาด้วยโทนไม้สำรองไว้ก่อน แล้ววัสดุนั้นก็ถูกจำไว้ในแคช
    รอบต่อ ๆ มาหยิบของในแคชมาใช้ซ้ำ สีที่ถูกต้องจึงไม่เคยขึ้นเลยจนกว่าจะแตะอะไรสักอย่าง
    ล้างแคชแล้วสั่งวาดใหม่ทั้งฉากตอนคืนค่าสี ทำครั้งเดียวตอนโหลด ไม่กระทบความเร็วตอนใช้งาน */
-function refreshSkins(noFit){ try{ _skinTexC={}; _skinMatC={};
+function refreshSkins(noFit){ try{ skinCacheDrop();
   /* v1.204: แคชรูปทรงเก็บ "วัสดุ" ไว้ด้วยกันกับรูปทรง และกุญแจของมันไม่มีสีผิวอยู่ในนั้น
      พอเปลี่ยนสีตู้ รูปทรงเดิมถูกหยิบกลับมาพร้อมวัสดุชุดเก่า สีใหม่จึงไม่ขึ้น
      ยิ่งตอนนี้จำนวนกลุ่มของรูปทรงขึ้นกับว่าชิ้นนั้นตั้งสองผิวหรือไม่ ต้องปั้นใหม่จริง ๆ */
@@ -5806,7 +5839,7 @@ function _texSeamless(I){
 }
 function _skinImgTexture(sk,cross){
   const I=sk.img, mm=Math.max(+settings.texImgMM||+DEF_SETTINGS.texImgMM||600,50), jm=snOff("texJoin")?"repeat":texImgJoinMode();
-  const k="IMG|"+sk.key+"|"+(I.name||"")+"|"+mm+"|"+(cross?"W":"L")+"|"+jm;
+  const k="IMG|"+((snOff("texImgCap")||!I.name)?sk.key:"")+"|"+(I.name||"")+"|"+mm+"|"+(cross?"W":"L")+"|"+jm;   /* v1.681: ไฟล์เดียวกัน = รูปในการ์ดจอรูปเดียว */
   if(_skinTexC[k]) return _skinTexC[k];
   let src=I.img; if(jm==="blend"){ try{ src=_texSeamless(I); }catch(e){ console.error("texSeam:",e); src=I.img; } }
   const t=new THREE.Texture(src); t.needsUpdate=true;
@@ -24390,7 +24423,7 @@ function showInspector(){
          list.slice().sort((a,c)=>String(a).localeCompare(String(c),"th",{numeric:true})).map(c=>({value:c,label:c})))}]);
     if(!v) return;
     _ovSet(b,f,v.code);
-    try{ _skinTexC={}; _skinMatC={}; }catch(e){}
+    try{ skinCacheDrop(); }catch(e){}
     render3D(true); showInspector(); autosave(); commit();
     toast(v.code?(lb+" → "+v.code+" (ทับเฉพาะชิ้นนี้)"):(lb+" กลับไปใช้ค่าตาม Part แล้ว")); }; });
   { const gl=body.querySelector("#f_grainLock"); if(gl)gl.onclick=()=>{
@@ -30328,6 +30361,9 @@ function boardRole(b){
      SN_OFF.plRoomCat=1   รายการห้องที่บันทึกไม่มีหมวด แบบเดิม (v1.678)
      SN_OFF.plqNoPrice=1  PDF กลับเป็นใบเสนอราคามีราคา · อุปกรณ์นอกตู้เฉลี่ยเข้าตู้แบบเดิม (v1.678)
      SN_OFF.plStart=1     เปิดโปรแกรมแล้วไม่เข้าหน้าเลือกห้องออกแบบ (v1.679)
+     SN_OFF.skinDrop=1    ทาสีใหม่แล้วไม่คืนรูปลายผิวเก่าออกจากการ์ดจอ แบบเดิม (v1.681)
+     SN_OFF.texImgCap=1   รูปลายผิวใช้ขนาดเต็ม และโหลดแยกต่อรหัสสี แบบเดิม (v1.681)
+     SN_OFF.snapLite=1    Ctrl+Z เก็บรูปในห้องทุกภาพ และไม่จำกัดขนาดประวัติ แบบเดิม (v1.681)
      SN_OFF.plRoomBlank=1 ไม่มีปุ่มห้องเปล่า/ห้องตัวอย่าง · ห้องเริ่มต้นมีผนัง 3 ด้านแบบเดิม (v1.679)
      SN_OFF.pidAsk=1      กด Transfer/ออก MPR แล้วไม่ถามเรื่องเลข Part ใช้เลขเดิมต่อท้ายแบบเดิม (v1.677)
      SN_OFF.pidLockMpr=1  ออก MPR แล้วไม่ล็อกเลข Part ล็อกเฉพาะตอน Transfer แบบเดิม (v1.677)
@@ -34487,14 +34523,14 @@ function renderElements(){
         wrap.querySelectorAll(".skH").forEach(el=>{ el.oninput=e=>{ cur[el.dataset.k]=e.target.value; };
           /* v28.8: พิมพ์ RGB มาก็เก็บเป็น HEX ให้ตอนออกจากช่อง ค่าที่เก็บจึงเป็นรูปแบบเดียวเสมอ */
           el.onchange=e=>{ const h=normHex(e.target.value); if(h) cur[el.dataset.k]=h;
-            _skinTexC={}; _skinMatC={}; draw(); sync(1); }; });
+            skinCacheDrop(); draw(); sync(1); }; });
         wrap.querySelectorAll(".skC").forEach(el=>{ el.oninput=e=>{ cur[el.dataset.k]=e.target.value; };
-          el.onchange=()=>{ _skinTexC={}; _skinMatC={}; draw(); sync(1); }; });
+          el.onchange=()=>{ skinCacheDrop(); draw(); sync(1); }; });
         wrap.querySelectorAll(".skR").forEach(el=>{
           el.onchange=e=>{ const h=normHex(e.target.value);
             if(h||!String(e.target.value||"").trim()) cur[el.dataset.k]=h;
-            _skinTexC={}; _skinMatC={}; draw(); sync(1); }; });
-        const sp=wrap.querySelector(".skP"); if(sp) sp.onchange=e=>{ cur.pattern=e.target.value; _skinTexC={}; _skinMatC={}; sync(1); };
+            skinCacheDrop(); draw(); sync(1); }; });
+        const sp=wrap.querySelector(".skP"); if(sp) sp.onchange=e=>{ cur.pattern=e.target.value; skinCacheDrop(); sync(1); };
         const fi=wrap.querySelector(".skF"), bt=wrap.querySelector(".skUp"), ms=wrap.querySelector(".skMsg");
         if(bt) bt.onclick=()=>fi.click();
         { const tx=wrap.querySelector(".skTex"); if(tx) tx.onclick=()=>{ try{ texMgrOpen({code:String(cur.code||"").trim()}); }catch(e){ console.error(e); } }; }   // v1.440
@@ -34505,7 +34541,7 @@ function renderElements(){
               if(!r){ if(ms)ms.textContent="อ่านสีจากรูปไม่ได้"; return; }
               cur.hex=r.hex; cur.hex2=r.hex2; cur.hexGrain=r.hexGrain;
               if(!cur.pattern) cur.pattern="ลายไม้";
-              _skinTexC={}; _skinMatC={}; draw(); sync(1);
+              skinCacheDrop(); draw(); sync(1);
               toast("ดูดสีจากรูปแล้ว: พื้น "+r.hex+" · อ่อน "+r.hex2+" · ลาย "+r.hexGrain); };
             im.onerror=()=>{ if(ms)ms.textContent="เปิดรูปไม่ได้"; };
             im.src=rd.result; };
@@ -43962,7 +43998,7 @@ function plPanelOpen(){
     +'<select id="plWall" title="ตู้ที่กดจากแคตตาล็อกไปลงผนังไหน"></select></div><div class="plTabs" id="plTabs"></div></div>'
     +'<div id="plGrid"></div>';
   const tdy531=!snOff("plTidy"); if(tdy531) plCss531();   // v1.531: หัวแผงบรรทัดเดียว · คำแนะนำบรรทัดล่าง
-  p.innerHTML=(tdy531?('<div class="plSec plHead"><div class="plHT"><b>🏠 ห้องออกแบบ</b><button class="ibtn" id="plClose" title="ออกจากห้องออกแบบ (ตู้ยังอยู่ในออเดอร์)">✓ เสร็จ</button></div>'
+  p.innerHTML=(tdy531?('<div class="plSec plHead"><div class="plHT"><b>🏠 ห้องออกแบบ</b><button class="ibtn" id="plClose" title="ออกจากห้องออกแบบ (ตู้ยังอยู่ในออเดอร์)">✓ เสร็จ</button></div><div id="plRoomNm" style="font-size:14px;font-weight:700;color:var(--accent,#1d4ed8);line-height:1.35;overflow-wrap:anywhere"></div>'
       +'<div class="plHint">ลากตู้ = แม่เหล็กติดผนัง · คลิกขวา = สี · R หมุน · Del ลบ · Ctrl+C / Ctrl+V ทำสำเนา</div></div>'):
     ('<div class="plSec" style="display:flex;align-items:center;gap:8px"><b style="font-size:14px">🏠 ห้องออกแบบ</b>'
     +'<span style="color:var(--ink-dim);font-size:11px">ลากตู้ = แม่เหล็กติดผนัง · คลิกขวา = สี · R หมุน · Del ลบ</span>'
@@ -44029,7 +44065,14 @@ function plCatShow(on,init){ const c=PL.cat, t=PL.catTab; if(!c) return; on=!!on
   try{ invalidate(); }catch(e){} }
 function plCatDrop(){ try{ plGridLazyStop(); clearTimeout(PL._qT); PL.gridSig=null; PL.gridN=0; PL.gridList=null; }catch(e){}   /* v1.666 */ if(PL.cat){ PL.cat.remove(); PL.cat=null; } if(PL.catTab){ PL.catTab.remove(); PL.catTab=null; }
   document.body.classList.remove("plCatOn"); }
+/* ───────── v1.681: ชื่อห้องที่เปิดอยู่ มุมบนซ้าย ─────────
+   ผู้ใช้ 5/11/2026 11:33 (ภาพ 003 MODEL_ALTO): “ชื่อห้องที่ เปิด เพิ่ม ให้รู้ ว่า เปิดห้องไหน มุมบนซ้าย ไปเลย”
+   เดิม: บอกตัวเล็กกลางแผงห้อง “ห้องนี้มาจาก/บันทึกเป็น” เลื่อนแผงแล้วหาย
+   ตอนนี้: หัวแผงใต้คำว่าห้องออกแบบ · ไม่มีชื่อห้อง = เลขออเดอร์ · ไม่มีทั้งคู่ = ยังไม่ได้บันทึก */
+function plRoomNmDraw(){ const el=$("plRoomNm"); if(!el) return; const r=state.room||{}, nm=String(r.libName||"").trim(); let oid=""; try{ oid=String(($("exOrderId")||{}).value||"").trim(); }catch(e){}
+  el.textContent=nm?("📂 "+nm):(oid?("📦 ออเดอร์ "+oid):"ยังไม่ได้บันทึกห้อง"); el.style.color=(nm||oid)?"":"var(--ink-dim)"; el.title=nm?"ห้องที่เปิดอยู่":""; }
 function plPanelRoom(){
+  try{ plRoomNmDraw(); }catch(e){}
   const s=$("plRoomSec"); if(!s) return; const r=plRoom();
   const num=(k,lbl,v)=>'<label>'+lbl+' <input type="number" data-k="'+k+'" value="'+Math.round(v)+'" step="50"></label>';
   s.innerHTML=plRoomHtml(r,num); plRoomGrpWire(s); setTimeout(()=>{ try{ plLockUi(); }catch(e){ console.error("plLockUi:",e); } },0);   // v1.538: 🔒                          // v1.317: จัดกลุ่มพับได้ (mod3)
@@ -44105,7 +44148,7 @@ function plPanelRoom(){
    ปิด SN_OFF.plUndo=1 = แบบเดิม */
 function plUndoMark(){ if(snOff("plUndo")||typeof snap!=="function") return false; if(_alignHold>0||VIEW_ONLY) return false;
   const cur=snap(); if(cur===lastSnap) return false;
-  if(lastSnap!=null) undoStack.push(lastSnap); lastSnap=cur; redoStack.length=0; if(undoStack.length>120) undoStack.shift(); refreshUndoUI(); return true; }
+  if(lastSnap!=null) undoStack.push(lastSnap); lastSnap=cur; redoStack.length=0; undoTrim(); refreshUndoUI(); return true; }
 function plUndoRoomRedraw(){ if(typeof PL==="undefined"||!PL.on) return;
   if(PL.wpick&&!plwsOk(PL.wpick)) PL.wpick=null; if(PLO.sel&&!ploGet(PLO.sel)) PLO.sel=null; PLO.drag=null;
   plRoomDraw(); plPanelRoom(); plPanelSel(); try{ plPanelGrid(); }catch(e){} }
@@ -45174,6 +45217,38 @@ function plqRoomRest(cabs,all){ if(!all||!all.R) return null;
       if(p>0) o[F[k]]+=p*q*(1+W[k]/100); else if(!costHas(k,key,x.code)) o.miss.push([k,y]); }); });
   o.total=o.wood+o.surf+o.edge+o.fit;
   return (o.R.mat.size||o.R.surf.size||o.R.edge.size||o.R.fit.size)?o:null; }
+/* ═════════ v1.680: ส่งออก Excel ตามฟอร์ม RM ═════════
+   ผู้ใช้ 5/11/2026 11:18 (ภาพ Excel คอลัมน์ A–I): “เพิ่มปุ่ม Export ออก Excel ให้ได้ Form ตามรูปที่ 2 ครับ”
+   ฟอร์ม: ชื่อตู้ · กว้าง · ลึก · สูง · จำนวน · หมายเหตุ · หมวด RM · สินค้า RM (รหัส/ชื่อ) · จำนวน RM
+     แถวแรกของตู้มีครบ แถวถัดไปเฉพาะ 3 ช่องขวา · ตัวอย่างในรูป ตู้ 2 ใบ บานพับ 4 = จำนวน RM ต่อ 1 ใบ
+   หมวด: โครงสร้าง (ไม้ ผิว ขอบ ของชิ้นที่ไม่ใช่บาน) · หน้าบาน (ไม้ ผิว ขอบ ของบาน/หน้าลิ้นชัก) · Fitting · ของห้องกับท็อปแยกแถวของตัวเอง
+   จำนวน RM = จำนวนสุทธิแบบเดียวกับแถวรายละเอียด ไม่รวมเผื่อเศษ · ตร.ม. ม. ชิ้น ตามชนิด (ฟอร์มไม่มีช่องหน่วย)
+   เดิมไม่มีตัวเขียน Excel ในโปรแกรม (อ่านอย่างเดียว) จึงประกอบ .xlsx เองด้วย makeZip ไม่โหลดไลบรารีเพิ่ม */
+function plqRmOf(r){ const out=[], push=(cat,x)=>{ if(!x) return; let c=String(x.code||x.key||""); if(+x.cutMM>0&&c.indexOf("@")<0) c+="@"+(+x.cutMM)+"mm"; const q=Math.round((+x.qty||0)*1000)/1000; if(!c||!(q>0)) return; out.push({cat,code:c,qty:q}); };
+  const o=r&&r.o; if(!o||!o.R){ return out; }
+  const put=(cat,R)=>["mat","surf","edge"].forEach(k=>R[k].forEach(x=>push(cat,x)));
+  if(r.room||!Array.isArray(r.bs)) put("โครงสร้าง",o.R);
+  else { const isF=b=>!!b&&(!!b._door||plFrontPart(b))&&!b._box; put("โครงสร้าง",costItems(r.bs.filter(b=>!isF(b)),[])); put("หน้าบาน",costItems(r.bs.filter(isF),[])); }
+  o.R.fit.forEach(x=>push("Fitting",x));
+  return out; }
+function plqXlsxRows(K){ const rows=[["ชื่อตู้","กว้าง (มม.)","ลึก (มม.)","สูง (มม.)","จำนวน","หมายเหตุ","หมวด RM","สินค้า RM (รหัส/ชื่อ)","จำนวน RM"]];
+  K.rows.forEach(r=>{ const head=[r.name||"",+r.W||"",+r.D||"",+r.H||"",r.uom?1:(+r.qty||0),r.sizeTxt?String(r.sizeTxt):String(r.code||"")];
+    const rm=r.wt?[{cat:"ท็อป",code:r.name||"",qty:Math.round((+r.qty||0)*1000)/1000}]:plqRmOf(r);
+    if(!rm.length){ rows.push(head.concat(["","",""])); return; }
+    rm.forEach((x,i)=>rows.push((i?["","","","","",""]:head).concat([x.cat,x.code,x.qty]))); });
+  return rows; }
+function plqXlsxBlob(rows){ const xe=v=>String(v).replace(/[\x00-\x08\x0B\x0C\x0E-\x1F]/g,"").replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;");
+  const col=i=>String.fromCharCode(65+i), cell=(v,i,ri)=>{ if(v===""||v==null) return ""; const ref=col(i)+ri; return typeof v==="number"?('<c r="'+ref+'"><v>'+v+'</v></c>'):('<c r="'+ref+'" t="inlineStr"><is><t xml:space="preserve">'+xe(v)+'</t></is></c>'); };
+  const X='<?xml version="1.0" encoding="UTF-8" standalone="yes"?>\n', W=[34,12,12,12,9,30,14,34,11];
+  const sheet=X+'<worksheet xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main"><dimension ref="A1:I'+rows.length+'"/><sheetViews><sheetView workbookViewId="0"><pane ySplit="1" topLeftCell="A2" activePane="bottomLeft" state="frozen"/></sheetView></sheetViews><sheetFormatPr defaultRowHeight="15"/><cols>'+W.map((w,i)=>'<col min="'+(i+1)+'" max="'+(i+1)+'" width="'+w+'" customWidth="1"/>').join("")+'</cols><sheetData>'
+    +rows.map((r,i)=>'<row r="'+(i+1)+'">'+r.map((v,j)=>cell(v,j,i+1)).join("")+'</row>').join("")+'</sheetData></worksheet>';
+  return new Blob([makeZip([
+    {name:"[Content_Types].xml",text:X+'<Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types"><Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/><Default Extension="xml" ContentType="application/xml"/><Override PartName="/xl/workbook.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet.main+xml"/><Override PartName="/xl/worksheets/sheet1.xml" ContentType="application/vnd.openxmlformats-officedocument.spreadsheetml.worksheet+xml"/></Types>'},
+    {name:"_rels/.rels",text:X+'<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" Target="xl/workbook.xml"/></Relationships>'},
+    {name:"xl/workbook.xml",text:X+'<workbook xmlns="http://schemas.openxmlformats.org/spreadsheetml/2006/main" xmlns:r="http://schemas.openxmlformats.org/officeDocument/2006/relationships"><sheets><sheet name="Sheet1" sheetId="1" r:id="rId1"/></sheets></workbook>'},
+    {name:"xl/_rels/workbook.xml.rels",text:X+'<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="rId1" Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/worksheet" Target="worksheets/sheet1.xml"/></Relationships>'},
+    {name:"xl/worksheets/sheet1.xml",text:sheet}])],{type:"application/vnd.openxmlformats-officedocument.spreadsheetml.sheet"}); }
+function plqXlsxSave(Q,K){ const rows=plqXlsxRows(K), a=document.createElement("a"); a.href=URL.createObjectURL(plqXlsxBlob(rows)); a.download="RM_"+String(Q.no||"งาน").replace(/[\\/:*?"<>|]+/g,"_")+".xlsx"; document.body.appendChild(a); a.click(); a.remove(); setTimeout(()=>URL.revokeObjectURL(a.href),3000); return {n:K.rows.length,rows:rows.length-1,name:a.download}; }
 /* v1.678: รายละเอียดแถว — วัสดุ · ผิว (บน/ล่าง) · ขอบ · อุปกรณ์ · ต้นทุนต่อ 1 ใบ */
 function plqDetHtml(r){ const o=r&&r.o; if(!o||!o.R) return ""; const e=s=>escapeHtml(String(s==null?"":s));
   const c=costCfg(), W={mat:+c.waste||0,surf:+c.surfWaste||0,edge:+c.edgeWaste||0,fit:0};
@@ -45208,7 +45283,7 @@ function plqLines(){
     const pk=(code||("#"+inst))+"|"+W+"|"+H+"|"+D, key=pk+"|"+Math.round(cost);   // % รายแถวผูกกับรหัส+ขนาด (pk) — ใส่ราคาทุนเพิ่มทีหลัง % ไม่หาย
     let x=0; try{ const f=d&&d.f; if(f&&isFinite(f.lo[0])) x=(f.lo[0]+f.hi[0])/2+((f.lo[2]+f.hi[2])/2)*0.001; }catch(_){}
     let g=byKey[key]; if(!g){ g=byKey[key]={key, pk, code, name:nm, W, H, D, qty:0, cost, miss:0, sx:Infinity, extra:Math.round(cb.extra*100)/100, det:cb.det.slice()}; lines.push(g); }
-    g.qty++; g.o=g.o||o; g.miss+=o.miss.length; g.sx=Math.min(g.sx,x); (g.insts=g.insts||[]).push(inst); });   // v1.521: inst ของแถว → เลขในแบบ
+    g.qty++; g.o=g.o||o; g.bs=g.bs||bs; g.miss+=o.miss.length; g.sx=Math.min(g.sx,x); (g.insts=g.insts||[]).push(inst); });   // v1.521: inst ของแถว → เลขในแบบ
   lines.sort((a,b)=>a.sx-b.sx);
   /* v1.520: ท็อปเคาน์เตอร์ + วอผนัง — จำนวนเป็น ตร.ม. · ราคาทุน = ราคา/ตร.ม. ที่ตั้งในแผงห้อง */
   try{ if(plWtOn()){ const T=plWt(), S=plWtSlabs(), sm=plWtSum(S), c=+T.cost||0, cm=v=>String(Math.round(v)/10);
@@ -45426,14 +45501,14 @@ async function plQuoteOpen(){
   ov.innerHTML='<div class="qw"><div class="qtop"><button class="qtab on" data-tab="cost">💰 ราคาต้นทุน</button><button class="qtab" data-tab="pdf">📐 แบบสำหรับวางงาน (PDF)</button>'
       +'<button class="ibtn" data-a="x" style="margin-left:auto">ปิด</button></div><div class="qpanes"><div class="qb qcost" id="plqPaneCost">'
     +'<div id="plqWarn"></div>'
-    +'<div class="row"><label title="ค่าแรงทางตรง คิดเป็น % ของค่าวัสดุ">DL %<input data-q="dl" type="number" step="0.5" min="0" value="'+e(Q.dl)+'" style="font-size:15px;font-weight:700"></label>'
-      +'<label title="ค่าโสหุ้ย คิดเป็น % ของค่าวัสดุ">OH %<input data-q="oh" type="number" step="0.5" min="0" value="'+e(Q.oh)+'" style="font-size:15px;font-weight:700"></label>'
+    +'<div class="row"><label title="ค่าแรงทางตรง คิดเป็น % ของ DM (วัตถุดิบ)">DL %<input data-q="dl" type="number" step="0.5" min="0" value="'+e(Q.dl)+'" style="font-size:15px;font-weight:700"></label>'
+      +'<label title="ค่าโสหุ้ย คิดเป็น % ของ DM (วัตถุดิบ)">OH %<input data-q="oh" type="number" step="0.5" min="0" value="'+e(Q.oh)+'" style="font-size:15px;font-weight:700"></label>'
       +'<label>กำไร % ทั้งงาน<input data-q="markup" type="number" step="1" value="'+e(Q.markup)+'" style="font-size:15px;font-weight:700"></label>'
       +'<label>ปัดราคาต่อหน่วย<select data-q="round"><option value="1"'+(+Q.round<=1?" selected":"")+'>ไม่ปัด (ทั้งบาท)</option><option value="10"'+(+Q.round===10?" selected":"")+'>ขึ้นหลักสิบ</option><option value="100"'+(+Q.round===100?" selected":"")+'>ขึ้นหลักร้อย</option></select></label>'
       +'<label>ส่วนลด (บาท)<input data-q="disc" type="number" step="1" min="0" value="'+e(Q.disc)+'"></label>'
       +'<label>VAT<select data-q="vat"><option value="add"'+(Q.vat==="add"?" selected":"")+'>บวก VAT 7% เพิ่ม</option><option value="incl"'+(Q.vat==="incl"?" selected":"")+'>ราคารวม VAT แล้ว</option><option value="none"'+(Q.vat==="none"?" selected":"")+'>ไม่มี VAT</option></select></label></div>'
-    +'<div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap"><span style="font-size:11px;color:var(--ink-dim)">DL OH คิดจากค่าวัสดุ · ราคาขาย = ต้นทุนรวม + กำไร % · กดแถวเพื่อดูรายการ · ราคาหน้านี้ไม่ออกใน PDF</span>'
-      +'<button class="ibtn" data-a="xpAll" style="margin-left:auto">เปิดทุกแถว</button><button class="ibtn" data-a="xpNone">ปิดทุกแถว</button><button class="ibtn" data-a="costAll">💰 แก้ราคาวัสดุ…</button></div>'
+    +'<div style="display:flex;align-items:center;gap:6px;flex-wrap:wrap"><span style="font-size:11px;color:var(--ink-dim)">DM = วัตถุดิบ (ไม้ ผิว ขอบ อุปกรณ์) · DL OH คิดเป็น % ของ DM · กำไร % คิดจาก DM + DL + OH · กดแถวเพื่อดูรายการ · ราคาหน้านี้ไม่ออกใน PDF</span>'
+      +'<button class="ibtn" data-a="xpAll" style="margin-left:auto">เปิดทุกแถว</button><button class="ibtn" data-a="xpNone">ปิดทุกแถว</button><button class="ibtn" data-a="costAll">💰 แก้ราคาวัสดุ…</button><button class="ibtn" data-a="xlsx" title="ไฟล์ .xlsx ตามฟอร์ม ชื่อตู้ ขนาด จำนวน หมวด RM สินค้า RM จำนวน RM">⬇ Excel</button></div>'
     +'<table class="lt" id="plqLines"></table>'
     +'<div class="tot" id="plqTot"></div></div>'
     +'<div class="qpdf" id="plqPanePdf" style="display:none"><div class="qf"><div class="qb">'
@@ -45471,17 +45546,21 @@ async function plQuoteOpen(){
     w.innerHTML=(L.miss?('<div class="warn">⚠ ต้นทุนยังไม่ครบ '+L.miss+' รายการ — ต้นทุนอาจต่ำกว่าจริง<button class="ibtn" data-a="cost" style="margin-left:auto;padding:2px 8px;font-size:11px">💰 ใส่ราคาที่ขาด…</button></div>'):'')
       +(!mk&&!K.rows.some(r=>r.own&&+r.pct)?'<div class="warn" style="margin-top:4px">ยังไม่ได้ใส่กำไร % — ราคาขายตอนนี้ = ต้นทุนรวม</div>':'');
     /* v1.678: กดแถว = ดูรายการวัสดุ ผิว ขอบ อุปกรณ์ · แถวของห้องเปิดไว้ตั้งแต่แรก */
-    ov.querySelector("#plqLines").innerHTML='<tr><th>รายการ</th><th class="r">จำนวน</th><th class="r">วัสดุ/หน่วย</th><th class="r">DL+OH/หน่วย</th><th class="r">ทุนรวม/หน่วย</th><th class="r">กำไร %</th><th class="r">ราคา/หน่วย</th><th class="r">รวม</th></tr>'
+    ov.querySelector("#plqLines").innerHTML='<tr><th>รายการ</th><th class="r">จำนวน</th><th class="r">DM/หน่วย</th><th class="r">DL+OH/หน่วย</th><th class="r">ทุนรวม/หน่วย</th><th class="r">กำไร %</th><th class="r">ราคา/หน่วย</th><th class="r">รวม</th></tr>'
       +(K.rows.length?K.rows.map(r=>{ const on=!!r.o&&PLQ.open.has(r.pk);
         return '<tr class="ln"'+(r.o?(' data-xp="'+e(r.pk)+'"'):'')+'><td><span class="xp">'+(r.o?(on?'▾':'▸'):'')+'</span><b>'+e(r.name)+'</b>'+(r.miss?' <span title="ต้นทุนยังขาดราคา '+r.miss+' รายการ" style="color:#e58a24">⚠</span>':'')
           +((r.code||r.sizeTxt)?('<div style="font-size:10.5px;color:var(--ink-dim);padding-left:16px">'+e(r.code||"")+(r.W?(' · '+r.W+'×'+r.D+'×'+r.H):'')+(r.sizeTxt?e(r.sizeTxt):'')+'</div>'):'')+'</td>'
           +'<td class="r">'+(r.uom?((Math.round(r.qty*100)/100).toFixed(2)+'<div style="font-size:10px;color:var(--ink-dim)">'+e(r.uom)+'</div>'):r.qty)+'</td><td class="r">'+plqMoney(r.cost)+'</td><td class="r">'+plqMoney(r.full-r.cost)+'</td><td class="r"><b>'+plqMoney(r.full)+'</b></td>'
           +'<td class="r"><input data-pk="'+e(r.pk)+'" type="number" step="1" value="'+(r.own?e(Q.pct[r.pk]):"")+'" placeholder="'+e(mk)+'"></td><td class="r">'+plqMoney(r.unit)+'</td><td class="r">'+plqMoney(r.tot)+'</td></tr>'
           +(on?('<tr class="dt"><td colspan="8">'+plqDetHtml(r)+'</td></tr>'):''); }).join(""):'<tr><td colspan="8" style="color:var(--ink-dim);padding:10px 4px">ยังไม่มีตู้ในห้อง</td></tr>');
-    const gpBase=(Q.vat==="incl"?K.pre:K.after), gpPct=gpBase>0?Math.round(K.gp/gpBase*1000)/10:0, tc=(l,v,st)=>'<div class="tc"><span>'+l+'</span><b style="font-family:var(--mono,monospace)'+(st||'')+'">'+v+'</b></div>';
-    ov.querySelector("#plqTot").innerHTML=tc("ค่าวัสดุรวม",plqMoney(K.cost))+tc("DL "+K.dlp+"%",plqMoney(K.dl))+tc("OH "+K.ohp+"%",plqMoney(K.oh))+tc("ต้นทุนรวม",plqMoney(K.full))
+    /* ───────── v1.680: กำไรคิดจาก DL + OH + DM ─────────
+       ผู้ใช้ 5/11/2026 11:18 (ภาพแถบยอด กำไรขั้นต้น 10% บนต้นทุนรวม 7,709.15): “กำไร ต้องคิดมาจาก DL + OH + DM”
+       เดิม: ราคาขายคิดจากต้นทุนรวมถูกอยู่แล้ว แต่ % ในแถบยอดหารด้วยราคาขาย 860.85 ÷ 8,570 = 10% จึงดูเหมือนไม่ได้คิดจากต้นทุน
+       ตอนนี้: % หารด้วย DM + DL + OH 860.85 ÷ 7,709.15 = 11.2% (ที่เกิน 10% คือเศษจากปัดราคาขึ้น) */
+    const gpPct=K.full>0?Math.round(K.gp/K.full*1000)/10:0, tc=(l,v,st)=>'<div class="tc"><span>'+l+'</span><b style="font-family:var(--mono,monospace)'+(st||'')+'">'+v+'</b></div>';
+    ov.querySelector("#plqTot").innerHTML=tc("DM วัตถุดิบรวม",plqMoney(K.cost))+tc("DL "+K.dlp+"%",plqMoney(K.dl))+tc("OH "+K.ohp+"%",plqMoney(K.oh))+tc("ต้นทุนรวม DM+DL+OH",plqMoney(K.full))
       +tc("ราคาขายรวม",plqMoney(K.sub))+(K.disc?tc("หลังหักส่วนลด",plqMoney(K.after)):'')
-      +tc("กำไรขั้นต้น (ก่อน VAT) "+gpPct+"%",plqMoney(K.gp),';color:'+(K.gp<0?'#c92a2a':'#2b8a3e'))+tc("ยอดรวมทั้งสิ้น",plqMoney(K.grand));
+      +tc("กำไร "+gpPct+"% ของต้นทุนรวม (ก่อน VAT)",plqMoney(K.gp),';color:'+(K.gp<0?'#c92a2a':'#2b8a3e'))+tc("ยอดรวมทั้งสิ้น",plqMoney(K.grand));
     preview(); };
   const preview=()=>{ if(_tab!=="pdf") return; clearTimeout(PLQ.tmr); PLQ.tmr=setTimeout(()=>{ const f=ov.querySelector("#plqFrame"); if(!f) return;
       f.onload=()=>{ try{ plqAnnApply(f.contentDocument,Q,true); }catch(err){ console.error("plqAnn:",err); }   /* v1.580: แก้คำ + ของที่แปะ */
@@ -45525,6 +45604,7 @@ async function plQuoteOpen(){
     if(a==="x"){ plqClose(); return; }
     if(a==="xpAll"){ L.lines.forEach(g=>{ if(g.o) PLQ.open.add(g.pk); }); paint(); return; }
     if(a==="xpNone"){ PLQ.open.clear(); paint(); return; }
+    if(a==="xlsx"){ try{ const _x=plqXlsxSave(Q,plqCalc(Q,L)); toast("⬇ Excel "+_x.name+" · "+_x.n+" รายการ "+_x.rows+" แถว"); }catch(err){ console.error("plqXlsx:",err); toast("ส่งออก Excel ไม่สำเร็จ: "+err.message); } return; }   /* v1.680 */
     if(a==="shot"){ shoot(); return; }
     if(a==="fitImg"){ const ch=await dwgFitImgEdit(); if(ch&&PLQ.att){ dwgMatTiles().then(tl=>{ if(PLQ.el!==ov) return; PLQ.att.mat=tl; preview(); }).catch(err=>console.error(err)); } return; }   /* v1.581 */
     if(a==="doorName"){ const ch=await dwgDoorNameEdit(); if(ch&&PLQ.att){ dwgMatTiles().then(tl=>{ if(PLQ.el!==ov) return; PLQ.att.mat=tl; preview(); }).catch(err=>console.error(err)); } return; }   /* v1.633 */
@@ -61364,7 +61444,7 @@ async function snvBuild(opt){
        เพิ่ม 2 อย่าง: รอรูปของลายแบบแปะรูปโหลดเสร็จก่อนอบ (ไม่งั้นได้แผ่นเปล่า) · ส่ง toneMapped ไปด้วย โหมดสมจริงในหน้าดูสีเส้นจะได้ตรงกับโปรแกรม
        ใบตัด MPR BOM ไม่มีลายเหมือนเดิม */
     for(let i=0;i<60;i++){ const busy=Object.keys(_texImgC||{}).some(k=>_texImgC[k]&&_texImgC[k].st==="loading")||[...DA.img.values()].some(e=>e&&!e.cv); if(!busy) break; await new Promise(r=>setTimeout(r,150)); }
-    try{ _skinTexC={}; _skinMatC={}; }catch(e){}
+    try{ skinCacheDrop(); }catch(e){}
     render3D(false);
     const sc=snvSerialize(opt), meta=snvMeta();
     let prev=null;
