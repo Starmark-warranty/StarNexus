@@ -3283,7 +3283,7 @@ body[data-theme="dark"] .splash-dots span{background:rgba(255,255,255,.25)}
    ===================================================================== */
 /* ---- APP_META: แหล่งความจริงเดียวของเวอร์ชัน (ดูได้จาก console / คลิกชื่อแอป) ---- */
 const APP_META={
-  name:"StarNexus", version:"1.689", build:"2026-11-05/shape-side",
+  name:"StarNexus", version:"1.690", build:"2026-11-05/hangrail-noside",
   file:"StarNexus.html", basedOn:"Furnitech_V3.html (v3.11)",
   /* ───────── เริ่มนับเวอร์ชันใหม่ที่ 1.001 (21/08/2026) ─────────
      ของเดิมนับมาถึง 42.1 แล้ววิ่งเป็นทศนิยมสองชั้นซึ่งอ่านลำดับยาก
@@ -3291,6 +3291,7 @@ const APP_META={
      ประวัติเก่าเก็บไว้ทั้งหมดตามเลขเดิม ไม่ไล่เขียนใหม่ เพราะเลขในนั้นถูกอ้างถึงไปแล้ว
      รายการที่อยู่ใต้ 1.001 ลงไปจึงเป็นเลขชุดเก่า อ่านต่อกันได้ตามวันที่ */
   changelog:[
+    ["1.690","2026-11-05","FIX เปิดห้อง 002 ALTO_CANTALEV แล้วแท็บดับ Out of Memory (ผู้ใช้ 16:06 “แรม 16 แต่ทำไมเปิดไม่ได้งงเลย”) ไม่ใช่เพราะห้องใหญ่หรือแรมน้อย ตู้ ACW045 ACW100 ไม่มีแผ่นข้าง ตัวจัดราวแขวนเอาค่าตั้งต้นรอแผ่นข้าง ±1 พันล้านไปคิด ราวจึงยาว 1,999,999,900 มม. กริดตามขนาดฉากเลย 44 ล้านช่อง จองหน่วยความจำ 7 GB ในคราวเดียว แก้: ไม่มีแผ่นข้าง = คงความยาวราวเดิม จัดศูนย์ตามชั้น · ราวที่เพี้ยนมาแล้วซ่อมเองตอนเปิด · ปุ่มใส่ราวใช้ขอบชั้นแทน · ชิ้นใหญ่เกิน 100 ม. ไม่นับเข้าขนาดฉาก และกริดมีเพดาน 4,000 ช่อง ของพลาดแบบนี้จะไม่ทำให้แท็บดับอีก สวิตช์ hrNoSide sceneCap"],
     ["1.689","2026-11-05","UX แท็บ FrontShape แยก 2 ทาง บานไม้ / บานเฟรมอลู (ผู้ใช้ 15:52 “พอเลือก FrontShape แล้วก็มี 2 ทางเข้าไปเลย ว่า เอาบานไม้ หรือ บานเฟรมอลู แล้วก็มี Frame01 อยู่ฝั่งบานเฟรมอลู”) — เปิดมาอยู่ฝั่งของแบบบานปัจจุบัน · พิมพ์ค้นหาได้ทั้งสองฝั่ง · xxAG207 208 281 อยู่ฝั่งเฟรม (ผู้ใช้ 15:57) · FIX รูปตัวอย่างบานไม้ขึ้น “หนา 60” ตอนตู้เป็นบานเฟรมอยู่ · ปิด SN_OFF.shapeSide"],
     ["1.688","2026-11-05","FEAT แบบบานเฟรมอลู FRAME01–05 ไม่ต้องตั้งรหัสเอง (ผู้ใช้ 14:20 · 14:25 · 15:11 “FRAME01 = เฟรมที่มีมือจับในตัวอยู่บน ,02 อยู่ล่าง ,03 ซ้าย ,04 ขวา 05 ไม่มีมือจับ” · “ลอนตั้งเสมอ เอาให้ ดู 3D ได้และรู้ว่ามันคือลอน”) — เลือกในกล่อง 🎨 แท็บ FrontShape แล้วเลือกสีเฟรม (สีเดียวกับมือจับฝัง AL6xx) กับกระจกตามใจได้เลย · ทุกเครื่องมีรหัสเอง · เส้นเฟรมหารหัส AX จากสีเฟรม + เส้น + ขนาด ไม่เอาสีบานไม้ไปค้น · กระจกลอนลูกฟูกเห็นลอนตั้งใน 3D ทั้งบานเฟรมและบานไม้ใส่กระจก · บานมือจับในตัวไม่ใส่มือจับซ้ำ · เตือนถ้ามือจับอยู่ฝั่งบานพับ · ปิด SN_OFF.frameCodes SN_OFF.glassFlute"],
     ["1.687","2026-11-05","FIX ฟิลเลอร์บนเข้ามุมไม่ชนกัน (ผู้ใช้ 15:02 project 77 “ทำไม ฟิลเลอร์ บนไปไม่ถึง เว้นไว้ทำไม”) — ตีนตู้มีตัวจัดมุมมาตั้งแต่ v1.308 แต่ฟิลเลอร์บนไม่ได้ใช้ แนวหนึ่งจึงวิ่งเลยมุมเข้าไปหลังอีกแนว ส่วนอีกแนวหยุดที่ตู้ใบแรก เหลือช่อง 119 มม. · ตอนนี้ใช้ตัวเดียวกัน แนวที่เลยมุมตัดจบที่ผิวอีกแนว แนวที่ขาดยืดไปชน · ทางแยกรูปตัว T ไม่ตัด · ปิด SN_OFF.ceilCorner"],
@@ -16680,6 +16681,8 @@ function _pbxRelay400(inst){   /* v1.400 แบบตายตัว — ใช�
     top(t,xc); vert(v,t,xc-rw/2+(+v.T||16)/2); }                                                                         // คานตั้งชิดขอบซ้ายคานบน (ตัว L)
   return n;
 }
+/* ───────── v1.690: ราวยาวเกินค่านี้คือค่าเพี้ยน ไม่มีราวจริงยาว 100 เมตร ───────── */
+const HR_LEN_BAD=100000;
 function relayHangRails(inst){
   // ราวแขวน: เกาะใต้ชั้นเดิม · ยาวอัตโนมัติคิดใหม่ตามกว้างนอกตู้ · เจาะรูใหม่ · (รหัสจริง map ตามยาวใน fittingAgg)
   state.boards.filter(x=>x.cabInst===inst&&x._hangRail).forEach(rail=>{
@@ -16690,7 +16693,27 @@ function relayHangRails(inst){
     const backFaceZ=backFaceZOf(state.boards.filter(x=>x.cabInst===inst), shelf.z-worldDims(shelf)[2]/2);   // v1.238
     rail._hrShelf=shelf.id;   // v1.238: ผูกคืนให้ไฟล์เก่าที่ลิงก์ขาด (id ถูกแจกใหม่ตอนเปิดไฟล์ แต่ _hrShelf ไม่เคยถูกแปลง)
     if(hrIsOval(rail)){ rail.z=round(backFaceZ+(rail._hrSetb!=null?+rail._hrSetb:HR_OVAL.setb)); drillHangRailOval(shelf,rail); return; }   /* v1.399: รูปไข่ = ยาวตามช่อง · เจาะแผ่นข้าง */
-    if(rail._hrAuto !== false){ rail.L=round(Math.max(oR-oL,120)-100); rail._hrLen=rail.L; } else { rail.L=round(rail._hrLen||rail.L); }
+    /* ───────── v1.690: ตู้ไม่มีแผ่นข้าง ราวแขวนยาว 2 พันล้านมิลลิเมตรจนแท็บดับ ─────────
+       ผู้ใช้ 5/11 16:06 + 16:15: ห้อง 002 ALTO_CANTALEV กดเปิดใช้แล้ว Aw Snap Out of Memory ทั้งที่แรม 16 GB
+       ตู้ ACW045 ACW100 เป็นชั้นยื่นจากผนัง มีแค่แผ่นหลังกับชั้น ไม่มีแผ่นข้างสักแผ่น
+       inL inR oL oR ด้านบนตั้งต้น ±1e9 ไว้รอแผ่นข้าง ไม่เจอแผ่นข้างก็เอาค่าตั้งต้นไปคิดทั้งอย่างนั้น
+       ราวจึงยาว 1,999,999,900 มม. รูยึดบนชั้นห่างออกไป 1 พันล้าน กล่องคลุมฉากกว้าง 2 พันล้าน
+       กริดตามขนาดฉากเลยได้ 44 ล้านช่อง จองหน่วยความจำ 7 GB ในคราวเดียว (วัดด้วย profiler)
+       เปิดจากไฟล์ .json ไม่เจอเพราะตัวจัดราวทำงานตอนเปิดออเดอร์/ห้องจากคลังกับตอนปรับตู้
+       แก้: ไม่มีแผ่นข้าง = ไม่มีอะไรบอกความยาว คงความยาวเดิม จัดศูนย์ตามชั้น
+       ยาวเกินชั้น (เพี้ยนมาแล้วหรือตู้แคบลง) คืนเป็นกว้างชั้น − 60 เท่าที่ตู้ชุดนี้ตั้งไว้แต่แรก
+       รูเก่าที่อยู่ไกลลิบล้างทิ้งด้วย เพราะเลขชิ้นถูกแจกใหม่ตอนเปิด ตัวเจาะจึงล้างเองไม่ถึง */
+    if(!sd.length&&!snOff("hrNoSide")){
+      const _sw=+shelf.L||0; let _len=+rail._hrLen||+rail.L||0;
+      if(!(_len>0)||(_sw>0&&_len>_sw)) _len=Math.max(_sw-60,120);
+      rail.L=round(_len); rail._hrLen=rail.L;
+      if(shelf.holes&&shelf.holes.length) shelf.holes=shelf.holes.filter(h=>!(h&&h.hangRail&&(Math.abs(+h.x||0)>HR_LEN_BAD||Math.abs(+h.y||0)>HR_LEN_BAD)));
+      rail.x=round(shelf.x); rail.z=round(backFaceZ+(rail._hrSetb||260));
+      rail.y=round(shelf.y-(shelf.T||16)/2-(rail.W||85)/2-1);
+      drillHangRail(shelf,rail);
+      return;
+    }
+    if(rail._hrAuto !== false||(+rail._hrLen||0)>HR_LEN_BAD){ rail.L=round(Math.max(oR-oL,120)-100); rail._hrLen=rail.L; } else { rail.L=round(rail._hrLen||rail.L); }   /* v1.690: ยาวเพี้ยนมาแล้วคิดใหม่แม้ล็อกความยาวไว้ */
     rail.x=round((inL+inR)/2); rail.z=round(backFaceZ+(rail._hrSetb||260));
     rail.y=round(shelf.y-(shelf.T||16)/2-(rail.W||85)/2-1);
     drillHangRail(shelf,rail);
@@ -16704,6 +16727,11 @@ function relayHangRails(inst){
    ความยาว ตำแหน่งแนวกว้าง/ลึก ยังเป็นงานของ relayHangRails ตามเดิม */
 function applyHangRailFollow(){
   let n=0;
+  /* ───────── v1.690: ราวที่เพี้ยนจากรุ่นก่อนซ่อมให้ทุกทางที่เปิดงาน ─────────
+     เปิดจากไฟล์ .json ไม่ผ่านตัวจัดราว ค่าเพี้ยนที่บันทึกไว้จึงอยู่ต่อ ตรงนี้ทำงานทุกรอบ sync เลยซ่อมที่นี่ */
+  if(!snOff("hrNoSide")){ const _bad=new Set();
+    (state.boards||[]).forEach(r=>{ if(r&&r._hangRail&&r.cabInst&&((+r._hrLen||0)>HR_LEN_BAD||(+r.L||0)>HR_LEN_BAD)) _bad.add(r.cabInst); });
+    _bad.forEach(inst=>{ try{ withCabAxisAligned(inst,()=>relayHangRails(inst)); n++; }catch(e){ console.error("hrHeal:",e); } }); }
   (state.boards||[]).forEach(r=>{ if(!r||!r._hangRail||!r._hrShelf) return;
     const sh=(state.boards||[]).find(x=>x&&x.id===r._hrShelf);
     if(!sh||sh.cabInst!==r.cabInst||sh.orient!=="flat") return;
@@ -16924,6 +16952,7 @@ async function addHangRail(bIn){
   const sides=grp.boards.filter(x=>x.orient==="side"&&!x._door&&!x._virtual&&!isRail(x)&&x.zoneLo==null);
   let inL=-1e9,inR=1e9,outL2=-1e9,outR2=1e9; if(sides.length){ const l=sides.reduce((a,c)=>a.x<c.x?a:c),r=sides.reduce((a,c)=>a.x>c.x?a:c);
     inL=l.x+worldDims(l)[0]/2; inR=r.x-worldDims(r)[0]/2; outL2=l.x-worldDims(l)[0]/2; outR2=r.x+worldDims(r)[0]/2; }
+  else if(!snOff("hrNoSide")){ const _sw=+b.L||0; inL=outL2=b.x-_sw/2; inR=outR2=b.x+_sw/2; }   /* v1.690: ไม่มีแผ่นข้าง ใช้ขอบชั้นแทน เดิมช่องยาวขึ้น 1,999,999,900 */
   const Wout=Math.max(outR2-outL2,120); const autoLen0=round(Wout-100);   // กว้างนอกตู้ − 100
   const v=await promptFields("ราวแขวนผ้า — ใต้ "+(b.name||"แผ่นนอน"),[
     {key:"len",label:"ความยาวราว C (มม. · กว้างนอกตู้ "+round(Wout)+" − 100 = แก้ได้)",value:autoLen0},
@@ -21009,15 +21038,23 @@ function render3D(refit){
   const box=new THREE.Box3();
   const _FAR=100000; let _outlier=0;
   const _bmap={}; (state.boards||[]).forEach(b=>{ if(b&&b.id!=null) _bmap[b.id]=b; });
+  /* ───────── v1.690: ดูขนาดจริงของชิ้นด้วย ไม่ใช่แค่ตำแหน่งศูนย์กลาง ─────────
+     ราวแขวน 2 พันล้านมม. ศูนย์กลางชั้นยังอยู่ในห้อง ด่าน v1.129 จึงจับไม่ได้ กล่องคลุมฉากบวมตามจนแท็บดับ
+     ตัวต้นเหตุแก้ที่ relayHangRails แล้ว ด่านนี้กันค่าเพี้ยนชนิดอื่นในอนาคตไม่ให้ลามไปถึงหน่วยความจำ */
+  const _capOn=!snOff("sceneCap"), _mb=new THREE.Box3(), _oversize=[];
   meshes.forEach(o=>{ const b=_bmap[o.id];
     if(b && (Math.abs(+b.x||0)>_FAR||Math.abs(+b.y||0)>_FAR||Math.abs(+b.z||0)>_FAR)){ _outlier++; return; }
+    if(_capOn){ _mb.makeEmpty().expandByObject(o.mesh); if(_mb.isEmpty()) return;
+      if(Math.max(Math.abs(_mb.min.x),Math.abs(_mb.max.x),Math.abs(_mb.min.y),Math.abs(_mb.max.y),Math.abs(_mb.min.z),Math.abs(_mb.max.z))>_FAR||!isFinite(_mb.max.x+_mb.max.y+_mb.max.z+_mb.min.x+_mb.min.y+_mb.min.z)){ _outlier++; if(b) _oversize.push(b); return; }
+      box.union(_mb); return; }
     box.expandByObject(o.mesh); });
   if(box.isEmpty()) meshes.forEach(o=>box.expandByObject(o.mesh));   // ถ้าหลุดหมดก็ใช้ของเดิม
   if(_outlier && !window._outlierWarned){ window._outlierWarned=1;
     try{ toast("⚠ มีชิ้นอยู่ไกลผิดปกติ "+_outlier+" ชิ้น — ไม่นับเข้ามุมกล้อง (ดูรายการใน console)"); }catch(e){}
     try{ console.warn("[v1.129] ชิ้นที่หลุดไกลเกิน "+_FAR+" มม.:",
       (state.boards||[]).filter(b=>b&&(Math.abs(+b.x||0)>_FAR||Math.abs(+b.y||0)>_FAR||Math.abs(+b.z||0)>_FAR))
-        .map(b=>({ชื่อ:b.name,cab:b.cab,x:b.x,y:b.y,z:b.z}))); }catch(e){} }
+        .map(b=>({ชื่อ:b.name,cab:b.cab,x:b.x,y:b.y,z:b.z}))); }catch(e){}
+    if(_oversize.length) try{ console.warn("[v1.690] ชิ้นที่ใหญ่เกิน "+_FAR+" มม.:",_oversize.map(b=>({ชื่อ:b.name,cab:b.cab,x:b.x,y:b.y,z:b.z}))); }catch(e){} }
   const size=new THREE.Vector3(),ctr=new THREE.Vector3(); box.getSize(size); box.getCenter(ctr);
   const ext=Math.max(size.x,size.z,size.y,200);
   modelRadius=ext*0.7+150;                                   // keep zoom limits in sync with the CURRENT model (even without a refit)
@@ -21052,7 +21089,9 @@ function render3D(refit){
            if(grid.material){ (Array.isArray(grid.material)?grid.material:[grid.material]).forEach(m=>m&&m.dispose&&m.dispose()); } }catch(e){}
       grid=null; }
     if(!snOff("grid")&&!state.hideGrid){                                  // ปุ่ม "ตาราง" ในแถบล่าง · หรือ SN_OFF={grid:1}
-      grid=new THREE.GridHelper(footW,Math.max(8,Math.round(footW/GCELL)),themeCss("--grid-a",0x9aa0ac),themeCss("--grid-b",0xc8ccd4));   // v1.095
+      /* v1.690: เพดาน 4,000 ช่อง (400 เมตร) กริด 44 ล้านช่องคือสิ่งที่ทำแท็บดับ ตัวสร้างเขียนเส้นละ 12 ค่าสองชุด */
+      const _gSize=snOff("sceneCap")?footW:Math.min(footW,GCELL*4000);
+      grid=new THREE.GridHelper(_gSize,Math.max(8,Math.round(_gSize/GCELL)),themeCss("--grid-a",0x9aa0ac),themeCss("--grid-b",0xc8ccd4));   // v1.095
       grid.material.opacity=.55; grid.material.transparent=true; scene.add(grid);
     }
     _gridKey=_gKey;
@@ -30528,6 +30567,8 @@ function boardRole(b){
      SN_OFF.plFloorEdge=1 พื้นห้องลอย 0.8 มม. ผนังไม่ดันถอย เส้นขอบตู้หายตรงรอยต่อแบบเดิม (v1.683)
      SN_OFF.edgeCrisp=1   ผิวแผ่นไม่ดันถอย เส้นขอบขาดเป็นประเมื่อมองเฉียงแบบเดิม (v1.683)
      SN_OFF.hingeRailClear=1 บานพับหลบคานด้วยเกณฑ์เดียวกับชั้นแบบเดิม ต้องห่างผิวคาน 87.9 มม. (v1.683)
+     SN_OFF.hrNoSide=1    ตู้ไม่มีแผ่นข้าง ราวแขวนคิดจากค่าตั้งต้นแบบเดิม ราวยาว 2 พันล้านมม. (v1.690)
+     SN_OFF.sceneCap=1    ไม่กันชิ้นใหญ่ผิดปกติออกจากขนาดฉาก และกริดไม่มีเพดานช่อง แบบเดิม (v1.690)
      SN_OFF.shapeSide=1   แท็บ FrontShape ไม่แยกบานไม้/บานเฟรมอลู การ์ดรวมกันแบบเดิม (v1.689)
      SN_OFF.frameCodes=1  ไม่มีแบบบาน FRAME01–05 · ไม่มีแถวสีเฟรม/กระจก ในกล่องสี (v1.688)
      SN_OFF.glassFlute=1  กระจกลอนลูกฟูกเป็นแผ่นเรียบใน 3D (v1.688)
