@@ -3283,7 +3283,7 @@ body[data-theme="dark"] .splash-dots span{background:rgba(255,255,255,.25)}
    ===================================================================== */
 /* ---- APP_META: แหล่งความจริงเดียวของเวอร์ชัน (ดูได้จาก console / คลิกชื่อแอป) ---- */
 const APP_META={
-  name:"StarNexus", version:"1.678", build:"2026-11-05/cost-tab",
+  name:"StarNexus", version:"1.679", build:"2026-11-05/room-start",
   file:"StarNexus.html", basedOn:"Furnitech_V3.html (v3.11)",
   /* ───────── เริ่มนับเวอร์ชันใหม่ที่ 1.001 (21/08/2026) ─────────
      ของเดิมนับมาถึง 42.1 แล้ววิ่งเป็นทศนิยมสองชั้นซึ่งอ่านลำดับยาก
@@ -3291,6 +3291,7 @@ const APP_META={
      ประวัติเก่าเก็บไว้ทั้งหมดตามเลขเดิม ไม่ไล่เขียนใหม่ เพราะเลขในนั้นถูกอ้างถึงไปแล้ว
      รายการที่อยู่ใต้ 1.001 ลงไปจึงเป็นเลขชุดเก่า อ่านต่อกันได้ตามวันที่ */
   changelog:[
+    ["1.679","2026-11-05","FEAT+FIX (ผู้ใช้ 10:59 11:03) ① ไอคอนโฟลเดอร์สวย เลือกได้ 20 สี ในหน้าเลือกห้อง · เลือกหมวดแล้วเห็นหมวดย่อยเป็นไอคอนใหญ่ ② เปิดโปรแกรมมาเข้าหน้าเลือกห้องออกแบบเลย เลือกแล้วเข้าห้องออกแบบทันที · ติ๊กปิดได้ในหน้านั้น ③ ปุ่มห้องเปล่า (ไม่มีผนัง) · ห้องตัวอย่าง (ค่าตั้งต้นเดิม) · งานล่าสุด · หน้าหลักโปรแกรม · ไม่มีตู้และไม่มีห้อง เริ่มเป็นห้องเปล่า ④ FIX ห้องล็อกอยู่เปิดห้องที่บันทึกอื่นไม่ได้ · ปิด SN_OFF.plStart / plRoomBlank"],
     ["1.678","2026-11-05","FEAT+CHANGE (ผู้ใช้ 10:19) ① ห้องที่บันทึกจัดหมวดได้ ซ้อนหมวดในหมวดได้ ลากห้องเข้าหมวดหรือกดปุ่ม 📁 · ② ปุ่มใบเสนอราคาเปลี่ยนเป็น 💰 ราคาต้นทุน เอายืนราคาออก เพิ่ม DL % และ OH % (คิดจากค่าวัสดุ · ราคาขาย = ต้นทุนรวม + กำไร %) ③ PDF เหลือแบบสำหรับวางงาน ไม่มีรายการตู้ ราคา ยอดรวม เงื่อนไขชำระเงิน และช่องลงนาม ④ แท็บราคาต้นทุนกดดูรายตู้ได้: วัสดุ · ผิว (บอกบน/ล่าง) · ขอบ · อุปกรณ์ พร้อมราคา ⑤ อุปกรณ์/ชิ้นที่ไม่อยู่กับตู้ แยกเป็นแถวของห้อง ไม่เฉลี่ยเข้าตู้แล้ว ⑥ แยกเป็น 2 แท็บ ราคาต้นทุน กับ แบบวางงาน · แบบ ภาพ และ PDF คิดเมื่อเปิดแท็บแบบครั้งแรก · ปิด SN_OFF.plRoomCat / plqNoPrice"],
     ["1.677","2026-11-05","FIX+FEAT ① เลข Part กระโดด (project 75 · LRT005-01 เป็น P13–15 · P19 · P22–24 · P83–87): กด Transfer หรือออก MPR แล้วถ้าออเดอร์เคยส่งเลขไปแล้วและมีตู้ที่แก้ จะถามให้เลือก 3 ทาง — เรียงใหม่เฉพาะตู้ที่แก้ (ทั้งใบเรียงติดกัน มีเลขว่างพอก็เติมเข้าไป ตู้อื่นเลขเดิม) · เจนใหม่ทั้งออเดอร์ · ใช้เลขเดิมที่ส่ง Production แล้ว · ไม่มีอะไรเปลี่ยนไม่ถาม เลือกเลขเดิมแล้วไม่ถามซ้ำ · กดออก MPR ครั้งแรกล็อกเลขด้วย (เดิมล็อกเฉพาะตอน Transfer) · มีปุ่มในหน้ารายการชิ้น · ปิด SN_OFF.pidAsk / pidLockMpr ② กดคานสีหน้าบานแล้วคาน DX ไม่ได้สี: ตัวเลือกนับเฉพาะคานปกติ ชิ้น DX Panel/Floor/Back/Top ไม่มี rule จึงตกหล่น · กล่องขึ้น “ตู้ใบนี้ยังไม่มี” · ตอนนี้นับคาน DX ด้วยทั้งชุด · ปิด SN_OFF.chandleDx"],
     ["1.676","2026-11-05","FIX ลากตู้เข้าหาแถว Cosimo ต้องเว้นเสาปลาย (เจอตอนเทียบผลของ 1.675): 1.675 เอาขาแผ่นไม้ออกจากของขวาง ตู้ที่ลากจากช่องกว้างจึงไปชิดหน้าช่อง 3947 ทับแนวเสา แล้วเสาปลายหายเงียบ ๆ เพราะนับว่าชนตู้ — ตอนนี้ลากแล้วหยุดที่ผิวเสา 3966 · กด Alt ค้างระหว่างลาก = ชิดช่องไม่มีเสาแบบเดิม · ป้ายบอกตอนลาก · ทำสำเนา/เปลี่ยนรุ่นไม่กระทบ"],
@@ -25659,7 +25660,9 @@ try{
   addEventListener("pagehide",autosaveNow);
   addEventListener("visibilitychange",()=>{ if(document.visibilityState==="hidden") autosaveNow(); });
 }catch(e){}
-async function loadSaved(){ try{ const v=await store.get(SCENE_KEY); return v?JSON.parse(v):null; }catch(e){ return null; } }
+async function loadSaved(){ try{ const v=await store.get(SCENE_KEY), o=v?JSON.parse(v):null;
+    if((!o||!o.boards||!o.boards.length)&&!snOff("plStart")){ const v2=await store.get(SCENE_KEY+":last"); if(v2) return JSON.parse(v2); }   /* v1.679: งานที่สำรองไว้ก่อนเปิดหน้าเลือกห้อง */
+    return o; }catch(e){ return null; } }
 async function lsSet(k,v){ try{ await store.set(k,JSON.stringify(v)); }catch(e){}
   /* v39.3: รูปทรงของ Part กับตารางสีอยู่ในตั้งค่า กุญแจแคชรูปทรงมองไม่เห็น — บันทึกตั้งค่าเมื่อไหร่ ล้างแคชทิ้ง */
   if(k==="sxlocaltrial:furnitech:settings"){ try{ _bgClear(); }catch(e){} } }
@@ -30324,6 +30327,8 @@ function boardRole(b){
      SN_OFF.chandleDx=1   คาน DX ไม่รับสีคานหน้าตู้ ใช้สีตู้แบบเดิม (v1.677)
      SN_OFF.plRoomCat=1   รายการห้องที่บันทึกไม่มีหมวด แบบเดิม (v1.678)
      SN_OFF.plqNoPrice=1  PDF กลับเป็นใบเสนอราคามีราคา · อุปกรณ์นอกตู้เฉลี่ยเข้าตู้แบบเดิม (v1.678)
+     SN_OFF.plStart=1     เปิดโปรแกรมแล้วไม่เข้าหน้าเลือกห้องออกแบบ (v1.679)
+     SN_OFF.plRoomBlank=1 ไม่มีปุ่มห้องเปล่า/ห้องตัวอย่าง · ห้องเริ่มต้นมีผนัง 3 ด้านแบบเดิม (v1.679)
      SN_OFF.pidAsk=1      กด Transfer/ออก MPR แล้วไม่ถามเรื่องเลข Part ใช้เลขเดิมต่อท้ายแบบเดิม (v1.677)
      SN_OFF.pidLockMpr=1  ออก MPR แล้วไม่ล็อกเลข Part ล็อกเฉพาะตอน Transfer แบบเดิม (v1.677)
      SN_OFF.dpRail=1      ปิดการใส่คานปิดรอยต่อจากคำสั่งปรับบาน (v1.148)
@@ -37458,8 +37463,14 @@ const PLW={on:false, pts:null, cur:null, hit:null, buf:"", ortho:true, prev:null
 function plRoomDef(){ return {x0:0, z0:0, w:3600, d:3000, h:2600, wallBot:1550, wallTop:0, legH:100,
   plinthMat:"wood", ceilOn:true, ceilH:0, lightOn:false, lightCode:"WEF253", lightT:19, bevelTT:30, lightFill:true, sideFloor:true, sideCeil:false,   // v1.313 · v1.316 · v1.317
   walls:{back:true, left:true, right:true, front:false}}; }
+/* ═════════ v1.679: ห้องเปล่า · ห้องตัวอย่าง ═════════
+   ผู้ใช้ 5/11/2026 10:59: “เมื่อเข้าโปรแกรม ให้มันเข้าหน้า เลือกห้องออกแบบได้เลยไหมครับ ... น่าจะต้องเพิ่ม ปุ่ม ห้องเปล่า แบบไม่มี ผนังห้องเลย เริ่มต้น มีปุ่มกดห้องตัวอย่างแทน”
+   เดิม: ไม่มีห้อง = plRoomDef ผนัง 3 ด้าน 3600×3000 เสมอ ต้องไล่ปิดผนังเองก่อนเริ่มวาด
+   ตอนนี้: ไม่มีห้องและไม่มีตู้ = ห้องเปล่า ไม่มีผนังเลย · ค่าตั้งต้นเดิมอยู่ที่ปุ่มห้องตัวอย่าง
+     งานที่มีตู้แต่ไม่มีห้อง (เช่น ออเดอร์จาก XML) ยังได้ผนังตามเดิม เพราะตู้ต้องมีผนังให้จัดเข้า · ปิด SN_OFF.plRoomBlank=1 */
+function plRoomBlank(){ const r=plRoomDef(); r.walls={back:false,left:false,right:false,front:false}; return r; }
 function plRoom(){
-  if(!state.room||typeof state.room!=="object") state.room=plRoomDef();
+  if(!state.room||typeof state.room!=="object") state.room=(!snOff("plRoomBlank")&&!(state.boards||[]).some(b=>b&&b.cabInst))?plRoomBlank():plRoomDef();
   const r=state.room, d=plRoomDef();
   if(r.legH==null) r.legH=0;            // v1.308: ห้องที่ทำก่อนมีช่องขา — ตู้ยังวางพื้นอยู่ ไม่ยกเอง (ตั้ง 100 แล้วทั้งห้องขึ้นตาม)
   Object.keys(d).forEach(k=>{ if(r[k]==null) r[k]=d[k]; });
@@ -44175,6 +44186,17 @@ function plRoomLibBar(){ if(snOff("plRoomLib")) return ""; const r=(typeof state
      ห้องที่หมวดหายไป = ยังไม่จัดหมวด ห้องไม่หาย · ลบหมวด = ห้องและหมวดลูกขึ้นไปอยู่หมวดแม่ · ก่อนเขียนอ่านล่าสุดเสมอ กันทับหมวดที่เครื่องอื่นเพิ่งเพิ่ม
      ปิด SN_OFF.plRoomCat=1 */
 const PLRC_KEY="plroomcats", PLRC={sel:""};   // sel: "" ทั้งหมด · "_none" ยังไม่จัดหมวด · หรือ id หมวด
+/* ───────── v1.679: ไอคอนโฟลเดอร์เลือกสีได้ ─────────
+   ผู้ใช้ 5/11/2026 10:59 (ภาพโฟลเดอร์สีพาสเทล 4 แถว): “ขอ icon Folder สวยๆ เลือกสีได้ด้วย หน้า เลือกห้อง”
+   เดิม: ใช้อีโมจิ 📁 สีเดียว แยกหมวดด้วยตาไม่ได้
+   ตอนนี้: วาดเป็น SVG ในไฟล์ ไม่ต้องโหลดรูป · 20 สี ดูดจากภาพที่ส่งมา · สีเก็บใน list ของ plroomcats ช่อง color · หมวดเก่าไม่มีสี = สีฟ้าตั้งต้น */
+const PLRC_COLORS=["#a4e6c0","#b0e2c5","#87ddc2","#d4f7fd","#d1e9ed","#ffb1c9","#f6b7d2","#ff96b4","#fe7da6","#d54f8a","#abc0f5","#b0b2cb","#6a82ae","#5c76c0","#4166b7","#e5bce6","#e9b6ee","#b996d6","#a075c4","#ab77b5"];
+function plRoomFolderSvg(col,px){ const c=/^#[0-9a-f]{6}$/i.test(String(col||""))?String(col):PLRC_COLORS[10], n=parseInt(c.slice(1),16), bk="#"+[(n>>16)&255,(n>>8)&255,n&255].map(v=>Math.round(v*.88).toString(16).padStart(2,"0")).join(""), w=+px||20;
+  return '<svg viewBox="0 0 48 38" width="'+w+'" height="'+Math.round(w*38/48)+'" aria-hidden="true" style="display:block;flex:none"><path d="M5 2.5h12.6c1 0 2 .4 2.7 1.1L24 7h18.5A3.5 3.5 0 0 1 46 10.5V30H2V5.5a3 3 0 0 1 3-3z" fill="'+bk+'"/><rect x="6" y="9.5" width="36" height="8" rx="1.5" fill="#fff" opacity=".6"/><path d="M7.6 13.5H44c1.6 0 2.7 1.5 2.4 3l-3 16.4a3.3 3.3 0 0 1-3.2 2.6H5a3.2 3.2 0 0 1-3.2-3.7L4.4 16.2a3.3 3.3 0 0 1 3.2-2.7z" fill="'+c+'"/><path d="M7.6 13.5H44c1 0 1.8.6 2.2 1.4H5.2a3.2 3.2 0 0 1 2.4-1.4z" fill="#fff" opacity=".3"/></svg>'; }
+function plRoomCatColor(list,id){ const c=(list||[]).find(x=>x.id===id); return (c&&c.color)||PLRC_COLORS[10]; }
+function plRoomCatPal(sel){ return '<div style="font-size:12px;margin:0 0 4px">สีโฟลเดอร์</div><div id="plrcPal" style="display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:3px;margin-bottom:8px">'
+    +PLRC_COLORS.map(c=>'<button type="button" class="plrcSw'+(c===sel?' on':'')+'" data-c="'+c+'" title="'+c+'">'+plRoomFolderSvg(c,38)+'</button>').join("")+'</div><input type="hidden" id="plrcColor" value="'+escapeHtml(sel)+'">'; }
+function plRoomCatPalBind(){ const b=document.getElementById("plrcPal"), v=document.getElementById("plrcColor"); if(!b||!v) return; b.onclick=ev=>{ const s=ev.target.closest("[data-c]"); if(!s) return; v.value=s.dataset.c; b.querySelectorAll(".plrcSw").forEach(x=>x.classList.toggle("on",x===s)); }; }
 async function plRoomCatsRead(){ const db=await getDB(), res=await db.from("app_settings").select("key,value").eq("key",PLRC_KEY).maybeSingle(); if(res&&res.error) throw res.error;
   let v=res&&res.data&&res.data.value; try{ if(typeof v==="string") v=JSON.parse(v); }catch(e){ v=null; }
   const L=(v&&Array.isArray(v.list))?v.list.filter(x=>x&&x.id&&String(x.name||"").trim()):[], ids=new Set(L.map(x=>x.id));
@@ -44191,14 +44213,17 @@ async function plRoomLibSetCat(x,id){ const db=await getDB(), val=Object.assign(
   try{ const r=state.room; if(r&&r.libName&&r.libName===x.name) r.libCat=id||""; }catch(e){} }
 function plRoomCatNew(pid){ return {id:"c"+Date.now().toString(36)+Math.random().toString(36).slice(2,6), name:"", pid:pid||""}; }
 async function plRoomCatAdd(m,pid){ const list0=m._cats||[], pn=pid?plRoomCatPath(list0,pid):"";
-  const nm=await dialog({title:pn?("หมวดย่อยใน “"+pn+"”"):"หมวดใหม่", input:true, value:"", placeholder:"เช่น Showroom CDC", ok:"สร้าง"});
+  const _c0=PLRC_COLORS[(list0.length*3+10)%PLRC_COLORS.length];   /* v1.679: สีตั้งต้นไม่ซ้ำกันติด ๆ */
+  const _pr=dialog({title:pn?("หมวดย่อยใน “"+pn+"”"):"หมวดใหม่", input:true, value:"", placeholder:"เช่น Showroom CDC", ok:"สร้าง", html:plRoomCatPal(_c0)}); plRoomCatPalBind();
+  const nm=await _pr, _col=(document.getElementById("plrcColor")||{}).value||_c0;
   const t=String(nm==null?"":nm).trim().replace(/\s+/g," ").slice(0,60); if(!t) return null;
-  const list=await plRoomCatsRead(), c=Object.assign(plRoomCatNew(pid),{name:t}); list.push(c); await plRoomCatsWrite(list); m._cats=list; return c; }
+  const list=await plRoomCatsRead(), c=Object.assign(plRoomCatNew(pid),{name:t,color:_col}); list.push(c); await plRoomCatsWrite(list); m._cats=list; return c; }
 async function plRoomCatEdit(m,id){ const list0=m._cats||[], c0=list0.find(x=>x.id===id); if(!c0) return false;
-  const nm=await dialog({title:"แก้หมวด “"+c0.name+"”", input:true, value:c0.name, ok:"บันทึก",
-    html:'<label style="display:block;font-size:12px;margin-bottom:6px">อยู่ใต้หมวด<select id="plrcPid" style="display:block;width:100%;margin-top:3px;font-size:13px;padding:5px 7px;border:1px solid var(--line);border-radius:7px">'+plRoomCatOpts(list0,c0.pid||"",plRoomCatDesc(list0,id),"— ชั้นบนสุด —")+'</select></label>'});
+  const _pr=dialog({title:"แก้หมวด “"+c0.name+"”", input:true, value:c0.name, ok:"บันทึก",
+    html:plRoomCatPal(c0.color||PLRC_COLORS[10])+'<label style="display:block;font-size:12px;margin-bottom:6px">อยู่ใต้หมวด<select id="plrcPid" style="display:block;width:100%;margin-top:3px;font-size:13px;padding:5px 7px;border:1px solid var(--line);border-radius:7px">'+plRoomCatOpts(list0,c0.pid||"",plRoomCatDesc(list0,id),"— ชั้นบนสุด —")+'</select></label>'}); plRoomCatPalBind();
+  const nm=await _pr, _col=(document.getElementById("plrcColor")||{}).value||c0.color||"";   /* v1.679 */
   const pidEl=document.getElementById("plrcPid"), pid=(pidEl&&pidEl.value)||"", t=String(nm==null?"":nm).trim().replace(/\s+/g," ").slice(0,60); if(!t) return false;
-  const list=await plRoomCatsRead(), c=list.find(x=>x.id===id); if(!c) return false; c.name=t; c.pid=plRoomCatDesc(list,id).has(pid)?(c.pid||""):pid; await plRoomCatsWrite(list); m._cats=list; return true; }
+  const list=await plRoomCatsRead(), c=list.find(x=>x.id===id); if(!c) return false; c.name=t; if(_col) c.color=_col; c.pid=plRoomCatDesc(list,id).has(pid)?(c.pid||""):pid; await plRoomCatsWrite(list); m._cats=list; return true; }
 async function plRoomCatDel(m,id){ const list0=m._cats||[], c0=list0.find(x=>x.id===id); if(!c0) return false; const up=c0.pid||"", n=(m._list||[]).filter(x=>x.cat===id).length;
   if(!(await dialog({title:"ลบหมวด “"+c0.name+"”?", ok:"ลบหมวด", html:'<div style="font-size:12.5px;line-height:1.6">ห้องไม่หาย'+(n?(' · ห้อง '+n+' รายการ'):'')+' และหมวดย่อย ย้ายขึ้นไปที่ '+escapeHtml(up?("“"+plRoomCatPath(list0,up)+"”"):"ยังไม่จัดหมวด/ชั้นบนสุด")+'</div>'}))) return false;
   for(const x of (m._list||[]).filter(y=>y.cat===id)) await plRoomLibSetCat(x,up);
@@ -44212,12 +44237,39 @@ async function plRoomLibMove(m,x){ let cats=m._cats||[];
 function plRoomLibTree(m){ const box=m.querySelector("#plrlTree"); if(!box) return; const list=m._cats||[], L=m._list||[], sel=m._cat||"", ids=new Set(list.map(c=>c.id)), count={}; let none=0;
   m._shut=m._shut||new Set();
   L.forEach(x=>{ if(x.cat&&ids.has(x.cat)){ let c=list.find(y=>y.id===x.cat), g=0; while(c&&g++<30){ count[c.id]=(count[c.id]||0)+1; c=c.pid?list.find(y=>y.id===c.pid):null; } } else none++; });
-  const row=(id,icon,nm,n,d,kids)=>'<div class="plrcRow'+(sel===id?' on':'')+'" data-cat="'+escapeHtml(id)+'" style="padding-left:'+(6+d*14)+'px"><span class="plrcX"'+(kids?(' data-tg="'+escapeHtml(id)+'">'+(m._shut.has(id)?'▸':'▾')):'>')+'</span><span class="plrcN" title="'+escapeHtml(nm)+'">'+icon+' '+escapeHtml(nm)+'</span><span class="plrcC">'+n+'</span></div>';
-  let h=row("","🗂","ทั้งหมด",L.length,0,false)+row("_none","📄","ยังไม่จัดหมวด",none,0,false);
-  const walk=(pid,d)=>plRoomCatKids(list,pid).forEach(c=>{ const ks=plRoomCatKids(list,c.id).length>0; h+=row(c.id,"📁",c.name,count[c.id]||0,d,ks); if(ks&&!m._shut.has(c.id)) walk(c.id,d+1); }); walk("",0);
+  const row=(id,col,nm,n,d,kids)=>'<div class="plrcRow'+(sel===id?' on':'')+'" data-cat="'+escapeHtml(id)+'" style="padding-left:'+(6+d*14)+'px"><span class="plrcX"'+(kids?(' data-tg="'+escapeHtml(id)+'">'+(m._shut.has(id)?'▸':'▾')):'>')+'</span>'+plRoomFolderSvg(col,21)+'<span class="plrcN" title="'+escapeHtml(nm)+'">'+escapeHtml(nm)+'</span><span class="plrcC">'+n+'</span></div>';
+  let h=row("","#b0b2cb","ทั้งหมด",L.length,0,false)+row("_none","#d1e9ed","ยังไม่จัดหมวด",none,0,false);
+  const walk=(pid,d)=>plRoomCatKids(list,pid).forEach(c=>{ const ks=plRoomCatKids(list,c.id).length>0; h+=row(c.id,c.color,c.name,count[c.id]||0,d,ks); if(ks&&!m._shut.has(c.id)) walk(c.id,d+1); }); walk("",0);
   box.innerHTML=h;
   const isC=!!sel&&sel!=="_none"&&ids.has(sel), ed=m.querySelector("#plrcEdit"), dl=m.querySelector("#plrcDel"), nw=m.querySelector("#plrcNew");
-  if(ed) ed.disabled=!isC; if(dl) dl.disabled=!isC; if(nw) nw.textContent=isC?"＋ หมวดย่อย":"＋ หมวดใหม่"; }
+  if(ed) ed.disabled=!isC; if(dl) dl.disabled=!isC; if(nw) nw.textContent=isC?"＋ หมวดย่อย":"＋ หมวดใหม่";
+  /* v1.679: หมวดย่อยของที่เลือก เป็นไอคอนใหญ่เหนือรายการห้อง · ค้นชื่ออยู่ = ไม่แสดง */
+  const tl=m.querySelector("#plrlTiles"); if(tl){ const q=String((m.querySelector("#plrlQ")||{}).value||"").trim(), ks=(q||sel==="_none")?[]:plRoomCatKids(list,isC?sel:"");
+    tl.style.display=ks.length?"":"none"; tl.innerHTML=ks.map(c=>'<div class="plrcT" data-cat="'+escapeHtml(c.id)+'" title="'+escapeHtml(c.name)+'">'+plRoomFolderSvg(c.color,58)+'<b>'+escapeHtml(c.name)+'</b><span>'+(count[c.id]||0)+' ห้อง</span></div>').join(""); } }
+/* ═════════ v1.679: หน้าเลือกห้องออกแบบตอนเปิดโปรแกรม ═════════
+   ผู้ใช้ 5/11/2026 10:59: “เมื่อเข้าโปรแกรม ให้มันเข้าหน้า เลือกห้องออกแบบได้เลยไหมครับ แล้วกดเสร็จ คือ เข้าโหมดออกห้องออกแบบ”
+   เดิม: เปิดโปรแกรมมาเป็นฉากว่างหน้าหลัก ต้องกดเข้าห้องออกแบบ แล้วกดเปิดห้องที่บันทึกอีกที
+   ตอนนี้: จบ boot แล้วเปิดหน้าต่างห้องที่บันทึกแบบเต็ม (plRoomLibOpen start) · เลือกห้อง/ห้องเปล่า/ห้องตัวอย่าง/งานล่าสุด = เข้าห้องออกแบบเลย
+     ปุ่มหน้าหลักหรือกากบาท = หน้าหลักเหมือนเดิม · ✓ เสร็จ ในห้องออกแบบยังกลับหน้าหลัก
+     ไม่ขึ้นเมื่อ: ลิงก์ดูอย่างเดียว · เปิดออเดอร์จากลิงก์ (#order=) · แท็บงาน (?tab=) · แท็บ Fitting · ติ๊กปิดไว้ (จำในเครื่อง) · มีงานเข้ามาแล้วปิดเอง
+     งานล่าสุด: เดิม autosave ช่องเดียว เลือกห้องเปล่าแล้วฉากว่างเขียนทับงานที่ค้าง จึงสำรอง <SCENE_KEY>:last ก่อนเปิดหน้านี้ · loadSaved ถอยไปอ่านเมื่อช่องหลักไม่มีตู้
+     อ่านรายการห้องไม่ได้ตอนเพิ่งเปิด (ยังไม่เชื่อมโฟลเดอร์/Odoo) ลองใหม่ทุก 3 วิ และเลือกห้องเปล่าได้เลย · ปิด SN_OFF.plStart=1 */
+const PLS_LS="sxlocaltrial:furnitech:plstart";
+function plRoomEnter(){ if(typeof PL!=="undefined"&&!PL.on) plToggle(true).catch(e=>console.error("plToggle:",e)); }
+async function plRoomUseNew(kind){ const smp=kind==="sample"; plRoomEnter();
+  if(typeof isLocked==="function"&&isLocked()){ try{ guardEdit("เปิดห้องใหม่"); }catch(e){} return false; }
+  const nCab=Object.keys(plCabMap()).length;
+  if((plRoomHas()||plRoomLocked())&&!(await dialog({title:(smp?"เปิดห้องตัวอย่าง":"เปิดห้องเปล่า")+"แทนห้องตอนนี้?", ok:"เปิดใช้",
+      html:'<div style="font-size:12.5px;line-height:1.6">ห้องตอนนี้ (ผนัง ประตู หน้าต่าง …) ถูกแทนทั้งหมด'+(nCab?(' · ตู้ในฉาก '+nCab+' ใบอยู่ที่เดิม'):'')+' · Ctrl+Z ย้อนได้</div>'}))) return false;
+  state.room=smp?plRoomDef():plRoomBlank(); PL.wpick=null; PLO.sel=null; PLO.drag=null;
+  try{ if(PLW.on) plwStop(); }catch(e){}
+  plRoomDraw(); plPanelRoom(); plPanelSel(); try{ plPanelGrid(); }catch(e){} try{ plCamRoom(); }catch(e){} plAfterRoom();
+  toast(smp?"🏠 ห้องตัวอย่าง "+plRoomSum(state.room):"⬜ ห้องเปล่า ไม่มีผนัง — วาดผนังจากแปลน หรือติ๊กผนังในแผงห้องได้"); return true; }
+async function plRoomLastOpen(){ await autosaveRestore(); if(!state.boards.length) return false; plRoomEnter(); return true; }
+async function plStartMaybe(skip){ if(skip||VIEW_ONLY||snOff("plStart")||snOff("plRoomLib")||hasViewParam()||state.boards.length) return false;
+  let on=true; try{ on=await lsGet(PLS_LS,true); }catch(e){} if(on===false) return false;
+  try{ const raw=await store.get(SCENE_KEY); if(raw){ const o=JSON.parse(raw); if(o&&o.boards&&o.boards.length) await store.set(SCENE_KEY+":last",raw); } }catch(e){ console.warn("plStart:",e); }
+  await plRoomLibOpen({start:true}); return true; }
 async function plRoomLibList(){ const db=await getDB(); const res=await db.from("app_settings").select("key,value").like("key",PLRL_PFX+"%"); if(res.error) throw res.error;
   return (res.data||[]).map(x=>{ let v=x&&x.value; try{ if(typeof v==="string") v=JSON.parse(v); }catch(e){ v=null; } return (v&&v.room)?Object.assign({key:x.key},v):null; })
     .filter(Boolean).sort((a,b)=>String(b.at||"").localeCompare(String(a.at||""))); }
@@ -44248,12 +44300,16 @@ async function plRoomLibSave(){ if(snOff("plRoomLib")) return false; const r=plR
     toast("💾 บันทึกห้อง “"+nm+"” แล้ว"+(ord?(" พร้อมตู้ "+ord.ncab+" ใบ"):"")+" — เปิดใช้ได้ที่ 📂 เปิดห้องที่บันทึก (ทุกเครื่องที่ใช้ไฟล์กลางเดียวกัน)"); return true; }
   catch(e){ console.error("plRoomLibSave:",e); toast("บันทึกห้องไม่สำเร็จ: "+((e&&e.message)||e)); return false; }
   finally{ try{ if(bz) bz.done(); }catch(e){} } }
-async function plRoomLibLoad(x){ if(!x||!x.room) return false; if(ploLocked()) return false;
+/* ───────── v1.679: ห้องล็อกอยู่ก็เปิดงานอื่นได้ ─────────
+   ผู้ใช้ 5/11/2026 11:03 (ภาพห้อง BED 2 ล็อกอยู่ กดเปิดใช้ห้องอื่นแล้วขึ้น “ห้องล็อกอยู่ เพื่อปลดล็อกก่อน”): “แก้ให้เปิดงาน อื่นได้ แม้จะล็อคห้องด้วยครับ”
+   เดิม: ploLocked() กันไว้ ต้องปลดล็อกห้องเดิมก่อนทั้งที่ไม่ได้จะแก้ห้องนั้น
+   ตอนนี้: ล็อกห้องกันการแก้ห้อง ไม่กันการเปิดงานอื่น · ถามยืนยันก่อนแทนห้อง · ห้องที่เปิดใหม่ใช้สถานะล็อกของตัวเอง · ล็อกออเดอร์ (isLocked) ยังกันเหมือนเดิม */
+async function plRoomLibLoad(x){ if(!x||!x.room) return false;
   if(typeof isLocked==="function"&&isLocked()){ try{ guardEdit("เปิดห้องที่บันทึก"); }catch(e){} return false; }
   const nCab=Object.keys(plCabMap()).length;
   let _asked=false;   // v1.547: ห้องที่บันทึกพร้อมตู้ — ถามก่อนว่าเปิดห้อง + ตู้ หรือเฉพาะห้อง
   if(plRoomLibHasCab(x)){ const ch=await plRoomLibAsk(x,nCab); if(!ch) return false; if(ch!=="room") return await plRoomLibLoadAll(x); _asked=true; }
-  if(!_asked&&plRoomHas()&&!(await dialog({title:"เปิดห้อง “"+(x.name||"")+"” แทนห้องตอนนี้?", ok:"เปิดใช้",
+  if(!_asked&&(plRoomHas()||plRoomLocked())&&!(await dialog({title:"เปิดห้อง “"+(x.name||"")+"” แทนห้องตอนนี้?", ok:"เปิดใช้",
       html:'<div style="font-size:12.5px;line-height:1.6">ห้องตอนนี้ (ผนัง ประตู หน้าต่าง …) ถูกแทนทั้งหมด'+(nCab?(' · ตู้ในฉาก '+nCab+' ใบอยู่ที่เดิม (อาจต้องลากเข้าผนังใหม่)'):'')+'<br><span style="opacity:.7">เผลอกด Ctrl+Z ย้อนได้</span></div>'}))) return false;
   const room=JSON.parse(JSON.stringify(x.room)); room.libName=x.name||""; room.libCat=x.cat||"";   /* v1.678: libCat */
   state.room=room; PL.wpick=null; PLO.sel=null; PLO.drag=null;
@@ -44304,7 +44360,9 @@ async function plRoomLibDel(x){ if(!x) return false; const _tr=!snOff("plRoomTra
   try{ const db=await getDB(); if(_tr) await plTrashPut(x,"ลบจากห้องที่บันทึก",false); const res=await db.from("app_settings").delete().eq("key",x.key); if(res&&res.error) throw res.error; toast(_tr?("🗑 ย้าย “"+(x.name||"")+"” ไปถังขยะแล้ว — กู้คืนได้ที่ ⚙ ตั้งค่า"):("ลบห้อง “"+(x.name||"")+"” แล้ว")); return true; }
   catch(e){ console.error("plRoomLibDel:",e); toast("ลบห้องไม่สำเร็จ: "+((e&&e.message)||e)); return false; } }
 async function plRoomLibFill(m,quick){ const box=m.querySelector("#plrlList"); if(!box) return;
-  if(!quick||!m._list){ try{ m._list=await plRoomLibList(); }catch(e){ console.error("plRoomLib:",e); box.innerHTML='<div style="padding:14px;color:#d33">อ่านรายการห้องไม่ได้: '+escapeHtml(String((e&&e.message)||e))+'</div>'; return; } }
+  if(!quick||!m._list){ try{ m._list=await plRoomLibList(); }catch(e){
+      if(m._start&&(m._retry=(m._retry||0)+1)<=40){ console.warn("plRoomLib:",e); box.innerHTML='<div style="padding:14px;color:var(--ink-dim)">กำลังรออ่านรายการห้อง… เลือกห้องเปล่าหรือห้องตัวอย่างด้านบนได้เลย</div>'; setTimeout(()=>{ if(m.isConnected) plRoomLibFill(m); },3000); return; }   /* v1.679 */
+      console.error("plRoomLib:",e); box.innerHTML='<div style="padding:14px;color:#d33">อ่านรายการห้องไม่ได้: '+escapeHtml(String((e&&e.message)||e))+'</div>'; return; } }
   const q=String((m.querySelector("#plrlQ")||{}).value||"").trim().toLowerCase();
   /* v1.678: หมวดที่เลือก (รวมหมวดย่อย) · ค้นชื่อ = ค้นทุกหมวด */
   const _co=!snOff("plRoomCat"); if(_co&&(!quick||!m._cats)){ try{ m._cats=await plRoomCatsRead(); }catch(e){ console.error("plRoomCat:",e); m._cats=m._cats||[]; } }
@@ -44314,42 +44372,65 @@ async function plRoomLibFill(m,quick){ const box=m.querySelector("#plrlList"); i
   if(_co) plRoomLibTree(m);
   if(!L.length){ box.innerHTML='<div style="padding:14px;color:var(--ink-dim)">'+(q?'ไม่พบชื่อที่ค้น':(m._list.length?'หมวดนี้ยังไม่มีห้อง — ลากห้องมาวาง หรือกดปุ่ม 📁 ที่ห้อง':'ยังไม่มีห้องที่บันทึก — กด 💾 บันทึกห้อง'))+'</div>'; return; }
   box.innerHTML=L.map((x,i)=>'<div class="plrlRow" data-i="'+i+'" style="display:flex;align-items:center;gap:8px;padding:8px 10px;border-bottom:.5px solid var(--line)">'
-    +'<div style="flex:1;min-width:0"><b>'+escapeHtml(String(x.name||""))+'</b>'+plRoomLibBadge(x)+((_co&&x.cat&&_ids.has(x.cat)&&x.cat!==_sel)?(' <span class="plrcP" title="หมวด">📁 '+escapeHtml(plRoomCatPath(_cs,x.cat))+'</span>'):'')+'<div style="font-size:11px;color:var(--ink-dim);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">'+escapeHtml(plRoomSum(x.room))+' · '+escapeHtml(plRoomLibDate(x.at))+'</div></div>'
+    +'<div style="flex:1;min-width:0"><b>'+escapeHtml(String(x.name||""))+'</b>'+plRoomLibBadge(x)+((_co&&x.cat&&_ids.has(x.cat)&&x.cat!==_sel)?(' <span class="plrcP" title="หมวด">'+plRoomFolderSvg(plRoomCatColor(_cs,x.cat),14)+escapeHtml(plRoomCatPath(_cs,x.cat))+'</span>'):'')+'<div style="font-size:11px;color:var(--ink-dim);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">'+escapeHtml(plRoomSum(x.room))+' · '+escapeHtml(plRoomLibDate(x.at))+'</div></div>'
     +'<button class="ibtn" data-a="use" style="flex:none;width:auto;padding:5px 14px;background:var(--accent);color:#fff;border-color:transparent">เปิดใช้</button>'
-    +(_co?'<button class="ibtn" data-a="mv" title="ย้ายไปหมวด (หรือลากห้องไปวางบนหมวด)" style="flex:none;width:auto;padding:5px 9px">📁</button>':'')+'<button class="ibtn" data-a="del" title="ลบห้องนี้ออกจากไฟล์กลาง" style="flex:none;width:auto;padding:5px 9px;color:#d33">🗑</button></div>').join("");
+    +(_co?'<button class="ibtn" data-a="mv" title="ย้ายไปหมวด (หรือลากห้องไปวางบนหมวด)" style="flex:none;width:auto;padding:5px 8px">'+plRoomFolderSvg((x.cat&&_ids.has(x.cat))?plRoomCatColor(_cs,x.cat):"#b0b2cb",20)+'</button>':'')+'<button class="ibtn" data-a="del" title="ลบห้องนี้ออกจากไฟล์กลาง" style="flex:none;width:auto;padding:5px 9px;color:#d33">🗑</button></div>').join("");
   box.querySelectorAll(".plrlRow").forEach(row=>{ const x=L[+row.dataset.i];
-    row.querySelector('[data-a="use"]').onclick=async()=>{ if(await plRoomLibLoad(x)) m.remove(); };
+    row.querySelector('[data-a="use"]').onclick=async()=>{ if(m._start) plRoomEnter(); if(await plRoomLibLoad(x)) m.remove(); };   /* v1.679: หน้าเริ่มต้น = เข้าห้องออกแบบก่อน แผงจึงพร้อมรับห้อง */
     row.querySelector('[data-a="del"]').onclick=async()=>{ if(await plRoomLibDel(x)) plRoomLibFill(m); };
     if(_co){ const _mv=row.querySelector('[data-a="mv"]'); if(_mv) _mv.onclick=async()=>{ try{ if(await plRoomLibMove(m,x)) plRoomLibFill(m,true); }catch(e){ console.error("plRoomCat:",e); toast("ย้ายห้องไม่สำเร็จ: "+((e&&e.message)||e)); } };
       row.draggable=true; row.ondragstart=ev=>{ m._drag=x; try{ ev.dataTransfer.effectAllowed="move"; ev.dataTransfer.setData("text/plain",String(x.name||"")); }catch(_){} }; row.ondragend=()=>{ m._drag=null; }; } }); }
-async function plRoomLibOpen(){ if(snOff("plRoomLib")) return; let m=$("plRoomLib"); if(m) m.remove();
+async function plRoomLibOpen(opt){ if(snOff("plRoomLib")) return; let m=$("plRoomLib"); if(m) m.remove();
   m=document.createElement("div"); m.className="modal show"; m.id="plRoomLib";
+  const _st=!!(opt&&opt.start&&!snOff("plStart")), _nw=!snOff("plRoomBlank"); m._start=_st;   /* v1.679 */
   /* v1.678: แถบหมวดด้านซ้าย */
-  const _co=!snOff("plRoomCat"); m._cat=_co?(PLRC.sel||""):""; if(_co&&!$("plrcCSS")){ const st=document.createElement("style"); st.id="plrcCSS"; st.textContent=
-    "#plrlBody{display:flex;gap:10px;min-height:0}#plrlSide{flex:0 0 220px;min-width:0;display:flex;flex-direction:column;gap:6px}#plrlTree{flex:1;max-height:min(60vh,520px);overflow:auto;border:.5px solid var(--line);border-radius:8px;padding:4px}"
-    +".plrcRow{display:flex;align-items:center;gap:3px;padding:5px 7px;border-radius:7px;cursor:pointer;font-size:12.5px;user-select:none}.plrcRow:hover{background:var(--panel,#f4f5f7)}.plrcRow.on{background:rgba(37,99,235,.12);color:#1d4ed8;font-weight:600}.plrcRow.drop{outline:2px dashed #2563eb;outline-offset:-2px}"
-    +".plrcX{flex:0 0 14px;text-align:center;font-size:10px;color:var(--ink-dim)}.plrcN{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.plrcC{flex:none;font-size:11px;color:var(--ink-dim)}"
+  const _co=!snOff("plRoomCat"); m._cat=_co?(PLRC.sel||""):""; if(!$("plrcCSS")){ const st=document.createElement("style"); st.id="plrcCSS"; st.textContent=
+    /* v1.679: แผงห้องออกแบบชั้น 320 เดิมทับขอบหน้าต่างนี้ (ชั้น 90) → ขึ้นชั้นเดียวกับหน้าราคาต้นทุน · กล่องถามตามขึ้นไปเฉพาะตอนหน้านี้เปิด */
+    "#plRoomLib{z-index:410}body:has(#plRoomLib) #askModal{z-index:440}"
+    +"#plrlBody{display:flex;gap:10px;min-height:0}#plrlSide{flex:0 0 220px;min-width:0;display:flex;flex-direction:column;gap:6px}#plrlTree{flex:1;max-height:min(60vh,520px);overflow:auto;border:.5px solid var(--line);border-radius:8px;padding:4px}"
+    +"#plrlMain{flex:1;min-width:0;display:flex;flex-direction:column;gap:8px}#plrlTiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(112px,1fr));gap:6px}"
+    +".plrcT{display:flex;flex-direction:column;align-items:center;gap:3px;padding:9px 6px 7px;border:.5px solid var(--line);border-radius:10px;cursor:pointer;text-align:center;min-width:0;user-select:none}.plrcT:hover{background:var(--panel,#f4f5f7)}.plrcT.drop{outline:2px dashed #2563eb;outline-offset:-2px}.plrcT b{font-size:12.5px;font-weight:600;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.plrcT span{font-size:10.5px;color:var(--ink-dim)}"
+    +".plrcSw{border:2px solid transparent;border-radius:8px;background:transparent;padding:3px;cursor:pointer;display:flex;justify-content:center}.plrcSw:hover{background:var(--panel,#f4f5f7)}.plrcSw.on{border-color:#2563eb;background:rgba(37,99,235,.08)}"
+    +"#plrlNew{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:8px;margin-bottom:10px}.plrlNw{display:flex;align-items:center;gap:10px;text-align:left;padding:9px 12px;border:1px solid var(--line);border-radius:10px;background:transparent;color:var(--ink);font:inherit;font-size:13px;font-weight:600;cursor:pointer;min-width:0}.plrlNw:hover{border-color:var(--accent,#2563eb);background:var(--panel,#f4f5f7)}.plrlNw small{display:block;font-size:11px;font-weight:400;color:var(--ink-dim);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.plrlNw>span:last-child{min-width:0}.plrlNi{flex:none;display:flex;align-items:center;justify-content:center;width:40px;height:32px;font-size:21px;color:var(--ink-dim)}"
+    +".plrlSt #plrlTree,.plrlSt #plrlList{max-height:calc(94vh - 330px)}"
+    +".plrcRow{display:flex;align-items:center;gap:5px;padding:5px 7px;border-radius:7px;cursor:pointer;font-size:12.5px;user-select:none}.plrcRow:hover{background:var(--panel,#f4f5f7)}.plrcRow.on{background:rgba(37,99,235,.12);color:#1d4ed8;font-weight:600}.plrcRow.drop{outline:2px dashed #2563eb;outline-offset:-2px}"
+    +".plrcX{flex:0 0 14px;text-align:center;font-size:10px;color:var(--ink-dim)}.plrcP svg{display:inline-block!important;vertical-align:-2px;margin-right:4px}.plrcN{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.plrcC{flex:none;font-size:11px;color:var(--ink-dim)}"
     +".plrcP{display:inline-block;margin-left:6px;padding:1px 7px;border-radius:9px;font-size:10.5px;background:var(--panel,#f0f1f3);color:var(--ink-dim);vertical-align:1px}"
     +"@media (max-width:700px){#plrlBody{flex-direction:column}#plrlSide{flex:none}#plrlTree{max-height:160px}}";
     document.head.appendChild(st); }
-  m.innerHTML='<div class="card" style="width:min('+(_co?920:680)+'px,94vw)"><div class="mh"><h3>📂 ห้องที่บันทึกไว้</h3><button class="closeX" data-x>&times;</button></div>'
-    +'<div class="mbody"><div style="display:flex;gap:8px;align-items:center;margin-bottom:8px"><input id="plrlQ" placeholder="🔍 ค้นหาชื่อห้อง…" autocomplete="off" style="flex:1;min-width:0;font-size:12.5px;padding:6px 9px;border:1px solid var(--line);border-radius:7px">'
+  const _nb=(k,ic,t,sub)=>'<button class="plrlNw" data-new="'+k+'"><span class="plrlNi">'+ic+'</span><span>'+t+(sub?('<small>'+sub+'</small>'):'')+'</span></button>';
+  m.innerHTML='<div class="card'+(_st?' plrlSt':'')+'" style="width:min('+(_st?1120:(_co?920:680))+'px,'+(_st?96:94)+'vw)'+(_st?';max-height:94vh':'')+'"><div class="mh"><h3>'+(_st?'🏠 เลือกห้องออกแบบ':'📂 ห้องที่บันทึกไว้')+'</h3><button class="closeX" data-x title="'+(_st?'ไปหน้าหลักโปรแกรม':'ปิด')+'">&times;</button></div>'
+    +'<div class="mbody">'
+    +(_nw||_st?('<div id="plrlNew">'+(_nw?(_nb("blank",'<svg viewBox="0 0 40 32" width="38" height="30"><rect x="3" y="3" width="34" height="26" rx="2" fill="none" stroke="currentColor" stroke-width="1.7" stroke-dasharray="3.5 3"/></svg>',"ห้องเปล่า","ไม่มีผนัง เริ่มวาดเอง")
+        +_nb("sample",'<svg viewBox="0 0 40 32" width="38" height="30"><rect x="3" y="3" width="34" height="26" fill="#e7ebf2"/><path d="M3 29V3h34v26" fill="none" stroke="#4b5563" stroke-width="3"/><rect x="7" y="6" width="16" height="7" fill="#c9a77c"/></svg>',"ห้องตัวอย่าง","3600×3000 ผนัง 3 ด้าน")):'')
+      +(_st?(_nb("last","↩","งานล่าสุด","กำลังดู…")+_nb("main","🖥","หน้าหลักโปรแกรม","ไม่เข้าห้องออกแบบ")):'')+'</div>'):'')
+    +'<div style="display:flex;gap:8px;align-items:center;margin-bottom:8px"><input id="plrlQ" placeholder="🔍 ค้นหาชื่อห้อง…" autocomplete="off" style="flex:1;min-width:0;font-size:12.5px;padding:6px 9px;border:1px solid var(--line);border-radius:7px">'
     +'<button class="ibtn" id="plrlSave2" style="flex:none;width:auto;padding:6px 12px">💾 บันทึกห้องตอนนี้…</button></div>'
     +(_co?'<div id="plrlBody"><div id="plrlSide"><div id="plrlTree"></div><div style="display:flex;gap:4px"><button class="ibtn" id="plrcNew" style="flex:1;padding:5px 6px;font-size:12px">＋ หมวดใหม่</button><button class="ibtn" id="plrcEdit" title="แก้ชื่อ / ย้ายหมวด" style="flex:none;width:auto;padding:5px 9px">✎</button><button class="ibtn" id="plrcDel" title="ลบหมวด (ห้องไม่หาย)" style="flex:none;width:auto;padding:5px 9px">🗑</button></div></div>':'')
-    +'<div id="plrlList" style="'+(_co?'flex:1;min-width:0;':'')+'max-height:min(60vh,520px);overflow:auto;border:.5px solid var(--line);border-radius:8px"><div style="padding:14px;color:var(--ink-dim)">กำลังโหลด…</div></div>'+(_co?'</div>':'')
+    +(_co?'<div id="plrlMain"><div id="plrlTiles" style="display:none"></div>':'')
+    +'<div id="plrlList" style="max-height:min(60vh,520px);overflow:auto;border:.5px solid var(--line);border-radius:8px"><div style="padding:14px;color:var(--ink-dim)">กำลังโหลด…</div></div>'+(_co?'</div></div>':'')
     +'<div style="font-size:11px;color:var(--ink-dim);margin-top:6px;line-height:1.6">เก็บในไฟล์กลาง (ตาราง app_settings) — ทุกเครื่องที่ใช้ข้อมูลชุดเดียวกันเห็นเหมือนกัน · ห้องที่บันทึกพร้อมตู้ = เลือกเปิดห้อง + ตู้ (แทนฉาก เหมือนเปิดออเดอร์) หรือเฉพาะห้อง (ตู้ในฉากอยู่ที่เดิม) · ปรับห้องแล้ว 💾 บันทึกเป็นชื่อใหม่ได้</div></div></div>';
   document.body.appendChild(m);
   const close=()=>m.remove();
-  m.querySelector("[data-x]").onclick=close; m.addEventListener("pointerdown",ev=>{ if(ev.target===m) close(); });
+  /* v1.679: หน้าเริ่มต้น กดนอกกรอบไม่ปิด · กากบาท = ไปหน้าหลัก */
+  m.querySelector("[data-x]").onclick=()=>{ close(); if(_st&&PL.on) plToggle(false).catch(e=>console.error(e)); }; if(!_st) m.addEventListener("pointerdown",ev=>{ if(ev.target===m) close(); });
+  m.querySelectorAll("[data-new]").forEach(b=>{ b.onclick=async()=>{ const k=b.dataset.new; try{
+      if(k==="main"){ close(); if(PL.on) await plToggle(false); return; }
+      if(k==="last"){ close(); await plRoomLastOpen(); return; }
+      if(await plRoomUseNew(k)) close(); }catch(e){ console.error("plStart:",e); toast("เปิดห้องไม่สำเร็จ: "+((e&&e.message)||e)); } }; });
+  if(_st){ const ft=document.createElement("label"); ft.style.cssText="display:flex;align-items:center;gap:6px;font-size:12px;color:var(--ink-dim);margin-top:6px;cursor:pointer"; ft.innerHTML='<input type="checkbox" id="plrlStartOn" checked style="margin:0"> เปิดหน้านี้ทุกครั้งที่เข้าโปรแกรม'; m.querySelector(".mbody").appendChild(ft);
+    ft.querySelector("input").onchange=ev=>{ try{ lsSet(PLS_LS,!!ev.target.checked); }catch(e){} };
+    const lb=m.querySelector('[data-new="last"]'); if(lb){ lb.style.display="none"; loadSaved().then(sv=>{ if(!m.isConnected||!sv||!sv.boards||!sv.boards.length) return; const n=new Set(sv.boards.map(x=>x&&x.cabInst).filter(Boolean)).size; lb.style.display=""; const sm=lb.querySelector("small"); if(sm) sm.textContent="ทำต่อที่ค้างไว้ · ตู้ "+n+" ใบ"; }).catch(()=>{}); }
+    const iv=setInterval(()=>{ if(!m.isConnected){ clearInterval(iv); return; } if(state.boards.length){ clearInterval(iv); close(); } },800); }   /* มีงานเข้ามาแล้ว (ลากไฟล์ · เปิดออเดอร์) = ไม่บังงาน */
   m.querySelector("#plrlSave2").onclick=async()=>{ if(await plRoomLibSave()) plRoomLibFill(m); };
   m.querySelector("#plrlQ").oninput=()=>plRoomLibFill(m,true);
-  if(_co){ const tree=m.querySelector("#plrlTree"), safe=f=>async()=>{ try{ await f(); await plRoomLibFill(m,true); }catch(e){ console.error("plRoomCat:",e); toast("แก้หมวดไม่สำเร็จ: "+((e&&e.message)||e)); } };   /* v1.678 */
+  if(_co){ const tree=m.querySelector("#plrlBody"), safe=f=>async()=>{ try{ await f(); await plRoomLibFill(m,true); }catch(e){ console.error("plRoomCat:",e); toast("แก้หมวดไม่สำเร็จ: "+((e&&e.message)||e)); } };   /* v1.678 */
     tree.onclick=ev=>{ const tg=ev.target.closest("[data-tg]"); if(tg){ const id=tg.dataset.tg; if(m._shut.has(id)) m._shut.delete(id); else m._shut.add(id); plRoomLibTree(m); return; }
       const r=ev.target.closest("[data-cat]"); if(!r) return; m._cat=r.dataset.cat; PLRC.sel=m._cat; plRoomLibFill(m,true); };
     tree.ondragover=ev=>{ const r=ev.target.closest("[data-cat]"); if(!r||!m._drag) return; ev.preventDefault(); tree.querySelectorAll(".drop").forEach(x=>x.classList.remove("drop")); if(r.dataset.cat) r.classList.add("drop"); };
-    tree.ondragleave=ev=>{ if(ev.target===tree) tree.querySelectorAll(".drop").forEach(x=>x.classList.remove("drop")); };
+    tree.ondragleave=ev=>{ if(!ev.relatedTarget||!tree.contains(ev.relatedTarget)) tree.querySelectorAll(".drop").forEach(x=>x.classList.remove("drop")); };
     tree.ondrop=ev=>{ ev.preventDefault(); const r=ev.target.closest("[data-cat]"), x=m._drag; m._drag=null; tree.querySelectorAll(".drop").forEach(y=>y.classList.remove("drop")); if(!r||!x||!r.dataset.cat) return; const id=r.dataset.cat==="_none"?"":r.dataset.cat; safe(()=>plRoomLibSetCat(x,id))(); };
-    m.querySelector("#plrcNew").onclick=safe(async()=>{ const s=m._cat&&m._cat!=="_none"?m._cat:""; const c=await plRoomCatAdd(m,s); if(c){ m._cat=c.id; PLRC.sel=c.id; if(s) m._shut&&m._shut.delete(s); } });
+    m.querySelector("#plrcNew").onclick=safe(async()=>{ const s=m._cat&&m._cat!=="_none"?m._cat:""; const c=await plRoomCatAdd(m,s); if(c){ m._cat=c.id; PLRC.sel=c.id; if(s) m._shut&&m._shut.delete(s); } });   /* v1.679: แถบหมวดกับไอคอนใหญ่ใช้ตัวรับคลิก/ลากวางตัวเดียวกัน (#plrlBody) */
     m.querySelector("#plrcEdit").onclick=safe(()=>plRoomCatEdit(m,m._cat));
     m.querySelector("#plrcDel").onclick=safe(()=>plRoomCatDel(m,m._cat)); }
   await plRoomLibFill(m); }
@@ -58161,26 +58242,7 @@ function renderXmlMap(){
   body.querySelector("#xmSave").onclick=async()=>{ settings.xmlMap=settings.xmlMap.filter(m=>m.field&&m.target); await lsSet("sxlocaltrial:furnitech:settings",settings); toast("บันทึกการจับคู่แล้ว ("+settings.xmlMap.length+")"); renderXmlMap(); };
   body.querySelectorAll(".xmQuick").forEach(b=>b.onclick=e=>{ const f=e.currentTarget.dataset.f; settings.xmlMap.push({field:f,target:""}); renderXmlMap(); const inps=body.querySelectorAll(".xmT"); const last=inps[inps.length-1]; if(last)last.focus(); });
 }
-async function renderLoader(){
-  const body=$("loaderBody"); if(!body)return;
-  body.innerHTML=`<div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px">
-      <button class="ibtn" id="ldNew">＋ ตู้เปล่า (เริ่มใหม่)</button>
-      <button class="ibtn" id="ldGen">⚙ สร้างตู้พารามิเตอร์</button>
-      <button class="ibtn" id="ldCont">↩ ทำงานต่อจากงานล่าสุด (autosave)</button>
-      <button class="ibtn" id="ldCatalog" title="ตั้งว่ารุ่นไหนขึ้นในห้องออกแบบ · หมวด · ขนาดที่ขายได้ · ฟิลเลอร์คู่ · ราคา · รูปย่อ">🗂 แคตตาล็อกห้องออกแบบ</button>
-      <button class="ibtn" id="ldCost" title="ราคาทุน Fitting / ไม้ (ตร.ม.) / ผิว (ตร.ม./ด้าน) / ขอบ (เมตร) — ใช้คิดต้นทุนในห้องออกแบบ · วางจาก Excel ได้ (v1.439 · ผิว v1.441)">💰 ราคาทุน</button>
-      <button class="ibtn" id="ldTex" title="อัปโหลด/เปลี่ยน/ลบ รูปลายผิว (รูปสี) บน Google Drive — ชื่อรูป = รหัสสี (v1.440)">🖼 รูปลายผิว</button>
-    </div></div>
-    <div class="sumh" style="display:flex;align-items:center;gap:10px;justify-content:space-between;flex-wrap:wrap"><span>🗄 เปิดตู้เดี่ยวจากคลาวด์</span>
-      <input id="ldCloudSearch" placeholder="🔍 ค้นหารหัสตู้…" autocomplete="off" style="font-size:12px;padding:5px 9px;border:1px solid var(--line);border-radius:7px;width:190px;font-weight:400">
-    </div><div id="ldCloud" style="max-height:calc(92vh - 300px);min-height:260px;overflow-y:auto;border:.5px solid var(--line);border-radius:8px;padding:2px"><div class="empty">กำลังโหลด…</div></div>`;
-  /* v40.0: ปุ่มนี้เคยล้างแค่ state.boards ของที่ผูกกับออเดอร์ยังค้างจากงานก่อน — ใช้ทางเดียวกับออเดอร์ใหม่ */
-  $("ldNew").onclick=async()=>{ if(await newOrder()) closeLoader(); };
-  $("ldGen").onclick=()=>{ closeLoader(); try{genCabinet();}catch(e){console.error(e);} };
-  { const lc=$("ldCatalog"); if(lc) lc.onclick=()=>{ try{ openCatalog(); }catch(e){ console.error(e); toast("เปิดแคตตาล็อกไม่ได้: "+e.message); } }; }
-  { const lt=$("ldTex"); if(lt){ if(snOff("texMgr")) lt.style.display="none"; lt.onclick=()=>{ try{ texMgrOpen({}); }catch(e){ console.error(e); toast("เปิดรูปลายผิวไม่ได้: "+e.message); } }; } }   // v1.440
-  { const lk=$("ldCost"); if(lk){ if(snOff("cost")) lk.style.display="none"; lk.onclick=()=>{ try{ costEditor({onlyMissing:false,onlyUsed:state.boards.length>0}); }catch(e){ console.error(e); toast("เปิดราคาทุนไม่ได้: "+e.message); } }; } }   // v1.439   // v1.304
-  $("ldCont").onclick=async()=>{
+async function autosaveRestore(){
     try{ const saved=await loadSaved();
       if(saved&&saved.boards&&saved.boards.length){
         const idMap={}; state.boards=saved.boards.map(b=>{ const nid=uid(); if(b.id!=null)idMap[b.id]=nid; return Object.assign({yaw:0,tone:null,r:0},b,{id:nid}); });
@@ -58209,7 +58271,27 @@ async function renderLoader(){
           +(_fx?(" · จัดชิ้นในตู้ให้เข้าที่ "+_fx+" ตู้"):""));
       } else { closeLoader(); toast("ยังไม่มีงานค้างให้ทำต่อ"); }
     }catch(e){ closeLoader(); }
-  };
+}
+async function renderLoader(){
+  const body=$("loaderBody"); if(!body)return;
+  body.innerHTML=`<div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px">
+      <button class="ibtn" id="ldNew">＋ ตู้เปล่า (เริ่มใหม่)</button>
+      <button class="ibtn" id="ldGen">⚙ สร้างตู้พารามิเตอร์</button>
+      <button class="ibtn" id="ldCont">↩ ทำงานต่อจากงานล่าสุด (autosave)</button>
+      <button class="ibtn" id="ldCatalog" title="ตั้งว่ารุ่นไหนขึ้นในห้องออกแบบ · หมวด · ขนาดที่ขายได้ · ฟิลเลอร์คู่ · ราคา · รูปย่อ">🗂 แคตตาล็อกห้องออกแบบ</button>
+      <button class="ibtn" id="ldCost" title="ราคาทุน Fitting / ไม้ (ตร.ม.) / ผิว (ตร.ม./ด้าน) / ขอบ (เมตร) — ใช้คิดต้นทุนในห้องออกแบบ · วางจาก Excel ได้ (v1.439 · ผิว v1.441)">💰 ราคาทุน</button>
+      <button class="ibtn" id="ldTex" title="อัปโหลด/เปลี่ยน/ลบ รูปลายผิว (รูปสี) บน Google Drive — ชื่อรูป = รหัสสี (v1.440)">🖼 รูปลายผิว</button>
+    </div></div>
+    <div class="sumh" style="display:flex;align-items:center;gap:10px;justify-content:space-between;flex-wrap:wrap"><span>🗄 เปิดตู้เดี่ยวจากคลาวด์</span>
+      <input id="ldCloudSearch" placeholder="🔍 ค้นหารหัสตู้…" autocomplete="off" style="font-size:12px;padding:5px 9px;border:1px solid var(--line);border-radius:7px;width:190px;font-weight:400">
+    </div><div id="ldCloud" style="max-height:calc(92vh - 300px);min-height:260px;overflow-y:auto;border:.5px solid var(--line);border-radius:8px;padding:2px"><div class="empty">กำลังโหลด…</div></div>`;
+  /* v40.0: ปุ่มนี้เคยล้างแค่ state.boards ของที่ผูกกับออเดอร์ยังค้างจากงานก่อน — ใช้ทางเดียวกับออเดอร์ใหม่ */
+  $("ldNew").onclick=async()=>{ if(await newOrder()) closeLoader(); };
+  $("ldGen").onclick=()=>{ closeLoader(); try{genCabinet();}catch(e){console.error(e);} };
+  { const lc=$("ldCatalog"); if(lc) lc.onclick=()=>{ try{ openCatalog(); }catch(e){ console.error(e); toast("เปิดแคตตาล็อกไม่ได้: "+e.message); } }; }
+  { const lt=$("ldTex"); if(lt){ if(snOff("texMgr")) lt.style.display="none"; lt.onclick=()=>{ try{ texMgrOpen({}); }catch(e){ console.error(e); toast("เปิดรูปลายผิวไม่ได้: "+e.message); } }; } }   // v1.440
+  { const lk=$("ldCost"); if(lk){ if(snOff("cost")) lk.style.display="none"; lk.onclick=()=>{ try{ costEditor({onlyMissing:false,onlyUsed:state.boards.length>0}); }catch(e){ console.error(e); toast("เปิดราคาทุนไม่ได้: "+e.message); } }; } }   // v1.439   // v1.304
+  $("ldCont").onclick=()=>autosaveRestore();   /* v1.679: ย้ายเนื้อไปเป็นฟังก์ชันบนหัว renderLoader หน้าเลือกห้องจะได้เรียกโดยไม่ต้องเปิดหน้าโหลดงาน */
   const cl=$("ldCloud");
   try{ const list=await cloudListCabs();
     if(!list.length){ cl.innerHTML='<div class="empty">คลาวด์ยังไม่มีตู้ที่บันทึก</div>'; return; }
@@ -70695,6 +70777,7 @@ function gasBadUi(){
 if(!fgTabOn()) sxlStart();   /* v1.641: แท็บ Fitting Global ไม่ต้องต่อไฟล์กลาง */
 
 function boot(){ console.log("%c"+appVerStr(),"font-weight:700;color:#007aff");
+  const _noStart=/#order=/.test(location.href)||!!SX_TAB;   /* v1.679: อ่านก่อน sxAutoOpenOrder ล้าง # ออก */
   if(fgTabOn()){ fgTabBoot().catch(e=>console.error("fgTab:",e)); return; }   /* v1.641 */
   /* v9.89: เลขเวอร์ชันบนหน้าโหลดอ่านจาก APP_META ที่เดียว ไม่ต้องไปแก้สองที่ */
   try{ document.querySelectorAll(".ver").forEach(e=>{ e.textContent="v"+APP_META.version; }); }catch(e){}
@@ -70763,6 +70846,7 @@ function boot(){ console.log("%c"+appVerStr(),"font-weight:700;color:#007aff");
   lastSnap=snap(); refreshUndoUI();
   // ไม่เปิดหน้า "เปิดงาน" อัตโนมัติ — ผู้ใช้กดปุ่ม "คลาวด์" เองเมื่อต้องการ
   try{ if(window.__splashReady) window.__splashReady(); }catch(e){}   // v9.89: ฉากพร้อมแล้ว ปิดหน้าโหลด
+  plStartMaybe(_noStart).catch(e=>console.error("plStart:",e));        // v1.679: เข้าหน้าเลือกห้องออกแบบ
 })(); }
 if(document.readyState==="loading") addEventListener("DOMContentLoaded",boot); else boot();
 
