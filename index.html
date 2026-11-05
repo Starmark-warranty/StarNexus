@@ -3283,7 +3283,7 @@ body[data-theme="dark"] .splash-dots span{background:rgba(255,255,255,.25)}
    ===================================================================== */
 /* ---- APP_META: แหล่งความจริงเดียวของเวอร์ชัน (ดูได้จาก console / คลิกชื่อแอป) ---- */
 const APP_META={
-  name:"StarNexus", version:"1.685", build:"2026-11-05/mold-code",
+  name:"StarNexus", version:"1.687", build:"2026-11-05/ceil-corner",
   file:"StarNexus.html", basedOn:"Furnitech_V3.html (v3.11)",
   /* ───────── เริ่มนับเวอร์ชันใหม่ที่ 1.001 (21/08/2026) ─────────
      ของเดิมนับมาถึง 42.1 แล้ววิ่งเป็นทศนิยมสองชั้นซึ่งอ่านลำดับยาก
@@ -3291,6 +3291,8 @@ const APP_META={
      ประวัติเก่าเก็บไว้ทั้งหมดตามเลขเดิม ไม่ไล่เขียนใหม่ เพราะเลขในนั้นถูกอ้างถึงไปแล้ว
      รายการที่อยู่ใต้ 1.001 ลงไปจึงเป็นเลขชุดเก่า อ่านต่อกันได้ตามวันที่ */
   changelog:[
+    ["1.687","2026-11-05","FIX ฟิลเลอร์บนเข้ามุมไม่ชนกัน (ผู้ใช้ 15:02 project 77 “ทำไม ฟิลเลอร์ บนไปไม่ถึง เว้นไว้ทำไม”) — ตีนตู้มีตัวจัดมุมมาตั้งแต่ v1.308 แต่ฟิลเลอร์บนไม่ได้ใช้ แนวหนึ่งจึงวิ่งเลยมุมเข้าไปหลังอีกแนว ส่วนอีกแนวหยุดที่ตู้ใบแรก เหลือช่อง 119 มม. · ตอนนี้ใช้ตัวเดียวกัน แนวที่เลยมุมตัดจบที่ผิวอีกแนว แนวที่ขาดยืดไปชน · ทางแยกรูปตัว T ไม่ตัด · ปิด SN_OFF.ceilCorner"],
+    ["1.686","2026-11-05","REFACTOR คิ้วบาน PxWx02 ย้ายเข้าช่องลายหน้าบาน 3D (ผู้ใช้ 14:40 “มันมี 3D แบบนี้ทำไมไม่เอามาใส่” · 14:52 “แค่ Copy โค้ต PxWx02 แล้วย้ายไปเป็นรหัสใหม่ได้เลย”) — บรรทัดเดียวพาไปครบ: ความลึกติดลบ = นูนจากผิวบาน · ต่อท้าย | ร่อง 50-66 ลึก 2 = ออกร่อง MPR · Copy บรรทัดเปลี่ยนรหัสแล้วได้ทั้ง 3D และร่อง ไม่ต้องแก้โปรแกรม · เอาตัววาดคิ้วแยกของ v1.684 ออก · ขึ้นเฉพาะรหัสที่อยู่ในช่องตรงตัว (เลิกรับ PCWx02 PMWx02 ที่เดาไว้) · โหมดประหยัดบานเรียบเหมือนแบบอื่น เห็นเป็นร่อง · ร่อง MPR เท่าเดิม"],
     ["1.685","2026-11-05","FIX บาน Pxxx02 ขึ้นคิ้วและออกร่อง MPR ผิด (ผู้ใช้ 14:38 “Pxxx02 มันบานเรียบ ครับ ไปทำของผมทำไม”) — v1.684 เดาว่า Pxxx02 คือแบบเดียวกับ PxWx02 จึงรับรหัสกว้างเกิน ตอนนี้รับเฉพาะ P + 1 ตัว + Wx02 (PxWx02 · PCWx02) Pxxx02 กลับเป็นบานเรียบ ร่องและคิ้วที่ติดมาหายเองเมื่อเปิดงาน"],
     ["1.684","2026-11-05","FEAT แบบบาน PxWx02 (ผู้ใช้ 14:08 ภาพแบบ + DETAIL-A) — คิ้ว D37 กว้าง 16 สูง 16 ฝังลงบาน 2 ห่างขอบบาน 50 เข้ามุม 45 · 3D ขึ้นคิ้วจริงรอบบาน (โค้งวาดตามภาพ) · ออก MPR ร่องกว้าง 16 ลึก 2 ที่ไฟล์ผิวหน้าบาน 4 ท่อน · ภาพบานในแบบวัสดุมีกรอบคิ้วและหน้าตัด · บานเล็กกว่า 142 มม. ไม่ใส่คิ้ว · รับรหัส PxWx02 · Pxxx02 · PCWx02 · FIX คลิกขวาในหน้า Variables แล้วรายการเสนอของเบราว์เซอร์บังเมนู (ผู้ใช้ 14:20) เลิกโฟกัสช่องพิมพ์ก่อนเปิดเมนู"],
     ["1.683","2026-11-05","FIX เส้นขอบตู้และแผ่นปิดข้างหายตรงรอยต่อพื้นกับผนัง ดูเหมือนตู้จมพื้น (ผู้ใช้ 13:35 ส่งภาพเทียบ) — พื้นห้องเคยลอยเหนือก้นตู้ 0.8 มม. พื้นทึบจึงบังเส้นล่างมิด ส่วนผนังเส้นอยู่บนผิวพอดีบางจุดหาย · ลดพื้นเหลือ 0.1 มม. และดันผิวพื้นกับผนังถอยด้วย polygonOffset เห็นเส้นครบทุกมุมกล้อง กริดกับเงาใต้พื้นทึบย้ายลงไม่ให้ทะลุขึ้นมา · ดันผิวแผ่นถอยนิดเดียวด้วย เส้นขอบตู้เต็มเส้น ไม่ขาดเป็นประตอนมองเฉียง · FIX บานพับหลบคานทั้งที่ไม่ชน (ผู้ใช้ 13:47 project 76 ตัวที่ 2 จากบนถูกดันขึ้น 288) — คานเคยใช้เกณฑ์เดียวกับชั้น ต้องห่างผิวคาน 87.9 มม. เปลี่ยนเป็นตั้งค่า hingeRailClear ตั้งต้น 40 มม. จากผิวคานถึงศูนย์บานพับ"],
@@ -6086,7 +6088,18 @@ let _drParse={src:null,map:{}};
    ตอนนี้ แบบในตัวอ่านก่อนตาราง จึงมีทุกเครื่องโดยไม่แตะตั้งค่าที่บันทึกไว้ · บรรทัดรหัสเดียวกันในตารางชนะแบบในตัว */
 /* ───────── v1.661: รหัสที่ถูกต้องคือ MCWx03 ─────────
    ผู้ใช้ 4/11 16:55: “ผมบอกรหัส บานผิด มันต้อง MCWx03 ครับ” · เดิม (v1.660) ตั้งรหัส MxWx03 ตามที่แจ้งครั้งแรก บานรหัสจริงจึงเรียบ · แก้เฉพาะรหัส รูปทรงเท่าเดิม */
-const DOOR_RELIEF_BUILTIN="MCWx03 = 0:3, 25:3, 25:2, 28:0";
+/* ───────── v1.686: คิ้วบานอยู่ในตารางเดียวกับลายหน้าบาน ─────────
+   ผู้ใช้ 5/11 14:40 (ภาพหน้าตั้งค่า ช่องลายหน้าบาน 3D): “จริงๆ มันมี 3D แบบนี้ทำไมไม่เอามาใส่ ผมงง หรือคุณไม่รู้ ว่ามันมี”
+     14:52: “ถ้าย้าย ผมจะต้อง แบบบาน อีกรหัส ที่เป็น เคลือบ ได้เลย ไงครับ แค่ Copy โค้ต PxWx02 แล้วย้ายไป เป็นรหัส ใหม่ได้เลย”
+   เดิม (v1.684): เขียนตัววาดคิ้วแยก (doorMoldGeo · DOOR_MOLD_BUILTIN ในโค้ด) เพราะตารางนี้แกะลงจากผิวได้อย่างเดียว · ไม่ออกไฟล์เจาะ
+     เพิ่มแบบบานใหม่ต้องให้แก้โปรแกรม ทั้งที่ตารางนี้มีไว้ให้เพิ่มเองได้ และระบบซ้ำกันสองชุด
+   ตอนนี้: บรรทัดเดียวพาไปครบ Copy เปลี่ยนรหัสแล้วได้ทั้ง 3D และร่อง
+     · ความลึกติดลบ = นูนขึ้นจากผิวหน้าบาน (เข้ามุม 45 เอง)
+     · ต่อท้าย | ร่อง 50-66 ลึก 2 = ร่องฝังที่ผิวหน้าบานใน MPR ระยะจากขอบบาน · ไม่ใส่ = โชว์ 3D อย่างเดียว แบบลายอื่น
+     · จุดบนโค้งเว้นให้หักไม่ถึง 25 องศา (เกณฑ์ตีเส้นของ addEdges) เส้นจะขึ้นเฉพาะขอบคม ไม่ดำเป็นแถบ
+     · หน้าตัด: กว้าง 16 สูง 16 ฝัง 2 เหนือผิว 14 · ไล่จากขอบนอก ผนังตั้ง 9.5 → โค้ง R4.5 ถึงยอด → โค้ง S ลงถึงบ่าสูง 8.5 · ทรงโค้งอ่านจาก DETAIL-A รอผู้ใช้ยืนยัน
+     · ขึ้นเฉพาะรหัสที่อยู่ในตารางตรงตัว เลิกรับ P?Wx02 ที่ v1.685 เหลือไว้จากการเดา · ปิดทั้งนูนและร่อง SN_OFF.doorMold */
+const DOOR_RELIEF_BUILTIN="MCWx03 = 0:3, 25:3, 25:2, 28:0\nPxWx02 = 0:0, 50:0, 50:-9.5, 50.34:-11.22, 51.32:-12.68, 52.78:-13.66, 54.5:-14, 56.17:-13.63, 57.83:-12.63, 59.5:-11.25, 61.17:-9.88, 62.83:-8.87, 64.5:-8.5, 66:-8.5, 66:0 | ร่อง 50-66 ลึก 2";
 /* v1.249: ต่อท้ายด้วย | ได้ — "ตั้งทะลุ 55-60" = ช่วงนั้นของขอบซ้าย/ขวาวิ่งตรงตลอดความสูงบาน (แบบตั้งยาว คานสั้นชนเข้า)
    "นอนทะลุ a-b" = กลับกัน ขอบบน/ล่างวิ่งตรงตลอดความกว้าง · ไม่ใส่ = เข้ามุม 45 ทุกด้านแบบเดิม */
 function doorReliefProfiles(){
@@ -6097,19 +6110,28 @@ function doorReliefProfiles(){
     const code=line.slice(0,i).trim().toUpperCase(); if(!code) return;
     const body=line.slice(i+1).split("|"), pts=[];
     body[0].split(/[,;]+/).forEach(tok=>{
-      const m=String(tok).trim().match(/^(\d+(?:\.\d+)?)\s*:\s*(\d+(?:\.\d+)?)$/); if(m) pts.push([+m[1],+m[2]]); });
+      const m=String(tok).trim().match(/^(\d+(?:\.\d+)?)\s*:\s*(-?\d+(?:\.\d+)?)$/); if(m) pts.push([+m[1],+m[2]]); });   /* v1.686: ความลึกติดลบ = นูนจากผิวบาน */
     if(pts.length<2) return;
     if(!pts.every((q,k)=>k===0||q[0]>=pts[k-1][0]-1e-9)) return;             // ระยะจากขอบต้องไม่ถอยหลัง
-    let thrV=null, thrH=null;
+    let thrV=null, thrH=null, gr=null;
     body.slice(1).join("|").split(/[|,;]+/).forEach(op=>{
+      /* v1.686: ร่อง 50-66 ลึก 2 = ร่องฝังใน MPR (ต้องบอกลึกเสมอ ไม่เดาค่าตั้งต้น เพราะเป็นงานกัดจริง) */
+      const mg=String(op).trim().match(/^(?:ร่อง|groove)\s*(\d+(?:\.\d+)?)\s*[-–]\s*(\d+(?:\.\d+)?)\s*(?:ลึก|depth)\s*(\d+(?:\.\d+)?)$/i);
+      if(mg){ const a=Math.min(+mg[1],+mg[2]), b=Math.max(+mg[1],+mg[2]); if(b>a&&+mg[3]>0) gr=[a,b,+mg[3]]; return; }
       const m=String(op).trim().match(/^(ตั้งทะลุ|ตั้ง|stile|v)\s*(\d+(?:\.\d+)?)\s*[-–]\s*(\d+(?:\.\d+)?)$/i)
             ||String(op).trim().match(/^(นอนทะลุ|นอน|rail|h)\s*(\d+(?:\.\d+)?)\s*[-–]\s*(\d+(?:\.\d+)?)$/i);
       if(!m) return; const a=Math.min(+m[2],+m[3]), b=Math.max(+m[2],+m[3]); if(!(b>a)) return;
       if(/^(ตั้ง|stile|v)/i.test(m[1])) thrV=[a,b]; else thrH=[a,b]; });
-    map[code]={pts, thrV, thrH, D:pts[pts.length-1][0], maxDep:Math.max.apply(null,pts.map(q=>q[1])),
+    map[code]={pts, thrV, thrH, gr, up:Math.max(0,-Math.min.apply(null,pts.map(q=>q[1]))), D:pts[pts.length-1][0], maxDep:Math.max.apply(null,pts.map(q=>q[1])),
       key:code+":"+pts.join(";")+"|"+(thrV||"")+"|"+(thrH||"")}; });
   _drParse={src,map}; return map;
 }
+/* v1.686: สำหรับภาพเส้นบาน — ระยะจากขอบที่หน้าตัดหักคมถึงเกณฑ์ตีเส้น (เกณฑ์เดียวกับ 3D) และช่วงที่นูนจากผิวบาน */
+function doorReliefSharp(prof){ const P=prof.pts, ang=(a,b)=>Math.atan2(b[1]-a[1],Math.max(b[0]-a[0],1e-3))*180/Math.PI, out=new Set();
+  for(let i=1;i<P.length-1;i++) if(Math.abs(ang(P[i],P[i+1])-ang(P[i-1],P[i]))>=25) out.add(Math.round(P[i][0]*10)/10);
+  return out; }
+function doorReliefUp(prof){ if(!prof||!prof.up) return null; const P=prof.pts; let i0=P.findIndex(q=>q[1]<0), i1=P.length-1; while(i1>0&&!(P[i1][1]<0)) i1--;
+  i0=Math.max(i0-1,0); i1=Math.min(i1+1,P.length-1); const a=P[i0][0], c=P[i1][0]; return {off:a, c, up:prof.up, pts:P.slice(i0,i1+1).map(q=>[q[0]-a,-q[1]])}; }
 /* รหัสแบบบานของบานใบนี้ = ค่าของ Family ที่ Part ลิงก์ของบานอยู่ข้างใต้ (FrontShapeP1 → FrontShape1 → MCxx35) */
 function doorShapeCode(b){
   try{ const pl=String((b&&b.part)||"").trim(); if(!pl) return "";
@@ -6168,7 +6190,7 @@ function doorReliefGeo(L,W,T,prof,orient,yaw,cut,cups){
   const pts=[]; prof.pts.forEach(q=>{ let d=q[0]; if(pts.length&&d<=pts[pts.length-1][0]+1e-9) d=pts[pts.length-1][0]+EPS; pts.push([d,q[1]]); });   // ผนังตั้ง = เอียงนิดเดียว
   const P=d=>{ if(d<=pts[0][0]) return pts[0][1]; for(let k=1;k<pts.length;k++){ const a=pts[k-1], b=pts[k];
       if(d<=b[0]){ const t=(b[0]-a[0])>1e-9?(d-a[0])/(b[0]-a[0]):1; return a[1]+(b[1]-a[1])*t; } } return pts[pts.length-1][1]; };
-  const band=(r,d)=>(r&&d>=r[0]-1e-9&&d<=r[1]+1e-9)?P(d):0;
+  const band=(r,d)=>(r&&d>=r[0]-1e-9&&d<=r[1]+1e-9)?P(d):-Infinity;   /* v1.686: เดิมนอกช่วงคืน 0 ค่านูน (ติดลบ) จึงถูก Math.max ตัดเหลือผิวบาน · ลายเดิมที่ไม่ติดลบได้ผลเท่าเดิม */
   const hasReb=!!(cut&&cut.rd>0&&cut.rf>0&&cut.rf<cut.cf);
   const dep=(x,y)=>{ const dx=Math.min(x+L/2,L/2-x), dy=Math.min(y+W/2,W/2-y);
     let v=Math.max(P(Math.min(dx,dy)), band(prof.thrV,dx), band(prof.thrH,dy));
@@ -6309,20 +6331,18 @@ function reliefPanel(b){ return !!(b&&!b._door&&!b._virtual&&b.orient==="front"&
      · บานเล็ก (เหลือกลางน้อยกว่า 10 มม.) ไม่มีทั้งคิ้วและร่อง
      · รหัส: แบบเขียน PxWx02 แต่ในหน้า Variables ของผู้ใช้ (ภาพ 14:20) ค่าคือ Pxxx02 และครั้งก่อน MxWx03 รหัสจริงคือ MCWx03 จึงรับ P + 2 ตัวอะไรก็ได้ + x02 (PxWx02 · Pxxx02 · PCWx02 …)
    เพิ่มแบบใหม่: ต่อแถวใน DOOR_MOLD_BUILTIN · ปิด SN_OFF.doorMold */
-function doorMoldPts37(){ const P=[[0,-2],[0,9.5]];
-  for(let i=1;i<=8;i++){ const a=Math.PI-(Math.PI/2)*(i/8); P.push([round(4.5+4.5*Math.cos(a)),round(9.5+4.5*Math.sin(a))]); }
-  for(let i=1;i<=10;i++){ const t=i/10; P.push([round(4.5+10*t),round(14-5.5*(1-Math.cos(Math.PI*t))/2)]); }
-  P.push([16,8.5],[16,-2]); return P; }
 /* ───────── v1.685: Pxxx02 เป็นบานเรียบ ─────────
    ผู้ใช้ 5/11 14:38 (ภาพการ์ด Pxxx02 ขึ้นคิ้ว): “Pxxx02 มันบานเรียบ ครับ ไปทำของผมทำไม”
    เดิม (v1.684): เห็น Pxxx02 ในภาพหน้า Variables แล้วเดาว่าเป็นแบบเดียวกับ PxWx02 ตั้งเงื่อนไข P + 2 ตัวอะไรก็ได้ + x02 บานเรียบทุกใบจึงได้คิ้วและร่อง MPR
    ตอนนี้: ตัวที่ 3-4 ต้องเป็น Wx ตามแบบ เหลือตัวที่ 2 ตัวเดียวที่ยืดหยุ่น (PxWx02 · PCWx02) · ร่อง _moldGr ที่ติดในงานถูกล้างเองรอบ render ถัดไป (doorMoldGrooveSync) */
-const DOOR_MOLD_BUILTIN=[{id:"D37", re:/^P[A-Z0-9]WX02$/i, off:50, w:16, h:16, emb:2, dep:2}];
+/* ───────── v1.686: สเปคร่องอ่านจากบรรทัดในช่องลายหน้าบาน ─────────
+   เดิม (v1.684-685) อ่านจาก DOOR_MOLD_BUILTIN ในโค้ด · ตอนนี้บรรทัดเดียวบอกทั้ง 3D และร่อง Copy ไปรหัสใหม่แล้วร่องตามไปด้วย
+   ไม่ขึ้นกับโหมดประหยัดหรือติ๊กแสดงลาย 3D เพราะเป็นงานกัดจริง · บานเล็กจนเหลือกลางน้อยกว่า 10 ไม่ใส่ */
 function doorMoldSpec(b){ if(snOff("doorMold")||!b||!(b._door||reliefPanel(b))||b._virtual||b._box||b._glass||b._frameDoor||b._noPanel||b.orient!=="front") return null;
-  const code=String(doorShapeCode(b)||"").trim(); if(!code) return null; const sp=DOOR_MOLD_BUILTIN.find(x=>x.re.test(code)); if(!sp) return null;
-  const L=+b.L||0, W=+b.W||0, m=2*(sp.off+sp.w); if(L-m<10||W-m<10) return null;
-  if(!sp.pts) sp.pts=doorMoldPts37(); return sp; }
-const _moldSz=new Map(), _moldC=new Map();
+  const code=String(doorShapeCode(b)||"").trim(); if(!code) return null; const pf=doorReliefProfiles()[code.toUpperCase()]; if(!pf||!pf.gr) return null;
+  const L=+b.L||0, W=+b.W||0, m=2*pf.gr[1]; if(L-m<10||W-m<10) return null;
+  return {off:pf.gr[0], w:pf.gr[1]-pf.gr[0], dep:pf.gr[2]}; }
+const _moldSz=new Map();
 /* ด้านหน้าบานอยู่ผิว +z หรือ −z ของชิ้น (ตัวเดียวกับ ehpSides) · เดินทุกชิ้นในฉาก จึงจำต่อบาน
    ต้องคิดจากบานตัวจริง: ตอนกางบาน render3D ส่งสำเนาที่หมุนแล้วมา ถ้าคิดจากสำเนา ผิวหน้าอาจกลับข้าง คิ้วไปโผล่หลังบาน */
 function doorFrontSign(b){ let v=_moldSz.get(b.id); if(v==null){ const o=state.boards.find(x=>x&&x.id===b.id)||b; v=ehpSides(o).sz; if(_moldSz.size>4000) _moldSz.clear(); _moldSz.set(b.id,v); } return v; }
@@ -6334,32 +6354,6 @@ function doorMoldGrooveSync(b){ if(!b) return 0; const has=!!(b.grooves&&b.groov
   if(!has&&!want.length) return 0;
   const cur=(b.grooves||[]).filter(g=>g&&g._moldGr); if(JSON.stringify(cur)===JSON.stringify(want)) return 0;
   b.grooves=(b.grooves||[]).filter(g=>!(g&&g._moldGr)).concat(want); return 1; }
-function doorMoldGeo(L,W,T,sp,sz,orient,yaw){ const key=[L,W,T,sp.id,sz,orient,yaw||0].join("|"), hit=_moldC.get(key); if(hit) return hit;
-  const pts=sp.pts, n=pts.length, hx=L/2-sp.off, hy=W/2-sp.off, z0=sz*T/2, seg=[], arc=[0];
-  for(let i=0;i<n;i++){ const a=pts[i], c=pts[(i+1)%n], dx=c[0]-a[0], dy=c[1]-a[1], ln=Math.hypot(dx,dy)||1; seg.push([-dy/ln,dx/ln]); arc.push(arc[i]+ln); }
-  /* โค้งเรียบ · มุมคม (เกิน 35°) แยก normal ตามด้าน */
-  const nAt=(i,own)=>{ const o=seg[own], other=seg[own===i?(i-1+n)%n:i]; if(o[0]*other[0]+o[1]*other[1]<Math.cos(35*Math.PI/180)) return o; const x=o[0]+other[0], y=o[1]+other[1], q=Math.hypot(x,y)||1; return [x/q,y/q]; };
-  const pos=[], nor=[], uv=[];
-  [[0,1],[0,-1],[1,0],[-1,0]].forEach(o=>{ const t=[-o[1],o[0]], alongX=o[0]===0;
-    const P=(k,e)=>{ const q=pts[k], hO=(alongX?hy:hx)-q[0], hT=(alongX?hx:hy)-q[0]; return [o[0]*hO+t[0]*e*hT, o[1]*hO+t[1]*e*hT, z0+sz*q[1]]; };
-    const N=m=>[-m[0]*o[0],-m[0]*o[1],sz*m[1]];
-    const U=(v,s)=>alongX?[s/L,(v[0]+L/2)/W]:[(v[0]+L/2+s)/L,(v[1]+W/2)/W];
-    for(let i=0;i<n;i++){ const j=(i+1)%n, A=P(i,-1), B=P(i,1), C=P(j,1), D=P(j,-1), nA=N(nAt(i,i)), nC=N(nAt(j,i));
-      const ab=[B[0]-A[0],B[1]-A[1],B[2]-A[2]], ad=[D[0]-A[0],D[1]-A[1],D[2]-A[2]], cx=ab[1]*ad[2]-ab[2]*ad[1], cy=ab[2]*ad[0]-ab[0]*ad[2], cz=ab[0]*ad[1]-ab[1]*ad[0], fw=(cx*(nA[0]+nC[0])+cy*(nA[1]+nC[1])+cz*(nA[2]+nC[2]))>=0;
-      const V=[[A,nA,arc[i]],[B,nA,arc[i]],[C,nC,arc[i+1]],[D,nC,arc[i+1]]], ord=fw?[0,1,2,0,2,3]:[0,2,1,0,3,2];
-      ord.forEach(k=>{ const v=V[k]; pos.push(v[0][0],v[0][1],v[0][2]); nor.push(v[1][0],v[1][1],v[1][2]); const u=U(v[0],v[2]); uv.push(u[0],u[1]); }); } });
-  const g=new THREE.BufferGeometry(); g.setAttribute("position",new THREE.Float32BufferAttribute(pos,3)); g.setAttribute("normal",new THREE.Float32BufferAttribute(nor,3)); g.setAttribute("uv",new THREE.Float32BufferAttribute(uv,2));
-  /* เส้นขอบ: เส้นสันคิ้ว + เส้นเข้ามุม จาก EdgesGeometry · เส้นที่คิ้วโผล่จากผิวบาน ไม่มีจุดหักในหน้าตัด จึงวาดเพิ่มสองวงที่ผิวบาน */
-  const e0=new THREE.EdgesGeometry(g,25), lines=Array.from(e0.attributes.position.array); e0.dispose();
-  [0,sp.w].forEach(u=>{ const X=hx-u, Y=hy-u, Z=z0+sz*0.05, c=[[-X,-Y],[X,-Y],[X,Y],[-X,Y]]; c.forEach((p,i)=>{ const q=c[(i+1)%4]; lines.push(p[0],p[1],Z,q[0],q[1],Z); }); });
-  const eg=new THREE.BufferGeometry(); eg.setAttribute("position",new THREE.Float32BufferAttribute(lines,3));
-  const M=orientMatrix(orient,yaw); g.applyMatrix4(M); eg.applyMatrix4(M);
-  g.userData={_keep:true}; eg.userData={_keep:true}; g.userData.edges=eg;
-  if(_moldC.size>400){ _moldC.forEach(v=>{ try{ v.dispose(); if(v.userData&&v.userData.edges) v.userData.edges.dispose(); }catch(e){} }); _moldC.clear(); }
-  _moldC.set(key,g); return g; }
-function doorMoldMesh(b,bm){ if(settings.doorRelief3D===false) return null; const sp=doorMoldSpec(b); if(!sp) return null;
-  const sz=doorFrontSign(b), g=doorMoldGeo(+b.L,+b.W,+b.T,sp,sz,b.orient,b.yaw), ms=bm.mats, mat=Array.isArray(ms)?(ms[sz>0?1:2]||ms[1]||ms[0]):ms;
-  const m=new THREE.Mesh(g,mat); m.position.set(b.x,b.y,b.z); m.userData.id=b.id; m.userData.doorMold=1; m.castShadow=m.receiveShadow=true; addEdges(m,g); return m; }
 function doorReliefFor(b){
   try{
     /* v1.249: ค่าตั้งต้นของ v1.247 ที่ยังไม่ได้แก้เอง → เติมตั้งทะลุตามแบบให้ (ที่แก้เองแล้วไม่แตะ) */
@@ -6369,7 +6363,9 @@ function doorReliefFor(b){
     if(!b||!(b._door||reliefPanel(b))||b._box||b._glass||b._frameDoor||b._noPanel||b.orient!=="front") return null;   // v1.349: + แผ่นหน้าเดี่ยว
     const code=doorShapeCode(b); if(!code) return null;
     const prof=doorReliefProfiles()[code.toUpperCase()]; if(!prof) return null;
+    if(prof.up&&snOff("doorMold")) return null;   /* v1.686 */
     const L=+b.L||0, W=+b.W||0, T=+b.T||0;
+    if(prof.gr&&(L-2*prof.gr[1]<10||W-2*prof.gr[1]<10)) return null;   /* v1.686: เกณฑ์เดียวกับร่อง 3D กับไฟล์เจาะจะได้ไม่ต่างกัน */
     /* v1.283: บานกัดทะลุ — นับลายแค่ถึงขอบช่อง (ในช่องโล่งอยู่แล้ว ลึกเท่าไหร่ก็ไม่มีเนื้อไม้ให้ลง) */
     const cut=doorReliefCutOf(b);
     let D=prof.D, mx=prof.maxDep;
@@ -20873,7 +20869,6 @@ function render3D(refit){
       mesh.userData.thru=!!(b._glass&&(b._virtual||b._framePart));
       addEdges(mesh,_rlg||bm.geo);
       root.add(mesh); meshes.push({mesh,id:b.id,d});
-      try{ const _dm=doorMoldMesh(b,bm); if(_dm){ root.add(_dm); meshes.push({mesh:_dm,id:b.id,d,groove:true}); } }catch(e){ console.error("doorMold:",e); }   /* v1.684: คิ้วรอบบาน */
       if(b._art&&!snOff("doorArt")){ try{ const _da=doorArtMesh(b); if(_da){ root.add(_da); meshes.push({mesh:_da,id:b.id,d,groove:true}); } }catch(e){ console.error("doorArt:",e); } }   /* v1.604: ลายหน้าบาน */
       { const fb=shoeTiltWrap(b,buildFrontEdgeBand(b)); if(fb) root.add(fb); }   // v1.141: แถบขอบหน้าตู้ (โชว์อย่างเดียว) · v1.423 ชิ้นเอียงหมุนตาม
       if(state.overlapIds&&state.overlapIds.includes(b.id)){ const hl=new THREE.Mesh(new THREE.BoxGeometry(d[0],d[1],d[2]), new THREE.MeshBasicMaterial({color:0xe5484d,transparent:true,opacity:.45,depthWrite:false})); hl.position.set(b.x,b.y,b.z); hl.renderOrder=3; hl.userData.id=b.id; root.add(hl); }
@@ -30454,7 +30449,8 @@ function boardRole(b){
      SN_OFF.plFloorEdge=1 พื้นห้องลอย 0.8 มม. ผนังไม่ดันถอย เส้นขอบตู้หายตรงรอยต่อแบบเดิม (v1.683)
      SN_OFF.edgeCrisp=1   ผิวแผ่นไม่ดันถอย เส้นขอบขาดเป็นประเมื่อมองเฉียงแบบเดิม (v1.683)
      SN_OFF.hingeRailClear=1 บานพับหลบคานด้วยเกณฑ์เดียวกับชั้นแบบเดิม ต้องห่างผิวคาน 87.9 มม. (v1.683)
-     SN_OFF.doorMold=1    บาน PxWx02 ไม่มีคิ้วใน 3D และไม่ออกร่องฝังคิ้วใน MPR (v1.684)
+     SN_OFF.ceilCorner=1  ฟิลเลอร์บนสองผนังไม่จัดมุมให้ชนกัน (v1.687)
+     SN_OFF.doorMold=1    แถวลายหน้าบานที่มีเลขติดลบ (นูน) ไม่ขึ้น 3D และ | ร่อง ไม่ออกใน MPR (v1.684 · v1.686 ย้ายมาอยู่ในตารางลาย)
      SN_OFF.plRoomBlank=1 ไม่มีปุ่มห้องเปล่า/ห้องตัวอย่าง · ห้องเริ่มต้นมีผนัง 3 ด้านแบบเดิม (v1.679)
      SN_OFF.pidAsk=1      กด Transfer/ออก MPR แล้วไม่ถามเรื่องเลข Part ใช้เลขเดิมต่อท้ายแบบเดิม (v1.677)
      SN_OFF.pidLockMpr=1  ออก MPR แล้วไม่ล็อกเลข Part ล็อกเฉพาะตอน Transfer แบบเดิม (v1.677)
@@ -36709,7 +36705,7 @@ function renderSettings(){
     <label style="display:flex;align-items:center;gap:8px;font-size:13px;cursor:pointer"><input type="checkbox" id="setDoorSwing" ${settings.doorSwing!==false?"checked":""}> เส้นสัญลักษณ์ทิศเปิดบาน (V จากฝั่งบานพับ) บนหน้าบาน · กากบาท บนหน้าลิ้นชัก ใน 3D</label>
     <label style="display:flex;align-items:center;gap:8px;font-size:13px;cursor:pointer;margin-top:6px"><input type="checkbox" id="setDoorRelief" ${settings.doorRelief3D!==false?"checked":""}> ลายหน้าบาน 3D (โชว์อย่างเดียว · ไม่ออก CNC/ใบไม้ · ปิดเองในโหมดประหยัด)</label>
     <textarea id="setDoorReliefMap" class="nameinp" rows="3" style="width:100%;font-family:var(--mono);font-size:12px;margin-top:4px" placeholder="MCxx35 = 0:3, 3:0, 55:0, 58:3, 60:6, 95:6, 110:2, 110:0">${escapeHtml(String(settings.doorReliefMap==null?"":settings.doorReliefMap))}</textarea>
-    <div style="font-size:11px;opacity:.62;margin:2px 0 6px">มีแบบในตัวแล้ว: <code>${escapeHtml(DOOR_RELIEF_BUILTIN)}</code> พิมพ์รหัสเดียวกันในช่องนี้เพื่อแก้ทับ · บรรทัดละแบบ: <code>รหัสแบบบาน (FrontShape) = ระยะจากขอบ:ความลึก, …</code> ไล่จากขอบบานเข้าไป จุดสุดท้ายคือขอบลูกฟักกลาง · ความลึกวัดจากผิวหน้าบาน · หลังบานเรียบ · ปกติทุกด้านเข้ามุม 45 · ต่อท้าย <code>| ตั้งทะลุ 55-60</code> = ช่วงนั้นของขอบซ้าย/ขวาวิ่งตรงตลอดความสูงบาน (ตั้งยาว คานสั้นชนเข้า) · <code>| นอนทะลุ a-b</code> = ขอบบน/ล่างวิ่งตรงตลอดความกว้าง · บานที่เล็กกว่าลาย (เช่นหน้าลิ้นชักเตี้ย) วาดเป็นแผ่นเรียบ</div>
+    <div style="font-size:11px;opacity:.62;margin:2px 0 6px">มีแบบในตัวแล้ว (คลิกบรรทัดแล้ว Ctrl+C วางในช่องข้างบน เปลี่ยนรหัสเป็นแบบใหม่ได้เลย):${DOOR_RELIEF_BUILTIN.split("\n").map(x=>'<code style="display:block;user-select:all;cursor:copy;margin:3px 0;word-break:break-all">'+escapeHtml(x)+'</code>').join("")} พิมพ์รหัสเดียวกันในช่องนี้เพื่อแก้ทับ · ความลึกติดลบ = นูนขึ้นจากผิวบาน · ต่อท้าย <code>| ร่อง 50-66 ลึก 2</code> = ออกร่องที่ผิวหน้าบานใน MPR (ไม่ใส่ = โชว์ 3D อย่างเดียว) · บรรทัดละแบบ: <code>รหัสแบบบาน (FrontShape) = ระยะจากขอบ:ความลึก, …</code> ไล่จากขอบบานเข้าไป จุดสุดท้ายคือขอบลูกฟักกลาง · ความลึกวัดจากผิวหน้าบาน · หลังบานเรียบ · ปกติทุกด้านเข้ามุม 45 · ต่อท้าย <code>| ตั้งทะลุ 55-60</code> = ช่วงนั้นของขอบซ้าย/ขวาวิ่งตรงตลอดความสูงบาน (ตั้งยาว คานสั้นชนเข้า) · <code>| นอนทะลุ a-b</code> = ขอบบน/ล่างวิ่งตรงตลอดความกว้าง · บานที่เล็กกว่าลาย (เช่นหน้าลิ้นชักเตี้ย) วาดเป็นแผ่นเรียบ</div>
     <label style="display:flex;align-items:center;gap:8px;font-size:13px;cursor:pointer"><input type="checkbox" id="setOverlap" ${settings.overlapWarn?"checked":""}> เปิดแจ้งเตือนเมื่อมีชิ้นซ้อนกัน (v1.152: ข้ามรอยต่อที่เข้าร่องพอดี เช่นแผ่นหลังเสียบร่อง จึงไม่ฟ้องรัวอีก)</label>
     <div style="display:flex;gap:8px;margin-top:6px"><button class="ibtn" id="setOverlapNow">🔍 ตรวจชิ้นซ้อนเดี๋ยวนี้</button><button class="ibtn" id="setOverlapClear">ล้างไฮไลต์แดง</button></div>
     <label style="display:flex;align-items:center;gap:8px;font-size:13px;cursor:pointer;margin-top:8px"><input type="checkbox" id="setMateSpan" ${settings.dowelMateSpan!==false?"checked":""}> เดือย/มินิฟิก คิดจากช่วงที่มีชิ้นประกบจริง (ไม่ใช่ความยาวขอบทั้งเส้น)</label>
@@ -46672,6 +46668,7 @@ function dwgDoorSvg(b,opt){ const e=v=>Math.round(v*10)/10;
   if(smp){ const _S=(opt&&opt.size)||DWG_DOOR_SAMPLE; /* v1.613: กล่องสีใช้บานตัวอย่างแนวตั้ง */ let _ar=null; try{ _ar=doorArtOf(b); }catch(e){} if(_ar){ const k=Math.min(_S.L/L,_S.W/W); L*=k; W*=k; } else { L=_S.L; W=_S.W; } }
   let prof=null, cut=null, bev=[], es=null;
   try{ const c=doorShapeCode(b); if(c) prof=doorReliefProfiles()[String(c).toUpperCase()]||null; }catch(e){}
+  if(prof&&prof.up&&(L-2*prof.D<10||W-2*prof.D<10)) prof=null;   /* v1.686: บานเล็ก = เรียบ ตรงกับ 3D */
   try{ cut=doorReliefCutOf(b); }catch(e){}
   if(!cut&&b._frameDoor) cut={cf:22, frame:true};
   try{ bev=partBevelList(b)||[]; }catch(e){}
@@ -46685,13 +46682,14 @@ function dwgDoorSvg(b,opt){ const e=v=>Math.round(v*10)/10;
   /* ── ด้านหน้า ── */
   rc(0,0,L,W,"#faf9f6",1.5);
   try{ const _a=doorArtOf(b); if(_a) o.push(daSvgFrag(_a,L,W)); }catch(e){ console.error("doorArt svg:",e); }   /* v1.604 */
-  if(prof){ const ds=[...new Set(prof.pts.map(q=>Math.round(q[0]*10)/10).filter(d=>d>0.5&&d<Math.min(L,W)/2-1))];
+  if(prof){ let ds=[...new Set(prof.pts.map(q=>Math.round(q[0]*10)/10).filter(d=>d>0.5&&d<Math.min(L,W)/2-1))];
+    if(prof.up){ const _sh=doorReliefSharp(prof); ds=ds.filter(d=>_sh.has(d)); }   /* v1.686: จุดบนโค้งของคิ้วถี่ วาดเฉพาะขอบคมไม่งั้นดำเป็นแถบ */
     const inB=(r,d)=>r&&d>=r[0]-0.01&&d<=r[1]+0.01;
     ds.forEach(d=>{ const v=inB(prof.thrV,d), h=inB(prof.thrH,d);
       if(v){ ln(d,0,d,W,0.7); ln(L-d,0,L-d,W,0.7); } if(h){ ln(0,d,L,d,0.7); ln(0,W-d,L,W-d,0.7); }
       if(!v&&!h) rc(d,d,L-2*d,W-2*d,"none",0.7); }); }
-  let _ms=null; try{ _ms=doorMoldSpec(b); }catch(er){}   /* v1.684: กรอบคิ้วบนภาพหน้าบาน + เส้นเข้ามุม */
-  if(_ms){ const a=_ms.off, c=_ms.off+_ms.w; rc(a,a,L-2*a,W-2*a,"none",0.8); rc(c,c,L-2*c,W-2*c,"none",0.8); [[a,a,c,c],[L-a,a,L-c,c],[a,W-a,c,W-c],[L-a,W-a,L-c,W-c]].forEach(q=>ln(q[0],q[1],q[2],q[3],0.6)); }
+  let _ms=null; try{ _ms=doorReliefUp(prof); }catch(er){}   /* v1.684 → v1.686: อ่านจากบรรทัดในตาราง · กรอบวาดจากจุดหักคมด้านบนแล้ว เหลือเส้นเข้ามุม */
+  if(_ms&&!prof.thrV&&!prof.thrH){ const a=_ms.off, c=_ms.c; [[a,a,c,c],[L-a,a,L-c,c],[a,W-a,c,W-c],[L-a,W-a,L-c,W-c]].forEach(q=>ln(q[0],q[1],q[2],q[3],0.6)); }
   if(cut&&cut.cf>0&&cut.cf<Math.min(L,W)/2){ glass(cut.cf,cut.cf,L-2*cut.cf,W-2*cut.cf); if(cut.frame) rc(0,0,L,W,"none",2.2); }
   bev.forEach(v=>{ const w=+v.w||0; if(!(w>0)) return; const da=(v.from==="front")?"6 4":"";
     if(v.side==="top") ln(0,w,L,w,0.8,da); else if(v.side==="bottom") ln(0,W-w,L,W-w,0.8,da);
@@ -46705,7 +46703,7 @@ function dwgDoorSvg(b,opt){ const e=v=>Math.round(v*10)/10;
   const endPts=(top,lim)=>{ const yOf=d=>top?d:(W-d), bv=bev.find(v=>v.side===(top?"top":"bottom"));
     if(bv&&+bv.w>0){ const land=Math.min(+bv.land||0,T)*Sx, w=Math.min(+bv.w,lim||W/2);
       return (bv.from==="back")?[[xb,yOf(0)],[xb+land,yOf(0)],[xf,yOf(w)]]:[[xb,yOf(w)],[xf-land,yOf(0)],[xf,yOf(0)]]; }
-    if(prof){ const out=[[xb,yOf(0)]]; prof.pts.forEach(q=>{ if(lim&&q[0]>=lim) return; out.push([xf-Math.min(q[1],T*0.9)*Sx,yOf(q[0])]); }); return out; }
+    if(prof){ const out=[[xb,yOf(0)]]; prof.pts.forEach(q=>{ if(lim&&q[0]>=lim) return; out.push([xf-Math.min(Math.max(q[1],0),T*0.9)*Sx,yOf(q[0])]); }); return out; }
     return [[xb,yOf(0)],[xf,yOf(0)]]; };
   const flat=y=>[[xb,y],[xf,y]];
   const wood=(A,B)=>pg(A.concat(B.slice().reverse()),"#ece6da");   // A = ปลายบน (หลัง→หน้า) · B = ปลายล่าง (หลัง→หน้า)
@@ -46721,7 +46719,7 @@ function dwgDoorSvg(b,opt){ const e=v=>Math.round(v*10)/10;
   const ty=W+fs*1.5;
   if(!smp) o.push('<text x="'+e(L/2)+'" y="'+e(ty)+'" font-size="'+e(fs)+'" text-anchor="middle" fill="#3a3f48">'+Math.round(L)+'×'+Math.round(W)+'</text>');   /* v1.607: บานตัวอย่างไม่ใช่ขนาดจริง */
   o.push('<text x="'+e(smp?(X0+ST)/2:(X0+ST))+'" y="'+e(ty)+'" font-size="'+e(fs)+'" text-anchor="'+(smp?"middle":"end")+'" fill="#3a3f48">หนา '+Math.round(T*10)/10+'</text>');
-  const vw=L+g+ST+pad*2+(_ms?(_ms.h-_ms.emb)*Sx:0), vh=W+fs*2.2+pad*2;   /* v1.607: เดิมกันที่ขวา fs*6 รูปจึงเอียงซ้าย · v1.684: เผื่อคิ้วที่ยื่นจากผิวหน้า */
+  const vw=L+g+ST+pad*2+(_ms?_ms.up*Sx:0), vh=W+fs*2.2+pad*2;   /* v1.607: เดิมกันที่ขวา fs*6 รูปจึงเอียงซ้าย · v1.684: เผื่อคิ้วที่ยื่นจากผิวหน้า */
   return '<svg class="dsg" xmlns="http://www.w3.org/2000/svg" viewBox="'+e(-pad)+' '+e(-pad)+' '+e(vw)+' '+e(vh)+'" preserveAspectRatio="xMidYMid meet" font-family="Sarabun,Leelawadee UI,Tahoma,sans-serif">'+o.join("")+'</svg>'; }
 /* ───────── v1.633: หน้ารวมวัสดุ — บานขาว · ชื่อท้ายสี · เลิกโชว์จำนวน ─────────
    ผู้ใช้ 3/11 10:08: “เช็คให้หน่อยไม่มีบานไหนสีขาวนะครับ ติดมาจากตัวไหน” · “สีพวก N03P ที่มี P มักจะมีชื่อต่อท้ายเช่น PP77 เอามาแสดงด้านล่างเป็นรายละเอียด … ทุกวัสดุที่แสดง ไม่ต้อง Cal จำนวนมาใส่”
@@ -53426,6 +53424,27 @@ function applyLineDisplay(){
     return out;
   };
   let made=0;
+  /* ───────── v1.687: ตัวจัดมุมใช้ร่วมกันทั้งตีนตู้และฟิลเลอร์บน ─────────
+     ผู้ใช้ 5/11 15:02 (project 77 · ภาพมุมห้อง ตู้แขวนสองผนัง): “ทำไม ฟิลเลอร์ บนไปไม่ถึง เว้นไว้ทำไม”
+     เดิม: ตีนตู้มีตัวจัดมุมมาตั้งแต่ v1.308 แต่ฟิลเลอร์บนไม่ได้เรียก ผนังหลังวิ่งจาก x 180 เลยผิวฟิลเลอร์ผนังซ้าย (x 580) เข้าไปในมุมเปล่า 400 มม.
+       ผนังซ้ายหยุดที่ตู้ใบแรก z 699 ห่างผิวผนังหลัง (z 580) เหลือช่อง 119 มม. เพราะตู้เข้ามุมมีไม้ปิดช่องข้างบานอยู่ตรงนั้น
+     ตอนนี้: แนวที่วิ่งเลยระนาบอีกแนว ตัดจบที่ผิวแนวนั้น · แนวที่ปลายขาดไม่เกิน 400 ยืดไปชนหลังแผ่นของอีกแนว · มุมปิดสนิท ไม้ไม่ซ้อนในมุมเปล่า
+     maxStub = ส่วนที่เลยมุมยาวได้เท่าไหร่ถึงนับว่าเป็นมุม · ฟิลเลอร์บนตั้ง 1000 ทางแยกรูปตัว T (แถวตั้งฉากชนกลางแนว) จะได้ไม่โดนตัดทิ้งครึ่งแนว
+       ตีนตู้คง Infinity เท่าเดิม · ปิดเฉพาะฟิลเลอร์บน SN_OFF.ceilCorner */
+  const _cornerFit=(runs,T,off,maxStub)=>{ const o=runs.map(r=>Object.assign({},r)), adj=runs.map(()=>({})), out0=r=>r.front-r.s*off;
+      o.forEach((A,ia)=>o.forEach((B,ib)=>{ if(ia===ib||A.fa===B.fa||Math.abs(A.y0-B.y0)>1||Math.abs(A.y1-B.y1)>1) return;
+        const oA=out0(A), oB=out0(B), backA=oA-A.s*T;
+        if(!(A.wlo<oB-1&&A.whi>oB+1)) return;                                  // A ต้องวิ่งผ่านระนาบของ B
+        if((B.s<0?A.whi-oB:oB-A.wlo)>maxStub) return;                          // v1.687: เลยมุมยาวเกิน = ทางแยก ไม่ใช่มุม
+        const nearLo=B.wlo-oA, nearHi=oA-B.whi;
+        if(nearLo>=-T-1&&nearLo<=400){ adj[ib].wlo=Math.min(adj[ib].wlo!=null?adj[ib].wlo:Infinity,backA); }
+        else if(nearHi>=-T-1&&nearHi<=400){ adj[ib].whi=Math.max(adj[ib].whi!=null?adj[ib].whi:-Infinity,backA); }
+        else return;
+        if(B.s<0) adj[ia].whi=Math.min(adj[ia].whi!=null?adj[ia].whi:Infinity,oB);   // ตู้ของ B อยู่ฝั่งค่ามาก → ตัดปลายมากของ A
+        else adj[ia].wlo=Math.max(adj[ia].wlo!=null?adj[ia].wlo:-Infinity,oB); }));
+      runs.forEach((r,i)=>{ const a=adj[i];
+        if(a.wlo!=null) r.wlo=(a.wlo<r.wlo||a.wlo>r.wlo)?a.wlo:r.wlo;
+        if(a.whi!=null) r.whi=a.whi; }); };
   const build=(kind,runs)=>{
     const base=src[kind][0]; if(!base||!runs.length) return 0;
     const T=Math.max(+base.T||16,1); let n=0;
@@ -53473,19 +53492,7 @@ function applyLineDisplay(){
     /* v1.308: ตีนตู้เข้ามุม — แนวสองแนวตั้งฉากกันที่มุมห้อง (ตู้เข้ามุม + ตู้อีกผนัง) ต้องชนกันพอดี
        แนวที่วิ่งผ่านแนวอีกเส้น ตัดจบที่ผิวนอกของอีกเส้น · แนวที่ปลายอยู่ห่างไม่เกิน 400 ยืดไปชนหลังแผ่นของแนวแรก
        เดิมแนวหลังวิ่งยาวทะลุไปถึงผนังข้าง ใต้ตู้อีกผนัง · ไม่มีแนวตั้งฉาก = เหมือนเดิมทุกอย่าง */
-    { const T=Math.max(+((src.plinth[0]||{}).T)||16,1), o=runs.map(r=>Object.assign({},r)), adj=runs.map(()=>({})), out0=r=>r.front-r.s*SB;
-      o.forEach((A,ia)=>o.forEach((B,ib)=>{ if(ia===ib||A.fa===B.fa||Math.abs(A.y0-B.y0)>1||Math.abs(A.y1-B.y1)>1) return;
-        const oA=out0(A), oB=out0(B), backA=oA-A.s*T;
-        if(!(A.wlo<oB-1&&A.whi>oB+1)) return;                                  // A ต้องวิ่งผ่านระนาบของ B
-        const nearLo=B.wlo-oA, nearHi=oA-B.whi;
-        if(nearLo>=-T-1&&nearLo<=400){ adj[ib].wlo=Math.min(adj[ib].wlo!=null?adj[ib].wlo:Infinity,backA); }
-        else if(nearHi>=-T-1&&nearHi<=400){ adj[ib].whi=Math.max(adj[ib].whi!=null?adj[ib].whi:-Infinity,backA); }
-        else return;
-        if(B.s<0) adj[ia].whi=Math.min(adj[ia].whi!=null?adj[ia].whi:Infinity,oB);   // ตู้ของ B อยู่ฝั่งค่ามาก → ตัดปลายมากของ A
-        else adj[ia].wlo=Math.max(adj[ia].wlo!=null?adj[ia].wlo:-Infinity,oB); }));
-      runs.forEach((r,i)=>{ const a=adj[i];
-        if(a.wlo!=null) r.wlo=(a.wlo<r.wlo||a.wlo>r.wlo)?a.wlo:r.wlo;
-        if(a.whi!=null) r.whi=a.whi; }); }
+    _cornerFit(runs,Math.max(+((src.plinth[0]||{}).T)||16,1),SB,Infinity);   /* v1.687: ย้ายไปตัวกลาง ทำงานเท่าเดิม */
     made+=build("plinth",runs);
   }
   if(src.ceil.length){
@@ -53495,7 +53502,8 @@ function applyLineDisplay(){
        เดิม: กล่องมี yaw ต่างจากตู้ 90° จึงเป็นอีกแนว ได้ฟิลเลอร์บนตั้งฉากกับแนวตู้ · กล่องบนถึงฝ้าก็จะดันระดับฝ้าของแนวนั้นขึ้นไปอีก
        ตอนนี้: ไม่นับกล่องโค้งในแผนฟิลเลอร์บน ส่วนเหนือกล่องใช้ตัวเลือกถึงฝ้าในแผงกล่อง */
     const items=ceilPlan(snOff("plCvbCeil")?cabs:cabs.filter(c=>!plIsCvb(c.i)),H).items;                              // v1.315: บนตู้ชั้นบนสุดของแต่ละช่อง (ตู้ต่อบนได้แผง ตู้ข้างล่างไม่ได้)
-    made+=build("ceil",runsOf(items));
+    const _crn=runsOf(items); if(!snOff("ceilCorner")) _cornerFit(_crn,Math.max(+((src.ceil[0]||{}).T)||16,1),CSB,1000);   /* v1.687 */
+    made+=build("ceil",_crn);
   }
   return made;
 }
