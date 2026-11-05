@@ -3283,7 +3283,7 @@ body[data-theme="dark"] .splash-dots span{background:rgba(255,255,255,.25)}
    ===================================================================== */
 /* ---- APP_META: แหล่งความจริงเดียวของเวอร์ชัน (ดูได้จาก console / คลิกชื่อแอป) ---- */
 const APP_META={
-  name:"StarNexus", version:"1.681", build:"2026-11-05/mem-fix",
+  name:"StarNexus", version:"1.682", build:"2026-11-05/cab-set",
   file:"StarNexus.html", basedOn:"Furnitech_V3.html (v3.11)",
   /* ───────── เริ่มนับเวอร์ชันใหม่ที่ 1.001 (21/08/2026) ─────────
      ของเดิมนับมาถึง 42.1 แล้ววิ่งเป็นทศนิยมสองชั้นซึ่งอ่านลำดับยาก
@@ -3291,6 +3291,7 @@ const APP_META={
      ประวัติเก่าเก็บไว้ทั้งหมดตามเลขเดิม ไม่ไล่เขียนใหม่ เพราะเลขในนั้นถูกอ้างถึงไปแล้ว
      รายการที่อยู่ใต้ 1.001 ลงไปจึงเป็นเลขชุดเก่า อ่านต่อกันได้ตามวันที่ */
   changelog:[
+    ["1.682","2026-11-05","FEAT ชุดตู้ (ผู้ใช้ 11:33 ภาพห้อง 003 MODEL_ALTO) — ① เลือกตู้ 2 ใบขึ้นไป กด 🧩 บันทึกเป็นชุดตู้ แล้วชุดขึ้นแท็บ 🧩 ชุดตู้ ในแคตตาล็อกขวา คลิกหรือกดค้างลากลงห้องได้ แต่ละตู้ยังมีรหัสของตัวเอง เก็บสี ตัวแปร อุปกรณ์ เครื่องใช้ที่ติดตู้ และค่าท็อป ② ลากทั้งชุดเข้าใกล้ผนังอื่น = ทั้งก้อนหันตามผนังนั้นและชิดผนัง รวมผนังที่วาดเอง Alt = ไม่หมุนไม่ดูด ③ กด 🔁 รุ่น แล้วคลิกการ์ดในแคตตาล็อกขวาเปลี่ยนรุ่นได้เลย"],
     ["1.681","2026-11-05","FIX Out of Memory ตอนเปิดชุดใหญ่ (ผู้ใช้ 10:10 · เครื่อง RAM 16 GB การ์ดจอ 4 GB) — ทดสอบด้วยรูปลายผิว 3000 px: เปิดงานแต่ละครั้งรูปค้างในการ์ดจอเพิ่ม 32 รูปไม่เคยคืน (เปิด 4 รอบ 113 รูป) ① ทาสีใหม่/เปิดงานใหม่ คืนรูปเก่าก่อน ② รูปลายผิวย่อเหลือด้านยาว 2048 px (6000 px เดิมกิน 5.1 GB เหลือ 1.4 GB) ③ รหัสสีที่ใช้ไฟล์เดียวกันโหลดครั้งเดียว ④ Ctrl+Z ไม่เก็บรูปห้องซ้ำทุกครั้ง และจำกัดขนาดประวัติ · ปิด SN_OFF.skinDrop / texImgCap / snapLite · FEAT ชื่อห้องที่เปิดอยู่ขึ้นหัวแผงมุมบนซ้าย (ผู้ใช้ 11:33)"],
     ["1.680","2026-11-05","FEAT+CHANGE (ผู้ใช้ 11:18) ① ปุ่ม ⬇ Excel ในแท็บราคาต้นทุน ได้ไฟล์ .xlsx ตามฟอร์ม ชื่อตู้ กว้าง ลึก สูง จำนวน หมายเหตุ หมวด RM สินค้า RM จำนวน RM · แถวแรกของตู้มีข้อมูลตู้ แถวถัดไปเฉพาะ RM · หมวด โครงสร้าง หน้าบาน Fitting · จำนวน RM ต่อ 1 ใบ ไม่รวมเผื่อเศษ ② % กำไรในแถบยอดเทียบ DM + DL + OH (เดิมเทียบราคาขาย) · คำบนจอบอก DM ชัดเจน · วิธีคิดราคาขายไม่เปลี่ยน"],
     ["1.679","2026-11-05","FEAT+FIX (ผู้ใช้ 10:59 11:03) ① ไอคอนโฟลเดอร์สวย เลือกได้ 20 สี ในหน้าเลือกห้อง · เลือกหมวดแล้วเห็นหมวดย่อยเป็นไอคอนใหญ่ ② เปิดโปรแกรมมาเข้าหน้าเลือกห้องออกแบบเลย เลือกแล้วเข้าห้องออกแบบทันที · ติ๊กปิดได้ในหน้านั้น ③ ปุ่มห้องเปล่า (ไม่มีผนัง) · ห้องตัวอย่าง (ค่าตั้งต้นเดิม) · งานล่าสุด · หน้าหลักโปรแกรม · ไม่มีตู้และไม่มีห้อง เริ่มเป็นห้องเปล่า ④ FIX ห้องล็อกอยู่เปิดห้องที่บันทึกอื่นไม่ได้ · ปิด SN_OFF.plStart / plRoomBlank"],
@@ -30364,6 +30365,9 @@ function boardRole(b){
      SN_OFF.skinDrop=1    ทาสีใหม่แล้วไม่คืนรูปลายผิวเก่าออกจากการ์ดจอ แบบเดิม (v1.681)
      SN_OFF.texImgCap=1   รูปลายผิวใช้ขนาดเต็ม และโหลดแยกต่อรหัสสี แบบเดิม (v1.681)
      SN_OFF.snapLite=1    Ctrl+Z เก็บรูปในห้องทุกภาพ และไม่จำกัดขนาดประวัติ แบบเดิม (v1.681)
+     SN_OFF.plSet=1       ไม่มีชุดตู้ในแคตตาล็อก และไม่มีปุ่มบันทึกชุด (v1.682)
+     SN_OFF.plmsWall=1    ลากทั้งชุดแล้วไม่หมุนตามผนัง ดูดแค่ระยะ 80 มม. แบบเดิม (v1.682)
+     SN_OFF.plSwapCat=1   🔁 รุ่น เลือกจากหน้าต่างอย่างเดียว คลิกการ์ดแคตตาล็อกไม่เปลี่ยนรุ่น (v1.682)
      SN_OFF.plRoomBlank=1 ไม่มีปุ่มห้องเปล่า/ห้องตัวอย่าง · ห้องเริ่มต้นมีผนัง 3 ด้านแบบเดิม (v1.679)
      SN_OFF.pidAsk=1      กด Transfer/ออก MPR แล้วไม่ถามเรื่องเลข Part ใช้เลขเดิมต่อท้ายแบบเดิม (v1.677)
      SN_OFF.pidLockMpr=1  ออก MPR แล้วไม่ล็อกเลข Part ล็อกเฉพาะตอน Transfer แบบเดิม (v1.677)
@@ -38343,6 +38347,7 @@ function plSwapOpen(inst,x,y){
     el.querySelectorAll(".pcSw").forEach(async sw=>{ try{ const u=await thumbUrl(sw.dataset.c); if(u&&sw.isConnected){ sw.style.backgroundImage='url("'+u+'")'; sw.textContent=""; } }catch(e){} });
   };
   draw();
+  try{ plSwapPick(inst,cur); }catch(e){ console.error("plSwapPick:",e); }   /* v1.682 */
 }
 /* ---------- v1.308: ตีนตู้ PN01 — 3D ตามแนวตู้จริง · ใบตัด/BOM ออกเป็นไม้ยาว 2400 ตามจำนวนท่อน ----------
    ใช้ทางเดียวกับออเดอร์ XML: แถวรายการเส้น Plinth → กฎ "สร้างตู้เข้าฉาก" (รหัสจากกฎ ปกติ PN01) → ตู้แผ่นเดียวยาว 2400 × จำนวน
@@ -38982,42 +38987,88 @@ async function plmsDelete(){ const K=cabSelKeys().slice(); if(K.length<2) return
   sync(0); try{ csmBaseRelayout(null); }catch(e){ console.error("csmBase:",e); }
   plCamPut(cam); plSelect(null); plmsDraw(); toast("ลบ "+K.length+" ตู้แล้ว (Ctrl+Z ย้อนได้)"); }
 /* ลากชุด — เรียกจาก plDragDown (ตู้ที่กดอยู่ในชุด) / plDragApply / plDragUp */
+/* ───────── v1.682: ลากทั้งชุดลงผนังใหม่ ─────────
+   ผู้ใช้ 5/11 11:33: “ถ้าอยากได้ ทั้งชุด ลากลง ผนัง ใหม่ ทำยังไง”
+   เดิม: ลากทั้งชุดได้แค่เลื่อน X Z ไม่หมุน ดูดผนังเฉพาะระยะ 80 มม. ย้ายไปผนังที่ตั้งฉากจึงต้องหมุนทีละใบแล้วจัดแถวใหม่ทั้งหมด
+     และย้ายเฉพาะตู้ที่เลือก ตู้ลูกในช่องกับขา/ชั้นมุม/ราว Cosimo อยู่ที่เดิม
+   ตอนนี้: เข้าใกล้ผนัง (ระยะเดียวกับลากตู้ใบเดียว) = ทั้งก้อนหมุนรอบกลางชุดตามผนังนั้น หลังชุดชิดผิวผนัง ซ้ายขวาดูดมุมห้อง/ตู้ข้าง ๆ หรือลงกริด
+     หันหน้าตามตู้ใบที่จับ ถ้าใบนั้นทิศเดียวกับตู้ส่วนน้อยมาก (เช่น แผ่นปิดข้าง) ใช้ทิศที่ตู้ส่วนใหญ่หัน
+     ชี้เมาส์บนผนังก็ได้ (จุดบนพื้นอยู่หลังผนัง จึงอ่านจากผนังที่ชี้แทน) · ห่างผนังทุกด้าน = กลับทิศเดิม เลื่อนอิสระ
+     ชุดลอยกลางห้อง เช่น Island ต้องลากเกิน 200 มม. ก่อนจึงเริ่มดูด ขยับนิดเดียวไม่ถูกดึงเข้าผนัง · Alt = ไม่หมุนไม่ดูด · ปิด SN_OFF.plmsWall */
+function plmsGrab(K,inst,py,ev){ const wallOn=!snOff("plmsWall"), move=wallOn?plSetExpand(K):K.slice(), snap={}, lo=[1e9,1e9,1e9], hi=[-1e9,-1e9,-1e9];
+  move.forEach(k=>plBoardsOf(k).forEach(x=>{ snap[x.id]=[x.x,x.y,x.z,x.yaw||0]; }));
+  K.forEach(k=>{ const f=plFp(plBoardsOf(k)); if(!isFinite(f.lo[0])) return; for(let a=0;a<3;a++){ lo[a]=Math.min(lo[a],f.lo[a]); hi[a]=Math.max(hi[a],f.hi[a]); } });
+  let fol=[]; try{ fol=plaFollowStart(move); }catch(err){}
+  const yaw0=plSetYawOf(K,inst), W0=Object.values(PL_WALLS).find(W=>W.yaw===yaw0), set=new Set(move.map(String));
+  let off=Infinity; K.forEach(k=>{ if((((cvbYawFor(k)||0)%360)+360)%360===yaw0) off=Math.min(off,plOffOf(k)); });
+  let w0=null; try{ w0=plWallOf(inst); }catch(err){}
+  return {multi:true, inst:String(inst), insts:K.slice(), move, snap, py, p0:plFloorPt(ev,py), lo, hi, c0:[(lo[0]+hi[0])/2,0,(lo[2]+hi[2])/2], yaw0, W0:!!W0, D:W0?hi[W0.pa]-lo[W0.pa]:0, off:isFinite(off)?off:0,
+    wall:w0, wall0:w0, nb:wallOn?plOthers(inst).filter(n=>!set.has(String(n.inst))):[], sx:ev.clientX, sy:ev.clientY, moved:false, ev:null, d:[0,0,0], dl:0, fol}; }
 function plmsDragStart(e,inst,hit){ if(!plmsOn()) return false; const K=cabSelKeys(); if(K.indexOf(String(inst))<0) return false;
   e.stopImmediatePropagation(); e.preventDefault(); try{ renderer.domElement.setPointerCapture(e.pointerId); }catch(err){}
-  const py=hit.point.y, snap={}, lo=[1e9,1e9,1e9], hi=[-1e9,-1e9,-1e9];
-  K.forEach(k=>{ const bs=plBoardsOf(k); bs.forEach(x=>{ snap[x.id]=[x.x,x.y,x.z]; }); const f=plFp(bs); for(let a=0;a<3;a++){ lo[a]=Math.min(lo[a],f.lo[a]); hi[a]=Math.max(hi[a],f.hi[a]); } });
-  let fol=[]; try{ fol=plaFollowStart(K); }catch(err){}
-  PL.drag={multi:true, inst:String(inst), insts:K.slice(), snap, py, p0:plFloorPt(e,py), lo, hi, sx:e.clientX, sy:e.clientY, moved:false, ev:null, d:[0,0,0], fol};
+  PL.drag=plmsGrab(K,inst,hit.point.y,e);
   return true; }
-function plmsDragApply(g){ const p=plFloorPt(g.ev,g.py); if(!p||!g.p0) return;
-  const d=[p.x-g.p0.x,0,p.z-g.p0.z];
-  if(!g.ev.alt){ const G=plGrid(); if(G){ d[0]=Math.round(d[0]/G)*G; d[2]=Math.round(d[2]/G)*G; }
+/* วางทั้งก้อน: หมุน dl องศารอบกลางชุด แล้วเลื่อน d · คิดจากตำแหน่งตอนเริ่มลากทุกครั้ง ค่าไม่สะสมคลาดเคลื่อน · สูตรหมุนเดียวกับ rotateCabBoards */
+function plmsPose(g,dl,d){ const rad=dl*Math.PI/180, cs=Math.round(Math.cos(rad)), sn=Math.round(Math.sin(rad)), cx=g.c0[0], cz=g.c0[2];
+  (state.boards||[]).forEach(x=>{ const s=x&&g.snap[x.id]; if(!s) return; const dx=s[0]-cx, dz=s[2]-cz;
+    x.x=round(cx+dx*cs+dz*sn+d[0]); x.y=s[1]; x.z=round(cz-dx*sn+dz*cs+d[2]); x.yaw=(((s[3]+dl)%360)+360)%360; }); }
+/* กรอบชุดเมื่อหมุน dl (ยังไม่เลื่อน) · ชุดแข็งทั้งก้อน จำครั้งเดียวต่อมุม */
+function plmsRotFp(g,dl){ g.fpC=g.fpC||{}; if(g.fpC[dl]) return g.fpC[dl]; plmsPose(g,dl,[0,0,0]); const lo=[1e9,1e9,1e9], hi=[-1e9,-1e9,-1e9];
+  g.insts.forEach(k=>{ const f=plFp(plBoardsOf(k)); if(!isFinite(f.lo[0])) return; for(let a=0;a<3;a++){ lo[a]=Math.min(lo[a],f.lo[a]); hi[a]=Math.max(hi[a],f.hi[a]); } });
+  return g.fpC[dl]={lo,hi}; }
+/* ผนังที่ใกล้ที่สุดในระยะดูด (ผนังห้อง + ผนังที่วาด) · ผนังที่ติดอยู่ได้เปรียบ 200 มม. ชุดรูปตัว L อยู่มุมห้องจะได้ไม่สลับผนังไปมา */
+function plmsWallFind(c,D,cur,over){ const r=plRoom(); let wk=null, best=Infinity; over=over||300;   // over: จับตู้ปลายชุด กลางชุดวิ่งนำเมาส์ไปไกล เลยผนังได้เท่าครึ่งชุด
+  Object.keys(PL_WALLS).forEach(k=>{ if(!r.walls[k]) return; const W=PL_WALLS[k]; let dist=(c[W.pa]-plFace(r,k))*W.s; if(dist<-over) return;
+    const along=c[W.ax], rg=plRange(r,W.ax); if(along<rg[0]-over||along>rg[1]+over||dist>=D/2+PL_PULL) return;
+    if(k===cur) dist-=200; if(dist<best){ best=dist; wk=k; } });
+  let H=null; if(!snOff("plDrawWall")){ try{ H=plwMagnet(c,D,wk?best:Infinity); }catch(e){ console.error("plwMag:",e); } }
+  if(H) return {yaw:H.yaw, ax:H.ax, pa:H.pa, s:H.s, face:H.face, rg:[H.a0,H.a1], lbl:"ผนังที่วาด "+H.lbl};
+  return wk?plmsWallOf(wk):null; }
+function plmsWallOf(k){ const r=plRoom(), W=PL_WALLS[k]; return {k, yaw:W.yaw, ax:W.ax, pa:W.pa, s:W.s, face:plFace(r,k), rg:plRange(r,W.ax), lbl:"ผนัง"+W.lbl}; }
+function plmsClash(g){ const F=g.insts.map(k=>plFp(plBoardsOf(k))).filter(f=>isFinite(f.lo[0])); let n=0;
+  (g.nb||[]).forEach(o=>{ if(F.some(f=>plYOver(o,f)&&[0,2].every(a=>Math.min(o.hi[a],f.hi[a])-Math.max(o.lo[a],f.lo[a])>10))) n++; }); return n; }
+function plmsDragApply(g){ const p=plFloorPt(g.ev,g.py), wOn=!snOff("plmsWall")&&!g.ev.alt&&g.W0;
+  let wh=null; if(wOn){ try{ wh=plWallHit(g.ev); }catch(e){} if(wh){ const W=PL_WALLS[wh.wk]; if(p&&(p.getComponent(W.pa)-plFace(plRoom(),wh.wk))*W.s>=0) wh=null; } }   // ชี้บนผนัง: จุดบนพื้นอยู่หลังผนัง หรือเล็งเหนือเส้นขอบฟ้า
+  if((!p&&!wh)||!g.p0) return;
+  const d=p?[p.x-g.p0.x,0,p.z-g.p0.z]:[(g.d||[0,0,0])[0],0,(g.d||[0,0,0])[2]]; let H=null, dl=0;
+  if(wOn&&(g.fresh||g.wall0||Math.hypot(d[0],d[2])>200)){ const c=[g.c0[0]+d[0],0,g.c0[2]+d[2]];
+    if(wh){ H=plmsWallOf(wh.wk); c[H.ax]=wh.p.getComponent(H.ax); } else H=plmsWallFind(c,g.D,g.wall,Math.max(g.hi[0]-g.lo[0],g.hi[2]-g.lo[2])/2+300);
+    if(H){ dl=(((H.yaw-g.yaw0)%360)+360)%360; const f=plmsRotFp(g,dl), A=H.ax, P=H.pa, len=f.hi[A]-f.lo[A], face=H.face+H.s*(g.off||0), yr={ylo:g.lo[1],hi:g.hi};
+      let a=c[A]-len/2, bd=PL_SNAP, sn=null; const tryS=v=>{ const e=Math.abs(v-a); if(e<bd){ bd=e; sn=v; } };
+      tryS(H.rg[0]); tryS(H.rg[1]-len);
+      (g.nb||[]).filter(n=>plYOver(n,yr)&&Math.abs((H.s>0?n.lo[P]:n.hi[P])-face)<80).forEach(n=>{ tryS(n.hi[A]); tryS(n.lo[A]-len); });
+      a=(sn!=null)?sn:plGridAt(a,H.rg[0]);
+      d[A]=a-f.lo[A]; d[P]=face-(H.s>0?f.lo[P]:f.hi[P]); g.wall=H.k||null; } }
+  if(!H&&!g.ev.alt){ const G=plGrid(); if(G){ d[0]=Math.round(d[0]/G)*G; d[2]=Math.round(d[2]/G)*G; }
     try{ const r=plRoom(); Object.keys(PL_WALLS).forEach(k=>{ if(!r.walls||!r.walls[k]) return; const W=PL_WALLS[k], a=W.pa, face=plFace(r,k), ed=(W.s>0?g.lo[a]:g.hi[a])+d[a];
       if(Math.abs(ed-face)<PL_SNAP) d[a]+=face-ed; }); }catch(e){} }
-  g.insts.forEach(k=>plBoardsOf(k).forEach(x=>{ const s=g.snap[x.id]; if(s){ x.x=round(s[0]+d[0]); x.y=s[1]; x.z=round(s[2]+d[2]); } }));
-  g.d=d;
+  if(!H) g.wall=null;
+  plmsPose(g,dl,d); g.d=d; g.dl=dl; g.H=H;
   _fastFrame=true; try{ render3D(false); }finally{ _fastFrame=false; }
   try{ updateSelBox(); }catch(e){} plmsDraw();
-  const tip=$("plDragTip"); if(tip) tip.textContent="ย้าย "+g.insts.length+" ตู้ · X "+(d[0]>0?"+":"")+Math.round(d[0])+" · Z "+(d[2]>0?"+":"")+Math.round(d[2])+" มม. · Alt = ไม่ลงกริด/ไม่ดูดผนัง"; }
+  const tip=$("plDragTip"); if(tip) tip.textContent=H?(H.lbl+(dl?" · หมุน "+dl+"° ตามผนัง":"")+" · "+g.insts.length+" ตู้ · Alt = ไม่หมุนไม่ดูด"):("ย้าย "+g.insts.length+" ตู้ · X "+(d[0]>0?"+":"")+Math.round(d[0])+" · Z "+(d[2]>0?"+":"")+Math.round(d[2])+" มม. · Alt = ไม่ลงกริด/ไม่ดูดผนัง"); }
 function plmsDragEnd(g){ const tip=$("plDragTip"); if(tip) tip.textContent="";
   if(!g.moved){ plSelect(g.inst); plmsDraw(); return; }
   const cam=plCamKeep();
   try{ plaFollowEnd(g.fol); }catch(e){ console.error("plaFollow:",e); }
   sync(0); try{ csmBaseRelayout(null); }catch(e){ console.error("csmBase:",e); }
   plCamPut(cam); plmsSet(g.insts,g.inst);
+  /* v1.682 */ if(g.fresh||g.H){ const nC=plmsClash(g); toast((g.fresh?("วางชุด “"+(g.setName||"")+"” "):"ย้าย ")+g.insts.length+" ตู้"+(g.H?(" ลง"+g.H.lbl):"")+(g.dl?" · หมุนตามผนัง":"")+(nC?(" · ⚠ ทับตู้เดิม "+nC+" ใบ"):"")+" — Ctrl+Z ย้อนได้"); return; }
   const d=g.d||[0,0,0]; toast("ย้าย "+g.insts.length+" ตู้ X "+(d[0]>0?"+":"")+Math.round(d[0])+" · Z "+(d[2]>0?"+":"")+Math.round(d[2])+" มม. — Ctrl+Z ย้อนได้"); }
 function plmsPanel(s){ const K=cabSelKeys(), codes=K.map(k=>{ try{ return plFp(plBoardsOf(k)).code||k; }catch(e){ return k; } });
   let pr=0; K.forEach(k=>{ try{ const d=plLocalDims(k); pr+=+catPrice(d.f.code,d.W)||0; }catch(e){} });
   s.innerHTML='<div class="plRow"><h4>เลือก '+K.length+' ตู้</h4>'+(pr>0?'<span style="margin-left:auto;font-weight:700">'+plMoney(pr)+'</span>':'')+'</div>'
     +'<div class="plNote" style="font-size:11px;line-height:1.5;margin-top:3px">'+escapeHtml(codes.join(" · "))+'</div>'
-    +'<div class="plNote" style="font-size:11px;line-height:1.55;margin-top:5px">ลากตู้ใบไหนก็ได้ในชุด = ย้ายทั้งชุด (ลงกริด · ดูดผนัง · Alt = อิสระ) · ซิงค์/เตา/ฮู้ดที่ติดตู้ย้ายตาม<br>Ctrl+คลิก เพิ่ม/เอาออก · Ctrl+ลาก = กรอบ · Esc เลิกเลือก</div>'
+    +'<div class="plNote" style="font-size:11px;line-height:1.55;margin-top:5px">ลากตู้ใบไหนก็ได้ในชุด = ย้ายทั้งชุด (ลงกริด · ดูดผนัง · Alt = อิสระ) · ซิงค์/เตา/ฮู้ดที่ติดตู้ย้ายตาม<br>'+(snOff("plmsWall")?'':'ลากเข้าใกล้ผนังอื่น = ทั้งชุดหันตามผนังนั้น<br>')+'Ctrl+คลิก เพิ่ม/เอาออก · Ctrl+ลาก = กรอบ · Esc เลิกเลือก</div>'
     +'<div class="plBar" style="margin-top:6px"><button class="ibtn" id="plmsAllB">⬚ เลือกทั้งหมด</button><button class="ibtn" id="plmsNone">✕ เลิกเลือก</button>'
+    +(plSetOn()?'<button class="ibtn" id="plmsSetB" style="grid-column:1/-1" title="เก็บเข้าแคตตาล็อกขวา แท็บชุดตู้ ลากลงห้องอื่นได้ · แต่ละตู้ยังมีรหัสของตัวเอง">🧩 บันทึกเป็นชุดตู้…</button>':'')   /* v1.682 */
     +'<button class="ibtn" id="plmsDelB" style="grid-column:1/-1;color:#b42318">🗑 ลบ '+K.length+' ตู้</button></div>'
     +plLegHtml(K)+(plHangBtn(K)?('<div class="plRow plBtns" style="margin-top:6px">'+plHangBtn(K)+'</div>'):"");   /* v1.671 */
   const q=x=>s.querySelector(x);
   if(q("#plmsAllB")) q("#plmsAllB").onclick=()=>plmsSelAll();
   if(q("#plmsNone")) q("#plmsNone").onclick=()=>plmsClear();
   if(q("#plmsDelB")) q("#plmsDelB").onclick=()=>plmsDelete();
+  if(q("#plmsSetB")) q("#plmsSetB").onclick=()=>plSetSave();   /* v1.682 */
   plCpMount(s,K); /* v1.670 */ plLegWire(s,K); plHangWire(s,K); /* v1.671 */ }
 /* ───────── v1.562: ของในห้องที่ติดตู้ (o.host) ย้าย/หมุนตามตู้ ─────────
    เดิม plaResnap ถูกเรียกแค่ตอนแก้ขนาดในแผง — ลากตู้แล้วซิงค์/ฮู้ดลอยค้างที่เดิม
@@ -40845,7 +40896,7 @@ function ploIcon(k){ const s='<svg viewBox="0 0 80 80" width="70" height="70" fi
   return s+'<path d="M10 70h14V56h14V42h14V28h14V14" /><path d="M10 70h60V14"/>'+e; }
 function ploGrid(tabs,grid){   // v1.538: แบ่งหมวด · การ์ดฝ้า/ปลั๊ก/ท่อ · ห้องล็อก = แจ้ง
   const have=new Set((PL.items||[]).map(x=>x.kind));
-  const ks=[["","ทั้งหมด"]].concat(CAT_KINDS.filter(k=>have.has(k[0]))).concat([["_room",PLO_TAB]]);
+  const ks=[["","ทั้งหมด"]].concat(CAT_KINDS.filter(k=>have.has(k[0]))).concat(plSetTab()).concat([["_room",PLO_TAB]]);   /* v1.682: + ชุดตู้ */
   tabs.innerHTML=ks.map(k=>'<button data-t="'+k[0]+'" class="'+(k[0]===PL.tab?"on":"")+'">'+k[1]+'</button>').join("");
   tabs.querySelectorAll("button").forEach(bt=>bt.onclick=()=>{ PL.tab=bt.dataset.t; plPanelGrid(); });
   const ok=k=>!!PLO_T[k]&&!(PLO_T[k].appl&&snOff("plAppl"))&&!(k==="col"&&snOff("plCol"))&&!((k==="ceil"||k==="ceilu")&&snOff("plCeil"))&&!(PLO_T[k].util&&snOff("plUtil"))&&!(k==="plugsw"&&snOff("plSwitch"));
@@ -46797,7 +46848,13 @@ function plCardWire(cd,list){ const x=list[+cd.dataset.i];
   try{ plCatDragWire(cd,x); }catch(e){ console.error("catDrag:",e); }          // v1.373: กดค้างลากลงจอ 3D
   cd.onclick=async ev=>{ if(ev.target&&ev.target.tagName==="SELECT") return;
     if(cd._dragged){ cd._dragged=0; return; }                                // v1.373: เพิ่งลากลงจอไปแล้ว ไม่วางซ้ำ
-    if(cd._busy) return; cd._busy=1; cd.style.opacity=.5;
+    if(cd._busy) return;
+    if(PL.swapPick&&!plBoardsOf(PL.swapPick).length) plSwapEnd();             // ตู้ใบนั้นถูกลบไปแล้ว
+    if(PL.swapPick&&!x._rail){ const si=PL.swapPick; plSwapEnd(); cd._busy=1; cd.style.opacity=.5;   /* v1.682: กด 🔁 รุ่นไว้ = การ์ดนี้แทนตู้ใบที่เลือก */
+      try{ if(catKey(x.code)===catKey(plFp(plBoardsOf(si)).code)) toast("ตู้ใบนี้เป็นรุ่น "+x.code+" อยู่แล้ว"); else await plSwap(si,x.id||x.code); }
+      catch(err){ console.error(err); toast("เปลี่ยนรุ่นไม่สำเร็จ: "+(err.message||err)); }
+      finally{ cd._busy=0; cd.style.opacity=""; } return; }
+    cd._busy=1; cd.style.opacity=.5;
     try{ await plAdd(x.code, PL.wsel[x.code]||0); }catch(err){ console.error(err); toast("วางตู้ไม่ได้: "+(err.message||err)); }
     finally{ cd._busy=0; cd.style.opacity=""; } };
   const se=cd.querySelector("select[data-ws]");
@@ -46807,16 +46864,17 @@ function plCardRedraw(cd,list){ const i=+cd.dataset.i, t=document.createElement(
   cd.replaceWith(n); plCardWire(n,list); plGridThumbsAdd(n); }
 /* ชื่อไทยแตกเสร็จทีหลัง: เปลี่ยนแค่บรรทัดชื่อ รูปที่กำลังโหลดไม่เริ่มใหม่ · มีคำค้นอยู่ = ต้องกรองใหม่ (ค้นด้วยชื่อไทยได้) */
 function plCardNames(){ if(!plLazyOn()||String(PL.q||"").trim()||!PL.gridList){ plPanelGrid(); return; }
-  if(PL.tab==="_room") return; const grid=$("plGrid"); if(!grid) return;
+  if(PL.tab==="_room"||PL.tab==="_set") return; const grid=$("plGrid"); if(!grid) return;   /* v1.682 */
   grid.querySelectorAll(".plCard[data-i]").forEach(cd=>{ const x=PL.gridList[+cd.dataset.i]; if(!x||x._rail) return;
     const b=cd.querySelector(":scope>b"), sm=b&&b.nextElementSibling; if(sm&&sm.tagName==="SMALL") sm.outerHTML=plCardSub(x); }); }
 function plPanelGrid(){
   try{ cabThLoad(); }catch(e){}   // v1.642
   const tabs=$("plTabs"), grid=$("plGrid"); if(!tabs||!grid) return;
   if(!snOff("plObj")&&PL.tab==="_room"){ try{ plGridLazyStop(); PL.gridSig=null; ploGrid(tabs,grid); }catch(e){ console.error("ploGrid:",e); } return; }   // v1.535: แท็บประตู/หน้าต่าง/บันได · v1.666: หยุดคิวรูปตู้ กลับมา = เริ่มบนสุด
+  if(PL.tab==="_set"){ if(plSetOn()){ try{ plGridLazyStop(); PL.gridSig=null; plSetGrid(tabs,grid); }catch(e){ console.error("plSetGrid:",e); } return; } PL.tab=""; }   /* v1.682 */
   if(!PL.items){ grid.innerHTML='<div style="grid-column:1/-1;color:var(--ink-dim)">กำลังอ่านคลังตู้…</div>'; try{ plGridWait("กำลังอ่านคลังตู้…",0,0); }catch(e){} return; }
   const have=new Set(PL.items.map(x=>x.kind));
-  const ks=[["","ทั้งหมด"]].concat(CAT_KINDS.filter(k=>have.has(k[0]))).concat(snOff("plObj")?[]:[["_room",PLO_TAB]]);   // v1.535
+  const ks=[["","ทั้งหมด"]].concat(CAT_KINDS.filter(k=>have.has(k[0]))).concat(plSetTab()).concat(snOff("plObj")?[]:[["_room",PLO_TAB]]);   // v1.535 · v1.682: + ชุดตู้
   if(PL.tab&&PL.tab!=="_room"&&!have.has(PL.tab)) PL.tab="";
   tabs.innerHTML=ks.map(k=>'<button data-t="'+k[0]+'" class="'+(k[0]===PL.tab?"on":"")+'">'+k[1]+'</button>').join("");
   tabs.querySelectorAll("button").forEach(bt=>bt.onclick=()=>{ PL.tab=bt.dataset.t; plPanelGrid(); });
@@ -46837,6 +46895,178 @@ function plPanelGrid(){
   plGridThumbs(grid);                                                         // v1.312: รอรูปให้ครบ (บังแคตตาล็อก + นับ x / y) · v1.666: โหลดเฉพาะใบที่เห็น
   if(chunk) plCardMoreWire(grid);
 }
+/* ═════════ v1.682: ชุดตู้ใน Library ขวา ═════════
+   ผู้ใช้ 5/11/2026 11:33 (ภาพห้อง 003 MODEL_ALTO): “ถ้าเป็นชุดไปให้ เลือกอยู่ ใน library ด้านขวาได้ เช่น กลุ่ม ตู้ Island ที่มาครบ ทอป ตู้ ลิ้นชัก แล้วลากจาก แคตตาล็อค ขวา ลง ห้องอะครับ
+     แสดงว่าน่าจะต้องเพิ่ม การบันทึกตู้แบบ รวมเป็นชุดตู้ แต่ รหัสตู้ ไม่รวมนะครับ”
+   เดิม: แคตตาล็อกมีแต่รุ่นทีละใบ · 💾 บันทึกห้อง (v1.547) เก็บได้ทั้งห้อง แต่เปิดแล้วแทนงานเดิม เอามาลงห้องที่ทำอยู่ไม่ได้
+   ตอนนี้:
+     · บันทึก: เลือกตู้ ≥ 2 ใบ กด 🧩 ในแผงซ้าย → ไฟล์กลาง ตาราง app_settings คีย์ “plset:<ชื่อ>” ทุกเครื่องเห็น
+       ค่า {v,name,at,n,codes,keys,prim,yaw0,free,W,D,H,thumb,top,topTex,data:{boards,cab,obj}}
+       แต่ละตู้คง cab กับ cabInst ของตัวเอง ใบตัด ราคา MPR ยังออกทีละรหัส ไม่มีรหัสชุด
+       ตามไปด้วย: ตู้ลูกในช่อง · ชุดกล่องโค้ง · ขา/ชั้นมุม/ราว Cosimo ที่อยู่ในกรอบชุด · ค่าต่อตู้ PLSET_CAB (สี ตัวแปร เส้นโปรไฟล์ ขอบ) · เครื่องใช้ที่ติดตู้ (o.host) · ค่าท็อปของห้อง
+     · ท็อปไม่ใช่ชิ้นในตู้ ห้องคิดให้จากแนวตู้พื้นเอง (plWtSlabs) จึงเก็บแค่ค่า: ห้องยังไม่เปิดท็อป = เปิดด้วยค่าของชุด · ห้องเปิดอยู่แล้ว = ใช้ท็อปของห้อง เพราะห้องหนึ่งมีวัสดุท็อปชุดเดียว
+     · วาง: ทุกครั้งแจกรหัสชิ้นและรหัสตู้ใหม่ (แบบ duplicateCabinet) วางชุดเดิมซ้ำกี่ครั้งก็ไม่ชนกัน _csGroup ได้รหัสใหม่เหมือนตอนโหลดโมเดล เลขตู้/เลข Part แจกใหม่ตามตู้ใหม่
+       คลิก = ลงผนังที่เลือก หมุนตามผนัง ต่อท้ายตู้ที่มีอยู่ · ชุดลอย (ตอนบันทึกไม่มีตู้ติดผนัง) = กลางห้อง · กดค้างลากลงจอ = ตามเมาส์ด้วยตัวลากทั้งชุด plmsGrab
+     · ไม่เก็บ: ไม้ไฟ (ระบบวางตามค่าห้อง) · ตีนตู้/ฟิลเลอร์บน (ชิ้นแสดงผลจากแนวตู้)
+   ปิด SN_OFF.plSet */
+const PLSET_PFX="plset:", PLSET_CAB=["cabDX","cabColors","cabNums","cabVarTxt","cabDP","cabFrontEdge","cabFrontDir"];
+function plSetOn(){ return !snOff("plSet")&&!VIEW_ONLY; }
+function plSetTab(){ return plSetOn()?[["_set","🧩 ชุดตู้"]]:[]; }
+function plSetYawOf(K,inst){ const y=k=>(((cvbYawFor(k)||0)%360)+360)%360, n={}; K.forEach(k=>{ const v=y(k); n[v]=(n[v]||0)+1; });
+  if(inst!=null&&plBoardsOf(inst).length){ const own=y(inst); if(n[own]/K.length>=0.3) return own; }
+  return +Object.keys(n).sort((a,b)=>n[b]-n[a])[0]||0; }
+/* ตู้ที่เลือก + ตู้ลูกในช่อง + ชุดกล่องโค้ง + ของระบบ Cosimo ที่อยู่ในกรอบชุดทั้งชิ้น (ท่อนขาที่วิ่งออกนอกชุดไม่นับ) */
+function plSetExpand(K){ const M=plCabMap(), all=new Set((K||[]).map(String));
+  for(let g=0,more=true;more&&g<8;g++){ more=false; state.boards.forEach(b=>{ if(!b||!b.cabInst) return; const i=String(b.cabInst); if(all.has(i)||!M[i]) return;
+      const h=(b._nest&&b._nest.host!=null)?b._nest.host:((b._cvb&&b._cvb.host!=null)?b._cvb.host:null); if(h!=null&&all.has(String(h))){ all.add(i); more=true; } }); }
+  const lo=[1e9,1e9,1e9], hi=[-1e9,-1e9,-1e9]; all.forEach(i=>{ if(!M[i]) return; const f=plFp(M[i]); if(!isFinite(f.lo[0])) return; for(let a=0;a<3;a++){ lo[a]=Math.min(lo[a],f.lo[a]); hi[a]=Math.max(hi[a],f.hi[a]); } });
+  Object.keys(M).forEach(i=>{ if(all.has(i)) return; let sys=false; try{ sys=!plmsSelectable(i)&&!plIsLightPanel(i); }catch(e){} if(!sys) return;
+    const f=plFp(M[i]); if(isFinite(f.lo[0])&&[0,2].every(a=>f.lo[a]>=lo[a]-60&&f.hi[a]<=hi[a]+60)) all.add(i); });
+  return [...all]; }
+/* รูปการ์ด: มุมเฉียงหน้าเหนือ ตามทิศที่ชุดหัน เห็นเฉพาะตู้ในชุด + ท็อปที่อยู่เหนือชุด */
+function plSetShot(K,yaw){ if((typeof noGL!=="undefined"&&noGL)||typeof renderer==="undefined"||!renderer) return "";
+  const insts=plSetExpand(K), set=new Set(insts), ids=new Set(), lo=[1e9,1e9,1e9], hi=[-1e9,-1e9,-1e9];
+  state.boards.forEach(b=>{ if(b&&set.has(String(b.cabInst))) ids.add(b.id); });
+  insts.forEach(k=>{ const f=plFp(plBoardsOf(k)); if(!isFinite(f.lo[0])) return; for(let a=0;a<3;a++){ lo[a]=Math.min(lo[a],f.lo[a]); hi[a]=Math.max(hi[a],f.hi[a]); } });
+  if(!(hi[0]>lo[0])) return "";
+  const q=(((yaw||0)%360)+360)%360*Math.PI/180, cs=Math.cos(q), sn=Math.sin(q), v=[0.55,0.5,1], dir=new THREE.Vector3(v[0]*cs+v[2]*sn,v[1],-v[0]*sn+v[2]*cs).normalize();
+  const c=new THREE.Vector3((lo[0]+hi[0])/2,(lo[1]+hi[1])/2,(lo[2]+hi[2])/2), w=320, h=220;
+  const cam=new THREE.OrthographicCamera(-1,1,1,-1,1,60000); cam.position.copy(c).addScaledVector(dir,20000); cam.up.set(0,1,0); cam.lookAt(c); cam.updateMatrixWorld(true);
+  const inv=new THREE.Matrix4().copy(cam.matrixWorld).invert(); let mx=1, my=1;
+  for(const X of [lo[0],hi[0]]) for(const Y of [lo[1],hi[1]]) for(const Z of [lo[2],hi[2]]){ const p=new THREE.Vector3(X,Y,Z).applyMatrix4(inv); mx=Math.max(mx,Math.abs(p.x)); my=Math.max(my,Math.abs(p.y)); }
+  const half=Math.max(mx/(w/h),my)*1.08; cam.left=-half*w/h; cam.right=half*w/h; cam.top=half; cam.bottom=-half; cam.updateProjectionMatrix();
+  const keep={pr:renderer.getPixelRatio(), sz:renderer.getSize(new THREE.Vector2()), bg:scene.background, fog:scene.fog}, hid=[], Hd=o=>{ if(o&&o.visible){ o.visible=false; hid.push(o); } };
+  [selBox,cabBox,axisLine,grid,(typeof PLD!=="undefined"&&PLD)?PLD.grp:null,(typeof _msGrp!=="undefined")?_msGrp:null,PL.grp,(typeof PLMS!=="undefined")?PLMS.box:null].forEach(Hd);
+  root.traverse(o=>{ const u=o.userData||{}; if(o.isSprite||u.label||(u.id!=null&&!ids.has(u.id))) Hd(o); });
+  (typeof meshes!=="undefined"?meshes:[]).forEach(m=>{ const id=m&&m.mesh&&m.mesh.userData&&m.mesh.userData.id; if(id!=null&&!ids.has(id)) Hd(m.mesh); });
+  if(PL.wtGrp) PL.wtGrp.children.forEach(o=>{ const B=new THREE.Box3().setFromObject(o); if(B.isEmpty()||B.max.x<lo[0]||B.min.x>hi[0]||B.max.z<lo[2]||B.min.z>hi[2]) Hd(o); });
+  let url="";
+  try{ scene.background=new THREE.Color("#ffffff"); scene.fog=null; renderer.setPixelRatio(1); renderer.setSize(w,h,false); renderer.render(scene,cam); url=renderer.domElement.toDataURL("image/jpeg",0.82); }
+  catch(e){ console.warn("plSetShot:",e); }
+  finally{ hid.forEach(o=>o.visible=true); scene.background=keep.bg; scene.fog=keep.fog; renderer.setPixelRatio(keep.pr); renderer.setSize(keep.sz.x,keep.sz.y);
+    try{ camera.aspect=innerWidth/innerHeight; camera.updateProjectionMatrix(); }catch(e){} invalidate(); }
+  return url; }
+function plSetPack(K,nm,thumb){ const insts=plSetExpand(K), set=new Set(insts), boards=[], cl=o=>JSON.parse(JSON.stringify(o));
+  state.boards.forEach(b=>{ if(b&&b.cabInst&&!b._lineDisp&&!b._lineCab&&set.has(String(b.cabInst))) boards.push(cl(b)); });
+  const cab={}; PLSET_CAB.forEach(k=>{ const m=state[k]; if(!m) return; insts.forEach(i=>{ if(m[i]!=null) (cab[k]=cab[k]||{})[i]=cl(m[i]); }); });
+  const obj=((state.room&&state.room.obj)||[]).filter(o=>o&&o.host!=null&&set.has(String(o.host))&&PLO_T[o.k]&&PLO_T[o.k].appl).map(cl);
+  const lo=[1e9,1e9,1e9], hi=[-1e9,-1e9,-1e9]; K.forEach(k=>{ const f=plFp(plBoardsOf(k)); if(!isFinite(f.lo[0])) return; lo[1]=Math.min(lo[1],f.ylo); hi[1]=Math.max(hi[1],f.hi[1]); [0,2].forEach(a=>{ lo[a]=Math.min(lo[a],f.lo[a]); hi[a]=Math.max(hi[a],f.hi[a]); }); });
+  const yaw0=plSetYawOf(K,state.selectedCab), W0=Object.values(PL_WALLS).find(W=>W.yaw===yaw0)||PL_WALLS.back, codes=K.map(k=>String(plFp(plBoardsOf(k)).code||"")).filter(Boolean);
+  let top=null, topTex=null; try{ if(plWtOn()&&K.some(k=>plLevelOf(plFp(plBoardsOf(k)).code)==="base")){ top=cl(plWt()); delete top.cut; const m=/^tex:(.+)$/.exec(String(top.pat||"")); if(m){ const e=(state.room.texLib||[]).find(x=>x&&String(x.id)===m[1]); if(e) topTex=cl(e); } } }catch(e){ console.error("plSetTop:",e); }
+  const prim=K.find(k=>(((cvbYawFor(k)||0)%360)+360)%360===yaw0)||K[0];
+  return {v:1, name:nm, at:new Date().toISOString(), n:K.length, codes, keys:K.map(String), prim:String(prim), yaw0, free:!K.some(k=>{ try{ return !!plWallOf(k); }catch(e){ return false; } }),
+    W:Math.round(hi[W0.ax]-lo[W0.ax]), D:Math.round(hi[W0.pa]-lo[W0.pa]), H:Math.round(hi[1]-lo[1]), thumb:thumb||"", top, topTex, data:{boards,cab,obj}}; }
+async function plSetSave(){ if(!plSetOn()) return false;
+  const K0=plmsCur(); if(K0.length<2){ toast("เลือกตู้อย่างน้อย 2 ใบก่อน (Ctrl+คลิก หรือ Ctrl+ลากกรอบ)"); return false; }
+  const cd=K0.map(k=>plFp(plBoardsOf(k)).code||k), cnt={}; cd.forEach(c=>{ cnt[c]=(cnt[c]||0)+1; });
+  const nm0=await dialog({title:"🧩 บันทึกเป็นชุดตู้", input:true, value:"", placeholder:"ชื่อชุด เช่น Island ครัวกลาง", ok:"บันทึก",
+    html:'<div style="font-size:12px;line-height:1.6;color:var(--ink-dim)">'+K0.length+' ตู้: '+escapeHtml(Object.keys(cnt).map(c=>c+(cnt[c]>1?(" ×"+cnt[c]):"")).join(" · "))+'<br>แต่ละตู้ยังมีรหัสของตัวเอง ไม่รวมเป็นรหัสเดียว · เก็บขนาด สี ตัวแปร อุปกรณ์ เครื่องใช้ที่ติดตู้ และค่าท็อป · ลงไฟล์กลาง ทุกเครื่องเห็น</div>'});
+  if(nm0==null) return false; const nm=String(nm0).trim().replace(/\s+/g," ").slice(0,80); if(!nm){ toast("ใส่ชื่อชุดก่อน"); return false; }
+  const key=PLSET_PFX+nm; let bz=null;
+  try{ const db=await getDB(), ex=await db.from("app_settings").select("key").eq("key",key).maybeSingle();
+    if(ex&&ex.data&&!(await dialog({title:"มีชุดชื่อ “"+nm+"” อยู่แล้ว — บันทึกทับ?", ok:"บันทึกทับ"}))) return false;
+    const M=plCabMap(), K=K0.filter(k=>M[k]); if(K.length<2){ toast("ตู้ที่เลือกหายไปแล้ว ลองเลือกใหม่"); return false; }
+    try{ if(typeof busyOpen==="function"&&!snOff("saveBusy")){ bz=busyOpen("กำลังบันทึกชุดตู้ “"+nm+"”"); bz.step("เขียน "+K.length+" ตู้ ลงไฟล์กลาง…",45); await bz.tick(); } }catch(e){ bz=null; }
+    const val=plSetPack(K,nm,plSetShot(K,plSetYawOf(K,state.selectedCab)));
+    const res=await db.from("app_settings").upsert({key, value:JSON.stringify(val)},{onConflict:"key"}); if(res&&res.error) throw res.error;
+    PL.sets=null; PL.tab="_set"; PL.q=""; { const qi=$("plQ"); if(qi) qi.value=""; } plPanelGrid();
+    toast("🧩 บันทึกชุด “"+nm+"” "+K.length+" ตู้แล้ว — อยู่ที่แท็บ 🧩 ชุดตู้ ในแคตตาล็อกขวา"); return true; }
+  catch(e){ console.error("plSetSave:",e); toast("บันทึกชุดตู้ไม่สำเร็จ: "+((e&&e.message)||e)); return false; }
+  finally{ try{ if(bz) bz.done(); }catch(e){} } }
+async function plSetList(){ const db=await getDB(), res=await db.from("app_settings").select("key,value").like("key",PLSET_PFX+"%"); if(res.error) throw res.error;
+  PL.sets=(res.data||[]).map(x=>{ let v=x&&x.value; try{ if(typeof v==="string") v=JSON.parse(v); }catch(e){ v=null; } return (v&&v.data&&Array.isArray(v.data.boards))?Object.assign({key:x.key},v):null; })
+    .filter(Boolean).sort((a,b)=>String(a.name).localeCompare(String(b.name),"th")); PL.setsAt=Date.now(); return PL.sets; }
+function plSetGrid(tabs,grid){ const have=new Set((PL.items||[]).map(x=>x.kind));
+  const ks=[["","ทั้งหมด"]].concat(CAT_KINDS.filter(k=>have.has(k[0]))).concat(plSetTab()).concat(snOff("plObj")?[]:[["_room",PLO_TAB]]);
+  tabs.innerHTML=ks.map(k=>'<button data-t="'+k[0]+'" class="'+(k[0]===PL.tab?"on":"")+'">'+k[1]+'</button>').join("");
+  tabs.querySelectorAll("button").forEach(bt=>bt.onclick=()=>{ PL.tab=bt.dataset.t; plPanelGrid(); });
+  if(PL.sets&&Date.now()-(PL.setsAt||0)>60000) PL.sets=null;                   // เครื่องอื่นบันทึกชุดใหม่ = เห็นเมื่อกลับมาแท็บนี้
+  if(!PL.sets){ grid.innerHTML='<div style="grid-column:1/-1;color:var(--ink-dim)">กำลังอ่านชุดตู้…</div>';
+    plSetList().then(()=>{ if(PL.tab==="_set") plPanelGrid(); }).catch(e=>{ console.error("plSetList:",e); if(PL.tab==="_set") grid.innerHTML='<div style="grid-column:1/-1;color:#b42318">อ่านชุดตู้ไม่ได้: '+escapeHtml(String((e&&e.message)||e))+'</div>'; }); return; }
+  const q=String(PL.q||"").trim().toUpperCase(), list=PL.sets.filter(x=>!q||String(x.name).toUpperCase().indexOf(q)>=0||(x.codes||[]).some(c=>String(c).toUpperCase().indexOf(q)>=0));
+  { const cn=$("plCatN"); if(cn) cn.textContent=list.length+" ชุด"; }
+  grid.innerHTML='<div style="grid-column:1/-1;color:var(--ink-dim);font-size:11px;line-height:1.5">'+(PL.sets.length?'คลิก = วางที่ผนังที่เลือก · กดค้างลากลงจอ = วางตรงผนังที่ปล่อย · ':'')+'บันทึกชุดใหม่: เลือกตู้ในห้อง 2 ใบขึ้นไป (Ctrl+คลิก หรือ Ctrl+A) แล้วกด 🧩 บันทึกเป็นชุดตู้ ที่แผงซ้าย</div>'
+    +(PL.sets.length&&!list.length?'<div style="grid-column:1/-1;color:var(--ink-dim)">ไม่พบชุดที่ค้น</div>':'')
+    +list.map((x,i)=>{ const u=/^data:image\//.test(String(x.thumb||""))?x.thumb:"", cc=(x.codes||[]).join(" · ");
+      return '<div class="plCard" data-i="'+i+'" title="'+escapeHtml(x.name+"\n"+cc)+'"><div class="plTh">'+(u?'<img alt="" src="'+escapeHtml(u)+'">':'<span style="font-size:30px">🧩</span>')+'</div>'
+        +'<b style="font-family:inherit">'+escapeHtml(x.name)+'</b><small>'+(+x.n||0)+' ตู้ · '+(+x.W||0)+'×'+(+x.D||0)+'×'+(+x.H||0)+'</small>'
+        +'<div style="display:flex;gap:4px;align-items:center"><small style="flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">'+escapeHtml(cc)+'</small><button class="ibtn" data-del="1" title="ลบชุดนี้" style="flex:none;width:auto;padding:1px 6px">🗑</button></div></div>'; }).join("");
+  grid.querySelectorAll(".plCard").forEach(cd=>plSetWire(cd,list[+cd.dataset.i])); }
+function plSetWire(cd,x){ if(!x) return;
+  const del=cd.querySelector("[data-del]"); if(del){ del.onpointerdown=ev=>ev.stopPropagation(); del.onclick=async ev=>{ ev.stopPropagation();
+      if(!(await dialog({title:"ลบชุดตู้ “"+x.name+"”?", ok:"ลบ"}))) return;
+      try{ const db=await getDB(), r=await db.from("app_settings").delete().eq("key",x.key); if(r&&r.error) throw r.error; PL.sets=null; plPanelGrid(); toast("🗑 ลบชุด “"+x.name+"” แล้ว · ตู้ที่วางในห้องแล้วไม่เปลี่ยน"); }
+      catch(e){ toast("ลบไม่สำเร็จ: "+((e&&e.message)||e)); } }; }
+  cd.style.cursor="grab"; cd.style.userSelect="none"; cd.querySelectorAll("img").forEach(im=>{ im.draggable=false; }); cd.ondragstart=e=>e.preventDefault();
+  cd.addEventListener("mousedown",e=>e.preventDefault());
+  cd.onclick=ev=>{ if(cd._dragged){ cd._dragged=0; return; } try{ plSetPlace(x,{}); }catch(e){ console.error("plSetPlace:",e); toast("วางชุดไม่ได้: "+((e&&e.message)||e)); } };
+  cd.addEventListener("pointerdown",e=>{ if(e.button!==0||PL.drag) return; if(typeof isLocked==="function"&&isLocked()) return; cd._dragged=0;
+    const st={sx:e.clientX, sy:e.clientY}, tip=()=>$("plDragTip");
+    const cleanup=()=>{ removeEventListener("pointermove",mv,true); removeEventListener("pointerup",up,true); removeEventListener("pointercancel",up,true); document.body.style.cursor=""; const t=tip(); if(t&&!PL.drag) t.textContent=""; };
+    const mv=ev=>{ if(Math.abs(ev.clientX-st.sx)+Math.abs(ev.clientY-st.sy)<6) return; cd._dragged=1; document.body.style.cursor="copy"; try{ getSelection().removeAllRanges(); }catch(_){}
+      const t=tip(); if(t) t.textContent="ลากชุด “"+x.name+"” ลงผนังในจอ 3D แล้วปล่อย";
+      const el=document.elementFromPoint(ev.clientX,ev.clientY); if(!(el&&typeof renderer!=="undefined"&&renderer&&el===renderer.domElement)) return;
+      cleanup(); try{ plSetPlace(x,{ev}); }catch(e){ console.error("plSetPlace:",e); toast("วางชุดไม่ได้: "+((e&&e.message)||e)); } };
+    const up=()=>cleanup();
+    addEventListener("pointermove",mv,true); addEventListener("pointerup",up,true); addEventListener("pointercancel",up,true); }); }
+/* วางชุด: opt.ev = กำลังลากจากการ์ด (ตามเมาส์ต่อ) · ไม่มี = คลิก ลงผนังที่เลือก */
+function plSetPlace(x,opt){ opt=opt||{}; if(!plSetOn()) return null;
+  if(typeof isLocked==="function"&&isLocked()){ try{ guardEdit("วางชุดตู้"); }catch(e){} return null; }
+  const D=x&&x.data; if(!D||!Array.isArray(D.boards)||!D.boards.length){ toast("ชุดตู้นี้ไม่มีข้อมูล"); return null; }
+  try{ plSwapEnd(); }catch(e){}
+  const cam=plCamKeep(), r=plRoom(), nb=plOthers("\u0000"), cl=o=>JSON.parse(JSON.stringify(o)), idMap={}, instMap={};
+  try{ syncUid(); }catch(e){}
+  const copies=D.boards.map(b=>{ const c=cl(b); idMap[b.id]=c.id=uid(); const oi=String(b.cabInst); c.cabInst=instMap[oi]||(instMap[oi]=uid()); return c; });
+  remapRuleRefs(copies,idMap); remapHoleSrc(copies,idMap); try{ healHoleSrc(copies); }catch(e){}
+  { const gm={}; copies.forEach(c=>{ if(c._csGroup) c._csGroup=gm[c._csGroup]||(gm[c._csGroup]="CS"+uid()); }); }
+  copies.forEach(c=>{ const mp=v=>instMap[String(v)];
+    if(c._nest){ const h=mp(c._nest.host); if(h) c._nest=Object.assign({},c._nest,{host:h}); else delete c._nest; delete c._nestSig; }
+    if(c._cvb){ c._cvb=Object.assign({},c._cvb); ["host","host2"].forEach(k=>{ if(c._cvb[k]!=null){ const h=mp(c._cvb[k]); if(h) c._cvb[k]=h; else delete c._cvb[k]; } }); }
+    ["_csmRailOf","_jwaLtOf"].forEach(k=>{ if(c[k]!=null&&mp(c[k])) c[k]=mp(c[k]); });
+    if(Array.isArray(c._jwaHosts)) c._jwaHosts=c._jwaHosts.map(mp).filter(Boolean); });
+  const K=((x.keys||[]).map(k=>instMap[String(k)]).filter(Boolean)), K2=K.length?K:[...new Set(copies.map(c=>String(c.cabInst)))], prim=instMap[String(x.prim)]||K2[0];
+  const foot=()=>{ const lo=[1e9,1e9,1e9], hi=[-1e9,-1e9,-1e9]; K2.forEach(i=>{ const f=plFp(copies.filter(c=>String(c.cabInst)===String(i))); if(!isFinite(f.lo[0])) return; for(let a=0;a<3;a++){ lo[a]=Math.min(lo[a],f.lo[a]); hi[a]=Math.max(hi[a],f.hi[a]); } }); return {lo,hi}; };
+  let f=foot(); const cx=(f.lo[0]+f.hi[0])/2, cz=(f.lo[2]+f.hi[2])/2, d=[0,0,0], yaw0=(((+x.yaw0||0)%360)+360)%360; let dl=0, lbl="", over=0, wk=null;
+  const on=k=>!!(r.walls&&r.walls[k]);
+  const py0=(f.lo[1]+f.hi[1])/2;
+  if(opt.ev){ const p=plFloorPt(opt.ev,py0); d[0]=(p?p.x:r.x0+r.w/2)-cx; d[2]=(p?p.z:r.z0+r.d/2)-cz; }   // กลางชุดอยู่ใต้เมาส์ · ผนังคิดต่อใน plmsDragApply
+  else { wk=x.free?null:(on(PL.wall||"back")?(PL.wall||"back"):(Object.keys(PL_WALLS).find(on)||null));
+    if(wk){ const W=PL_WALLS[wk], A=W.ax, P=W.pa; dl=(((W.yaw-yaw0)%360)+360)%360; if(dl) rotateCabBoards(copies,dl,cx,cz); f=foot();
+      let off=Infinity; K2.forEach(i=>{ const v=(copies.find(c=>String(c.cabInst)===String(i)&&c._plOff!=null)||{})._plOff; off=Math.min(off,Math.max(+v||0,0)); }); if(!isFinite(off)) off=0;
+      d[P]=plFace(r,wk)+W.s*off-(W.s>0?f.lo[P]:f.hi[P]);
+      const len=f.hi[A]-f.lo[A], rg=plRange(r,A), p0=f.lo[P]+d[P], p1=f.hi[P]+d[P], yr={ylo:f.lo[1],hi:f.hi}; let a=rg[0];
+      nb.filter(n=>plYOver(n,yr)&&n.lo[P]<p1-1&&p0<n.hi[P]-1).sort((m,n)=>m.lo[A]-n.lo[A]).forEach(n=>{ if(n.lo[A]<a+len-1&&n.hi[A]>a+1) a=n.hi[A]; });
+      d[A]=a-f.lo[A]; over=a+len-rg[1]; lbl=" ลงผนัง"+W.lbl; }
+    else { d[0]=r.x0+r.w/2-cx; d[2]=r.z0+r.d/2-cz; lbl=" กลางห้อง"; } }
+  copies.forEach(c=>{ c.x=round(c.x+d[0]); c.z=round(c.z+d[2]); });
+  state.boards=state.boards.concat(copies);
+  Object.keys(D.cab||{}).forEach(k=>{ const m=D.cab[k]; if(!m) return; state[k]=state[k]||{}; Object.keys(m).forEach(i=>{ const ni=instMap[i]; if(ni) state[k][ni]=cl(m[i]); }); });
+  const objs=[]; (D.obj||[]).forEach(o0=>{ const h=instMap[String(o0.host)]; if(!h) return; const o=cl(o0), rad=dl*Math.PI/180, cs=Math.cos(rad), sn=Math.sin(rad), dx=(+o.x||0)-cx, dz=(+o.z||0)-cz;
+    o.id=uid(); o.host=h; o.x=Math.round((cx+dx*cs+dz*sn+d[0])*10)/10; o.z=Math.round((cz-dx*sn+dz*cs+d[2])*10)/10; if(dl) o.yaw=(((+o.yaw||0)+dl)%360+360)%360; objs.push(o); });
+  if(objs.length){ if(!Array.isArray(r.obj)) r.obj=[]; objs.forEach(o=>r.obj.push(o)); }
+  let topMsg=""; if(x.top&&!snOff("plWorktop")){ try{ if(!plWtOn()){ r.top=cl(x.top); r.top.on=true; r.top.cut=[]; if(x.topTex){ if(!Array.isArray(r.texLib)) r.texLib=[]; if(!r.texLib.some(e=>e&&e.id===x.topTex.id)) r.texLib.push(cl(x.topTex)); } topMsg=" · เปิดท็อป "+plWtName(r.top); }
+      else if(plWtName()!==plWtName(Object.assign({},x.top))) topMsg=" · ใช้ท็อปของห้องนี้ ("+plWtName()+")"; }catch(e){ console.error("plSetTop:",e); } }
+  try{ buildGTones(); }catch(e){}
+  sync(0); try{ csmBaseRelayout(null); }catch(e){ console.error("csmBase:",e); }
+  objs.forEach(o=>{ try{ plaResnap(o); }catch(e){ console.error("plSetObj:",e); } }); if(objs.length||topMsg){ try{ plRoomDraw(); }catch(e){} }
+  plCamPut(cam);
+  const M=plCabMap(), sel=K2.filter(i=>M[i]&&plmsSelectable(i)), S=sel.length?sel:K2.filter(i=>M[i]); plmsSet(S,S.indexOf(prim)>=0?prim:S[0]);
+  if(opt.ev){ const g=plmsGrab(S,S.indexOf(prim)>=0?prim:S[0],py0,opt.ev); g.p0=g.p0||new THREE.Vector3(g.c0[0],py0,g.c0[2]); g.c0=[g.p0.x,0,g.p0.z];   // กลางชุดตรงจุดเริ่มพอดี เมาส์ไปไหน ชุดไปนั่น
+    g.moved=true; g.fresh=true; g.setName=x.name; g.ev={clientX:opt.ev.clientX, clientY:opt.ev.clientY, alt:!!opt.ev.altKey}; PL.drag=g; plmsDragApply(g); if(topMsg) setTimeout(()=>{ try{ toast(topMsg.replace(/^ · /,"")); }catch(e){} },1800); return S; }
+  toast("วางชุด “"+x.name+"” "+S.length+" ตู้"+lbl+(dl?" · หมุนตามผนัง":"")+topMsg+(over>1?(" · ⚠ ยาวเกินผนัง "+Math.round(over)+" มม."):"")+" — Ctrl+Z ย้อนได้");
+  return S; }
+/* ───────── v1.682: เปลี่ยนรุ่นจากแคตตาล็อกขวา ─────────
+   ผู้ใช้ 5/11 11:33: “อาจจะปรับเปลี่ยนรุ่นตู้ ทำให้เลือกจากแคตตาล็อคด้านขวามาเลยได้ไหม”
+   เดิม: 🔁 รุ่น เปิดหน้าต่างเล็กแล้วค้นรหัสใหม่อีกรอบ · คลิกการ์ดในแคตตาล็อก = วางตู้ใบใหม่เสมอ
+   ตอนนี้: กด 🔁 รุ่น แล้วคลิกการ์ดในแคตตาล็อกขวาได้เลย ขนาด สี ที่เดิม เหมือนเลือกจากหน้าต่าง (plSwap ตัวเดิม) ทำครั้งเดียวแล้วการ์ดกลับไปวางตู้ตามปกติ
+     กดนอกแคตตาล็อก หรือ Esc = เลิก · ปิด SN_OFF.plSwapCat */
+function plSwapEnd(){ PL.swapPick=null; const b=$("plSwapBar"); if(b) b.remove(); }
+function plSwapPick(inst,code){ if(snOff("plSwapCat")) return; const g0=$("plGrid"); if(!g0) return; PL.swapPick=String(inst);
+  if(PL.tab==="_room"||PL.tab==="_set"){ PL.tab=plKindOf(code)||""; plPanelGrid(); }
+  const g=$("plGrid"); let b=$("plSwapBar"); if(!b){ b=document.createElement("div"); b.id="plSwapBar"; b.style.cssText="margin:6px 10px 0;padding:6px 9px;border-radius:8px;background:rgba(37,99,235,.12);color:#2563eb;font-size:11.5px;line-height:1.45;font-weight:600"; g.parentNode.insertBefore(b,g); }
+  b.textContent="🔁 เปลี่ยนรุ่น "+code+" — คลิกการ์ดรุ่นที่ต้องการ · Esc = ยกเลิก"; }
+addEventListener("pointerdown",e=>{ if(!PL.swapPick) return; const t=e.target; if(t&&t.closest&&t.closest("#plCat,#plGrid,#plTabs,#plColor,#plSwapBar")) return; plSwapEnd(); },true);
+addEventListener("keydown",e=>{ if(e.key==="Escape"&&PL.swapPick) plSwapEnd(); });
 /* ห้องครอบตู้ที่มีอยู่: หลังห้อง = หลังตู้ที่ลึกสุด · กว้าง/ลึกปัดขึ้นทีละ 100 */
 function plFitRoom(force){
   const m=plCabMap(), ks=Object.keys(m); if(!ks.length) return false;
@@ -48123,7 +48353,7 @@ function plCatDragWire(cd,x){
   cd.addEventListener("pointerdown",e=>{
     if(e.button!==0||(e.target&&e.target.tagName==="SELECT")||PL.drag) return;
     if(typeof isLocked==="function"&&isLocked()) return;
-    cd._dragged=0;
+    cd._dragged=0; if(PL.swapPick) return;   /* v1.682: โหมดเปลี่ยนรุ่น คลิกอย่างเดียว ไม่ลากวางตู้เพิ่ม */
     const st={sx:e.clientX, sy:e.clientY, last:e, started:false, up:false};
     const tip=()=>$("plDragTip");
     const overCanvas=ev=>{ const el=document.elementFromPoint(ev.clientX,ev.clientY); return !!(el&&typeof renderer!=="undefined"&&renderer&&el===renderer.domElement); };
