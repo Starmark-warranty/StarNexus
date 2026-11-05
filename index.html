@@ -3283,7 +3283,7 @@ body[data-theme="dark"] .splash-dots span{background:rgba(255,255,255,.25)}
    ===================================================================== */
 /* ---- APP_META: แหล่งความจริงเดียวของเวอร์ชัน (ดูได้จาก console / คลิกชื่อแอป) ---- */
 const APP_META={
-  name:"StarNexus", version:"1.676", build:"2026-11-05/slot-post",
+  name:"StarNexus", version:"1.677", build:"2026-11-05/part-ask",
   file:"StarNexus.html", basedOn:"Furnitech_V3.html (v3.11)",
   /* ───────── เริ่มนับเวอร์ชันใหม่ที่ 1.001 (21/08/2026) ─────────
      ของเดิมนับมาถึง 42.1 แล้ววิ่งเป็นทศนิยมสองชั้นซึ่งอ่านลำดับยาก
@@ -3291,6 +3291,7 @@ const APP_META={
      ประวัติเก่าเก็บไว้ทั้งหมดตามเลขเดิม ไม่ไล่เขียนใหม่ เพราะเลขในนั้นถูกอ้างถึงไปแล้ว
      รายการที่อยู่ใต้ 1.001 ลงไปจึงเป็นเลขชุดเก่า อ่านต่อกันได้ตามวันที่ */
   changelog:[
+    ["1.677","2026-11-05","FIX+FEAT ① เลข Part กระโดด (project 75 · LRT005-01 เป็น P13–15 · P19 · P22–24 · P83–87): กด Transfer หรือออก MPR แล้วถ้าออเดอร์เคยส่งเลขไปแล้วและมีตู้ที่แก้ จะถามให้เลือก 3 ทาง — เรียงใหม่เฉพาะตู้ที่แก้ (ทั้งใบเรียงติดกัน มีเลขว่างพอก็เติมเข้าไป ตู้อื่นเลขเดิม) · เจนใหม่ทั้งออเดอร์ · ใช้เลขเดิมที่ส่ง Production แล้ว · ไม่มีอะไรเปลี่ยนไม่ถาม เลือกเลขเดิมแล้วไม่ถามซ้ำ · กดออก MPR ครั้งแรกล็อกเลขด้วย (เดิมล็อกเฉพาะตอน Transfer) · มีปุ่มในหน้ารายการชิ้น · ปิด SN_OFF.pidAsk / pidLockMpr ② กดคานสีหน้าบานแล้วคาน DX ไม่ได้สี: ตัวเลือกนับเฉพาะคานปกติ ชิ้น DX Panel/Floor/Back/Top ไม่มี rule จึงตกหล่น · กล่องขึ้น “ตู้ใบนี้ยังไม่มี” · ตอนนี้นับคาน DX ด้วยทั้งชุด · ปิด SN_OFF.chandleDx"],
     ["1.676","2026-11-05","FIX ลากตู้เข้าหาแถว Cosimo ต้องเว้นเสาปลาย (เจอตอนเทียบผลของ 1.675): 1.675 เอาขาแผ่นไม้ออกจากของขวาง ตู้ที่ลากจากช่องกว้างจึงไปชิดหน้าช่อง 3947 ทับแนวเสา แล้วเสาปลายหายเงียบ ๆ เพราะนับว่าชนตู้ — ตอนนี้ลากแล้วหยุดที่ผิวเสา 3966 · กด Alt ค้างระหว่างลาก = ชิดช่องไม่มีเสาแบบเดิม · ป้ายบอกตอนลาก · ทำสำเนา/เปลี่ยนรุ่นไม่กระทบ"],
     ["1.675","2026-11-05","FIX+UX ลากตู้เข้าช่องในห้องออกแบบ (ผู้ใช้ 07:52 project 74 “ปรับโปรแกรมให้ ลากเข้าช่องง่ายๆ หน่อยครับ”: ลาก MWA021 กว้าง 1009.5 เข้าช่องระหว่างเสาปลาย Cosimo กับตู้ข้าง ๆ แล้วตู้ไม่ขยับเลย ค้างนอกห้อง) — ขาแผ่นไม้ Cosimo ไม่ขวางตู้ (ขาจัดตามช่องเอง · เดิมยื่นเลยเสาปลาย 4 ก็ปิดช่องทั้งช่อง) · ตู้พอดีช่องดูดเข้าเองเมื่อชี้ใกล้ ชนสองฝั่งชนะชนฝั่งเดียว นับผิวเสาปลายด้วย · ช่องแคบกว่าตู้ไม่เกิน 10 เข้าได้พร้อมบอกว่าทับเท่าไหร่ · ป้ายตอนลากบอกเหตุผลเมื่อเข้าไม่ได้ · SN_OFF.plSlotEasy"],
     ["1.674","2026-11-05","FIX ตีนตู้/ฟิลเลอร์บนขาดเป็นท่อน 1000 (ผู้ใช้ 01:06 ภาพ project 36) — ตู้แถวเกาะกับตู้แถวผนังหันทิศเดียวกันสลับกันตอนต่อแนว แนวจึงขาดทุกครั้งที่เจออีกแถว · ตอนนี้แต่ละแถวต่อกันเอง รอยต่ออยู่ระหว่างตู้ไม่เกินความยาวไม้"],
@@ -26004,10 +26005,18 @@ function boardFrontGap(b){
   const c=(+b.x||0)*d[0]+(+b.y||0)*d[1]+(+b.z||0)*d[2];
   return Math.round((plane-(c+ext))*100)/100;
 }
+/* ───────── v1.677: คาน DX ต้องได้สีคานหน้าตู้ด้วย ─────────
+   ผู้ใช้ 5/11/2026 08:23 (project 75 · LRT005-01 · ภาพกล่องสี + ภาพตู้): “ผมกดคานสีหน้าบาน แต่ ไม่ได้สีหน้าบาน”
+   เดิม: นับเฉพาะ isRail (b.rule.kind==="rail") · พอเปลี่ยน Front Rail เป็นคาน DX ชิ้น DX Panel ไม่มี rule (เก็บไว้ที่ _dxRule)
+     กล่องจึงขึ้น “ตู้ใบนี้ยังไม่มี” เหลือแค่ Back Rail ที่อยู่หลังตู้ · แถบขาวใต้ทอปใน 3D คือ DX Panel ตัวนี้
+   ตอนนี้: ชิ้น _dx นับเป็นคานด้วย · ระยะร่นใช้ _dxSetb ของทั้งชุด เพราะ DX Back ของชุด L/C อยู่ลึกแต่มองเห็นจากหน้าตู้
+     จึงต้องได้สีเดียวกับ DX Floor/DX Top · ตู้ที่ไม่ได้ตั้งสีคาน ไม่มีอะไรเปลี่ยน · ปิดด้วย SN_OFF.chandleDx=1 */
+function chandleIsRail(b){ return !!b&&(isRail(b)||(!!b._dx&&!snOff("chandleDx"))); }
+function chandleRailGap(b){ return (b&&b._dx&&!snOff("chandleDx"))?(+b._dxSetb||0):boardFrontGap(b); }
 function isChandleRail(b){
   try{
-    if(!b||b._virtual||!isRail(b)) return false;
-    const gap=boardFrontGap(b);
+    if(!b||b._virtual||!chandleIsRail(b)) return false;
+    const gap=chandleRailGap(b);
     return (gap!=null)&&(gap<coreDropLimit());
   }catch(e){ return false; }
 }
@@ -30311,6 +30320,9 @@ function boardRole(b){
      SN_OFF.frontEdge=1   ปิดขอบหน้าตู้ (v1.125)
      SN_OFF.frontEdge3D=1 ปิดเฉพาะแถบขอบหน้าตู้ใน 3D ค่ายังออกไฟล์ตามเดิม (v1.141)
      SN_OFF.chandle=1     ปิดการให้คานหน้าตู้ใช้สีหน้าบาน กลับไปใช้สีตู้ (v1.146)
+     SN_OFF.chandleDx=1   คาน DX ไม่รับสีคานหน้าตู้ ใช้สีตู้แบบเดิม (v1.677)
+     SN_OFF.pidAsk=1      กด Transfer/ออก MPR แล้วไม่ถามเรื่องเลข Part ใช้เลขเดิมต่อท้ายแบบเดิม (v1.677)
+     SN_OFF.pidLockMpr=1  ออก MPR แล้วไม่ล็อกเลข Part ล็อกเฉพาะตอน Transfer แบบเดิม (v1.677)
      SN_OFF.dpRail=1      ปิดการใส่คานปิดรอยต่อจากคำสั่งปรับบาน (v1.148)
      SN_OFF.plKitOpts=1   แท็บ Fitting Concept ในกล่องสีห้องออกแบบ ขึ้นเฉพาะรหัสที่เคยมากับ XML แบบเดิม (v1.670)
      SN_OFF.plCopy=1      ไม่มีปุ่มคัดลอกคุณสมบัติในแผงห้องออกแบบ (v1.670)
@@ -32576,14 +32588,14 @@ function openCabVars(board){
     /* ───────── v1.149: สีคานหน้าตู้ — เลือกเอง ไม่เดาให้ ───────── */
     { const _chRaw=chandleRawOf(inst), _chKey=chandleKeyOf(inst), _chFront=frontColorOf(inst);
       const _chNow=chandleColorOf(inst);
-      const _chAll=(state.boards||[]).filter(x=>x&&String(x.cabInst||"")===String(inst)&&isRail(x)&&!x._virtual);
+      const _chAll=(state.boards||[]).filter(x=>x&&String(x.cabInst||"")===String(inst)&&chandleIsRail(x)&&!x._virtual);   /* v1.677: นับคาน DX ด้วย */
       const _chRails=_chAll.filter(isChandleRail);
       const _chMode=_chRaw?((_chRaw===CHANDLE_FOLLOW)?"front":"code"):"cab";
       const _chDl="chdl"+inst;
       html+=`<div class="sumh" style="margin-top:14px">สีคานหน้าตู้ <span class="muted" style="font-weight:400">— ${escapeHtml(_chKey)}</span></div>
       <div class="muted" style="font-size:11px;margin-bottom:6px">คานที่ยืนอยู่ระนาบหน้าตู้ ${_chRails.length?("มี "+_chRails.length+" ตัว"):"— ตู้ใบนี้ยังไม่มี"} · ไม่เลือก = ใช้สีตู้ตามปกติ</div>
       ${_chAll.length?`<div style="font-size:11px;margin-bottom:6px;line-height:1.6">${_chAll.map(x=>{
-        const g=boardFrontGap(x), on=isChandleRail(x);
+        const g=chandleRailGap(x), on=isChandleRail(x);
         return `<div style="color:${on?"#2e9e5b":"var(--ink-dim)"}">${on?"✓":"○"} ${escapeHtml(x.name||"คาน")} — ร่นจากหน้าตู้ ${(g==null?"วัดไม่ได้":Math.round(g)+" มม.")} · ${on?"ได้สีนี้":"ไม่ได้ (ไม่ได้อยู่ระนาบหน้า)"}</div>`;
       }).join("")}</div>`:""}
       <div style="display:flex;gap:6px;align-items:center;flex-wrap:wrap;margin-bottom:4px">
@@ -63264,6 +63276,7 @@ function makeZip(files){   // files: [{name, text}]
 async function exportAllMPR(_ev,_opt){
   const _toDir=!!(_opt&&_opt.toDir);   // v1.496: ปุ่ม “MPR → Weeke” ใช้ชุดไฟล์ + ด่านตรวจเดียวกัน แล้วเขียนลงโฟลเดอร์เอง (ไม่ทำ zip)
   try{ await pidLockEnsure(); }catch(e){}   /* v1.411: ชื่อไฟล์เจาะ = บาร์โค้ดที่ Production มี (ล็อกแล้ว) */
+  if(!await pidNumberGate("mpr")) return;   /* v1.677: เลข Part */
   const seqMap=orderPartSeqMap(); const files=[]; let withDrill=0, skipped=0, partCount=0;
   /* v1.398: เดินรายการที่แตกเพาะโครงแล้ว (mprOrderList) — ลำดับเดียวกับบาร์โค้ดในใบส่งออก */
   mprOrderList().forEach(({b,g})=>{
@@ -63302,6 +63315,9 @@ async function exportAllMPR(_ev,_opt){
           ok:"ปิด"});
         return; }
       if(_miss.length) console.warn("บาร์ในใบส่งออกที่ไม่มีไฟล์เจาะ:",_miss); } }
+  /* v1.677: ไฟล์เจาะชื่อตามเลขชุดนี้แล้ว = ล็อกเลข ไม่งั้นแก้งานต่อแล้วเลขเลื่อนเงียบ ๆ ไม่ตรงไฟล์ที่ออกไป (เลขเอาจากแผนเดียวกับชื่อไฟล์) */
+  if(!snOff("pidLockMpr")&&!snOff("pidLock")){ try{ const oid=String(orderId()||"").trim();
+      if(oid&&!/^BF_\d+$/.test(oid)){ const lk=pidLockBuild({orderID:oid,groups:[]}); if(lk) pidLockSet(lk); } }catch(e){ console.error("pidLock MPR:",e); } }
   if(_toDir) return {files, withDrill, skipped, partCount, miss:_miss};   // v1.496
   const blob=makeZip(files); const a=document.createElement("a");
   a.href=URL.createObjectURL(blob); a.download=orderId()+"_MPR.zip"; a.click(); setTimeout(()=>URL.revokeObjectURL(a.href),3000);
@@ -64507,9 +64523,98 @@ function pidLockBuild(data){
   P.ents.forEach(e=>{ const pp=e.kids.map(k=>byKid[String(k.id)]||P.byKid[k.id]||0);
     map[e.key]={p:pp,n:String(e.src.name||"")}; pp.forEach(n=>{ if(n>hi) hi=n; }); });
   const now=new Date().toISOString();
-  return {v:1,oid,hi,map,at:now,first:(same&&L.first)||now,n:P.ents.length};
+  return {v:1,oid,hi,map,at:now,first:(same&&L.first)||now,n:P.ents.length,ncOk:(same&&L.ncOk)||undefined};   /* v1.677: ncOk */
 }
 function pidLockSet(lk){ if(!lk) return; state.pidLock=lk; _pidAdopt[lk.oid]=Promise.resolve(lk); try{ delete _pidProdP[lk.oid]; }catch(e){} try{ autosave(); }catch(e){} }
+/* ───────── v1.677: เลข Part กระโดด — ตู้ที่แก้เรียงใหม่ทั้งใบ · ถามตอนกดส่ง ─────────
+   ผู้ใช้ 5/11/2026 08:19 (project 75 · ภาพรายการชิ้น LRT005-01): “PARt ทำไมมันกระโดด น่าจะต้องเพิ่มเงื่อนไขว่า ถ้ายังไม่ได้ กด ออก MPR เลย เรียง Part ได้ครับ
+     แต่ถ้ากดแล้ว แล้วมาแก้ไขลบ Part หรือเพิ่ม ตู้ ก็ต้องเรียง ทั้งตู้ใหม่ เลย ครับ แต่ ถ้าพอเพิ่มตู้ ที่Part ไม่เกิน เท่าที่หายไปก็เติม เข้าไปมั้งตู้ ได้เลย
+     แต่อยากแยกแบบนั้น ไม่ก็ตอนกดส่ง MPR ต้อง ให้มันเลือกว่า เจนใหม่แบบข้อมูลใหม่ หรือ ข้อมูล เก่าที่ส่งไปยัง Production แบบผลิตแล้ว ให้ User เลือกเอา”
+   เดิม: v1.411 ล็อกเลขหลังส่ง Production · ชิ้นที่สร้างใหม่แล้วชื่อไม่ตรงของเดิม (Top · Back Panel 1 · Fixed Shelf · DX Panel) ได้เลขต่อท้ายทั้งออเดอร์เงียบ ๆ
+     LRT005-01 จึงเป็น P13–15 · P19 · P22–24 แล้วโดดไป P83–87 ส่วน P16–18 P20–21 ว่างทิ้งไว้ ไม่มีอะไรถามผู้ใช้เลย
+   ตอนนี้: กด Transfer หรือออก MPR แล้วถ้าออเดอร์มีล็อก และมีตู้ที่แก้ (ชิ้นใหม่ · ชิ้นหาย · เลขไม่ติดกัน) หรือมีตู้ที่ถูกลบ จะถาม 3 ทาง
+     ① เรียงใหม่เฉพาะตู้ที่แก้ — ตู้อื่นเลขเดิม · ตู้ที่แก้ได้เลขติดกันทั้งใบ · ที่เดิมพอก็อยู่ที่เดิม · ตู้ใหม่หาช่องว่างที่พอดีสุดก่อน (เติมเข้าไปทั้งใบ) ไม่พอค่อยต่อท้าย
+     ② เจนใหม่ทั้งออเดอร์ — state.pidLock={reset:true} ตัวเดียวกับปุ่มในหน้ารายการชิ้น (v1.411)
+     ③ ใช้เลขเดิมที่ส่ง Production แล้ว — แบบเดิม · จำไว้ใน L.ncOk ว่าตู้นี้เลขชุดนี้ผู้ใช้รับแล้ว ไม่ถามซ้ำจนกว่าจะแก้อีก
+     ไม่มีอะไรต่าง (เช่น เพิ่มตู้ต่อท้ายแล้วเลขติดกันอยู่แล้ว) = ไม่ถาม · ชิ้นจาก FXF เลขตาม imos ไม่แตะ · ยังไม่มีล็อก = เรียง 1,2,3 เองอยู่แล้ว ไม่ถาม
+     กดออก MPR ครั้งแรกล็อกเลขด้วย (เดิมล็อกเฉพาะตอน Transfer · ไฟล์เจาะออกไปแล้วแก้งานต่อ เลขเลื่อนเงียบ ๆ) ปิด SN_OFF.pidLockMpr=1
+     ปิดการถาม SN_OFF.pidAsk=1 */
+function _pidRangeTxt(a){ const s=[...new Set(a)].filter(n=>n>0).sort((x,y)=>x-y), out=[]; let i=0;
+  while(i<s.length){ let j=i; while(j+1<s.length&&s[j+1]===s[j]+1) j++; out.push(j>i?("P"+s[i]+"–"+s[j]):("P"+s[i])); i=j+1; }
+  return out.join(" · "); }
+function pidLockDiff(opt){
+  const D={cabs:[],gone:[],P:null}; if(!pidLockOn()) return D;
+  const L=state.pidLock, map=L.map||{}, ok=(opt&&opt.all)?{}:(L.ncOk||{});
+  const P=orderPidPlan({keys:true}), fx=_fxfPidRes(P.ents)||{}, by={}, list=[], used=new Set(); D.P=P;
+  P.ents.forEach((e,i)=>{ const k=_pidInstOf(e.src,e.grp);
+    let c=by[k]; if(!c){ c=by[k]={inst:k,label:String(e.grp.productId||e.grp.cab||k),ents:[],nums:[],own:[],fresh:0,gone:0,fx:false,jump:false,sig:""}; list.push(c); }
+    c.ents.push(e); e.pids.forEach(n=>{ c.nums.push(+n); used.add(+n); if(!e.fresh) c.own.push(+n); });
+    if(e.fresh) c.fresh++; if(fx[i]>0) c.fx=true; });
+  Object.keys(map).forEach(k=>{ const m=map[k]; if(!m||!Array.isArray(m.p)) return;
+    const left=m.p.map(Number).filter(n=>n>0&&!used.has(n)); if(!left.length) return;
+    const i=k.slice(0,k.lastIndexOf("|")); if(by[i]) by[i].gone+=left.length; else D.gone.push(...left); });
+  list.forEach(c=>{ if(c.fx) return;
+    const s=c.nums.slice().sort((a,b)=>a-b); c.jump=s.some((n,i)=>i>0&&n!==s[i-1]+1); c.sig=s.join(",");
+    if(c.fresh||c.gone||(c.jump&&ok[c.inst]!==c.sig)) D.cabs.push(c); });
+  return D; }
+function pidTidyPlan(D){
+  const changed=new Set(D.cabs.map(c=>c.inst)), keep=new Set(), got=new Set(), T={pids:new Map(),res:{}};
+  D.P.ents.forEach(e=>{ if(!changed.has(_pidInstOf(e.src,e.grp))) e.pids.forEach(n=>keep.add(+n)); });
+  const top=()=>{ let m=0; keep.forEach(n=>{ if(n>m) m=n; }); got.forEach(n=>{ if(n>m) m=n; }); return m; };
+  const runs=()=>{ const t=top(), r=[]; let a=0;
+    for(let n=1;n<=t;n++){ const f=!keep.has(n)&&!got.has(n); if(f&&!a) a=n; if(!f&&a){ r.push([a,n-1]); a=0; } }
+    return r; };
+  const place=c=>{ const need=c.nums.length, rs=runs(); let st=0;
+    if(c.own.length){ const s=Math.min(...c.own), r=rs.find(x=>x[0]<=s&&s<=x[1]);
+      if(r){ if(s+need-1<=r[1]) st=s; else if(r[1]-r[0]+1>=need) st=r[0]; } }
+    if(!st){ const fit=rs.filter(x=>x[1]-x[0]+1>=need).sort((x,y)=>(x[1]-x[0])-(y[1]-y[0])||x[0]-y[0])[0]; if(fit) st=fit[0]; }
+    if(!st) st=top()+1;
+    let n=st; const nums=[];
+    c.ents.forEach(e=>{ const pp=e.pids.map(()=>{ const v=n++; got.add(v); nums.push(v); return v; }); T.pids.set(e,pp); });
+    T.res[c.inst]={nums,sig:nums.join(",")}; };
+  /* ตู้เดิมเข้าที่ของตัวเองก่อน ตู้ใหม่ค่อยเติมช่องที่เหลือ จะได้ไม่มาแย่งที่กัน */
+  D.cabs.filter(c=>c.own.length).sort((a,b)=>Math.min(...a.own)-Math.min(...b.own)).forEach(place);
+  D.cabs.filter(c=>!c.own.length).forEach(place);
+  return T; }
+function pidLockCommit(D,T,ncOk){
+  const L=state.pidLock, map={}; let hi=0;
+  D.P.ents.forEach(e=>{ const pp=(T&&T.pids.get(e))||e.pids; map[e.key]={p:pp.slice(),n:String(e.src.name||"")}; pp.forEach(n=>{ if(+n>hi) hi=+n; }); });
+  const lk=Object.assign({},L,{map,hi:T?hi:Math.max(hi,+L.hi||0),at:new Date().toISOString(),n:D.P.ents.length,ncOk:ncOk||{}});
+  pidLockSet(lk); return lk; }
+async function pidNumberGate(kind,opt){
+  if(snOff("pidAsk")||snOff("pidLock")||!state.boards.length) return true;
+  try{ await Promise.race([pidLockEnsure(),new Promise(r=>setTimeout(r,15000))]); }catch(e){}
+  let D=null, T=null;
+  try{ D=pidLockDiff(opt); if(!D.cabs.length&&!D.gone.length) return true;
+    T=pidTidyPlan(D);
+    if(!(opt&&opt.all)&&!D.gone.length&&D.cabs.every(c=>!c.gone&&T.res[c.inst].sig===c.sig)) return true;   // ทุกทางได้เลขเท่ากัน ไม่ต้องถาม
+  }catch(e){ console.error("pidAsk:",e); return true; }
+  const total=D.P.ents.reduce((n,e)=>n+e.pids.length,0), rows=D.cabs.slice(0,8), line="padding:8px 10px;border:1px solid var(--line);border-radius:9px;display:flex;gap:8px;margin-top:6px;cursor:pointer;line-height:1.5";
+  const html="<div style='font-size:13px;line-height:1.6'>"
+    +(D.cabs.length?("<div style='font-weight:600'>ตู้ที่แก้ "+D.cabs.length+" ใบ</div>"
+      +"<div style='font-size:12px;max-height:150px;overflow:auto;margin-top:2px'>"
+      +rows.map(c=>"<div><b>"+escapeHtml(c.label)+"</b> · "+c.nums.length+" ชิ้น · ตอนนี้ <span style='font-family:var(--mono)'>"+escapeHtml(_pidRangeTxt(c.nums))+"</span></div>").join("")
+      +(D.cabs.length>rows.length?("<div class='muted'>… อีก "+(D.cabs.length-rows.length)+" ใบ</div>"):"")+"</div>"):"")
+    +(D.gone.length?("<div style='font-size:12px;margin-top:4px'>ตู้ที่ลบออกแล้ว: เลขว่าง <span style='font-family:var(--mono)'>"+escapeHtml(_pidRangeTxt(D.gone))+"</span></div>"):"")
+    +"<label style='"+line+"'><input type='radio' name='pidAskM' value='tidy' checked style='flex:none'><span><b>เรียงใหม่เฉพาะตู้ที่แก้</b><br><span style='font-size:12px;color:var(--ink-dim)'>ตู้อื่นเลขเดิม · "
+      +(D.cabs.length?(rows.slice(0,3).map(c=>escapeHtml(c.label)+" → "+escapeHtml(_pidRangeTxt(T.res[c.inst].nums))).join(" · ")+(D.cabs.length>3?" …":"")+" · สติกเกอร์ตู้นี้ต้องพิมพ์ใหม่"):"เลขที่ว่างเก็บไว้ให้ตู้ที่เพิ่มทีหลัง")+"</span></span></label>"
+    +"<label style='"+line+"'><input type='radio' name='pidAskM' value='all' style='flex:none'><span><b>เจนใหม่ทั้งออเดอร์</b><br><span style='font-size:12px;color:var(--ink-dim)'>เรียง P1–"+total+" ทุกตู้ · ใช้เมื่อยังไม่ได้ผลิต · สติกเกอร์กับไฟล์เจาะชุดเก่าใช้ไม่ได้</span></span></label>"
+    +"<label style='"+line+"'><input type='radio' name='pidAskM' value='keep' style='flex:none'><span><b>ใช้เลขเดิมที่ส่ง Production แล้ว</b><br><span style='font-size:12px;color:var(--ink-dim)'>ชิ้นเดิมเลขเดิม · ชิ้นใหม่ต่อท้าย · เลขจะกระโดดแบบตอนนี้</span></span></label>"
+    +"</div>";
+  const ok=await dialog({title:"ออเดอร์นี้เคยส่งเลข Part ไปแล้ว — จะเอาแบบไหน?",html,ok:"ตกลง"});
+  if(!ok) return false;
+  const v=(document.querySelector("input[name='pidAskM']:checked")||{}).value||"tidy";
+  const tail=(kind==="mpr")?" · อย่าลืมกด Transfer ให้ Production ได้เลขชุดนี้":"";
+  try{
+    if(v==="all"){ state.pidLock={v:1,oid:String(orderId()||"").trim(),reset:true,at:new Date().toISOString()}; try{ autosave(); }catch(e){}
+      toast("🔓 เจนเลข Part ใหม่ทั้งออเดอร์ P1–"+total+tail); }
+    else if(v==="keep"){ const nc=Object.assign({},state.pidLock.ncOk||{}); D.cabs.forEach(c=>{ if(c.jump) nc[c.inst]=c.sig; }); pidLockCommit(D,null,nc);
+      toast("🔒 ใช้เลข Part เดิมที่ส่ง Production แล้ว"); }
+    else { const nc=Object.assign({},state.pidLock.ncOk||{}); D.cabs.forEach(c=>{ delete nc[c.inst]; }); pidLockCommit(D,T,nc);
+      toast("เรียงเลข Part ใหม่ "+D.cabs.length+" ตู้แล้ว"+(rows[0]?(" · "+rows[0].label+" "+_pidRangeTxt(T.res[rows[0].inst].nums)):"")+tail); }
+  }catch(e){ console.error("pidAsk:",e); toast("⚠ เปลี่ยนเลข Part ไม่สำเร็จ ใช้เลขเดิมต่อ: "+e.message); }
+  try{ if($("cutBody")&&$("cutBody").innerHTML) renderCutList(); }catch(e){}
+  return true; }
 /* ข้อมูลที่ Production มี (imos_orders.data) → ล็อกของฉากนี้ */
 function pidLockAdopt(d,oid){
   if(!d||!Array.isArray(d.groups)) return null;
@@ -64533,7 +64638,7 @@ function pidLockAdopt(d,oid){
     if(pp.some(n=>n>0)) map[e.key]={p:pp,n:String(e.src.name||"")}; else nNew++; });
   if(!Object.keys(map).length) return null;
   const now=new Date().toISOString();
-  return {v:1,oid,hi,map,at:now,first:(pre&&pre.first)||now,n:P.ents.length,adopted:true,nKey,nName,nNew};
+  return {v:1,oid,hi,map,at:now,first:(pre&&pre.first)||now,n:P.ents.length,adopted:true,nKey,nName,nNew,ncOk:(pre&&pre.ncOk)||undefined};   /* v1.677: ncOk */
 }
 /* ข้อมูลออเดอร์ที่ Production ถืออยู่ → {data:{groups,_pidLock?}} · {retry:true} = ยังอ่านไม่ได้ (ยังไม่เชื่อมโฟลเดอร์ ฯลฯ) ลองใหม่ทีหลัง
    โหมดไฟล์กลาง: imos_orders / part_index เป็นตาราง "เขียนอย่างเดียว" (load:false) ถามผ่าน SXL_DB ไม่ได้
@@ -65359,6 +65464,7 @@ async function sendSupabase(){
   if(!await sendRuleAsk()) return;   /* v1.635: สีเมลามีนบนกล่องโค้ง · บานโปรไฟล์ */
   if(!await sendEdgeAsk()) return;   /* v1.639: กรุ๊ปขอบก่อนส่ง */
   if(!await sendMissAsk()) return;   /* v1.627 */
+  if(!await pidNumberGate("send")) return;   /* v1.677: เลข Part */
   _sendBusy=sendSupabaseRun();
   try{ return await _sendBusy; }finally{ _sendBusy=null; } }
 /* ───────── v1.346: งานเบื้องหลังหลังกล่องส่ง — ป้ายมุมจอบอกว่ายังทำอะไรอยู่ + เตือนก่อนปิดหน้า ─────────
@@ -65826,10 +65932,10 @@ function renderCutList(){
     const fmtT=t=>{ try{ return new Date(t).toLocaleString("th"); }catch(e){ return String(t||""); } };
     if(_pp.lock) html+=`<div style="font-size:12px;margin:2px 0 8px;padding:7px 9px;border-radius:8px;background:rgba(88,86,214,.10);color:#4b49b6;line-height:1.6">🔒 <b>ล็อกเลขชิ้น/บาร์โค้ดแล้ว</b> ตามที่ส่ง Production${L.adopted?" (อ่านจากข้อมูลใน Production)":""} · ล่าสุด ${escapeHtml(fmtT(L.at))}
       <br>ชิ้นเดิมได้เลขเดิมเสมอ · ชิ้นที่เพิ่มใหม่ได้เลขต่อจาก P${+L.hi||0} · ชิ้นที่ลบไปแล้ว เลขเว้นว่างไว้${_pp.fresh.length?` · <b style="color:#c05a00">ชิ้นใหม่ที่ยังไม่ได้ส่ง ${Object.keys(_pp.freshSrc).length} ชิ้น (${_pp.fresh.slice(0,12).map(n=>"P"+n).join(" ")}${_pp.fresh.length>12?" …":""})</b>`:""}
-      <button class="ibtn" id="pidReset" style="flex:none;margin-left:6px;padding:3px 9px;font-size:11.5px">รันเลขใหม่ทั้งออเดอร์…</button></div>`;
+      <button class="ibtn" id="pidReset" style="flex:none;margin-left:6px;padding:3px 9px;font-size:11.5px">รันเลขใหม่ทั้งออเดอร์…</button>${(()=>{ try{ const _pd=pidLockDiff({all:true}); return (_pd.cabs.length||_pd.gone.length)?`<button class="ibtn" id="pidTidy" style="flex:none;margin-left:6px;padding:3px 9px;font-size:11.5px">จัดเลขตู้ที่กระโดด…</button>`:""; }catch(e){ return ""; } })()}</div>`;
     else if(L&&L.reset&&String(L.oid||"")===oidNow) html+=`<div style="font-size:12px;margin:2px 0 8px;padding:7px 9px;border-radius:8px;background:rgba(192,90,0,.10);color:#a04b00;line-height:1.6">🔓 <b>รันเลขชิ้นใหม่ทั้งออเดอร์</b> (กดไว้เมื่อ ${escapeHtml(fmtT(L.at))}) — ส่งเข้า Production ครั้งหน้าจะล็อกเลขชุดใหม่นี้ · สติกเกอร์/ไฟล์เจาะชุดเก่าใช้ไม่ได้
       <button class="ibtn" id="pidUndo" style="flex:none;margin-left:6px;padding:3px 9px;font-size:11.5px">กลับไปใช้เลขที่ส่งไปแล้ว</button></div>`;
-    else html+=`<div class="muted" style="font-size:11.5px;margin:2px 0 8px">เลขชิ้น/บาร์โค้ดยังนับใหม่ทุกครั้งที่แก้งาน — จะล็อกให้เองหลังส่งเข้า Production สำเร็จครั้งแรก</div>`; }
+    else html+=`<div class="muted" style="font-size:11.5px;margin:2px 0 8px">เลขชิ้น/บาร์โค้ดยังนับใหม่ทุกครั้งที่แก้งาน — จะล็อกให้เองหลังส่งเข้า Production หรือออก MPR ครั้งแรก</div>`; }
   groups.forEach(g=>{
     const bl=g.boards.filter(b=>!isGuide(b));
     html+=`<div class="sumh">📦 ${escapeHtml(g.productId)} · ${escapeHtml(g.cab)} <span style="color:var(--muted);font-weight:400">(${bl.length} ชิ้น)</span></div>`;
@@ -65875,6 +65981,7 @@ function renderCutList(){
       if(!ok) return;
       state.pidLock={v:1,oid:String(orderId()||"").trim(),reset:true,at:new Date().toISOString()};
       try{ autosave(); }catch(e){} renderCutList(); toast("🔓 รันเลขชิ้นใหม่ทั้งออเดอร์แล้ว — ส่ง Production ครั้งหน้าจะล็อกเลขชุดนี้"); }; }
+  { const tb=$("pidTidy"); if(tb) tb.onclick=async()=>{ await pidNumberGate("list",{all:true}); renderCutList(); }; }   /* v1.677 */
   { const ub=$("pidUndo"); if(ub) ub.onclick=async()=>{ const oid=String(orderId()||"").trim();
       state.pidLock=null; delete _pidAdopt[oid]; try{ delete _pidProdP[oid]; }catch(e){} try{ autosave(); }catch(e){}
       const lk=await pidLockEnsure(); renderCutList();
