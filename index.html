@@ -3283,7 +3283,7 @@ body[data-theme="dark"] .splash-dots span{background:rgba(255,255,255,.25)}
    ===================================================================== */
 /* ---- APP_META: แหล่งความจริงเดียวของเวอร์ชัน (ดูได้จาก console / คลิกชื่อแอป) ---- */
 const APP_META={
-  name:"StarNexus", version:"1.674", build:"2026-11-05/line-row",
+  name:"StarNexus", version:"1.675", build:"2026-11-05/slot-drag",
   file:"StarNexus.html", basedOn:"Furnitech_V3.html (v3.11)",
   /* ───────── เริ่มนับเวอร์ชันใหม่ที่ 1.001 (21/08/2026) ─────────
      ของเดิมนับมาถึง 42.1 แล้ววิ่งเป็นทศนิยมสองชั้นซึ่งอ่านลำดับยาก
@@ -3291,6 +3291,7 @@ const APP_META={
      ประวัติเก่าเก็บไว้ทั้งหมดตามเลขเดิม ไม่ไล่เขียนใหม่ เพราะเลขในนั้นถูกอ้างถึงไปแล้ว
      รายการที่อยู่ใต้ 1.001 ลงไปจึงเป็นเลขชุดเก่า อ่านต่อกันได้ตามวันที่ */
   changelog:[
+    ["1.675","2026-11-05","FIX+UX ลากตู้เข้าช่องในห้องออกแบบ (ผู้ใช้ 07:52 project 74 “ปรับโปรแกรมให้ ลากเข้าช่องง่ายๆ หน่อยครับ”: ลาก MWA021 กว้าง 1009.5 เข้าช่องระหว่างเสาปลาย Cosimo กับตู้ข้าง ๆ แล้วตู้ไม่ขยับเลย ค้างนอกห้อง) — ขาแผ่นไม้ Cosimo ไม่ขวางตู้ (ขาจัดตามช่องเอง · เดิมยื่นเลยเสาปลาย 4 ก็ปิดช่องทั้งช่อง) · ตู้พอดีช่องดูดเข้าเองเมื่อชี้ใกล้ ชนสองฝั่งชนะชนฝั่งเดียว นับผิวเสาปลายด้วย · ช่องแคบกว่าตู้ไม่เกิน 10 เข้าได้พร้อมบอกว่าทับเท่าไหร่ · ป้ายตอนลากบอกเหตุผลเมื่อเข้าไม่ได้ · SN_OFF.plSlotEasy"],
     ["1.674","2026-11-05","FIX ตีนตู้/ฟิลเลอร์บนขาดเป็นท่อน 1000 (ผู้ใช้ 01:06 ภาพ project 36) — ตู้แถวเกาะกับตู้แถวผนังหันทิศเดียวกันสลับกันตอนต่อแนว แนวจึงขาดทุกครั้งที่เจออีกแถว · ตอนนี้แต่ละแถวต่อกันเอง รอยต่ออยู่ระหว่างตู้ไม่เกินความยาวไม้"],
     ["1.673","2026-11-05","FIX กล่องสี: บาน 3 กับ 5 ของ MWA050 เป็นบานใน (ผู้ใช้ 00:52 project 36) — ไม้ปิดข้าง Filler Front ของลิ้นชักในตู้ใช้ช่อง FrontShapeP3 · P5 แต่ไม่มีธงบาน จึงตกไปอยู่แท็บบานนอก · ตอนนี้แผ่นหน้าที่ผูกช่องบานนับเป็นหน้าของช่องนั้นด้วย"],
     ["1.672","2026-11-05","FEAT+FIX (ผู้ใช้ 5/11 00:35) ① กล่องมือจับ: เลือกกลางมือจับสูงจากล่างบาน 900 · 1000 หรือพิมพ์เอง เฉพาะบานสูง ② ระยะห่างขอบบาน (เดิม 35) ปรับได้ทุกบานในงาน แล้วแยกรายตู้ได้ ③ FIX แบบ LM126: เพิ่มหน้าตัดจริง หนารวม 19 เดือยเกือบกลาง · แบบบอกหนารวม"],
@@ -30322,6 +30323,7 @@ function boardRole(b){
      SN_OFF.plHanger=1    แผงห้องออกแบบไม่มีปุ่มหูแขวน (v1.671)
      SN_OFF.ehpEnd=1      LM126 ไม่ออกแบบงานสั่งทำ (v1.671)
      SN_OFF.plPullPos=1   กล่องมือจับไม่มีแถวสูงจากล่างบานและห่างขอบบาน (v1.672)
+     SN_OFF.plSlotEasy=1  ลากตู้เข้าช่องแบบเดิม ขาแผ่นไม้ Cosimo ขวางตู้ ต้องกว้างพอดีเป๊ะ (v1.675)
      SN_OFF.lineRow=1     ตีนตู้/ฟิลเลอร์บนต่อแนวแบบเดิม แถวเกาะกับแถวผนังทิศเดียวกันตัดแนวกัน (v1.674)
      SN_OFF.plInnerFront=1 กล่องสีรวมบานในกับบานนอกเป็นแท็บเดียวแบบเดิม (v1.670)
      SN_OFF.ledCompOff=1  รางไฟเลือกช่องไม่ได้ ใส่ทุกช่องแบบเดิม · ค่าที่ติ๊กไว้ยังอยู่ในไฟล์ (v1.668)
@@ -37491,11 +37493,37 @@ function plGrid(){ if(snOff("plGrid")) return 0; const v=+((typeof state!=="unde
 function plGridAt(v,o){ const G=plGrid(); if(!G) return v; o=+o||0; return o+Math.round((v-o)/G)*G; }
 /* จัดแนวตามผนัง: คืนตำแหน่งขอบซ้ายตามแนวผนัง (a) ที่ไม่ชนใคร
    snap = ดูดเข้าขอบห้อง/ขอบตู้ข้าง ๆ ภายใน 80 มม. · ตู้ที่ขวางคือใบที่ทับช่วงความสูงและทับแนวลึกเดียวกัน (รวมตู้ผนังข้างที่กินมุม) */
+/* ═════════ v1.675: ลากตู้เข้าช่องง่าย ๆ ═════════
+   ผู้ใช้ 5/11 07:52 (project 74): “งั้นปรับโปรแกรมให้ ลากเข้าช่องง่ายๆ หน่อยครับ”
+   ในงาน: ลบตู้ 1009.5 ออกจากช่องระหว่างเสาปลาย Cosimo (ผิวเสา 3966) กับตู้ข้าง ๆ (4975.5) แล้วลากตู้ใหม่กว้าง 1009.5 เข้าไป ตู้ไม่ขยับเลย ค้างอยู่นอกห้องที่ 5985.5
+   สาเหตุ 3 ข้อใน plSolveAlong:
+     1. ขาแผ่นไม้ Cosimo นับเป็นของขวางตู้ทั่วไป ทั้งที่ระบบจัดขาตามช่องเอง · ท่อนขายื่นเลยผิวเสาปลาย 4 (คิดเสาหนา 20 แต่เสาจริง 19 สะสมทีละต้น) ช่องจึงเหลือ 1005.5
+     2. ตัวหาที่ว่างรับเฉพาะช่องที่กว้างพอจริง (เผื่อแค่ 1) · ขาดไป 4 มม. = ไม่มีช่องในห้องเลย จึงตกไปต่อท้ายแถวนอกห้อง โดยไม่บอกเหตุผล
+     3. ดูดขอบใกล้สุดอย่างเดียว ไม่รู้ว่าตำแหน่งไหนชนสองฝั่ง และไม่รู้จักผิวเสาปลาย ระยะ 19 บนจอแค่ 2–3 จุด
+        ลากยังไงก็มักไปชิดหน้าช่อง Cosimo (3947) เหลือร่อง 19 ฝั่งตู้ข้าง ๆ และเสาปลายหายเพราะนับว่าชนตู้
+   ตอนนี้:
+     1. ขาแผ่นไม้ไม่ขวางใคร
+     2. ตู้พอดีช่อง (ชนสองฝั่ง · ฝั่ง Cosimo นับที่ผิวเสา) ดูดเข้าเองเมื่อชี้ห่างไม่เกิน PL_SNAP และชนะตำแหน่งที่ชนฝั่งเดียว
+     3. ช่องแคบกว่าตู้ไม่เกิน PL_SLOT_TOL เข้าได้ ชนฝั่งที่ใกล้จุดชี้ แล้วบอกว่าทับเท่าไหร่ (ป้ายตอนลาก + ข้อความตอนปล่อย)
+     4. ชี้ช่องที่แคบเกิน หรือผนังเต็ม ป้ายบอกขนาดช่องกับขนาดตู้
+   เฉพาะตู้ทั่วไป · ชิ้น Cosimo มีตัวลากของตัวเอง (plCsmDragApply) · ปิด SN_OFF.plSlotEasy=1 */
+const PL_SLOT_TOL=10;
+/* ตำแหน่งที่ตู้ชนทั้งสองฝั่งพอดี · ฝั่งเพื่อนบ้าน Cosimo นับได้ทั้งขอบช่องและผิวเสาถัดจากช่อง · ขอบห้องนับเป็นฝั่งได้ */
+function plSlotFits(bl,ax,len,rg,free){
+  const pw=csmCfg().pw, lo=[rg[0]], hi=[rg[1]];
+  bl.forEach(n=>{ lo.push(n.hi[ax]); hi.push(n.lo[ax]);
+    if(csmIsCode(n.code)&&!csmIsBaseInst(n.inst)){ const g=csmGapOf(n.inst)+pw; lo.push(n.hi[ax]+g); hi.push(n.lo[ax]-g); } });
+  return [...new Set(lo)].filter(l=>hi.some(h=>Math.abs(l+len-h)<=1)&&free(l)); }
+/* ช่องว่างตามแนวผนัง จากของที่ขวาง (รวมก้อนที่ทับกัน) */
+function plSlotGaps(bl,ax,rg){ const out=[]; let e=rg[0];
+  bl.map(n=>[n.lo[ax],n.hi[ax]]).sort((p,q)=>p[0]-q[0]).forEach(v=>{ if(v[0]>e) out.push([e,v[0]]); e=Math.max(e,v[1]); });
+  if(rg[1]>e) out.push([e,rg[1]]); return out; }
 function plSolveAlong(f,wk,a,nb,snap){
   const W=PL_WALLS[wk], ax=W.ax, pa=W.pa, r=plRoom();
   const len=f.hi[ax]-f.lo[ax], rg=plRange(r,ax);
   const _csmF=csmIsCode(f.code);
-  const bl=nb.filter(n=>!(_csmF&&csmIsBaseInst(n.inst))&&plYOver(n,f)&&n.lo[pa]<f.hi[pa]-1&&f.lo[pa]<n.hi[pa]-1);   // v1.378: ชิ้น Cosimo วางบนขาแผ่นไม้ได้ ไม่หลบ
+  const _slot=!_csmF&&!snOff("plSlotEasy"), aRaw=a;                         // v1.675: ตู้ทั่วไป · aRaw = จุดที่ชี้ก่อนดูด
+  const bl=nb.filter(n=>!((_csmF||_slot)&&csmIsBaseInst(n.inst))&&plYOver(n,f)&&n.lo[pa]<f.hi[pa]-1&&f.lo[pa]<n.hi[pa]-1);   // v1.378: ชิ้น Cosimo วางบนขาแผ่นไม้ได้ ไม่หลบ · v1.675: ตู้ทั่วไปด้วย (ขาจัดตามช่องเอง)
   /* ───────── v1.368: ช่อง Cosimo ต้องเว้นช่องเสาเหล็กระหว่างกัน ─────────
      ตู้ปกติดูดชิดกันพอดี (0) · ช่อง Cosimo ไม่มีแผ่นข้าง เสาเหล็ก 19 คั่นทุกรอยต่อ
      ช่อง Cosimo กับช่อง Cosimo (ผนังเดียวกันหรือช่องมุมของผนังข้าง) → ดูด/หลบโดยเว้นเท่าเสา (gp)
@@ -37536,11 +37564,28 @@ function plSolveAlong(f,wk,a,nb,snap){
   a=(len>=rg[1]-rg[0])?rg[0]:Math.max(rg[0],Math.min(rg[1]-len,a));
   /* v1.307: หาช่องว่างที่ใกล้จุดที่ต้องการที่สุดจริง ๆ — เดิมดันหนีทีละใบ เจอสองใบติดกัน (ตู้ลอย + ตู้สูง) แล้วเด้งไปมาจนจบรอบ ทับกันอยู่ */
   const free=v=>!bl.some(n=>{ const g=gp(n); return n.lo[ax]-g<v+len-1&&v<n.hi[ax]+g-1; });   // v1.368: + ช่องเสา Cosimo
+  /* v1.675: ตู้พอดีช่องชนะตำแหน่งที่ชนฝั่งเดียว */
+  PL.slotMsg="";
+  const _mm=v=>String(Math.round(v*10)/10);
+  const _fits=_slot?plSlotFits(bl,ax,len,rg,free):[];
+  const _fitAt=v=>{ let b=null, bd2=PL_SNAP; _fits.forEach(t=>{ const d=Math.abs(t-v); if(d<=bd2){ bd2=d; b=t; } }); return b; };
+  const _fitDone=t=>{ PL.slotMsg="🎯 เข้าช่องพอดี "+_mm(len); return t; };
+  if(_slot&&snap){ const t=_fitAt(aRaw); if(t!=null) return _fitDone(t); }
   if(free(a)) return a;
   const want=a, inR=v=>v>=rg[0]-0.5&&v<=rg[1]-len+0.5;
+  /* v1.675: ช่องแคบกว่าตู้ไม่เกิน PL_SLOT_TOL = เข้าได้ ชนฝั่งที่ใกล้จุดชี้ · แคบเกิน = บอกขนาดในป้าย */
+  const _gaps=_slot?plSlotGaps(bl,ax,rg):[], _mid=want+len/2;
+  const _nearPut=g=>{ const v=(want-g[0]<=g[1]-want-len)?g[0]:g[1]-len, ov=len-(g[1]-g[0]);   // แคบกว่าไม่เกิน 2 = เศษผิววัสดุ (ตู้แถวเดิมเลื่อนกลับที่เดิมก็เจอ) ไม่เตือน
+    PL.slotMsg=(ov<=2?"🎯 เข้าช่อง (แคบกว่าตู้ ":"⚠ ช่อง "+_mm(g[1]-g[0])+" แคบกว่าตู้ ")+_mm(ov)+(ov<=2?")":" — ตู้ทับของข้าง ๆ เท่านี้"); return v; };
+  const _near=g=>{ const w=g[1]-g[0]; return w<len-1&&w>=len-PL_SLOT_TOL; };
+  { const g=_gaps.find(q=>q[0]<=_mid&&_mid<=q[1]); if(g&&_near(g)) return _nearPut(g); }
   const c=[]; bl.forEach(n=>{ c.push(n.hi[ax]+gp(n), n.lo[ax]-len-gp(n)); });
   const ok=c.filter(v=>inR(v)&&free(v)).sort((p,q)=>Math.abs(p-want)-Math.abs(q-want));
-  if(ok.length) return ok[0];
+  if(ok.length){ const t=_slot?_fitAt(ok[0]):null; if(t!=null) return _fitDone(t);
+    if(_slot){ const g=_gaps.find(q=>q[0]<=_mid&&_mid<=q[1]); if(g&&g[1]-g[0]<len-1) PL.slotMsg="ช่องตรงนี้กว้าง "+_mm(g[1]-g[0])+" ตู้กว้าง "+_mm(len)+" — ย้ายไปช่องที่ว่างใกล้สุด"; }
+    return ok[0]; }
+  if(_slot){ const g=_gaps.filter(_near).sort((p,q)=>Math.abs((p[0]+p[1])/2-_mid)-Math.abs((q[0]+q[1])/2-_mid))[0]; if(g) return _nearPut(g);
+    const wMax=_gaps.reduce((m,q)=>Math.max(m,q[1]-q[0]),0); PL.slotMsg="⚠ ผนังนี้ไม่มีช่องพอ · ตู้กว้าง "+_mm(len)+(wMax>0?(" · ช่องว่างกว้างสุด "+_mm(wMax)):"")+" — ต่อท้ายแถวนอกห้อง"; }
   const out=c.filter(v=>free(v)&&v>=want).sort((p,q)=>p-q);           // ผนังเต็ม: ไปต่อท้ายแถว (ล้นห้อง ผู้ใช้เห็นคำเตือน)
   return out.length?out[0]:Math.max(...bl.map(n=>n.hi[ax]+gp(n)),a);
 }
@@ -38407,6 +38452,7 @@ function plDragApply(){
   let plwH=null; if(!snOff("plDrawWall")){ try{ plwH=plwMagnet(c,g.D,wk?best:Infinity); }catch(e){ console.error("plwMag:",e); } }
   if(plwH) wk=null;
   plOffMark(g.inst,(wk&&wk===g.wall0)?(g.off0||0):0);
+  PL.slotMsg="";                                                            // v1.675: ข้อความเรื่องช่องของรอบนี้
   if(plwH){ plSetYaw(g.inst,plwH.yaw); plwPutOn(g.inst,plwH,c,g.nb); }
   else if(wk){
     const W=PL_WALLS[wk]; plSetYaw(g.inst,W.yaw);
@@ -38425,7 +38471,8 @@ function plDragApply(){
   g.wall=_nc?null:wk;
   _fastFrame=true; try{ render3D(false); }finally{ _fastFrame=false; }
   try{ updateSelBox(); }catch(e){}
-  const tip=$("plDragTip"); if(tip){ const o=wk?plOffOf(g.inst):0; tip.textContent=_nc?("⌓ เข้าซุ้มหลุม · ลึก "+(+_nc.d||0)):plwH?("ติดผนังที่วาด "+plwH.lbl):(wk?("ติดผนัง"+PL_WALLS[wk].lbl+(o>0?(" · ห่างผนัง "+o):"")):"วางอิสระ"); }   // v1.533
+  g.slotMsg=(wk&&!_nc&&!snOff("plSlotEasy"))?(PL.slotMsg||""):"";         // v1.675
+  const tip=$("plDragTip"); if(tip){ const o=wk?plOffOf(g.inst):0; tip.textContent=_nc?("⌓ เข้าซุ้มหลุม · ลึก "+(+_nc.d||0)):plwH?("ติดผนังที่วาด "+plwH.lbl):(wk?("ติดผนัง"+PL_WALLS[wk].lbl+(o>0?(" · ห่างผนัง "+o):"")+(g.slotMsg?(" · "+g.slotMsg):"")):"วางอิสระ"); }   // v1.533 · v1.675: + ช่อง
 }
 function plDragUp(){
   const g=PL.drag; if(!g) return; PL.drag=null;
@@ -38440,6 +38487,7 @@ function plDragUp(){
   plCamPut(cam); plSelect(g.inst);
   const tip=$("plDragTip"); if(tip) tip.textContent="";
   if(g.rail) setTimeout(()=>{ try{ toast(csmRailMsg(g.inst)); }catch(e){} },0);   // v1.390
+  if(g.slotMsg&&g.slotMsg.charAt(0)==="⚠") setTimeout(()=>{ try{ toast(g.slotMsg); }catch(e){} },0);   // v1.675: ปล่อยแล้วป้ายหาย ต้องบอกซ้ำว่าทับ/ล้นห้อง
 }
 function plDragApplyLast(g){ const keep=PL.drag; PL.drag=g; try{ plDragApply(); }finally{ PL.drag=keep; } }
 /* ═════════ v1.533: ✏ วาดผนังจากแปลน (ห้องออกแบบ) ═════════
