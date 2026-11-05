@@ -3283,7 +3283,7 @@ body[data-theme="dark"] .splash-dots span{background:rgba(255,255,255,.25)}
    ===================================================================== */
 /* ---- APP_META: แหล่งความจริงเดียวของเวอร์ชัน (ดูได้จาก console / คลิกชื่อแอป) ---- */
 const APP_META={
-  name:"StarNexus", version:"1.687", build:"2026-11-05/ceil-corner",
+  name:"StarNexus", version:"1.688", build:"2026-11-05/frame-codes",
   file:"StarNexus.html", basedOn:"Furnitech_V3.html (v3.11)",
   /* ───────── เริ่มนับเวอร์ชันใหม่ที่ 1.001 (21/08/2026) ─────────
      ของเดิมนับมาถึง 42.1 แล้ววิ่งเป็นทศนิยมสองชั้นซึ่งอ่านลำดับยาก
@@ -3291,6 +3291,7 @@ const APP_META={
      ประวัติเก่าเก็บไว้ทั้งหมดตามเลขเดิม ไม่ไล่เขียนใหม่ เพราะเลขในนั้นถูกอ้างถึงไปแล้ว
      รายการที่อยู่ใต้ 1.001 ลงไปจึงเป็นเลขชุดเก่า อ่านต่อกันได้ตามวันที่ */
   changelog:[
+    ["1.688","2026-11-05","FEAT แบบบานเฟรมอลู FRAME01–05 ไม่ต้องตั้งรหัสเอง (ผู้ใช้ 14:20 · 14:25 · 15:11 “FRAME01 = เฟรมที่มีมือจับในตัวอยู่บน ,02 อยู่ล่าง ,03 ซ้าย ,04 ขวา 05 ไม่มีมือจับ” · “ลอนตั้งเสมอ เอาให้ ดู 3D ได้และรู้ว่ามันคือลอน”) — เลือกในกล่อง 🎨 แท็บ FrontShape แล้วเลือกสีเฟรม (สีเดียวกับมือจับฝัง AL6xx) กับกระจกตามใจได้เลย · ทุกเครื่องมีรหัสเอง · เส้นเฟรมหารหัส AX จากสีเฟรม + เส้น + ขนาด ไม่เอาสีบานไม้ไปค้น · กระจกลอนลูกฟูกเห็นลอนตั้งใน 3D ทั้งบานเฟรมและบานไม้ใส่กระจก · บานมือจับในตัวไม่ใส่มือจับซ้ำ · เตือนถ้ามือจับอยู่ฝั่งบานพับ · ปิด SN_OFF.frameCodes SN_OFF.glassFlute"],
     ["1.687","2026-11-05","FIX ฟิลเลอร์บนเข้ามุมไม่ชนกัน (ผู้ใช้ 15:02 project 77 “ทำไม ฟิลเลอร์ บนไปไม่ถึง เว้นไว้ทำไม”) — ตีนตู้มีตัวจัดมุมมาตั้งแต่ v1.308 แต่ฟิลเลอร์บนไม่ได้ใช้ แนวหนึ่งจึงวิ่งเลยมุมเข้าไปหลังอีกแนว ส่วนอีกแนวหยุดที่ตู้ใบแรก เหลือช่อง 119 มม. · ตอนนี้ใช้ตัวเดียวกัน แนวที่เลยมุมตัดจบที่ผิวอีกแนว แนวที่ขาดยืดไปชน · ทางแยกรูปตัว T ไม่ตัด · ปิด SN_OFF.ceilCorner"],
     ["1.686","2026-11-05","REFACTOR คิ้วบาน PxWx02 ย้ายเข้าช่องลายหน้าบาน 3D (ผู้ใช้ 14:40 “มันมี 3D แบบนี้ทำไมไม่เอามาใส่” · 14:52 “แค่ Copy โค้ต PxWx02 แล้วย้ายไปเป็นรหัสใหม่ได้เลย”) — บรรทัดเดียวพาไปครบ: ความลึกติดลบ = นูนจากผิวบาน · ต่อท้าย | ร่อง 50-66 ลึก 2 = ออกร่อง MPR · Copy บรรทัดเปลี่ยนรหัสแล้วได้ทั้ง 3D และร่อง ไม่ต้องแก้โปรแกรม · เอาตัววาดคิ้วแยกของ v1.684 ออก · ขึ้นเฉพาะรหัสที่อยู่ในช่องตรงตัว (เลิกรับ PCWx02 PMWx02 ที่เดาไว้) · โหมดประหยัดบานเรียบเหมือนแบบอื่น เห็นเป็นร่อง · ร่อง MPR เท่าเดิม"],
     ["1.685","2026-11-05","FIX บาน Pxxx02 ขึ้นคิ้วและออกร่อง MPR ผิด (ผู้ใช้ 14:38 “Pxxx02 มันบานเรียบ ครับ ไปทำของผมทำไม”) — v1.684 เดาว่า Pxxx02 คือแบบเดียวกับ PxWx02 จึงรับรหัสกว้างเกิน ตอนนี้รับเฉพาะ P + 1 ตัว + Wx02 (PxWx02 · PCWx02) Pxxx02 กลับเป็นบานเรียบ ร่องและคิ้วที่ติดมาหายเองเมื่อเปิดงาน"],
@@ -6132,6 +6133,65 @@ function doorReliefSharp(prof){ const P=prof.pts, ang=(a,b)=>Math.atan2(b[1]-a[1
   return out; }
 function doorReliefUp(prof){ if(!prof||!prof.up) return null; const P=prof.pts; let i0=P.findIndex(q=>q[1]<0), i1=P.length-1; while(i1>0&&!(P[i1][1]<0)) i1--;
   i0=Math.max(i0-1,0); i1=Math.min(i1+1,P.length-1); const a=P[i0][0], c=P[i1][0]; return {off:a, c, up:prof.up, pts:P.slice(i0,i1+1).map(q=>[q[0]-a,-q[1]])}; }
+/* ═════════ v1.688: แบบบานเฟรมอลู FRAME01–05 ═════════
+   ผู้ใช้ 5/11 14:20: “ระบบ แบบบานเฉพาะ เฟรม อลู ที่ใส่กระจก มันมีกระจกหลายแบบ และเฟรม หลายสี เปลี่ยนเป็น ให้ เลือกเฟรม สีอะไรก้ได้ เลือกกระจกแบบไหนก็ได้ …
+     แบบนี้ จะไม่ต้องไไปนั้งตั้งรหัส แบบบาน ให้ยุ่งยาก ครับ สีก็มีพื้นฐานตามสี มือจับฝังอยู่ แล้ว … กระจกเงา กระจกใสลอนลูกฟูก อันนี้ เพิ่ม 3D ลอนให้ด้วยครับ”
+     14:25 (ภาพหน้าราคา 007@m N00S0115N ไม่มีใน AX): “อย่าลืมเส้นเฟรม ต้องออกเหมือน มือจับฝัง ครับ เอา สี เอา 007 เอา ขนาด ไปหา จะได้ มาครับ”
+     15:11: “เดี๋ยวออกรหัสใหม่ไปเลย FRAME01 = เฟรมที่มีมือจับในตัวอยู่บน ,02 อยู่ล่าง ,03 ซ้าย ,04 ขวา 05 ไม่มีมือจับ 5 แบบ พอ” · “ลอนตั้งเสมอครับ ครับ เอาให้ ดู 3D ได้และรู้ว่ามันคือลอน”
+   เดิม: บานเฟรมต้องมีรหัสแยกตามด้านมือจับ สี และกระจก (xxAG207_FT05007 …) ตั้งใน Variables กับ Element เอง
+     เลือกแบบบานเฟรมในห้องแล้วสีเฟรมยังเป็นสีหน้าบานไม้ เส้นเฟรมเลยเอา N00S0115N ไปค้นคลัง ไม่เจอรหัส
+   ตอนนี้: · แบบบานเหลือ 5 รหัส ต่างกันแค่ด้านที่ใส่เส้น 021 ส่วนสีเฟรมกับกระจกเลือกแยกในกล่อง 🎨 เก็บเป็น FrameColor{n} · FrameGlass{n} ใน cabColors (ไปกับงานทุกทาง)
+     · frameSeed เติมรหัส ตัวเลือก Family และ Part ให้เองทุกครั้งที่โหลดค่าตั้ง มีแล้วไม่แตะ แก้ใน Element ได้เหมือนแบบบานอื่น
+       Part โคลนจาก Front{n}_xxAG207 ของร้าน ขนาดปรับ เส้น ท่าวาง กระจก จึงเท่าของจริง · ไม่มีต้นแบบ = ค่าตามเส้น 007
+     · รหัสเส้นเฟรมใช้ตัวค้นเดิม (cutLookupByModel) แค่ส่งสีเฟรมจริงเข้าไป · ปิด SN_OFF.frameCodes */
+const FRAME_DEFS={FRAME01:{e:3,n:"เฟรมอลู มือจับบน"},FRAME02:{e:1,n:"เฟรมอลู มือจับล่าง"},FRAME03:{e:2,n:"เฟรมอลู มือจับซ้าย"},FRAME04:{e:4,n:"เฟรมอลู มือจับขวา"},FRAME05:{e:0,n:"เฟรมอลู ไม่มีมือจับ"}};
+const FRAME_SEC="007", FRAME_SEC_H="021", FRAME_EDGE_NM={1:"bottom",2:"left",3:"top",4:"right"};   /* E1 ล่าง · E2 ซ้าย · E3 บน · E4 ขวา ตามหน้า Part */
+const FRAME_LOOPS={"007":[[[1.5,21],[7.5,21],[8,20.5],[8.5,20.5],[8.5,22.5],[0,22.5],[0,0],[20,0],[20,14.5],[8.5,14.5],[7.5,14],[1.5,14]],[[1.5,12.5],[1.5,1.5],[18.5,1.5],[18.5,13],[8.9,13],[7.9,12.5]]],
+  "021":[[[0,22.5],[0,0],[20,0],[20,14.5],[8.5,14.5],[7.5,14],[1.5,14],[1.5,21],[7.5,21],[8,20.5],[8.5,20.5],[8.5,22.5],[1.5,22.5],[1.5,36],[10,36],[10,37.5],[0,37.5]],[[1.5,12.5],[1.5,1.5],[18.5,1.5],[18.5,13],[8.9,13],[7.9,12.5]]]};
+function frameCode(s){ if(snOff("frameCodes")) return ""; const c=String(s||"").trim().toUpperCase(); return FRAME_DEFS[c]?c:""; }
+function frameCodeOf(b){ try{ return frameCode(doorShapeCode(b)); }catch(e){ return ""; } }
+function frameHasHandle(b){ const c=frameCodeOf(b); return !!(c&&FRAME_DEFS[c].e); }
+function frameNoOf(b){ const m=String((b&&b.part)||"").match(/FrontShapeP?(\d+)|Front(\d+)/i); return m?(m[1]||m[2]):"1"; }
+function frameFinDef(){ return String(settings.frameFinDef||"AL618MH").trim(); }
+function frameGlassPick(b){ try{ if(!b||!frameCodeOf(b)) return ""; return String((((state.cabColors||{})[b.cabInst])||{})["FrameGlass"+frameNoOf(b)]||"").trim(); }catch(e){ return ""; } }
+/* เติมรหัสที่ยังไม่มี · เรียกตอนโหลดค่าตั้ง · ไม่ทับของที่มี (ผู้ใช้แก้ Part เองได้) */
+function frameSeed(){ if(snOff("frameCodes")) return 0; let n=0; settings.elements=settings.elements||{}; const E=settings.elements; E.parts=E.parts||[]; E.colors=E.colors||[];
+  settings.sections=settings.sections||{}; Object.keys(FRAME_LOOPS).forEach(k=>{ if(!settings.sections[k]){ settings.sections[k]={loops:JSON.parse(JSON.stringify(FRAME_LOOPS[k]))}; n++; } });
+  const fams=flattenVars(settings.vars||[]).filter(v=>v&&v.type==="Family"&&/^FrontShape\d+$/.test(String(v.name||"")));
+  const nums=[...new Set(fams.map(f=>String(f.name).replace(/\D+/g,"")))]; if(!nums.length) nums.push("1");
+  const tplOf=no=>E.parts.find(p=>p&&p.code==="Front"+no+"_xxAG207")||E.parts.find(p=>p&&p.code==="Front1_xxAG207")||E.parts.find(p=>p&&!p.frameWood&&!/_FRAME0/.test(String(p.code||""))&&[p.frameSec1,p.frameSec2,p.frameSec3,p.frameSec4].some(x=>String(x||"").trim()===FRAME_SEC))||null;
+  const kids0=colorKidsMap("xxAG207");
+  Object.keys(FRAME_DEFS).forEach(code=>{ const D=FRAME_DEFS[code];
+    if(!E.colors.some(c=>c&&String(c.code).trim()===code)){ E.colors.push({code,desc:D.n,kids:""}); n++; }
+    nums.forEach(no=>{ const pc="Front"+no+"_"+code;
+      if(!E.parts.some(p=>p&&p.code===pc)){ const t=tplOf(no); let cp;
+        if(t){ cp=JSON.parse(JSON.stringify(t)); const m=/^Front(\d+)_/.exec(String(t.code||"")); if(m&&m[1]!==no) ELEM_NUMFIELDS.forEach(k=>{ if(cp[k]!=null) cp[k]=_numSwap(cp[k],m[1],no); }); }
+        else cp={mat:"$FrontMat"+no, frameOffY:22.5, frameGlassT:5, frameGlassLap:17.5, frameGlassZ:20};
+        cp.code=pc; cp.desc1=D.n; cp.folder="FRAME"; [1,2,3,4].forEach(i=>{ cp["frameSec"+i]=(i===D.e)?FRAME_SEC_H:FRAME_SEC; });
+        cp.frameSecColorKey="$FrameColor"+no; cp.glassKind=""; delete cp.frameSecHex; delete cp.frameSecItem; delete cp.frameWood;
+        E.parts.push(cp); n++; }
+      const fam=fams.find(f=>f.name==="FrontShape"+no); if(!fam) return;
+      fam.options=fam.options||[]; if(fam.options.indexOf(code)<0){ fam.options.push(code); n++; }
+      const km=colorKidsMap(code);
+      (fam.children||[]).forEach(ch=>{ const nm=String((ch&&ch.name)||""); if(!nm||km[nm]!=null&&km[nm]!=="") return;
+        if(/^FrontShapeP\d+$/i.test(nm)){ setColorKid(code,nm,pc); n++; return; }
+        const v=kids0[nm]; if(v!=null&&v!==""){ setColorKid(code,nm,String(v).replace(/xxAG207/g,code)); n++; } });
+      if(!(fam.children||[]).length&&km["FrontShapeP"+no]==null){ setColorKid(code,"FrontShapeP"+no,pc); n++; } }); });
+  return n; }
+/* ───────── v1.688: กระจกลอนลูกฟูก ลอนตั้งเสมอ ─────────
+   ผิวหน้าเป็นลอนโค้งเรียงตามแนวกว้าง แต่ละลอนวิ่งขึ้น-ลงตามความสูงบาน · ผิวหลังเรียบ (แกน y ท้องถิ่น = แนวตั้งของบาน)
+   รอยต่อระหว่างลอนหักเกิน 25 องศา addEdges จึงตีเส้นตั้งให้ทุกลอน ในลอนหักไม่ถึงจึงโค้งเรียบ มองไกลก็ยังรู้ว่าเป็นลอน · ลอนกว้าง 12 (settings.glassFluteW) */
+function glassIsFlute(k){ return /ลอน|ลูกฟูก|flute|ribbed|reeded/i.test(String(k||"")); }
+function fluteGlassGeo(L,W,T,zc){ const pw=Math.max(+settings.glassFluteW||12,4), n=Math.max(1,Math.round(L/pw)), p=L/n, sag=Math.min(1.6,T*0.32), R=(p*p/4+sag*sag)/(2*sag), a=Math.asin(Math.min(1,(p/2)/R)), SEG=4;
+  const sh=new THREE.Shape(); sh.moveTo(-L/2,-T/2); sh.lineTo(L/2,-T/2); sh.lineTo(L/2,T/2-sag);
+  for(let i=n-1;i>=0;i--){ const cx=-L/2+(i+0.5)*p, cy=T/2-R; for(let k=1;k<=SEG;k++){ const t=a-(2*a)*(k/SEG); sh.lineTo(cx+R*Math.sin(t),cy+R*Math.cos(t)); } }
+  sh.closePath();
+  const g=new THREE.ExtrudeGeometry(sh,{depth:W,bevelEnabled:false,steps:1}); g.rotateX(Math.PI/2); g.translate(0,W/2,zc||0); return g; }
+/* ชนิดกระจกของแผ่นกลางบานเฟรม — ตั้งที่ชิ้น > ใบสั่ง (รวมกระจกจากออเดอร์ K_Front_Glass) > ขอบวางกระจกของบาน */
+/* เส้นลอนใช้สีอ่อนโปร่ง ไม่ใช้เส้นขอบดำของชิ้นงาน — เส้นดำถี่ทุก 12 มม. ดูเป็นลูกกรง ไม่ใช่กระจก */
+let _fluteLineM=null;
+function fluteAddLines(mesh,geo){ if(!_fluteLineM) _fluteLineM=new THREE.LineBasicMaterial({color:0x4f6f76,transparent:true,opacity:.6,depthWrite:false}); const el=new THREE.LineSegments(new THREE.EdgesGeometry(geo,25),_fluteLineM); el.raycast=function(){}; el.userData.edge=true; mesh.add(el); return el; }
+function glassPaneKind(b){ if(b._glassKind) return b._glassKind; const g=glassSpecOfBoard(b,state.boards); if(g&&g.sp) return g.sp.kind; const own=(state.boards||[]).find(x=>x&&x.id===b._frameOwner); if(own){ const d=doorGlassSpec(own); if(d) return d.kind; } return ""; }
 /* รหัสแบบบานของบานใบนี้ = ค่าของ Family ที่ Part ลิงก์ของบานอยู่ข้างใต้ (FrontShapeP1 → FrontShape1 → MCxx35) */
 function doorShapeCode(b){
   try{ const pl=String((b&&b.part)||"").trim(); if(!pl) return "";
@@ -6618,10 +6678,12 @@ function glassStreakMat(){
 function buildDoorGlassMesh(b){
   const g0=doorGlassPaneOf(b); if(!g0) return null;
   const M=orientMatrix(b.orient||"front",b.yaw||0), tint=doorGlassTint(g0.kind);
-  const geo=new THREE.BoxGeometry(g0.L,g0.W,g0.T);
-  geo.translate(0,0,g0.zc); geo.applyMatrix4(M);
-  const mesh=new THREE.Mesh(geo,doorGlassMats(tint));
-  if(tint!=="frost"){ const sm=glassStreakMat();                          // กระจกฝ้าไม่มีเงาสะท้อนเป็นเส้น
+  const _fl=glassIsFlute(g0.kind)&&!snOff("glassFlute");   /* v1.688: บานไม้ใส่กระจกลอนก็เห็นลอน */
+  const geo=_fl?fluteGlassGeo(g0.L,g0.W,g0.T,g0.zc):new THREE.BoxGeometry(g0.L,g0.W,g0.T);
+  if(!_fl) geo.translate(0,0,g0.zc); geo.applyMatrix4(M);
+  const mesh=new THREE.Mesh(geo,_fl?doorGlassMats(tint)[4]:doorGlassMats(tint));
+  if(_fl) fluteAddLines(mesh,geo);
+  if(tint!=="frost"&&!_fl){ const sm=glassStreakMat();                          // กระจกฝ้าไม่มีเงาสะท้อนเป็นเส้น
     if(sm){ const pg=new THREE.PlaneGeometry(g0.L,g0.W); pg.translate(0,0,g0.zc+g0.T/2+0.05); pg.applyMatrix4(M);
       const st=new THREE.Mesh(pg,sm); st.renderOrder=3; st.raycast=function(){}; mesh.add(st); } }   // ลูกของแผ่นกระจก = ขยับตามกันเสมอ
   mesh.position.set(b.x,b.y,b.z);
@@ -20842,6 +20904,9 @@ function render3D(refit){
           return;
         }catch(e){ console.error("hangRail3D:",e); } }
         let vg=null; if(b._shape){ try{ vg=shapeLocalGeo(b); vg.applyMatrix4(orientMatrix(b.orient,b.yaw)); }catch(e){ vg=null; } }
+        /* v1.688: แผ่นกลางบานเฟรม — ชนิดที่เลือกเห็นสีตามชนิด (เงา ชา ฝ้า) · กระจกลอนเป็นลอนตั้งจริง ลอนรวมกระจกจากออเดอร์ด้วย · ไม่ได้เลือกชนิด = สีเดิม */
+        let _gkM=null, _gkFl=false; if(b._glass&&b._framePart){ try{ if(b._glassKind) _gkM=doorGlassMats(doorGlassTint(b._glassKind))[4];
+            if(!snOff("glassFlute")){ const _gk=glassPaneKind(b); if(glassIsFlute(_gk)){ vg=fluteGlassGeo(+b.L,+b.W,+b.T,0); vg.applyMatrix4(orientMatrix(b.orient,b.yaw)); _gkFl=true; if(!_gkM) _gkM=doorGlassMats(doorGlassTint(_gk))[4]; } } }catch(e){ console.error("flute:",e); vg=null; _gkFl=false; } }
         /* v9.75: กล่องของอุปกรณ์ (ชิ้น _virtual ที่ไม่มีรูปทรงของตัวเอง) เคยวาดเป็นกล่องขนานแกนโลกล้วน ๆ
            worldDims สลับแกนให้เฉพาะ yaw 90/270 มุมอื่นจึงไม่หมุนตามเลย
            เห็นชัดตอนกางบาน: คานมือจับยาว 232 ยังนอนตามแกน X เดิม ส่วนเสา 12×12 เกือบลูกบาศก์เลยดูเหมือนหมุนตาม
@@ -20851,9 +20916,10 @@ function render3D(refit){
             vg.applyMatrix4(orientMatrix(b.orient,b.yaw)); }catch(e){ vg=null; } }
         /* v1.331: มือจับแบบสมจริง (_metal) — ผิวโลหะสะท้อนรอบตัว มีเงา ไม่ตีเส้นขอบ (เส้นดำพาดโลหะดูเป็นภาพลายเส้น) */
         const gm=new THREE.Mesh(vg||new THREE.BoxGeometry(Math.max(d[0],2),Math.max(d[1],2),Math.max(d[2],2)),
-          (b._foil&&!snOff("foilTex"))?foilMat():(b._metal?metalMat(b._metal):(b._hex?hexMat(b._hex):((b.tone!=null)?solidMat(b.tone):new THREE.MeshBasicMaterial({color:0x12b886,transparent:true,opacity:.22,depthWrite:false}))))); gm.position.set(b.x,b.y,b.z); gm.userData.id=b.id; gm.renderOrder=2; root.add(gm); meshes.push({mesh:gm,id:b.id,d});
+          _gkM?_gkM:(b._foil&&!snOff("foilTex"))?foilMat():(b._metal?metalMat(b._metal):(b._hex?hexMat(b._hex):((b.tone!=null)?solidMat(b.tone):new THREE.MeshBasicMaterial({color:0x12b886,transparent:true,opacity:.22,depthWrite:false}))))); gm.position.set(b.x,b.y,b.z); gm.userData.id=b.id; gm.renderOrder=2; root.add(gm); meshes.push({mesh:gm,id:b.id,d});
         if(b._metal){ gm.castShadow=true; gm.receiveShadow=true; gm.renderOrder=0;
           if(!((PULL_FINISH[String(b._metal).toLowerCase()]||{}).m>=.5)&&!/^#/.test(String(b._metal))) addEdges(gm,gm.geometry); }   // v1.333: พลาสติก (ฉาก D33) ตีเส้นขอบให้เห็นทรง · โลหะไม่ตี
+        else if(_gkFl) fluteAddLines(gm,gm.geometry);   /* v1.688 */
         else addEdges(gm,gm.geometry);
         if(state.showLabels){const s=numberSprite(String(i+1));s.position.set(b.x,b.y+d[1]/2+labelScale*.7,b.z);s.scale.set(labelScale,labelScale,1);s.userData.label=true;root.add(s);} return; }
       const bm=buildBoardMesh(b); const d=bm.d;
@@ -27585,7 +27651,7 @@ function doorGlassSpec(b){
   let th=parseFloat(p2.frameGlassT); if(!(th>0)) th=+settings.glassDoorT||+DEF_SETTINGS.glassDoorT||5;
   const lk=v=>{ let t=String(v||"").trim(); if(t&&t[0]==="$"){ try{ t=resolveLink(t,b)||t; }catch(e){} } return t; };
   return {L:gl,W:gw,T:round(th),cut:round(cut),rest:rest,gap:gap,
-          kind:lk(p2.glassKind)||glassKindFor(b),
+          kind:frameGlassPick(b)||lk(p2.glassKind)||glassKindFor(b),   /* v1.688 */
           edge:lk(p2.glassEdgeStyle)||glassEdgeFor(b)};
 }
 /* ───────── v1.278: สเปคกระจกของชิ้นเดียว — แยกออกมาจาก glassBOM ─────────
@@ -27630,7 +27696,7 @@ function glassSpecOfBoard(b,boards){
   }
   /* v1.279: บานที่ออเดอร์ระบุกระจกมา (K_Front_Glass) — รหัสขึ้นต้น ความหนา และชนิดตามรหัสนั้น */
   if(own&&(src==="door"||src==="frame")){ const gx=doorGlassXmlOf(own);
-    if(gx&&gx.code){ sp.pre=gx.code; sp.xml=gx.raw; if(gx.th>0) sp.th=gx.th;
+    if(gx&&gx.code&&!frameGlassPick(own)){ sp.pre=gx.code; sp.xml=gx.raw; if(gx.th>0) sp.th=gx.th;
       const kd=_glassKindByPre[gx.code]; if(kd) sp.kind=kd; } }
   if(!(sp.w>0&&sp.l>0&&sp.th>0)) return null;
   return {sp, src, owner:own};
@@ -29440,10 +29506,12 @@ function frameColorTokOf(b,ck){
   try{
     const map=((state.cabColors||{})[(b&&b.cabInst)]||{});
     let k=String(ck==null?"":ck).trim();
+    const _fr=/^\$FrameColor\d+$/.test(k);   /* v1.688: แบบบาน FRAME ยังไม่เลือกสีเฟรม = สีหน้าบานถ้าเป็นสีอลู ไม่งั้นสีตั้งต้น ห้ามเอาสีไม้ไปค้นเส้นเฟรม */
     if(k.charAt(0)==="$"){ let g=map[k.slice(1)]; if(g==null) g=map[k]; k=String(g==null?"":g).trim(); }
     if(k) return k;
     const m=String((b&&b.part)||"").match(/FrontShapeP?(\d+)|Front(\d+)/i);
     const n=m?(m[1]||m[2]):"1";
+    if(_fr){ const c=String(map["FrontColor"+n]||"").trim(); return ehpFinGet(c)?c:frameFinDef(); }
     return String(map["FrontColor"+n]||"").trim();
   }catch(e){ return ""; }
 }
@@ -29467,6 +29535,7 @@ function frameFillBoard(b,p2,gl,gw,gt,gx,gy,gz){
   } else {
     o._virtual=true; o._glass=true;
     o._frameGlass=String(p2.frameGlassCode||"").trim();
+    { const _gk=frameGlassPick(b); if(_gk) o._glassKind=_gk; }   /* v1.688 */
   }
   return o;
 }
@@ -29628,14 +29697,18 @@ function applyFrameParts(){
        และจำ "สีเฟรม" ไว้ที่เส้น (_secTok) — รหัสสีของแบบบาน ($FrontColor1 ฯลฯ) ไม่ได้ตั้ง = สีหน้าบานชุดเดียวกันของตู้ใบนั้น
        ตัวออกใบใช้สีนี้กรองชื่อสินค้าในคลัง ตอนเส้นนั้นไม่มีรหัสจากตารางสี (ดู cutLookup) */
     const _tok=frameColorTokOf(b,_ck);
+    const _frC=/^\$FrameColor\d+$/.test(_ck);   /* v1.688 */
+    if(_frC&&ehpFinGet(_tok)) _hex=ehpFinColor(_tok);
     /* ไม่ได้ตั้งรหัสสีที่แบบบาน: ลองหาแถวของสีบานจริงก่อน (ตารางสีหลายสีจะได้ไม่ไปหยิบแถวแรกผิดสี) ไม่เจอค่อยใช้แบบเดิม */
     const _itemOf=code=>{ if(_item) return _item; if(!code) return "";
       let row=null;
-      if(!_ck&&_tok) row=sectColorPick(code,_tok,b);
-      if(!row) row=sectColorPick(code,_ck,b);
+      if((!_ck||_frC)&&_tok) row=sectColorPick(code,_tok,b);
+      if(!row&&!_frC) row=sectColorPick(code,_ck,b);   /* v1.688: FRAME ต้องตรงสีเท่านั้น ไม่ตกไปแถวแรก */
       return row?String(row.item||"").trim():""; };
     let secH=0; secs.forEach(c3=>{ const l3=sectLoops(c3); if(!l3) return;
       const bb=sectBoxOf(sectXform(l3,p2)); if(bb&&(bb.h+_oY)>secH) secH=bb.h+_oY; });
+    /* v1.688: FRAME ทุกรหัสหนาเท่าเส้น 021 — FRAME05 ใช้แต่ 007 ถ้าหนาตามเส้นเอง ศูนย์บานคงที่ ผิวหลังเฟรมจะลอยออกจากหน้าตู้ 8 มม. ต่างจากอีก 4 รหัส */
+    if(_frC&&!_wood){ const _l21=sectLoops(FRAME_SEC_H), _bb21=_l21?sectBoxOf(sectXform(_l21,p2)):null; if(_bb21&&(_bb21.h+_oY)>secH) secH=_bb21.h+_oY; }
     if(!_wood && secH>1&&Math.abs((+b.T||0)-secH)>0.05) b.T=round(secH);
     const T=Math.max(+b.T||18,1);
     let inMax=0;
@@ -30449,6 +30522,8 @@ function boardRole(b){
      SN_OFF.plFloorEdge=1 พื้นห้องลอย 0.8 มม. ผนังไม่ดันถอย เส้นขอบตู้หายตรงรอยต่อแบบเดิม (v1.683)
      SN_OFF.edgeCrisp=1   ผิวแผ่นไม่ดันถอย เส้นขอบขาดเป็นประเมื่อมองเฉียงแบบเดิม (v1.683)
      SN_OFF.hingeRailClear=1 บานพับหลบคานด้วยเกณฑ์เดียวกับชั้นแบบเดิม ต้องห่างผิวคาน 87.9 มม. (v1.683)
+     SN_OFF.frameCodes=1  ไม่มีแบบบาน FRAME01–05 · ไม่มีแถวสีเฟรม/กระจก ในกล่องสี (v1.688)
+     SN_OFF.glassFlute=1  กระจกลอนลูกฟูกเป็นแผ่นเรียบใน 3D (v1.688)
      SN_OFF.ceilCorner=1  ฟิลเลอร์บนสองผนังไม่จัดมุมให้ชนกัน (v1.687)
      SN_OFF.doorMold=1    แถวลายหน้าบานที่มีเลขติดลบ (นูน) ไม่ขึ้น 3D และ | ร่อง ไม่ออกใน MPR (v1.684 · v1.686 ย้ายมาอยู่ในตารางลาย)
      SN_OFF.plRoomBlank=1 ไม่มีปุ่มห้องเปล่า/ห้องตัวอย่าง · ห้องเริ่มต้นมีผนัง 3 ด้านแบบเดิม (v1.679)
@@ -36130,6 +36205,7 @@ async function loadSettings(src){ const s=(src&&typeof src==="object")?src:await
   flattenVars(settings.vars).forEach(n=>{ if(n.article&&!n.order)n.order=n.article;
     if(n.type==="Family"){ n.options=n.options||[]; if(n.order&&!n.options.includes(n.order))n.options.push(n.order); } });
   try{ kitFamHeal(); }catch(e){ console.error("kitFamHeal:",e); }   // v1.523: ล้างสีที่ปนใน Family ชุดอุปกรณ์
+  try{ frameSeed(); }catch(e){ console.error("frameSeed:",e); }   /* v1.688 */
   /* v1.226 · v1.227: ระบบรางต้องมีรางเดิมครบเสมอ (รับข้าง + แผงเหล็ก) — ตรวจทุกครั้งที่โหลดตั้งค่า รวมหลังดึงคลาวด์
      (ธงครั้งเดียวของ 1.226 ค้างในหน่วยความจำ ค่าจากคลาวด์ที่ทับทีหลังจึงไม่เคยถูกเติม) */
   try{ const n=drsImportLegacy({under:false});
@@ -46670,7 +46746,9 @@ function dwgDoorSvg(b,opt){ const e=v=>Math.round(v*10)/10;
   try{ const c=doorShapeCode(b); if(c) prof=doorReliefProfiles()[String(c).toUpperCase()]||null; }catch(e){}
   if(prof&&prof.up&&(L-2*prof.D<10||W-2*prof.D<10)) prof=null;   /* v1.686: บานเล็ก = เรียบ ตรงกับ 3D */
   try{ cut=doorReliefCutOf(b); }catch(e){}
-  if(!cut&&b._frameDoor) cut={cf:22, frame:true};
+  /* v1.688: FRAME ขึ้นรูปเฟรมแม้บานตัวแทนในกล่องเลือกยังเป็นบานไม้ · รูปตัวอย่างดูจาก Part ของรหัสที่กำลังวาด ไม่ใช่ธงของแบบปัจจุบัน */
+  let _frC="", _frFl=false; try{ _frC=frameCodeOf(b); if(_frC) _frFl=glassIsFlute(frameGlassPick(b)); }catch(e){}
+  if(!cut&&(_frC||(smp?_ddFrameAlu(b):b._frameDoor))) cut={cf:22, frame:true};
   try{ bev=partBevelList(b)||[]; }catch(e){}
   try{ es=partEdgeSec(b); }catch(e){}
   const M=Math.max(L,W), g=M*0.13, Sx=Math.max(1,(W*0.075)/T), ST=T*Sx, X0=L+g, fs=Math.min(M*0.075,L*0.09), pad=M*0.05;
@@ -46678,6 +46756,7 @@ function dwgDoorSvg(b,opt){ const e=v=>Math.round(v*10)/10;
   const rc=(x,y,w,h,f,sw)=>o.push('<rect x="'+e(x)+'" y="'+e(y)+'" width="'+e(Math.max(w,0.1))+'" height="'+e(Math.max(h,0.1))+'" fill="'+(f||"none")+'" stroke="#2b2f36" stroke-width="'+(sw||1.2)+'" vector-effect="non-scaling-stroke"/>');
   const pg=(pts,f)=>o.push('<polygon points="'+pts.map(p=>e(p[0])+","+e(p[1])).join(" ")+'" fill="'+(f||"#ece6da")+'" stroke="#2b2f36" stroke-width="1.2" vector-effect="non-scaling-stroke"/>');
   const glass=(x,y,w,h)=>{ o.push('<rect x="'+e(x)+'" y="'+e(y)+'" width="'+e(w)+'" height="'+e(h)+'" fill="#e8f3f1" stroke="#2b2f36" stroke-width="0.8" vector-effect="non-scaling-stroke"/>');
+    if(_frFl){ for(let gx=x+20;gx<x+w-5;gx+=20) ln(gx,y,gx,y+h,0.35); return; }   /* v1.688: ลอนตั้ง · ระยะเส้นเผื่อให้อ่านออกในรูปเล็ก ไม่ใช่ขนาดลอนจริง */
     [[.2,.55],[.27,.62],[.62,.25],[.69,.32]].forEach(p=>ln(x+w*p[0],y+h*p[1],x+w*Math.min(p[0]+.1,1),y+h*(p[1]-.12),0.6)); };
   /* ── ด้านหน้า ── */
   rc(0,0,L,W,"#faf9f6",1.5);
@@ -46691,6 +46770,7 @@ function dwgDoorSvg(b,opt){ const e=v=>Math.round(v*10)/10;
   let _ms=null; try{ _ms=doorReliefUp(prof); }catch(er){}   /* v1.684 → v1.686: อ่านจากบรรทัดในตาราง · กรอบวาดจากจุดหักคมด้านบนแล้ว เหลือเส้นเข้ามุม */
   if(_ms&&!prof.thrV&&!prof.thrH){ const a=_ms.off, c=_ms.c; [[a,a,c,c],[L-a,a,L-c,c],[a,W-a,c,W-c],[L-a,W-a,L-c,W-c]].forEach(q=>ln(q[0],q[1],q[2],q[3],0.6)); }
   if(cut&&cut.cf>0&&cut.cf<Math.min(L,W)/2){ glass(cut.cf,cut.cf,L-2*cut.cf,W-2*cut.cf); if(cut.frame) rc(0,0,L,W,"none",2.2); }
+  if(_frC&&FRAME_DEFS[_frC].e){ const _e=FRAME_DEFS[_frC].e, _t=cut.cf; if(_e===3) rc(0,0,L,_t,"#3a3f48",1); else if(_e===1) rc(0,W-_t,L,_t,"#3a3f48",1); else if(_e===2) rc(0,0,_t,W,"#3a3f48",1); else rc(L-_t,0,_t,W,"#3a3f48",1); }   /* v1.688: ด้านมือจับเข้มให้เห็นต่างกันทั้ง 4 รหัส */
   bev.forEach(v=>{ const w=+v.w||0; if(!(w>0)) return; const da=(v.from==="front")?"6 4":"";
     if(v.side==="top") ln(0,w,L,w,0.8,da); else if(v.side==="bottom") ln(0,W-w,L,W-w,0.8,da);
     else if(v.side==="left") ln(w,0,w,W,0.8,da); else if(v.side==="right") ln(L-w,0,L-w,W,0.8,da); });
@@ -49035,6 +49115,19 @@ function plColorGroups(insts,split){
     return {key:k, names:[...x.names], opts:[...x.opts].sort((a,b)=>String(a).localeCompare(String(b),"th",{numeric:true})), cur, cls:_isIn?"in":(_sib?"out":undefined),
       mixed:Object.keys(x.cur).length>1, label:_sib?(_b+(_isIn?" บานใน":" บานนอก")+(_rg?(" ("+_rg+")"):"")):(k+(nums.length>1?(" (บาน "+nums[0]+"–"+nums[nums.length-1]+")"):""))}; });
 }
+/* ───────── v1.688: แถวสีเฟรม + กระจก ใต้แท็บแบบบาน ─────────
+   โผล่เมื่อแบบบานปัจจุบันเป็น FRAME · สีมาจากรายการสีมือจับฝัง (ehpFinList) ตามที่ผู้ใช้สั่ง · กระจกมาจากรายการชนิดกระจกในตั้งค่า */
+function frameOptSet(insts,names,pre,val){ const cam=plCamKeep(), nums=[...new Set((names||[]).map(plFamNo).filter(Boolean))], done=new Set(); let n=0;
+  (insts||[]).forEach(i=>{ const cf=plColorFams(i); if(done.has(String(cf.root))) return; done.add(String(cf.root));
+    [cf.root].concat(cf.mem||[]).forEach(m=>{ state.cabColors[m]=state.cabColors[m]||{}; nums.forEach(k=>{ state.cabColors[m][pre+k]=val; }); }); n++; });
+  sync(0); plCamPut(cam); if(PLC.inst) plSelect(PLC.inst); else plPanelSel(); return n; }
+function frameClashDoors(insts){ const out=[], seen=new Set(); (insts||[]).forEach(i=>{ let mem=[i]; try{ mem=varMemberInsts(varRootInst(i)); }catch(e){} mem.forEach(m=>{ if(seen.has(String(m))) return; seen.add(String(m)); try{ realDoorsOf(m).forEach(d=>{ const c=frameCodeOf(d); if(!c||!FRAME_DEFS[c].e) return; if(ehpHingeSide(d,ehpSides(d))===FRAME_EDGE_NM[FRAME_DEFS[c].e]) out.push(d); }); }catch(e){} }); }); return out; }
+function plFrameRowHtml(insts,names,fc){ if(!frameCode(fc)) return ""; const E=x=>escapeHtml(String(x==null?"":x)), i0=String((insts||[])[0]||""), no=((names||[]).map(plFamNo).filter(Boolean))[0]||1; let cc={}; try{ cc=(state.cabColors||{})[varRootInst(i0)]||(state.cabColors||{})[i0]||{}; }catch(e){ cc=(state.cabColors||{})[i0]||{}; }
+  const fin=String(cc["FrameColor"+no]||"").trim()||(ehpFinGet(cc["FrontColor"+no])?String(cc["FrontColor"+no]).trim():frameFinDef()), gk=String(cc["FrameGlass"+no]||"").trim();
+  const clash=frameClashDoors(insts);
+  return '<div class="pcFr"><div><b>สีเฟรม</b>'+ehpFinList().map(f=>'<button data-fin="'+E(f.k)+'" class="'+(String(f.k)===fin?"on":"")+'" title="'+E(f.d||"")+'"><i style="background:'+E(f.c||"#ccc")+'"></i>'+E(f.k)+'</button>').join("")+'</div>'
+    +'<div><b>กระจก</b>'+glassKinds().map(k=>'<button data-gk="'+E(k)+'" class="'+(k===gk?"on":"")+'">'+E(k)+'</button>').join("")+'</div>'
+    +(clash.length?'<div class="pcFrW">⚠ '+clash.length+' บาน มือจับอยู่ฝั่งบานพับ · ติ๊ก “แยกทีละบาน” แล้วเลือกรหัสอีกฝั่งให้บานนั้น</div>':'')+'</div>'; }
 function plSetColorGroup(insts,names,val,cls){
   const cam=plCamKeep(); let n=0; const done=new Set(), want=new Set(names), names0=names;
   insts.forEach(i=>{ const cf=plColorFams(i); if(done.has(String(cf.root))) return; done.add(String(cf.root));
@@ -49143,6 +49236,7 @@ function plColorCSS(){
     +"#plColor .pcTabs button.on{background:var(--accent);border-color:var(--accent);color:#fff}"
     +"#plColor .pcGd{display:flex;gap:4px;align-items:center;flex-wrap:wrap;padding:8px 12px 0}#plColor .pcGd b{font-size:11.5px;margin-right:4px}#plColor .pcGd span{margin-left:auto;color:var(--ink-dim);font-size:11px}"   /* v1.607 */
     +"#plColor .pcGd button{padding:3px 9px;border-radius:7px;border:1px solid var(--line);background:none;color:inherit;cursor:pointer;font-size:11.5px;display:inline-flex;align-items:center}#plColor .pcGd button.on{background:var(--accent);border-color:var(--accent);color:#fff}"
+    +"#plColor .pcFr{padding:8px 12px 0;display:grid;gap:6px;font-size:11.5px}#plColor .pcFr>div{display:flex;gap:4px;align-items:center;flex-wrap:wrap}#plColor .pcFr b{margin-right:4px;min-width:44px}#plColor .pcFr button{padding:3px 8px;border-radius:7px;border:1px solid var(--line);background:none;color:inherit;cursor:pointer;font-size:11.5px;display:inline-flex;align-items:center;gap:5px}#plColor .pcFr button i{width:12px;height:12px;border-radius:3px;border:1px solid rgba(0,0,0,.25);display:inline-block}#plColor .pcFr button.on{background:var(--accent);border-color:var(--accent);color:#fff}#plColor .pcFrW{color:#e58a24;font-size:11px;line-height:1.5}"   /* v1.688 */
     +"#plColor .pcGrid{overflow:auto;padding:10px 12px 12px;display:grid;grid-template-columns:repeat(4,1fr);gap:8px}"
     +"#plColor .pcT{cursor:pointer;border:2px solid transparent;border-radius:10px;padding:3px;display:flex;flex-direction:column;gap:3px;min-width:0}"
     +"#plColor .pcT:hover{border-color:var(--line)}#plColor .pcT.on{border-color:var(--accent)}"
@@ -49178,7 +49272,7 @@ function plShapeRep(insts,names){ if(snOff("plShapeThumb")) return null; const w
       let c=""; try{ c=doorShapeCode(b); }catch(e){} if(c!==P) return;
       const sc=(+b.L||0)*(+b.W||0)*(b._dg!=null?0.25:1); if(sc>bs){ bs=sc; best={b, root:cf.root}; } })); }); });
   return best; }
-function plShapeSvg(rep,names,code){ if(!rep) return ""; const b=rep.b, k=[b.id,Math.round(+b.L||0),Math.round(+b.W||0),Math.round(+b.T||0),names.join(","),code].join("|");
+function plShapeSvg(rep,names,code){ if(!rep) return ""; const b=rep.b, k=[b.id,Math.round(+b.L||0),Math.round(+b.W||0),Math.round(+b.T||0),names.join(","),code,String(((state.cabColors||{})[b.cabInst]||{})["FrameGlass"+frameNoOf(b)]||"")].join("|");   /* v1.688: เปลี่ยนกระจกแล้วรูปตาม */
   if(_plShapeC.has(k)) return _plShapeC.get(k);
   let svg=""; try{ svg=plShapeSwap(rep.root,names,code,()=>dwgDoorSvg(b,snOff("plShapeBig")?undefined:{sample:true,size:PL_SHAPE_SAMPLE})); }catch(e){ console.error("plShapeSvg:",e); svg=""; }   /* v1.613 */
   if(_plShapeC.size>400) _plShapeC.clear(); _plShapeC.set(k,svg); return svg; }
@@ -49298,6 +49392,7 @@ function plColorOpen(inst,x,y){
       +(gs.length?('<div class="pcTabs">'+gs.map(z=>'<button data-f="'+escapeHtml(z.key)+'" class="'+(z.key===PLC.fam?"on":"")+'" title="'+escapeHtml(z.names.join(", "))+' · ตอนนี้: '+escapeHtml(z.cur||"—")+(z.mixed?" (ปนกันหลายสี)":"")+'">'+escapeHtml(z.label)+'</button>').join("")+'</div>'
         +(PLC.slots?plDoorRowHtml(PLC.slots.list):"")   /* v1.618 */
         +(()=>{ if(whole||PLC.all||!f||!/^front/i.test(String(f.key))) return ""; let sh=[]; try{ sh=plInnerNames(inst).shared||[]; }catch(e){} return sh.length?('<div style="padding:6px 12px 0;color:#e58a24;font-size:10.5px;line-height:1.5">บาน '+sh.join(", ")+' มีบานในใช้ช่องสีเดียวกับบานนอก โมเดลนี้จึงแยกสีกันไม่ได้</div>'):""; })()   /* v1.670 */
+        +(_isShp?plFrameRowHtml(targets(),_pn||f.names,fc):"")   /* v1.688 */
         +plGrainRowHtml(targets())   /* v1.607 */
         +'<div style="display:flex;gap:6px;align-items:center;padding:8px 12px 0"><input id="pcQ" placeholder="ค้นรหัส/ชื่อสี ('+(f?f.opts.length:0)+')" value="'+escapeHtml(PLC.q)+'" style="flex:1;padding:4px 7px">'
         +'<span style="color:var(--ink-dim)">ตอนนี้ <b style="font-family:var(--mono);color:var(--ink)">'+escapeHtml(fc||"—")+'</b>'+(fmix?' <span style="color:#e58a24">+ปน</span>':'')+'</span></div>'
@@ -49320,6 +49415,7 @@ function plColorOpen(inst,x,y){
     el.querySelector("#pcSplit").onchange=ev=>{ PLC.split=ev.target.checked; gs=gsNow();
       if(!gs.some(g=>g.key===PLC.fam)) PLC.fam=(gs.find(g=>plGrpKey(g.key)===plGrpKey(PLC.fam))||gs[0]||{}).key||""; draw(); };
     el.querySelectorAll(".pcTabs button").forEach(bt=>bt.onclick=()=>{ PLC.fam=bt.dataset.f; PLC.q=""; draw(); });
+    el.querySelectorAll(".pcFr button").forEach(bt=>bt.onclick=()=>{ if(_pn&&!_pn.length){ toast("ติ๊กเลือกบานก่อน"); return; } const isF=bt.dataset.fin!=null, v=isF?bt.dataset.fin:bt.dataset.gk; frameOptSet(targets(),_pn||f.names,isF?"FrameColor":"FrameGlass",v); toast((isF?"สีเฟรม ":"กระจก ")+v); gs=gsNow(); draw(); });   /* v1.688 */
     const qi=el.querySelector("#pcQ"); if(qi){ qi.oninput=()=>{ PLC.q=qi.value; const pos=qi.selectionStart; draw(); const q2=el.querySelector("#pcQ"); if(q2){ q2.focus(); try{ q2.setSelectionRange(pos,pos); }catch(e){} } }; }
     el.querySelectorAll(".pcT").forEach(t=>t.onclick=()=>{ const v=opts[+t.dataset.i]; if(!f||!v) return;
       /* v1.607: เลือกสีท้าย X/Y = บอกแนวลายอยู่ในรหัสแล้ว และเป็นคำสั่งล่าสุด จึงกลับเป็นอัตโนมัติให้รหัสคุม · สีไม่มีท้าย X/Y = คงแนวที่เลือกไว้ */
@@ -55906,6 +56002,8 @@ function applyPullDrills(){
     if(!ps.length||isPullHost(b)) return;
     if(ps.every(p=>p&&p._fromVar)) delete b._pulls; }); }catch(e){ console.error("pullClean:",e); }
   try{ ensurePullsFromVars(); }catch(e){ console.error("pullVar:",e); }   // v13.8
+  /* v1.688: FRAME01–04 มีมือจับในตัว (เส้น 021) ไม่ใส่มือจับซ้ำ ไม่ออกใบเบิก · FRAME05 ใส่ได้ตามปกติ */
+  try{ state.boards.forEach(b=>{ if(b&&(b._pulls||[]).length&&frameHasHandle(b)) delete b._pulls; }); }catch(e){ console.error("framePull:",e); }
   let n=0;
   state.boards=state.boards.filter(b=>!(b&&(b._pullPart||b._sdcPart)));   /* v1.598: + ราง/ลูกล้อบานเลื่อน */
   state.boards.forEach(b=>{
