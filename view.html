@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="th"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover"><meta name="generator" content="StarNexus 1.682"><title>StarNexus — ดูงาน 3D</title><style>
+<html lang="th"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover"><meta name="generator" content="StarNexus 1.683"><title>StarNexus — ดูงาน 3D</title><style>
 :root{--bg:#e7e8ee;--panel:rgba(255,255,255,.94);--solid:#fff;--ink:#172c40;--dim:#5b6b7c;--line:#d5dae2;--accent:#1e5fa8;--warn:#e8590c;--shadow:0 10px 30px -12px rgba(16,32,56,.35)}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html,body{margin:0;height:100%;background:var(--bg);color:var(--ink);font:14px/1.5 system-ui,-apple-system,"Segoe UI","Noto Sans Thai","Sarabun",sans-serif;overflow:hidden;overscroll-behavior:none}
@@ -2409,7 +2409,7 @@ function start(){
     status("กำลังโหลดรูปผิว…");
     return loadImages(D.tex).then(function(imgs){
       status("กำลังประกอบ 3D…");
-      build(D,imgs); fitGround(); if(S.roomG){ if(floor) floor.position.y-=3; if(grid) grid.position.y-=3; }   /* v1.572: พื้นห้องจริงอยู่บน */ try{ sceneInit(); }catch(e){}   /* v1.589: เห็นแค่ตู้ */ setLight(S.light); setGrid(S.grid);
+      build(D,imgs); fitGround(); if(S.roomG){ if(floor) floor.position.y-=30; if(grid) grid.position.y-=30; }   /* v1.572: พื้นห้องจริงอยู่บน · v1.683: พื้นดันความลึกถอยแล้ว ต้องลึกกว่าเดิม (3 → 30) */ try{ sceneInit(); }catch(e){}   /* v1.589: เห็นแค่ตู้ */ setLight(S.light); setGrid(S.grid);
       if(S.led.length&&$("vwLed")) $("vwLed").style.display="";                // v1.396: มีไฟราง = มีปุ่ม   // v1.350: แสงในห้อง · ปิดตาราง
       var c=D.cam||{}; orbit.th=(c.th!=null?c.th:.85); orbit.ph=(c.ph!=null?c.ph:.95); orbit.r=c.r||2000; orbit.mr=Math.max(orbit.mr,c.mr||0);
       if(c.t) orbit.t.fromArray(c.t); else { var b=sceneBox(); b.getCenter(orbit.t); }

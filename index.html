@@ -3283,7 +3283,7 @@ body[data-theme="dark"] .splash-dots span{background:rgba(255,255,255,.25)}
    ===================================================================== */
 /* ---- APP_META: แหล่งความจริงเดียวของเวอร์ชัน (ดูได้จาก console / คลิกชื่อแอป) ---- */
 const APP_META={
-  name:"StarNexus", version:"1.682", build:"2026-11-05/cab-set",
+  name:"StarNexus", version:"1.683", build:"2026-11-05/floor-edge",
   file:"StarNexus.html", basedOn:"Furnitech_V3.html (v3.11)",
   /* ───────── เริ่มนับเวอร์ชันใหม่ที่ 1.001 (21/08/2026) ─────────
      ของเดิมนับมาถึง 42.1 แล้ววิ่งเป็นทศนิยมสองชั้นซึ่งอ่านลำดับยาก
@@ -3291,6 +3291,7 @@ const APP_META={
      ประวัติเก่าเก็บไว้ทั้งหมดตามเลขเดิม ไม่ไล่เขียนใหม่ เพราะเลขในนั้นถูกอ้างถึงไปแล้ว
      รายการที่อยู่ใต้ 1.001 ลงไปจึงเป็นเลขชุดเก่า อ่านต่อกันได้ตามวันที่ */
   changelog:[
+    ["1.683","2026-11-05","FIX เส้นขอบตู้และแผ่นปิดข้างหายตรงรอยต่อพื้นกับผนัง ดูเหมือนตู้จมพื้น (ผู้ใช้ 13:35 ส่งภาพเทียบ) — พื้นห้องเคยลอยเหนือก้นตู้ 0.8 มม. พื้นทึบจึงบังเส้นล่างมิด ส่วนผนังเส้นอยู่บนผิวพอดีบางจุดหาย · ลดพื้นเหลือ 0.1 มม. และดันผิวพื้นกับผนังถอยด้วย polygonOffset เห็นเส้นครบทุกมุมกล้อง กริดกับเงาใต้พื้นทึบย้ายลงไม่ให้ทะลุขึ้นมา · ดันผิวแผ่นถอยนิดเดียวด้วย เส้นขอบตู้เต็มเส้น ไม่ขาดเป็นประตอนมองเฉียง · FIX บานพับหลบคานทั้งที่ไม่ชน (ผู้ใช้ 13:47 project 76 ตัวที่ 2 จากบนถูกดันขึ้น 288) — คานเคยใช้เกณฑ์เดียวกับชั้น ต้องห่างผิวคาน 87.9 มม. เปลี่ยนเป็นตั้งค่า hingeRailClear ตั้งต้น 40 มม. จากผิวคานถึงศูนย์บานพับ"],
     ["1.682","2026-11-05","FEAT ชุดตู้ (ผู้ใช้ 11:33 ภาพห้อง 003 MODEL_ALTO) — ① เลือกตู้ 2 ใบขึ้นไป กด 🧩 บันทึกเป็นชุดตู้ แล้วชุดขึ้นแท็บ 🧩 ชุดตู้ ในแคตตาล็อกขวา คลิกหรือกดค้างลากลงห้องได้ แต่ละตู้ยังมีรหัสของตัวเอง เก็บสี ตัวแปร อุปกรณ์ เครื่องใช้ที่ติดตู้ และค่าท็อป ② ลากทั้งชุดเข้าใกล้ผนังอื่น = ทั้งก้อนหันตามผนังนั้นและชิดผนัง รวมผนังที่วาดเอง Alt = ไม่หมุนไม่ดูด ③ กด 🔁 รุ่น แล้วคลิกการ์ดในแคตตาล็อกขวาเปลี่ยนรุ่นได้เลย"],
     ["1.681","2026-11-05","FIX Out of Memory ตอนเปิดชุดใหญ่ (ผู้ใช้ 10:10 · เครื่อง RAM 16 GB การ์ดจอ 4 GB) — ทดสอบด้วยรูปลายผิว 3000 px: เปิดงานแต่ละครั้งรูปค้างในการ์ดจอเพิ่ม 32 รูปไม่เคยคืน (เปิด 4 รอบ 113 รูป) ① ทาสีใหม่/เปิดงานใหม่ คืนรูปเก่าก่อน ② รูปลายผิวย่อเหลือด้านยาว 2048 px (6000 px เดิมกิน 5.1 GB เหลือ 1.4 GB) ③ รหัสสีที่ใช้ไฟล์เดียวกันโหลดครั้งเดียว ④ Ctrl+Z ไม่เก็บรูปห้องซ้ำทุกครั้ง และจำกัดขนาดประวัติ · ปิด SN_OFF.skinDrop / texImgCap / snapLite · FEAT ชื่อห้องที่เปิดอยู่ขึ้นหัวแผงมุมบนซ้าย (ผู้ใช้ 11:33)"],
     ["1.680","2026-11-05","FEAT+CHANGE (ผู้ใช้ 11:18) ① ปุ่ม ⬇ Excel ในแท็บราคาต้นทุน ได้ไฟล์ .xlsx ตามฟอร์ม ชื่อตู้ กว้าง ลึก สูง จำนวน หมายเหตุ หมวด RM สินค้า RM จำนวน RM · แถวแรกของตู้มีข้อมูลตู้ แถวถัดไปเฉพาะ RM · หมวด โครงสร้าง หน้าบาน Fitting · จำนวน RM ต่อ 1 ใบ ไม่รวมเผื่อเศษ ② % กำไรในแถบยอดเทียบ DM + DL + OH (เดิมเทียบราคาขาย) · คำบนจอบอก DM ชัดเจน · วิธีคิดราคาขายไม่เปลี่ยน"],
@@ -4142,6 +4143,7 @@ const DEF_SETTINGS={ frontSetMax:6, dowelD:8, dowelDepth:28, dowelMateDepth:12, 
   ledMinRun:60,         // v22.8: ท่อนรางที่สั้นกว่านี้ = เศษ ไม่ต้องออก
   hingeShelfClear:96,   // v7.29: ระยะปลอดภัย ศูนย์ถ้วยบานพับ -> ผิวชั้น (มม.)
   hingeAvoidRail:true,  // v22.3: ให้บานพับหลบคานด้วย ไม่ใช่แค่ชั้น
+  hingeRailClear:40,    // v1.683: ศูนย์บานพับห่างผิวคานไม่ถึงเท่านี้ = ชน (มม.)
   hingeFrontReach:100,  // v23.0: ตัวขวางต้องอยู่ห่างผิวหน้าตู้ไม่เกินนี้ ถึงจะชนบานพับได้
   frameRotOver:1000,    // v23.8: บานสูงเกินนี้ วางนอนในหน้าหน้าตัดเฟรม
   shelfBackFlush:true,  // v23.1: ดันก้นชั้นมาชนผิวหน้าแผ่นหลัง
@@ -6638,6 +6640,10 @@ function addEdges(mesh,geo){
   const pre=geo&&geo.userData&&geo.userData.edges;
   let _em=edgeMat; try{ const m0=Array.isArray(mesh.material)?mesh.material[0]:mesh.material, lm=m0&&m0.userData&&m0.userData.sxLum; if(!snOff("darkEdge")&&lm!=null&&lm<.42) _em=edgeMatLight; }catch(e){}   /* v1.652 */
   const el=new THREE.LineSegments(pre||new THREE.EdgesGeometry(geo,25),_em);
+  /* ───────── v1.683: เส้นขอบต่อเนื่อง ไม่ขาดเป็นประ ─────────
+     ตรวจเจอตอนแก้เส้นรอยต่อพื้น/ผนัง: เส้นวางบนมุมแผ่นพอดี ความลึกเท่าผิวแผ่นเอง มองเฉียงแล้วเส้นขาดเป็นช่วง ๆ แผ่นปิดข้างที่สูงถึงผนังเห็นชัด (ภาพอ้างอิงผู้ใช้เส้นเต็มเส้น)
+     ดันผิวแผ่นถอยนิดเดียวเท่าความชันผิว 1 จุด (ค่ามาตรฐานของงานวาดเส้นบนผิว) เส้นจึงเต็มเส้น · วัสดุเดียวกันตั้งซ้ำไม่มีผล ไม่ต้องคอมไพล์ใหม่ · ปิด SN_OFF.edgeCrisp */
+  if(!snOff("edgeCrisp")) try{ (Array.isArray(mesh.material)?mesh.material:[mesh.material]).forEach(m=>{ if(m&&!m.polygonOffset){ m.polygonOffset=true; m.polygonOffsetFactor=1; m.polygonOffsetUnits=1; } }); }catch(e){}
   el.raycast=function(){}; el.userData.edge=true; mesh.add(el); return el; }
 function isBlind(h,b){ return !!h.face && (h.depth>0) && h.depth < (b.T||18)-0.5; }   // รูตัน (ไม่ทะลุ)
 /* v7.27: ร่อง/บากทะลุรูปสี่เหลี่ยมกลางแผ่น (b.cuts) — เจาะเป็นรูจริงในเนื้อไม้
@@ -14915,7 +14921,15 @@ function hingeBlockersOf(all){
       if(!(isRail(b)||b._dx)) return;
       if(!nearFront(b)) return;                                    // v23.0: อยู่ก้นตู้ ชนบานพับไม่ได้
       const d=worldDims(b); if(d[1]>=d[0]) return;                 // ต้องเป็นชิ้นนอน ไม่ใช่เสาตั้ง
-      out.push({y:b.y, half:Math.max(d[1]/2,0.1), name:b.name||"คาน", kind:"rail", b:b}); });
+      /* ───────── v1.683: บานพับหลบคานเฉพาะเมื่อชนจริง ─────────
+         ผู้ใช้ 5/11 13:47 (project 76 MWA050): “บานพับตัวที่ 2 จาก บน มันหลบทำไม คาน มันไม่โดน บานพับ อยู่ แล้วครับ ระยะเหลือ”
+         เดิม (v22.3): คานใช้เกณฑ์เดียวกับชั้น 96 จากกึ่งกลาง หักครึ่งหนาส่วนเกิน = ต้องห่างผิวคาน 87.9 มม.
+           เคสนี้ศูนย์บานพับห่างผิวล่างคาน 78.5 จึงถูกนับว่าชน ถูกดันขึ้น 288 (ตัวที่ 2 จากบน 1851.5 → 2139.5) ระยะบานพับเพี้ยนทั้งที่ไม่ได้โดนกัน
+         ตอนนี้: คานวัดจากผิวคานถึงศูนย์บานพับ ไม่ถึง settings.hingeRailClear (ตั้งต้น 40 = ฐาน+แขนบานพับสูงจากศูนย์ 25 ตามกรอบ hzH ของ v1.421 + เผื่อ 15) จึงนับว่าชน
+           เกณฑ์ชั้นยังคงเดิม · บานพับที่ระบบเคยดันไว้ (ไม่ได้ตั้งเอง) กลับตำแหน่งสูตรเองเมื่อบันทึกครั้งถัดไป · ปิด SN_OFF.hingeRailClear */
+      const _half=Math.max(d[1]/2,0.1), _rc=+settings.hingeRailClear>0?+settings.hingeRailClear:40, _o={y:b.y, half:_half, name:b.name||"คาน", kind:"rail", b:b};
+      if(!snOff("hingeRailClear")) _o.clash=hy=>(Math.abs(hy-b.y)-_half)<_rc-0.01;
+      out.push(_o); });
   }
   /* ───────── v1.422: ชั้นวางรองเท้าเหล็กเป็นตัวขวางด้วย ─────────
      ผู้ใช้: "ถ้าชั้นชน เลื่อนบานพับครับ ไม่ใช่เลื่อนชั้น" → ใช้ระบบบานพับหลบชั้นที่มีอยู่ (autoAvoidHinges ทุกครั้งที่บันทึก)
@@ -20896,7 +20910,8 @@ function render3D(refit){
      คิดกุญแจจากขนาดกับสี ตรงกับของเดิมก็แค่ย้ายที่ ไม่ตรงค่อยสร้างใหม่แล้วคืนของเก่า */
   const _gKey=footW+"|"+GCELL+"|"+themeCss("--grid-a",0x9aa0ac)+"|"+themeCss("--grid-b",0xc8ccd4)+"|"+((snOff("grid")||state.hideGrid)?1:0);
   if(floor._w!==footW){ floor.geometry.dispose(); floor.geometry=new THREE.PlaneGeometry(footW,footW); floor._w=footW; }
-  floor.position.set(gx,gy,gz);
+  const _gd=plGroundDrop(); PL.gd=_gd;   /* v1.683: พื้นห้องทึบ = เงากับกริดอยู่ลึกลงไป */
+  floor.position.set(gx,gy-_gd,gz);
   if(_gKey!==_gridKey){
     if(grid){ scene.remove(grid);
       try{ if(grid.geometry&&grid.geometry.dispose) grid.geometry.dispose();
@@ -20908,7 +20923,7 @@ function render3D(refit){
     }
     _gridKey=_gKey;
   }
-  if(grid) grid.position.set(gx,gy+.2,gz);
+  if(grid) grid.position.set(gx,gy+.2-_gd,gz);
 
   updateSelBox();
   try{ plDimDraw(); }catch(e){}                        // v1.310: Dim 3D ห้องออกแบบ (ปิดอยู่ = ไม่ทำอะไร)
@@ -30368,6 +30383,9 @@ function boardRole(b){
      SN_OFF.plSet=1       ไม่มีชุดตู้ในแคตตาล็อก และไม่มีปุ่มบันทึกชุด (v1.682)
      SN_OFF.plmsWall=1    ลากทั้งชุดแล้วไม่หมุนตามผนัง ดูดแค่ระยะ 80 มม. แบบเดิม (v1.682)
      SN_OFF.plSwapCat=1   🔁 รุ่น เลือกจากหน้าต่างอย่างเดียว คลิกการ์ดแคตตาล็อกไม่เปลี่ยนรุ่น (v1.682)
+     SN_OFF.plFloorEdge=1 พื้นห้องลอย 0.8 มม. ผนังไม่ดันถอย เส้นขอบตู้หายตรงรอยต่อแบบเดิม (v1.683)
+     SN_OFF.edgeCrisp=1   ผิวแผ่นไม่ดันถอย เส้นขอบขาดเป็นประเมื่อมองเฉียงแบบเดิม (v1.683)
+     SN_OFF.hingeRailClear=1 บานพับหลบคานด้วยเกณฑ์เดียวกับชั้นแบบเดิม ต้องห่างผิวคาน 87.9 มม. (v1.683)
      SN_OFF.plRoomBlank=1 ไม่มีปุ่มห้องเปล่า/ห้องตัวอย่าง · ห้องเริ่มต้นมีผนัง 3 ด้านแบบเดิม (v1.679)
      SN_OFF.pidAsk=1      กด Transfer/ออก MPR แล้วไม่ถามเรื่องเลข Part ใช้เลขเดิมต่อท้ายแบบเดิม (v1.677)
      SN_OFF.pidLockMpr=1  ออก MPR แล้วไม่ล็อกเลข Part ล็อกเฉพาะตอน Transfer แบบเดิม (v1.677)
@@ -36662,6 +36680,7 @@ function renderSettings(){
     <label style="display:flex;align-items:center;gap:8px;font-size:13px;cursor:pointer;margin-top:6px"><input type="checkbox" id="setShelfBack" ${settings.shelfBackFlush!==false?"checked":""}> <span><b>ชั้นชนผิวหน้าแผ่นหลัง</b> — ดันก้นชั้นมาชิดแผ่นหลังให้อัตโนมัติ · แตะเฉพาะชั้นที่ก้นอยู่ใกล้แผ่นหลังไม่เกิน ${settings.shelfBackSnap||30} มม. ชั้นตื้นที่ตั้งใจให้สั้นไม่ถูกแตะ</span></label>
     ${num("shelfBackSnap","ระยะที่ถือว่า “ตั้งใจให้ถึงแผ่นหลัง” (มม. · ตั้งต้น 30)")}
     ${num("hingeShelfClear","ระยะปลอดภัย ศูนย์ถ้วยบานพับ ↔ กึ่งกลางชั้น (มม. · ตั้งต้น 96)")}
+    ${num("hingeRailClear","ระยะปลอดภัย ศูนย์บานพับ ↔ ผิวคาน (มม. · ตั้งต้น 40)")}
     <label style="display:flex;align-items:center;gap:8px;font-size:13px;cursor:pointer;margin-top:6px"><input type="checkbox" id="setFog" ${settings.sceneFog!==false?"checked":""}> <span><b>หมอกระยะไกลใน 3 มิติ</b> — ระยะหมอกคิดจากขนาดงานจริงแล้ว งานยาว ๆ จึงไม่จมหาย · ปิดได้ถ้าอยากให้คมเท่ากันหมด (โหมดประหยัดปิดหมอกอยู่แล้ว)</span></label>
     <label style="display:flex;align-items:center;gap:8px;font-size:13px;cursor:pointer;margin-top:6px"><input type="checkbox" id="setHingeRail" ${settings.hingeAvoidRail!==false?"checked":""}> <span><b>บานพับหลบคานด้วย</b> — เดิมหลบเฉพาะชั้น คานหน้า/คานหลัง/คาน DX จึงชนได้ · คานหนากว่าชั้น ระบบหักครึ่งความหนาส่วนเกินออกก่อนเทียบเกณฑ์ จึงใช้ตัวเลขเดียวกันได้</span></label>
     <div style="display:flex;gap:8px;margin-top:6px"><button class="ibtn" id="setHingeShelfNow">🔍 ตรวจชั้นชนบานพับ</button><button class="ibtn" id="setHingeShelfFix">↕ ขยับชั้นให้พ้นบานพับ</button></div>
@@ -37869,11 +37888,11 @@ function plRoomDraw(){
   if(typeof scene==="undefined"||!scene) return;
   if(PL.grp){ scene.remove(PL.grp); PL.grp.traverse(o=>{ if(o.geometry&&!o.isSprite) o.geometry.dispose(); if(o.material&&o.material.dispose&&!(o.material.userData&&o.material.userData.keep)) o.material.dispose(); }); PL.grp=null; }   // v1.533: ป้ายความยาวผนังที่วาดใช้วัสดุแคช (keep) · Sprite ใช้ geometry กลาง
   try{ plDimDraw(); }catch(e){}                                              // v1.310
-  if(!PL.on){ try{ if(PLW.on) plwHalt(); }catch(e){} invalidate(); return; }   // v1.533: ปิดห้องออกแบบระหว่างวาดผนัง = เลิกวาด
+  if(!PL.on){ try{ plGroundSync(); }catch(e){} /* v1.683 */ try{ if(PLW.on) plwHalt(); }catch(e){} invalidate(); return; }   // v1.533: ปิดห้องออกแบบระหว่างวาดผนัง = เลิกวาด
   try{ plwFloorFit(); }catch(e){ console.error("plwFloorFit:",e); }   // v1.534: ปิดผนังห้องสี่เหลี่ยมอยู่ = พื้นครอบผนังที่วาดทุกเส้น
   const r=plRoom(), g=new THREE.Group(); g.name="plRoom"; const T=100;
   const fl=new THREE.Mesh(new THREE.PlaneGeometry(r.w,r.d), new THREE.MeshBasicMaterial({color:0xb9a47c,transparent:true,opacity:.30,depthWrite:false}));
-  fl.rotation.x=-Math.PI/2; fl.position.set(r.x0+r.w/2,0.8,r.z0+r.d/2); fl.renderOrder=-1; fl.userData.plFloor=1; g.add(fl);   /* v1.629: ธงให้พื้นซุ้มหลุมใช้วัสดุเดียวกัน */
+  fl.rotation.x=-Math.PI/2; fl.position.set(r.x0+r.w/2,snOff("plFloorEdge")?0.8:0.1,r.z0+r.d/2); fl.renderOrder=-1; fl.userData.plFloor=1; g.add(fl);   /* v1.683: เดิม 0.8 บังเส้นล่างของตู้ */   /* v1.629: ธงให้พื้นซุ้มหลุมใช้วัสดุเดียวกัน */
   fl.onBeforeRender=(rd,sc,cam)=>{ const M=fl.material; if(!M) return; if(M.userData._dw==null) M.userData._dw=!!M.depthWrite;   /* v1.541: กล้องต่ำกว่าพื้น = ไม่วาดพื้น (มองขึ้นเห็นฝ้า) */
     const on=snOff("plCeilMesh")||cam.position.y>0; M.colorWrite=on; M.depthWrite=on&&M.userData._dw; };
   try{ plDlInit(r); }catch(e){ console.error("plDlInit:",e); }                        // v1.586: ดาวน์ไลท์ 4 ดวงตั้งต้น
@@ -37923,8 +37942,24 @@ function plRoomDraw(){
   try{ ploAddMeshes(g); }catch(e){ console.error("plo:",e); }   // v1.535: ประตู · หน้าต่าง · บันได
   try{ if(PL.wtGrp||plWtHoles().length) plWtDraw(); }catch(e){ console.error("plWtDraw:",e); }   /* v1.565: ย้าย/เพิ่ม/ลบซิงค์ → ช่องเจาะท็อปตาม (ไม่เปลี่ยน = ไม่วาดใหม่ เพราะ sig) */
   try{ plwsMark(g); }catch(e){ console.error("plwsMark:",e); }   // v1.539: ขอบฟ้าผนังที่เลือก
+  try{ plEdgeShow(g,fl); }catch(e){ console.error("plEdgeShow:",e); }   /* v1.683 */
   scene.add(g); PL.grp=g; invalidate();
 }
+/* ───────── v1.683: เส้นขอบตู้ตรงรอยต่อพื้นกับผนัง ─────────
+   ผู้ใช้ 5/11 13:35 (ภาพแผ่นปิดข้างชนพื้น เทียบภาพอ้างอิงที่มีเส้นดำจบรอบแผ่น): “ต้องการ เห็นเส้น จบ แบบรูป 3 ครับ ตรงรอยต่อพื้นกับ ผนัง เวลา ตู้ หรือแผ่นปิดข้าง
+     ตอนนี้โปรแกรมยังไม่เห็น เส้นขอบตัดกับพื้นครับ มันเลยดูเหมือนจม”
+   เดิม: พื้นห้องลอยที่ y 0.8 แต่ก้นตู้อยู่ที่ y 0 เส้นขอบล่างจึงอยู่ใต้พื้น พื้นที่ตั้งสี/ลายแล้วเป็นของทึบ บังเส้นมิด ตู้เลยดูจมพื้น
+     ผนัง: เส้นหลังตู้อยู่บนผิวผนังพอดี ความลึกเท่ากัน บางพิกเซลเห็น บางพิกเซลหาย
+   ตอนนี้: พื้นลงมาที่ y 0.1 · พื้นกับผนังดันความลึกถอยด้วย polygonOffset (ตั้งที่เส้นไม่ได้ จึงดันที่ผิว) เส้นบนผิวเห็นครบทุกมุมกล้อง
+     ผลข้างเคียงที่ต้องกัน: พื้นดันถอยแล้ว กริดกับเงาซึ่งอยู่ใต้พื้นนิดเดียวจะทะลุขึ้นมา → พื้นทึบ = ย้ายลง 30 มม. (plGroundDrop) · พื้นโปร่งตั้งต้นไม่บังอยู่แล้ว ไม่ย้าย
+   ปิด SN_OFF.plFloorEdge */
+function plEdgeShow(g,fl){ PL.flSolid=!!(fl&&fl.material&&!fl.material.transparent); plGroundSync(); if(snOff("plFloorEdge")) return;
+  g.traverse(o=>{ const u=o.userData; if(!o.isMesh||!u) return; let hit=!!(u.plFloor||u.plRect!=null||u.plw);
+    if(!hit&&o.parent&&o.parent.userData&&o.parent.userData.plo!=null){ const ob=ploGet(o.parent.userData.plo); hit=!!(ob&&ob.k==="col"); }   // เสา = ตู้ชนได้แบบเดียวกับผนัง
+    if(!hit) return;
+    (Array.isArray(o.material)?o.material:[o.material]).forEach(m=>{ if(!m) return; m.polygonOffset=true; m.polygonOffsetFactor=1; m.polygonOffsetUnits=2; }); }); }
+function plGroundDrop(){ return (PL.on&&PL.flSolid&&!snOff("plFloorEdge"))?30:0; }
+function plGroundSync(){ const d=plGroundDrop(), o=PL.gd||0; if(d===o) return; PL.gd=d; if(floor) floor.position.y+=o-d; if(grid) grid.position.y+=o-d; try{ invalidate(); }catch(e){} }
 /* ---------- แคตตาล็อก → รายการในแผง ---------- */
 async function plLoadItems(){
   const cat=settings.catalog||{}; let ids={};
@@ -39563,7 +39598,7 @@ function ploNicheMesh(o,T,G,F,M,line,w,h0,y0,th,r,box,g){ if(snOff("plNiche")) r
   /* พื้นหลุม: ติดพื้นห้อง = สีพื้น · ลอย = สีในหลุม */
   let flM=innerM, fk="in"; const room=(g&&g.children)?g.children.find(c=>c.userData&&c.userData.plFloor):null; if(y0<1&&room){ flM=room.material; fk="floor"; }
   const gP=new THREE.PlaneGeometry(w-3,zf-zb); gP.rotateX(-Math.PI/2); gP.translate(0,y0+0.5,(zf+zb)/2); const mP=add(gP,flM,fk);
-  if(fk==="floor"){ mP.castShadow=false; mP.renderOrder=room.renderOrder; mP.position.y=0.3; G.updateMatrix(); mP.updateMatrix(); const gw=new THREE.Vector3(), rw=+r.w||1, rd=+r.d||1; try{ const pa=gP.attributes.position, ua=gP.attributes.uv, mx=new THREE.Matrix4().multiplyMatrices(G.matrix,mP.matrix); for(let i=0;i<pa.count;i++){ gw.fromBufferAttribute(pa,i).applyMatrix4(mx); ua.setXY(i,(gw.x-r.x0)/rw,1-(gw.z-r.z0)/rd); } ua.needsUpdate=true; }catch(e){ console.error("plNiche floor:",e); } }
+  if(fk==="floor"){ mP.castShadow=false; mP.renderOrder=room.renderOrder; mP.position.y=snOff("plFloorEdge")?0.3:-0.4; /* v1.683: ระดับเดียวกับพื้นห้อง */ G.updateMatrix(); mP.updateMatrix(); const gw=new THREE.Vector3(), rw=+r.w||1, rd=+r.d||1; try{ const pa=gP.attributes.position, ua=gP.attributes.uv, mx=new THREE.Matrix4().multiplyMatrices(G.matrix,mP.matrix); for(let i=0;i<pa.count;i++){ gw.fromBufferAttribute(pa,i).applyMatrix4(mx); ua.setXY(i,(gw.x-r.x0)/rw,1-(gw.z-r.z0)/rd); } ua.needsUpdate=true; }catch(e){ console.error("plNiche floor:",e); } }
   /* ชั้นไม้ในหลุม (o.sv = ความสูงจากก้นหลุม คั่นด้วย ,) กว้างตามช่อง ณ ขอบบนของแผ่น ไม่ทะลุส่วนโค้ง · ของตกแต่งในภาพ ไม่เข้าแบบผลิต */
   { const st=Math.max(+o.svT||30,5), sm=M(/^#[0-9a-f]{6}$/i.test(String(o.fc||""))?new THREE.Color(o.fc).convertSRGBToLinear():new THREE.Color("#b98a5a").convertSRGBToLinear(),{roughness:.55});
     ploNicheShelves(o,h).forEach(yy=>{ const top=Math.min(yy+st,h), q=top-(h-R), hw2=q>0?(hw-R+Math.sqrt(Math.max(R*R-q*q,0))):hw; if(hw2<20) return; const m=box(2*hw2,st,D,0,y0+top-st/2,zb+D/2,sm); m.receiveShadow=true; }); }
@@ -78166,7 +78201,7 @@ function start(){
     status("กำลังโหลดรูปผิว…");
     return loadImages(D.tex).then(function(imgs){
       status("กำลังประกอบ 3D…");
-      build(D,imgs); fitGround(); if(S.roomG){ if(floor) floor.position.y-=3; if(grid) grid.position.y-=3; }   /* v1.572: พื้นห้องจริงอยู่บน */ try{ sceneInit(); }catch(e){}   /* v1.589: เห็นแค่ตู้ */ setLight(S.light); setGrid(S.grid);
+      build(D,imgs); fitGround(); if(S.roomG){ if(floor) floor.position.y-=30; if(grid) grid.position.y-=30; }   /* v1.572: พื้นห้องจริงอยู่บน · v1.683: พื้นดันความลึกถอยแล้ว ต้องลึกกว่าเดิม (3 → 30) */ try{ sceneInit(); }catch(e){}   /* v1.589: เห็นแค่ตู้ */ setLight(S.light); setGrid(S.grid);
       if(S.led.length&&$("vwLed")) $("vwLed").style.display="";                // v1.396: มีไฟราง = มีปุ่ม   // v1.350: แสงในห้อง · ปิดตาราง
       var c=D.cam||{}; orbit.th=(c.th!=null?c.th:.85); orbit.ph=(c.ph!=null?c.ph:.95); orbit.r=c.r||2000; orbit.mr=Math.max(orbit.mr,c.mr||0);
       if(c.t) orbit.t.fromArray(c.t); else { var b=sceneBox(); b.getCenter(orbit.t); }
