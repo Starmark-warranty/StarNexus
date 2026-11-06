@@ -3283,7 +3283,7 @@ body[data-theme="dark"] .splash-dots span{background:rgba(255,255,255,.25)}
    ===================================================================== */
 /* ---- APP_META: แหล่งความจริงเดียวของเวอร์ชัน (ดูได้จาก console / คลิกชื่อแอป) ---- */
 const APP_META={
-  name:"StarNexus", version:"1.690", build:"2026-11-05/hangrail-noside",
+  name:"StarNexus", version:"1.693", build:"2026-11-06/design-drawer",
   file:"StarNexus.html", basedOn:"Furnitech_V3.html (v3.11)",
   /* ───────── เริ่มนับเวอร์ชันใหม่ที่ 1.001 (21/08/2026) ─────────
      ของเดิมนับมาถึง 42.1 แล้ววิ่งเป็นทศนิยมสองชั้นซึ่งอ่านลำดับยาก
@@ -3291,6 +3291,9 @@ const APP_META={
      ประวัติเก่าเก็บไว้ทั้งหมดตามเลขเดิม ไม่ไล่เขียนใหม่ เพราะเลขในนั้นถูกอ้างถึงไปแล้ว
      รายการที่อยู่ใต้ 1.001 ลงไปจึงเป็นเลขชุดเก่า อ่านต่อกันได้ตามวันที่ */
   changelog:[
+    ["1.693","2026-11-06","FIX รูพินชั้นปรับเบิ้ล + FEAT กล่องลิ้นชักดีไซน์ (ผู้ใช้ 10:48 project 40 ตู้ MWA079: “เช็ครูชั้นปรับกระจกให้หน่อยเหมือนออกเบิ้ลหรือบัค” · “มันคือกล่องลูกลิ้นชักดีไซน์ … รางรับใต้ผมใส่ไม่ได้ ใส่แล้วน่าจะแหก”) — ① shelfDrillPins เช็คแค่ระยะแนวกว้าง แผ่นตั้งเตี้ยที่อยู่คนละระดับกับชั้นจึงได้รูด้วย (แผ่นสูง 300 ได้รูห่างกลางแผ่น 1,500 มม. ลอยนอกแผ่น · รูพินกระจกนับเบิ้ล) ตอนนี้เจาะเฉพาะรูที่ตกอยู่บนแผ่นจริง · ไฟล์เก่าเปิดแล้วล้างเอง (pinOffPanelHeal) ② กล่องที่ตั้ง _bp.design ไม่ถูกคิดขนาดใหม่ตามสูตร เปลี่ยนชนิดรางได้โดยกล่องไม่ถูกรื้อ เจาะรูรางตามปกติ ③ หน้าต่างห้องที่บันทึก (จัดการงาน) กว้างเต็มจอ รายการยืดเต็มพื้นที่ รายละเอียดไม่ตัดท้าย (ผู้ใช้ 11:10) · ปิด SN_OFF.pinSpanY · SN_OFF.dsgBox · SN_OFF.plRoomWide"],
+    ["1.692","2026-11-05","FEAT ท็อปหินเจาะช่องเตา + ตั้งขนาดช่องเจาะเองได้ (ผู้ใช้ 19:59 แบบท็อปหิน 24 + เตา GORENJE + ซิงค์ HAFELE 495.39.374: “แล้ว มันเจาะหลุม ซิงค์ กับเตาให้ไหม” · 20:07 “ทำทั้ง 2 ข้อมาเลยครับ”) — เดิมเจาะเฉพาะซิงค์เดี่ยว/ซิงค์ใต้ท็อป ขนาดจากสูตร (ซิงค์ 860×510 ได้ 800×410) ตั้งเองไม่ได้ เตาวางทับหินตัน · ตอนนี้ซิงค์และเตาทุกแบบเจาะ (เตาตั้งต้น = ตัวเครื่อง − 20 · ซิงค์ 1–2 หลุมแบบเดิม = ตัวเครื่อง − 40) · แผงเครื่องใช้มีช่อง “ช่องเจาะท็อป ก × ล” + ↺ กลับตามสูตร · ตั้งลึกเอง = ศูนย์ช่องอยู่กลางตัวเครื่อง · บันทึกเป็นรุ่นเก็บขนาดช่องไปด้วย · แปลนท็อปในใบเสนอราคาขึ้นเส้นประ + ขนาดช่อง · ปิด SN_OFF.plWtCut"],
+    ["1.691","2026-11-05","FIX ห้องออกแบบ: กรอบ Ctrl+ลากไม่เริ่มที่ปลายเมาส์ (ผู้ใช้ 19:49 ภาพกรอบฟ้าลอยห่างจากตู้) — เกิดเมื่อตั้งขนาดหน้าจอไม่ใช่ 100% เช่น 80% กดที่ x 620 กรอบไปเริ่มที่ 496 · uiZoomOf วัด zoom จากตำแหน่งบนจอ แต่ plmsDown สร้างกรอบแบบ display:none แล้วค่อยวัด ชิ้นที่ซ่อนไม่มีตำแหน่ง จึงได้ 1 เสมอ กรอบเลยโดน zoom คูณอีกรอบ · ตอนนี้ชิ้นที่ยังไม่ขึ้นจอเปิดแบบมองไม่เห็นชั่วคราวเพื่อวัด แล้วคืนค่าเดิม (ตัวเลือกตู้ในกรอบคิดจากพิกัดเมาส์ถูกอยู่แล้ว ผิดแค่ภาพกรอบ)"],
     ["1.690","2026-11-05","FIX เปิดห้อง 002 ALTO_CANTALEV แล้วแท็บดับ Out of Memory (ผู้ใช้ 16:06 “แรม 16 แต่ทำไมเปิดไม่ได้งงเลย”) ไม่ใช่เพราะห้องใหญ่หรือแรมน้อย ตู้ ACW045 ACW100 ไม่มีแผ่นข้าง ตัวจัดราวแขวนเอาค่าตั้งต้นรอแผ่นข้าง ±1 พันล้านไปคิด ราวจึงยาว 1,999,999,900 มม. กริดตามขนาดฉากเลย 44 ล้านช่อง จองหน่วยความจำ 7 GB ในคราวเดียว แก้: ไม่มีแผ่นข้าง = คงความยาวราวเดิม จัดศูนย์ตามชั้น · ราวที่เพี้ยนมาแล้วซ่อมเองตอนเปิด · ปุ่มใส่ราวใช้ขอบชั้นแทน · ชิ้นใหญ่เกิน 100 ม. ไม่นับเข้าขนาดฉาก และกริดมีเพดาน 4,000 ช่อง ของพลาดแบบนี้จะไม่ทำให้แท็บดับอีก สวิตช์ hrNoSide sceneCap"],
     ["1.689","2026-11-05","UX แท็บ FrontShape แยก 2 ทาง บานไม้ / บานเฟรมอลู (ผู้ใช้ 15:52 “พอเลือก FrontShape แล้วก็มี 2 ทางเข้าไปเลย ว่า เอาบานไม้ หรือ บานเฟรมอลู แล้วก็มี Frame01 อยู่ฝั่งบานเฟรมอลู”) — เปิดมาอยู่ฝั่งของแบบบานปัจจุบัน · พิมพ์ค้นหาได้ทั้งสองฝั่ง · xxAG207 208 281 อยู่ฝั่งเฟรม (ผู้ใช้ 15:57) · FIX รูปตัวอย่างบานไม้ขึ้น “หนา 60” ตอนตู้เป็นบานเฟรมอยู่ · ปิด SN_OFF.shapeSide"],
     ["1.688","2026-11-05","FEAT แบบบานเฟรมอลู FRAME01–05 ไม่ต้องตั้งรหัสเอง (ผู้ใช้ 14:20 · 14:25 · 15:11 “FRAME01 = เฟรมที่มีมือจับในตัวอยู่บน ,02 อยู่ล่าง ,03 ซ้าย ,04 ขวา 05 ไม่มีมือจับ” · “ลอนตั้งเสมอ เอาให้ ดู 3D ได้และรู้ว่ามันคือลอน”) — เลือกในกล่อง 🎨 แท็บ FrontShape แล้วเลือกสีเฟรม (สีเดียวกับมือจับฝัง AL6xx) กับกระจกตามใจได้เลย · ทุกเครื่องมีรหัสเอง · เส้นเฟรมหารหัส AX จากสีเฟรม + เส้น + ขนาด ไม่เอาสีบานไม้ไปค้น · กระจกลอนลูกฟูกเห็นลอนตั้งใน 3D ทั้งบานเฟรมและบานไม้ใส่กระจก · บานมือจับในตัวไม่ใส่มือจับซ้ำ · เตือนถ้ามือจับอยู่ฝั่งบานพับ · ปิด SN_OFF.frameCodes SN_OFF.glassFlute"],
@@ -4802,6 +4805,7 @@ function sync(rebuild,save,cm){
     try{ nestRefitAll(); }catch(e){ console.error("nest:",e); }          // v1.222
   }catch(e){ console.error(e); } }
   try{ hingePlateHeal(); }catch(e){ console.error("hingePlateHeal:",e); }   // v1.667: รูฐานบานพับตามระยะบนบาน
+  try{ pinOffPanelHeal(); }catch(e){ console.error("pinOffPanelHeal:",e); }   // v1.693: รูพินที่ค้างอยู่นอกแผ่น
   try{ ehpHealAll(); }catch(e){ console.error("ehpHeal:",e); }   /* v1.592: รางมือจับติดขอบ — บานที่ตัวคิดบานตั้งเต็มใบ หักรางกลับ */
   try{ applyPanelHeights(); }catch(e){ console.error(e); }  // v9.06: แผงปิดที่ผูกสูตรความสูงไว้
   try{ applyPanelWidths(); }catch(e){ console.error(e); }   // v19.0: แผงปิดที่ผูกสูตรความกว้างไว้
@@ -7724,6 +7728,16 @@ function hingeIntAlong(arr,len){ if(snOff("hingeInt")||!Array.isArray(arr)||!arr
   const out=arr.slice(); idx.forEach((i,k)=>{ out[i]=o[k]-half; }); return out; }
 /* รูฐานบานพับบนแผ่นข้างเก็บเป็นตำแหน่งจริงตอนเจาะ ระยะบนบานเปลี่ยนแล้วไม่ตามเอง → จำลายเซ็นระยะไว้ที่ตัวเชื่อม ไม่ตรง = เจาะใหม่
    ครอบคลุมงานเก่าและตู้จากคลัง (เปิดมารอบแรกเจาะใหม่หมด รูจะตรงกับบานเสมอ) · เรียกใน sync หลังตัวคิดบาน */
+/* ───────── v1.693: ล้างรูพินที่ค้างอยู่นอกแผ่น ─────────
+   ไฟล์ที่บันทึกก่อนรุ่นนี้มีรูพินลอยนอกแผ่นเตี้ย (ดูหมายเหตุใน shelfDrillPins) · รูนอกแผ่นไม่มีทางถูก จึงลบได้เลย ไม่ต้องเจาะใหม่
+   healStrayShelves จับได้เหมือนกันแต่ข้ามตู้ที่ไม่มี cabInst (ตู้ที่นำเข้าจาก DXF) ไฟล์ project 40 จึงไม่หาย · ปิดพร้อม SN_OFF.pinSpanY */
+function pinOffPanelHeal(){ if(snOff("pinSpanY")) return 0; let n=0;
+  (state.boards||[]).forEach(b=>{ if(!b||b.orient!=="side"||!b.holes||!b.holes.some(h=>h&&h.pin)) return;
+    const hl=(+b.L||0)/2+0.5, hw=(+b.W||0)/2+0.5, n0=b.holes.length;
+    b.holes=b.holes.filter(h=>!(h&&h.pin&&(Math.abs(+h.x||0)>hl||Math.abs(+h.y||0)>hw)));
+    n+=n0-b.holes.length; });
+  if(n) console.log("🧹 ล้างรูพินนอกแผ่น",n,"รู");
+  return n; }
 function hingePlateHeal(){ if(snOff("hingeInt")) return 0; let n=0;
   (state.boards||[]).forEach(d=>{ if(!d||!d._door||d._virtual||d._box||d._panel||d._dummy||!(d.connectors||[]).length) return;
     const c=d.connectors.find(k=>k&&k.type==="hinge"); if(!c||c.plate===false) return;
@@ -10929,6 +10943,12 @@ function refitDrawerBox(grpBoards, carc){
   { let _yw=0; try{ _yw=(front.cabInst!=null)?cabYawOf(front.cabInst):0; }catch(e){ _yw=0; }
     if(_yw) return withCabAxisAligned(front.cabInst,()=>refitDrawerBox(grpBoards,carc)); }
   carc=fzStrip(carc||[]);                                  // v1.219: Filler Front ไม่ใช่แผ่นหลัง · แผ่นข้าง Filler ไม่ใช่แผ่นข้างตู้
+  /* ───────── v1.693: กล่องลิ้นชักดีไซน์ ─────────
+     ผู้ใช้ 6/11 10:48 (project 40 ตู้ MWA079): “มันคือกล่องลูกลิ้นชักดีไซน์ … รางรับใต้ผมใส่ไม่ได้ ใส่แล้วน่าจะแหก”
+     เดิม: ตัวคิดกล่องตั้งขนาดทุกชิ้นตามสูตรทุกครั้ง (กดบันทึกหน้าตั้งค่า · ปรับลิ้นชัก · เปลี่ยนราง)
+       กล่องที่แบบหน้าเตี้ยกว่าข้าง (หน้า 77 ข้าง 100) ถูกกดเหลือสูงเท่าหน้า · ลึก 350.8 ถูกปัดเป็นรางมาตรฐาน · ไม้แบ่งช่องค้างอยู่ที่เดิม
+     ตอนนี้: _bp.design = ขนาดและตำแหน่งตามแบบ ไม่คิดใหม่ เจาะรูรางอย่างเดียว · ปิด SN_OFF.dsgBox */
+  if(!snOff("dsgBox")&&boxes.some(b=>b._bp&&b._bp.design)){ try{ drillDrawerSlides(grpBoards,carc); }catch(e){ console.error(e); } return; }
   const sides=carc.filter(b=>b.orient==="side"); let inX0=-1e9, inX1=1e9;
   if(sides.length){
     const fcy=front.y;
@@ -13739,6 +13759,17 @@ function applyRailSystem(inst,dgs,v){
       if(!front)return;
       if(!old.length && !v.allowNew) return;                                    // หน้าปลอม — สร้างใหม่เฉพาะตอนที่สั่งมาโดยตรง
       const bp=(old.find(x=>x._bp)||{})._bp||v._bp0||{h:0,lift:0,depthLock:"อัตโนมัติ",custom:0,safe:10};
+      /* ───────── v1.693: กล่องดีไซน์เปลี่ยนรางได้โดยไม่รื้อกล่อง ─────────
+         เดิมทางนี้ลบชิ้นกล่องแล้วปั้นใหม่ 5 ชิ้นตามสูตร ไม้แบ่งช่องกับรูปทรงตามแบบจึงพัง
+         ตอนนี้จดชนิดรางไว้ที่ _bp แล้วเจาะรูใหม่ตอนท้าย · แผงเหล็กไม่รับ เพราะกล่องไม้ดีไซน์ไม่มีแผง */
+      if(!snOff("dsgBox")&&bp.design){
+        if(toAlto) return;
+        if(_rs){ bp.slideType=drsIsUnder(_rs)?"railU":"side"; bp.railCode=String(_rs.code).trim(); }
+        else { delete bp.railCode; bp.slideType=(v.rail==="รางรับใต้ Blum"?"blumU":v.rail==="รางรับใต้ Häfele"?"hafeleU":"side"); }
+        if(bp.slideType==="side") delete bp.underInner; else bp.underInner=Math.max(+bp.underInner||+v.underInner||settings.underSideInner||21,0);
+        old.forEach(x=>{ if(x._bp) x._bp=bp; });
+        try{ clearSlideHolesAll(dg); }catch(e){ console.error(e); }
+        done++; return; }
       /* v1.221: จำว่าลูกนี้ตามชุดอุปกรณ์ไหนแล้ว — เลือกรางเองก็ถือว่าชุดปัจจุบันจัดการแล้ว ไม่ถูกทับ */
       if(v._kitKey!=null) bp.kitRail=v._kitKey;
       else if(bp.kitRail==null){ try{ const kk=(typeof drsKitKeyFor==="function")?drsKitKeyFor(inst,dg):drsKitKey(inst); if(kk) bp.kitRail=kk.key; }catch(e){} }   // v1.487: รหัสตามช่องในของลูกนี้
@@ -14997,7 +15028,16 @@ function shelfDrillPins(b,sides,dia,inset){   // pins from the INNER face of eac
     if(gap>40||gap<-(sw+1))return;
     const Minv=orientMatrix(sd.orient,sd.yaw).clone().invert(), c=new THREE.Vector3(sd.x,sd.y,sd.z);
     const face=(sd.x<=b.x)?"top":"bottom";                             // ผิวในเทียบ "ชั้น" (ไม่ใช่ค่าเฉลี่ยทั้งตู้)
+    /* ───────── v1.693: เจาะเฉพาะรูที่ตกอยู่บนแผ่นจริง ─────────
+       ผู้ใช้ 6/11 10:48 (project 40 ตู้ MWA079): “เช็ครูชั้นปรับกระจกให้หน่อยเหมือนออกเบิ้ลหรือบัค”
+       เดิม: ด่านข้างบนดูแค่ระยะแนวกว้าง (≤ 40) ไม่ดูว่าแผ่นสูงถึงระดับชั้นไหม
+         ชั้นกระจกสูง 1,714 จึงเจาะลงแผ่นในสูง 300 ที่อยู่ระดับ 571 ด้วย ได้รูห่างกลางแผ่น 1,075–1,523 มม. ลอยนอกแผ่น
+         ภาพเลยเห็นแถวรูเบิ้ลห่างจากแผ่นข้าง 19.2 · รูพินกระจกนับเบิ้ล · ไฟล์เจาะของแผ่นนั้นมีรูนอกแผ่น
+         ตัวซ่อม healShelf จับรูนอกแผ่นได้ แต่สั่งเจาะใหม่ก็ได้ที่เดิม จึงไม่หาย
+       ตอนนี้: เช็คความสูงแผ่นต่อรู ไฟล์เก่าเปิดแล้ว healShelf ล้างให้เอง · ปิด SN_OFF.pinSpanY */
+    const _sdH=worldDims(sd)[1], _sy0=sd.y-_sdH/2+dia/2, _sy1=sd.y+_sdH/2-dia/2, _spanY=!snOff("pinSpanY");
     for(let k=-extra;k<=extra;k++){ const wy=baseY+k*pitch;
+      if(_spanY&&(wy<_sy0||wy>_sy1)) continue;
       zList.forEach(zc=>{ const loc=new THREE.Vector3(sd.x,wy,zc).sub(c).applyMatrix4(Minv);   // z อ้างศูนย์ชั้นจริง
         if(!sd.holes)sd.holes=[];
         const _h={d:dia,x:round(loc.x),y:round(loc.y),depth:dep,face,pin:true,src:b.id,sys:(k!==0)};
@@ -17112,7 +17152,8 @@ function drillDrawerSlides(grpBoards, carc){
   if(leftS===rightS){ leftS=outL; rightS=outR; }   // หน้าบานทับขอบ/กว้างเกิน → ใช้แผ่นข้างนอกสุดของช่อง
   if(!leftS||!rightS||leftS===rightS){ _D("STOP: หาแผ่นข้างซ้าย/ขวาไม่ได้ · pool x="+pool.map(s=>s.x).join(",")+" front.x="+front.x); return; }
   const _rsE=drsOfBoxes(boxes);                                          // v1.224
-  const d5=Math.max(drsVal(_rsE,"drillD")||settings.slideDrillD||5,1), dep5=Math.max(drsVal(_rsE,"drillDep")||settings.slideDrillDepth||3,1);
+  const _dsgB=(boxes.find(b=>b._bp)||{})._bp||{}, _dsg=(!snOff("dsgBox")&&_dsgB.design)?_dsgB:null;   // v1.693: กล่องดีไซน์ตั้งระยะรูเองได้
+  const d5=Math.max((_dsg&&+_dsg.drillD)||drsVal(_rsE,"drillD")||settings.slideDrillD||5,1), dep5=Math.max(drsVal(_rsE,"drillDep")||settings.slideDrillDepth||3,1);
   const drillRow=(byc,offsAll)=>{   // เจาะแถวรูที่ความสูง byc (world Y) · offsAll = ลึกจากขอบหน้าตู้
     if(!offsAll||!offsAll.length) return;
     const one=(panel,innerFace)=>{ if(!panel||(panel.T||16)<dep5+0.5){ _D("ข้าม panel บาง/ว่าง"); return; } if(!panel.holes)panel.holes=[];
@@ -17142,6 +17183,10 @@ function drillDrawerSlides(grpBoards, carc){
   /* v8.18: railY เป็น 0 = "ไม่ได้ตั้งรายลูก" ให้ตกไปใช้ค่าตั้งต้นในตั้งค่า
      เดิมเช็ค !=null ซึ่งลูกที่สร้างใหม่มี railY:0 อยู่แล้ว ค่าตั้งต้นจึงไม่เคยถูกใช้เลย */
   const fromBot=((+bp.railY>0)?+bp.railY:(drsVal(_rsE,"railFromBot")||+settings.slideRailFromBot||0));
+  /* ───────── v1.693: กล่องดีไซน์ — รูรางตามแบบ ─────────
+     รูมาตรฐานของรางในเครื่องเป็นคนละระยะกับแบบ (เช่น แบบ SL4325 ที่ 51 / 179 / 275 จากหน้าตู้ สูงจากก้นกล่อง 21 · ไม่ตั้งราง = กลางกล่อง)
+     _bp.railY = สูงจากก้นกล่อง · _bp.drillOffs = ลึกจากขอบหน้าแผ่นที่เจาะ · _bp.drillD = Ø รู */
+  if(_dsg&&+_dsg.railY>0&&Array.isArray(_dsg.drillOffs)&&_dsg.drillOffs.length){ drillRow(round(boxBot+(+_dsg.railY)),_dsg.drillOffs); return; }
   const byc = dH!=null ? round(boxBot+dH) : (fromBot>0?round(boxBot+fromBot):ref.y);   // ความสูงแถวรู: Element.drillH > ต่อลูก > กลางกล่อง
   const boxDepth=worldDims(ref)[2], _boxOff=(+bp.boxOff||0);
   const railLen = _boxOff!==0 ? round(boxDepth+_boxOff) : slideRail(_sEl, boxDepth).railLen;
@@ -21529,7 +21574,16 @@ const CAM2P={on:false};
 /* ───────── v1.542: ตำแหน่งชิ้นลอยเมื่อจอตั้งขนาด (body[data-uiz] > * { zoom }) ─────────
    ผู้ใช้ 20:10: “ปุ่มฉากมันไปซ้อนแผง” — getBoundingClientRect ได้พิกเซลจอจริง แต่ style.left ของชิ้นที่ถูก zoom คูณ zoom อีกรอบ
    วัดจริง: ตั้ง left 1000px แล้วอ่านตำแหน่งบนจอ = สัดส่วน zoom ของชิ้นนั้น (ใช้ได้ทั้ง Chrome รุ่นเก่า/ใหม่ที่คิด zoom ต่างกัน) */
-function uiZoomOf(el){ try{ const s0=el.style.left; el.style.left="1000px"; const z=el.getBoundingClientRect().left/1000; el.style.left=s0; return (z>0.2&&z<5)?z:1; }catch(e){ return 1; } }
+/* ───────── v1.691: วัด zoom ของชิ้นที่ยังซ่อนอยู่ ─────────
+   ผู้ใช้ 5/11 19:49 (ภาพกรอบฟ้าลอยห่างจากตู้): “ตอนกด CTRL ค้างคลิกซ้ายจากคลุมตู้ มันไม่ได้เริ่มที่ปลายเมาส์”
+   เดิม: ตัววัดอ่านตำแหน่งบนจอ แต่ชิ้นที่ display:none ไม่มีตำแหน่ง ได้ 0 แล้วตกไปใช้ 1 เงียบ ๆ
+     plmsDown สร้างกรอบแบบซ่อนก่อนแล้วค่อยวัด กรอบจึงโดน zoom คูณอีกรอบเมื่อตั้งขนาดหน้าจอไม่ใช่ 100% (80% กดที่ x 620 กรอบไปเริ่มที่ 496)
+   ตอนนี้: ชิ้นที่ยังไม่ขึ้นจอ เปิดแบบมองไม่เห็นชั่วคราวเพื่อวัด แล้วคืนค่าเดิม · ชิ้นที่เห็นอยู่แล้ววัดเหมือนเดิมทุกอย่าง */
+function uiZoomOf(el){ try{ const s0=el.style.left, hid=!el.getClientRects().length, d0=el.style.display, v0=el.style.visibility;
+    if(hid){ el.style.display="block"; el.style.visibility="hidden"; }
+    el.style.left="1000px"; const z=el.getBoundingClientRect().left/1000; el.style.left=s0;
+    if(hid){ el.style.display=d0; el.style.visibility=v0; }
+    return (z>0.2&&z<5)?z:1; }catch(e){ return 1; } }
 function scnList(){ if(typeof state==="undefined") return []; if(!Array.isArray(state.scenes)) state.scenes=[]; return state.scenes; }
 function scnGet(id){ return scnList().find(s=>s&&s.id===id)||null; }
 function scnFov(){ return (typeof plBaseFov==="function")?plBaseFov():((typeof camera!=="undefined"&&camera)?camera.fov:42); }
@@ -30757,6 +30811,10 @@ function boardRole(b){
      SN_OFF.foilTray3d=1  ถาดฟอยด์ใต้ซิงค์ วาดเป็นกล่อง 5 แผ่นสีเขียวโปร่งแบบเดิม (v1.564)
      SN_OFF.aiBtnHi=1     ปุ่ม ✨ ผู้ช่วย ในแถบล่างเป็นสีเดียวกับปุ่มอื่น (ไม่ไฮไลต์) (v1.564)
      SN_OFF.plWtHole=1    ท็อปไม่เจาะช่องซิงค์ (ซิงค์ใต้ท็อป/ซิงค์เดี่ยวบนท็อป) (v1.565)
+     SN_OFF.pinSpanY=1    รูพินชั้นปรับเจาะทุกแผ่นตั้งที่ชิดแนวกว้าง ไม่เช็คว่าสูงถึงระดับชั้น แบบเดิม (v1.693)
+     SN_OFF.plRoomWide=1  หน้าต่างห้องที่บันทึกขนาดแบบเดิม ไม่เต็มจอ (v1.693)
+     SN_OFF.dsgBox=1      กล่องลิ้นชักดีไซน์ (_bp.design) ถูกคิดใหม่ตามสูตรเหมือนกล่องทั่วไป แบบเดิม (v1.693)
+     SN_OFF.plWtCut=1     ท็อปเจาะเฉพาะซิงค์เดี่ยว/ซิงค์ใต้ท็อป ขนาดตามสูตรแบบเดิม · ไม่มีช่องตั้งขนาดในแผง (v1.692)
      SN_OFF.dwgApplLbl=1  แปลนท็อปในใบเสนอราคา เดากรอบซิงค์จากตู้แบบเดิม (v1.565)
      SN_OFF.scnVis=1      ฉาก 🎬 ไม่มีเลือกแสดง ตู้ลอย/ตู้พื้น/ตู้สูง (v1.565)
      SN_OFF.plWtWallGap=1 ปลายท็อปถึงผนังเฉพาะช่องไม่เกิน 60 มม. · ไม่ปิดช่องมุม L (แบบเดิม) (v1.565)
@@ -40012,7 +40070,7 @@ function ploCamVis(){ if(typeof PL==="undefined"||!PL.grp||snOff("ploWallHide")|
    ภาพอย่างเดียว: ไม่เข้าใบตัด/ใบเสนอราคา/แบบแนบ · ปิด SN_OFF.plAppl=1 */
 function plaLib(){ if(typeof settings==="undefined") return []; if(!Array.isArray(settings.plAppl)) settings.plAppl=[]; return settings.plAppl; }
 function plaUseModel(o,mid){ const m=plaLib().find(x=>x&&x.id===mid); if(!m||!o) return false;
-  o.w=Math.max(+m.w||o.w,10); o.h=Math.max(+m.h||o.h,5); o.d=Math.max(+m.d||o.d,10); o.mdl={id:m.id, n:String(m.n||""), code:String(m.code||"")}; o.code=String(m.code||""); return true; }
+  o.w=Math.max(+m.w||o.w,10); o.h=Math.max(+m.h||o.h,5); o.d=Math.max(+m.d||o.d,10); o.mdl={id:m.id, n:String(m.n||""), code:String(m.code||"")}; o.code=String(m.code||""); ["cutW","cutD"].forEach(c=>{ if(+m[c]>0) o[c]=+m[c]; else delete o[c]; });   /* v1.692: ขนาดช่องเจาะตามรุ่น */ return true; }
 function plaNewFor(pd){ const o=ploNew(pd.k); if(o&&pd.m) plaUseModel(o,pd.m); return o; }
 function plaLibCards(L,lk){ if(snOff("plAppl")) return ""; const ks=new Set(L||[]);
   return plaLib().filter(m=>m&&ks.has(m.k)&&PLO_T[m.k]).map(m=>'<div class="plCard" data-k="'+m.k+'" data-m="'+escapeHtml(String(m.id))+'" title="'+escapeHtml((m.n||"")+(m.code?(" · "+m.code):""))+'"'+(lk?' style="opacity:.5"':'')+'>'
@@ -40764,6 +40822,7 @@ function plaPanel(s,o){ const T=PLO_T[o.k]||{}, F=ploFrameOf(o), md=T.appl;
     +(T.fridge==="smeg"?fr("สี",'<select data-pok="col">'+Object.keys(PLA_SMEG_COL).map(c=>'<option value="'+c+'"'+((PLA_SMEG_COL[o.col]?o.col:"cream")===c?" selected":"")+'>'+PLA_SMEG_COL[c].n+'</option>').join("")+'</select>'):"")   /* v1.577 */
     +((T.fridge===1||T.fridge==="t"||T.fridge==="smeg")?fr("บานพับ",'<select data-pok="hinge"><option value="R"'+(o.hinge!=="L"?" selected":"")+'>ขวา (มือจับซ้าย)</option><option value="L"'+(o.hinge==="L"?" selected":"")+'>ซ้าย (มือจับขวา)</option></select>'):"")   /* v1.576 */
     +(md==="top"?plaDepthRows(o,fr,num):"")   /* v1.566: ห่างหน้าท็อป / ห่างหลัง */
+    +(md==="top"?plaCutRows(o,fr,num):"")   /* v1.692: ขนาดช่องเจาะท็อป */
     +(T.fit&&!snOff("ovenFit")?plaOvenRows(o,fr,num):"")   /* v1.578: สูงติดตั้ง + ปรับชั้น */
     +'<div class="plRow plBtns" style="margin-top:8px">'+(md!=="wall"?'<button class="ibtn" id="ploRot">⟳ หมุน (R)</button>':'')
       +'<button class="ibtn" id="plaSave" title="เก็บชื่อ รหัส ขนาด เป็นรุ่น — ขึ้นเป็นการ์ดในแคตตาล็อก ใช้ได้ทุกเครื่อง">💾 บันทึกเป็นรุ่น</button>'
@@ -40772,7 +40831,7 @@ function plaPanel(s,o){ const T=PLO_T[o.k]||{}, F=ploFrameOf(o), md=T.appl;
     +'<div class="plNote" style="margin-top:4px">'+(T.niche&&!snOff("plaNiche")?"ชี้ช่องโล่งในตู้ (ไม่มีบานบัง) = วางในช่อง · ":"")+({top:"ลากไปชี้ท็อป/ตู้พื้น — หันตามตู้ ใกล้กลางตู้ดูดเข้ากลาง",under:"ลากไปชี้ตู้ลอย (ตู้ฮู้ด) — ติดก้นตู้ กลางตู้",cab:"ลากไปชี้ตู้ — หน้าเสมอหน้าบาน กลางตู้",wall:T.prop?"ลากไปชี้ผนัง":"ลากไปชี้ผนัง — ปล่องขึ้นถึงฝ้า",floor:"ลากบนพื้น · R หมุน"}[md]||"")+' · ภาพอย่างเดียว ไม่เข้าใบตัด/ราคาต้นทุน</div>';
   s.innerHTML=h;
   s.querySelectorAll("[data-pok]").forEach(inp=>inp.onchange=()=>{ const k=inp.dataset.pok; if(ploLocked()){ plPanelSel(); return; }
-    if(k==="mdl"){ if(inp.value) plaUseModel(o,inp.value); else { o.w=T.w; o.h=T.h; o.d=T.d; delete o.mdl; o.code=""; } plaResnap(o); }
+    if(k==="mdl"){ if(inp.value) plaUseModel(o,inp.value); else { o.w=T.w; o.h=T.h; o.d=T.d; delete o.mdl; o.code=""; delete o.cutW; delete o.cutD; /* v1.692 */ } plaResnap(o); }
     else if(k==="code"){ o.code=String(inp.value||"").trim(); }
     else if(k==="hinge"){ o.hinge=inp.value==="L"?"L":"R"; }
     else if(k==="dset"){ if(inp.value) o.dset=inp.value; else delete o.dset; }   /* v1.619 */
@@ -40780,6 +40839,7 @@ function plaPanel(s,o){ const T=PLO_T[o.k]||{}, F=ploFrameOf(o), md=T.appl;
     else if(k==="scr"){ if(inp.value==="off") o.scr="off"; else delete o.scr; }   /* v1.614 */
     else if(k==="col"){ o.col=T.person?(PLA_PROP_COL[inp.value]?inp.value:"blue"):T.gchair?(PLA_GAME_COL[inp.value]?inp.value:"red"):(T.bed||T.rug||T.stool||T.sofa)?(PLA_PROP_COL[inp.value]?inp.value:"grey"):T.fridge==="wash"?(/^(white|silver|black)$/.test(inp.value)?inp.value:"white"):(PLA_SMEG_COL[inp.value]?inp.value:"cream"); }   /* v1.579: + สีเครื่องซักผ้า */
     else if(k==="mgap"){ const v=+inp.value; if(isFinite(v)&&v>=0&&v<=30) o.mgap=v; else { plPanelSel(); return; } }   /* v1.588: เว้นบานหลอก */
+    else if(k==="cutW"||k==="cutD"){ const v=+inp.value; if(!isFinite(v)||v<0){ plPanelSel(); return; } if(v<40) delete o[k]; else o[k]=Math.round(v); }   /* v1.692: ต่ำกว่า 40 หรือว่าง = ตามสูตร */
     else if(k==="ih"){ const v=+inp.value; if(isFinite(v)&&v>=100) o.ih=Math.round(v); else { plPanelSel(); return; } }   /* v1.578: สูงติดตั้งเตา */   /* v1.577: สีตู้เย็น SMEG */   /* v1.576: บานพับตู้เย็น */
     else { const v=+inp.value; if(!isFinite(v)){ plPanelSel(); return; }
       if(k==="w"&&v>=20) o.w=Math.round(v); else if(k==="d"&&v>=20) o.d=Math.round(v); else if(k==="h"&&v>=5) o.h=Math.round(v);
@@ -40795,19 +40855,21 @@ function plaPanel(s,o){ const T=PLO_T[o.k]||{}, F=ploFrameOf(o), md=T.appl;
   { const b=s.querySelector("#ploDel"); if(b) b.onclick=()=>ploDel(o.id); } { const b=s.querySelector("#ploHide"); if(b){ if(snOff("plHide")) b.remove(); else b.onclick=()=>ploHide(o.id,true); } }
   { const b=s.querySelector("#ploDone"); if(b) b.onclick=()=>{ PLO.sel=null; plRoomDraw(); plPanelSel(); }; }
   { const b=s.querySelector("#plaSave"); if(b) b.onclick=()=>plaSaveModel(o); }
+  { const b=s.querySelector("#plaCutAuto"); if(b) b.onclick=()=>{ if(ploLocked()) return; delete o.cutW; delete o.cutD; plRoomDraw(); plPanelSel(); plAfterRoom(); }; }   /* v1.692: กลับตามสูตร */
   { const b=s.querySelector("#plaOvFit"); if(b) b.onclick=()=>{ if(ploLocked()) return; plaOvenFitRun(o); plRoomDraw(); plPanelSel(); plAfterRoom(); }; }   /* v1.578 */
   { const b=s.querySelector("#plaMidD"); if(b) b.onclick=()=>{ if(ploLocked()) return; delete o.dF; plaResnap(o); plRoomDraw(); plPanelSel(); plAfterRoom(); }; }   /* v1.566: กลับกึ่งกลางตู้ */
   { const b=s.querySelector("#plaDelM"); if(b) b.onclick=()=>plaDelModel(cur); } }
-async function plaSaveModel(o){ const T=PLO_T[o.k]; if(!T) return false;
+async function plaSaveModel(o){ const T=PLO_T[o.k]; if(!T) return false; const _cs=(!snOff("plWtCut")&&plaCutOk(o))?plaCutSpec(o):null;   /* v1.692 */
   const v=await promptFields("💾 บันทึกเป็นรุ่น — "+T.n,[
     {key:"n",type:"text",label:"ชื่อรุ่น (ขึ้นบนการ์ด) เช่น Franke 1 หลุม ที่พักซ้าย",value:(o.mdl&&o.mdl.n)||""},
     {key:"code",type:"text",label:"รหัสสินค้า / ยี่ห้อ (ไม่บังคับ)",value:o.code||""},
-    {key:"w",label:"กว้าง (มม.)",value:Math.round(+o.w||T.w)},{key:"d",label:"ลึก (มม.)",value:Math.round(+o.d||T.d)},{key:"h",label:/^(sink1|sinku)$/.test(o.k)?"ลึกอ่าง (มม.)":/^(sink|sink2|hob|hobi|hobd)$/.test(o.k)?"หนาตัวเครื่อง (มม.)":"สูง (มม.)",value:Math.round(+o.h||T.h)}]);
+    {key:"w",label:"กว้าง (มม.)",value:Math.round(+o.w||T.w)},{key:"d",label:"ลึก (มม.)",value:Math.round(+o.d||T.d)},{key:"h",label:/^(sink1|sinku)$/.test(o.k)?"ลึกอ่าง (มม.)":/^(sink|sink2|hob|hobi|hobd)$/.test(o.k)?"หนาตัวเครื่อง (มม.)":"สูง (มม.)",value:Math.round(+o.h||T.h)}].concat(_cs?[{key:"cutW",type:"text",label:"ช่องเจาะท็อป กว้าง (มม.) — เว้นว่าง = ตามสูตร "+Math.round(plaCutSpec(Object.assign({},o,{cutW:0})).cut[0]),value:+o.cutW>0?String(o.cutW):""},{key:"cutD",type:"text",label:"ช่องเจาะท็อป ลึก (มม.) — เว้นว่าง = ตามสูตร "+Math.round(plaCutSpec(Object.assign({},o,{cutD:0})).cut[1]),value:+o.cutD>0?String(o.cutD):""}]:[]));   /* v1.692 */
   if(!v) return false; const n=String(v.n||"").trim().slice(0,60); if(!n){ toast("ใส่ชื่อรุ่นก่อน"); return false; }
   const L=plaLib(); let m=L.find(x=>x&&x.k===o.k&&x.n===n);
   if(m&&!(await dialog({title:"มีรุ่น “"+n+"” แล้ว — บันทึกทับ?",ok:"บันทึกทับ"}))) return false;
   if(!m){ m={id:"ap"+Date.now().toString(36)+Math.random().toString(36).slice(2,5), k:o.k}; L.push(m); }
   Object.assign(m,{n, code:String(v.code||"").trim(), w:Math.max(Math.round(+v.w)||o.w,20), d:Math.max(Math.round(+v.d)||o.d,20), h:Math.max(Math.round(+v.h)||o.h,5)});
+  if(_cs) ["cutW","cutD"].forEach(c=>{ const q=Math.round(+v[c]); if(q>=40) m[c]=q; else delete m[c]; });   /* v1.692 */
   plaUseModel(o,m.id); plaResnap(o); try{ await catSaveSettings(); }catch(e){ console.error("plaSave:",e); }
   plRoomDraw(); plPanelSel(); try{ plPanelGrid(); }catch(e){} plAfterRoom();
   toast("💾 บันทึกรุ่น “"+n+"” แล้ว — ขึ้นเป็นการ์ดในหมวดเครื่องใช้ในครัว"); return true; }
@@ -43489,11 +43551,27 @@ function plaRR(cx,cy,w,h,r,P){ const p=P||new THREE.Shape(), x0=cx-w/2, x1=cx+w/
   p.moveTo(x0+r,y0); p.lineTo(x1-r,y0); p.absarc(x1-r,y0+r,r,-Math.PI/2,0,false); p.lineTo(x1,y1-r); p.absarc(x1-r,y1-r,r,0,Math.PI/2,false);
   p.lineTo(x0+r,y1); p.absarc(x0+r,y1-r,r,Math.PI/2,Math.PI,false); p.lineTo(x0,y0+r); p.absarc(x0+r,y0+r,r,Math.PI,Math.PI*1.5,false); return p; }
 /* ช่องเจาะของเครื่องใช้หนึ่งชิ้น (พิกัดโลก · ทิศ 0/90/180/270 · แกนหน้าของชิ้น = local z หมุนตาม yaw) */
-function plWtHoleOf(o,sp){ sp=sp||plaSinkSpec(o); if(!sp||!sp.cut) return null; const q=(((+o.yaw||0)%360)+360)%360, rot=q*Math.PI/180, sw=q===90||q===270;
+/* ───────── v1.692: เตาเจาะช่อง + ตั้งขนาดช่องเจาะเอง ─────────
+   ผู้ใช้ 5/11 19:59 (แบบท็อปหิน 24 + เตา GORENJE + ซิงค์ HAFELE 495.39.374): “ทอป มัน ทอปหินไม่ใช่หรอ แล้ว มันเจาะหลุม ซิงค์ กับเตาให้ไหม” · 20:07 “ทำทั้ง 2 ข้อมาเลยครับ”
+   เดิม: plWtHoles เจาะเฉพาะ sink1 / sinku ขนาดจากสูตรใน plaSinkSpec (ซิงค์ 860×510 ได้ 800×410 แต่แบบคือ 810×445) ตั้งเองไม่ได้ · เตาวางทับหินตัน
+   ตอนนี้: ซิงค์และเตาทุกแบบเจาะ · สูตรตั้งต้น เตา = ตัวเครื่อง − 20 · sink/sink2 = ตัวเครื่อง − 40 · sink1/sinku คงสูตรเดิม
+     o.cutW / o.cutD = ขนาดที่ตั้งเอง (ไปกับ state.room.obj จึงตามงาน/Ctrl+Z เอง · รุ่นใน settings.plAppl เก็บด้วย)
+     ตั้งลึกเอง = ศูนย์ช่องอยู่กลางตัวเครื่อง (ของจริงขอบเครื่องทับเท่ากันทุกด้าน) · ไม่ตั้ง = เยื้องตามอ่างแบบเดิม
+   ปิด SN_OFF.plWtCut = แบบเดิม */
+function plaCutOk(o){ return !!o&&(snOff("plWtCut")?/^(sink1|sinku)$/:/^(sink|sink2|sink1|sinku|hob|hobi|hobd)$/).test(String(o.k||"")); }
+function plaCutSpec(o){ if(!plaCutOk(o)) return null; const sp=plaSinkSpec(o), w=Math.max(+o.w||0,60), d=Math.max(+o.d||0,60), hob=/^hob/.test(String(o.k));
+  const B=(sp&&sp.cut)?{cut:sp.cut.slice(),r:sp.r,cz:sp.cz}:{cut:hob?[Math.max(w-20,40),Math.max(d-20,40)]:[Math.max(w-40,40),Math.max(d-40,40)],r:hob?3:15,cz:0};
+  if(snOff("plWtCut")) return B;
+  if(+o.cutW>0) B.cut[0]=+o.cutW;
+  if(+o.cutD>0){ B.cut[1]=+o.cutD; B.cz=0; }
+  return B; }
+function plaCutRows(o,fr,num){ if(snOff("plWtCut")||!plaCutOk(o)) return ""; const S=plaCutSpec(o), mine=+o.cutW>0||+o.cutD>0;
+  return fr("ช่องเจาะท็อป",num("cutW",S.cut[0],1,56)+' × '+num("cutD",S.cut[1],1,56)+'<span class="plU">มม.</span>'+(mine?'<button class="ibtn" id="plaCutAuto" title="กลับไปใช้ขนาดตามสูตร" style="flex:none;padding:2px 7px;margin-left:4px">↺</button>':''),"กว้าง × ลึกของช่องที่เจาะในท็อป · ตั้งลึกเอง = ศูนย์ช่องอยู่กลางตัวเครื่อง"); }
+function plWtHoleOf(o,sp){ sp=sp||plaCutSpec(o); if(!sp||!sp.cut) return null; const q=(((+o.yaw||0)%360)+360)%360, rot=q*Math.PI/180, sw=q===90||q===270;
   const cw=sw?sp.cut[1]:sp.cut[0], cd=sw?sp.cut[0]:sp.cut[1], cx=(+o.x||0)+Math.sin(rot)*sp.cz, cz=(+o.z||0)+Math.cos(rot)*sp.cz;
   return {x0:cx-cw/2, x1:cx+cw/2, z0:cz-cd/2, z1:cz+cd/2, r:sp.r, k:o.k, id:o.id}; }
 function plWtHoles(){ if(snOff("plWtHole")||typeof state==="undefined"||!state.room||!Array.isArray(state.room.obj)) return [];
-  return state.room.obj.map(o=>(o&&(o.k==="sinku"||o.k==="sink1")&&!scnApplHid(o))?plWtHoleOf(o):null).filter(Boolean); }
+  return state.room.obj.map(o=>(plaCutOk(o)&&!scnApplHid(o))?plWtHoleOf(o):null).filter(Boolean); }   /* v1.692: + เตา + ซิงค์ 1–2 หลุม */
 /* แผ่นท็อปมีรู: รูปปิดบนระนาบ (x, −z) อัดหนา t แล้วหมุนนอน — rotateX(−90°): shape y → −z · ทิศอัด → +y · mesh อยู่ที่ 0,0,0 (พิกัดโลก) */
 function plWtHoleGeo(s,H){ const x0=s.lo[0], x1=s.hi[0], z0=s.lo[2], z1=s.hi[2], t=Math.max(s.hi[1]-s.lo[1],0.5);
   const sh=new THREE.Shape(), loops=[];
@@ -44695,7 +44773,7 @@ async function plRoomLibFill(m,quick){ const box=m.querySelector("#plrlList"); i
   if(_co) plRoomLibTree(m);
   if(!L.length){ box.innerHTML='<div style="padding:14px;color:var(--ink-dim)">'+(q?'ไม่พบชื่อที่ค้น':(m._list.length?'หมวดนี้ยังไม่มีห้อง — ลากห้องมาวาง หรือกดปุ่ม 📁 ที่ห้อง':'ยังไม่มีห้องที่บันทึก — กด 💾 บันทึกห้อง'))+'</div>'; return; }
   box.innerHTML=L.map((x,i)=>'<div class="plrlRow" data-i="'+i+'" style="display:flex;align-items:center;gap:8px;padding:8px 10px;border-bottom:.5px solid var(--line)">'
-    +'<div style="flex:1;min-width:0"><b>'+escapeHtml(String(x.name||""))+'</b>'+plRoomLibBadge(x)+((_co&&x.cat&&_ids.has(x.cat)&&x.cat!==_sel)?(' <span class="plrcP" title="หมวด">'+plRoomFolderSvg(plRoomCatColor(_cs,x.cat),14)+escapeHtml(plRoomCatPath(_cs,x.cat))+'</span>'):'')+'<div style="font-size:11px;color:var(--ink-dim);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">'+escapeHtml(plRoomSum(x.room))+' · '+escapeHtml(plRoomLibDate(x.at))+'</div></div>'
+    +'<div style="flex:1;min-width:0"><b>'+escapeHtml(String(x.name||""))+'</b>'+plRoomLibBadge(x)+((_co&&x.cat&&_ids.has(x.cat)&&x.cat!==_sel)?(' <span class="plrcP" title="หมวด">'+plRoomFolderSvg(plRoomCatColor(_cs,x.cat),14)+escapeHtml(plRoomCatPath(_cs,x.cat))+'</span>'):'')+'<div class="plrlMeta" style="font-size:11px;color:var(--ink-dim);overflow:hidden;text-overflow:ellipsis;white-space:nowrap">'+escapeHtml(plRoomSum(x.room))+' · '+escapeHtml(plRoomLibDate(x.at))+'</div></div>'
     +'<button class="ibtn" data-a="use" style="flex:none;width:auto;padding:5px 14px;background:var(--accent);color:#fff;border-color:transparent">เปิดใช้</button>'
     +(_co?'<button class="ibtn" data-a="mv" title="ย้ายไปหมวด (หรือลากห้องไปวางบนหมวด)" style="flex:none;width:auto;padding:5px 8px">'+plRoomFolderSvg((x.cat&&_ids.has(x.cat))?plRoomCatColor(_cs,x.cat):"#b0b2cb",20)+'</button>':'')+'<button class="ibtn" data-a="del" title="ลบห้องนี้ออกจากไฟล์กลาง" style="flex:none;width:auto;padding:5px 9px;color:#d33">🗑</button></div>').join("");
   box.querySelectorAll(".plrlRow").forEach(row=>{ const x=L[+row.dataset.i];
@@ -44719,6 +44797,15 @@ async function plRoomLibOpen(opt){ if(snOff("plRoomLib")) return; let m=$("plRoo
     +".plrcRow{display:flex;align-items:center;gap:5px;padding:5px 7px;border-radius:7px;cursor:pointer;font-size:12.5px;user-select:none}.plrcRow:hover{background:var(--panel,#f4f5f7)}.plrcRow.on{background:rgba(37,99,235,.12);color:#1d4ed8;font-weight:600}.plrcRow.drop{outline:2px dashed #2563eb;outline-offset:-2px}"
     +".plrcX{flex:0 0 14px;text-align:center;font-size:10px;color:var(--ink-dim)}.plrcP svg{display:inline-block!important;vertical-align:-2px;margin-right:4px}.plrcN{flex:1;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.plrcC{flex:none;font-size:11px;color:var(--ink-dim)}"
     +".plrcP{display:inline-block;margin-left:6px;padding:1px 7px;border-radius:9px;font-size:10.5px;background:var(--panel,#f0f1f3);color:var(--ink-dim);vertical-align:1px}"
+    /* ───────── v1.693: หน้าต่างจัดการห้องกว้างเต็มจอ ─────────
+       ผู้ใช้ 6/11 11:10 (ภาพหน้าต่างห้องที่บันทึก): “ขยายหน้าต่าง จัดการงาน ให้มันกว้าง เต็มจอไปเลยครับ จะได้เห็นข้อความได้ครบ”
+       เดิม: กว้างสุด 920 (หน้าเริ่มต้น 1120) · รายการสูงสุด 520 · บรรทัดรายละเอียดตัดท้ายเป็น …
+       ตอนนี้: กว้าง 96vw สูง 94vh หารขนาด UI แล้ว (การ์ดถูก zoom ค่า vw จึงหดตาม) · รายการ/หมวดยืดเต็มพื้นที่ที่เหลือ · รายละเอียดตัดบรรทัดแทนตัดท้าย
+       ปิด SN_OFF.plRoomWide = ขนาดแบบเดิม */
+    +(snOff("plRoomWide")?"":"#plRoomLib .card{width:calc(96vw / var(--uiz,1))!important;max-width:none!important;height:calc(94vh / var(--uiz,1));max-height:none!important}"
+      +"#plRoomLib .mbody{display:flex;flex-direction:column;overflow:hidden}#plRoomLib #plrlBody{flex:1 1 auto;min-height:0}#plRoomLib #plrlSide{flex-basis:260px}#plRoomLib #plrlMain{min-height:0}"
+      +"#plRoomLib #plrlTree{max-height:none!important;min-height:0}#plRoomLib #plrlList{flex:1 1 auto;min-height:0;max-height:none!important}"
+      +"#plRoomLib .plrlMeta{white-space:normal!important;overflow:visible!important}")
     +"@media (max-width:700px){#plrlBody{flex-direction:column}#plrlSide{flex:none}#plrlTree{max-height:160px}}";
     document.head.appendChild(st); }
   const _nb=(k,ic,t,sub)=>'<button class="plrlNw" data-new="'+k+'"><span class="plrlNi">'+ic+'</span><span>'+t+(sub?('<small>'+sub+'</small>'):'')+'</span></button>';
@@ -46419,12 +46506,14 @@ function dwgWorktop(C){ let wt={slabs:[],bs:[]}; try{ wt=plWtSlabs(); }catch(e){
     const L2W=(lx,lz)=>[x+lx*Math.cos(rot)+lz*Math.sin(rot), z-lx*Math.sin(rot)+lz*Math.cos(rot)], nm=String((ob.mdl&&ob.mdl.n)||T.s||T.n||"");
     if(ob.k==="sinku"){ o.R(x-fw/2,z-fd/2,x+fw/2,z+fd/2,{w:0.6,dash:"4 3",rx:6}); const H=plWtHoleOf(ob); if(H) o.R(H.x0,H.z0,H.x1,H.z1,{w:1.1,fill:"#fff",rx:H.r/k}); }
     else if(/^sink/.test(ob.k)){ o.R(x-fw/2,z-fd/2,x+fw/2,z+fd/2,{w:0.9,rx:6,fill:"#f4f5f7"});
-      if(ob.k==="sink1"){ const H=plWtHoleOf(ob); if(H) o.R(H.x0+5,H.z0+5,H.x1-5,H.z1-5,{w:0.6,rx:4}); }
+      if(ob.k==="sink1"){ const H=plWtHoleOf(ob,plaSinkSpec(ob)); /* v1.692: ปากอ่างตามสูตรเดิม ไม่ตามช่องที่ตั้งเอง */ if(H) o.R(H.x0+5,H.z0+5,H.x1-5,H.z1-5,{w:0.6,rx:4}); }
       else { const two=ob.k==="sink2", bw=two?w*0.42:w*0.52, bd=d*0.7; (two?[-w*0.23,w*0.23]:[-w*0.2]).forEach(bx=>{ const c=L2W(bx,d*0.05), hw=(sw?bd:bw)/2, hd=(sw?bw:bd)/2; o.R(c[0]-hw,c[1]-hd,c[0]+hw,c[1]+hd,{w:0.6,rx:4}); }); } }
     else { o.R(x-fw/2,z-fd/2,x+fw/2,z+fd/2,{w:0.9,rx:3,fill:ob.k==="micro"?"#f4f5f7":"#d9dadd"});
       const zs=ob.k==="hobd"?[[0,-0.24*d],[0,0.123*d]]:(/^hob/.test(ob.k)?[[-w/4,-10],[w/4,-10]]:[]), rr=ob.k==="hobd"?Math.min(w*0.3,90):(ob.k==="hob"?62:92);
       zs.forEach(p=>{ const c=L2W(p[0],p[1]); _circ(c[0],c[1],rr); }); }
-    o.T(x,z+3*k,nm,{px:7,bg:1}); });
+    /* v1.692: เส้นประ + ขนาดช่องเจาะ ให้ช่างหินอ่านได้ (ซิงค์ใต้ท็อปวาดช่องเส้นทึบอยู่แล้ว) */
+    let _cutT=""; if(!snOff("plWtCut")&&plaCutOk(ob)){ const Hc=plWtHoleOf(ob), Sc=plaCutSpec(ob); if(Hc){ if(ob.k!=="sinku") o.R(Hc.x0,Hc.z0,Hc.x1,Hc.z1,{w:0.9,dash:"5 3",col:"#c2410c"}); _cutT="ช่องเจาะ "+Math.round(Sc.cut[0])+" × "+Math.round(Sc.cut[1]); } }
+    o.T(x,z+3*k,nm,{px:7,bg:1}); if(_cutT) o.T(x,z+13*k,_cutT,{px:7,bg:1,col:"#c2410c"}); });
   /* ซิงค์ */
   const sinkSet=String(settings.sinkTrayCabs||"").split(/[;,\s]+/).map(x=>x.trim().toUpperCase()).filter(Boolean);
   cabs.filter(c=>c.lv==="base"&&!_apN).forEach(c=>{ let nm=""; try{ nm=String((catalogOf(c.code)||{}).name||cabDescGet(c.code)||(snOff("dwgApplLbl")?cabCodeDesc(c.code):"")||""); }catch(e){}
