@@ -3283,7 +3283,7 @@ body[data-theme="dark"] .splash-dots span{background:rgba(255,255,255,.25)}
    ===================================================================== */
 /* ---- APP_META: แหล่งความจริงเดียวของเวอร์ชัน (ดูได้จาก console / คลิกชื่อแอป) ---- */
 const APP_META={
-  name:"StarNexus", version:"1.752", build:"2026-11-10/cost-input",
+  name:"StarNexus", version:"1.753", build:"2026-11-10/cost-lock",
   file:"StarNexus.html", basedOn:"Furnitech_V3.html (v3.11)",
   /* ───────── เริ่มนับเวอร์ชันใหม่ที่ 1.001 (21/08/2026) ─────────
      ของเดิมนับมาถึง 42.1 แล้ววิ่งเป็นทศนิยมสองชั้นซึ่งอ่านลำดับยาก
@@ -3291,6 +3291,7 @@ const APP_META={
      ประวัติเก่าเก็บไว้ทั้งหมดตามเลขเดิม ไม่ไล่เขียนใหม่ เพราะเลขในนั้นถูกอ้างถึงไปแล้ว
      รายการที่อยู่ใต้ 1.001 ลงไปจึงเป็นเลขชุดเก่า อ่านต่อกันได้ตามวันที่ */
   changelog:[
+    ["1.753","2026-11-10","FEAT รหัสเข้าราคาต้นทุน + ราคาขาย = ยอดรวมทั้งสิ้น (ผู้ใช้ 10/11 14:33 ภาพแผงซ้ายห้องออกแบบ: “ทำ 2 ปุ่มนั้นให้ใส่รหัสเพื่อเข้าใช้งาน · เอาราคาต้นทุนออก แล้วราคาขายให้เอายอดรวมทั้งสิ้นมาใส่” · ตอบเพิ่ม: ตั้ง/เปลี่ยนรหัสในตั้งค่า · ใส่ครั้งเดียวใช้ได้จนปิดแท็บ/รีเฟรช · ซ่อนต้นทุน ไม้/ผิว/ขอบ/Fitting ราคาครบ/ราคา AX/กำไรขั้นต้น ต้นทุนตู้นี้ · ใส่รหัสแล้วโชว์กลับ) — เดิม: ใครก็กด 💰 ได้ แผงโชว์ต้นทุนตลอด ราคาขาย = ราคาแคตตาล็อก (ส่วนใหญ่ ฿0) · ตอนนี้: 💰 ราคาต้นทุน (plQuoteOpen) และ 💰 ราคาทุน… (costEditor ทุกทางเข้า) ถามรหัสก่อน (ถูก = ใช้ได้จนรีเฟรช) · ล็อกอยู่ แผงซ้ายเหลือแค่ปุ่ม 🔒 ราคาทุน… · ต้นทุนตู้นี้ไม่ขึ้น · ราคาขาย = ยอดรวมทั้งสิ้นของหน้า 💰 (ส่วนลด VAT ปัดราคา % ของงาน) · ตั้งค่า → หมวด 🔒 รหัสราคาต้นทุน ปุ่มเปลี่ยนรหัส (ใส่รหัสเดิม → ใหม่ ≥ 4 ตัว → ยืนยัน) · เก็บเป็นค่าแฮชใน settings (ทุกเครื่องรหัสเดียวกัน) · ยังไม่ตั้ง = 1234 · ปิด SN_OFF.costLock=1 / SN_OFF.plSaleGrand=1"],
     ["1.752","2026-11-10","FIX หน้า 💰 ราคาต้นทุน พิมพ์ตัวเลขในช่อง % แล้วเพี้ยน (ผู้ใช้ 10/11 14:02 “ใส่ตัวเลขแล้วบัค” ภาพ Mark up กลายเป็น 35 · 14:04 “ราคาขายรวมกับต้นทุน ขาดทุนยับ” ภาพ Mark up 50%) — ต้นเหตุ: พิมพ์ทุกตัวอักษร = วาดตารางใหม่ (ช่องกรอกเป็นตัวใหม่) แล้วคืนโฟกัส แต่ช่องชนิด number อ่าน/ตั้งตำแหน่งเคอร์เซอร์ไม่ได้ → เคอร์เซอร์ไปอยู่หน้าสุด พิมพ์ 350 ได้ 53 · ลบ (Backspace) ไม่ได้ · ราคาเลยออกมาจาก Mark up ที่ผิด (50% = ราคาครึ่งเดียวของต้นทุน) · แก้: ช่อง % หัวคอลัมน์ + PF รายแถว เป็นช่องข้อความรับตัวเลข (inputmode decimal) · วาดใหม่แล้วคืนข้อความที่พิมพ์ค้าง + เคอร์เซอร์ตำแหน่งเดิม · ตัวอักษรที่ไม่ใช่ตัวเลข = ใช้ค่าตั้งต้น · UX Mark up ตั้งต้น 400 → 300% (ผู้ใช้ 14:03) · แถบยอดล่าง “ราคาขายรวม (Mark up 300% = ×3)” · Mark up < 100% ตัวเลขเป็นสีแดง ⚠ ต่ำกว่าต้นทุน"],
     ["1.751","2026-11-10","UI หน้า 💰 ราคาต้นทุน ใส่เส้นตารางทุกช่อง (ผู้ใช้ 10/11 13:56 “ใส่เส้นตารางให้หน่อย”) — เดิมมีแค่เส้นใต้แถว อ่านคอลัมน์ยากในธีมมืด · ตอนนี้ขอบ 1px ทุกช่อง (หัว · แถว · แถวรายละเอียด) สีเทาโปร่งเห็นได้ทั้งธีมสว่าง/มืด · ตัวเลขชิดขวาเหมือนเดิม"],
     ["1.750","2026-11-10","FEAT หน้า 💰 ราคาต้นทุน คิดตามฟอร์มต้นทุนบริษัท (ผู้ใช้ 10/11 13:32 ภาพ Excel “ต้นทุน ชุดครัวตู้ซิงค์ HMR เทียบ PB”: “เพิ่มคอลัมตามรูป อันไหนมีแล้วก็ไม่ต้องเพิ่ม แล้วเรียงตามนั้น · 2 คอลัมสุดท้ายไม่ต้อง · เพิ่ม Mark up · คอลัมไหนมี % ให้กรอกได้ · ทุกงาน Default % ตามนั้น · Mark up 400%” · ตอบเพิ่ม: ราคา = TOTAL × 4 · ผิวรวมในไม้ · ช่อง PF คือช่องกำไร · งานเก่าใช้ % ใหม่ทันที) — เดิม: DM (ไม้ ผิว ขอบ อุปกรณ์) · DL+OH (% ของ DM) · ทุนรวม · กำไร % (ของ DM+DL+OH) · ราคา/หน่วย · รวม · ตอนนี้: ไม้ (รวมผิว) · ขอบ · อุปกรณ์ · หีบห่อ 5% · DM (= วัตถุดิบ + หีบห่อ) · MG 5% · DL 20% · OH 30% · PF 15% ของ DM+MG+DL+OH · ขนส่ง LG 10% · ค่าบริหาร Site 10% · TOTAL · Mark up 400% (ราคา = TOTAL × 400/100) · ราคา/หน่วย (ปัดตามเดิม) · รวม — ตรวจกับ 4 แถวในภาพ Excel ตรงทุกช่อง · % ทุกคอลัมน์กรอกได้ที่หัวคอลัมน์ (เก็บกับงาน · ว่าง = ค่าตั้งต้น) · PF รายแถวทับได้ (ช่องในแถว) · แถบยอดล่าง + Excel แผ่นรายการ/สรุป ตามคอลัมน์ใหม่ · ส่วนลด/VAT/ปัดราคาเหมือนเดิม · DL % OH % กำไร % ทั้งงานเดิมไม่ใช้แล้ว · ปิด SN_OFF.plqChain=1 = สูตรเดิม"],
@@ -32727,6 +32728,8 @@ function boardRole(b){
      SN_OFF.cltDrKeepTop=1 ปรับสูงลิ้นชัก CANTILEV = ยืดขึ้นแบบตู้ทั่วไป แบบเดิม (v1.749)
      SN_OFF.cltDrAnyShelf=1 ลิ้นชัก CANTILEV เข้าได้เฉพาะใต้แผ่นบน แบบเดิม (v1.749)
      SN_OFF.plqChain=1    หน้า 💰 ราคาต้นทุน กลับไปสูตรเดิม DM · DL+OH · กำไร % (v1.750)
+     SN_OFF.costLock=1    ไม่ต้องใส่รหัสเข้า 💰 ราคาต้นทุน / ราคาทุน · แผงซ้ายโชว์ต้นทุนตลอด (ลืมรหัสใช้ตัวนี้) (v1.753)
+     SN_OFF.plSaleGrand=1 ราคาขายแผงซ้าย = ราคาแคตตาล็อกแบบเดิม (ไม่ใช่ยอดรวมทั้งสิ้น) (v1.753)
      SN_OFF.webView=1     ปุ่มแชร์กลับไปสร้างลิงก์ในวงออฟฟิศแบบเดิมทันที ไม่เปิดหน้าต่างไฟล์ดูงาน/เว็บดูงาน (v1.338)
      SN_OFF.ghShare=1     ไม่ส่งลิงก์ขึ้น GitHub (ลิงก์ตู้กลับไปเก็บในไฟล์กลาง) (v1.340)
      SN_OFF.sendBox=1     ปุ่มส่งเข้าไฟล์กลางกลับไปแบบเดิม (ข้อความสั้น ไม่มีกล่องขั้นตอน ไม่มีเวลาหมด ไม่ขอสิทธิ์โฟลเดอร์) (v1.341)
@@ -38535,6 +38538,7 @@ const SET_CATS=[
   {key:"var",   label:"Variables / Element",                 rx:/variable|element|ตัวแปร|part|ออเดอร์/i},
   {key:"view",  label:"หน้าจอ — ธีม / ขนาด UI",               rx:/หน้าตาโปรแกรม|ธีม|ขนาดหน้าจอ|theme|ui/i},
   {key:"tool",  label:"เครื่องมือ / คลาวด์",                    rx:/ตรวจ|ปัดขนาด|คลาวด์|overlap|cloud/i},
+  {key:"costLock", label:"🔒 รหัสราคาต้นทุน",                 rx:/^🔒 รหัสเข้าราคาต้นทุน/},   /* v1.753 */
   {key:"roomTrash", label:"🗑 ถังขยะห้อง",                     rx:/^ถังขยะห้อง/},   /* v1.620 */
   {key:"misc",  label:"อื่น ๆ",                               rx:null}
 ];
@@ -38625,6 +38629,7 @@ function renderSettings(){
   body.innerHTML=`
     ${(typeof sxlDataInSet==="function"&&sxlDataInSet())?`<div class="sumh">ข้อมูล — ตารางที่โหลด (Odoo / Google Drive)</div>
     <div id="setSxlHost"></div>`:""}
+    ${snOff("costLock")?"":`<div class="sumh">🔒 รหัสเข้าราคาต้นทุน</div><div id="setCostLock" style="column-span:all;padding:8px 4px;font-size:12.5px;line-height:1.6">ห้องออกแบบ: ปุ่ม 💰 ราคาต้นทุน และ 💰 ราคาทุน… ต้องใส่รหัสก่อน (ใส่ครั้งเดียวใช้ได้จนปิดแท็บ/รีเฟรช) · ต้นทุนในแผงซ้ายซ่อนจนกว่าจะใส่รหัส · ทุกเครื่องใช้รหัสเดียวกัน <b id="setCostLockSt">${costLockStTxt()}</b><div style="margin-top:6px"><button type="button" class="ibtn" id="setCostLockBtn">🔒 เปลี่ยนรหัส…</button></div></div>`}   <!-- v1.753 -->
     ${snOff("plRoomTrash")?"":`<div class="sumh">ถังขยะห้อง</div><div id="setRoomTrash" style="column-span:all"><div style="padding:10px;color:var(--ink-dim)">กำลังโหลด…</div></div>`}
     <div class="sumh">รหัสตู้ — ตารางแปลความหมาย</div>
     <div class="cb-fld"><label>บรรทัดละหนึ่งรายการ · <span style="font-family:var(--mono)">หัวรหัส = คำอธิบาย</span> — หัวรหัสที่ยาวกว่าถูกจับก่อน (BND ชนะ BN, BN ชนะ B) · ตัวที่ไม่มีในตารางจะไม่แสดงคำอธิบาย ไม่เดาให้</label>
@@ -45583,13 +45588,13 @@ function plWtGrpHtml531(grp){
 function plPopX531(rc){ const P=PL&&PL.panel; return ((P&&!snOff("plTidy"))?Math.max(rc.right,P.getBoundingClientRect().right):rc.right)+10; }
 /* แถบล่างส่วนบน: ตู้ในห้อง + ราคาขาย · ปุ่ม (ใบเสนอราคา / Blender / สมจริง / บันทึกภาพ) ตาราง 2 คอลัมน์ — เงื่อนไขเดียวกับ plPanelFoot เดิม */
 function plFootTop531(p){ const B=[];
-  if(!VIEW_ONLY){ if(!snOff("plQuote")) B.push('<button class="ibtn" id="plQuoteBtn" title="ราคาต้นทุนรายตู้ (วัสดุ ผิว ขอบ อุปกรณ์ + DL OH) · แบบสำหรับวางงาน PDF ไม่มีราคา">💰 ราคาต้นทุน</button>');
+  if(!VIEW_ONLY){ if(!snOff("plQuote")) B.push('<button class="ibtn" id="plQuoteBtn" title="ราคาต้นทุนรายตู้ (วัสดุ ผิว ขอบ อุปกรณ์ + DL OH) · แบบสำหรับวางงาน PDF ไม่มีราคา'+(costLockIsOk()?'':' · ต้องใส่รหัส')+'">'+(costLockIsOk()?'💰':'🔒')+' ราคาต้นทุน</button>');   /* v1.753: 🔒 = ยังไม่ใส่รหัส */
     else if(!snOff("plPoster")) B.push('<button class="ibtn" id="plPosterBtn" title="ภาพห้อง 3D + รายการตู้ ขนาด ราคา + แปลน → PNG">🖼 โปสเตอร์ขาย</button>'); }
   if(!VIEW_ONLY&&realCanUse()&&!snOff("plRender")) B.push('<button class="ibtn" id="plRendBtn" title="ส่งภาพฉาก 🎬 ที่เลือกให้ AI (Gemini) แต่งเป็นภาพสมจริงทันที — หรือเลือกเรนเดอร์แสงจริงในเครื่อง">'+(typeof rndLbl==="function"?rndLbl():"🎬 Render")+'</button>');   /* v1.562: แทน 🧊 ส่งออก Blender (ผู้ใช้ “เอาออกเลย”) */
   else if(!snOff("glbExport")) B.push('<button class="ibtn" id="plGlbBtn" title="ห้อง + ตู้ทั้งหมดเป็นไฟล์ 3D (.glb) — เปิดใน Blender แล้วเรนเดอร์เหมือนจริงได้ฟรี">🧊 ส่งออก Blender</button>');
   if(!VIEW_ONLY&&realCanUse()){ B.push('<button class="ibtn'+(REAL.on?' on':'')+'" id="plRealBtn" title="ห้องจริง แสงจริง ตามห้องที่ออกแบบ — ลากหมุนดูได้">'+(REAL.on?'✕ ออกจากสมจริง':'✨ โหมดสมจริง')+'</button>');
     if(!snOff("realSnap")) B.push('<button class="ibtn" id="plSnapBtn" title="บันทึกภาพสมจริงความละเอียดสูงจากมุมกล้องนี้ (JPG)">📷 บันทึกภาพ</button>'); }
-  return '<div class="plRow plSum"><span>ตู้ในห้อง <b>'+p.n+'</b> ใบ</span><span class="plSale" title="ราคาขายรวมจากแคตตาล็อก (ใบที่ยังไม่ใส่ราคาไม่นับ)">ราคาขาย<b>'+plMoney(p.sum)+'</b></span></div>'
+  return '<div class="plRow plSum"><span>ตู้ในห้อง <b>'+p.n+'</b> ใบ</span><span class="plSale" title="'+(snOff("plSaleGrand")?'ราคาขายรวมจากแคตตาล็อก (ใบที่ยังไม่ใส่ราคาไม่นับ)':'ยอดรวมทั้งสิ้นจากหน้า 💰 ราคาต้นทุน (หลังส่วนลด รวม VAT ตามที่ตั้งในหน้านั้น)')+'">ราคาขาย<b>'+((!snOff("plSaleGrand")&&_plqGrand!=null)?("฿"+plqMoney(_plqGrand)):plMoney(p.sum))+'</b></span></div>'
     +(B.length?('<div class="plBar'+(B.length%2?' plOdd':'')+'">'+B.join("")+'</div>'):''); }
 /* ตู้ที่เลือก: แถว “ฟิลเลอร์” / “แผ่นปิดข้าง” / DP · Trim Top / ห่างผนัง → สองคอลัมน์ (ย้ายโหนดเดิม ไม่สร้างปุ่ม/ช่องใหม่ → ตัวต่อสายยังจับได้) */
 function plTidyRows(host){ if(!host||snOff("plTidy")) return;
@@ -46572,6 +46577,7 @@ function costBreak(o){ return "ไม้ "+plMoney(o.wood)+" · ผิว "+plMo
      จำนวนที่ยังไม่มีราคา = L.miss แบบเดียวกับคำเตือนในหน้าราคาต้นทุน · คิดพลาด = กลับไปใช้ costOfAll · ปิด SN_OFF.costPanelDM=1 */
 function costPanelSum(){ if(snOff("costPanelDM")||typeof plqLines!=="function") return costOfAll();
   let L=null; try{ L=plqLines(); }catch(e){ console.error("costPanelSum:",e); return costOfAll(); }
+  _plqLastL=L;   /* v1.753: ราคาขาย (ยอดรวมทั้งสิ้น) ใช้แถวชุดนี้ ไม่คิดซ้ำ */
   const all=L.all||costOfAll(), o=Object.assign({},all,{wood:0,surf:0,edge:0,fit:0,top:0,other:0,total:0,missN:+L.miss||0});
   (L.lines||[]).forEach(g=>{ const q=+g.qty||0, v=(+g.cost||0)*q; o.total+=v;
     if(g.wt){ o.top+=v; return; }
@@ -46579,6 +46585,70 @@ function costPanelSum(){ if(snOff("costPanelDM")||typeof plqLines!=="function") 
     else o.other+=v; });
   o.total=Math.round(o.total*100)/100; if(Math.abs(o.other)<0.5) o.other=0;
   return o; }
+/* ═════════ v1.753: รหัสเข้าราคาต้นทุน + ราคาขาย = ยอดรวมทั้งสิ้น ═════════
+   ผู้ใช้ 10/11/2026 14:33 (ภาพแผงซ้ายห้องออกแบบ Model 2_ALTO_CANTALEV):
+     “รูปที่ 1 ทำ 2 ปุ่มนั้นให้ใส่รหัส เพื่อเข้าใช้งาน (💰 ราคาต้นทุน · 💰 ราคาทุน…)
+      รูปที่ 2 เอาราคาต้นทุนออก แล้วราคาขายให้เอายอดรวมทั้งสิ้นมาใส่”
+     ตอบคำถาม: ตั้ง/เปลี่ยนรหัสในตั้งค่า · ใส่ครั้งเดียวใช้ได้จนปิดแท็บ/รีเฟรช
+       · ซ่อน ต้นทุน + ไม้/ผิว/ขอบ/Fitting + ราคาครบ/ราคา AX/กำไรขั้นต้น + ต้นทุนตู้นี้ · ใส่รหัสแล้วโชว์กลับ
+   เดิม: ใครก็กด 💰 ได้ · แผงโชว์ต้นทุนตลอด · ราคาขาย = ราคาแคตตาล็อก (ตู้ส่วนใหญ่ไม่ได้ใส่ = ฿0)
+   ตอนนี้:
+     - plQuoteOpen / costEditor ผ่าน costLockGate() ก่อน (กล่องใส่รหัส ชั้น 450 เหนือ ovCard 430)
+     - รหัสเก็บเป็นค่าแฮช settings.costLockH (บันทึกด้วย catSaveSettings = ทุกเครื่องรหัสเดียวกัน) · ยังไม่ตั้ง = 1234
+       ⚠ กันได้แค่คนทั่วไป: ไฟล์เป็น HTML คนเปิดโค้ดเป็นยังข้ามได้
+     - ใส่ถูกแล้วจำในตัวแปร _costLockOk (หายเมื่อรีเฟรช/ปิดแท็บ)
+     - แผงซ้าย: ล็อกอยู่ = เหลือแค่ปุ่ม 🔒 ราคาทุน… · ต้นทุนตู้นี้ไม่ขึ้น
+     - ราคาขาย = ยอดรวมทั้งสิ้น (K.grand ของหน้า 💰: % ส่วนลด VAT ปัดราคา ตามงาน) จาก plqLines ชุดเดียวกับ costPanelSum (ไม่คิดซ้ำ)
+       คิดบนสำเนา room.quote (ไม่เติมค่าตั้งต้นลงงาน)
+   ปิด: SN_OFF.costLock=1 ไม่ต้องใส่รหัส (ลืมรหัสใช้ตัวนี้) · SN_OFF.plSaleGrand=1 ราคาขายจากแคตตาล็อกแบบเดิม */
+const COSTLOCK_DEF="1234";
+let _costLockOk=false, _plqLastL=null, _plqGrand=null;
+function costLockOn(){ return !snOff("costLock"); }
+function costLockHash(s){ s="sxCostLock|"+String(s==null?"":s); let h1=0xdeadbeef^s.length, h2=0x41c6ce57^s.length;
+  for(let i=0;i<s.length;i++){ const c=s.charCodeAt(i); h1=Math.imul(h1^c,2654435761); h2=Math.imul(h2^c,1597334677); }
+  h1=Math.imul(h1^(h1>>>16),2246822507)^Math.imul(h2^(h2>>>13),3266489909); h2=Math.imul(h2^(h2>>>16),2246822507)^Math.imul(h1^(h1>>>13),3266489909);
+  return "c1:"+(h2>>>0).toString(16).padStart(8,"0")+(h1>>>0).toString(16).padStart(8,"0"); }
+function costLockCur(){ const h=settings&&settings.costLockH; return (typeof h==="string"&&h)?h:costLockHash(COSTLOCK_DEF); }
+function costLockIsOk(){ return !costLockOn()||_costLockOk; }
+function costLockStTxt(){ return (settings&&settings.costLockH)?"· ตั้งรหัสแล้ว":"· ยังใช้รหัสตั้งต้น 1234 — ควรเปลี่ยน"; }
+/* กล่องใส่รหัส · check(v) คืน true = ผ่าน / ข้อความ = ผิด (ค้างกล่องไว้) · ยกเลิก/Esc = null */
+function costLockAsk(title,sub,check){ return new Promise(res=>{
+  const old=document.getElementById("costLockAsk"); if(old) old.remove();
+  const ov=document.createElement("div"); ov.id="costLockAsk";
+  ov.style.cssText="position:fixed;inset:0;z-index:450;background:rgba(15,18,24,.5);display:flex;align-items:center;justify-content:center;padding:14px";
+  ov.innerHTML='<form autocomplete="off" style="background:var(--solid,#fff);color:var(--ink,#111);border-radius:14px;box-shadow:0 24px 70px -20px rgba(0,0,0,.6);padding:16px 18px;width:min(340px,100%);display:flex;flex-direction:column;gap:8px">'
+    +'<b style="font-size:15px">'+escapeHtml(title)+'</b>'+(sub?'<div style="font-size:12px;color:var(--ink-dim,#666)">'+escapeHtml(sub)+'</div>':'')
+    +'<input type="password" autocomplete="new-password" style="padding:8px 10px;font-size:16px;letter-spacing:3px;border:1px solid var(--line,#ccc);border-radius:8px;background:var(--bg2,#fff);color:inherit">'
+    +'<div data-m style="font-size:12px;color:#d63b3b;min-height:16px"></div>'
+    +'<div style="display:flex;gap:8px;justify-content:flex-end"><button type="button" class="ibtn" data-x>ยกเลิก</button><button type="submit" class="ibtn" data-ok style="background:var(--accent,#1e5fa8);color:#fff;border-color:transparent">ตกลง</button></div></form>';
+  document.body.appendChild(ov); const fm=ov.querySelector("form"), ip=ov.querySelector("input"), msg=ov.querySelector("[data-m]");
+  const kd=ev=>{ if(ev.key==="Escape"){ ev.preventDefault(); ev.stopPropagation(); done(null); } };
+  const done=v=>{ document.removeEventListener("keydown",kd,true); ov.remove(); res(v); };
+  document.addEventListener("keydown",kd,true);
+  ov.querySelector("[data-x]").onclick=()=>done(null);
+  ov.addEventListener("mousedown",ev=>{ if(ev.target===ov) done(null); });
+  fm.onsubmit=ev=>{ ev.preventDefault(); const v=ip.value, r=check?check(v):true; if(r===true) done(v); else { msg.textContent=r||"ไม่ถูกต้อง"; ip.select(); } };
+  setTimeout(()=>{ try{ ip.focus(); }catch(e){} },30); }); }
+function costLockRepaint(){ try{ plPanelFoot(); }catch(e){} try{ plPanelSel(); }catch(e){} }
+async function costLockGate(){ if(costLockIsOk()) return true;
+  const v=await costLockAsk("🔒 ใส่รหัสเพื่อดูราคาต้นทุน","ใส่ครั้งเดียว ใช้ได้จนปิดแท็บหรือรีเฟรช",x=>costLockHash(x)===costLockCur()?true:"รหัสไม่ถูก");
+  if(v==null) return false; _costLockOk=true; costLockRepaint(); return true; }
+async function costLockChange(){ if(!costLockOn()){ toast("ปิดรหัสอยู่ (SN_OFF.costLock)"); return; }
+  const cur=costLockCur();
+  if(await costLockAsk("🔒 เปลี่ยนรหัสราคาต้นทุน","ใส่รหัสเดิมก่อน"+((settings&&settings.costLockH)?"":" (ยังไม่เคยตั้ง = 1234)"),x=>costLockHash(x)===cur?true:"รหัสเดิมไม่ถูก")==null) return;
+  const nw=await costLockAsk("🔒 รหัสใหม่","อย่างน้อย 4 ตัว · ทุกเครื่องใช้รหัสนี้",x=>String(x).length>=4?true:"อย่างน้อย 4 ตัว"); if(nw==null) return;
+  if(await costLockAsk("🔒 ยืนยันรหัสใหม่","พิมพ์รหัสใหม่อีกครั้ง",x=>x===nw?true:"ไม่ตรงกับรหัสใหม่")==null) return;
+  settings.costLockH=costLockHash(nw); _costLockOk=true;
+  try{ await catSaveSettings(); }catch(e){ console.error("costLockChange:",e); }
+  const st=document.getElementById("setCostLockSt"); if(st) st.textContent=costLockStTxt();
+  toast("🔒 เปลี่ยนรหัสราคาต้นทุนแล้ว"); costLockRepaint(); }
+document.addEventListener("click",ev=>{ const b=ev.target&&ev.target.closest&&ev.target.closest("#setCostLockBtn"); if(!b) return; ev.preventDefault(); costLockChange(); });
+/* ราคาขายแผงซ้าย = ยอดรวมทั้งสิ้นของหน้า 💰 (สำเนา quote · ไม่เขียนค่าตั้งต้นลงงาน) */
+function plqGrandOf(L){ if(snOff("plSaleGrand")||!L||typeof plqCalc!=="function") return null;
+  const r=plRoom(); if(!r) return null; const had=Object.prototype.hasOwnProperty.call(r,"quote"), keep=r.quote;
+  try{ r.quote=(keep&&typeof keep==="object")?Object.assign({},keep):{}; const K=plqCalc(plqData(),L); return (K&&isFinite(+K.grand))?+K.grand:null; }
+  catch(e){ console.error("plqGrandOf:",e); return null; }
+  finally{ if(had) r.quote=keep; else delete r.quote; } }
 /* ห้องออกแบบ: คิดเบื้องหลังหลังแผงวาดเสร็จ */
 let _costT=0;
 function costSchedule(){ if(!costOn()) return; clearTimeout(_costT); _costT=setTimeout(()=>{ try{ costPaint(); }catch(e){ console.error("costPaint:",e); } },250); }
@@ -46589,7 +46659,12 @@ function costPaint(){
   if(!costOn()) return;
   if(!snOff("costStock")&&!STK.map&&!STK.busy) stkLoad(false);   // v1.514: ราคา AX โหลดเบื้องหลัง เสร็จแล้ว costSchedule วาดใหม่เอง
   const f=$("plFoot");
-  if(f&&f.offsetParent!==null){ const o=costPanelSum(), p=plPrice(), nm=(o.missN!=null?o.missN:o.miss.length), el=costSlot(f,"plCostFoot");   /* v1.741: ยอดเดียวกับ DM วัตถุดิบรวม */
+  if(f&&f.offsetParent!==null){ _plqLastL=null; const o=costPanelSum(), p=plPrice(), nm=(o.missN!=null?o.missN:o.miss.length), el=costSlot(f,"plCostFoot");   /* v1.741: ยอดเดียวกับ DM วัตถุดิบรวม */
+    /* ───────── v1.753: ราคาขาย = ยอดรวมทั้งสิ้น (หน้า 💰) · ล็อกอยู่ = เหลือแค่ปุ่ม ───────── */
+    if(!snOff("plSaleGrand")){ let L=_plqLastL; if(!L){ try{ L=plqLines(); }catch(e){ L=null; } } const g=plqGrandOf(L); if(g!=null){ _plqGrand=g; const sb=f.querySelector(".plSale b"); if(sb) sb.textContent="฿"+plqMoney(g); } }
+    if(!costLockIsOk()){ el.innerHTML='<div class="plRow plCostRow" style="margin-top:3px"><span class="plCostT"></span><button class="ibtn" id="plCostEdit" style="margin-left:auto;padding:2px 8px;font-size:11px" title="ต้องใส่รหัสก่อน">🔒 ราคาทุน…</button></div>';
+      const b0=el.querySelector("#plCostEdit"); if(b0) b0.onclick=()=>costEditor({onlyMissing:nm>0}); }
+    else {
     const gp=p.sum>0?('<span style="margin-left:auto" title="ราคาขายจากแคตตาล็อก − ต้นทุน'+(nm?" (ต้นทุนยังไม่ครบ)":"")+'">กำไรขั้นต้น <b>'+plMoney(p.sum-o.total)+'</b> ('+Math.round((p.sum-o.total)/p.sum*100)+'%)'+(nm?" *":"")+'</span>'):'';
     el.innerHTML='<div class="plRow" style="margin-top:3px"><span>ต้นทุน</span><b style="margin-left:6px;font-size:14px">'+(snOff("costPanelDM")?plMoney(o.total):("฿"+plqMoney(o.total)))+'</b>'+gp+'</div>'
       +'<div class="plNote">'+escapeHtml(costBreak(o))+'</div>'
@@ -46597,9 +46672,10 @@ function costPaint(){
       +(o.stk?('<span class="plNote" style="margin-left:6px" title="รายการที่ SN ยังไม่มีราคา ใช้ราคา AX จาก StarStock (ตั้งเองในหน้า STOCK → ราคาซื้อ → ราคาทุน)">· ราคา AX '+o.stk+'</span>'):'')   /* v1.514 */
       +(o.unres?('<span class="plNote" style="margin-left:6px" title="ชิ้น/ขอบที่ยังเป็นตัวแปร ($…) ไม่รู้รหัสวัสดุจริง">· ยังไม่ผูกวัสดุ '+o.unres+'</span>'):'')
       +'</span><button class="ibtn" id="plCostEdit" style="margin-left:auto;padding:2px 8px;font-size:11px">💰 '+(nm?'ใส่ราคาที่ขาด…':'ราคาทุน…')+'</button></div>';
-    const b=el.querySelector("#plCostEdit"); if(b) b.onclick=()=>costEditor({onlyMissing:nm>0}); }
+    const b=el.querySelector("#plCostEdit"); if(b) b.onclick=()=>costEditor({onlyMissing:nm>0}); } }   /* v1.753: ปิด else (ใส่รหัสแล้ว) */
   const s=$("plSelSec"), inst=plSelInst();
-  if(s&&inst&&!csmIsRailInst(inst)){ const o=costOfCab(inst), el=costSlot(s,"plCabCost");
+  if(!costLockIsOk()){ const _e=s&&s.querySelector("#plCabCost"); if(_e) _e.innerHTML=""; }   /* ───────── v1.753: ต้นทุนตู้นี้ซ่อนจนใส่รหัส ───────── */
+  else if(s&&inst&&!csmIsRailInst(inst)){ const o=costOfCab(inst), el=costSlot(s,"plCabCost");
     let pr=0; try{ const d=plLocalDims(inst); pr=catPrice(d.f.code,d.W); }catch(e){}
     el.innerHTML='<div class="plRow" style="font-size:11.5px;margin-top:2px"><span>ต้นทุนตู้นี้ <b>'+plMoney(o.total)+'</b></span>'
       +(pr>0?('<span style="margin-left:auto" title="ราคาขาย − ต้นทุน">กำไร <b>'+plMoney(pr-o.total)+'</b> ('+Math.round((pr-o.total)/pr*100)+'%)'+(o.miss.length?" *":"")+'</span>'):'')+'</div>'
@@ -46624,6 +46700,7 @@ function costParsePaste(txt){ const out=[];
   return out; }
 function costEditor(opt){
   opt=opt||{}; if(snOff("cost")) return;
+  if(!costLockIsOk()){ costLockGate().then(ok=>{ if(ok) costEditor(opt); }); return null; }   /* ───────── v1.753: ใส่รหัสก่อน (ทุกทางเข้า) ───────── */
   const c=costCfg(), today=new Date().toISOString().slice(0,10);
   const scopeB=opt.inst?plBoardsOf(opt.inst):null;
   const used=opt.inst?costItems(scopeB,costFitRows(scopeB)):costItems(costAllBoards(),costFitRows(state.boards));
@@ -48455,6 +48532,7 @@ async function plqShot(){
   catch(e){ console.warn("quote shot:",e); return ""; } }
 async function plQuoteOpen(){
   if(VIEW_ONLY) return;
+  if(!await costLockGate()) return;   /* ───────── v1.753: ใส่รหัสก่อน ───────── */
   plqClose();
   let sv={}; try{ sv=await lsGet(PLQ_LS,null); }catch(e){ sv=null; }
   if(!sv||typeof sv!=="object"){ sv={}; try{ const pb=await lsGet(PLP_LS,{})||{}; if(pb.tel) sv.tel=pb.tel; if(pb.logo) sv.logo=pb.logo; }catch(e){} }   // ครั้งแรก: โทร/โลโก้จากโปสเตอร์
@@ -48789,7 +48867,7 @@ function plqAnnBind(ov,Q,reload){ if(snOff("plqAnn")) return; PLQ.Q=Q; PLQ.tool=
   if(fI) fI.onchange=()=>{ PLQ.annFill=fI.value; const a=selA(); if(a&&a.t==="rect"){ a.fill=fI.value; redraw(); } else if(a&&a.t==="text"){ a.bg=fI.value==="solid"; redraw(); } };
   if(sI) sI.onchange=()=>{ PLQ.annFs=+sI.value||16; const a=selA(); if(a&&a.t==="text"){ a.fs=PLQ.annFs; redraw(); } };
   plqAnnTbSync(); }
-function plqClose(){ if(PLQ.el){ PLQ.el.remove(); PLQ.el=null; } clearTimeout(PLQ.tmr);
+function plqClose(){ if(PLQ.el){ PLQ.el.remove(); PLQ.el=null; setTimeout(()=>{ try{ costSchedule(); }catch(e){} },0); }   /* v1.753: ปิดหน้า 💰 แล้วราคาขายแผงซ้ายตาม % ใหม่ */ clearTimeout(PLQ.tmr);
   if(PLQ.dirty){ PLQ.dirty=false; try{ autosave(); }catch(e){} } }
 /* ═════════ v1.521: แบบแนบใบเสนอราคา — แปลน · ด้านหน้า (Dimension) · Section · แปลนท็อป · หน้ารวมวัสดุ ═════════
    ผู้ใช้ 27/10/2026 19:28 “อยากได้ภาพแปลน ภาพด้านหน้าพร้อม Dimension ภาพ Section … จะได้แนบไปในใบเสนอราคา” + 19:31 “แล้วต้องออกหน้ารวมวัสดุแบบนี้ด้วย”
