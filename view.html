@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="th"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover"><meta name="generator" content="StarNexus 1.753"><title>StarNexus — ดูงาน 3D</title><style>
+<html lang="th"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover"><meta name="generator" content="StarNexus 1.785"><title>StarNexus — ดูงาน 3D</title><style>
 :root{--bg:#e7e8ee;--panel:rgba(255,255,255,.94);--solid:#fff;--ink:#172c40;--dim:#5b6b7c;--line:#d5dae2;--accent:#1e5fa8;--warn:#e8590c;--shadow:0 10px 30px -12px rgba(16,32,56,.35)}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html,body{margin:0;height:100%;background:var(--bg);color:var(--ink);font:14px/1.5 system-ui,-apple-system,"Segoe UI","Noto Sans Thai","Sarabun",sans-serif;overflow:hidden;overscroll-behavior:none}
@@ -1388,7 +1388,7 @@ function realDropRoom(){
 function realBuildRoom(){
   const bx=_realCabBox(); if(!bx) return false;
   const R=_realRoomOf(bx), P=REAL_PRESETS[REAL.preset]||REAL_PRESETS.day;
-  realDropRoom(); REAL.room=R; R.plWalls=(typeof realPlWallsOn==="function")&&realPlWallsOn(R); if(R.plWalls) R.win=Object.assign({},R.win,{none:true});   /* v1.566: ผนังจริงของห้องออกแบบ · ผนังที่ปิดอยู่ไม่มีหน้าต่างเอง */
+  realDropRoom(); REAL.room=R; R.plWalls=(typeof realPlWallsOn==="function")&&realPlWallsOn(R); if(R.plWalls) R.win=Object.assign({},R.win,{none:true}); R.plDw=(typeof realPlDwOn==="function")&&realPlDwOn(R);   /* v1.760: + ผนังที่วาด */   /* v1.566: ผนังจริงของห้องออกแบบ · ผนังที่ปิดอยู่ไม่มีหน้าต่างเอง */
   const g=new THREE.Group(); g.name="realRoom"; g.userData._realRoom=true;
   const T=120, w=R.x1-R.x0, d=R.z1-R.z0, h=R.y1-R.y0, cx=(R.x0+R.x1)/2, cz=(R.z0+R.z1)/2, cy=(R.y0+R.y1)/2;
   const M=(hex,rough,metal)=>new THREE.MeshStandardMaterial({color:realLin(hex),roughness:rough,metalness:metal||0});
@@ -1404,13 +1404,13 @@ function realBuildRoom(){
   { const fl=new THREE.Mesh(new THREE.PlaneGeometry(w,d),floorM); fl.rotation.x=-Math.PI/2; fl.position.set(cx,R.y0,cz); fl.receiveShadow=true; fl.userData.realFl=1; g.add(fl); if(R.plWalls) try{ realPlFloor(fl); }catch(e){ console.error("realPlFloor:",e); } }   /* v1.566: แบบพื้นที่ตั้ง */
   const SK=90, SKT=14;
   // ผนังหลัง (หลังตู้) — บัวเชิงผนังเว้นช่วงที่ตู้ตั้ง
-  if(!(R.plWalls&&realPlW(R,"back"))) { const wg=wall("back",[0,0,1],[0,0,R.z0]);   /* v1.566: ผนังที่เปิดในห้องออกแบบ = ผนังจริง (realPlWalls) */
+  if(!R.plDw&&!(R.plWalls&&realPlW(R,"back"))) {   /* v1.760: ห้องผนังที่วาด = ไม่มีผนังจำลอง */ const wg=wall("back",[0,0,1],[0,0,R.z0]);   /* v1.566: ผนังที่เปิดในห้องออกแบบ = ผนังจริง (realPlWalls) */
     box(wg,w+2*T,h+2*T,T,wallM,cx,cy,R.z0-T/2);
     [[R.x0,bx.min.x],[bx.max.x,R.x1]].forEach(([a,b])=>{ if(b-a>20) box(wg,b-a,SK,SKT,skirtM,(a+b)/2,R.y0+SK/2,R.z0+SKT/2,true); }); }
-  if(!(R.plWalls&&realPlW(R,"front"))) { const wg=wall("front",[0,0,-1],[0,0,R.z1]); box(wg,w+2*T,h+2*T,T,wallM,cx,cy,R.z1+T/2); box(wg,w,SK,SKT,skirtM,cx,R.y0+SK/2,R.z1-SKT/2,true); }
-  if(!(R.plWalls&&realPlW(R,"right"))) { const wg=wall("right",[-1,0,0],[R.x1,0,0]); box(wg,T,h+2*T,d,wallM,R.x1+T/2,cy,cz); box(wg,SKT,SK,d,skirtM,R.x1-SKT/2,R.y0+SK/2,cz,true); }
+  if(!R.plDw&&!(R.plWalls&&realPlW(R,"front"))) {   /* v1.760: ห้องผนังที่วาด = ไม่มีผนังจำลอง */ const wg=wall("front",[0,0,-1],[0,0,R.z1]); box(wg,w+2*T,h+2*T,T,wallM,cx,cy,R.z1+T/2); box(wg,w,SK,SKT,skirtM,cx,R.y0+SK/2,R.z1-SKT/2,true); }
+  if(!R.plDw&&!(R.plWalls&&realPlW(R,"right"))) {   /* v1.760: ห้องผนังที่วาด = ไม่มีผนังจำลอง */ const wg=wall("right",[-1,0,0],[R.x1,0,0]); box(wg,T,h+2*T,d,wallM,R.x1+T/2,cy,cz); box(wg,SKT,SK,d,skirtM,R.x1-SKT/2,R.y0+SK/2,cz,true); }
   // ผนังซ้าย + ช่องหน้าต่าง
-  if(!(R.plWalls&&realPlW(R,"left"))) { const wg=wall("left",[1,0,0],[R.x0,0,0]), W0=R.win, yb=W0.yc-W0.h/2, yt=W0.yc+W0.h/2, za=W0.zc-W0.w/2, zb=W0.zc+W0.w/2, X=R.x0-T/2;
+  if(!R.plDw&&!(R.plWalls&&realPlW(R,"left"))) {   /* v1.760: ห้องผนังที่วาด = ไม่มีผนังจำลอง */ const wg=wall("left",[1,0,0],[R.x0,0,0]), W0=R.win, yb=W0.yc-W0.h/2, yt=W0.yc+W0.h/2, za=W0.zc-W0.w/2, zb=W0.zc+W0.w/2, X=R.x0-T/2;
     const zl=R.z0-T, zr=R.z1+T, ylo=R.y0-T, yhi=R.y1+T;
     box(wg,T,yb-ylo,zr-zl,wallM,X,(yb+ylo)/2,(zl+zr)/2);
     box(wg,T,yhi-yt,zr-zl,wallM,X,(yt+yhi)/2,(zl+zr)/2);
@@ -1428,6 +1428,7 @@ function realBuildRoom(){
     sk.receiveShadow=false; sk.userData._rptSkip=true; }
     box(wg,SKT,SK,d,skirtM,R.x0+SKT/2,R.y0+SK/2,cz,true); }
   if(R.plWalls) try{ realPlWalls(g,R,wall,P); }catch(e){ console.error("realPlWalls:",e); }   /* v1.566 */
+  if(R.plDw) try{ realPlDwWins(g,R,wall,P); }catch(e){ console.error("realPlDwWins:",e); }   /* v1.760: ฟ้า/ทางเดินหลังประตู-หน้าต่างบนผนังที่วาด + หน้าต่างแดด */
   // ฝ้า + ดาวน์ไลท์
   /* ───────── v1.579: ฝ้าของโหมดสมจริงเจาะช่องฝ้าหลุม ─────────
      AI RENDER (ภาพฉาก/ภาพเร็ว/แสงจริง) ถ่ายจากโหมดสมจริง ซึ่งวาดฝ้าเป็นกล่องทึบของตัวเอง + ซ่อนชิ้นในห้องออกแบบที่ไม่ใช่เครื่องใช้
