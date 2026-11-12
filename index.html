@@ -3296,7 +3296,7 @@ body[data-theme="dark"] .splash-dots span{background:rgba(255,255,255,.25)}
    ===================================================================== */
 /* ---- APP_META: แหล่งความจริงเดียวของเวอร์ชัน (ดูได้จาก console / คลิกชื่อแอป) ---- */
 const APP_META={
-  name:"StarNexus", version:"1.786", build:"2026-11-12/room-fix",
+  name:"StarNexus", version:"1.787", build:"2026-11-12/ai-mat",
   file:"StarNexus.html", basedOn:"Furnitech_V3.html (v3.11)",
   /* ───────── เริ่มนับเวอร์ชันใหม่ที่ 1.001 (21/08/2026) ─────────
      ของเดิมนับมาถึง 42.1 แล้ววิ่งเป็นทศนิยมสองชั้นซึ่งอ่านลำดับยาก
@@ -3304,6 +3304,7 @@ const APP_META={
      ประวัติเก่าเก็บไว้ทั้งหมดตามเลขเดิม ไม่ไล่เขียนใหม่ เพราะเลขในนั้นถูกอ้างถึงไปแล้ว
      รายการที่อยู่ใต้ 1.001 ลงไปจึงเป็นเลขชุดเก่า อ่านต่อกันได้ตามวันที่ */
   changelog:[
+    ["1.787","2026-11-12","FEAT 🎬 AI RENDER ใส่รายละเอียดวัสดุลงในคำสั่งที่ส่งไปกับภาพ (ผู้ใช้ 12/11 20:30 “ปรับ prompt ให้มันไปดูวัสดุ แล้วเพิ่มไปใน prompt เพื่อความเข้าใจของ AI”) — ดึงจากหน้ารายละเอียดวัสดุของใบเสนอราคา (dwgMatTiles) เฉพาะที่เห็นในภาพ: ดีไซน์หน้าบาน · สี/ผิวหน้าบาน · สีโครงด้านใน · ท็อป + บัว · ผนังเหนือท็อป · มือจับ · ไฟ LED (ไม่ส่งบานพับ ราง เนื้อไม้ เพราะไม่เห็นในภาพ AI จะวาดเพิ่มเอง) · สั่งให้คงสี/ลายตามภาพ ไม่เปลี่ยนวัสดุ · ใช้ทั้ง 🤖 AI แต่งต่อ และ 📋/🍌 Gemini เว็บ · ติ๊กปิดได้ที่ 🤖 AI แต่งต่อ › วัสดุ · ปิดทั้งหมด SN_OFF.rndMat=1"],
     ["1.786","2026-11-12","FIX ห้องออกแบบ + ตู้ (ผู้ใช้ 12/11 19:58–20:13 · project 52/53) — ① ลากตู้ลอย ขอบซ้าย/ขวาเข้าใกล้ข้างตู้พื้นข้างล่าง ≤ 50 มม. = ดูดตรงแนว + เส้นประเขียว (Alt = อิสระ · ชิดตู้ลอยข้าง ๆ อยู่แล้วไม่ดึงออก) ② ฟิลเลอร์ยกเท่าขา ตีนตู้ไม่วิ่งถึงผนัง — ตู้มีขาจริงก้นขาอยู่ 20 ฟิลเลอร์ยกนับก้น 0 แนวจึงไม่ต่อกัน → ฟิลเลอร์ยกใช้ระดับก้นเดียวกับตู้มีขาข้าง ๆ ③ ตู้ที่ไม่มีแผ่นพื้น (ครอบเครื่องซักผ้า · ฟิลเลอร์ TNF001 ฯลฯ) ไม่ใส่ขา วางพื้น · ขาที่ใส่ไว้แล้วถอดเอง ④ เมนู 🪝 หูแขวนเปิดทับใต้แผงซ้าย → เปิดขวาแผง ⑤ บานพับชนชั้นตามเกณฑ์ 96 แต่ช่องเดิมยังพอใส่ (ห่างผิวชั้น ≥ 35) = อยู่ในช่องเดิม ไม่กระโดดข้ามชั้นไปช่องอื่น ⑥ TAL031: หน้าลิ้นชัก/บานที่ขอบหันเข้าช่องเปิด (ช่องเตา) ยื่นเลยชั้นตายในบาน → ตัดถึงชั้น · ตัวยึดแผ่นหลังข้างบนไม่มี (นับแผ่นหลังล่างที่อยู่คนละระดับเป็นแผ่นหลังซ้อน) · แผ่นหลังยาวทะลุชั้นที่มีร่องรับ → ตัดถึงก้นร่อง · ร่องแผ่นหลังที่ไม่มีแผ่นหลังใช้/ร่องซ้ำ → เอาออก · หัวท้ายร่อง CNC ของตู้ที่หมุนคิดผิดแกน → คิดตอนตู้ขนานแกน · ปิดทีละเรื่อง SN_OFF.plWallBaseSnap / plinthLiftY0 / legNoFloor / plHangPop / hingeInBay / deShelfClamp / bpcRearY / backGrooveHeal / bgSyncAlign"],
     ["1.785","2026-11-12","FEAT ปุ่ม 💾 บันทึกรูปแบบใหม่ทับรูปเดิม ในหน้าต่างแคตตาล็อกเต็มจอ (ผู้ใช้ 12/11 19:19 “ทำรูปใหม่เข้าไปแปะที่เคยมี”) — 1.783 แปลงรูป KDMax เป็นสไตล์ StarNexus แค่ตอนแสดง ไฟล์ใน <Server>/thumbs ยังเป็นรูป KDMax (เปิดไฟล์ตรง ๆ / โปรแกรมอื่นเห็นรูปเดิม) · ตอนนี้: ตู้ในรายการที่กรองอยู่ซึ่งรูปยังเป็นรูป KDMax → แปลงตามแบบรูปที่เลือก แล้วเขียนทับไฟล์ <รหัส>.png ทีละใบ มีปุ่มหยุด · รูปที่ทำแล้ว/รูปตู้ StarNexus ข้าม · ถามยืนยันก่อน (เขียนทับแล้วเปลี่ยนแบบรูปไม่ได้ ต้องนำเข้าไฟล์รวม KDMax แบบ ข้าม เพื่อเอารูปเดิมกลับ) · ปิด SN_OFF.plPicBake=1"],
     ["1.784","2026-11-12","UI ฟอนต์ทั้งโปรแกรมเป็นแบบไม่มีหัว สมัยใหม่ (ผู้ใช้ 12/11 19:02 ภาพปฏิทินในมือถือ “เปลี่ยนฟอนต์เป็นสไตล์นี้” · 19:04 “เอาของที่คุณใช้ก็ได้”) — เดิม Sarabun (ไทยมีหัว) โหลดจาก Google Fonts · ตอนนี้ Noto Sans Thai (ไม่มีหัว · ไทย + อังกฤษ + ตัวเลขชุดเดียวกัน · น้ำหนัก 100–900) ฝังในไฟล์ ~75 KB ใช้ได้ไม่ต้องต่อเน็ต (สัญญาอนุญาต SIL OFL 1.1) · แทนในตัวแปร --font และจุดที่เขียน system-ui,Sarabun ตรง ๆ (ป้ายบนแบบ 2D · กล่องไฟล์กลาง) · ตัวเลข/รหัสแบบความกว้างเท่ากัน (--mono) และกระดาษพิมพ์แบบผลิตไม่เปลี่ยน · ปิด SN_OFF.snFontNoto=1 = กลับเป็นฟอนต์เดิม"],
@@ -33031,6 +33032,7 @@ function boardRole(b){
      SN_OFF.plKdGroup=1   แคตตาล็อกห้องออกแบบไม่มีแถบ จัดกลุ่มแบบ KDMax (v1.781)
      SN_OFF.kdxPic=1      นำเข้า KDMax ไม่เก็บรูปตัวอย่างของ KDMax เป็นรูปตู้ (v1.781)
      SN_OFF.plKdBig=1     แคตตาล็อกห้องออกแบบไม่มีปุ่ม ⛶ เต็มจอ (หน้าต่างแบบ Select Product Style ของ KDMax) (v1.782)
+     SN_OFF.rndMat=1      🎬 AI RENDER ไม่ใส่รายละเอียดวัสดุในคำสั่ง (v1.787)
      SN_OFF.plWallBaseSnap=1 ลากตู้ลอยไม่ดูดแนวข้างตู้พื้นข้างล่าง (v1.786)
      SN_OFF.plinthLiftY0=1 ฟิลเลอร์ยกเท่าขานับก้นตีนตู้ที่ 0 แบบเดิม (ไม่ต่อแนวกับตู้มีขาที่ก้นขาอยู่สูงกว่า 0) (v1.786)
      SN_OFF.legNoFloor=1  ตู้ไม่มีแผ่นพื้นยังใส่ขาได้แบบเดิม (v1.786)
@@ -83102,6 +83104,7 @@ const RND=(function(){
     return sent; }
   async function run(list){ if(O.eng==="cy"&&typeof snrOn==="function"&&snrOn()) return cyRun(list);   /* v1.763 */
     if(busy||!list||!list.length) return; busy=true; stop=false; const n=list.length; let ok=0, err=null;
+    try{ await matRefresh(); }catch(e){}   /* v1.787: วัสดุในคำสั่ง — อ่านจากงานตอนนี้ก่อนถ่าย */
     const aiMode=O.eng==="ai"&&!snOff("rndAi"), made=[];   /* v1.570: AI RENDER = ภาพเร็ว แล้วส่ง AI */
     const keep=scnCap(), keepAct=SCN.act, wasReal=REAL.on, keepPre=REAL.preset;
     const fromView=baseIsView()&&!REAL.on, vKeep=fromView?{eco:state.eco,ghost:state.ghost,grain:state.showGrain,swing:settings.doorSwing}:null;   /* v1.611 */
@@ -83160,7 +83163,28 @@ const RND=(function(){
      PROMPT เดิมไม่ลบ · SN_OFF.rndDslr=1 = กลับไปใช้ PROMPT เดิม */
   const PROMPT_DSLR="# UNIVERSAL MASTER PROMPT\n\n**Ultra-Photorealistic DSLR Interior Photography | Built-in Furniture**\n\nTransform the uploaded 3D interior rendering into an ultra-photorealistic architectural photograph for a luxury interior design magazine.\n\n### 1. ABSOLUTE DESIGN PRESERVATION\n\n**STRICTLY PRESERVE 100% OF THE ORIGINAL BUILT-IN DESIGN.**\n\nMaintain exact layout, dimensions, proportions, cabinet doors, drawers, shelves, handles, frames, joints, materials, colors, textures, architectural details, and camera perspective.\n\nDo not redesign, resize, relocate, remove, or modify any existing elements. The original image is the absolute design reference.\n\n### 2. PHOTOREALISTIC DSLR QUALITY\n\nCreate a realistic professional architectural photograph using a full-frame DSLR, 35mm lens, ISO 100, and f/8.\n\nEnhance realistic material textures, natural wood grain, reflections, glass transparency, fine details, and subtle imperfections.\n\nThe result must look like a real photograph, not CGI.\n\n### 3. NATURAL LIGHTING & ATMOSPHERE\n\nCreate bright, beautiful natural afternoon daylight with soft directional sunlight, realistic global illumination, gentle shadows, and balanced exposure.\n\nMaintain clean neutral-warm colors without excessive yellow tones.\n\n**STRICT LIGHTING PRESERVATION:** Preserve all original lighting positions. Never add new LED strips, concealed lighting, shelf lighting, cabinet lighting, downlights, or artificial light sources. Use approximately 4000K for existing LEDs where unspecified.\n\n### 4. INTELLIGENT INTERIOR STYLING\n\nAutomatically identify the room type and interior style.\n\nAdd tasteful decorative accessories using a refined **Modern Earth Tone & Understated Luxury** aesthetic.\n\n**STRICTLY NO FRESH FLOWERS, LIVE PLANTS, OR GREEN LEAFY PLANTS.**\n\nPreferred decorations:\n\n- Dried flowers, dried branches, and natural dried grasses.\n- Amber glass, tea-colored glass, and smoked brown glass vases.\n- Brushed gold, champagne gold, matte black, and satin silver accessories.\n- Teak wood, walnut, warm brown, and natural earth-tone objects.\n- Neutral ceramics, black decorative trays, books, picture frames, and elegant room-appropriate accessories.\n\nUse approximately 2–5 balanced decorative groupings where appropriate.\n\nAdd props only to existing suitable surfaces. Do not add furniture, modify built-in details, obstruct cabinet features, or create clutter.\n\nKeep the built-in furniture as the main visual focus.\n\n### 5. PROFESSIONAL IMAGE FINISH\n\nApply natural photographic color grading, realistic shadows, balanced highlights, accurate material colors, subtle contrast, and crisp architectural details.\n\nAim for 8K–16K presentation quality where supported.\n\n### STRICT NEGATIVE PROMPT\n\nNo redesign, no geometry changes, no altered cabinet details, no material changes, no camera changes, no new lighting or LEDs, no fresh flowers, no live plants, no green leafy plants, no excessive yellow tones, no unrealistic reflections, no CGI appearance, no unnecessary furniture, no clutter.\n\n### FINAL PRIORITY\n\n**PRESERVE ORIGINAL DESIGN 100%.**\n\nEnhance only lighting realism, material realism, photographic quality, and appropriate Earth Tone decorative styling.\n\n**DESIGN PRESERVATION FIRST. PHOTOREALISM SECOND. DECORATIVE STYLING THIRD.**";
   function promptBase(){ return snOff("rndDslr")?PROMPT:PROMPT_DSLR; }
-  function prompt(){ const n=String(O.note||"").trim(); return promptBase()+(n?("\nAdditional instructions from the designer (Thai): "+n+(snOff("rndNoteEx")?"":"\nIf these designer instructions ask to add or change decor (plants, baskets, small objects, lighting mood), that is an allowed exception to the rules above — still keep every cabinet, door, drawer, handle, countertop and appliance exactly unchanged.")):""); }   /* v1.572: สั่งเพิ่ม “เพิ่มตะกร้า/ต้นไม้” เดิมชนกับ “Do not add” → AI ไม่ทำ · บอกเป็นข้อยกเว้นของตกแต่ง (ตู้ยังห้ามแตะ) · SN_OFF.rndNoteEx=1 = แบบเดิม */
+  /* ───────── v1.787: รายละเอียดวัสดุในคำสั่ง ─────────
+     ผู้ใช้ 12/11 20:30 (ภาพหน้ารายละเอียดวัสดุของใบเสนอราคา): “ปรับ prompt ให้มันไปดู วัสดุ แล้วเพิ่มไปใน prompt เพื่อความเข้าใจของ Ai ดีไหม”
+     เดิม: คำสั่งมีแต่กติกาทั่วไป (Prompt ของ Designer) · AI เดาวัสดุจากภาพอย่างเดียว ผิวขาวด้าน/ลายหินจึงเพี้ยนได้
+     ตอนนี้: ก่อนถ่ายภาพ อ่านการ์ดจากหน้ารายละเอียดวัสดุ (dwgMatTiles ตัวเดียวกับใบเสนอราคา) เก็บไว้ที่ _matTxt
+       เฉพาะที่เห็นในภาพ — ดีไซน์หน้าบาน · สี/ผิวหน้าบาน · สีโครงด้านใน · ท็อป + บัว · ผนังเหนือท็อป · มือจับ · LED
+       ไม่ส่ง บานพับ ราง เนื้อไม้ (PB/MDF) เพราะไม่เห็นในภาพ ส่งไป AI จะวาดเพิ่มเอง · ชื่อไทยคงไว้ (Gemini อ่านได้) · ไม่เกิน 14 บรรทัด
+       ติ๊ก “วัสดุ” ใน 🤖 AI แต่งต่อ (O.mat) · ปิดทั้งหมด SN_OFF.rndMat=1 */
+  let _matTxt="";
+  const MAT_LBL=[[/^ดีไซน์หน้าบาน/,"Door / drawer-front design"],[/^สีหน้าบาน/,"Door / front color and finish"],[/^สีโครงตู้ด้านใน/,"Cabinet interior (carcass) color"],
+    [/^ท็อป/,"Countertop"],[/^ผนัง/,"Wall finish above the countertop"],[/^มือจับ/,"Handles"],[/^LED/,"LED strip lighting"]];
+  function matFromTiles(T){ const out=[], seen=new Set();
+    (T||[]).forEach(x=>{ if(!x) return; const h=String(x.h||""), L=MAT_LBL.find(m=>m[0].test(h)); if(!L) return;
+      const t=String(x.t||"").replace(/\s+/g," ").trim(), sub=String(x.s||"").replace(/\s+/g," ").trim();
+      let ln=L[1]+(/บัว/.test(h)&&L[1]==="Countertop"?" + backsplash":"")+": "+[t,sub].filter(Boolean).join(" — ");
+      ln=ln.slice(0,170); if(!t&&!sub) return; if(seen.has(ln)) return; seen.add(ln); out.push("- "+ln); });
+    if(!out.length) return "";
+    return "\n\n### MATERIALS IN THIS DESIGN\n\nMaterials in this design (from the StarNexus order; Thai text = product names). Render every surface with exactly these materials, colors and textures as they appear in the image — do not substitute, recolor or restyle them:\n"+out.slice(0,14).join("\n"); }
+  async function matRefresh(){ _matTxt="";
+    if(snOff("rndMat")||O.mat===false) return "";
+    try{ if(typeof dwgMatTiles==="function") _matTxt=matFromTiles(await dwgMatTiles()); }catch(e){ console.error("rndMat:",e); _matTxt=""; }
+    return _matTxt; }
+  function prompt(){ const n=String(O.note||"").trim(); return promptBase()+((snOff("rndMat")||O.mat===false)?"":_matTxt)+(n?("\nAdditional instructions from the designer (Thai): "+n+(snOff("rndNoteEx")?"":"\nIf these designer instructions ask to add or change decor (plants, baskets, small objects, lighting mood), that is an allowed exception to the rules above — still keep every cabinet, door, drawer, handle, countertop and appliance exactly unchanged.")):""); }   /* v1.572: สั่งเพิ่ม “เพิ่มตะกร้า/ต้นไม้” เดิมชนกับ “Do not add” → AI ไม่ทำ · บอกเป็นข้อยกเว้นของตกแต่ง (ตู้ยังห้ามแตะ) · SN_OFF.rndNoteEx=1 = แบบเดิม */
   function ratio(w,h){ const r=(w||16)/(h||9), L=[["21:9",21/9],["16:9",16/9],["3:2",1.5],["4:3",4/3],["5:4",1.25],["1:1",1],["4:5",.8],["3:4",.75],["2:3",2/3],["9:16",9/16]];
     let b=L[0], d=1e9; L.forEach(x=>{ const e=Math.abs(Math.log(r/x[1])); if(e<d){ d=e; b=x; } }); return b[0]; }
   async function gemModel(key){ if(O.gm) return O.gm;
@@ -83400,6 +83424,7 @@ const RND=(function(){
       +'<details id="rnAiD" data-gas-drive="1" style="margin:8px 0;border:.5px solid var(--line);border-radius:10px;padding:6px 10px"'+(O.aiOpen?' open':'')+'><summary style="cursor:pointer;font-weight:600">🤖 AI แต่งต่อ — '+(O.ai==="openai"?"OpenAI":"Gemini")+(has(O.ai)?' · มีคีย์แล้ว':' · <span style="color:#b45309">ยังไม่มีคีย์</span>')+'</summary>'
       +row("ผู้ให้บริการ",'<select id="rnAi" class="nameinp" style="width:auto">'+opt("gemini",O.ai,"Gemini (Google)"+(has("gemini")?"":" — ยังไม่มีคีย์"))+opt("openai",O.ai,"OpenAI"+(has("openai")?"":" — ยังไม่มีคีย์"))+'</select>')
       +row("รุ่น",'<input id="rnModel" class="nameinp" style="width:260px;max-width:100%;font-family:var(--mono)" placeholder="ว่าง = เลือกรุ่นภาพล่าสุดให้เอง" value="'+H(O.ai==="openai"?O.om:O.gm)+'">')
+      +(snOff("rndMat")?"":row("วัสดุ",'<label style="display:flex;align-items:center;gap:6px;cursor:pointer"><input type="checkbox" id="rnMat"'+(O.mat!==false?" checked":"")+'> ใส่รายละเอียดวัสดุในคำสั่ง (ดีไซน์/สีหน้าบาน · สีโครงด้านใน · ท็อป · มือจับ · LED)</label>'))   /* v1.787 */
       +row("สั่งเพิ่ม",'<input id="rnNote" class="nameinp" style="flex:1;min-width:180px" placeholder="'+(snOff("rndDslr")?"เช่น แสงเย็นโทนอุ่น · มีต้นไม้เล็กบนท็อป":"เช่น แจกันแก้วสีชากับกิ่งไม้แห้งบนท็อป · ถาดดำบนเกาะกลาง")+'" value="'+H(O.note)+'">')+(snOff("rndDslr")?"":'<div class="muted" style="font-size:11px;line-height:1.6;margin-top:2px">คำสั่งหลัก: <b>Prompt ของ Designer</b> — ภาพถ่าย DSLR · คงแบบตู้ 100% · แสงบ่ายธรรมชาติ ไม่เพิ่มไฟ · ของตกแต่ง Earth Tone (ไม่มีดอกไม้สด/ต้นไม้) · ดูทั้งหมดได้ที่ 📝 คำสั่งที่ส่งไปกับภาพ บนการ์ด</div>')
       +'<div class="muted" style="font-size:11px;line-height:1.6;margin-top:4px">ใช้คีย์เดียวกับ 🤖 ผู้ช่วย (⚙) · ภาพละราว 1–5 บาท และคีย์ต้องผูกบัตร (คีย์ฟรีสร้างภาพไม่ได้) · AI ถูกสั่งให้คงแบบตู้ไว้ แต่ยังอาจเปลี่ยนรายละเอียดเล็ก ๆ เช่นจำนวนบาน/มือจับ — ตรวจก่อนส่งลูกค้า'
       +(snOff("rndWeb")?'':'<br>ไม่มีบัตร/คีย์ฟรี = ใช้ปุ่ม <b>🍌 Gemini เว็บ (ฟรี)</b> บนการ์ดภาพ (คัดลอกภาพ+คำสั่งไปวางใน gemini.google.com แล้วเอาภาพผลกลับมา)')+'</div></details>'
@@ -83419,6 +83444,7 @@ const RND=(function(){
     bd("#rnEng","eng"); bd("#rnPx","px",1); bd("#rnCyQ","cyQ"); bd("#rnCyL","cyL"); bd("#rnCyAr","cyAr"); cyWire(q);   /* v1.763 */ bd("#rnSpp","spp",1); bd("#rnPre","preset"); bd("#rnAi","ai"); bd("#rnBase","base");   /* v1.611 */
     const md=q("#rnModel"); if(md){ md.onkeydown=e=>e.stopPropagation(); md.onchange=()=>{ const v=String(md.value||"").trim(); if(O.ai==="openai") O.om=v; else O.gm=v; save(); }; }
     const nt=q("#rnNote"); if(nt){ nt.onkeydown=e=>e.stopPropagation(); nt.onchange=()=>{ O.note=String(nt.value||"").slice(0,300); save(); }; }
+    const mt=q("#rnMat"); if(mt) mt.onchange=async()=>{ O.mat=!!mt.checked; save(); await matRefresh(); try{ draw(); }catch(e){} };   /* v1.787 */
     const ad=q("#rnAiD"); if(ad) ad.ontoggle=()=>{ O.aiOpen=ad.open; save(); };
     const go=q("#rnGo"); if(go) go.onclick=()=>{ const S=scenes(), L=S.filter(s=>!O.off[s.id]); if(O.cur||!S.length) L.push(Object.assign({},scnCap(),{id:null,name:"มุมตอนนี้"})); run(L); };
     const all=q("#rnAll"); if(all) all.onclick=async()=>{ for(const it of res.slice().reverse()){ if(!it.url) continue; await dl(it.url,fname(it.name,it.eng==="cy"?"Cycles":it.eng==="pt"?"แสงจริง":(it.fromView?"ภาพจากจอ":"สมจริง"),it.eng==="cy"?"png":"jpg")); await sleep(400);
@@ -83447,7 +83473,7 @@ const RND=(function(){
         try{ const r=await enhance(it); it.ai={url:r.url, model:r.model}; }
         catch(e){ console.warn("render AI:",(e&&e.message)||e); it.ai=Object.assign({},it.ai,{err:String((e&&e.message)||e), free:!!(e&&e.free)}); }   /* v1.568: free = ไฮไลต์ 🍌 */
         it.ai.busy=false; draw(); }; }); }
-  return {open, run, enhance, fastShot, _res:()=>res, _opt:()=>O, _load:load, _web:{start:webStart, put:webPut, paste:webPaste, prompt:webPrompt, wait:()=>webFor}};
+  return {open, run, enhance, fastShot, _res:()=>res, _opt:()=>O, _load:load, _web:{start:webStart, put:webPut, paste:webPaste, prompt:webPrompt, wait:()=>webFor}, _mat:{refresh:matRefresh, txt:()=>_matTxt, prompt:()=>prompt()}};   /* v1.787: _mat ให้ตัวทดสอบ */
 })();
 
 </script>
