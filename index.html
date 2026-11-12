@@ -3296,7 +3296,7 @@ body[data-theme="dark"] .splash-dots span{background:rgba(255,255,255,.25)}
    ===================================================================== */
 /* ---- APP_META: แหล่งความจริงเดียวของเวอร์ชัน (ดูได้จาก console / คลิกชื่อแอป) ---- */
 const APP_META={
-  name:"StarNexus", version:"1.785", build:"2026-11-12/pic-bake",
+  name:"StarNexus", version:"1.786", build:"2026-11-12/room-fix",
   file:"StarNexus.html", basedOn:"Furnitech_V3.html (v3.11)",
   /* ───────── เริ่มนับเวอร์ชันใหม่ที่ 1.001 (21/08/2026) ─────────
      ของเดิมนับมาถึง 42.1 แล้ววิ่งเป็นทศนิยมสองชั้นซึ่งอ่านลำดับยาก
@@ -3304,6 +3304,7 @@ const APP_META={
      ประวัติเก่าเก็บไว้ทั้งหมดตามเลขเดิม ไม่ไล่เขียนใหม่ เพราะเลขในนั้นถูกอ้างถึงไปแล้ว
      รายการที่อยู่ใต้ 1.001 ลงไปจึงเป็นเลขชุดเก่า อ่านต่อกันได้ตามวันที่ */
   changelog:[
+    ["1.786","2026-11-12","FIX ห้องออกแบบ + ตู้ (ผู้ใช้ 12/11 19:58–20:13 · project 52/53) — ① ลากตู้ลอย ขอบซ้าย/ขวาเข้าใกล้ข้างตู้พื้นข้างล่าง ≤ 50 มม. = ดูดตรงแนว + เส้นประเขียว (Alt = อิสระ · ชิดตู้ลอยข้าง ๆ อยู่แล้วไม่ดึงออก) ② ฟิลเลอร์ยกเท่าขา ตีนตู้ไม่วิ่งถึงผนัง — ตู้มีขาจริงก้นขาอยู่ 20 ฟิลเลอร์ยกนับก้น 0 แนวจึงไม่ต่อกัน → ฟิลเลอร์ยกใช้ระดับก้นเดียวกับตู้มีขาข้าง ๆ ③ ตู้ที่ไม่มีแผ่นพื้น (ครอบเครื่องซักผ้า · ฟิลเลอร์ TNF001 ฯลฯ) ไม่ใส่ขา วางพื้น · ขาที่ใส่ไว้แล้วถอดเอง ④ เมนู 🪝 หูแขวนเปิดทับใต้แผงซ้าย → เปิดขวาแผง ⑤ บานพับชนชั้นตามเกณฑ์ 96 แต่ช่องเดิมยังพอใส่ (ห่างผิวชั้น ≥ 35) = อยู่ในช่องเดิม ไม่กระโดดข้ามชั้นไปช่องอื่น ⑥ TAL031: หน้าลิ้นชัก/บานที่ขอบหันเข้าช่องเปิด (ช่องเตา) ยื่นเลยชั้นตายในบาน → ตัดถึงชั้น · ตัวยึดแผ่นหลังข้างบนไม่มี (นับแผ่นหลังล่างที่อยู่คนละระดับเป็นแผ่นหลังซ้อน) · แผ่นหลังยาวทะลุชั้นที่มีร่องรับ → ตัดถึงก้นร่อง · ร่องแผ่นหลังที่ไม่มีแผ่นหลังใช้/ร่องซ้ำ → เอาออก · หัวท้ายร่อง CNC ของตู้ที่หมุนคิดผิดแกน → คิดตอนตู้ขนานแกน · ปิดทีละเรื่อง SN_OFF.plWallBaseSnap / plinthLiftY0 / legNoFloor / plHangPop / hingeInBay / deShelfClamp / bpcRearY / backGrooveHeal / bgSyncAlign"],
     ["1.785","2026-11-12","FEAT ปุ่ม 💾 บันทึกรูปแบบใหม่ทับรูปเดิม ในหน้าต่างแคตตาล็อกเต็มจอ (ผู้ใช้ 12/11 19:19 “ทำรูปใหม่เข้าไปแปะที่เคยมี”) — 1.783 แปลงรูป KDMax เป็นสไตล์ StarNexus แค่ตอนแสดง ไฟล์ใน <Server>/thumbs ยังเป็นรูป KDMax (เปิดไฟล์ตรง ๆ / โปรแกรมอื่นเห็นรูปเดิม) · ตอนนี้: ตู้ในรายการที่กรองอยู่ซึ่งรูปยังเป็นรูป KDMax → แปลงตามแบบรูปที่เลือก แล้วเขียนทับไฟล์ <รหัส>.png ทีละใบ มีปุ่มหยุด · รูปที่ทำแล้ว/รูปตู้ StarNexus ข้าม · ถามยืนยันก่อน (เขียนทับแล้วเปลี่ยนแบบรูปไม่ได้ ต้องนำเข้าไฟล์รวม KDMax แบบ ข้าม เพื่อเอารูปเดิมกลับ) · ปิด SN_OFF.plPicBake=1"],
     ["1.784","2026-11-12","UI ฟอนต์ทั้งโปรแกรมเป็นแบบไม่มีหัว สมัยใหม่ (ผู้ใช้ 12/11 19:02 ภาพปฏิทินในมือถือ “เปลี่ยนฟอนต์เป็นสไตล์นี้” · 19:04 “เอาของที่คุณใช้ก็ได้”) — เดิม Sarabun (ไทยมีหัว) โหลดจาก Google Fonts · ตอนนี้ Noto Sans Thai (ไม่มีหัว · ไทย + อังกฤษ + ตัวเลขชุดเดียวกัน · น้ำหนัก 100–900) ฝังในไฟล์ ~75 KB ใช้ได้ไม่ต้องต่อเน็ต (สัญญาอนุญาต SIL OFL 1.1) · แทนในตัวแปร --font และจุดที่เขียน system-ui,Sarabun ตรง ๆ (ป้ายบนแบบ 2D · กล่องไฟล์กลาง) · ตัวเลข/รหัสแบบความกว้างเท่ากัน (--mono) และกระดาษพิมพ์แบบผลิตไม่เปลี่ยน · ปิด SN_OFF.snFontNoto=1 = กลับเป็นฟอนต์เดิม"],
     ["1.783","2026-11-12","UI รูปตู้จาก KDMax เปลี่ยนเป็นสไตล์ StarNexus (ผู้ใช้ 12/11 18:39 “ปรับรูปตู้ให้ดูสมัยใหม่” · 18:48 “ให้ดูไม่รู้ว่าเอามาจาก kd-max” · 18:53 “เอารูป kd-max มาเปลี่ยนเป็นสไตล์เรา ไม่เรนเดอร์เองใหม่”) — ใช้รูปตัวอย่าง KDMax เดิมแต่แปลงตอนแสดง: ลบพื้นเทาและกรอบดำ (พื้นใสแบบรูปตู้ StarNexus) · ลบตัวหนังสือ/เส้นบอกขนาดแดง-น้ำเงิน · โครงสีครีมแบบรูปที่ StarNexus วาด บานสีพีช (หรือบานไม้โอ๊ค / ขาว / เทาอ่อน / เขียวเซจ / สีเดิม) คงแสงเงาเดิม · เส้นดำเป็นเส้นเทาบาง · ตัดขอบให้ตู้เต็มกรอบ · เลือกแบบรูปในหน้าต่างเต็มจอ (มี รูป KDMax เดิม) จำไว้ในเครื่อง · ใช้กับแผงแคตตาล็อก หน้าต่างเต็มจอ หน้าแคตตาล็อก ตัวเลือกเปลี่ยนรุ่น · ไฟล์รูปใน thumbs ไม่ถูกแก้ ไม่วาดรูปใหม่จากโมเดล · ปิด SN_OFF.plPicModern=1"],
@@ -4913,6 +4914,7 @@ function _syncBody(rebuild,save,cm){
       try{ dpSeamRailFollow(i2); }catch(e){ console.error("dpSeamRail:",e); }   // v1.386: คานรอยต่อตามบานที่คำสั่งเพิ่งปรับ
       try{ drsKitApply(i2); }catch(e){ console.error("drsKit:",e); } });   // v1.220 · v1.221
     try{ nestRefitAll(); }catch(e){ console.error("nest:",e); }          // v1.222
+    try{ deShelfClampAll(); }catch(e){ console.error("deShelfClamp:",e); }   // v1.786: หน้าลิ้นชัก/บานที่ขอบหันเข้าช่องเปิดจบที่ชั้น
   }catch(e){ console.error(e); } }
   try{ bkSlotRefitAll(); }catch(e){ console.error("bkSlot:",e); }   // v1.729: ตะแกรงดึงลงในช่อง จัดตามขอบช่อง
   try{ brAutoHeal(); }catch(e){ console.error("brAuto:",e); }   // v1.694: จำนวนคานหลัง D33 ตามความสูงตู้ (ก่อนบานพับคิดตัวขวาง)
@@ -4937,7 +4939,8 @@ function _syncBody(rebuild,save,cm){
   /* v39.2: ธง CNC กับหัวท้ายร่องรับแผ่นหลัง ต้องสดเสมอ — เดิมคิดเฉพาะตอนกดใช้งานในกล่องแผ่นหลัง
      ตู้ที่สร้างจากตัวสร้างตู้ หรือแผ่นหลังที่ถูกย่อ/แบ่งทีหลัง จึงถือธงเก่าไปออกไฟล์ */
   try{ const _bi={}; (state.boards||[]).forEach(b=>{ if(b&&b.cabInst&&(b.grooves||[]).some(g=>g&&g.back)) (_bi[b.cabInst]=_bi[b.cabInst]||1); });
-    Object.keys(_bi).forEach(k=>sxSyncBackGrooves({boards:state.boards.filter(b=>b&&b.cabInst===k)})); }catch(e){ console.error("bgSync:",e); }
+    try{ backGrooveHeal(); }catch(e){ console.error("backGrooveHeal:",e); }   /* v1.786: แผ่นหลังทะลุชั้นมีร่อง · ร่องค้าง/ร่องซ้ำ */
+    Object.keys(_bi).forEach(k=>{ const _f=()=>sxSyncBackGrooves({boards:state.boards.filter(b=>b&&b.cabInst===k)}); if(snOff("bgSyncAlign")) _f(); else withCabAxisAligned(k,_f); }); }catch(e){ console.error("bgSync:",e); }   /* v1.786: ตู้ที่หมุน (yaw 90) วัดหัวท้ายร่องตามแกน z ผิด → คิดตอนขนานแกน */
   try{ checkBackGrooveMissing(); }catch(e){ console.error("bgCheck:",e); }   // v41.1
   try{ fitSceneFog(); }catch(e){}                           // v26.9: หมอกตามขนาดงานจริง
   try{ shoeR122Pre(); }catch(e){ console.error("shoeR122:",e); }   // v1.694: ชิ้นไม้ชั้น R122 ต้องนิ่งก่อนคิดร่องไฟ/ราง ไม่งั้นรางช้าไปหนึ่งรอบ
@@ -4948,6 +4951,7 @@ function _syncBody(rebuild,save,cm){
   try{ applyEdgeNotchProfiles(); }catch(e){ console.error(e); }   // v11.0: บากที่ขอบ = เว้ารูปแผ่น
   try{ doorDepthHeal(); }catch(e){ console.error("doorDepth:",e); }   // v1.488: บานทับที่จมเข้าตู้ (เปลี่ยนจากบานเฟรมอลูกลับเป็นไม้) → ผิวหลังชนหน้าตู้ · ก่อนตัวทำเฟรม (เส้นเฟรม/กระจกตามตำแหน่งใหม่ในรอบเดียวกัน)
   try{ applyFrameParts(); }catch(e){ console.error(e); }   // v9.83: บานเฟรมอลู — สี่เส้นตัด 45 + กระจก
+  try{ legNoFloorHeal(); }catch(e){ console.error("legNoFloor:",e); }   // v1.786: ตู้ไม่มีแผ่นพื้น = ถอดขา (ก่อนคิดตีนตู้)
   try{ applyLineDisplay(); }catch(e){ console.error("lineDisp:",e); }
   try{ applyCsmPosts(); }catch(e){ console.error("csmPost:",e); }       // v1.368: เสาเหล็ก + ตัวรับชั้น Cosimo (3D + นับใบอุปกรณ์) คิดใหม่ทุกรอบ   // v1.299-local.11: ตีนตู้/แผงปิดบน ไปอยู่ที่จริงใน 3D (ใบตัดยังเป็น 2400 เดิม)
   try{ plpHeal(); }catch(e){ console.error("plpHeal:",e); }   // v1.529: มือจับจากกล่องเลือกบนชิ้นที่ไม่ใส่ → ล้าง
@@ -15747,6 +15751,116 @@ function nudgeHinge(door,c,i,delta){   // เลื่อนบานพับ�
   try{ drillHingePlateHoles(door); }catch(e){ console.error(e); }
   sync(0);
 }
+/* ───────── v1.786: บานพับอยู่ในช่องเดิมได้ ─────────
+   ผู้ใช้ 12/11 20:05 (project 53 · ตู้ลอย WAT025 บานคู่ · ภาพบานพับตัวล่างไปอยู่ช่องกลาง): “บานพับมันอยู่ในช่องได้ครับ”
+   เดิม: เกณฑ์ศูนย์ถ้วย ↔ กึ่งกลางชั้น 96 (hingeShelfClear) · ช่องล่างสูง 155 (พื้น 1717 → ชั้น 1872) ใส่บานพับให้ห่างทั้งสองข้าง 96 ไม่ได้
+     ตัวหลบจึงดันขึ้น 192 ข้ามชั้นตายไปช่องกลาง ทั้งที่ตำแหน่งเดิม (ห่างผิวชั้น 70 · ห่างพื้น 85) ใส่บานพับได้จริง
+   ตอนนี้: ตำแหน่งที่หลบได้อยู่คนละช่อง (มีชั้น/คานคั่น) หรือหลบไม่ได้เลย และช่องเดิมสูงพอ (ห่างผิวชั้นทั้งสองข้าง ≥ hingeBayMin ตั้งต้น 35)
+     → อยู่ในช่องเดิม: ที่เดิมถ้าห่างพอ ไม่งั้นเลื่อนในช่องให้ห่างพอ · หลบในช่องเดียวกันได้ = แบบเดิม · ปิด SN_OFF.hingeInBay=1 */
+function hingeBayKeep(all,door,y0,ny,others){
+  const hm=Math.max(+settings.hingeBayMin||35,5), sf=[];
+  try{ hingeBlockersOf(all).forEach(o=>{ if(o&&isFinite(o.y)) sf.push([o.y-(o.half||8.1),o.y+(o.half||8.1)]); }); }catch(e){}
+  const fl=all.filter(b=>b&&b.orient==="flat"&&!b._door&&!b._virtual&&(+b.T>0)).slice().sort((a,b)=>a.y-b.y);
+  [fl[0],fl[fl.length-1]].forEach(b=>{ if(b){ const h=worldDims(b)[1]/2; sf.push([b.y-h,b.y+h]); } });   // พื้นตู้ · ทอป
+  if(sf.some(r=>y0>r[0]+0.01&&y0<r[1]-0.01)) return null;            // ศูนย์อยู่ในเนื้อชั้น = ไม่รู้ช่อง → แบบเดิม
+  let lo=-Infinity, hi=Infinity; sf.forEach(r=>{ if(r[1]<=y0+0.01) lo=Math.max(lo,r[1]); if(r[0]>=y0-0.01) hi=Math.min(hi,r[0]); });
+  if(!isFinite(lo)||!isFinite(hi)) return null;
+  if(ny!=null&&ny>=lo&&ny<=hi) return null;                             // หลบในช่องเดียวกันได้ = แบบเดิม
+  if(hi-lo<2*hm) return null;                                           // ช่องเตี้ยเกินใส่บานพับ = แบบเดิม
+  const t=Math.min(Math.max(y0,lo+hm),hi-hm);
+  if(Math.abs(t-door.y)>(+door.W||0)/2-30) return null;
+  if((others||[]).some(oy=>Math.abs(oy-t)<50)) return null;
+  return t; }
+/* ───────── v1.786: ตู้ที่ไม่มีแผ่นพื้น ไม่ใส่ขา ─────────
+   ผู้ใช้ 12/11 20:00 (ภาพตู้ครอบเครื่องซักผ้า BAO013 ในห้องออกแบบตั้งบนขา): “ตู้พวกที่ไม่มีแผ่นพื้น มันไม่ควรใส่ขาได้ครับ”
+     · 20:11 (ภาพ TNF001 มีขา 2 ตัวใต้ฟิลเลอร์): “TNF001 ก็ไม่มีแผ่นพื้น ไม่มีขาครับ”
+   เดิม: ขาใส่ตามระดับตู้ (ตู้พื้น/สูง) ไม่ดูว่ามีแผ่นพื้นให้ขายึดไหม · ฟิลเลอร์ได้ขาจากค่า K_LEG ใน XML
+   ตอนนี้: แผ่นนอนในโครงที่ก้นอยู่ไม่เกิน 150 จากก้นโครง รวมพื้นที่ ≥ 35% ของรอยเท้าโครง = มีแผ่นพื้น · ไม่มี = ไม่ใส่ขา วางพื้น
+     ใช้ที่ตัววางขา (_placeLegSet) · จัดแนวในห้องออกแบบ · ทุกรอบคิดฉาก ขาที่ใส่ไว้แล้วถอดเอง (ตู้ที่ขายกไว้ลงพื้น) · ปิด SN_OFF.legNoFloor=1
+   หมายเหตุ: โมเดลที่แปลงจาก KDMax แบบโครงมาตรฐาน (BAO0xx ฯลฯ) ยังมี Bottom อยู่ในโมเดล (ตัวแปลงใส่เอง) = ยังนับว่ามีพื้น ต้องแก้ที่ตัวแปลง */
+function cabNoFloor(inst){
+  const bs=(state.boards||[]).filter(b=>b&&String(b.cabInst)===String(inst));
+  const car=bs.filter(b=>!b._door&&!b._virtual&&(+b.T>0)&&!(b.rule&&b.rule.kind==="leg")&&!b._lineDisp&&!b._lineCab);
+  if(!car.length) return false;
+  const y=(((+cabYawOf(inst)||0)%360)+360)%360; if(y%90) return false;
+  const lo=[Infinity,Infinity,Infinity], hi=[-Infinity,-Infinity,-Infinity];
+  car.forEach(b=>{ const d=worldDims(b), c=[b.x,b.y,b.z]; for(let a=0;a<3;a++){ lo[a]=Math.min(lo[a],c[a]-d[a]/2); hi[a]=Math.max(hi[a],c[a]+d[a]/2); } });
+  if(hi[1]-lo[1]<100) return false;
+  /* แผ่นนอนช่วงล่าง (ก้น ≤ ก้นโครง + 150) รวมพื้นที่ ≥ 35% ของรอยเท้าโครง = มีพื้น (ตู้มุม L ที่พื้นสองแผ่นก็นับรวม) */
+  const A=Math.max((hi[0]-lo[0])*(hi[2]-lo[2]),1); let a=0;
+  car.forEach(b=>{ if(b.orient!=="flat") return; const d=worldDims(b); if(b.y-d[1]/2>lo[1]+150) return; a+=d[0]*d[2]; });
+  return a<0.35*A; }
+function legNoFloorHeal(){ if(snOff("legNoFloor")) return 0; let n=0;
+  const insts=[...new Set((state.boards||[]).filter(b=>b&&b.rule&&b.rule.kind==="leg").map(b=>b.cabInst))];
+  insts.forEach(i=>{ try{ if(cabNoFloor(i)) n+=removeLegsOfInst(i,true)?1:0; }catch(e){ console.error("legNoFloor:",e); } });
+  return n; }
+/* ───────── v1.786: หน้าบาน/ลิ้นชักที่ขอบหันเข้าช่องเปิด ต้องจบที่ชั้น ─────────
+   ผู้ใช้ 12/11 20:08–20:10 (TAL031 ตู้สูงช่องเตาอบ): “ตู้ใบนี้ ไม่เคยถูกต้องเลย … หน้าบานลิ้นชักก็ยื่นเลยชั้น”
+   เดิม: หน้าบานในคอลัมน์เดียวกันคิดความสูงตามสัดส่วน (สเปคหน้าบาน hrs) ระหว่างพื้นตู้กับทอป ไม่อ้างชั้นตายกลางตู้
+     TAL031 หน้าลิ้นชักสูง 121–536 แต่ชั้นตาย 1 (พื้นช่องเตา) ผิวบน 480 → ยื่นเข้าช่องเตา 56 มม.
+   ตอนนี้: หน้าบาน/ลิ้นชักที่อยู่ในคอลัมน์หลายใบ · ขอบบน (หรือล่าง) หันเข้าช่องเปิด (ไม่มีหน้าบานอื่นต่อภายใน 50)
+     · ขอบนั้นอยู่กลางตู้ (ห่างหัว/ก้นโครงเกิน 100 — ลิ้นชักบนสุดใต้ท็อปไม่นับ)
+     · มีชั้น/แผ่นนอนเต็มกว้างชิดหลังบานอยู่ในบาน ห่างขอบนั้นไม่เกิน 150 → ตัดขอบนั้นถึงผิวชั้น เผื่อเท่าค่าเผื่อขอบของสเปค (ทับ 1.5)
+     คิดทุกรอบหลังตัวคิดบาน · ปิด SN_OFF.deShelfClamp=1 */
+function deShelfClampAll(){ if(snOff("deShelfClamp")) return 0; let n=0;
+  const by={}; (state.boards||[]).forEach(b=>{ if(b&&b.cabInst&&!b._virtual) (by[b.cabInst]=by[b.cabInst]||[]).push(b); });
+  Object.keys(by).forEach(inst=>{ const all=by[inst];
+    const fronts=all.filter(b=>b._door&&!b._box&&b.orient==="front"&&(+b.T>0));
+    const fr=fronts.filter(b=>b._de&&(+b._de.vn||1)>1&&!b._sdc&&!b._slideDoor&&!b._lift);
+    if(!fr.length) return;
+    const sh=all.filter(b=>b.orient==="flat"&&!b._door&&(+b.T>0)&&!isRail(b));
+    let cy0=Infinity, cy1=-Infinity; all.forEach(b=>{ if(b._door||!(+b.T>0)||(b.rule&&b.rule.kind==="leg")) return; const h=worldDims(b)[1]/2; cy0=Math.min(cy0,b.y-h); cy1=Math.max(cy1,b.y+h); });
+    fr.forEach(F=>{ const fd=worldDims(F), wa=fd[0]>=fd[2]?0:2, da=2-wa, fc=[F.x,F.y,F.z];
+      const fy0=F.y-fd[1]/2, fy1=F.y+fd[1]/2, fw0=fc[wa]-fd[wa]/2, fw1=fc[wa]+fd[wa]/2, fd0=fc[da]-fd[da]/2, fd1=fc[da]+fd[da]/2;
+      const wOv=b=>{ const d=worldDims(b), c=[b.x,b.y,b.z]; return Math.min(c[wa]+d[wa]/2,fw1)-Math.max(c[wa]-d[wa]/2,fw0); };
+      ["T","B"].forEach(e=>{
+        const ed=e==="T"?fy1:fy0;
+        if(e==="T"?(cy1-fy1<100):(fy0-cy0<100)) return;   // ขอบอยู่ที่หัว/ก้นตู้ (ลิ้นชักบนสุดใต้ท็อป) = ไม่ใช่ช่องเปิดในตู้
+        if(fronts.some(o=>o!==F&&wOv(o)>20&&(e==="T"?((o.y-worldDims(o)[1]/2)>=ed-1&&(o.y-worldDims(o)[1]/2)<ed+50):((o.y+worldDims(o)[1]/2)<=ed+1&&(o.y+worldDims(o)[1]/2)>ed-50)))) return;   // มีหน้าบานต่อ = ไม่ใช่ช่องเปิด
+        const cs=sh.filter(S=>{ const d=worldDims(S), c=[S.x,S.y,S.z], s0=S.y-d[1]/2, s1=S.y+d[1]/2;
+          if(wOv(S)<0.8*(fw1-fw0)) return false;
+          const gap=Math.max(c[da]-d[da]/2-fd1, fd0-(c[da]+d[da]/2)); if(gap>40) return false;   // ชั้นชิดหลังบาน
+          return e==="T"?(s1<fy1-0.5&&s1>fy1-150&&s0>fy0+50):(s0>fy0+0.5&&s0<fy0+150&&s1<fy1-50); });
+        if(!cs.length) return;
+        const S=cs.sort((a,b)=>e==="T"?(b.y-a.y):(a.y-b.y))[0], sd=worldDims(S);
+        const v=(F._de&&F._de[e]&&isFinite(+F._de[e].v))?Math.max(+F._de[e].v,0):1.5;
+        if(e==="T"){ const ny=round(S.y+sd[1]/2-v); if(ny<fy1-0.05&&ny-fy0>=60){ F.W=round(ny-fy0); F.y=round((fy0+ny)/2); n++; } }
+        else { const ny=round(S.y-sd[1]/2+v); if(ny>fy0+0.05&&fy1-ny>=60){ F.W=round(fy1-ny); F.y=round((ny+fy1)/2); n++; } } }); }); });
+  return n; }
+/* ───────── v1.786: แผ่นหลังกับร่องรับ ─────────
+   ผู้ใช้ 12/11 20:10 (TAL031): “… ร่องก็ไม่ถูก”
+   เดิม ① แผ่นหลังบน (ช่องบานบน) ยาวลงไปทะลุชั้นตาย 3 อีก 60 มม. ทั้งที่ชั้นนั้นมีร่องรับขอบล่างแผ่นหลังอยู่
+        ② ร่องรับแผ่นหลังค้างที่ชั้นตาย 2 (ตรงนั้นไม่มีแผ่นหลัง = ช่องเตา/ไมโครเวฟเปิดหลัง) · ร่องซ้ำ 2 เส้นที่ตำแหน่งเดียวกัน (9.5 กับ 9.7)
+   ตอนนี้ (คิดตอนตู้ขนานแกน): ① แผ่นหลังที่วิ่งผ่านแผ่นนอนที่มีร่องรับตรงระนาบของมัน → ตัดถึงก้นร่อง (ร่องผิวบน = แผ่นหลังอยู่บน · ผิวล่าง = อยู่ล่าง)
+     ② ร่องรับแผ่นหลังที่ไม่มีแผ่นหลังระนาบนั้นอยู่ใกล้แผ่นนั้นเลย (ห่างเกิน 30) → เอาออก · ร่องซ้ำตำแหน่งเดียวกัน → เหลือเส้นที่กว้างสุด
+     ปิด SN_OFF.backGrooveHeal=1 */
+function _bgHealCab(bs){ let n=0;
+  const backs=bs.filter(x=>x.orient==="front"&&!x._door&&!x._virtual&&!x._dx&&!x._dwall&&!isRail(x)&&(+x.T>0)&&(+x.T<=12.05));
+  const xOv=(a,b)=>{ const da=worldDims(a), db=worldDims(b); return Math.min(a.x+da[0]/2,b.x+db[0]/2)-Math.max(a.x-da[0]/2,b.x-db[0]/2); };
+  bs.forEach(p=>{ if(!(p.grooves||[]).some(g=>g&&g.back)) return; const d=worldDims(p), pt=p.y+d[1]/2, pb=p.y-d[1]/2;
+    /* ร่องซ้ำ */
+    const keep=[]; (p.grooves||[]).forEach(g=>{ if(!g||!g.back){ keep.push(g); return; }
+      const k=keep.find(h=>h&&h.back&&h.face===g.face&&h.axis===g.axis&&Math.abs((+h.pos||0)-(+g.pos||0))<=0.5);
+      if(k){ if((+g.width||0)>(+k.width||0)) keep[keep.indexOf(k)]=g; n++; } else keep.push(g); });
+    if(keep.length!==p.grooves.length) p.grooves=keep;
+    p.grooves=p.grooves.filter(g=>{ if(!g||!g.back) return true;
+      const gz=(p.orient==="side")?(p.z+(+g.pos||0)):(p.z-(+g.pos||0)), dep=Math.max(+g.depth||0,0);
+      const at=backs.filter(B=>Math.abs(B.z-gz)<=3&&(p.orient==="side"||xOv(B,p)>20));
+      if(p.orient==="flat"){
+        /* ① แผ่นหลังทะลุแผ่นนอนที่มีร่องรับ → ตัดถึงก้นร่อง */
+        at.forEach(B=>{ const bd=worldDims(B), b0=B.y-bd[1]/2, b1=B.y+bd[1]/2;
+          if(g.face==="top"&&b0<pt-dep-0.5&&b1>pt+10){ const ny=round(pt-dep); B.W=round(b1-ny); B.y=round((ny+b1)/2); n++; }
+          else if(g.face==="bottom"&&b1>pb+dep+0.5&&b0<pb-10){ const ny=round(pb+dep); B.W=round(ny-b0); B.y=round((b0+ny)/2); n++; } }); }
+      /* ② ไม่มีแผ่นหลังระนาบนี้อยู่ใกล้แผ่นนี้เลย → ร่องค้าง */
+      const near=at.some(B=>{ const bd=worldDims(B), b0=B.y-bd[1]/2, b1=B.y+bd[1]/2;
+        return p.orient==="side"?(Math.min(b1,pt)-Math.max(b0,pb)>10):(b0<=pt+30&&b1>=pb-30); });
+      if(!near&&backs.length){ n++; return false; }
+      return true; }); });
+  return n; }
+function backGrooveHeal(){ if(snOff("backGrooveHeal")) return 0; let n=0;
+  const ks=[...new Set((state.boards||[]).filter(b=>b&&b.cabInst&&!b._virtual&&(b.grooves||[]).some(g=>g&&g.back)).map(b=>b.cabInst))];
+  ks.forEach(k=>{ try{ withCabAxisAligned(k,()=>{ n+=_bgHealCab(state.boards.filter(b=>b&&b.cabInst===k&&!b._virtual)); }); }catch(e){ console.error("backGrooveHeal:",e); } });
+  return n; }
 function autoShiftHingesOffShelves(step,silent){
   const clear=settings.hingeShelfClear||96;
   step=step>0?step:(settings.hingeAutoShift||96);
@@ -15803,6 +15917,7 @@ function autoShiftHingesOffShelves(step,silent){
             if(others.some(oy=>Math.abs(oy-ny)<50)) continue;       // ไม่ไปซ้อนบานพับตัวอื่น
             pick=base+d; break;
           }
+          if(!snOff("hingeInBay")){ try{ const ky=hingeBayKeep(all,door,y0,pick==null?null:y0+(pick-base),others); if(ky!=null) pick=base+(ky-y0); }catch(e){ console.error("hingeInBay:",e); } }   /* v1.786 */
           if(pick==null){ stuck++; return; }
           c.shift[i]=Math.round(pick*10)/10; fixed++;
         });
@@ -32916,6 +33031,15 @@ function boardRole(b){
      SN_OFF.plKdGroup=1   แคตตาล็อกห้องออกแบบไม่มีแถบ จัดกลุ่มแบบ KDMax (v1.781)
      SN_OFF.kdxPic=1      นำเข้า KDMax ไม่เก็บรูปตัวอย่างของ KDMax เป็นรูปตู้ (v1.781)
      SN_OFF.plKdBig=1     แคตตาล็อกห้องออกแบบไม่มีปุ่ม ⛶ เต็มจอ (หน้าต่างแบบ Select Product Style ของ KDMax) (v1.782)
+     SN_OFF.plWallBaseSnap=1 ลากตู้ลอยไม่ดูดแนวข้างตู้พื้นข้างล่าง (v1.786)
+     SN_OFF.plinthLiftY0=1 ฟิลเลอร์ยกเท่าขานับก้นตีนตู้ที่ 0 แบบเดิม (ไม่ต่อแนวกับตู้มีขาที่ก้นขาอยู่สูงกว่า 0) (v1.786)
+     SN_OFF.legNoFloor=1  ตู้ไม่มีแผ่นพื้นยังใส่ขาได้แบบเดิม (v1.786)
+     SN_OFF.plHangPop=1   เมนูหูแขวนในห้องออกแบบเปิดข้างปุ่มแบบเดิม (ซ้อนใต้แผง) (v1.786)
+     SN_OFF.hingeInBay=1  บานพับชนชั้นกระโดดข้ามชั้นไปช่องอื่นแบบเดิม (v1.786)
+     SN_OFF.deShelfClamp=1 หน้าบาน/ลิ้นชักที่ขอบหันเข้าช่องเปิดไม่ตัดถึงชั้นในบาน (v1.786)
+     SN_OFF.bpcRearY=1    ตัวยึดแผ่นหลัง: แผ่นหลังที่มีแผ่นหลังอื่นอยู่ลึกกว่า (คนละระดับ) ไม่ใส่ แบบเดิม (v1.786)
+     SN_OFF.backGrooveHeal=1 ไม่ตัดแผ่นหลังที่ทะลุชั้นมีร่อง · ไม่ล้างร่องแผ่นหลังที่ไม่มีแผ่นหลังใช้/ร่องซ้ำ (v1.786)
+     SN_OFF.bgSyncAlign=1 หัวท้ายร่องแผ่นหลัง (CNC) คิดตอนตู้หมุนอยู่ แบบเดิม (v1.786)
      SN_OFF.plPicBake=1   หน้าต่างแคตตาล็อกเต็มจอไม่มีปุ่ม 💾 บันทึกรูปแบบใหม่ทับรูปเดิม (v1.785)
      SN_OFF.snFontNoto=1  ฟอนต์โปรแกรมกลับเป็น Sarabun แบบเดิม (มีหัว) ไม่ใช้ Noto Sans Thai ที่ฝังในไฟล์ (v1.784)
      SN_OFF.plPicModern=1 รูปตู้จาก KDMax แสดงแบบเดิม (พื้นเทา บานส้ม) ไม่แปลงเป็นสไตล์ StarNexus (v1.783)
@@ -34205,7 +34329,7 @@ function ensurePartProps(b){ if(b.mat==null)b.mat=defMat(); if(b.surfT==null)b.s
 function newVarNode(type){ return {name:"",type:type||"Material",def:"",order:"",article:"",cat:"",comment:"",children:[]}; }
 
 function nodeContains(parent,node){ if(!parent.children)return false; for(const c of parent.children){ if(c===node)return true; if(nodeContains(c,node))return true; } return false; }
-function varCtxHide(){ const m=$("varCtx"); if(m)m.classList.remove("show"); }
+function varCtxHide(){ const m=$("varCtx"); if(m){ m.classList.remove("show"); m.style.zIndex=""; } }   /* v1.786: คืนชั้นเมนูที่ยกไว้ (หูแขวนในห้องออกแบบ) */
 function varCtxShow(x,y,items){ const m=$("varCtx"); if(!m)return; m.innerHTML="";
   /* ───────── v1.684: รายการเสนอของเบราว์เซอร์บังเมนูคลิกขวา ─────────
      ผู้ใช้ 5/11 14:20 (ภาพรายการ ECAx01 ECxG01 ทับเมนู Copy/Save As): “555 กล่องบังกัน”
@@ -40957,6 +41081,8 @@ function plApplyLegs(inst){
     const f2=plFp(plBoardsOf(inst)), dy=b0-f2.lo[1]; if(Math.abs(dy)>0.5){ plShift(inst,[0,dy,0]); ch=true; }
     return ch;
   }
+  if(!snOff("legNoFloor")&&cabNoFloor(inst)){ if(legs.length){ removeLegsOfInst(inst,true); ch=true; }   /* v1.786: ไม่มีแผ่นพื้น = ไม่มีขา วางพื้น */
+    const f2=plFp(plBoardsOf(inst)), dy=-f2.lo[1]; if(Math.abs(dy)>0.5){ plShift(inst,[0,dy,0]); ch=true; } return ch; }
   if(H>0){
     if(!isF){ const curH=legs.length?Math.max(...legs.map(l=>+((l.rule||{}).h)||0)):0, _curC=legs.length?String((legs[0].rule||{}).code||""):"";
       if(!legs.length||Math.abs(curH-H)>0.5||(_pdef&&_curC!==_pdef.code)){ const def=_pdef||plLegDef(H);
@@ -41069,9 +41195,9 @@ function plOffLine(){ const r=plRoom(), top=+r.wallTop||0, H=Math.max(+r.legH||0
     if(lv==="wall"){ if(top?Math.abs(f.hi[1]-top)>1:(plHoodRowTop(inst,f,plWallOf(inst,f))==null&&Math.abs(f.lo[1]-r.wallBot-plLightOf(inst)-plNomLift(inst,f))>1)) out.push({inst,code:f.code,lv,w:top?"หัว":"ก้น",v:Math.round(top?f.hi[1]:f.lo[1])}); }
     else if(lv==="tall"&&top&&Math.abs(f.hi[1]-top)>1) out.push({inst,code:f.code,lv,w:"หัว",v:Math.round(f.hi[1])});
     if(lv==="base"||lv==="tall"){
-      const b0=(isF&&plFillerFloorOf(inst))?0:H;
+      const _nf=!isF&&!snOff("legNoFloor")&&cabNoFloor(inst), b0=((isF&&plFillerFloorOf(inst))||_nf)?0:H;   /* v1.786 */
       if(Math.abs(f.lo[1]-b0)>1) out.push({inst,code:f.code,lv,w:"ก้น",v:Math.round(f.lo[1])});
-      else if(H>0&&!isF&&!bs.some(plIsLeg)) out.push({inst,code:f.code,lv,w:"ขา",v:0}); }
+      else if(H>0&&!isF&&!_nf&&!bs.some(plIsLeg)) out.push({inst,code:f.code,lv,w:"ขา",v:0}); }
     if(isF){ const o=plFillerOff(inst); if(o!=null) out.push({inst,code:f.code,lv,w:"หน้า",v:o}); } });
   return out; }
 async function plAlignAll(quiet){
@@ -41332,6 +41458,39 @@ function plDragMove(e){
   g.moved=true; g.ev={clientX:e.clientX, clientY:e.clientY, alt:!!e.altKey};   // v1.373: Alt = ไม่ดูด
   if(!PL.raf) PL.raf=requestAnimationFrame(()=>{ PL.raf=0; plDragApply(); });
 }
+/* ───────── v1.786: ลากตู้ลอย ขอบซ้าย/ขวาดูดแนวข้างตู้พื้น ─────────
+   ผู้ใช้ 12/11 19:58 (project 52 · ภาพตู้ลอย WAT025 ลอยเหนือแถวตู้พื้น แผ่นข้างไม่ตรงกัน): “ฝากเพิ่มให้ตู้ลอย Snap กับตู้ล่างได้ครับ เลือกแล้วให้แผ่นข้างมันเจอแนวกัน”
+   เดิม: ตู้ลอยที่ติดผนังดูดเข้าตู้ลอยข้าง ๆ / ปลายผนังเท่านั้น · ตู้พื้นอยู่คนละระดับสูง ไม่ถูกนับ
+   ตอนนี้: หลังวางบนผนัง (ผนังห้อง/ผนังที่วาด) ขอบซ้ายหรือขวาของตู้ลอยห่างข้างตู้พื้นข้างล่าง (ผนังเดียวกัน) ไม่เกิน 50 มม. → เลื่อนให้ตรง
+     + เส้นประเขียวตั้งที่แนวนั้น + ป้าย “ตรงแนวข้างตู้ล่าง” · กด Alt ค้าง = อิสระ · ชิดตู้ลอยข้าง ๆ อยู่แล้ว / เลื่อนแล้วทับตู้ลอยใบอื่น = ไม่ดูด
+     ระยะดูดตั้งได้ settings.plWallBaseSnap (มม.) · ปิด SN_OFF.plWallBaseSnap=1 */
+var _pwbsGuide=null;
+function plWallBaseGuideClear(){ try{ if(_pwbsGuide){ scene.remove(_pwbsGuide); _pwbsGuide.geometry.dispose(); _pwbsGuide.material.dispose(); } }catch(e){} _pwbsGuide=null; }
+function plWallBaseSnap(g,wk,H){
+  plWallBaseGuideClear(); g.wbSnap="";
+  if(snOff("plWallBaseSnap")||(g.ev&&g.ev.alt)||!(wk||H)) return false;
+  const f=plFp(plBoardsOf(g.inst)); if(plLevelOf(f.code)!=="wall"||plKindOf(f.code)==="filler"||plIsLightPanel(g.inst)||plIsSide(g.inst)) return false;
+  const W=H||PL_WALLS[wk], ax=W.ax, pa=W.pa; if(ax==null||pa==null) return false;
+  const nb=g.nb||[], same=nb.filter(n=>plYOver(n,f)&&n.lo[pa]<f.hi[pa]-1&&f.lo[pa]<n.hi[pa]-1);
+  if(same.some(n=>Math.abs(n.hi[ax]-f.lo[ax])<1||Math.abs(n.lo[ax]-f.hi[ax])<1)) return false;   // ชิดตู้ลอยข้าง ๆ อยู่แล้ว
+  const lim=+settings.plWallBaseSnap>0?+settings.plWallBaseSnap:50; let best=null;
+  nb.forEach(n=>{ if(plLevelOf(n.code)!=="base") return; if(plIsSide(n.inst)||plIsLightPanel(n.inst)) return;
+    try{ if(typeof plIsCvb==="function"&&plIsCvb(n.inst)) return; }catch(e){}
+    if(n.hi[1]>f.lo[1]+5) return;                                      // ต้องอยู่ใต้ตู้ลอย
+    if(!(n.lo[pa]<f.hi[pa]-1&&f.lo[pa]<n.hi[pa]-1)) return;            // ผนังเดียวกัน (ช่วงลึกทับกัน)
+    [[n.lo[ax]-f.lo[ax],n.lo[ax]],[n.hi[ax]-f.hi[ax],n.hi[ax]],[n.lo[ax]-f.hi[ax],n.lo[ax]],[n.hi[ax]-f.lo[ax],n.hi[ax]]].forEach(([d,at])=>{
+      if(Math.abs(d)<lim&&(!best||Math.abs(d)<Math.abs(best.d))) best={d,at,n}; }); });
+  if(!best) return false;
+  if(Math.abs(best.d)>0.05){ const lo=f.lo[ax]+best.d, hi=f.hi[ax]+best.d;
+    if(same.some(n=>n.lo[ax]<hi-1&&lo<n.hi[ax]-1)) return false;       // ทับตู้ลอยใบอื่น
+    const d=[0,0,0]; d[ax]=best.d; plShift(g.inst,d); }
+  g.wbSnap=" · ⇣ ตรงแนวข้างตู้ล่าง "+best.n.code;
+  try{ const n=best.n, nf=Math.abs(n.lo[pa]-f.lo[pa])<Math.abs(n.hi[pa]-f.hi[pa])?n.hi[pa]:n.lo[pa];   // หน้าตู้พื้น
+    const p0=[0,0,0], p1=[0,0,0]; p0[ax]=p1[ax]=best.at; p0[pa]=p1[pa]=nf; p0[1]=n.hi[1]; p1[1]=f.hi[1];
+    const o=root.position, gm=new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(p0[0]+o.x,p0[1]+o.y,p0[2]+o.z),new THREE.Vector3(p1[0]+o.x,p1[1]+o.y,p1[2]+o.z)]);
+    _pwbsGuide=new THREE.Line(gm,new THREE.LineDashedMaterial({color:0x16a34a,dashSize:28,gapSize:18,depthTest:false}));
+    _pwbsGuide.computeLineDistances(); _pwbsGuide.renderOrder=999; scene.add(_pwbsGuide); }catch(e){}
+  return true; }
 function plDragApply(){
   const g=PL.drag; if(!g||!g.ev) return;
   if(g.multi){ plmsDragApply(g); return; }   /* v1.562: ลากทั้งชุด */
@@ -41371,6 +41530,7 @@ function plDragApply(){
       d[a]+=bs2; });
     plShift(g.inst,d);
   }
+  try{ plWallBaseSnap(g,wk,plwH); }catch(e){ console.error("plWallBaseSnap:",e); }   /* v1.786: ตู้ลอยดูดแนวข้างตู้พื้น */
   if(g.cltMod&&(wk||plwH)&&!snOff("cltWallStick")&&!(g.ev&&g.ev.alt)){ try{ cltCornerFix(g); }catch(e){ console.error("cltCorner:",e); } }   /* v1.745: หยุดห่างผนังข้างพอดีฟิลเลอร์ */
   let _nc=null; if(wk||plwH){ try{ _nc=plNicheFit(g.inst); }catch(e){ console.error("plNicheFit:",e); } }   /* v1.629: ตู้เข้าซุ้มหลุม */
   if(g.cltFol&&g.cltFol.length&&!_nc){ try{ cltFolSnap(g); }catch(e){ console.error("cltFol:",e); } }   /* v1.701: ลิ้นชักใต้แผ่นบนตามโมดูล */
@@ -41384,11 +41544,12 @@ function plDragApply(){
       if(g.nb.some(n=>{ if(!csmIsCode(n.code)||csmIsBaseInst(n.inst)||!plYOver(n,f2)||!(n.lo[p2]<f2.hi[p2]-1&&f2.lo[p2]<n.hi[p2]-1)) return false; const gg=csmGapOf(n.inst)+pw2; return Math.abs(f2.lo[a2]-(n.hi[a2]+gg))<1||Math.abs(f2.hi[a2]-(n.lo[a2]-gg))<1; }))
         PL.slotMsg="เว้นเสา "+pw2+" · กด Alt ค้าง = ชิดช่อง ไม่มีเสา"; } }
   g.slotMsg=(wk&&!_nc&&!snOff("plSlotEasy"))?(PL.slotMsg||""):"";         // v1.675
-  const tip=$("plDragTip"); if(tip){ const o=wk?plOffOf(g.inst):0; tip.textContent=_nc?("⌓ เข้าซุ้มหลุม · ลึก "+(+_nc.d||0)):plwH?("ติดผนังที่วาด "+plwH.lbl+(PL.cltGapMsg?(" · "+PL.cltGapMsg):"")):(wk?("ติดผนัง"+PL_WALLS[wk].lbl+(o>0?(" · ห่างผนัง "+o):"")+(g.slotMsg?(" · "+g.slotMsg):"")):"วางอิสระ"); }   // v1.533 · v1.675: + ช่อง
+  const tip=$("plDragTip"); if(tip){ const o=wk?plOffOf(g.inst):0; tip.textContent=_nc?("⌓ เข้าซุ้มหลุม · ลึก "+(+_nc.d||0)):plwH?("ติดผนังที่วาด "+plwH.lbl+(PL.cltGapMsg?(" · "+PL.cltGapMsg):"")):(wk?("ติดผนัง"+PL_WALLS[wk].lbl+(o>0?(" · ห่างผนัง "+o):"")+(g.slotMsg?(" · "+g.slotMsg):"")):"วางอิสระ"); if(g.wbSnap&&!_nc) tip.textContent+=g.wbSnap; }   // v1.533 · v1.675: + ช่อง · v1.786: + ตรงแนวตู้ล่าง
 }
 function plDragUp(){
   const g=PL.drag; if(!g) return; PL.drag=null;
   if(PL.raf){ cancelAnimationFrame(PL.raf); PL.raf=0; plDragApplyLast(g); }
+  plWallBaseGuideClear();   /* v1.786 */
   if(g.multi){ plmsDragEnd(g); return; }   /* v1.562 */
   if(g.cltSh){ try{ cltShDragEnd(g); }catch(e){ console.error("cltShDrag:",e); } return; }   /* v1.749 */
   if(!g.moved) return;
@@ -48525,7 +48686,13 @@ function plHangOpen(K,x,y){ const K2=(K||[]).filter(plHangOk); if(!K2.length) re
   varCtxShow(x,y,items); }
 function plHangBtn(K){ if(snOff("plHanger")||VIEW_ONLY) return ""; const K2=(K||[]).filter(plHangOk); if(!K2.length) return ""; const nOn=K2.filter(plHangCode).length;
   return '<button class="ibtn" id="plHangB" title="เลือกหูแขวนของตู้ที่เลือก">🪝 หูแขวน'+(nOn?(K2.length>1?(" "+nOn+"/"+K2.length):" ✓"):"")+'</button>'; }
-function plHangWire(s,K){ const g=s.querySelector("#plHangB"); if(g) g.onclick=ev=>{ const r=ev.target.getBoundingClientRect(); plHangOpen(K,r.right+6,r.top); }; }
+/* ───────── v1.786: เมนูหูแขวนถูกแผงบัง ─────────
+   ผู้ใช้ 12/11 20:04 (ภาพเมนูหูแขวนครึ่งซ้ายซ่อนใต้แผงห้องออกแบบ): “บัง”
+   เดิม: เปิดเมนูที่ขอบขวาของปุ่ม (ยังอยู่ในแผง) · เมนู #varCtx ชั้น 200 อยู่ใต้แผงห้องออกแบบ (320) → ข้อความครึ่งซ้ายหาย
+   ตอนนี้: เปิดที่ขอบขวาของแผง (plPopX531 แบบหน้าต่างสี/มือจับ) + ยกเมนูขึ้นชั้น 345 ระหว่างเปิด (ปิดแล้วคืน) · ปิด SN_OFF.plHangPop=1 */
+function plHangWire(s,K){ const g=s.querySelector("#plHangB"); if(g) g.onclick=ev=>{ const r=ev.target.getBoundingClientRect();
+  if(snOff("plHangPop")){ plHangOpen(K,r.right+6,r.top); return; }
+  const m=$("varCtx"); if(m) m.style.zIndex="345"; plHangOpen(K,plPopX531(r),r.top); }; }
 function plPanelSel(){
   Promise.resolve().then(()=>{ try{ plHideBar(); }catch(e){ console.error("plHideBar:",e); } });   /* v1.670 */
   Promise.resolve().then(()=>{ try{ plFocusApply(); }catch(e){ console.error("plFocus:",e); } });   /* v1.655: หลังวาดแผงจบ ก่อนจอวาดภาพ — ฟังก์ชันนี้มีทางออกหลายจุด */
@@ -59843,6 +60010,17 @@ function applyLineDisplay(){
       .filter(o=>o.y1-o.y0>=10)
       /* v1.309: ตู้/ฟิลเลอร์ที่ยืนพื้นเอง (ไม่มีขา ก้นต่ำกว่า 20) เป็นตัวหยุดแนว — ตีนตู้จบที่ข้างมัน ไม่วิ่งผ่าน */
       .concat(cabs.filter(c=>!c.legs&&c.lo[1]<20).map(c=>({c, stop:true, y0:0, y1:0})));
+    /* ───────── v1.786: ฟิลเลอร์ยกเท่าขา ตีนตู้ต้องวิ่งผ่านถึงผนัง ─────────
+       ผู้ใช้ 12/11 19:58 (project 52 · ภาพปลายขวา ฟิลเลอร์ BNF001 ยกขึ้น ตีนตู้จบที่ตู้ BAL096): “ขาตู้ พอฟิลเลอร์ยกขึ้น ขาไม่วิ่งเข้าผนัง”
+       เดิม: ตู้มีขาจริงนับก้นแนวที่ก้นขา (ขา 100 ใต้ตู้ยก 120 = ก้น 20) · ฟิลเลอร์ยกไม่มีขานับก้น 0 · ตัวต่อแนวต้องก้นเท่ากัน ±1 → ไม่ต่อ
+       ตอนนี้: ฟิลเลอร์ยก (ไม่มีขา ก้น 20–300) ที่ติดตู้มีขาในแนวเดียวกัน (หน้าใกล้กัน · สูงก้นตู้เท่ากัน · ห่างตามแนว ≤ 200) ใช้ก้นแนวของตู้นั้น · ปิด SN_OFF.plinthLiftY0=1 */
+    if(!snOff("plinthLiftY0")) items.forEach(o=>{ if(o.stop||o.c.realLeg) return; const c=o.c, wa=c.wa;
+      let best=null, bd=Infinity;
+      items.forEach(q=>{ if(q===o||q.stop||!q.c.realLeg||q.c.fa!==c.fa||q.c.s!==c.s||Math.abs(q.y1-o.y1)>=1) return;
+        if(Math.abs(q.c.front-c.front)>Math.max(SB,1)) return;
+        const gap=Math.max(q.c.lo[wa]-c.hi[wa], c.lo[wa]-q.c.hi[wa]); if(gap>200||gap<-5) return;
+        if(gap<bd){ bd=gap; best=q; } });
+      if(best) o.y0=best.y0; });
     const runs=runsOf(items).filter(r=>r.rl);                           // v1.308: แนวที่มีแต่ตู้ยกไม่มีขา (ฟิลเลอร์โดด ๆ) ไม่นับ
     /* v1.308: ตีนตู้เข้ามุม — แนวสองแนวตั้งฉากกันที่มุมห้อง (ตู้เข้ามุม + ตู้อีกผนัง) ต้องชนกันพอดี
        แนวที่วิ่งผ่านแนวอีกเส้น ตัดจบที่ผิวนอกของอีกเส้น · แนวที่ปลายอยู่ห่างไม่เกิน 400 ยืดไปชนหลังแผ่นของแนวแรก
@@ -60730,7 +60908,8 @@ function _legCtx(sel){
   let mny=Infinity,mnx=Infinity,mxx=-Infinity; carc.forEach(b=>{const d=worldDims(b);mny=Math.min(mny,b.y-d[1]/2);mnx=Math.min(mnx,b.x-d[0]/2);mxx=Math.max(mxx,b.x+d[0]/2);});
   return {inst,grp,Wc:mxx-mnx,mny};
 }
-function _placeLegSet(grp, inst, v, Wc, mny, quiet){   // วางชุดขา (core) จาก opts v={h,d,inset,code,mid,lift,_model?}
+function _placeLegSet(grp, inst, v, Wc, mny, quiet){
+  if(!snOff("legNoFloor")){ try{ if(cabNoFloor(inst)){ removeLegsOfInst(inst,true); if(!quiet) toast("ตู้นี้ไม่มีแผ่นพื้น — ไม่ใส่ขา (วางพื้น)"); return 0; } }catch(e){ console.error("legNoFloor:",e); } }   /* v1.786 */   // วางชุดขา (core) จาก opts v={h,d,inset,code,mid,lift,_model?}
   /* v9.62: quiet = ใส่ให้หลายตู้รวดเดียวตอนโหลด XML — ไม่เด้ง toast ไม่ sync รายใบ
      และไม่เขียนทับ settings.legCode ด้วยตู้ใบสุดท้ายในไฟล์ (ค่านั้นคือ "รุ่นที่เพิ่งเลือกด้วยมือ") */
   { const mc=(v.modelCode||v.code||"LEG").trim(); const bbM=fitModelBBox(mc);   // โมเดล 3D (จาก legModel หรือรหัสนี้) → ใช้รูปวาด + ขนาดจริง
@@ -62418,7 +62597,7 @@ function applyBackPanelClips(){
       const eL=new THREE.Vector3(1,0,0).transformDirection(M), eW=new THREE.Vector3(0,1,0).transformDirection(M), eT=new THREE.Vector3(0,0,1).transformDirection(M);
       const C=new THREE.Vector3(+P.x||0,+P.y||0,+P.z||0), dot=(b,v)=>(b.x-C.x)*v.x+(b.y-C.y)*v.y+(b.z-C.z)*v.z;
       /* ต้องเป็นแผ่นหลังตัวหลังสุดของตู้ · นับคานที่อยู่ข้างหลัง (ซ้อนช่วงกว้างกับแผ่นนี้) ไม่เกิน maxR ตัว */
-      if(all.some(o=>o!==P&&o.orient==="front"&&!o._door&&!isRail(o)&&!o._dwall&&(+o.T>0)&&dot(o,eT)<-1&&Math.abs(dot(o,eL))<(+P.L||0)/2)) return;
+      if(all.some(o=>o!==P&&o.orient==="front"&&!o._door&&!isRail(o)&&!o._dwall&&(+o.T>0)&&dot(o,eT)<-1&&Math.abs(dot(o,eL))<(+P.L||0)/2&&(snOff("bpcRearY")||Math.abs(dot(o,eW))<((+P.W||0)+(+o.W||0))/2-1))) return;   /* v1.786: แผ่นหลังอีกแผ่นอยู่ลึกกว่าแต่คนละระดับ (TAL031 แผ่นหลังล่างช่องลิ้นชัก) ไม่ได้ซ้อนหลังแผ่นนี้ — เดิมแผ่นหลังบนไม่ได้ตัวยึดเลย */
       const nBehind=rails.filter(r=>dot(r,eT)<0&&Math.abs(dot(r,eL))<=(+P.L||0)/2+1).length;
       if(nBehind>maxR) return;
       /* ขนาดตู้ตามแกนกว้าง/สูงของแผ่นหลัง */
