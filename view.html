@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="th"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover"><meta name="generator" content="StarNexus 1.822"><title>StarNexus — ดูงาน 3D</title><style>
+<html lang="th"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover"><meta name="generator" content="StarNexus 2.011"><title>StarNexus — ดูงาน 3D</title><style>
 :root{--bg:#e7e8ee;--panel:rgba(255,255,255,.94);--solid:#fff;--ink:#172c40;--dim:#5b6b7c;--line:#d5dae2;--accent:#1e5fa8;--warn:#e8590c;--shadow:0 10px 30px -12px rgba(16,32,56,.35)}
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html,body{margin:0;height:100%;background:var(--bg);color:var(--ink);font:14px/1.5 system-ui,-apple-system,"Segoe UI","Noto Sans Thai","Sarabun",sans-serif;overflow:hidden;overscroll-behavior:none}
@@ -153,6 +153,29 @@ body.vwScanTop #vwScan{top:calc(8px + env(safe-area-inset-top))}
 #vwPpList .it i{font-style:normal;color:var(--dim);font-size:11.5px;min-width:26px}
 #vwPpList .it.on{background:var(--accent);color:#fff}
 #vwPpList .it.on i{color:#fff}
+/* ───────── v1.922: แยกงานสั่งทำ + พิมพ์/PDF ในหน้าแบบผลิตของลิงก์ดูงาน ─────────
+   หน้าพิมพ์ใช้คลาส .pg ไม่ใช่ .sheet (.sheet ของหน้าดูเป็นแผงลอย position:fixed) */
+#vwPpList .seg2{position:sticky;top:0;z-index:2;display:flex;gap:6px;padding:8px 10px;background:var(--solid);border-bottom:1px solid var(--line)}
+#vwPpList .seg2 button{flex:1 1 0;border:1px solid var(--line);background:var(--bg);color:inherit;border-radius:9px;padding:7px 6px;font:inherit;font-size:12.5px;cursor:pointer;white-space:nowrap}
+#vwPpList .seg2 button.on{background:var(--accent);color:#fff;border-color:transparent}
+#vwPpList.hasSeg .g{top:47px}
+#vwPpMenu{position:absolute;right:8px;z-index:4;background:var(--solid);border:1px solid var(--line);border-radius:12px;box-shadow:0 10px 30px rgba(0,0,0,.35);padding:6px;display:flex;flex-direction:column;gap:2px;width:min(320px,92vw)}
+#vwPpMenu.hide{display:none}
+#vwPpMenu button{text-align:left;border:0;background:transparent;color:inherit;padding:9px 10px;border-radius:8px;font:inherit;font-size:13.5px;cursor:pointer}
+#vwPpMenu button:hover{background:var(--bg)}
+#vwPpMenu small{display:block;color:var(--dim);font-size:11px;margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#vwPpMenu .nt{font-size:11px;color:var(--dim);padding:6px 10px 4px;border-top:1px solid var(--line);margin-top:4px;line-height:1.5}
+@media (max-width:759px){ #vwPaper .ph button .tx{display:none} }
+#vwPrint{display:none}
+@media print{
+  html,body{overflow:visible!important;height:auto!important;background:#fff!important;margin:0!important;padding:0!important;position:static!important}
+  body>*:not(#vwPrint){display:none!important}
+  #vwPrint{display:block!important}
+  #vwPrint .pg{display:block;width:100%;margin:0;padding:0;font-size:0;line-height:0;text-align:center;overflow:hidden;break-inside:avoid;page-break-inside:avoid;break-after:page;page-break-after:always}
+  #vwPrint .pg:last-child{break-after:auto;page-break-after:auto}
+  #vwPrint .pg>svg{display:inline-block;vertical-align:top;width:auto!important;height:auto!important;max-width:100%;max-height:275mm}
+  @page{size:A3 landscape;margin:5mm}
+}
 @media (max-width:759px){ #vwPaper .ph{gap:4px;padding-left:6px;padding-right:6px} #vwPaper .ph button{padding:7px 8px;min-width:34px} #vwPpZm .zf{display:none} }
 /* ───────── v1.360: มือถือ — ทุกอย่างเล็กลง · เอาแถบแยกประกอบออกจากแผง ⋯ เพิ่มเติม ─────────
    ผู้ใช้: "ปรับ UI ในโทรศัพท์ให้เล็กลงหน่อย เอาตัวแยกประกอบออกจากปุ่มเพิ่มเติมด้วย"
@@ -577,11 +600,11 @@ function showInfo(id){
   if(I.pt) rows.push(["Part",'<span class="code">'+esc(I.pt)+'</span>']);
   var k=keyOf(id);
   box.innerHTML='<h3>'+esc(I.n||"ชิ้นงาน")+'<button class="x" data-x>✕</button></h3>'
-    +'<div class="sub">'+(I.pg?"เสาเหล็ก (งานสั่งทำ)":(I.v?"อุปกรณ์ / ชิ้นประกอบ":(I.dr?"บาน / หน้าลิ้นชัก":"ชิ้นไม้")))+'</div>'
+    +'<div class="sub">'+(I.pg?(I.pgT||"เสาเหล็ก (งานสั่งทำ)"):(I.v?"อุปกรณ์ / ชิ้นประกอบ":(I.dr?"บาน / หน้าลิ้นชัก":"ชิ้นไม้")))+'</div>'
     +'<div class="bd"><table>'+rows.map(function(r){ return '<tr><td>'+r[0]+'</td><td>'+r[1]+'</td></tr>'; }).join("")+'</table>'
     +'<div class="acts">'+(k!=null?'<button data-a="door">'+((D.pre&&D.pre[k])?((S.prog[k]||0)>.5?"เก็บตะแกรง":"ดึงตะแกรงออก"):((S.prog[k]||0)>.5?"ปิดบานนี้":"เปิดบานนี้"))+'</button>':'')   /* v1.595 */
     +'<button data-a="zoom">ซูมไปที่ชิ้น</button>'+(cab?'<button data-a="cab">ดูทั้งตู้</button>':'')
-    +((D.pp&&(!I.v||I.pg))?'<button data-a="paper">'+(I.pg?'📄 แบบเสานี้':'📄 แบบผลิต')+'</button>':'')+'</div></div>';   // v1.359 · v1.382: เสา
+    +((D.pp&&(!I.v||I.pg))?'<button data-a="paper">'+(I.pg?(I.pgB||'📄 แบบเสานี้'):'📄 แบบผลิต')+'</button>':'')+'</div></div>';   // v1.359 · v1.382: เสา
   box.classList.remove("hide");
   box.onclick=function(e){ var t=e.target; if(t.dataset.x!=null){ closeInfo(); return; }
     var a=t.dataset.a; if(a==="door"){ toggleDoor(k); setTimeout(function(){ showInfo(id); },480); }
@@ -1245,7 +1268,47 @@ function bindUI(){
    โหลดครั้งแรกที่กดปุ่ม แล้วจำไว้ · ชิ้นที่กดมาเปิดหน้าของชิ้นนั้น (bkey) · ไม่มีหน้าแยก = หน้ารวม
    หน้าเว็บนี้ปิดการซูมของเบราว์เซอร์ไว้ (ให้สองนิ้วหมุน 3D) จึงซูมแบบเอง: ปุ่ม − + ⤢ · สองนิ้ว · แตะสองครั้ง · Ctrl+ล้อเมาส์
    เปิดแล้วดันประวัติหนึ่งขั้น ปุ่มย้อนกลับของมือถือ = ปิดหน้าแบบ (ไม่หลุดออกจากงาน) */
-var PP=null, PPS={k:null,z:1,hist:0};
+var PP=null, PPS={k:null,z:1,hist:0,mode:"all"};   /* v1.922: mode = all | cus (เฉพาะงานสั่งทำ) */
+/* ───────── v1.922: แยกงานสั่งทำ + พิมพ์ / PDF ─────────
+   ผู้ใช้ 21/11 13:20: “หน้าที่ให้คนอื่นดู เพิ่มให้แยกงานสั่งทำ และ เพิ่มให้ปริ้นได้ด้วยครับ ปริ้น PDF”
+   เดิม: รายการหน้าเรียงตามตู้ งานสั่งทำปนอยู่ใต้ชื่อตู้ (หน้า 117/129) · ไม่มีปุ่มพิมพ์ (หน้าเว็บปิดเมนูเบราว์เซอร์ไว้ให้ 3D)
+   ตอนนี้: ปุ่ม 🛠 งานสั่งทำ (มีเฉพาะงานที่มีงานสั่งทำ) สลับชุด · รายการหน้า ☰ มีแถบ ทุกหน้า / งานสั่งทำ
+     ชุดงานสั่งทำ = P.cus ที่โปรแกรมอบมา (เลขหน้าเดินใหม่) · ลิงก์ที่ส่งก่อนรุ่นนี้ไม่มี P.cus = กรองจากเล่มรวมด้วยคีย์หน้า (เลขหน้าบนกระดาษยังเป็นของเล่มรวม)
+     ปุ่ม 🖨 → พิมพ์ทั้งชุดที่ดูอยู่ หรือเฉพาะหน้านี้ · เบราว์เซอร์เลือก “บันทึกเป็น PDF” ได้ · A3 แนวนอน (กระดาษ A4 ย่อพอดีหน้า)
+     ระหว่างพิมพ์ล้างหน้าที่โชว์อยู่ก่อน (SVG ซ้อนสองที่ = id ซ้ำ ลายตัด/ไล่สีอ้างตัวที่ถูกซ่อนแล้วหาย) แล้ววาดคืนหลังพิมพ์ */
+var PP_CUS_RX=/^(frm|gls|csm|rail|ehm|tst|hrl)\d/;
+function ppSet(P){ if(PPS.mode!=="cus"||!P) return P;
+  if(P.cus&&P.cus.order&&P.cus.order.length) return P.cus;
+  if(!P._cusX) P._cusX={order:(P.order||[]).filter(function(k){ return PP_CUS_RX.test(k); }),titles:P.titles,cab:P.cab,pages:P.pages,bkey:P.bkey,old:1};
+  return P._cusX; }
+function ppCusN(P){ if(!P) return 0; if(P.cus&&P.cus.order&&P.cus.order.length) return P.cus.order.length;
+  return (P.order||[]).filter(function(k){ return PP_CUS_RX.test(k); }).length; }
+function ppModeUi(P){ var n=ppCusN(P); if(!n&&PPS.mode==="cus") PPS.mode="all";
+  var ov=$("vwPaper"), b=ov&&ov.querySelector('[data-p="cus"]'); if(b){ b.style.display=n?"":"none"; b.classList.toggle("on",PPS.mode==="cus"); } }
+function paperMode(m){ PP&&PP.then(function(P){ if(m==="cus"&&!ppCusN(P)) return;
+  PPS.mode=(m==="cus")?"cus":"all"; ppModeUi(P);
+  var Q=ppSet(P), ord=Q.order||[]; paperShow(ord.indexOf(PPS.k)>=0?PPS.k:ord[0]); }); }
+function paperMenu(){ var mn=$("vwPpMenu"); if(!mn) return; if(!mn.classList.contains("hide")){ mn.classList.add("hide"); return; }
+  PP&&PP.then(function(P){ var Q=ppSet(P), ord=Q.order||[], i=ord.indexOf(PPS.k)+1, cus=PPS.mode==="cus";
+    mn.innerHTML='<button data-pr="set">🖨 พิมพ์'+(cus?'เฉพาะงานสั่งทำ':'ทุกหน้า')+' ('+ord.length+' หน้า)<small>'+(cus?('แบบที่ส่งทำข้างนอก'+(P.cus?' · เลขหน้าเดินใหม่ในชุดนี้':'')):'ทั้งเล่มแบบผลิต')+'</small></button>'
+      +(i>0?'<button data-pr="one">📄 พิมพ์เฉพาะหน้านี้ (หน้า '+i+')<small>'+esc((Q.titles||{})[PPS.k]||"")+'</small></button>':'')
+      +'<div class="nt">เครื่องพิมพ์เลือก “บันทึกเป็น PDF” (Save as PDF) = ได้ไฟล์ PDF · ตั้งต้น A3 แนวนอน (เลือก A4 ได้ ย่อพอดีหน้า)</div>';
+    mn.style.top=$("vwPaper").querySelector(".ph").offsetHeight+"px"; mn.classList.remove("hide");
+    mn.onclick=function(e){ var b=e.target.closest("[data-pr]"); if(!b) return; mn.classList.add("hide"); paperPrint(b.dataset.pr==="one"); }; }); }
+var PPR={t:null};
+function paperPrint(one){ PP&&PP.then(function(P){ var Q=ppSet(P), pg=Q.pages||{}, ks=(one?[PPS.k]:(Q.order||[])).filter(function(k){ return k!=null&&pg[k]; });
+  if(!ks.length){ $("vwPpS").textContent="ไม่มีหน้าให้พิมพ์"; return; }
+  var box=$("vwPrint"); if(!box){ box=document.createElement("div"); box.id="vwPrint"; document.body.appendChild(box); }
+  box.innerHTML=ks.map(function(k){ return '<div class="pg">'+pg[k]+'</div>'; }).join("");
+  var pv=$("vwPpPage"); if(pv) pv.innerHTML="";
+  if(PPR.t==null) PPR.t=document.title;
+  var nm=String((($("vwTitle")||{}).textContent)||"").trim();
+  document.title=("แบบผลิต"+(nm?(" "+nm):"")+(PPS.mode==="cus"?" งานสั่งทำ":"")+(one?(" "+((Q.titles||{})[PPS.k]||"")):"")).replace(/[\\\/:*?"<>|]+/g," ").slice(0,120);
+  setTimeout(function(){ try{ window.print(); }catch(e){ paperPrintDone(); $("vwPpS").textContent="เบราว์เซอร์นี้สั่งพิมพ์ไม่ได้ — ลองเปิดลิงก์ด้วย Chrome / Edge"; } },120); }); }
+function paperPrintDone(){ var b=$("vwPrint"); if(b) b.innerHTML="";
+  if(PPR.t!=null){ document.title=PPR.t; PPR.t=null; }
+  var ov=$("vwPaper"), pv=$("vwPpPage"); if(ov&&!ov.classList.contains("hide")&&pv&&!pv.innerHTML&&PPS.k!=null) paperShow(PPS.k); }
+addEventListener("afterprint",function(){ setTimeout(paperPrintDone,60); });
 function paperLoad(){
   if(PP) return PP;
   var el=$("snvPaper"), txt=el?String(el.textContent||"").trim():"";
@@ -1261,13 +1324,17 @@ function paperUI(){
   ov.innerHTML='<div class="ph"><button data-p="x" aria-label="ปิด">✕</button><button data-p="prev" aria-label="หน้าก่อน">‹</button>'
     +'<div class="tt"><b id="vwPpT">แบบผลิต</b><span id="vwPpS"></span></div>'
     +'<button data-p="next" aria-label="หน้าถัดไป">›</button><span id="vwPpZm"><button data-p="zo" aria-label="ซูมออก">−</button><button data-p="zi" aria-label="ซูมเข้า">+</button><button data-p="fit" class="zf" aria-label="พอดีจอ">⤢</button></span>'
+    +'<button data-p="cus" style="display:none" title="ดูเฉพาะงานสั่งทำ — แบบที่ส่งทำข้างนอก (เฟรมหน้าบาน กระจก เหล็กตัวที ราวแขวน มือจับ)">🛠<span class="tx"> งานสั่งทำ</span></button>'   /* v1.922 */
+    +'<button data-p="pr" title="พิมพ์ / บันทึกเป็น PDF">🖨<span class="tx"> พิมพ์</span></button>'
     +'<button data-p="list">☰ หน้า</button></div>'
-    +'<div id="vwPpBody"><div id="vwPpMsg"></div><div id="vwPpPage"></div></div><div id="vwPpList" class="hide"></div>';
+    +'<div id="vwPpBody"><div id="vwPpMsg"></div><div id="vwPpPage"></div></div><div id="vwPpList" class="hide"></div><div id="vwPpMenu" class="hide"></div>';
   document.body.appendChild(ov);
   ov.querySelector(".ph").onclick=function(e){ var b=e.target.closest("button"); if(!b) return; var a=b.dataset.p;
     if(a==="x") paperClose(); else if(a==="prev") paperStep(-1); else if(a==="next") paperStep(1);
     else if(a==="zi") paperZoom(PPS.z*1.4); else if(a==="zo") paperZoom(PPS.z/1.4); else if(a==="fit") paperZoom(1);
-    else if(a==="list") paperList(); };
+    else if(a==="list") paperList();
+    else if(a==="cus") paperMode(PPS.mode==="cus"?"all":"cus"); else if(a==="pr") paperMenu();   /* v1.922 */
+    if(a!=="pr"){ var mn=$("vwPpMenu"); if(mn) mn.classList.add("hide"); } };
   /* สองนิ้ว = ซูม (จุดกึ่งกลางนิ้วอยู่ที่เดิม) · ลากนิ้วเดียว = เลื่อนตามปกติของกล่อง */
   var bd=ov.querySelector("#vwPpBody"), pz=null, lastTap=0;
   bd.addEventListener("touchstart",function(e){ if(e.touches.length===2){ var a=e.touches[0],b=e.touches[1];
@@ -1279,6 +1346,7 @@ function paperUI(){
   bd.addEventListener("touchend",function(e){ if(e.touches.length<2) pz=null; });
   bd.addEventListener("wheel",function(e){ if(!(e.ctrlKey||e.metaKey)) return; e.preventDefault(); paperZoom(PPS.z*(e.deltaY<0?1.15:1/1.15),e.clientX,e.clientY); },{passive:false});
   bd.addEventListener("dblclick",function(e){ paperZoom(PPS.z>1.3?1:2.6,e.clientX,e.clientY); });
+  bd.addEventListener("pointerdown",function(){ var mn=$("vwPpMenu"); if(mn) mn.classList.add("hide"); });   /* v1.922: แตะหน้า = ปิดเมนูพิมพ์ */
   addEventListener("keydown",function(e){ if(ov.classList.contains("hide")) return;
     if(e.key==="Escape") paperClose(); else if(e.key==="ArrowLeft") paperStep(-1); else if(e.key==="ArrowRight") paperStep(1); });
   addEventListener("popstate",function(){ if(PPS.hist){ PPS.hist=0; paperClose(true); } });
@@ -1289,11 +1357,15 @@ function paperOpen(id){
   var ov=paperUI(); ov.classList.remove("hide");
   if(!PPS.hist){ try{ history.pushState({snvPaper:1},""); PPS.hist=1; }catch(e){} }
   var lp=$("vwPpList"); if(lp) lp.classList.add("hide");
+  var mn=$("vwPpMenu"); if(mn) mn.classList.add("hide");   /* v1.922 */
   paperMsg("กำลังโหลดแบบผลิต…"); $("vwPpPage").innerHTML=""; $("vwPpT").textContent="แบบผลิต"; $("vwPpS").textContent="";
   paperLoad().then(function(P){
-    var bk=P.bkey||{}, k=null;
-    if(id!=null){ k=bk[id]||null; var own=S.D.own&&S.D.own[id]; if(!k&&own) k=bk[own]||null; }
-    var note=""; if(!k){ if(id!=null) note="ชิ้นนี้ไม่มีหน้าแบบแยก — แสดงหน้ารวม"; k=(P.order||[])[0]; }
+    ppModeUi(P);   /* v1.922: เปิดตามชุดที่เลือกค้างไว้ (ทุกหน้า / งานสั่งทำ) */
+    var Q=ppSet(P), bk=Q.bkey||{}, k=null, own=(id!=null&&S.D.own)?S.D.own[id]:null;
+    if(id!=null){ k=bk[id]||null; if(!k&&own) k=bk[own]||null; if(k&&(Q.order||[]).indexOf(k)<0) k=null;
+      /* อยู่ชุดงานสั่งทำแต่ชิ้นที่แตะไม่ใช่งานสั่งทำ → กลับไปทุกหน้าแล้วเปิดหน้าของชิ้นนั้น */
+      if(!k&&PPS.mode==="cus"){ var ka=(P.bkey||{})[id]||(own?(P.bkey||{})[own]:null); if(ka){ PPS.mode="all"; ppModeUi(P); Q=P; k=ka; } } }
+    var note=""; if(!k){ if(id!=null) note="ชิ้นนี้ไม่มีหน้าแบบแยก — แสดงหน้า"+(PPS.mode==="cus"?"แรก":"รวม"); k=(Q.order||[])[0]; }
     paperMsg(""); paperShow(k,note);
   },function(e){ paperMsg(String((e&&e.message)||e),true); }); }
 function paperClose(fromPop){
@@ -1302,15 +1374,16 @@ function paperClose(fromPop){
   if(!fromPop&&PPS.hist){ PPS.hist=0; try{ history.back(); }catch(e){} }
   S.dirty=true; }
 function paperShow(k,note){
-  PP&&PP.then(function(P){ var ord=P.order||[]; if(ord.indexOf(k)<0) k=ord[0]; if(k==null) return;
+  PP&&PP.then(function(P){ var Q=ppSet(P), ord=Q.order||[]; if(ord.indexOf(k)<0) k=ord[0]; if(k==null) return;   /* v1.922: ชุดที่เลือก */
     PPS.k=k; var i=ord.indexOf(k);
-    $("vwPpPage").innerHTML=(P.pages||{})[k]||"";
-    $("vwPpT").textContent=(P.titles||{})[k]||k;
-    var cb=(P.cab||{})[k]; $("vwPpS").textContent="หน้า "+(i+1)+" / "+ord.length+(cb?(" · ตู้ "+cb):"")+(note?(" · "+note):"");
+    $("vwPpPage").innerHTML=(Q.pages||{})[k]||"";
+    $("vwPpT").textContent=(Q.titles||{})[k]||k;
+    var cb=(Q.cab||{})[k], _cabLike=cb&&/^[A-Za-z]{2,}[A-Za-z0-9_-]*\d/.test(cb);
+    $("vwPpS").textContent=(PPS.mode==="cus"?"งานสั่งทำ · ":"")+"หน้า "+(i+1)+" / "+ord.length+(cb?(_cabLike?(" · ตู้ "+cb):(" · "+cb)):"")+(note?(" · "+note):"");
     var ov=$("vwPaper"); ov.querySelector('[data-p="prev"]').disabled=(i<=0); ov.querySelector('[data-p="next"]').disabled=(i>=ord.length-1);
     paperZoom(1); var bd=$("vwPpBody"); bd.scrollTop=0; bd.scrollLeft=0;
     var lp=$("vwPpList"); if(lp&&!lp.classList.contains("hide")) paperList(true); }); }
-function paperStep(d){ PP&&PP.then(function(P){ var ord=P.order||[], i=ord.indexOf(PPS.k)+d; if(i>=0&&i<ord.length) paperShow(ord[i]); }); }
+function paperStep(d){ PP&&PP.then(function(P){ var ord=ppSet(P).order||[], i=ord.indexOf(PPS.k)+d;   /* v1.922: ชุดที่เลือก */ if(i>=0&&i<ord.length) paperShow(ord[i]); }); }
 /* z = 1 คือทั้งหน้าพอดีจอ · ซูมแล้วจุด (cx,cy) บนจอค้างอยู่ที่เดิม */
 function paperZoom(z,cx,cy){
   var bd=$("vwPpBody"), pg=$("vwPpPage"); if(!bd||!pg) return;
@@ -1325,13 +1398,15 @@ function paperZoom(z,cx,cy){
 function paperList(keep){
   var lp=$("vwPpList"), bt=$("vwPaper").querySelector('[data-p="list"]');
   if(!keep&&!lp.classList.contains("hide")){ lp.classList.add("hide"); bt.classList.remove("on"); return; }
-  PP&&PP.then(function(P){ var ord=P.order||[], T=P.titles||{}, C=P.cab||{}, h="", last=null;
+  PP&&PP.then(function(P){ var Q=ppSet(P), ord=Q.order||[], T=Q.titles||{}, C=Q.cab||{}, h="", last=null, nc=ppCusN(P);   /* v1.922 */
+    if(nc) h+='<div class="seg2"><button data-m="all"'+(PPS.mode!=="cus"?' class="on"':'')+'>ทุกหน้า ('+(P.order||[]).length+')</button><button data-m="cus"'+(PPS.mode==="cus"?' class="on"':'')+'>🛠 งานสั่งทำ ('+nc+')</button></div>';
+    lp.classList.toggle("hasSeg",!!nc);
     ord.forEach(function(k,i){ var g=C[k]||(k==="summary"?"หน้ารวม":"อื่น ๆ");
       if(g!==last){ h+='<div class="g">'+esc(g)+'</div>'; last=g; }
       h+='<div class="it'+(k===PPS.k?' on':'')+'" data-k="'+esc(k)+'"><i>'+(i+1)+'</i><span>'+esc(T[k]||k)+'</span></div>'; });
     lp.innerHTML=h; lp.style.top=$("vwPaper").querySelector(".ph").offsetHeight+"px";
     lp.classList.remove("hide"); bt.classList.add("on");
-    lp.onclick=function(e){ var it=e.target.closest(".it"); if(!it) return; paperShow(it.dataset.k); if(innerWidth<760){ lp.classList.add("hide"); bt.classList.remove("on"); } };
+    lp.onclick=function(e){ var sm=e.target.closest("[data-m]"); if(sm){ paperMode(sm.dataset.m); return; }   /* v1.922 */ var it=e.target.closest(".it"); if(!it) return; paperShow(it.dataset.k); if(innerWidth<760){ lp.classList.add("hide"); bt.classList.remove("on"); } };
     var on=lp.querySelector(".it.on"); if(on) try{ on.scrollIntoView({block:"nearest"}); }catch(e){} }); }
 
 var RV_OFF=0;
