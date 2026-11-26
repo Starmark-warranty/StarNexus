@@ -362,6 +362,16 @@
   .sumtbl{width:100%;border-collapse:collapse;font-size:12px;margin:6px 0 16px}
   .sumtbl th,.sumtbl td{border:.5px solid var(--line);padding:5px 8px;text-align:left;white-space:nowrap}
   .sumtbl th{background:rgba(0,0,0,.04);font-weight:600;position:sticky;top:0}
+  /* v2.013: หัวตารางลอยต้องทึบ (เดิมโปร่ง 4% ธีมมืดเห็นแถวทะลุหัว) · มุมมองแยกรายตู้ · ช่องค้นหา */
+  .sumtbl th{background:var(--solid);z-index:1;box-shadow:inset 0 -1px 0 var(--line)}
+  .sumVBar{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:4px 0 12px}
+  .sumVBar .seg{display:inline-flex}
+  #sumQ{flex:1;min-width:240px;max-width:560px;padding:6px 10px;border-radius:8px;border:1px solid var(--line-strong);background:var(--solid);color:var(--ink);font-size:13px}
+  .sumCabBox{border:1px solid var(--line);border-radius:10px;margin:0 0 10px;padding:0 10px;background:var(--panel-strong)}
+  .sumCabBox>summary{cursor:pointer;padding:8px 2px;font-size:13px}
+  .sumCabBox .sumCabPid{font-family:var(--mono);font-size:11px;opacity:.7;margin-left:6px}
+  .sumCabBox .sumCabN{font-size:11.5px;color:var(--ink-dim);margin-left:8px}
+  .sumCabBox table.sumtbl{margin:2px 0 10px}
   .sumtbl td.num{text-align:right;font-family:var(--mono)}
   /* v2.012: คอลัมน์ตู้ในหน้า BOM · td.num โดน .num{display:flex} (ช่องตัวเลขของฟอร์ม) ตาราง BOM ขนาดตัด/จำนวน/หน่วยเลื่อนผิดช่อง → คืนเป็นช่องตาราง */
   .sumtbl td.num{display:table-cell}
@@ -3308,7 +3318,7 @@ body[data-theme="dark"] .splash-dots span{background:rgba(255,255,255,.25)}
    ===================================================================== */
 /* ---- APP_META: แหล่งความจริงเดียวของเวอร์ชัน (ดูได้จาก console / คลิกชื่อแอป) ---- */
 const APP_META={
-  name:"StarNexus", version:"2.012", build:"2026-11-26/bom-cad",
+  name:"StarNexus", version:"2.013", build:"2026-11-26/bom-bycab",
   file:"StarNexus.html", basedOn:"Furnitech_V3.html (v3.11)",
   /* ───────── เริ่มนับเวอร์ชันใหม่ที่ 1.001 (21/08/2026) ─────────
      ของเดิมนับมาถึง 42.1 แล้ววิ่งเป็นทศนิยมสองชั้นซึ่งอ่านลำดับยาก
@@ -3316,6 +3326,7 @@ const APP_META={
      ประวัติเก่าเก็บไว้ทั้งหมดตามเลขเดิม ไม่ไล่เขียนใหม่ เพราะเลขในนั้นถูกอ้างถึงไปแล้ว
      รายการที่อยู่ใต้ 1.001 ลงไปจึงเป็นเลขชุดเก่า อ่านต่อกันได้ตามวันที่ */
   changelog:[
+    ["2.013","2026-11-26","FEAT หน้า BOM Fitting แยกรายตู้ + ค้นหา (ผู้ใช้ 26/11 11:11 ภาพหน้า BOM ธีมมืด: “ขอเป็นรายการตู้ครับ แล้วมีอุปกรณ์อะไรในตู้ หรือสลับดูได้ ระหว่างดูแยกรายตู้กับดูรวมทั้งหมด” · 11:12 “เพิ่มให้พิมพ์ค้นหารหัสตู้กับค้นหารหัส Purchase ได้ด้วยครับ”) — ปุ่ม 📋 รวมทั้งหมด / 🗄 แยกรายตู้ (จำต่อเครื่อง) · แยกรายตู้ = กล่องพับได้ต่อตู้ตามกลุ่มส่งออก (orderGroups · รหัสตู้ + เลขตู้) อุปกรณ์ในตู้ + ขอบ · ของที่ไม่สังกัดตู้ (Accessory แท็บเส้น ฯลฯ) อยู่กล่อง “ทั้งงาน” · แก้ Purchase ID ได้ทั้งสองมุมมอง (เฉพาะงานนี้ · ทุกตู้ที่ใช้รหัสนั้น) · ช่องค้นหา: รหัสตู้/เลขตู้ · รหัสอุปกรณ์ · Purchase ID (รวมรหัสที่แก้และรหัสเดิม) · ชื่อ — หลายคำ = ต้องเจอทุกคำ · ตรงรหัสตู้ = เห็นทั้งตู้ · Esc ล้าง · FIX หัวตารางลอย (sticky) โปร่งใส ธีมมืดเห็นแถวทะลุ → พื้นทึบ · คอลัมน์ตู้ของมุมมองรวมใช้กลุ่มส่งออกเดียวกัน (SN_OFF.fitBomByCab)"],
     ["2.012","2026-11-26","FEAT/FIX 3 ข้อ (ผู้ใช้ 26/11 10:31 ภาพหน้า BOM Fitting + ภาพ AutoCAD เคอร์เซอร์ 3 แกน) — ① “หน้าบอก Fitting ทำหน้าต่างให้ใหญ่ไปเลย และเพิ่มด้วยว่าของตู้ใบไหน และให้แก้รหัสเพื่อส่งออกได้ในหน้านี้ด้วย” (เลือก: เฉพาะงานนี้) → หน้าต่างกว้าง 1500/98vw สูง 94vh · คอลัมน์ “ตู้” รหัสตู้ ×จำนวนใบ + จำนวนของ (fittingAgg รายตู้ · ไม่มีตู้ = ทั้งงาน) · ช่อง Purchase ID พิมพ์แก้ได้ → state.fitPid {รหัส@ยาว: รหัสใหม่} ไปกับออเดอร์/ไฟล์งาน/autosave (ไม่เข้า Ctrl+Z) · ใช้ตอนส่งออกทุกทาง (expandFitKids ท้ายสุด · IMOS ชนะรหัสท่อนที่ค้นเจอ · ไม่เป็น “ยังไม่มีโค้ด”) · ↺ กลับรหัสเดิม (SN_OFF.fitPidOvr / fitBomCab) · ② “ตู้ลอย ไม่มีให้เลือก แผ่นพื้นทับข้างหรือแผ่นทอปทับแผ่นข้าง” (เลือก: แค่แก้คลิกขวาใน 3D) → ⊤ สลับทอป / ⊥ สลับพื้น เดิมเด้ง “ยังไม่ถูกหมุน” กับตู้ที่หมุนในห้อง → คลายหมุนคิดในแกนตรงแล้วหมุนกลับ (แบบ rail2top) (SN_OFF.joinRot) · · แถม FIX ตาราง BOM ช่องขนาดตัด/จำนวน/หน่วยเลื่อนผิดคอลัมน์ (td.num โดน .num{display:flex} ของช่องฟอร์ม) · แผ่นปิด/ฟิลเลอร์ไม่มีคำสั่งสลับทอป/พื้นในคลิกขวา ③ “อยากได้เมาส์มีเส้นเหมือน CAD เอาไว้วัดได้คร่าว ๆ” (เลือก: เส้นอย่างเดียว) → ปุ่ม ✛ เส้น CAD แถบล่าง: เส้น 3 แกนผ่านจุดที่เมาส์ชี้ (ผิวชิ้น/ผนัง · ไม่โดน = พื้น) แดง = กว้าง (X) เขียว = ลึก · น้ำเงิน = สูง · ทะลุทุกอย่าง · จำต่อเครื่อง (SN_OFF.cadCross)"],
     ["2.011","2026-11-26","FIX กล่องโค้ง BNF067 จาก XML ไม่มีให้เลือกครีบ (ผู้ใช้ 26/11 09:41 ภาพแผงตู้ธรรมดา: “ดูกล่องโค้งให้หน่อยนะไม่มีให้เลือกครีบ” · ภาพที่ต้องการ: ฝั่งชิดตู้ ครีบตามโมเดล · ครีบ แถวใน/แถวนอก) — งาน 093957: BNF067 สองใบเป็นกล่องโค้งสองปลาย (rSide both · ครีบ 6 · แผ่นดัด 150×920) แต่ไม่มีเครื่องหมาย _cvb ติดมากับโมเดล → cvbIs รับ both เฉพาะที่มี _cvb.island = โปรแกรมเห็นเป็นตู้ธรรมดา → กล่องรหัส [BWT]NF สองปลายที่ไม่มี _cvb นับเป็นกล่องโค้ง Island · ทิศ/ฝั่งอ่านจากทรงจริง (ฝั่งที่แผ่นดัดเลยชั้นออกไป = ด้านนอก อีกฝั่ง = ชิดตู้) + ตู้ที่ชิดอยู่หันทางไหนใช้ทางนั้น (BNF067 ขวา: ชิด BND215 · ซ้าย: ห่าง BND215 100) · แผงขึ้น ฝั่งชิดตู้ (ครีบตามโมเดล/ครีบกว้าง/แผ่นปิดเต็ม) + ครีบ แถวใน/แถวนอก · ไม่มีตู้อีกฝั่ง = แก้ได้เฉพาะฝั่งชิดตู้ กล่องอยู่ที่เดิม (ทางเดิมของ v1.936) · ปั้นใหม่ครั้งแรกครีบแถวนอกเท่าโมเดล (เดิม Island บวกตัวกึ่งกลางซ้ำ 3 → 4) แถวในเพิ่มตามความยาวตามกฎ v1.653 · กล่องไม่ถูกจัดตามตู้เอง (ไม่มีตู้คู่) · ปิด SN_OFF.cvbXmlBoth · แถม: เปลี่ยนฝั่งชิดตู้ (ครีบ ↔ แผ่นปิดเต็ม) R คงตามที่ตั้ง เดิมกลับมาได้ R หด 120 → 116.2 (SN_OFF.cvbRKeep)"],
     ["2.010","2026-11-26","PERF โปรแกรมช้า/กินแรม (ผู้ใช้ 26/11 09:43–09:46 “เครื่องผมอะไรกินแรม · ตอนนี้โปรแกรมช้าไปแล้ว” · ภาพตัวจัดการงาน Chrome แท็บ StarNexus 2 GB · ห้อง 56 ตู้) — วัดงาน 093957 (819 ชิ้น): แก้ 1 ครั้ง (แม้ sync เปล่า) วาดฉากทั้งห้อง 2 รอบ ≈ 0.9–1.0 วิ · รอบที่ 2 มาจาก commit → ขาตู้เปลี่ยน 2 สาเหตุ: (1) ตู้ที่หมุนในผัง (TAL030 yaw 270) ถูกหมุนตั้งตรงแล้วหมุนกลับหลายครั้งต่อรอบ (withCabAxisAligned/refitInterior) จุดหมุนมีเศษ .05 + ปัด 0.1 → ชิ้นไหลไป 0.1 มม. ทุกรอบ แล้ว reapplyLegs ดึงขากลับ = ขาเปลี่ยนทุกครั้ง → rotateCabBoards จำค่าก่อนหมุน หมุนกลับด้วยมุม/จุดหมุนเดิมและชิ้นไม่ได้ขยับ = คืนค่าเดิมเป๊ะ (SN_OFF.rotExact) · (2) รูมาร์คขา BND275 (แผ่นพื้นกว้าง 117.6 ขาแถวละตัวเดียว) เจาะได้จริง 4 รู แต่ตัวตรวจนับว่าต้องมี 8 → เจาะใหม่ทุก commit → จำจำนวนรูที่เจาะได้ (_legMarkN) ลายเซ็นเดิม + ครบเท่าที่เจาะ = ไม่แตะ (SN_OFF.legMarkN) · ทรงอุปกรณ์ที่ซ้ำกัน (ตัวยึดแผ่นหลัง 212 ตัว ≈ 160 มส. ต่อรอบวาด · หูแขวน · ทรงกลึง/กระบอก/ปริซึม) ปั้นทรง+เส้นขอบครั้งเดียวใช้ร่วมกัน (SN_OFF.vgMemo) · ประวัติ Ctrl+Z (สำเนาทั้งงาน ~0.77 ล้านตัวอักษรต่อครั้ง มีภาษาไทย = เก็บ 2 ไบต์ทุกตัว) → เก็บแบบ 1 ไบต์ แรม 60 ขั้นจาก 88 → 52 MB (SN_OFF.snapOneByte) · ผล: sync เปล่า 965 → ~300 มส. · ย้ายตู้ 1,360 → ~450 มส."],
@@ -38427,6 +38438,7 @@ function boardRole(b){
      SN_OFF.colMat=1      ไม่ใช้ “เนื้อไม้ของสี” (settings.colorMatKinds) — ทุกสีเลือกได้ทุกชนิด ไม่มีแถบกรอง (v1.893)
      SN_OFF.matTbCode=1   ตารางเนื้อไม้รับแค่ Purchase ID (19:PE18) แบบเดิม (v1.893)
      SN_OFF.pullThkStrip=1 สกรูมือจับ (ลูกตามความหนา) นับหนาแผ่นบานอย่างเดียว ไม่รวมไม้เส้นเฟรม (v1.892)
+     SN_OFF.fitBomByCab=1 หน้า BOM Fitting ไม่มีมุมมองแยกรายตู้/ช่องค้นหา (แบบ 2.012) (v2.013)
      SN_OFF.cadCross=1 ไม่มีปุ่ม ✛ เส้น CAD (เส้นเล็ง 3 แกนตามเมาส์) (v2.012)
      SN_OFF.joinRot=1 คลิกขวา ⊤ สลับทอป / ⊥ สลับพื้น ใช้ได้เฉพาะตู้ที่ไม่หมุนแบบเดิม (v2.012)
      SN_OFF.fitBomCab=1 หน้า BOM Fitting ไม่มีคอลัมน์ตู้ (v2.012)
@@ -86252,6 +86264,55 @@ function fitPidKey(f){ if(!f) return ""; let k=String(f.art==null?"":f.art).trim
 function fitPidMap(){ if(typeof state==="undefined"||!state) return {}; if(!state.fitPid||typeof state.fitPid!=="object") state.fitPid={}; return state.fitPid; }
 function fitPidOvrApply(out){ if(snOff("fitPidOvr")||typeof state==="undefined"||!state||!state.fitPid||typeof state.fitPid!=="object") return; const M=state.fitPid; if(!Object.keys(M).length) return;
   (out||[]).forEach(f=>{ if(!f) return; const v=String(M[fitPidKey(f)]||"").trim(); if(!v) return; if(!f._pidOvr) f._pidAuto=f.purchase; f.purchase=v; f._pidOvr=true; }); }
+/* ───────── v2.013: หน้า BOM Fitting — แยกรายตู้ · ค้นหา ─────────
+   ผู้ใช้ 26/11 11:11 (ภาพหน้า BOM 2.012 ธีมมืด · แถว 1103/LED ยาวต่าง ๆ · คอลัมน์ตู้เป็นป้ายเล็ก): “ขอเป็นรายการตู้ครับ แล้วมีอุปกรณ์อะไรในตู้
+     หรือสลับดูได้ ระหว่างดูแยกรายตู้กับดูรวมทั้งหมด” · 11:12 “เพิ่มให้พิมพ์ค้นหารหัสตู้กับค้นหารหัส Purchase ได้ด้วยครับ”
+   ตอนนี้:
+     · SUMV {v:"all"|"cab", q, open} · ปุ่มสลับจำต่อเครื่อง (sxlocaltrial:furnitech:bomView · อ่านครั้งแรกตอนเปิดหน้า เพราะ lsGet เป็น async)
+     · fitBomGroups = orderGroups (กลุ่มเดียวกับ IMOS/Production · ตู้ซ้อนรวมเข้าตู้แม่) → fittingAgg(กลุ่ม) + ขอบ edgeTotals(กลุ่ม)
+     · แยกรายตู้: กล่อง <details> ต่อตู้ (รหัสตู้ + เลขตู้ productId · จำนวนรายการ) · ของรวมทั้งงาน − ผลรวมรายตู้ = กล่อง “ทั้งงาน” (Accessory แท็บเส้น ฯลฯ)
+     · แก้ Purchase ID ได้ทั้งสองมุมมอง (กุญแจเดียวกัน fitPidKey = ทั้งงาน)
+     · ค้นหา (#sumQ): data-q ของแถว = รหัส · Purchase ID ตอนนี้ · รหัสเดิมก่อนแก้ · ชื่อ · รหัสตู้ที่ใช้ (มุมมองรวม) · กล่องตู้ data-q = รหัสตู้ + เลขตู้
+       หลายคำ = ต้องเจอทุกคำ · ตรงรหัสตู้ = เห็นทั้งตู้ · ไม่วาดใหม่ตอนพิมพ์ (ซ่อน/แสดงแถว) · แก้รหัสแล้ววาดใหม่ยังกรองตามคำเดิม
+   ปิด SN_OFF.fitBomByCab=1 (ไม่มีแถบสลับ/ค้นหา · คอลัมน์ตู้แบบ 2.012) */
+var SUMV={v:"all",q:"",open:{},ld:0};
+function fitBomGroups(){ let gs=[]; try{ gs=orderGroups(); }catch(e){ console.error("bomGroups:",e); gs=[]; }
+  return gs.filter(g=>g&&Array.isArray(g.boards)&&g.boards.length).map(g=>{ let rows=[], ed=[];
+    try{ rows=(fittingAgg(g.boards)||[]).filter(f=>f&&!f._setHidden).map(f=>Object.assign({},f,{grp:(f.kind==="line")?"line":"fit"})); }catch(e){ rows=[]; }
+    try{ edgeTotals(g.boards).forEach(e=>{ if(!e||!e.out) return; ed.push({grp:"edge",kind:"edge",art:e.out,purchase:e.out,dia:"",name:"ขอบ "+(e.tag||e.out),unit:"ม.",count:Math.round(e.mm/10)/100}); }); }catch(e){ ed=[]; }
+    const code=String(g.cab||((g.boards.find(b=>b&&!b._virtual&&b.cab)||{}).cab)||g.key||"");
+    return {key:String(g.key), pid:String(g.productId||""), code, rows, edges:ed}; }); }
+function fitBomCabsG(G){ const res={}; (G||[]).forEach(g=>{ g.rows.forEach(f=>{ const k=fitPidKey(f); if(!k) return; const r=res[k]=res[k]||{}, c=r[g.code]=r[g.code]||{n:0,cnt:0,insts:{}}; if(!c.insts[g.key]){ c.insts[g.key]=1; c.n++; } c.cnt+=(+f.count||0); }); }); return res; }
+function sumRowQ(f,cabs){ return [f.art,f.purchase,f._pidAuto||"",f.name].concat(cabs?Object.keys(cabs):[]).join(" ").toLowerCase(); }
+function sumCabRow(f){ const isKid=f.kind==="child", pid=String(f.purchase||"").trim(), ed=(f.grp!=="edge"&&!snOff("fitPidOvr")&&!!fitPidKey(f)); let nc=""; try{ nc=(f.grp!=="edge")?expNoCodeOf(f):""; }catch(e){ nc=""; }
+  return '<tr data-q="'+escapeHtml(sumRowQ(f))+'"'+(isKid?' style="opacity:.93"':'')+'>'
+    +'<td style="font-family:var(--mono)'+(isKid?';padding-left:18px':'')+'">'+escapeHtml(String(f.art))+'</td>'
+    +'<td style="font-family:var(--mono)">'+(ed?sumPidEd(f,pid):escapeHtml(pid))+(nc?'<div style="font-size:10px;color:#b25b00">⚠ '+escapeHtml(NOCODE_TAG)+' — ค้นรหัสในคลังไม่เจอ</div>':'')+'</td>'
+    +'<td>'+(isKid?'<span style="opacity:.55">↳</span> ':'')+escapeHtml(String(f.name||""))+((isKid&&f.parent)?' <span style="opacity:.5;font-size:11px">('+f.qtyPer+'/ชุด '+escapeHtml(String(f.parent))+')</span>':'')+'</td>'
+    +'<td class="num">'+(f._gcut?('<b>'+f._gcut.w+'x'+f._gcut.l+'</b>'):(((+f._cut||0)>0)?('<b>'+cutLen(f._cut)+'</b>'):'<span style="opacity:.35">—</span>'))+'</td>'
+    +'<td class="num"><b>'+(Math.round((f.count||0)*100)/100)+'</b></td>'
+    +'<td>'+escapeHtml(String(f.unit||""))+'</td></tr>'; }
+function sumCabViewHtml(rows,G){ const th='<thead><tr><th>รหัส</th><th>Purchase ID'+(snOff("fitPidOvr")?'':' <span style="font-weight:400;opacity:.6">(แก้ได้ · เฉพาะงานนี้ · ทุกตู้ที่ใช้รหัสนี้)</span>')+'</th><th>ชื่อ</th><th>ขนาดตัด (มม.)</th><th>จำนวน</th><th>หน่วย</th></tr></thead>';
+  let h=''; (G||[]).forEach(g=>{ if(!g.rows.length&&!g.edges.length) return; const op=SUMV.open[g.key]!==false;
+    h+='<details class="sumCabBox" data-k="'+escapeHtml(g.key)+'" data-q="'+escapeHtml((g.code+" "+g.pid).toLowerCase())+'"'+(op?' open':'')+'><summary><b>'+escapeHtml(g.code)+'</b>'+((g.pid&&g.pid!==g.code)?'<span class="sumCabPid">'+escapeHtml(g.pid)+'</span>':'')
+      +'<span class="sumCabN">อุปกรณ์ '+g.rows.length+' รายการ'+(g.edges.length?(' · ขอบ '+g.edges.length):'')+'</span></summary>'
+      +'<table class="sumtbl">'+th+'<tbody>'+g.rows.map(sumCabRow).join("")+g.edges.map(sumCabRow).join("")+'</tbody></table></details>'; });
+  const used={}; (G||[]).forEach(g=>g.rows.forEach(f=>{ const k=fitPidKey(f); used[k]=(used[k]||0)+(+f.count||0); }));
+  const rest=[]; (rows||[]).forEach(f=>{ if(!f||f.grp==="edge") return; const k=fitPidKey(f), c=+f.count||0, u=Math.min(c,Math.max(used[k]||0,0)); used[k]=(used[k]||0)-u; const left=Math.round((c-u)*100)/100; if(left>0.001) rest.push(Object.assign({},f,{count:left})); });
+  if(rest.length) h+='<details class="sumCabBox" data-k="_rest" data-q="ทั้งงาน ไม่สังกัดตู้"'+(SUMV.open._rest!==false?' open':'')+'><summary><b>ทั้งงาน</b><span class="sumCabN">ไม่สังกัดตู้ใบไหน (Accessory จากแท็บเส้น · ของรวมทั้งงาน) '+rest.length+' รายการ</span></summary><table class="sumtbl">'+th+'<tbody>'+rest.map(sumCabRow).join("")+'</tbody></table></details>';
+  return h||'<div style="padding:16px;color:var(--ink-dim);font-size:12.5px">ยังไม่มีอุปกรณ์ในงานนี้</div>'; }
+function sumViewBar(G){ const nC=(G||[]).filter(g=>g.rows.length||g.edges.length).length, cab=SUMV.v==="cab", bs='style="flex:none;width:auto;padding:3px 10px"';
+  return '<div class="sumVBar"><div class="seg"><button type="button" data-bv="all"'+(cab?'':' class="sel"')+'>📋 รวมทั้งหมด</button><button type="button" data-bv="cab"'+(cab?' class="sel"':'')+'>🗄 แยกรายตู้'+(nC?(' ('+nC+')'):'')+'</button></div>'
+    +'<input id="sumQ" type="search" autocomplete="off" spellcheck="false" placeholder="🔍 ค้นหา รหัสตู้ · รหัสอุปกรณ์ · Purchase ID · ชื่อ" value="'+escapeHtml(SUMV.q||"")+'">'
+    +(cab?('<button type="button" class="ibtn" id="sumOpenAll" '+bs+'>⊞ ขยายทุกตู้</button><button type="button" class="ibtn" id="sumCloseAll" '+bs+'>⊟ ย่อทุกตู้</button>'):'')
+    +'<span id="sumQN" style="font-size:11.5px;color:var(--ink-dim)"></span></div>'; }
+function sumFilter(body){ if(!body) return; const ts=String(SUMV.q||"").trim().toLowerCase().split(/\s+/).filter(Boolean), hit=t=>ts.every(w=>String(t||"").indexOf(w)>=0); let n=0, tot=0;
+  const boxes=body.querySelectorAll(".sumCabBox");
+  if(boxes.length){ boxes.forEach(d=>{ const cabHit=ts.length&&hit(d.dataset.q); let any=false; d.querySelectorAll("tbody tr").forEach(tr=>{ const on=!ts.length||cabHit||hit(tr.dataset.q); tr.style.display=on?"":"none"; if(on) any=true; });
+      d.style.display=(any||!ts.length)?"":"none"; if(ts.length&&any&&!d.open) d.open=true; tot++; if(any) n++; }); }
+  else body.querySelectorAll("table.sumtbl").forEach(tb=>{ let any=false; tb.querySelectorAll("tbody tr").forEach(tr=>{ if(tr.dataset.q==null) return; const on=!ts.length||hit(tr.dataset.q); tr.style.display=on?"":"none"; tot++; if(on){ any=true; n++; } });
+      tb.style.display=(any||!ts.length)?"":"none"; const hd=tb.previousElementSibling; if(hd&&hd.classList.contains("sumh")) hd.style.display=tb.style.display; });
+  const qn=body.querySelector("#sumQN"); if(qn) qn.textContent=ts.length?("พบ "+n+" / "+tot+(boxes.length?" ตู้":" รายการ")):""; }
 function fitBomCabs(){ const res={}; if(snOff("fitBomCab")) return res; const by={};
   (state.boards||[]).forEach(b=>{ if(!b||!b.cabInst||b._lineCab||b._lineDisp) return; (by[b.cabInst]=by[b.cabInst]||[]).push(b); });
   Object.keys(by).forEach(inst=>{ const bs=by[inst], code=String((bs.find(b=>b&&!b._virtual&&b.cab)||bs.find(b=>b&&b.cab)||{}).cab||inst); let rows=[]; try{ rows=fittingAgg(bs)||[]; }catch(e){ rows=[]; }
@@ -86267,7 +86328,10 @@ function renderSummary(){
   const body=$("sumBody"); if(!body) return;
   const _st0=body.scrollTop;   /* v2.012: แก้รหัสแล้ววาดใหม่ ตำแหน่งเลื่อนเดิม */
   const rows=fitBomRows();
-  let CABS={}; try{ CABS=fitBomCabs(); }catch(e){ console.error("fitBomCab:",e); CABS={}; }   /* v2.012 */
+  const _bv=!snOff("fitBomByCab");   /* v2.013 */
+  if(_bv&&!SUMV.ld){ SUMV.ld=1; try{ Promise.resolve(lsGet("sxlocaltrial:furnitech:bomView","all")).then(v=>{ if((v==="cab"||v==="all")&&v!==SUMV.v){ SUMV.v=v; const m=$("sumModal"); if(m&&m.classList.contains("show")) renderSummary(); } }).catch(()=>{}); }catch(e){} }
+  let G=[]; if(_bv||!snOff("fitBomCab")){ try{ G=fitBomGroups(); }catch(e){ console.error("bomGroups:",e); G=[]; } }
+  let CABS={}; try{ CABS=_bv?(snOff("fitBomCab")?{}:fitBomCabsG(G)):fitBomCabs(); }catch(e){ console.error("fitBomCab:",e); CABS={}; }   /* v2.012 · v2.013: กลุ่มส่งออกเดียวกับมุมมองแยกรายตู้ */
   const GRP=[["fit","อุปกรณ์ · เดือย · ราง · ไฟ"],["edge","ขอบ (PVC / Edge band)"],["line","Accessory จากแท็บเส้น / Line"]];
   const oid=(()=>{ try{ return orderId(); }catch(e){ return ""; } })();
   let h='<div class="sumh">ออเดอร์: '+escapeHtml(oid)+' · '+rows.length+' รายการ · '
@@ -86322,8 +86386,10 @@ function renderSummary(){
         +'<button type="button" class="sumFitSetAll" data-on="'+(all?1:0)+'" style="padding:3px 10px;border-radius:99px;border:1px solid var(--line-strong);background:var(--solid);color:var(--ink);font-size:11.5px;cursor:pointer">'+(all?"เปิดคืนทุกชุด":"ไม่ออกทุกชุด (เอาแค่ตู้)")+'</button>'
         +'<span style="font-size:11px;color:'+(nOff?"#b26a00":"var(--ink-dim)")+'">'+(nOff?("ปิด "+nOff+" ชุด เฉพาะงานนี้ · มีผลกับไฟล์ที่ส่งออกด้วย · ค่าตั้งร้านไม่เปลี่ยน"):"กดที่ชุดเพื่อไม่ออกในงานนี้ (งานเก่า/ลูกค้าซื้อเอง)")+'</span>'
         +'</div>'; })();
+  if(_bv) h+=sumViewBar(G);   /* v2.013 */
   let any=false;
-  GRP.forEach(([g,title])=>{
+  if(_bv&&SUMV.v==="cab"){ any=true; h+=sumCabViewHtml(rows,G); }   /* v2.013: แยกรายตู้ */
+  else GRP.forEach(([g,title])=>{
     const rs=rows.filter(r=>r.grp===g); if(!rs.length) return; any=true;
     h+='<div class="sumh">'+escapeHtml(title)+' — '+rs.length+' รายการ</div>'
       +'<table class="sumtbl"><thead><tr><th>รหัส</th><th>Purchase ID'+((g!=="edge"&&!snOff("fitPidOvr"))?' <span style="font-weight:400;opacity:.6">(แก้ได้ · เฉพาะงานนี้)</span>':'')+'</th><th>ชื่อ</th>'+(snOff("fitBomCab")?'':'<th>ตู้</th>')+'<th>ขนาดตัด (มม.)</th><th>จำนวน</th><th>หน่วย</th></tr></thead><tbody>';   /* v2.012: + ตู้ */
@@ -86337,7 +86403,7 @@ function renderSummary(){
       const nm=isKid?('<span style="opacity:.55">↳</span> '+escapeHtml(f.name)
           +' <span style="opacity:.5;font-size:11px">('+f.qtyPer+'/ชุด '+escapeHtml(f.parent||"")+')</span>')
         :escapeHtml(String(f.name||""));
-      h+='<tr'+(isKid?' style="opacity:.93"':'')+'>'
+      h+='<tr data-q="'+escapeHtml(sumRowQ(f,CABS[fitPidKey(f)]))+'"'+(isKid?' style="opacity:.93"':'')+'>'   /* v2.013: คำค้น */
         +'<td style="font-family:var(--mono)'+(isKid?';padding-left:18px':'')+'">'+escapeHtml(String(f.art))+'</td>'
         +'<td style="font-family:var(--mono)">'
           +(_ed?sumPidEd(f,pid):'')   /* v2.012 */
@@ -86392,6 +86458,14 @@ function renderSummary(){
     +'แก้ว่ารหัสชุดไหนออกอะไรได้ที่ Element → Fittings → ออกใบสั่งซื้อแบบ</div>';
   body.innerHTML=h;
   try{ body.scrollTop=_st0; }catch(e){}
+  /* v2.013: สลับมุมมอง · ค้นหา · ขยาย/ย่อทุกตู้ */
+  if(_bv){ body.querySelectorAll("[data-bv]").forEach(b=>b.onclick=()=>{ const v=b.dataset.bv; if(v===SUMV.v) return; SUMV.v=v; try{ lsSet("sxlocaltrial:furnitech:bomView",v); }catch(e){} body.scrollTop=0; renderSummary(); });
+    const q=body.querySelector("#sumQ"); if(q){ q.oninput=()=>{ SUMV.q=q.value; sumFilter(body); }; q.onkeydown=ev=>{ if(ev.key==="Escape"&&q.value){ ev.preventDefault(); ev.stopPropagation(); q.value=""; SUMV.q=""; sumFilter(body); } }; }
+    body.querySelectorAll(".sumCabBox").forEach(d=>d.addEventListener("toggle",()=>{ SUMV.open[d.dataset.k]=d.open; }));
+    const oa=body.querySelector("#sumOpenAll"), ca=body.querySelector("#sumCloseAll");
+    if(oa) oa.onclick=()=>body.querySelectorAll(".sumCabBox").forEach(d=>{ d.open=true; });
+    if(ca) ca.onclick=()=>body.querySelectorAll(".sumCabBox").forEach(d=>{ d.open=false; });
+    sumFilter(body); }
   /* v2.012: แก้รหัสส่งออก (เฉพาะงานนี้) */
   { const save=(k,v,a)=>{ const M=fitPidMap(), had=(M[k]!=null)?String(M[k]):null; v=String(v||"").trim(); a=String(a||"").trim();
       if(!v||v===a){ if(had==null) return false; delete M[k]; toast("กลับไปใช้รหัสเดิม "+(a||"—")+" · "+k); }
